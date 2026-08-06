@@ -40,6 +40,8 @@ import { getLessonDisplayLabel } from "@/lib/lesson-labels";
 import ShareCompletionButton from "@/components/ShareCompletionButton";
 import WisdomCardFlip from "@/components/WisdomCardFlip";
 import type { QuizQuestion } from "@/lib/lesson-types";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 export type { QuizQuestion };
 
@@ -131,6 +133,7 @@ const CANONICAL_LESSON_IDS_BY_SLUG: Record<string, number> = {
 };
 
 export default function LessonPageLayout({ lesson, quiz, children }: Props) {
+  const { t } = useI18n();
   const c = ACCENTS[lesson.accent] ?? ACCENTS.indigo;
   const persistedLessonId = lesson.slug ? CANONICAL_LESSON_IDS_BY_SLUG[lesson.slug] ?? lesson.id : lesson.id;
 
@@ -471,7 +474,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
         if (attempt >= RETRY_DELAYS_MS.length) {
           quizCompletionFiredRef.current = false;
           zeroQuizCompletedRef.current = false;
-          toast.error("Không thể lưu tiến độ bài học. Vui lòng tải lại trang để thử lại.");
+          toast.error(t.lessonLayout.saveFailed);
           return;
         }
         await new Promise((resolve) => setTimeout(resolve, RETRY_DELAYS_MS[attempt]));
@@ -509,7 +512,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
 
       const stillNeedsMidpoint = hasMidpoint && !midpointDone;
       if (stillNeedsMidpoint) {
-        toast.info("Đã làm xong quiz! Còn trả lời câu hỏi giữa bài để hoàn thành nhé.");
+        toast.info(t.lessonLayout.quizDoneMidpointLeft);
       }
     }
     // No auto-advance here - it used to jump to the next question 600ms
@@ -656,7 +659,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
     if (typeof window !== "undefined") {
       window.dispatchEvent(new CustomEvent("thtcdn:xp-gained", { detail: { xp: 10, label: "Hoàn thành bài học!" } }));
     }
-    toast.success("Đã lưu tiến độ bài học!");
+    toast.success(t.lessonLayout.saved);
     return true;
   }
 
@@ -715,11 +718,11 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
           <div className="flex items-center gap-2 sm:gap-4 min-w-0">
             <Link
               href="/hoc-bai"
-              aria-label="Về Học bài"
+              aria-label={t.lessonLayout.backAria}
               className="inline-flex flex-shrink-0 items-center gap-1.5 whitespace-nowrap w-9 h-9 sm:w-auto sm:px-4 sm:py-2 justify-center rounded-full sm:rounded-lg border-2 border-stone-300 dark:border-stone-700 text-stone-700 dark:text-stone-300 font-bold hover:bg-stone-100 dark:hover:bg-stone-800 hover:border-stone-400 dark:hover:border-stone-600 hover:text-stone-900 dark:hover:text-stone-100 bg-white dark:bg-stone-900 transition-all"
             >
               <ArrowLeft className="w-4 h-4 flex-shrink-0" />
-              <span className="hidden sm:inline">Quay lại</span>
+              <span className="hidden sm:inline">{t.lessonLayout.back}</span>
             </Link>
             <div className="min-w-0">
               <p className="font-extrabold text-stone-900 dark:text-stone-100 text-base sm:text-lg leading-tight line-clamp-1">{lesson.title}</p>
@@ -763,9 +766,9 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
               <span className="text-xs font-bold text-stone-600 dark:text-stone-400">
                 {readPct < 100
                   ? readPct === 0
-                    ? `~${readingMin} phút đọc`
-                    : `${readPct}% · còn ~${remainMin} phút`
-                  : "Đọc xong!"}
+                    ? format(t.lessonLayout.readMinutes, { minutes: readingMin })
+                    : format(t.lessonLayout.readProgress, { percent: readPct, minutes: remainMin })
+                  : t.lessonLayout.readDone}
               </span>
             </div>
 
@@ -807,16 +810,16 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
               <p className="text-stone-700 dark:text-stone-100 text-lg sm:text-xl leading-relaxed">{lesson.subtitle}</p>
               <div className="mt-7 pt-5 border-t-2 border-stone-300 dark:border-stone-700 space-y-4">
                 <div className="flex items-center gap-4 text-base text-stone-700 dark:text-stone-100 font-semibold">
-                  <span>{lesson.duration} đọc</span>
+                  <span>{format(t.lessonLayout.durationRead, { duration: lesson.duration })}</span>
                   <span>·</span>
-                  <span>{quiz.length} câu quiz</span>
+                  <span>{format(t.lessonLayout.quizCount, { count: quiz.length })}</span>
                   <span>·</span>
                   <span className="font-bold text-stone-900 dark:text-white">
                     {readPct === 0
-                      ? "Chưa bắt đầu"
+                      ? t.lessonLayout.notStarted
                       : readPct >= 100
-                      ? "Đọc xong!"
-                      : `Đã đọc ${readPct}%`}
+                        ? t.lessonLayout.readDone
+                        : format(t.lessonLayout.readPercent, { percent: readPct })}
                   </span>
                 </div>
                 {/* Reading progress bar inside hero */}
@@ -828,21 +831,23 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                 </div>
                 {readPct > 0 && readPct < 100 && (
                   <p className="text-sm text-stone-700 dark:text-stone-100 font-semibold">
-                    Còn khoảng <strong className="text-stone-900 dark:text-white">~{remainMin} phút</strong> để đọc xong
+                    {t.lessonLayout.remainingPart1}
+                    <strong className="text-stone-900 dark:text-white">{format(t.lessonLayout.remainingMinutes, { minutes: remainMin })}</strong>
+                    {t.lessonLayout.remainingPart2}
                   </p>
                 )}
                 {(() => {
                   const scrolledFully = readPct >= 95;
                   const sidebarQuizDone = quiz.length > 0 && submittedCount === quiz.length;
                   const checklistItems: { label: string; done: boolean }[] = [
-                    { label: "Đọc hết 100% nội dung bài", done: scrolledFully },
+                    { label: t.lessonLayout.checkReadAll, done: scrolledFully },
                   ];
                   if (hasMidpoint) {
-                    checklistItems.push({ label: "Trả lời câu hỏi \"Dừng & Kiểm tra\" giữa bài", done: midpointDone });
+                    checklistItems.push({ label: t.lessonLayout.checkMidpoint, done: midpointDone });
                   }
                   if (quiz.length > 0) {
                     checklistItems.push({
-                      label: `Hoàn thành "Kiểm tra nhanh" (${submittedCount}/${quiz.length} câu)`,
+                      label: format(t.lessonLayout.checkQuiz, { done: submittedCount, total: quiz.length }),
                       done: sidebarQuizDone,
                     });
                   }
@@ -852,7 +857,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                     <div className={`rounded-xl border-2 ${allDoneNow ? "border-emerald-500 bg-emerald-50 dark:bg-emerald-950/30" : c.border} ${allDoneNow ? "" : c.bg} px-4 py-3.5 space-y-2.5`}>
                       <p className={`text-xs font-extrabold uppercase tracking-widest flex items-center gap-1.5 ${allDoneNow ? "text-emerald-700 dark:text-emerald-400" : c.text}`}>
                         <span>{allDoneNow ? "✅" : "⚠️"}</span>
-                        Điều kiện hoàn thành &amp; nhận XP
+                        {t.lessonLayout.checklistTitle}
                       </p>
                       <ul className="space-y-1.5">
                         {checklistItems.map((item, i) => (
@@ -894,9 +899,9 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-2">
                   <span className="w-7 h-7 rounded-lg bg-rose-500/20 border border-rose-500/40 flex items-center justify-center text-rose-400 font-bold text-xs">▶️</span>
-                  <h3 className="text-sm font-extrabold text-white uppercase tracking-wider">Video Bài Giảng Trực Quan</h3>
+                  <h3 className="text-sm font-extrabold text-white uppercase tracking-wider">{t.lessonLayout.videoTitle}</h3>
                 </div>
-                <span className="text-[10px] font-bold text-stone-400 bg-stone-800 px-2 py-0.5 rounded">Minh họa trực quan</span>
+                <span className="text-[10px] font-bold text-stone-400 bg-stone-800 px-2 py-0.5 rounded">{t.lessonLayout.videoBadge}</span>
               </div>
 
               {(() => {
@@ -928,7 +933,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                 ) : (
                   <div className="bg-stone-950 p-4 rounded-xl border border-stone-800/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
                     <p className="text-stone-300">
-                      🎬 Bài học này hỗ trợ xem video minh họa trực quan trên YouTube.
+                      {t.lessonLayout.videoNote}
                     </p>
                     <a
                       href={`https://www.youtube.com/results?search_query=T%E1%BB%B1+h%E1%BB%8Dc+t%C3%A0i+ch%C3%ADnh+${encodeURIComponent(lesson.title)}`}
@@ -936,7 +941,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                       rel="noopener noreferrer"
                       className="px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-500 font-bold text-white transition-all shadow-md shrink-0 flex items-center gap-1.5 cursor-pointer"
                     >
-                      <span>▶ Xem Video Bài Giảng trên YouTube</span>
+                      <span>{t.lessonLayout.videoCta}</span>
                     </a>
                   </div>
                 );
@@ -963,7 +968,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
 
             {/* Mobile quiz prompt */}
             <div className="lg:hidden mt-8 border-t border-stone-200 dark:border-stone-800 pt-6">
-              <p className="text-base text-stone-500 dark:text-stone-400 text-center">Cuộn xuống để làm quiz →</p>
+              <p className="text-base text-stone-500 dark:text-stone-400 text-center">{t.lessonLayout.scrollForQuiz}</p>
             </div>
 
             {/* Bottom-of-article sentinel for IntersectionObserver-based
@@ -1021,7 +1026,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                 className="w-full flex items-center justify-between p-4 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
               >
                 <div className="flex items-center gap-3">
-                  <span className="text-base font-extrabold text-stone-900 dark:text-stone-100 uppercase tracking-wide">Kiểm tra nhanh</span>
+                  <span className="text-base font-extrabold text-stone-900 dark:text-stone-100 uppercase tracking-wide">{t.lessonLayout.quickCheck}</span>
                   <span className="text-base font-bold text-stone-700 dark:text-stone-300 bg-stone-100 dark:bg-stone-800 px-3 py-1 rounded-lg">{submittedCount}/{quiz.length}</span>
                 </div>
                 {quizCollapsed ? <ChevronDown className="w-5 h-5 text-stone-500 dark:text-stone-400" /> : <ChevronUp className="w-5 h-5 text-stone-500 dark:text-stone-400" />}
@@ -1052,11 +1057,11 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                 <div>
                   <div className="flex items-center justify-between mb-4">
                     <span className="text-sm font-extrabold text-stone-700 dark:text-stone-300 uppercase tracking-wider bg-stone-100 dark:bg-stone-800 px-3 py-1 rounded-lg">
-                      Câu {activeQ + 1} / {quiz.length}
+                      {format(t.lessonLayout.questionCounter, { current: activeQ + 1, total: quiz.length })}
                     </span>
                     {qSubmitted && (
                       <span className={`text-sm font-bold px-3 py-1.5 rounded-lg ${qCorrect ? "bg-emerald-100 dark:bg-emerald-950/50 text-emerald-900 dark:text-emerald-400" : "bg-rose-100 dark:bg-rose-950/50 text-rose-900 dark:text-rose-400"}`}>
-                        {qCorrect ? "✓ Đúng rồi!" : "✗ Chưa đúng"}
+                        {qCorrect ? t.lessonLayout.answerRight : t.lessonLayout.answerWrong}
                       </span>
                     )}
                   </div>
@@ -1099,15 +1104,15 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
 
                 {qSubmitted && (
                   <div className={`rounded-xl p-4 text-sm leading-relaxed border ${qCorrect ? "bg-emerald-50 dark:bg-emerald-950/50 border-emerald-100 dark:border-emerald-900 text-emerald-800 dark:text-emerald-400" : "bg-rose-50 dark:bg-rose-950/50 border-rose-100 dark:border-rose-900 text-rose-800 dark:text-rose-400"}`}>
-                    <p className="font-bold mb-1.5">{qCorrect ? "Chính xác!" : "Giải thích:"}</p>
+                    <p className="font-bold mb-1.5">{qCorrect ? t.lessonLayout.exactly : t.lessonLayout.explanation}</p>
                     {/* Contrast the learner's own wrong pick against the correct
                         one before explaining - naming the exact misconception
                         they just revealed, not just restating the right answer. */}
                     {!qCorrect && qSelected !== null && (
                       <p className="mb-2 pb-2 border-b border-rose-200 dark:border-rose-900">
-                        <span className="font-semibold">Bạn chọn:</span> "{q.options[qSelected]}"
+                        <span className="font-semibold">{t.lessonLayout.youChose}</span> "{q.options[qSelected]}"
                         <br />
-                        <span className="font-semibold">Đáp án đúng:</span> "{q.options[q.correct]}"
+                        <span className="font-semibold">{t.lessonLayout.correctIs}</span> "{q.options[q.correct]}"
                       </p>
                     )}
                     <p>{q.explanation}</p>
@@ -1134,7 +1139,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                         qSelected !== null ? `${c.btn}` : "bg-stone-200 dark:bg-stone-700 text-stone-500 dark:text-stone-400 cursor-not-allowed shadow-none"
                       }`}
                     >
-                      Kiểm tra →
+                      {t.lessonLayout.check}
                     </button>
                   ) : (
                     <div className="flex gap-3">
@@ -1143,7 +1148,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                           onClick={() => retry(activeQ)}
                           className="flex-1 py-4 rounded-xl font-bold text-sm uppercase tracking-wider border-2 border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-900 text-stone-700 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors cursor-pointer shadow-lg"
                         >
-                          Thử lại →
+                          {t.lessonLayout.tryAgain}
                         </button>
                       )}
                       {reviewMode && finished ? (
@@ -1151,14 +1156,14 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                           onClick={() => setReviewMode(false)}
                           className={`flex-1 py-4 rounded-xl font-bold text-sm uppercase tracking-wider text-white ${c.btn} cursor-pointer shadow-lg`}
                         >
-                          ← Quay lại kết quả
+                          {t.lessonLayout.backToResults}
                         </button>
                       ) : activeQ < quiz.length - 1 ? (
                         <button
                           onClick={() => setActiveQ(activeQ + 1)}
                           className={`flex-1 py-4 rounded-xl font-bold text-sm uppercase tracking-wider text-white ${c.btn} cursor-pointer shadow-lg`}
                         >
-                          Câu tiếp theo →
+                          {t.lessonLayout.nextQuestion}
                         </button>
                       ) : (
                         !reviewMode && allDone && (
@@ -1166,7 +1171,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                             onClick={() => setFinished(true)}
                             className={`flex-1 py-4 rounded-xl font-bold text-sm uppercase tracking-wider text-white ${c.btn} cursor-pointer shadow-lg`}
                           >
-                            Xem kết quả →
+                            {t.lessonLayout.seeResults}
                           </button>
                         )
                       )}
@@ -1179,8 +1184,8 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
               <div className={`rounded-2xl border p-7 text-center space-y-4 ${score === quiz.length ? "bg-emerald-50 dark:bg-emerald-950/50 border-emerald-200 dark:border-emerald-900" : "bg-indigo-50 dark:bg-indigo-950/50 border-indigo-200 dark:border-indigo-900"}`}>
                 <div className="text-5xl">{score === quiz.length ? "★" : score >= quiz.length * 0.7 ? "+" : "↑"}</div>
                 <div>
-                  <h3 className="font-bold text-stone-900 dark:text-stone-100 text-xl">Hoàn thành!</h3>
-                  <p className="text-stone-500 dark:text-stone-400 text-sm mt-1">{score}/{quiz.length} câu đúng</p>
+                  <h3 className="font-bold text-stone-900 dark:text-stone-100 text-xl">{t.lessonLayout.doneTitle}</h3>
+                  <p className="text-stone-500 dark:text-stone-400 text-sm mt-1">{format(t.lessonLayout.doneScore, { score, total: quiz.length })}</p>
                 </div>
                 <div className="flex gap-2 justify-center">
                   {results.map((ok, i) => (
@@ -1200,19 +1205,19 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                     href="/on-tap-cau-sai"
                     className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-stone-950 text-xs sm:text-sm font-black transition-colors cursor-pointer shadow-sm"
                   >
-                    🔄 Ôn Lại Câu Vừa Sai Ngay (Flashcard 3D)
+                    {t.lessonLayout.reviewMistakes}
                   </Link>
                 )}
                 <div className="grid grid-cols-2 gap-3 pt-1">
                   <Link href="/dashboard" className="py-3.5 rounded-xl border border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-400 text-sm font-bold text-center hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors">
-                    Dashboard
+                    {t.lessonLayout.dashboard}
                   </Link>
                   {lesson.nextSlug ? (
                     <Link href={`/bai-hoc/${lesson.nextSlug}`} className={`py-3.5 rounded-xl text-white text-sm font-bold text-center ${c.btn} transition-colors`}>
-                      Bài tiếp →
+                      {t.lessonLayout.nextLesson}
                     </Link>
                   ) : (
-                    <div className="py-3.5 rounded-xl bg-stone-100 dark:bg-stone-800 text-stone-500 dark:text-stone-400 text-sm font-bold text-center">Sắp ra mắt</div>
+                    <div className="py-3.5 rounded-xl bg-stone-100 dark:bg-stone-800 text-stone-500 dark:text-stone-400 text-sm font-bold text-center">{t.lessonLayout.comingSoon}</div>
                   )}
                 </div>
                 <ShareCompletionButton
@@ -1224,7 +1229,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                   onClick={restartQuiz}
                   className="text-xs font-bold text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 uppercase tracking-wide transition-colors cursor-pointer"
                 >
-                  ↺ Làm lại từ đầu
+                  {t.lessonLayout.restart}
                 </button>
               </div>
             )}
@@ -1232,7 +1237,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
             {/* Mini nav between questions */}
             {(!finished || reviewMode) && quiz.length > 1 && (
               <div className="bg-white dark:bg-stone-900 rounded-2xl border border-stone-200 dark:border-stone-800 p-4">
-                <div className="text-xs text-stone-500 dark:text-stone-400 font-bold uppercase tracking-wide mb-3">Các câu hỏi</div>
+                <div className="text-xs text-stone-500 dark:text-stone-400 font-bold uppercase tracking-wide mb-3">{t.lessonLayout.questionList}</div>
                 <div className="grid grid-cols-5 gap-2">
                   {quiz.map((_, i) => (
                     <button

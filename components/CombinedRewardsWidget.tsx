@@ -10,6 +10,8 @@ import { getUnopenedChestCount, openNextChest, earnChest, type ChestReward } fro
 import { createClient } from "@/lib/supabase";
 import DailyQuestsWidget from "@/components/DailyQuestsWidget";
 import { useIsClient } from "@/lib/use-is-client";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 interface CombinedRewardsWidgetProps {
   userId: string;
@@ -39,6 +41,7 @@ interface DailyQuest {
 }
 
 export default function CombinedRewardsWidget({ userId, defaultExpanded = false, compact = false }: CombinedRewardsWidgetProps) {
+  const { t } = useI18n();
   const mounted = useIsClient();
   const [activeTab, setActiveTab] = useState<"daily" | "chests" | "weekly">("daily");
   const [isExpanded, setIsExpanded] = useState(defaultExpanded);
@@ -167,7 +170,7 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
       const { ok, reward } = await openNextChest(userId);
       if (!ok || !reward) {
         setOpening(false);
-        toast.error("Không thể mở rương. Vui lòng thử lại.");
+        toast.error(t.rewards.chestOpenFailed);
         return;
       }
 
@@ -183,7 +186,7 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
   const handleClaimReward = () => {
     setOpening(false);
     setRewardReveal(null);
-    toast.success("Đã thu thập phần quà thành công! 🌟");
+    toast.success(t.rewards.rewardCollected);
   };
 
   const handleWeeklyClaim = async () => {
@@ -197,18 +200,18 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
         .insert([{ user_id: userId, quest_type: "weekly_chest", day_key: weekKey, xp_earned: 0 }]);
 
       if (error) {
-        toast.error("Không thể mở rương - có thể bạn đã mở rồi.");
+        toast.error(t.rewards.weeklyChestClaimFailedTaken);
         return;
       }
 
       await earnChest(userId, "weekly_quest", 1);
       setWeeklyClaimed(true);
       await loadChests();
-      toast.success("Rương tri thức tuần đã mở thành công! Bạn nhận được thêm +1 Rương Quà! 🎁✨");
+      toast.success(t.rewards.weeklyChestClaimSuccess);
       window.dispatchEvent(new Event("thtcdn_chests_updated"));
     } catch (err) {
       console.error("Error claiming weekly chest:", err);
-      toast.error("Có lỗi xảy ra. Vui lòng thử lại.");
+      toast.error(t.rewards.weeklyChestClaimError);
     }
   };
 
@@ -236,7 +239,7 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
         .insert([{ user_id: userId, quest_type: "weekly_epic", day_key: weekKey, xp_earned: 0 }]);
 
       if (error) {
-        toast.error("Không thể nhận thưởng - có thể bạn đã nhận rồi.");
+        toast.error(t.rewards.epicClaimFailedTaken);
         return;
       }
 
@@ -244,11 +247,11 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
       await loadChests();
 
       setIsEpicClaimed(true);
-      toast.success("Chúc mừng! Bạn đã mở khóa Rương Sử Thi: Nhận +3 Rương Quà! 🎁🏆👑");
+      toast.success(t.rewards.epicClaimSuccess);
       window.dispatchEvent(new Event("thtcdn_chests_updated"));
     } catch (error) {
       console.error("Error claiming epic chest:", error);
-      toast.error("Lỗi khi nhận phần thưởng. Hãy thử lại.");
+      toast.error(t.rewards.epicClaimError);
     } finally {
       setClaiming(false);
     }
@@ -260,10 +263,10 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
       <div className={`w-full flex items-center ${compact ? "px-4 py-3" : "px-3.5 py-2"}`}>
         <div className="flex items-center gap-2 min-w-0">
           <Gift className="w-4.5 h-4.5 text-stone-500" />
-          <span className={`${compact ? "text-sm" : "text-[15px]"} font-bold text-stone-900 dark:text-stone-100`}>Nhiệm vụ</span>
+          <span className={`${compact ? "text-sm" : "text-[15px]"} font-bold text-stone-900 dark:text-stone-100`}>{t.rewards.title}</span>
           {chestCount > 0 && (
             <span className="text-[10px] font-black bg-rose-50 text-rose-600 border border-rose-100 px-2 py-0.5 rounded-full">
-              {chestCount} rương
+              {format(t.rewards.chestBadge, { count: chestCount })}
             </span>
           )}
         </div>
@@ -282,7 +285,7 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
                   : "text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-300 font-bold"
               }`}
             >
-              <span>Nhiệm vụ ngày</span>
+              <span>{t.rewards.tabDaily}</span>
               {dailyQuests.length > 0 && dailyQuests.some((q) => !q.claimed) && (
                 <span className="w-1.5 h-1.5 rounded-full bg-amber-400 absolute top-1 right-1.5" />
               )}
@@ -297,7 +300,7 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
                   : "text-stone-500 dark:text-stone-400 hover:text-rose-500 dark:hover:text-rose-400 hover:bg-rose-500/5"
               }`}
             >
-              <span>Rương Quà</span>
+              <span>{t.rewards.tabChests}</span>
               {chestCount > 0 && (
                 <span className="w-1.5 h-1.5 rounded-full bg-rose-400 absolute top-1 right-1.5" />
               )}
@@ -311,7 +314,7 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
                   : "text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-300 font-bold"
               }`}
             >
-              <span>Nhiệm Vụ Tuần</span>
+              <span>{t.rewards.tabWeekly}</span>
             </button>
           </div>
 
@@ -355,13 +358,13 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
                       <span className="text-2xl">🎁</span>
                     </button>
                     <div className="space-y-1">
-                      <p className="text-xs font-bold text-stone-800 dark:text-stone-200">Bạn có rương quà chưa mở!</p>
-                      <p className="text-[10px] text-stone-400 dark:text-stone-500">Nhấn vào rương để mở khóa danh hiệu và phần thưởng</p>
+                      <p className="text-xs font-bold text-stone-800 dark:text-stone-200">{t.rewards.hasUnopenedChest}</p>
+                      <p className="text-[10px] text-stone-400 dark:text-stone-500">{t.rewards.openChestHint}</p>
                     </div>
                   </div>
                 ) : (
                   <div className="text-center py-5 text-stone-400 dark:text-stone-500 text-[10px] leading-relaxed">
-                    Không có rương nào chưa mở. Hoàn thành nhiệm vụ hàng ngày hoặc thi vượt ải chặng để kiếm rương kho báu! 🏆
+                    {t.rewards.noChests}
                   </div>
                 )}
 
@@ -369,10 +372,10 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
                 <div className="mt-4 pt-4 border-t border-stone-100 dark:border-stone-800/80 flex items-center justify-between gap-3">
                   <div className="min-w-0">
                     <span className="text-[10px] font-black uppercase tracking-wider flex items-center gap-1.5 bg-gradient-to-r from-rose-500 to-pink-500 bg-clip-text text-transparent animate-pulse mb-1">
-                      <Gift className="w-3.5 h-3.5 text-rose-500" /> Rương tri thức tuần
+                      <Gift className="w-3.5 h-3.5 text-rose-500" /> {t.rewards.weeklyChestTitle}
                     </span>
                     <p className="text-[11.5px] font-bold text-stone-600 dark:text-stone-300">
-                      Đã hoàn thành: <span className="text-rose-500 dark:text-rose-400 font-black">{dailyQuests.filter((q) => q.current >= q.target).length}/3</span> nhiệm vụ hôm nay
+                      {format(t.rewards.weeklyChestCompleted, { count: dailyQuests.filter((q) => q.current >= q.target).length })}
                     </p>
                   </div>
                   <button
@@ -386,7 +389,7 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
                         : "bg-stone-50 dark:bg-stone-900 text-stone-400 border-stone-200 dark:border-stone-800 cursor-not-allowed"
                     }`}
                   >
-                    {weeklyClaimed ? "Đã mở 🎁" : "Mở rương 🔒"}
+                    {weeklyClaimed ? t.rewards.weeklyChestOpened : t.rewards.weeklyChestLocked}
                   </button>
                 </div>
               </>
@@ -397,7 +400,7 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
                 <div className="space-y-3">
                   <div className="space-y-1.5">
                     <div className="flex justify-between items-center text-[10px] font-extrabold text-stone-700 dark:text-stone-300">
-                      <span className="flex items-center gap-1"><Flame className="w-3 h-3 text-orange-500" /> Chuỗi Học Tập</span>
+                      <span className="flex items-center gap-1"><Flame className="w-3 h-3 text-orange-500" /> {t.rewards.streakQuest}</span>
                       <span>{streakProgress}/5</span>
                     </div>
                     <div className="w-full h-1.5 bg-stone-100 dark:bg-stone-800 rounded-full overflow-hidden">
@@ -407,7 +410,7 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
 
                   <div className="space-y-1.5">
                     <div className="flex justify-between items-center text-[10px] font-extrabold text-stone-700 dark:text-stone-300">
-                      <span className="flex items-center gap-1"><BookOpen className="w-3 h-3 text-sky-500" /> Bài Học Tuần</span>
+                      <span className="flex items-center gap-1"><BookOpen className="w-3 h-3 text-sky-500" /> {t.rewards.lessonsQuest}</span>
                       <span>{lessonsProgress}/10</span>
                     </div>
                     <div className="w-full h-1.5 bg-stone-100 dark:bg-stone-800 rounded-full overflow-hidden">
@@ -417,7 +420,7 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
 
                   <div className="space-y-1.5">
                     <div className="flex justify-between items-center text-[10px] font-extrabold text-stone-700 dark:text-stone-300">
-                      <span className="flex items-center gap-1"><Sparkles className="w-3 h-3 text-emerald-500" /> Quiz Hoàn Hảo</span>
+                      <span className="flex items-center gap-1"><Sparkles className="w-3 h-3 text-emerald-500" /> {t.rewards.perfectQuizQuest}</span>
                       <span>{quizProgress}/3</span>
                     </div>
                     <div className="w-full h-1.5 bg-stone-100 dark:bg-stone-800 rounded-full overflow-hidden">
@@ -429,7 +432,7 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
                 {allQuestsDone ? (
                   isEpicClaimed ? (
                     <div className="mt-4 p-3 bg-stone-50 dark:bg-stone-950 border border-stone-100 dark:border-stone-800 rounded-2xl text-center text-[10px] text-stone-400 dark:text-stone-500 font-bold flex items-center justify-center gap-1.5">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-500" /> Đã nhận phần thưởng tuần này!
+                      <CheckCircle2 className="w-4 h-4 text-emerald-500" /> {t.rewards.epicClaimed}
                     </div>
                   ) : (
                     <button
@@ -437,12 +440,12 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
                       disabled={claiming}
                       className="mt-4 w-full py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white rounded-xl text-[11px] font-black uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-amber-500/20 active:scale-95 animate-pulse"
                     >
-                      <Gift className="w-4 h-4" /> {claiming ? "Đang nhận quà..." : "Mở Rương Sử Thi! 🎁"}
+                      <Gift className="w-4 h-4" /> {claiming ? t.rewards.claimingEpic : t.rewards.openEpicChest}
                     </button>
                   )
                 ) : (
                   <div className="mt-4 p-3 bg-stone-50 dark:bg-stone-950 border border-stone-100 dark:border-stone-800 rounded-2xl text-center text-[10px] text-stone-400 dark:text-stone-500 font-bold">
-                    🔒 Hoàn thành cả 3 nhiệm vụ để mở khóa +3 rương quà
+                    {t.rewards.epicLocked}
                   </div>
                 )}
               </>
@@ -458,7 +461,7 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
               {rewardReveal.type === "xp" ? <Zap className="w-8 h-8 text-white" /> : <Sparkles className="w-8 h-8 text-white" />}
             </div>
             <div className="space-y-1">
-              <span className="text-[9px] font-extrabold uppercase tracking-widest text-amber-600 dark:text-amber-400">Bạn đã mở rương nhận được</span>
+              <span className="text-[9px] font-extrabold uppercase tracking-widest text-amber-600 dark:text-amber-400">{t.rewards.youReceived}</span>
               <h3 className="text-lg font-black text-stone-900 dark:text-stone-100 flex items-center justify-center gap-1.5">
                 {rewardReveal.type === "title" && <Trophy className="w-5 h-5 text-amber-500" />}
                 {rewardReveal.value}
@@ -470,7 +473,7 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
               onClick={handleClaimReward}
               className="w-full py-3 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl text-xs font-extrabold tracking-wider uppercase transition-colors cursor-pointer"
             >
-              Thu thập phần quà <CheckCircle2 className="w-4 h-4 inline-block ml-1" />
+              {t.rewards.collectReward} <CheckCircle2 className="w-4 h-4 inline-block ml-1" />
             </button>
           </div>
         </div>,

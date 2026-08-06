@@ -26,6 +26,11 @@ const BLOW_SPEED = 900;
  *  một số, nếu không thì hạ mặt đất xuống là đống lửa lơ lửng. */
 const GROUND_Y = -0.78;
 
+/** Chùm tàn kéo dài bao lâu sau khi đặt xuống một nỗi lo, giây. Đủ để nhìn
+ *  thấy, ngắn hơn hẳn cú bùng của ngọn lửa (FLARE_MS) để nó đọc ra là một
+ *  nhịp thở chứ không phải một hiệu ứng ăn mừng. */
+const BURST_SECONDS = 2.4;
+
 // Một đốm lửa nhỏ trong mưa nhỏ giữa rừng.
 //
 // Bố cục theo chiều sâu:
@@ -209,9 +214,21 @@ function Flame({
   );
 }
 
-/** Tàn lửa bay lên rồi tắt. Bay chậm và ít - lửa nhỏ cháy bền, không phải
- *  đống lửa trại đang bùng. */
-function Embers() {
+/**
+ * Tàn lửa bay lên rồi tắt. Bay chậm và ít - lửa nhỏ cháy bền, không phải đống
+ * lửa trại đang bùng.
+ *
+ * `setDownCount` tăng lên một khi người đọc vừa đặt xuống một nỗi lo. Lúc đó
+ * toàn bộ tàn được thả lại cùng lúc và bay nhanh gấp đôi trong một nhịp: đống
+ * lửa bốc lên một chùm, rồi trở lại nhịp cháy cũ.
+ *
+ * Vì sao đáng làm: đặt xuống một nỗi lo là cử chỉ DUY NHẤT trang này mời người
+ * ta làm, và trước đây nó chỉ được đáp lại bằng ngọn lửa sáng thêm vài phần
+ * trăm - một thay đổi thật nhưng gần như không ai nhận ra. Chùm tàn thì thấy
+ * được, và nó không phải phần thưởng: không điểm, không đếm, không lưu lại,
+ * đúng theo nguyên tắc của trang.
+ */
+function Embers({ setDownCount }: { setDownCount: number }) {
   const state = useMemo(
     () =>
       Array.from({ length: EMBER_COUNT }, (_, i) => ({
@@ -230,7 +247,23 @@ function Embers() {
     return g;
   }, []);
 
+  const seenCount = useRef(setDownCount);
+  const burstUntil = useRef(0);
+
   useFrame(({ clock }, delta) => {
+    const t = clock.getElapsedTime();
+    if (seenCount.current !== setDownCount) {
+      seenCount.current = setDownCount;
+      // Chỉ bùng khi con số TĂNG. Nó không giảm được trong phiên hiện tại,
+      // nhưng so bằng "khác" thay vì "lớn hơn" sẽ biến mọi lần dựng lại thành
+      // một chùm tàn không ai gây ra.
+      if (setDownCount > 0) {
+        burstUntil.current = t + BURST_SECONDS;
+        for (const e of state) e.life = 0;
+      }
+    }
+    const bursting = t < burstUntil.current;
+
     const attr = geometry.getAttribute("position") as THREE.BufferAttribute;
     const arr = attr.array as Float32Array;
     const drift = ambientWind(clock.getElapsedTime()) * 0.22;
@@ -244,7 +277,7 @@ function Embers() {
         e.y = 0.1;
         e.life = 1.8 + Math.random() * 1.6;
       }
-      e.y += e.speed * delta;
+      e.y += e.speed * (bursting ? 2.1 : 1) * delta;
       e.x += drift * delta;
       arr[i * 3] = e.x;
       arr[i * 3 + 1] = GROUND_Y + e.y;
@@ -430,9 +463,11 @@ function DraggableStage({
 export default function QuietForestSceneInner({
   intensity = 0.6,
   reducedMotion = false,
+  setDownCount = 0,
 }: {
   intensity?: number;
   reducedMotion?: boolean;
+  setDownCount?: number;
 }) {
   const pointer = useRef<PointerState>({
     dragging: false,
@@ -518,7 +553,7 @@ export default function QuietForestSceneInner({
           <Rain />
           <Campfire />
           <Flame intensity={intensity} pointer={pointer} />
-          <Embers />
+          <Embers setDownCount={setDownCount} />
         </DraggableStage>
       </Canvas>
     </div>

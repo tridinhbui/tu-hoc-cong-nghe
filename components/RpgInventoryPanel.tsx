@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
 import FinanceCharacterAvatar, { CharacterEquipments } from "@/components/FinanceCharacterAvatar";
 import { toast } from "sonner";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 interface InventoryItem {
   id: string;
@@ -106,6 +108,7 @@ export interface RpgProfile {
 }
 
 export default function RpgInventoryPanel({ user }: { user: RpgProfile | null }) {
+  const { t } = useI18n();
   const [items, setItems] = useState<InventoryItem[]>(DEFAULT_ITEMS);
   const [selectedItem, setSelectedItem] = useState<InventoryItem | null>(DEFAULT_ITEMS[0]);
   const [activeTab, setActiveTab] = useState<"all" | "gear" | "potions">("all");
@@ -130,7 +133,7 @@ export default function RpgInventoryPanel({ user }: { user: RpgProfile | null })
 
   const handleToggleEquip = (item: InventoryItem) => {
     if (item.slot === "potion") {
-      toast.success(`🧪 Đã sử dụng ${item.name}! Nhân đôi XP trong 24 giờ tiếp theo.`);
+      toast.success(format(t.rpgInventory.toastUsedPotion, { name: item.name }));
       return;
     }
 
@@ -138,7 +141,11 @@ export default function RpgInventoryPanel({ user }: { user: RpgProfile | null })
       prev.map((i) => {
         if (i.id === item.id) {
           const nextEquipState = !i.isEquipped;
-          toast.success(nextEquipState ? `✨ Đã mặc ${i.name}!` : `❌ Đã tháo ${i.name}`);
+          toast.success(
+            nextEquipState
+              ? format(t.rpgInventory.toastEquipped, { name: i.name })
+              : format(t.rpgInventory.toastUnequipped, { name: i.name })
+          );
           return { ...i, isEquipped: nextEquipState };
         }
         if (i.slot === item.slot && !item.isEquipped) {
@@ -160,15 +167,15 @@ export default function RpgInventoryPanel({ user }: { user: RpgProfile | null })
       <div className="mb-5 flex flex-col gap-3 border-b border-stone-200 pb-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <span className="inline-flex items-center rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-[10px] font-black uppercase tracking-[0.2em] text-amber-700">
-            RPG Gear Hub
+            {t.rpgInventory.badge}
           </span>
-          <h2 className="mt-3 text-2xl font-black tracking-tight text-stone-900 sm:text-3xl">Tủ đồ & trang bị</h2>
+          <h2 className="mt-3 text-2xl font-black tracking-tight text-stone-900 sm:text-3xl">{t.rpgInventory.title}</h2>
           <p className="mt-2 max-w-2xl text-sm leading-6 text-stone-600">
-            Quản lý ngoại hình, vật phẩm và chỉ số chiến đấu tài chính của nhân vật ngay trong hub riêng.
+            {t.rpgInventory.description}
           </p>
         </div>
         <div className="rounded-2xl border border-emerald-200 bg-emerald-50 px-3.5 py-2 text-sm font-bold text-emerald-700">
-          {equippedItems.length} món đang trang bị
+          {format(t.rpgInventory.equippedCount, { count: equippedItems.length })}
         </div>
       </div>
 
@@ -176,9 +183,11 @@ export default function RpgInventoryPanel({ user }: { user: RpgProfile | null })
         <div className="lg:col-span-5 rounded-3xl border border-stone-200 bg-stone-50 p-4 shadow-sm">
           <div className="mb-3 flex items-center justify-between">
             <span className="rounded-full border border-amber-200 bg-white px-2.5 py-1 text-[10px] font-black uppercase text-amber-600">
-              Lv.{level} Wall Street Analyst
+              {format(t.rpgInventory.levelLabel, { level })}
             </span>
-            <span className="text-[10px] font-bold text-stone-400">ID: {user?.email?.split("@")[0] || "User"}</span>
+            <span className="text-[10px] font-bold text-stone-400">
+              {format(t.rpgInventory.idLabel, { id: user?.email?.split("@")[0] || t.rpgInventory.idFallback })}
+            </span>
           </div>
 
           <div className="my-5 flex justify-center">
@@ -189,24 +198,24 @@ export default function RpgInventoryPanel({ user }: { user: RpgProfile | null })
 
           <div className="space-y-3 rounded-2xl border border-stone-200 bg-white p-3">
             <div className="flex items-center justify-between border-b border-stone-200 pb-1 text-[10px] font-black uppercase tracking-wider text-stone-400">
-              <span>Chỉ số nhân vật</span>
-              <span className="text-amber-500">Buff +{equippedItems.length}</span>
+              <span>{t.rpgInventory.statsTitle}</span>
+              <span className="text-amber-500">{format(t.rpgInventory.buffLabel, { count: equippedItems.length })}</span>
             </div>
             <div className="grid grid-cols-2 gap-2 text-xs font-black">
               <div className="flex items-center justify-between rounded-xl border border-stone-200 bg-stone-50 p-2">
-                <span className="text-stone-500">⚡ Tốc độ</span>
+                <span className="text-stone-500">{t.rpgInventory.statSpeed}</span>
                 <span className="text-amber-600">{totalStats.speed}</span>
               </div>
               <div className="flex items-center justify-between rounded-xl border border-stone-200 bg-stone-50 p-2">
-                <span className="text-stone-500">📊 Định giá</span>
+                <span className="text-stone-500">{t.rpgInventory.statValuation}</span>
                 <span className="text-emerald-600">{totalStats.valuation}</span>
               </div>
               <div className="flex items-center justify-between rounded-xl border border-stone-200 bg-stone-50 p-2">
-                <span className="text-stone-500">🛡️ Rủi ro</span>
+                <span className="text-stone-500">{t.rpgInventory.statDefense}</span>
                 <span className="text-sky-600">{totalStats.defense}</span>
               </div>
               <div className="flex items-center justify-between rounded-xl border border-stone-200 bg-stone-50 p-2">
-                <span className="text-stone-500">🍀 Vận may</span>
+                <span className="text-stone-500">{t.rpgInventory.statLuck}</span>
                 <span className="text-rose-600">{totalStats.luck}</span>
               </div>
             </div>
@@ -217,9 +226,9 @@ export default function RpgInventoryPanel({ user }: { user: RpgProfile | null })
           <div className="flex flex-col gap-2 border-b border-stone-200 pb-3 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex gap-1.5 overflow-x-auto pb-1 sm:pb-0">
               {[
-                { id: "all", label: `Tất cả (${items.length})` },
-                { id: "gear", label: "👔 Trang bị" },
-                { id: "potions", label: "🧪 Đạo cụ & thẻ" },
+                { id: "all", label: format(t.rpgInventory.tabAll, { count: items.length }) },
+                { id: "gear", label: t.rpgInventory.tabGear },
+                { id: "potions", label: t.rpgInventory.tabPotions },
               ].map((tab) => (
                 <button
                   key={tab.id}
@@ -232,7 +241,7 @@ export default function RpgInventoryPanel({ user }: { user: RpgProfile | null })
                 </button>
               ))}
             </div>
-            <span className="text-[10px] font-extrabold text-stone-400">Sức chứa: 6/30 ô</span>
+            <span className="text-[10px] font-extrabold text-stone-400">{t.rpgInventory.capacityLabel}</span>
           </div>
 
           <div className="grid max-h-64 grid-cols-4 gap-2.5 overflow-y-auto p-1 sm:grid-cols-5">
@@ -292,14 +301,18 @@ export default function RpgInventoryPanel({ user }: { user: RpgProfile | null })
                         : "bg-amber-500 text-white hover:bg-amber-600"
                   }`}
                 >
-                  {selectedItem.slot === "potion" ? "🧪 Sử dụng" : selectedItem.isEquipped ? "❌ Tháo ra" : "✨ Trang bị"}
+                  {selectedItem.slot === "potion"
+                    ? t.rpgInventory.useButton
+                    : selectedItem.isEquipped
+                      ? t.rpgInventory.unequipButton
+                      : t.rpgInventory.equipButton}
                 </button>
               </div>
 
               <p className="text-xs leading-6 text-stone-500">{selectedItem.description}</p>
               <div className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-1 text-[10px] font-bold text-emerald-700">
                 <CheckCircle2 className="h-3.5 w-3.5" />
-                Bấm để xem chi tiết và đổi trang bị
+                {t.rpgInventory.detailsHint}
               </div>
             </div>
           )}

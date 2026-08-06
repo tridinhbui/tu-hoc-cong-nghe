@@ -15,6 +15,8 @@
  *  Ở đây vốn chủ = vốn chủ đầu kỳ + LNST, và tiền = tiền đầu kỳ + CFO + CFI +
  *  CFF. Cân bằng không còn là thứ phải nhớ giữ, nó đúng theo cấu trúc. */
 
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
+
 /** Những dòng người ta thực sự "nhập": doanh thu, chi phí, và các khoản trên
  *  bảng cân đối không phải tiền/vốn chủ. */
 export interface Drivers {
@@ -192,62 +194,46 @@ export interface Impact {
   };
 }
 
-/** Bốn cú tác động kinh điển, mỗi cú lộ ra một mối nối khác nhau. */
-export const IMPACTS: Impact[] = [
-  {
-    id: "depreciation",
-    label: "Khấu hao tăng 100",
-    question: "Khấu hao là chi phí. Vậy tiền mặt tăng hay giảm?",
-    apply: (d) => ({ ...d, depreciation: d.depreciation + 100 }),
-    explain: {
-      income: "Khấu hao +100 → EBIT −100 → lợi nhuận sau thuế −80 (thuế 20% gánh đỡ 20).",
-      balance: "Tài sản cố định −100, vốn chủ −80 theo lợi nhuận, và tiền mặt +20.",
-      cashflow: "CFO = LNST (−80) + khấu hao cộng lại (+100) = +20. Khấu hao không chi tiền.",
-      punchline:
-        "Tiền mặt TĂNG 20 chứ không giảm: khấu hao chỉ làm giảm thuế phải nộp, còn bản thân nó không ra khỏi két.",
-    },
-  },
+/** Phần CẤU TRÚC của bốn cú tác động: id và phép biến đổi số. Không có chữ
+ *  hiển thị nào ở đây - chữ đến từ `t.districtContent.threeStatement.impacts`,
+ *  xem lib/i18n/dictionaries/sections/district-content.ts. Tách riêng vì
+ *  `driversAfter` và các bài test chỉ cần id/apply, không cần bản dịch nào. */
+const IMPACT_DEFS: { id: string; apply: (d: Drivers) => Drivers }[] = [
+  { id: "depreciation", apply: (d) => ({ ...d, depreciation: d.depreciation + 100 }) },
   {
     id: "revenue-credit",
-    label: "Bán chịu thêm 200",
-    question: "Doanh thu +200 nhưng khách chưa trả tiền. Tiền mặt đi đâu?",
     apply: (d) => ({ ...d, revenue: d.revenue + 200, receivables: d.receivables + 200 }),
-    explain: {
-      income: "Doanh thu +200 → LNST +160. Kết quả kinh doanh trông rất đẹp.",
-      balance: "Phải thu +200, vốn chủ +160.",
-      cashflow: "CFO = LNST (+160) − tăng phải thu (−200) = −40. Tiền GIẢM.",
-      punchline: "Lãi tăng mà tiền giảm. Đây là cách một doanh nghiệp đang có lãi vẫn chết vì hết tiền.",
-    },
   },
-  {
-    id: "buy-ppe",
-    label: "Mua máy 300 bằng tiền",
-    question: "Chi 300 mua tài sản. Lợi nhuận năm nay giảm bao nhiêu?",
-    apply: (d) => ({ ...d, capex: d.capex - 300 }),
-    explain: {
-      income: "Không đổi một đồng. Mua tài sản không phải chi phí - nó đổi hình dạng của tài sản.",
-      balance: "Tài sản cố định +300, tiền mặt −300. Tổng tài sản không đổi.",
-      cashflow: "CFI = −300. Tiền ra khỏi két đủ 300 ngay hôm nay.",
-      punchline:
-        "Lợi nhuận không giảm đồng nào, nhưng tiền mất 300. Chi phí sẽ đến dần qua khấu hao các năm sau.",
-    },
-  },
+  { id: "buy-ppe", apply: (d) => ({ ...d, capex: d.capex - 300 }) },
   {
     id: "take-debt",
-    label: "Vay thêm 400",
-    question: "Vay 400 về két. Phần thuộc về chủ sở hữu tăng bao nhiêu?",
     apply: (d) => ({ ...d, debt: d.debt + 400, netBorrowing: d.netBorrowing + 400 }),
-    explain: {
-      income: "Không đổi lúc vay. Lãi vay mới sẽ ăn vào lợi nhuận các kỳ sau.",
-      balance: "Tiền mặt +400, nợ vay +400. Vốn chủ không đổi một đồng.",
-      cashflow: "CFF = +400. Không có dòng nào của CFO hay CFI nhúc nhích - tiền này là tiền đi vay.",
-      punchline: "Tiền trong két tăng 400 nhưng phần của chủ sở hữu không đổi - vay không làm ai giàu lên.",
-    },
   },
 ];
 
+/** Chỉ id, dùng khi không cần chữ hiển thị (driversAfter, test lặp theo id). */
+export const IMPACT_IDS: string[] = IMPACT_DEFS.map((d) => d.id);
+
+/** Bốn cú tác động kinh điển, mỗi cú lộ ra một mối nối khác nhau - kèm chữ
+ *  hiển thị theo ngôn ngữ hiện tại của `t`. */
+export function impactsOf(t: Dictionary): Impact[] {
+  const copy = t.districtContent.threeStatement.impacts;
+  return IMPACT_DEFS.map((def) => ({
+    id: def.id,
+    apply: def.apply,
+    label: copy[def.id as keyof typeof copy].label,
+    question: copy[def.id as keyof typeof copy].question,
+    explain: {
+      income: copy[def.id as keyof typeof copy].income,
+      balance: copy[def.id as keyof typeof copy].balance,
+      cashflow: copy[def.id as keyof typeof copy].cashflow,
+      punchline: copy[def.id as keyof typeof copy].punchline,
+    },
+  }));
+}
+
 export function driversAfter(impactId: string | null, base: Drivers = BASE_DRIVERS): Drivers {
   if (!impactId) return base;
-  const impact = IMPACTS.find((i) => i.id === impactId);
-  return impact ? impact.apply(base) : base;
+  const def = IMPACT_DEFS.find((i) => i.id === impactId);
+  return def ? def.apply(base) : base;
 }

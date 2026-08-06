@@ -11,6 +11,8 @@ import {
 } from "@/lib/excel-practice-data";
 import { evaluateCell, formatValue, isError, normalizeRef, type Sheet } from "@/lib/mini-spreadsheet";
 import { runQuery, type QueryResult } from "@/lib/mini-sql";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 // Bảng tính thật, gõ được, ngay trong bài học.
 //
@@ -65,6 +67,7 @@ export default function ExcelPractice({ setKey }: Props) {
  * ------------------------------------------------------------------ */
 
 function GridPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "grid" }> }) {
+  const { t } = useI18n();
   const [edits, setEdits] = useState<Record<string, string>>({});
   const [selected, setSelected] = useState<string>(normalizeRef(set.tasks[0].target));
   const [draft, setDraft] = useState<string>("");
@@ -113,7 +116,7 @@ function GridPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "grid" }
     setDraft(rawOf(ref));
   }
 
-  const targetRefs = new Set(set.tasks.map((t) => normalizeRef(t.target)));
+  const targetRefs = new Set(set.tasks.map((task) => normalizeRef(task.target)));
   const allDone = solved.length === set.tasks.length;
 
   return (
@@ -194,7 +197,7 @@ function GridPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "grid" }
               check();
             }
           }}
-          placeholder="Gõ công thức, bắt đầu bằng dấu ="
+          placeholder={t.excelPractice.formulaPlaceholder}
           spellCheck={false}
           autoCapitalize="off"
           autoCorrect="off"
@@ -205,16 +208,16 @@ function GridPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "grid" }
           onClick={check}
           className="px-4 rounded-lg bg-stone-800 text-white text-xs font-bold hover:bg-stone-700 dark:bg-amber-500 dark:text-stone-900 dark:hover:bg-amber-400"
         >
-          Kiểm tra
+          {t.excelPractice.check}
         </button>
       </div>
 
       {/* Nhiệm vụ */}
       <div className="rounded-2xl border border-stone-200 p-4 space-y-3 dark:border-stone-700">
         <div className="flex flex-wrap items-center gap-1.5">
-          {set.tasks.map((t, i) => (
+          {set.tasks.map((item, i) => (
             <button
-              key={t.target}
+              key={item.target}
               type="button"
               onClick={() => goTo(i)}
               className={[
@@ -225,7 +228,7 @@ function GridPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "grid" }
                     ? "bg-stone-800 text-white dark:bg-stone-100 dark:text-stone-900"
                     : "bg-stone-100 text-stone-500 dark:bg-stone-800 dark:text-stone-400",
               ].join(" ")}
-              aria-label={`Nhiệm vụ ${i + 1}`}
+              aria-label={format(t.excelPractice.taskAriaLabel, { n: i + 1 })}
             >
               {solved.includes(i) ? "✓" : i + 1}
             </button>
@@ -249,7 +252,7 @@ function GridPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "grid" }
                 : "bg-amber-50 text-amber-900 dark:bg-amber-500/10 dark:text-amber-200",
             ].join(" ")}
           >
-            {grade.ok && <span className="font-bold">Đúng. </span>}
+            {grade.ok && <span className="font-bold">{t.excelPractice.correctPrefix}</span>}
             {grade.message}
           </div>
         )}
@@ -260,7 +263,7 @@ function GridPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "grid" }
             onClick={() => setShowHint((v) => !v)}
             className="text-stone-500 underline underline-offset-2 hover:text-stone-700 dark:text-stone-400 dark:hover:text-stone-200"
           >
-            {showHint ? "Ẩn gợi ý" : "Gợi ý"}
+            {showHint ? t.excelPractice.hideHint : t.excelPractice.showHint}
           </button>
           {taskIndex < set.tasks.length - 1 && (
             <button
@@ -268,7 +271,7 @@ function GridPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "grid" }
               onClick={() => goTo(taskIndex + 1)}
               className="ml-auto font-bold text-stone-700 hover:text-stone-900 dark:text-stone-300 dark:hover:text-stone-100"
             >
-              Nhiệm vụ sau →
+              {t.excelPractice.nextTask}
             </button>
           )}
         </div>
@@ -282,7 +285,7 @@ function GridPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "grid" }
 
       {allDone && (
         <p className="text-xs text-center text-emerald-700 font-semibold dark:text-emerald-400">
-          Xong cả {set.tasks.length} nhiệm vụ. Mở Excel lên và làm lại đúng những bước này trên một file thật.
+          {format(t.excelPractice.allDone, { n: set.tasks.length })}
         </p>
       )}
     </div>
@@ -294,6 +297,7 @@ function GridPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "grid" }
  * ------------------------------------------------------------------ */
 
 function SqlPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "sql" }> }) {
+  const { t } = useI18n();
   const [sql, setSql] = useState("");
   const [taskIndex, setTaskIndex] = useState(0);
   const [grade, setGrade] = useState<Grade | null>(null);
@@ -353,7 +357,7 @@ function SqlPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "sql" }> 
                     <tr key={i} className="border-t border-stone-100 dark:border-stone-800">
                       {table.columns.map((c) => (
                         <td key={c} className="px-2 py-1 text-stone-700 dark:text-stone-200">
-                          {row[c] === null ? "NULL" : String(row[c])}
+                          {row[c] === null ? t.excelPractice.nullValue : String(row[c])}
                         </td>
                       ))}
                     </tr>
@@ -367,9 +371,9 @@ function SqlPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "sql" }> 
 
       <div className="rounded-2xl border border-stone-200 p-4 space-y-3 dark:border-stone-700">
         <div className="flex flex-wrap items-center gap-1.5">
-          {set.tasks.map((t, i) => (
+          {set.tasks.map((item, i) => (
             <button
-              key={t.solution}
+              key={item.solution}
               type="button"
               onClick={() => goTo(i)}
               className={[
@@ -380,7 +384,7 @@ function SqlPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "sql" }> 
                     ? "bg-stone-800 text-white dark:bg-stone-100 dark:text-stone-900"
                     : "bg-stone-100 text-stone-500 dark:bg-stone-800 dark:text-stone-400",
               ].join(" ")}
-              aria-label={`Nhiệm vụ ${i + 1}`}
+              aria-label={format(t.excelPractice.taskAriaLabel, { n: i + 1 })}
             >
               {solved.includes(i) ? "✓" : i + 1}
             </button>
@@ -399,7 +403,7 @@ function SqlPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "sql" }> 
           spellCheck={false}
           autoCapitalize="off"
           autoCorrect="off"
-          placeholder="SELECT ..."
+          placeholder={t.excelPractice.sqlPlaceholder}
           className="w-full px-3 py-2 rounded-lg border border-stone-200 font-mono text-xs bg-white text-stone-800 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-amber-400 dark:bg-stone-950 dark:border-stone-700 dark:text-stone-100 dark:placeholder:text-stone-600"
         />
 
@@ -408,7 +412,7 @@ function SqlPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "sql" }> 
           onClick={submit}
           className="w-full py-2.5 rounded-xl bg-stone-800 text-white text-xs font-bold hover:bg-stone-700 dark:bg-amber-500 dark:text-stone-900 dark:hover:bg-amber-400"
         >
-          Chạy truy vấn
+          {t.excelPractice.runQuery}
         </button>
 
         {result && (
@@ -428,14 +432,20 @@ function SqlPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "sql" }> 
                   <tr key={i} className="border-t border-stone-100 dark:border-stone-800">
                     {row.map((v, j) => (
                       <td key={j} className="px-2 py-1 text-stone-700 dark:text-stone-200">
-                        {v === null ? <span className="text-stone-400 italic">NULL</span> : String(v)}
+                        {v === null ? (
+                          <span className="text-stone-400 italic">{t.excelPractice.nullValue}</span>
+                        ) : (
+                          String(v)
+                        )}
                       </td>
                     ))}
                   </tr>
                 ))}
               </tbody>
             </table>
-            <div className="px-2 py-1 text-[10px] text-stone-400 dark:text-stone-500">{result.rows.length} dòng</div>
+            <div className="px-2 py-1 text-[10px] text-stone-400 dark:text-stone-500">
+              {format(t.excelPractice.rowsCount, { n: result.rows.length })}
+            </div>
           </div>
         )}
 
@@ -448,7 +458,7 @@ function SqlPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "sql" }> 
                 : "bg-amber-50 text-amber-900 dark:bg-amber-500/10 dark:text-amber-200",
             ].join(" ")}
           >
-            {grade.ok && <span className="font-bold">Đúng. </span>}
+            {grade.ok && <span className="font-bold">{t.excelPractice.correctPrefix}</span>}
             {grade.message}
           </div>
         )}
@@ -459,7 +469,7 @@ function SqlPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "sql" }> 
             onClick={() => setShowHint((v) => !v)}
             className="text-stone-500 underline underline-offset-2 hover:text-stone-700 dark:text-stone-400 dark:hover:text-stone-200"
           >
-            {showHint ? "Ẩn gợi ý" : "Gợi ý"}
+            {showHint ? t.excelPractice.hideHint : t.excelPractice.showHint}
           </button>
           {taskIndex < set.tasks.length - 1 && (
             <button
@@ -467,7 +477,7 @@ function SqlPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "sql" }> 
               onClick={() => goTo(taskIndex + 1)}
               className="ml-auto font-bold text-stone-700 hover:text-stone-900 dark:text-stone-300 dark:hover:text-stone-100"
             >
-              Nhiệm vụ sau →
+              {t.excelPractice.nextTask}
             </button>
           )}
         </div>
@@ -498,6 +508,7 @@ export function shuffleFixed<T>(items: T[]): T[] {
 }
 
 function StepsPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "steps" }> }) {
+  const { t } = useI18n();
   const [order, setOrder] = useState<string[]>(() => shuffleFixed(set.task.steps));
   const [checked, setChecked] = useState(false);
 
@@ -540,7 +551,7 @@ function StepsPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "steps"
                   type="button"
                   onClick={() => move(i, i - 1)}
                   disabled={i === 0}
-                  aria-label="Lên một bậc"
+                  aria-label={t.excelPractice.moveUp}
                   className="px-1.5 text-stone-400 disabled:opacity-20 hover:text-stone-700 dark:hover:text-stone-200"
                 >
                   ▲
@@ -549,7 +560,7 @@ function StepsPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "steps"
                   type="button"
                   onClick={() => move(i, i + 1)}
                   disabled={i === order.length - 1}
-                  aria-label="Xuống một bậc"
+                  aria-label={t.excelPractice.moveDown}
                   className="px-1.5 text-stone-400 disabled:opacity-20 hover:text-stone-700 dark:hover:text-stone-200"
                 >
                   ▼
@@ -565,7 +576,7 @@ function StepsPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "steps"
         onClick={() => setChecked(true)}
         className="w-full py-2.5 rounded-xl bg-stone-800 text-white text-xs font-bold hover:bg-stone-700 dark:bg-amber-500 dark:text-stone-900 dark:hover:bg-amber-400"
       >
-        Kiểm tra thứ tự
+        {t.excelPractice.checkOrder}
       </button>
 
       {checked && (
@@ -577,7 +588,7 @@ function StepsPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "steps"
               : "bg-amber-50 text-amber-900 dark:bg-amber-500/10 dark:text-amber-200",
           ].join(" ")}
         >
-          {correct ? set.task.explain : "Các bước tô vàng đang sai chỗ. Nghĩ xem bước nào phải xong trước thì bước sau mới có dữ liệu đúng để chạy."}
+          {correct ? set.task.explain : t.excelPractice.stepsWrong}
         </div>
       )}
     </div>

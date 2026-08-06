@@ -26,6 +26,8 @@ import {
   type AvatarConfig,
 } from "@/lib/avatar-customizer-types";
 import { fetchUserAvatarConfig, saveUserAvatarConfig } from "@/lib/supabase-avatar";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 interface CharacterCustomizerModalProps {
   userId?: string;
@@ -44,6 +46,7 @@ export default function CharacterCustomizerModal({
   onClose,
   onSaved,
 }: CharacterCustomizerModalProps) {
+  const { t } = useI18n();
   const [config, setConfig] = useState<AvatarConfig>(DEFAULT_AVATAR_CONFIG);
   const [initialConfig, setInitialConfig] = useState<AvatarConfig>(DEFAULT_AVATAR_CONFIG);
   const [activeTab, setActiveTab] = useState<CustomizerTab>("appearance");
@@ -93,12 +96,12 @@ export default function CharacterCustomizerModal({
       background: randomBg,
     });
 
-    toast.success("🎲 Đã tạo ngẫu nhiên diện mạo mới!");
+    toast.success(t.characterCustomizer.toastRandomized);
   }
 
   function handleReset() {
     setConfig(initialConfig);
-    toast.message("Đã khôi phục lại diện mạo ban đầu.");
+    toast.message(t.characterCustomizer.toastReset);
   }
 
   async function handleSave() {
@@ -106,26 +109,26 @@ export default function CharacterCustomizerModal({
     try {
       const ok = await saveUserAvatarConfig(userId, config);
       if (ok) {
-        toast.success("🎉 Đã lưu cấu hình Nhân vật Avatar thành công!");
+        toast.success(t.characterCustomizer.toastSaved);
         onSaved?.(config);
         onClose();
       } else {
-        toast.error("Không thể lưu cấu hình. Đã lưu tạm vào máy.");
+        toast.error(t.characterCustomizer.toastSaveFailed);
       }
     } catch (e: unknown) {
-      toast.error("Lỗi khi lưu avatar: " + errorMessage(e));
+      toast.error(format(t.characterCustomizer.toastSaveError, { error: errorMessage(e) }));
     } finally {
       setSaving(false);
     }
   }
 
   const tabs: { id: CustomizerTab; label: string; icon: React.ReactNode }[] = [
-    { id: "appearance", label: "Diện Mạo", icon: <User className="w-4 h-4" /> },
-    { id: "hair", label: "Kiểu Tóc", icon: <Scissors className="w-4 h-4" /> },
-    { id: "face", label: "Gương Mặt", icon: <GlassesIcon className="w-4 h-4" /> },
-    { id: "outfit", label: "Trang Phục", icon: <Shirt className="w-4 h-4" /> },
-    { id: "accessories", label: "Phụ Kiện", icon: <Crown className="w-4 h-4" /> },
-    { id: "background", label: "Bối Cảnh", icon: <ImageIcon className="w-4 h-4" /> },
+    { id: "appearance", label: t.characterCustomizer.tabAppearance, icon: <User className="w-4 h-4" /> },
+    { id: "hair", label: t.characterCustomizer.tabHair, icon: <Scissors className="w-4 h-4" /> },
+    { id: "face", label: t.characterCustomizer.tabFace, icon: <GlassesIcon className="w-4 h-4" /> },
+    { id: "outfit", label: t.characterCustomizer.tabOutfit, icon: <Shirt className="w-4 h-4" /> },
+    { id: "accessories", label: t.characterCustomizer.tabAccessories, icon: <Crown className="w-4 h-4" /> },
+    { id: "background", label: t.characterCustomizer.tabBackground, icon: <ImageIcon className="w-4 h-4" /> },
   ];
 
   return (
@@ -141,10 +144,10 @@ export default function CharacterCustomizerModal({
           <div className="flex items-center justify-between border-b border-stone-800 p-4 sm:p-5 bg-stone-950/80">
             <div>
               <span className="text-[10px] font-black uppercase tracking-widest text-amber-400 bg-amber-950/80 border border-amber-800 px-3 py-1 rounded-full">
-                🎨 Wall Street Character Studio
+                {t.characterCustomizer.badge}
               </span>
               <h2 className="text-lg sm:text-xl font-black text-white mt-1">
-                Thiết Kế & Tùy Chỉnh Nhân Vật Avatar 2.5D
+                {t.characterCustomizer.title}
               </h2>
             </div>
 
@@ -162,7 +165,7 @@ export default function CharacterCustomizerModal({
             <div className="md:col-span-5 bg-gradient-to-b from-stone-950 via-stone-900 to-stone-950 p-6 flex flex-col items-center justify-between border-b md:border-b-0 md:border-r border-stone-800 relative">
               <div className="text-center w-full">
                 <span className="text-[10px] uppercase font-bold text-emerald-400 bg-emerald-950/60 border border-emerald-800 px-3 py-1 rounded-full">
-                  ⚡ Live Real-time Preview
+                  {t.characterCustomizer.livePreviewBadge}
                 </span>
               </div>
 
@@ -170,14 +173,14 @@ export default function CharacterCustomizerModal({
               <div className="my-4 relative">
                 <Avatar2DCanvas config={config} size="xl" animated showBackground />
                 <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-stone-950/90 border border-amber-500/60 text-amber-300 text-[10px] font-black px-3 py-0.5 rounded-full shadow-lg">
-                  Level {userLevel} Trader
+                  {format(t.characterCustomizer.levelTrader, { level: userLevel })}
                 </span>
               </div>
 
               {/* Preset Quick Selectors */}
               <div className="w-full space-y-2">
                 <span className="text-[10px] uppercase font-extrabold text-stone-400 block text-center">
-                  Mẫu Phối Sẵn (Presets):
+                  {t.characterCustomizer.presetsLabel}
                 </span>
                 <div className="grid grid-cols-3 gap-1.5">
                   {AVATAR_PRESETS.map((p) => (
@@ -224,7 +227,7 @@ export default function CharacterCustomizerModal({
                   <div className="space-y-6">
                     {/* Gender Selection */}
                     <div>
-                      <label className="text-xs font-black uppercase text-amber-400 block mb-2">Giới Tính Nhân Vật</label>
+                      <label className="text-xs font-black uppercase text-amber-400 block mb-2">{t.characterCustomizer.genderLabel}</label>
                       <div className="grid grid-cols-2 gap-3">
                         <button
                           onClick={() => updateConfig("gender", "male")}
@@ -234,7 +237,7 @@ export default function CharacterCustomizerModal({
                               : "bg-stone-800 border-stone-800 text-stone-400 hover:border-stone-700"
                           }`}
                         >
-                          <span className="text-lg">👨</span> Nam (Male)
+                          <span className="text-lg">👨</span> {t.characterCustomizer.genderMale}
                         </button>
                         <button
                           onClick={() => updateConfig("gender", "female")}
@@ -244,14 +247,14 @@ export default function CharacterCustomizerModal({
                               : "bg-stone-800 border-stone-800 text-stone-400 hover:border-stone-700"
                           }`}
                         >
-                          <span className="text-lg">👩</span> Nữ (Female)
+                          <span className="text-lg">👩</span> {t.characterCustomizer.genderFemale}
                         </button>
                       </div>
                     </div>
 
                     {/* Skin Tone Palette */}
                     <div>
-                      <label className="text-xs font-black uppercase text-amber-400 block mb-2">Tông Màu Da</label>
+                      <label className="text-xs font-black uppercase text-amber-400 block mb-2">{t.characterCustomizer.skinToneLabel}</label>
                       <div className="grid grid-cols-4 sm:grid-cols-8 gap-2">
                         {SKIN_TONES.map((tone) => {
                           const isSelected = config.skinTone === tone.hex;
@@ -279,7 +282,7 @@ export default function CharacterCustomizerModal({
                   <div className="space-y-6">
                     {/* Hair Styles */}
                     <div>
-                      <label className="text-xs font-black uppercase text-amber-400 block mb-2">Kiểu Tóc</label>
+                      <label className="text-xs font-black uppercase text-amber-400 block mb-2">{t.characterCustomizer.hairStyleLabel}</label>
                       <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
                         {HAIR_STYLES.map((h) => {
                           const isSelected = config.hairStyle === h.id;
@@ -303,7 +306,7 @@ export default function CharacterCustomizerModal({
 
                     {/* Hair Color Palette */}
                     <div>
-                      <label className="text-xs font-black uppercase text-amber-400 block mb-2">Màu Tóc</label>
+                      <label className="text-xs font-black uppercase text-amber-400 block mb-2">{t.characterCustomizer.hairColorLabel}</label>
                       <div className="grid grid-cols-4 sm:grid-cols-8 gap-2">
                         {HAIR_COLORS.map((c) => {
                           const isSelected = config.hairColor === c.hex;
@@ -331,7 +334,7 @@ export default function CharacterCustomizerModal({
                   <div className="space-y-6">
                     {/* Face Shape */}
                     <div>
-                      <label className="text-xs font-black uppercase text-amber-400 block mb-2">Dáng Gương Mặt</label>
+                      <label className="text-xs font-black uppercase text-amber-400 block mb-2">{t.characterCustomizer.faceShapeLabel}</label>
                       <div className="grid grid-cols-2 gap-2.5">
                         {FACE_SHAPES.map((f) => (
                           <button
@@ -352,7 +355,7 @@ export default function CharacterCustomizerModal({
 
                     {/* Eyes Expression */}
                     <div>
-                      <label className="text-xs font-black uppercase text-amber-400 block mb-2">Biểu Cảm Mắt</label>
+                      <label className="text-xs font-black uppercase text-amber-400 block mb-2">{t.characterCustomizer.eyeExpressionLabel}</label>
                       <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
                         {EYE_EXPRESSIONS.map((e) => (
                           <button
@@ -373,7 +376,7 @@ export default function CharacterCustomizerModal({
 
                     {/* Glasses */}
                     <div>
-                      <label className="text-xs font-black uppercase text-amber-400 block mb-2">Kính Mắt</label>
+                      <label className="text-xs font-black uppercase text-amber-400 block mb-2">{t.characterCustomizer.glassesLabel}</label>
                       <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
                         {GLASSES_OPTIONS.map((g) => {
                           const isLocked = !!g.requiredLevel && userLevel < g.requiredLevel;
@@ -404,7 +407,7 @@ export default function CharacterCustomizerModal({
                     {/* Beard (Male only) */}
                     {config.gender === "male" && (
                       <div>
-                        <label className="text-xs font-black uppercase text-amber-400 block mb-2">Râu & Mustache</label>
+                        <label className="text-xs font-black uppercase text-amber-400 block mb-2">{t.characterCustomizer.beardLabel}</label>
                         <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
                           {BEARD_OPTIONS.map((b) => (
                             <button
@@ -431,7 +434,7 @@ export default function CharacterCustomizerModal({
                   <div className="space-y-6">
                     {/* Outfit Style */}
                     <div>
-                      <label className="text-xs font-black uppercase text-amber-400 block mb-2">Trang Phục Tài Chính</label>
+                      <label className="text-xs font-black uppercase text-amber-400 block mb-2">{t.characterCustomizer.outfitStyleLabel}</label>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                         {OUTFIT_STYLES.map((o) => {
                           const isLocked = !!o.requiredLevel && userLevel < o.requiredLevel;
@@ -461,7 +464,7 @@ export default function CharacterCustomizerModal({
 
                     {/* Outfit Color Palette */}
                     <div>
-                      <label className="text-xs font-black uppercase text-amber-400 block mb-2">Màu Sắc Trang Phục</label>
+                      <label className="text-xs font-black uppercase text-amber-400 block mb-2">{t.characterCustomizer.outfitColorLabel}</label>
                       <div className="grid grid-cols-4 sm:grid-cols-7 gap-2">
                         {OUTFIT_COLORS.map((c) => {
                           const isSelected = config.outfitColor === c.hex;
@@ -488,7 +491,7 @@ export default function CharacterCustomizerModal({
                 {activeTab === "accessories" && (
                   <div className="space-y-6">
                     <div>
-                      <label className="text-xs font-black uppercase text-amber-400 block mb-2">Phụ Kiện & Biểu Tượng Thành Thự</label>
+                      <label className="text-xs font-black uppercase text-amber-400 block mb-2">{t.characterCustomizer.accessoriesLabel}</label>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                         {ACCESSORIES_OPTIONS.map((a) => {
                           const isLocked = !!a.requiredLevel && userLevel < a.requiredLevel;
@@ -509,7 +512,7 @@ export default function CharacterCustomizerModal({
                                 <span className="text-lg">{a.iconEmoji}</span>
                                 <span>{a.label}</span>
                               </div>
-                              {isLocked && <span className="text-[10px] font-bold text-amber-500">Mở ở Lv.{a.requiredLevel}</span>}
+                              {isLocked && <span className="text-[10px] font-bold text-amber-500">{format(t.characterCustomizer.unlockAtLevel, { level: a.requiredLevel ?? 0 })}</span>}
                             </button>
                           );
                         })}
@@ -522,7 +525,7 @@ export default function CharacterCustomizerModal({
                 {activeTab === "background" && (
                   <div className="space-y-6">
                     <div>
-                      <label className="text-xs font-black uppercase text-amber-400 block mb-2">Bối Cảnh Nền Persona</label>
+                      <label className="text-xs font-black uppercase text-amber-400 block mb-2">{t.characterCustomizer.backgroundLabel}</label>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                         {BACKGROUND_OPTIONS.map((bg) => {
                           const isLocked = !!bg.requiredLevel && userLevel < bg.requiredLevel;
@@ -543,7 +546,7 @@ export default function CharacterCustomizerModal({
                                 <span className="text-lg">{bg.iconEmoji}</span>
                                 <span>{bg.label}</span>
                               </div>
-                              {isLocked && <span className="text-[10px] font-bold text-amber-500">Mở ở Lv.{bg.requiredLevel}</span>}
+                              {isLocked && <span className="text-[10px] font-bold text-amber-500">{format(t.characterCustomizer.unlockAtLevel, { level: bg.requiredLevel ?? 0 })}</span>}
                             </button>
                           );
                         })}
@@ -560,13 +563,13 @@ export default function CharacterCustomizerModal({
                     onClick={handleRandomize}
                     className="bg-purple-950/80 hover:bg-purple-900 border border-purple-700 text-purple-200 text-xs font-bold px-3.5 py-2.5 rounded-xl transition-all flex items-center gap-1.5 cursor-pointer"
                   >
-                    <Dices className="w-4 h-4 text-purple-400" /> Tua Ngẫu Nhiên
+                    <Dices className="w-4 h-4 text-purple-400" /> {t.characterCustomizer.randomizeButton}
                   </button>
                   <button
                     onClick={handleReset}
                     className="bg-stone-800 hover:bg-stone-700 text-stone-300 text-xs font-bold px-3.5 py-2.5 rounded-xl transition-all flex items-center gap-1.5 cursor-pointer"
                   >
-                    <RefreshCw className="w-3.5 h-3.5" /> Khôi Phục
+                    <RefreshCw className="w-3.5 h-3.5" /> {t.characterCustomizer.resetButton}
                   </button>
                 </div>
 
@@ -575,14 +578,14 @@ export default function CharacterCustomizerModal({
                     onClick={onClose}
                     className="bg-stone-800 hover:bg-stone-700 text-stone-300 text-xs font-bold px-4 py-2.5 rounded-xl transition-all cursor-pointer"
                   >
-                    Hủy Bỏ
+                    {t.characterCustomizer.cancelButton}
                   </button>
                   <button
                     onClick={handleSave}
                     disabled={saving}
                     className="bg-gradient-to-r from-amber-500 to-yellow-500 hover:brightness-110 text-stone-950 font-black text-xs px-5 py-2.5 rounded-xl transition-all shadow-lg flex items-center gap-2 cursor-pointer disabled:opacity-50"
                   >
-                    <Save className="w-4 h-4" /> {saving ? "Đang Lưu..." : "Lưu Avatar Mới"}
+                    <Save className="w-4 h-4" /> {saving ? t.characterCustomizer.savingButton : t.characterCustomizer.saveButton}
                   </button>
                 </div>
               </div>

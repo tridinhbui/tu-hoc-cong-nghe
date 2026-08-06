@@ -44,7 +44,17 @@ function FlameFallback({ intensity = 0.6 }: { intensity?: number }) {
  *      ngọn lửa tĩnh như trước. Đây là nhóm mà chuyển động gây khó chịu thật,
  *      nên "vẫn chạy nhưng chậm hơn" không phải một đáp án.
  */
-export default function QuietForestScene({ intensity = 0.6 }: { intensity?: number }) {
+export default function QuietForestScene({
+  intensity = 0.6,
+  setDownCount = 0,
+}: {
+  intensity?: number;
+  /** Số nỗi lo người đọc đã đặt xuống trong phiên này. Mỗi lần tăng thêm một,
+   *  đống lửa bốc lên một chùm tàn - cử chỉ đó là thứ duy nhất trang này mời
+   *  người ta làm, nên nó phải được đáp lại bằng một thứ nhìn thấy được, chứ
+   *  không chỉ là ngọn lửa sáng thêm vài phần trăm. */
+  setDownCount?: number;
+}) {
   const reduced = useReducedMotion();
   const [visible, setVisible] = useState(false);
   const [rainOn, setRainOn] = useState(false);
@@ -99,7 +109,7 @@ export default function QuietForestScene({ intensity = 0.6 }: { intensity?: numb
         {reduced ? (
           <FlameFallback intensity={intensity} />
         ) : visible ? (
-          <SceneInner intensity={intensity} reducedMotion={false} />
+          <SceneInner intensity={intensity} reducedMotion={false} setDownCount={setDownCount} />
         ) : (
           <FlameFallback intensity={intensity} />
         )}

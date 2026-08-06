@@ -78,7 +78,26 @@ export function svgToPngBlob(svgElement: SVGSVGElement, width: number, height: n
   });
 }
 
-function downloadBlob(blob: Blob, filename: string) {
+/** Khoảng chờ trước khi thu hồi blob URL của tệp tải về, mili giây.
+ *
+ *  Một phút là quá thừa cho một cú tải tệp cục bộ, và đó là chủ ý: cái giá của
+ *  việc chờ lâu là một blob nằm trong bộ nhớ thêm một phút, còn cái giá của
+ *  việc thu hồi sớm là tệp không bao giờ tới tay người dùng. */
+export const BLOB_REVOKE_DELAY_MS = 60_000;
+
+/**
+ * Đẩy một Blob xuống máy người dùng dưới dạng tệp.
+ *
+ * VÌ SAO KHÔNG THU HỒI URL NGAY SAU `click()`. Trình duyệt bắt đầu tải ở một
+ * lượt sau, không phải đồng bộ trong cú click. Thu hồi ngay trong cùng một
+ * lượt là rút tệp ra khỏi tay trình duyệt trước khi nó kịp đọc: Chrome thường
+ * thoát được vì nó chụp lại blob ngay lúc click, còn Safari và Firefox thì
+ * huỷ luôn cú tải - im lặng, không lỗi, không tệp.
+ *
+ * Đó chính là dạng lỗi mà người viết mã ít gặp nhất: máy để phát triển chạy
+ * Chrome nên nút bấm nào cũng có vẻ chạy tốt.
+ */
+export function downloadBlob(blob: Blob, filename: string) {
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
   link.href = url;
@@ -86,7 +105,7 @@ function downloadBlob(blob: Blob, filename: string) {
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
-  URL.revokeObjectURL(url);
+  setTimeout(() => URL.revokeObjectURL(url), BLOB_REVOKE_DELAY_MS);
 }
 
 export type ShareOutcome = "shared" | "downloaded" | "cancelled";

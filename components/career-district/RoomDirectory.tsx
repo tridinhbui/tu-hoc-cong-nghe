@@ -7,6 +7,8 @@ import {
   type DistrictRoomId,
 } from "./district-space";
 import { CAREER_CATEGORY_LABELS, CAREER_CATEGORY_ORDER } from "@/lib/career-categories";
+import { useI18n } from "@/lib/i18n/context";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
 /** Mục lục con phố: bấm một dòng là tới thẳng phòng đó.
  *
@@ -49,7 +51,7 @@ export const PLACE_ICONS: Record<string, string> = {
  *  Tách khỏi phần vẽ để test được mà không cần dựng DOM: đây là chỗ duy nhất
  *  có thể sai về NỘI DUNG (một phòng dạy rơi nhầm xuống nhóm dưới rồi chìm),
  *  còn phần còn lại chỉ là thẻ và lớp CSS. */
-export function directoryGroups(): Array<{ title: string; doors: Doorway[] }> {
+export function directoryGroups(t: Dictionary): Array<{ title: string; doors: Doorway[] }> {
   // "Phòng nào là phòng dạy" đọc từ cờ `teaching` trong CIVIC_ROOMS chứ không
   // phải một danh sách thứ ba viết ở đây; cờ đó lại được đối chiếu với
   // TEACHING_PANELS bằng test.
@@ -58,8 +60,8 @@ export function directoryGroups(): Array<{ title: string; doors: Doorway[] }> {
     (d) => d.to !== "street" && !CAREER_CATEGORY_ORDER.includes(d.to as never)
   );
   return [
-    { title: "Phòng học", doors: doors.filter((d) => teaching.has(d.to as string)) },
-    { title: "Nơi khác", doors: doors.filter((d) => !teaching.has(d.to as string)) },
+    { title: t.careerDistrict.roomDirectory.teachingRooms, doors: doors.filter((d) => teaching.has(d.to as string)) },
+    { title: t.careerDistrict.roomDirectory.otherPlaces, doors: doors.filter((d) => !teaching.has(d.to as string)) },
   ];
 }
 
@@ -73,6 +75,7 @@ function Row({
   /** Đây có phải chính căn phòng đang đứng không. */
   here?: boolean;
 }) {
+  const { t } = useI18n();
   return (
     <button
       type="button"
@@ -87,7 +90,7 @@ function Row({
       style={{ color: door.accent }}
     >
       {PLACE_ICONS[door.to as string] ?? "■"} {door.label}
-      {here && <span className="ml-1 text-[9px] font-black text-stone-400">· đang ở đây</span>}
+      {here && <span className="ml-1 text-[9px] font-black text-stone-400">· {t.careerDistrict.roomDirectory.youAreHere}</span>}
     </button>
   );
 }
@@ -118,6 +121,7 @@ export default function RoomDirectory({
   /** Phòng đang đứng, để đánh dấu "đang ở đây". */
   current?: DistrictRoomId;
 }) {
+  const { t } = useI18n();
   return (
     <div
       className={`pointer-events-auto absolute right-4 top-20 z-10 max-h-[calc(100vh-16rem)] w-44 overflow-y-auto rounded-2xl border border-stone-700 bg-stone-900/85 p-2.5 shadow-xl backdrop-blur ${
@@ -125,13 +129,13 @@ export default function RoomDirectory({
       } ${pinned ? "sm:block" : ""}`}
     >
       <p className="mb-1.5 text-[10px] font-black uppercase tracking-widest text-stone-400">
-        Vào thẳng phòng
+        {t.careerDistrict.roomDirectory.jumpToRoom}
       </p>
       <div className="space-y-1">
         {/* Chia nhóm có nhãn. Trước đó 22 cửa nằm trong một cột dài không đầu
             không cuối, và sáu căn phòng DẠY - thứ đáng vào nhất - chìm giữa
             cửa hàng, căn hộ và khu nhà bạn bè. */}
-        {directoryGroups().map((g) => (
+        {directoryGroups(t).map((g) => (
           <div key={g.title}>
             <Heading>{g.title}</Heading>
             {g.doors.map((d) => (
@@ -139,7 +143,7 @@ export default function RoomDirectory({
             ))}
           </div>
         ))}
-        <Heading>Nhóm ngành</Heading>
+        <Heading>{t.careerDistrict.roomDirectory.careerGroups}</Heading>
         {CAREER_CATEGORY_ORDER.map((c) => {
           const d = getRoom("street").doorways.find((x) => x.to === (c as DistrictRoomId));
           if (!d) return null;

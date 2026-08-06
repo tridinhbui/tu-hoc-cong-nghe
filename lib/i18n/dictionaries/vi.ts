@@ -9,7 +9,10 @@
 // labels, and it lands in batches: `content.viOnlyBadge` is what an English
 // reader sees on a lesson whose turn has not come yet.
 
+import { viSections } from "./sections";
+
 export const vi = {
+  ...viSections,
   nav: {
     students: "Học viên",
     sectionLearn: "Học tập",
@@ -108,23 +111,58 @@ export const vi = {
   // lib/track-stages.ts); only the prose moves here. Six files render these
   // three fields, so they are worth translating once rather than per screen.
   tracks: {
+    // `stages` and `previewLabel` were left out when this section was first
+    // written because nothing rendered them. components/login/TrackPreviewPanel.tsx
+    // does. lib/tracks.ts stays the source of the stage COUNT and order, which
+    // lib/__tests__/stage-numbering.test.ts holds against lib/track-stages.ts -
+    // only the wording lives here.
     personal: {
       tab: "Tài chính cá nhân",
       subtitle: "Dành cho người mới bắt đầu",
       description:
         "Kiểm tra tài chính của chính bạn, kiểm soát chi tiêu, xây quỹ khẩn cấp, trả nợ và đầu tư thông minh - không cần kiến thức ngành.",
+      stages: [
+        "Chặng 1 - Biết mình: audit, ngân sách, quỹ khẩn cấp, trả nợ",
+        "Chặng 2 - Thuế TNCN và lương thực nhận",
+        "Chặng 3 - Tư duy tiền bạc và tài chính cơ bản",
+        "Chặng 4 - Cổ phiếu, ETF và quỹ đầu tư",
+        "Chặng 5 - Trái phiếu và các công cụ cố định",
+        "Chặng 6 - Danh mục đầu tư và kế hoạch hưu trí",
+        "Chặng 7 - Chiến lược đầu tư cá nhân",
+        "Chặng 8 - Quản lý tài sản & hưu trí",
+        "Chặng 9 - Nhà ở, bảo vệ tài sản và các quyết định tài chính lớn",
+        "Chặng 10 - Tâm lý học tài chính hành vi",
+      ],
+      previewLabel: "Chặng 1: Bạn đang đứng ở đâu?",
     },
     professional: {
       tab: "Tài chính chuyên ngành",
       subtitle: "Chuyên sâu, cho người đã có nền tài chính",
       description:
         "Kế toán, đọc báo cáo tài chính, định giá doanh nghiệp, trái phiếu, danh mục, phái sinh và AI in Finance.",
+      stages: [
+        "Kế toán, báo cáo tài chính và chỉ số",
+        "Giá trị thời gian của tiền, tài chính doanh nghiệp",
+        "Định giá cổ phiếu, trái phiếu và tín dụng",
+        "Danh mục đầu tư và công cụ phái sinh",
+        "Vận hành tài chính doanh nghiệp hiện đại",
+        "AI trong tài chính: đọc báo cáo, phân tích tin và viết memo",
+      ],
+      previewLabel: "Bài mở đầu: Kế toán là ngôn ngữ của kinh doanh",
     },
     cfa: {
       tab: "Tài chính chứng chỉ",
       subtitle: "CFA Level I · đang xây dựng",
       description:
         "Ánh xạ các bài học đã có sang đúng 10 môn thi CFA Level I chính thức - không tạo bài mới, không đổi số ngày của 2 track kia. Môn nào chưa có bài phù hợp sẽ được xây dần.",
+      stages: [
+        "Ethics and Professional Standards",
+        "Quantitative Methods, Economics",
+        "Financial Statement Analysis, Corporate Issuers",
+        "Equity Investments, Fixed Income",
+        "Derivatives, Alternative Investments, Portfolio Management",
+      ],
+      previewLabel: "Xem lộ trình CFA Level I",
     },
   },
 
@@ -268,6 +306,344 @@ export const vi = {
     },
   },
 
+  // app/(app)/kiem-tra/page.tsx - the knowledge-check builder.
+  quizPage: {
+    backAria: "Về Dashboard",
+    title: "Kiểm tra kiến thức",
+    subtitle: "Thử thách tin tức vĩ mô hôm nay & tạo bài kiểm tra tự chọn",
+    xpPerQuestion: "Thưởng +{xp} XP / câu đúng",
+
+    leftEyebrow: "Bên Trái • Tin tức tài chính hôm nay",
+    newsTitle: "Thử Thách Bài Kiểm Tra Tin Tức Hằng Ngày",
+    newsDone: "Đã hoàn thành (Menu sạch warning)",
+    newsPending: "⚠️ Chưa làm",
+    newsPendingNote: "(Menu có cảnh báo)",
+    // Split around the inline <strong> holding the XP.
+    newsBodyPart1: "Trả lời chính xác tình huống tin tức vĩ mô hôm nay để nhận ",
+    newsXp: "+15 XP",
+    newsBodyPart2: " và giải tỏa biểu tượng cảnh báo 🔴 trên Navbar.",
+
+    rightEyebrow: "Bên Phải • Tạo bài kiểm tra tự chọn",
+    builderTitle: "Tùy Chỉnh & Bắt Đầu Kiểm Tra",
+    step1: "1. Chọn phần kiến thức",
+    selecting: "Đang chọn",
+    step2: "2. Chọn độ khó",
+    // Split around the inline <strong>.
+    rewardPart1: "Mỗi câu đúng thưởng ",
+    rewardXp: "+{xp} XP",
+    rewardPart2: " cộng ngay vào tài khoản!",
+    start: "🚀 Bắt Đầu Kiểm Tra Ngay",
+
+    // TRACKS: the ids stay in the component, the copy lives here.
+    trackPersonal: "Tài chính cá nhân",
+    trackPersonalDesc: "Tư duy tiền bạc, đầu tư, danh mục, hưu trí",
+    trackProfessional: "Tài chính chuyên ngành",
+    trackProfessionalDesc: "Kế toán, định giá, trái phiếu, phái sinh",
+    trackCfa: "Tài chính chứng chỉ",
+    trackCfaDesc: "CFA Level I - 10 môn thi chính thức",
+    trackFrm: "Quản trị rủi ro (FRM)",
+    trackFrmDesc: "Part I - 4 môn, ra đề theo trọng số GARP",
+
+    diffAll: "Tất cả",
+    diffEasy: "Dễ",
+    diffMedium: "Trung bình",
+    diffHard: "Khó",
+
+    ibEyebrow: "Investment Banking Interview Drill",
+    ibTitle: "Technical Interview",
+    ibSub: "400 IB Questions · Accounting, Valuation, DCF, M&A, LBO, behavioral",
+    ibOpen: "Mở →",
+
+    loadingQuestions: "Đang chuẩn bị câu hỏi...",
+    loadFailed: "Không thể tải bài kiểm tra lúc này. Vui lòng thử lại sau.",
+    backToTrack: "← Quay lại chọn track",
+    noQuestions: "Chưa có câu hỏi nào cho lựa chọn này. Thử track hoặc độ khó khác nhé.",
+
+    questionCounter: "Câu {current} / {total}",
+    correctWithXp: "Chính xác! +{xp} XP",
+    explanation: "Giải thích:",
+    checkAnswer: "Kiểm tra đáp án",
+    seeResults: "Xem kết quả →",
+    nextQuestion: "Câu tiếp theo →",
+
+    doneTitle: "Hoàn thành bài kiểm tra!",
+    doneScore: "{score}/{total} câu đúng",
+    donePassed: " · Đạt",
+    xpEarned: "XP nhận được",
+    reviewWrongLessons: "Ôn lại các bài có câu sai",
+    backToDashboard: "Về Dashboard",
+    newQuiz: "Kiểm tra mới",
+  },
+
+  // components/LessonPageLayout.tsx - the shared frame for every lesson page.
+  lessonLayout: {
+    saveFailed: "Không thể lưu tiến độ bài học. Vui lòng tải lại trang để thử lại.",
+    quizDoneMidpointLeft: "Đã làm xong quiz! Còn trả lời câu hỏi giữa bài để hoàn thành nhé.",
+    saved: "Đã lưu tiến độ bài học!",
+
+    backAria: "Về Học bài",
+    back: "Quay lại",
+
+    readMinutes: "~{minutes} phút đọc",
+    readProgress: "{percent}% · còn ~{minutes} phút",
+    readDone: "Đọc xong!",
+    notStarted: "Chưa bắt đầu",
+    readPercent: "Đã đọc {percent}%",
+    durationRead: "{duration} đọc",
+    quizCount: "{count} câu quiz",
+    // Split around the inline <strong> holding the minutes.
+    remainingPart1: "Còn khoảng ",
+    remainingMinutes: "~{minutes} phút",
+    remainingPart2: " để đọc xong",
+
+    checklistTitle: "Điều kiện hoàn thành & nhận XP",
+    checkReadAll: "Đọc hết 100% nội dung bài",
+    checkMidpoint: "Trả lời câu hỏi \"Dừng & Kiểm tra\" giữa bài",
+    checkQuiz: "Hoàn thành \"Kiểm tra nhanh\" ({done}/{total} câu)",
+
+    videoTitle: "Video Bài Giảng Trực Quan",
+    videoBadge: "Minh họa trực quan",
+    videoNote: "🎬 Bài học này hỗ trợ xem video minh họa trực quan trên YouTube.",
+    videoCta: "▶ Xem Video Bài Giảng trên YouTube",
+
+    scrollForQuiz: "Cuộn xuống để làm quiz →",
+    quickCheck: "Kiểm tra nhanh",
+    questionCounter: "Câu {current} / {total}",
+    answerRight: "✓ Đúng rồi!",
+    answerWrong: "✗ Chưa đúng",
+    exactly: "Chính xác!",
+    explanation: "Giải thích:",
+    youChose: "Bạn chọn:",
+    correctIs: "Đáp án đúng:",
+
+    check: "Kiểm tra →",
+    tryAgain: "Thử lại →",
+    backToResults: "← Quay lại kết quả",
+    nextQuestion: "Câu tiếp theo →",
+    seeResults: "Xem kết quả →",
+
+    doneTitle: "Hoàn thành!",
+    doneScore: "{score}/{total} câu đúng",
+    reviewMistakes: "🔄 Ôn Lại Câu Vừa Sai Ngay (Flashcard 3D)",
+    dashboard: "Dashboard",
+    nextLesson: "Bài tiếp →",
+    comingSoon: "Sắp ra mắt",
+    restart: "↺ Làm lại từ đầu",
+    questionList: "Các câu hỏi",
+  },
+
+  // components/WorldBossRaidWidget.tsx - the weekly server-wide boss raid.
+  worldBoss: {
+    counterattack: "Hụt rồi! Boss phản công làm bạn mất 34 HP.",
+    loading: "Đang tải dữ liệu World Boss Server...",
+    noEvent: "Chưa mở sự kiện World Boss tuần này.",
+    eventTitle: "🔥 Server World Boss Event - Hàng Tuần",
+    guideToggle: "📖 Hướng dẫn săn Boss",
+    huntNow: "Săn Boss Server Ngay!",
+
+    rulesTitle: "⚔️ Thể lệ & Cách chơi Sự Kiện Săn Boss Server:",
+    // Each rule is a <li> with a bolded lead-in, so the label and the body are
+    // separate keys rather than one string carrying <strong>.
+    rule1Label: "Thanh máu gộp 1,000,000 HP",
+    rule1Body: "Toàn bộ học viên trên toàn server cùng tấn công để rút máu World Boss.",
+    rule2Label: "Sát thương chiến đấu",
+    rule2Body:
+      "Mỗi câu trả lời trắc nghiệm đúng gây 5,000 Sát thương + Bonus dựa trên tốc độ trả lời & cấp độ nhân vật.",
+    rule3Label: "Phản công của Boss",
+    rule3Body:
+      "Trả lời sai sẽ bị Boss phản công trừ 25 HP của Nhân vật. Quá 3 câu sai trận đánh sẽ kết thúc.",
+    rule4Label: "Phần thưởng Bảng Xếp Hạng",
+    rule4BodyPart1: "Top 10 học viên gây sát thương cao nhất tuần nhận ",
+    rule4Coins: "+500 Coins",
+    rule4BodyPart2: " + ",
+    rule4Badge: "Huy hiệu dũng sĩ săn Boss",
+    rule4BodyPart3: "!",
+
+    serverHpLabel: "Thanh Máu Gộp Toàn Server:",
+    hpLine: "{current} / {max} HP ({percent}%)",
+
+    gearTitle: "Trang Bị Sẵn Sàng Săn Boss",
+    heroPower: "Sức Mạnh Nhân Vật",
+    levelPrefix: "Level: ",
+    levelValue: "Lv. {level}",
+    damagePerAnswer: "⚡ Mỗi đáp án đúng gây ~5,000+ Sát thương Server!",
+    raidQuestionCount: "Số câu raid",
+    questionCount: "{count} câu",
+    maxDamagePerQuestion: "Max DMG/câu",
+
+    leaderboardTitle: "Bảng Xếp Hạng Top Sát Thương Tuần",
+    refreshTitle: "Làm mới",
+    damageValue: "{value} DMG",
+
+    arenaTitle: "⚔️ BATTLE ARENA - CÂU {current}/{total}",
+    exit: "✕ Thoát",
+    levelShort: "Lv.{level}",
+    heroName: "Chiến Binh",
+    heroHp: "{hp}/100 HP",
+    vs: "VS",
+    sessionDamage: "DMG: +{value}",
+    bossAlt: "Wall Street bull boss",
+    bossName: "Trâu Phố Wall 3D",
+    bossHpPercent: "{percent}% HP",
+
+    doneTitle: "KẾT THÚC ĐỢT SĂN BOSS!",
+    donePart1: "Bạn đã đóng góp tổng cộng ",
+    doneDamage: "+{value} DMG",
+    donePart2: " vào Thanh Máu Server!",
+    closeAndSeeBoard: "Đóng & Xem Bảng Xếp Hạng",
+  },
+
+  // components/FriendsClient.tsx - /ban-be, friends list and direct chat.
+  friends: {
+    nowFriends: "Đã trở thành bạn bè",
+    requestSent: "Đã gửi lời mời kết bạn",
+    loading: "Đang tải...",
+    back: "Quay lại",
+    title: "Bạn bè & chat",
+
+    findAccount: "Tìm account",
+    searchPlaceholder: "Nhập tên hoặc email...",
+    searching: "Đang tìm...",
+    viewProfileTitle: "Xem hồ sơ",
+    fallbackName: "Người dùng",
+    levelXp: "Level {level} · {xp} XP",
+    message: "Nhắn tin",
+    accept: "Chấp nhận",
+    sent: "Đã gửi",
+    addFriend: "Kết bạn",
+    noResults: "Không tìm thấy tài khoản phù hợp.",
+    searchHint: "Nhập ít nhất 2 ký tự để tìm bạn.",
+
+    incoming: "Lời mời đến ({count})",
+    noIncoming: "Chưa có lời mời nào.",
+    reviewProfileTitle: "Xem hồ sơ trước khi quyết định",
+    viewProfile: "Xem hồ sơ",
+    decline: "Từ chối",
+
+    friendsList: "Bạn bè ({count})",
+    noFriends: "Chưa có bạn bè nào. Tìm và kết bạn để bắt đầu chat.",
+    openChatTitle: "Mở cuộc trò chuyện",
+    pending: "Đang chờ ({count})",
+
+    pickFriend: "Chọn một người bạn để bắt đầu chat",
+    pickFriendHint: "Sau khi hai bên trở thành bạn bè, bạn có thể nhắn tin trực tiếp tại đây.",
+    profile: "Hồ sơ",
+    loadingMessages: "Đang tải tin nhắn...",
+    noMessages: "Chưa có tin nhắn nào. Nhắn lời chào trước đi.",
+    messagePlaceholder: "Nhập tin nhắn cho bạn bè...",
+  },
+
+  // app/(app)/on-tap-cau-sai/OnTapCauSaiClient.tsx - SM-2 review of wrong answers.
+  mistakeReview: {
+    morningSession: "Phiên ôn buổi sáng",
+    morningSub:
+      "{count} câu, trộn từ nhiều bài khác nhau - xen kẽ như vậy nhớ lâu hơn ôn dồn một bài.",
+    enoughForToday: "Xong phiên này là đủ cho hôm nay.",
+    seeAllMistakes: "Xem toàn bộ câu sai",
+
+    srsBadge: "SPACED REPETITION SM-2",
+    title: "Ôn Tập Câu Sai Flashcard 3D",
+    subtitle:
+      "Tự động phân nhịp sinh học ôn tập theo chu kỳ 1 ngày ➔ 3 ngày ➔ 7 ngày ➔ 30 ngày.",
+    tabCards: "Thẻ 3D",
+    tabList: "Danh sách",
+
+    loading: "Đang tải dữ liệu câu sai...",
+    emptyTitle: "Xuất sắc! Không có câu nào cần ôn!",
+    emptyBody:
+      "Bạn đã chinh phục toàn bộ câu quiz làm sai. Hãy tiếp tục học bài mới để tích lũy thêm XP nhé!",
+    backToDashboard: "Quay lại Dashboard",
+    backToDashboardShort: "Về Dashboard",
+
+    cardCounter: "Thẻ {current} / {total} (Cần ôn hôm nay: {due})",
+    algorithmActive: "Thuật toán SM-2 Active",
+
+    doneTitle: "Hoàn Thành Phiên Ôn Tập Spaced Repetition!",
+    doneBody:
+      "Bạn đã xem và đánh giá toàn bộ {count} thẻ ôn tập. Hệ thống đã tự động tính nhịp nhắc nhở lặp lại ngắt quãng tiếp theo!",
+    restart: "Ôn lại từ đầu",
+
+    srsLevel: "Level {level} • {days} ngày",
+    srsLevelShort: "SRS Lvl {level} ({days}d)",
+    pickOrFlip: "Bấm chọn đáp án hoặc lật mặt sau để xem lời giải",
+    flipToExplanation: "🔄 Lật xem giải thích",
+    explanationTitle: "💡 Đáp án đúng & Giải thích",
+    flipBack: "↩️ Lật về mặt câu hỏi",
+    correctAnswer: "Đáp án chính xác:",
+    financeExplanation: "Giải thích tài chính:",
+    noExplanation: "Không có giải thích chi tiết cho câu hỏi này.",
+
+    ratePrompt: "Đánh giá mức độ nhớ để xếp lịch Spaced Repetition tiếp theo:",
+    rateForgot: "🔴 Chưa nhớ",
+    rateOk: "🟡 Tương đối",
+    rateGood: "🟢 Nhớ tốt",
+    rateEasy: "🚀 Quá dễ",
+    plus1Day: "+1 ngày",
+    plus3Days: "+3 ngày",
+    plus7Days: "+7 ngày",
+    plus30Days: "+30 ngày",
+
+    prevCard: "← Thẻ trước",
+    nextCard: "Thẻ tiếp theo →",
+    totalMistakes: "Tổng số câu sai tích lũy: {count} câu",
+    rateSrs: "Đánh giá SRS:",
+  },
+
+  // components/tools/ValuationDCFCalculator.tsx
+  dcf: {
+    tabDcf: "Định Giá Cổ Phiếu DCF",
+    tabWacc: "Chi Phí Vốn WACC",
+    standardBadge: "Chuẩn CFA & Corporate Finance",
+
+    resultTitle: "KẾT QUẢ MÔ PHỎNG ĐỊNH GIÁ DCF",
+    intrinsicValue: "Giá trị nội tại: {value} VNĐ / CP",
+    undervalued: "HẤP DẪN ({sign}{percent}%)",
+    overvalued: "ĐỊNH GIÁ CAO ({percent}%)",
+    fairValue: "HỢP LÝ ({sign}{percent}%)",
+
+    marketPriceLabel: "Giá thị trường hiện tại",
+    currency: "{value} VNĐ",
+    evLabel: "Giá trị Doanh nghiệp (EV)",
+    billions: "{value} tỷ VNĐ",
+    equityLabel: "Giá trị Vốn CSH (Equity)",
+    tvShareLabel: "Tỷ trọng Giá trị Cuối (TV)",
+    percentOfEv: "{percent}% EV",
+
+    inputsTitle: "Thông số đầu vào Mô hình Chiết khấu Dòng tiền",
+    inFcf: "Dòng tiền tự do FCF hiện tại (tỷ VNĐ)",
+    inGrowth: "Tốc độ tăng trưởng FCF 5 năm (%)",
+    inWacc: "Tỷ lệ chiết khấu WACC (%)",
+    inTerminalGrowth: "Tăng trưởng vĩnh viễn g_term (%)",
+    inCash: "Tiền mặt & Đầu tư ngắn hạn (tỷ VNĐ)",
+    inDebt: "Tổng Nợ vay tài chính (tỷ VNĐ)",
+    inShares: "Số lượng cổ phiếu lưu hành (triệu CP)",
+    inMarketPrice: "Giá thị trường hiện tại (VNĐ/CP)",
+
+    forecastTitle: "📊 Dự báo Dòng tiền tự do & Hiện giá PV từng năm",
+    colYear: "Năm",
+    colFcf: "Dòng tiền FCF (tỷ VNĐ)",
+    colDiscount: "Hệ số Chiết khấu PV",
+    colPv: "Hiện giá PV (tỷ VNĐ)",
+    rowYear: "Năm {year}",
+    billionsShort: "{value} tỷ",
+    total5Years: "Tổng 5 Năm",
+
+    waccResultTitle: "KẾT QUẢ TÍNH CHI PHÍ VỐN BÌNH QUÂN WACC",
+    waccValue: "WACC = {value}%",
+    equityWeight: "Tỷ trọng Vốn CSH (E/V)",
+    debtWeight: "Tỷ trọng Nợ vay (D/V)",
+    afterTaxKd: "Chi phí Nợ sau thuế (Kd*)",
+    taxShield: "Lá chắn thuế Nợ vay",
+    taxShieldValue: "-{rate}% Thuế TNDN",
+
+    waccInputsTitle: "Thông số cấu trúc vốn & chi phí từng thành phần",
+    inEquity: "Giá trị Vốn chủ sở hữu E (tỷ VNĐ)",
+    inDebtValue: "Giá trị Nợ vay tài chính D (tỷ VNĐ)",
+    inKe: "Chi phí vốn CSH Ke (%)",
+    inKd: "Lãi suất nợ vay bình quân Kd (%)",
+    inTaxRate: "Thuế suất thuế TNDN t (%)",
+  },
+
   // components/FinancialRpgWorldMap.tsx - the Game Kingdom map.
   worldMap: {
     levelShort: "Lv.{level}",
@@ -316,6 +692,19 @@ export const vi = {
     hotCase: "HOT CASE STUDY",
     backToMap: "Quay Lại Bản Đồ Đấu Trường",
     opening: "Đang mở: {name}",
+  },
+
+  // components/login/TrackPreviewPanel.tsx
+  trackPanel: {
+    isNew: "Mới",
+    trackPrefix: "Track",
+    effortHours: "~{hours} giờ học",
+    standardised: "Lộ trình chuẩn hóa 2024",
+    xpPerLesson: "+120 XP / bài",
+    stagesTitle: "Các chặng kiến thức chính:",
+    freeTryCompact: "Miễn phí · Xem thử ngay",
+    freeTry: "Miễn phí · Xem thử ngay, không cần đăng nhập",
+    previewOnly: "Xem trước",
   },
 
   // app/login/page.tsx - public, so this is one of the few screens an English
@@ -964,6 +1353,348 @@ export const vi = {
     prompt4: "Ảnh thành quả/streak hôm nay:",
   },
 
+  // components/ResumeLearningButton.tsx - the "continue learning" hero card.
+  resume: {
+    congrats: "Chúc mừng{name}!",
+    allDone: "Bạn đã hoàn thành tất cả bài học",
+    study: "▶ Học",
+    expandAria: "Mở rộng",
+    collapseAria: "Thu gọn",
+
+    quickGuideTitle: "Hướng dẫn nhanh 3 bước",
+    quickGuideIntro:
+      "\"Chào{name}! Lần đầu học tài chính đúng không? Đi theo 3 bước này là bạn có nền ngay.\"",
+    step1Title: "Chọn lộ trình phù hợp",
+    step1Body: "Cá nhân hay chuyên ngành - chọn đúng ngay từ đầu",
+    step2Title: "Học bài đầu tiên: {lesson}",
+    step2Body: "{duration} thôi - đủ để tạo đà",
+    step2Cta: "Vào học",
+    step3Title: "Xem bảng xếp hạng & giữ streak",
+    step3Body: "Học đều mỗi ngày để leo hạng",
+
+    heroBanner: "🎓 HERO LEARNING BANNER",
+    xpIfNow: "🔥 +30 XP NẾU HỌC NGAY",
+    trackProgress: "Tiến độ Lộ trình ({done}/{total} bài)",
+    continuingLesson: "▶ Bài học đang tiếp tục",
+    minutesStudied: "⏱️ Đã học {minutes} phút",
+    readyToStart: "🌱 Sẵn sàng khởi động bài học ngay",
+    continueNow: "▶ TIẾP TỤC HỌC NGAY",
+
+    feedbackTitle: "Phản hồi học tập",
+    reviewOnTime: "Tổng ôn đúng lúc",
+    coachReminder: "Tài Tài nhắc bạn: {message}",
+    openStage: "Mở {stage}: {lesson}",
+    gapsLeaning: "Lỗ hổng kiến thức hiện tại của bạn đang nghiêng về:",
+    stumblingMost: "Bạn đang vấp nhiều nhất ở: {topic}",
+    wrongCount: "Đã sai {count} lần trong bài “{lesson}”",
+    coachSuggestion: "Gợi ý của Tài Tài: {action}",
+    reviewThisLesson: "Ôn lại bài này",
+    makeFlashcard: "Tạo flashcard",
+    recallTitle: "Ôn tập",
+  },
+
+  // components/RigorousLevelExamModal.tsx - the level-up exam.
+  levelExam: {
+    passedToast: "Chúc mừng! Bạn đã thi đỗ xuất sắc Cấp độ {level} ({percent}%)!",
+    timedOutToast: "Đã quá thời gian làm bài nên kết quả không được tính. Bạn có thể thi lại.",
+    failedToast: "Rất tiếc! Bạn đạt {percent}% (Yêu cầu thi đỗ: ≥ {required}%). Vui lòng ôn lại và thử lại!",
+
+    titleRetake: "Thi Ôn Cấp Định Kỳ",
+    title: "Bài Thi Thăng Cấp Khắt Khe",
+    passRequirement: "Yêu cầu đỗ: ≥ {percent}% chính xác",
+    reloadExam: "Tải lại đề thi",
+    loading: "Đang tải đề thi từ máy chủ...",
+
+    resultPassed: "Xác Nhận Đạt Bằng Cấp Thành Công!",
+    resultFailed: "Chưa Đạt Yêu Cầu Thi Cấp!",
+    // Split around the inline <span> holding the score.
+    resultPart1: "Kết quả: ",
+    resultScore: "{correct}/{total}",
+    resultPart2: " câu đúng ({percent}%)",
+    timedOutNote: "⏱ Bài thi được nộp sau khi hết thời gian nên không được tính là đỗ.",
+    promotedTitle: "🎉 Bạn chính thức thăng thâm niên Cấp độ {level} ({name})!",
+    promotedBody:
+      "Trạng thái thi đỗ đã được ghi nhận trong hồ sơ và duy trì chứng nhận trong 14 ngày tới.",
+    sharedToast: "Đã chia sẻ thành tích lên FinSocial! (+10 XP)",
+    shareCta: "Chia sẻ chiến tích lên FinSocial (+10 XP)",
+    reviewTitle: "⚠️ Bạn cần ôn lại các khái niệm chưa nắm vững",
+    reviewBody:
+      "Đừng nản lòng! Đọc kỹ giải thích đáp án bên dưới để củng cố kiến thức trước khi làm bài thi lại.",
+
+    answerAnalysis: "Phân tích đáp án chi tiết",
+    questionLine: "Câu {index}: {question}",
+    markCorrect: "Đúng ✓",
+    markWrong: "Sai ✗",
+    youChose: "• Bạn chọn: ",
+    correctAnswer: "• Đáp án đúng: ",
+    explanationLabel: "Giải thích:",
+
+    answered: "Đã trả lời {done}/{total} câu",
+    grading: "Đang chấm bài...",
+    submit: "Nộp Bài Thi Cấp",
+    retakeNow: "Thi Lại Ngay",
+    finish: "Hoàn Tất",
+    passRequirementCount: " ({correct}/{total} câu)",
+    resultRequired: " — Yêu cầu đỗ: ≥ {percent}%",
+    notChosen: "Chưa chọn",
+    submitError: "Không nộp được bài thi.",
+    shareError: "Không thể chia sẻ bài đăng lúc này.",
+  },
+
+  // components/home/InteractiveKingdomPreview.tsx - logged-out Game Kingdom demo.
+  kingdomPreview: {
+    tabMap: "Bản đồ Vương quốc",
+    tabMinigame: "Chơi thử Mini Game",
+    tabBoss: "Săn Boss NYSE",
+    bgAlt: "Wall Street Trading Floor background",
+    eyebrow: "VƯƠNG QUỐC GAME TÀI CHÍNH INTERACTIVE",
+    headingMap: "Bản đồ nhiệm vụ & Công trình",
+    headingMinigame: "Thử phản xạ active recall trực tiếp",
+    headingBoss: "Đấu trường Săn Boss Phố Wall",
+    xpLabel: "XP Tích lũy",
+    xpValue: "+{xp} XP",
+
+    unlockAtLevel: "Mở khóa ở Lv.{level}",
+    xpRewardValue: "+{xp} XP",
+    buildingDetail: "Chi tiết công trình",
+    skillsUnlocked: "Kỹ năng mở khóa:",
+    unlockBuilding: "Mở khóa công trình này",
+
+    samplerQuestion: "Câu hỏi thử nghiệm #{index}",
+    samplerXp: "+50 XP nếu chọn đúng",
+    samplerCorrect: "🎉 Chính xác! Bạn nhận được +50 XP thưởng!",
+    samplerWrong: "💡 Chưa chính xác rồi!",
+    tryAnother: "Thử câu hỏi khác",
+    doAllQuizzes: "Vào làm trọn bộ 430+ Quiz →",
+
+    bossAlt: "Boss Bò Phố Wall NYSE",
+    bossRaidLabel: "👹 WORLD BOSS RAID · 1,000,000 HP",
+    bossName: "Bò Tót Phố Wall Tăng Trưởng",
+    bossBody:
+      "Toàn bộ người học trên hệ thống cùng tham gia đánh Boss mỗi ngày bằng cách trả lời đúng các câu hỏi tài chính.",
+    bossHpLabel: "Máu Boss hiện tại",
+    bossHpValue: "742,500 / 1,000,000 HP",
+    damageToday: "Sát thương hôm nay",
+    damageValue: "⚔️ 1,250 DMG",
+    bossReward: "Phần thưởng hạ Boss",
+    bossRewardValue: "🏆 +500 XP & Vàng",
+    joinBoss: "Tham gia Săn Boss NYSE Ngay",
+    ongoing: "Đang diễn ra: Mở khóa vương quốc tài chính bằng bài học thật",
+    playFull: "Vào chơi thử Game Kingdom đầy đủ",
+
+    // KINGDOM_BUILDINGS: ids, images, levels and rewards stay in the component.
+    // Building NAMES are proper nouns and stay too; only the copy is here.
+    goldmanSubtitle: "Đấu trường Định giá & Mô hình DCF",
+    goldmanDescription:
+      "Thực hành phân tích định giá doanh nghiệp, P/E, P/B và mô hình chiết khấu dòng tiền DCF.",
+    goldmanTag1: "Định giá P/E",
+    goldmanTag2: "Mô hình DCF",
+    goldmanTag3: "Đọc BCTC",
+    fedSubtitle: "Thử thách Lãi suất & Ngân hàng Trung ương",
+    fedDescription:
+      "Dự đoán động thái lãi suất Fed, lạm phát và ảnh hưởng đến thị trường chứng khoán.",
+    fedTag1: "Tỷ lệ Lãi suất",
+    fedTag2: "Lạm phát",
+    fedTag3: "Chính sách tiền tệ",
+    singaporeSubtitle: "Cảng Dòng tiền & Thương mại Quốc tế",
+    singaporeDescription:
+      "Quản lý dòng tiền lưu chuyển, xuất nhập khẩu và chu kỳ tiền mặt doanh nghiệp.",
+    singaporeTag1: "Dòng tiền Cashflow",
+    singaporeTag2: "Vốn lưu động",
+    singaporeTag3: "Tỷ giá",
+    pvpName: "Đấu Trường Kiến Thức Solo",
+    pvpSubtitle: "Đánh Boss bằng câu hỏi Active Recall",
+    pvpDescription:
+      "Thử thách phản xạ kiến thức tài chính qua các hiệp quiz 1v1 dồn dập tích lũy điểm XP.",
+    pvpTag1: "Active Recall",
+    pvpTag2: "Thách đấu 1v1",
+    pvpTag3: "Kho quiz 430+ bài",
+
+    // SAMPLER_QUESTIONS
+    q1: "Tài sản nào sau đây được xếp vào 'Tài sản Ngắn hạn'?",
+    q1a: "Tiền mặt & Tiền gửi ngân hàng",
+    q1b: "Nhà xưởng máy móc thiết bị",
+    q1c: "Thương hiệu & Bằng sáng chế",
+    q1explanation:
+      "Chính xác! Tiền mặt & các khoản tương đương tiền có tính thanh khoản cao nhất, thuộc tài sản ngắn hạn.",
+    q2: "Chỉ số P/E (Price to Earnings) phản ánh điều gì?",
+    q2a: "Số năm nhà đầu tư hòa vốn nếu lợi nhuận giữ nguyên",
+    q2b: "Tổng nợ vay trên tổng vốn chủ sở hữu",
+    q2c: "Tỷ lệ trả cổ tức bằng tiền mặt",
+    q2explanation:
+      "Đúng rồi! P/E = Giá cổ phiếu / EPS, thể hiện mức giá nhà đầu tư chấp nhận trả cho 1 đồng lợi nhuận.",
+  },
+
+  // components/WeeklyChallengeWidget.tsx - the Times Square case-study arena.
+  caseArena: {
+    correctToast: "Chính xác! +{score} điểm (Combo x{multiplier}) 🔥",
+    wrongToast: "Chưa chính xác! Thất thoát Combo.",
+
+    hubTitle: "🏙️ Times Square Financial Hub",
+    badge: "Case Study Thực Tế",
+    title: "Đấu Trường Case Study Doanh Nghiệp",
+    totalScore: "Tổng Điểm Game",
+    combo: "Combo",
+    leaderboardTitle: "BXH Case Study",
+
+    xpReward: "Thưởng XP",
+    coins: "Coins",
+    questions: "Câu hỏi",
+    questionCount: "{count} câu",
+    status: "Trạng thái",
+    ready: "Sẵn sàng",
+    remaining: "{count} còn lại",
+    difficulty: "Độ khó: {level}",
+    maxReward: "Thưởng tối đa: +{xp} XP",
+    coinReward: "+{coins} Coins",
+    analysisQuestions: "❓ {count} Câu hỏi phân tích",
+    start: "Bắt Đầu Trận Đấu Case Study",
+
+    questionCounter: "Câu hỏi phân tích {current}/{total}",
+    currentScore: "Điểm hiện tại",
+    currentCombo: "Combo hiện tại",
+    currentCorrect: "Đúng hiện tại",
+    analysisAngle: "Góc nhìn phân tích",
+    questionsAfterThis: "{count} câu sau câu này",
+    expertExplanation: "Giải thích chuyên môn:",
+    nextQuestion: "Câu tiếp theo",
+    seeSummary: "Xem Tổng Kết Điểm Game",
+
+    doneTitle: "Hoàn Thành Case Study!",
+    correctCount: "Số câu đúng",
+    correctOf: "{correct}/{total} câu",
+    totalGameScore: "Tổng điểm Game",
+    maxCombo: "Max Combo",
+    maxComboValue: "🔥 x{combo}",
+    reward: "Phần thưởng",
+    rewardXp: "+{xp} XP",
+    lessonHintTitle: "💡 Gợi ý bài học ôn tập tương ứng:",
+    lessonHintBody:
+      "Để thành thạo hơn khi phân tích các doanh nghiệp thực tế, bạn nên đọc lại các bài học sau:",
+    replayCase: "Chơi Lại Case này",
+    pickAnotherCase: "Chọn Case Study Khác",
+  },
+
+  // components/CareerProfilePanel.tsx
+  careerProfile: {
+    claimed: "Đã nhận +{xp} XP · +{coins} xu",
+    bulletSaved: "Đã lưu CV bullet",
+
+    signInPrompt: "Đăng nhập để xem hồ sơ năng lực nghề nghiệp của bạn.",
+    signIn: "Đăng nhập",
+    computing: "Đang tính hồ sơ năng lực...",
+    loadFailed: "Không tải được hồ sơ năng lực.",
+    retry: "Thử lại",
+
+    title: "Hồ sơ năng lực",
+    lessonsCompleted: "{count} bài đã hoàn thành",
+    mockInterview: "Làm mock interview (10 câu, có tính giờ)",
+
+    gapTitle: "Job Skill Gap",
+    groupCertifications: "Chứng chỉ",
+    groupCareers: "Nghề nghiệp",
+    pickGoal: "Chọn một mục tiêu ở trên để xem bạn còn thiếu gì.",
+    readinessBody:
+      "mức sẵn sàng cho mục tiêu này. Các nhóm còn thiếu được xếp trên cùng - đó là việc đáng làm tiếp theo.",
+    required: "bắt buộc",
+
+    missionsTitle: "Nhiệm vụ nghề nghiệp tuần này",
+    missionReward: "+{xp} XP · +{coins} xu",
+    alreadyClaimed: "Đã nhận",
+    claim: "Nhận thưởng",
+    claiming: "Đang nhận...",
+    perfectWeek: "🏆 Tuần hoàn hảo · +{xp} XP · +{coins} xu",
+    perfectWeekBody: "Hoàn thành cả {count} nhiệm vụ trong tuần.",
+
+    bulletsTitle: "CV bullets",
+    // Split around the inline <strong> holding the formula.
+    bulletsHintPart1: "Mỗi bullet theo công thức ",
+    bulletsFormula: "Hành động - Con số - Kết quả",
+    bulletsHintPart2:
+      ". Ví dụ: \"Dựng mô hình DCF 3 báo cáo cho 5 công ty niêm yết, rút ngắn thời gian định giá từ 3 ngày xuống 1 ngày.\"",
+    bulletPlaceholder: "Viết một bullet cho CV của bạn...",
+    bulletCounter: "{count}/{max} · tối thiểu {min}",
+    savingBullet: "Đang lưu...",
+    addBullet: "Thêm bullet",
+    bulletsEmpty: "Chưa có bullet nào. Viết 3 bullet trong tuần để hoàn thành nhiệm vụ.",
+    deleteBulletAria: "Xoá bullet",
+  },
+
+  // Message-action vocabulary shared by all three chat surfaces:
+  // components/StudyGroupsClient.tsx, components/FloatingStudyGroupChat.tsx and
+  // components/ChatWithAdminWidget.tsx. Kept in one place rather than three
+  // copies - "Ghim tin nhắn" appearing in three sections is three chances for
+  // them to drift apart.
+  chat: {
+    copied: "Đã sao chép tin nhắn",
+    copyFailed: "Không sao chép được tin nhắn",
+    edited: "Đã chỉnh sửa tin nhắn",
+    recalled: "Đã thu hồi tin nhắn thành công!",
+    recallFailed: "Không thể thu hồi tin nhắn này",
+    reactionFailed: "Không lưu được cảm xúc. Vui lòng thử lại.",
+
+    optionsTitle: "Tùy chọn tin nhắn",
+    reply: "Trả lời tin nhắn",
+    pin: "Ghim tin nhắn",
+    unpin: "Bỏ ghim tin nhắn",
+    copy: "Sao chép",
+    edit: "Sửa tin nhắn",
+    recall: "Thu hồi tin nhắn",
+
+    sending: "Đang gửi...",
+    seen: "Đã xem",
+    sent: "Đã gửi",
+    replyingTo: "💬 Đang trả lời {name}:",
+    cancelReply: "Hủy trả lời",
+    editing: "Đang sửa tin nhắn:",
+    cancelEdit: "Hủy sửa",
+    sendAria: "Gửi tin nhắn",
+    attachImage: "Đính kèm ảnh",
+    attachFile: "Đính kèm tệp",
+    attachmentAlt: "Đính kèm",
+    previewAlt: "Preview",
+    dropImage: "Thả ảnh vào đây để đính kèm 📂",
+    imagePlaceholder: "[Hình ảnh]",
+    deleted: "↩️ Tin nhắn đã bị xoá",
+    you: "Bạn",
+    member: "Thành viên",
+    admin: "Tài Tài",
+  },
+
+  // components/ChatWithAdminWidget.tsx
+  adminChat: {
+    openAria: "Admin Chatbot",
+    dragTitle: "Admin Chatbot (Kéo thả để di chuyển)",
+    title: "Tài Tài Chatbot",
+    status: "Đang hoạt động • Phản hồi siêu tốc",
+    closeAria: "Đóng chat",
+    pinnedBy: "Tin nhắn đã ghim ({who})",
+    unpinTitle: "Bỏ ghim",
+    loading: "Đang tải cuộc trò chuyện...",
+    emptyPart1: "Gửi tin nhắn để bắt đầu trò chuyện với admin.",
+    emptyPart2: "Admin thường phản hồi trong vòng 24 giờ.",
+    adminName: "Admin",
+    recalledToast: "🗑️ Đã thu hồi tin nhắn thành công!",
+  },
+
+  // components/FloatingStudyGroupChat.tsx
+  groupChat: {
+    openAria: "Chat nhóm học",
+    roomTitle: "Nhóm {topic}",
+    dragTitle: "Nhóm {topic} (Kéo thả để di chuyển)",
+    joinTitle: "Tham gia Nhóm Học",
+    matchedToast: "Bạn vừa được ghép vào nhóm học mới: {topic}! Chào mọi người trong nhóm nhé.",
+    roomFallback: "Học tập",
+    memberCount: "{count}/{max} thành viên hoạt động",
+    closeAria: "Đóng",
+    pinnedByAdmin: "Tài Tài • Quản lý nhóm • Đã ghim",
+    byAdmin: "Tài Tài • Quản lý nhóm",
+    dropImage: "Thả ảnh vào đây để gửi 📂",
+    emptyPart1: "Chưa có tin nhắn nào.",
+    emptyPart2: "Nhắn gì đó chào các bạn trong nhóm nhé!",
+    uploading: "{name} · Đang tải lên...",
+  },
+
   // components/StudyGroupsClient.tsx - the 3D study room (/nhom-hoc).
   studyGroups: {
     loading: "Đang tải...",
@@ -987,6 +1718,11 @@ export const vi = {
     focusStarted: "🎯 Hết giờ nghỉ! Bắt đầu phiên 25 phút tập trung tiếp theo!",
 
     // Lofi + voice
+    lofiOn: "🎧 Đã bật nhạc Focus [{track}] Chill!",
+    stationLit: "Trạm [{name}] đã được thắp sáng trong phiên này.",
+    stationActivated: "Đã kích hoạt trạm 3D [{name}]! +15% XP cho cả phòng.",
+    quizScoreGood: "Quiz nhóm đạt {score}%. Đã cộng tiến độ nhiệm vụ tuần!",
+    quizScoreKeepGoing: "Quiz nhóm đạt {score}%. Cứ làm tiếp, tiến độ quiz tuần vẫn được ghi nhận.",
     lofiToggleTitle: "Bật/Tắt nhạc Lofi Chill tập trung",
     lofiPlaying: "Nhạc Lofi: Đang phát",
     lofiIdle: "Nhạc Lofi Chill",
@@ -1053,36 +1789,13 @@ export const vi = {
       "Nhắn 1 tin nhắn bất kỳ lên chat để tự động ghi nhận điểm danh nhóm hôm nay!",
     pinnedByAdmin: "Tài Tài · Quản lý nhóm · Đã ghim",
     byAdmin: "Tài Tài · Quản lý nhóm",
-    adminName: "Tài Tài",
     loadOlder: "↑ Xem tin nhắn cũ hơn",
     loadOlderFailed: "Không tải được tin nhắn cũ",
     chatEmpty: "Chưa có tin nhắn nào. Chào các thành viên trong nhóm nhé!",
-    imagePlaceholder: "[Hình ảnh]",
-    messageDeleted: "↩️ Tin nhắn đã bị xoá",
-    messageOptionsTitle: "Tùy chọn tin nhắn",
-    reply: "Trả lời tin nhắn",
-    unpin: "Bỏ ghim tin nhắn",
-    pin: "Ghim tin nhắn",
-    copy: "Sao chép",
-    copied: "Đã sao chép tin nhắn",
-    copyFailed: "Không sao chép được tin nhắn",
-    edit: "Sửa tin nhắn",
-    edited: "Đã chỉnh sửa tin nhắn",
-    recall: "Thu hồi tin nhắn",
-    recalled: "Đã thu hồi tin nhắn thành công!",
-    recallFailed: "Không thể thu hồi tin nhắn này",
     sendFailed: "Gửi không thành công",
     retry: "Thử lại",
     discard: "Bỏ",
-    sending: "Đang gửi...",
-    seen: "Đã xem",
-    sent: "Đã gửi",
     newMessages: "↓ Tin nhắn mới",
-    replyingTo: "💬 Đang trả lời {name}:",
-    cancelReplyTitle: "Hủy trả lời",
-    editingMessage: "Đang sửa tin nhắn:",
-    cancelEditTitle: "Hủy sửa",
-    sendAria: "Gửi tin nhắn",
 
     // Sticky notes
     notePlaceholder: "Dán ghi chú công thức hoặc mẹo học cho cả nhóm...",
@@ -1644,6 +2357,49 @@ export const vi = {
       interactions: "tương tác",
       honors: "danh hiệu",
     },
+  },
+  // app/(app)/nguoi-hoc/[userId]/page.tsx - another learner's public profile.
+  publicProfile: {
+    backToLeaderboard: "← Quay lại bảng xếp hạng",
+    heading: "Hồ sơ người học",
+    yourProfile: "Hồ sơ của bạn",
+    eyebrow: "Người học trên BXH",
+    joinedAt: "Tham gia từ {date}",
+    noBio: "Chưa có phần giới thiệu cá nhân.",
+    followers: "người theo dõi",
+    following: "đang theo dõi",
+
+    statLevel: "Level",
+    statXp: "XP",
+    statXpHint: "Tổng kinh nghiệm",
+    statCompleted: "Hoàn thành",
+    statCompletedHint: "Bài học đã xong",
+    statQuiz: "Điểm quiz",
+    statQuizHint: "Điểm trung bình",
+
+    progressTitle: "Tiến độ học tập",
+    currentPriority: "Ưu tiên hiện tại: {track}",
+    trackPersonal: "Tài chính cá nhân",
+    trackProfessional: "Tài chính chuyên ngành",
+    studyMinutes: "{minutes} phút học",
+    currentStreakLine: "{days} ngày streak hiện tại",
+    percentComplete: "{percent}% hoàn thành",
+
+    quickSummary: "Tóm tắt nhanh",
+    currentStreak: "Chuỗi hiện tại",
+    longestStreak: "Chuỗi dài nhất",
+    days: "{days} ngày",
+    studyTime: "Thời gian học",
+    minutes: "{minutes} phút",
+
+    recentLessons: "Bài học gần đây",
+    noLessons: "Người học này chưa có bài hoàn thành nào để hiển thị.",
+    unknownDate: "Chưa rõ ngày",
+    quizScore: "{percent}% quiz",
+    noQuiz: "Không có quiz",
+
+    recentPosts: "Bài đăng gần đây",
+    viewFinsocial: "Xem FinSocial →",
   },
 };
 

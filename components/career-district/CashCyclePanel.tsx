@@ -1,7 +1,10 @@
 "use client";
 
-import { useState } from "react";
-import { SCENARIOS, cycle, verdict, type CycleScenario } from "@/lib/cash-cycle";
+import { useMemo, useState } from "react";
+import { cycle, scenariosOf, verdict, type CycleScenario } from "@/lib/cash-cycle";
+import { useI18n } from "@/lib/i18n/context";
+import { format, intlLocale } from "@/lib/i18n";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
 /** Phòng Vòng Quay Tiền.
  *
@@ -23,6 +26,7 @@ type Phase = "choose" | "guess" | "reveal";
  *  Vế phải trả chạy NGƯỢC chiều và nằm dưới - đó là cả bài học trong một hình:
  *  DSO và DIO đẩy vòng dài ra, DPO kéo nó ngắn lại. */
 function Bars({ s, revealed }: { s: CycleScenario; revealed: boolean }) {
+  const { t } = useI18n();
   const { dso, dio, dpo } = s.inputs;
   const span = Math.max(dso + dio, dpo, 1);
   const pct = (n: number) => `${(n / span) * 100}%`;
@@ -30,31 +34,31 @@ function Bars({ s, revealed }: { s: CycleScenario; revealed: boolean }) {
     <div className="space-y-1">
       <div className="flex h-5 overflow-hidden rounded bg-stone-800">
         <div className="flex items-center justify-center bg-amber-500/80 text-[9px] font-black text-stone-950" style={{ width: pct(dio) }}>
-          {dio > 6 ? `kho ${dio}` : ""}
+          {dio > 6 ? format(t.careerDistrict.cashCycle.inventoryBar, { n: dio }) : ""}
         </div>
         <div className="flex items-center justify-center bg-sky-500/80 text-[9px] font-black text-stone-950" style={{ width: pct(dso) }}>
-          {dso > 6 ? `thu ${dso}` : ""}
+          {dso > 6 ? format(t.careerDistrict.cashCycle.receivablesBar, { n: dso }) : ""}
         </div>
       </div>
       <div className="flex h-5 overflow-hidden rounded bg-stone-800">
         <div className="flex items-center justify-center bg-lime-500/80 text-[9px] font-black text-stone-950" style={{ width: pct(dpo) }}>
-          {dpo > 6 ? `được nợ ${dpo}` : ""}
+          {dpo > 6 ? format(t.careerDistrict.cashCycle.payablesBar, { n: dpo }) : ""}
         </div>
       </div>
       {revealed && (
         <p className="text-center text-[10px] text-stone-400">
-          hai vạch trên đẩy dài ra · vạch dưới kéo ngắn lại
+          {t.careerDistrict.cashCycle.barsHint}
         </p>
       )}
     </div>
   );
 }
 
-const VERDICT_TEXT = {
-  "duoc-tai-tro": { label: "Khách hàng đang tài trợ", color: "#a3e635" },
-  "can-von": { label: "Phải bỏ vốn ra nuôi vòng quay", color: "#fb7185" },
-  "trung-tinh": { label: "Hoà - không ai tài trợ ai", color: "#94a3b8" },
-} as const;
+const buildVerdictText = (t: Dictionary) => ({
+  "duoc-tai-tro": { label: t.careerDistrict.cashCycle.verdictFunded, color: "#a3e635" },
+  "can-von": { label: t.careerDistrict.cashCycle.verdictNeedsCapital, color: "#fb7185" },
+  "trung-tinh": { label: t.careerDistrict.cashCycle.verdictNeutral, color: "#94a3b8" },
+} as const);
 
 export default function CashCyclePanel({
   accent,
@@ -63,6 +67,9 @@ export default function CashCyclePanel({
   accent: string;
   onClose: () => void;
 }) {
+  const { t, locale } = useI18n();
+  const VERDICT_TEXT = useMemo(() => buildVerdictText(t), [t]);
+  const SCENARIOS = useMemo(() => scenariosOf(t), [t]);
   const [id, setId] = useState<string | null>(null);
   const [phase, setPhase] = useState<Phase>("choose");
 
@@ -76,10 +83,10 @@ export default function CashCyclePanel({
       <div className="mb-2 flex items-start justify-between gap-2">
         <div>
           <p className="text-[10px] font-black uppercase tracking-widest" style={{ color: accent }}>
-            Phòng Vòng Quay Tiền
+            {t.careerDistrict.cashCycle.title}
           </p>
           <p className="mt-0.5 text-[11px] text-stone-400">
-            Tiền về trước hay tiền đi trước — và ai đang tài trợ cho ai
+            {t.careerDistrict.cashCycle.subtitle}
           </p>
         </div>
         <button
@@ -87,7 +94,7 @@ export default function CashCyclePanel({
           onClick={onClose}
           className="cursor-pointer text-[10px] font-bold text-stone-500 hover:text-stone-300"
         >
-          đóng
+          {t.careerDistrict.cashCycle.close}
         </button>
       </div>
 
@@ -122,7 +129,7 @@ export default function CashCyclePanel({
             <div className="rounded-xl border border-lime-500/40 bg-lime-950/30 p-3">
               <p className="text-[12px] font-bold leading-snug text-lime-100">{s.question}</p>
               <p className="mt-1 text-[10px] text-stone-400">
-                Tự trả lời trong đầu trước đã — kể cả dấu âm hay dương.
+                {t.careerDistrict.cashCycle.guessHint}
               </p>
               <button
                 type="button"
@@ -130,7 +137,7 @@ export default function CashCyclePanel({
                 className="mt-2 w-full cursor-pointer rounded-xl px-3 py-2 text-[11px] font-black text-stone-950 transition hover:brightness-110"
                 style={{ backgroundColor: accent }}
               >
-                Lật đáp số
+                {t.careerDistrict.cashCycle.revealButton}
               </button>
             </div>
           )}
@@ -140,21 +147,24 @@ export default function CashCyclePanel({
               <div className="rounded-xl bg-stone-950/70 p-2.5 text-center">
                 <p className="font-mono text-2xl font-black" style={{ color: v.color }}>
                   {r.ccc > 0 ? "+" : ""}
-                  {r.ccc} ngày
+                  {format(t.careerDistrict.cashCycle.days, { n: r.ccc })}
                 </p>
                 <p className="text-[10px] font-bold" style={{ color: v.color }}>
                   {v.label}
                 </p>
                 <p className="mt-1 font-mono text-[10px] text-stone-500">
-                  {s.inputs.dso} thu + {s.inputs.dio} kho − {s.inputs.dpo} được nợ
+                  {format(t.careerDistrict.cashCycle.formula, { dso: s.inputs.dso, dio: s.inputs.dio, dpo: s.inputs.dpo })}
                 </p>
                 {/* Ngày là con số người ta nhớ; tiền là thứ làm doanh nghiệp
                     chết. Bày cả hai cạnh nhau vì đó là bước nhảy còn thiếu. */}
                 <p className="mt-1 text-[10px] text-stone-400">
-                  Với doanh thu 100 triệu/ngày:{" "}
+                  {t.careerDistrict.cashCycle.revenueAssumption}{" "}
                   <span className="font-mono font-bold text-stone-200">
-                    {r.workingCapitalNeed > 0 ? "cần sẵn " : "dư ra "}
-                    {Math.abs(r.workingCapitalNeed).toLocaleString("vi-VN")} triệu
+                    {r.workingCapitalNeed > 0 ? t.careerDistrict.cashCycle.needsCash : t.careerDistrict.cashCycle.freesUpCash}
+                    {" "}
+                    {format(t.careerDistrict.cashCycle.millionUnit, {
+                      n: Math.abs(r.workingCapitalNeed).toLocaleString(intlLocale(locale)),
+                    })}
                   </span>
                 </p>
               </div>

@@ -16,6 +16,8 @@
  *  giám khảo: nó bày ra ý còn thiếu để người học tự đọc lại, chứ không tuyên
  *  bố bài giảng đúng hay sai. */
 
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
+
 export interface KeyPoint {
   id: string;
   /** Ý phải nói tới, viết như người ta sẽ nói. */
@@ -81,92 +83,48 @@ export function evaluate(topic: TeachBackTopic, answer: string): TeachBackResult
   return { hit, missed, words, tooShort: words < MIN_WORDS };
 }
 
-export const TOPICS: TeachBackTopic[] = [
-  {
-    id: "loi-nhuan-vs-tien",
-    label: "Lãi mà vẫn chết vì hết tiền",
-    audience: "một người bạn mở quán ăn, chưa học tài chính bao giờ",
-    prompt:
-      "Bạn của bạn nói: 'Quán tôi tháng nào cũng lãi, sao tài khoản cứ cạn?' Giải thích cho họ.",
-    points: [
-      {
-        id: "ghi-nhan",
-        label: "Doanh thu được ghi khi bán, không phải khi tiền về",
-        markers: ["ghi nhận", "ghi nhan", "bán chịu", "ban chiu", "công nợ", "cong no", "chưa thu", "chua thu", "phải thu", "phai thu"],
-      },
-      {
-        id: "von-luu-dong",
-        label: "Tiền kẹt trong hàng tồn và khoản phải thu",
-        markers: ["tồn kho", "ton kho", "hàng tồn", "hang ton", "vốn lưu động", "von luu dong", "nhập hàng", "nhap hang"],
-      },
-      {
-        id: "chi-khong-vao-lai",
-        label: "Có khoản chi tiền mà không nằm trong lãi lỗ",
-        markers: ["trả nợ", "tra no", "mua máy", "mua may", "đầu tư", "dau tu", "tài sản cố định", "tai san co dinh", "gốc vay", "goc vay"],
-      },
-      {
-        id: "khau-hao",
-        label: "Ngược lại, có chi phí không hề chi tiền",
-        markers: ["khấu hao", "khau hao", "không chi tiền", "khong chi tien", "không ra khỏi két", "khong ra khoi ket"],
-      },
-    ],
-  },
-  {
-    id: "lai-kep",
-    label: "Vì sao lãi kép mạnh muộn chứ không mạnh sớm",
-    audience: "em họ 18 tuổi vừa đi làm thêm",
-    prompt:
-      "Em họ hỏi: 'Gửi 1 triệu mỗi tháng thì bao giờ mới thành nhiều?' Giải thích vì sao thời gian quan trọng hơn số tiền.",
-    points: [
-      {
-        id: "lai-tren-lai",
-        label: "Lãi sinh ra lãi, chứ không chỉ vốn sinh ra lãi",
-        markers: ["lãi trên lãi", "lai tren lai", "lãi mẹ", "lai me", "lãi chồng lãi", "lai chong lai", "tái đầu tư", "tai dau tu", "cộng dồn", "cong don"],
-      },
-      {
-        id: "phi-tuyen",
-        label: "Đường đi cong lên, không phải đường thẳng",
-        markers: ["cấp số nhân", "cap so nhan", "hàm mũ", "ham mu", "đường cong", "duong cong", "không tuyến tính", "khong tuyen tinh", "gấp đôi", "gap doi"],
-      },
-      {
-        id: "phan-lon-o-cuoi",
-        label: "Phần lớn số tiền đến ở những năm cuối",
-        markers: ["năm cuối", "nam cuoi", "về sau", "ve sau", "cuối chặng", "cuoi chang", "10 năm cuối", "10 nam cuoi", "giai đoạn sau", "giai doan sau"],
-      },
-      {
-        id: "bat-dau-som",
-        label: "Nên bắt đầu sớm quan trọng hơn bắt đầu nhiều",
-        markers: ["bắt đầu sớm", "bat dau som", "càng sớm", "cang som", "thời gian", "thoi gian", "tuổi", "tuoi"],
-      },
-    ],
-  },
-  {
-    id: "da-dang-hoa",
-    label: "Vì sao trộn hai thứ lại ít rủi ro hơn",
-    audience: "một đồng nghiệp đang định dồn hết tiền vào một cổ phiếu",
-    prompt:
-      "Đồng nghiệp nói: 'Chia tiền ra làm gì, tôi chọn đúng một mã là được.' Bạn nói lại thế nào để họ thấy trộn lại an toàn hơn mà không mất lợi nhuận?",
-    points: [
-      {
-        id: "khong-cung-xuong",
-        label: "Hai tài sản không cùng xuống một lúc",
-        markers: ["tương quan", "tuong quan", "cùng lúc", "cung luc", "ngược chiều", "nguoc chieu", "bù nhau", "bu nhau", "không cùng", "khong cung"],
-      },
-      {
-        id: "duoi-trung-binh",
-        label: "Rủi ro danh mục nằm dưới trung bình rủi ro hai phần",
-        markers: ["dưới trung bình", "duoi trung binh", "thấp hơn trung bình", "thap hon trung binh", "ít hơn trung bình", "it hon trung binh"],
-      },
-      {
-        id: "loi-nhuan-khong-mat",
-        label: "Mà lợi nhuận kỳ vọng thì không mất đi",
-        markers: ["lợi nhuận vẫn", "loi nhuan van", "không mất", "khong mat", "giữ nguyên", "giu nguyen", "vẫn bằng", "van bang", "trung bình có trọng số", "trung binh co trong so"],
-      },
-      {
-        id: "gioi-han",
-        label: "Nhưng nếu chúng đi khít nhau thì không được gì",
-        markers: ["cùng ngành", "cung nganh", "giống nhau", "giong nhau", "khít", "khit", "cùng chiều", "cung chieu", "không được gì", "khong duoc gi"],
-      },
-    ],
-  },
-];
+/** Phần CẤU TRÚC của ba đề: id đề, id ý, và tập từ khoá dò cho TỪNG NGÔN NGỮ.
+ *
+ *  Markers là chuỗi hiển thị đặc thù ngôn ngữ - người học gõ câu trả lời bằng
+ *  ngôn ngữ nào thì cần bộ từ khoá của ngôn ngữ đó, nên chúng sống trong
+ *  district-content.ts như label/audience/prompt, không phải hằng số cấu trúc
+ *  dùng chung. Bảng này chỉ giữ id, để `topicsOf` ghép với chữ hiển thị theo
+ *  `t` hiện tại. */
+const TOPIC_IDS = ["loi-nhuan-vs-tien", "lai-kep", "da-dang-hoa"] as const;
+const POINT_IDS: Record<(typeof TOPIC_IDS)[number], string[]> = {
+  "loi-nhuan-vs-tien": ["ghi-nhan", "von-luu-dong", "chi-khong-vao-lai", "khau-hao"],
+  "lai-kep": ["lai-tren-lai", "phi-tuyen", "phan-lon-o-cuoi", "bat-dau-som"],
+  "da-dang-hoa": ["khong-cung-xuong", "duoi-trung-binh", "loi-nhuan-khong-mat", "gioi-han"],
+};
+
+/** Chỉ id, dùng khi không cần chữ hiển thị. */
+export const TOPIC_ID_LIST: string[] = [...TOPIC_IDS];
+
+/** Ba đề bàn tròn, kèm chữ hiển thị và từ khoá dò theo ngôn ngữ hiện tại của
+ *  `t.districtContent.teachBack.topics`. */
+export function topicsOf(t: Dictionary): TeachBackTopic[] {
+  const copy = t.districtContent.teachBack.topics;
+  return TOPIC_IDS.map((topicId) => {
+    const topicCopy = copy[topicId];
+    return {
+      id: topicId,
+      label: topicCopy.label,
+      audience: topicCopy.audience,
+      prompt: topicCopy.prompt,
+      // Each topic has its OWN point ids, so indexing across the three topic
+      // shapes narrows to `never`. The ids in POINT_IDS are the same ids the
+      // dictionary uses; one Record view of the point copy says that to tsc.
+      points: POINT_IDS[topicId].map((pointId) => {
+        const points = topicCopy.points as Record<
+          string,
+          { label: string; markers: readonly string[] }
+        >;
+        return {
+          id: pointId,
+          label: points[pointId].label,
+          markers: [...points[pointId].markers],
+        };
+      }),
+    };
+  });
+}

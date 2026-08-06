@@ -500,7 +500,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
         noiseSourceRef.current = noise;
       }
       setLofiPlaying(true);
-      toast.success(`🎧 Đã bật nhạc Focus [${lofiTrack.toUpperCase()}] Chill!`);
+      toast.success(format(t.studyGroups.lofiOn, { track: lofiTrack.toUpperCase() }));
     } catch {
       toast.error(t.studyGroups.lofiFailed);
     }
@@ -587,11 +587,11 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
   const handlePylonClick = (id: string, name: string) => {
     setActiveMapNode(id);
     if (litPylons.has(id)) {
-      toast.info(`Trạm [${name}] đã được thắp sáng trong phiên này.`);
+      toast.info(format(t.studyGroups.stationLit, { name }));
       return;
     }
     setLitPylons((prev) => new Set(prev).add(id));
-    toast.success(`Đã kích hoạt trạm 3D [${name}]! +15% XP cho cả phòng.`);
+    toast.success(format(t.studyGroups.stationActivated, { name }));
   };
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -943,9 +943,9 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
     if (!text) return;
     try {
       await navigator.clipboard.writeText(text);
-      toast.success(t.studyGroups.copied);
+      toast.success(t.chat.copied);
     } catch {
-      toast.error(t.studyGroups.copyFailed);
+      toast.error(t.chat.copyFailed);
     }
   }
 
@@ -1052,9 +1052,9 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
       await recordStudyRoomQuizAttempt(myRoom.room_id, myRoom.topic, correct, groupQuizQuestions.length);
       await refreshRoomEngagement(myRoom.room_id);
       if (score >= 80) {
-        toast.success(`Quiz nhóm đạt ${score}%. Đã cộng tiến độ nhiệm vụ tuần!`);
+        toast.success(format(t.studyGroups.quizScoreGood, { score }));
       } else {
-        toast.info(`Quiz nhóm đạt ${score}%. Cứ làm tiếp, tiến độ quiz tuần vẫn được ghi nhận.`);
+        toast.info(format(t.studyGroups.quizScoreKeepGoing, { score }));
       }
     } catch (error) {
       toast.error(error instanceof Error ? error.message : "Không lưu được điểm quiz nhóm");
@@ -1079,7 +1079,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
         setMessages((prev) => prev.map((m) => (m.id === updated.id ? updated : m)));
         setMessageInput("");
         setEditingMessage(null);
-        toast.success(t.studyGroups.edited);
+        toast.success(t.chat.edited);
       } catch (error) {
         toast.error(error instanceof Error ? error.message : "Không sửa được tin nhắn");
       } finally {
@@ -2215,7 +2215,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                   // null by the FK) or is older than the loaded window.
                   const repliedTo = msg.reply_to_id ? messageById.get(msg.reply_to_id) ?? null : null;
                   const repliedToName = repliedTo?.is_bot
-                    ? t.studyGroups.adminName
+                    ? t.chat.admin
                     : repliedTo?.sender_id
                     ? memberById.get(repliedTo.sender_id)?.full_name || t.studyGroups.memberRole
                     : null;
@@ -2271,14 +2271,14 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                   <span className="block font-bold opacity-90">↩️ {repliedToName}</span>
                                   <span className="block truncate opacity-75">
                                     {!repliedTo.content && repliedTo.image_url
-                                      ? t.studyGroups.imagePlaceholder
+                                      ? t.chat.imagePlaceholder
                                       : !repliedTo.content && repliedTo.file_name
                                         ? `[Tệp: ${repliedTo.file_name}]`
                                         : repliedTo.content}
                                   </span>
                                 </>
                               ) : (
-                                <span className="block italic opacity-60">{t.studyGroups.messageDeleted}</span>
+                                <span className="block italic opacity-60">{t.chat.deleted}</span>
                               )}
                             </button>
                           )}
@@ -2293,7 +2293,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                           <button
                             onClick={() => setActiveMenuMsgId(activeMenuMsgId === msg.id ? null : msg.id)}
                             className={`${isMine ? "opacity-70" : "opacity-0"} group-hover:opacity-100 transition-all duration-200 p-1.5 rounded-full hover:bg-stone-200 dark:hover:bg-stone-700 text-stone-500 dark:text-stone-400 cursor-pointer shadow-xs bg-white/90 dark:bg-stone-800/90 border border-stone-200/80 dark:border-stone-700 hover:scale-105`}
-                            title={t.studyGroups.messageOptionsTitle}
+                            title={t.chat.optionsTitle}
                           >
                             <MoreVertical className="w-3.5 h-3.5" />
                           </button>
@@ -2326,7 +2326,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                 className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-950/40 text-stone-800 dark:text-stone-200 font-bold transition-colors text-left"
                               >
                                 <CornerUpLeft className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-                                <span>{t.studyGroups.reply}</span>
+                                <span>{t.chat.reply}</span>
                               </button>
 
                               <button
@@ -2337,7 +2337,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                 className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-xl hover:bg-amber-50 dark:hover:bg-amber-950/40 text-stone-800 dark:text-stone-200 font-bold transition-colors text-left"
                               >
                                 {msg.is_pinned ? <PinOff className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" /> : <Pin className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />}
-                                <span>{msg.is_pinned ? t.studyGroups.unpin : t.studyGroups.pin}</span>
+                                <span>{msg.is_pinned ? t.chat.unpin : t.chat.pin}</span>
                               </button>
 
                               <button
@@ -2348,7 +2348,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                 className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-xl hover:bg-sky-50 dark:hover:bg-sky-950/40 text-stone-800 dark:text-stone-200 font-bold transition-colors text-left"
                               >
                                 <Copy className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400" />
-                                <span>{t.studyGroups.copy}</span>
+                                <span>{t.chat.copy}</span>
                               </button>
 
                               {isMine && (
@@ -2363,7 +2363,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                   className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-xl hover:bg-sky-50 dark:hover:bg-sky-950/40 text-stone-800 dark:text-stone-200 font-bold transition-colors text-left"
                                 >
                                   <Pencil className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400" />
-                                  <span>{t.studyGroups.edit}</span>
+                                  <span>{t.chat.edit}</span>
                                 </button>
 
                                 <button
@@ -2372,15 +2372,15 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                     try {
                                       await deleteRoomMessage(msg.id);
                                       setMessages((prev) => prev.filter((m) => m.id !== msg.id));
-                                      toast.success(t.studyGroups.recalled);
+                                      toast.success(t.chat.recalled);
                                     } catch (err) {
-                                      toast.error(t.studyGroups.recallFailed);
+                                      toast.error(t.chat.recallFailed);
                                     }
                                   }}
                                   className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-xl hover:bg-rose-50 dark:hover:bg-rose-950/40 text-rose-600 dark:text-rose-400 font-bold transition-colors text-left"
                                 >
                                   <Trash2 className="w-3.5 h-3.5 text-rose-500" />
-                                  <span>{t.studyGroups.recall}</span>
+                                  <span>{t.chat.recall}</span>
                                 </button>
                                 </>
                               )}
@@ -2411,7 +2411,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                               </button>
                             </>
                           ) : (
-                            <span className="text-[10px] font-semibold text-stone-400">{t.studyGroups.sending}</span>
+                            <span className="text-[10px] font-semibold text-stone-400">{t.chat.sending}</span>
                           )}
                         </div>
                       )}
@@ -2443,7 +2443,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                       {isMine && (
                         <div className="mt-1 flex items-center justify-end gap-1 text-[10px] font-bold text-stone-400 dark:text-stone-500 whitespace-nowrap">
                           <CheckCheck className="h-3.5 w-3.5 text-emerald-500 shrink-0" />
-                          <span className="whitespace-nowrap">{myRoomMembers.length > 1 ? t.studyGroups.seen : t.studyGroups.sent}</span>
+                          <span className="whitespace-nowrap">{myRoomMembers.length > 1 ? t.chat.seen : t.chat.sent}</span>
                         </div>
                       )}
                     </div>
@@ -2472,13 +2472,13 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
             {replyingTo && (
               <div className="flex items-center justify-between gap-2 px-3 py-2 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-xs text-stone-800 dark:text-stone-200 mt-2">
                 <div className="min-w-0 flex-1">
-                  <span className="font-bold text-emerald-600 dark:text-emerald-400">{format(t.studyGroups.replyingTo, { name: replyingTo.senderName })}</span>
+                  <span className="font-bold text-emerald-600 dark:text-emerald-400">{format(t.chat.replyingTo, { name: replyingTo.senderName })}</span>
                   <p className="truncate text-[11px] text-stone-600 dark:text-stone-400 mt-0.5">{replyingTo.content}</p>
                 </div>
                 <button
                   onClick={() => setReplyingTo(null)}
                   className="text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 p-1 rounded-full cursor-pointer"
-                  title={t.studyGroups.cancelReplyTitle}
+                  title={t.chat.cancelReply}
                 >
                   <X className="w-3.5 h-3.5" />
                 </button>
@@ -2487,7 +2487,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
             {editingMessage && (
               <div className="flex items-center justify-between gap-2 px-3 py-2 rounded-xl bg-sky-50 dark:bg-sky-950/40 border border-sky-200 dark:border-sky-800 text-xs text-stone-800 dark:text-stone-200 mt-2">
                 <div className="min-w-0 flex-1">
-                  <span className="font-bold text-sky-600 dark:text-sky-400">{t.studyGroups.editingMessage}</span>
+                  <span className="font-bold text-sky-600 dark:text-sky-400">{t.chat.editing}</span>
                   <p className="truncate text-[11px] text-stone-600 dark:text-stone-400 mt-0.5">{editingMessage.content}</p>
                 </div>
                 <button
@@ -2496,7 +2496,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                     setMessageInput("");
                   }}
                   className="text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 p-1 rounded-full cursor-pointer"
-                  title={t.studyGroups.cancelEditTitle}
+                  title={t.chat.cancelEdit}
                 >
                   <X className="w-3.5 h-3.5" />
                 </button>
@@ -2522,7 +2522,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 onClick={() => void handleSendMessage()}
                 disabled={sendingMessage || !messageInput.trim()}
                 className="shrink-0 w-10 h-10 rounded-xl bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 flex items-center justify-center hover:opacity-90 transition-opacity disabled:opacity-40"
-                aria-label={t.studyGroups.sendAria}
+                aria-label={t.chat.sendAria}
               >
                 <Send className="w-4 h-4" />
               </button>

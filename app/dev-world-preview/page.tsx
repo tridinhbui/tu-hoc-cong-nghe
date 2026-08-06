@@ -2,6 +2,8 @@ import { notFound } from "next/navigation";
 import WorldPreview from "@/components/career-district/WorldPreview";
 import QuietForestScene from "@/components/QuietForestScene";
 import TopicMasteryWidget from "@/components/TopicMasteryWidget";
+import InteractiveBond from "@/components/InteractiveBond";
+import MotivationShareCard from "@/components/MotivationShareCard";
 import { computeDomainCoverage } from "@/lib/career-competency";
 
 export const metadata = { title: "Xem cảnh 3D (dev)" };
@@ -40,6 +42,22 @@ export default async function WorldPreviewPage({
 }) {
   if (process.env.NODE_ENV === "production") notFound();
   const { scene } = await searchParams;
+  if (scene === "motivation") {
+    return (
+      <div className="min-h-screen bg-stone-100 p-6">
+        <MotivationShareCard text="Không ai chấm điểm quãng nghỉ của bạn. Cái được tính là bạn đang ngồi đây." size="lg" />
+      </div>
+    );
+  }
+  if (scene === "bond") {
+    return (
+      <div className="min-h-screen bg-stone-100 p-6">
+        <div className="mx-auto max-w-xl">
+          <InteractiveBond />
+        </div>
+      </div>
+    );
+  }
   if (scene === "mastery") {
     // Một tập bài "đã học" giả lập, chỉ để nhìn bố cục: lấy 40 bài đầu của
     // track cá nhân cộng vài bài định giá, đủ để bảng có cả mảng cao lẫn mảng

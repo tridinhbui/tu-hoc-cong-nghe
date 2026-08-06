@@ -11,8 +11,11 @@ import { recalculateUserStats } from "@/lib/supabase-user";
 import GoldCoinIcon from "@/components/GoldCoinIcon";
 import { recordCustomGameSession } from "@/lib/games";
 import ModeLeaderboard from "@/components/games/ModeLeaderboard";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
+  const { t } = useI18n();
   const [activeCaseId, setActiveCaseId] = useState<string>(REAL_CASE_STUDIES[0].id);
   const activeCase = REAL_CASE_STUDIES.find((c) => c.id === activeCaseId) ?? REAL_CASE_STUDIES[0];
 
@@ -60,10 +63,10 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
       const multiplier = 1 + Math.min(nextCombo - 1, 4) * 0.25;
       addedScore = Math.round(200 * multiplier);
       setScore((s) => s + addedScore);
-      toast.success(`Chính xác! +${addedScore} điểm (Combo x${multiplier.toFixed(1)}) 🔥`);
+      toast.success(format(t.caseArena.correctToast, { score: addedScore, multiplier: multiplier.toFixed(1) }));
     } else {
       setStreakCombo(0);
-      toast.error("Chưa chính xác! Thất thoát Combo.");
+      toast.error(t.caseArena.wrongToast);
     }
 
     setAnsweredMap((prev) => ({
@@ -147,14 +150,14 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
         <div>
           <div className="flex items-center gap-2 flex-wrap">
             <span className="text-[10px] uppercase font-black tracking-widest text-purple-700 bg-purple-50 border border-purple-200 px-3 py-1 rounded-full shadow-xs">
-              🏙️ Times Square Financial Hub
+              {t.caseArena.hubTitle}
             </span>
             <span className="text-[10px] font-extrabold text-amber-700 bg-amber-50 border border-amber-200 px-2.5 py-1 rounded-full flex items-center gap-1">
-              <Zap className="w-3 h-3 text-amber-500" /> Case Study Thực Tế
+              <Zap className="w-3 h-3 text-amber-500" /> {t.caseArena.badge}
             </span>
           </div>
           <h2 className="text-xl sm:text-2xl font-black text-stone-900 mt-2 tracking-tight">
-            Đấu Trường Case Study Doanh Nghiệp
+            {t.caseArena.title}
           </h2>
         </div>
 
@@ -162,12 +165,12 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
         {gameState === "playing" && (
           <div className="flex items-center gap-3 bg-purple-50 border border-purple-200 px-4 py-2 rounded-2xl shadow-sm">
             <div>
-              <span className="text-[9px] font-black uppercase text-purple-600 block">Tổng Điểm Game</span>
+              <span className="text-[9px] font-black uppercase text-purple-600 block">{t.caseArena.totalScore}</span>
               <span className="text-base font-black text-amber-600">{score.toLocaleString()} pts</span>
             </div>
             {streakCombo > 1 && (
               <div className="border-l border-purple-200 pl-3">
-                <span className="text-[9px] font-black uppercase text-rose-500 block">Combo</span>
+                <span className="text-[9px] font-black uppercase text-rose-500 block">{t.caseArena.combo}</span>
                 <span className="text-xs font-black text-rose-500 flex items-center gap-0.5">
                   <Flame className="w-3.5 h-3.5 fill-rose-500" /> x{(1 + Math.min(streakCombo - 1, 4) * 0.25).toFixed(1)}
                 </span>
@@ -202,7 +205,7 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
         <div className="mb-6">
           <ModeLeaderboard
             gameType="weekly-case-challenge"
-            title="BXH Case Study"
+            title={t.caseArena.leaderboardTitle}
             formatter={(entry) => `${entry.bestScore.toLocaleString()} pts`}
           />
         </div>
@@ -236,7 +239,7 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
           <div className="grid grid-cols-2 gap-2">
             <div className="rounded-2xl border border-emerald-200 bg-emerald-50/70 px-3 py-3">
               <span className="text-[10px] font-black uppercase tracking-wider text-emerald-700 block">
-                Thưởng XP
+                {t.caseArena.xpReward}
               </span>
               <span className="mt-1 inline-flex items-center gap-1 text-sm font-black text-emerald-700">
                 <Sparkles className="w-3.5 h-3.5" /> +{Math.min(50, activeCase.xpReward)}
@@ -244,7 +247,7 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
             </div>
             <div className="rounded-2xl border border-amber-200 bg-amber-50/70 px-3 py-3">
               <span className="text-[10px] font-black uppercase tracking-wider text-amber-700 block">
-                Coins
+                {t.caseArena.coins}
               </span>
               <span className="mt-1 inline-flex items-center gap-1 text-sm font-black text-amber-700">
                 <GoldCoinIcon className="w-3.5 h-3.5" /> +{activeCase.coinReward}
@@ -252,18 +255,18 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
             </div>
             <div className="rounded-2xl border border-sky-200 bg-sky-50/70 px-3 py-3">
               <span className="text-[10px] font-black uppercase tracking-wider text-sky-700 block">
-                Câu hỏi
+                {t.caseArena.questions}
               </span>
               <span className="mt-1 inline-flex items-center gap-1 text-sm font-black text-sky-700">
-                <BookOpen className="w-3.5 h-3.5" /> {activeCase.questions.length} câu
+                <BookOpen className="w-3.5 h-3.5" /> {format(t.caseArena.questionCount, { count: activeCase.questions.length })}
               </span>
             </div>
             <div className="rounded-2xl border border-rose-200 bg-rose-50/70 px-3 py-3">
               <span className="text-[10px] font-black uppercase tracking-wider text-rose-700 block">
-                Trạng thái
+                {t.caseArena.status}
               </span>
               <span className="mt-1 inline-flex items-center gap-1 text-sm font-black text-rose-700">
-                <Timer className="w-3.5 h-3.5" /> {gameState === "briefing" ? "Sẵn sàng" : `${remainingQuestions} còn lại`}
+                <Timer className="w-3.5 h-3.5" /> {gameState === "briefing" ? t.caseArena.ready : format(t.caseArena.remaining, { count: remainingQuestions })}
               </span>
             </div>
           </div>
@@ -280,7 +283,7 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
                 {activeCase.sector}
               </span>
               <span className="text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-700 border border-amber-200">
-                Độ khó: {activeCase.difficulty.toUpperCase()}
+                {format(t.caseArena.difficulty, { level: activeCase.difficulty.toUpperCase() })}
               </span>
             </div>
             <h3 className="text-lg font-black text-stone-900 mb-2">{activeCase.title}</h3>
@@ -288,12 +291,12 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
 
             <div className="flex items-center gap-4 text-xs font-bold text-stone-500 pt-3 border-t border-purple-200">
               <span className="flex items-center gap-1 text-emerald-600">
-                <Sparkles className="w-4 h-4" /> Thưởng tối đa: +{Math.min(50, activeCase.xpReward)} XP
+                <Sparkles className="w-4 h-4" /> {format(t.caseArena.maxReward, { xp: Math.min(50, activeCase.xpReward) })}
               </span>
               <span className="flex items-center gap-1 text-amber-600">
-                <GoldCoinIcon className="w-4 h-4" /> +{activeCase.coinReward} Coins
+                <GoldCoinIcon className="w-4 h-4" /> {format(t.caseArena.coinReward, { coins: activeCase.coinReward })}
               </span>
-              <span>❓ {activeCase.questions.length} Câu hỏi phân tích</span>
+              <span>{format(t.caseArena.analysisQuestions, { count: activeCase.questions.length })}</span>
             </div>
           </div>
 
@@ -301,7 +304,7 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
             onClick={() => startCaseStudyGame(activeCase.id)}
             className="w-full bg-gradient-to-r from-purple-600 via-rose-600 to-amber-500 text-white font-black py-4 rounded-2xl shadow-xl hover:brightness-110 active:scale-98 transition-all flex items-center justify-center gap-2 text-base"
           >
-            <span>Bắt Đầu Trận Đấu Case Study</span>
+            <span>{t.caseArena.start}</span>
             <ArrowRight className="w-5 h-5" />
           </button>
         </motion.div>
@@ -312,7 +315,7 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
         <motion.div key={currentQIndex} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-5">
           {/* Progress Indicator */}
           <div className="flex items-center justify-between text-xs font-bold text-stone-500">
-            <span>Câu hỏi phân tích {currentQIndex + 1}/{activeCase.questions.length}</span>
+            <span>{format(t.caseArena.questionCounter, { current: currentQIndex + 1, total: activeCase.questions.length })}</span>
             <span className="text-purple-600">{activeCase.company} ({activeCase.ticker})</span>
           </div>
 
@@ -325,17 +328,17 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
 
           <div className="grid gap-2 sm:grid-cols-3">
             <div className="rounded-2xl border border-purple-200 bg-purple-50/70 px-3.5 py-3">
-              <span className="text-[10px] font-black uppercase tracking-wider text-purple-700 block">Điểm hiện tại</span>
+              <span className="text-[10px] font-black uppercase tracking-wider text-purple-700 block">{t.caseArena.currentScore}</span>
               <span className="mt-1 text-lg font-black text-stone-900">{score.toLocaleString()} pts</span>
             </div>
             <div className="rounded-2xl border border-rose-200 bg-rose-50/70 px-3.5 py-3">
-              <span className="text-[10px] font-black uppercase tracking-wider text-rose-700 block">Combo hiện tại</span>
+              <span className="text-[10px] font-black uppercase tracking-wider text-rose-700 block">{t.caseArena.currentCombo}</span>
               <span className="mt-1 inline-flex items-center gap-1 text-lg font-black text-rose-600">
                 <Flame className="w-4 h-4 fill-rose-500" /> x{(1 + Math.min(streakCombo, 4) * 0.25).toFixed(1)}
               </span>
             </div>
             <div className="rounded-2xl border border-emerald-200 bg-emerald-50/70 px-3.5 py-3">
-              <span className="text-[10px] font-black uppercase tracking-wider text-emerald-700 block">Đúng hiện tại</span>
+              <span className="text-[10px] font-black uppercase tracking-wider text-emerald-700 block">{t.caseArena.currentCorrect}</span>
               <span className="mt-1 text-lg font-black text-emerald-700">{correctCount}/{Math.max(currentQIndex, 0) + (selectedOpt !== null ? 1 : 0)}</span>
             </div>
           </div>
@@ -344,10 +347,10 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
           <div className="bg-gradient-to-r from-white via-purple-50/35 to-white border border-purple-200 p-5 rounded-2xl shadow-sm">
             <div className="mb-3 flex items-center justify-between gap-2">
               <span className="inline-flex items-center gap-1 rounded-full bg-purple-50 px-2.5 py-1 text-[10px] font-black uppercase tracking-wider text-purple-700 border border-purple-200">
-                <Zap className="w-3 h-3" /> Góc nhìn phân tích
+                <Zap className="w-3 h-3" /> {t.caseArena.analysisAngle}
               </span>
               <span className="text-[10px] font-bold text-stone-500">
-                {remainingQuestions} câu sau câu này
+                {format(t.caseArena.questionsAfterThis, { count: remainingQuestions })}
               </span>
             </div>
             <h3 className="text-sm sm:text-base font-bold leading-snug text-stone-900">
@@ -391,7 +394,7 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
           {selectedOpt !== null && (
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="bg-purple-50 border border-purple-200 p-4 rounded-2xl space-y-2">
               <span className="text-[10px] font-black uppercase text-purple-700 flex items-center gap-1">
-                <BookOpen className="w-3.5 h-3.5" /> Giải thích chuyên môn:
+                <BookOpen className="w-3.5 h-3.5" /> {t.caseArena.expertExplanation}
               </span>
               <p className="text-xs text-stone-700 leading-relaxed">{currentQ.explanation}</p>
 
@@ -399,7 +402,7 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
                 onClick={handleNextQuestion}
                 className="w-full bg-gradient-to-r from-purple-600 to-rose-600 hover:from-purple-500 hover:to-rose-500 text-white font-black py-3 rounded-xl transition-all mt-3 flex items-center justify-center gap-2 text-xs"
               >
-                <span>{currentQIndex + 1 < activeCase.questions.length ? "Câu tiếp theo" : "Xem Tổng Kết Điểm Game"}</span>
+                <span>{currentQIndex + 1 < activeCase.questions.length ? t.caseArena.nextQuestion : t.caseArena.seeSummary}</span>
                 <ChevronRight className="w-4 h-4" />
               </button>
             </motion.div>
@@ -415,27 +418,27 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
               <span className={`inline-block text-xs font-black uppercase px-4 py-1.5 rounded-full border ${rankGrade.badgeBg} ${rankGrade.color}`}>
                 {rankGrade.label}
               </span>
-            <h3 className="text-2xl font-black text-stone-900">Hoàn Thành Case Study!</h3>
+            <h3 className="text-2xl font-black text-stone-900">{t.caseArena.doneTitle}</h3>
           </div>
 
           {/* Score breakdown card */}
           <div className="bg-white border border-purple-200 p-5 rounded-2xl max-w-md mx-auto grid grid-cols-2 gap-4 text-left shadow-sm">
             <div>
-              <span className="text-[10px] font-black uppercase text-stone-500 block">Số câu đúng</span>
-              <span className="text-lg font-black text-emerald-600">{correctCount}/{totalCount} câu</span>
+              <span className="text-[10px] font-black uppercase text-stone-500 block">{t.caseArena.correctCount}</span>
+              <span className="text-lg font-black text-emerald-600">{format(t.caseArena.correctOf, { correct: correctCount, total: totalCount })}</span>
             </div>
             <div>
-              <span className="text-[10px] font-black uppercase text-stone-500 block">Tổng điểm Game</span>
+              <span className="text-[10px] font-black uppercase text-stone-500 block">{t.caseArena.totalGameScore}</span>
               <span className="text-lg font-black text-amber-600">{score.toLocaleString()} pts</span>
             </div>
             <div>
-              <span className="text-[10px] font-black uppercase text-stone-500 block">Max Combo</span>
-              <span className="text-sm font-bold text-rose-500">🔥 x{maxCombo}</span>
+              <span className="text-[10px] font-black uppercase text-stone-500 block">{t.caseArena.maxCombo}</span>
+              <span className="text-sm font-bold text-rose-500">{format(t.caseArena.maxComboValue, { combo: maxCombo })}</span>
             </div>
             <div>
-              <span className="text-[10px] font-black uppercase text-stone-500 block">Phần thưởng</span>
+              <span className="text-[10px] font-black uppercase text-stone-500 block">{t.caseArena.reward}</span>
               <span className="text-xs font-bold text-emerald-600 flex items-center gap-1">
-                +{rewardEarned?.xp ?? 0} XP | <GoldCoinIcon className="w-3.5 h-3.5" /> +{rewardEarned?.coins ?? 0}
+                {format(t.caseArena.rewardXp, { xp: rewardEarned?.xp ?? 0 })} | <GoldCoinIcon className="w-3.5 h-3.5" /> +{rewardEarned?.coins ?? 0}
               </span>
             </div>
           </div>
@@ -443,10 +446,10 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
           {/* Theory Lesson Recommendations */}
           <div className="bg-amber-50 border border-amber-200 p-4 rounded-2xl text-left space-y-2">
             <span className="text-[11px] font-black uppercase tracking-wider text-amber-700 flex items-center gap-1.5">
-              💡 Gợi ý bài học ôn tập tương ứng:
+              {t.caseArena.lessonHintTitle}
             </span>
             <p className="text-xs text-stone-600 leading-relaxed mb-2">
-              Để thành thạo hơn khi phân tích các doanh nghiệp thực tế, bạn nên đọc lại các bài học sau:
+              {t.caseArena.lessonHintBody}
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {activeCase.relatedLessonSlugs.map((l) => (
@@ -468,13 +471,13 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
               onClick={() => startCaseStudyGame(activeCase.id)}
               className="flex-1 bg-stone-100 hover:bg-stone-200 text-stone-800 font-bold py-3.5 rounded-2xl transition-all text-xs"
             >
-              Chơi Lại Case này
+              {t.caseArena.replayCase}
             </button>
             <button
               onClick={() => setGameState("briefing")}
               className="flex-1 bg-gradient-to-r from-purple-600 to-rose-600 text-white font-black py-3.5 rounded-2xl hover:brightness-110 transition-all text-xs"
             >
-              Chọn Case Study Khác
+              {t.caseArena.pickAnotherCase}
             </button>
           </div>
         </motion.div>

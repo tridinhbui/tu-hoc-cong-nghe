@@ -43,6 +43,8 @@ import {
   nameplateTexture,
   oakTexture,
 } from "@/components/lobby/room-textures";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 /** Phần nhìn thấy được của khu phố nghề: con phố ngoài trời, và bên trong mỗi
  *  căn nhà là một phòng ngành.
@@ -323,6 +325,7 @@ const SHOP_ACCENT: Record<CareerCategory, string> = {
  *  từ giữa phố - đó là cách duy nhất người học biết là có nó mà không cần đọc
  *  hướng dẫn. */
 function Tower() {
+  const { t } = useI18n();
   return (
     <group position={[TOWER_X, 0, STREET.facadeZ]}>
       <mesh position={[0, 13, -3]} castShadow receiveShadow>
@@ -346,8 +349,8 @@ function Tower() {
       </mesh>
       <pointLight position={[0, 2.3, 2.2]} intensity={9} distance={11} color="#ffd9a0" />
       <TextBoard
-        title="THÁP TỰ HỌC"
-        rows={["Mỗi tầng một phòng chức năng", `${STATIONS.length} tầng · thang máy trong sảnh`]}
+        title={t.careerDistrict.shell.towerTitle}
+        rows={[t.careerDistrict.shell.towerRow1, format(t.careerDistrict.shell.towerRow2, { n: STATIONS.length })]}
         accent="#fbbf24"
         width={9}
         height={2}
@@ -361,6 +364,7 @@ function Tower() {
  *  không lẫn với năm căn nhà nghề và toà tháp: một khu vui chơi phải trông
  *  khác một văn phòng ngay từ ngoài đường. */
 function GameHall() {
+  const { t } = useI18n();
   return (
     <group position={[GAME_SQUARE_X, 0, STREET.facadeZ]}>
       <mesh position={[0, 6, -3]} castShadow receiveShadow>
@@ -383,8 +387,8 @@ function GameHall() {
       </mesh>
       <pointLight position={[0, 2.4, 2.4]} intensity={10} distance={12} color="#f472b6" />
       <TextBoard
-        title="QUẢNG TRƯỜNG GAME"
-        rows={["Boss, đấu trường, mini game tài chính", `${ORGANIC_BUILDINGS.length} địa điểm bên trong`]}
+        title={t.careerDistrict.shell.gameHallTitle}
+        rows={[t.careerDistrict.shell.gameHallRow1, format(t.careerDistrict.shell.gameHallRow2, { n: ORGANIC_BUILDINGS.length })]}
         accent="#f472b6"
         width={9.4}
         height={2}
@@ -397,6 +401,7 @@ function GameHall() {
 /** Mặt tiền quán cà phê: hiên rộng, đèn dây vàng, bàn ghế bày cả ra vỉa hè.
  *  Nhìn từ ngoài đường phải biết ngay đây là quán chứ không phải văn phòng. */
 function CafeFront() {
+  const { t } = useI18n();
   return (
     <group position={[CAFE_X, 0, STREET.facadeZ]}>
       <mesh position={[0, 4, -2]} castShadow receiveShadow>
@@ -441,8 +446,8 @@ function CafeFront() {
         </mesh>
       ))}
       <TextBoard
-        title="CÀ PHÊ SỐ & SÁCH"
-        rows={["Cà phê phin, sách tài chính, chỗ ngồi ôn", "Ngồi xuống là bắt đầu tính giờ học"]}
+        title={t.careerDistrict.shell.cafeTitle}
+        rows={[t.careerDistrict.shell.cafeFrontRow1, t.careerDistrict.shell.cafeFrontRow2]}
         accent="#fbbf24"
         width={7.6}
         height={1.9}
@@ -733,6 +738,7 @@ function CenterScene({ room }: { room: DistrictRoom }) {
  *  bụng thì đây thành một phòng họp có cây cảnh. Đèn dây vắt ngang trần là thứ
  *  duy nhất ở đây phát sáng ấm, và nó làm gần hết việc. */
 function CafeScene({ room, seatTaken }: { room: DistrictRoom; seatTaken: ReadonlySet<number> }) {
+  const { t } = useI18n();
   const floor = useMemo(() => oakTexture(5, 6), []);
   const shelf = useMemo(() => bookshelfTexture(), []);
   const { width, depth, height } = room.size;
@@ -841,8 +847,8 @@ function CafeScene({ room, seatTaken }: { room: DistrictRoom; seatTaken: Readonl
         </mesh>
       ))}
       <TextBoard
-        title="CÀ PHÊ SỐ & SÁCH"
-        rows={["Ngồi xuống là bắt đầu tính giờ học", "Sách tài chính đọc tại chỗ"]}
+        title={t.careerDistrict.shell.cafeTitle}
+        rows={[t.careerDistrict.shell.cafeInteriorRow1, t.careerDistrict.shell.cafeInteriorRow2]}
         accent="#fbbf24"
         width={6.6}
         height={1.9}
@@ -938,6 +944,7 @@ function OfficeScene({
   doneSlugs: ReadonlySet<string>;
   dueSlugs: ReadonlySet<string>;
 }) {
+  const { t } = useI18n();
   const floor = useMemo(() => oakTexture(6, 14), []);
   const shelf = useMemo(() => bookshelfTexture(), []);
   const { width, depth, height } = room.size;
@@ -983,7 +990,7 @@ function OfficeScene({
       {room.desks.length > 0 ? (
         <TextBoard
           title={room.label}
-          rows={[`${room.desks.length} nghề trong nhóm này`, "Đi tới từng bàn để xem lộ trình học"]}
+          rows={[format(t.careerDistrict.shell.officeDesksRow, { n: room.desks.length }), t.careerDistrict.shell.officePathRow]}
           accent={room.accent}
           width={6.4}
           height={2.6}
@@ -991,8 +998,8 @@ function OfficeScene({
         />
       ) : room.portals.length === 0 ? (
         <TextBoard
-          title="THÁP TỰ HỌC"
-          rows={["Thang máy ngay trước mặt", `${STATIONS.length} tầng, mỗi tầng một phòng chức năng`]}
+          title={t.careerDistrict.shell.towerTitle}
+          rows={[t.careerDistrict.shell.officeLiftRow, format(t.careerDistrict.shell.officeFloorsRow, { n: STATIONS.length })]}
           accent={room.accent}
           width={6.4}
           height={2.4}
@@ -1012,7 +1019,7 @@ function OfficeScene({
           <TextBoard
             key={f.id}
             title={f.equation}
-            rows={[f.title, `Sổ tay ${f.source}`]}
+            rows={[f.title, format(t.careerDistrict.shell.formulaSource, { source: f.source })]}
             accent={room.accent}
             width={3.9}
             height={1.7}
@@ -1037,7 +1044,7 @@ function OfficeScene({
       )}
       {lessonTitles.length > 0 && (
         <TextBoard
-          title="Kệ bài học của nhóm"
+          title={t.careerDistrict.shell.lessonShelfTitle}
           rows={lessonTitles.slice(0, 5)}
           accent={room.accent}
           width={5.4}

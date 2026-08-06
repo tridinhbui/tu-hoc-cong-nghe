@@ -1,6 +1,9 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
 /** Phòng Tầng Vốn: thứ tự ưu tiên thanh toán, ở dạng một chồng thật.
  *
@@ -20,20 +23,26 @@ interface Tranche {
   note: string;
 }
 
-const STACK: Tranche[] = [
-  { id: "senior", label: "Nợ ưu tiên (Senior)", amount: 500, color: "#60a5fa", note: "Có tài sản bảo đảm, trả trước tiên" },
-  { id: "mezz", label: "Nợ thứ cấp (Mezzanine)", amount: 200, color: "#c084fc", note: "Lãi cao hơn vì trả sau senior" },
-  { id: "equity", label: "Vốn chủ sở hữu", amount: 300, color: "#4ade80", note: "Nhận phần còn lại - có thể là 0" },
+const STACK_AMOUNTS: Array<{ id: string; amount: number; color: string }> = [
+  { id: "senior", amount: 500, color: "#60a5fa" },
+  { id: "mezz", amount: 200, color: "#c084fc" },
+  { id: "equity", amount: 300, color: "#4ade80" },
 ];
 
-const TOTAL = STACK.reduce((s, t) => s + t.amount, 0);
+const buildStack = (t: Dictionary): Tranche[] => [
+  { id: "senior", label: t.careerDistrict.capitalStack.seniorLabel, amount: 500, color: "#60a5fa", note: t.careerDistrict.capitalStack.seniorNote },
+  { id: "mezz", label: t.careerDistrict.capitalStack.mezzLabel, amount: 200, color: "#c084fc", note: t.careerDistrict.capitalStack.mezzNote },
+  { id: "equity", label: t.careerDistrict.capitalStack.equityLabel, amount: 300, color: "#4ade80", note: t.careerDistrict.capitalStack.equityNote },
+];
+
+const TOTAL = STACK_AMOUNTS.reduce((s, t) => s + t.amount, 0);
 
 /** Chia số tiền bán được theo thứ tự ưu tiên: dưới lên trên. */
 function waterfall(proceeds: number) {
   let left = proceeds;
   // Trả từ đáy chồng lên: senior trước, vốn chủ cuối.
   const paid: Record<string, number> = {};
-  for (const t of STACK) {
+  for (const t of STACK_AMOUNTS) {
     const p = Math.min(left, t.amount);
     paid[t.id] = p;
     left -= p;
@@ -48,6 +57,8 @@ export default function CapitalStackPanel({
   accent: string;
   onClose: () => void;
 }) {
+  const { t } = useI18n();
+  const STACK = useMemo(() => buildStack(t), [t]);
   const [proceeds, setProceeds] = useState(TOTAL);
   const paid = useMemo(() => waterfall(proceeds), [proceeds]);
 
@@ -56,10 +67,10 @@ export default function CapitalStackPanel({
       <div className="mb-2 flex items-start justify-between gap-2">
         <div>
           <p className="text-[10px] font-black uppercase tracking-widest" style={{ color: accent }}>
-            Phòng Tầng Vốn
+            {t.careerDistrict.capitalStack.title}
           </p>
           <p className="mt-0.5 text-[11px] text-stone-400">
-            Doanh nghiệp bán đi được bao nhiêu — ai nhận trước
+            {t.careerDistrict.capitalStack.subtitle}
           </p>
         </div>
         <button
@@ -67,13 +78,13 @@ export default function CapitalStackPanel({
           onClick={onClose}
           className="cursor-pointer text-[10px] font-bold text-stone-500 hover:text-stone-300"
         >
-          đóng
+          {t.careerDistrict.capitalStack.close}
         </button>
       </div>
 
       <label className="mb-2 block">
         <span className="text-[10px] font-bold uppercase tracking-wider text-stone-500">
-          Bán được: {proceeds} tỷ (vốn bỏ vào {TOTAL} tỷ)
+          {format(t.careerDistrict.capitalStack.sliderLabel, { proceeds, total: TOTAL })}
         </span>
         <input
           type="range"
@@ -88,33 +99,37 @@ export default function CapitalStackPanel({
 
       {/* Chồng vẽ TỪ TRÊN XUỐNG để đúng với hình dung: vốn chủ trên đỉnh. */}
       <div className="space-y-1">
-        {[...STACK].reverse().map((t) => {
-          const got = paid[t.id];
-          const ratio = got / t.amount;
+        {[...STACK].reverse().map((tranche) => {
+          const got = paid[tranche.id];
+          const ratio = got / tranche.amount;
           const wiped = got === 0;
           return (
             <div
-              key={t.id}
+              key={tranche.id}
               className={`rounded-xl border p-2 transition ${
                 wiped ? "border-stone-800 bg-stone-950/60 opacity-45" : "border-stone-700 bg-stone-800/40"
               }`}
             >
               <div className="flex items-baseline justify-between gap-2">
-                <span className="text-[11px] font-black" style={{ color: wiped ? "#78716c" : t.color }}>
-                  {t.label}
+                <span className="text-[11px] font-black" style={{ color: wiped ? "#78716c" : tranche.color }}>
+                  {tranche.label}
                 </span>
                 <span className="font-mono text-[11px] tabular-nums text-stone-300">
-                  {got}/{t.amount} tỷ
+                  {format(t.careerDistrict.capitalStack.billionUnit, { got, amount: tranche.amount })}
                 </span>
               </div>
               <div className="mt-1 h-2 overflow-hidden rounded-full bg-stone-900">
                 <div
                   className="h-full rounded-full transition-all"
-                  style={{ width: `${ratio * 100}%`, backgroundColor: t.color }}
+                  style={{ width: `${ratio * 100}%`, backgroundColor: tranche.color }}
                 />
               </div>
               <p className="mt-0.5 text-[10px] text-stone-500">
-                {wiped ? "Mất trắng" : ratio < 1 ? `Mất ${Math.round((1 - ratio) * 100)}%` : t.note}
+                {wiped
+                  ? t.careerDistrict.capitalStack.wipedOut
+                  : ratio < 1
+                  ? format(t.careerDistrict.capitalStack.lostPercent, { pct: Math.round((1 - ratio) * 100) })
+                  : tranche.note}
               </p>
             </div>
           );
@@ -123,15 +138,15 @@ export default function CapitalStackPanel({
 
       <p className="mt-2 text-[11px] leading-snug text-stone-300">
         {proceeds >= TOTAL
-          ? "Bán đủ giá: ai cũng nhận đủ, và phần dôi ra thuộc về vốn chủ."
+          ? t.careerDistrict.capitalStack.everyoneWhole
           : paid.equity === 0 && paid.mezz === 0
-          ? "Vốn chủ và nợ thứ cấp đã mất trắng trước khi nợ ưu tiên mất đồng nào."
+          ? t.careerDistrict.capitalStack.equityAndMezzWiped
           : paid.equity === 0
-          ? "Vốn chủ mất sạch đầu tiên — đó là cái giá của việc đứng trên cùng chồng."
-          : "Vốn chủ chịu lỗ trước, và chịu toàn bộ phần lỗ cho tới khi hết sạch."}
+          ? t.careerDistrict.capitalStack.equityWipedFirst
+          : t.careerDistrict.capitalStack.equityLossesFirst}
       </p>
       <p className="mt-1 text-[11px] leading-snug" style={{ color: accent }}>
-        → Đứng càng cao trên chồng thì lời càng nhiều khi thuận lợi, và mất trước tiên khi không.
+        → {t.careerDistrict.capitalStack.punchline}
       </p>
     </div>
   );

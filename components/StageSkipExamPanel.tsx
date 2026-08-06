@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
 import { Loader2, Rocket, CheckCircle2, XCircle, ChevronLeft } from "lucide-react";
 import { recalculateUserStats } from "@/lib/supabase-user";
@@ -12,6 +12,9 @@ import {
   type StageExamEligibility,
   type StageExamTrack,
 } from "@/lib/stage-exam";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
 // "Thi vượt chặng" - one exam credits an entire chặng as complete, for
 // learners who already know the material and don't want to click through
@@ -21,10 +24,12 @@ import {
 // never decides whether someone passed. It shows questions, collects the
 // signed tokens back, and renders whatever the server returns.
 
-const TRACKS: { id: StageExamTrack; label: string }[] = [
-  { id: "personal", label: "Tài chính cá nhân" },
-  { id: "professional", label: "Tài chính chuyên ngành" },
-];
+function getTracks(t: Dictionary): { id: StageExamTrack; label: string }[] {
+  return [
+    { id: "personal", label: t.stageSkip.trackPersonal },
+    { id: "professional", label: t.stageSkip.trackProfessional },
+  ];
+}
 
 interface ExamQuestion {
   lessonId: number;
@@ -46,6 +51,8 @@ interface Result {
 type View = "pick" | "loading" | "exam" | "result";
 
 export default function StageSkipExamPanel({ userId }: { userId: string | null }) {
+  const { t } = useI18n();
+  const TRACKS = useMemo(() => getTracks(t), [t]);
   const [track, setTrack] = useState<StageExamTrack>("personal");
   const [stages, setStages] = useState<StageExamEligibility[]>([]);
   const [listLoading, setListLoading] = useState(true);
@@ -94,12 +101,12 @@ export default function StageSkipExamPanel({ userId }: { userId: string | null }
       if (res.status === 429) {
         // Cooldown after a failed attempt - the server won't hand out a fresh
         // draw yet, which is what stops re-rolling until an easy set appears.
-        toast.error(data.message ?? "Chưa tới lượt thi lại.");
+        toast.error(data.message ?? t.stageSkip.cooldownDefault);
         setView("pick");
         return;
       }
       if (!data.questions?.length) {
-        toast.error("Chặng này chưa đủ câu hỏi để thi vượt.");
+        toast.error(t.stageSkip.notEnoughQuestions);
         setView("pick");
         return;
       }
@@ -108,7 +115,7 @@ export default function StageSkipExamPanel({ userId }: { userId: string | null }
       setView("exam");
     } catch (error) {
       console.error("Error starting stage exam:", error);
-      toast.error("Không tải được đề thi.");
+      toast.error(t.stageSkip.loadFailed);
       setView("pick");
     }
   }
@@ -133,13 +140,13 @@ export default function StageSkipExamPanel({ userId }: { userId: string | null }
       setResult(data);
       setView("result");
       if (data.passed) {
-        toast.success(`Đạt! ${data.creditedLessons} bài được tính hoàn thành.`);
+        toast.success(format(t.stageSkip.passToast, { creditedLessons: data.creditedLessons }));
         if (userId) void recalculateUserStats(userId).catch(() => {});
         void loadStages();
       }
     } catch (error) {
       console.error("Error submitting stage exam:", error);
-      toast.error("Không nộp được bài thi.");
+      toast.error(t.stageSkip.submitFailed);
     } finally {
       setSubmitting(false);
     }
@@ -155,7 +162,7 @@ export default function StageSkipExamPanel({ userId }: { userId: string | null }
       <div className="flex flex-wrap items-center justify-between gap-2 mb-1">
         <h3 className="text-sm font-black uppercase tracking-widest text-stone-900 dark:text-stone-100 flex items-center gap-2">
           <Rocket className="w-4 h-4 text-violet-500" />
-          Thi vượt chặng
+          {t.stageSkip.title}
         </h3>
         {view !== "pick" && (
           <button
@@ -163,29 +170,29 @@ export default function StageSkipExamPanel({ userId }: { userId: string | null }
             className="inline-flex items-center gap-1 text-xs font-bold text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200 cursor-pointer"
           >
             <ChevronLeft className="w-3.5 h-3.5" />
-            Chọn chặng khác
+            {t.stageSkip.chooseAnotherStage}
           </button>
         )}
       </div>
       <p className="text-xs text-stone-600 dark:text-stone-400 mb-4 leading-relaxed">
-        Đã biết nội dung một chặng rồi? Làm {STAGE_EXAM_QUESTION_COUNT} câu, đúng từ {passPercent}% trở lên là toàn bộ
-        bài trong chặng được tính hoàn thành — không cần học lại từng bài.
+        {format(t.stageSkip.descriptionPart1, { questionCount: STAGE_EXAM_QUESTION_COUNT })} {passPercent}
+        {t.stageSkip.descriptionPart2}
       </p>
 
       {view === "pick" && (
         <>
           <div className="flex gap-1.5 mb-3">
-            {TRACKS.map((t) => (
+            {TRACKS.map((trackOption) => (
               <button
-                key={t.id}
-                onClick={() => setTrack(t.id)}
+                key={trackOption.id}
+                onClick={() => setTrack(trackOption.id)}
                 className={`px-3 py-1.5 rounded-full border text-xs font-bold transition-colors cursor-pointer ${
-                  track === t.id
+                  track === trackOption.id
                     ? "border-violet-500 bg-violet-500 text-white"
                     : "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950 text-stone-600 dark:text-stone-300 hover:border-stone-300"
                 }`}
               >
-                {t.label}
+                {trackOption.label}
               </button>
             ))}
           </div>
@@ -193,7 +200,7 @@ export default function StageSkipExamPanel({ userId }: { userId: string | null }
           {listLoading ? (
             <div className="py-8 flex items-center justify-center gap-2 text-stone-500 dark:text-stone-400">
               <Loader2 className="w-4 h-4 animate-spin" />
-              <span className="text-xs font-bold">Đang tải danh sách chặng...</span>
+              <span className="text-xs font-bold">{t.stageSkip.loadingStages}</span>
             </div>
           ) : (
             <div className="space-y-2">
@@ -209,13 +216,13 @@ export default function StageSkipExamPanel({ userId }: { userId: string | null }
                         {s.stageLabel}: {s.stageName}
                       </p>
                       <p className="text-[11px] text-stone-500 dark:text-stone-400 mt-0.5">
-                        {s.completedCount}/{s.lessonCount} bài đã xong · {s.questionCount} câu hỏi
-                        {!s.eligible && " · chưa đủ câu để thi"}
+                        {format(t.stageSkip.completedLessonsCount, { completed: s.completedCount, total: s.lessonCount, questionCount: s.questionCount })}
+                        {!s.eligible && t.stageSkip.notEnoughToTake}
                       </p>
                     </div>
                     {done ? (
                       <span className="shrink-0 inline-flex items-center gap-1 text-[11px] font-bold text-emerald-600 dark:text-emerald-400">
-                        <CheckCircle2 className="w-3.5 h-3.5" /> Đã xong
+                        <CheckCircle2 className="w-3.5 h-3.5" /> {t.stageSkip.done}
                       </span>
                     ) : (
                       <button
@@ -223,7 +230,7 @@ export default function StageSkipExamPanel({ userId }: { userId: string | null }
                         disabled={!s.eligible}
                         className="shrink-0 px-3 py-1.5 rounded-lg bg-violet-600 hover:bg-violet-500 disabled:opacity-40 disabled:cursor-not-allowed text-white text-xs font-bold transition-colors cursor-pointer"
                       >
-                        Thi vượt
+                        {t.stageSkip.takeExam}
                       </button>
                     )}
                   </div>
@@ -237,7 +244,7 @@ export default function StageSkipExamPanel({ userId }: { userId: string | null }
       {view === "loading" && (
         <div className="py-10 flex items-center justify-center gap-2 text-stone-500 dark:text-stone-400">
           <Loader2 className="w-5 h-5 animate-spin" />
-          <span className="text-xs font-bold">Đang chuẩn bị đề thi...</span>
+          <span className="text-xs font-bold">{t.stageSkip.preparingExam}</span>
         </div>
       )}
 
@@ -245,9 +252,9 @@ export default function StageSkipExamPanel({ userId }: { userId: string | null }
         <div className="space-y-4">
           <div className="flex items-center justify-between text-xs font-bold text-stone-500 dark:text-stone-400">
             <span>
-              {activeStage?.stageLabel} · Câu {activeQ + 1}/{questions.length}
+              {format(t.stageSkip.questionCounter, { stageLabel: activeStage?.stageLabel ?? "", current: activeQ + 1, total: questions.length })}
             </span>
-            <span>Đã trả lời {answeredCount}/{questions.length}</span>
+            <span>{format(t.stageSkip.answeredCount, { answered: answeredCount, total: questions.length })}</span>
           </div>
           <div className="h-1.5 rounded-full bg-stone-200 dark:bg-stone-800 overflow-hidden">
             <div
@@ -294,14 +301,14 @@ export default function StageSkipExamPanel({ userId }: { userId: string | null }
               disabled={activeQ === 0}
               className="px-3.5 py-2 rounded-xl border border-stone-200 dark:border-stone-800 text-xs font-bold text-stone-600 dark:text-stone-400 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
             >
-              Câu trước
+              {t.stageSkip.previousQuestion}
             </button>
             {activeQ < questions.length - 1 ? (
               <button
                 onClick={() => setActiveQ((i) => i + 1)}
                 className="px-4 py-2 rounded-xl bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 text-xs font-black cursor-pointer"
               >
-                Câu tiếp theo →
+                {t.stageSkip.nextQuestion}
               </button>
             ) : (
               <button
@@ -310,7 +317,7 @@ export default function StageSkipExamPanel({ userId }: { userId: string | null }
                 className="px-4 py-2 rounded-xl bg-violet-600 hover:bg-violet-500 disabled:opacity-60 text-white text-xs font-black cursor-pointer inline-flex items-center gap-1.5"
               >
                 {submitting && <Loader2 className="w-3.5 h-3.5 animate-spin" />}
-                Nộp bài
+                {t.stageSkip.submitExam}
               </button>
             )}
           </div>
@@ -329,20 +336,21 @@ export default function StageSkipExamPanel({ userId }: { userId: string | null }
           </p>
           {result.passed ? (
             <p className="text-sm font-bold text-emerald-600 dark:text-emerald-400">
-              Đạt! {result.creditedLessons} bài vừa được tính hoàn thành
-              {result.alreadyCompleted ? ` (${result.alreadyCompleted} bài bạn đã học trước đó)` : ""}.
+              {t.stageSkip.passedResultPart1} {result.creditedLessons} {t.stageSkip.passedResultPart2}
+              {result.alreadyCompleted ? format(t.stageSkip.alreadyCompletedSuffix, { count: result.alreadyCompleted }) : ""}.
             </p>
           ) : (
             <p className="text-sm font-bold text-stone-600 dark:text-stone-400">
-              Chưa đạt — cần đúng từ {passPercent}%. Học qua chặng này rồi quay lại sau{" "}
-              {formatCooldown(STAGE_EXAM_RETRY_COOLDOWN_MS)} nhé.
+              {t.stageSkip.failedResultPart1} {passPercent}
+              {t.stageSkip.failedResultPart2}{" "}
+              {formatCooldown(STAGE_EXAM_RETRY_COOLDOWN_MS)} {t.stageSkip.failedResultPart3}
             </p>
           )}
           <button
             onClick={() => setView("pick")}
             className="px-4 py-2 rounded-xl bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 text-xs font-black cursor-pointer"
           >
-            Về danh sách chặng
+            {t.stageSkip.backToStageList}
           </button>
         </div>
       )}

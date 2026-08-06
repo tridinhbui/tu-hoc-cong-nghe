@@ -36,16 +36,31 @@ export default function CertificateModal({ stageLabel, stageName, userName, onCl
     setDownloading(true);
     try {
       const blob = await svgToPngBlob(svgRef.current, 1600, 1200);
-      const url = URL.createObjectURL(blob);
-      const downloadLink = document.createElement("a");
-      downloadLink.href = url;
-      downloadLink.download = certFilename;
-      document.body.appendChild(downloadLink);
-      downloadLink.click();
-      document.body.removeChild(downloadLink);
-      URL.revokeObjectURL(url);
+      // Đi qua shareOrDownloadImage thay vì tự dựng thẻ <a download>.
+      //
+      // Bản cũ chép lại đúng logic của downloadBlob ngay tại đây, nên khi
+      // downloadBlob được sửa thì chỗ này không được hưởng - và nút này là nút
+      // người học bấm. Nó cũng bỏ qua hẳn khay chia sẻ: trên iOS, một thẻ
+      // <a download> trỏ vào blob URL không đặt được tệp vào Ảnh hay Tệp, còn
+      // khay chia sẻ thì có mục "Lưu ảnh". Nên trên iPhone nút "Chia sẻ" lưu
+      // được chứng chỉ còn nút "Tải xuống" thì không - đúng kiểu bất đối xứng
+      // mà lần sửa trước đã gặp ở tầng dựng ảnh, lặp lại ở tầng giao ảnh.
+      const outcome = await shareOrDownloadImage(
+        blob,
+        certFilename,
+        "Chứng chỉ hoàn thành chặng học của mình tại Tự Học Tài Chính 🏆"
+      );
+      // Người dùng đóng khay chia sẻ mà không chọn gì thì KHÔNG có tệp nào cả.
+      // Bản cũ báo thành công vô điều kiện, nên sau lần sửa trước người học
+      // nhận được "Tải xuống chứng chỉ thành công!" rồi không thấy tệp đâu -
+      // và mất luôn thông báo lỗi vốn là manh mối duy nhất.
+      if (outcome === "cancelled") return;
       setDownloaded(true);
-      toast.success("Tải xuống chứng chỉ thành công! Hãy chia sẻ lên Facebook/LinkedIn nhé 🏆🚀");
+      toast.success(
+        outcome === "shared"
+          ? "Đã lưu/chia sẻ chứng chỉ! 🏆"
+          : "Tải xuống chứng chỉ thành công! Hãy chia sẻ lên Facebook/LinkedIn nhé 🏆🚀"
+      );
     } catch (error) {
       console.error("Error creating certificate download:", error);
       toast.error("Không thể tải chứng chỉ lúc này.");

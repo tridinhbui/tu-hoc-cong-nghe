@@ -28,9 +28,12 @@ const INTENTIONALLY_UNTRANSLATED = new Set([
   // "Tài Tài" is the name of the study-group admin character. A proper noun
   // stays as it is in every language - the same reason the leaderboard's
   // Vietnamese nicknames are exempted in lib/i18n/dictionaries/vi.ts.
-  "studyGroups.adminName",
   "studyGroups.byAdmin",
   "studyGroups.pinnedByAdmin",
+  "chat.admin",
+  "adminChat.title",
+  "groupChat.byAdmin",
+  "groupChat.pinnedByAdmin",
   // Already English: the in-game clan's own name, not copy to translate.
   "guild.clanTitle",
   // Ticker symbols. FPT is FPT in every language.
@@ -51,6 +54,44 @@ const INTENTIONALLY_UNTRANSLATED = new Set([
   // Ticker lines on the game map. A ticker symbol and a figure, already English.
   "worldMap.tickerIndex",
   "worldMap.tickerClan",
+  // The official CFA Level I subject names, which is why they are already
+  // English in the Vietnamese dictionary. Translating them would stop them
+  // matching the exam.
+  "tracks.cfa.stages",
+  // The name of the algorithm, already English.
+  "mistakeReview.srsBadge",
+  // Same drill name as interview.drillTitle, already English in the source.
+  "quizPage.ibEyebrow",
+  // "Tài Tài" once more - the coach byline on the resume card.
+  "resume.coachReminder",
+  "resume.coachSuggestion",
+  // Already English in the Vietnamese source: the game's own branded chrome
+  // (studio and arsenal banners, the arena badge) and two building names. They
+  // are in the dictionary rather than inline because the coverage script scores
+  // by position, not by language - a hard-coded English string is still a string
+  // no translator can reach.
+  "characterCustomizer.badge",
+  "characterCustomizer.livePreviewBadge",
+  "cosmeticStore.storeAlt",
+  "cosmeticStore.arsenalEyebrow",
+  "cosmeticStore.arsenalTitle",
+  "pvpDuel.soloBossBadge",
+  "pvpDuel.arenaEyebrow",
+  "fedVault.buildingAlt",
+  "fedVault.fedEyebrow",
+  // Already English: a banner label and the world-boss HP readout, both of
+  // which are the game's own English chrome in the Vietnamese source too.
+  "resume.heroBanner",
+  "kingdomPreview.bossRaidLabel",
+  "kingdomPreview.bossHpValue",
+  // The product's own name, and "Tài Tài" the study-group character, both of
+  // which stay as they are in an English sentence.
+  "onboarding.step1Title",
+  "onboarding.assistantLabel",
+  // Already English in the Vietnamese source: the inventory's job-title flavour
+  // text and the streak-freeze feature's own name.
+  "rpgInventory.levelLabel",
+  "streakWidget.modalBadge",
 ]);
 
 /** Flatten to dotted paths so a failure names the exact key. */
@@ -60,6 +101,13 @@ function flatten(obj: unknown, prefix = ""): Map<string, string> {
   for (const [key, value] of Object.entries(obj as Record<string, unknown>)) {
     const path = prefix ? `${prefix}.${key}` : key;
     if (typeof value === "string") out.set(path, value);
+    // An array is ONE value, not N keys. The teach-back keyword markers are
+    // per-language lists used to match a free-text answer, and the two
+    // languages need different numbers of them - 10 Vietnamese phrases against
+    // 8 English ones is correct, not a gap. Indexing each element turned that
+    // into 38 "missing keys" and would have pushed someone to pad the shorter
+    // list with filler to make the build green.
+    else if (Array.isArray(value)) out.set(path, value.join(" | "));
     else if (typeof value === "object" && value !== null) {
       for (const [k, v] of flatten(value, path)) out.set(k, v);
     }

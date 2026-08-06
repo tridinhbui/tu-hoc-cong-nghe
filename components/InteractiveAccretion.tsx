@@ -1,6 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 // Máy tính tăng / pha loãng EPS, widget cho các bài khai `interactiveType:
 // "accretion"`.
@@ -27,6 +29,7 @@ export function combinedEps(
 }
 
 export default function InteractiveAccretion() {
+  const { t } = useI18n();
   const [acquirerPe, setAcquirerPe] = useState(18);
   const [targetPe, setTargetPe] = useState(12);
   const [cashShare, setCashShare] = useState(0);
@@ -64,44 +67,44 @@ export default function InteractiveAccretion() {
     <div className="bg-white rounded-3xl border border-stone-100 p-6 space-y-5 dark:bg-stone-900 dark:border-stone-800">
       <div>
         <h3 className="font-bold text-stone-800 text-lg mb-1 dark:text-stone-100">
-          ➗ Thương vụ này làm EPS tăng hay pha loãng
+          {t.accretionCalc.title}
         </h3>
         <p className="text-stone-500 text-sm dark:text-stone-400">
-          Bên mua: lợi nhuận 100 tỷ, 100 triệu cổ phiếu. Bên bán: lợi nhuận 40 tỷ.
+          {t.accretionCalc.subtitle}
         </p>
       </div>
 
       <div className="space-y-4">
         <div>
           <div className="flex justify-between text-sm mb-2">
-            <span className="font-medium text-stone-700 dark:text-stone-300">P/E bên mua</span>
+            <span className="font-medium text-stone-700 dark:text-stone-300">{t.accretionCalc.acquirerPeLabel}</span>
             <span className="font-bold text-stone-800 dark:text-stone-100">{acquirerPe}x</span>
           </div>
-          <input type="range" min={5} max={30} value={acquirerPe} onChange={(e) => setAcquirerPe(+e.target.value)} className="w-full" aria-label="P/E bên mua" />
+          <input type="range" min={5} max={30} value={acquirerPe} onChange={(e) => setAcquirerPe(+e.target.value)} className="w-full" aria-label={t.accretionCalc.acquirerPeAria} />
         </div>
         <div>
           <div className="flex justify-between text-sm mb-2">
-            <span className="font-medium text-stone-700 dark:text-stone-300">P/E bên bán</span>
+            <span className="font-medium text-stone-700 dark:text-stone-300">{t.accretionCalc.targetPeLabel}</span>
             <span className="font-bold text-stone-800 dark:text-stone-100">{targetPe}x</span>
           </div>
-          <input type="range" min={5} max={30} value={targetPe} onChange={(e) => setTargetPe(+e.target.value)} className="w-full" aria-label="P/E bên bán" />
+          <input type="range" min={5} max={30} value={targetPe} onChange={(e) => setTargetPe(+e.target.value)} className="w-full" aria-label={t.accretionCalc.targetPeAria} />
         </div>
         <div>
           <div className="flex justify-between text-sm mb-2">
-            <span className="font-medium text-stone-700 dark:text-stone-300">Trả bằng tiền mặt</span>
+            <span className="font-medium text-stone-700 dark:text-stone-300">{t.accretionCalc.cashShareLabel}</span>
             <span className="font-bold text-stone-800 dark:text-stone-100">{cashShare}%</span>
           </div>
-          <input type="range" min={0} max={100} step={10} value={cashShare} onChange={(e) => setCashShare(+e.target.value)} className="w-full" aria-label="Tỷ lệ thanh toán bằng tiền mặt" />
+          <input type="range" min={0} max={100} step={10} value={cashShare} onChange={(e) => setCashShare(+e.target.value)} className="w-full" aria-label={t.accretionCalc.cashShareAria} />
         </div>
       </div>
 
       <div className="grid gap-3 sm:grid-cols-3">
         <div className="rounded-2xl bg-stone-50 p-3 dark:bg-stone-800/60">
-          <p className="text-[11px] font-bold text-stone-500 dark:text-stone-400">EPS trước thương vụ</p>
+          <p className="text-[11px] font-bold text-stone-500 dark:text-stone-400">{t.accretionCalc.epsBeforeLabel}</p>
           <p className="text-lg font-extrabold text-stone-900 dark:text-stone-100">{result.standalone.toFixed(2)}</p>
         </div>
         <div className="rounded-2xl bg-stone-50 p-3 dark:bg-stone-800/60">
-          <p className="text-[11px] font-bold text-stone-500 dark:text-stone-400">EPS sau thương vụ</p>
+          <p className="text-[11px] font-bold text-stone-500 dark:text-stone-400">{t.accretionCalc.epsAfterLabel}</p>
           <p className="text-lg font-extrabold text-stone-900 dark:text-stone-100">{result.combined.toFixed(2)}</p>
         </div>
         <div
@@ -109,7 +112,7 @@ export default function InteractiveAccretion() {
             accretive ? "bg-emerald-50 dark:bg-emerald-950/30" : dilutive ? "bg-rose-50 dark:bg-rose-950/30" : "bg-stone-50 dark:bg-stone-800/60"
           }`}
         >
-          <p className="text-[11px] font-bold text-stone-500 dark:text-stone-400">Thay đổi</p>
+          <p className="text-[11px] font-bold text-stone-500 dark:text-stone-400">{t.accretionCalc.changeLabel}</p>
           <p className={`text-lg font-extrabold ${accretive ? "text-emerald-700 dark:text-emerald-300" : dilutive ? "text-rose-700 dark:text-rose-300" : "text-stone-900 dark:text-stone-100"}`}>
             {result.change >= 0 ? "+" : ""}
             {result.change.toFixed(1)}%
@@ -120,21 +123,22 @@ export default function InteractiveAccretion() {
       <div className="rounded-2xl bg-stone-50 p-4 dark:bg-stone-800/60">
         <p className="text-sm text-stone-700 dark:text-stone-200">
           {cashShare === 0 ? (
-            <>
-              Thương vụ toàn cổ phiếu: bên mua P/E {acquirerPe}x, bên bán {targetPe}x -{" "}
-              {acquirerPe > targetPe ? "cao hơn nên EPS tăng" : acquirerPe < targetPe ? "thấp hơn nên EPS bị pha loãng" : "bằng nhau nên EPS gần như không đổi"}.
-            </>
+            format(t.accretionCalc.allStockPrefix, {
+              acquirerPe,
+              targetPe,
+              comparison:
+                acquirerPe > targetPe
+                  ? t.accretionCalc.comparisonHigher
+                  : acquirerPe < targetPe
+                    ? t.accretionCalc.comparisonLower
+                    : t.accretionCalc.comparisonEqual,
+            })
           ) : (
-            <>
-              Trả {cashShare}% bằng tiền mặt nên phát hành ít cổ phiếu hơn ({result.newShares.toFixed(1)} triệu),
-              đổi lại mất phần lãi tiền gửi. Quy tắc so P/E chỉ áp thẳng cho thương vụ toàn cổ phiếu.
-            </>
+            format(t.accretionCalc.cashDealNarrative, { cashShare, newShares: result.newShares.toFixed(1) })
           )}
         </p>
         <p className="mt-1.5 text-[11px] leading-relaxed text-stone-500 dark:text-stone-400">
-          EPS tăng không có nghĩa là thương vụ tạo ra giá trị. Phép chia này không biết bạn đã trả
-          cao hơn giá trị nội tại bao nhiêu, cũng không biết bảng cân đối vừa gánh thêm rủi ro gì.
-          Đây là phép tính đầu tiên, không phải phép tính quyết định.
+          {t.accretionCalc.footnote}
         </p>
       </div>
     </div>

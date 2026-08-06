@@ -13,6 +13,8 @@ import {
   type LessonNote,
 } from "@/lib/supabase-notes";
 import NoteContent, { hasMathContent } from "@/components/NoteContent";
+import { useI18n } from "@/lib/i18n/context";
+import { format, intlLocale } from "@/lib/i18n";
 
 interface LessonInfo {
   slug: string;
@@ -36,6 +38,7 @@ interface NotesOverviewClientProps {
 // rendered the page shell - skip the client-side fetch entirely in that
 // case instead of re-querying data we already have.
 export default function NotesOverviewClient({ lessonsById, userId, initialNotes, embedded = false }: NotesOverviewClientProps) {
+  const { t, locale } = useI18n();
   const [notes, setNotes] = useState<LessonNote[]>(initialNotes ?? []);
   const [loading, setLoading] = useState(initialNotes === undefined);
   const [editingNoteId, setEditingNoteId] = useState<number | null>(null);
@@ -119,7 +122,7 @@ export default function NotesOverviewClient({ lessonsById, userId, initialNotes,
       setHasMore(next.length >= NOTES_PAGE_SIZE);
     } catch (error) {
       console.error("Error loading more notes:", error);
-      toast.error("Không tải thêm được ghi chú.");
+      toast.error(t.notes.loadMoreFailed);
     } finally {
       setLoadingMore(false);
     }
@@ -143,14 +146,14 @@ export default function NotesOverviewClient({ lessonsById, userId, initialNotes,
       const updated = await updateNote(noteId, editContent);
       setNotes((prev) => prev.map((n) => (n.id === noteId ? updated : n)));
       cancelEditing();
-      toast.success("Đã cập nhật ghi chú");
+      toast.success(t.notes.updateSuccess);
     } catch (error) {
       // The editor stays open with the text intact so the edit can be retried.
       console.error("Error updating note:", error);
       toast.error(
         error instanceof Error
-          ? `Không cập nhật được ghi chú: ${error.message}`
-          : "Không cập nhật được ghi chú. Vui lòng thử lại."
+          ? format(t.notes.updateFailedWithReason, { reason: error.message })
+          : t.notes.updateFailed
       );
     } finally {
       setSaving(false);
@@ -169,11 +172,11 @@ export default function NotesOverviewClient({ lessonsById, userId, initialNotes,
     setNotes((prev) => prev.filter((n) => n.id !== noteId));
     try {
       await deleteNote(noteId);
-      toast.success("Đã xóa ghi chú");
+      toast.success(t.notes.deleteSuccess);
     } catch (error) {
       console.error("Error deleting note:", error);
       setNotes(previous);
-      toast.error("Không xóa được ghi chú. Vui lòng thử lại.");
+      toast.error(t.notes.deleteFailed);
     }
   };
 
@@ -202,7 +205,7 @@ export default function NotesOverviewClient({ lessonsById, userId, initialNotes,
   if (loading) {
     return (
       <div className={embedded ? "flex items-center justify-center py-16" : "min-h-screen bg-white dark:bg-stone-950 flex items-center justify-center"}>
-        <p className="text-stone-500 dark:text-stone-400">Đang tải...</p>
+        <p className="text-stone-500 dark:text-stone-400">{t.notes.loading}</p>
       </div>
     );
   }
@@ -214,11 +217,11 @@ export default function NotesOverviewClient({ lessonsById, userId, initialNotes,
           <div className="max-w-2xl mx-auto px-6 py-4">
             <Link href="/dashboard" className="inline-flex items-center gap-1.5 text-sm font-bold text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg px-3 py-2 -ml-3 transition-colors">
               <ArrowLeft className="w-4 h-4" />
-              Quay lại
+              {t.notes.back}
             </Link>
             <div className="flex items-center justify-between mt-2 gap-3 flex-wrap">
               <h1 className="text-xl font-bold text-stone-900 dark:text-stone-100">
-                Sổ tay học tập ({notes.length}{hasMore ? "+" : ""})
+                {format(t.notes.overviewTitle, { count: `${notes.length}${hasMore ? "+" : ""}` })}
               </h1>
             </div>
           </div>
@@ -226,7 +229,7 @@ export default function NotesOverviewClient({ lessonsById, userId, initialNotes,
       )}
       {embedded && (
         <h2 className="text-lg font-bold text-stone-900 dark:text-stone-100 mb-4">
-          Ghi chú ({notes.length}{hasMore ? "+" : ""})
+          {format(t.notes.embeddedTitle, { count: `${notes.length}${hasMore ? "+" : ""}` })}
         </h2>
       )}
 
@@ -237,14 +240,14 @@ export default function NotesOverviewClient({ lessonsById, userId, initialNotes,
           <input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="Tìm trong ghi chú hoặc theo tên bài học..."
+            placeholder={t.notes.searchPlaceholder}
             className="w-full pl-10 pr-10 py-2.5 rounded-xl border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-900 text-sm text-stone-900 dark:text-stone-100 focus:outline-none focus:ring-2 focus:ring-emerald-500"
           />
           {search && (
             <button
               onClick={() => setSearch("")}
               className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-700 dark:hover:text-stone-200"
-              title="Xoá tìm kiếm"
+              title={t.notes.clearSearch}
             >
               <X className="w-4 h-4" />
             </button>
@@ -254,8 +257,8 @@ export default function NotesOverviewClient({ lessonsById, userId, initialNotes,
         {isSearching && (
           <p className="mb-4 text-xs font-semibold text-stone-500 dark:text-stone-400">
             {awaitingResults
-              ? "Đang tìm..."
-              : `Tìm thấy ${visibleNotes.length} ghi chú cho "${trimmedSearch}"`}
+              ? t.notes.searching
+              : format(t.notes.searchResultsCount, { count: visibleNotes.length, query: trimmedSearch })}
           </p>
         )}
 
@@ -263,16 +266,16 @@ export default function NotesOverviewClient({ lessonsById, userId, initialNotes,
           visibleNotes.length === 0 ? (
             <div className="text-center py-16 text-stone-600 dark:text-stone-300">
               {awaitingResults ? (
-                <p className="text-sm text-stone-500 dark:text-stone-400">Đang tìm...</p>
+                <p className="text-sm text-stone-500 dark:text-stone-400">{t.notes.searching}</p>
               ) : isSearching ? (
                 <>
-                  <p className="mb-2 font-semibold">Không tìm thấy ghi chú nào khớp.</p>
-                  <p className="text-sm text-stone-500 dark:text-stone-400">Thử từ khoá khác, hoặc tìm theo tên bài học.</p>
+                  <p className="mb-2 font-semibold">{t.notes.noResultsTitle}</p>
+                  <p className="text-sm text-stone-500 dark:text-stone-400">{t.notes.noResultsHint}</p>
                 </>
               ) : (
                 <>
-                  <p className="mb-2 font-semibold">Chưa có ghi chú nào.</p>
-                  <p className="text-sm text-stone-500 dark:text-stone-400">Ghi chú bạn thêm khi học bài sẽ được tổng hợp tự động ở đây.</p>
+                  <p className="mb-2 font-semibold">{t.notes.emptyTitle}</p>
+                  <p className="text-sm text-stone-500 dark:text-stone-400">{t.notes.emptyHint}</p>
                 </>
               )}
             </div>
@@ -289,9 +292,9 @@ export default function NotesOverviewClient({ lessonsById, userId, initialNotes,
                           {lessonInfo.title}
                         </Link>
                       ) : (
-                        <span className="font-bold text-stone-600 dark:text-stone-300">Bài học #{lessonId}</span>
+                        <span className="font-bold text-stone-600 dark:text-stone-300">{format(t.notes.lessonFallback, { id: lessonId })}</span>
                       )}
-                      <span className="text-xs font-semibold text-stone-500 dark:text-stone-300 bg-stone-200/60 dark:bg-stone-800 px-2.5 py-1 rounded-full">{lessonNotes.length} ghi chú</span>
+                      <span className="text-xs font-semibold text-stone-500 dark:text-stone-300 bg-stone-200/60 dark:bg-stone-800 px-2.5 py-1 rounded-full">{format(t.notes.noteCount, { count: lessonNotes.length })}</span>
                     </div>
                     <div className="p-5 space-y-3">
                       {lessonNotes.map((note) => (
@@ -312,7 +315,7 @@ export default function NotesOverviewClient({ lessonsById, userId, initialNotes,
                               )}
                               <div className="flex gap-2 justify-end pt-1">
                                 <button onClick={cancelEditing} className="px-3 py-1.5 text-xs font-bold text-stone-600 dark:text-stone-300 hover:text-stone-900 dark:hover:text-white transition-colors">
-                                  Hủy
+                                  {t.notes.cancel}
                                 </button>
                                 <button
                                   onClick={() => void saveEdit(note.id)}
@@ -320,7 +323,7 @@ export default function NotesOverviewClient({ lessonsById, userId, initialNotes,
                                   className="px-3.5 py-1.5 text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg transition-colors shadow-xs disabled:opacity-50 inline-flex items-center gap-1.5"
                                 >
                                   {saving && <Loader2 className="w-3 h-3 animate-spin" />}
-                                  {saving ? "Đang lưu..." : "Lưu thay đổi"}
+                                  {saving ? t.notes.saving : t.notes.saveChanges}
                                 </button>
                               </div>
                             </div>
@@ -329,30 +332,30 @@ export default function NotesOverviewClient({ lessonsById, userId, initialNotes,
                               <NoteContent content={note.content} />
                               <div className="flex items-center justify-between mt-3 pt-2 border-t border-stone-200/50 dark:border-stone-700/50">
                                 <span className="text-[11px] font-semibold text-stone-500 dark:text-stone-300">
-                                  {new Date(note.updated_at).toLocaleDateString("vi-VN")}
+                                  {new Date(note.updated_at).toLocaleDateString(intlLocale(locale))}
                                 </span>
                                 <div className="flex items-center gap-3">
-                                  <button onClick={() => startEditing(note)} className="text-stone-500 hover:text-stone-800 dark:text-stone-300 dark:hover:text-white transition-colors" title="Sửa">
+                                  <button onClick={() => startEditing(note)} className="text-stone-500 hover:text-stone-800 dark:text-stone-300 dark:hover:text-white transition-colors" title={t.notes.edit}>
                                     <Edit2 className="w-3.5 h-3.5" />
                                   </button>
                                   {confirmingDeleteId === note.id ? (
                                     <span className="inline-flex items-center gap-2 text-[11px]">
-                                      <span className="font-bold text-rose-600 dark:text-rose-400">Xoá?</span>
+                                      <span className="font-bold text-rose-600 dark:text-rose-400">{t.notes.deleteConfirm}</span>
                                       <button
                                         onClick={() => void removeNote(note.id)}
                                         className="font-bold text-rose-600 dark:text-rose-400 hover:underline"
                                       >
-                                        Xoá
+                                        {t.notes.confirmDelete}
                                       </button>
                                       <button
                                         onClick={() => setConfirmingDeleteId(null)}
                                         className="font-bold text-stone-500 dark:text-stone-300 hover:underline"
                                       >
-                                        Hủy
+                                        {t.notes.cancel}
                                       </button>
                                     </span>
                                   ) : (
-                                    <button onClick={() => void removeNote(note.id)} className="text-stone-400 hover:text-rose-600 dark:text-stone-300 dark:hover:text-rose-400 transition-colors" title="Xóa">
+                                    <button onClick={() => void removeNote(note.id)} className="text-stone-400 hover:text-rose-600 dark:text-stone-300 dark:hover:text-rose-400 transition-colors" title={t.notes.delete}>
                                       <Trash2 className="w-3.5 h-3.5" />
                                     </button>
                                   )}
@@ -376,7 +379,7 @@ export default function NotesOverviewClient({ lessonsById, userId, initialNotes,
                   className="w-full py-2.5 rounded-xl border-2 border-dashed border-stone-300 dark:border-stone-700 text-sm font-bold text-stone-600 dark:text-stone-300 hover:border-stone-400 dark:hover:border-stone-600 hover:text-stone-900 dark:hover:text-white transition-colors disabled:opacity-50 inline-flex items-center justify-center gap-2"
                 >
                   {loadingMore && <Loader2 className="w-4 h-4 animate-spin" />}
-                  {loadingMore ? "Đang tải..." : "Tải thêm ghi chú"}
+                  {loadingMore ? t.notes.loadingMore : t.notes.loadMore}
                 </button>
               )}
             </div>

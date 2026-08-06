@@ -16,6 +16,8 @@
  *  Không vẽ gì ở đây, giống lib/cash-cycle.ts và lib/three-statement-model.ts:
  *  đây là chỗ duy nhất có thể sai về tài chính nên là chỗ duy nhất có test. */
 
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
+
 export interface Asset {
   label: string;
   /** Lợi nhuận kỳ vọng, dạng thập phân (0,12 là 12%). */
@@ -76,8 +78,20 @@ export function minVarianceWeight(a: Asset, b: Asset, rho: number): number {
   return Math.min(1, Math.max(0, (b.vol * b.vol - cov) / denom));
 }
 
+/** Số thuần, không nhãn - nhãn hiển thị đến từ `assetsOf(t)`. Test và các nơi
+ *  chỉ cần ret/vol dùng thẳng hằng số này. */
 export const STOCKS: Asset = { label: "Cổ phiếu", ret: 0.12, vol: 0.2 };
 export const BONDS: Asset = { label: "Trái phiếu", ret: 0.05, vol: 0.07 };
+
+/** STOCKS/BONDS kèm nhãn theo ngôn ngữ hiện tại của
+ *  `t.districtContent.portfolioRisk`. */
+export function assetsOf(t: Dictionary): { stocks: Asset; bonds: Asset } {
+  const copy = t.districtContent.portfolioRisk;
+  return {
+    stocks: { ...STOCKS, label: copy.stocksLabel },
+    bonds: { ...BONDS, label: copy.bondsLabel },
+  };
+}
 
 export interface RhoCase {
   id: string;
@@ -88,45 +102,31 @@ export interface RhoCase {
   meaning: string;
 }
 
-/** Bốn mức tương quan, cố ý đi từ "cho không nhiều nhất" tới "không cho gì". */
-export const RHO_CASES: RhoCase[] = [
-  {
-    id: "am",
-    rho: -0.5,
-    label: "Ngược chiều (−0,5)",
-    question: "Hai tài sản thường đi ngược nhau. Danh mục 50/50 dao động bao nhiêu?",
-    meaning:
-      "Cái này xuống thì cái kia thường lên. Đây là điều người ta mong đợi ở trái phiếu khi cổ phiếu sập, và là lý do danh mục 60/40 tồn tại.",
-  },
-  {
-    id: "khong",
-    rho: 0,
-    label: "Không liên quan (0)",
-    question: "Hai tài sản không liên quan gì nhau. Rủi ro có xuống dưới trung bình không?",
-    meaning:
-      "Không cái nào nói gì về cái kia. Ngay cả ở đây - không cần chúng đi ngược nhau - rủi ro vẫn xuống dưới trung bình.",
-  },
-  {
-    id: "cung-yeu",
-    rho: 0.5,
-    label: "Cùng chiều vừa (0,5)",
-    question: "Hai tài sản thường cùng lên cùng xuống. Còn được lợi gì không?",
-    meaning:
-      "Cùng chiều nhưng chưa khít. Lợi ích nhỏ lại nhưng chưa mất - đây mới là mức thường gặp thật ngoài đời.",
-  },
-  {
-    id: "khit",
-    rho: 1,
-    label: "Khít hoàn toàn (1)",
-    question: "Hai tài sản đi khít nhau từng nhịp. Đa dạng hoá còn cho gì?",
-    meaning:
-      "Đi khít nhau từng nhịp thì thực ra chỉ là một tài sản mang hai cái tên. Đây là trường hợp DUY NHẤT đa dạng hoá không cho gì cả.",
-  },
+/** Phần CẤU TRÚC của bốn mức tương quan: id và ρ, cố ý đi từ "cho không nhiều
+ *  nhất" tới "không cho gì". Chữ hiển thị sống trong district-content.ts. */
+const RHO_DEFS: { id: string; rho: number }[] = [
+  { id: "am", rho: -0.5 },
+  { id: "khong", rho: 0 },
+  { id: "cung-yeu", rho: 0.5 },
+  { id: "khit", rho: 1 },
 ];
 
+/** Chỉ id + ρ, dùng khi không cần chữ hiển thị. */
+export const RHO_CASE_DEFS: { id: string; rho: number }[] = RHO_DEFS;
+
+/** Bốn mức tương quan, kèm chữ hiển thị theo ngôn ngữ hiện tại của
+ *  `t.districtContent.portfolioRisk.rhoCases`. */
+export function rhoCasesOf(t: Dictionary): RhoCase[] {
+  const copy = t.districtContent.portfolioRisk.rhoCases;
+  return RHO_DEFS.map(({ id, rho }) => {
+    const c = copy[id as keyof typeof copy];
+    return { id, rho, label: c.label, question: c.question, meaning: c.meaning };
+  });
+}
+
 /** Điều phải mang về, và nó phụ thuộc vào ρ chứ không phải vào tài sản. */
-export function verdictFor(rho: number): string {
-  if (rho >= 1)
-    return "Đa dạng hoá không cho gì: hai tài sản khít nhau thì trộn kiểu gì rủi ro cũng đúng bằng trung bình.";
-  return "Rủi ro nằm DƯỚI trung bình có trọng số, còn lợi nhuận thì đúng bằng trung bình. Chênh lệch đó là thứ duy nhất trong tài chính được cho không.";
+export function verdictFor(rho: number, t: Dictionary): string {
+  const copy = t.districtContent.portfolioRisk;
+  if (rho >= 1) return copy.verdictNoGain;
+  return copy.verdictGain;
 }

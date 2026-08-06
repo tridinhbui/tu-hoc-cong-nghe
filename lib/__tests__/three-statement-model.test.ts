@@ -3,10 +3,13 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   BASE_DRIVERS,
-  IMPACTS,
   buildStatements,
   driversAfter,
+  impactsOf,
 } from "@/lib/three-statement-model";
+import { vi } from "@/lib/i18n/dictionaries/vi";
+
+const IMPACTS = impactsOf(vi);
 
 /** Mô hình ba báo cáo của Phòng Ba Báo Cáo.
  *

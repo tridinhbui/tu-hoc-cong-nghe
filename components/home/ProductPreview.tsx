@@ -1,15 +1,38 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, Circle, Flame, Trophy } from "lucide-react";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
 type Tab = "dashboard" | "lesson";
 
-const TABS: { id: Tab; label: string }[] = [
-  { id: "dashboard", label: "Dashboard" },
-  { id: "lesson", label: "Trong bài học" },
-];
+function buildTabs(t: Dictionary): { id: Tab; label: string }[] {
+  return [
+    { id: "dashboard", label: t.productPreview.tabDashboard },
+    { id: "lesson", label: t.productPreview.tabLesson },
+  ];
+}
+
+function buildDashboardLessons(t: Dictionary) {
+  return [
+    { title: t.productPreview.lessonStocksWhy, done: true },
+    { title: t.productPreview.lessonPeRatio, done: true },
+    { title: t.productPreview.lessonEtf, done: false },
+  ];
+}
+
+function buildLeaderboard(t: Dictionary) {
+  return [
+    { name: "Minh Anh", xp: "2,105" },
+    { name: "Đức Huy", xp: "1,940" },
+    // `isYou` rather than matching the rendered name: deciding who the learner
+    // is by comparing display copy breaks the moment the label is reworded.
+    { name: t.productPreview.you, xp: "1,240", isYou: true },
+  ];
+}
 
 // Honest, labeled UI mockup of the actual product (dashboard + a lesson
 // screen) - not a real screenshot (no image-capture pipeline exists in this
@@ -19,7 +42,11 @@ const TABS: { id: Tab; label: string }[] = [
 // illustration. Framed in a browser chrome so it's unambiguous this is
 // "what the app looks like," not a real photo of anything.
 export default function ProductPreview() {
+  const { t } = useI18n();
   const [tab, setTab] = useState<Tab>("dashboard");
+  const tabs = useMemo(() => buildTabs(t), [t]);
+  const dashboardLessons = useMemo(() => buildDashboardLessons(t), [t]);
+  const leaderboard = useMemo(() => buildLeaderboard(t), [t]);
 
   useEffect(() => {
     const tabs: Tab[] = ["dashboard", "lesson"];
@@ -88,17 +115,17 @@ export default function ProductPreview() {
           </div>
         </div>
         <div className="flex gap-1 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-full p-0.5 shrink-0 mx-auto sm:mx-0">
-          {TABS.map((t) => (
+          {tabs.map((tabItem) => (
             <button
-              key={t.id}
-              onClick={() => setTab(t.id)}
+              key={tabItem.id}
+              onClick={() => setTab(tabItem.id)}
               className={`text-[10px] font-bold px-2.5 py-1 rounded-full transition-all duration-200 whitespace-nowrap ${
-                tab === t.id
+                tab === tabItem.id
                   ? "bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 shadow-[0_8px_18px_-14px_rgba(15,23,42,0.45)]"
                   : "text-stone-400 dark:text-stone-500 hover:text-stone-600 dark:hover:text-stone-300"
               }`}
             >
-              {t.label}
+              {tabItem.label}
             </button>
           ))}
         </div>
@@ -122,12 +149,12 @@ export default function ProductPreview() {
               >
                 <div className="flex items-center justify-between mb-3">
                   <div>
-                    <p className="text-[10px] font-black uppercase tracking-widest text-stone-400 dark:text-stone-500">Cấp độ 6</p>
-                    <p className="text-sm font-extrabold text-stone-900 dark:text-stone-100">Nhà phân tích</p>
+                    <p className="text-[10px] font-black uppercase tracking-widest text-stone-400 dark:text-stone-500">{t.productPreview.level}</p>
+                    <p className="text-sm font-extrabold text-stone-900 dark:text-stone-100">{t.productPreview.role}</p>
                   </div>
                   <span className="inline-flex items-center gap-1.5 text-[11px] font-black text-white bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full px-2.5 py-1">
                     <span className="preview-live-dot h-1.5 w-1.5 rounded-full bg-white/90" />
-                    1,240 XP
+                    {format(t.productPreview.xpLabel, { xp: "1,240" })}
                   </span>
                 </div>
                 <div className="h-2 rounded-full bg-stone-100 dark:bg-stone-800 overflow-hidden mb-4">
@@ -138,11 +165,7 @@ export default function ProductPreview() {
                   />
                 </div>
                 <div className="space-y-2">
-                  {[
-                    { title: "Cổ phiếu là gì và vì sao doanh nghiệp phát hành", done: true },
-                    { title: "Đọc chỉ số P/E trong 5 phút", done: true },
-                    { title: "ETF và quỹ chỉ số: khác gì cổ phiếu lẻ", done: false },
-                  ].map((l) => (
+                  {dashboardLessons.map((l) => (
                     <motion.div
                       key={l.title}
                       className={`flex items-center gap-2.5 min-w-0 rounded-xl border px-3 py-2.5 text-xs font-semibold ${
@@ -175,8 +198,10 @@ export default function ProductPreview() {
                     <Flame className="w-5 h-5 text-orange-500" />
                   </div>
                   <div>
-                    <p className="text-lg font-black text-orange-600 dark:text-orange-400 leading-none">18 ngày</p>
-                    <p className="text-[11px] font-semibold text-stone-500 dark:text-stone-400 mt-0.5">chuỗi học liên tục</p>
+                    <p className="text-lg font-black text-orange-600 dark:text-orange-400 leading-none">
+                      {format(t.productPreview.streakLabel, { days: 18 })}
+                    </p>
+                    <p className="text-[11px] font-semibold text-stone-500 dark:text-stone-400 mt-0.5">{t.productPreview.streakCaption}</p>
                   </div>
                 </motion.div>
                 <motion.div
@@ -186,14 +211,10 @@ export default function ProductPreview() {
                 >
                   <p className="text-[10px] font-black uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-2.5 flex items-center gap-1.5">
                     <span className="preview-live-dot h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                    Top tuần này
+                    {t.productPreview.topWeek}
                   </p>
                   <div className="space-y-2">
-                    {[
-                      { name: "Minh Anh", xp: "2,105" },
-                      { name: "Đức Huy", xp: "1,940" },
-                      { name: "Bạn", xp: "1,240" },
-                    ].map((row, i) => (
+                    {leaderboard.map((row, i) => (
                       <motion.div
                         key={row.name}
                         className="flex items-center justify-between text-xs"
@@ -201,10 +222,12 @@ export default function ProductPreview() {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.25, delay: 0.05 + i * 0.06 }}
                       >
-                        <span className={`font-bold ${row.name === "Bạn" ? "text-emerald-700 dark:text-emerald-400" : "text-stone-700 dark:text-stone-300"}`}>
+                        <span className={`font-bold ${row.isYou ? "text-emerald-700 dark:text-emerald-400" : "text-stone-700 dark:text-stone-300"}`}>
                           {i + 1}. {row.name}
                         </span>
-                        <span className="text-stone-400 dark:text-stone-500 font-semibold">{row.xp} XP</span>
+                        <span className="text-stone-400 dark:text-stone-500 font-semibold">
+                          {format(t.productPreview.xpLabel, { xp: row.xp })}
+                        </span>
                       </motion.div>
                     ))}
                   </div>
@@ -221,21 +244,21 @@ export default function ProductPreview() {
               className="rounded-[20px] border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-900 p-5 shadow-[0_12px_28px_-24px_rgba(15,23,42,0.2)]"
             >
               <p className="text-[10px] font-black uppercase tracking-widest text-emerald-600 dark:text-emerald-400 mb-2">
-                Chặng 2 · Bài 14
+                {t.productPreview.chapterBadge}
               </p>
               <h3 className="text-base font-extrabold text-stone-900 dark:text-stone-100 mb-3">
-                Vì sao lãi kép mạnh hơn bạn nghĩ
+                {t.productPreview.lessonTitle}
               </h3>
               <p className="text-xs text-stone-600 dark:text-stone-400 leading-relaxed mb-4">
-                Lãi kép không chỉ cộng dồn lãi vào gốc - nó khiến khoảng cách giữa bắt đầu sớm và bắt đầu muộn lớn hơn nhiều so với trực giác thông thường...
+                {t.productPreview.lessonBody}
               </p>
               <div className="rounded-[18px] border border-stone-200/80 dark:border-stone-800 bg-stone-50 dark:bg-stone-950/40 p-4 mb-4">
-                <p className="text-[11px] font-black uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-2">Câu hỏi nhanh</p>
+                <p className="text-[11px] font-black uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-2">{t.productPreview.quickQuestion}</p>
                 <p className="text-xs font-bold text-stone-900 dark:text-stone-100 mb-3">
-                  Đầu tư 1 triệu/tháng từ năm 25 tuổi khác gì so với bắt đầu từ năm 35 tuổi?
+                  {t.productPreview.quizQuestion}
                 </p>
                 <div className="space-y-1.5">
-                  {["Không khác nhiều nếu tổng tiền góp bằng nhau", "Bắt đầu sớm hơn có thể tạo ra chênh lệch gấp đôi vào lúc nghỉ hưu"].map(
+                  {[t.productPreview.quizOption1, t.productPreview.quizOption2].map(
                     (opt, i) => (
                       <motion.div
                         key={opt}
@@ -258,7 +281,7 @@ export default function ProductPreview() {
                 <div className="h-1.5 flex-1 rounded-full bg-stone-100 dark:bg-stone-800 overflow-hidden">
                   <div className="h-full w-1/3 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500" />
                 </div>
-                5 phút đọc
+                {format(t.productPreview.readTime, { min: 5 })}
               </div>
             </motion.div>
           )}

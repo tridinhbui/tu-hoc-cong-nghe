@@ -1,10 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, ArrowRight, ArrowLeft, X } from "lucide-react";
 import { createClient } from "@/lib/supabase";
+import { useI18n } from "@/lib/i18n/context";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
 interface OnboardingStep {
   title: string;
@@ -12,110 +14,113 @@ interface OnboardingStep {
   content: React.ReactNode;
 }
 
-const ONBOARDING_STEPS: OnboardingStep[] = [
-  {
-    title: "Chào mừng đến với Tự Học Tài Chính!",
-    description: "Khám phá thế giới tài chính qua lộ trình học tập tương tác",
-    content: (
-      <div className="text-center py-8">
-        <div className="text-6xl mb-4">🎓</div>
-        <p className="text-stone-600 dark:text-stone-400 text-lg">
-          Học tài chính từ cơ bản đến chuyên sâu
-        </p>
-      </div>
-    ),
-  },
-  {
-    title: "Chọn lộ trình phù hợp với bạn",
-    description: "Chúng tôi có 2 lộ trình học tập khác nhau",
-    content: (
-      <div className="space-y-4 py-4">
-        <div className="p-4 border-2 border-emerald-200 dark:border-emerald-900 rounded-xl bg-emerald-50 dark:bg-emerald-950/30">
-          <h3 className="font-bold text-emerald-900 dark:text-emerald-400 mb-2">💰 Tài chính cá nhân</h3>
-          <p className="text-sm text-stone-600 dark:text-stone-400">
-            Quản lý tiền, tiết kiệm và đầu tư cá nhân
+function getOnboardingSteps(t: Dictionary): OnboardingStep[] {
+  const oc = t.onboarding;
+  return [
+    {
+      title: oc.step1Title,
+      description: oc.step1Description,
+      content: (
+        <div className="text-center py-8">
+          <div className="text-6xl mb-4">🎓</div>
+          <p className="text-stone-600 dark:text-stone-400 text-lg">
+            {oc.step1Body}
           </p>
         </div>
-        <div className="p-4 border-2 border-blue-200 dark:border-blue-900 rounded-xl bg-blue-50 dark:bg-blue-950/30">
-          <h3 className="font-bold text-blue-900 dark:text-blue-400 mb-2">📊 Tài chính chuyên ngành</h3>
-          <p className="text-sm text-stone-600 dark:text-stone-400">
-            Kế toán, báo cáo tài chính và định giá doanh nghiệp
+      ),
+    },
+    {
+      title: oc.step2Title,
+      description: oc.step2Description,
+      content: (
+        <div className="space-y-4 py-4">
+          <div className="p-4 border-2 border-emerald-200 dark:border-emerald-900 rounded-xl bg-emerald-50 dark:bg-emerald-950/30">
+            <h3 className="font-bold text-emerald-900 dark:text-emerald-400 mb-2">{oc.personalTrackTitle}</h3>
+            <p className="text-sm text-stone-600 dark:text-stone-400">
+              {oc.personalTrackBody}
+            </p>
+          </div>
+          <div className="p-4 border-2 border-blue-200 dark:border-blue-900 rounded-xl bg-blue-50 dark:bg-blue-950/30">
+            <h3 className="font-bold text-blue-900 dark:text-blue-400 mb-2">{oc.professionalTrackTitle}</h3>
+            <p className="text-sm text-stone-600 dark:text-stone-400">
+              {oc.professionalTrackBody}
+            </p>
+          </div>
+        </div>
+      ),
+    },
+    {
+      title: oc.step3Title,
+      description: oc.step3Description,
+      content: (
+        <div className="space-y-4 py-4">
+          <div className="flex items-center gap-4 p-4 bg-stone-50 dark:bg-stone-900 rounded-xl">
+            <div className="text-4xl">⭐</div>
+            <div>
+              <p className="font-bold">{oc.xpLabel}</p>
+              <p className="text-xs text-stone-500">{oc.xpBody}</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-4 p-4 bg-stone-50 dark:bg-stone-900 rounded-xl">
+            <div className="text-4xl">🏅</div>
+            <div>
+              <p className="font-bold">{oc.badgeLabel}</p>
+              <p className="text-xs text-stone-500">{oc.badgeBody}</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-4 p-4 bg-stone-50 dark:bg-stone-900 rounded-xl">
+            <div className="text-4xl">📈</div>
+            <div>
+              <p className="font-bold">{oc.levelUpLabel}</p>
+              <p className="text-xs text-stone-500">{oc.levelUpBody}</p>
+            </div>
+          </div>
+        </div>
+      ),
+    },
+    {
+      title: oc.step4Title,
+      description: oc.step4Description,
+      content: (
+        <div className="space-y-4 py-4">
+          <div className="flex items-center gap-4 p-4 bg-stone-50 dark:bg-stone-900 rounded-xl">
+            <div className="text-4xl">📝</div>
+            <div>
+              <p className="font-bold">{oc.quizLabel}</p>
+              <p className="text-xs text-stone-500">{oc.quizBody}</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-4 p-4 bg-stone-50 dark:bg-stone-900 rounded-xl">
+            <div className="text-4xl">🎮</div>
+            <div>
+              <p className="font-bold">{oc.widgetLabel}</p>
+              <p className="text-xs text-stone-500">{oc.widgetBody}</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-4 p-4 bg-stone-50 dark:bg-stone-900 rounded-xl">
+            <div className="text-4xl">🤖</div>
+            <div>
+              <p className="font-bold">{oc.assistantLabel}</p>
+              <p className="text-xs text-stone-500">{oc.assistantBody}</p>
+            </div>
+          </div>
+        </div>
+      ),
+    },
+    {
+      title: oc.step5Title,
+      description: oc.step5Description,
+      content: (
+        <div className="text-center py-8">
+          <div className="text-6xl mb-4">🚀</div>
+          <p className="text-stone-600 dark:text-stone-400 text-lg">
+            {oc.step5Body}
           </p>
         </div>
-      </div>
-    ),
-  },
-  {
-    title: "Kiếm XP và thăng cấp",
-    description: "Hoàn thành bài học để nhận XP và mở khóa huy hiệu",
-    content: (
-      <div className="space-y-4 py-4">
-        <div className="flex items-center gap-4 p-4 bg-stone-50 dark:bg-stone-900 rounded-xl">
-          <div className="text-4xl">⭐</div>
-          <div>
-            <p className="font-bold">10 XP</p>
-            <p className="text-xs text-stone-500">Hoàn thành mỗi bài học</p>
-          </div>
-        </div>
-        <div className="flex items-center gap-4 p-4 bg-stone-50 dark:bg-stone-900 rounded-xl">
-          <div className="text-4xl">🏅</div>
-          <div>
-            <p className="font-bold">Huy hiệu</p>
-            <p className="text-xs text-stone-500">Mở khóa khi đạt milestone</p>
-          </div>
-        </div>
-        <div className="flex items-center gap-4 p-4 bg-stone-50 dark:bg-stone-900 rounded-xl">
-          <div className="text-4xl">📈</div>
-          <div>
-            <p className="font-bold">Level up</p>
-            <p className="text-xs text-stone-500">Tăng level khi đủ XP</p>
-          </div>
-        </div>
-      </div>
-    ),
-  },
-  {
-    title: "Học tương tác và thực hành",
-    description: "Các bài học có quiz, widget tương tác và ví dụ thực tế",
-    content: (
-      <div className="space-y-4 py-4">
-        <div className="flex items-center gap-4 p-4 bg-stone-50 dark:bg-stone-900 rounded-xl">
-          <div className="text-4xl">📝</div>
-          <div>
-            <p className="font-bold">Quiz</p>
-            <p className="text-xs text-stone-500">Kiểm tra kiến thức sau mỗi bài</p>
-          </div>
-        </div>
-        <div className="flex items-center gap-4 p-4 bg-stone-50 dark:bg-stone-900 rounded-xl">
-          <div className="text-4xl">🎮</div>
-          <div>
-            <p className="font-bold">Widget tương tác</p>
-            <p className="text-xs text-stone-500">Thực hành với công cụ tài chính</p>
-          </div>
-        </div>
-        <div className="flex items-center gap-4 p-4 bg-stone-50 dark:bg-stone-900 rounded-xl">
-          <div className="text-4xl">🤖</div>
-          <div>
-            <p className="font-bold">Tài Tài Assistant</p>
-            <p className="text-xs text-stone-500">Nhận tips cho từng bài học</p>
-          </div>
-        </div>
-      </div>
-    ),
-  },
-  {
-    title: "Sẵn sàng bắt đầu!",
-    description: "Chọn lộ trình và bắt đầu hành trình tài chính của bạn",
-    content: (
-      <div className="text-center py-8">
-        <div className="text-6xl mb-4">🚀</div>
-        <p className="text-stone-600 dark:text-stone-400 text-lg">
-          Bạn có thể thay đổi lộ trình bất cứ lúc nào trong Settings
-        </p>
-      </div>
-    ),
-  },
-];
+      ),
+    },
+  ];
+}
 
 interface OnboardingFlowProps {
   onComplete: (selectedTrack: "personal" | "professional") => void;
@@ -123,6 +128,8 @@ interface OnboardingFlowProps {
 }
 
 export default function OnboardingFlow({ onComplete, onSkip }: OnboardingFlowProps) {
+  const { t } = useI18n();
+  const ONBOARDING_STEPS = useMemo(() => getOnboardingSteps(t), [t]);
   const [currentStep, setCurrentStep] = useState(0);
   const [selectedTrack, setSelectedTrack] = useState<"personal" | "professional">("personal");
   const [isAnimating, setIsAnimating] = useState(false);
@@ -171,7 +178,7 @@ export default function OnboardingFlow({ onComplete, onSkip }: OnboardingFlowPro
               onClick={handleSkip}
               className="text-stone-500 hover:text-stone-700 dark:text-stone-400 dark:hover:text-stone-200 text-sm font-semibold"
             >
-              Bỏ qua
+              {t.onboarding.skip}
             </button>
             <div className="flex gap-2">
               {ONBOARDING_STEPS.map((_, index) => (
@@ -237,10 +244,10 @@ export default function OnboardingFlow({ onComplete, onSkip }: OnboardingFlowPro
                       </div>
                       <div>
                         <p className="font-bold text-stone-900 dark:text-stone-100">
-                          Tài chính cá nhân
+                          {t.onboarding.personalTrackName}
                         </p>
                         <p className="text-xs text-stone-500">
-                          Dành cho người mới bắt đầu
+                          {t.onboarding.personalTrackHint}
                         </p>
                       </div>
                     </div>
@@ -266,10 +273,10 @@ export default function OnboardingFlow({ onComplete, onSkip }: OnboardingFlowPro
                       </div>
                       <div>
                         <p className="font-bold text-stone-900 dark:text-stone-100">
-                          Tài chính chuyên ngành
+                          {t.onboarding.professionalTrackName}
                         </p>
                         <p className="text-xs text-stone-500">
-                          Dành cho người muốn chuyên sâu
+                          {t.onboarding.professionalTrackHint}
                         </p>
                       </div>
                     </div>
@@ -288,15 +295,15 @@ export default function OnboardingFlow({ onComplete, onSkip }: OnboardingFlowPro
             className="flex items-center gap-2 px-4 py-2 rounded-xl font-semibold text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
-            Quay lại
+            {t.onboarding.previous}
           </button>
-          
+
           {currentStep === ONBOARDING_STEPS.length - 1 ? (
             <button
               onClick={handleComplete}
               className="flex items-center gap-2 px-6 py-2 rounded-xl font-semibold bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 hover:bg-stone-800 dark:hover:bg-white transition-colors"
             >
-              Bắt đầu học
+              {t.onboarding.start}
               <ArrowRight className="w-4 h-4" />
             </button>
           ) : (
@@ -304,7 +311,7 @@ export default function OnboardingFlow({ onComplete, onSkip }: OnboardingFlowPro
               onClick={handleNext}
               className="flex items-center gap-2 px-6 py-2 rounded-xl font-semibold bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 hover:bg-stone-800 dark:hover:bg-white transition-colors"
             >
-              Tiếp theo
+              {t.onboarding.next}
               <ArrowRight className="w-4 h-4" />
             </button>
           )}

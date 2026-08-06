@@ -69,16 +69,21 @@ export default function LevelUpModal({ level, userName, onClose }: LevelUpModalP
     setDownloading(true);
     try {
       const blob = await svgToPngBlob(svgRef.current, 1600, 1600);
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = cardFilename;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(url);
+      // Cùng lý do với CertificateModal: bản cũ chép lại logic tải tệp ngay
+      // tại đây, nên nó mang y nguyên lỗi thu hồi blob URL sớm và cũng không
+      // bao giờ thử khay chia sẻ - thứ duy nhất lưu được ảnh trên iOS.
+      const outcome = await shareOrDownloadImage(
+        blob,
+        cardFilename,
+        `Mình vừa lên cấp ${level} tại Tự Học Tài Chính 🎉`
+      );
+      if (outcome === "cancelled") return;
       setDownloaded(true);
-      toast.success("Đã tải ảnh thành tích! Đăng lên story/Facebook khoe ngay nào 🎉");
+      toast.success(
+        outcome === "shared"
+          ? "Đã lưu/chia sẻ ảnh thành tích! 🎉"
+          : "Đã tải ảnh thành tích! Đăng lên story/Facebook khoe ngay nào 🎉"
+      );
     } catch (error) {
       console.error("Error creating level-up card download:", error);
       toast.error("Không thể tạo ảnh lúc này.");

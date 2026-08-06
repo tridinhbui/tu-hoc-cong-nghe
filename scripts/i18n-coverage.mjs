@@ -130,7 +130,10 @@ function isNotCopy(text) {
     tokens.every(
       (tok) =>
         BARE_UTILITIES.has(tok) ||
-        (/^[a-z0-9[\]().,#%/:-]+$/.test(tok) && /[-/:]/.test(tok))
+        // `_` appears in arbitrary values, where Tailwind uses it for the space
+        // a CSS value needs: shadow-[0_0_20px_rgba(16,185,129,0.3)]. Without it
+        // that token fails the shape test and the whole class list reads as prose.
+        (/^[a-z0-9[\]().,#%/:_-]+$/.test(tok) && /[-/:]/.test(tok))
     )
   ) {
     return true;
@@ -210,9 +213,25 @@ function findingsIn(src, fileName) {
     }
 
     // toast.error("..."), alert("...")
+    //
+    // Template literals count too. This started as string literals only, and
+    // components/FloatingStudyGroupChat.tsx showed why that is not enough: its
+    // match toast was written as `Bạn vừa được ghép vào nhóm học mới:
+    // ${topicLabel(...)}!` and was invisible, while the very same file's
+    // plain-string toasts were all reported. Any toast that interpolates a value
+    // - which is most of the interesting ones - would slip through.
     if (ts.isCallExpression(node) && DISPLAY_CALLS.has(calleeName(node.expression))) {
       for (const arg of node.arguments) {
         if (ts.isStringLiteral(arg)) push("call", arg.text, arg.getStart(source));
+        else if (ts.isNoSubstitutionTemplateLiteral(arg)) {
+          push("call", arg.text, arg.getStart(source));
+        } else if (ts.isTemplateExpression(arg)) {
+          // Report the literal chunks around the ${...} holes; the holes
+          // themselves are values, not copy.
+          const chunks = [arg.head.text, ...arg.templateSpans.map((sp) => sp.literal.text)];
+          const text = chunks.join(" ").trim();
+          if (text) push("call", text, arg.getStart(source));
+        }
       }
     }
 
@@ -229,8 +248,28 @@ function findingsIn(src, fileName) {
     // className computed by a ternary (an attribute) does not flood the report.
     if (ts.isJsxExpression(node) && node.parent && !ts.isJsxAttribute(node.parent)) {
       const seen = new Set();
+      // A literal being COMPARED is a data value, not copy: `x === "OVERVALUED"`
+      // renders nothing. Detected by syntactic position rather than by shape,
+      // because shape cannot separate them - "OVERVALUED" and "HOT" are both a
+      // single all-caps token, and "HOT" is a badge the user reads.
+      const isComparisonOperand = (n) => {
+        const p = n.parent;
+        if (!p) return false;
+        if (ts.isCaseClause(p)) return true;
+        if (ts.isBinaryExpression(p)) {
+          const op = p.operatorToken.kind;
+          return (
+            op === ts.SyntaxKind.EqualsEqualsEqualsToken ||
+            op === ts.SyntaxKind.ExclamationEqualsEqualsToken ||
+            op === ts.SyntaxKind.EqualsEqualsToken ||
+            op === ts.SyntaxKind.ExclamationEqualsToken
+          );
+        }
+        return false;
+      };
+
       const collect = (n) => {
-        if (ts.isStringLiteral(n) && !seen.has(n)) {
+        if (ts.isStringLiteral(n) && !seen.has(n) && !isComparisonOperand(n)) {
           seen.add(n);
           push("jsx-expr", n.text, n.getStart(source));
         }

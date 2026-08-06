@@ -1,5 +1,8 @@
 import { describe, expect, it } from "vitest";
-import { SCENARIOS, cycle, verdict } from "@/lib/cash-cycle";
+import { cycle, scenariosOf, verdict } from "@/lib/cash-cycle";
+import { vi } from "@/lib/i18n/dictionaries/vi";
+
+const SCENARIOS = scenariosOf(vi);
 
 /** Mọi con số căn phòng vòng quay tiền nói ra đều bị kiểm ở đây.
  *

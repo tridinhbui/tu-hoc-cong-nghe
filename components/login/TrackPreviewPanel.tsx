@@ -4,6 +4,8 @@ import { useEffect, type Dispatch, type SetStateAction } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { PlayCircle, CheckCircle2, Sparkles, Flame } from "lucide-react";
 import { TRACKS, type TrackId } from "@/lib/tracks";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 const TRACK_IDS = Object.keys(TRACKS) as TrackId[];
 
@@ -14,8 +16,9 @@ interface TrackPreviewPanelProps {
 }
 
 export default function TrackPreviewPanel({ previewTrack, setPreviewTrack, compact = false }: TrackPreviewPanelProps) {
+  const { t } = useI18n();
   const track = TRACKS[previewTrack];
-  const trackEffortLabel = (hours: number) => `~${hours} giờ học`;
+  
 
   useEffect(() => {
     let cancelled = false;
@@ -38,7 +41,7 @@ export default function TrackPreviewPanel({ previewTrack, setPreviewTrack, compa
       {/* Top Track Selection Tabs */}
       <div className={`grid ${Object.keys(TRACKS).length === 3 ? "grid-cols-3" : "grid-cols-2"} border-b border-stone-100 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-950/40`}>
         {TRACK_IDS.map((id, index) => {
-          const t = TRACKS[id];
+          const trackData = TRACKS[id];
           const isActive = previewTrack === id;
           return (
             <motion.button
@@ -54,15 +57,15 @@ export default function TrackPreviewPanel({ previewTrack, setPreviewTrack, compa
             >
               {id === "cfa" && (
                 <span className="absolute top-1.5 right-1.5 text-[9px] font-black text-white bg-indigo-500 px-1.5 py-0.5 rounded-full uppercase tracking-wider shadow-xs">
-                  Mới
+                  {t.trackPanel.isNew}
                 </span>
               )}
               <div className={`font-black uppercase tracking-widest opacity-60 ${compact ? "text-[10px] mb-0.5" : "text-[11px] mb-1"}`}>
-                Track {index + 1}
+                {t.trackPanel.trackPrefix} {index + 1}
               </div>
-              <div className={`font-black ${compact ? "text-xs" : "text-sm"} leading-snug`}>{t.tab}</div>
-              {t.estimatedHours > 0 && (
-                <div className={`opacity-70 font-semibold ${compact ? "text-[10px] mt-0.5" : "text-xs mt-0.5"}`}>{trackEffortLabel(t.estimatedHours)}</div>
+              <div className={`font-black ${compact ? "text-xs" : "text-sm"} leading-snug`}>{t.tracks[id].tab}</div>
+              {trackData.estimatedHours > 0 && (
+                <div className={`opacity-70 font-semibold ${compact ? "text-[10px] mt-0.5" : "text-xs mt-0.5"}`}>{format(t.trackPanel.effortHours, { hours: trackData.estimatedHours })}</div>
               )}
               {isActive && (
                 <motion.div
@@ -90,11 +93,11 @@ export default function TrackPreviewPanel({ previewTrack, setPreviewTrack, compa
           <div className="flex items-center justify-between">
             <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-0.5 text-[10px] font-black uppercase text-emerald-700 dark:border-emerald-900/50 dark:bg-emerald-950/40 dark:text-emerald-300">
               <Sparkles className="w-3 h-3 text-emerald-500 animate-pulse" />
-              Lộ trình chuẩn hóa 2024
+              {t.trackPanel.standardised}
             </span>
             <span className="inline-flex items-center gap-1 text-[10px] font-bold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/40 px-2 py-0.5 rounded-full border border-amber-200 dark:border-amber-900/50">
               <Flame className="w-3 h-3 text-amber-500" />
-              +120 XP / bài
+              {t.trackPanel.xpPerLesson}
             </span>
           </div>
 
@@ -103,11 +106,11 @@ export default function TrackPreviewPanel({ previewTrack, setPreviewTrack, compa
           </p>
 
           {/* Animated Stage List with Checkmarks */}
-          {!compact && track.stages && track.stages.length > 0 && (
+          {!compact && t.tracks[previewTrack].stages.length > 0 && (
             <div className="space-y-1.5 pt-1">
-              <p className="text-[10px] font-black uppercase tracking-wider text-stone-400 dark:text-stone-500">Các chặng kiến thức chính:</p>
+              <p className="text-[10px] font-black uppercase tracking-wider text-stone-400 dark:text-stone-500">{t.trackPanel.stagesTitle}</p>
               <div className="grid gap-1.5 sm:grid-cols-2">
-                {track.stages.map((s, idx) => (
+                {t.tracks[previewTrack].stages.map((s, idx) => (
                   <motion.div
                     key={s}
                     initial={{ opacity: 0, x: -8 }}
@@ -142,12 +145,12 @@ export default function TrackPreviewPanel({ previewTrack, setPreviewTrack, compa
                 <div className={`font-black text-white/90 uppercase tracking-wider ${compact ? "text-[10px]" : "text-[11px]"}`}>
                   {track.previewSlug
                     ? compact
-                      ? "Miễn phí · Xem thử ngay"
-                      : "Miễn phí · Xem thử ngay, không cần đăng nhập"
-                    : "Xem trước"}
+                      ? t.trackPanel.freeTryCompact
+                      : t.trackPanel.freeTry
+                    : t.trackPanel.previewOnly}
                 </div>
                 <div className={`font-black text-white truncate ${compact ? "text-xs" : "text-sm"}`}>
-                  {track.previewLabel}
+                  {t.tracks[previewTrack].previewLabel}
                 </div>
               </div>
             </div>

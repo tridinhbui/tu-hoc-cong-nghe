@@ -10,6 +10,8 @@ import { createWalkState } from "@/components/world-controls/easy-walk";
 import CityStreet from "@/components/lobby/CityStreet";
 import { daylightAt } from "@/components/lobby/daylight";
 import { RIVER_Z0 } from "@/components/lobby/world";
+import { useI18n } from "@/lib/i18n/context";
+import { format, intlLocale } from "@/lib/i18n";
 
 /** Bàn đo cảnh 3D: chọn phòng, đọc chi phí thật.
  *
@@ -33,6 +35,7 @@ import { RIVER_Z0 } from "@/components/lobby/world";
  *  rồi tự reset SAU khi đọc. */
 function Meter({ onRead }: { onRead: (line: string) => void }) {
   const { gl } = useThree();
+  const { locale } = useI18n();
 
   useEffect(() => {
     // Sửa thẳng vào đối tượng của three.js là ĐÚNG việc của effect: đồng bộ
@@ -50,7 +53,7 @@ function Meter({ onRead }: { onRead: (line: string) => void }) {
     const r = gl.info.render;
     if (r.calls > 0) {
       onRead(
-        `draw call: ${r.calls} · tam giác: ${r.triangles.toLocaleString("vi-VN")}` +
+        `draw call: ${r.calls} · triangles: ${r.triangles.toLocaleString(intlLocale(locale))}` +
           ` · geometry: ${gl.info.memory.geometries} · texture: ${gl.info.memory.textures}`
       );
     }
@@ -91,6 +94,7 @@ const NOOP = () => {};
  *  Presence Supabase bên trong tự hỏng lành khi chưa đăng nhập: không có ai
  *  khác trong phòng, và đó đúng là thứ cần cho việc kiểm điều khiển. */
 function WalkableScene({ id }: { id: DistrictRoomId }) {
+  const { t } = useI18n();
   // Bảng "đang chạm vào cái gì".
   //
   // Bản đầu nhồi NOOP vào cả chín callback, nên trang dựng được cảnh mà không
@@ -127,20 +131,20 @@ function WalkableScene({ id }: { id: DistrictRoomId }) {
       onPeerCount={NOOP}
       selfSpeech={null}
       entry={{ x: 0, z: room.bounds.maxZ - 2, ry: 0 }}
-      name="Xem thử"
+      name={t.careerDistrict.worldPreview.previewName}
       color="#38bdf8"
       avatarUrl={null}
       level={1}
-      lessonTitles={room.desks.map((_, i) => `Bài mẫu ${i + 1}`)}
+      lessonTitles={room.desks.map((_, i) => format(t.careerDistrict.worldPreview.sampleLesson, { n: i + 1 }))}
       walkRef={walkRef}
       onDeskChange={mark("desk")}
       onDoorChange={mark("door")}
       onPortalChange={mark("portal")}
-      onLiftChange={mark("thang máy")}
+      onLiftChange={mark(t.careerDistrict.worldPreview.elevator)}
       onStopChange={mark("stop")}
       onSeatChange={mark("seat")}
-      onStandChange={mark("bục")}
-      onWalkingChange={mark("đang đi")}
+      onStandChange={mark(t.careerDistrict.worldPreview.stand)}
+      onWalkingChange={mark(t.careerDistrict.worldPreview.walking)}
       playerRef={playerRef}
       onPeersChange={NOOP}
       doneSlugs={NO_SLUGS}
@@ -156,12 +160,13 @@ function WalkableScene({ id }: { id: DistrictRoomId }) {
 
 /** Bày ra những gì đang trong tầm với. Nằm ngoài Canvas nên là DOM thường. */
 function ReachOut({ near }: { near: Record<string, string> }) {
+  const { t } = useI18n();
   const on = Object.entries(near).filter(([, v]) => v);
   return (
     <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex flex-wrap gap-1 p-2">
       {on.length === 0 ? (
         <span className="rounded bg-stone-950/85 px-2 py-0.5 font-mono text-[10px] text-stone-500">
-          không có gì trong tầm với
+          {t.careerDistrict.worldPreview.nothingInReach}
         </span>
       ) : (
         on.map(([k, v]) => (
@@ -191,6 +196,7 @@ const FAKE_PROGRESS = Object.fromEntries(
 ) as Record<CareerCategory, { done: number; total: number }>;
 
 export default function WorldPreview() {
+  const { t } = useI18n();
   // Lấy id từ `room.id` chứ không từ Object.keys: DISTRICT_ROOMS khai báo là
   // Record<string, …> nên keys ra `string`, còn getRoom nhận DistrictRoomId.
   const ids = useMemo(
@@ -201,7 +207,7 @@ export default function WorldPreview() {
     []
   );
   const [id, setId] = useState<ViewId>("street");
-  const [line, setLine] = useState("đang dựng…");
+  const [line, setLine] = useState(t.careerDistrict.worldPreview.building);
   // Chế độ đi được: dựng DistrictScene thay cho DistrictShell. Mặc định TẮT vì
   // cảnh tĩnh rẻ hơn và là thứ cần cho việc soi hình học; bật lên khi cần kiểm
   // điều khiển.
@@ -231,7 +237,7 @@ export default function WorldPreview() {
             type="button"
             onClick={() => {
               setId(r);
-              latest.current = "đang dựng…";
+              latest.current = t.careerDistrict.worldPreview.building;
             }}
             className={`cursor-pointer rounded px-1.5 py-0.5 font-mono text-[10px] ${
               r === id ? "bg-cyan-400 text-stone-950" : "bg-stone-800/80 text-stone-200"
@@ -250,14 +256,14 @@ export default function WorldPreview() {
             walk ? "bg-emerald-400 text-stone-950" : "bg-stone-800 text-stone-300"
           }`}
         >
-          {walk ? "đang đi được" : "cảnh tĩnh"}
+          {walk ? t.careerDistrict.worldPreview.walkable : t.careerDistrict.worldPreview.staticScene}
         </button>
         {/* Ở chế độ đi được, Meter không được gắn (DistrictScene mang canvas
             của riêng nó), nên dòng số đo sẽ là số CŨ còn sót lại của cảnh
             tĩnh - đúng loại con số trông như đo được mà thật ra không. Nói
             thẳng ra thay vì để nó nằm đó. */}
         <p className="font-mono text-[11px] text-emerald-300">
-          {id} — {walk && !isCity ? "đang đi được · không đo ở chế độ này" : line}
+          {id} — {walk && !isCity ? t.careerDistrict.worldPreview.walkableNoMeter : line}
         </p>
       </div>
 
@@ -291,7 +297,7 @@ export default function WorldPreview() {
             room && (
               <DistrictShell
                 room={room}
-                lessonTitles={room.desks.map((_, i) => `Bài mẫu ${i + 1}`)}
+                lessonTitles={room.desks.map((_, i) => format(t.careerDistrict.worldPreview.sampleLesson, { n: i + 1 }))}
                 doneSlugs={NO_SLUGS}
                 dueSlugs={NO_SLUGS}
                 progressByCategory={FAKE_PROGRESS}

@@ -3,8 +3,8 @@
 import { useMemo } from "react";
 import * as THREE from "three";
 import { CIVIC_ROOMS, type DistrictRoom } from "./district-space";
-import { SCENARIOS } from "@/lib/cash-cycle";
-import { BONDS, RHO_CASES, STOCKS, mix } from "@/lib/portfolio-risk";
+import { inputsFor } from "@/lib/cash-cycle";
+import { BONDS, RHO_CASE_DEFS, STOCKS, mix } from "@/lib/portfolio-risk";
 import { bookshelfTexture, oakTexture } from "@/components/lobby/room-textures";
 
 /** Nội thất sáu căn nhà dân sự: cửa hàng, bảng vàng, phòng thi, căn hộ, bảo
@@ -463,7 +463,7 @@ function CashCycleInterior({ room }: { room: DistrictRoom }) {
   // số thật (0,36 + 55/75 = 1,093) - đúng loại lỗi "con số trong câu văn không
   // ai kiểm" mà cả nhánh này đang đi dọn. Suy ra thì hình không thể lệch khỏi
   // tài chính, và sửa DSO/DIO/DPO ở lib là căn phòng tự vẽ lại.
-  const { dso, dio, dpo } = SCENARIOS.find((s) => s.id === "ban-le")!.inputs;
+  const { dso, dio, dpo } = inputsFor("ban-le")!;
   // Cả vòng tròn = tổng ba vế, nên ba cung đi hết đúng một vòng và không đè
   // lên nhau. Thông điệp nằm ở độ dài so nhau: cung "được nợ" dài hơn cả hai
   // cung kia cộng lại, và đó chính là nghĩa hình học của vòng quay ÂM.
@@ -538,9 +538,9 @@ function PortfolioRiskInterior({ room }: { room: DistrictRoom }) {
 
   return (
     <>
-      {RHO_CASES.map((c, i) => {
+      {RHO_CASE_DEFS.map((c, i) => {
         const r = mix(STOCKS, BONDS, { w: 0.5, rho: c.rho });
-        const z = halfD - 3.5 - (i / (RHO_CASES.length - 1)) * runway;
+        const z = halfD - 3.5 - (i / (RHO_CASE_DEFS.length - 1)) * runway;
         const h = r.vol * H;
         const naiveH = r.naiveVol * H;
         const free = r.diversificationGain > 1e-9;
