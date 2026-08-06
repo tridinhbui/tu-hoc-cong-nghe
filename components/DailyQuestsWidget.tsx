@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { Sparkles, Trophy, Calendar, CheckCircle2, Gift, ChevronDown, ChevronUp, ArrowRight, BookOpen, Gamepad2, Award } from "lucide-react";
-import { getDailyQuests, claimQuestReward, type Quest } from "@/lib/supabase-quests";
+import { getDailyQuests, claimQuestReward, getWeeklyQuestXpBudget, type Quest } from "@/lib/supabase-quests";
 import { earnChest } from "@/lib/chests";
 import { createClient } from "@/lib/supabase";
 
@@ -73,6 +73,9 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
   const [loading, setLoading] = useState(true);
   const [claimingId, setClaimingId] = useState<string | null>(null);
   const [weeklyClaimed, setWeeklyClaimed] = useState(false);
+  // Ngân sách XP nhiệm vụ còn lại của tuần. Giao diện phải biết con số này,
+  // nếu không nó hứa mức thưởng danh nghĩa cho một người đã hết ngân sách.
+  const [weeklyXpRemaining, setWeeklyXpRemaining] = useState<number | null>(null);
   const [collapsed, setCollapsed] = useState(false);
 
   // Get Swedish ISO date string (YYYY-MM-DD) local to the user
@@ -96,6 +99,7 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
         const list = await getDailyQuests(userId, key);
         setQuests(list);
         onQuestsLoaded?.(list);
+        setWeeklyXpRemaining((await getWeeklyQuestXpBudget(userId)).remaining);
 
         // Load weekly chest claim status from the real DB record.
         const weeklyKey = getWeeklyDayKey();
@@ -132,6 +136,17 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
 
+  /** XP nhiệm vụ này thực sự sẽ cộng, sau khi kẹp theo ngân sách tuần - đúng
+   *  phép tính máy chủ làm ở app/api/quests/claim. `null` = chưa đọc xong ngân
+   *  sách, khi đó hiển thị mức danh nghĩa như cũ. */
+  const payoutOf = (quest: Quest) =>
+    weeklyXpRemaining === null ? quest.xpReward : Math.min(quest.xpReward, weeklyXpRemaining);
+
+  /** Phân biệt "nhiệm vụ này vốn không cộng XP" (daily_4, daily_game... đặt 0
+   *  trong lib/quest-rewards.ts) với "tuần này bạn đã tiêu hết ngân sách". Hai
+   *  thứ cùng ra 0 nhưng nói với người học hai điều khác hẳn nhau. */
+  const isCappedOut = (quest: Quest) => quest.xpReward > 0 && payoutOf(quest) === 0;
+
   const handleClaim = async (quest: Quest) => {
     if (quest.claimed || quest.current < quest.target || claimingId) return;
     setClaimingId(quest.id);
@@ -148,6 +163,9 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
         if (xpEarned > 0 && typeof window !== "undefined") {
           window.dispatchEvent(new CustomEvent("thtcdn:xp-gained", { detail: { xp: xpEarned, label: "Thưởng nhiệm vụ!" } }));
         }
+        // Trừ vào ngân sách đang giữ trong state, để các nhiệm vụ còn lại trên
+        // cùng màn hình cập nhật ngay thay vì đợi lần load sau.
+        setWeeklyXpRemaining((prev) => (prev === null ? prev : Math.max(0, prev - xpEarned)));
         if (xpEarned > 0) {
           toast.success(`Chúc mừng! Nhận thành công +${xpEarned} XP học thuật! 🌟`);
         } else {
@@ -334,12 +352,24 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
                     disabled={claimingId !== null}
                 className="button-premium w-full sm:w-auto justify-center px-3 py-1.5 text-[10.5px] font-black rounded-[16px] bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 text-white shadow-[0_3px_8px_-2px_rgba(245,158,11,0.45)] hover:scale-[1.02] active:scale-95 transition-all cursor-pointer flex items-center gap-1 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-amber-500/15"
                 >
-                  Nhận +{quest.xpReward} XP <Gift className="w-3.5 h-3.5" />
+                  {/* Số hiển thị phải là số SẼ nhận, không phải mức thưởng
+                      danh nghĩa: máy chủ kẹp nó theo ngân sách XP còn lại của
+                      tuần (WEEKLY_QUEST_XP_CAP). Hứa "+10 XP" rồi cộng 0 chính
+                      là lỗi người học báo lại. */}
+                  {payoutOf(quest) > 0 ? (
+                    <>Nhận +{payoutOf(quest)} XP <Gift className="w-3.5 h-3.5" /></>
+                  ) : (
+                    <>Nhận <Gift className="w-3.5 h-3.5" /></>
+                  )}
                 </button>
                 ) : (
                   <>
                     <span className="text-[10px] font-black text-stone-600 dark:text-stone-400 bg-stone-50 dark:bg-stone-950/40 px-2 py-1 rounded-lg border border-stone-200/50 dark:border-stone-800">
-                      +{quest.xpReward} XP
+                      {payoutOf(quest) > 0
+                        ? `+${payoutOf(quest)} XP`
+                        : isCappedOut(quest)
+                          ? "Hết XP tuần"
+                          : "Không cộng XP"}
                     </span>
                     <button
                       onClick={() => goToQuestAction(quest.id, router)}

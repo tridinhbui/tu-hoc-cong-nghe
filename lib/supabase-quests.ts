@@ -260,6 +260,42 @@ export async function claimQuestReward(
   return { claimed: true, xpEarned };
 }
 
+/**
+ * XP nhiệm vụ lặp lại đã tiêu trong tuần này, và phần ngân sách còn lại.
+ *
+ * Phải khớp từng bước với phép tính trong app/api/quests/claim/route.ts - đó
+ * mới là nơi quyết định thực sự cộng bao nhiêu. Hàm này chỉ để giao diện nói
+ * đúng con số sắp nhận được: trước đây nút bấm luôn hứa mức thưởng danh nghĩa
+ * (`quest.xpReward`), nên một người đã tiêu hết 120 XP của tuần vẫn thấy
+ * "Nhận +10 XP", bấm vào, và nhận 0. Đó chính là "làm nhiệm vụ hàng ngày ko có
+ * XP" mà người học báo lại. Lần sửa trước đã chỉnh cái toast sau khi bấm; lời
+ * hứa nằm ở cái nút thì vẫn còn nguyên.
+ *
+ * Nhiệm vụ một-lần (career_assessment) nằm ngoài ngân sách, đúng như phía máy chủ.
+ */
+export async function getWeeklyQuestXpBudget(
+  userId: string
+): Promise<{ spent: number; remaining: number }> {
+  const { getWeekStartKey, ONCE_ONLY_QUESTS, WEEKLY_QUEST_XP_CAP } = await import("./quest-rewards");
+  const supabase = createClient();
+  const { data, error } = await supabase
+    .from("user_quest_completions")
+    .select("xp_earned, quest_type")
+    .eq("user_id", userId)
+    .gte("day_key", getWeekStartKey());
+
+  // Đọc lỗi thì coi như còn nguyên ngân sách: hiển thị mức thưởng danh nghĩa
+  // là hành vi cũ, và nó chỉ sai khi người dùng đã sát trần - thà thế còn hơn
+  // báo "hết XP" cho người vẫn còn ngân sách vì một lần đọc hỏng.
+  if (error) return { spent: 0, remaining: WEEKLY_QUEST_XP_CAP };
+
+  const spent = (data ?? [])
+    .filter((row) => !ONCE_ONLY_QUESTS.has(row.quest_type as string))
+    .reduce((sum, row) => sum + (Number(row.xp_earned) || 0), 0);
+
+  return { spent, remaining: Math.max(0, WEEKLY_QUEST_XP_CAP - spent) };
+}
+
 // Calculates overall quest XP claimed by user
 export async function getTotalQuestXp(userId: string): Promise<number> {
   const { getQuestXpReward } = await import("./quest-rewards");
