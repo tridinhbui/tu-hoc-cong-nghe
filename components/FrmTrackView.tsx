@@ -6,6 +6,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronRight, ListChecks, CheckCircle2, Circle, PlayCircle } from "lucide-react";
 import type { LessonMeta } from "@/lib/lesson-types";
 import type { FrmSubject } from "@/lib/frm-track";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 interface Props {
   subjects: {
@@ -20,6 +22,7 @@ interface Props {
 // Subjects-only view of the FRM track - no book-library mode like CFA's,
 // since GARP's official FRM books aren't cross-referenced here (yet).
 export default function FrmTrackView({ subjects, completedLessonIds }: Props) {
+  const { t } = useI18n();
   const [openSubjects, setOpenSubjects] = useState<Set<string>>(new Set());
   const completedSet = new Set(completedLessonIds);
 
@@ -54,11 +57,11 @@ export default function FrmTrackView({ subjects, completedLessonIds }: Props) {
         >
           <div className="min-w-0 flex-1">
             <p className="text-base font-extrabold text-stone-900 dark:text-stone-100 leading-snug">{subject.name}</p>
-            <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">Tỷ trọng đề thi: {subject.weight}</p>
+            <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">{format(t.frmTrack.weightLabel, { weight: subject.weight })}</p>
           </div>
           {isEmpty ? (
             <span className="text-xs font-bold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/30 px-2.5 py-1 rounded-lg shrink-0">
-              Sẽ xây trong tương lai
+              {t.frmTrack.comingSoon}
             </span>
           ) : (
             <>
@@ -69,7 +72,7 @@ export default function FrmTrackView({ subjects, completedLessonIds }: Props) {
                     : "text-stone-800 dark:text-stone-200 bg-stone-100 dark:bg-stone-800"
                 }`}
               >
-                {isSubjectDone ? "✓ Hoàn thành" : `${completedCount}/${lessons.length} bài`}
+                {isSubjectDone ? t.frmTrack.subjectDone : format(t.frmTrack.subjectProgress, { done: completedCount, total: lessons.length })}
               </span>
               <ChevronRight className={`w-4 h-4 text-stone-400 shrink-0 transition-transform ${isOpen ? "rotate-90" : ""}`} />
             </>
@@ -84,7 +87,7 @@ export default function FrmTrackView({ subjects, completedLessonIds }: Props) {
               className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/30 hover:bg-emerald-100 dark:hover:bg-emerald-950/50 px-3 py-1.5 rounded-lg transition-colors"
             >
               <PlayCircle className="w-3.5 h-3.5" />
-              {completedCount === 0 ? "Bắt đầu môn này" : "Học tiếp"}
+              {completedCount === 0 ? t.frmTrack.startSubject : t.frmTrack.continueSubject}
             </Link>
           </div>
         )}
@@ -125,7 +128,7 @@ export default function FrmTrackView({ subjects, completedLessonIds }: Props) {
                           <span>{lesson.title}</span>
                           {isNext && (
                             <span className="text-[10px] font-black uppercase tracking-wider text-emerald-800 dark:text-emerald-300 bg-emerald-200/80 dark:bg-emerald-900 px-2 py-0.5 rounded-full shrink-0">
-                              👉 BÀI TIẾP THEO
+                              {t.frmTrack.nextLessonBadge}
                             </span>
                           )}
                         </span>
@@ -148,10 +151,10 @@ export default function FrmTrackView({ subjects, completedLessonIds }: Props) {
         <div className="min-w-0">
           <div className="flex flex-wrap items-center gap-1.5 mb-1.5">
             <span className="text-[9px] font-black uppercase tracking-wider bg-sky-50 dark:bg-sky-950/50 text-sky-700 dark:text-sky-300 px-2 py-0.5 rounded-md border border-sky-200/60 dark:border-sky-800/60">
-              🎯 TIẾN ĐỘ FRM
+              {t.frmTrack.progressBadge}
             </span>
             <span className="text-[9px] font-extrabold text-stone-500 dark:text-stone-400 bg-stone-100 dark:bg-stone-800 px-2 py-0.5 rounded-md">
-              {totalCompletedFrm}/{totalFrmLessons} ({overallPct}%)
+              {format(t.frmTrack.progressCount, { done: totalCompletedFrm, total: totalFrmLessons, pct: overallPct })}
             </span>
           </div>
           <div className="w-full h-1.5 bg-stone-100 dark:bg-stone-800 rounded-full overflow-hidden">
@@ -167,14 +170,14 @@ export default function FrmTrackView({ subjects, completedLessonIds }: Props) {
       <div className="space-y-5">
         <div>
           <h2 className="text-sm font-black uppercase tracking-wide text-stone-500 dark:text-stone-400 mb-2.5">
-            FRM Part I
+            {t.frmTrack.partIHeading}
           </h2>
           <div className="space-y-3">{partI.map(renderSubjectCard)}</div>
         </div>
 
         <div>
           <h2 className="text-sm font-black uppercase tracking-wide text-stone-500 dark:text-stone-400 mb-2.5">
-            FRM Part II
+            {t.frmTrack.partIIHeading}
           </h2>
           <div className="space-y-3">{partII.map(renderSubjectCard)}</div>
         </div>

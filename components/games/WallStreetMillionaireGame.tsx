@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Trophy, HelpCircle, Users, Sparkles, CheckCircle2, XCircle, DollarSign, ShieldAlert, ArrowLeft, RotateCcw, Award } from "lucide-react";
@@ -10,6 +10,9 @@ import { recalculateUserStats } from "@/lib/supabase-user";
 import { recordCustomGameSession } from "@/lib/games";
 import { createPortal } from "react-dom";
 import { useIsClient } from "@/lib/use-is-client";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
 export interface MillionaireQuestion {
   level: number;
@@ -23,237 +26,32 @@ export interface MillionaireQuestion {
   taiTaiHint: string;
 }
 
-// 15 Standard Wall Street Millionaire Questions matching finance knowledge progression
-const MILLIONAIRE_QUESTIONS: MillionaireQuestion[] = [
-  {
-    level: 1,
-    prize: 100,
-    prizeText: "$100",
-    question: "Tài sản (Assets) trong Kế toán được định nghĩa chính xác nhất là gì?",
-    options: [
-      "A. Những gì đem lại dòng tiền âm cho bạn",
-      "B. Nguồn lực kinh tế thuộc quyền kiểm soát của DN và tạo lợi ích tương lai",
-      "C. Tiền mặt duy nhất gửi ngân hàng",
-      "D. Tổng khoản nợ phải trả cho nhà cung cấp"
-    ],
-    correctIndex: 1,
-    explanation: "Tài sản là nguồn lực kinh tế mang lại giá trị hoặc dòng tiền dương trong tương lai cho doanh nghiệp.",
-    taiTaiHint: "Tài sản phải mang lại lợi ích tương lai cho doanh nghiệp! Chọn đáp án B nhé."
-  },
-  {
-    level: 2,
-    prize: 200,
-    prizeText: "$200",
-    question: "Chỉ số P/E (Price-to-Earnings Ratio) thể hiện điều gì?",
-    options: [
-      "A. Số năm để hòa vốn nếu lợi nhuận doanh nghiệp giữ nguyên",
-      "B. Tỷ lệ nợ trên vốn chủ sở hữu",
-      "C. Tổng doanh thu bán hàng của doanh nghiệp",
-      "D. Tỷ lệ tăng trưởng doanh số hàng năm"
-    ],
-    correctIndex: 0,
-    explanation: "P/E cho biết nhà đầu tư sẵn sàng trả bao nhiêu tiền cho $1 lợi nhuận của doanh nghiệp.",
-    taiTaiHint: "P/E là tỷ lệ Giá / Lợi nhuận mỗi cổ phiếu. Đáp án A là câu trả lời chuẩn nhất."
-  },
-  {
-    level: 3,
-    prize: 300,
-    prizeText: "$300",
-    question: "Sức mạnh của 'Lãi suất kép' (Compound Interest) được Albert Einstein mệnh danh là gì?",
-    options: [
-      "A. Rủi ro lớn nhất thị trường",
-      "B. Kỳ quan thứ 8 của thế giới",
-      "C. Bẫy nợ tài chính",
-      "D. Công cụ trốn thuế"
-    ],
-    correctIndex: 1,
-    explanation: "Lãi kép tái đầu tư lợi nhuận để tạo ra lợi nhuận mới, giúp tài sản tăng trưởng theo cấp số nhân.",
-    taiTaiHint: "Einstein từng gọi Lãi kép là kỳ quan thứ 8! Chọn B chắc chắn đúng."
-  },
-  {
-    level: 4,
-    prize: 500,
-    prizeText: "$500",
-    question: "Phương pháp định giá DCF (Discounted Cash Flow) dựa trên nguyên lý cốt lõi nào?",
-    options: [
-      "A. So sánh P/E với các đối thủ trong ngành",
-      "B. Đếm số lượng máy móc hiện có của công ty",
-      "C. Chiết khấu toàn bộ dòng tiền tự do tương lai về giá trị hiện tại (PV)",
-      "D. Tính theo mệnh giá cổ phiếu phát hành ban đầu"
-    ],
-    correctIndex: 2,
-    explanation: "DCF xác định giá trị nội tại của doanh nghiệp bằng tổng dòng tiền tương lai được chiết khấu về hiện tại.",
-    taiTaiHint: "DCF = Discounted Cash Flow -> Chiết khấu dòng tiền về hiện tại! Chọn C nhé."
-  },
-  {
-    level: 5,
-    prize: 1000,
-    prizeText: "$1,000 (Mốc An Toàn 1)",
-    isMilestone: true,
-    question: "Báo cáo Lưu chuyển tiền tệ (Cash Flow Statement) chia dòng tiền thành mấy hoạt động?",
-    options: [
-      "A. 2 hoạt động: Thu và Chi",
-      "B. 3 hoạt động: Kinh doanh, Đầu tư và Tài chính",
-      "C. 4 hoạt động: Ngắn hạn, Dài hạn, Thuế, Cổ tức",
-      "D. 5 hoạt động theo chuẩn mực IFRS"
-    ],
-    correctIndex: 1,
-    explanation: "Báo cáo LCTT phân loại dòng tiền gồm Operating (Kinh doanh), Investing (Đầu tư), và Financing (Tài chính).",
-    taiTaiHint: "CFO + CFI + CFF = 3 hoạt động cốt lõi! Chọn B để giữ mốc an toàn 1 nhé."
-  },
-  {
-    level: 6,
-    prize: 2000,
-    prizeText: "$2,000",
-    question: "Mô hình DuPont phân tích chỉ số ROE thành 3 thành tố nào?",
-    options: [
-      "A. Lợi nhuận ròng, Nợ ngắn hạn, Giá cổ phiếu",
-      "B. Biên lợi nhuận ròng, Vòng quay tài sản, Đòn bẩy tài chính (Asset Turnover & Equity Multiplier)",
-      "C. Doanh thu, Chi phí bán hàng, Thuế TNDN",
-      "D. P/E, P/B, EV/EBITDA"
-    ],
-    correctIndex: 1,
-    explanation: "DuPont ROE = (Net Income/Sales) × (Sales/Assets) × (Assets/Equity).",
-    taiTaiHint: "Biên lợi nhuận x Hiệu quả tài sản x Đòn bẩy tài chính. Đáp án B chuẩn xác."
-  },
-  {
-    level: 7,
-    prize: 4000,
-    prizeText: "$4,000",
-    question: "Khi Ngân hàng Trung ương (FED/SBV) nâng lãi suất điều hành (Hawkish), điều gì thường xảy ra?",
-    options: [
-      "A. Chi phí vốn tăng, định giá cổ phiếu tăng trưởng chịu áp lực chiết khấu giảm",
-      "B. Thị trường chứng khoán tăng vọt ngay lập tức",
-      "C. Dòng tiền gửi tiết kiệm rút ra ồ ạt",
-      "D. Giá trái phiếu doanh nghiệp tăng mạnh"
-    ],
-    correctIndex: 0,
-    explanation: "Lãi suất tăng làm tăng tỷ lệ chiết khấu (WACC), làm giảm giá trị hiện tại của dòng tiền tương lai.",
-    taiTaiHint: "Lãi suất tăng -> Chi phí vốn tăng -> Định giá chịu áp lực giảm! Chọn A."
-  },
-  {
-    level: 8,
-    prize: 8000,
-    prizeText: "$8,000",
-    question: "Trong giao dịch M&A, thuật ngữ 'Accretion / Dilution Analysis' dùng để kiểm tra điều gì?",
-    options: [
-      "A. Tổng số lượng nhân viên sau khi sáp nhập",
-      "B. Thương vụ có làm EPS (Thu nhập trên mỗi cổ phiếu) của công ty mua TĂNG hay GIẢM",
-      "C. Tỷ lệ lạm phát của quốc gia công ty mục tiêu",
-      "D. Chi phí quảng cáo thương hiệu mới"
-    ],
-    correctIndex: 1,
-    explanation: "Accretive là thương vụ giúp tăng EPS của buyer; Dilutive là thương vụ làm giảm EPS của buyer.",
-    taiTaiHint: "Accretive = Tăng EPS, Dilutive = Giảm EPS! Chọn đáp án B nhé."
-  },
-  {
-    level: 9,
-    prize: 16000,
-    prizeText: "$16,000",
-    question: "Hiệu ứng 'Mean Reversion' trong phân tích kỹ thuật chứng khoán là gì?",
-    options: [
-      "A. Giá cổ phiếu luôn tăng trưởng theo hàm mũ",
-      "B. Giá cổ phiếu có xu hướng quay trở lại mức trung bình lịch sử sau khi lệch khỏi nó",
-      "C. Mỗi lần bán ra thì giá sẽ lên",
-      "D. Rủi ro hệ thống luôn bằng 1.0"
-    ],
-    correctIndex: 1,
-    explanation: "Mean Reversion là nguyên lý cho rằng sau khi biến động mạnh, giá cổ phiếu sẽ trở lại mức trung bình (average price) của nó.",
-    taiTaiHint: "Mean Reversion = Giá quay về mức trung bình. Chọn B để hiểu rõ chiến lược reversion trading!"
-  },
-  {
-    level: 10,
-    prize: 32000,
-    prizeText: "$32,000 (Mốc An Toàn 2)",
-    isMilestone: true,
-    question: "Thương vụ LBO (Leveraged Buyout) đặc trưng bởi điều gì?",
-    options: [
-      "A. Mua lại công ty bằng 100% tiền mặt tự có",
-      "B. Sử dụng tỷ lệ nợ vay cao (70-90%) gán vào tài sản công ty mục tiêu để mua lại",
-      "C. Phát hành thêm cổ phiếu ưu đãi cho chính phủ",
-      "D. Đổi tên công ty mục tiêu thành quỹ từ thiện"
-    ],
-    correctIndex: 1,
-    explanation: "LBO sử dụng phần lớn đòn bẩy nợ để thâu tóm công ty và dùng dòng tiền của công ty đó để trả nợ.",
-    taiTaiHint: "LBO = Leveraged (Đòn bẩy nợ cao)! Bạn chọn B để chốt mốc $32,000 nhé."
-  },
-  {
-    level: 11,
-    prize: 64000,
-    prizeText: "$64,000",
-    question: "Khái niệm 'Free Cash Flow to Firm' (FCFF) khác với 'Free Cash Flow to Equity' (FCFE) ở điểm nào cốt lõi?",
-    options: [
-      "A. FCFF không trừ chi phí lãi vay, FCFE có trừ và chia cho cổ đông",
-      "B. Chúng hoàn toàn giống nhau, chỉ là tên gọi khác",
-      "C. FCFF chỉ cho nhà đầu tư cổ phiếu, FCFE cho tất cả người nắm giữ chứng chỉ",
-      "D. FCFE được tính bằng doanh thu chia cho chi phí, FCFF tính bằng nợ chia vốn"
-    ],
-    correctIndex: 0,
-    explanation: "FCFF = lưu chuyển tiền cho cả công ty (trước lãi vay), FCFE = sau khi trả lãi vay, còn lại cho cổ đông. DCF định giá dùng cả hai tùy mục tiêu.",
-    taiTaiHint: "FCFF cho tất cả stakeholders (trước nợ), FCFE chỉ cho cổ đông (sau nợ)! Chọn A."
-  },
-  {
-    level: 12,
-    prize: 125000,
-    prizeText: "$125,000",
-    question: "Khái niệm Beta (β) = 1.5 của một cổ phiếu có nghĩa là gì?",
-    options: [
-      "A. Cổ phiếu có cổ tức cao hơn thị trường 50%",
-      "B. Khi VN-Index tăng/giảm 1%, cổ phiếu này biến động cùng chiều trung bình 1.5%",
-      "C. Công ty có đòn bẩy nợ gấp 1.5 lần vốn chủ",
-      "D. Cổ phiếu bị định giá cao hơn 50%"
-    ],
-    correctIndex: 1,
-    explanation: "Beta đo lường độ nhạy rủi ro hệ thống của cổ phiếu so với biến động chung của toàn thị trường.",
-    taiTaiHint: "Beta = 1.5 tức là nhạy hơn thị trường 50%! Chọn B."
-  },
-  {
-    level: 13,
-    prize: 250000,
-    prizeText: "$250,000",
-    question: "Hiệu ứng 'Survivorship Bias' trong phân tích quỹ đầu tư có ý nghĩa gì đối với nhà đầu tư?",
-    options: [
-      "A. Quỹ chỉ được gọi là 'sống sót' nếu có lợi nhuận dương",
-      "B. Dữ liệu lịch sử quỹ bị thiên vị vì các quỹ thất bại đã đóng cửa không được thống kê, làm lợi nhuận trung bình có vẻ tốt hơn thực tế",
-      "C. Quỹ càng cũ thì kết quả lịch sử càng đáng tin cậy",
-      "D. Các quỹ lớn nhất luôn có hiệu suất tốt nhất"
-    ],
-    correctIndex: 1,
-    explanation: "Survivorship Bias là vấn đề quan trọng: các quỹ thất bại bị loại khỏi cơ sở dữ liệu lịch sử, làm cho lợi nhuận trung bình ngành có vẻ cao hơn thực tế.",
-    taiTaiHint: "Chỉ những quỹ 'sống sót' được ghi lại, những quỹ thất bại biến mất = Survivorship Bias. Chọn B!"
-  },
-  {
-    level: 14,
-    prize: 500000,
-    prizeText: "$500,000",
-    question: "Một công ty báo EBITDA tăng 20% nhưng Cash Flow từ Hoạt động Kinh doanh (CFO) lại ÂM nặng. Nguyên nhân nguy hiểm nhất là gì?",
-    options: [
-      "A. Doanh nghiệp chi quá nhiều tiền trả nợ gốc ngân hàng",
-      "B. Doanh thu ghi nhận ảo/dồn vào Các khoản phải thu (Receivables) mà chưa thu được tiền mặt",
-      "C. Doanh nghiệp mua thêm đất đai làm trụ sở",
-      "D. Doanh nghiệp chi trả cổ tức bằng tiền mặt quá cao"
-    ],
-    correctIndex: 1,
-    explanation: "EBITDA bỏ qua lưu chuyển tiền thực. Khoản phải thu phình to làm CFO âm là dấu hiệu cảnh báo chất lượng lợi nhuận kém.",
-    taiTaiHint: "EBITDA ảo do Khoản phải thu tăng vọt mà tiền chưa về! Chọn đáp án B."
-  },
-  {
-    level: 15,
-    prize: 1000000,
-    prizeText: "$1,000,000 🏆 (TRIỆU PHÚ PHỐ WALL)",
-    isMilestone: true,
-    question: "Trong sự kiện Khủng hoảng Tài chính 2008, công cụ tài chính phái sinh nào đã khiến AIG cận kề phá sản và phải được Chính phủ Mỹ giải cứu $180 tỷ?",
-    options: [
-      "A. Hợp đồng Tương lai Chỉ số S&P500",
-      "B. Hợp đồng Hoán đổi Rủi ro Tín dụng (Credit Default Swaps - CDS) bảo hiểm cho CDO nợ dưới chuẩn",
-      "C. Quyền chọn Mua cổ phiếu Lehman Brothers",
-      "D. Chứng chỉ quỹ ETF Vàng SPDR Gold Trust"
-    ],
-    correctIndex: 1,
-    explanation: "AIG đã bán hàng trăm tỷ USD hợp đồng CDS bảo hiểm cho CDO nợ dưới chuẩn mà không có đủ vốn dự phòng khi nợ xấu bùng nổ.",
-    taiTaiHint: "CDS (Credit Default Swaps) là ngòi nổ kích nổ AIG năm 2008! Bạn sắp trở thành Triệu phú Phố Wall, chọn B ngay!"
-  }
-];
+const CORRECT_INDICES = [1, 0, 1, 2, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1];
+const PRIZES = [100, 200, 300, 500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 125000, 250000, 500000, 1000000];
+const MILESTONE_LEVELS = new Set([5, 10, 15]);
+
+// 15 Standard Wall Street Millionaire Questions matching finance knowledge progression.
+// Text content lives in the dictionary (t.games.millionaire); only ids/level/prize/
+// correctIndex/isMilestone are data here so a correct answer can never move via translation.
+function buildMillionaireQuestions(t: Dictionary): MillionaireQuestion[] {
+  const m = t.games.millionaire;
+  return CORRECT_INDICES.map((correctIndex, i) => {
+    const level = i + 1;
+    const key = String(level) as keyof typeof m.questions;
+    const q = m.questions[key];
+    return {
+      level,
+      prize: PRIZES[i],
+      prizeText: m.prizeTexts[key],
+      isMilestone: MILESTONE_LEVELS.has(level),
+      question: q.question,
+      options: q.options as [string, string, string, string],
+      correctIndex,
+      explanation: q.explanation,
+      taiTaiHint: q.taiTaiHint,
+    };
+  });
+}
 
 interface WallStreetMillionaireGameProps {
   userId: string;
@@ -261,6 +59,9 @@ interface WallStreetMillionaireGameProps {
 }
 
 export default function WallStreetMillionaireGame({ userId, onClose }: WallStreetMillionaireGameProps) {
+  const { t } = useI18n();
+  const m = t.games.millionaire;
+  const MILLIONAIRE_QUESTIONS = useMemo(() => buildMillionaireQuestions(t), [t]);
   const mounted = useIsClient();
   const [currentLevel, setCurrentLevel] = useState(0); // 0 to 14
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
@@ -296,7 +97,7 @@ export default function WallStreetMillionaireGame({ userId, onClose }: WallStree
     const shuffled = wrongIndices.sort(() => Math.random() - 0.5);
     const eliminated = [shuffled[0], shuffled[1]];
     setEliminatedIndices(eliminated);
-    toast.success("Đã loại bỏ 2 phương án sai!", { icon: "🪄" });
+    toast.success(m.toastFiftyFifty, { icon: "🪄" });
   };
 
   // Helper: Use Mascot Tài Tài
@@ -393,7 +194,7 @@ export default function WallStreetMillionaireGame({ userId, onClose }: WallStree
     setEarnedCash(currentBank);
     setGameState("banked");
     soundManager.playWin();
-    toast.success(`Bạn đã quyết định dừng cuộc chơi và mang về ${MILLIONAIRE_QUESTIONS[currentLevel - 1]?.prizeText || "$0"}!`, { icon: "💰" });
+    toast.success(format(m.toastWalkAway, { prize: MILLIONAIRE_QUESTIONS[currentLevel - 1]?.prizeText || "$0" }), { icon: "💰" });
     if (userId) {
       const xpEarned = Math.round((currentLevel / 15) * 50);
       recordCustomGameSession(userId, "wall-street-millionaire", currentLevel, 15, xpEarned);
@@ -414,12 +215,12 @@ export default function WallStreetMillionaireGame({ userId, onClose }: WallStree
             </div>
             <div>
               <h2 className="text-base sm:text-lg font-black tracking-tight text-amber-300 flex items-center gap-2">
-                Ai Là Triệu Phú Phố Wall
+                {m.title}
                 <span className="text-xs px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-400/40 font-bold">
-                  Câu {currentLevel + 1}/15
+                  {format(m.questionCounter, { current: currentLevel + 1 })}
                 </span>
               </h2>
-              <p className="text-xs text-stone-400">Chinh phục $1,000,000 vốn đầu tư danh giá</p>
+              <p className="text-xs text-stone-400">{m.subtitle}</p>
             </div>
           </div>
 
@@ -431,7 +232,7 @@ export default function WallStreetMillionaireGame({ userId, onClose }: WallStree
                 className="px-3 py-1.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-extrabold text-xs shadow-md transition-all flex items-center gap-1.5 cursor-pointer"
               >
                 <DollarSign className="w-4 h-4" />
-                <span>Dừng cuộc chơi ({MILLIONAIRE_QUESTIONS[currentLevel - 1].prizeText})</span>
+                <span>{format(m.walkAwayButton, { prize: MILLIONAIRE_QUESTIONS[currentLevel - 1].prizeText })}</span>
               </button>
             )}
             <button
@@ -469,23 +270,23 @@ export default function WallStreetMillionaireGame({ userId, onClose }: WallStree
             <div>
               <h3 className="text-2xl font-black text-amber-300">
                 {gameState === "won"
-                  ? "BẠN LÀ TRIỆU PHÚ PHỐ WALL! 🏆"
+                  ? m.wonTitle
                   : gameState === "banked"
-                  ? "BẠN ĐÃ DỪNG CUỘC CHƠI AN TOÀN!"
-                  : "RẤT TIẾC, BẠN ĐÃ CHỌN SAI!"}
+                  ? m.bankedTitle
+                  : m.lostTitle}
               </h3>
               <p className="text-sm text-stone-300 mt-1 max-w-md">
                 {gameState === "won"
-                  ? "Bạn đã xuất sắc vượt qua cả 15 câu hỏi tài chính khắc nghiệt nhất để chạm tay vào mốc $1,000,000!"
+                  ? m.wonDesc
                   : gameState === "banked"
-                  ? "Quyết định quản trị rủi ro sáng suốt! Bạn bảo toàn phần thưởng của mình."
-                  : `Đáp án đúng là "${q.options[q.correctIndex]}".`}
+                  ? m.bankedDesc
+                  : format(m.lostDesc, { answer: q.options[q.correctIndex] })}
               </p>
             </div>
 
             <div className="rounded-2xl bg-amber-950/40 border border-amber-500/30 px-6 py-4 text-center">
-              <span className="text-xs uppercase font-extrabold text-amber-400">Phần thưởng tiền thưởng mang về</span>
-              <div className="text-3xl font-black text-amber-300 mt-1">${earnedCash.toLocaleString()} USD</div>
+              <span className="text-xs uppercase font-extrabold text-amber-400">{m.earnedLabel}</span>
+              <div className="text-3xl font-black text-amber-300 mt-1">{format(m.earnedAmount, { amount: earnedCash.toLocaleString() })}</div>
             </div>
 
             <div className="flex gap-3 pt-2">
@@ -503,14 +304,14 @@ export default function WallStreetMillionaireGame({ userId, onClose }: WallStree
                 className="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-stone-950 font-black text-sm transition-all shadow-lg flex items-center gap-2 cursor-pointer"
               >
                 <RotateCcw className="w-4 h-4" />
-                <span>Thử thách lại</span>
+                <span>{m.retryButton}</span>
               </button>
               <button
                 type="button"
                 onClick={onClose}
                 className="px-5 py-2.5 rounded-xl bg-stone-800 hover:bg-stone-700 text-white font-bold text-sm transition-all cursor-pointer"
               >
-                Đóng
+                {m.closeButton}
               </button>
             </div>
           </motion.div>
@@ -520,7 +321,7 @@ export default function WallStreetMillionaireGame({ userId, onClose }: WallStree
             <div className="lg:col-span-8 space-y-4">
               {/* Lifeline Buttons */}
               <div className="flex items-center justify-between gap-2 bg-stone-900/80 border border-amber-500/20 p-2.5 rounded-2xl">
-                <span className="text-xs font-bold text-amber-300 hidden sm:inline">Quyền trợ giúp:</span>
+                <span className="text-xs font-bold text-amber-300 hidden sm:inline">{m.lifelinesLabel}</span>
 
                 <div className="flex items-center gap-2 w-full sm:w-auto justify-around">
                   {/* 50:50 */}
@@ -534,7 +335,7 @@ export default function WallStreetMillionaireGame({ userId, onClose }: WallStree
                         : "bg-indigo-950/80 border-indigo-500/50 text-indigo-300 hover:bg-indigo-900 hover:scale-105 shadow-md"
                     }`}
                   >
-                    <span>🪄 50:50</span>
+                    <span>{m.fiftyFifty}</span>
                   </button>
 
                   {/* Ask Mascot Tài Tài */}
@@ -548,7 +349,7 @@ export default function WallStreetMillionaireGame({ userId, onClose }: WallStree
                         : "bg-amber-950/80 border-amber-500/50 text-amber-300 hover:bg-amber-900 hover:scale-105 shadow-md"
                     }`}
                   >
-                    <span>🤖 Hỏi Tài Tài</span>
+                    <span>{m.askTaiTai}</span>
                   </button>
 
                   {/* Audience Poll */}
@@ -562,7 +363,7 @@ export default function WallStreetMillionaireGame({ userId, onClose }: WallStree
                         : "bg-emerald-950/80 border-emerald-500/50 text-emerald-300 hover:bg-emerald-900 hover:scale-105 shadow-md"
                     }`}
                   >
-                    <span>📊 Khảo sát BXH</span>
+                    <span>{m.audiencePollButton}</span>
                   </button>
                 </div>
               </div>
@@ -570,7 +371,7 @@ export default function WallStreetMillionaireGame({ userId, onClose }: WallStree
               {/* Question Card Box */}
               <div className="relative bg-gradient-to-r from-slate-900 via-stone-900 to-slate-900 border-2 border-amber-500/50 rounded-2xl p-5 sm:p-6 shadow-xl text-center">
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-amber-500 text-stone-950 text-[10px] font-black uppercase tracking-wider shadow">
-                  Mức {q.prizeText}
+                  {format(m.prizeLevelBadge, { prize: q.prizeText })}
                 </div>
                 <h3 className="text-base sm:text-lg font-black text-amber-100 leading-relaxed mt-2">
                   {q.question}
@@ -618,7 +419,7 @@ export default function WallStreetMillionaireGame({ userId, onClose }: WallStree
             {/* Right Column: Prize Ladder (4 Cols) */}
             <div className="lg:col-span-4 bg-stone-900/90 border border-amber-500/30 rounded-2xl p-3 sm:p-4 space-y-1">
               <h4 className="text-xs font-black uppercase text-amber-400 tracking-wider mb-2 flex items-center justify-between border-b border-amber-500/20 pb-2">
-                <span>Thang tiền thưởng</span>
+                <span>{m.prizeLadderTitle}</span>
                 <Trophy className="w-4 h-4 text-amber-400" />
               </h4>
 
@@ -663,7 +464,7 @@ export default function WallStreetMillionaireGame({ userId, onClose }: WallStree
               <div className="w-16 h-16 rounded-full bg-amber-500/20 border-2 border-amber-400 mx-auto flex items-center justify-center text-3xl shadow-lg">
                 🤖
               </div>
-              <h3 className="text-lg font-black text-amber-300">Linh vật Tài Tài tư vấn:</h3>
+              <h3 className="text-lg font-black text-amber-300">{m.taiTaiModalTitle}</h3>
               <p className="text-sm text-stone-200 italic bg-amber-950/40 border border-amber-500/30 p-4 rounded-2xl">
                 "{q.taiTaiHint}"
               </p>
@@ -672,7 +473,7 @@ export default function WallStreetMillionaireGame({ userId, onClose }: WallStree
                 onClick={() => setShowTaiTaiModal(false)}
                 className="w-full py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-stone-950 font-black text-xs cursor-pointer shadow-md"
               >
-                Cảm ơn Tài Tài!
+                {m.taiTaiThanks}
               </button>
             </motion.div>
           </div>
@@ -689,13 +490,13 @@ export default function WallStreetMillionaireGame({ userId, onClose }: WallStree
               <div className="w-16 h-16 rounded-full bg-emerald-500/20 border-2 border-emerald-400 mx-auto flex items-center justify-center text-3xl shadow-lg">
                 📊
               </div>
-              <h3 className="text-lg font-black text-emerald-300">Ý kiến 1,000 Chuyên viên Phố Wall:</h3>
+              <h3 className="text-lg font-black text-emerald-300">{m.audienceModalTitle}</h3>
 
               <div className="space-y-2 text-left">
                 {["A", "B", "C", "D"].map((letter, idx) => (
                   <div key={letter} className="space-y-1">
                     <div className="flex justify-between text-xs font-bold text-stone-300">
-                      <span>Phương án {letter}</span>
+                      <span>{format(m.audienceOptionLabel, { letter })}</span>
                       <span className="text-emerald-400 font-extrabold">{audiencePoll[idx]}%</span>
                     </div>
                     <div className="w-full bg-stone-800 h-3 rounded-full overflow-hidden border border-stone-700">
@@ -713,7 +514,7 @@ export default function WallStreetMillionaireGame({ userId, onClose }: WallStree
                 onClick={() => setShowAudienceModal(false)}
                 className="w-full py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-stone-950 font-black text-xs cursor-pointer shadow-md"
               >
-                Đã hiểu!
+                {m.audienceGotIt}
               </button>
             </motion.div>
           </div>

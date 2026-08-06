@@ -6,6 +6,8 @@ import { motion } from "framer-motion";
 import { toast } from "sonner";
 import { getBucketConfig, getDifficultyTimeLimitSeconds, recordGameSession, type GameType, type GameDifficulty } from "@/lib/games";
 import { soundManager } from "@/lib/sounds";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 interface BucketGameProps {
   userId: string;
@@ -26,6 +28,8 @@ interface RoundItem {
 // getBucketConfig(gameType) - one component powers financial-statement-match,
 // ratio-category, and any future bucket game without code changes.
 export default function BucketGame({ userId, gameType, difficulty = "trung-binh", onFinished }: BucketGameProps) {
+  const { t } = useI18n();
+  const bg = t.games.bucketGame;
   const config = useMemo(() => getBucketConfig(gameType, difficulty), [gameType, difficulty]);
   const timeLimit = getDifficultyTimeLimitSeconds(difficulty);
 
@@ -108,10 +112,10 @@ export default function BucketGame({ userId, gameType, difficulty = "trung-binh"
     setFreezeUsed(true);
     setFreezeActive(true);
     soundManager.playFreeze();
-    toast.success("❄️ Đã đóng băng thời gian trong 5 giây!");
+    toast.success(bg.toastFreezeOn);
     window.setTimeout(() => {
       setFreezeActive(false);
-      toast.info("⏱️ Đồng hồ hoạt động trở lại!");
+      toast.info(bg.toastFreezeOff);
     }, 5000);
   };
 
@@ -132,7 +136,7 @@ export default function BucketGame({ userId, gameType, difficulty = "trung-binh"
     
     setItems(nextItems);
     soundManager.playPowerup();
-    toast.success(`⚡ 50/50: Đã tự động phân loại hộ ${itemsToPlace.length} khái niệm!`);
+    toast.success(format(bg.toastHelper, { count: itemsToPlace.length }));
     
     if (nextItems.every((it) => it.placed)) {
       void handleFinish(nextItems);
@@ -161,8 +165,8 @@ export default function BucketGame({ userId, gameType, difficulty = "trung-binh"
     } else {
       setCombo(0); // Reset combo
       soundManager.playWrong();
-      const targetBucketLabel = config.buckets.find((b) => b.id === item.bucket)?.label || "nhóm đúng";
-      toast.error(`💡 Khoản mục "${item.term}" thuộc về: ${targetBucketLabel}!`);
+      const targetBucketLabel = config.buckets.find((b) => b.id === item.bucket)?.label || bg.correctBucketFallback;
+      toast.error(format(bg.toastWrongBucket, { term: item.term, target: targetBucketLabel }));
       setItems((prev) => prev.map((it) => (it.id === itemId && it.scored === null ? { ...it, scored: false } : it)));
       setSelectedId(null);
       setWrongFlashId(itemId);
@@ -200,14 +204,14 @@ export default function BucketGame({ userId, gameType, difficulty = "trung-binh"
       <div className="flex flex-wrap items-center justify-between gap-3 mb-5 relative z-10 pb-4 border-b border-stone-200/50">
         <div className="min-w-0">
           <p className="text-xs sm:text-sm font-black text-stone-800 flex items-center gap-2">
-            <span>Đã xếp đúng {placedCount}/{total}</span>
+            <span>{format(bg.placedCount, { placed: placedCount, total })}</span>
             {combo >= 2 && (
-              <motion.span 
-                initial={{ scale: 0.8 }} 
-                animate={{ scale: [1, 1.15, 1] }} 
+              <motion.span
+                initial={{ scale: 0.8 }}
+                animate={{ scale: [1, 1.15, 1] }}
                 className="inline-block text-[10px] font-extrabold text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full shadow-sm animate-pulse border border-amber-200/40"
               >
-                🔥 Combo x{combo}
+                {format(bg.comboLabel, { combo })}
               </motion.span>
             )}
           </p>
@@ -229,7 +233,7 @@ export default function BucketGame({ userId, gameType, difficulty = "trung-binh"
                     ? "opacity-40 bg-stone-100 border-stone-200 text-stone-400 cursor-not-allowed"
                     : "bg-sky-50 border-sky-200 text-sky-600 hover:bg-sky-100/50"
               }`}
-              title="Đóng băng thời gian (5 giây)"
+              title={bg.freezeTitle}
             >
               ❄️
             </button>
@@ -245,7 +249,7 @@ export default function BucketGame({ userId, gameType, difficulty = "trung-binh"
                   ? "opacity-40 bg-stone-100 border-stone-200 text-stone-400 cursor-not-allowed"
                   : "bg-indigo-50 border-indigo-200 text-indigo-600 hover:bg-indigo-100/50"
               }`}
-              title="Quyền trợ giúp 50/50 (Tự xếp 2 mục)"
+              title={bg.helperTitle}
             >
               ⚡
             </button>
@@ -297,7 +301,7 @@ export default function BucketGame({ userId, gameType, difficulty = "trung-binh"
           <button
             onClick={resetRound}
             className="w-9 h-9 rounded-xl border border-stone-200 flex items-center justify-center hover:bg-stone-50 text-stone-500 transition-colors cursor-pointer"
-            title="Chơi lại"
+            title={bg.restartTitle}
           >
             <RotateCcw className="w-4 h-4" />
           </button>
@@ -307,9 +311,9 @@ export default function BucketGame({ userId, gameType, difficulty = "trung-binh"
       {finished ? (
         <div className="text-center py-10 relative z-10 flex flex-col items-center">
           <span className="text-4xl mb-3 animate-bounce">🏆</span>
-          <p className="text-lg font-extrabold text-stone-900">Hoàn thành ván chơi!</p>
+          <p className="text-lg font-extrabold text-stone-900">{bg.finishedRound}</p>
           <p className="text-xs sm:text-sm text-stone-500 mt-1 max-w-xs">
-            Chúc mừng bạn đã hoàn thành phân loại! Hãy bấm &quot;Chơi lại&quot; ở trên để nâng cao kỷ lục và tích lũy thêm XP.
+            {bg.finishedDesc}
           </p>
         </div>
       ) : (
@@ -340,7 +344,7 @@ export default function BucketGame({ userId, gameType, difficulty = "trung-binh"
                   </div>
                 );
               })}
-              {sourceItems.length === 0 && <p className="text-sm text-stone-400 italic">Đang xử lý...</p>}
+              {sourceItems.length === 0 && <p className="text-sm text-stone-400 italic">{bg.processing}</p>}
             </div>
           </div>
 
@@ -369,7 +373,7 @@ export default function BucketGame({ userId, gameType, difficulty = "trung-binh"
                     </p>
                     {selectedId !== null && (
                       <span className="text-[10px] font-black text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200 animate-pulse">
-                        + Chạm để thả
+                        {bg.tapToDrop}
                       </span>
                     )}
                   </div>
@@ -389,7 +393,7 @@ export default function BucketGame({ userId, gameType, difficulty = "trung-binh"
                       }}
                       className="mt-3 w-full py-2 px-3 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-extrabold shadow-sm active:scale-95 transition-all cursor-pointer flex items-center justify-center gap-1.5"
                     >
-                      <span>+ Thả khoản mục vào đây</span>
+                      <span>{bg.dropHere}</span>
                     </button>
                   )}
                 </div>
@@ -397,7 +401,7 @@ export default function BucketGame({ userId, gameType, difficulty = "trung-binh"
             })}
           </div>
 
-          {submitting && <p className="text-center text-xs text-stone-400 mt-4 animate-pulse">Đang lưu kết quả...</p>}
+          {submitting && <p className="text-center text-xs text-stone-400 mt-4 animate-pulse">{bg.savingResult}</p>}
         </>
       )}
     </div>

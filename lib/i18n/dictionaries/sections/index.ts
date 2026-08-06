@@ -10,19 +10,25 @@
 // Each section file exports `<name>Vi` and `<name>En: typeof <name>Vi`.
 
 import { adminOneVi, adminOneEn } from "./admin-one";
+import { adminThreeVi, adminThreeEn } from "./admin-three";
 import { adminTwoVi, adminTwoEn } from "./admin-two";
 import { bossStudyWorldVi, bossStudyWorldEn } from "./boss-study-world";
 import { careerDistrictVi, careerDistrictEn } from "./career-district";
+import { careerFrmVi, careerFrmEn } from "./career-frm";
 import { certificateQuestsVi, certificateQuestsEn } from "./certificate-quests";
 import { cfaCalculatorsVi, cfaCalculatorsEn } from "./cfa-calculators";
 import { cfaExamVi, cfaExamEn } from "./cfa-exam";
 import { cosmeticsDuelVi, cosmeticsDuelEn } from "./cosmetics-duel";
 import { districtContentVi, districtContentEn } from "./district-content";
+import { docsAuthVi, docsAuthEn } from "./docs-auth";
 import { examsOnboardingVi, examsOnboardingEn } from "./exams-onboarding";
 import { financeToolsVi, financeToolsEn } from "./finance-tools";
+import { gamesVi, gamesEn } from "./games";
 import { interactiveChartsVi, interactiveChartsEn } from "./interactive-charts";
 import { interactiveEconVi, interactiveEconEn } from "./interactive-econ";
+import { interactiveRestVi, interactiveRestEn } from "./interactive-rest";
 import { legalChatVi, legalChatEn } from "./legal-chat";
+import { libDataVi, libDataEn } from "./lib-data";
 import { lessonAdminVi, lessonAdminEn } from "./lesson-admin";
 import { moreCalculatorsVi, moreCalculatorsEn } from "./more-calculators";
 import { networthUnlockVi, networthUnlockEn } from "./networth-unlock";
@@ -34,19 +40,25 @@ import { searchUploadVi, searchUploadEn } from "./search-upload";
 
 export const viSections = {
   ...adminOneVi,
+  ...adminThreeVi,
   ...adminTwoVi,
   ...bossStudyWorldVi,
   ...careerDistrictVi,
+  ...careerFrmVi,
   ...certificateQuestsVi,
   ...cfaCalculatorsVi,
   ...cfaExamVi,
   ...cosmeticsDuelVi,
   ...districtContentVi,
+  ...docsAuthVi,
   ...examsOnboardingVi,
   ...financeToolsVi,
+  ...gamesVi,
   ...interactiveChartsVi,
   ...interactiveEconVi,
+  ...interactiveRestVi,
   ...legalChatVi,
+  ...libDataVi,
   ...lessonAdminVi,
   ...moreCalculatorsVi,
   ...networthUnlockVi,
@@ -59,19 +71,25 @@ export const viSections = {
 
 export const enSections: typeof viSections = {
   ...adminOneEn,
+  ...adminThreeEn,
   ...adminTwoEn,
   ...bossStudyWorldEn,
   ...careerDistrictEn,
+  ...careerFrmEn,
   ...certificateQuestsEn,
   ...cfaCalculatorsEn,
   ...cfaExamEn,
   ...cosmeticsDuelEn,
   ...districtContentEn,
+  ...docsAuthEn,
   ...examsOnboardingEn,
   ...financeToolsEn,
+  ...gamesEn,
   ...interactiveChartsEn,
   ...interactiveEconEn,
+  ...interactiveRestEn,
   ...legalChatEn,
+  ...libDataEn,
   ...lessonAdminEn,
   ...moreCalculatorsEn,
   ...networthUnlockEn,

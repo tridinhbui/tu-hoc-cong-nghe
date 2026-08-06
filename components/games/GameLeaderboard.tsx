@@ -5,10 +5,13 @@ import Image from "next/image";
 import { Trophy } from "lucide-react";
 import { getGameLeaderboard, getGameTitle, type GameLeaderboardRow, type GameType } from "@/lib/games";
 import { isValidAvatar } from "@/lib/avatar-utils";
+import { useI18n } from "@/lib/i18n/context";
 
 const RANK_MEDAL: Record<number, string> = { 1: "🥇", 2: "🥈", 3: "🥉" };
 
 export default function GameLeaderboard({ gameType }: { gameType: GameType }) {
+  const { t } = useI18n();
+  const gl = t.games.gameLeaderboard;
   const [rows, setRows] = useState<GameLeaderboardRow[]>([]);
   const [loadedKey, setLoadedKey] = useState<string | null>(null);
   // `loading` suy ra từ chỗ dữ liệu đã tải xong cho khoá nào, không phải một
@@ -33,13 +36,13 @@ export default function GameLeaderboard({ gameType }: { gameType: GameType }) {
   }, [gameType]);
 
   if (loading) {
-    return <div className="py-10 text-center text-sm text-stone-400">Đang tải bảng xếp hạng...</div>;
+    return <div className="py-10 text-center text-sm text-stone-400">{gl.loading}</div>;
   }
 
   if (rows.length === 0) {
     return (
       <div className="py-10 text-center text-sm text-stone-500">
-        Chưa có ai chơi game này. Chơi ngay để chiếm vị trí đầu tiên!
+        {gl.empty}
       </div>
     );
   }

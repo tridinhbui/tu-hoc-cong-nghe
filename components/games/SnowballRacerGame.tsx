@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Zap, TrendingUp, ShieldAlert, Sparkles, Trophy, RotateCcw, DollarSign, Award, ArrowUpRight, ArrowDownRight } from "lucide-react";
@@ -9,9 +9,12 @@ import { soundManager } from "@/lib/sounds";
 import { recalculateUserStats } from "@/lib/supabase-user";
 import { recordCustomGameSession } from "@/lib/games";
 import { useIsClient } from "@/lib/use-is-client";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
 interface Strategy {
-  id: "safe" | "balanced font" | "growth" | "leveraged";
+  id: "safe" | "balanced" | "growth" | "leveraged";
   name: string;
   emoji: string;
   baseReturn: number; // e.g. 0.08
@@ -19,55 +22,38 @@ interface Strategy {
   desc: string;
 }
 
-const STRATEGIES: { id: string; name: string; emoji: string; baseReturn: number; volatility: number; desc: string }[] = [
-  {
-    id: "safe",
-    name: "Tiết kiệm & Trái phiếu",
-    emoji: "🏦",
-    baseReturn: 0.07,
-    volatility: 0.02,
-    desc: "Lợi suất 7%/năm, rủi ro cực thấp, an toàn như thạch."
-  },
-  {
-    id: "balanced",
-    name: "Danh mục Cân bằng",
-    emoji: "⚖️",
-    baseReturn: 0.14,
-    volatility: 0.08,
-    desc: "Lợi suất 14%/năm, tăng trưởng ổn định theo VN30."
-  },
-  {
-    id: "growth",
-    name: "Cổ phiếu Tăng trưởng",
-    emoji: "🚀",
-    baseReturn: 0.24,
-    volatility: 0.16,
-    desc: "Lợi suất 24%/năm, đòn bẩy tuyết lăn cấp số nhân."
-  },
-  {
-    id: "leveraged",
-    name: "Tài sản Đòn bẩy High-Beta",
-    emoji: "💎",
-    baseReturn: 0.45,
-    volatility: 0.35,
-    desc: "Lợi suất tới 45%/năm nhưng biến động dữ dội."
-  }
+const STRATEGY_DATA: { id: Strategy["id"]; emoji: string; baseReturn: number; volatility: number }[] = [
+  { id: "safe", emoji: "🏦", baseReturn: 0.07, volatility: 0.02 },
+  { id: "balanced", emoji: "⚖️", baseReturn: 0.14, volatility: 0.08 },
+  { id: "growth", emoji: "🚀", baseReturn: 0.24, volatility: 0.16 },
+  { id: "leveraged", emoji: "💎", baseReturn: 0.45, volatility: 0.35 },
 ];
 
+function buildStrategies(t: Dictionary): Strategy[] {
+  const s = t.games.snowballRacer.strategies;
+  return STRATEGY_DATA.map((d) => ({ ...d, name: s[d.id].name, desc: s[d.id].desc }));
+}
+
 interface MarketEvent {
+  id: string;
   name: string;
   emoji: string;
   impactMultiplier: number; // e.g. 1.25 or 0.8
   desc: string;
 }
 
-const MARKET_EVENTS: MarketEvent[] = [
-  { name: "Sóng công nghệ AI bùng nổ", emoji: "🚀", impactMultiplier: 1.3, desc: "Toàn bộ danh mục tăng trưởng vượt bậc +30%!" },
-  { name: "Cơn bão Lạm phát toàn cầu", emoji: "🌪️", impactMultiplier: 0.85, desc: "Lãi suất điều hành tăng làm tài sản chiết khấu -15%." },
-  { name: "Chính phủ tung gói kích cầu", emoji: "💵", impactMultiplier: 1.2, desc: "Dòng tiền bơm mạnh vào thị trường +20%." },
-  { name: "Khủng hoảng thanh khoản ngắn hạn", emoji: "📉", impactMultiplier: 0.8, desc: "Thị trường điều chỉnh mạnh -20%." },
-  { name: "Thưởng cổ tức đặc biệt", emoji: "🎁", impactMultiplier: 1.15, desc: "Cổ tức tiền mặt dồi dào giúp tuyết lăn nhanh hơn +15%." }
+const MARKET_EVENT_DATA: { id: string; emoji: string; impactMultiplier: number }[] = [
+  { id: "aiBoom", emoji: "🚀", impactMultiplier: 1.3 },
+  { id: "inflation", emoji: "🌪️", impactMultiplier: 0.85 },
+  { id: "stimulus", emoji: "💵", impactMultiplier: 1.2 },
+  { id: "liquidityCrisis", emoji: "📉", impactMultiplier: 0.8 },
+  { id: "specialDividend", emoji: "🎁", impactMultiplier: 1.15 },
 ];
+
+function buildMarketEvents(t: Dictionary): MarketEvent[] {
+  const e = t.games.snowballRacer.marketEvents;
+  return MARKET_EVENT_DATA.map((d) => ({ ...d, name: e[d.id as keyof typeof e].name, desc: e[d.id as keyof typeof e].desc }));
+}
 
 interface QuizBoost {
   question: string;
@@ -76,40 +62,25 @@ interface QuizBoost {
   explanation: string;
 }
 
-const QUIZ_BOOSTS: QuizBoost[] = [
-  {
-    question: "Công thức tính Lãi Kép là gì?",
-    options: ["FV = PV × (1 + r)^n", "FV = PV × r × n", "FV = PV + r + n", "FV = PV / (1 + r)"],
-    correct: 0,
-    explanation: "Lãi kép nhân giá trị gốc với (1 + r) mũ số năm n. Đây là công thức cơ bản của time value of money."
-  },
-  {
-    question: "Quy tắc 72 dùng để tính nhanh điều gì?",
-    options: ["Số năm để số tiền đầu tư tăng gấp đôi", "Số phần trăm thuế phải nộp", "Số mã cổ phiếu nên mua", "Tỷ lệ nợ an toàn"],
-    correct: 0,
-    explanation: "Lấy 72 chia cho lãi suất (%) sẽ ra số năm vốn tăng gấp 2 lần. Công cụ ước tính nhanh lãi kép."
-  },
-  {
-    question: "Hiệu ứng 'Dollar-Cost Averaging' trong đầu tư định kỳ giúp gì?",
-    options: ["Loại bỏ hoàn toàn rủi ro thị trường", "Giảm thiểu tác động của biến động giá bằng cách đầu tư số tiền cố định định kỳ", "Tăng lợi nhuận lên 100% chắc chắn", "Không có tác dụng gì cả"],
-    correct: 1,
-    explanation: "Dollar-Cost Averaging giúp mua được cổ phiếu khi giá cao lẫn giá thấp, làm bình quân hóa chi phí mua vào."
-  },
-  {
-    question: "Với lãi suất 12%/năm, mất bao nhiêu năm để khoản đầu tư tăng gấp BỐNLẦN?",
-    options: ["12 năm (72/12×2 = 12)", "6 năm (72 / 12 = 6)", "24 năm", "4 năm (72/12/2=6)"],
-    correct: 0,
-    explanation: "Tăng gấp đôi lần 1 = 6 năm, tăng gấp đôi lần 2 = 6 năm nữa. Total = 12 năm để tăng 4 lần."
-  },
-  {
-    question: "Phân bổ danh mục (Asset Allocation) 60/40 (Cổ phiếu/Trái phiếu) có lợi ích gì?",
-    options: ["Tối đa hóa lợi nhuận hàng năm", "Cân bằng tăng trưởng và ổn định, giảm sức dao động (volatility)", "Loại bỏ hoàn toàn rủi ro", "Không cần thiết nếu đầu tư dài hạn"],
-    correct: 1,
-    explanation: "Phân bổ cân bằng giúp tận dụng tăng trưởng cổ phiếu trong năm tốt, nhưng có trái phiếu bảo vệ trong năm xấu."
-  }
-];
+const QUIZ_BOOST_IDS = ["compoundFormula", "rule72", "dca", "quadruple", "assetAllocation"] as const;
+const QUIZ_BOOST_CORRECT = [0, 0, 1, 0, 1];
+
+function buildQuizBoosts(t: Dictionary): QuizBoost[] {
+  const q = t.games.snowballRacer.quizBoosts;
+  return QUIZ_BOOST_IDS.map((id, i) => ({
+    question: q[id].question,
+    options: q[id].options,
+    correct: QUIZ_BOOST_CORRECT[i],
+    explanation: q[id].explanation,
+  }));
+}
 
 export default function SnowballRacerGame({ userId, onClose }: { userId: string; onClose: () => void }) {
+  const { t } = useI18n();
+  const sr = t.games.snowballRacer;
+  const STRATEGIES = useMemo(() => buildStrategies(t), [t]);
+  const MARKET_EVENTS = useMemo(() => buildMarketEvents(t), [t]);
+  const QUIZ_BOOSTS = useMemo(() => buildQuizBoosts(t), [t]);
   const mounted = useIsClient();
   const [year, setYear] = useState(1);
   const [netWorth, setNetWorth] = useState(10000); // Start with $10,000 capital
@@ -163,7 +134,7 @@ export default function SnowballRacerGame({ userId, onClose }: { userId: string;
     const logEntry = {
       year,
       worth: newWorth,
-      event: event ? `${event.emoji} ${event.name}` : "Thị trường bình ổn",
+      event: event ? `${event.emoji} ${event.name}` : sr.stableMarket,
       returnPct: Math.round(totalReturnPct * 100)
     };
     setHistory((prev) => [logEntry, ...prev]);
@@ -175,7 +146,7 @@ export default function SnowballRacerGame({ userId, onClose }: { userId: string;
         recordCustomGameSession(userId, "snowball-racer", year, 20, 50);
         recalculateUserStats(userId);
       }
-      toast.success("BẠN ĐÃ CHẠM MỐC $1,000,000 LÃI KÉP!", { icon: "🏎️" });
+      toast.success(sr.toastWon, { icon: "🏎️" });
     } else if (year >= 20) {
       // 20 years limit
       soundManager.playWrong();
@@ -197,14 +168,14 @@ export default function SnowballRacerGame({ userId, onClose }: { userId: string;
 
     if (optIndex === currentQuiz.correct) {
       soundManager.playWin();
-      toast.success("Chính xác! Nhận +8% Lợi suất Lãi kép năm nay!", { icon: "⚡" });
+      toast.success(sr.toastQuizCorrect, { icon: "⚡" });
       setTimeout(() => {
         setGameState("playing");
         executeTurn(true);
       }, 1500);
     } else {
       soundManager.playWrong();
-      toast.error("Chưa chính xác! Bỏ lỡ cơ hội gia tốc.", { icon: "❌" });
+      toast.error(sr.toastQuizWrong, { icon: "❌" });
       setTimeout(() => {
         setGameState("playing");
         executeTurn(false);
@@ -227,12 +198,12 @@ export default function SnowballRacerGame({ userId, onClose }: { userId: string;
             </div>
             <div>
               <h2 className="text-base sm:text-lg font-black tracking-tight text-emerald-300 flex items-center gap-2">
-                Đua Xe Lãi Kép & Hòn Tuyết Lăn
+                {sr.title}
                 <span className="text-xs px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/40 font-bold">
-                  Năm {year}/20
+                  {format(sr.yearCounter, { year })}
                 </span>
               </h2>
-              <p className="text-xs text-stone-400">Tăng tốc tài sản đạt $1,000,000 qua sức mạnh thời gian</p>
+              <p className="text-xs text-stone-400">{sr.subtitle}</p>
             </div>
           </div>
 
@@ -264,18 +235,18 @@ export default function SnowballRacerGame({ userId, onClose }: { userId: string;
 
             <div>
               <h3 className="text-2xl font-black text-emerald-300">
-                {gameState === "won" ? "BẠN ĐÃ CÁN ĐÍCH $1,000,000 RỰC RỠ!" : "HẾT 20 NĂM ĐẦU TƯ!"}
+                {gameState === "won" ? sr.wonTitle : sr.lostTitle}
               </h3>
               <p className="text-sm text-stone-300 mt-1 max-w-md">
                 {gameState === "won"
-                  ? `Chúc mừng bạn! Chỉ sau ${year} năm kiên trì tái đầu tư lãi kép, hòn tuyết lăn tài chính của bạn đã bùng nổ thành $1,000,000!`
-                  : `Bạn dừng chân tại cột mốc $${netWorth.toLocaleString()} USD sau 20 năm.`}
+                  ? format(sr.wonDesc, { year })
+                  : format(sr.lostDesc, { netWorth: netWorth.toLocaleString() })}
               </p>
             </div>
 
             <div className="rounded-2xl bg-emerald-950/40 border border-emerald-500/30 px-6 py-4 text-center">
-              <span className="text-xs uppercase font-extrabold text-emerald-400">Tổng tài sản tích lũy</span>
-              <div className="text-3xl font-black text-emerald-300 mt-1">${netWorth.toLocaleString()} USD</div>
+              <span className="text-xs uppercase font-extrabold text-emerald-400">{sr.totalAssetsLabel}</span>
+              <div className="text-3xl font-black text-emerald-300 mt-1">{format(sr.amountUsd, { amount: netWorth.toLocaleString() })}</div>
             </div>
 
             <div className="flex gap-3 pt-2">
@@ -291,14 +262,14 @@ export default function SnowballRacerGame({ userId, onClose }: { userId: string;
                 className="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-stone-950 font-black text-sm transition-all shadow-lg flex items-center gap-2 cursor-pointer"
               >
                 <RotateCcw className="w-4 h-4" />
-                <span>Đua lại từ đầu</span>
+                <span>{sr.retryButton}</span>
               </button>
               <button
                 type="button"
                 onClick={onClose}
                 className="px-5 py-2.5 rounded-xl bg-stone-800 hover:bg-stone-700 text-white font-bold text-sm transition-all cursor-pointer"
               >
-                Đóng
+                {sr.closeButton}
               </button>
             </div>
           </motion.div>
@@ -306,7 +277,7 @@ export default function SnowballRacerGame({ userId, onClose }: { userId: string;
           /* Quiz Mini-boost Overlay */
           <div className="bg-stone-900/90 border-2 border-emerald-400/60 rounded-2xl p-6 text-center space-y-4 my-auto">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/40 text-xs font-black uppercase">
-              ⚡ Trạm Tiếp Nhiên Liệu Lãi Kép (+8% Lợi suất)
+              {sr.quizBoostBadge}
             </div>
 
             <h3 className="text-base sm:text-lg font-black text-white">{currentQuiz.question}</h3>
@@ -345,9 +316,9 @@ export default function SnowballRacerGame({ userId, onClose }: { userId: string;
               <div className="bg-stone-900/90 border border-emerald-500/30 rounded-2xl p-4 space-y-2">
                 <div className="flex items-center justify-between text-xs font-bold">
                   <span className="text-emerald-400 flex items-center gap-1.5 font-black">
-                    🏎️ Đường đua $1,000,000
+                    {sr.raceTrackLabel}
                   </span>
-                  <span className="text-stone-300 font-extrabold">${netWorth.toLocaleString()} / $1,000,000</span>
+                  <span className="text-stone-300 font-extrabold">{format(sr.raceProgressAmount, { netWorth: netWorth.toLocaleString() })}</span>
                 </div>
 
                 <div className="w-full bg-stone-800 h-5 rounded-full overflow-hidden border border-emerald-500/30 relative">
@@ -356,7 +327,7 @@ export default function SnowballRacerGame({ userId, onClose }: { userId: string;
                     style={{ width: `${progressPct}%` }}
                   />
                   <span className="absolute inset-0 flex items-center justify-center text-[10px] font-black text-white drop-shadow">
-                    {progressPct}% Tiến độ
+                    {format(sr.progressLabel, { pct: progressPct })}
                   </span>
                 </div>
               </div>
@@ -364,7 +335,7 @@ export default function SnowballRacerGame({ userId, onClose }: { userId: string;
               {/* Strategy Selector Header */}
               <div className="space-y-2">
                 <h3 className="text-xs font-black uppercase text-emerald-400 tracking-wider">
-                  Chọn chiến lược phân bổ vốn Năm {year}:
+                  {format(sr.strategyPickerTitle, { year })}
                 </h3>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
@@ -386,7 +357,7 @@ export default function SnowballRacerGame({ userId, onClose }: { userId: string;
                             <span>{s.emoji}</span>
                             <span>{s.name}</span>
                           </span>
-                          <span className="text-emerald-400 font-extrabold">+{Math.round(s.baseReturn * 100)}%/năm</span>
+                          <span className="text-emerald-400 font-extrabold">{format(sr.returnPerYear, { pct: Math.round(s.baseReturn * 100) })}</span>
                         </div>
                         <p className="text-[11px] text-stone-400 mt-1 leading-relaxed">{s.desc}</p>
                       </button>
@@ -402,14 +373,14 @@ export default function SnowballRacerGame({ userId, onClose }: { userId: string;
                 className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-400 hover:from-emerald-400 hover:to-teal-400 text-stone-950 font-black text-sm shadow-xl hover:scale-[1.01] transition-all flex items-center justify-center gap-2 cursor-pointer"
               >
                 <Zap className="w-4 h-4 fill-stone-950" />
-                <span>Tăng tốc Lợi nhuận Năm {year} →</span>
+                <span>{format(sr.accelerateButton, { year })}</span>
               </button>
             </div>
 
             {/* Right Column: Event Log & History (5 Cols) */}
             <div className="lg:col-span-5 bg-stone-900/90 border border-emerald-500/30 rounded-2xl p-4 space-y-3">
               <h4 className="text-xs font-black uppercase text-emerald-400 tracking-wider border-b border-emerald-500/20 pb-2">
-                Nhật ký Thị trường & Tích lũy
+                {sr.logTitle}
               </h4>
 
               {currentEvent && (
@@ -424,7 +395,7 @@ export default function SnowballRacerGame({ userId, onClose }: { userId: string;
 
               <div className="space-y-1.5 max-h-[260px] overflow-y-auto pr-1 text-xs">
                 {history.length === 0 ? (
-                  <p className="text-stone-500 text-center py-6">Bấm "Tăng tốc" để bắt đầu năm đầu tiên!</p>
+                  <p className="text-stone-500 text-center py-6">{sr.emptyLog}</p>
                 ) : (
                   history.map((h) => (
                     <div
@@ -432,7 +403,7 @@ export default function SnowballRacerGame({ userId, onClose }: { userId: string;
                       className="flex items-center justify-between p-2 rounded-xl bg-stone-950/60 border border-stone-800"
                     >
                       <div>
-                        <span className="font-bold text-emerald-300">Năm {h.year}:</span>{" "}
+                        <span className="font-bold text-emerald-300">{format(sr.logYear, { year: h.year })}</span>{" "}
                         <span className="text-stone-300">${h.worth.toLocaleString()}</span>
                       </div>
                       <span className={`font-black ${h.returnPct >= 0 ? "text-emerald-400" : "text-red-400"}`}>

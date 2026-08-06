@@ -5,11 +5,13 @@ import Link from "next/link";
 import { BarChart3 } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import { getUserAnalytics, type LearningAnalytics } from "@/lib/supabase-analytics";
+import { useI18n } from "@/lib/i18n/context";
 
 // Small icon button, same footprint as BookmarkButton next to it - opens a
 // compact stats card on hover (desktop) or tap (mobile) instead of sending
 // people all the way to /analytics just to check their XP mid-lesson.
 export default function LessonStatsHover() {
+  const { t } = useI18n();
   const [open, setOpen] = useState(false);
   const [stats, setStats] = useState<LearningAnalytics | null>(null);
   const [loading, setLoading] = useState(false);
@@ -59,8 +61,8 @@ export default function LessonStatsHover() {
           setOpen(true);
           void loadStatsPreview();
         }}
-        aria-label="Xem nhanh thống kê"
-        title="Thống kê"
+        aria-label={t.lessonStatsHover.quickStatsAria}
+        title={t.lessonStatsHover.statsTitle}
         className="w-10 h-10 rounded-full flex items-center justify-center bg-stone-100 dark:bg-stone-800 text-stone-500 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-700 hover:text-stone-700 dark:hover:text-stone-200 transition-all cursor-pointer"
       >
         <BarChart3 className="w-4 h-4" />
@@ -69,24 +71,24 @@ export default function LessonStatsHover() {
       {open && (
         <div className="absolute right-0 top-full mt-2 z-50 w-56 bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl shadow-lg p-4">
           {loading && !stats ? (
-            <p className="text-xs text-stone-400 dark:text-stone-500">Đang tải...</p>
+            <p className="text-xs text-stone-400 dark:text-stone-500">{t.lessonStatsHover.loading}</p>
           ) : stats ? (
             <div className="space-y-2">
               <div className="grid grid-cols-2 gap-2">
                 <div>
-                  <p className="text-[10px] font-bold text-stone-400 dark:text-stone-500 uppercase tracking-wide">Level</p>
+                  <p className="text-[10px] font-bold text-stone-400 dark:text-stone-500 uppercase tracking-wide">{t.lessonStatsHover.level}</p>
                   <p className="text-sm font-extrabold text-stone-900 dark:text-stone-100">{stats.currentLevel}</p>
                 </div>
                 <div>
-                  <p className="text-[10px] font-bold text-stone-400 dark:text-stone-500 uppercase tracking-wide">XP</p>
+                  <p className="text-[10px] font-bold text-stone-400 dark:text-stone-500 uppercase tracking-wide">{t.lessonStatsHover.xp}</p>
                   <p className="text-sm font-extrabold text-stone-900 dark:text-stone-100">{stats.totalXpEarned}</p>
                 </div>
                 <div>
-                  <p className="text-[10px] font-bold text-stone-400 dark:text-stone-500 uppercase tracking-wide">Bài xong</p>
+                  <p className="text-[10px] font-bold text-stone-400 dark:text-stone-500 uppercase tracking-wide">{t.lessonStatsHover.lessonsDone}</p>
                   <p className="text-sm font-extrabold text-stone-900 dark:text-stone-100">{stats.totalLessonsCompleted}</p>
                 </div>
                 <div>
-                  <p className="text-[10px] font-bold text-stone-400 dark:text-stone-500 uppercase tracking-wide">Chuỗi ngày</p>
+                  <p className="text-[10px] font-bold text-stone-400 dark:text-stone-500 uppercase tracking-wide">{t.lessonStatsHover.streakDays}</p>
                   <p className="text-sm font-extrabold text-stone-900 dark:text-stone-100">{stats.streakDays}</p>
                 </div>
               </div>
@@ -94,11 +96,11 @@ export default function LessonStatsHover() {
                 href="/analytics"
                 className="block text-center text-xs font-bold text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 pt-2 mt-1 border-t border-stone-100 dark:border-stone-800"
               >
-                Xem đầy đủ →
+                {t.lessonStatsHover.viewFull}
               </Link>
             </div>
           ) : (
-            <p className="text-xs text-stone-400 dark:text-stone-500">Đăng nhập để xem thống kê</p>
+            <p className="text-xs text-stone-400 dark:text-stone-500">{t.lessonStatsHover.loginPrompt}</p>
           )}
         </div>
       )}

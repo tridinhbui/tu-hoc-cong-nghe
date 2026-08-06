@@ -2,8 +2,12 @@
 
 import { useEffect, useState } from "react";
 import { getGameHistory, type GameSession, type GameType } from "@/lib/games";
+import { useI18n } from "@/lib/i18n/context";
+import { format, intlLocale } from "@/lib/i18n";
 
 export default function GameHistory({ userId, gameType }: { userId: string; gameType: GameType }) {
+  const { t, locale } = useI18n();
+  const gh = t.games.gameHistory;
   const [sessions, setSessions] = useState<GameSession[]>([]);
   const [loadedKey, setLoadedKey] = useState<string | null>(null);
   // `loading` suy ra từ chỗ dữ liệu đã tải xong cho khoá nào, không phải một
@@ -29,11 +33,11 @@ export default function GameHistory({ userId, gameType }: { userId: string; game
   }, [userId, gameType, loadedFor]);
 
   if (loading) {
-    return <div className="py-10 text-center text-sm text-stone-400">Đang tải lịch sử...</div>;
+    return <div className="py-10 text-center text-sm text-stone-400">{gh.loading}</div>;
   }
 
   if (sessions.length === 0) {
-    return <div className="py-10 text-center text-sm text-stone-500">Bạn chưa chơi game này lần nào.</div>;
+    return <div className="py-10 text-center text-sm text-stone-500">{gh.empty}</div>;
   }
 
   return (
@@ -45,10 +49,10 @@ export default function GameHistory({ userId, gameType }: { userId: string; game
         >
           <div>
             <p className="text-sm font-bold text-stone-900">
-              {s.score}/{s.total} đúng
+              {format(gh.scoreCorrect, { score: s.score, total: s.total })}
             </p>
             <p className="text-xs text-stone-500">
-              {new Date(s.created_at).toLocaleString("vi-VN", { dateStyle: "short", timeStyle: "short" })}
+              {new Date(s.created_at).toLocaleString(intlLocale(locale), { dateStyle: "short", timeStyle: "short" })}
             </p>
           </div>
           <span
@@ -58,7 +62,7 @@ export default function GameHistory({ userId, gameType }: { userId: string; game
                 : "bg-stone-100 text-stone-500"
             }`}
           >
-            {s.xp_earned > 0 ? `+${s.xp_earned} XP` : "Không đạt XP"}
+            {s.xp_earned > 0 ? format(gh.xpEarned, { xp: s.xp_earned }) : gh.noXp}
           </span>
         </div>
       ))}

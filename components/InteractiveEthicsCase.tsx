@@ -1,6 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
 // Phán một tình huống đạo đức, widget cho các bài khai `interactiveType:
 // "ethics-case"`.
@@ -30,64 +33,43 @@ interface EthicsCase {
   reasoning: string;
 }
 
-const CASES: EthicsCase[] = [
-  {
-    id: "mnpi",
-    scenario:
-      "Bạn là analyst. Trong lúc chờ thang máy ở toà nhà khách hàng, bạn nghe hai người mặc đồng phục công ty đó nói với nhau rằng quý này doanh thu hụt mạnh và họ sắp phải công bố. Về văn phòng, bạn hạ khuyến nghị cổ phiếu này từ Mua xuống Bán.",
-    violates: true,
-    standard: "II(A) Material Nonpublic Information",
-    distractors: [
-      "V(A) Diligence and Reasonable Basis",
-      "III(B) Fair Dealing",
-      "I(C) Misrepresentation",
-    ],
-    reasoning:
-      "Thông tin nghe lỏm vẫn là thông tin nội bộ trọng yếu, và việc bạn có được nó một cách tình cờ không cho bạn quyền dùng nó. Standard II(A) cấm hành động hoặc khiến người khác hành động dựa trên thông tin đó - cấm cả giao dịch lẫn đổi khuyến nghị.",
-  },
-  {
-    id: "gift",
-    scenario:
-      "Một công ty bạn đang theo dõi mời bạn bay đi thăm nhà máy của họ. Họ trả vé máy bay hạng phổ thông và một đêm khách sạn, vì nhà máy ở tỉnh xa và không có chuyến về trong ngày. Bạn báo cho sếp trước khi đi và ghi rõ trong báo cáo là chuyến đi do công ty tài trợ.",
-    violates: false,
-    standard: "Không vi phạm - đã công bố và ở mức hợp lý",
-    distractors: [
-      "I(B) Independence and Objectivity",
-      "VI(A) Disclosure of Conflicts",
-      "IV(B) Additional Compensation Arrangements",
-    ],
-    reasoning:
-      "Standard I(B) không cấm nhận mọi thứ từ công ty được phân tích; nó cấm nhận thứ có thể làm tổn hại tính độc lập. Vé phổ thông tới một nhà máy xa, có báo cáo và có công bố, là chi phí đi lại thông thường. Chuyến bay riêng hoặc kỳ nghỉ kèm gia đình thì đã khác.",
-  },
-  {
-    id: "fair",
-    scenario:
-      "Bạn hạ khuyến nghị một cổ phiếu. Trước khi báo cáo phát hành, bạn gọi cho ba khách hàng lớn nhất để họ kịp thoát hàng, rồi hôm sau mới gửi báo cáo cho toàn bộ danh sách khách.",
-    violates: true,
-    standard: "III(B) Fair Dealing",
-    distractors: [
-      "II(A) Material Nonpublic Information",
-      "III(A) Loyalty, Prudence, and Care",
-      "V(B) Communication with Clients",
-    ],
-    reasoning:
-      "Standard III(B) buộc phải đối xử công bằng với mọi khách hàng khi phát hành khuyến nghị. Khách lớn được ưu tiên dịch vụ thì được, nhưng không được biết trước nội dung khuyến nghị. Đây là lỗi ưu ái theo quy mô tài khoản, không phải lỗi thông tin nội bộ.",
-  },
-  {
-    id: "record",
-    scenario:
-      "Bạn xây một mô hình định giá từ dữ liệu công khai, kết luận cổ phiếu bị định giá thấp 30%, và gửi báo cáo cho khách. Ba tháng sau cơ quan quản lý hỏi căn cứ, nhưng bạn đã xoá file mô hình khi dọn ổ cứng và chỉ còn bản PDF báo cáo.",
-    violates: true,
-    standard: "V(C) Record Retention",
-    distractors: [
-      "V(A) Diligence and Reasonable Basis",
-      "I(C) Misrepresentation",
-      "IV(C) Responsibilities of Supervisors",
-    ],
-    reasoning:
-      "Phân tích có căn cứ đầy đủ, nên V(A) không bị chạm. Cái sai là không giữ hồ sơ chứng minh căn cứ đó: Standard V(C) buộc lưu tài liệu hỗ trợ cho mọi phân tích và khuyến nghị, và mặc định của CFA Institute là bảy năm.",
-  },
-];
+function getCases(t: Dictionary): EthicsCase[] {
+  const tr = t.interactiveRest.ethicsCase;
+  return [
+    {
+      id: "mnpi",
+      scenario: tr.mnpiScenario,
+      violates: true,
+      standard: tr.mnpiStandard,
+      distractors: [tr.mnpiDistractor1, tr.mnpiDistractor2, tr.mnpiDistractor3],
+      reasoning: tr.mnpiReasoning,
+    },
+    {
+      id: "gift",
+      scenario: tr.giftScenario,
+      violates: false,
+      standard: tr.giftStandard,
+      distractors: [tr.giftDistractor1, tr.giftDistractor2, tr.giftDistractor3],
+      reasoning: tr.giftReasoning,
+    },
+    {
+      id: "fair",
+      scenario: tr.fairScenario,
+      violates: true,
+      standard: tr.fairStandard,
+      distractors: [tr.fairDistractor1, tr.fairDistractor2, tr.fairDistractor3],
+      reasoning: tr.fairReasoning,
+    },
+    {
+      id: "record",
+      scenario: tr.recordScenario,
+      violates: true,
+      standard: tr.recordStandard,
+      distractors: [tr.recordDistractor1, tr.recordDistractor2, tr.recordDistractor3],
+      reasoning: tr.recordReasoning,
+    },
+  ];
+}
 
 /** Trộn phương án theo id để vị trí đáp án đúng không cố định, nhưng ổn định
  *  giữa các lần render - không nhảy chỗ ngay dưới ngón tay người đang chọn. */
@@ -107,6 +89,9 @@ function shuffled(c: EthicsCase): string[] {
 }
 
 export default function InteractiveEthicsCase() {
+  const { t } = useI18n();
+  const tr = t.interactiveRest.ethicsCase;
+  const CASES = useMemo(() => getCases(t), [t]);
   const [index, setIndex] = useState(0);
   const [verdict, setVerdict] = useState<boolean | null>(null);
   const [picked, setPicked] = useState<string | null>(null);
@@ -124,7 +109,7 @@ export default function InteractiveEthicsCase() {
     <div className="rounded-3xl border border-stone-200 bg-white p-6 dark:border-stone-800 dark:bg-stone-900">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <h3 className="text-sm font-extrabold text-stone-900 dark:text-stone-100">
-          Tình huống {index + 1}/{CASES.length}
+          {format(tr.caseCounter, { current: index + 1, total: CASES.length })}
         </h3>
         <div className="flex gap-1">
           {CASES.map((item, i) => (
@@ -132,7 +117,7 @@ export default function InteractiveEthicsCase() {
               key={item.id}
               type="button"
               onClick={() => goTo(i)}
-              aria-label={`Tình huống ${i + 1}`}
+              aria-label={format(tr.caseAriaLabel, { n: i + 1 })}
               aria-current={i === index}
               className={`h-2 w-6 cursor-pointer rounded-full ${
                 i === index ? "bg-stone-900 dark:bg-stone-100" : "bg-stone-200 dark:bg-stone-700"
@@ -146,7 +131,7 @@ export default function InteractiveEthicsCase() {
 
       {/* Bước 1: có vi phạm không. */}
       <p className="mt-4 text-xs font-bold text-stone-500 dark:text-stone-400">
-        Tình huống này có vi phạm Standards không?
+        {tr.violatesQuestion}
       </p>
       <div className="mt-2 flex gap-2">
         {[true, false].map((v) => (
@@ -165,7 +150,7 @@ export default function InteractiveEthicsCase() {
                     : "border-stone-200 text-stone-400 dark:border-stone-800 dark:text-stone-600"
             }`}
           >
-            {v ? "Có vi phạm" : "Không vi phạm"}
+            {v ? tr.violatesYes : tr.violatesNo}
           </button>
         ))}
       </div>
@@ -175,7 +160,7 @@ export default function InteractiveEthicsCase() {
       {verdict !== null && (
         <>
           <p className="mt-4 text-xs font-bold text-stone-500 dark:text-stone-400">
-            {c.violates ? "Điều khoản nào bị chạm?" : "Điều khoản nào người ta hay tưởng bị chạm ở đây?"}
+            {c.violates ? tr.standardQuestionViolated : tr.standardQuestionClean}
           </p>
           <div className="mt-2 space-y-1.5">
             {options.map((option) => {
@@ -213,7 +198,7 @@ export default function InteractiveEthicsCase() {
               onClick={() => goTo(index + 1)}
               className="mt-3 cursor-pointer rounded-full bg-stone-900 px-4 py-2 text-[11px] font-bold text-white hover:bg-stone-700 dark:bg-stone-100 dark:text-stone-900"
             >
-              Tình huống tiếp theo →
+              {tr.nextCaseButton}
             </button>
           )}
         </div>

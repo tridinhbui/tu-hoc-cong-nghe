@@ -4,11 +4,14 @@ import { useState, useEffect } from "react";
 import { FileText, Download, FileSpreadsheet, FileImage, Archive, Plus } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import { trackFeatureClick } from "@/lib/feature-events";
-import { DOCUMENT_CATEGORIES } from "@/lib/document-categories";
+import { documentCategoriesOf, documentCategoryLabel } from "@/lib/document-categories";
 import EmptyState from "@/components/admin/EmptyState";
 import Modal from "@/components/admin/Modal";
 import CommunityUploadModal from "./CommunityUploadModal";
 import type { PublicDocument } from "./page";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
 function formatBytes(bytes: number) {
   if (bytes < 1024) return `${bytes} B`;
@@ -16,17 +19,17 @@ function formatBytes(bytes: number) {
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
 }
 
-function categoryLabel(value: string) {
-  return DOCUMENT_CATEGORIES.find((c) => c.value === value)?.label ?? value;
+function categoryLabel(value: string, t: Dictionary) {
+  return documentCategoryLabel(value, t);
 }
 
 // A non-approved row can only ever belong to the viewer themself (see the
 // documents select RLS policy in supabase/migrations/20260709_community_documents.sql),
 // so this badge always means "your own pending/rejected submission", never
 // someone else's.
-function statusBadge(status: PublicDocument["status"]) {
-  if (status === "pending") return { label: "Chờ duyệt", className: "bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-400" };
-  if (status === "rejected") return { label: "Đã từ chối", className: "bg-rose-100 dark:bg-rose-950/60 text-rose-700 dark:text-rose-400" };
+function statusBadge(status: PublicDocument["status"], t: Dictionary) {
+  if (status === "pending") return { label: t.documentsList.statusPending, className: "bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-400" };
+  if (status === "rejected") return { label: t.documentsList.statusRejected, className: "bg-rose-100 dark:bg-rose-950/60 text-rose-700 dark:text-rose-400" };
   return null;
 }
 
@@ -38,15 +41,13 @@ function iconFor(fileName: string) {
   return FileText;
 }
 
-const CATEGORY_FILTERS = [{ value: "all", label: "Tất cả" }, ...DOCUMENT_CATEGORIES];
+function getCategoryFilters(t: Dictionary) {
+  return [{ value: "all", label: t.documentsList.allCategoriesFilter }, ...documentCategoriesOf(t)];
+}
 
 function TypingBanner() {
-  const words = [
-    "Ebook định giá cổ phiếu từ cơ bản đến nâng cao...",
-    "File Excel báo cáo lưu chuyển tiền tệ mẫu...",
-    "Checklist quản lý tài chính cá nhân hiệu quả...",
-    "Cẩm nang phân tích báo cáo tài chính doanh nghiệp..."
-  ];
+  const { t } = useI18n();
+  const words = t.documentsList.typingWords;
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [currentText, setCurrentText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
@@ -86,7 +87,7 @@ function TypingBanner() {
         <span className="relative inline-flex rounded-full h-2 w-2 bg-rose-500"></span>
       </span>
       <p className="text-xs font-bold text-stone-600 dark:text-stone-300">
-        <span className="text-rose-600/60 dark:text-rose-400/50 mr-1.5 font-bold uppercase tracking-wider">Đang cập nhật:</span>
+        <span className="text-rose-600/60 dark:text-rose-400/50 mr-1.5 font-bold uppercase tracking-wider">{t.documentsList.updatingLabel}</span>
         <span className="text-rose-600 dark:text-rose-400 font-extrabold">{currentText}</span>
         <span className="animate-pulse font-extrabold text-rose-600 dark:text-rose-400">|</span>
       </p>
@@ -95,10 +96,12 @@ function TypingBanner() {
 }
 
 export default function DocumentsList({ documents, currentUserId }: { documents: PublicDocument[]; currentUserId: string | null }) {
+  const { t } = useI18n();
   const [filter, setFilter] = useState<string>("all");
   const [openDoc, setOpenDoc] = useState<PublicDocument | null>(null);
   const [showUpload, setShowUpload] = useState(false);
   const supabase = createClient();
+  const categoryFilters = getCategoryFilters(t);
 
   const filtered = filter === "all" ? documents : documents.filter((d) => d.category === filter);
 
@@ -117,7 +120,7 @@ export default function DocumentsList({ documents, currentUserId }: { documents:
       <TypingBanner />
       <div className="flex items-center justify-between gap-3 mb-6 flex-wrap">
         <div className="flex gap-2 flex-wrap">
-          {CATEGORY_FILTERS.map((c) => (
+          {categoryFilters.map((c) => (
             <button
               key={c.value}
               onClick={() => setFilter(c.value)}
@@ -136,15 +139,15 @@ export default function DocumentsList({ documents, currentUserId }: { documents:
           className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border-2 border-dashed border-stone-300 dark:border-stone-700 hover:border-stone-400 dark:hover:border-stone-600 text-xs font-bold text-stone-600 dark:text-stone-400 transition-colors flex-shrink-0"
         >
           <Plus className="w-3.5 h-3.5" />
-          Chia sẻ tài liệu của bạn
+          {t.documentsList.shareButton}
         </button>
       </div>
 
       {filtered.length === 0 ? (
         <EmptyState
           icon={FileText}
-          title="Chưa có tài liệu nào"
-          description="Quay lại sau nhé - admin sẽ sớm bổ sung mẫu biểu và ebook miễn phí."
+          title={t.documentsList.emptyTitle}
+          description={t.documentsList.emptyDescription}
         />
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -180,14 +183,14 @@ export default function DocumentsList({ documents, currentUserId }: { documents:
                 <div className="p-5">
                   <div className="flex items-center gap-2 mb-2 flex-wrap">
                     <span className="text-[11px] font-bold uppercase tracking-wide bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-300 px-2.5 py-1 rounded-full">
-                      {categoryLabel(doc.category)}
+                      {categoryLabel(doc.category, t)}
                     </span>
                     <span className="text-[11px] font-black bg-emerald-500/10 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 px-2.5 py-1 rounded-full border border-emerald-500/20 animate-pulse flex items-center gap-0.5">
-                      Miễn phí 💎
+                      {t.documentsList.freeBadge}
                     </span>
-                    {statusBadge(doc.status) && (
-                      <span className={`text-[11px] font-bold uppercase tracking-wide px-2.5 py-1 rounded-full ${statusBadge(doc.status)!.className}`}>
-                        {statusBadge(doc.status)!.label}
+                    {statusBadge(doc.status, t) && (
+                      <span className={`text-[11px] font-bold uppercase tracking-wide px-2.5 py-1 rounded-full ${statusBadge(doc.status, t)!.className}`}>
+                        {statusBadge(doc.status, t)!.label}
                       </span>
                     )}
                   </div>
@@ -207,7 +210,7 @@ export default function DocumentsList({ documents, currentUserId }: { documents:
                       {formatBytes(doc.file_size)}
                     </span>
                     <span className="text-xs font-bold text-stone-600 dark:text-stone-300 group-hover:text-stone-900 dark:group-hover:text-stone-100 transition-colors">
-                      Xem chi tiết
+                      {t.documentsList.viewDetails}
                     </span>
                   </div>
                 </div>
@@ -220,7 +223,7 @@ export default function DocumentsList({ documents, currentUserId }: { documents:
       <Modal
         open={!!openDoc}
         onClose={() => setOpenDoc(null)}
-        title={openDoc ? categoryLabel(openDoc.category) : ""}
+        title={openDoc ? categoryLabel(openDoc.category, t) : ""}
         maxWidth="max-w-lg"
       >
         {openDoc && (
@@ -243,20 +246,20 @@ export default function DocumentsList({ documents, currentUserId }: { documents:
 
             <div className="flex items-center gap-2 flex-wrap">
               <h3 className="text-xl font-bold text-stone-900 dark:text-stone-100">{openDoc.title}</h3>
-              {statusBadge(openDoc.status) && (
-                <span className={`text-[11px] font-bold uppercase tracking-wide px-2.5 py-1 rounded-full ${statusBadge(openDoc.status)!.className}`}>
-                  {statusBadge(openDoc.status)!.label}
+              {statusBadge(openDoc.status, t) && (
+                <span className={`text-[11px] font-bold uppercase tracking-wide px-2.5 py-1 rounded-full ${statusBadge(openDoc.status, t)!.className}`}>
+                  {statusBadge(openDoc.status, t)!.label}
                 </span>
               )}
             </div>
             {openDoc.status === "pending" && (
               <p className="text-xs text-amber-700 dark:text-amber-400 -mt-2">
-                Tài liệu này chỉ hiển thị cho bạn cho đến khi admin duyệt.
+                {t.documentsList.pendingNotice}
               </p>
             )}
             {openDoc.status === "rejected" && (
               <p className="text-xs text-rose-700 dark:text-rose-400 -mt-2">
-                Tài liệu này đã bị từ chối và không hiển thị công khai.
+                {t.documentsList.rejectedNotice}
               </p>
             )}
 
@@ -271,7 +274,7 @@ export default function DocumentsList({ documents, currentUserId }: { documents:
               <span>·</span>
               <span>{formatBytes(openDoc.file_size)}</span>
               <span>·</span>
-              <span>{openDoc.download_count} lượt tải</span>
+              <span>{format(t.documentsList.downloadCount, { count: openDoc.download_count })}</span>
             </div>
 
             {/* Explicit download button - downloading is a deliberate click
@@ -284,7 +287,7 @@ export default function DocumentsList({ documents, currentUserId }: { documents:
               className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 text-sm font-bold hover:bg-stone-800 dark:hover:bg-white transition-colors"
             >
               <Download className="w-4 h-4" />
-              Tải xuống
+              {t.documentsList.downloadButton}
             </a>
           </div>
         )}

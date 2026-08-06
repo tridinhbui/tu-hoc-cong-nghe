@@ -1,9 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Sparkles, RefreshCcw } from "lucide-react";
 import TaiTaiAvatar from "@/components/TaiTaiAvatar";
 import type { QuizTrack, QuizDifficulty } from "@/lib/supabase-quiz-sessions";
+import { useI18n } from "@/lib/i18n/context";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
 interface Suggestion {
   lessonTitle: string;
@@ -13,21 +15,25 @@ interface Suggestion {
   totalCompleted: number;
 }
 
-const TRACK_LABEL: Record<QuizTrack, string> = {
-  personal: "Tài chính cá nhân",
-  professional: "Tài chính chuyên ngành",
-  cfa: "Tài chính chứng chỉ",
-  frm: "Quản trị rủi ro (FRM)",
-  ib: "Investment Banking",
-  "mock-interview": "Phỏng vấn thử",
-};
+function trackLabels(t: Dictionary): Record<QuizTrack, string> {
+  return {
+    personal: t.quizSuggestion.trackPersonal,
+    professional: t.quizSuggestion.trackProfessional,
+    cfa: t.quizSuggestion.trackCfa,
+    frm: t.quizSuggestion.trackFrm,
+    ib: t.quizSuggestion.trackIb,
+    "mock-interview": t.quizSuggestion.trackMockInterview,
+  };
+}
 
-const DIFFICULTY_LABEL: Record<QuizDifficulty, string> = {
-  "tat-ca": "tất cả độ khó",
-  de: "độ khó Dễ",
-  "trung-binh": "độ khó Trung bình",
-  kho: "độ khó Khó",
-};
+function difficultyLabels(t: Dictionary): Record<QuizDifficulty, string> {
+  return {
+    "tat-ca": t.quizSuggestion.difficultyAll,
+    de: t.quizSuggestion.difficultyEasy,
+    "trung-binh": t.quizSuggestion.difficultyMedium,
+    kho: t.quizSuggestion.difficultyHard,
+  };
+}
 
 interface TaiTaiQuizSuggestionProps {
   userId: string;
@@ -35,6 +41,9 @@ interface TaiTaiQuizSuggestionProps {
 }
 
 export default function TaiTaiQuizSuggestion({ userId, onSelect }: TaiTaiQuizSuggestionProps) {
+  const { t } = useI18n();
+  const TRACK_LABEL = useMemo(() => trackLabels(t), [t]);
+  const DIFFICULTY_LABEL = useMemo(() => difficultyLabels(t), [t]);
   const [suggestion, setSuggestion] = useState<Suggestion | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -75,10 +84,10 @@ export default function TaiTaiQuizSuggestion({ userId, onSelect }: TaiTaiQuizSug
           <TaiTaiAvatar size={40} />
           <div className="min-w-0">
             <p className="text-sm font-bold text-stone-900 dark:text-stone-100">
-              Chào bạn! Tớ là Tài Tài 👋
+              {t.quizSuggestion.greeting}
             </p>
             <p className="mt-1 text-xs text-stone-500 dark:text-stone-400 leading-relaxed">
-              Học xong vài bài rồi quay lại đây, tớ sẽ gợi ý ngay một bài kiểm tra phù hợp cho bạn nhé!
+              {t.quizSuggestion.noSuggestionMessage}
             </p>
           </div>
         </div>
@@ -92,13 +101,13 @@ export default function TaiTaiQuizSuggestion({ userId, onSelect }: TaiTaiQuizSug
         <TaiTaiAvatar size={44} />
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-1.5">
-            <p className="text-sm font-extrabold text-stone-900 dark:text-stone-100">Tài Tài gợi ý</p>
+            <p className="text-sm font-extrabold text-stone-900 dark:text-stone-100">{t.quizSuggestion.suggestionLabel}</p>
             <Sparkles className="w-3.5 h-3.5 text-emerald-500" />
           </div>
           <p className="mt-1.5 text-sm text-stone-700 dark:text-stone-300 leading-relaxed">
-            Bạn đã học xong <span className="font-bold text-stone-900 dark:text-stone-100">&ldquo;{suggestion.lessonTitle}&rdquo;</span> rồi đó! Thử làm một bài kiểm tra{" "}
+            {t.quizSuggestion.messagePart1} <span className="font-bold text-stone-900 dark:text-stone-100">{t.quizSuggestion.quoteOpen}{suggestion.lessonTitle}{t.quizSuggestion.quoteClose}</span> {t.quizSuggestion.messagePart2}{" "}
             <span className="font-bold text-emerald-700 dark:text-emerald-400">{TRACK_LABEL[suggestion.track]}</span>
-            {" "}({DIFFICULTY_LABEL[suggestion.difficulty]}) để ôn lại xem còn nhớ không nhé!
+            {" "}({DIFFICULTY_LABEL[suggestion.difficulty]}) {t.quizSuggestion.messagePart3}
           </p>
 
           <div className="mt-3 flex items-center gap-2">
@@ -106,13 +115,13 @@ export default function TaiTaiQuizSuggestion({ userId, onSelect }: TaiTaiQuizSug
               onClick={() => onSelect(suggestion.track, suggestion.difficulty)}
               className="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-extrabold uppercase tracking-wide cursor-pointer transition-colors"
             >
-              Kiểm tra ngay →
+              {t.quizSuggestion.ctaButton}
             </button>
             <button
               onClick={() => void loadSuggestion()}
               className="p-2 rounded-xl text-stone-500 dark:text-stone-400 hover:bg-white dark:hover:bg-stone-900 hover:text-stone-700 dark:hover:text-stone-200 transition-colors cursor-pointer"
-              aria-label="Gợi ý bài khác"
-              title="Gợi ý bài khác"
+              aria-label={t.quizSuggestion.refreshAria}
+              title={t.quizSuggestion.refreshAria}
             >
               <RefreshCcw className="w-4 h-4" />
             </button>

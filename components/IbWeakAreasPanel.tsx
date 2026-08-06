@@ -9,6 +9,8 @@ import {
   MIN_ATTEMPTS_FOR_SIGNAL,
   type CategoryPerformance,
 } from "@/lib/ib-weak-areas";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 // Reads the per-question record written by the submit route and turns it into
 // "which section should I go back to". Without this the drill could tell you
@@ -41,6 +43,7 @@ function barTone(accuracy: number): string {
 }
 
 export default function IbWeakAreasPanel({ userId, onDrillSection, refreshKey = 0 }: Props) {
+  const { t } = useI18n();
   const [performance, setPerformance] = useState<CategoryPerformance[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -70,7 +73,7 @@ export default function IbWeakAreasPanel({ userId, onDrillSection, refreshKey = 
     return (
       <div className="rounded-3xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-5 flex items-center justify-center gap-2">
         <Loader2 className="w-4 h-4 animate-spin text-stone-400" />
-        <span className="text-xs font-bold text-stone-500 dark:text-stone-400">Đang tính điểm mạnh yếu...</span>
+        <span className="text-xs font-bold text-stone-500 dark:text-stone-400">{t.ibWeakAreas.computingLoading}</span>
       </div>
     );
   }
@@ -83,27 +86,27 @@ export default function IbWeakAreasPanel({ userId, onDrillSection, refreshKey = 
       <div className="flex flex-wrap items-center justify-between gap-2 mb-1">
         <h3 className="text-sm font-black uppercase tracking-widest text-stone-900 dark:text-stone-100 flex items-center gap-2">
           <TrendingDown className="w-4 h-4 text-rose-500" />
-          Điểm mạnh yếu theo section
+          {t.ibWeakAreas.panelTitle}
         </h3>
-        <span className="text-xs font-bold text-stone-400 dark:text-stone-500">{totalAttempts} câu đã làm</span>
+        <span className="text-xs font-bold text-stone-400 dark:text-stone-500">{format(t.ibWeakAreas.totalAttempts, { count: totalAttempts })}</span>
       </div>
 
       {weakest ? (
         <p className="text-xs text-stone-600 dark:text-stone-400 mb-4 leading-relaxed">
-          Yếu nhất hiện tại:{" "}
-          <strong className="text-rose-600 dark:text-rose-400">{weakest.label}</strong> — đúng{" "}
-          {weakest.correct}/{weakest.attempted} ({weakest.accuracy}%).{" "}
+          {t.ibWeakAreas.weakestPrefix}{" "}
+          <strong className="text-rose-600 dark:text-rose-400">{weakest.label}</strong>{" "}
+          {format(t.ibWeakAreas.weakestStats, { correct: weakest.correct, attempted: weakest.attempted, accuracy: weakest.accuracy })}{" "}
           <button
             type="button"
             onClick={() => onDrillSection(weakest.label)}
             className="font-bold text-amber-700 dark:text-amber-400 underline underline-offset-2 hover:no-underline cursor-pointer"
           >
-            Luyện lại section này
+            {t.ibWeakAreas.retrySectionCta}
           </button>
         </p>
       ) : (
         <p className="text-xs text-stone-500 dark:text-stone-400 mb-4 leading-relaxed">
-          Chưa section nào đủ {MIN_ATTEMPTS_FOR_SIGNAL} câu để kết luận. Làm thêm vài lượt nữa rồi quay lại đây.
+          {format(t.ibWeakAreas.noSignalYet, { minAttempts: MIN_ATTEMPTS_FOR_SIGNAL })}
         </p>
       )}
 
@@ -124,7 +127,7 @@ export default function IbWeakAreasPanel({ userId, onDrillSection, refreshKey = 
                   <span className={reliable ? accuracyTone(p.accuracy) : "text-stone-400 dark:text-stone-500"}>
                     {p.accuracy}%
                   </span>
-                  <span className="text-stone-400 dark:text-stone-500"> · {p.correct}/{p.attempted}</span>
+                  <span className="text-stone-400 dark:text-stone-500">{format(t.ibWeakAreas.accuracyStats, { correct: p.correct, attempted: p.attempted })}</span>
                 </span>
               </div>
               <div className="h-1.5 rounded-full bg-stone-100 dark:bg-stone-800 overflow-hidden">
@@ -137,7 +140,7 @@ export default function IbWeakAreasPanel({ userId, onDrillSection, refreshKey = 
               </div>
               {!reliable && (
                 <p className="mt-0.5 text-[10px] text-stone-400 dark:text-stone-500">
-                  Chưa đủ dữ liệu — cần ít nhất {MIN_ATTEMPTS_FOR_SIGNAL} câu
+                  {format(t.ibWeakAreas.notEnoughData, { minAttempts: MIN_ATTEMPTS_FOR_SIGNAL })}
                 </p>
               )}
             </div>

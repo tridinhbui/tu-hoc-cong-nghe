@@ -9,6 +9,8 @@ import { soundManager } from "@/lib/sounds";
 import { recalculateUserStats } from "@/lib/supabase-user";
 import { recordCustomGameSession } from "@/lib/games";
 import { useIsClient } from "@/lib/use-is-client";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 interface CompanyDeal {
   id: string;
@@ -22,7 +24,6 @@ interface CompanyDeal {
   shares: number; // in Millions
   currentPrice: number; // Current trading price in USD
   isUndervalued: boolean; // Correct decision
-  dealRationale: string;
 }
 
 const DEALS: CompanyDeal[] = [
@@ -38,7 +39,6 @@ const DEALS: CompanyDeal[] = [
     shares: 100,
     currentPrice: 38.5,
     isUndervalued: true,
-    dealRationale: "Dòng tiền tự do dồi dào + chi phí vốn rẻ làm định giá thực đạt $47.0/cp, cao hơn 22% so với thị trường! HOAC: Mô hình SaaS có recurring revenue ổn định."
   },
   {
     id: "consumer-staple",
@@ -52,7 +52,6 @@ const DEALS: CompanyDeal[] = [
     shares: 80,
     currentPrice: 28.0,
     isUndervalued: false,
-    dealRationale: "Nợ vay cao và chi phí vốn 11% khiến giá trị hợp lý chỉ là $22.5/cp. Thị trường định giá cổ phiếu quá cao tại mức $28!"
   },
   {
     id: "green-energy",
@@ -66,7 +65,6 @@ const DEALS: CompanyDeal[] = [
     shares: 120,
     currentPrice: 42.0,
     isUndervalued: true,
-    dealRationale: "Ngành năng lượng xanh hưởng lợi chính sách và chi phí vốn rẻ 8%, định giá DCF hợp lý đạt $52.5/cp!"
   },
   {
     id: "retail-chain",
@@ -80,7 +78,6 @@ const DEALS: CompanyDeal[] = [
     shares: 50,
     currentPrice: 32.0,
     isUndervalued: false,
-    dealRationale: "Bán lẻ truyền thống tăng trưởng chậm (2%), chị phí vốn cao -> định giá chỉ $26.0/cp. Giá thị trường $32 là quá cao!"
   },
   {
     id: "biotech-pharma",
@@ -94,7 +91,6 @@ const DEALS: CompanyDeal[] = [
     shares: 100,
     currentPrice: 35.0,
     isUndervalued: true,
-    dealRationale: "Công ty sở hữu bằng sáng chế độc quyền phát triển thuốc, định giá hợp lý $44.0/cp vượt xa giá thị trường!"
   },
   {
     id: "fintech-disruptor",
@@ -108,7 +104,6 @@ const DEALS: CompanyDeal[] = [
     shares: 90,
     currentPrice: 24.0,
     isUndervalued: true,
-    dealRationale: "Startup Fintech với tăng trưởng mạnh 5%/năm, WACC 10%, định giá DCF = $26.7/cp, cao hơn giá thị trường $24!"
   },
   {
     id: "real-estate-reit",
@@ -122,11 +117,12 @@ const DEALS: CompanyDeal[] = [
     shares: 200,
     currentPrice: 18.5,
     isUndervalued: false,
-    dealRationale: "REIT có nợ khủng (LTV cao), chi phí vốn thấp nhưng tăng trưởng chậm -> định giá $17.1/cp, thị trường định giá cao hơn!"
   }
 ];
 
 export default function DcfValuationGame({ userId, onClose }: { userId: string; onClose: () => void }) {
+  const { t } = useI18n();
+  const dcf = t.games.dcf;
   const mounted = useIsClient();
   const [round, setRound] = useState(0); // 0 to 4
   const [score, setScore] = useState(0);
@@ -176,10 +172,10 @@ export default function DcfValuationGame({ userId, onClose }: { userId: string; 
     if (isCorrect) {
       soundManager.playWin();
       setScore((prev) => prev + 100);
-      toast.success("Định giá & Phán quyết chính xác! +100 Điểm", { icon: "🎯" });
+      toast.success(dcf.toastCorrect, { icon: "🎯" });
     } else {
       soundManager.playWrong();
-      toast.error("Phán quyết sai lầm! Chi phí cơ hội bị tổn thất.", { icon: "❌" });
+      toast.error(dcf.toastWrong, { icon: "❌" });
     }
   };
 
@@ -211,18 +207,18 @@ export default function DcfValuationGame({ userId, onClose }: { userId: string; 
             </div>
             <div>
               <h2 className="text-base sm:text-lg font-black tracking-tight text-indigo-300 flex items-center gap-2">
-                Đấu Trường Định Giá DCF & M&A
+                {dcf.title}
                 <span className="text-xs px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-400/40 font-bold">
-                  Thương vụ {round + 1}/{DEALS.length}
+                  {format(dcf.dealCounter, { current: round + 1, total: DEALS.length })}
                 </span>
               </h2>
-              <p className="text-xs text-stone-400">Xác định Giá trị Nội tại (Target Price) & Phán quyết Mua / Né</p>
+              <p className="text-xs text-stone-400">{dcf.subtitle}</p>
             </div>
           </div>
 
           <div className="flex items-center gap-3">
             <div className="px-3 py-1 rounded-xl bg-amber-500/20 border border-amber-400/40 text-amber-300 font-black text-xs">
-              Score: {score}
+              {format(dcf.score, { score })}
             </div>
             <button
               type="button"
@@ -246,15 +242,15 @@ export default function DcfValuationGame({ userId, onClose }: { userId: string; 
             </div>
 
             <div>
-              <h3 className="text-2xl font-black text-indigo-300">HOÀN THÀNH ĐẤU TRƯỜNG ĐỊNH GIÁ!</h3>
+              <h3 className="text-2xl font-black text-indigo-300">{dcf.finishedTitle}</h3>
               <p className="text-sm text-stone-300 mt-1 max-w-md">
-                Bạn đã hoàn thành phân tích định giá DCF cho cả 5 thương vụ doanh nghiệp lớn!
+                {dcf.finishedDesc}
               </p>
             </div>
 
             <div className="rounded-2xl bg-indigo-950/40 border border-indigo-500/30 px-6 py-4 text-center">
-              <span className="text-xs uppercase font-extrabold text-indigo-400">Tổng điểm thương vụ đạt được</span>
-              <div className="text-3xl font-black text-indigo-300 mt-1">{score} / 700 ĐIỂM</div>
+              <span className="text-xs uppercase font-extrabold text-indigo-400">{dcf.totalScoreLabel}</span>
+              <div className="text-3xl font-black text-indigo-300 mt-1">{format(dcf.totalScoreValue, { score })}</div>
             </div>
 
             <div className="flex gap-3 pt-2">
@@ -268,14 +264,14 @@ export default function DcfValuationGame({ userId, onClose }: { userId: string; 
                 className="px-5 py-2.5 rounded-xl bg-indigo-500 hover:bg-indigo-400 text-stone-950 font-black text-sm transition-all shadow-lg flex items-center gap-2 cursor-pointer"
               >
                 <RotateCcw className="w-4 h-4" />
-                <span>Thử thách lại</span>
+                <span>{dcf.retryButton}</span>
               </button>
               <button
                 type="button"
                 onClick={onClose}
                 className="px-5 py-2.5 rounded-xl bg-stone-800 hover:bg-stone-700 text-white font-bold text-sm transition-all cursor-pointer"
               >
-                Đóng
+                {dcf.closeButton}
               </button>
             </div>
           </motion.div>
@@ -286,7 +282,7 @@ export default function DcfValuationGame({ userId, onClose }: { userId: string; 
             <div className="lg:col-span-5 bg-stone-900/90 border border-indigo-500/30 rounded-2xl p-4 sm:p-5 space-y-4">
               <div className="flex items-center justify-between border-b border-indigo-500/20 pb-3">
                 <div>
-                  <span className="text-[10px] font-black uppercase text-indigo-400 tracking-wider">Hồ sơ Doanh nghiệp Target</span>
+                  <span className="text-[10px] font-black uppercase text-indigo-400 tracking-wider">{dcf.dossierLabel}</span>
                   <h3 className="text-lg font-black text-white">{deal.name} ({deal.ticker})</h3>
                   <span className="text-xs text-stone-400">{deal.industry}</span>
                 </div>
@@ -297,20 +293,20 @@ export default function DcfValuationGame({ userId, onClose }: { userId: string; 
 
               <div className="space-y-2 text-xs">
                 <div className="flex justify-between p-2.5 rounded-xl bg-stone-950/60 border border-stone-800">
-                  <span className="text-stone-400">Dòng tiền tự do năm tới (FCFF):</span>
+                  <span className="text-stone-400">{dcf.fcffLabel}</span>
                   <span className="font-extrabold text-emerald-400">${deal.fcffYear1}M</span>
                 </div>
                 <div className="flex justify-between p-2.5 rounded-xl bg-stone-950/60 border border-stone-800">
-                  <span className="text-stone-400">Nợ thuần (Net Debt):</span>
+                  <span className="text-stone-400">{dcf.netDebtLabel}</span>
                   <span className="font-extrabold text-amber-400">${deal.netDebt}M</span>
                 </div>
                 <div className="flex justify-between p-2.5 rounded-xl bg-stone-950/60 border border-stone-800">
-                  <span className="text-stone-400">Số lượng Cổ phiếu lưu hành:</span>
-                  <span className="font-extrabold text-stone-200">{deal.shares}M cổ phiếu</span>
+                  <span className="text-stone-400">{dcf.sharesLabel}</span>
+                  <span className="font-extrabold text-stone-200">{format(dcf.sharesUnit, { shares: deal.shares })}</span>
                 </div>
                 <div className="flex justify-between p-2.5 rounded-xl bg-indigo-950/50 border border-indigo-500/40 font-extrabold">
-                  <span className="text-indigo-300">Thị giá hiện tại (Market Price):</span>
-                  <span className="text-amber-300 text-sm">${deal.currentPrice} / cp</span>
+                  <span className="text-indigo-300">{dcf.marketPriceLabel}</span>
+                  <span className="text-amber-300 text-sm">{format(dcf.pricePerShare, { price: deal.currentPrice })}</span>
                 </div>
               </div>
             </div>
@@ -318,7 +314,7 @@ export default function DcfValuationGame({ userId, onClose }: { userId: string; 
             {/* Right Column: Interactive DCF Sliders & Model Output (7 Cols) */}
             <div className="lg:col-span-7 bg-stone-900/90 border border-indigo-500/30 rounded-2xl p-4 sm:p-5 space-y-4">
               <h3 className="text-xs font-black uppercase text-indigo-400 tracking-wider flex items-center gap-2">
-                <Sliders className="w-4 h-4" /> Mô Hình Định Giá DCF Interactive:
+                <Sliders className="w-4 h-4" /> {dcf.modelTitle}
               </h3>
 
               {/* Sliders */}
@@ -326,7 +322,7 @@ export default function DcfValuationGame({ userId, onClose }: { userId: string; 
                 {/* WACC Slider */}
                 <div className="space-y-1">
                   <div className="flex justify-between text-xs font-bold">
-                    <span className="text-stone-300">Chi phí vốn bình quân (WACC):</span>
+                    <span className="text-stone-300">{dcf.waccLabel}</span>
                     <span className="text-indigo-400 font-extrabold">{Math.round(wacc * 1000) / 10}%</span>
                   </div>
                   <input
@@ -344,7 +340,7 @@ export default function DcfValuationGame({ userId, onClose }: { userId: string; 
                 {/* Growth Rate Slider */}
                 <div className="space-y-1">
                   <div className="flex justify-between text-xs font-bold">
-                    <span className="text-stone-300">Tốc độ tăng trưởng dài hạn (g):</span>
+                    <span className="text-stone-300">{dcf.growthLabel}</span>
                     <span className="text-emerald-400 font-extrabold">{Math.round(growthG * 1000) / 10}%</span>
                   </div>
                   <input
@@ -363,12 +359,12 @@ export default function DcfValuationGame({ userId, onClose }: { userId: string; 
               {/* Calculated DCF Output Card */}
               <div className="grid grid-cols-2 gap-3 text-center">
                 <div className="p-3 rounded-2xl bg-indigo-950/40 border border-indigo-500/30">
-                  <span className="text-[10px] font-black uppercase text-indigo-400">Giá trị Doanh nghiệp (EV)</span>
+                  <span className="text-[10px] font-black uppercase text-indigo-400">{dcf.evLabel}</span>
                   <div className="text-base font-black text-indigo-200 mt-0.5">${calcEv()}M</div>
                 </div>
                 <div className="p-3 rounded-2xl bg-emerald-950/40 border border-emerald-500/30">
-                  <span className="text-[10px] font-black uppercase text-emerald-400">Giá Mục Tiêu DCF (Target Price)</span>
-                  <div className="text-lg font-black text-emerald-300 mt-0.5">${calculatedPrice} / cp</div>
+                  <span className="text-[10px] font-black uppercase text-emerald-400">{dcf.targetPriceLabel}</span>
+                  <div className="text-lg font-black text-emerald-300 mt-0.5">{format(dcf.pricePerShare, { price: calculatedPrice })}</div>
                 </div>
               </div>
 
@@ -380,14 +376,14 @@ export default function DcfValuationGame({ userId, onClose }: { userId: string; 
                     onClick={() => handleMakeDecision(true)}
                     className="py-3 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-black text-xs sm:text-sm shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
                   >
-                    <span>⚡ MUA VÀO (Rẻ)</span>
+                    <span>{dcf.buyButton}</span>
                   </button>
                   <button
                     type="button"
                     onClick={() => handleMakeDecision(false)}
                     className="py-3 rounded-2xl bg-gradient-to-r from-rose-600 to-red-600 hover:from-rose-500 hover:to-red-500 text-white font-black text-xs sm:text-sm shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
                   >
-                    <span>⛔ NÉ XA (Đắt)</span>
+                    <span>{dcf.passButton}</span>
                   </button>
                 </div>
               ) : (
@@ -400,9 +396,9 @@ export default function DcfValuationGame({ userId, onClose }: { userId: string; 
                   <div className={`p-4 rounded-2xl border ${lastResult?.isCorrect ? "bg-emerald-950/50 border-emerald-500/40 text-emerald-200" : "bg-red-950/50 border-red-500/40 text-red-200"}`}>
                     <div className="flex items-center gap-2 font-black text-sm mb-1">
                       {lastResult?.isCorrect ? <CheckCircle2 className="w-5 h-5 text-emerald-400" /> : <XCircle className="w-5 h-5 text-red-400" />}
-                      <span>{lastResult?.isCorrect ? "Phán quyết chuẩn xác!" : "Phán quyết chưa đúng!"}</span>
+                      <span>{lastResult?.isCorrect ? dcf.correctVerdict : dcf.wrongVerdict}</span>
                     </div>
-                    <p className="text-xs leading-relaxed text-stone-300 mt-1">{deal.dealRationale}</p>
+                    <p className="text-xs leading-relaxed text-stone-300 mt-1">{dcf.dealRationale[deal.id as keyof typeof dcf.dealRationale]}</p>
                   </div>
 
                   <button
@@ -410,7 +406,7 @@ export default function DcfValuationGame({ userId, onClose }: { userId: string; 
                     onClick={handleNextRound}
                     className="w-full py-3 rounded-2xl bg-indigo-500 hover:bg-indigo-400 text-stone-950 font-black text-sm shadow-lg transition-all cursor-pointer"
                   >
-                    Thương vụ tiếp theo →
+                    {dcf.nextDeal}
                   </button>
                 </motion.div>
               )}

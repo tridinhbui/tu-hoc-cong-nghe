@@ -20,6 +20,18 @@ const VIETNAMESE_DIACRITIC =
 
 /** Values that are legitimately identical or Vietnamese in the English
  *  dictionary, each with the reason. Anything not listed here must differ. */
+/** The Standard-citation keys inside interactiveRest.ethicsCase: for each case,
+ *  the keyed Standard plus its three distractors. Everything else in that block
+ *  is translatable prose. */
+const ETHICS_STANDARD_CITATIONS = ["mnpi", "gift", "fair", "record"].flatMap(
+  (c) => [
+    `interactiveRest.ethicsCase.${c}Standard`,
+    `interactiveRest.ethicsCase.${c}Distractor1`,
+    `interactiveRest.ethicsCase.${c}Distractor2`,
+    `interactiveRest.ethicsCase.${c}Distractor3`,
+  ]
+);
+
 const INTENTIONALLY_UNTRANSLATED = new Set([
   // The difficulty table is keyed BY the Vietnamese value, because `difficulty`
   // is a Vietnamese string union used as a value across the app (see
@@ -94,6 +106,28 @@ const INTENTIONALLY_UNTRANSLATED = new Set([
   "leaderboardPreview.name4",
   "leaderboardPreview.name5",
   "leaderboardPreview.name6",
+  // The CFA Standards of Professional Conduct, cited by official code and title
+  // - "II(A) Material Nonpublic Information". Already English in the Vietnamese
+  // source for the same reason the Level I subject names are: translating one
+  // stops it matching the Standard the learner is tested on. Listed key by key
+  // rather than exempting the whole ethicsCase block, which also holds the case
+  // scenarios and reasoning - prose that must be caught if left untranslated.
+  ...ETHICS_STANDARD_CITATIONS,
+  // "Tài Tài" the study coach again, and the IB track's own name, which is
+  // already English in the Vietnamese source.
+  "quizSuggestion.greeting",
+  "quizSuggestion.suggestionLabel",
+  "quizSuggestion.trackIb",
+  // Formulas: a DuPont decomposition and the compound-interest options, which
+  // are algebra in both languages. Translating "FV" or "PV" would stop them
+  // matching the lesson that teaches them.
+  "games.millionaire.questions.6.explanation",
+  "games.snowballRacer.quizBoosts.compoundFormula.options",
+  // District names on the game map, already English in the Vietnamese source -
+  // the game's own geography, the same as the Goldman and Fed badges.
+  "games.algoTrader.subtitleBadge",
+  "games.candlestick.districtBadge",
+  "games.maSpeedrun.districtBadge",
   // A URL, not a sentence: the example YouTube link in the admin video field.
   "adminTwo.cfaLibrary.videoLinkPlaceholder",
   // Already English in the Vietnamese source: the file-type fallback label the

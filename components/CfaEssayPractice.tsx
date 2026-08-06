@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { CFA_ESSAYS, essayMaxPoints, type CfaEssay } from "@/lib/cfa-essays";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 /**
  * Luyện tự luận Level III.
@@ -15,6 +17,7 @@ import { CFA_ESSAYS, essayMaxPoints, type CfaEssay } from "@/lib/cfa-essays";
  */
 
 function EssayCard({ essay }: { essay: CfaEssay }) {
+  const { t } = useI18n();
   const [revealed, setRevealed] = useState(false);
   const [ticked, setTicked] = useState<Set<number>>(new Set());
   const max = essayMaxPoints(essay);
@@ -36,7 +39,7 @@ function EssayCard({ essay }: { essay: CfaEssay }) {
           {essay.topic}
         </span>
         <span className="text-[11px] font-semibold text-stone-400 dark:text-stone-500">
-          {essay.minutes} phút · {max} điểm
+          {format(t.cfaEssay.minutesAndPoints, { minutes: essay.minutes, max })}
         </span>
       </div>
 
@@ -48,24 +51,24 @@ function EssayCard({ essay }: { essay: CfaEssay }) {
       {!revealed ? (
         <div className="mt-3">
           <p className="text-[11px] leading-relaxed text-stone-500 dark:text-stone-400">
-            Viết câu trả lời ra giấy hoặc sổ tay trước - thang chấm cố ý bị giấu tới lúc bạn viết xong.
+            {t.cfaEssay.writeFirstHint}
           </p>
           <button
             type="button"
             onClick={() => setRevealed(true)}
             className="mt-2 cursor-pointer rounded-full bg-stone-900 px-4 py-2 text-[11px] font-bold text-white hover:bg-stone-700 dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-white"
           >
-            Tôi đã viết xong - mở thang chấm
+            {t.cfaEssay.revealCta}
           </button>
         </div>
       ) : (
         <div className="mt-3">
           <div className="flex items-baseline justify-between gap-2">
             <p className="text-[10px] font-black uppercase tracking-widest text-stone-500 dark:text-stone-400">
-              Thang chấm - tick những ý bạn thực sự đã viết
+              {t.cfaEssay.rubricTitle}
             </p>
             <p className="text-[12px] font-extrabold text-stone-900 dark:text-stone-100">
-              {scored}/{max}
+              {format(t.cfaEssay.scoredOfMax, { scored, max })}
             </p>
           </div>
           <ul className="mt-2 space-y-1.5">
@@ -80,14 +83,14 @@ function EssayCard({ essay }: { essay: CfaEssay }) {
                   />
                   <span className="flex-1">{point.text}</span>
                   <span className="shrink-0 text-[11px] font-bold text-stone-400 dark:text-stone-500">
-                    {point.points}đ
+                    {point.points}{t.cfaEssay.pointsSuffix}
                   </span>
                 </label>
               </li>
             ))}
           </ul>
           <p className="mt-2.5 rounded-xl border border-amber-200 bg-amber-50 px-3 py-2 text-[12px] leading-relaxed text-amber-900 dark:border-amber-900/60 dark:bg-amber-950/30 dark:text-amber-200">
-            <span className="font-bold">Lỗi hay gặp: </span>
+            <span className="font-bold">{t.cfaEssay.commonMistakeLabel}</span>
             {essay.commonMistake}
           </p>
         </div>
@@ -97,15 +100,14 @@ function EssayCard({ essay }: { essay: CfaEssay }) {
 }
 
 export default function CfaEssayPractice() {
+  const { t } = useI18n();
   return (
     <section className="mt-6 rounded-[24px] border border-stone-200 bg-white p-5 dark:border-stone-800 dark:bg-stone-900">
       <h3 className="text-base font-extrabold text-stone-900 dark:text-stone-100">
-        Luyện tự luận - buổi sáng Level III
+        {t.cfaEssay.sectionTitle}
       </h3>
       <p className="mt-1 max-w-2xl text-xs leading-relaxed text-stone-500 dark:text-stone-400">
-        Buổi sáng Level III không hỏi &quot;đáp án nào đúng&quot; mà hỏi &quot;hãy nêu và giải
-        thích&quot;, và người chấm cho điểm theo từng ý. Nên ở đây bạn viết ra giấy trước, rồi mở
-        thang chấm và tự tick. Điểm bạn tự cho không được lưu và không tính vào bất cứ đâu.
+        {t.cfaEssay.sectionBlurb}
       </p>
       <div className="mt-4 grid gap-3 lg:grid-cols-2">
         {CFA_ESSAYS.map((essay) => (

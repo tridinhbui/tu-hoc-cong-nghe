@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { Upload, FileText, Trash2, Download, Plus, Pencil, Check, X, Eye } from "lucide-react";
 import type { DocumentRow } from "@/lib/admin/documents";
-import { DOCUMENT_CATEGORIES } from "@/lib/document-categories";
+import { documentCategoriesOf, documentCategoryLabel } from "@/lib/document-categories";
 import { uploadDocumentAction, updateDocumentAction, deleteDocumentAction, approveDocumentAction, rejectDocumentAction } from "./actions";
 import EmptyState from "@/components/admin/EmptyState";
 import ConfirmDialog from "@/components/admin/ConfirmDialog";
@@ -19,10 +19,6 @@ function formatBytes(bytes: number) {
   if (bytes < 1024) return `${bytes} B`;
   if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(0)} KB`;
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
-}
-
-function categoryLabel(value: string) {
-  return DOCUMENT_CATEGORIES.find((c) => c.value === value)?.label ?? value;
 }
 
 export default function DocumentsManager({ documents }: { documents: DocumentRow[] }) {
@@ -136,7 +132,7 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
                   <div className="flex items-center gap-2 flex-wrap">
                     <span className="font-bold text-sm text-stone-900 dark:text-stone-100">{doc.title}</span>
                     <span className="text-[10px] font-bold uppercase tracking-wide bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 px-2 py-0.5 rounded-full">
-                      {categoryLabel(doc.category)}
+                      {documentCategoryLabel(doc.category, t)}
                     </span>
                     {doc.status === "pending" && (
                       <span className="text-[10px] font-bold uppercase tracking-wide bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-400 px-2 py-0.5 rounded-full">
@@ -240,7 +236,7 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
               defaultValue="khac"
               className="w-full px-3 py-2 rounded-lg border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-800 text-sm text-stone-900 dark:text-stone-100"
             >
-              {DOCUMENT_CATEGORIES.map((c) => (
+              {documentCategoriesOf(t).map((c) => (
                 <option key={c.value} value={c.value}>{c.label}</option>
               ))}
             </select>
@@ -319,7 +315,7 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
                 defaultValue={toEdit.category}
                 className="w-full px-3 py-2 rounded-lg border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-800 text-sm text-stone-900 dark:text-stone-100"
               >
-                {DOCUMENT_CATEGORIES.map((c) => (
+                {documentCategoriesOf(t).map((c) => (
                   <option key={c.value} value={c.value}>{c.label}</option>
                 ))}
               </select>

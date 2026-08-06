@@ -7,16 +7,20 @@ import { EyeOff, ExternalLink, CheckCircle2, Users } from "lucide-react";
 import ConfirmDialog from "@/components/admin/ConfirmDialog";
 import { ignoreAiReportAction, resolveAiReportsForLessonAction } from "./actions";
 import { groupAiReportsByLesson, type AdminAiReportRow } from "@/lib/admin/ai-report-grouping";
+import { useI18n } from "@/lib/i18n/context";
+import { format, intlLocale, type Locale } from "@/lib/i18n";
 
 interface AiReportsClientProps {
   initialReports: AdminAiReportRow[];
 }
 
-function formatDate(iso: string): string {
-  return new Date(iso).toLocaleString("vi-VN", { dateStyle: "short", timeStyle: "short" });
+function formatDate(iso: string, locale: Locale): string {
+  return new Date(iso).toLocaleString(intlLocale(locale), { dateStyle: "short", timeStyle: "short" });
 }
 
 export default function AiReportsClient({ initialReports }: AiReportsClientProps) {
+  const { t, locale } = useI18n();
+  const ta = t.adminThree.aiReportsClient;
   const [reports, setReports] = useState<AdminAiReportRow[]>(initialReports);
   const [resolveTarget, setResolveTarget] = useState<number | null>(null);
   const [isPending, startTransition] = useTransition();
@@ -29,9 +33,9 @@ export default function AiReportsClient({ initialReports }: AiReportsClientProps
       const res = await resolveAiReportsForLessonAction(lessonId);
       if (res.success) {
         setReports((prev) => prev.filter((r) => r.lesson_id !== lessonId));
-        toast.success("Đã đóng toàn bộ báo cáo của bài học này.");
+        toast.success(ta.closedLesson);
       } else {
-        toast.error(res.error || "Không thể đóng cụm báo cáo");
+        toast.error(res.error || ta.closeGroupFailed);
       }
       setResolveTarget(null);
     });
@@ -46,10 +50,10 @@ export default function AiReportsClient({ initialReports }: AiReportsClientProps
         setReports((prev) => prev.filter((r) => !closedSet.has(r.id)));
       }
       if (closed.length === ids.length) {
-        toast.success("Đã bỏ qua đoạn này.");
+        toast.success(ta.ignoredQuote);
       } else {
         const failure = results.find((r) => !r.success);
-        toast.error(failure?.error || `Chỉ bỏ qua được ${closed.length}/${ids.length} báo cáo.`);
+        toast.error(failure?.error || format(ta.partialIgnoreFailed, { closed: closed.length, total: ids.length }));
       }
     });
   }
@@ -57,7 +61,7 @@ export default function AiReportsClient({ initialReports }: AiReportsClientProps
   if (groups.length === 0) {
     return (
       <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl p-8 text-center text-stone-500 dark:text-stone-400 text-sm">
-        Không có báo cáo lỗi AI nào đang chờ xử lý. Cảm ơn bạn!
+        {ta.emptyState}
       </div>
     );
   }
@@ -65,9 +69,8 @@ export default function AiReportsClient({ initialReports }: AiReportsClientProps
   return (
     <div className="space-y-4">
       <p className="text-xs text-stone-500 dark:text-stone-400">
-        <span className="font-bold text-stone-700 dark:text-stone-300">{reports.length}</span> báo cáo trên{" "}
-        <span className="font-bold text-stone-700 dark:text-stone-300">{groups.length}</span> bài học · bài bị báo nhiều
-        nhất xếp trước
+        <span className="font-bold text-stone-700 dark:text-stone-300">{reports.length}</span> {ta.summaryPart1}{" "}
+        <span className="font-bold text-stone-700 dark:text-stone-300">{groups.length}</span> {ta.summaryPart2}
       </p>
 
       {groups.map((group) => (
@@ -82,16 +85,16 @@ export default function AiReportsClient({ initialReports }: AiReportsClientProps
                   {group.lesson_title}
                 </h3>
                 <span className="shrink-0 inline-flex items-center px-2 py-0.5 rounded-full text-xs font-extrabold bg-rose-100 dark:bg-rose-950/40 text-rose-700 dark:text-rose-300">
-                  {group.total} báo cáo
+                  {format(ta.reportsCount, { count: group.total })}
                 </span>
               </div>
               <p className="text-xs text-stone-500 dark:text-stone-400 mt-1">
                 {group.lesson_slug ? (
                   <span className="font-mono">{group.lesson_slug}</span>
                 ) : (
-                  <span>ID: {group.lesson_id}</span>
+                  <span>{format(ta.idPrefix, { id: group.lesson_id })}</span>
                 )}{" "}
-                · {group.quotes.length} đoạn · mới nhất {formatDate(group.latest_at)}
+                · {format(ta.metaLine, { quoteCount: group.quotes.length, date: formatDate(group.latest_at, locale) })}
               </p>
             </div>
             <div className="flex items-center gap-2 shrink-0">
@@ -101,7 +104,7 @@ export default function AiReportsClient({ initialReports }: AiReportsClientProps
                   target="_blank"
                   className="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-bold rounded-lg border border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
                 >
-                  Xem bài học
+                  {ta.viewLesson}
                   <ExternalLink className="w-3.5 h-3.5" />
                 </Link>
               )}
@@ -111,7 +114,7 @@ export default function AiReportsClient({ initialReports }: AiReportsClientProps
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white disabled:opacity-50 transition-colors"
               >
                 <CheckCircle2 className="w-3.5 h-3.5" />
-                Đã sửa bài này
+                {ta.markFixed}
               </button>
             </div>
           </div>
@@ -127,21 +130,21 @@ export default function AiReportsClient({ initialReports }: AiReportsClientProps
                     {q.count > 1 && (
                       <span className="inline-flex items-center gap-1 font-bold text-rose-600 dark:text-rose-400">
                         <Users className="w-3.5 h-3.5" />
-                        {q.count} người cùng báo
+                        {format(ta.reportersTogether, { count: q.count })}
                       </span>
                     )}
                     {q.reporters.length > 0 && <span className="truncate">{q.reporters.join(", ")}</span>}
-                    <span>· {formatDate(q.latest_at)}</span>
+                    <span>· {formatDate(q.latest_at, locale)}</span>
                   </div>
                 </div>
                 <button
                   onClick={() => handleIgnoreQuote(q.ids)}
                   disabled={isPending}
                   className="shrink-0 inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-bold text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg transition disabled:opacity-50"
-                  title="Đã xem, không phải lỗi nội dung"
+                  title={ta.ignoreTitle}
                 >
                   <EyeOff className="w-3.5 h-3.5" />
-                  Bỏ qua
+                  {ta.ignore}
                 </button>
               </li>
             ))}
@@ -151,13 +154,13 @@ export default function AiReportsClient({ initialReports }: AiReportsClientProps
 
       <ConfirmDialog
         open={pendingGroup !== null}
-        title="Đóng toàn bộ báo cáo của bài này?"
+        title={ta.closeAllTitle}
         message={
           pendingGroup
-            ? `Sẽ đánh dấu ${pendingGroup.total} báo cáo trên bài "${pendingGroup.lesson_title}" là đã xử lý và ẩn khỏi hàng đợi. Dữ liệu vẫn được giữ lại. Chỉ làm sau khi nội dung bài đã được sửa xong.`
+            ? format(ta.closeAllMessage, { total: pendingGroup.total, title: pendingGroup.lesson_title })
             : ""
         }
-        confirmLabel="Đã sửa, đóng hết"
+        confirmLabel={ta.closeAllConfirm}
         onConfirm={() => pendingGroup !== null && handleResolveLesson(pendingGroup.lesson_id)}
         onCancel={() => setResolveTarget(null)}
         loading={isPending}

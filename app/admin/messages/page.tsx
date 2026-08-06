@@ -3,6 +3,8 @@ import { getChatThreads } from "@/lib/admin/chat";
 import { getBugReports } from "@/lib/admin/bugs";
 import { listAnnouncements } from "@/lib/admin/announcements";
 import MessagesCombinedWrapper from "./MessagesCombinedWrapper";
+import { getServerLocale } from "@/lib/i18n/server";
+import { getDictionary } from "@/lib/i18n";
 
 export const dynamic = "force-dynamic";
 
@@ -16,6 +18,9 @@ export default async function AdminMessagesPage({ searchParams }: PageProps) {
   const filter = (params.filter as "all" | "read" | "unread") ?? "all";
   const page = Number(params.page ?? "1") || 1;
   const tab = params.tab ?? "messages";
+  const locale = await getServerLocale();
+  const t = getDictionary(locale);
+  const tp = t.adminThree.messagesPage;
 
   const [result, threads, bugReports, announcements] = await Promise.all([
     getMessages({ search, filter, page, pageSize: 20 }).catch(() => ({ messages: [], total: 0, page: 1, pageSize: 20, totalPages: 1 })),
@@ -28,10 +33,10 @@ export default async function AdminMessagesPage({ searchParams }: PageProps) {
     <div>
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-1">
-          Tin nhắn & Thông báo
+          {tp.title}
         </h1>
         <p className="text-sm text-stone-500 dark:text-stone-400">
-          Quản lý tin nhắn phản hồi từ học viên và tạo thông báo toàn hệ thống
+          {tp.subtitle}
         </p>
       </div>
 

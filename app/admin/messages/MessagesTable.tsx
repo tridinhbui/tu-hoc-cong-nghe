@@ -9,6 +9,8 @@ import { markMessageReadAction, deleteMessageAction, sendAdminChatReplyAction } 
 import EmptyState from "@/components/admin/EmptyState";
 import Pagination from "@/components/admin/Pagination";
 import ConfirmDialog from "@/components/admin/ConfirmDialog";
+import { useI18n } from "@/lib/i18n/context";
+import { format, intlLocale } from "@/lib/i18n";
 
 export default function MessagesTable({
   result,
@@ -20,6 +22,8 @@ export default function MessagesTable({
   initialFilter: "all" | "read" | "unread";
 }) {
   const router = useRouter();
+  const { t, locale } = useI18n();
+  const tm = t.adminThree.messagesTable;
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [isPending, startTransition] = useTransition();
@@ -53,10 +57,10 @@ export default function MessagesTable({
   async function toggleRead(msg: ContactMessage) {
     try {
       await markMessageReadAction(msg.id, !msg.is_read);
-      toast.success(msg.is_read ? "Đã đánh dấu chưa đọc" : "Đã đánh dấu đã đọc");
+      toast.success(msg.is_read ? tm.markedUnread : tm.markedRead);
       router.refresh();
     } catch (err) {
-      toast.error(err instanceof Error ? err.message : "Có lỗi xảy ra");
+      toast.error(err instanceof Error ? err.message : tm.genericError);
     }
   }
 
@@ -71,12 +75,12 @@ export default function MessagesTable({
     try {
       await sendAdminChatReplyAction(msg.user_id, replyText.trim());
       if (!msg.is_read) await markMessageReadAction(msg.id, true);
-      toast.success("Đã gửi trả lời qua khung chat");
+      toast.success(tm.replySent);
       setReplyText("");
       setReplyingTo(null);
       router.refresh();
     } catch (err) {
-      toast.error(err instanceof Error ? err.message : "Không gửi được trả lời");
+      toast.error(err instanceof Error ? err.message : tm.replySendFailed);
     }
     setSendingReply(false);
   }
@@ -85,11 +89,11 @@ export default function MessagesTable({
     if (!toDelete) return;
     try {
       await deleteMessageAction(toDelete.id);
-      toast.success("Đã xóa tin nhắn");
+      toast.success(tm.messageDeleted);
       setToDelete(null);
       router.refresh();
     } catch (err) {
-      toast.error(err instanceof Error ? err.message : "Có lỗi xảy ra");
+      toast.error(err instanceof Error ? err.message : tm.genericError);
     }
   }
 
@@ -102,7 +106,7 @@ export default function MessagesTable({
           <input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="Tìm theo tên hoặc email..."
+            placeholder={tm.searchPlaceholder}
             className="w-full pl-9 pr-3 py-2 text-sm rounded-lg border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-100 focus:outline-none focus:border-stone-500"
           />
         </form>
@@ -117,18 +121,18 @@ export default function MessagesTable({
                   : "bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-700"
               }`}
             >
-              {f === "all" ? "Tất cả" : f === "unread" ? "Chưa đọc" : "Đã đọc"}
+              {f === "all" ? tm.filterAll : f === "unread" ? tm.filterUnread : tm.filterRead}
             </button>
           ))}
         </div>
       </div>
 
       {isPending && (
-        <div className="px-4 py-2 text-xs text-stone-400">Đang tải...</div>
+        <div className="px-4 py-2 text-xs text-stone-400">{tm.loading}</div>
       )}
 
       {result.messages.length === 0 ? (
-        <EmptyState icon={Mail} title="Không có tin nhắn nào" description="Chưa có tin nhắn nào khớp với bộ lọc hiện tại." />
+        <EmptyState icon={Mail} title={tm.emptyTitle} description={tm.emptyDescription} />
       ) : (
         <div className="divide-y divide-stone-200 dark:divide-stone-800">
           {result.messages.map((msg) => (
@@ -143,7 +147,7 @@ export default function MessagesTable({
                     {msg.email && <span className="text-xs text-stone-500 dark:text-stone-400">{msg.email}</span>}
                     {!msg.is_read && (
                       <span className="text-[10px] font-bold uppercase tracking-wide bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-400 px-2 py-0.5 rounded-full">
-                        Mới
+                        {tm.newBadge}
                       </span>
                     )}
                   </div>
@@ -154,7 +158,7 @@ export default function MessagesTable({
                     {msg.message}
                   </p>
                   <p className="text-[11px] text-stone-400 dark:text-stone-500 mt-1.5">
-                    {new Date(msg.created_at).toLocaleString("vi-VN")}
+                    {new Date(msg.created_at).toLocaleString(intlLocale(locale))}
                   </p>
                 </button>
                 <div className="flex items-center gap-1 flex-shrink-0">
@@ -164,7 +168,7 @@ export default function MessagesTable({
                         setReplyingTo(replyingTo === msg.id ? null : msg.id);
                         setReplyText("");
                       }}
-                      title="Trả lời qua chat"
+                      title={tm.replyViaChat}
                       className="p-2 rounded-lg hover:bg-stone-100 dark:hover:bg-stone-800 text-stone-500 dark:text-stone-400"
                     >
                       <Reply className="w-4 h-4" />
@@ -172,14 +176,14 @@ export default function MessagesTable({
                   )}
                   <button
                     onClick={() => toggleRead(msg)}
-                    title={msg.is_read ? "Đánh dấu chưa đọc" : "Đánh dấu đã đọc"}
+                    title={msg.is_read ? tm.markUnread : tm.markRead}
                     className="p-2 rounded-lg hover:bg-stone-100 dark:hover:bg-stone-800 text-stone-500 dark:text-stone-400"
                   >
                     {msg.is_read ? <Mail className="w-4 h-4" /> : <MailOpen className="w-4 h-4" />}
                   </button>
                   <button
                     onClick={() => setToDelete(msg)}
-                    title="Xóa"
+                    title={tm.deleteAction}
                     className="p-2 rounded-lg hover:bg-rose-50 dark:hover:bg-rose-950/40 text-stone-500 dark:text-stone-400 hover:text-rose-600 dark:hover:text-rose-400"
                   >
                     <Trash2 className="w-4 h-4" />
@@ -193,7 +197,7 @@ export default function MessagesTable({
                     value={replyText}
                     onChange={(e) => setReplyText(e.target.value)}
                     onKeyDown={(e) => e.key === "Enter" && sendReply(msg)}
-                    placeholder={`Trả lời ${msg.name} qua khung chat trong app...`}
+                    placeholder={format(tm.replyPlaceholder, { name: msg.name })}
                     autoFocus
                     className="flex-1 px-3 py-2 text-sm rounded-lg border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-100 focus:outline-none focus:border-stone-500"
                   />
@@ -219,9 +223,9 @@ export default function MessagesTable({
 
       <ConfirmDialog
         open={!!toDelete}
-        title="Xóa tin nhắn"
-        message={`Bạn có chắc muốn xóa tin nhắn từ "${toDelete?.name}"? Hành động này không thể hoàn tác.`}
-        confirmLabel="Xóa"
+        title={tm.deleteTitle}
+        message={format(tm.deleteMessage, { name: toDelete?.name ?? "" })}
+        confirmLabel={tm.deleteAction}
         danger
         onConfirm={confirmDelete}
         onCancel={() => setToDelete(null)}

@@ -6,6 +6,8 @@ import { motion } from "framer-motion";
 import { toast } from "sonner";
 import { getPairConfig, pickPairRound, getDifficultyTimeLimitSeconds, recordGameSession, type GameType, type GameDifficulty } from "@/lib/games";
 import { soundManager } from "@/lib/sounds";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 interface Props {
   userId: string;
@@ -27,6 +29,8 @@ function shuffle<T>(arr: T[]): T[] {
 // getPairConfig(gameType) - powers en-vi-terms, term-definition, formula-match
 // and any future pair game from data alone.
 export default function PairGame({ userId, gameType, difficulty = "trung-binh", onFinished }: Props) {
+  const { t } = useI18n();
+  const pg = t.games.pairGame;
   const config = useMemo(() => getPairConfig(gameType, difficulty), [gameType, difficulty]);
   const timeLimit = getDifficultyTimeLimitSeconds(difficulty);
   const [round, setRound] = useState<{ left: string; right: string }[]>(() => pickPairRound(gameType, difficulty));
@@ -106,10 +110,10 @@ export default function PairGame({ userId, gameType, difficulty = "trung-binh", 
     setFreezeUsed(true);
     setFreezeActive(true);
     soundManager.playFreeze();
-    toast.success("❄️ Đã đóng băng thời gian trong 5 giây!");
+    toast.success(pg.toastFreezeOn);
     window.setTimeout(() => {
       setFreezeActive(false);
-      toast.info("⏱️ Đồng hồ hoạt động trở lại!");
+      toast.info(pg.toastFreezeOff);
     }, 5000);
   };
 
@@ -148,7 +152,7 @@ export default function PairGame({ userId, gameType, difficulty = "trung-binh", 
     scoreRef.current = newScore;
     
     soundManager.playPowerup();
-    toast.success(`⚡ 50/50: Đã tự động ghép cặp hộ ${pairsToMatch.length} cụm từ!`);
+    toast.success(format(pg.toastHelper, { count: pairsToMatch.length }));
     
     if (newMatched >= round.length) {
       setFinished(true);
@@ -278,14 +282,14 @@ export default function PairGame({ userId, gameType, difficulty = "trung-binh", 
       <div className="flex flex-wrap items-center justify-between gap-3 mb-5 relative z-10 pb-4 border-b border-stone-200/50">
         <div className="min-w-0">
           <p className="text-xs sm:text-sm font-black text-stone-800 flex items-center gap-2">
-            <span>Đã ghép {matchedCount}/{round.length} cặp</span>
+            <span>{format(pg.matchedCount, { matched: matchedCount, total: round.length })}</span>
             {combo >= 2 && (
-              <motion.span 
-                initial={{ scale: 0.8 }} 
-                animate={{ scale: [1, 1.15, 1] }} 
+              <motion.span
+                initial={{ scale: 0.8 }}
+                animate={{ scale: [1, 1.15, 1] }}
                 className="inline-block text-[10px] font-extrabold text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full shadow-sm animate-pulse border border-amber-200/40"
               >
-                🔥 Combo x{combo}
+                {format(pg.comboLabel, { combo })}
               </motion.span>
             )}
           </p>
@@ -307,7 +311,7 @@ export default function PairGame({ userId, gameType, difficulty = "trung-binh", 
                     ? "opacity-40 bg-stone-100 border-stone-200 text-stone-400 cursor-not-allowed"
                     : "bg-sky-50 border-sky-200 text-sky-600 hover:bg-sky-100/50"
               }`}
-              title="Đóng băng thời gian (5 giây)"
+              title={pg.freezeTitle}
             >
               ❄️
             </button>
@@ -323,7 +327,7 @@ export default function PairGame({ userId, gameType, difficulty = "trung-binh", 
                   ? "opacity-40 bg-stone-100 border-stone-200 text-stone-400 cursor-not-allowed"
                   : "bg-indigo-50 border-indigo-200 text-indigo-600 hover:bg-indigo-100/50"
               }`}
-              title="Quyền trợ giúp 50/50 (Tự ghép 2 cặp)"
+              title={pg.helperTitle}
             >
               ⚡
             </button>
@@ -375,7 +379,7 @@ export default function PairGame({ userId, gameType, difficulty = "trung-binh", 
           <button
             onClick={startNewRound}
             className="w-9 h-9 rounded-xl border border-stone-200 flex items-center justify-center hover:bg-stone-50 text-stone-500 transition-colors cursor-pointer"
-            title="Chơi lại"
+            title={pg.restartTitle}
           >
             <RefreshCw className="w-4 h-4" />
           </button>
@@ -392,10 +396,10 @@ export default function PairGame({ userId, gameType, difficulty = "trung-binh", 
         <div className="text-center py-10 relative z-10 flex flex-col items-center">
           <span className="text-4xl mb-3 animate-bounce">🏆</span>
           <p className="text-lg font-extrabold text-stone-900">
-            {submitting ? "Đang lưu kết quả..." : "Hoàn thành ván chơi!"}
+            {submitting ? pg.savingResult : pg.finishedRound}
           </p>
           <p className="text-xs sm:text-sm text-stone-500 mt-1 max-w-xs">
-            Bạn đạt được {score}/{round.length} cặp ghép đúng ở lượt đầu tiên. Bấm &quot;Chơi lại&quot; để tiếp tục rèn luyện!
+            {format(pg.finishedDesc, { score, total: round.length })}
           </p>
         </div>
       ) : (

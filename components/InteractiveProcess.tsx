@@ -1,6 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
 // Ba báo cáo tài chính nối vào nhau, widget cho các bài khai
 // `interactiveType: "process"`.
@@ -10,40 +13,46 @@ import { useState } from "react";
 // bấm từng bước, và thấy đúng dòng nào trên báo cáo nào nhúc nhích - kể cả
 // những dòng mà trực giác nói là không liên quan.
 
-const FLOWS = [
-  {
-    key: "sale",
-    label: "Bán hàng 100 triệu, khách nợ 60 ngày",
-    steps: [
-      { at: "Kết quả kinh doanh", text: "Doanh thu +100. Lợi nhuận tăng, dù chưa nhận đồng nào." },
-      { at: "Bảng cân đối", text: "Khoản phải thu +100, lợi nhuận giữ lại +100. Hai vế vẫn cân." },
-      { at: "Lưu chuyển tiền tệ", text: "Lợi nhuận +100 nhưng phải thu tăng 100, trừ lại. Tiền không đổi." },
-      { at: "Kết luận", text: "Lãi trên giấy, tiền chưa về. Đây là chỗ doanh nghiệp tăng trưởng nhanh chết." },
-    ],
-  },
-  {
-    key: "capex",
-    label: "Mua máy 120 triệu, khấu hao 4 năm",
-    steps: [
-      { at: "Lưu chuyển tiền tệ", text: "Dòng tiền đầu tư −120 ngay hôm nay. Tiền ra đủ 120." },
-      { at: "Bảng cân đối", text: "Tiền −120, tài sản cố định +120. Tổng tài sản không đổi." },
-      { at: "Kết quả kinh doanh", text: "Năm nay chỉ ghi khấu hao −30, không phải −120." },
-      { at: "Kết luận", text: "Chi tiền một lần, ghi chi phí bốn năm. Đây là lý do lợi nhuận khác dòng tiền." },
-    ],
-  },
-  {
-    key: "loan",
-    label: "Vay ngân hàng 200 triệu, lãi 10%/năm",
-    steps: [
-      { at: "Lưu chuyển tiền tệ", text: "Dòng tiền tài chính +200 khi nhận vốn." },
-      { at: "Bảng cân đối", text: "Tiền +200, nợ vay +200. Vốn chủ sở hữu không đổi chút nào." },
-      { at: "Kết quả kinh doanh", text: "Mỗi năm lãi vay −20, và khoản này được trừ trước khi tính thuế." },
-      { at: "Kết luận", text: "Vay không làm giàu hay nghèo ngay; nó chỉ đổi ai có quyền với tài sản." },
-    ],
-  },
-] as const;
+function getFlows(t: Dictionary) {
+  const tr = t.interactiveRest.process;
+  return [
+    {
+      key: "sale",
+      label: tr.saleFlowLabel,
+      steps: [
+        { at: tr.saleStep1At, text: tr.saleStep1Text },
+        { at: tr.saleStep2At, text: tr.saleStep2Text },
+        { at: tr.saleStep3At, text: tr.saleStep3Text },
+        { at: tr.saleStep4At, text: tr.saleStep4Text },
+      ],
+    },
+    {
+      key: "capex",
+      label: tr.capexFlowLabel,
+      steps: [
+        { at: tr.capexStep1At, text: tr.capexStep1Text },
+        { at: tr.capexStep2At, text: tr.capexStep2Text },
+        { at: tr.capexStep3At, text: tr.capexStep3Text },
+        { at: tr.capexStep4At, text: tr.capexStep4Text },
+      ],
+    },
+    {
+      key: "loan",
+      label: tr.loanFlowLabel,
+      steps: [
+        { at: tr.loanStep1At, text: tr.loanStep1Text },
+        { at: tr.loanStep2At, text: tr.loanStep2Text },
+        { at: tr.loanStep3At, text: tr.loanStep3Text },
+        { at: tr.loanStep4At, text: tr.loanStep4Text },
+      ],
+    },
+  ] as const;
+}
 
 export default function InteractiveProcess() {
+  const { t } = useI18n();
+  const tr = t.interactiveRest.process;
+  const FLOWS = useMemo(() => getFlows(t), [t]);
   const [flowIndex, setFlowIndex] = useState(0);
   const [step, setStep] = useState(0);
   const flow = FLOWS[flowIndex];
@@ -58,10 +67,10 @@ export default function InteractiveProcess() {
     <div className="bg-white rounded-3xl border border-stone-100 p-6 space-y-5 dark:bg-stone-900 dark:border-stone-800">
       <div>
         <h3 className="font-bold text-stone-800 text-lg mb-1 dark:text-stone-100">
-          🔗 Một giao dịch chạy qua ba báo cáo
+          {tr.title}
         </h3>
         <p className="text-stone-500 text-sm dark:text-stone-400">
-          Chọn một giao dịch rồi bấm từng bước để xem nó chạm vào đâu.
+          {tr.subtitle}
         </p>
       </div>
 
@@ -99,7 +108,7 @@ export default function InteractiveProcess() {
                 {s.at}
               </p>
               <p className="mt-0.5 text-sm leading-relaxed text-stone-700 dark:text-stone-200">
-                {reached ? s.text : "…"}
+                {reached ? s.text : tr.pendingStepText}
               </p>
             </li>
           );
@@ -112,10 +121,10 @@ export default function InteractiveProcess() {
           onClick={() => setStep(atEnd ? 0 : step + 1)}
           className="rounded-full bg-stone-900 px-4 py-2 text-xs font-bold text-white transition-colors hover:bg-stone-700 dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-white"
         >
-          {atEnd ? "Chạy lại" : "Bước tiếp"}
+          {atEnd ? tr.runAgainButton : tr.nextStepButton}
         </button>
         <span className="text-[11px] text-stone-400 dark:text-stone-500">
-          Bước {step + 1}/{flow.steps.length}
+          {format(tr.stepCounter, { current: step + 1, total: flow.steps.length })}
         </span>
       </div>
     </div>

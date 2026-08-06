@@ -1,9 +1,12 @@
 "use client";
 
-import { useRef, useState, type PointerEvent as ReactPointerEvent, type WheelEvent as ReactWheelEvent } from "react";
+import { useMemo, useRef, useState, type PointerEvent as ReactPointerEvent, type WheelEvent as ReactWheelEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { trackFeatureClick } from "@/lib/feature-events";
 import type { FinanceCareer } from "@/lib/finance-careers";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
 // "Bắt đầu từ Zero" overview: a 3-level tree (root -> category -> career)
 // giving a newcomer a mental map of the whole career landscape before they
@@ -20,16 +23,17 @@ import type { FinanceCareer } from "@/lib/finance-careers";
 // branches visually connected to one root as you explore, rather than
 // scrolling them out of view of their trunk connector.
 
-const CATEGORY_META: Record<
-  FinanceCareer["category"],
-  { label: string; color: string; border: string; bg: string }
-> = {
-  investment: { label: "Đầu tư & Nghiên cứu", color: "#10b981", border: "border-emerald-300 dark:border-emerald-800", bg: "bg-emerald-50 dark:bg-emerald-950/30" },
-  accounting: { label: "Kế toán & Kiểm soát", color: "#3b82f6", border: "border-blue-300 dark:border-blue-800", bg: "bg-blue-50 dark:bg-blue-950/30" },
-  banking: { label: "Ngân hàng & Nguồn vốn", color: "#f59e0b", border: "border-amber-300 dark:border-amber-800", bg: "bg-amber-50 dark:bg-amber-950/30" },
-  advisory: { label: "Dịch vụ & Tư vấn", color: "#8b5cf6", border: "border-violet-300 dark:border-violet-800", bg: "bg-violet-50 dark:bg-violet-950/30" },
-  data: { label: "Dữ liệu & Công nghệ", color: "#0ea5e9", border: "border-sky-300 dark:border-sky-800", bg: "bg-sky-50 dark:bg-sky-950/30" },
-};
+function categoryMeta(
+  t: Dictionary
+): Record<FinanceCareer["category"], { label: string; color: string; border: string; bg: string }> {
+  return {
+    investment: { label: t.careerRoadmap.catInvestmentLabel, color: "#10b981", border: "border-emerald-300 dark:border-emerald-800", bg: "bg-emerald-50 dark:bg-emerald-950/30" },
+    accounting: { label: t.careerRoadmap.catAccountingLabel, color: "#3b82f6", border: "border-blue-300 dark:border-blue-800", bg: "bg-blue-50 dark:bg-blue-950/30" },
+    banking: { label: t.careerRoadmap.catBankingLabel, color: "#f59e0b", border: "border-amber-300 dark:border-amber-800", bg: "bg-amber-50 dark:bg-amber-950/30" },
+    advisory: { label: t.careerRoadmap.catAdvisoryLabel, color: "#8b5cf6", border: "border-violet-300 dark:border-violet-800", bg: "bg-violet-50 dark:bg-violet-950/30" },
+    data: { label: t.careerRoadmap.catDataLabel, color: "#0ea5e9", border: "border-sky-300 dark:border-sky-800", bg: "bg-sky-50 dark:bg-sky-950/30" },
+  };
+}
 
 const CATEGORY_ORDER: FinanceCareer["category"][] = ["investment", "banking", "accounting", "advisory", "data"];
 
@@ -44,6 +48,8 @@ export default function CareerRoadmapMap({
   careers: FinanceCareer[];
   onSelectCareer: (career: FinanceCareer) => void;
 }) {
+  const { t } = useI18n();
+  const CATEGORY_META = useMemo(() => categoryMeta(t), [t]);
   const [expanded, setExpanded] = useState(true);
   const [view, setView] = useState({ x: 0, y: 0, scale: 1 });
   const [isDragging, setIsDragging] = useState(false);
@@ -95,19 +101,19 @@ export default function CareerRoadmapMap({
       >
         <div className="flex items-center gap-3 min-w-0">
           <span className="shrink-0 rounded-xl border-2 border-emerald-500 px-2 py-1 text-[10px] font-black uppercase tracking-wide text-emerald-600 dark:text-emerald-400">
-            Bản đồ
+            {t.careerRoadmap.mapBadge}
           </span>
           <div className="min-w-0">
             <h2 className="text-base sm:text-lg font-black text-stone-900 dark:text-stone-100">
-              Bản đồ tổng quan: Bắt đầu từ Zero
+              {t.careerRoadmap.mapHeading}
             </h2>
             <p className="text-xs sm:text-sm text-stone-500 dark:text-stone-400">
-              Chưa biết bắt đầu từ đâu? Kéo để di chuyển, cuộn để phóng to.
+              {t.careerRoadmap.mapSubheading}
             </p>
           </div>
         </div>
         <span className="shrink-0 inline-flex items-center gap-1.5 rounded-full bg-stone-900 dark:bg-stone-100 px-3.5 py-2 text-xs font-black text-white dark:text-stone-900 shadow-sm hover:opacity-90 transition-opacity">
-          {expanded ? "Thu gọn" : "Mở rộng"}
+          {expanded ? t.careerRoadmap.collapseCta : t.careerRoadmap.expandCta}
           <span
             className={`inline-block transition-transform duration-200 ${expanded ? "rotate-180" : ""}`}
             aria-hidden="true"
@@ -131,21 +137,21 @@ export default function CareerRoadmapMap({
               <div className="absolute top-3 right-3 z-10 flex items-center gap-1 rounded-full border border-stone-200 dark:border-stone-700 bg-white/90 dark:bg-stone-900/90 backdrop-blur px-1 py-1 shadow-sm">
                 <button
                   onClick={() => zoomBy(-0.15)}
-                  aria-label="Thu nhỏ"
+                  aria-label={t.careerRoadmap.zoomOutAria}
                   className="w-7 h-7 rounded-full flex items-center justify-center text-sm font-black text-stone-600 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors cursor-pointer"
                 >
                   −
                 </button>
                 <button
                   onClick={resetView}
-                  aria-label="Đặt lại"
+                  aria-label={t.careerRoadmap.resetAria}
                   className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-black text-stone-600 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors cursor-pointer"
                 >
                   ⟳
                 </button>
                 <button
                   onClick={() => zoomBy(0.15)}
-                  aria-label="Phóng to"
+                  aria-label={t.careerRoadmap.zoomInAria}
                   className="w-7 h-7 rounded-full flex items-center justify-center text-sm font-black text-stone-600 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors cursor-pointer"
                 >
                   +
@@ -178,7 +184,7 @@ export default function CareerRoadmapMap({
                   {/* Root node */}
                   <div className="flex justify-center">
                     <div className="inline-flex items-center gap-2 rounded-2xl border-2 border-stone-900 dark:border-stone-100 bg-stone-900 dark:bg-stone-100 px-5 py-3 shadow-md select-none">
-                      <span className="text-sm font-black text-white dark:text-stone-900">Bắt đầu từ Zero</span>
+                      <span className="text-sm font-black text-white dark:text-stone-900">{t.careerRoadmap.rootNodeLabel}</span>
                     </div>
                   </div>
 
@@ -198,7 +204,7 @@ export default function CareerRoadmapMap({
                             {meta.label}
                           </span>
                           <span className="block text-[11px] text-stone-500 dark:text-stone-400 mt-0.5">
-                            {items.length} vị trí
+                            {format(t.careerRoadmap.positionCount, { count: items.length })}
                           </span>
                         </div>
 

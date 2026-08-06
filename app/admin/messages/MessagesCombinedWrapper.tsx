@@ -8,6 +8,8 @@ import type { MessagesResult } from "@/lib/admin/messages";
 import type { ChatThread } from "@/lib/admin/chat";
 import type { BugReport } from "@/lib/admin/bugs";
 import type { AdminAnnouncement } from "@/lib/admin/announcements";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 interface Props {
   result: MessagesResult;
@@ -28,6 +30,8 @@ export default function MessagesCombinedWrapper({
   announcements,
   initialSection = "messages",
 }: Props) {
+  const { t } = useI18n();
+  const tm = t.adminThree.messagesCombinedWrapper;
   const [section, setSection] = useState<"messages" | "announcements">(
     initialSection === "announcements" ? "announcements" : "messages"
   );
@@ -46,7 +50,7 @@ export default function MessagesCombinedWrapper({
           }`}
         >
           <MessageSquare className="w-4 h-4" />
-          Tin nhắn & Chat ({result.messages.length + threads.length})
+          {format(tm.messagesTab, { count: result.messages.length + threads.length })}
         </button>
 
         <button
@@ -59,7 +63,7 @@ export default function MessagesCombinedWrapper({
           }`}
         >
           <Megaphone className="w-4 h-4 text-amber-500" />
-          Thông báo Hệ thống ({announcements.length})
+          {format(tm.announcementsTab, { count: announcements.length })}
         </button>
       </div>
 

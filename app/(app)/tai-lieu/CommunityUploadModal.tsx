@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { Upload } from "lucide-react";
-import { DOCUMENT_CATEGORIES } from "@/lib/document-categories";
+import { documentCategoriesOf } from "@/lib/document-categories";
 import Modal from "@/components/admin/Modal";
 import FileDropzone from "@/components/admin/FileDropzone";
 import { submitCommunityDocumentAction } from "./actions";
@@ -78,7 +78,7 @@ export default function CommunityUploadModal({ open, onClose, loggedIn }: Commun
               defaultValue="khac"
               className="w-full px-3 py-2 rounded-lg border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-800 text-sm text-stone-900 dark:text-stone-100"
             >
-              {DOCUMENT_CATEGORIES.map((c) => (
+              {documentCategoriesOf(t).map((c) => (
                 <option key={c.value} value={c.value}>{c.label}</option>
               ))}
             </select>

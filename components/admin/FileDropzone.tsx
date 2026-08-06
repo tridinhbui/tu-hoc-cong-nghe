@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { UploadCloud, FileText, X } from "lucide-react";
+import { useI18n } from "@/lib/i18n/context";
 
 interface FileDropzoneProps {
   name: string;
@@ -21,6 +22,8 @@ interface FileDropzoneProps {
  * DataTransfer, no separate upload path to keep in sync.
  */
 export default function FileDropzone({ name, accept, required, label, currentFileName, onFileChange }: FileDropzoneProps) {
+  const { t } = useI18n();
+  const tf = t.adminThree.fileDropzone;
   const inputRef = useRef<HTMLInputElement>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [pickedFileName, setPickedFileName] = useState<string | null>(null);
@@ -89,7 +92,7 @@ export default function FileDropzone({ name, accept, required, label, currentFil
             <button
               type="button"
               onClick={clearFile}
-              title="Bỏ chọn tệp"
+              title={tf.removeFile}
               className="p-1 rounded hover:bg-stone-200 dark:hover:bg-stone-700 text-stone-400 flex-shrink-0"
             >
               <X className="w-4 h-4" />
@@ -99,7 +102,7 @@ export default function FileDropzone({ name, accept, required, label, currentFil
           <>
             <UploadCloud className="w-5 h-5 text-stone-400 flex-shrink-0" />
             <span className="text-sm text-stone-500 dark:text-stone-400">
-              Kéo thả tệp vào đây, hoặc bấm để chọn
+              {tf.dropHint}
             </span>
           </>
         )}

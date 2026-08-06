@@ -1,6 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
 // Cùng một doanh nghiệp, ba nhà xếp hạng ESG, ba kết quả khác nhau. Widget cho
 // các bài khai `interactiveType: "esg-score"`.
@@ -18,6 +21,7 @@ import { useState } from "react";
 // đó quyết định ai thắng.
 
 interface Company {
+  id: string;
   name: string;
   note: string;
   e: number;
@@ -25,49 +29,59 @@ interface Company {
   g: number;
 }
 
-const COMPANIES: Company[] = [
-  { name: "Thép Đông Á", note: "phát thải cao, quản trị chặt", e: 28, s: 55, g: 86 },
-  { name: "Bán lẻ Minh Phát", note: "sạch về môi trường, gia đình trị", e: 84, s: 62, g: 31 },
-  { name: "Ngân hàng Việt Tín", note: "đều tay, không nổi bật ở đâu", e: 61, s: 66, g: 63 },
-];
+function getCompanies(t: Dictionary): Company[] {
+  const tr = t.interactiveRest.esgScore;
+  return [
+    { id: "thep-dong-a", name: tr.companyThepDongAName, note: tr.companyThepDongANote, e: 28, s: 55, g: 86 },
+    { id: "minh-phat", name: tr.companyMinhPhatName, note: tr.companyMinhPhatNote, e: 84, s: 62, g: 31 },
+    { id: "viet-tin", name: tr.companyVietTinName, note: tr.companyVietTinNote, e: 61, s: 66, g: 63 },
+  ];
+}
 
 /** Ba bộ trọng số có thật trên thị trường, đơn giản hoá. Con số là minh hoạ,
  *  nhưng khoảng cách giữa chúng thì đúng: có tổ chức đặt G lên trên hết, có
  *  tổ chức thiên hẳn về E vì khách hàng của họ là quỹ khí hậu. */
-const RATERS = [
-  { id: "e-heavy", label: "Thiên về E", w: [0.6, 0.2, 0.2] },
-  { id: "balanced", label: "Cân bằng", w: [1 / 3, 1 / 3, 1 / 3] },
-  { id: "g-heavy", label: "Thiên về G", w: [0.2, 0.2, 0.6] },
-] as const;
+function getRaters(t: Dictionary) {
+  const tr = t.interactiveRest.esgScore;
+  return [
+    { id: "e-heavy", label: tr.raterEHeavy, w: [0.6, 0.2, 0.2] },
+    { id: "balanced", label: tr.raterBalanced, w: [1 / 3, 1 / 3, 1 / 3] },
+    { id: "g-heavy", label: tr.raterGHeavy, w: [0.2, 0.2, 0.6] },
+  ] as const;
+}
 
 export default function InteractiveEsgScore() {
+  const { t } = useI18n();
+  const tr = t.interactiveRest.esgScore;
+  const companies = useMemo(() => getCompanies(t), [t]);
+  const raters = useMemo(() => getRaters(t), [t]);
   const [we, setWe] = useState(33);
   const [ws, setWs] = useState(33);
   const total = 100;
   const wg = Math.max(0, total - we - ws);
 
   const score = (c: Company) => (c.e * we + c.s * ws + c.g * wg) / total;
-  const ranked = [...COMPANIES].sort((a, b) => score(b) - score(a));
+  const ranked = [...companies].sort((a, b) => score(b) - score(a));
 
   return (
     <div className="rounded-3xl border border-stone-200 bg-white p-6 dark:border-stone-800 dark:bg-stone-900">
       <h3 className="text-sm font-extrabold text-stone-900 dark:text-stone-100">
-        Ai đứng đầu bảng ESG phụ thuộc vào ai chọn trọng số
+        {tr.title}
       </h3>
 
       <div className="mt-4 space-y-3">
-        <Weight label="Môi trường (E)" value={we} onChange={(v) => setWe(Math.min(v, 100 - ws))} />
-        <Weight label="Xã hội (S)" value={ws} onChange={(v) => setWs(Math.min(v, 100 - we))} />
+        <Weight label={tr.environmentLabel} value={we} onChange={(v) => setWe(Math.min(v, 100 - ws))} />
+        <Weight label={tr.socialLabel} value={ws} onChange={(v) => setWs(Math.min(v, 100 - we))} />
         <div className="flex items-baseline justify-between gap-2">
-          <span className="text-xs font-bold text-stone-700 dark:text-stone-200">Quản trị (G)</span>
+          <span className="text-xs font-bold text-stone-700 dark:text-stone-200">{tr.governanceLabel}</span>
           <span className="text-[11px] font-semibold tabular-nums text-stone-500 dark:text-stone-400">
-            {wg}% — phần còn lại
+            {format(tr.remainderValue, { value: wg })}
           </span>
         </div>
       </div>
 
       <div className="mt-3 flex flex-wrap gap-1.5">
-        {RATERS.map((r) => (
+        {raters.map((r) => (
           <button
             key={r.id}
             type="button"
@@ -85,7 +99,7 @@ export default function InteractiveEsgScore() {
       <ol className="mt-4 space-y-1.5">
         {ranked.map((c, i) => (
           <li
-            key={c.name}
+            key={c.id}
             className="flex items-center justify-between gap-3 rounded-xl border border-stone-200 px-3 py-2 dark:border-stone-800"
           >
             <div className="min-w-0">
@@ -94,7 +108,7 @@ export default function InteractiveEsgScore() {
                 {c.name}
               </p>
               <p className="text-[10px] text-stone-400 dark:text-stone-500">
-                {c.note} · E {c.e} · S {c.s} · G {c.g}
+                {format(tr.rankNoteParts, { note: c.note, e: c.e, s: c.s, g: c.g })}
               </p>
             </div>
             <p className="shrink-0 text-base font-extrabold tabular-nums text-stone-900 dark:text-stone-100">
@@ -105,11 +119,7 @@ export default function InteractiveEsgScore() {
       </ol>
 
       <p className="mt-4 rounded-2xl bg-stone-50 p-4 text-xs leading-relaxed text-stone-600 dark:bg-stone-800/60 dark:text-stone-300">
-        Bấm lần lượt &quot;Thiên về E&quot; rồi &quot;Thiên về G&quot;: thứ tự đảo hẳn, mà không có
-        con số nào của doanh nghiệp thay đổi. Đó là lý do tương quan giữa điểm ESG của các tổ chức
-        xếp hạng lớn chỉ quanh 0,4–0,5, trong khi tương quan giữa Moody&apos;s và S&amp;P về xếp hạng
-        tín nhiệm là trên 0,9. &quot;ESG&quot; không phải một đại lượng — nó là ba thứ khác nhau được
-        cộng theo một tỷ lệ do người xếp hạng chọn, và trọng số đó thường không nằm ở trang đầu báo cáo.
+        {tr.footerText}
       </p>
     </div>
   );

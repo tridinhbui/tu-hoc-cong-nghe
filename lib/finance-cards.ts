@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
 /**
  * Hàng tồn kho kèm quan hệ `gamification_assets`.
@@ -140,6 +141,19 @@ export const FINANCE_CARDS: FinanceCardDefinition[] = [
     metrics: ["Dòng tiền hợp nhất", "Đòn bẩy", "CAPEX"],
   },
 ];
+
+/** FINANCE_CARDS' name/sector/description/advantage/metrics in the current
+ *  locale of `t.libData.financeCards`, keyed by card id. `id`, `ticker`,
+ *  `rarity` and `domain_type` are structural (persisted as
+ *  `gamification_assets.asset_key`, used for filtering/styling) and stay
+ *  untouched. */
+export function financeCardsOf(t: Dictionary): FinanceCardDefinition[] {
+  const copy = t.libData.financeCards;
+  return FINANCE_CARDS.map((card) => {
+    const c = copy[card.id as keyof typeof copy];
+    return { ...card, name: c.name, sector: c.sector, description: c.description, advantage: c.advantage, metrics: c.metrics };
+  });
+}
 
 export interface CardDropResult {
   dropped: boolean;

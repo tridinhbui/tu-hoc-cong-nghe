@@ -8,6 +8,7 @@ import { deleteHighlight, type LessonHighlight } from "@/lib/lesson-highlights";
 import { groupByStage } from "@/lib/highlight-stage-grouping";
 import { shuffleArray } from "@/lib/level-exams";
 import HighlightReview from "@/components/HighlightReview";
+import { useI18n } from "@/lib/i18n/context";
 
 interface LessonInfo {
   slug: string;
@@ -32,12 +33,13 @@ const TRACK_LABEL_STYLES = {
 } as const;
 
 export default function HighlightNotebook({ highlights, lessonsById }: HighlightNotebookProps) {
+  const { t } = useI18n();
   const [rows, setRows] = useState(highlights);
   const [deletingId, setDeletingId] = useState<number | null>(null);
   const [collapsed, setCollapsed] = useState<Record<string, boolean>>({});
   const [deck, setDeck] = useState<LessonHighlight[] | null>(null);
 
-  const groups = useMemo(() => groupByStage(rows), [rows]);
+  const groups = useMemo(() => groupByStage(rows, t), [rows, t]);
 
   async function handleDelete(id: number) {
     setDeletingId(id);

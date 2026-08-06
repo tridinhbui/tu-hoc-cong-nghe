@@ -1,4 +1,5 @@
 import { isLessonInRange, TRACK_PERSONAL, TRACK_PROFESSIONAL } from "@/lib/track-stages";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
 /**
  * Buckets a learner's highlights into the same "chặng" the dashboard already
@@ -34,12 +35,23 @@ export const UNGROUPED: StageRef = {
   order: Number.MAX_SAFE_INTEGER,
 };
 
-export function resolveStage(lessonId: number): StageRef {
+/** UNGROUPED's label/name in the current locale of
+ *  `t.libData.highlightStages.other`. Personal/professional stage labels
+ *  come from lib/track-stages.ts, not from here, and are untranslated. */
+export function ungroupedOf(t: Dictionary): StageRef {
+  const copy = t.libData.highlightStages.other;
+  return { ...UNGROUPED, label: copy.label, name: copy.name };
+}
+
+export function resolveStage(lessonId: number, t?: Dictionary): StageRef {
   const personalIndex = TRACK_PERSONAL.stages.findIndex((stage) => isLessonInRange(lessonId, stage));
   if (personalIndex !== -1) {
     const stage = TRACK_PERSONAL.stages[personalIndex];
     return {
-      key: `personal:${stage.label}`,
+      // Keyed by index, not by label. The key is a Map key and a collapsed-state
+      // key, and a label is a translatable string - keying on it would silently
+      // change identity the moment lib/track-stages.ts is translated.
+      key: `personal:${personalIndex}`,
       track: "personal",
       label: stage.label,
       name: stage.name,
@@ -51,7 +63,7 @@ export function resolveStage(lessonId: number): StageRef {
   if (professionalIndex !== -1) {
     const stage = TRACK_PROFESSIONAL.stages[professionalIndex];
     return {
-      key: `professional:${stage.label}`,
+      key: `professional:${professionalIndex}`,
       track: "professional",
       label: stage.label,
       name: stage.name,
@@ -61,7 +73,7 @@ export function resolveStage(lessonId: number): StageRef {
     };
   }
 
-  return UNGROUPED;
+  return t ? ungroupedOf(t) : UNGROUPED;
 }
 
 export interface GroupableHighlight {
@@ -78,11 +90,11 @@ export interface StageGroup<T extends GroupableHighlight> {
  * group. Stages the learner has highlighted nothing in are omitted - the
  * notebook shows where they have been, not the whole syllabus.
  */
-export function groupByStage<T extends GroupableHighlight>(items: T[]): StageGroup<T>[] {
+export function groupByStage<T extends GroupableHighlight>(items: T[], t?: Dictionary): StageGroup<T>[] {
   const groups = new Map<string, StageGroup<T>>();
 
   for (const item of items) {
-    const stage = resolveStage(item.lesson_id);
+    const stage = resolveStage(item.lesson_id, t);
     const existing = groups.get(stage.key);
     if (existing) {
       existing.items.push(item);
