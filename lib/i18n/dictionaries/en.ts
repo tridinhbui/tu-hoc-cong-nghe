@@ -1033,6 +1033,7 @@ export const en: Dictionary = {
     bulkSkippedSuffix: " ({skipped} already in your deck)",
     bulkAllExisted: "All {skipped} cards are already in your deck.",
     copiedToClipboard: "Copied {count} cards to the clipboard.",
+    copyToClipboardFailed: "Couldn't copy the card list",
     confirmDelete: "Delete the card \"{term}\"?",
     sampleImported: "Imported {count} sample vocabulary cards. 🎉",
 
@@ -1579,6 +1580,7 @@ export const en: Dictionary = {
     previewAlt: "Preview",
     dropImage: "Drop an image here to attach it 📂",
     imagePlaceholder: "[Image]",
+    filePlaceholder: "[File: {name}]",
     deleted: "↩️ Message deleted",
     you: "You",
     member: "Member",
@@ -1665,6 +1667,7 @@ export const en: Dictionary = {
 
     questsTitle: "This week's room quests",
     permanentGroup: "Permanent group",
+    streakWeeks: "{weeks}/3-week streak",
     questsHint:
       "Finish 3 quests to open the group chest. Sending a chat message, pinning a note, taking a quiz or running a Pomodoro all count as group activity.",
     checkInNow: "👋 Check in now",
@@ -1757,6 +1760,51 @@ export const en: Dictionary = {
     join: "Join",
     joined: "You've joined the study room.",
     left: "You've left the study room",
+
+    arrivedOne: "{name} just joined the study room!",
+    arrivedMany: "{count} members just joined the room: {names}",
+
+    roleLeader: "Group leader",
+    roleMentor: "Mentor",
+    roleActive: "Active",
+
+    voiceUnavailableTitle: "Voice chat isn't configured on the server",
+    voiceJoinTitle: "Join the room's voice channel (mic starts muted)",
+    stageAriaWalk:
+      "Walkable 3D study room. Use W and S to move, A and D to turn, or the four arrow buttons at the bottom right.",
+    stageAriaDesk:
+      "3D study room. Use the arrow keys to rotate the room, plus and minus to zoom, and 0 to reset the view.",
+    viewDeskTitle: "Switch back to the desk seen from outside",
+    viewWalkTitle: "Enter the room and walk around",
+    resetViewAria: "Reset the 3D angle and zoom, currently {zoom} percent",
+    cheerAria: "Send a cheer: {label}",
+    pylonAriaLit: "Station {name} is active",
+    pylonAriaUnlit: "Activate station {name} for +15% XP for the room",
+    reactionTitle: "React with {emoji}",
+
+    editPlaceholder: "Edit your message...",
+    replyPlaceholder: "Write a reply to {name}...",
+    chatPlaceholder: "Say something to the group... or /taitai",
+
+    pinned: "Message pinned",
+    unpinned: "Message unpinned",
+    pomodoroSyncOn: "Pomodoro sync started for the whole room",
+    pomodoroSyncOff: "Group Pomodoro paused",
+
+    roomsLoadFailed: "Couldn't load the study room list",
+    pinFailed: "Couldn't update the pin",
+    reactionFailed: "Couldn't add the reaction",
+    checkinFailed: "Couldn't check in right now",
+    pomodoroSyncFailed: "Couldn't update the group Pomodoro",
+    chestFailed: "Couldn't open the group chest",
+    noteSaveFailed: "Couldn't save the note",
+    noteDeleteFailed: "Couldn't delete the note",
+    quizScoreSaveFailed: "Couldn't save the group quiz score",
+    messageEditFailed: "Couldn't edit the message",
+    taitaiFailed: "Couldn't reach Tài Tài",
+    matchFailed: "Couldn't match you into a group right now",
+    joinFailed: "Couldn't join this room",
+    leaveFailed: "Couldn't leave the room right now",
   },
 
   jobs: {

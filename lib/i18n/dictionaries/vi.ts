@@ -1097,6 +1097,7 @@ export const vi = {
     bulkSkippedSuffix: " (bỏ qua {skipped} thẻ đã có sẵn)",
     bulkAllExisted: "Cả {skipped} thẻ đều đã có sẵn trong hộp thẻ của bạn.",
     copiedToClipboard: "Đã sao chép {count} thẻ vào clipboard.",
+    copyToClipboardFailed: "Không sao chép được danh sách thẻ",
     confirmDelete: "Bạn có chắc chắn muốn xoá thẻ \"{term}\"?",
     sampleImported: "Đã nhập thành công {count} thẻ từ vựng mẫu! 🎉",
 
@@ -1675,6 +1676,7 @@ export const vi = {
     previewAlt: "Preview",
     dropImage: "Thả ảnh vào đây để đính kèm 📂",
     imagePlaceholder: "[Hình ảnh]",
+    filePlaceholder: "[Tệp: {name}]",
     deleted: "↩️ Tin nhắn đã bị xoá",
     you: "Bạn",
     member: "Thành viên",
@@ -1766,6 +1768,7 @@ export const vi = {
 
     questsTitle: "Nhiệm vụ tuần của phòng học",
     permanentGroup: "Nhóm vĩnh viễn",
+    streakWeeks: "{weeks}/3 tuần streak",
     questsHint:
       "Hoàn thành 3 nhiệm vụ để mở rương nhóm. Nhắn chat, dán note, làm quiz hoặc bật Pomodoro đều được tính là hoạt động nhóm.",
     checkInNow: "👋 Bấm điểm danh ngay",
@@ -1863,6 +1866,60 @@ export const vi = {
     join: "Tham gia",
     joined: "Đã tham gia phòng học!",
     left: "Đã rời phòng học",
+
+    // Ai vừa vào phòng. Một toast gộp, không phải một toast mỗi người: lần
+    // ghép lại thứ Hai có thể xếp bốn người lạ vào cùng lúc.
+    arrivedOne: "{name} vừa vào phòng học!",
+    arrivedMany: "{count} thành viên vừa vào phòng: {names}",
+
+    // Nhãn vai trong danh sách thành viên. Nhánh thứ tư đã đọc từ điển
+    // (memberRole) từ trước, ba nhánh này thì chưa.
+    roleLeader: "Trưởng nhóm",
+    roleMentor: "Mentor",
+    roleActive: "Tích cực",
+
+    // Chữ chỉ hiện ra khi trỏ chuột hoặc khi đọc bằng trình đọc màn hình.
+    // Không thấy trên ảnh chụp, nên là chỗ chữ cứng sống lâu nhất.
+    voiceUnavailableTitle: "Voice chưa được cấu hình trên máy chủ",
+    voiceJoinTitle: "Vào kênh thoại của phòng (mic tắt sẵn)",
+    stageAriaWalk:
+      "Phòng học 3D đi lại được. Dùng W và S để đi, A và D để xoay người, hoặc bốn nút mũi tên ở góc dưới bên phải.",
+    stageAriaDesk:
+      "Phòng học 3D. Dùng phím mũi tên để xoay phòng, phím cộng và trừ để phóng to thu nhỏ, phím số 0 để đặt lại góc nhìn.",
+    viewDeskTitle: "Chuyển về bàn học nhìn từ ngoài",
+    viewWalkTitle: "Vào phòng và đi lại được",
+    resetViewAria: "Đặt lại góc nhìn 3D và độ phóng, hiện tại {zoom} phần trăm",
+    cheerAria: "Gửi lời cổ vũ: {label}",
+    pylonAriaLit: "Trạm {name} đã kích hoạt",
+    pylonAriaUnlit: "Kích hoạt trạm {name} để cộng 15% XP cho phòng",
+    reactionTitle: "Thả {emoji}",
+
+    editPlaceholder: "Chỉnh lại nội dung tin nhắn...",
+    replyPlaceholder: "Viết câu trả lời cho {name}...",
+    chatPlaceholder: "Nhắn gì đó cho nhóm... hoặc /taitai",
+
+    pinned: "Đã ghim tin nhắn",
+    unpinned: "Đã bỏ ghim tin nhắn",
+    pomodoroSyncOn: "Đã bắt đầu Pomodoro sync cho cả phòng",
+    pomodoroSyncOff: "Đã tạm dừng Pomodoro nhóm",
+
+    // Câu dự phòng của toast lỗi: chỉ hiện khi thứ bắt được KHÔNG phải một
+    // Error, nên chúng gần như không bao giờ hiện - và cũng vì thế mà không ai
+    // thấy chúng còn là tiếng Việt.
+    roomsLoadFailed: "Không tải được danh sách phòng học",
+    pinFailed: "Không cập nhật được ghim",
+    reactionFailed: "Không thả reaction được",
+    checkinFailed: "Không điểm danh được lúc này",
+    pomodoroSyncFailed: "Không cập nhật được Pomodoro nhóm",
+    chestFailed: "Không mở được rương nhóm",
+    noteSaveFailed: "Không lưu được ghi chú",
+    noteDeleteFailed: "Không xóa được ghi chú",
+    quizScoreSaveFailed: "Không lưu được điểm quiz nhóm",
+    messageEditFailed: "Không sửa được tin nhắn",
+    taitaiFailed: "Không gọi được Tài Tài",
+    matchFailed: "Không thể ghép nhóm lúc này",
+    joinFailed: "Không thể tham gia phòng này",
+    leaveFailed: "Không thể rời phòng lúc này",
   },
 
   // components/JobSearchClient.tsx - the finance job map (/pho-nghe).

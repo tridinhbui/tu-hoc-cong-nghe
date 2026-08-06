@@ -42,6 +42,7 @@ const INTENTIONALLY_UNTRANSLATED = new Set([
   // Vietnamese nicknames are exempted in lib/i18n/dictionaries/vi.ts.
   "studyGroups.byAdmin",
   "studyGroups.pinnedByAdmin",
+  "studyGroups.taitaiFailed",
   "chat.admin",
   "adminChat.title",
   "groupChat.byAdmin",

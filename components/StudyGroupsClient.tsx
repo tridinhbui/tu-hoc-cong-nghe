@@ -675,8 +675,8 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
     const names = arrivals.map((m) => m.full_name || t.studyGroups.memberRole);
     toast.success(
       names.length === 1
-        ? `${names[0]} vừa vào phòng học!`
-        : `${names.length} thành viên vừa vào phòng: ${names.join(", ")}`
+        ? format(t.studyGroups.arrivedOne, { name: names[0] })
+        : format(t.studyGroups.arrivedMany, { count: names.length, names: names.join(", ") })
     );
   }, []);
 
@@ -755,7 +755,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
       setRooms(list);
     } catch (error) {
       console.error("Error loading study rooms:", error);
-      toast.error(error instanceof Error ? error.message : "Không tải được danh sách phòng học");
+      toast.error(error instanceof Error ? error.message : t.studyGroups.roomsLoadFailed);
     } finally {
       setLoadingRooms(false);
     }
@@ -962,9 +962,9 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
     try {
       const updated = await setRoomMessagePinned(msg.id, !msg.is_pinned);
       setMessages((prev) => prev.map((m) => (m.id === updated.id ? updated : m)));
-      toast.success(updated.is_pinned ? "Đã ghim tin nhắn" : "Đã bỏ ghim tin nhắn");
+      toast.success(updated.is_pinned ? t.studyGroups.pinned : t.studyGroups.unpinned);
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Không cập nhật được ghim");
+      toast.error(error instanceof Error ? error.message : t.studyGroups.pinFailed);
     }
   }
 
@@ -974,7 +974,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
       const next = await toggleStudyRoomReaction(myRoom.room_id, msgId, emoji);
       setReactions(next);
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Không thả reaction được");
+      toast.error(error instanceof Error ? error.message : t.studyGroups.reactionFailed);
     }
   };
 
@@ -985,7 +985,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
       await refreshRoomEngagement(myRoom.room_id);
       toast.success(t.studyGroups.checkedIn);
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Không điểm danh được lúc này");
+      toast.error(error instanceof Error ? error.message : t.studyGroups.checkinFailed);
     }
   }
 
@@ -998,9 +998,9 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
       const row = await setStudyRoomPomodoro(myRoom.room_id, pomoMode, nextRunning, duration, remaining);
       hydratePomodoro(row);
       if (nextRunning) void recordStudyRoomCheckin(myRoom.room_id, "pomodoro").catch(() => {});
-      toast.info(nextRunning ? "Đã bắt đầu Pomodoro sync cho cả phòng" : "Đã tạm dừng Pomodoro nhóm");
+      toast.info(nextRunning ? t.studyGroups.pomodoroSyncOn : t.studyGroups.pomodoroSyncOff);
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Không cập nhật được Pomodoro nhóm");
+      toast.error(error instanceof Error ? error.message : t.studyGroups.pomodoroSyncFailed);
     }
   }
 
@@ -1017,7 +1017,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
         toast.error(result.message);
       }
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Không mở được rương nhóm");
+      toast.error(error instanceof Error ? error.message : t.studyGroups.chestFailed);
     } finally {
       setClaimingReward(false);
     }
@@ -1034,7 +1034,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
       void refreshRoomEngagement(myRoom.room_id).catch(() => {});
       toast.success(t.studyGroups.noteAdded);
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Không lưu được ghi chú");
+      toast.error(error instanceof Error ? error.message : t.studyGroups.noteSaveFailed);
     }
   }
 
@@ -1044,7 +1044,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
       setStickyNotes((prev) => prev.filter((note) => note.id !== noteId));
       toast.success(t.studyGroups.noteDeleted);
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Không xóa được ghi chú");
+      toast.error(error instanceof Error ? error.message : t.studyGroups.noteDeleteFailed);
     }
   }
 
@@ -1066,14 +1066,14 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
         toast.info(format(t.studyGroups.quizScoreKeepGoing, { score }));
       }
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Không lưu được điểm quiz nhóm");
+      toast.error(error instanceof Error ? error.message : t.studyGroups.quizScoreSaveFailed);
     }
   }
 
   function memberRole(member: StudyRoomMember) {
-    if (member.user_id === roomLeaderId) return "Trưởng nhóm";
-    if (member.current_level >= 10) return "Mentor";
-    if (member.weekly_lessons >= 3) return "Tích cực";
+    if (member.user_id === roomLeaderId) return t.studyGroups.roleLeader;
+    if (member.current_level >= 10) return t.studyGroups.roleMentor;
+    if (member.weekly_lessons >= 3) return t.studyGroups.roleActive;
     return t.studyGroups.memberRole;
   }
 
@@ -1090,7 +1090,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
         setEditingMessage(null);
         toast.success(t.chat.edited);
       } catch (error) {
-        toast.error(error instanceof Error ? error.message : "Không sửa được tin nhắn");
+        toast.error(error instanceof Error ? error.message : t.studyGroups.messageEditFailed);
       } finally {
         setSendingMessage(false);
       }
@@ -1109,7 +1109,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
         const botMessage = await requestStudyRoomBot(myRoom.room_id, rawContent);
         setMessages((prev) => (prev.some((m) => m.id === botMessage.id) ? prev : [...prev, botMessage]));
       } catch (error) {
-        toast.error(error instanceof Error ? error.message : "Không gọi được Tài Tài");
+        toast.error(error instanceof Error ? error.message : t.studyGroups.taitaiFailed);
       } finally {
         setSendingMessage(false);
       }
@@ -1200,7 +1200,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
       toast.success(t.studyGroups.matched);
       await refreshMyRoom();
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Không thể ghép nhóm lúc này");
+      toast.error(error instanceof Error ? error.message : t.studyGroups.matchFailed);
     } finally {
       setBusy(false);
     }
@@ -1215,7 +1215,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
       toast.success(t.studyGroups.joined);
       await refreshMyRoom();
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Không thể tham gia phòng này");
+      toast.error(error instanceof Error ? error.message : t.studyGroups.joinFailed);
     } finally {
       setBusy(false);
     }
@@ -1233,7 +1233,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
       setMyRoomMembers([]);
       await refreshBrowseList(browseTopic);
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Không thể rời phòng lúc này");
+      toast.error(error instanceof Error ? error.message : t.studyGroups.leaveFailed);
     } finally {
       setBusy(false);
     }
@@ -1378,8 +1378,8 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                     }`}
                     title={
                       voice.status === "unavailable"
-                        ? "Voice chưa được cấu hình trên máy chủ"
-                        : "Vào kênh thoại của phòng (mic tắt sẵn)"
+                        ? t.studyGroups.voiceUnavailableTitle
+                        : t.studyGroups.voiceJoinTitle
                     }
                   >
                     <span>🎙️</span>
@@ -1436,7 +1436,9 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                   <p className="flex flex-wrap items-center gap-1.5 font-extrabold text-stone-900 dark:text-stone-100">
                     <span>{t.studyGroups.questsTitle}</span>
                     <span className="text-[10px] font-black text-amber-700 dark:text-amber-300 bg-amber-100 dark:bg-amber-950/80 px-2 py-0.5 rounded-full border border-amber-300 dark:border-amber-800">
-                      {isPermanentRoom ? t.studyGroups.permanentGroup : `${groupStreakWeeks}/3 tuần streak`}
+                      {isPermanentRoom
+                        ? t.studyGroups.permanentGroup
+                        : format(t.studyGroups.streakWeeks, { weeks: groupStreakWeeks })}
                     </span>
                   </p>
                   <p className="text-stone-600 dark:text-stone-300 text-[11px] leading-tight mt-0.5">
@@ -1508,8 +1510,8 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 role="group"
                 aria-label={
                   walkMode
-                    ? "Phòng học 3D đi lại được. Dùng W và S để đi, A và D để xoay người, hoặc bốn nút mũi tên ở góc dưới bên phải."
-                    : "Phòng học 3D. Dùng phím mũi tên để xoay phòng, phím cộng và trừ để phóng to thu nhỏ, phím số 0 để đặt lại góc nhìn."
+                    ? t.studyGroups.stageAriaWalk
+                    : t.studyGroups.stageAriaDesk
                 }
                 className={`lg:col-span-7 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400 ${
                   mobileTab === "3d" ? "flex" : "hidden lg:flex"
@@ -1549,7 +1551,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                         setWalkMode((prev) => !prev);
                       }}
                       className="text-[9px] font-bold text-emerald-200 bg-emerald-950/80 hover:bg-emerald-900 px-2 py-0.5 rounded-full border border-emerald-500/40 transition-all cursor-pointer"
-                      title={walkMode ? "Chuyển về bàn học nhìn từ ngoài" : "Vào phòng và đi lại được"}
+                      title={walkMode ? t.studyGroups.viewDeskTitle : t.studyGroups.viewWalkTitle}
                     >
                       {walkMode ? t.studyGroups.viewDesk : t.studyGroups.viewWalk}
                     </button>
@@ -1562,7 +1564,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                         }}
                         className="text-[9px] font-bold text-stone-300 bg-stone-900/90 hover:bg-stone-800 px-2 py-0.5 rounded-full border border-stone-700 transition-all cursor-pointer"
                         title={t.studyGroups.resetViewTitle}
-                        aria-label={`Đặt lại góc nhìn 3D và độ phóng, hiện tại ${Math.round(zoom3D * 100)} phần trăm`}
+                        aria-label={format(t.studyGroups.resetViewAria, { zoom: Math.round(zoom3D * 100) })}
                       >
                         {format(t.studyGroups.resetView, { zoom: Math.round(zoom3D * 100) })}
                       </button>
@@ -1579,7 +1581,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                         onClick={() => void handleQuickCheer(cheer.message)}
                         className="cursor-pointer p-0.5 text-xs transition-transform hover:scale-125 sm:p-1"
                         title={`${cheer.label} ${cheer.emoji}`}
-                        aria-label={`Gửi lời cổ vũ: ${cheer.label}`}
+                        aria-label={format(t.studyGroups.cheerAria, { label: cheer.label })}
                       >
                         {cheer.emoji}
                       </button>
@@ -1893,8 +1895,8 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                             aria-pressed={isLit}
                             aria-label={
                               isLit
-                                ? `Trạm ${node.name} đã kích hoạt`
-                                : `Kích hoạt trạm ${node.name} để cộng 15% XP cho phòng`
+                                ? format(t.studyGroups.pylonAriaLit, { name: node.name })
+                                : format(t.studyGroups.pylonAriaUnlit, { name: node.name })
                             }
                             className={`flex flex-col items-center gap-1 px-2.5 py-1.5 rounded-xl border backdrop-blur-md text-[9px] font-black shadow-lg cursor-pointer transition-all hover:scale-110 ${
                               isActive
@@ -2282,7 +2284,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                     {!repliedTo.content && repliedTo.image_url
                                       ? t.chat.imagePlaceholder
                                       : !repliedTo.content && repliedTo.file_name
-                                        ? `[Tệp: ${repliedTo.file_name}]`
+                                        ? format(t.chat.filePlaceholder, { name: repliedTo.file_name })
                                         : repliedTo.content}
                                   </span>
                                 </>
@@ -2320,7 +2322,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                       setActiveMenuMsgId(null);
                                     }}
                                     className="hover:scale-130 transition-transform p-0.5"
-                                    title={`Thả ${emoji}`}
+                                    title={format(t.studyGroups.reactionTitle, { emoji })}
                                   >
                                     {emoji}
                                   </button>
@@ -2329,7 +2331,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
 
                               <button
                                 onClick={() => {
-                                  setReplyingTo({ id: msg.id, senderName: isMine ? "bạn" : senderName, content: msg.content });
+                                  setReplyingTo({ id: msg.id, senderName: isMine ? t.chat.you : senderName, content: msg.content });
                                   setActiveMenuMsgId(null);
                                 }}
                                 className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-950/40 text-stone-800 dark:text-stone-200 font-bold transition-colors text-left"
@@ -2523,7 +2525,13 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                     void handleSendMessage();
                   }
                 }}
-                placeholder={editingMessage ? "Chỉnh lại nội dung tin nhắn..." : replyingTo ? `Viết câu trả lời cho ${replyingTo.senderName}...` : "Nhắn gì đó cho nhóm... hoặc /taitai"}
+                placeholder={
+                  editingMessage
+                    ? t.studyGroups.editPlaceholder
+                    : replyingTo
+                      ? format(t.studyGroups.replyPlaceholder, { name: replyingTo.senderName })
+                      : t.studyGroups.chatPlaceholder
+                }
                 maxLength={2000}
                 className="flex-1 px-3.5 py-2.5 rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-sm text-stone-900 dark:text-stone-100 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-emerald-400/50"
               />
