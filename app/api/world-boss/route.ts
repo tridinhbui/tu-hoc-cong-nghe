@@ -32,7 +32,11 @@ function fallbackWorldBoss(t: Dictionary) {
     start_date: new Date().toISOString().split("T")[0],
     end_date: new Date(Date.now() + 7 * 86400000).toISOString().split("T")[0],
     is_active: true,
-    questions: wb.questions.map((q) => ({ prompt: q.prompt, options: [...q.options], correct: 0 })),
+    questions: wb.questions.map((q: { prompt: string; options: string[] }) => ({
+      prompt: q.prompt,
+      options: [...q.options],
+      correct: 0,
+    })),
   };
 }
 
@@ -105,7 +109,7 @@ export async function GET(request: NextRequest) {
     avatarUrl: log.user_profiles?.avatar_url,
     totalDamage: log.damage_dealt,
   })) ||
-    t.worldSpaces.worldBoss.defaultLeaderboardNames.map((name, i) => ({
+    t.worldSpaces.worldBoss.defaultLeaderboardNames.map((name: string, i: number) => ({
       rank: i + 1,
       userId: `mock-${i + 1}`,
       name,

@@ -41,6 +41,7 @@ import { placementFocusVi, placementFocusEn } from "./placement-focus";
 import { practicePreviewVi, practicePreviewEn } from "./practice-preview";
 import { questsReferralVi, questsReferralEn } from "./quests-referral";
 import { rpgStudyRoomVi, rpgStudyRoomEn } from "./rpg-study-room";
+import { worldSpacesVi, worldSpacesEn } from "./world-spaces";
 import { searchUploadVi, searchUploadEn } from "./search-upload";
 
 export const viSections = {
@@ -76,6 +77,7 @@ export const viSections = {
   ...practicePreviewVi,
   ...questsReferralVi,
   ...rpgStudyRoomVi,
+  ...worldSpacesVi,
   ...searchUploadVi,
 };
 
@@ -112,5 +114,6 @@ export const enSections: typeof viSections = {
   ...practicePreviewEn,
   ...questsReferralEn,
   ...rpgStudyRoomEn,
+  ...worldSpacesEn,
   ...searchUploadEn,
 };

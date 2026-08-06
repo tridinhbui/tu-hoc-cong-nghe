@@ -118,6 +118,11 @@ const INTENTIONALLY_UNTRANSLATED = new Set([
   "quizSuggestion.greeting",
   "quizSuggestion.suggestionLabel",
   "quizSuggestion.trackIb",
+  // The formula carved above each lobby station's door. Algebra, in both
+  // languages - and the notation is the point of showing it.
+  ...["hocBai", "kiemTra", "onTap", "congCu", "cfa", "frm"].map(
+    (station) => `worldSpaces.lobbyStations.${station}.formula`
+  ),
   // Finance terms whose English name IS the term - the glossary entry for DCF is
   // titled "DCF (Discounted Cash Flow)" in both languages because that is what
   // the learner has to recognise on a page or in an interview.
