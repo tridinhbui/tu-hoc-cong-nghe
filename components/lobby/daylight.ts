@@ -14,7 +14,14 @@
 
 export interface DaySample {
   /** Tên ca, dùng cho nhãn trên HUD. */
-  label: string;
+  /** Tên mốc trong ngày, dùng để NHẬN DẠNG chứ không để hiện ra.
+   *
+   *  Trước đây trường này mang chuỗi tiếng Việt ("Đêm khuya", "Rạng sáng") và
+   *  bộ đếm i18n xếp nó vào diện chuỗi cần dịch. Nhưng không nơi nào trong app
+   *  dựng nó ra màn hình - chỗ duy nhất đọc tới là một bài test dùng nó để
+   *  kiểm 26 giờ quy về 2 giờ. Một trường định danh mang hình dạng câu chữ thì
+   *  sớm muộn cũng có người đem đi dịch, hoặc đem đi hiển thị. */
+  phase: DayPhase;
   skyTop: [number, number, number];
   skyMid: [number, number, number];
   skyHorizon: [number, number, number];
@@ -34,11 +41,13 @@ interface Keyframe extends DaySample {
   hour: number;
 }
 
+export type DayPhase = "night" | "dawn" | "morning" | "afternoon" | "dusk" | "evening";
+
 /** Các mốc trong ngày. Giữa hai mốc là nội suy tuyến tính. */
 const KEYFRAMES: Keyframe[] = [
   {
     hour: 0,
-    label: "Đêm khuya",
+    phase: "night",
     skyTop: [8, 12, 26],
     skyMid: [16, 20, 40],
     skyHorizon: [40, 38, 58],
@@ -52,7 +61,7 @@ const KEYFRAMES: Keyframe[] = [
   },
   {
     hour: 5.5,
-    label: "Rạng sáng",
+    phase: "dawn",
     skyTop: [40, 55, 105],
     skyMid: [130, 105, 130],
     skyHorizon: [235, 155, 110],
@@ -66,7 +75,7 @@ const KEYFRAMES: Keyframe[] = [
   },
   {
     hour: 8,
-    label: "Buổi sáng",
+    phase: "morning",
     skyTop: [92, 150, 226],
     skyMid: [150, 195, 240],
     skyHorizon: [215, 232, 246],
@@ -80,7 +89,7 @@ const KEYFRAMES: Keyframe[] = [
   },
   {
     hour: 15,
-    label: "Buổi chiều",
+    phase: "afternoon",
     skyTop: [80, 140, 220],
     skyMid: [145, 190, 236],
     skyHorizon: [225, 226, 224],
@@ -94,7 +103,7 @@ const KEYFRAMES: Keyframe[] = [
   },
   {
     hour: 18,
-    label: "Hoàng hôn",
+    phase: "dusk",
     skyTop: [27, 42, 74],
     skyMid: [110, 92, 128],
     skyHorizon: [242, 160, 96],
@@ -108,7 +117,7 @@ const KEYFRAMES: Keyframe[] = [
   },
   {
     hour: 20.5,
-    label: "Buổi tối",
+    phase: "evening",
     skyTop: [12, 18, 38],
     skyMid: [24, 30, 56],
     skyHorizon: [62, 52, 74],
@@ -155,7 +164,7 @@ export function daylightAt(hour: number): DaySample {
   return {
     // Nhãn lấy của mốc gần hơn: nửa đầu quãng vẫn là "buổi sáng", nửa sau đã
     // là "buổi chiều", chứ không phải đổi tên ngay khi vừa qua mốc.
-    label: t < 0.5 ? prev.label : next.label,
+    phase: t < 0.5 ? prev.phase : next.phase,
     skyTop: mixRgb(prev.skyTop, next.skyTop, t),
     skyMid: mixRgb(prev.skyMid, next.skyMid, t),
     skyHorizon: mixRgb(prev.skyHorizon, next.skyHorizon, t),

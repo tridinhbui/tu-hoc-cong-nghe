@@ -245,6 +245,10 @@ function Motorbike({ x, z, color }: { x: number; z: number; color: string }) {
 
 /** Một căn nhà mặt phố: mặt tiền, cửa sáng đèn, biển hiệu nhóm ngành. */
 function Shophouse({ category, progress }: { category: CareerCategory; progress: { done: number; total: number } }) {
+  // Component con tự gọi useI18n() thay vì nhận `t` qua prop - đây là phía
+  // client, đúng quy ước AGENTS.md; truyền xuống chỉ để dịch một biển hiệu sẽ
+  // phải sửa mọi chỗ gọi.
+  const { t } = useI18n();
   const x = SHOP_X[category];
   const count = careerCountIn(category);
   return (
@@ -281,7 +285,7 @@ function Shophouse({ category, progress }: { category: CareerCategory; progress:
           tường, và người đi ngang không biết căn nhà này là ngành gì. Biển phố
           Sài Gòn thật cũng nằm đúng chỗ này vì đúng lý do đó. */}
       <TextBoard
-        title={CAREER_CATEGORY_LABEL_SHORT[category]}
+        title={t.careerDistrict.shopSigns[category]}
         rows={[
           CAREER_CATEGORY_BLURBS[category],
           // Biển hiệu đổi khi vượt mốc: đi ngang một căn nhà đã xong và một
@@ -301,16 +305,6 @@ function Shophouse({ category, progress }: { category: CareerCategory; progress:
     </group>
   );
 }
-
-/** Tên ngắn cho biển hiệu: tên đầy đủ dài quá thì chữ trên biển bé lại đến mức
- *  đứng dưới đường không đọc được. */
-const CAREER_CATEGORY_LABEL_SHORT: Record<CareerCategory, string> = {
-  investment: "ĐẦU TƯ",
-  banking: "NGÂN HÀNG",
-  advisory: "TƯ VẤN",
-  accounting: "KẾ TOÁN",
-  data: "DỮ LIỆU",
-};
 
 const SHOP_ACCENT: Record<CareerCategory, string> = {
   investment: "#5eead4",

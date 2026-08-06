@@ -1,5 +1,15 @@
 export const careerDistrictVi = {
   careerDistrict: {
+    // components/career-district/DistrictShell.tsx - biển hiệu trên mái hiên.
+    // Tên NGẮN, không phải tên đầy đủ của nhóm ngành: tên đầy đủ dài quá thì
+    // chữ trên biển bé lại đến mức đứng dưới đường không đọc được.
+    shopSigns: {
+      investment: "ĐẦU TƯ",
+      banking: "NGÂN HÀNG",
+      advisory: "TƯ VẤN",
+      accounting: "KẾ TOÁN",
+      data: "DỮ LIỆU",
+    },
     threeStatement: {
       title: "Phòng Ba Báo Cáo",
       subtitle: "Một bút toán chạm vào cả ba bảng cùng lúc",
@@ -268,6 +278,16 @@ export const careerDistrictVi = {
 
 export const careerDistrictEn: typeof careerDistrictVi = {
   careerDistrict: {
+    // components/career-district/DistrictShell.tsx - the shopfront signs.
+    // SHORT names, not the full category titles: the full ones shrink the
+    // lettering until it cannot be read from the pavement.
+    shopSigns: {
+      investment: "INVESTING",
+      banking: "BANKING",
+      advisory: "ADVISORY",
+      accounting: "ACCOUNTING",
+      data: "DATA",
+    },
     threeStatement: {
       title: "Three Statements Room",
       subtitle: "One journal entry touches all three statements at once",

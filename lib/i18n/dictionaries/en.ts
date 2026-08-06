@@ -2548,6 +2548,19 @@ export const en: Dictionary = {
     frmGlossary: "🗂️ Glossary cards",
     frmFormulas: "📐 Formula book",
 
+    frmFlashcardsMetaTitle: "FRM Glossary Flashcards, English-Vietnamese | TuHocTaiChinh.org",
+    frmFlashcardsMetaDesc:
+      "Flashcards for FRM Part I and Part II terminology - VaR, Expected Shortfall, CVA, LCR, NSFR, PD/LGD/EAD - each with a Vietnamese definition and the trap people fall into.",
+    frmFormulasMetaTitle: "FRM Part I & II Formula Book | TuHocTaiChinh.org",
+    frmFormulasMetaDesc:
+      "FRM exam formulas across GARP's ten topics: VaR, Expected Shortfall, EL, LCR, NSFR, DV01, Greeks - every symbol explained, with worked numeric examples.",
+    backToFrm: "Back to the FRM track",
+    backToFrmTrack: "Back to the FRM path",
+    frmFlashcardsTitle: "FRM glossary cards",
+    frmFlashcardsSubtitle: "Part I & Part II - English-Vietnamese, with the usual traps",
+    frmFormulasTitle: "FRM formula book",
+    frmFormulasSubtitle: "Part I & II - with worked numeric examples",
+
     noLessonsYet: "no lessons yet",
     pickTrack: "Pick a specialisation:",
     examWeight: "Exam weight",

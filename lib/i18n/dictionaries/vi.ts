@@ -2695,6 +2695,19 @@ export const vi = {
     frmGlossary: "🗂️ Thẻ thuật ngữ",
     frmFormulas: "📐 Sổ tay công thức",
 
+    frmFlashcardsMetaTitle: "Bộ Thẻ Thuật Ngữ FRM Song Ngữ En-Vi | TuHocTaiChinh.org",
+    frmFlashcardsMetaDesc:
+      "Thẻ ghi nhớ thuật ngữ FRM Part I và Part II - VaR, Expected Shortfall, CVA, LCR, NSFR, PD/LGD/EAD - kèm định nghĩa tiếng Việt và cái bẫy hay gặp ở từng khái niệm.",
+    frmFormulasMetaTitle: "Sổ Tay Công Thức FRM Part I & II | TuHocTaiChinh.org",
+    frmFormulasMetaDesc:
+      "Công thức thi FRM theo mười môn của GARP: VaR, Expected Shortfall, EL, LCR, NSFR, DV01, Greeks - kèm giải thích ký hiệu và ví dụ tính bằng số.",
+    backToFrm: "Về trang FRM Track",
+    backToFrmTrack: "Về lộ trình FRM",
+    frmFlashcardsTitle: "Bộ Thẻ Thuật Ngữ FRM",
+    frmFlashcardsSubtitle: "Part I & Part II - song ngữ Anh - Việt kèm bẫy hay gặp",
+    frmFormulasTitle: "Sổ Tay Công Thức FRM",
+    frmFormulasSubtitle: "Part I & II - kèm ví dụ tính bằng số",
+
     noLessonsYet: "chưa có bài",
     pickTrack: "Chọn một hướng chuyên sâu:",
     examWeight: "Trọng số đề thi",
