@@ -92,9 +92,9 @@ export const FRM_LESSONS: Lesson[] = [
         question: "Vai trò của hội đồng quản trị trong khung ERM là gì?",
         options: [
           "Trực tiếp phê duyệt từng giao dịch riêng lẻ của mọi trading desk trong tổ chức trước khi lệnh được đặt ra thị trường mỗi ngày",
-          "Đặt khẩu vị rủi ro tổng thể và giám sát tuân thủ, không can thiệp vận hành hằng ngày",
-          "Thay thế hoàn toàn vai trò của phòng Quản trị Rủi ro",
-          "Chỉ họp khi có khủng hoảng xảy ra",
+          "Đặt khẩu vị rủi ro và giám sát tuân thủ",
+          "Thay hoàn toàn vai trò phòng Quản trị Rủi ro",
+          "Chỉ họp khi khủng hoảng đã xảy ra",
         ],
         correct: 1,
         explanation:
@@ -1011,7 +1011,7 @@ export const FRM_LESSONS: Lesson[] = [
       question: "Một ngân hàng có tỷ lệ an toàn vốn (CAR) đạt 15%, cao hơn nhiều so với yêu cầu tối thiểu, nhưng 70% nguồn tài trợ đến từ vay liên ngân hàng kỳ hạn 1 tuần để tài trợ cho danh mục cho vay doanh nghiệp kỳ hạn 5 năm. Rủi ro lớn nhất ở đây là gì?",
       options: [
         "Không có rủi ro đáng kể, vì tỷ lệ an toàn vốn đã đủ cao",
-        "Rủi ro lệch kỳ hạn tài trợ nghiêm trọng: nếu thị trường liên ngân hàng đóng băng dù chỉ trong thời gian ngắn, ngân hàng không thể tái cấp vốn kịp cho các khoản vay dài hạn - giống hệt mẫu hình Northern Rock",
+        "Rủi ro lệch kỳ hạn tài trợ, giống mẫu hình Northern Rock",
         "Rủi ro duy nhất là rủi ro lãi suất, không liên quan tới thanh khoản",
         "Ngân hàng nên tăng thêm vốn chủ sở hữu để giải quyết vấn đề này",
       ],

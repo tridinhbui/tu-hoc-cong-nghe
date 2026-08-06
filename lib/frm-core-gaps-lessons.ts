@@ -2270,10 +2270,10 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       {
         question: "Khe hở dồn tích khác khe hở của từng dải ở chỗ nào?",
         options: [
-          "Khe hở dồn tích cộng dần qua các dải",
-          "Chỉ tính dòng tiền vào",
-          "Khe hở dồn tích được tính theo giá trị hiện tại đã chiết khấu",
-          "Khe hở dồn tích chỉ áp dụng cho các dải kỳ hạn trên một năm"
+          "Khe hở dồn tích cộng dần qua từng dải kỳ hạn",
+          "Chỉ tính phần dòng tiền vào",
+          "Khe hở dồn tích tính theo giá trị đã chiết khấu",
+          "Khe hở dồn tích chỉ áp dụng cho dải trên một năm"
         ],
         correct: 0,
         explanation: "Một dải riêng lẻ có thể âm nhưng được bù bởi thặng dư từ dải trước đó. Chỉ con số dồn tích mới trả lời được câu hỏi thực sự quan trọng: tới thời điểm nào thì tổ chức không còn tiền."
@@ -3771,10 +3771,10 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       {
         question: "Tham số hình dạng trong phân phối Pareto tổng quát cho biết điều gì?",
         options: [
-          "Mức độ dày của đuôi phân phối",
+          "Mức độ dày của đuôi phân phối tổn thất",
           "Giá trị trung bình của toàn bộ phân phối gốc",
           "Số lượng quan sát vượt ngưỡng có trong mẫu",
-          "Độ dài của chuỗi thời gian được sử dụng để ước lượng"
+          "Độ dài chuỗi thời gian dùng để ước lượng"
         ],
         correct: 0,
         explanation: "Tham số hình dạng là con số quan trọng nhất của mô hình. Nó phân loại đuôi thành ba dạng, và với dữ liệu tài chính thì kết quả ước lượng gần như luôn rơi vào nhóm đuôi dày - xác nhận rằng giả định chuẩn không phù hợp."

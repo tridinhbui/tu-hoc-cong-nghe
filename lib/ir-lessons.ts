@@ -88,10 +88,10 @@ export const IR_LESSONS: Lesson[] = [
       {
         question: "Cung cấp thông tin trọng yếu riêng cho một quỹ lớn trước khi công bố là gì?",
         options: [
-          "Vi phạm nguyên tắc công bằng thông tin",
-          "Hoạt động chăm sóc nhà đầu tư lớn được chấp nhận trong ngành",
-          "Rủi ro truyền thông cần cân nhắc nhưng không vi phạm quy định nào",
-          "Hợp lệ nếu có cam kết bảo mật",
+          "Vi phạm nguyên tắc công bằng thông tin giữa cổ đông",
+          "Chăm sóc nhà đầu tư lớn, ngành vẫn chấp nhận",
+          "Rủi ro truyền thông nhưng không vi phạm quy định",
+          "Hợp lệ nếu bên nhận có cam kết bảo mật",
         ],
         correct: 0,
         explanation:

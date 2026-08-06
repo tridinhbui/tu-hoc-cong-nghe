@@ -425,9 +425,9 @@ export const DERIVATIVES_PRICING_LESSONS: Lesson[] = [
       {
         question: "Delta của một quyền chọn mua có giá trị trong khoảng nào?",
         options: [
-          "Từ −1 đến 0",
-          "Từ 0 đến 1",
-          "Từ −1 đến 1",
+          "Từ −1 đến 0, như quyền chọn bán",
+          "Từ 0 đến 1, cùng chiều với giá tài sản",
+          "Từ −1 đến 1, gộp cả hai loại quyền chọn",
           "Không bị giới hạn",
         ],
         correct: 1,

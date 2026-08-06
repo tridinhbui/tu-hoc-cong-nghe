@@ -652,10 +652,10 @@ export const ACTUARIAL_LESSONS: Lesson[] = [
       {
         question: "Tỷ lệ kết hợp gồm những gì?",
         options: [
-          "Tỷ lệ bồi thường cộng tỷ lệ chi phí",
+          "Tỷ lệ bồi thường cộng tỷ lệ chi phí hoạt động",
           "Tỷ lệ bồi thường cộng lợi nhuận từ hoạt động đầu tư",
-          "Tổng nghĩa vụ chia cho tổng tài sản của doanh nghiệp bảo hiểm",
-          "Tỷ lệ dự phòng nghiệp vụ trên tổng phí thu được trong kỳ báo cáo",
+          "Tổng nghĩa vụ chia tổng tài sản của công ty",
+          "Dự phòng nghiệp vụ trên tổng phí thu trong kỳ",
         ],
         correct: 0,
         explanation:

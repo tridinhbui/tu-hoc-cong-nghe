@@ -594,10 +594,10 @@ export const FINTECH_LESSONS: Lesson[] = [
       {
         question: "Cách đọc đúng chất lượng tín dụng của một danh mục đang lớn nhanh là gì?",
         options: [
-          "Theo dõi từng tập vay theo tháng giải ngân",
+          "Theo dõi từng tập vay theo tháng giải ngân riêng",
           "Nợ quá hạn chia tổng dư nợ",
-          "So sánh tỷ lệ nợ xấu với trung bình ngành trong cùng giai đoạn",
-          "Đợi hết năm tài chính rồi tính trên số liệu đã được kiểm toán xác nhận",
+          "So tỷ lệ nợ xấu với trung bình ngành cùng kỳ",
+          "Đợi hết năm rồi tính trên số đã kiểm toán",
         ],
         correct: 0,
         explanation:

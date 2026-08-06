@@ -119,10 +119,10 @@ export const BOOKKEEPING_LESSONS: Lesson[] = [
       {
         question: "Một bút toán ghi Nợ 10 triệu và Có 12 triệu. Điều này nghĩa là gì?",
         options: [
-          "Bút toán sai, hai vế bắt buộc bằng nhau",
+          "Bút toán sai, vì hai vế bắt buộc bằng nhau",
           "Chênh lệch vào lợi nhuận cuối kỳ",
-          "Bút toán hợp lệ nếu phần chênh được ghi chú trong thuyết minh",
-          "Bút toán hợp lệ khi nghiệp vụ liên quan tới nhiều hơn hai tài khoản",
+          "Hợp lệ nếu phần chênh được ghi chú trong thuyết minh",
+          "Hợp lệ khi nghiệp vụ liên quan hơn hai tài khoản",
         ],
         correct: 0,
         explanation:
