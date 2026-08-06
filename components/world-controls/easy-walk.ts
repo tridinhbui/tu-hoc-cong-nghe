@@ -177,6 +177,75 @@ export interface OrbitState {
   yaw: number;
   pitch: number;
   dist: number;
+  /** Mốc thời gian (ms) lúc người dùng thả cú kéo, để camera biết khi nào được
+   *  phép trôi về sau lưng nhân vật. `null` nghĩa là không có gì phải trôi:
+   *  hoặc đang kéo dở, hoặc đã về đến nơi rồi. Do usePointerControls ghi và
+   *  recenterOrbit đọc; cảnh nào không gọi recenterOrbit thì trường này nằm im
+   *  và không ảnh hưởng gì. */
+  idleSince?: number | null;
+}
+
+/** Thả tay bao lâu thì camera bắt đầu trôi về.
+ *
+ *  1,2 giây là khoảng giữa hai thứ đều tệ: về ngay lập tức thì cú kéo trở nên
+ *  vô nghĩa (nhìn được đúng một khoảnh khắc rồi bị giật lại), còn để lâu quá
+ *  thì người học đứng nhìn cái gáy của nhân vật mình mà không hiểu vì sao. */
+export const RECENTER_DELAY_MS = 1200;
+
+/** Kéo xong thì camera tự trôi về sau lưng nhân vật.
+ *
+ *  Vị trí "hợp lý nhất" ở đây là góc camera BẰNG hướng nhân vật đang quay mặt:
+ *  applyFollowCamera đặt camera ở `pose + (sin(yaw), cos(yaw)) * dist`, còn
+ *  turnToward quay nhân vật về `atan2(-dx, -dz)`, nên hai số bằng nhau đúng lúc
+ *  camera đứng sau lưng và nhìn cùng hướng nhân vật.
+ *
+ *  `allowed` là chỗ phải cẩn thận, không phải chỗ để tiện tay bật luôn. Trong
+ *  kiểu đi-theo-hướng-nhìn, hướng đi được suy TỪ góc camera; nên nếu camera
+ *  cũng tự quay theo hướng nhân vật trong lúc người dùng đang giữ phím đi
+ *  ngang, ta có đúng vòng lặp mà chú thích của OrbitState ở trên cảnh báo:
+ *  camera quay → hướng "sang trái" quay theo → nhân vật quay tiếp → camera
+ *  quay tiếp, và nhân vật đi thành vòng tròn thay vì đi thẳng. Vì vậy phía gọi
+ *  chỉ được truyền `allowed: true` khi KHÔNG có ý định đi thủ công nào đang
+ *  giữ - tức là lúc đứng yên, hoặc lúc đang tự đi tới điểm vừa chạm (hướng đi
+ *  lúc đó do cái đích quyết định, không do camera, nên vòng lặp không khép). */
+export function recenterOrbit(
+  orbit: OrbitState,
+  heading: number,
+  delta: number,
+  opts: { allowed: boolean; restPitch?: number; now?: number }
+): void {
+  if (!opts.allowed) return;
+  const since = orbit.idleSince;
+  if (since == null) return;
+  const now = opts.now ?? (typeof performance !== "undefined" ? performance.now() : 0);
+  if (now - since < RECENTER_DELAY_MS) return;
+
+  // Đi theo cung ngắn, như turnToward: yaw cộng dồn tự do qua nhiều vòng kéo
+  // nên hiệu hai góc có thể lớn hơn một vòng.
+  let diff = heading - orbit.yaw;
+  while (diff > Math.PI) diff -= Math.PI * 2;
+  while (diff < -Math.PI) diff += Math.PI * 2;
+
+  // Chậm hơn hẳn nhịp bám của camera (delta * 6): đây là chuyển động mà người
+  // dùng không yêu cầu, nên nó phải đủ chậm để nhìn ra là camera đang trôi chứ
+  // không phải khung hình vừa nhảy.
+  const k = Math.min(1, delta * 2);
+  orbit.yaw += diff * k;
+
+  let pitchDone = true;
+  if (opts.restPitch != null) {
+    const pd = opts.restPitch - orbit.pitch;
+    orbit.pitch += pd * k;
+    pitchDone = Math.abs(pd) < 0.005;
+  }
+
+  // Về đến nơi thì tắt hẳn, để những khung hình sau không phải tính lại một
+  // phép nội suy đã hội tụ - và để một cú kéo mới là thứ duy nhất bật nó lên.
+  if (Math.abs(diff) < 0.005 && pitchDone) {
+    orbit.yaw = heading;
+    if (opts.restPitch != null) orbit.pitch = opts.restPitch;
+    orbit.idleSince = null;
+  }
 }
 
 /** Kéo để xoay, lăn để phóng, chạm ngắn để đi tới.
@@ -225,6 +294,10 @@ export function usePointerControls(
       moved = 0;
       lastX = e.clientX;
       lastY = e.clientY;
+      // Đang kéo thì không có gì phải trôi về - và quan trọng hơn, một cú kéo
+      // mới phải huỷ cú trôi đang dở, nếu không người dùng kéo ngược lại đúng
+      // thứ camera đang tự kéo đi.
+      orbit.current.idleSince = null;
       el.setPointerCapture(e.pointerId);
     };
     const move = (e: PointerEvent) => {
@@ -247,6 +320,10 @@ export function usePointerControls(
           ((e.clientX - rect.left) / rect.width) * 2 - 1,
           -(((e.clientY - rect.top) / rect.height) * 2 - 1)
         );
+      } else {
+        // Chỉ cú KÉO mới hẹn giờ trôi về. Cú chạm ngắn không đổi góc camera,
+        // nên hẹn giờ cho nó là hẹn một cú trôi từ đúng chỗ nó đang đứng.
+        orbit.current.idleSince = performance.now();
       }
     };
     const wheel = (e: WheelEvent) => {

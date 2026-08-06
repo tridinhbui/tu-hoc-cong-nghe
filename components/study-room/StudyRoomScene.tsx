@@ -16,6 +16,7 @@ import {
 import {
   applyFollowCamera,
   inputTowardTarget,
+  recenterOrbit,
   turnToward,
   usePointerControls,
   useWalkKeys,
@@ -42,6 +43,9 @@ import {
 } from "@/lib/supabase-study-world";
 
 const WALK_SPEED = 3.6;
+
+/** Góc ngẩng camera lúc vào phòng, và là góc nó trôi về sau khi thả cú kéo. */
+const REST_PITCH = 0.32;
 
 /** Khung giữ camera trong phòng. Tường chỉ vẽ một mặt, nên camera lùi ra ngoài
  *  là khung hình thành mảng đen. */
@@ -110,6 +114,9 @@ function PlayerRig({
     // bàn phím vẫn cắm đó, và một nhân vật vừa ngồi vừa trôi ngang phòng thì
     // phiên học không còn nghĩa gì.
     if (seatedRef.current !== null) {
+      // Ngồi thì không đi được, nên không có vòng lặp nào để lo: camera luôn
+      // được phép trôi về sau lưng.
+      recenterOrbit(orbit, pose.ry, delta, { allowed: true, restPitch: REST_PITCH });
       applyFollowCamera(camera, pose, orbit, delta, { distOverride: 3.8, bounds: CAMERA_BOUNDS });
       if (lastSeatable.current !== null) {
         lastSeatable.current = null;
@@ -157,6 +164,10 @@ function PlayerRig({
       onDoorProximity(nearDoor);
     }
 
+    recenterOrbit(orbit, pose.ry, delta, {
+      allowed: Math.hypot(walk.input.x, walk.input.y) < 0.08,
+      restPitch: REST_PITCH,
+    });
     applyFollowCamera(camera, pose, orbit, delta, { bounds: CAMERA_BOUNDS });
 
     // Phát vị trí theo nhịp, và chỉ khi thực sự nhúc nhích - người đứng yên
@@ -235,7 +246,7 @@ export default function StudyRoomScene({
   const peerCountRef = useRef(0);
   const seatedRef = useRef<number | null>(null);
   const takenSeatsRef = useRef<Set<number>>(new Set());
-  const orbitRef = useRef<OrbitState>({ yaw: SPAWN_RY, pitch: 0.32, dist: 5.2 });
+  const orbitRef = useRef<OrbitState>({ yaw: SPAWN_RY, pitch: REST_PITCH, dist: 5.2 });
 
   useWalkKeys(walkRef);
 

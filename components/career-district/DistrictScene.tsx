@@ -28,6 +28,7 @@ import {
   applyFollowCamera,
   createWalkState,
   inputTowardTarget,
+  recenterOrbit,
   turnToward,
   usePointerControls,
   useWalkKeys,
@@ -50,6 +51,13 @@ import {
 import { CHAT_BUBBLE_MS, type LobbyChatMessage } from "@/lib/supabase-lobby";
 
 const WALK_SPEED = 4.4;
+
+/** Góc ngẩng camera lúc vào phòng, và cũng là góc nó trôi về sau khi người dùng
+ *  thả cú kéo. Ngoài phố cao hơn: không có trần chặn, và phố rộng nên nhìn hơi
+ *  chúc xuống mới thấy được đường đi. */
+function restPitchFor(room: DistrictRoom): number {
+  return room.kind === "street" ? 0.46 : 0.36;
+}
 
 interface RigProps {
   room: DistrictRoom;
@@ -198,6 +206,13 @@ function PlayerRig({ room, poseRef, walkRef, orbitRef, onDeskChange, onDoorChang
       lastLift.current = atLift;
       onLiftChange(atLift);
     }
+
+    // Kéo xong thì camera tự trôi về sau lưng. Chỉ khi không có phím/cần điều
+    // khiển nào đang giữ - xem chú thích của recenterOrbit về vòng lặp.
+    recenterOrbit(orbit, pose.ry, delta, {
+      allowed: Math.hypot(walk.input.x, walk.input.y) < 0.08,
+      restPitch: restPitchFor(room),
+    });
 
     // Camera đứng ở góc người dùng đã chọn, độc lập với hướng nhân vật, và bị
     // kẹp trong lòng phòng. Ngoài phố thì nới rộng: không có tường để xuyên,
@@ -368,7 +383,7 @@ export default function DistrictScene({
   const narrow = typeof window !== "undefined" && window.innerWidth < 640;
   const orbitRef = useRef<OrbitState>({
     yaw: entry.ry,
-    pitch: room.kind === "street" ? 0.46 : 0.36,
+    pitch: restPitchFor(room),
     dist: (room.kind === "street" || room.id === "cong-vien" || room.id === "trung-tam" ? 8.5 : 6) * (narrow ? 1.45 : 1),
   });
 
@@ -382,6 +397,9 @@ export default function DistrictScene({
     // Camera về sau lưng hướng vừa bước vào: giữ góc cũ thì vừa qua cửa đã phải
     // xoay lại để biết mình đang nhìn đi đâu.
     orbitRef.current.yaw = entry.ry;
+    // Và huỷ cú trôi đang chờ: camera vừa được đặt đúng chỗ rồi, một cú trôi
+    // hẹn từ phòng trước sẽ kéo nó đi khỏi đó ngay khi vừa bước vào.
+    orbitRef.current.idleSince = null;
     walkRef.current.target = null;
     walkRef.current.keys = {};
     walkRef.current.input.x = 0;

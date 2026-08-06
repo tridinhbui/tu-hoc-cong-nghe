@@ -33,10 +33,12 @@ import {
 import { disposeRoomTextures } from "./room-textures";
 import {
   inputTowardTarget,
+  recenterOrbit,
   turnToward,
   usePointerControls,
   useWalkKeys,
   worldDirection,
+  type OrbitState,
   type WalkState,
 } from "@/components/world-controls/easy-walk";
 import PomodoroClock from "./PomodoroClock";
@@ -49,6 +51,9 @@ function quarterHourNow(): number {
 }
 
 const WALK_SPEED = 4.2;
+
+/** Góc ngẩng camera lúc vào thư viện, và là góc nó trôi về sau khi thả cú kéo. */
+const REST_PITCH = 0.4;
 /** Bán kính thân người, dùng khi đẩy ra khỏi bàn. */
 const BODY_RADIUS = 0.34;
 /** Đứng trong khoảng này quanh một bàn thì ngồi xuống được. */
@@ -84,18 +89,11 @@ export function seatPose(tableId: number, fromX: number, fromZ: number): AvatarP
   };
 }
 
-export interface OrbitState {
-  /** Góc TUYỆT ĐỐI của camera, không phải độ lệch so với hướng nhân vật.
-   *
-   *  Đổi từ độ lệch sang tuyệt đối là điều kiện để đi-theo-hướng-nhìn hoạt
-   *  động: giữ độ lệch thì bấm tới làm nhân vật quay, nhân vật quay làm camera
-   *  quay, camera quay làm "tới" đổi nghĩa - nhân vật xoáy tròn tại chỗ. */
-  yaw: number;
-  /** Góc chúc xuống. Chặn hai đầu để không lộn qua đỉnh đầu hay chui xuống sàn. */
-  pitch: number;
-  /** Khoảng cách camera tới nhân vật. */
-  dist: number;
-}
+// Trạng thái camera dùng chung với hai thế giới kia - trước đây file này khai
+// một bản sao y hệt của riêng nó. Hai bản sao trùng khớp thì TypeScript không
+// kêu gì, nên khi easy-walk mọc thêm một trường thì bản ở đây lặng lẽ thiếu nó
+// và cảnh này là cảnh duy nhất mất tính năng.
+export type { OrbitState } from "@/components/world-controls/easy-walk";
 
 /** Đặt camera theo quỹ đạo quanh nhân vật. `distOverride` cho phép ngồi thì
  *  ngồi gần hơn một chút mà vẫn giữ nguyên góc người dùng đã xoay. */
@@ -172,6 +170,8 @@ function PlayerRig({
     // bàn phím vẫn cắm đó, và một nhân vật vừa ngồi vừa trôi ngang phòng thì
     // phiên học không còn nghĩa gì.
     if (seated !== null) {
+      // Ngồi thì không đi được, nên không có vòng lặp nào để lo.
+      recenterOrbit(orbitRef.current, pose.ry, delta, { allowed: true, restPitch: REST_PITCH });
       applyOrbitCamera(camera, pose, orbitRef.current, delta, 4.4);
       if (lastSeatable.current !== null) {
         lastSeatable.current = null;
@@ -212,7 +212,12 @@ function PlayerRig({
       onSeatableChange(seatable);
     }
 
-    // Camera vai thứ ba, xoay được bằng chuột.
+    // Camera vai thứ ba, xoay được bằng chuột, và tự trôi về sau lưng khi
+    // người dùng thả tay - chỉ khi không có phím nào đang giữ.
+    recenterOrbit(orbitRef.current, pose.ry, delta, {
+      allowed: Math.hypot(walk.input.x, walk.input.y) < 0.08,
+      restPitch: REST_PITCH,
+    });
     applyOrbitCamera(camera, pose, orbitRef.current, delta);
 
     // Phát vị trí: theo nhịp, và chỉ khi thực sự nhúc nhích - người đứng yên
@@ -317,7 +322,7 @@ export default function LobbySceneInner({
   const seatedRef = useRef<number | null>(null);
   const floorRef = useRef<Floor>(0);
   // Góc nhìn mặc định: hơi chếch từ trên xuống, sau lưng nhân vật.
-  const orbitRef = useRef<OrbitState>({ yaw: Math.PI, pitch: 0.4, dist: 5.6 });
+  const orbitRef = useRef<OrbitState>({ yaw: Math.PI, pitch: REST_PITCH, dist: 5.6 });
 
   /** Giờ thật của người học, làm tròn tới 15 phút. Không cần mịn hơn: mỗi lần
    *  đổi là dựng lại vân bầu trời, và mắt không thấy được chênh lệch giữa 14h02
