@@ -12,6 +12,8 @@ import IbWeakAreasPanel from "@/components/IbWeakAreasPanel";
 import { recordQuizMistake } from "@/lib/quiz-mistakes";
 import { getCareersCoveredByBank, getTechnicalQuestionsForCareer } from "@/lib/ib-question-careers";
 import { FINANCE_CAREERS } from "@/lib/finance-careers";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 // Standalone "Technical Interview" drill - split out of /kiem-tra (which
 // stays the general-purpose knowledge-check page) because the 400-question
@@ -41,12 +43,9 @@ const IB_DIFFICULTY_COPY: Record<QuizDifficulty, string> = {
   kho: "Pressure round",
 };
 
-const DIFFICULTIES: { id: QuizDifficulty; label: string }[] = [
-  { id: "tat-ca", label: "Tất cả" },
-  { id: "de", label: "Dễ" },
-  { id: "trung-binh", label: "Trung bình" },
-  { id: "kho", label: "Khó" },
-];
+// Labels come from the dictionary at render time; module scope has no
+// useI18n() to call, so this keeps only the ids and their order.
+const DIFFICULTY_IDS: QuizDifficulty[] = ["tat-ca", "de", "trung-binh", "kho"];
 
 const XP_PER_QUESTION = 5;
 const PASS_RATIO = 0.6;
@@ -58,6 +57,7 @@ type Stage = "setup" | "loading" | "empty" | "error" | "ready" | "done";
 type Mode = "technical" | "behavioral";
 
 export default function TechnicalInterviewPage() {
+  const { t } = useI18n();
   const supabase = createClient();
   const [userId, setUserId] = useState<string | null>(null);
   const [mode, setMode] = useState<Mode>("technical");
@@ -241,23 +241,23 @@ export default function TechnicalInterviewPage() {
             <Link
               href="/dashboard"
               className="flex items-center justify-center w-9 h-9 rounded-full text-stone-500 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors"
-              aria-label="Về Dashboard"
+              aria-label={t.interview.backToDashboard}
             >
               <ChevronLeft className="w-5 h-5" />
             </Link>
             <div>
               <h1 className="text-xl font-black text-stone-900 dark:text-stone-100 tracking-tight flex items-center gap-2">
                 <BriefcaseBusiness className="w-5 h-5 text-amber-500" />
-                Technical Interview
+                {t.interview.title}
               </h1>
               <p className="text-xs font-semibold text-stone-500 dark:text-stone-400 mt-0.5">
-                Luyện technical + behavioral như một vòng phỏng vấn analyst thật
+                {t.interview.subtitle}
               </p>
             </div>
           </div>
           {mode === "technical" && (
             <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 text-xs font-extrabold">
-              <span>Thưởng +{XP_PER_QUESTION} XP / câu đúng</span>
+              <span>{format(t.interview.xpPerQuestion, { xp: XP_PER_QUESTION })}</span>
             </div>
           )}
         </div>
@@ -276,7 +276,7 @@ export default function TechnicalInterviewPage() {
                   : "text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200"
               }`}
             >
-              Technical · {totalQuestions} câu
+              {format(t.interview.technicalCount, { count: totalQuestions })}
             </button>
             <button
               onClick={() => setMode("behavioral")}
@@ -286,7 +286,7 @@ export default function TechnicalInterviewPage() {
                   : "text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200"
               }`}
             >
-              Behavioral · {behavioralCount} câu
+              {format(t.interview.behavioralCount, { count: behavioralCount })}
             </button>
           </div>
         )}
@@ -313,15 +313,14 @@ export default function TechnicalInterviewPage() {
             <div className="rounded-3xl border border-amber-200 dark:border-amber-900/60 bg-amber-50/50 dark:bg-stone-900 p-4 sm:p-6 shadow-xs">
               <div className="flex flex-wrap items-center justify-between gap-3 mb-1">
                 <h3 className="text-lg font-black text-stone-900 dark:text-stone-100">
-                  Luyện theo vị trí bạn nhắm tới
+                  {t.interview.byRoleTitle}
                 </h3>
                 <span className="inline-flex items-center gap-2 rounded-xl bg-amber-400/10 border border-amber-300/50 dark:border-amber-800 px-3 py-1.5 text-xs font-bold text-amber-800 dark:text-amber-300">
-                  Nguồn: bộ 400 IB Interview Questions
+                  {t.interview.sourceBadge}
                 </span>
               </div>
               <p className="text-xs text-stone-600 dark:text-stone-400 mb-4 leading-relaxed">
-                Bộ câu hỏi này viết cho Ngân hàng Đầu tư, nhưng phần kế toán, định giá và DCF dùng chung được cho
-                nhiều vị trí phân tích khác. Chọn vị trí để chỉ luyện đúng phần liên quan.
+                {t.interview.byRoleBody}
               </p>
 
               <div className="flex flex-wrap gap-1.5">
@@ -334,7 +333,7 @@ export default function TechnicalInterviewPage() {
                       : "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950 text-stone-600 dark:text-stone-300 hover:border-stone-300"
                   }`}
                 >
-                  Tất cả · {totalQuestions}
+                  {format(t.interview.allWithCount, { count: totalQuestions })}
                 </button>
                 {careerCoverage.map((c) => {
                   const active = selectedCareer === c.careerId;
@@ -360,8 +359,7 @@ export default function TechnicalInterviewPage() {
               </div>
 
               <p className="mt-3 text-[11px] text-stone-500 dark:text-stone-400 leading-relaxed">
-                {uncoveredCount} / {FINANCE_CAREERS.length} vị trí khác chưa có bộ câu hỏi riêng — phần technical
-                của các nghề đó đang được xây dần.
+                {format(t.interview.uncoveredNote, { uncovered: uncoveredCount, total: FINANCE_CAREERS.length })}
               </p>
             </div>
 
@@ -371,24 +369,26 @@ export default function TechnicalInterviewPage() {
                   <div className="flex flex-wrap items-center gap-2">
                     <div className="inline-flex items-center gap-2 rounded-full border border-amber-300 bg-amber-50 dark:border-amber-900 dark:bg-amber-950/40 px-3 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-amber-700 dark:text-amber-300">
                       <BriefcaseBusiness className="h-3.5 w-3.5" />
-                      Investment Banking & Finance Drill
+                      {t.interview.drillTitle}
                     </div>
                     <div className="inline-flex items-center gap-1.5 rounded-full border border-amber-400/80 bg-amber-400/10 px-3 py-1 text-[10px] font-black text-amber-900 dark:text-amber-200">
-                      <span>✨ Chuẩn bộ "400 Questions IB Guide" Phố Wall</span>
+                      <span>{t.interview.drillBadge}</span>
                     </div>
                   </div>
                   <h2 className="mt-4 text-2xl sm:text-3xl font-black tracking-tight text-stone-900 dark:text-stone-100">
-                    Luyện technical interview như một vòng analyst thực chiến
+                    {t.interview.drillHeading}
                   </h2>
                   <p className="mt-2 max-w-2xl text-sm font-semibold leading-relaxed text-stone-600 dark:text-stone-300">
-                    Bộ câu hỏi phỏng vấn biên soạn theo chuẩn cuốn <strong>"400 Questions Investment Banking Interview Guide"</strong> truyền thống Phố Wall, trải rộng khắp các chuyên ngành: Kế toán 3 báo cáo, Định giá DCF, M&A, LBO, Tín dụng & Tài chính doanh nghiệp.
+                    {t.interview.drillBodyPart1}
+                    <strong>{t.interview.drillBookTitle}</strong>
+                    {t.interview.drillBodyPart2}
                   </p>
 
                   <div className="mt-5 grid grid-cols-3 gap-2.5">
                     {[
-                      { icon: Target, label: "Question bank", value: `${activeQuestionTotal} câu` },
-                      { icon: Clock3, label: "Mỗi lượt", value: "3-5 phút" },
-                      { icon: Trophy, label: "Thưởng", value: "+XP" },
+                      { icon: Target, label: t.interview.statBankLabel, value: format(t.interview.statBankValue, { count: activeQuestionTotal }) },
+                      { icon: Clock3, label: t.interview.statPerRoundLabel, value: t.interview.statPerRoundValue },
+                      { icon: Trophy, label: t.interview.statRewardLabel, value: t.interview.statRewardValue },
                     ].map((item) => {
                       const Icon = item.icon;
                       return (
@@ -406,7 +406,7 @@ export default function TechnicalInterviewPage() {
                       a single opaque number. */}
                   <div className="mt-5">
                     <p className="text-[10px] font-black uppercase tracking-wider text-stone-400 dark:text-stone-500 mb-2">
-                      {selectedCareer ? "Các section bạn sẽ được hỏi" : "Các section trong bộ câu hỏi"}
+                      {selectedCareer ? t.interview.sectionsForRole : t.interview.sectionsAll}
                     </p>
                     {/* Read-only breakdown, not a filter. Filtering by a single
                         category is done through the career picker above, which
@@ -427,24 +427,32 @@ export default function TechnicalInterviewPage() {
                 </div>
 
                 <div className="lg:col-span-5 border-t lg:border-t-0 lg:border-l border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950/60 p-5 sm:p-6 lg:p-7">
-                  <p className="text-xs font-black uppercase tracking-widest text-stone-500 dark:text-stone-400">Chọn vòng phỏng vấn</p>
+                  <p className="text-xs font-black uppercase tracking-widest text-stone-500 dark:text-stone-400">{t.interview.pickRound}</p>
                   <div className="mt-3 grid grid-cols-2 gap-2">
-                    {DIFFICULTIES.map((d) => {
-                      const selected = difficulty === d.id;
+                    {DIFFICULTY_IDS.map((id) => {
+                      const selected = difficulty === id;
+                      const label =
+                        id === "tat-ca"
+                          ? t.interview.diffAll
+                          : id === "de"
+                            ? t.interview.diffEasy
+                            : id === "trung-binh"
+                              ? t.interview.diffMedium
+                              : t.interview.diffHard;
                       return (
                         <button
-                          key={d.id}
+                          key={id}
                           type="button"
-                          onClick={() => setDifficulty(d.id)}
+                          onClick={() => setDifficulty(id)}
                           className={`rounded-2xl border-2 px-3 py-3 text-left transition-all cursor-pointer ${
                             selected
                               ? "border-amber-400 bg-amber-400 text-stone-950 shadow-sm"
                               : "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-stone-700 dark:text-stone-300 hover:border-stone-300 dark:hover:border-stone-700"
                           }`}
                         >
-                          <span className="block text-xs font-black">{d.label}</span>
+                          <span className="block text-xs font-black">{label}</span>
                           <span className={`mt-1 block text-[10px] font-bold ${selected ? "text-stone-800" : "text-stone-400 dark:text-stone-500"}`}>
-                            {IB_DIFFICULTY_COPY[d.id]}
+                            {IB_DIFFICULTY_COPY[id]}
                           </span>
                         </button>
                       );
@@ -455,10 +463,10 @@ export default function TechnicalInterviewPage() {
                     onClick={() => void startQuiz(difficulty)}
                     className="mt-4 w-full rounded-2xl bg-amber-400 hover:bg-amber-300 px-4 py-4 text-sm font-black uppercase tracking-wider text-stone-950 shadow-sm transition-all active:scale-[0.98] cursor-pointer"
                   >
-                    Bắt đầu IB drill →
+                    {t.interview.startDrill}
                   </button>
                   <p className="mt-3 text-[11px] font-semibold leading-relaxed text-stone-500 dark:text-stone-400">
-                    Gợi ý: dùng "Trung bình" cho mock analyst round, dùng "Khó" khi muốn luyện áp lực trước interview.
+                    {t.interview.difficultyHint}
                   </p>
                 </div>
               </div>
@@ -466,22 +474,22 @@ export default function TechnicalInterviewPage() {
           </div>
         )}
 
-        {mode === "technical" && stage === "loading" && <p className="text-center text-stone-500 dark:text-stone-400 py-16">Đang chuẩn bị câu hỏi...</p>}
+        {mode === "technical" && stage === "loading" && <p className="text-center text-stone-500 dark:text-stone-400 py-16">{t.interview.loadingQuestions}</p>}
 
         {mode === "technical" && stage === "error" && (
           <div className="text-center py-16 space-y-4">
-            <p className="text-stone-500 dark:text-stone-400">Không thể tải bài kiểm tra lúc này. Vui lòng thử lại sau.</p>
+            <p className="text-stone-500 dark:text-stone-400">{t.interview.loadFailed}</p>
             <button onClick={() => setStage("setup")} className="text-sm font-bold text-stone-700 dark:text-stone-300 underline cursor-pointer">
-              ← Quay lại
+              {t.interview.back}
             </button>
           </div>
         )}
 
         {mode === "technical" && stage === "empty" && (
           <div className="text-center py-16 space-y-4">
-            <p className="text-stone-500 dark:text-stone-400">Chưa có câu hỏi nào cho độ khó này. Thử độ khó khác nhé.</p>
+            <p className="text-stone-500 dark:text-stone-400">{t.interview.noQuestions}</p>
             <button onClick={() => setStage("setup")} className="text-sm font-bold text-stone-700 dark:text-stone-300 underline cursor-pointer">
-              ← Quay lại
+              {t.interview.back}
             </button>
           </div>
         )}
@@ -491,21 +499,21 @@ export default function TechnicalInterviewPage() {
             <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950 p-4">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <span className="text-xs font-extrabold uppercase tracking-wide text-amber-600 dark:text-amber-400">
-                  IB Interview Drill
+                  {t.interview.drillHeader}
                 </span>
                 <span className="text-xs truncate max-w-[60%] text-stone-500 dark:text-stone-400">{q.lessonTitle}</span>
               </div>
               <div className="mt-3 grid grid-cols-3 gap-2">
                 <div className="rounded-xl bg-white dark:bg-stone-900 px-3 py-2 border border-stone-200 dark:border-stone-800">
-                  <p className="text-[9px] font-black uppercase tracking-wider text-stone-400 dark:text-stone-500">Câu hỏi</p>
+                  <p className="text-[9px] font-black uppercase tracking-wider text-stone-400 dark:text-stone-500">{t.interview.statQuestion}</p>
                   <p className="text-sm font-black text-stone-900 dark:text-stone-100">{activeQ + 1}/{questions.length}</p>
                 </div>
                 <div className="rounded-xl bg-white dark:bg-stone-900 px-3 py-2 border border-stone-200 dark:border-stone-800">
-                  <p className="text-[9px] font-black uppercase tracking-wider text-stone-400 dark:text-stone-500">Đúng</p>
+                  <p className="text-[9px] font-black uppercase tracking-wider text-stone-400 dark:text-stone-500">{t.interview.statCorrect}</p>
                   <p className="text-sm font-black text-emerald-600 dark:text-emerald-400">{score}</p>
                 </div>
                 <div className="rounded-xl bg-white dark:bg-stone-900 px-3 py-2 border border-stone-200 dark:border-stone-800">
-                  <p className="text-[9px] font-black uppercase tracking-wider text-stone-400 dark:text-stone-500">Round</p>
+                  <p className="text-[9px] font-black uppercase tracking-wider text-stone-400 dark:text-stone-500">{t.interview.statRound}</p>
                   <p className="text-sm font-black text-amber-600 dark:text-amber-400">{IB_DIFFICULTY_COPY[difficulty]}</p>
                 </div>
               </div>
@@ -519,7 +527,7 @@ export default function TechnicalInterviewPage() {
 
             <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950 p-4 sm:p-5">
               <p className="mb-2 text-[10px] font-black uppercase tracking-[0.18em] text-amber-600 dark:text-amber-400">
-                Interviewer asks
+                {t.interview.interviewerAsks}
               </p>
               <p className="font-bold text-lg leading-relaxed select-text text-stone-900 dark:text-stone-100">{q.question}</p>
             </div>
@@ -551,7 +559,7 @@ export default function TechnicalInterviewPage() {
 
             {submitted && (
               <div className={`rounded-xl p-4 text-sm leading-relaxed border ${results[activeQ] ? "bg-emerald-50 dark:bg-emerald-950/50 border-emerald-100 dark:border-emerald-900 text-emerald-800 dark:text-emerald-400" : "bg-rose-50 dark:bg-rose-950/50 border-rose-100 dark:border-rose-900 text-rose-800 dark:text-rose-400"}`}>
-                <p className="font-bold mb-1">{results[activeQ] ? `Good answer. +${XP_PER_QUESTION} XP` : "Giải thích:"}</p>
+                <p className="font-bold mb-1">{results[activeQ] ? format(t.interview.goodAnswer, { xp: XP_PER_QUESTION }) : t.interview.explanation}</p>
                 <p>{q.explanation}</p>
               </div>
             )}
@@ -567,11 +575,11 @@ export default function TechnicalInterviewPage() {
                 }`}
               >
                 <CheckCircle2 className="w-5 h-5" />
-                Chốt câu trả lời
+                {t.interview.lockAnswer}
               </button>
             ) : (
               <button onClick={next} className="w-full py-4 rounded-xl font-extrabold text-base uppercase tracking-wide cursor-pointer bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 hover:opacity-90">
-                {allDone ? "Xem kết quả →" : "Câu tiếp theo →"}
+                {allDone ? t.interview.seeResults : t.interview.nextQuestion}
               </button>
             )}
           </div>
@@ -581,29 +589,29 @@ export default function TechnicalInterviewPage() {
           <div className="mx-auto max-w-3xl text-center space-y-5 rounded-3xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-5 sm:p-7 shadow-sm">
             <div className="text-5xl">{score === questions.length ? "🏆" : score >= questions.length * 0.7 ? "🎉" : "💪"}</div>
             <div>
-              <h3 className="font-bold text-xl text-stone-900 dark:text-stone-100">Hoàn thành IB interview drill!</h3>
+              <h3 className="font-bold text-xl text-stone-900 dark:text-stone-100">{t.interview.doneTitle}</h3>
               <p className="text-sm mt-1 text-stone-500 dark:text-stone-400">
-                {score}/{questions.length} câu đúng {passed ? "· Đạt" : ""}
+                {format(t.interview.doneScore, { score, total: questions.length })}{passed ? t.interview.donePassed : ""}
               </p>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
               <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950 p-4">
-                <p className="text-[10px] font-black uppercase tracking-wider text-stone-400 dark:text-stone-500">Interview readiness</p>
+                <p className="text-[10px] font-black uppercase tracking-wider text-stone-400 dark:text-stone-500">{t.interview.readiness}</p>
                 <p className="mt-1 text-2xl font-black text-amber-600 dark:text-amber-400">{Math.round((score / Math.max(1, questions.length)) * 100)}%</p>
               </div>
               <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950 p-4">
-                <p className="text-[10px] font-black uppercase tracking-wider text-stone-400 dark:text-stone-500">Round</p>
+                <p className="text-[10px] font-black uppercase tracking-wider text-stone-400 dark:text-stone-500">{t.interview.statRound}</p>
                 <p className="mt-1 text-sm font-black text-stone-900 dark:text-stone-100">{IB_DIFFICULTY_COPY[difficulty]}</p>
               </div>
               <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950 p-4">
-                <p className="text-[10px] font-black uppercase tracking-wider text-stone-400 dark:text-stone-500">Next action</p>
-                <p className="mt-1 text-sm font-black text-emerald-600 dark:text-emerald-400">{passed ? "Lên độ khó" : "Ôn câu sai"}</p>
+                <p className="text-[10px] font-black uppercase tracking-wider text-stone-400 dark:text-stone-500">{t.interview.nextAction}</p>
+                <p className="mt-1 text-sm font-black text-emerald-600 dark:text-emerald-400">{passed ? t.interview.levelUp : t.interview.reviewMistakes}</p>
               </div>
             </div>
 
             <div className="rounded-2xl border-2 border-amber-300 dark:border-amber-900 bg-amber-50 dark:bg-amber-950/30 p-5">
-              <p className="text-xs font-bold uppercase tracking-wide mb-1 text-amber-700 dark:text-amber-400">XP nhận được</p>
+              <p className="text-xs font-bold uppercase tracking-wide mb-1 text-amber-700 dark:text-amber-400">{t.interview.xpEarned}</p>
               <p className="text-3xl font-extrabold text-amber-700 dark:text-amber-400">
                 {xpAwarded === null ? "..." : `+${xpAwarded} XP`}
               </p>
@@ -624,7 +632,7 @@ export default function TechnicalInterviewPage() {
             {missedSections.length > 0 && (
               <div className="text-left rounded-xl p-4 bg-stone-50 dark:bg-stone-950 border border-stone-200 dark:border-stone-800">
                 <p className="text-xs font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wide mb-2.5">
-                  Section cần ôn lại
+                  {t.interview.sectionsToReview}
                 </p>
                 <div className="flex flex-wrap gap-1.5">
                   {missedSections.map(({ label, missed }) => (
@@ -635,23 +643,23 @@ export default function TechnicalInterviewPage() {
                       className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-amber-300 dark:border-amber-800 bg-amber-50 dark:bg-amber-950/30 text-xs font-bold text-amber-800 dark:text-amber-300 hover:bg-amber-100 dark:hover:bg-amber-950/50 transition-colors cursor-pointer"
                     >
                       {label}
-                      <span className="text-amber-600/80 dark:text-amber-400/80">· sai {missed}</span>
+                      <span className="text-amber-600/80 dark:text-amber-400/80">{format(t.interview.missedCount, { count: missed })}</span>
                       <span aria-hidden>↻</span>
                     </button>
                   ))}
                 </div>
                 <p className="mt-2.5 text-[11px] text-stone-500 dark:text-stone-400">
-                  Bấm một section để luyện lại đúng phần đó.
+                  {t.interview.sectionsHint}
                 </p>
               </div>
             )}
 
             <div className="grid grid-cols-2 gap-3 pt-2">
               <Link href="/dashboard" className="py-3 rounded-xl border text-sm font-bold text-center border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-800">
-                Về Dashboard
+                {t.interview.backToDashboard}
               </Link>
               <button onClick={() => setStage("setup")} className="py-3 rounded-xl text-sm font-bold hover:opacity-90 cursor-pointer bg-amber-400 text-stone-950">
-                Drill mới
+                {t.interview.newDrill}
               </button>
             </div>
           </div>

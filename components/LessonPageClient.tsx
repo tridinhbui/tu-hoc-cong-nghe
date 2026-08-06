@@ -3,8 +3,9 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import type { Lesson } from "@/lib/lesson-types";
+import type { Lesson, LocalizedLesson } from "@/lib/lesson-types";
 import LessonPageLayout from "@/components/LessonPageLayout";
+import LessonTranslationBadge from "@/components/LessonTranslationBadge";
 import OpeningQuestionBlock from "@/components/OpeningQuestionBlock";
 import InteractiveWidget, { hasInteractiveWidget } from "@/components/InteractiveWidget";
 import MidpointInteractive from "@/components/MidpointInteractive";
@@ -19,7 +20,11 @@ import LessonRoomCard from "@/components/LessonRoomCard";
 import { trackFeatureClick } from "@/lib/feature-events";
 
 interface Props {
-  lesson: Lesson;
+  // LocalizedLesson when it came through the locale-aware loader, plain Lesson
+  // from the hand-authored static pages that build their object inline. The
+  // badge treats a missing `translated` the same as untranslated, which is
+  // right: those pages have no translation layer at all.
+  lesson: Lesson | LocalizedLesson;
   nextLesson?: { id: number; slug: string; title: string };
 }
 
@@ -110,6 +115,8 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
   return (
     <div className="relative">
       <LessonPageLayout lesson={meta} quiz={sidebarQuiz}>
+      <LessonTranslationBadge translated={"translated" in lesson ? lesson.translated : undefined} />
+
       {/* 0. Why this lesson matters - one or two sentences up front on what
           problem it solves and what the learner can do after, so the value
           is obvious before they invest time reading. Only lessons written

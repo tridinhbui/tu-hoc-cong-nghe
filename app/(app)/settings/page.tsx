@@ -8,7 +8,8 @@ import { Bell, BookOpen, LogOut, MoonStar, Shield, UserRound } from "lucide-reac
 import { createClient } from "@/lib/supabase";
 import { getUserProfile, setDarkMode, setPreferredTrack, updateUserProfile } from "@/lib/supabase-user";
 import { getInitialTheme, setTheme, type Theme } from "@/lib/theme";
-import { TRACKS } from "@/lib/tracks";
+import { useI18n } from "@/lib/i18n/context";
+import { format, intlLocale } from "@/lib/i18n";
 import { getNotificationPreferences, saveNotificationPreferences } from "@/lib/notification-preferences";
 import { isPushSupported, subscribeToPush, unsubscribeFromPush } from "@/lib/push-notifications";
 
@@ -55,6 +56,7 @@ function SectionCard({
 
 export default function SettingsPage() {
   const router = useRouter();
+  const { locale, t } = useI18n();
   const supabase = createClient();
   const [user, setUser] = useState<CurrentUser | null>(null);
   const [loading, setLoading] = useState(true);
@@ -153,7 +155,9 @@ export default function SettingsPage() {
       ]);
 
       if (authError) {
-        showFlash("error", `Lỗi: ${authError.message}`);
+        // Supabase error text is always English; the prefix is what gets
+        // translated, so the untranslated tail reads as quoted detail.
+        showFlash("error", format(t.settings.profile.errorPrefix, { message: authError.message }));
       } else {
         setUser((prev) =>
           prev
@@ -166,11 +170,11 @@ export default function SettingsPage() {
               }
             : prev
         );
-        showFlash("success", "Đã cập nhật hồ sơ cá nhân.");
+        showFlash("success", t.settings.profile.saved);
       }
     } catch (error) {
       console.error("Error saving profile:", error);
-      showFlash("error", "Có lỗi xảy ra khi lưu hồ sơ.");
+      showFlash("error", t.settings.profile.saveFailed);
     } finally {
       setSavingProfile(false);
     }
@@ -181,12 +185,12 @@ export default function SettingsPage() {
     if (!file || !user?.id) return;
 
     if (file.size > 2 * 1024 * 1024) {
-      showFlash("error", "Lỗi: Kích thước file không được quá 2MB.");
+      showFlash("error", t.settings.profile.avatarTooLarge);
       return;
     }
 
     if (!file.type.startsWith("image/")) {
-      showFlash("error", "Lỗi: Chỉ chấp nhận file hình ảnh.");
+      showFlash("error", t.settings.profile.avatarNotImage);
       return;
     }
 
@@ -203,7 +207,10 @@ export default function SettingsPage() {
       });
 
       if (uploadError) {
-        showFlash("error", `Lỗi upload: ${uploadError.message}`);
+        showFlash(
+          "error",
+          format(t.settings.profile.uploadErrorPrefix, { message: uploadError.message })
+        );
         return;
       }
 
@@ -223,7 +230,10 @@ export default function SettingsPage() {
       ]);
 
       if (updateError) {
-        showFlash("error", `Lỗi cập nhật: ${updateError.message}`);
+        showFlash(
+          "error",
+          format(t.settings.profile.updateErrorPrefix, { message: updateError.message })
+        );
       } else {
         setAvatarPreview(publicUrl);
         setUser((prev) =>
@@ -237,11 +247,11 @@ export default function SettingsPage() {
               }
             : prev
         );
-        showFlash("success", "Đã cập nhật avatar.");
+        showFlash("success", t.settings.profile.avatarSaved);
       }
     } catch (error) {
       console.error("Error uploading avatar:", error);
-      showFlash("error", "Có lỗi xảy ra khi upload avatar.");
+      showFlash("error", t.settings.profile.avatarFailed);
     } finally {
       setAvatarUploading(false);
       e.target.value = "";
@@ -258,10 +268,10 @@ export default function SettingsPage() {
         setPreferredTrack(user.id, preferredTrack),
         setDarkMode(user.id, theme === "dark"),
       ]);
-      showFlash("success", "Đã lưu tùy chọn học tập và giao diện.");
+      showFlash("success", t.settings.appearance.saved);
     } catch (error) {
       console.error("Error saving preferences:", error);
-      showFlash("error", "Không lưu được tùy chọn. Vui lòng thử lại.");
+      showFlash("error", t.settings.appearance.saveFailed);
     } finally {
       setSavingPreferences(false);
     }
@@ -282,11 +292,14 @@ export default function SettingsPage() {
 
     try {
       await saveNotificationPreferences(user.id, { emailRemindersEnabled: next });
-      showFlash("success", next ? "Đã bật nhắc nhở qua email." : "Đã tắt nhắc nhở qua email.");
+      showFlash(
+        "success",
+        next ? t.settings.reminders.emailEnabled : t.settings.reminders.emailDisabled
+      );
     } catch (error) {
       console.error("Error saving notification preferences:", error);
       setEmailRemindersEnabled(!next);
-      showFlash("error", "Không lưu được tùy chọn nhắc nhở. Vui lòng thử lại.");
+      showFlash("error", t.settings.reminders.emailFailed);
     } finally {
       setSavingReminders(false);
     }
@@ -301,11 +314,14 @@ export default function SettingsPage() {
 
     try {
       await saveNotificationPreferences(user.id, { weeklyDigestEnabled: next });
-      showFlash("success", next ? "Đã bật tổng kết tuần qua email." : "Đã tắt tổng kết tuần qua email.");
+      showFlash(
+        "success",
+        next ? t.settings.reminders.weeklyEnabled : t.settings.reminders.weeklyDisabled
+      );
     } catch (error) {
       console.error("Error saving weekly digest preference:", error);
       setWeeklyDigestEnabled(!next);
-      showFlash("error", "Không lưu được tùy chọn tổng kết tuần. Vui lòng thử lại.");
+      showFlash("error", t.settings.reminders.weeklyFailed);
     } finally {
       setSavingWeeklyDigest(false);
     }
@@ -325,10 +341,16 @@ export default function SettingsPage() {
       }
       setBrowserRemindersEnabled(next);
       await saveNotificationPreferences(user.id, { browserRemindersEnabled: next });
-      showFlash("success", next ? "Đã bật thông báo trình duyệt." : "Đã tắt thông báo trình duyệt.");
+      showFlash(
+        "success",
+        next ? t.settings.reminders.browserEnabled : t.settings.reminders.browserDisabled
+      );
     } catch (error) {
       console.error("Error toggling browser push:", error);
-      showFlash("error", error instanceof Error ? error.message : "Không bật được thông báo trình duyệt.");
+      showFlash(
+        "error",
+        error instanceof Error ? error.message : t.settings.reminders.browserFailed
+      );
     } finally {
       setSavingBrowserReminders(false);
     }
@@ -353,10 +375,16 @@ export default function SettingsPage() {
       }
       setMorningReviewEnabled(next);
       await saveNotificationPreferences(user.id, { morningReviewEnabled: next });
-      showFlash("success", next ? "Đã bật phiên ôn 7:30 sáng." : "Đã tắt phiên ôn buổi sáng.");
+      showFlash(
+        "success",
+        next ? t.settings.reminders.morningEnabled : t.settings.reminders.morningDisabled
+      );
     } catch (error) {
       console.error("Error toggling morning review push:", error);
-      showFlash("error", error instanceof Error ? error.message : "Không bật được phiên ôn buổi sáng.");
+      showFlash(
+        "error",
+        error instanceof Error ? error.message : t.settings.reminders.morningFailed
+      );
     } finally {
       setSavingMorningReview(false);
     }
@@ -373,13 +401,13 @@ export default function SettingsPage() {
       });
 
       if (error) {
-        showFlash("error", `Không gửi được email đổi mật khẩu: ${error.message}`);
+        showFlash("error", format(t.settings.security.resetFailed, { message: error.message }));
       } else {
-        showFlash("success", `Đã gửi email đổi mật khẩu tới ${user.email}.`);
+        showFlash("success", format(t.settings.security.resetSent, { email: user.email }));
       }
     } catch (error) {
       console.error("Error sending reset email:", error);
-      showFlash("error", "Có lỗi xảy ra khi gửi email đổi mật khẩu.");
+      showFlash("error", t.settings.security.resetError);
     } finally {
       setSendingReset(false);
     }
@@ -394,7 +422,7 @@ export default function SettingsPage() {
   if (loading) {
     return (
       <div className="min-h-screen bg-white dark:bg-stone-950 flex items-center justify-center">
-        <p className="text-stone-500 dark:text-stone-400">Đang tải...</p>
+        <p className="text-stone-500 dark:text-stone-400">{t.settings.loading}</p>
       </div>
     );
   }
@@ -404,12 +432,12 @@ export default function SettingsPage() {
       <div className="border-b border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950">
         <div className="max-w-4xl mx-auto px-6 py-4">
           <Link href="/profile" className="text-stone-500 dark:text-stone-400 hover:opacity-70 text-sm font-semibold">
-            ← Quay lại
+            {t.settings.back}
           </Link>
-          <h1 className="text-2xl font-bold mt-2 text-stone-900 dark:text-stone-100">Cài đặt</h1>
-          <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
-            Tùy chỉnh hồ sơ, trải nghiệm học và bảo mật tài khoản.
-          </p>
+          <h1 className="text-2xl font-bold mt-2 text-stone-900 dark:text-stone-100">
+            {t.settings.title}
+          </h1>
+          <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">{t.settings.subtitle}</p>
         </div>
       </div>
 
@@ -429,18 +457,18 @@ export default function SettingsPage() {
         <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
           <SectionCard
             icon={<UserRound className="w-5 h-5" />}
-            title="Hồ sơ cá nhân"
-            description="Cập nhật tên hiển thị, ảnh đại diện và phần giới thiệu ngắn để người khác nhận ra bạn dễ hơn."
+            title={t.settings.profile.title}
+            description={t.settings.profile.description}
           >
             <form onSubmit={handleSaveProfile} className="space-y-5">
               <div>
                 <label className="text-xs font-extrabold uppercase tracking-widest text-stone-600 dark:text-stone-400">
-                  Avatar
+                  {t.settings.profile.avatarLabel}
                 </label>
                 <div className="mt-3 flex items-center gap-4">
                   <div className="w-20 h-20 rounded-full overflow-hidden bg-stone-100 dark:bg-stone-800 border-2 border-stone-200 dark:border-stone-700 flex items-center justify-center">
                     {avatarPreview ? (
-                      <Image src={avatarPreview} alt="Avatar" width={80} height={80} className="w-full h-full object-cover" />
+                      <Image src={avatarPreview} alt={t.settings.profile.avatarAlt} width={80} height={80} className="w-full h-full object-cover" />
                     ) : (
                       <span className="text-3xl">👤</span>
                     )}
@@ -462,10 +490,12 @@ export default function SettingsPage() {
                           : "bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900"
                       }`}
                     >
-                      {avatarUploading ? "Đang upload..." : "Chọn ảnh mới"}
+                      {avatarUploading
+                        ? t.settings.profile.avatarUploading
+                        : t.settings.profile.avatarPick}
                     </label>
                     <p className="text-xs text-stone-500 dark:text-stone-400 mt-2">
-                      Tối đa 2MB, ưu tiên JPG hoặc PNG vuông.
+                      {t.settings.profile.avatarHint}
                     </p>
                   </div>
                 </div>
@@ -473,29 +503,31 @@ export default function SettingsPage() {
 
               <div>
                 <label className="text-xs font-extrabold uppercase tracking-widest text-stone-600 dark:text-stone-400">
-                  Tên hiển thị
+                  {t.settings.profile.nameLabel}
                 </label>
                 <input
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  placeholder="Tên bạn muốn mọi người nhìn thấy"
+                  placeholder={t.settings.profile.namePlaceholder}
                   className="w-full mt-2 px-4 py-3 rounded-xl border-2 border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 transition-colors focus:outline-none focus:border-stone-400 dark:focus:border-stone-500"
                 />
               </div>
 
               <div>
                 <label className="text-xs font-extrabold uppercase tracking-widest text-stone-600 dark:text-stone-400">
-                  Giới thiệu ngắn
+                  {t.settings.profile.bioLabel}
                 </label>
                 <textarea
                   value={bio}
                   onChange={(e) => setBio(e.target.value.slice(0, 240))}
                   rows={4}
-                  placeholder="Ví dụ: Mình đang học để hiểu tiền của bản thân tốt hơn và bắt đầu đầu tư bài bản."
+                  placeholder={t.settings.profile.bioPlaceholder}
                   className="w-full mt-2 px-4 py-3 rounded-xl border-2 border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 transition-colors focus:outline-none focus:border-stone-400 dark:focus:border-stone-500 resize-none"
                 />
-                <p className="text-xs text-stone-500 dark:text-stone-400 mt-2">{bio.length}/240 ký tự</p>
+                <p className="text-xs text-stone-500 dark:text-stone-400 mt-2">
+                  {format(t.settings.profile.bioCount, { count: bio.length })}
+                </p>
               </div>
 
               <button
@@ -503,7 +535,7 @@ export default function SettingsPage() {
                 disabled={savingProfile}
                 className="w-full bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 font-bold py-3 px-4 rounded-xl transition-colors disabled:opacity-60"
               >
-                {savingProfile ? "Đang lưu hồ sơ..." : "Lưu hồ sơ"}
+                {savingProfile ? t.settings.profile.saving : t.settings.profile.save}
               </button>
             </form>
           </SectionCard>
@@ -511,20 +543,31 @@ export default function SettingsPage() {
           <div className="space-y-6">
             <SectionCard
               icon={<MoonStar className="w-5 h-5" />}
-              title="Giao diện & lộ trình"
-              description="Chọn trải nghiệm hiển thị và hướng học ưu tiên để dashboard sát với mục tiêu của bạn hơn."
+              title={t.settings.appearance.title}
+              description={t.settings.appearance.description}
             >
               <div className="space-y-5">
                 <div className="flex items-center justify-between gap-4">
                   <div>
-                    <p className="font-bold text-stone-900 dark:text-stone-100">Chế độ tối</p>
+                    <p className="font-bold text-stone-900 dark:text-stone-100">
+                      {t.settings.appearance.darkMode}
+                    </p>
                     <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
-                      Hiện tại: {theme === "dark" ? "Tối" : "Sáng"}
+                      {format(t.settings.appearance.current, {
+                        mode:
+                          theme === "dark"
+                            ? t.settings.appearance.dark
+                            : t.settings.appearance.light,
+                      })}
                     </p>
                   </div>
                   <button
                     onClick={handleToggleTheme}
-                    aria-label={theme === "dark" ? "Chuyển sang chế độ sáng" : "Chuyển sang chế độ tối"}
+                    aria-label={
+                      theme === "dark"
+                        ? t.settings.appearance.switchToLight
+                        : t.settings.appearance.switchToDark
+                    }
                     className={`w-14 h-7 rounded-full border-2 transition-colors flex items-center cursor-pointer ${
                       theme === "dark" ? "bg-emerald-600 border-emerald-700" : "bg-stone-200 border-stone-300"
                     }`}
@@ -538,7 +581,9 @@ export default function SettingsPage() {
                 </div>
 
                 <div>
-                  <p className="font-bold text-stone-900 dark:text-stone-100 mb-3">Lộ trình ưu tiên</p>
+                  <p className="font-bold text-stone-900 dark:text-stone-100 mb-3">
+                    {t.settings.appearance.preferredTrack}
+                  </p>
                   <div className="space-y-3">
                     {(["personal", "professional"] as const).map((trackId) => (
                       <label
@@ -558,12 +603,19 @@ export default function SettingsPage() {
                             className="mt-1"
                           />
                           <div>
-                            <p className="font-bold text-stone-900 dark:text-stone-100">{TRACKS[trackId].tab}</p>
+                            {/* Copy comes from the dictionary, not lib/tracks.ts -
+                                that file keeps the structure (estimatedHours,
+                                previewSlug, and the `stages` list that
+                                stage-numbering.test.ts holds against
+                                lib/track-stages.ts). */}
+                            <p className="font-bold text-stone-900 dark:text-stone-100">
+                              {t.tracks[trackId].tab}
+                            </p>
                             <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
-                              {TRACKS[trackId].subtitle}
+                              {t.tracks[trackId].subtitle}
                             </p>
                             <p className="text-sm text-stone-600 dark:text-stone-300 mt-2">
-                              {TRACKS[trackId].description}
+                              {t.tracks[trackId].description}
                             </p>
                           </div>
                         </div>
@@ -578,28 +630,34 @@ export default function SettingsPage() {
                   disabled={savingPreferences}
                   className="w-full bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 font-bold py-3 px-4 rounded-xl transition-colors disabled:opacity-60"
                 >
-                  {savingPreferences ? "Đang lưu tùy chọn..." : "Lưu tùy chọn"}
+                  {savingPreferences ? t.settings.appearance.saving : t.settings.appearance.save}
                 </button>
               </div>
             </SectionCard>
 
             <SectionCard
               icon={<Bell className="w-5 h-5" />}
-              title="Nhắc nhở học tập"
-              description="Bật email nhắc nhở để không bỏ lỡ streak hoặc bài ôn tập đến hạn."
+              title={t.settings.reminders.title}
+              description={t.settings.reminders.description}
             >
               <div className="space-y-4">
                 <div className="flex items-center justify-between gap-4">
                   <div>
-                    <p className="font-bold text-stone-900 dark:text-stone-100">Nhắc nhở qua email</p>
+                    <p className="font-bold text-stone-900 dark:text-stone-100">
+                      {t.settings.reminders.email}
+                    </p>
                     <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
-                      Khi sắp mất streak hoặc có bài ôn tập đến hạn
+                      {t.settings.reminders.emailHint}
                     </p>
                   </div>
                   <button
                     onClick={handleToggleEmailReminders}
                     disabled={savingReminders}
-                    aria-label={emailRemindersEnabled ? "Tắt nhắc nhở qua email" : "Bật nhắc nhở qua email"}
+                    aria-label={
+                      emailRemindersEnabled
+                        ? t.settings.reminders.emailOff
+                        : t.settings.reminders.emailOn
+                    }
                     className={`w-14 h-7 rounded-full border-2 transition-colors flex items-center cursor-pointer disabled:opacity-60 ${
                       emailRemindersEnabled ? "bg-emerald-600 border-emerald-700" : "bg-stone-200 border-stone-300"
                     }`}
@@ -612,21 +670,26 @@ export default function SettingsPage() {
                   </button>
                 </div>
                 <p className="text-xs text-stone-500 dark:text-stone-400">
-                  Email sẽ được gửi tối đa 1 lần/ngày, chỉ khi thực sự cần (sắp mất streak hoặc có bài ôn tập đến
-                  hạn).
+                  {t.settings.reminders.emailFootnote}
                 </p>
 
                 <div className="flex items-center justify-between gap-4 pt-4 border-t border-stone-100 dark:border-stone-800">
                   <div>
-                    <p className="font-bold text-stone-900 dark:text-stone-100">Tổng kết tuần qua email</p>
+                    <p className="font-bold text-stone-900 dark:text-stone-100">
+                      {t.settings.reminders.weekly}
+                    </p>
                     <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
-                      Số bài đã học, XP tích lũy và streak hiện tại - gửi mỗi tuần
+                      {t.settings.reminders.weeklyHint}
                     </p>
                   </div>
                   <button
                     onClick={handleToggleWeeklyDigest}
                     disabled={savingWeeklyDigest}
-                    aria-label={weeklyDigestEnabled ? "Tắt tổng kết tuần qua email" : "Bật tổng kết tuần qua email"}
+                    aria-label={
+                      weeklyDigestEnabled
+                        ? t.settings.reminders.weeklyOff
+                        : t.settings.reminders.weeklyOn
+                    }
                     className={`w-14 h-7 rounded-full border-2 transition-colors flex items-center cursor-pointer disabled:opacity-60 flex-shrink-0 ${
                       weeklyDigestEnabled ? "bg-emerald-600 border-emerald-700" : "bg-stone-200 border-stone-300"
                     }`}
@@ -642,15 +705,21 @@ export default function SettingsPage() {
                 {isPushSupported() && (
                   <div className="flex items-center justify-between gap-4 pt-4 border-t border-stone-100 dark:border-stone-800">
                     <div>
-                      <p className="font-bold text-stone-900 dark:text-stone-100">Thông báo trình duyệt</p>
+                      <p className="font-bold text-stone-900 dark:text-stone-100">
+                        {t.settings.reminders.browser}
+                      </p>
                       <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
-                        Nhận thông báo đẩy ngay trên trình duyệt khi sắp mất streak
+                        {t.settings.reminders.browserHint}
                       </p>
                     </div>
                     <button
                       onClick={handleToggleBrowserReminders}
                       disabled={savingBrowserReminders}
-                      aria-label={browserRemindersEnabled ? "Tắt thông báo trình duyệt" : "Bật thông báo trình duyệt"}
+                      aria-label={
+                        browserRemindersEnabled
+                          ? t.settings.reminders.browserOff
+                          : t.settings.reminders.browserOn
+                      }
                       className={`w-14 h-7 rounded-full border-2 transition-colors flex items-center cursor-pointer disabled:opacity-60 flex-shrink-0 ${
                         browserRemindersEnabled ? "bg-emerald-600 border-emerald-700" : "bg-stone-200 border-stone-300"
                       }`}
@@ -667,15 +736,21 @@ export default function SettingsPage() {
                 {isPushSupported() && (
                   <div className="flex items-center justify-between gap-4 pt-4 border-t border-stone-100 dark:border-stone-800">
                     <div>
-                      <p className="font-bold text-stone-900 dark:text-stone-100">10 câu ôn buổi sáng</p>
+                      <p className="font-bold text-stone-900 dark:text-stone-100">
+                        {t.settings.reminders.morning}
+                      </p>
                       <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
-                        7:30 mỗi sáng, một phiên ~90 giây gồm các câu bạn từng làm sai, trộn từ nhiều bài
+                        {t.settings.reminders.morningHint}
                       </p>
                     </div>
                     <button
                       onClick={handleToggleMorningReview}
                       disabled={savingMorningReview}
-                      aria-label={morningReviewEnabled ? "Tắt phiên ôn buổi sáng" : "Bật phiên ôn buổi sáng"}
+                      aria-label={
+                        morningReviewEnabled
+                          ? t.settings.reminders.morningOff
+                          : t.settings.reminders.morningOn
+                      }
                       className={`w-14 h-7 rounded-full border-2 transition-colors flex items-center cursor-pointer disabled:opacity-60 flex-shrink-0 ${
                         morningReviewEnabled ? "bg-emerald-600 border-emerald-700" : "bg-stone-200 border-stone-300"
                       }`}
@@ -693,25 +768,41 @@ export default function SettingsPage() {
 
             <SectionCard
               icon={<Bell className="w-5 h-5" />}
-              title="Tác vụ nhanh"
-              description="Những nơi người dùng hay quay lại nhất sau khi chỉnh cài đặt."
+              title={t.settings.quickActions.title}
+              description={t.settings.quickActions.description}
             >
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <Link href="/analytics" className="rounded-xl border border-stone-200 dark:border-stone-800 px-4 py-3 hover:bg-stone-50 dark:hover:bg-stone-800/50 transition-colors">
-                  <p className="font-bold text-stone-900 dark:text-stone-100">Thống kê học tập</p>
-                  <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">Xem tiến độ và thời gian học</p>
+                  <p className="font-bold text-stone-900 dark:text-stone-100">
+                    {t.settings.quickActions.analytics}
+                  </p>
+                  <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
+                    {t.settings.quickActions.analyticsHint}
+                  </p>
                 </Link>
                 <Link href="/ghi-chu" className="rounded-xl border border-stone-200 dark:border-stone-800 px-4 py-3 hover:bg-stone-50 dark:hover:bg-stone-800/50 transition-colors">
-                  <p className="font-bold text-stone-900 dark:text-stone-100">Ghi chú của tôi</p>
-                  <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">Ôn lại các ý đã note</p>
+                  <p className="font-bold text-stone-900 dark:text-stone-100">
+                    {t.settings.quickActions.notes}
+                  </p>
+                  <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
+                    {t.settings.quickActions.notesHint}
+                  </p>
                 </Link>
                 <Link href="/ban-be" className="rounded-xl border border-stone-200 dark:border-stone-800 px-4 py-3 hover:bg-stone-50 dark:hover:bg-stone-800/50 transition-colors">
-                  <p className="font-bold text-stone-900 dark:text-stone-100">Bạn bè & chat</p>
-                  <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">Tìm bạn học và nhắn tin</p>
+                  <p className="font-bold text-stone-900 dark:text-stone-100">
+                    {t.settings.quickActions.friends}
+                  </p>
+                  <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
+                    {t.settings.quickActions.friendsHint}
+                  </p>
                 </Link>
                 <Link href="/tai-lieu" className="rounded-xl border border-stone-200 dark:border-stone-800 px-4 py-3 hover:bg-stone-50 dark:hover:bg-stone-800/50 transition-colors">
-                  <p className="font-bold text-stone-900 dark:text-stone-100">Tài liệu miễn phí</p>
-                  <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">Mở kho tài nguyên học thêm</p>
+                  <p className="font-bold text-stone-900 dark:text-stone-100">
+                    {t.settings.quickActions.documents}
+                  </p>
+                  <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
+                    {t.settings.quickActions.documentsHint}
+                  </p>
                 </Link>
               </div>
             </SectionCard>
@@ -721,22 +812,24 @@ export default function SettingsPage() {
         <div className="grid gap-6 lg:grid-cols-[1fr_1fr]">
           <SectionCard
             icon={<Shield className="w-5 h-5" />}
-            title="Bảo mật tài khoản"
-            description="Quản lý email đăng nhập và gửi link đổi mật khẩu khi cần."
+            title={t.settings.security.title}
+            description={t.settings.security.description}
           >
             <div className="space-y-4">
               <div>
                 <p className="text-xs font-extrabold uppercase tracking-widest text-stone-600 dark:text-stone-400">
-                  Email đăng nhập
+                  {t.settings.security.emailLabel}
                 </p>
                 <p className="text-sm font-semibold mt-1 text-stone-900 dark:text-stone-100">{user?.email}</p>
               </div>
               <div>
                 <p className="text-xs font-extrabold uppercase tracking-widest text-stone-600 dark:text-stone-400">
-                  Ngày tham gia
+                  {t.settings.security.joinedLabel}
                 </p>
                 <p className="text-sm font-semibold mt-1 text-stone-900 dark:text-stone-100">
-                  {user?.created_at ? new Date(user.created_at).toLocaleDateString("vi-VN") : "Chưa cập nhật"}
+                  {user?.created_at
+                    ? new Date(user.created_at).toLocaleDateString(intlLocale(locale))
+                    : t.settings.security.joinedUnknown}
                 </p>
               </div>
               <button
@@ -745,24 +838,26 @@ export default function SettingsPage() {
                 disabled={sendingReset}
                 className="w-full bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 font-bold py-3 px-4 rounded-xl transition-colors disabled:opacity-60"
               >
-                {sendingReset ? "Đang gửi email..." : "Gửi email đổi mật khẩu"}
+                {sendingReset ? t.settings.security.sendingReset : t.settings.security.sendReset}
               </button>
               <p className="text-xs text-stone-500 dark:text-stone-400">
-                Hệ thống sẽ gửi link an toàn tới email hiện tại của bạn.
+                {t.settings.security.resetFootnote}
               </p>
             </div>
           </SectionCard>
 
           <SectionCard
             icon={<BookOpen className="w-5 h-5" />}
-            title="Phiên làm việc & tài khoản"
-            description="Thoát khỏi tài khoản khi dùng máy lạ hoặc sau khi hoàn tất phiên học."
+            title={t.settings.session.title}
+            description={t.settings.session.description}
           >
             <div className="space-y-4">
               <div className="rounded-2xl bg-stone-50 dark:bg-stone-800/50 border border-stone-200 dark:border-stone-800 p-4">
-                <p className="font-bold text-stone-900 dark:text-stone-100">Trạng thái hiện tại</p>
+                <p className="font-bold text-stone-900 dark:text-stone-100">
+                  {t.settings.session.statusTitle}
+                </p>
                 <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
-                  Bạn đang đăng nhập bằng tài khoản Supabase và mọi thay đổi tại đây được lưu trực tiếp vào hệ thống.
+                  {t.settings.session.statusBody}
                 </p>
               </div>
               <button
@@ -772,7 +867,7 @@ export default function SettingsPage() {
                 className="w-full inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-500 text-white font-bold py-3 px-4 rounded-xl transition-colors disabled:opacity-60"
               >
                 <LogOut className="w-4 h-4" />
-                {signingOut ? "Đang đăng xuất..." : "Đăng xuất"}
+                {signingOut ? t.settings.session.signingOut : t.settings.session.signOut}
               </button>
             </div>
           </SectionCard>

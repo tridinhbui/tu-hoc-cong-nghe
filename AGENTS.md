@@ -130,6 +130,138 @@ rules apply. Note that the delivery route shuffles option order per question,
 so `correct: 0` everywhere is fine there — position leaks nothing, only length
 survives shuffling.
 
+## Translating lessons
+
+Lesson content is translated one lesson at a time into
+`lib/lessons-i18n/<locale>/<slug>.json`. A translation is a **patch**, not a
+copy: it carries only human-readable strings, and `lib/lesson-translations.js`
+merges it onto the Vietnamese lesson. Everything structural — `id`, `day`,
+`resolvedTrack`, `checkpointIndex`, and above all every `correct` /
+`correctOption` index — is read from the Vietnamese side and cannot be
+overridden. `difficulty` is not translatable either: it is a Vietnamese string
+union used as a *value* across the app, so the UI renders it through
+`t.difficulty[...]` instead.
+
+Three rules that are easy to get wrong:
+
+1. **Translate from `lib/lessons-data/<slug>.json`, never from
+   `lib/lessons.ts`.** The generator runs `balanceLessonQuizzes`, which
+   *reorders* each question's options to strip the positional tell. The
+   generated order is not the authored order.
+2. **`options` is positional.** Element *i* of the English array must translate
+   element *i* of the Vietnamese one, because `correct` comes from the
+   Vietnamese lesson. A length mismatch makes the merge discard the whole array
+   and fall back to Vietnamese rather than silently shift the answer — that is
+   the guard, not a licence to be sloppy.
+3. **Convert the decimal separator.** `"Khoảng 1,3%"` must become `"1.3%"`, or
+   an English reader reads it as thirteen. Distractors carry their arithmetic
+   (`"(= 121 − 120, the interest earned on interest)"`) and that annotation has
+   to survive translation intact — it is what makes the distractor a mistake a
+   learner actually makes rather than a bare number.
+
+A slug with a hand-authored page under `app/bai-hoc/<slug>/` **cannot** be
+translated this way; `scripts/build-translation-index.mjs` fails the build if one
+is. Next serves the bespoke page ahead of the data-driven route, and those pages
+are `"use client"` with their content written inline — they never call
+`getLessonBySlug`, so the translation would sit in the repo looking done and
+change nothing. Same defect as a shadowed `sections` override.
+
+Delivery is just `app/bai-hoc/[slug]/page.tsx` reading `getServerLocale()`. There
+is no locale route segment and no rewrite. An earlier version of this work built
+a parallel `/en` route plus a proxy rewrite to avoid making that page dynamic —
+worth recording because the reasoning was sound and the premise was false. The
+page's own comment claimed it was CDN-served, and `generateStaticParams` was
+still there; but `app/layout.tsx` calls `getServerLocale()` to seed the i18n
+provider, and a root layout that reads a cookie makes every route beneath it
+dynamic. `next build` reports `ƒ /bai-hoc/[slug]`, not `○`. The machinery
+protected a property the app had already lost. **Check `next build` output
+before optimising around static rendering in this repo.**
+
+**The length gates are per-language.** `MAX_LENGTH_BIAS_Z`, `MAX_TELL_SHARE` and
+the hollow-option patterns all measure character lengths and Vietnamese opener
+phrases, so they say nothing about the English corpus. Translating a question
+changes all four option lengths: English can sit at z = 8 while Vietnamese is
+green. Run both:
+
+```
+npm run audit:lessons        # Vietnamese
+npm run audit:lessons:en     # the translated corpus, its own baseline
+```
+
+The share ceilings are reported but not enforced below 400 questions
+(`MIN_QUESTIONS_FOR_SHARE_GATES`) — at 50 questions a share moves 2 points per
+question, so it would go red on a coin flip. `MAX_LENGTH_BIAS_Z` is enforced at
+every size; that is what a z-score is for.
+
+## Translating the UI
+
+UI copy lives in `lib/i18n/dictionaries/vi.ts`, with `en.ts` typed as
+`Dictionary` so a key present in one and missing from the other is a compile
+error. One section per screen, named after the file that renders it.
+
+Conventions worth knowing before you start a file:
+
+- **Markup inside a sentence gets split into segments**, not smuggled into a
+  dictionary value. `Cuộn hết 100% nội dung <strong>và</strong> làm xong quiz`
+  becomes `autoPart1` / `autoAnd` / `autoPart2` — a value carrying HTML would
+  need `dangerouslySetInnerHTML` to render, and word order differs by language
+  anyway.
+- **Interpolate with `format()`** from `lib/i18n`, not template literals:
+  `format(t.x.count, { done, total })`. An unknown placeholder is left visibly
+  intact rather than becoming `undefined`.
+- **Dates go through `intlLocale(locale)`**, never a hard-coded `"vi-VN"`.
+  English maps to `en-GB` on purpose so the day stays first — `en-US` would
+  silently turn 03/04 into a different date beside its Vietnamese neighbours.
+- **A component renders twice** on several screens (desktop and mobile) with
+  different label lengths. Those share a key pair `x` / `xShort`.
+- **Sub-components need their own `useI18n()`.** Threading `t` down as a prop to
+  translate three `alt` attributes touches every call site.
+- `difficulty` and the `TRACKS` copy are rendered through `t.difficulty[...]` and
+  `t.tracks[...]`; the underlying Vietnamese values stay canonical because they
+  are used as lookup keys elsewhere.
+
+### Two scripts, and why there are two
+
+```
+node scripts/i18n-coverage.mjs          # what is left (drive this to 0)
+node scripts/i18n-scan.mjs              # Vietnamese-diacritic view, per category
+```
+
+`i18n-coverage.mjs` is the one to trust. It parses with the TypeScript compiler
+and reports **hard-coded strings in display positions** — JSX text, display
+attributes (`title`, `alt`, `placeholder`, `aria-label`, …), `toast`/`alert`
+arguments, and string literals inside a `{…}` container in JSX children. It says
+nothing about language, so it catches undotted Vietnamese ("Xong") and
+already-English copy ("Hot") alike, both of which render untranslated.
+
+`i18n-scan.mjs` answers a narrower question — "does this look Vietnamese?" — and
+is useful for triaging by category, but it **cannot** answer "is anything left".
+Three separate blind spots were found in it by hand, in both directions:
+
+| defect | effect | why it happened |
+| --- | --- | --- |
+| counted strings in comments | overstated by ~250 | comments quote the strings they explain |
+| skipped multi-line JSX text | hid ~1,900 | prose is wrapped by the formatter |
+| diacritics only | still misses `"Xong"`, `"Hot"` | inherent to the approach |
+
+The coverage script had its own version of the same lesson: its first draft used
+a regex for JSX text and reported `useState<Theme>` as copy. Both scripts respect
+`/* i18n-ignore-start: reason */ … /* i18n-ignore-end */`, which requires a
+reason and still prints the excluded count so nothing disappears quietly.
+
+**The coverage number is a floor, not a total.** It does not yet see display
+strings that pass through a variable (`const label = "…"` rendered as `{label}`)
+or module-scope data arrays. Expect it to rise when someone closes those.
+
+### Guard rails
+
+`lib/__tests__/dictionary-parity.test.ts` catches what `tsc` cannot: `tsc` proves
+a key *exists* in `en.ts`, not that it was *translated*. Pasting the Vietnamese
+value in to satisfy the type compiles fine and ships Vietnamese to an English
+reader. The test flags English values containing Vietnamese diacritics, verbatim
+copies of the Vietnamese longer than a shared loanword, and keys left in `en.ts`
+after being removed from `vi.ts`.
+
 ## The content gates
 
 `scripts/audit-lesson-content.mjs` holds four per-lesson minimums, and each is
@@ -153,8 +285,11 @@ measuring by hand rather than by the audit.
 
 ```
 npm run audit:lessons                                  # lesson quizzes
+npm run audit:lessons:en                               # translated lessons
 node scripts/audit-ib-option-length.mjs                # IB question bank
 node scripts/audit-ib-option-length.mjs --ids <cat>    # per-question lengths
+node scripts/i18n-coverage.mjs                         # untranslated UI strings
+node scripts/i18n-coverage.mjs <file>                  # per-file, with line numbers
 ```
 
 The lesson audit gates CI on three things:

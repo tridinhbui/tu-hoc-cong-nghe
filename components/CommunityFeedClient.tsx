@@ -62,6 +62,8 @@ import { animateCountTo } from "@/lib/animate-count";
 import { timeAgo } from "@/lib/time-ago";
 import FollowButton from "@/components/FollowButton";
 import { useLocalStorageValue, writeLocalStorageValue } from "@/lib/use-local-storage-value";
+import { useI18n } from "@/lib/i18n/context";
+import { format, intlLocale, type Dictionary } from "@/lib/i18n";
 
 /** Kênh báo khi một lá phiếu vừa được lưu, trong cùng tab. */
 const VOTE_CHANGED_EVENT = "thtcdn:community-vote";
@@ -72,6 +74,9 @@ interface SessionUser {
 }
 
 function AnimatedCounter({ value, className = "" }: { value: number; className?: string }) {
+  // Thousands separators differ by locale ("1.234" vs "1,234"), so this follows
+  // the reader's language rather than hard-coding vi-VN.
+  const { locale } = useI18n();
   const [displayValue, setDisplayValue] = useState(0);
   const cancelledRef = useRef(false);
 
@@ -83,7 +88,7 @@ function AnimatedCounter({ value, className = "" }: { value: number; className?:
     };
   }, [value]);
 
-  return <span className={`tabular-nums ${className}`}>{displayValue.toLocaleString("vi-VN")}</span>;
+  return <span className={`tabular-nums ${className}`}>{displayValue.toLocaleString(intlLocale(locale))}</span>;
 }
 
 function FeedSkeleton() {
@@ -139,43 +144,20 @@ function Avatar({ name, avatarUrl }: { name?: string | null; avatarUrl?: string 
 
 const REACTION_OPTIONS = ["💡 Hay", "🧠 Cần phản biện", "❓ Cùng thắc mắc", "📌 Đã lưu", "🔥 Rất thực tế"];
 const TOPICS = [
-  { id: "all", label: "Tất cả", shortLabel: "Tất cả", icon: Newspaper, tag: "", tone: "stone" },
-  { id: "meo-tai-chinh", label: "Mẹo tài chính", shortLabel: "Mẹo", icon: Sparkles, tag: "#MeoTaiChinh ", tone: "emerald" },
-  { id: "phan-tich", label: "Phân tích", shortLabel: "Phân tích", icon: BarChart3, tag: "#PhanTich ", tone: "sky" },
-  { id: "thanh-tuu", label: "Thành tựu", shortLabel: "Thành tựu", icon: Target, tag: "#ThanhTuu ", tone: "amber" },
-  { id: "hoi-dap", label: "Hỏi đáp", shortLabel: "Hỏi đáp", icon: HelpCircle, tag: "#HoiDap ", tone: "orange" },
-  { id: "tin-nong", label: "Tin nóng", shortLabel: "Tin nóng", icon: Flame, tag: "#TinNong ", tone: "red" },
-  { id: "ai-finance", label: "AI tài chính", shortLabel: "AI Finance", icon: Zap, tag: "#AITaiChinh ", tone: "violet" },
+  // Labels live in t.feed.topics, keyed by this id. `tag` stays here and is
+  // never translated: getPostCategory classifies a post by finding that
+  // hashtag in the stored content, so changing it would orphan every post
+  // already filed under it.
+  { id: "all", icon: Newspaper, tag: "", tone: "stone" },
+  { id: "meo-tai-chinh", icon: Sparkles, tag: "#MeoTaiChinh ", tone: "emerald" },
+  { id: "phan-tich", icon: BarChart3, tag: "#PhanTich ", tone: "sky" },
+  { id: "thanh-tuu", icon: Target, tag: "#ThanhTuu ", tone: "amber" },
+  { id: "hoi-dap", icon: HelpCircle, tag: "#HoiDap ", tone: "orange" },
+  { id: "tin-nong", icon: Flame, tag: "#TinNong ", tone: "red" },
+  { id: "ai-finance", icon: Zap, tag: "#AITaiChinh ", tone: "violet" },
 ] as const;
 
 type TopicId = (typeof TOPICS)[number]["id"];
-
-const POST_TEMPLATES = [
-  {
-    title: "Hỏi đáp",
-    topic: "hoi-dap" as TopicId,
-    icon: HelpCircle,
-    text: "#HoiDap Mình chưa hiểu phần này:\n- Khái niệm/câu hỏi:\n- Mình đã thử hiểu là:\n- Nhờ mọi người sửa giúp:",
-  },
-  {
-    title: "Phân tích nhanh",
-    topic: "phan-tich" as TopicId,
-    icon: BarChart3,
-    text: "#PhanTich Luận điểm của mình:\n- Điểm chính:\n- Số liệu/nguồn mình dùng:\n- Rủi ro cần phản biện:",
-  },
-  {
-    title: "Take-away bài học",
-    topic: "meo-tai-chinh" as TopicId,
-    icon: Lightbulb,
-    text: "#MeoTaiChinh Hôm nay mình học được:\n- Ý chính:\n- Ví dụ đời thực:\n- Mình sẽ áp dụng bằng cách:",
-  },
-  {
-    title: "Khoảnh khắc tiến bộ",
-    topic: "thanh-tuu" as TopicId,
-    icon: Target,
-    text: "#ThanhTuu Thành tựu hôm nay:\n- Mình đã hoàn thành:\n- Điều thấy tự hào:\n- Mục tiêu tiếp theo:",
-  },
-] as const;
 
 function getPostCategory(post: CommunityFeedPost): TopicId {
   const metadataCategory = post.metadata && typeof post.metadata === "object" ? String(post.metadata.category ?? "") : "";
@@ -260,11 +242,13 @@ function getToneStyles(tone: string) {
   return TONE_STYLES[(tone as ToneKey) in TONE_STYLES ? (tone as ToneKey) : "stone"];
 }
 
-function getUserBadge(post: CommunityFeedPost) {
-  if (post.kind === "streak") return { label: "Giữ streak", icon: Flame, tone: "emerald" as ToneKey };
-  if (post.comment_count >= 3) return { label: "Đang được bàn luận", icon: MessageCircle, tone: "sky" as ToneKey };
-  if (post.reaction_count >= 5) return { label: "Bài viết nổi bật", icon: Award, tone: "amber" as ToneKey };
-  return { label: "Thành viên FinSocial", icon: ShieldCheck, tone: "emerald" as ToneKey };
+// Plain function, not a component, so the dictionary is a parameter rather
+// than a useI18n() call.
+function getUserBadge(post: CommunityFeedPost, t: Dictionary) {
+  if (post.kind === "streak") return { label: t.feed.badgeStreak, icon: Flame, tone: "emerald" as ToneKey };
+  if (post.comment_count >= 3) return { label: t.feed.badgeDiscussed, icon: MessageCircle, tone: "sky" as ToneKey };
+  if (post.reaction_count >= 5) return { label: t.feed.badgeFeatured, icon: Award, tone: "amber" as ToneKey };
+  return { label: t.feed.memberRole, icon: ShieldCheck, tone: "emerald" as ToneKey };
 }
 
 function getPostAccentTone(post: CommunityFeedPost): ToneKey {
@@ -285,6 +269,7 @@ interface PollMetadata {
 }
 
 function MarketSentimentWidget({ onShareSentiment }: { onShareSentiment?: (text: string) => void }) {
+  const { t } = useI18n();
   const todayStr = new Date().toISOString().slice(0, 10);
   const storageKey = `thtcdn_market_sentiment_${todayStr}`;
 
@@ -332,12 +317,12 @@ function MarketSentimentWidget({ onShareSentiment }: { onShareSentiment?: (text:
           <div>
             <div className="flex items-center gap-2">
               <span className="text-[10px] font-black uppercase tracking-widest text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded-full border border-emerald-500/40">
-                THỊ TRƯỜNG & VĨ MÔ HÔM NAY
+                {t.feed.sentimentTitle}
               </span>
               <span className="text-[10px] font-bold text-stone-400">{todayStr}</span>
             </div>
             <h3 className="text-sm sm:text-base font-black text-stone-100 mt-0.5">
-              Cộng đồng nhận định xu hướng VN-Index & Vĩ mô hôm nay thế nào?
+              {t.feed.sentimentQuestion}
             </h3>
           </div>
         </div>
@@ -352,7 +337,7 @@ function MarketSentimentWidget({ onShareSentiment }: { onShareSentiment?: (text:
             }}
             className="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-black text-xs transition-all cursor-pointer shrink-0 shadow-sm"
           >
-            💬 Đăng nhận định
+            {t.feed.sentimentShare}
           </button>
         )}
       </div>
@@ -371,8 +356,8 @@ function MarketSentimentWidget({ onShareSentiment }: { onShareSentiment?: (text:
           <div className="flex items-center gap-2">
             <span className="text-xl">🐂</span>
             <div className="text-left">
-              <p className="font-black text-xs sm:text-sm text-stone-100">Biển Xanh (Bullish)</p>
-              <p className="text-[10px] text-stone-400">Tích cực & Khả quan</p>
+              <p className="font-black text-xs sm:text-sm text-stone-100">{t.feed.bullishTitle}</p>
+              <p className="text-[10px] text-stone-400">{t.feed.bullishSub}</p>
             </div>
           </div>
           <span className="font-black text-sm text-emerald-400">{bullishPct}%</span>
@@ -390,8 +375,8 @@ function MarketSentimentWidget({ onShareSentiment }: { onShareSentiment?: (text:
           <div className="flex items-center gap-2">
             <span className="text-xl">🐻</span>
             <div className="text-left">
-              <p className="font-black text-xs sm:text-sm text-stone-100">Biển Đỏ (Bearish)</p>
-              <p className="text-[10px] text-stone-400">Thận trọng & Quan sát</p>
+              <p className="font-black text-xs sm:text-sm text-stone-100">{t.feed.bearishTitle}</p>
+              <p className="text-[10px] text-stone-400">{t.feed.bearishSub}</p>
             </div>
           </div>
           <span className="font-black text-sm text-rose-400">{bearishPct}%</span>
@@ -411,9 +396,9 @@ function MarketSentimentWidget({ onShareSentiment }: { onShareSentiment?: (text:
           />
         </div>
         <div className="flex items-center justify-between text-[11px] font-bold text-stone-400 px-1">
-          <span>🐂 {stats.bullish} phiếu ({bullishPct}%)</span>
-          <span>Tổng số lượt vote: {total}</span>
-          <span>🐻 {stats.bearish} phiếu ({bearishPct}%)</span>
+          <span>{format(t.feed.bullishVotes, { count: stats.bullish, percent: bullishPct })}</span>
+          <span>{format(t.feed.totalVotes, { count: total })}</span>
+          <span>{format(t.feed.bearishVotes, { count: stats.bearish, percent: bearishPct })}</span>
         </div>
       </div>
     </div>
@@ -421,6 +406,7 @@ function MarketSentimentWidget({ onShareSentiment }: { onShareSentiment?: (text:
 }
 
 function InteractivePollCard({ postId, metadata }: { postId: number; metadata: PollMetadata }) {
+  const { t } = useI18n();
   const storageKey = `thtcdn_poll_vote_${postId}`;
   const savedPollVote = useLocalStorageValue(storageKey, VOTE_CHANGED_EVENT);
   const userVotedId = savedPollVote === null || savedPollVote === "" ? null : Number(savedPollVote);
@@ -432,7 +418,7 @@ function InteractivePollCard({ postId, metadata }: { postId: number; metadata: P
       prev.map((opt) => (opt.id === optionId ? { ...opt, votes: opt.votes + 1 } : opt))
     );
     writeLocalStorageValue(storageKey, String(optionId), VOTE_CHANGED_EVENT);
-    toast.success("🎉 Đã ghi nhận bình chọn của bạn!");
+    toast.success(t.feed.pollVoted);
   };
 
   const totalVotes = options.reduce((acc, curr) => acc + curr.votes, 0);
@@ -441,9 +427,9 @@ function InteractivePollCard({ postId, metadata }: { postId: number; metadata: P
     <div className="mt-3 p-4 rounded-2xl bg-gradient-to-r from-amber-500/10 via-emerald-500/10 to-teal-500/10 border border-amber-500/30 text-stone-900 dark:text-stone-100 font-sans space-y-3 shadow-xs">
       <div className="flex items-center justify-between">
         <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-500 text-stone-950 text-[10px] font-black uppercase tracking-wider">
-          📊 THĂM DÒ Ý KIẾN CỘNG ĐỒNG
+          {t.feed.pollTitle}
         </span>
-        <span className="text-[10px] font-bold text-stone-400">{totalVotes} lượt bình chọn</span>
+        <span className="text-[10px] font-bold text-stone-400">{format(t.feed.pollVoteCount, { count: totalVotes })}</span>
       </div>
 
       <p className="font-black text-sm text-stone-900 dark:text-stone-100 leading-snug">
@@ -490,6 +476,7 @@ function InteractivePollCard({ postId, metadata }: { postId: number; metadata: P
 }
 
 export default function CommunityFeedClient({ embedded = false }: { embedded?: boolean }) {
+  const { t } = useI18n();
   const supabase = createClient();
   const searchParams = useSearchParams();
   const [user, setUser] = useState<SessionUser | null>(null);
@@ -520,7 +507,6 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
   const [reactionPickerFor, setReactionPickerFor] = useState<number | null>(null);
   const [reactionBurstFor, setReactionBurstFor] = useState<number | null>(null);
   const [topicMenuOpen, setTopicMenuOpen] = useState(false);
-  const [templateMenuOpen, setTemplateMenuOpen] = useState(false);
   const [rulesOpen, setRulesOpen] = useState(false);
   const [isComposeModalOpen, setIsComposeModalOpen] = useState(false);
   const [isPollMode, setIsPollMode] = useState(false);
@@ -614,13 +600,13 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
 
   const handlePost = async () => {
     if (!user) {
-      toast.error("Vui lòng đăng nhập để đăng bài.");
+      toast.error(t.feed.signInToPost);
       return;
     }
     const text = content.trim();
     const hasValidPoll = isPollMode && pollQuestion.trim() && pollOptions.filter((o) => o.trim()).length >= 2;
     if (!text && !pendingImage && !hasValidPoll) {
-      toast.error("Vui lòng nhập nội dung, chọn hình ảnh hoặc điền thông tin thăm dò ý kiến.");
+      toast.error(t.feed.emptyPost);
       return;
     }
     setPosting(true);
@@ -651,8 +637,8 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
       setPollOptions(["", ""]);
       setIsComposeModalOpen(false);
       await refreshFeed();
-      toast.success("Đã đăng bài thành công!");
-      toast.success("Đã đăng bài chia sẻ!");
+      toast.success(t.feed.posted);
+      toast.success(t.feed.postedShare);
     } catch (error) {
       toast.error(error instanceof Error ? error.message : "Không đăng được bài. Vui lòng thử lại.");
     } finally {
@@ -952,7 +938,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
             <Image
               src="/saigon-skyline.jpg"
-              alt="Saigon Skyline background"
+              alt={t.feed.bgAlt}
               fill
               priority
               quality={95}
@@ -965,26 +951,26 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
 
           <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
             <Link href="/dashboard" className="text-stone-300 hover:text-white text-sm font-semibold flex items-center gap-1.5 w-fit bg-stone-900/60 px-3 py-1.5 rounded-full backdrop-blur-md border border-stone-800 transition-colors">
-              <ArrowLeft className="w-4 h-4" /> Về Dashboard
+              <ArrowLeft className="w-4 h-4" /> {t.feed.backToDashboard}
             </Link>
             <div className="mt-5 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
               <div className="max-w-2xl">
                 <div className="inline-flex items-center gap-2 rounded-full border border-emerald-400/40 bg-emerald-950/80 px-3.5 py-1 text-[11px] font-black uppercase tracking-[0.18em] text-emerald-300 backdrop-blur-md shadow-lg">
                   <MessageCircle className="h-3.5 w-3.5 text-emerald-400" />
-                  Mạng Xã Hội Học Tài Chính
+                  {t.feed.eyebrow}
                 </div>
                 <h1 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white drop-shadow-md">
-                  FinSocial Feed
+                  {t.feed.title}
                 </h1>
                 <p className="mt-2.5 max-w-xl text-sm sm:text-base leading-relaxed text-stone-200 drop-shadow-sm font-medium">
-                  Nơi cộng đồng chia sẻ bản tin ngắn, câu hỏi, phân tích BCTC thực tế và ăn mừng thành tựu học tập mỗi ngày.
+                  {t.feed.subtitle}
                 </p>
               </div>
               <div className="grid grid-cols-3 gap-3 sm:min-w-[420px]">
                 {[
-                  { label: "Bài viết", value: posts.length, color: "text-sky-300 bg-stone-900/80 border-sky-500/30" },
-                  { label: "Cảm xúc", value: totalReactions, color: "text-amber-300 bg-stone-900/80 border-amber-500/30" },
-                  { label: "Bình luận", value: totalComments, color: "text-emerald-300 bg-stone-900/80 border-emerald-500/30" },
+                  { label: t.feed.statPosts, value: posts.length, color: "text-sky-300 bg-stone-900/80 border-sky-500/30" },
+                  { label: t.feed.statReactions, value: totalReactions, color: "text-amber-300 bg-stone-900/80 border-amber-500/30" },
+                  { label: t.feed.statComments, value: totalComments, color: "text-emerald-300 bg-stone-900/80 border-emerald-500/30" },
                 ].map((item) => (
                   <motion.div
                     key={item.label}
@@ -1025,8 +1011,8 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                   <Sparkles className="h-4.5 w-4.5" />
                 </span>
                 <div>
-                  <h2 className="text-sm font-black uppercase tracking-[0.14em] text-stone-950 dark:text-stone-50">Nổi bật hôm nay</h2>
-                  <p className="text-xs font-medium text-stone-500 dark:text-stone-400">Các bài đáng mở đầu để bắt nhịp nhanh</p>
+                  <h2 className="text-sm font-black uppercase tracking-[0.14em] text-stone-950 dark:text-stone-50">{t.feed.highlightsTitle}</h2>
+                  <p className="text-xs font-medium text-stone-500 dark:text-stone-400">{t.feed.highlightsSub}</p>
                 </div>
               </div>
             </div>
@@ -1049,9 +1035,9 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                         <span className={`text-[10px] font-black uppercase tracking-wide ${spotlightTone.icon}`}>{label}</span>
                       </div>
                       <p className="mt-2 line-clamp-2 text-xs font-medium leading-relaxed text-stone-700 dark:text-stone-300">
-                        {post.content || "Bài viết có hình ảnh"}
+                        {post.content || t.feed.postWithImage}
                       </p>
-                      <p className="mt-2 text-[10px] font-medium text-stone-400">{post.user_name} · {post.reaction_count} cảm xúc</p>
+                      <p className="mt-2 text-[10px] font-medium text-stone-400">{format(t.feed.authorReactions, { name: post.user_name, count: post.reaction_count })}</p>
                     </motion.button>
                   );
                 })()
@@ -1068,7 +1054,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                 <input
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Tìm bài viết, người đăng, chủ đề..."
+                  placeholder={t.feed.searchPlaceholder}
                   className="w-full rounded-[18px] bg-stone-100/80 py-3 pl-10 pr-3 text-sm font-medium text-stone-900 outline-none transition duration-200 ease-out focus:bg-white focus:ring-2 focus:ring-emerald-400/25 dark:bg-stone-950/75 dark:text-stone-100"
                 />
               </div>
@@ -1081,7 +1067,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                 transition={{ type: "spring", stiffness: 420, damping: 24 }}
               >
                 <RefreshCw className="h-4 w-4" />
-                Làm mới
+                {t.feed.refresh}
               </motion.button>
             </div>
             <div className="mt-3 flex gap-2 overflow-x-auto pb-1">
@@ -1103,7 +1089,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                     transition={{ type: "spring", stiffness: 420, damping: 28 }}
                   >
                     <Icon className={`h-3.5 w-3.5 ${isActive ? "text-white dark:text-stone-950" : topicTone.icon}`} />
-                    {topic.label}
+                    {t.feed.topics[topic.id].label}
                   </motion.button>
                 );
               })}
@@ -1122,7 +1108,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                   onClick={() => setIsComposeModalOpen(true)}
                   className="flex-1 rounded-full bg-stone-100 dark:bg-stone-800/80 px-4 py-2.5 text-left text-xs sm:text-sm font-medium text-stone-500 dark:text-stone-400 hover:bg-stone-200/70 dark:hover:bg-stone-700 transition-colors cursor-pointer"
                 >
-                  {(user.user_metadata?.full_name || "Bạn").split(" ").pop()} ơi, bạn đang nghĩ gì thế?
+                  {format(t.feed.composerPrompt, { name: (user.user_metadata?.full_name || t.feed.composerFallbackName).split(" ").pop() ?? "" })}
                 </button>
               </div>
 
@@ -1133,7 +1119,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                   className="flex items-center gap-2 rounded-xl px-3 py-1.5 text-xs font-bold text-stone-600 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors cursor-pointer"
                 >
                   <ImageIcon className="w-4 h-4 text-emerald-500" />
-                  <span>Ảnh / Video</span>
+                  <span>{t.feed.addMedia}</span>
                 </button>
                 <button
                   type="button"
@@ -1141,7 +1127,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                   className="flex items-center gap-2 rounded-xl px-3 py-1.5 text-xs font-bold text-stone-600 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors cursor-pointer"
                 >
                   <Lightbulb className="w-4 h-4 text-amber-500" />
-                  <span>Chủ đề</span>
+                  <span>{t.feed.addTopic}</span>
                 </button>
                 <button
                   type="button"
@@ -1149,7 +1135,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                   className="flex items-center gap-2 rounded-xl px-3 py-1.5 text-xs font-bold text-stone-600 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors cursor-pointer"
                 >
                   <SmilePlus className="w-4 h-4 text-yellow-500" />
-                  <span>Cảm xúc</span>
+                  <span>{t.feed.addFeeling}</span>
                 </button>
               </div>
             </div>
@@ -1168,7 +1154,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                     {/* Modal Header */}
                     <div className="flex items-center justify-between px-4 py-3 border-b border-stone-100 dark:border-stone-800 relative">
                       <h3 className="w-full text-center text-base font-black text-stone-900 dark:text-stone-100">
-                        Tạo bài viết
+                        {t.feed.createPost}
                       </h3>
                       <button
                         type="button"
@@ -1186,7 +1172,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                         <Avatar name={user?.user_metadata?.full_name || "Thành viên"} avatarUrl={user?.user_metadata?.avatar_url} />
                         <div>
                           <p className="text-sm font-black text-stone-900 dark:text-stone-100">
-                            {user?.user_metadata?.full_name || "Thành viên FinSocial"}
+                            {user?.user_metadata?.full_name || t.feed.memberRole}
                           </p>
                           <div className="flex flex-wrap items-center gap-1.5 mt-1">
                             {/* Topic Dropdown */}
@@ -1196,7 +1182,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                                 onClick={() => setTopicMenuOpen((open) => !open)}
                                 className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-[11px] font-extrabold text-stone-700 dark:text-stone-300 border border-stone-200 dark:border-stone-700 hover:bg-stone-200 dark:hover:bg-stone-700 transition-colors cursor-pointer"
                               >
-                                <span>💡 {getTopicMeta(selectedTopic).label}</span>
+                                <span>💡 {t.feed.topics[selectedTopic].label}</span>
                                 <ChevronDown className="w-3 h-3 opacity-60" />
                               </button>
                               <AnimatePresence>
@@ -1217,7 +1203,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                                         }}
                                         className="flex w-full items-center gap-2 rounded-lg px-2.5 py-1.5 text-xs font-bold text-stone-700 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800"
                                       >
-                                        {item.label}
+                                        {t.feed.topics[item.id].label}
                                       </button>
                                     ))}
                                   </motion.div>
@@ -1225,7 +1211,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                               </AnimatePresence>
                             </div>
                             <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/40 text-[11px] font-extrabold text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-900/50">
-                              🌐 Công khai
+                              {t.feed.visibilityPublic}
                             </span>
                           </div>
                         </div>
@@ -1244,7 +1230,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                       {/* Image Preview Area */}
                       {imagePreview && (
                         <div className="relative overflow-hidden rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950/60 max-h-60">
-                          <img src={imagePreview} alt="Preview" className="w-full h-auto max-h-56 object-cover rounded-xl" />
+                          <img src={imagePreview} alt={t.feed.previewAlt} className="w-full h-auto max-h-56 object-cover rounded-xl" />
                           <button
                             type="button"
                             onClick={clearPendingImage}
@@ -1261,14 +1247,14 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                           <div className="flex items-center justify-between">
                             <span className="text-xs font-black text-amber-800 dark:text-amber-300 flex items-center gap-1.5">
                               <Vote className="w-4 h-4" />
-                              Tạo bình chọn / Thăm dò ý kiến
+                              {t.feed.createPoll}
                             </span>
                             <button
                               type="button"
                               onClick={() => setIsPollMode(false)}
                               className="text-[10px] font-bold text-stone-400 hover:text-stone-600 dark:hover:text-stone-200"
                             >
-                              Hủy
+                              {t.feed.cancel}
                             </button>
                           </div>
 
@@ -1276,7 +1262,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                             type="text"
                             value={pollQuestion}
                             onChange={(e) => setPollQuestion(e.target.value)}
-                            placeholder="Nhập câu hỏi thăm dò ý kiến (Ví dụ: Fed sẽ hạ bao nhiêu bps lãi suất?)"
+                            placeholder={t.feed.pollQuestionPlaceholder}
                             className="w-full px-3 py-2 rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-xs font-semibold text-stone-900 dark:text-stone-100 focus:outline-none"
                           />
 
@@ -1310,7 +1296,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                                 onClick={() => setPollOptions((prev) => [...prev, ""])}
                                 className="text-xs font-black text-amber-700 dark:text-amber-400 hover:underline cursor-pointer"
                               >
-                                + Thêm lựa chọn
+                                {t.feed.addPollOption}
                               </button>
                             )}
                           </div>
@@ -1320,7 +1306,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                       {/* Add-ons Toolbar Box (Facebook Style "Thêm vào bài viết của bạn") */}
                       <div className="flex items-center justify-between rounded-xl border border-stone-200 dark:border-stone-800 p-3 bg-stone-50/70 dark:bg-stone-950/40">
                         <span className="text-xs font-black text-stone-700 dark:text-stone-300">
-                          Thêm vào bài viết của bạn
+                          {t.feed.addToPost}
                         </span>
                         <div className="flex items-center gap-1.5">
                           <input ref={fileInputRef} type="file" accept="image/*" onChange={handleImageSelect} className="hidden" />
@@ -1328,7 +1314,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                             type="button"
                             onClick={() => fileInputRef.current?.click()}
                             className="p-2 rounded-full hover:bg-emerald-50 dark:hover:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 transition-colors cursor-pointer"
-                            title="Thêm ảnh"
+                            title={t.feed.addImageTitle}
                           >
                             <ImageIcon className="w-5 h-5" />
                           </button>
@@ -1343,7 +1329,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                                 ? "bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300"
                                 : "hover:bg-amber-50 dark:hover:bg-amber-950/40 text-amber-600 dark:text-amber-400"
                             }`}
-                            title="Thêm thăm dò ý kiến"
+                            title={t.feed.addPollTitle}
                           >
                             <Vote className="w-5 h-5" />
                           </button>
@@ -1361,7 +1347,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                         className="w-full rounded-xl bg-emerald-600 hover:bg-emerald-500 disabled:opacity-40 text-white font-black text-sm py-2.5 transition-all shadow-md active:scale-[0.99] flex items-center justify-center gap-2 cursor-pointer"
                       >
                         <Send className="w-4 h-4" />
-                        {posting ? "Đang đăng..." : "Đăng bài"}
+                        {posting ? t.feed.posting : t.feed.post}
                       </button>
                     </div>
                   </motion.div>
@@ -1375,7 +1361,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
           <FeedSkeleton />
         ) : visiblePosts.length === 0 ? (
           <p className="text-center text-sm text-stone-400 py-12">
-            Chưa có bài chia sẻ nào phù hợp bộ lọc này.
+            {t.feed.feedEmpty}
           </p>
         ) : (
           <div className="space-y-4">
@@ -1385,7 +1371,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
               const topic = getTopicMeta(category);
               const TopicIcon = topic.icon;
               const topicTone = getToneStyles(topic.tone);
-              const badge = getUserBadge(post);
+              const badge = getUserBadge(post, t);
               const BadgeIcon = badge.icon;
               const badgeTone = getToneStyles(badge.tone);
               return (
@@ -1411,7 +1397,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                       </span>
                       {post.kind === "streak" && (
                         <span className="flex items-center gap-1 text-[10px] font-bold text-emerald-600 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/30 px-2 py-0.5 rounded-full">
-                          <Flame className="w-3 h-3" /> Streak
+                          <Flame className="w-3 h-3" /> {t.feed.streak}
                         </span>
                       )}
                       <span className="flex items-center gap-1 text-xs text-stone-400 dark:text-stone-500">
@@ -1425,7 +1411,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                           className="text-xs text-stone-400 dark:text-stone-500"
                           title={`Chỉnh sửa ${timeAgo(post.edited_at)}`}
                         >
-                          · đã chỉnh sửa
+                          {t.feed.edited}
                         </span>
                       )}
                       {user && post.user_id !== user.id && (
@@ -1440,7 +1426,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                       {category !== "all" && (
                         <span className={`inline-flex shrink-0 items-center gap-1 rounded-full px-2.5 py-1 text-[10px] font-black uppercase ${topicTone.chip}`}>
                           <TopicIcon className={`h-3 w-3 ${topicTone.icon}`} />
-                          {topic.shortLabel}
+                          {t.feed.topics[topic.id].short}
                         </span>
                       )}
                     </div>
@@ -1466,14 +1452,14 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                               onClick={cancelEditPost}
                               className="rounded-full px-3.5 py-1.5 text-xs font-bold text-stone-500 hover:bg-stone-100 dark:hover:bg-stone-800"
                             >
-                              Huỷ
+                              {t.feed.cancelEdit}
                             </button>
                             <button
                               onClick={() => void handleSaveEdit(post.id)}
                               disabled={savingEdit || !editDraft.trim()}
                               className="rounded-full bg-emerald-500 px-4 py-1.5 text-xs font-black text-white transition hover:bg-emerald-400 disabled:cursor-not-allowed disabled:opacity-50"
                             >
-                              {savingEdit ? "Đang lưu..." : "Lưu"}
+                              {savingEdit ? t.feed.saving : t.feed.save}
                             </button>
                           </div>
                         </div>
@@ -1493,15 +1479,17 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                           <span className="text-3xl">{String(post.metadata.emoji || "🏆")}</span>
                           <div>
                             <span className="inline-block px-2 py-0.5 rounded-md bg-emerald-500/20 text-emerald-300 text-[10px] font-black uppercase tracking-wider border border-emerald-400/30">
-                              Chứng Nhận Thăng Cấp
+                              {t.feed.levelCertTitle}
                             </span>
                             <h4 className="font-black text-sm text-white mt-0.5">
-                              Cấp {String(post.metadata.level)}: {String(post.metadata.level_name)}
+                              {format(t.feed.levelCertLevel, { level: String(post.metadata.level), name: String(post.metadata.level_name) })}
                             </h4>
                           </div>
                         </div>
                         <p className="text-xs text-stone-300 font-medium">
-                          Đạt thành tích vượt qua Bài thi thăng cấp khắt khe với kết quả chính xác <strong className="text-emerald-400">{String(post.metadata.score)}%</strong>!
+                          {t.feed.levelCertBodyPart1}
+                          <strong className="text-emerald-400">{String(post.metadata.score)}%</strong>
+                          {t.feed.levelCertBodyPart2}
                         </p>
                       </div>
                     )}
@@ -1516,7 +1504,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                       <div className="mt-4 relative overflow-hidden rounded-[20px] bg-stone-950/5 shadow-[0_12px_28px_-24px_rgba(15,23,42,0.22)] dark:bg-stone-950/40">
                         <img
                           src={String(post.metadata.image_url)}
-                          alt="Bài đăng của người dùng"
+                          alt={t.feed.postImageAlt}
                           className="w-full h-auto max-h-96 object-contain"
                         />
                       </div>
@@ -1539,7 +1527,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                         ))}
                         {post.reaction_count > 0 && (
                           <span className="text-xs font-medium text-stone-400">
-                            {post.reaction_count} cảm xúc
+                            {post.reaction_count} {t.feed.reactionsSuffix}
                           </span>
                         )}
                       </div>
@@ -1564,7 +1552,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                           transition={{ type: "spring", stiffness: 420, damping: 24 }}
                         >
                           <span className="text-sm leading-none">{post.my_reaction ?? "👍"}</span>
-                          <span>{post.my_reaction ? "Đã thả cảm xúc" : "Thả cảm xúc"}</span>
+                          <span>{post.my_reaction ? t.feed.reacted : t.feed.react}</span>
                         </motion.button>
 
                         <AnimatePresence>
@@ -1626,7 +1614,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                         transition={{ type: "spring", stiffness: 420, damping: 24 }}
                       >
                         <MessageCircle className="h-3.5 w-3.5" />
-                        <span>Bình luận</span>
+                        <span>{t.feed.comment}</span>
                         <span>{post.comment_count}</span>
                       </motion.button>
 
@@ -1639,7 +1627,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                           onClick={() => startEditPost(post)}
                           className="inline-flex items-center gap-2 rounded-full px-3.5 py-2 text-xs font-semibold text-stone-400 transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-emerald-50 hover:text-emerald-600 dark:hover:bg-emerald-950/30"
                         >
-                          <Pencil className="w-3.5 h-3.5" /> Sửa
+                          <Pencil className="w-3.5 h-3.5" /> {t.feed.editComment}
                         </button>
                       )}
 
@@ -1648,7 +1636,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                           onClick={() => handleDelete(post.id)}
                           className="inline-flex items-center gap-2 rounded-full px-3.5 py-2 text-xs font-semibold text-stone-400 transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-rose-50 hover:text-rose-600"
                         >
-                          <Trash2 className="w-3.5 h-3.5" /> Xoá
+                          <Trash2 className="w-3.5 h-3.5" /> {t.feed.deleteComment}
                         </button>
                       )}
                     </div>
@@ -1662,7 +1650,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                               <textarea
                                 value={commentDrafts[post.id] ?? ""}
                                 onChange={(e) => setCommentDrafts((prev) => ({ ...prev, [post.id]: e.target.value }))}
-                                placeholder="Viết bình luận ngắn, kiểu status reply..."
+                                placeholder={t.feed.commentPlaceholder}
                                 rows={2}
                                 maxLength={300}
                                 className="w-full resize-none bg-transparent text-sm text-stone-900 outline-none dark:text-stone-100"
@@ -1675,7 +1663,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                                   className="inline-flex items-center gap-1 rounded-full px-2 py-1 transition hover:bg-stone-100 dark:hover:bg-stone-800"
                                 >
                                     <SmilePlus className="h-3.5 w-3.5" />
-                                    Gợi ý emoji
+                                    {t.feed.emojiHint}
                                   </button>
                                   <span>{(commentDrafts[post.id] ?? "").length}/300</span>
                                 </div>
@@ -1686,7 +1674,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                                   className="inline-flex items-center gap-1.5 rounded-full bg-stone-900 px-3.5 py-2 text-xs font-bold text-white shadow-[0_10px_22px_-18px_rgba(15,23,42,0.35)] transition duration-200 ease-out hover:-translate-y-0.5 disabled:opacity-40 dark:bg-stone-100 dark:text-stone-900"
                                 >
                                   <Send className="h-3.5 w-3.5" />
-                                  Gửi
+                                  {t.feed.send}
                                 </button>
                               </div>
                             </div>
@@ -1694,9 +1682,9 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                         )}
 
                         {loadingComments[post.id] ? (
-                          <p className="px-1 py-2 text-xs text-stone-400">Đang tải bình luận...</p>
+                          <p className="px-1 py-2 text-xs text-stone-400">{t.feed.commentsLoading}</p>
                         ) : (commentsByPost[post.id] ?? []).length === 0 ? (
-                          <p className="px-1 py-2 text-xs text-stone-400">Chưa có bình luận nào. Mở hàng câu đầu tiên đi.</p>
+                          <p className="px-1 py-2 text-xs text-stone-400">{t.feed.commentsEmpty}</p>
                         ) : (
                           <div className="space-y-2">
                             {(commentsByPost[post.id] ?? []).map((comment) => (
@@ -1708,7 +1696,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                                     <span className="text-xs text-stone-400">{timeAgo(comment.created_at)}</span>
                                     {comment.edited_at && (
                                       <span className="text-xs text-stone-400" title={`Chỉnh sửa ${timeAgo(comment.edited_at)}`}>
-                                        · đã chỉnh sửa
+                                        {t.feed.edited}
                                       </span>
                                     )}
                                   </div>
@@ -1738,7 +1726,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                                             onClick={cancelEditComment}
                                             className="rounded-full px-2.5 py-1 text-[11px] font-bold text-stone-500 hover:bg-stone-100 dark:hover:bg-stone-800"
                                           >
-                                            Huỷ
+                                            {t.feed.cancelEdit}
                                           </button>
                                           <button
                                             type="button"
@@ -1746,7 +1734,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                                             disabled={savingCommentEdit || !commentEditDraft.trim()}
                                             className="rounded-full bg-emerald-500 px-3 py-1 text-[11px] font-black text-white hover:bg-emerald-400 disabled:cursor-not-allowed disabled:opacity-50"
                                           >
-                                            {savingCommentEdit ? "Đang lưu..." : "Lưu"}
+                                            {savingCommentEdit ? t.feed.saving : t.feed.save}
                                           </button>
                                         </div>
                                       </div>
@@ -1762,7 +1750,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                                     <button
                                       type="button"
                                       onClick={() => startEditComment(comment)}
-                                      aria-label="Sửa bình luận"
+                                      aria-label={t.feed.editCommentAria}
                                       className="rounded-full p-1.5 text-stone-400 transition duration-150 ease-out hover:bg-emerald-50 hover:text-emerald-600 dark:hover:bg-emerald-950/30"
                                     >
                                       <Pencil className="h-3.5 w-3.5" />
@@ -1770,7 +1758,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                                     <button
                                       type="button"
                                       onClick={() => void handleDeleteComment(post.id, comment.id)}
-                                      aria-label="Xoá bình luận"
+                                      aria-label={t.feed.deleteCommentAria}
                                       className="rounded-full p-1.5 text-stone-400 transition duration-150 ease-out hover:bg-rose-50 hover:text-rose-500"
                                     >
                                       <Trash2 className="h-3.5 w-3.5" />
@@ -1795,7 +1783,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                 disabled={loadingMore}
                 className="w-full py-2.5 text-sm font-semibold text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition"
               >
-                {loadingMore ? "Đang tải..." : "Tải thêm"}
+                {loadingMore ? t.feed.loading : t.feed.loadMore}
               </button>
             )}
           </div>
@@ -1812,7 +1800,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
               >
                 <div className="flex items-center gap-2">
                   <ShieldCheck className="h-5 w-5 text-emerald-600" />
-                  <h2 className="text-sm font-black uppercase tracking-[0.14em] text-stone-900 dark:text-stone-100">Luật feed</h2>
+                  <h2 className="text-sm font-black uppercase tracking-[0.14em] text-stone-900 dark:text-stone-100">{t.feed.rulesTitle}</h2>
                 </div>
                 {rulesOpen ? <ChevronUp className="h-4 w-4 text-stone-400" /> : <ChevronDown className="h-4 w-4 text-stone-400" />}
               </button>
@@ -1825,9 +1813,9 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                     exit={{ opacity: 0, height: 0 }}
                     className="overflow-hidden mt-3 pt-3 border-t border-stone-100 dark:border-stone-800 space-y-2 text-xs font-medium text-stone-600 dark:text-stone-300"
                   >
-                    <p>• Hữu ích, tích cực, tôn trọng nhau.</p>
-                    <p>• Không khuyến nghị chắc chắn, không chia sẻ dữ liệu mật.</p>
-                    <p>• Ưu tiên bài viết chi tiết, có ví dụ hoặc nguồn cần kiểm chứng.</p>
+                    <p>{t.feed.rule1}</p>
+                    <p>{t.feed.rule2}</p>
+                    <p>{t.feed.rule3}</p>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -1835,11 +1823,11 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
 
             <div className="rounded-[22px] bg-white p-4.5 shadow-[0_14px_30px_-26px_rgba(15,23,42,0.18)] ring-1 ring-stone-100/70 dark:bg-stone-900/80 dark:ring-stone-800/60">
               <div className="mb-4 flex items-center justify-between">
-                <h2 className="text-sm font-black uppercase tracking-[0.14em] text-stone-900 dark:text-stone-100">Đang nổi bật</h2>
+                <h2 className="text-sm font-black uppercase tracking-[0.14em] text-stone-900 dark:text-stone-100">{t.feed.trendingTitle}</h2>
                 <TrendingUp className="h-5 w-5 text-amber-500" />
               </div>
               {hotPosts.length === 0 ? (
-                <p className="text-sm text-stone-400">Chưa có bài nổi bật.</p>
+                <p className="text-sm text-stone-400">{t.feed.trendingEmpty}</p>
               ) : (
                 <div className="space-y-3">
                   {hotPosts.map((post, index) => (
@@ -1851,11 +1839,11 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                         <p className="truncate text-sm font-bold text-stone-900 dark:text-stone-100">{post.user_name}</p>
                       </div>
                       <p className="mt-2 line-clamp-2 text-xs font-medium leading-relaxed text-stone-500 dark:text-stone-400">
-                        {post.content || "Bài viết có hình ảnh"}
+                        {post.content || t.feed.postWithImage}
                       </p>
                       <div className="mt-2 flex items-center gap-3 text-[11px] font-bold text-stone-400">
-                        <span>{post.reaction_count} cảm xúc</span>
-                        <span>{post.comment_count} bình luận</span>
+                        <span>{post.reaction_count} {t.feed.reactionsSuffix}</span>
+                        <span>{post.comment_count} {t.feed.commentsSuffix}</span>
                       </div>
                     </div>
                   ))}
@@ -1866,14 +1854,14 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
             <div className="rounded-[22px] bg-white p-4.5 shadow-[0_14px_30px_-26px_rgba(15,23,42,0.18)] ring-1 ring-stone-100/70 dark:bg-stone-900/80 dark:ring-stone-800/60">
               <div className="flex items-center gap-2">
                 <Bookmark className="h-5 w-5 text-sky-600" />
-                <h2 className="text-sm font-black uppercase tracking-[0.14em] text-stone-900 dark:text-stone-100">Gợi ý đăng bài</h2>
+                <h2 className="text-sm font-black uppercase tracking-[0.14em] text-stone-900 dark:text-stone-100">{t.feed.promptsTitle}</h2>
               </div>
               <div className="mt-4 grid gap-2">
                 {[
-                  "Hôm nay mình hiểu ra...",
-                  "Mình đang kẹt ở câu hỏi...",
-                  "Một mẹo học BCTC của mình là...",
-                  "Ảnh thành quả/streak hôm nay:",
+                  t.feed.prompt1,
+                  t.feed.prompt2,
+                  t.feed.prompt3,
+                  t.feed.prompt4,
                 ].map((idea) => (
                   <button
                     key={idea}

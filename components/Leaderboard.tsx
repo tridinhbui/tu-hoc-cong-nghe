@@ -51,6 +51,10 @@ function LeaderboardAvatar({ name, avatarUrl, size = 36 }: { name: string; avata
 
 // Prominent Avatar Frame Wrapper with Floating Crown & Metallic Rings
 function AvatarWithFrame({ rank, name, avatarUrl, size = 44 }: { rank: number; name: string; avatarUrl: string | null; size?: number }) {
+  // Its own useI18n rather than a prop: this renders inside the podium and the
+  // rank rows, so threading `t` down would touch every call site to translate
+  // three alt attributes.
+  const { t } = useI18n();
   if (rank === 1) {
     return (
       <div className="relative inline-flex items-center justify-center pt-5">
@@ -68,7 +72,7 @@ function AvatarWithFrame({ rank, name, avatarUrl, size = 44 }: { rank: number; n
         <div className="absolute -top-5 left-1/2 -translate-x-1/2 flex items-center justify-center w-8 h-8 rounded-full bg-amber-950 border-2 border-amber-400 shadow-xl overflow-hidden animate-bounce">
           <Image
             src="/trophy-gold-3d.jpg"
-            alt="Gold Crown Trophy 3D"
+            alt={t.leaderboard.trophyGoldAlt}
             width={32}
             height={32}
             className="w-full h-full object-cover"
@@ -100,7 +104,7 @@ function AvatarWithFrame({ rank, name, avatarUrl, size = 44 }: { rank: number; n
         <div className="absolute -top-4 left-1/2 -translate-x-1/2 flex items-center justify-center w-7 h-7 rounded-full bg-slate-950 border-2 border-slate-300 shadow-lg overflow-hidden">
           <Image
             src="/trophy-silver-3d.jpg"
-            alt="Silver Trophy 3D"
+            alt={t.leaderboard.trophySilverAlt}
             width={28}
             height={28}
             className="w-full h-full object-cover"
@@ -127,7 +131,7 @@ function AvatarWithFrame({ rank, name, avatarUrl, size = 44 }: { rank: number; n
         <div className="absolute -top-4 left-1/2 -translate-x-1/2 flex items-center justify-center w-7 h-7 rounded-full bg-amber-950 border-2 border-amber-600 shadow-lg overflow-hidden">
           <Image
             src="/trophy-bronze-3d.jpg"
-            alt="Bronze Trophy 3D"
+            alt={t.leaderboard.trophyBronzeAlt}
             width={28}
             height={28}
             className="w-full h-full object-cover"
@@ -193,6 +197,12 @@ const TABS: {
   { metric: "game", labelKey: "gamer", icon: Gamepad2, format: (v, u) => `${v} ${u.xp}` },
 ];
 
+/* i18n-ignore-start: per-rank honor titles are Vietnamese finance-meme wordplay,
+   not UI labels. Documented as deliberately untranslated in
+   lib/i18n/dictionaries/vi.ts - a literal translation reads as nonsense in
+   English ("Answer Destroyer", "Wall Street Sage"), and a good one is a
+   creative-writing pass, not a dictionary lookup. Kept out of the i18n-scan
+   count so the backlog figure reflects work someone actually intends to do. */
 const LEADERBOARD_TITLES: Record<LeaderboardUiMetric, Record<number, string>> = {
   composite: { 1: "Học viên toàn diện nhất", 2: "Toàn diện xuất sắc", 3: "Cân bằng và vững vàng", 4: "Nền tảng toàn diện", 5: "Học chắc, học đều" },
   xp: { 1: "Bậc thầy tài chính", 2: "Chuyên gia đầu tư", 3: "Nhà đầu tư tài năng", 4: "Kiện tướng tích lũy", 5: "Thợ săn XP" },
@@ -205,6 +215,7 @@ const LEADERBOARD_TITLES: Record<LeaderboardUiMetric, Record<number, string>> = 
   cfa: { 1: "Chiến thần CFA Level I", 2: "Bậc thầy Flashcard & Formula", 3: "Chuyên gia Ethics & Quant", 4: "Kiện tướng CFA", 5: "Tiên phong Lộ trình CFA" },
   community: { 1: "Đại sứ Cộng đồng", 2: "Hỗ trợ viên tích cực", 3: "Người truyền cảm hứng", 4: "Chuyên gia chia sẻ", 5: "Thành viên sôi nổi" },
 };
+/* i18n-ignore-end */
 
 const PODIUM_ORDER = [3, 1, 0, 2, 4];
 
@@ -215,6 +226,8 @@ function getLeaderboardTitle(metric: LeaderboardUiMetric, rank: number): string 
 function getLeaderboardHonor(metric: LeaderboardUiMetric, rank: number) {
   const title = getLeaderboardTitle(metric, rank);
 
+  /* i18n-ignore-start: same flavor-text exemption as LEADERBOARD_TITLES above -
+     per-rank badge names and nicknames, not UI labels. */
   const byMetric: Record<string, Record<number, { badge: string; nickname: string }>> = {
     composite: {
       1: { badge: "Vương miện toàn diện", nickname: "🏆 Học Viên Toàn Diện Số 1" },
@@ -383,6 +396,7 @@ function getLeaderboardHonor(metric: LeaderboardUiMetric, rank: number) {
     badge: `Top #${rank}`,
     nickname: `Thành Viên Tích Cực #${rank}`,
   };
+  /* i18n-ignore-end */
 
   const honor = byMetric[metric]?.[rank] ?? dynamicFallback;
 

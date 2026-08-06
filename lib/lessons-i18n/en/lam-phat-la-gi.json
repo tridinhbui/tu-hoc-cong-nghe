@@ -1,0 +1,136 @@
+{
+  "slug": "lam-phat-la-gi",
+  "title": "What is inflation? Why money loses value.",
+  "subtitle": "Inflation isn't an accident. It is a built-in feature of every modern economy.",
+  "duration": "7 min",
+  "openingQuestion": "Your parents remember a bowl of phở costing 500 đồng in 1990; today it is 70,000. Over 34 years, how much purchasing power did the đồng lose?",
+  "openingOptions": [
+    "Impossible to say, because phở doesn't represent inflation",
+    "None, because money is still money",
+    "99.3% of its purchasing power: 1 đồng in 1990 is worth 0.007 today",
+    "About 50%, because economic growth offsets the rest"
+  ],
+  "explanation": "A bowl of phở at 500 đồng in 1990 costs roughly 70,000 today - a 140-fold rise over about three decades. What is worth noticing is not the number 140 but where it came from: an average inflation rate of only a few percent a year. Accumulate that for long enough and a rate that sounds harmless consumes the whole purchasing power of the currency. This is why holding cash over a long horizon is a risky decision, even though it feels like the safest option available.",
+  "diagram": [
+    { "label": "Prices rise a few percent every year" },
+    { "label": "The same money buys fewer goods" },
+    { "label": "Compounded over decades, that becomes many times over" },
+    { "label": "An investment must beat inflation to hold its real value" }
+  ],
+  "realWorldExample": {
+    "company": "Zimbabwe 2008",
+    "description": "Zimbabwe went through hyperinflation of 89.7 billion percent a month. A 100-trillion Zimbabwe dollar note was not enough to buy a loaf of bread."
+  },
+  "quiz": [
+    {
+      "question": "What is the main mechanism that causes inflation?",
+      "options": [
+        "Businesses raise prices together to widen their profit margins",
+        "Too much money chasing too few goods in the economy",
+        "Households save too little relative to what they earn",
+        "A rise in world oil prices, which is the only real cause"
+      ],
+      "explanation": "Inflation has two main sources: demand-pull (too much money in the economy) and cost-push (raw materials becoming more expensive). They usually occur at the same time."
+    },
+    {
+      "question": "Why is inflation of about 2% considered healthy?",
+      "options": [
+        "Because the IMF requires member countries to hold this level",
+        "Because 2% is roughly what offsets depreciation on fixed assets",
+        "Because it encourages people to spend and invest today",
+        "Because businesses need 2% price rises to protect their margins"
+      ],
+      "explanation": "Moderate inflation creates pressure to spend: money will lose value, so putting it to work today is better than holding it. Deflation is more dangerous, because everyone postpones purchases waiting for prices to fall further."
+    },
+    {
+      "question": "Scenario: You hold 100 million VND in a savings account paying 6% a year. Average inflation runs at 4% a year. After 5 years, has your real purchasing power risen or fallen, and by how much?",
+      "options": [
+        "Up 30% (= 6% × 5 years, ignoring inflation entirely)",
+        "Unchanged, because the interest rate offsets inflation",
+        "Down 20% (= 4% × 5 years, ignoring the interest)",
+        "Up about 10% (= (6% − 4%) × 5 years, the real rate)"
+      ],
+      "explanation": "Real rate = nominal rate − inflation = 6% − 4% = 2% a year. After 5 years, real purchasing power is up by roughly 10% (2% × 5). Where the rate is below inflation, you lose purchasing power even as the balance grows."
+    },
+    {
+      "question": "Scenario: A savings account pays 6% a year while inflation runs at 4% a year. What happens to your purchasing power after one year?",
+      "options": [
+        "Up about 2%, the part of the interest that beats inflation",
+        "Up 6%, because bank interest is already a real return",
+        "Down 4%, because inflation erodes the whole deposit",
+        "Up 10% (= 6 + 4, adding instead of subtracting)"
+      ],
+      "explanation": "The balance rises 6% but prices rise 4% too, so what you can additionally buy is only about 2%. This is why a 5% return during 7% inflation is still making you poorer, even though the number on every statement is larger than the month before."
+    },
+    {
+      "question": "Why is deflation considered more dangerous than mild inflation?",
+      "options": [
+        "Because deflation always arrives alongside a sharp rate rise",
+        "Because people postpone buying, demand falls, the economy shrinks",
+        "Because cheaper goods thin out profits, though firms cope with it",
+        "Because deflation devalues money faster than inflation does"
+      ],
+      "explanation": "When prices are falling, waiting is always the better move, so spending gets postponed; weaker demand pushes businesses to cut prices again and cut jobs, and the loop feeds itself. Inflation of 2% keeps that spiral from starting."
+    }
+  ],
+  "keyTakeaways": [
+    "Inflation erodes the purchasing power of money, accumulating year over year",
+    "Around 2% is the healthy target: it encourages spending and avoids deflation",
+    "An investment must return more than inflation to preserve real wealth"
+  ],
+  "practicePrompt": {
+    "question": "If a savings rate is only 4% while inflation is 5%, what happens?",
+    "options": [
+      "Real purchasing power rises",
+      "Real purchasing power is unchanged",
+      "Real purchasing power falls",
+      "Nothing changes, the rate is already enough"
+    ],
+    "explanation": "The real rate is negative whenever the interest rate is below inflation. You hold more money in nominal terms but less purchasing power."
+  },
+  "summary": {
+    "keyIdea": "Inflation measures purchasing power lost over time.",
+    "formula": "Real rate ≈ nominal rate − inflation.",
+    "commonMistake": "Watching the number of đồng instead of what they can buy.",
+    "action": "Check whether your savings are actually gaining purchasing power or just gaining digits."
+  },
+  "application": {
+    "title": "Apply it now",
+    "message": "When you compare investment options, compare their real returns - after inflation has been subtracted."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Your parents remember a bowl of phở costing 500 đồng in 1990; today it costs 70,000. That figure is not small talk - it is living proof of how quietly inflation does its damage."
+    },
+    { "type": "heading", "text": "What is inflation, and why is it always with us?" },
+    {
+      "type": "paragraph",
+      "text": "Inflation is the general level of prices for goods and services rising over time, so that one unit of currency buys fewer goods. It is not an economic 'accident' but an almost inherent feature of every modern economy, because the money supply usually grows faster than the real goods available in that economy."
+    },
+    { "type": "heading", "text": "140 times over in 34 years - what does that figure tell us?" },
+    {
+      "type": "paragraph",
+      "text": "70,000 divided by 500 is 140 - the price of phở has risen 140-fold. Put another way, 500 đồng in 1990 had the purchasing power of 70,000 đồng today; and 1 đồng held in your pocket across those 34 years has lost 99.3% of its original purchasing power, if it was held as cash earning nothing. This is exactly why 'cash is safe' becomes a risky decision over a long horizon."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Inflation erodes the purchasing power of money over time, accumulating year by year",
+        "A target of 2% a year is what many central banks regard as 'healthy' - enough to encourage spending, and enough to avoid the stagnation deflation brings",
+        "An investment has to return MORE than inflation before it genuinely preserves the value of your wealth"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "What this means in practice",
+      "text": "If your savings earn 5% a year while inflation runs at 4% a year, you are only genuinely 1% a year better off - not the 5% the statement shows. This is the real interest rate, which later lessons cover in more depth."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Understanding inflation reframes the goal: the objective is not to 'keep money' but to keep and grow purchasing power over time."
+      ]
+    }
+  ]
+}

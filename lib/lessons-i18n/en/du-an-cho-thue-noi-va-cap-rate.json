@@ -1,0 +1,142 @@
+{
+  "slug": "du-an-cho-thue-noi-va-cap-rate",
+  "title": "Property projects, Lesson 4: Rental assets - NOI and why it differs from accounting profit",
+  "subtitle": "How to calculate net operating income, the relationship between NOI and the cap rate, and the three deductions beginners always forget",
+  "duration": "11 min",
+  "whyItMatters": "Valuing a rental building is NOI divided by the cap rate, so getting NOI wrong by 10% gets the building's value wrong by 10%. And NOI is the most easily inflated figure in an offering memorandum, because no accounting standard constrains how it is calculated.",
+  "openingQuestion": "A building has NOI of 40 billion a year and the market cap rate is 8%. What is the estimated value?",
+  "openingOptions": [
+    "500 billion",
+    "320 billion",
+    "3.2 billion",
+    "Impossible to determine without knowing the building's original construction cost"
+  ],
+  "explanation": "40 / 0.08 = 500 billion. This is valuation by direct capitalisation, and it is how the rental property market genuinely works - nobody values a building by what it cost to build, because a buyer is paying for future cash flow rather than for history. Note the inverse relationship: the cap rate is the yield a buyer demands, so a rising cap rate means a falling price. For the same building with unchanged NOI, a cap rate moving from 8% to 9% drops the value from 500 billion to 444 - an 11% loss with nothing about the building having changed.",
+  "diagram": [
+    { "label": "Potential rental revenue (100% occupancy)" },
+    { "label": "− vacancy and bad debt" },
+    { "label": "− operating expenses (management, maintenance, tax, insurance)" },
+    { "label": "= NOI" },
+    { "label": "÷ cap rate = asset value" }
+  ],
+  "realWorldExample": {
+    "company": "An office building offering memorandum",
+    "description": "The NOI in an offering memorandum is usually calculated assuming higher occupancy than reality and lower maintenance costs than reality. Experienced buyers always rebuild NOI from the actual leases and the last 24 months of operating invoices rather than taking the figure in the memorandum - because a 10% difference in NOI is a 10% difference in price."
+  },
+  "quiz": [
+    {
+      "question": "How is NOI calculated?",
+      "options": [
+        "Profit after tax with depreciation added back",
+        "Rental revenue less every cost, including interest",
+        "Actual rental revenue less operating expenses",
+        "Total rent collected during the year"
+      ],
+      "explanation": "NOI sits ahead of interest, tax and depreciation - it measures how well the asset itself performs, independently of how the owner has financed it."
+    },
+    {
+      "question": "If the cap rate rises from 8% to 9% with NOI unchanged, how does the value change?",
+      "options": [
+        "Unchanged, because NOI is what determines an asset's value",
+        "Up about 12.5%, on the strength of the higher yield",
+        "Down by exactly 1%",
+        "Down by about 11%"
+      ],
+      "explanation": "40/0.08 = 500 and 40/0.09 = 444. The cap rate is the denominator, so the relationship is a reciprocal rather than subtracting one percentage point."
+    },
+    {
+      "question": "Which item is NOT deducted when calculating NOI?",
+      "options": [
+        "Bank loan interest",
+        "Building management fees",
+        "Property insurance",
+        "Maintenance costs"
+      ],
+      "explanation": "Interest is a cost of the financing, not of the asset. Deducting it from NOI would give the same building two different values depending on who happened to own it."
+    },
+    {
+      "question": "What are the three deductions beginners most often forget in NOI?",
+      "options": [
+        "Tax, depreciation and interest",
+        "Vacancy, bad debt and periodic replacement costs",
+        "Broker commission, notary fees and transfer duty on a sale",
+        "Marketing costs, staff costs and the building's utility costs"
+      ],
+      "explanation": "Assuming 100% occupancy and ignoring the periodic replacement of lifts and air conditioning are the two commonest ways for the NOI in a memorandum to look better than the real thing."
+    },
+    {
+      "question": "Why is NOI easier to inflate than accounting profit?",
+      "options": [
+        "Because NOI is used internally and never appears in a sale contract",
+        "Because NOI is not subject to tax",
+        "Because no accounting standard constrains how NOI is calculated",
+        "Because the standards permit rental revenue to be recognised on an accrual basis"
+      ],
+      "explanation": "Accounting profit has standards behind it and gets audited. NOI is an industry convention, so each memorandum can define it slightly differently - and that difference multiplies straight into the price."
+    }
+  ],
+  "keyTakeaways": [
+    "NOI = actual rental revenue − operating expenses. It sits ahead of interest, tax and depreciation.",
+    "Value = NOI / cap rate. The cap rate is the denominator, so its relationship with price is a reciprocal.",
+    "Do not deduct interest from NOI - that is a cost of the financing, not of the asset.",
+    "Three commonly forgotten items: vacancy, bad debt, periodic replacement costs."
+  ],
+  "summary": {
+    "keyIdea": "NOI sits ahead of interest, tax and depreciation, so it measures the asset rather than the financing",
+    "formula": "Value = NOI / cap rate",
+    "commonMistake": "Deducting interest from NOI. Interest is a cost of the financing, not of the building.",
+    "action": "Given an NOI figure, check the three items that get left out: vacancy, bad debt, and periodic replacement costs."
+  },
+  "application": {
+    "title": "Check an NOI figure",
+    "message": "Take any NOI calculation and ask three questions: has revenue been reduced for vacancy, has the uncollectable share been deducted, and is there a reserve for replacing equipment.",
+    "secondary": "Missing all three puts NOI roughly 10-15% above reality, and since value is NOI divided by the cap rate, that error goes straight into the valuation."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A rental building is not valued by what it cost to build. It is valued by the cash flow it produces - and in this industry, that cash flow has a name and a calculation of its own."
+    },
+    { "type": "heading", "text": "From rent to NOI" },
+    {
+      "type": "formula",
+      "title": "Net operating income",
+      "equation": "NOI = potential rental revenue − vacancy and bad debt − operating expenses",
+      "variables": [
+        {
+          "symbol": "vacancy",
+          "name": "vacancy",
+          "description": "the floor area with no tenant during the period"
+        },
+        {
+          "symbol": "operating expenses",
+          "name": "operating expenses",
+          "description": "management, maintenance, insurance, property tax - excluding interest and depreciation"
+        }
+      ],
+      "example": {
+        "title": "A 10,000 m² office building",
+        "calculation": "Potential rent 60 billion − 10% vacancy − 14 billion operating",
+        "result": "NOI = 40 billion",
+        "explanation": "At a market cap rate of 8%, the estimated value is 500 billion. If actual vacancy is 20% rather than 10%, NOI falls to 34 billion and the value drops to 425 billion."
+      }
+    },
+    { "type": "heading", "text": "Why interest is not in NOI" },
+    {
+      "type": "paragraph",
+      "text": "NOI measures how the asset itself performs, independently of who owns it and how much they borrowed. Deduct interest and the same building would have different values depending on whether the buyer borrowed a lot or a little - which is nonsense, because the building has not changed. The financing affects the owner's profit, not the value of the asset."
+    },
+    {
+      "type": "callout",
+      "label": "The three items usually missing from an offering memorandum",
+      "text": "Vacancy taken from an assumption rather than from history; bad debt set at zero; and periodic replacement costs - lifts, air conditioning, waterproofing - left out entirely because they don't arise every year. All three push NOI up, and every 10% of NOI is 10% of the price."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "NOI is the one figure that has to be right when buying a rental building.",
+        "And the way to check it is not in the offering memorandum but in the leases and the last two years of operating invoices."
+      ]
+    }
+  ]
+}

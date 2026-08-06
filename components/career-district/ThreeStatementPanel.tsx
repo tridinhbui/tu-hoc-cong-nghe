@@ -166,6 +166,8 @@ export default function ThreeStatementPanel({
           <Row label="Giá vốn" value={after.incomeStatement.cogs} before={base.incomeStatement.cogs} reveal={reveal} />
           <Row label="Khấu hao" value={after.incomeStatement.depreciation} before={base.incomeStatement.depreciation} reveal={reveal} />
           <Row label="EBIT" value={after.incomeStatement.ebit} before={base.incomeStatement.ebit} reveal={reveal} />
+          <Row label="Lãi vay" value={after.incomeStatement.interest} before={base.incomeStatement.interest} reveal={reveal} />
+          <Row label="LNTT" value={after.incomeStatement.ebt} before={base.incomeStatement.ebt} reveal={reveal} />
           <Row label="Thuế" value={after.incomeStatement.tax} before={base.incomeStatement.tax} reveal={reveal} />
           <Row label="Lợi nhuận sau thuế" value={after.incomeStatement.netIncome} before={base.incomeStatement.netIncome} reveal={reveal} />
         </Wall>
@@ -183,8 +185,10 @@ export default function ThreeStatementPanel({
         <Wall title="Bảng cân đối" accent={accent}>
           <Row label="Tiền mặt" value={after.balanceSheet.cash} before={base.balanceSheet.cash} reveal={reveal} />
           <Row label="Phải thu" value={after.balanceSheet.receivables} before={base.balanceSheet.receivables} reveal={reveal} />
+          <Row label="Hàng tồn kho" value={after.balanceSheet.inventory} before={base.balanceSheet.inventory} reveal={reveal} />
           <Row label="Tài sản cố định" value={after.balanceSheet.ppe} before={base.balanceSheet.ppe} reveal={reveal} />
           <Row label="TỔNG TÀI SẢN" value={after.balanceSheet.totalAssets} before={base.balanceSheet.totalAssets} reveal={reveal} />
+          <Row label="Phải trả người bán" value={after.balanceSheet.payables} before={base.balanceSheet.payables} reveal={reveal} />
           <Row label="Nợ vay" value={after.balanceSheet.debt} before={base.balanceSheet.debt} reveal={reveal} />
           <Row label="Vốn chủ" value={after.balanceSheet.equity} before={base.balanceSheet.equity} reveal={reveal} />
           <Row label="TỔNG NGUỒN VỐN" value={after.balanceSheet.totalLiabilitiesEquity} before={base.balanceSheet.totalLiabilitiesEquity} reveal={reveal} />

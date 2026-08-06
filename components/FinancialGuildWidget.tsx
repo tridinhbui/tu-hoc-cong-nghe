@@ -14,6 +14,8 @@ import { createClient } from "@/lib/supabase";
 import { recalculateUserStats } from "@/lib/supabase-user";
 import { recordCustomGameSession } from "@/lib/games";
 import ModeLeaderboard from "@/components/games/ModeLeaderboard";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 interface PortfolioPosition {
   ticker: string;
@@ -22,6 +24,7 @@ interface PortfolioPosition {
 }
 
 export default function FinancialGuildWidget({ userId }: { userId: string }) {
+  const { t } = useI18n();
   const INITIAL_CASH = 1000000000; // 1 Tỷ VNĐ vốn ban đầu
 
   const [stocks, setStocks] = useState<StockItem[]>(INITIAL_VN30_STOCKS);
@@ -149,7 +152,7 @@ export default function FinancialGuildWidget({ userId }: { userId: string }) {
 
     if (tradeType === "buy") {
       if (cash < totalCost) {
-        toast.error("Không đủ sức mua tiền mặt khả dụng!");
+        toast.error(t.guild.insufficientCash);
         return;
       }
       const existing = positions[ticker] || { ticker, shares: 0, avgPrice: 0 };
@@ -167,7 +170,7 @@ export default function FinancialGuildWidget({ userId }: { userId: string }) {
       // Sell
       const existing = positions[ticker];
       if (!existing || existing.shares < tradeShares) {
-        toast.error("Số lượng cổ phiếu trong danh mục không đủ để BÁN!");
+        toast.error(t.guild.insufficientShares);
         return;
       }
 
@@ -206,7 +209,7 @@ export default function FinancialGuildWidget({ userId }: { userId: string }) {
     setStocks(INITIAL_VN30_STOCKS);
     setSimulatedDay(1);
     setLearnedLessons([]);
-    toast.message("Đã tái cơ cấu đưa Quỹ về trạng thái vốn ban đầu 1 Tỷ VNĐ.");
+    toast.message(t.guild.rebalanced);
   }
 
   const filteredStocks = selectedSector === "all" ? stocks : stocks.filter((s) => s.sector === selectedSector);
@@ -225,14 +228,14 @@ export default function FinancialGuildWidget({ userId }: { userId: string }) {
         <div>
           <div className="flex items-center gap-2 flex-wrap">
             <span className="text-[10px] uppercase font-black tracking-widest text-amber-700 bg-amber-50 border border-amber-200 px-3 py-1 rounded-full">
-              🏛️ Wall Street Hedge Fund Clan
+              {t.guild.clanTitle}
             </span>
             <span className="text-[10px] font-extrabold text-emerald-600 bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded-full">
-              VN30 Top 30 Stocks
+              {t.guild.universe}
             </span>
           </div>
           <h2 className="text-xl sm:text-2xl font-black text-stone-900 mt-2">
-            Mô Phỏng Quỹ Đầu Tư Cổ Phiếu Việt Nam
+            {t.guild.subtitle}
           </h2>
         </div>
 
@@ -243,25 +246,25 @@ export default function FinancialGuildWidget({ userId }: { userId: string }) {
             className="bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-300 font-bold text-xs px-3.5 py-2.5 rounded-xl transition-all shadow-2xs flex items-center gap-1.5 cursor-pointer"
           >
             <BookOpen className="w-4 h-4 text-amber-700" />
-            <span>{showGuide ? "Ẩn hướng dẫn" : "📖 Hướng dẫn cách chơi"}</span>
+            <span>{showGuide ? t.guild.hideGuide : t.guild.showGuide}</span>
           </button>
 
           <button
             onClick={() => advanceDays(7)}
             className="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-stone-950 font-black text-xs px-4 py-2.5 rounded-xl transition-all shadow-md flex items-center gap-1.5 cursor-pointer active:scale-95"
           >
-            <Calendar className="w-4 h-4" /> Tua +7 Ngày
+            <Calendar className="w-4 h-4" /> {t.guild.advance7}
           </button>
           <button
             onClick={() => advanceDays(30)}
             className="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-stone-950 font-black text-xs px-4 py-2.5 rounded-xl transition-all shadow-md flex items-center gap-1.5 cursor-pointer active:scale-95"
           >
-            <Zap className="w-4 h-4" /> Tua +30 Ngày
+            <Zap className="w-4 h-4" /> {t.guild.advance30}
           </button>
           <button
             onClick={resetPortfolio}
             className="bg-stone-100 hover:bg-stone-200 text-stone-600 text-xs font-bold px-3 py-2.5 rounded-xl transition-all border border-stone-200"
-            title="Tái cơ cấu về 1 Tỷ VNĐ"
+            title={t.guild.rebalanceTitle}
           >
             <RefreshCw className="w-3.5 h-3.5" />
           </button>
@@ -282,51 +285,65 @@ export default function FinancialGuildWidget({ userId }: { userId: string }) {
                 <div className="flex items-center gap-2">
                   <span className="text-xl">💡</span>
                   <h4 className="text-sm font-black uppercase text-amber-900 tracking-wider">
-                    Hướng Dẫn Chi Tiết Cách Chơi Mô Phỏng Quỹ Đầu Tư
+                    {t.guild.guideTitle}
                   </h4>
                 </div>
                 <button
                   onClick={() => setShowGuide(false)}
                   className="text-stone-400 hover:text-stone-700 text-xs font-extrabold cursor-pointer"
                 >
-                  ✕ Đóng
+                  {t.guild.close}
                 </button>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
                 <div className="bg-white/95 border border-amber-200 rounded-xl p-3 shadow-2xs space-y-1">
                   <span className="text-[10px] font-black text-amber-800 uppercase tracking-wider block">
-                    1️⃣ Vốn Ban Đầu 1 Tỷ
+                    {t.guild.step1Title}
                   </span>
                   <p className="text-stone-700 font-semibold leading-relaxed">
-                    Bạn được cấp <strong className="text-amber-800">1,000,000,000 VNĐ</strong> tiền mặt ban đầu để đóng vai Quản lý Quỹ Hedge Fund chuyên nghiệp.
+                    {t.guild.step1Part1}
+                    <strong className="text-amber-800">{t.guild.step1Amount}</strong>
+                    {t.guild.step1Part2}
                   </p>
                 </div>
 
                 <div className="bg-white/95 border border-emerald-200 rounded-xl p-3 shadow-2xs space-y-1">
                   <span className="text-[10px] font-black text-emerald-800 uppercase tracking-wider block">
-                    2️⃣ Mua / Bán VN30
+                    {t.guild.step2Title}
                   </span>
                   <p className="text-stone-700 font-semibold leading-relaxed">
-                    Chọn các mã cổ phiếu đầu ngành (<strong className="text-emerald-800">FPT, VNM, HPG, TCB...</strong>) bấm <strong className="text-emerald-700">MUA</strong> giải ngân hoặc <strong className="text-rose-600">BÁN</strong> chốt lời.
+                    {t.guild.step2Part1}
+                    <strong className="text-emerald-800">{t.guild.step2Tickers}</strong>
+                    {t.guild.step2Part2}
+                    <strong className="text-emerald-700">{t.guild.buy}</strong>
+                    {t.guild.step2Part3}
+                    <strong className="text-rose-600">{t.guild.sell}</strong>
+                    {t.guild.step2Part4}
                   </p>
                 </div>
 
                 <div className="bg-white/95 border border-sky-200 rounded-xl p-3 shadow-2xs space-y-1">
                   <span className="text-[10px] font-black text-sky-800 uppercase tracking-wider block">
-                    3️⃣ Tua Thời Gian & Tin Tức
+                    {t.guild.step3Title}
                   </span>
                   <p className="text-stone-700 font-semibold leading-relaxed">
-                    Bấm <strong className="text-sky-800">Tua +7 Ngày</strong> hoặc <strong className="text-sky-800">+30 Ngày</strong> để theo dõi biến động giá cổ phiếu & phản ứng với các tin vĩ mô.
+                    {t.guild.step3Part1}
+                    <strong className="text-sky-800">{t.guild.advance7}</strong>
+                    {t.guild.step3Part2}
+                    <strong className="text-sky-800">{t.guild.step3Advance30Short}</strong>
+                    {t.guild.step3Part3}
                   </p>
                 </div>
 
                 <div className="bg-white/95 border border-purple-200 rounded-xl p-3 shadow-2xs space-y-1">
                   <span className="text-[10px] font-black text-purple-800 uppercase tracking-wider block">
-                    4️⃣ Đua Top BXH & Thưởng
+                    {t.guild.step4Title}
                   </span>
                   <p className="text-stone-700 font-semibold leading-relaxed">
-                    Tăng trưởng giá trị tổng quỹ để leo Top trên <strong className="text-purple-800">BXH Quỹ Server</strong> + tích lũy XP & Coin thưởng.
+                    {t.guild.step4Part1}
+                    <strong className="text-purple-800">{t.guild.step4Board}</strong>
+                    {t.guild.step4Part2}
                   </p>
                 </div>
               </div>
@@ -336,30 +353,30 @@ export default function FinancialGuildWidget({ userId }: { userId: string }) {
       {/* Fund Capital Dashboard Card */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <div className="bg-amber-50/70 border border-amber-200 p-4 rounded-2xl">
-          <span className="text-[10px] font-black uppercase text-amber-700 block mb-1">Tổng Tài Sản Quỹ</span>
-          <span className="text-lg font-black text-amber-600">{totalFundValue.toLocaleString()} VNĐ</span>
+          <span className="text-[10px] font-black uppercase text-amber-700 block mb-1">{t.guild.totalAssets}</span>
+          <span className="text-lg font-black text-amber-600">{totalFundValue.toLocaleString()} {t.guild.currency}</span>
           <span className={`text-xs font-extrabold flex items-center gap-1 mt-1 ${fundReturnPercent >= 0 ? "text-emerald-600" : "text-rose-500"}`}>
             {fundReturnPercent >= 0 ? <ArrowUpRight className="w-3.5 h-3.5" /> : <ArrowDownRight className="w-3.5 h-3.5" />}
-            {fundReturnPercent >= 0 ? "+" : ""}{fundReturnPercent.toFixed(2)}% Tổng Quỹ
+            {fundReturnPercent >= 0 ? "+" : ""}{fundReturnPercent.toFixed(2)}{t.guild.percentOfFund}
           </span>
         </div>
 
         <div className="bg-white border border-stone-200 p-4 rounded-2xl">
-          <span className="text-[10px] font-black uppercase text-stone-500 block mb-1">Tiền Mặt Khả Dụng</span>
-          <span className="text-base font-black text-emerald-600">{cash.toLocaleString()} VNĐ</span>
-          <span className="text-[10px] text-stone-400 block mt-1">Sức mua còn lại</span>
+          <span className="text-[10px] font-black uppercase text-stone-500 block mb-1">{t.guild.availableCash}</span>
+          <span className="text-base font-black text-emerald-600">{cash.toLocaleString()} {t.guild.currency}</span>
+          <span className="text-[10px] text-stone-400 block mt-1">{t.guild.buyingPowerLeft}</span>
         </div>
 
         <div className="bg-white border border-stone-200 p-4 rounded-2xl">
-          <span className="text-[10px] font-black uppercase text-stone-500 block mb-1">Giá Trị Cổ Phiếu</span>
-          <span className="text-base font-black text-sky-600">{stockValue.toLocaleString()} VNĐ</span>
-          <span className="text-[10px] text-stone-400 block mt-1">{Object.keys(positions).length} mã đang nắm giữ</span>
+          <span className="text-[10px] font-black uppercase text-stone-500 block mb-1">{t.guild.stockValue}</span>
+          <span className="text-base font-black text-sky-600">{stockValue.toLocaleString()} {t.guild.currency}</span>
+          <span className="text-[10px] text-stone-400 block mt-1">{format(t.guild.holdingsCount, { count: Object.keys(positions).length })}</span>
         </div>
 
         <div className="bg-white border border-stone-200 p-4 rounded-2xl flex items-center justify-between">
           <div>
-            <span className="text-[10px] font-black uppercase text-stone-500 block mb-1">Thời Gian Mô Phỏng</span>
-            <span className="text-base font-black text-stone-900">Ngày thứ {simulatedDay}</span>
+            <span className="text-[10px] font-black uppercase text-stone-500 block mb-1">{t.guild.simulatedTime}</span>
+            <span className="text-base font-black text-stone-900">{format(t.guild.dayNumber, { day: simulatedDay })}</span>
           </div>
           <Calendar className="w-8 h-8 text-amber-500 opacity-70" />
         </div>
@@ -368,7 +385,7 @@ export default function FinancialGuildWidget({ userId }: { userId: string }) {
       <div className="mb-6">
         <ModeLeaderboard
           gameType="vn30-fund-sim"
-          title="BXH Quỹ Mô Phỏng"
+          title={t.guild.leaderboardTitle}
           formatter={(entry) => `${(entry.bestScore / 100).toFixed(1)}%`}
         />
       </div>
@@ -388,7 +405,7 @@ export default function FinancialGuildWidget({ userId }: { userId: string }) {
       {learnedLessons.length > 0 && (
         <div className="bg-violet-50 border border-violet-200 p-4 rounded-2xl mb-6 space-y-3">
           <span className="text-[11px] font-black uppercase tracking-wider text-violet-700 flex items-center gap-1.5">
-            <BookOpen className="w-4 h-4 text-violet-500" /> Bài học tài chính rút ra từ danh mục của bạn:
+            <BookOpen className="w-4 h-4 text-violet-500" /> {t.guild.lessonFromPortfolio}
           </span>
           <div className="space-y-2">
             {learnedLessons.map((l, i) => (
@@ -413,7 +430,7 @@ export default function FinancialGuildWidget({ userId }: { userId: string }) {
                 : "bg-white text-stone-600 border-stone-200 hover:border-stone-300"
             }`}
           >
-            {sec === "all" ? "Tất cả 30 Mã VN30" : sec}
+            {sec === "all" ? t.guild.allVn30 : sec}
           </button>
         ))}
       </div>
@@ -424,13 +441,13 @@ export default function FinancialGuildWidget({ userId }: { userId: string }) {
           <table className="w-full text-left border-collapse min-w-[650px]">
             <thead className="sticky top-0 z-10">
               <tr className="border-b border-stone-200 bg-stone-50 text-[10px] uppercase font-black text-stone-500">
-                <th className="py-3 px-4">Mã CK / Doanh Nghiệp</th>
-                <th className="py-3 px-4">Ngành Nghề</th>
-                <th className="py-3 px-4 text-right">Giá Thị Trường (VNĐ)</th>
-                <th className="py-3 px-4 text-right">Thay Đổi</th>
-                <th className="py-3 px-4 text-center">Nắm Giữ (Cổ phiếu)</th>
-                <th className="py-3 px-4 text-right">Lãi/Lỗ Tạm Tính</th>
-                <th className="py-3 px-4 text-center">Hành Động</th>
+                <th className="py-3 px-4">{t.guild.colTicker}</th>
+                <th className="py-3 px-4">{t.guild.colSector}</th>
+                <th className="py-3 px-4 text-right">{t.guild.colPrice}</th>
+                <th className="py-3 px-4 text-right">{t.guild.colChange}</th>
+                <th className="py-3 px-4 text-center">{t.guild.colHolding}</th>
+                <th className="py-3 px-4 text-right">{t.guild.colPnl}</th>
+                <th className="py-3 px-4 text-center">{t.guild.colAction}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-stone-200 text-xs">
@@ -480,7 +497,7 @@ export default function FinancialGuildWidget({ userId }: { userId: string }) {
                       {pos && pos.shares > 0 ? (
                         <div>
                           <span className="text-amber-700 font-extrabold">{pos.shares.toLocaleString()} cp</span>
-                          <span className="text-[10px] text-stone-500 block">Giá vốn: {pos.avgPrice.toLocaleString()}đ</span>
+                          <span className="text-[10px] text-stone-500 block">{t.guild.costBasis} {pos.avgPrice.toLocaleString()}đ</span>
                         </div>
                       ) : (
                         <span className="text-stone-300">-</span>
@@ -508,7 +525,7 @@ export default function FinancialGuildWidget({ userId }: { userId: string }) {
                           }}
                           className="bg-emerald-600 hover:bg-emerald-500 text-white text-[11px] font-black px-2.5 py-1 rounded-lg transition-all"
                         >
-                          MUA
+                          {t.guild.buy}
                         </button>
                         <button
                           disabled={!pos || pos.shares === 0}
@@ -519,7 +536,7 @@ export default function FinancialGuildWidget({ userId }: { userId: string }) {
                           }}
                           className="bg-rose-600 hover:bg-rose-500 text-white text-[11px] font-black px-2.5 py-1 rounded-lg transition-all disabled:opacity-30 disabled:pointer-events-none"
                         >
-                          BÁN
+                          {t.guild.sell}
                         </button>
                       </div>
                     </td>
@@ -540,20 +557,20 @@ export default function FinancialGuildWidget({ userId }: { userId: string }) {
             <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }} className="bg-white border-2 border-amber-200 p-6 rounded-3xl max-w-md w-full text-stone-900 shadow-2xl space-y-4">
               <div className="flex items-center justify-between border-b border-stone-200 pb-3">
                 <span className="text-xs font-black uppercase text-amber-700">
-                  {tradeType === "buy" ? "🛒 Lệnh Mua Cổ Phiếu" : "💰 Lệnh Bán Cổ Phiếu"} - {activeTradeStock.ticker}
+                  {tradeType === "buy" ? t.guild.buyOrderTitle : t.guild.sellOrderTitle} - {activeTradeStock.ticker}
                 </span>
-                <button onClick={() => setActiveTradeStock(null)} className="text-stone-400 hover:text-stone-900 text-xs font-bold">✕ Đóng</button>
+                <button onClick={() => setActiveTradeStock(null)} className="text-stone-400 hover:text-stone-900 text-xs font-bold">{t.guild.close}</button>
               </div>
 
               <div className="bg-stone-50 p-4 rounded-2xl border border-stone-200 space-y-1">
                 <h4 className="font-bold text-sm text-amber-700">{activeTradeStock.name} ({activeTradeStock.ticker})</h4>
-                <p className="text-xs text-stone-600">Giá hiện tại: <strong className="text-emerald-600">{activeTradeStock.currentPrice.toLocaleString()} VNĐ</strong></p>
+                <p className="text-xs text-stone-600">{t.guild.currentPrice} <strong className="text-emerald-600">{activeTradeStock.currentPrice.toLocaleString()} {t.guild.currency}</strong></p>
                 <p className="text-[11px] text-stone-500">{activeTradeStock.description}</p>
               </div>
 
               {/* Trade Input Form */}
               <div className="space-y-3">
-                <label className="text-xs font-bold text-stone-600 block">Số lượng cổ phiếu:</label>
+                <label className="text-xs font-bold text-stone-600 block">{t.guild.shareCount}</label>
                 <div className="grid grid-cols-4 gap-2 mb-2">
                   {[100, 500, 1000, 5000].map((num) => (
                     <button
@@ -579,12 +596,12 @@ export default function FinancialGuildWidget({ userId }: { userId: string }) {
 
                 <div className="bg-stone-50 p-3 rounded-xl border border-stone-200 text-xs space-y-1">
                   <div className="flex justify-between text-stone-500">
-                    <span>Tổng giá trị giao dịch:</span>
-                    <strong className="text-amber-700">{(activeTradeStock.currentPrice * tradeShares).toLocaleString()} VNĐ</strong>
+                    <span>{t.guild.orderTotal}</span>
+                    <strong className="text-amber-700">{(activeTradeStock.currentPrice * tradeShares).toLocaleString()} {t.guild.currency}</strong>
                   </div>
                   <div className="flex justify-between text-stone-500">
-                    <span>Tiền mặt khả dụng:</span>
-                    <strong className="text-emerald-600">{cash.toLocaleString()} VNĐ</strong>
+                    <span>{t.guild.cashAvailable}</span>
+                    <strong className="text-emerald-600">{cash.toLocaleString()} {t.guild.currency}</strong>
                   </div>
                 </div>
 
@@ -594,7 +611,7 @@ export default function FinancialGuildWidget({ userId }: { userId: string }) {
                     tradeType === "buy" ? "bg-emerald-600 hover:bg-emerald-500" : "bg-rose-600 hover:bg-rose-500"
                   }`}
                 >
-                  Xác Nhận {tradeType === "buy" ? "MUA" : "BÁN"} {tradeShares.toLocaleString()} Cổ Phiếu {activeTradeStock.ticker}
+                  {t.guild.confirmPrefix} {tradeType === "buy" ? t.guild.buy : t.guild.sell} {tradeShares.toLocaleString()} {t.guild.confirmSuffix} {activeTradeStock.ticker}
                 </button>
               </div>
             </motion.div>

@@ -4,189 +4,21 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import {
-  GraduationCap,
-  Gauge,
-  Sparkles,
-  Brain,
-  ArrowRight,
-  PlayCircle,
-  ShieldCheck,
-  CheckCircle2,
-  Gamepad2,
-  Users,
-  MessageSquareMore,
-  Crown,
-  Trophy,
-  Zap,
-  ChevronLeft,
-  ChevronRight,
-} from "lucide-react";
+import { ArrowRight, PlayCircle } from "lucide-react";
 import { getTotalUserCount, getTotalCompletedLessonsCount } from "@/lib/supabase-user";
 import { animateCountTo } from "@/lib/animate-count";
-import { TRACKS, type TrackId } from "@/lib/tracks";
+import { TRACKS } from "@/lib/tracks";
 import Logo from "@/components/Logo";
 import LiveNumber from "@/components/LiveNumber";
 import ScrollReveal from "@/components/home/ScrollReveal";
 import ProductPreview from "@/components/home/ProductPreview";
-import TrackPreviewPanel from "@/components/login/TrackPreviewPanel";
 import PublicLeaderboardPreview from "@/components/login/PublicLeaderboardPreview";
 import InteractiveKingdomPreview from "@/components/home/InteractiveKingdomPreview";
 import InteractiveEcosystemShowcase from "@/components/home/InteractiveEcosystemShowcase";
 import ScrollytellingPinnedSection from "@/components/home/ScrollytellingPinnedSection";
 import { useRoutePrefetch } from "@/lib/use-route-prefetch";
-
-// Each pain point is framed as the visitor's actual internal objection
-// before signing up for yet another "learn finance" product - not a
-// generic feature list. Answering the objection directly (in the same
-// card) is what makes this read as understanding the customer instead of
-// just listing capabilities.
-const PAIN_POINTS = [
-  {
-    icon: Brain,
-    worry: "Học xong rồi vài tuần sau quên sạch",
-    answer:
-      "Hệ thống tự chèn câu hỏi ôn lại đúng lúc sắp quên (Spaced Repetition) - không phải đọc một lần rồi thôi.",
-  },
-  {
-    icon: Sparkles,
-    worry: "Sợ đóng tiền một khoá đắt rồi bỏ dở",
-    answer: "Toàn bộ {count}+ bài học - 100% miễn phí mãi mãi, không có bài trả phí hay bản nâng cấp ẩn phía sau.",
-  },
-  {
-    icon: GraduationCap,
-    worry: "Không biết nên bắt đầu từ đâu",
-    answer: "Lộ trình chia theo chặng rõ ràng, từ vỡ lòng đến chuyên sâu, theo đúng thứ tự cần học.",
-  },
-  {
-    icon: Gauge,
-    worry: "Tự học một mình, không ai kiểm tra mình có hiểu không",
-    answer: "Quiz sau mỗi bài, điểm XP, bảng xếp hạng thật - biết ngay mình đã hiểu đúng hay chưa.",
-  },
-] as const;
-
-const METHOD_STEPS = [
-  { step: "1", title: "Học một bài ngắn", text: "5-7 phút mỗi bài, đủ để không quá tải nhưng đủ sâu để hiểu bản chất." },
-  { step: "2", title: "Làm quiz ngay sau đó", text: "Active recall - tự nhớ lại thay vì đọc lại, giúp kiến thức bám sâu hơn." },
-  { step: "3", title: "Hệ thống nhắc ôn đúng lúc", text: "Trước khi bạn kịp quên (~5 và ~12 bài sau), một câu hỏi ôn lại xuất hiện." },
-  { step: "4", title: "Nhớ lâu, không học vẹt", text: "Kiến thức được củng cố nhiều lần theo đúng đường cong quên lãng (forgetting curve)." },
-] as const;
-
-const FEATURE_SHOWCASE = [
-  {
-    eyebrow: "Game Kingdom",
-    title: "Học tài chính như mở bản đồ vương quốc",
-    text:
-      "Vào Game Kingdom để làm nhiệm vụ, mở công trình, thử mini game tài chính và kiếm XP. Người mới không chỉ đọc lý thuyết, mà được luyện phản xạ qua tình huống ngắn: phân loại tài sản, ghép khái niệm, xử lý câu hỏi nhanh và theo dõi điểm.",
-    image: "/rpg/empire_state_building.jpg",
-    alt: "Thành phố tài chính dùng làm bối cảnh cho Game Kingdom",
-    icon: Gamepad2,
-    href: "/login?mode=signup",
-    cta: "Khám phá Game Kingdom",
-    bullets: ["Nhiệm vụ hằng ngày", "Mini game có điểm XP", "Bảng xếp hạng game thủ"],
-  },
-  {
-    eyebrow: "Học nhóm",
-    title: "Có phòng học chung để không phải tự học một mình",
-    text:
-      "Hệ thống ghép bạn vào phòng học theo chủ đề, có check-in mỗi ngày và trò chuyện nhóm. Đây là nơi hỏi nhanh, chia sẻ tiến độ, nhắc nhau học đều và biến việc tự học tài chính thành một thói quen có đồng đội.",
-    image: "/images/study-group-cover.jpg",
-    alt: "Không gian học nhóm tài chính với bối cảnh giao dịch phố Wall",
-    icon: Users,
-    href: "/login?mode=signup",
-    cta: "Vào học nhóm",
-    bullets: ["Ghép nhóm theo chủ đề", "Check-in nhận XP", "Chat nhóm có bot hỗ trợ"],
-  },
-  {
-    eyebrow: "FinSocial",
-    title: "Mạng xã hội học tài chính cho bài viết ngắn và câu hỏi thật",
-    text:
-      "FinSocial là feed riêng để đăng bản tin học tập, câu hỏi, phân tích ngắn, ảnh thành tựu và bình luận. Người mới có thể đọc cách người khác suy nghĩ, còn người học sâu hơn có nơi luyện viết phân tích tài chính bằng ngôn ngữ dễ hiểu.",
-    image: "/wallstreet-bg.jpg",
-    alt: "Bối cảnh phố Wall đại diện cho mạng xã hội học tài chính FinSocial",
-    icon: MessageSquareMore,
-    href: "/login?mode=signup",
-    cta: "Tham gia FinSocial",
-    bullets: ["Đăng bản tin ngắn", "Lọc chủ đề", "Bình luận và thả cảm xúc"],
-  },
-] as const;
-
-const KINGDOM_BUILDINGS = [
-  {
-    name: "Goldman Sachs",
-    label: "Đấu trường định giá",
-    image: "/rpg/goldman_sachs.png",
-    progress: "72%",
-  },
-  {
-    name: "Fed Reserve",
-    label: "Thử thách lãi suất",
-    image: "/rpg/fed_reserve.jpg",
-    progress: "48%",
-  },
-  {
-    name: "Singapore Dock",
-    label: "Cảng dòng tiền",
-    image: "/rpg/singapore_dock.jpg",
-    progress: "65%",
-  },
-] as const;
-
-const AUDIENCES = [
-  {
-    title: "Tài chính cá nhân",
-    icon: "💰",
-    tag: "Quản lý dòng tiền",
-    text: "Người muốn hiểu tiền, tiết kiệm, đầu tư, nợ, ngân sách và cách ra quyết định tài chính hằng ngày.",
-  },
-  {
-    title: "Người học CFA",
-    icon: "🎓",
-    tag: "CFA Candidate",
-    text: "Ai cần nền tảng kiến thức chắc hơn để học CFA, luyện tư duy phân tích và tăng độ bền kiến thức.",
-  },
-  {
-    title: "Financial planner",
-    icon: "📋",
-    tag: "Tư vấn tài chính",
-    text: "Người làm tư vấn hoặc lập kế hoạch tài chính cần hệ thống hóa kiến thức để tư vấn tự tin hơn.",
-  },
-  {
-    title: "Investor",
-    icon: "📈",
-    tag: "Nhà đầu tư thực chiến",
-    text: "Nhà đầu tư cá nhân muốn hiểu doanh nghiệp, định giá, dòng tiền và chất lượng tài sản sâu hơn.",
-  },
-  {
-    title: "Kế toán mới vào nghề",
-    icon: "📑",
-    tag: "Phân tích BCTC",
-    text: "Người mới đi làm cần củng cố nền tảng để đọc số liệu, hiểu báo cáo và giao tiếp tài chính tốt hơn.",
-  },
-  {
-    title: "Tài chính chuyên nghiệp",
-    icon: "💼",
-    tag: "Finance / FP&A",
-    text: "Nhân sự finance/FP&A/analysis mới vào nghề cần một hệ thống học nhanh, rõ và bền hơn.",
-  },
-] as const;
-
-function SubtleWaveDivider({ flip = false }: { flip?: boolean }) {
-  return (
-    <div className={`w-full overflow-hidden leading-none pointer-events-none opacity-45 dark:opacity-20 my-[-1px] ${flip ? "rotate-180" : ""}`}>
-      <svg
-        className="relative block w-full h-7 sm:h-10 text-emerald-500/30 dark:text-emerald-400/15"
-        viewBox="0 0 1200 120"
-        preserveAspectRatio="none"
-      >
-        <path
-          d="M0,0 C150,90 350,-40 500,40 C650,120 900,10 1200,40 L1200,120 L0,120 Z"
-          fill="currentColor"
-        />
-      </svg>
-    </div>
-  );
-}
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 function SoftFadeDivider() {
   return (
@@ -194,74 +26,8 @@ function SoftFadeDivider() {
   );
 }
 
-function HorizontalSnapSlider({ children }: { children: React.ReactNode }) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
-
-  const checkScroll = () => {
-    if (!containerRef.current) return;
-    const { scrollLeft, scrollWidth, clientWidth } = containerRef.current;
-    setCanScrollLeft(scrollLeft > 10);
-    setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
-  };
-
-  useEffect(() => {
-    checkScroll();
-    const el = containerRef.current;
-    if (!el) return;
-    el.addEventListener("scroll", checkScroll);
-    window.addEventListener("resize", checkScroll);
-    return () => {
-      el.removeEventListener("scroll", checkScroll);
-      window.removeEventListener("resize", checkScroll);
-    };
-  }, []);
-
-  const scrollByAmount = (direction: "left" | "right") => {
-    if (!containerRef.current) return;
-    const amount = containerRef.current.clientWidth * 0.75;
-    containerRef.current.scrollBy({
-      left: direction === "left" ? -amount : amount,
-      behavior: "smooth",
-    });
-  };
-
-  return (
-    <div className="relative group/slider">
-      {canScrollLeft && (
-        <button
-          type="button"
-          onClick={() => scrollByAmount("left")}
-          className="absolute -left-3 top-1/2 -translate-y-1/2 z-20 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 dark:bg-stone-800/90 text-stone-700 dark:text-stone-200 border border-stone-200 dark:border-stone-700 shadow-md backdrop-blur-md hover:scale-110 active:scale-95 transition-all cursor-pointer"
-          aria-label="Cuộn trái"
-        >
-          <ChevronLeft className="w-5 h-5" />
-        </button>
-      )}
-
-      {canScrollRight && (
-        <button
-          type="button"
-          onClick={() => scrollByAmount("right")}
-          className="absolute -right-3 top-1/2 -translate-y-1/2 z-20 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 dark:bg-stone-800/90 text-stone-700 dark:text-stone-200 border border-stone-200 dark:border-stone-700 shadow-md backdrop-blur-md hover:scale-110 active:scale-95 transition-all cursor-pointer"
-          aria-label="Cuộn phải"
-        >
-          <ChevronRight className="w-5 h-5" />
-        </button>
-      )}
-
-      <div
-        ref={containerRef}
-        className="flex gap-3.5 overflow-x-auto snap-x snap-mandatory scrollbar-none scroll-smooth pb-3 pt-1 px-1"
-      >
-        {children}
-      </div>
-    </div>
-  );
-}
-
 export default function HomePage() {
+  const { t } = useI18n();
   const [displayedUserCount, setDisplayedUserCount] = useState(0);
   const [displayedLessonCount, setDisplayedLessonCount] = useState(0);
   const [displayedCompletedCount, setDisplayedCompletedCount] = useState(0);
@@ -271,7 +37,6 @@ export default function HomePage() {
   // displayedLessonCount above counts up from 0 on load, which reads fine
   // as a standalone hero stat but looks broken mid-sentence in body text.
   const [lessonCountFloor, setLessonCountFloor] = useState<number | null>(null);
-  const [previewTrack, setPreviewTrack] = useState<TrackId>("personal");
   const userCountLoadedRef = useRef(false);
   const completedCountLoadedRef = useRef(false);
   const heroParallaxX = (heroSpotlight.x - 50) / 10;
@@ -549,9 +314,9 @@ export default function HomePage() {
               ★
             </span>
             <p className="text-xs sm:text-sm font-semibold text-white/95 leading-relaxed">
-              Cam kết toàn bộ bài học tại đây <strong className="text-[#FFCD00]">miễn phí mãi mãi</strong> vì sự phát
-              triển của cộng đồng học tài chính cá nhân, CFA, lập kế hoạch tài chính, đầu tư, và người làm tài chính
-              tại Việt Nam.
+              {t.home.banner.part1}
+              <strong className="text-[#FFCD00]">{t.home.banner.freeForever}</strong>
+              {t.home.banner.part2}
             </p>
             <a
               href="https://www.facebook.com/share/g/1C2jTdsgF5/"
@@ -559,7 +324,7 @@ export default function HomePage() {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-1.5 text-xs sm:text-sm font-black text-white hover:underline whitespace-nowrap shrink-0"
             >
-              Tham gia group Facebook
+              {t.home.banner.facebook}
               <ArrowRight className="icon-micro w-4 h-4" />
             </a>
           </div>
@@ -571,9 +336,9 @@ export default function HomePage() {
             <div className="flex items-center gap-2.5">
               <Logo size={28} />
               <span className="text-sm sm:text-base font-black text-stone-800 dark:text-stone-200 uppercase tracking-widest flex items-center gap-2">
-                Tự Học Tài Chính
+                {t.home.brand}
                 <span className="text-[9px] font-black text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded border border-emerald-200/50 hidden xs:inline-block">
-                  🇻🇳 VIỆT NAM
+                  {t.home.brandBadge}
                 </span>
               </span>
             </div>
@@ -581,7 +346,7 @@ export default function HomePage() {
               href="/login"
               className="cta-electric group inline-flex items-center gap-2 rounded-2xl border border-emerald-200/80 dark:border-emerald-800 bg-gradient-to-r from-emerald-500 to-teal-500 px-4.5 py-2.5 text-sm font-bold text-white shadow-[0_12px_28px_-20px_rgba(16,185,129,0.35)] transition-all hover:shadow-[0_16px_34px_-22px_rgba(16,185,129,0.45)]"
             >
-              Vào học ngay
+              {t.home.navCta}
               <ArrowRight className="icon-micro w-4 h-4 transition-transform group-hover:translate-x-0.5" />
             </Link>
           </div>
@@ -603,7 +368,7 @@ export default function HomePage() {
           <div className="absolute inset-0">
             <Image
               src="/times-square.jpg"
-              alt="Bối cảnh tài chính hiện đại"
+              alt={t.home.hero.bgAlt}
               fill
               sizes="100vw"
               className="object-cover object-center opacity-[0.16]"
@@ -632,7 +397,7 @@ export default function HomePage() {
                     <span className="animate-ping absolute inline-flex w-full h-full rounded-full bg-emerald-400 opacity-75" />
                     <span className="relative inline-flex rounded-full w-1.5 h-1.5 bg-emerald-500" />
                   </span>
-                  Kiến thức chuẩn quốc tế · Bản sắc thực tế Việt Nam 🇻🇳
+                  {t.home.hero.badge}
                 </motion.div>
 
                 <motion.h1
@@ -641,11 +406,12 @@ export default function HomePage() {
                   transition={{ duration: 0.6, ease: "easeOut", delay: 0.06 }}
                   className="mb-4 text-[2.5rem] sm:text-[3.6rem] lg:text-[3.8rem] xl:text-[4.4rem] font-black leading-[1.02] tracking-tight text-stone-950 dark:text-stone-50"
                 >
-                  Bước vào thế giới{" "}
+                  {t.home.hero.titlePart1}{" "}
                   <span className="text-emerald-600 dark:text-emerald-400 font-black">
-                    tài chính
+                    {t.home.hero.titleHighlight}
                   </span>
-                  ,<br />cùng bắt đầu từ con số 0
+                  ,<br />
+                  {t.home.hero.titlePart2}
                 </motion.h1>
 
                 <motion.p
@@ -654,9 +420,7 @@ export default function HomePage() {
                   transition={{ duration: 0.6, ease: "easeOut", delay: 0.12 }}
                   className="mb-8 max-w-xl text-[15px] leading-7 text-stone-600 [filter:none] dark:text-stone-300 sm:text-lg"
                 >
-                  {lessonCountFloor ?? 360}+ bài học - 100% miễn phí vĩnh viễn - giáo trình thiết kế riêng cho người Việt học tài chính cá
-                  nhân, CFA, lập kế hoạch tài chính, đầu tư, kế toán và tài chính chuyên nghiệp. Học theo phương pháp
-                  Spaced Repetition khoa học.
+                  {format(t.home.hero.sub, { count: lessonCountFloor ?? 360 })}
                 </motion.p>
 
                 <motion.div
@@ -669,7 +433,7 @@ export default function HomePage() {
                     href="/login?mode=signup"
                     className="cta-electric group inline-flex items-center gap-2 rounded-[20px] bg-stone-950 px-6 py-3.5 text-base font-black text-white shadow-[0_16px_34px_-24px_rgba(15,23,42,0.38)] transition-all duration-200 ease-out hover:-translate-y-1 hover:scale-[1.015] active:scale-[0.98] hover:bg-stone-900 dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-white"
                   >
-                    Bắt đầu học miễn phí
+                    {t.home.hero.ctaPrimary}
                     <ArrowRight className="icon-micro w-4 h-4 transition-transform group-hover:translate-x-0.5" />
                   </Link>
                   <a
@@ -677,7 +441,7 @@ export default function HomePage() {
                     className="inline-flex items-center gap-2 rounded-[20px] border border-stone-200/80 bg-white/70 px-5 py-3 text-sm font-bold text-stone-900 backdrop-blur transition-all duration-200 ease-out hover:-translate-y-1 hover:scale-[1.015] hover:bg-white dark:border-stone-700 dark:bg-stone-950/45 dark:text-stone-100 dark:hover:bg-stone-900"
                   >
                     <PlayCircle className="w-4 h-4" />
-                    Xem thử bài học
+                    {t.home.hero.ctaSecondary}
                   </a>
                 </motion.div>
 
@@ -692,20 +456,20 @@ export default function HomePage() {
                       <span className="animate-ping absolute inline-flex w-full h-full rounded-full bg-emerald-400 opacity-75" />
                       <span className="relative inline-flex rounded-full w-1.5 h-1.5 bg-emerald-500" />
                     </span>
-                    Live cập nhật trực tiếp
+                    {t.home.hero.liveLabel}
                   </div>
                   <div className="flex items-stretch divide-x divide-stone-200 dark:divide-stone-800">
                     <div className="min-w-0 pr-3 sm:pr-6">
                       <LiveNumber value={displayedUserCount} className="text-lg sm:text-2xl" />
-                      <p className="mt-0.5 text-[10px] font-bold uppercase tracking-wide text-stone-500 dark:text-stone-400 sm:text-[11px]">người học</p>
+                      <p className="mt-0.5 text-[10px] font-bold uppercase tracking-wide text-stone-500 dark:text-stone-400 sm:text-[11px]">{t.home.hero.statLearners}</p>
                     </div>
                     <div className="min-w-0 px-3 sm:px-6">
                       <LiveNumber value={displayedLessonCount} className="text-lg sm:text-2xl" />
-                      <p className="mt-0.5 text-[10px] font-bold uppercase tracking-wide text-stone-500 dark:text-stone-400 sm:text-[11px]">bài học</p>
+                      <p className="mt-0.5 text-[10px] font-bold uppercase tracking-wide text-stone-500 dark:text-stone-400 sm:text-[11px]">{t.home.hero.statLessons}</p>
                     </div>
                     <div className="min-w-0 pl-3 sm:pl-6">
                       <LiveNumber value={displayedCompletedCount} className="text-lg sm:text-2xl" />
-                      <p className="mt-0.5 whitespace-nowrap text-[10px] font-bold uppercase tracking-wide text-stone-500 dark:text-stone-400 sm:whitespace-normal sm:text-[11px]">đã hoàn thành</p>
+                      <p className="mt-0.5 whitespace-nowrap text-[10px] font-bold uppercase tracking-wide text-stone-500 dark:text-stone-400 sm:whitespace-normal sm:text-[11px]">{t.home.hero.statCompleted}</p>
                     </div>
                   </div>
                 </motion.div>
@@ -721,7 +485,7 @@ export default function HomePage() {
                   <div className="absolute inset-0">
                     <Image
                       src="/boss-wallstreet-bull.png"
-                      alt="Wall Street bull boss"
+                      alt={t.home.card.bullAlt}
                       fill
                       sizes="520px"
                       className="object-cover object-center opacity-55"
@@ -739,10 +503,10 @@ export default function HomePage() {
                     <div className="flex items-center justify-between gap-3">
                       <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-emerald-200 backdrop-blur">
                         <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-300" />
-                        Đang học thật
+                        {t.home.card.studyingNow}
                       </div>
                       <div className="rounded-full border border-amber-300/30 bg-amber-300/10 px-3 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-amber-100">
-                        Bài 24
+                        {t.home.card.lessonNo}
                       </div>
                     </div>
 
@@ -755,29 +519,29 @@ export default function HomePage() {
                       >
                         <div className="mb-3 flex items-center justify-between gap-2">
                           <div>
-                            <p className="text-[10px] font-black uppercase tracking-[0.16em] text-emerald-200">Bài học hôm nay</p>
-                            <p className="mt-1 text-base font-black leading-tight text-white xl:text-lg">Đọc chỉ số P/E trong 5 phút</p>
+                            <p className="text-[10px] font-black uppercase tracking-[0.16em] text-emerald-200">{t.home.card.todayLabel}</p>
+                            <p className="mt-1 text-base font-black leading-tight text-white xl:text-lg">{t.home.card.todayTitle}</p>
                           </div>
                           <div className="shrink-0 rounded-full bg-emerald-400/10 px-2.5 py-1 text-[10px] font-black text-emerald-200">
-                            72% hiểu bài
+                            {t.home.card.comprehension}
                           </div>
                         </div>
                         <div className="rounded-[1.35rem] border border-white/10 bg-stone-950/45 p-3">
                           <div className="rounded-[18px] bg-white/8 p-2.5">
                             <div className="flex items-start justify-between gap-3">
                               <div>
-                                <p className="text-[10px] font-black uppercase tracking-[0.14em] text-stone-400">Ví dụ trong bài</p>
+                                <p className="text-[10px] font-black uppercase tracking-[0.14em] text-stone-400">{t.home.card.exampleLabel}</p>
                                 <p className="mt-1 text-[13px] font-bold leading-snug text-white">
-                                  Công ty A có EPS = 5.000đ, giá cổ phiếu = 75.000đ. P/E bằng bao nhiêu?
+                                  {t.home.card.exampleText}
                                 </p>
                               </div>
                               <div className="rounded-full bg-amber-300/15 px-2 py-1 text-[10px] font-black text-amber-100">P/E</div>
                             </div>
                             <div className="mt-3 grid grid-cols-3 gap-2 text-center">
                               {[
-                                ["Giá", "75.000đ"],
-                                ["EPS", "5.000đ"],
-                                ["P/E", "15 lần"],
+                                [t.home.card.priceLabel, t.home.card.priceValue],
+                                ["EPS", t.home.card.epsValue],
+                                ["P/E", t.home.card.peValue],
                               ].map(([label, value]) => (
                                 <div key={label} className="rounded-[14px] bg-stone-950/45 px-1.5 py-2">
                                   <p className="text-[9px] font-black uppercase tracking-[0.12em] text-stone-500">{label}</p>
@@ -788,9 +552,9 @@ export default function HomePage() {
                           </div>
                           <div className="mt-3 space-y-2">
                             {[
-                              ["1", "P/E thấp chưa chắc rẻ nếu lợi nhuận giảm"],
-                              ["2", "So sánh P/E trong cùng ngành sẽ ý nghĩa hơn"],
-                              ["3", "Kiểm tra chất lượng lợi nhuận bằng dòng tiền"],
+                              ["1", t.home.card.tip1],
+                              ["2", t.home.card.tip2],
+                              ["3", t.home.card.tip3],
                             ].map(([step, text]) => (
                               <div key={step} className="flex items-center gap-2 rounded-[14px] bg-white/7 px-2.5 py-2 text-[11px] font-bold leading-snug text-stone-200">
                                 <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-300/15 text-[10px] text-emerald-100">{step}</span>
@@ -801,14 +565,14 @@ export default function HomePage() {
                         </div>
                         <div className="mt-3 grid grid-cols-3 gap-2">
                           {[
-                            ["Bài học", "5 phút"],
+                            [t.home.card.metaLesson, t.home.card.metaLessonValue],
                             // Ô này từng hiện "Quiz đúng: N%" với N tính bằng
                             // (số bài đã hoàn thành % 100) rồi kẹp vào 72-98.
                             // Đó không phải một tỷ lệ được đo từ đâu cả - nó là
                             // một con số trông giống thống kê. Thay bằng thứ
                             // kiểm chứng được: mỗi bài có 5 câu hỏi.
-                            ["Quiz", "5 câu/bài"],
-                            ["Ôn lại", "Sau 5 bài"],
+                            ["Quiz", t.home.card.metaQuizValue],
+                            [t.home.card.metaReview, t.home.card.metaReviewValue],
                           ].map(([label, value]) => (
                             <div key={label} className="rounded-[16px] border border-white/10 bg-white/8 px-3 py-2">
                               <p className="text-[10px] font-black uppercase tracking-[0.14em] text-stone-400">{label}</p>
@@ -825,11 +589,11 @@ export default function HomePage() {
                             transform: `perspective(1200px) translate3d(${heroParallaxX * 1.1}px, ${heroParallaxY * 0.8}px, 0) rotateY(${heroParallaxX * 0.7}deg)`,
                           }}
                         >
-                          <p className="text-[10px] font-black uppercase tracking-[0.16em] text-stone-300">Quiz nhanh</p>
-                          <p className="mt-2 text-sm font-black text-white">P/E = Giá / EPS?</p>
+                          <p className="text-[10px] font-black uppercase tracking-[0.16em] text-stone-300">{t.home.card.quizLabel}</p>
+                          <p className="mt-2 text-sm font-black text-white">{t.home.card.quizQuestion}</p>
                           <div className="mt-3 space-y-2">
-                            <div className="rounded-full bg-emerald-300/18 px-3 py-2 text-xs font-black text-emerald-100">Đúng: 15 lần</div>
-                            <div className="rounded-full bg-white/8 px-3 py-2 text-xs font-bold text-stone-300">Sai: 0,15 lần</div>
+                            <div className="rounded-full bg-emerald-300/18 px-3 py-2 text-xs font-black text-emerald-100">{t.home.card.quizRight}</div>
+                            <div className="rounded-full bg-white/8 px-3 py-2 text-xs font-bold text-stone-300">{t.home.card.quizWrong}</div>
                           </div>
                         </div>
                         <div
@@ -839,16 +603,16 @@ export default function HomePage() {
                           }}
                         >
                           <p className="text-[10px] font-black uppercase tracking-[0.16em] text-stone-300">Flashcard</p>
-                          <p className="mt-2 text-sm font-black text-white">P/E là gì?</p>
-                          <p className="mt-1 text-xs leading-relaxed text-stone-300">Số năm lợi nhuận hiện tại cần để hoàn vốn nếu mọi thứ giữ nguyên.</p>
+                          <p className="mt-2 text-sm font-black text-white">{t.home.card.flashQuestion}</p>
+                          <p className="mt-1 text-xs leading-relaxed text-stone-300">{t.home.card.flashAnswer}</p>
                           <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/10">
                             <div className="preview-progress-live h-full w-3/4 rounded-full bg-gradient-to-r from-amber-300 to-emerald-300" />
                           </div>
                         </div>
                         <div className="rounded-[1.45rem] border border-emerald-300/20 bg-emerald-400/10 p-3.5 backdrop-blur-sm xl:p-4">
-                          <p className="text-[10px] font-black uppercase tracking-[0.16em] text-emerald-200">Ghi chú mẫu</p>
-                          <p className="mt-2 text-sm font-black text-white">Không mua chỉ vì P/E thấp</p>
-                          <p className="mt-1 text-xs leading-relaxed text-stone-300">Luôn hỏi: lợi nhuận có bền không, dòng tiền có thật không?</p>
+                          <p className="text-[10px] font-black uppercase tracking-[0.16em] text-emerald-200">{t.home.card.noteLabel}</p>
+                          <p className="mt-2 text-sm font-black text-white">{t.home.card.noteTitle}</p>
+                          <p className="mt-1 text-xs leading-relaxed text-stone-300">{t.home.card.noteBody}</p>
                         </div>
                       </div>
                     </div>
@@ -864,13 +628,13 @@ export default function HomePage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal className="max-w-2xl mb-8">
             <p className="text-xs font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-2">
-              Xem trước giao diện thật
+              {t.home.preview.eyebrow}
             </p>
             <h2 className="text-3xl lg:text-4xl font-black text-stone-900 dark:text-stone-100">
-              Đây là những gì bạn sẽ dùng mỗi ngày
+              {t.home.preview.title}
             </h2>
             <p className="mt-3 max-w-xl text-sm text-stone-600 dark:text-stone-400 leading-relaxed sm:text-base">
-              Không chỉ là bài đọc dài - dashboard theo dõi tiến độ thật, quiz sau mỗi bài, và cấp độ/XP để biết mình đang ở đâu.
+              {t.home.preview.sub}
             </p>
           </ScrollReveal>
           <ScrollReveal delay={0.08}>
@@ -878,21 +642,23 @@ export default function HomePage() {
           </ScrollReveal>
           <div className="mt-5 overflow-hidden rounded-full border border-stone-200/80 bg-white/80 px-3 py-2 text-[11px] font-black uppercase tracking-[0.16em] text-stone-500 shadow-sm dark:border-stone-800 dark:bg-stone-900/60 dark:text-stone-400">
             <div className="landing-ticker flex items-center gap-10">
+              {/* Listed twice on purpose: the CSS marquee translates by -50%,
+                  so the second copy is what makes the loop seamless. */}
               {[
-                "Live XP cập nhật",
-                "Bảng xếp hạng theo tuần",
-                "Hệ thống ôn tập ngắt quãng",
-                "Game Kingdom mở theo tiến độ",
-                "FinSocial phản biện ý tưởng",
-                "Học nhóm giữ nhịp mỗi ngày",
+                t.home.ticker.liveXp,
+                t.home.ticker.weeklyBoard,
+                t.home.ticker.spacedRepetition,
+                t.home.ticker.gameKingdom,
+                t.home.ticker.finsocial,
+                t.home.ticker.studyGroup,
               ]
                 .concat([
-                  "Live XP cập nhật",
-                  "Bảng xếp hạng theo tuần",
-                  "Hệ thống ôn tập ngắt quãng",
-                  "Game Kingdom mở theo tiến độ",
-                  "FinSocial phản biện ý tưởng",
-                  "Học nhóm giữ nhịp mỗi ngày",
+                  t.home.ticker.liveXp,
+                  t.home.ticker.weeklyBoard,
+                  t.home.ticker.spacedRepetition,
+                  t.home.ticker.gameKingdom,
+                  t.home.ticker.finsocial,
+                  t.home.ticker.studyGroup,
                 ])
                 .map((item, index) => (
                   <span key={`${item}-${index}`} className="inline-flex items-center gap-2">
@@ -910,14 +676,13 @@ export default function HomePage() {
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <ScrollReveal className="text-center mb-5">
               <p className="text-[11px] font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-1">
-                Cộng đồng thật
+                {t.home.social.eyebrow}
               </p>
               <h2 className="text-2xl sm:text-3xl font-black text-stone-900 dark:text-stone-100 mb-2 leading-snug">
-                Học viên nổi bật đang học mỗi ngày
+                {t.home.social.title}
               </h2>
               <p className="max-w-xl mx-auto text-xs sm:text-sm leading-relaxed text-stone-600 dark:text-stone-400">
-                Đây không phải bảng số liệu trang trí. Người mới vào có thể nhìn ngay ai đang học thật, ai giữ được nhịp đều,
-                và cảm giác tiến bộ trong hệ thống trông ra sao.
+                {t.home.social.sub}
               </p>
             </ScrollReveal>
 
@@ -932,14 +697,13 @@ export default function HomePage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal className="max-w-3xl mb-3">
             <p className="text-[11px] font-black text-amber-200 uppercase tracking-widest mb-1 drop-shadow-[0_1px_2px_rgba(0,0,0,0.7)]">
-              Xem trước Game Kingdom
+              {t.home.kingdom.eyebrow}
             </p>
             <h2 className="text-2xl sm:text-3xl font-black text-white drop-shadow-[0_3px_10px_rgba(0,0,0,0.72)]">
-              Một vương quốc tài chính để bạn mở khóa bằng kiến thức
+              {t.home.kingdom.title}
             </h2>
             <p className="mt-1.5 max-w-xl text-xs sm:text-sm leading-relaxed text-stone-200 drop-shadow-[0_1px_2px_rgba(0,0,0,0.75)]">
-              Game Kingdom biến việc học thành nhiệm vụ: hoàn thành bài, làm quiz, chơi mini game và mở dần các công trình
-              tài chính.
+              {t.home.kingdom.sub}
             </p>
           </ScrollReveal>
 
@@ -954,17 +718,16 @@ export default function HomePage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <ScrollReveal className="max-w-3xl mb-4">
               <p className="text-xs font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-2">
-                Không chỉ là bài học
+                {t.home.ecosystem.eyebrow}
               </p>
               <h2 className="text-3xl lg:text-4xl font-black text-stone-900 dark:text-stone-100">
-                Học, chơi, hỏi đáp và chia sẻ trong cùng một{" "}
+                {t.home.ecosystem.titlePart1}{" "}
                 <span className="text-emerald-600 dark:text-emerald-400">
-                  hệ sinh thái tài chính
+                  {t.home.ecosystem.titleHighlight}
                 </span>
               </h2>
               <p className="mt-3 max-w-xl text-sm text-stone-600 dark:text-stone-400 leading-relaxed sm:text-base">
-                Sau khi tạo tài khoản, bạn không chỉ đi qua lộ trình bài học. Bạn còn có Lộ trình Active Recall ôn tập chủ động,
-                Học nhóm 3D để giữ nhịp, và FinSocial để trao đổi kiến thức với cộng đồng.
+                {t.home.ecosystem.sub}
               </p>
             </ScrollReveal>
 
@@ -989,44 +752,44 @@ export default function HomePage() {
                     <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-emerald-50 text-xs shadow-xs border border-emerald-200/80 dark:bg-emerald-950/40 dark:border-emerald-900/50">
                       🇻🇳
                     </span>
-                    Vì sao chúng tôi làm
+                    {t.home.vision.eyebrow}
                   </p>
                   <h2 className="max-w-xl text-xl sm:text-2xl font-black tracking-tight text-stone-900 dark:text-stone-100 leading-snug">
-                    Hiểu biết tài chính ở Việt Nam đang cải thiện, nhưng khoảng trống nền tảng vẫn còn rất lớn.
+                    {t.home.vision.title}
                   </h2>
 
                   <div className="mt-4 grid gap-3 sm:grid-cols-3">
                     <div className="rounded-xl border border-emerald-200/50 dark:border-emerald-900/40 bg-emerald-50/50 dark:bg-emerald-950/20 p-3">
                       <div className="text-[9px] font-black uppercase tracking-wider text-emerald-700 dark:text-emerald-300">
-                        Hiểu biết cơ bản
+                        {t.home.vision.stat1Label}
                       </div>
                       <div className="mt-1 text-2xl font-black text-emerald-600 dark:text-emerald-400">
                         24%
                       </div>
                       <p className="mt-1 text-[11px] leading-snug text-stone-600 dark:text-stone-300">
-                        đạt ngưỡng cơ bản.
+                        {t.home.vision.stat1Note}
                       </p>
                     </div>
                     <div className="rounded-xl border border-stone-200/80 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-900/30 p-3">
                       <div className="text-[9px] font-black uppercase tracking-wider text-stone-500 dark:text-stone-400">
-                        Khoảng trống
+                        {t.home.vision.stat2Label}
                       </div>
                       <div className="mt-1 text-2xl font-black text-stone-800 dark:text-stone-100">
                         3/4
                       </div>
                       <p className="mt-1 text-[11px] leading-snug text-stone-600 dark:text-stone-300">
-                        chưa đạt nền tảng.
+                        {t.home.vision.stat2Note}
                       </p>
                     </div>
                     <div className="rounded-xl border border-stone-200/80 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-900/30 p-3">
                       <div className="text-[9px] font-black uppercase tracking-wider text-stone-500 dark:text-stone-400">
-                        Tiếp cận 2024
+                        {t.home.vision.stat3Label}
                       </div>
                       <div className="mt-1 text-2xl font-black text-stone-800 dark:text-stone-100">
                         70,6%
                       </div>
                       <p className="mt-1 text-[11px] leading-snug text-stone-600 dark:text-stone-300">
-                        có tài khoản tài chính.
+                        {t.home.vision.stat3Note}
                       </p>
                     </div>
                   </div>
@@ -1036,17 +799,17 @@ export default function HomePage() {
                   <div className="rounded-xl border border-emerald-200/70 dark:border-emerald-900/40 bg-gradient-to-b from-emerald-50/50 to-teal-50/30 dark:from-emerald-950/20 dark:to-teal-950/10 p-4 shadow-xs">
                     <p className="mb-2 inline-flex items-center gap-1.5 text-xs font-black text-emerald-700 dark:text-emerald-300 uppercase tracking-widest">
                       <span>🇻🇳</span>
-                      Tầm nhìn & Sứ mệnh
+                      {t.home.vision.missionLabel}
                     </p>
                     <p className="text-xs leading-relaxed text-stone-700 dark:text-stone-300 font-medium">
-                      Xây dựng giáo trình tài chính 100% miễn phí, rõ ràng và đủ sâu cho người học Việt Nam. Giúp việc tự học tài chính trở nên gần gũi, thực tế và bền vững.
+                      {t.home.vision.missionBody}
                     </p>
                     <div className="mt-3">
                       <Link
                         href="/login?mode=signup"
                         className="cta-electric inline-flex items-center gap-2 rounded-xl bg-stone-950 px-4 py-2 text-xs font-black text-white hover:bg-stone-900 dark:bg-emerald-500 dark:text-stone-950 dark:hover:bg-emerald-400 transition-all cursor-pointer"
                       >
-                        Bắt đầu học miễn phí
+                        {t.home.vision.cta}
                         <ArrowRight className="w-3.5 h-3.5" />
                       </Link>
                     </div>
@@ -1066,70 +829,70 @@ export default function HomePage() {
               <div className="lg:col-span-5 space-y-4">
                 <div className="flex items-center gap-2.5">
                   <Logo size={32} />
-                  <span className="text-lg font-black tracking-tight text-white">Tự Học Tài Chính</span>
+                  <span className="text-lg font-black tracking-tight text-white">{t.home.brand}</span>
                 </div>
                 <p className="text-xs text-stone-400 leading-relaxed max-w-sm">
-                  Nền tảng tự học tài chính cá nhân, tài chính doanh nghiệp và CFA miễn phí 100%. Giúp người Việt làm chủ tiền bạc bằng phương pháp Spaced Repetition và Game Kingdom.
+                  {t.home.footer.blurb}
                 </p>
                 <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-950/60 px-3 py-1 text-[11px] font-bold text-emerald-400">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  <span>Cộng đồng 430+ bài học & Quiz tương tác</span>
+                  <span>{t.home.footer.community}</span>
                 </div>
               </div>
 
               {/* Col 2: Lộ trình */}
               <div className="lg:col-span-2 space-y-3">
-                <p className="text-xs font-black uppercase tracking-widest text-white">Lộ trình học</p>
+                <p className="text-xs font-black uppercase tracking-widest text-white">{t.home.footer.tracksTitle}</p>
                 <ul className="space-y-2 text-xs text-stone-400 font-semibold">
                   <li>
-                    <Link href="/dashboard" className="hover:text-emerald-400 transition-colors">Tài chính cá nhân</Link>
+                    <Link href="/dashboard" className="hover:text-emerald-400 transition-colors">{t.home.footer.trackPersonal}</Link>
                   </li>
                   <li>
-                    <Link href="/dashboard" className="hover:text-emerald-400 transition-colors">Tài chính doanh nghiệp</Link>
+                    <Link href="/dashboard" className="hover:text-emerald-400 transition-colors">{t.home.footer.trackCorporate}</Link>
                   </li>
                   <li>
-                    <Link href="/dashboard" className="hover:text-emerald-400 transition-colors">Chứng chỉ CFA Level 1</Link>
+                    <Link href="/dashboard" className="hover:text-emerald-400 transition-colors">{t.home.footer.trackCfa}</Link>
                   </li>
                   <li>
-                    <Link href="/game" className="hover:text-emerald-400 transition-colors">Game Kingdom RPG</Link>
+                    <Link href="/game" className="hover:text-emerald-400 transition-colors">{t.home.footer.trackGame}</Link>
                   </li>
                 </ul>
               </div>
 
               {/* Col 3: Hệ sinh thái */}
               <div className="lg:col-span-3 space-y-3">
-                <p className="text-xs font-black uppercase tracking-widest text-white">Hệ sinh thái</p>
+                <p className="text-xs font-black uppercase tracking-widest text-white">{t.home.footer.ecoTitle}</p>
                 <ul className="space-y-2 text-xs text-stone-400 font-semibold">
                   <li>
                     <Link href="/nhom-hoc" className="hover:text-emerald-400 transition-colors flex items-center gap-1.5">
-                      <span>Phòng Học Nhóm (3D)</span>
-                      <span className="text-[9px] font-bold text-amber-400 bg-amber-950 px-1.5 py-0.2 rounded-md">Hot</span>
+                      <span>{t.home.footer.ecoStudyRoom}</span>
+                      <span className="text-[9px] font-bold text-amber-400 bg-amber-950 px-1.5 py-0.2 rounded-md">{t.home.footer.ecoHot}</span>
                     </Link>
                   </li>
                   <li>
-                    <Link href="/finsocial" className="hover:text-emerald-400 transition-colors">FinSocial - Feed Bài Viết</Link>
+                    <Link href="/finsocial" className="hover:text-emerald-400 transition-colors">{t.home.footer.ecoFinsocial}</Link>
                   </li>
                   <li>
-                    <Link href="/su-nghiep" className="hover:text-emerald-400 transition-colors">Bản Đồ Sự Nghiệp Tài Chính</Link>
+                    <Link href="/su-nghiep" className="hover:text-emerald-400 transition-colors">{t.home.footer.ecoCareer}</Link>
                   </li>
                   <li>
-                    <Link href="/shop" className="hover:text-emerald-400 transition-colors">Cửa Hàng Cosmetic & Avatar</Link>
+                    <Link href="/shop" className="hover:text-emerald-400 transition-colors">{t.home.footer.ecoShop}</Link>
                   </li>
                 </ul>
               </div>
 
               {/* Col 4: Pháp lý & Hỗ trợ */}
               <div className="lg:col-span-2 space-y-3">
-                <p className="text-xs font-black uppercase tracking-widest text-white">Hỗ trợ & Pháp lý</p>
+                <p className="text-xs font-black uppercase tracking-widest text-white">{t.home.footer.supportTitle}</p>
                 <ul className="space-y-2 text-xs text-stone-400 font-semibold">
                   <li>
-                    <Link href="/dieu-khoan" className="hover:text-emerald-400 transition-colors">Điều khoản sử dụng</Link>
+                    <Link href="/dieu-khoan" className="hover:text-emerald-400 transition-colors">{t.home.footer.terms}</Link>
                   </li>
                   <li>
-                    <Link href="/chinh-sach-bao-mat" className="hover:text-emerald-400 transition-colors">Chính sách bảo mật</Link>
+                    <Link href="/chinh-sach-bao-mat" className="hover:text-emerald-400 transition-colors">{t.home.footer.privacy}</Link>
                   </li>
                   <li>
-                    <Link href="/login" className="hover:text-emerald-400 transition-colors">Đăng nhập / Đăng ký</Link>
+                    <Link href="/login" className="hover:text-emerald-400 transition-colors">{t.home.footer.login}</Link>
                   </li>
                 </ul>
               </div>
@@ -1137,9 +900,9 @@ export default function HomePage() {
 
             {/* Bottom copyright line */}
             <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-stone-500 font-semibold">
-              <p>© 2026 Tự Học Tài Chính. Tất cả quyền được bảo lưu.</p>
+              <p>{t.home.footer.copyright}</p>
               <p className="flex items-center gap-1 text-[11px] text-stone-400">
-                <span>Học tài chính miễn phí cho người Việt 🇻🇳</span>
+                <span>{t.home.footer.tagline}</span>
               </p>
             </div>
           </div>

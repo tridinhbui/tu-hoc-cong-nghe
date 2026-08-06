@@ -12,13 +12,44 @@
 // batch of new lessons silently reintroduced failures. Pass --warn-only to
 // get the old behaviour when you want the report without the gate.
 
-import { readFileSync, readdirSync, writeFileSync } from "fs";
+import { readFileSync, readdirSync, writeFileSync, existsSync } from "fs";
 import { fileURLToPath } from "url";
 import path from "path";
+import { mergeLessonTranslation } from "../lib/lesson-translations.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
 const dataDir = path.join(root, "lib/lessons-data");
+
+// ── Which language's corpus to measure ─────────────────────────────────────
+//
+//   node scripts/audit-lesson-content.mjs              # Vietnamese (default)
+//   node scripts/audit-lesson-content.mjs --locale=en  # English translations
+//
+// WHY THIS FLAG EXISTS. Every gate below the content minimums measures the
+// *character length* of quiz options: MAX_LENGTH_BIAS_Z, MAX_TELL_SHARE,
+// MAX_SHORTEST_SHARE, MAX_PRACTICE_LONGEST_SCORE. Those lengths are a property
+// of the language the options are written in, not of the lesson. Translating a
+// question changes all four option lengths, so the English corpus has its own
+// bias distribution and can sit at z = 8 while the Vietnamese corpus is green -
+// the audit would report nothing, and "pick the longest option" would be worth
+// real marks again on the English side. Since a quiz score feeds
+// avg_quiz_score, the unlock gate, XP and the /su-nghiep percentages regardless
+// of which language it was answered in, the translated corpus needs measuring
+// too, against its own baseline.
+const localeArg = process.argv.find((a) => a.startsWith("--locale="));
+const LOCALE = localeArg ? localeArg.slice("--locale=".length) : "vi";
+const SOURCE_LOCALE = "vi";
+const isSourceLocale = LOCALE === SOURCE_LOCALE;
+const translationsDir = path.join(root, "lib/lessons-i18n", LOCALE);
+
+if (!isSourceLocale && !existsSync(translationsDir)) {
+  console.error(
+    `No translations directory at lib/lessons-i18n/${LOCALE}/. ` +
+      `Nothing to audit for locale "${LOCALE}".`
+  );
+  process.exit(1);
+}
 
 // Các ngưỡng dưới đây là mức mà TOÀN BỘ corpus đã đạt tại thời điểm siết, chứ
 // không phải mức mong muốn - nên chúng gác được bài mới mà không đẩy bài cũ vào
@@ -76,12 +107,50 @@ function auditLesson(lesson) {
   return issues;
 }
 
-const files = readdirSync(dataDir).filter((f) => f.endsWith(".json") && f !== "_index.json");
+/**
+ * The lessons to measure, already in the audited language.
+ *
+ * For the source locale this is just the generated files. For a translated
+ * locale it is the merge of each translation onto its Vietnamese lesson - the
+ * same `mergeLessonTranslation` the app serves, so the audit measures exactly
+ * the strings a reader sees, and a field the translation left blank is counted
+ * as the Vietnamese it will actually render as.
+ *
+ * Only translated lessons are in scope. Auditing all 715 against the English
+ * gates would just re-measure the Vietnamese corpus under a second name.
+ */
+function loadCorpus() {
+  const lessonFiles = readdirSync(dataDir).filter(
+    (f) => f.endsWith(".json") && f !== "_index.json"
+  );
+  if (isSourceLocale) {
+    return lessonFiles.map((f) => JSON.parse(readFileSync(path.join(dataDir, f), "utf8")));
+  }
+
+  const translated = readdirSync(translationsDir).filter(
+    (f) => f.endsWith(".json") && f !== "_index.json"
+  );
+  const corpus = [];
+  for (const file of translated) {
+    const slug = file.replace(/\.json$/, "");
+    const lessonPath = path.join(dataDir, `${slug}.json`);
+    if (!existsSync(lessonPath)) continue; // reported by build-translation-index.mjs
+    const source = JSON.parse(readFileSync(lessonPath, "utf8"));
+    const translation = JSON.parse(readFileSync(path.join(translationsDir, file), "utf8"));
+    corpus.push(mergeLessonTranslation(source, translation, LOCALE));
+  }
+  return corpus;
+}
+
+const corpus = loadCorpus();
+console.log(
+  `Auditing locale "${LOCALE}": ${corpus.length} lesson(s)` +
+    (isSourceLocale ? "" : ` with a translation in lib/lessons-i18n/${LOCALE}/`)
+);
 
 const results = { personal: [], professional: [], bonus: [] };
 
-for (const file of files) {
-  const lesson = JSON.parse(readFileSync(path.join(dataDir, file), "utf8"));
+for (const lesson of corpus) {
   const issues = auditLesson(lesson);
   if (issues.length === 0) continue;
   const track = isPersonalOrProfessionalTrack(lesson);
@@ -97,7 +166,7 @@ for (const track of ["personal", "professional", "bonus"]) {
 }
 
 const total = results.personal.length + results.professional.length + results.bonus.length;
-console.log(`\nTotal lessons checked: ${files.length}`);
+console.log(`\nTotal lessons checked: ${corpus.length}`);
 console.log(`Total failing at least one check: ${total}`);
 
 // ── Quiz guessability ──────────────────────────────────────────────────────
@@ -179,12 +248,34 @@ const MAX_SHORTEST_SHARE = 0.28;
 //
 // That found five, which have been rewritten. The budget is zero: this is not
 // a backlog to grind down, it is a shape of option that should never appear.
-const HOLLOW_DISTRACTOR = new RegExp(
-  "^(luôn (tốt|xấu|đúng|sai)" +
-    "|không (ảnh hưởng|liên quan|quan trọng|có khái niệm|cần|có lý do|thể (tính|xác định)|công thức|đổi)" +
-    "|tùy ý|bình thường|tidak ada|thứ tự không)",
-  "i"
-);
+//
+// The pattern is per-language, and that is not cosmetic. Written only in
+// Vietnamese, this check silently stops existing the moment a lesson is
+// translated: "Always good" does not match /^luôn (tốt|...)/, so an English
+// corpus could fill up with the exact shape of option rule 4 bans while the
+// audit kept printing zero. The English list is the same set of hollow
+// formulas, not a translation of the Vietnamese strings one by one - what
+// makes an option blank space is that it asserts nothing, and English reaches
+// that shape through its own idioms ("no effect", "none of the above").
+const HOLLOW_DISTRACTOR_BY_LOCALE = {
+  vi: new RegExp(
+    "^(luôn (tốt|xấu|đúng|sai)" +
+      "|không (ảnh hưởng|liên quan|quan trọng|có khái niệm|cần|có lý do|thể (tính|xác định)|công thức|đổi)" +
+      "|tùy ý|bình thường|tidak ada|thứ tự không)",
+    "i"
+  ),
+  en: new RegExp(
+    "^(always (good|bad|true|false|correct|wrong)" +
+      "|never (true|false|matters|happens)" +
+      "|no (effect|impact|relation|change|difference|formula|such (concept|thing))" +
+      "|not (important|related|applicable|relevant)" +
+      "|(it )?(does not|doesn't) (matter|apply|change|affect)" +
+      "|none of the above|all of the above|any (of them|order)|it depends$)",
+    "i"
+  ),
+};
+const HOLLOW_DISTRACTOR =
+  HOLLOW_DISTRACTOR_BY_LOCALE[LOCALE] ?? HOLLOW_DISTRACTOR_BY_LOCALE[SOURCE_LOCALE];
 const MAX_HOLLOW_DISTRACTORS = 0;
 
 /** Đáp án ĐÚNG có phải một khoảng trống không.
@@ -198,13 +289,22 @@ const MAX_HOLLOW_DISTRACTORS = 0;
  *  Ngưỡng 5 từ cho ra đúng 0 trên toàn kho hôm nay, nên nó là cổng cứng chứ
  *  không phải danh sách cảnh báo - và nó BẮT ĐƯỢC lỗi đã xảy ra thật ("Không
  *  ảnh hưởng", 2 từ). */
+const HOLLOW_CORRECT_OPENER_BY_LOCALE = {
+  vi: /^(không|luôn|chỉ|đều|mọi|tất cả)\b/i,
+  // Same shape, English openers. The word count is what does the work in both
+  // languages, so the threshold below is shared.
+  en: /^(no|not|never|always|only|every|all|any|none)\b/i,
+};
+const HOLLOW_CORRECT_OPENER =
+  HOLLOW_CORRECT_OPENER_BY_LOCALE[LOCALE] ?? HOLLOW_CORRECT_OPENER_BY_LOCALE[SOURCE_LOCALE];
+
 function isHollowCorrectAnswer(option) {
   if (option === null || option === undefined) return false;
   const text = String(option).trim().replace(/\.$/, "");
   if (!text) return false;
   if (/\d/.test(text)) return false; // "15%", "2x" là đáp án số hợp lệ
   if (text.split(/\s+/).length > 5) return false;
-  return /^(không|luôn|chỉ|đều|mọi|tất cả)\b/i.test(text);
+  return HOLLOW_CORRECT_OPENER.test(text);
 }
 
 function isHollowDistractor(option) {
@@ -221,8 +321,17 @@ function isHollowDistractor(option) {
 const PER_LESSON_TELL_LIMIT = 0.75;
 const MIN_QUESTIONS_FOR_TELL_CHECK = 2;
 
-const baselinePath = path.join(__dirname, "lesson-quiz-tell-baseline.json");
-const baseline = new Set(JSON.parse(readFileSync(baselinePath, "utf8")).lessons);
+// One baseline per locale. The Vietnamese list grandfathers a backlog that
+// predates the gate; a translated locale has no such backlog, because every
+// English lesson is being authored now under the current rules. So a missing
+// file means an empty set - nothing grandfathered - and a newly translated
+// lesson must pass the per-lesson check on its own.
+const baselinePath = isSourceLocale
+  ? path.join(__dirname, "lesson-quiz-tell-baseline.json")
+  : path.join(__dirname, `lesson-quiz-tell-baseline.${LOCALE}.json`);
+const baseline = new Set(
+  existsSync(baselinePath) ? JSON.parse(readFileSync(baselinePath, "utf8")).lessons : []
+);
 
 /** Ngưỡng lệch, tính bằng số lần độ lệch chuẩn so với ngẫu nhiên.
  *
@@ -249,6 +358,28 @@ const baseline = new Set(JSON.parse(readFileSync(baselinePath, "utf8")).lessons)
  *  chẳng có gì thoái lui. 0,69 khoảng đệm là chỗ cho vài chục câu xê dịch,
  *  không phải chỗ cho một đợt trôi. */
 const MAX_LENGTH_BIAS_Z = 4.5;
+
+/**
+ * Below this many questions, the corpus-wide SHARE gates are reported but not
+ * enforced.
+ *
+ * The three share ceilings (MAX_TELL_SHARE, MAX_SHORTEST_SHARE,
+ * MAX_PRACTICE_LONGEST_SCORE) were each calibrated against a corpus of a few
+ * thousand questions, where one question moves the share by ~0.04 points. A
+ * freshly translated locale starts at a few dozen: with 50 questions, a share
+ * moves 2 points per question, so 14 longest-correct answers out of 50 is 28%
+ * and red, while 13 is 26% and green - the same corpus either side of a coin
+ * flip. That is the failure MAX_TELL_SHARE already had once in Vietnamese,
+ * when it was set two hundredths of a percent above the measured value and the
+ * next ordinary edit turned CI red with nothing regressed.
+ *
+ * MAX_LENGTH_BIAS_Z stays enforced at every size, which is the whole reason it
+ * is a z-score: the variance term already accounts for the sample, so a small
+ * corpus has to be *further* off chance in percentage terms before it trips.
+ * That is the gate protecting a young translated corpus; the shares take over
+ * once there are enough questions for them to mean anything.
+ */
+const MIN_QUESTIONS_FOR_SHARE_GATES = 400;
 
 const quizStats = { personal: null, professional: null, bonus: null };
 for (const track of Object.keys(quizStats)) {
@@ -283,6 +414,57 @@ const unbaselined = [];
 const hollowDistractors = [];
 /** Câu mà ĐÁP ÁN ĐÚNG là khoảng trống - xem isHollowCorrectAnswer. */
 const hollowCorrect = [];
+
+// ── Giải thích gọi phương án bằng CHỮ CÁI ──────────────────────────────────
+//
+// "Phương án D là lỗi phổ biến nhất" là một câu không thể đúng lâu trong repo
+// này: scripts/generate-lesson-data.mjs chạy balanceLessonQuizzes, thứ XÁO LẠI
+// thứ tự option của từng câu để triệt tiêu tell vị trí. Chữ cái tác giả viết
+// gắn với thứ tự lúc soạn, còn người học đọc thứ tự sau khi xáo - hai thứ khác
+// nhau, và không gì buộc chúng khớp.
+//
+// Nên mọi tham chiếu theo chữ cái đều hỏng; chỉ khác là hỏng lộ hay hỏng ngầm.
+// Trường hợp lộ nhất - và là cái người học báo lại - là chữ cái trôi đúng vào
+// ĐÁP ÁN ĐÚNG trong một câu đang gọi nó là lỗi sai: học viên chọn đúng, được
+// chấm đúng, rồi đọc ngay bên dưới rằng lựa chọn đó là "lỗi phổ biến nhất".
+// Đã xảy ra ở wacc-co-ban Q3 và tinh-npv-du-an Q3.
+//
+// Gate chặn ở mức chứng minh được (chữ cái = đáp án đúng + câu văn mang nghĩa
+// phủ định); tổng số tham chiếu vẫn được in ra vì tất cả đều là nợ, chỉ chưa
+// chứng minh được từng cái một.
+// `(?![\p{L}\p{M}])` chứ không phải `\b`, và cần cờ `u`.
+//
+// Bản đầu của biểu thức này dùng `\b` với cờ `i`, và nó đếm sai gần gấp ba:
+// `\b` trong JS chỉ biết mặt chữ ASCII, nên trong "ba phương án còn lại" nó
+// thấy chữ "c" của "còn" là một từ trọn vẹn (vì "ò" không phải ký tự từ theo
+// ASCII) và báo đây là tham chiếu tới phương án C. 44 câu bị gắn cờ, phần lớn
+// là những câu viết đúng chuẩn - gọi "ba phương án còn lại" thay vì gọi tên
+// chữ cái. Đúng loại gate mà AGENTS.md nói là sẽ bị người ta học cách phớt lờ.
+//
+// Điều kiện thật là: chữ cái phải đứng một mình, không được có chữ nào bám
+// theo sau - kể cả nguyên âm có dấu, thứ mà lớp \p{L}/\p{M} bắt được còn \b
+// thì không.
+const OPTION_LETTER_RE = /(phương án|đáp án|lựa chọn|option|câu trả lời)\s*["']?([A-D])(?![\p{L}\p{M}])/giu;
+
+function findOptionLetterRefs(question) {
+  const explanation = String(question?.explanation ?? "");
+  const found = [];
+  OPTION_LETTER_RE.lastIndex = 0;
+  let match;
+  while ((match = OPTION_LETTER_RE.exec(explanation))) {
+    const index = "ABCD".indexOf(match[2].toUpperCase());
+    // Cửa sổ quanh chỗ nhắc tới, không phải cả đoạn: một giải thích dài thường
+    // có chữ "sai" ở chỗ khác hoàn toàn, và lấy cả đoạn thì câu nào cũng dính.
+    const context = explanation.slice(Math.max(0, match.index - 90), match.index + 120);
+    found.push({ ref: match[0], index, context });
+  }
+  return found;
+}
+
+/** Mọi tham chiếu chữ cái - nợ tiềm ẩn, chỉ báo cáo. */
+const letterRefs = [];
+/** Chữ cái trỏ đúng vào đáp án đúng trong câu gọi nó là lỗi - gate ở đây. */
+const contradictoryLetterRefs = [];
 /** Baselined lessons that now pass, so the baseline must shrink. */
 const fixedButStillBaselined = [];
 /** Bài thiếu tóm tắt / thiếu khối áp dụng. */
@@ -302,8 +484,7 @@ const missingPractice = [];
 const MAX_PRACTICE_LONGEST_SCORE = 0.92;
 const practiceStats = { questions: 0, longestScore: 0, randomScore: 0 };
 
-for (const file of files) {
-  const lesson = JSON.parse(readFileSync(path.join(dataDir, file), "utf8"));
+for (const lesson of corpus) {
   const stats = quizStats[isPersonalOrProfessionalTrack(lesson)];
   const questions = lesson.quiz ?? [];
   if (!lesson.summary) missingSummary.push(lesson.slug);
@@ -383,6 +564,31 @@ for (const file of files) {
     // Margin cao có tốt không?" khoá đáp án vào "Không ảnh hưởng", trong khi
     // phần giải thích của chính câu đó nói "cần xem ngành: Retail 20-30%,
     // Software 70-80%". Tìm ra hoàn toàn tình cờ khi đang soi độ dài.
+    for (const ref of findOptionLetterRefs(question)) {
+      const row = {
+        slug: lesson.slug,
+        question: String(question.question ?? "").slice(0, 70),
+        ref: ref.ref,
+        correct: question.correct,
+      };
+      letterRefs.push(row);
+      // Điều kiện chỉ còn "chữ cái trỏ vào đáp án đúng", KHÔNG cần câu văn
+      // mang nghĩa phủ định nữa.
+      //
+      // Bản đầu bắt buộc phải có một trong các từ lỗi/sai/nhầm/bẫy quanh chỗ
+      // nhắc tới, và nó lọt đúng hai ca: credit-spread Q3 viết "Phương án D mô
+      // tả độ dốc đường cong" và present-value Q3 viết "Phương án D chính là
+      // Future Value" - cả hai đều đang gọi đáp án đúng là một khái niệm khác,
+      // không dùng chữ "sai" nào cả. Đọc tay mới thấy.
+      //
+      // Không cần điều kiện đó: một giải thích gọi tên đáp án ĐÚNG bằng chữ
+      // cái thì hoặc là đang mô tả nó thành thứ khác, hoặc là thừa. Đã rà cả
+      // corpus, không có ca hợp lệ nào rơi vào đây.
+      if (ref.index === question.correct) {
+        contradictoryLetterRefs.push({ ...row, context: ref.context.trim() });
+      }
+    }
+
     if (isHollowCorrectAnswer(lengths.length ? (question.options ?? [])[question.correct] : null)) {
       hollowCorrect.push({
         slug: lesson.slug,
@@ -545,6 +751,28 @@ if (hollowDistractors.length > MAX_HOLLOW_DISTRACTORS) {
   );
 }
 
+console.log(
+  `\nOption-letter refs in explanations: ${letterRefs.length} total, ` +
+    `${contradictoryLetterRefs.length} contradicting the keyed answer`
+);
+if (letterRefs.length > contradictoryLetterRefs.length) {
+  console.log(
+    `  Số còn lại chưa chứng minh được là sai, nhưng chữ cái không sống sót qua` +
+      ` balanceLessonQuizzes, nên chúng chỉ đang đúng nhờ may mắn.`
+  );
+}
+
+if (contradictoryLetterRefs.length > 0) {
+  tellFailures.push(
+    `${contradictoryLetterRefs.length} explanation(s) gọi chính ĐÁP ÁN ĐÚNG là phương án sai:\n` +
+      contradictoryLetterRefs
+        .map((row) => `    ${row.slug} - "${row.question}"\n      ${row.ref} = correct (index ${row.correct}): ...${row.context}...`)
+        .join("\n") +
+      `\n  Gọi tên phương án sai bằng NỘI DUNG của nó ("cộng thẳng không chiết khấu"),` +
+      ` không bằng chữ cái - thứ tự option bị xáo lại lúc build.`
+  );
+}
+
 // ── Slug trùng trong lesson-quiz-overrides.js ──────────────────────────────
 //
 // lessonOverrides là một object literal, nên khai báo cùng một slug hai lần
@@ -577,7 +805,16 @@ if (duplicateSlugs.length > 0) {
   );
 }
 
-if (shortestShare > MAX_SHORTEST_SHARE) {
+const shareGatesEnforced = totalQuestions >= MIN_QUESTIONS_FOR_SHARE_GATES;
+if (!shareGatesEnforced) {
+  console.log(
+    `\n  Share gates reported only: ${totalQuestions} questions is under the ` +
+      `${MIN_QUESTIONS_FOR_SHARE_GATES}-question floor where a share is stable enough to gate on. ` +
+      `MAX_LENGTH_BIAS_Z is still enforced.`
+  );
+}
+
+if (shareGatesEnforced && shortestShare > MAX_SHORTEST_SHARE) {
   tellFailures.push(
     `${totalShortest}/${totalQuestions} questions (${Math.round(shortestShare * 100)}%) have the correct ` +
       `answer as the uniquely shortest option, over the ${Math.round(MAX_SHORTEST_SHARE * 100)}% ceiling. ` +
@@ -585,7 +822,7 @@ if (shortestShare > MAX_SHORTEST_SHARE) {
   );
 }
 
-if (tellShare > MAX_TELL_SHARE) {
+if (shareGatesEnforced && tellShare > MAX_TELL_SHARE) {
   tellFailures.push(
     `${totalLongest}/${totalQuestions} questions (${Math.round(tellShare * 100)}%) have the correct ` +
       `answer as the longest option, over the ${Math.round(MAX_TELL_SHARE * 100)}% ceiling.`
@@ -611,7 +848,7 @@ if (unbaselined.length > 0) {
 // never added, so the flag can't be used to launder a new failure.
 if (process.argv.includes("--write-baseline")) {
   const kept = [...baseline].filter((slug) => !fixedButStillBaselined.includes(slug)).sort();
-  const current = JSON.parse(readFileSync(baselinePath, "utf8"));
+  const current = existsSync(baselinePath) ? JSON.parse(readFileSync(baselinePath, "utf8")) : {};
   writeFileSync(baselinePath, `${JSON.stringify({ ...current, lessons: kept }, null, 2)}\n`);
   console.log(
     `\nBaseline rewritten: ${baseline.size} -> ${kept.length} lessons ` +
@@ -666,7 +903,7 @@ if (biasFailures.length > 0 && !process.argv.includes("--warn-only")) {
   process.exit(1);
 }
 
-if (practiceStats.questions > 0) {
+if (practiceStats.questions >= MIN_QUESTIONS_FOR_SHARE_GATES) {
   const score = practiceStats.longestScore / practiceStats.questions;
   if (score > MAX_PRACTICE_LONGEST_SCORE) {
     console.error(

@@ -24,6 +24,8 @@ import MaSpeedrunGame from "@/components/games/MaSpeedrunGame";
 import AlgoTraderGame from "@/components/games/AlgoTraderGame";
 import FedVaultWidget from "@/components/FedVaultWidget";
 import GoldmanSachsWidget from "@/components/GoldmanSachsWidget";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 
 interface EquipmentRow {
@@ -55,6 +57,7 @@ const BUILDING_AVATAR_POSITIONS: Record<string, { x: number; y: number }> = {
 const MAP_BUILDINGS = ORGANIC_BUILDINGS.filter((building) => building.id !== "shop");
 
 export default function FinancialRpgWorldMap() {
+  const { t } = useI18n();
   const searchParams = useSearchParams();
   const initialBuilding = searchParams.get("building");
 
@@ -222,7 +225,7 @@ export default function FinancialRpgWorldMap() {
           <div className="relative">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 via-yellow-400 to-amber-500 p-[2px] shadow-sm">
               <div className="w-full h-full rounded-[10px] bg-amber-500 flex items-center justify-center font-black text-white text-sm shadow-xs">
-                Lv.{level}
+                {format(t.worldMap.levelShort, { level })}
               </div>
             </div>
             <div className="absolute -top-1.5 -right-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-amber-500 text-white shadow-xs">
@@ -232,12 +235,12 @@ export default function FinancialRpgWorldMap() {
 
           <div>
             <div className="flex items-center gap-1.5">
-              <h2 className="text-xs font-black uppercase text-amber-900 tracking-wider">Đế Chế Wall Street</h2>
+              <h2 className="text-xs font-black uppercase text-amber-900 tracking-wider">{t.worldMap.empireTitle}</h2>
               <span className="text-[9px] font-black uppercase bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full border border-emerald-300">
-                Online
+                {t.worldMap.online}
               </span>
             </div>
-            <p className="text-[10px] text-stone-600 font-semibold">Tập sự Phố Wall • 3D RPG Kingdom</p>
+            <p className="text-[10px] text-stone-600 font-semibold">{t.worldMap.empireSub}</p>
           </div>
         </div>
 
@@ -249,8 +252,8 @@ export default function FinancialRpgWorldMap() {
               <Coins className="h-3.5 w-3.5 fill-white" />
             </div>
             <div>
-              <p className="text-[9px] font-extrabold uppercase text-amber-800/80 leading-none">Vốn Đầu Tư</p>
-              <p className="text-xs font-black text-amber-900 leading-tight">{coins.toLocaleString()} Coins</p>
+              <p className="text-[9px] font-extrabold uppercase text-amber-800/80 leading-none">{t.worldMap.capitalLabel}</p>
+              <p className="text-xs font-black text-amber-900 leading-tight">{format(t.worldMap.coinsValue, { count: coins.toLocaleString() })}</p>
             </div>
           </div>
 
@@ -260,7 +263,7 @@ export default function FinancialRpgWorldMap() {
               <Zap className="h-3.5 w-3.5 fill-white" />
             </div>
             <div>
-              <p className="text-[9px] font-extrabold uppercase text-sky-800/80 leading-none">Năng Lượng</p>
+              <p className="text-[9px] font-extrabold uppercase text-sky-800/80 leading-none">{t.worldMap.energyLabel}</p>
               <div className="flex items-center gap-1.5 mt-0.5">
                 <div className="w-16 h-2 bg-stone-200 rounded-full overflow-hidden border border-sky-300 p-[1px]">
                   <div className="h-full bg-gradient-to-r from-sky-400 to-emerald-400 rounded-full w-[100%] animate-pulse" />
@@ -276,19 +279,19 @@ export default function FinancialRpgWorldMap() {
           <button
             onClick={() => handleBuildingClick("shop")}
             className="flex items-center gap-1 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-white px-2.5 py-1.5 rounded-xl text-xs font-black shadow-md transition-all cursor-pointer active:scale-95"
-            title="Tiệm Đồ Executive"
+            title={t.worldMap.shopTitle}
           >
             <ShoppingBag className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">Tiệm Đồ</span>
+            <span className="hidden sm:inline">{t.worldMap.shopShort}</span>
           </button>
 
           <button
             onClick={() => handleBuildingClick("cards")}
             className="flex items-center gap-1 bg-white hover:bg-stone-50 text-stone-800 border border-stone-300 px-2.5 py-1.5 rounded-xl text-xs font-black shadow-xs transition-all cursor-pointer active:scale-95"
-            title="Bảo Tàng Thẻ VN30"
+            title={t.worldMap.cardsTitle}
           >
             <Layers className="w-3.5 h-3.5 text-sky-600" />
-            <span className="hidden sm:inline">Bộ Thẻ</span>
+            <span className="hidden sm:inline">{t.worldMap.cardsShort}</span>
           </button>
         </div>
       </div>
@@ -297,12 +300,12 @@ export default function FinancialRpgWorldMap() {
       <div className="bg-stone-950 border-y border-emerald-500/30 text-emerald-400 py-2 px-4 -mx-3 -mt-2 sm:-mx-5 sm:-mt-3 mb-4 text-[11px] font-mono shadow-md overflow-hidden relative z-10 flex items-center justify-between">
         <div className="flex items-center gap-6 whitespace-nowrap overflow-x-auto scrollbar-none">
           <span className="font-black text-amber-400 bg-amber-950/80 px-2 py-0.5 rounded border border-amber-500/40 flex items-center gap-1.5 shrink-0">
-            <span className="w-2 h-2 rounded-full bg-amber-400 animate-ping inline-block" /> WALL ST. TICKER
+            <span className="w-2 h-2 rounded-full bg-amber-400 animate-ping inline-block" /> {t.worldMap.tickerLabel}
           </span>
-          <span className="shrink-0 font-bold text-emerald-400">📈 VN-INDEX: 1,285.40 (+1.45%)</span>
-          <span className="shrink-0 font-bold text-amber-300">🐂 BOSS SÀN NYSE: 850,000 / 1,000,000 HP (85%)</span>
-          <span className="shrink-0 font-bold text-cyan-300">🏙️ TIMES SQUARE: CASE STUDY CASE #12 HOẠT ĐỘNG</span>
-          <span className="shrink-0 font-bold text-purple-300">💼 HEDGE FUND CLAN: TOP #1 WALL STREET</span>
+          <span className="shrink-0 font-bold text-emerald-400">{t.worldMap.tickerIndex}</span>
+          <span className="shrink-0 font-bold text-amber-300">{t.worldMap.tickerBoss}</span>
+          <span className="shrink-0 font-bold text-cyan-300">{t.worldMap.tickerCase}</span>
+          <span className="shrink-0 font-bold text-purple-300">{t.worldMap.tickerClan}</span>
         </div>
       </div>
 
@@ -312,7 +315,7 @@ export default function FinancialRpgWorldMap() {
           <div className="absolute inset-0 pointer-events-none opacity-70 z-0 overflow-hidden">
             <Image
               src="/wallstreet-bg.jpg"
-              alt="Wall Street Background"
+              alt={t.worldMap.bgAlt}
               fill
               className="object-cover blur-0 contrast-[1.08] brightness-[1.02]"
               priority
@@ -330,7 +333,12 @@ export default function FinancialRpgWorldMap() {
           <div>
             {/* Mobile / Tablet View: Categorized District Grids */}
             <div className="md:hidden space-y-5">
-              {["🏛️ NYSE CENTRAL", "🔥 TỔNG HỢP MINI GAME", "🏙️ TIMES SQUARE", "🏰 HEDGE FUND QUARTER", "🏦 FED VAULT", "🚀 SILICON BAY", "🏛️ CAPITOL HILL", "🌾 CME COMMODITY", "💎 SWISS HAVEN", "🚢 SINGAPORE DOCK"].map((districtBadge) => {
+              {/* i18n-ignore-start: district names in the game world. Nine of the ten are
+                  place names that are already English and stay that way in any
+                  language - NYSE, Times Square, the Fed vault, Singapore Dock.
+                  The one Vietnamese label is the generic "all mini games" tile,
+                  which does go through the dictionary. */}
+              {["🏛️ NYSE CENTRAL", t.worldMap.zoneMiniGames, "🏙️ TIMES SQUARE", "🏰 HEDGE FUND QUARTER", "🏦 FED VAULT", "🚀 SILICON BAY", "🏛️ CAPITOL HILL", "🌾 CME COMMODITY", "💎 SWISS HAVEN", "🚢 SINGAPORE DOCK" /* i18n-ignore-end */].map((districtBadge) => {
                 const districtBuildings = MAP_BUILDINGS.filter((b) => b.badge.includes(districtBadge.split(" ")[1] || districtBadge.split(" ")[0] || ""));
                 if (districtBuildings.length === 0) return null;
                 return (
@@ -362,8 +370,8 @@ export default function FinancialRpgWorldMap() {
                                 <div className="flex items-center gap-2">
                                   <span className="text-xl animate-bounce">☁️</span>
                                   <div>
-                                    <p className="text-[10px] font-black text-amber-900">VÙNG ĐẤT CHƯA GIẢI MÃ</p>
-                                    <p className="text-[9px] font-extrabold text-amber-700">Click mở (+5 Coins)</p>
+                                    <p className="text-[10px] font-black text-amber-900">{t.worldMap.fogTitle}</p>
+                                    <p className="text-[9px] font-extrabold text-amber-700">{t.worldMap.fogHint}</p>
                                   </div>
                                 </div>
                               </div>
@@ -375,8 +383,8 @@ export default function FinancialRpgWorldMap() {
                                 <div className="flex items-center gap-2">
                                   <span className="text-xl animate-pulse">🏗️</span>
                                   <div>
-                                    <p className="text-xs font-black text-amber-300 uppercase">ĐANG THI CÔNG</p>
-                                    <p className="text-[9px] font-bold text-stone-300">Khóa • Yêu cầu Lv.{reqLevel}</p>
+                                    <p className="text-xs font-black text-amber-300 uppercase">{t.worldMap.underConstruction}</p>
+                                    <p className="text-[9px] font-bold text-stone-300">{format(t.worldMap.lockedLevel, { level: reqLevel })}</p>
                                   </div>
                                 </div>
                               </div>
@@ -388,8 +396,8 @@ export default function FinancialRpgWorldMap() {
                                 <div className="flex items-center gap-2 text-stone-600">
                                   <Lock className="w-5 h-5 text-amber-600 animate-pulse shrink-0" />
                                   <div>
-                                    <p className="text-xs font-black text-amber-800 uppercase">Khóa Lv.{reqLevel}</p>
-                                    <p className="text-[9px] font-bold text-stone-500">Yêu cầu hoàn thành bài học</p>
+                                    <p className="text-xs font-black text-amber-800 uppercase">{format(t.worldMap.lockedShort, { level: reqLevel })}</p>
+                                    <p className="text-[9px] font-bold text-stone-500">{t.worldMap.lockedNeedLessons}</p>
                                   </div>
                                 </div>
                               </div>
@@ -424,10 +432,10 @@ export default function FinancialRpgWorldMap() {
             <div className="hidden md:flex items-center justify-between mb-3 px-2">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-100/90 text-amber-900 border border-amber-300 text-xs font-black shadow-xs">
                 <Compass className="w-4 h-4 text-amber-700 animate-spin-slow" />
-                <span>💡 Kéo tự do (Canva Drag & Pan) để di chuyển bản đồ không cần cuộn trang web!</span>
+                <span>{t.worldMap.dragHint}</span>
               </div>
               <span className="text-xs font-black text-emerald-800 bg-emerald-100 px-3 py-1 rounded-full border border-emerald-300 shadow-2xs">
-                12 VÙNG ĐẤT TÀI CHÍNH
+                {t.worldMap.zoneCount}
               </span>
             </div>
 
@@ -437,7 +445,7 @@ export default function FinancialRpgWorldMap() {
               {/* Canva Navigation Badge Overlay */}
               <div className="absolute top-4 left-4 z-40 flex items-center gap-2 pointer-events-none">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-stone-900/90 text-amber-300 text-xs font-black shadow-lg backdrop-blur-md border border-amber-500/40">
-                  <span>🖐️ Canva Drag Canvas (Kéo tự do 360° • Xem trọn vẹn 12 vùng đất)</span>
+                  <span>{t.worldMap.dragHintLong}</span>
                 </span>
               </div>
 
@@ -447,7 +455,7 @@ export default function FinancialRpgWorldMap() {
                 whileHover={{ y: -4, scale: 1.02 }}
                 whileTap={{ scale: 0.97 }}
                 className="absolute right-4 top-4 z-[45] w-[230px] rounded-[24px] border border-amber-300/90 bg-white/92 p-3 text-left shadow-[0_18px_42px_-24px_rgba(146,64,14,0.45)] backdrop-blur-xl transition-all"
-                title="Mở tủ trang bị"
+                title={t.worldMap.gearOpenTitle}
               >
                 <div className="flex items-center gap-3">
                   <div className="relative flex h-13 w-13 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-100 via-yellow-50 to-orange-100 ring-1 ring-amber-300 shadow-inner">
@@ -457,13 +465,13 @@ export default function FinancialRpgWorldMap() {
                     </span>
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[9px] font-black uppercase tracking-[0.16em] text-amber-700">Tủ trang bị</p>
-                    <h3 className="truncate text-sm font-black text-stone-950">Executive Gear</h3>
-                    <p className="mt-0.5 truncate text-[10px] font-semibold text-stone-500">Cố định ngoài bản đồ nhiệm vụ</p>
+                    <p className="text-[9px] font-black uppercase tracking-[0.16em] text-amber-700">{t.worldMap.gearEyebrow}</p>
+                    <h3 className="truncate text-sm font-black text-stone-950">{t.worldMap.gearTitle}</h3>
+                    <p className="mt-0.5 truncate text-[10px] font-semibold text-stone-500">{t.worldMap.gearSub}</p>
                   </div>
                 </div>
                 <div className="mt-2 flex items-center justify-between rounded-2xl bg-amber-50/80 px-3 py-2 ring-1 ring-amber-200/80">
-                  <span className="text-[10px] font-extrabold text-amber-900">Mở cửa hàng & tủ đồ</span>
+                  <span className="text-[10px] font-extrabold text-amber-900">{t.worldMap.gearCta}</span>
                   <span className="text-[10px] font-black text-amber-700">→</span>
                 </div>
               </motion.button>
@@ -528,7 +536,7 @@ export default function FinancialRpgWorldMap() {
 
                     {/* Hero Level Badge Pill */}
                     <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-gradient-to-r from-amber-500 to-yellow-500 text-white text-[8px] font-black uppercase px-1.5 py-0.5 rounded-full shadow ring-1 ring-white whitespace-nowrap">
-                      Lv.{level}
+                      {format(t.worldMap.levelShort, { level })}
                     </div>
                   </div>
                 </motion.div>
@@ -561,14 +569,14 @@ export default function FinancialRpgWorldMap() {
                         {b.id === "world-boss" && (
                           <div className="absolute top-2 right-2.5 z-30 flex items-center gap-1 rounded-full bg-red-100 px-2.5 py-0.5 text-[9px] font-black text-red-700 border border-red-300 shadow-xs">
                             <span className="w-1.5 h-1.5 rounded-full bg-red-600 animate-ping" />
-                            <span>BOSS 85% HP</span>
+                            <span>{t.worldMap.bossHp}</span>
                           </div>
                         )}
 
                         {b.id === "weekly-challenge" && (
                           <div className="absolute top-2 right-2.5 z-30 flex items-center gap-1 rounded-full bg-purple-100 px-2.5 py-0.5 text-[9px] font-black text-purple-700 border border-purple-300 shadow-xs animate-pulse">
                             <Sparkles className="w-2.5 h-2.5 text-purple-600" />
-                            <span>HOT CASE STUDY</span>
+                            <span>{t.worldMap.hotCase}</span>
                           </div>
                         )}
 
@@ -577,10 +585,10 @@ export default function FinancialRpgWorldMap() {
                           <div className="absolute inset-0 bg-white/95 backdrop-blur-md z-30 flex flex-col items-center justify-center p-2 text-center border-2 border-dashed border-amber-400 group-hover:bg-white/90 transition-all">
                             <span className="text-2xl mb-1 animate-bounce">☁️</span>
                             <span className="text-[10px] font-black text-amber-900 uppercase tracking-wider">
-                              VÙNG ĐẤT CHƯA GIẢI MÃ
+                              {t.worldMap.fogTitle}
                             </span>
                             <span className="text-[9px] font-extrabold text-amber-700 mt-0.5">
-                              Click mở sương mù (+5 Coins)
+                              {t.worldMap.fogHintLong}
                             </span>
                           </div>
                         )}
@@ -590,10 +598,10 @@ export default function FinancialRpgWorldMap() {
                           <div className="absolute inset-0 bg-stone-900/85 backdrop-blur-xs z-25 flex flex-col items-center justify-center p-2 text-center border-2 border-dashed border-amber-500/80 text-white">
                             <span className="text-2xl mb-1 animate-pulse">🏗️</span>
                             <span className="text-xs font-black uppercase text-amber-300 tracking-wider">
-                              ĐANG THI CÔNG
+                              {t.worldMap.underConstruction}
                             </span>
                             <span className="text-[9px] font-extrabold text-stone-300 mt-0.5">
-                              Khóa • Yêu cầu Lv.{reqLevel}
+                              {format(t.worldMap.lockedLevel, { level: reqLevel })}
                             </span>
                           </div>
                         )}
@@ -603,9 +611,9 @@ export default function FinancialRpgWorldMap() {
                           <div className="absolute inset-0 bg-stone-100/95 backdrop-blur-xs z-25 flex flex-col items-center justify-center p-2 text-center border-2 border-dashed border-stone-300">
                             <div className="flex items-center gap-1.5 text-amber-700">
                               <Lock className="w-4 h-4 text-amber-600 animate-pulse" />
-                              <span className="text-xs font-black uppercase">Khóa Lv.{reqLevel}</span>
+                              <span className="text-xs font-black uppercase">{format(t.worldMap.lockedShort, { level: reqLevel })}</span>
                             </div>
-                            <span className="text-[9px] font-bold text-stone-500 mt-0.5">Hoàn thành bài học để mở</span>
+                            <span className="text-[9px] font-bold text-stone-500 mt-0.5">{t.worldMap.lockedNeedLessonsShort}</span>
                           </div>
                         )}
 
@@ -643,11 +651,11 @@ export default function FinancialRpgWorldMap() {
                 onClick={handleCloseBuilding}
                 className="inline-flex items-center gap-2 text-xs font-extrabold text-stone-800 bg-white border border-stone-300 hover:bg-stone-50 px-4 py-2 rounded-2xl transition-all cursor-pointer shadow-md"
               >
-                <ChevronLeft className="w-4 h-4 text-amber-600" /> Quay Lại Bản Đồ Đấu Trường
+                <ChevronLeft className="w-4 h-4 text-amber-600" /> {t.worldMap.backToMap}
               </button>
               
               <span className="text-[11px] sm:text-xs font-black text-amber-800 uppercase tracking-widest leading-tight">
-                Đang mở: {ORGANIC_BUILDINGS.find((b) => b.id === selectedBuilding)?.name}
+                {format(t.worldMap.opening, { name: ORGANIC_BUILDINGS.find((b) => b.id === selectedBuilding)?.name ?? "" })}
               </span>
             </div>
 

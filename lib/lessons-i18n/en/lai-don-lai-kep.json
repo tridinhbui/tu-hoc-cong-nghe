@@ -1,0 +1,131 @@
+{
+  "slug": "lai-don-lai-kep",
+  "title": "Simple interest and compound interest.",
+  "subtitle": "Einstein called compounding the eighth wonder of the world. Here's why.",
+  "duration": "7 min",
+  "openingQuestion": "You deposit 100 million VND at 10% a year. After 20 years, what do you hold in total (principal + interest) under simple interest? Under compound interest?",
+  "openingOptions": [
+    "Simple: 300 million; compound: 672 million",
+    "The same either way: 300 million",
+    "Simple: 300 million; compound: 500 million",
+    "Both come to 672 million"
+  ],
+  "explanation": "Simple interest is always calculated on the original principal; compound interest adds each period's interest to the principal and calculates the next period on the larger figure. It sounds like a small technical difference, but over twenty years at 10% the same 100 million becomes 300 million under simple interest and 672 million under compound. All 372 million of the gap is interest earned on interest, and that share grows as time goes on - which is why the rule of 72 says the years to double equal 72 divided by the rate.",
+  "diagram": [
+    { "label": "Put in the original principal" },
+    { "label": "Interest is earned at period end" },
+    { "label": "Simple: take the interest out, principal unchanged" },
+    { "label": "Compound: add the interest to the principal, so the next period earns on a larger figure" }
+  ],
+  "realWorldExample": {
+    "company": "Warren Buffett",
+    "description": "Buffett began investing seriously at 25 with roughly 175,000 USD. Compounding over 60 years took his wealth past 100 billion USD."
+  },
+  "quiz": [
+    {
+      "question": "Why does compound interest produce more money than simple interest?",
+      "options": [
+        "Because compounding only applies to a much larger principal",
+        "Because the rate applied to compound interest is always the higher one",
+        "Because compound interest accrues daily rather than annually",
+        "Because the interest earned is reinvested and earns interest too"
+      ],
+      "explanation": "Simple interest is calculated on the original principal only. Compound interest is calculated on the principal plus all interest accumulated so far. This year's interest becomes next year's principal, which is what creates the snowball effect."
+    },
+    {
+      "question": "What does the rule of 72 tell you?",
+      "options": [
+        "Divide 72 by the rate to get the years to double",
+        "You need 72 straight months invested before compounding shows",
+        "The optimal savings rate is 72% of your monthly income",
+        "Multiply 72 by the rate to get the years to double"
+      ],
+      "explanation": "The rule of 72: years to double = 72 / rate. At 6%, money doubles in 12 years. At 10%, in 7.2 years. It is a quick estimate you can do without a calculator."
+    },
+    {
+      "question": "Scenario: You are 25 and hold 100 million VND. Option A: start investing now at 10% a year compounded. Option B: wait until 35, then invest at the same 10% a year. When both of you turn 65, how far apart is the wealth of A and B?",
+      "options": [
+        "About 1.33× apart (taking 40/30)",
+        "About 2.6× apart, from the ten earlier years",
+        "About 10× apart (an order of magnitude out)",
+        "About 4× apart (counting by number of years)"
+      ],
+      "explanation": "A invests for 40 years: 100 million × (1.1)^40 ≈ 4.53 billion. B invests for 30 years: 100 million × (1.1)^30 ≈ 1.74 billion. The ratio is 4.53/1.74 ≈ 2.6×. Ten earlier years of investing alone produced a 2.6× gap in wealth, through compounding."
+    },
+    {
+      "question": "Scenario: An investment earns 9% a year. By the rule of 72, how long until the capital doubles?",
+      "options": [
+        "72 years (= reading 72 as the answer, not the numerator)",
+        "9 years (= simply repeating the interest rate)",
+        "About 8 years (= 72 ÷ 9, the rule of 72)",
+        "About 4 years (= 36 ÷ 9, misremembering 72 as 36)"
+      ],
+      "explanation": "The rule of 72 divides 72 by the rate expressed in percent: 72 ÷ 9 = 8 years. It is the mental arithmetic that makes the weight of a rate obvious - at 6% you wait 12 years, at 12% only 6, twice the speed for 6 percentage points."
+    },
+    {
+      "question": "Scenario: 100 million VND at 10% a year. After 2 years, how much more does compound interest give than simple?",
+      "options": [
+        "20 million (= adding both years of interest, then doubling)",
+        "No difference, because two years is too short for it to show",
+        "10 million (= the whole of the second year's interest)",
+        "1 million (= 121 − 120, the interest earned on interest)"
+      ],
+      "explanation": "Simple interest gives 100 + 10 + 10 = 120 million; compound gives 100 × 1.1 × 1.1 = 121 million. One million after two years looks like nothing, but the same multiplication run for 30 years gives 1.74 billion against 400 million."
+    }
+  ],
+  "keyTakeaways": [
+    "Compounding: interest earns interest, snowballing over time",
+    "Rule of 72: years to double = 72 divided by the rate",
+    "Starting early matters more than investing a lot"
+  ],
+  "practicePrompt": {
+    "question": "If you invest 100 million VND at 10% a year, roughly how much will you have after 10 years?",
+    "options": ["260 million", "100 million", "150 million", "500 million"],
+    "explanation": "100 million × 1.1^10 ≈ 259 million. That is compounding: the total grows faster the longer the horizon."
+  },
+  "summary": {
+    "keyIdea": "Compounding makes growth powerful once the horizon is long.",
+    "formula": "FV = PV × (1 + r)^n.",
+    "commonMistake": "Reading the growth as linear rather than exponential.",
+    "action": "Recalculate one small investment over 10 years and over 20 to see the difference."
+  },
+  "application": {
+    "title": "Apply it now",
+    "message": "Don't wait until you have 'enough' to start investing; starting early, even small, is worth a great deal over a long horizon."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Albert Einstein is said to have called compound interest 'the eighth wonder of the world'. The quote may be apocryphal, but the mathematics behind it is entirely real."
+    },
+    { "type": "heading", "text": "Simple interest: linear, predictable" },
+    {
+      "type": "paragraph",
+      "text": "Deposit 100 million VND at 10% a year as simple interest: every year you receive exactly 10 million in interest (10% of the original 100 million), unchanged. After 20 years: 100 million + (10 million × 20) = 300 million. That is linear growth - a straight line."
+    },
+    { "type": "heading", "text": "Compound interest: interest earns interest, and it grows exponentially" },
+    {
+      "type": "paragraph",
+      "text": "With compound interest, each year's interest is added to the principal, and the following year's interest is calculated on the principal plus everything accumulated before it. After 20 years: 100 million × (1.1)^20 ≈ 672 million - 372 million more than simple interest. That gap does not come from a higher rate; it comes from interest being continuously reinvested, producing a 'snowball' that grows larger the longer it runs."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Simple interest: calculated on the principal only, linear growth",
+        "Compound interest: calculated on principal plus accumulated interest, exponential growth",
+        "Rule of 72: years to double your money ≈ 72 divided by the rate (% a year)"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Rule of 72 in practice",
+      "text": "At 10% a year, 72/10 = 7.2 years to double your money. At 6% a year, it takes 12 years. This is an extremely useful piece of mental arithmetic for estimating how fast wealth grows, with no calculator needed."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Compounding is why starting to invest early matters far more than waiting until you have a lot of money to begin with - something you'll see more clearly in the next lesson, on the power of time."
+      ]
+    }
+  ]
+}

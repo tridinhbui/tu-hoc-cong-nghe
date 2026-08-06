@@ -38,6 +38,8 @@ import { createClient } from "@/lib/supabase";
 import type { LearningAnalytics as LearningAnalyticsType } from "@/lib/supabase-analytics";
 import LeaderboardSection from "@/components/analytics/LeaderboardSection";
 import CompetencyStatsSection from "@/components/analytics/CompetencyStatsSection";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 18 },
@@ -88,6 +90,9 @@ interface CustomTooltipProps {
 }
 
 const CustomTooltip = ({ active, payload, label, formatter, labelFormatter }: CustomTooltipProps) => {
+  // Its own hook: Recharts renders this outside the analytics component tree, so
+  // `t` cannot be closed over from there.
+  const { t } = useI18n();
   if (active && payload && payload.length) {
     const formattedLabel = labelFormatter && label !== undefined ? labelFormatter(label) : label;
     return (
@@ -99,7 +104,7 @@ const CustomTooltip = ({ active, payload, label, formatter, labelFormatter }: Cu
         )}
         {payload.map((item, idx) => {
           const displayVal = formatter ? formatter(item.value, item.name) : item.value;
-          const displayName = item.name === "lessonsCompleted" ? "Bài học" : item.name === "minutesSpent" ? "Thời gian" : item.name;
+          const displayName = item.name === "lessonsCompleted" ? t.analytics.seriesLessons : item.name === "minutesSpent" ? t.analytics.seriesMinutes : item.name;
           return (
             <div key={idx} className="flex items-center gap-4 justify-between">
               <span className="text-stone-500 dark:text-stone-400 font-medium">{displayName}:</span>
@@ -221,6 +226,7 @@ function AnalyticsSkeleton() {
 }
 
 export default function LearningAnalytics({ hideLeaderboardTab = false }: { hideLeaderboardTab?: boolean }) {
+  const { t } = useI18n();
   const searchParams = useSearchParams();
   const initialTab = searchParams.get("tab");
   const [analytics, setAnalytics] = useState<LearningAnalyticsType | null>(null);
@@ -290,7 +296,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
   if (!analytics) {
     return (
       <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-6 sm:p-8 text-center text-stone-500 dark:text-stone-400">
-        Không có dữ liệu analytics
+        {t.analytics.noData}
       </div>
     );
   }
@@ -308,10 +314,10 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
           <div className="min-w-0 flex-1">
             <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/60 px-3 py-1 text-[10px] font-extrabold uppercase tracking-[0.16em] text-emerald-700 dark:text-emerald-400">
               <Sparkles className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" />
-              Cá nhân
+              {t.analytics.personal}
             </div>
             <h2 className="mt-2 text-xl sm:text-2xl font-black leading-tight tracking-tight text-stone-900 dark:text-stone-100">
-              Nhịp học hiện tại
+              {t.analytics.currentRhythm}
             </h2>
 
             <div className="mt-3 flex flex-wrap gap-1.5 sm:gap-2">
@@ -329,21 +335,21 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
           {/* Compact Horizontal Quick Stats */}
           <div className="grid grid-cols-3 gap-1.5 sm:gap-3 shrink-0">
             <div className="rounded-2xl border border-stone-200/80 dark:border-stone-800 bg-gradient-to-b from-stone-50/80 to-white dark:from-stone-800/60 dark:to-stone-900 p-2 sm:p-3 text-center min-w-[72px] sm:min-w-[85px]">
-              <p className="text-[9px] font-extrabold uppercase tracking-wider text-stone-400 dark:text-stone-400">Chuỗi</p>
-              <p className="mt-1 text-base sm:text-lg font-black text-stone-900 dark:text-stone-100 whitespace-nowrap">{analytics.streakDays} ngày</p>
-              <p className="text-[9px] font-semibold text-stone-500 dark:text-stone-400 truncate">Kỷ lục {analytics.longestStreak}</p>
+              <p className="text-[9px] font-extrabold uppercase tracking-wider text-stone-400 dark:text-stone-400">{t.analytics.streakLabel}</p>
+              <p className="mt-1 text-base sm:text-lg font-black text-stone-900 dark:text-stone-100 whitespace-nowrap">{format(t.analytics.streakDays, { count: analytics.streakDays })}</p>
+              <p className="text-[9px] font-semibold text-stone-500 dark:text-stone-400 truncate">{format(t.analytics.streakRecord, { count: analytics.longestStreak })}</p>
             </div>
 
             <div className="rounded-2xl border border-stone-200/80 dark:border-stone-800 bg-gradient-to-b from-stone-50/80 to-white dark:from-stone-800/60 dark:to-stone-900 p-2 sm:p-3 text-center min-w-[72px] sm:min-w-[85px]">
-              <p className="text-[9px] font-extrabold uppercase tracking-wider text-stone-400 dark:text-stone-400">Điểm Quiz</p>
+              <p className="text-[9px] font-extrabold uppercase tracking-wider text-stone-400 dark:text-stone-400">{t.analytics.quizScoreLabel}</p>
               <p className="mt-1 text-base sm:text-lg font-black text-emerald-600 dark:text-emerald-400 whitespace-nowrap">{analytics.averageQuizScore}%</p>
-              <p className="text-[9px] font-semibold text-stone-500 dark:text-stone-400 truncate">{analytics.totalLessonsCompleted} bài</p>
+              <p className="text-[9px] font-semibold text-stone-500 dark:text-stone-400 truncate">{format(t.analytics.lessonCount, { count: analytics.totalLessonsCompleted })}</p>
             </div>
 
             <div className="rounded-2xl border border-stone-200/80 dark:border-stone-800 bg-gradient-to-b from-stone-50/80 to-white dark:from-stone-800/60 dark:to-stone-900 p-2 sm:p-3 text-center min-w-[72px] sm:min-w-[85px]">
-              <p className="text-[9px] font-extrabold uppercase tracking-wider text-stone-400 dark:text-stone-400">Giờ Học</p>
+              <p className="text-[9px] font-extrabold uppercase tracking-wider text-stone-400 dark:text-stone-400">{t.analytics.studyHourLabel}</p>
               <p className="mt-1 text-base sm:text-lg font-black text-stone-900 dark:text-stone-100 whitespace-nowrap">
-                {analytics.bestStudyHour !== null ? formatHour(analytics.bestStudyHour) : "Chưa rõ"}
+                {analytics.bestStudyHour !== null ? formatHour(analytics.bestStudyHour) : t.analytics.hourUnknown}
               </p>
               <p className="text-[9px] font-semibold text-stone-500 truncate">{analytics.peakStudyWindow}</p>
             </div>
@@ -354,11 +360,11 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
       {/* Premium Tab Selector */}
       <div className="flex border-b border-stone-200 dark:border-stone-800 gap-6 mt-2 pb-0 overflow-x-auto scrollbar-none">
         {([
-          { id: "overview", label: "Thống kê cá nhân" },
-          { id: "knowledge", label: "Kiến thức & Kết quả" },
-          { id: "memory", label: "Ghi chú & Hành động" },
-          { id: "competency", label: "Năng lực" },
-          ...(!hideLeaderboardTab ? [{ id: "leaderboard", label: "Bảng xếp hạng" }] : []),
+          { id: "overview", label: t.analytics.tabOverview },
+          { id: "knowledge", label: t.analytics.tabKnowledge },
+          { id: "memory", label: t.analytics.tabMemory },
+          { id: "competency", label: t.analytics.tabCompetency },
+          ...(!hideLeaderboardTab ? [{ id: "leaderboard", label: t.analytics.tabLeaderboard }] : []),
         ] as { id: AnalyticsSection; label: string }[]).map((tab) => {
           const isActive = activeSection === tab.id;
           return (
@@ -388,7 +394,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
           <div className="grid gap-3.5 grid-cols-2 sm:grid-cols-2">
             <MetricCard
               icon={<Flame className="h-5 w-5" />}
-              label="Chuỗi ngày"
+              label={t.analytics.cardStreak}
               value={`${analytics.streakDays}`}
               hint={`Kỷ lục ${analytics.longestStreak} ngày liên tiếp`}
               accent="from-orange-500 to-red-600"
@@ -396,7 +402,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
             />
             <MetricCard
               icon={<Sparkles className="h-5 w-5" />}
-              label="Nhịp 7 ngày"
+              label={t.analytics.cardWeekRhythm}
               value={`${analytics.recentMomentum.last7DaysLessons} bài`}
               hint={`${analytics.recentMomentum.last7DaysMinutes} phút hoàn thành`}
               accent="from-emerald-500 to-teal-500"
@@ -404,7 +410,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
             />
             <MetricCard
               icon={<Clock3 className="h-5 w-5" />}
-              label="Thời gian học"
+              label={t.analytics.cardStudyTime}
               value={`${analytics.totalTimeSpent} phút`}
               hint={`${analytics.peakStudyWindow} · ${analytics.bestStudyHour !== null ? formatHour(analytics.bestStudyHour) : "chưa rõ giờ"}`}
               accent="from-sky-400 to-blue-600"
@@ -412,7 +418,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
             />
             <MetricCard
               icon={<TrendingUp className="h-5 w-5" />}
-              label="Xu hướng tuần"
+              label={t.analytics.cardWeekTrend}
               value={`${analytics.recentMomentum.weeklyTrendPercent > 0 ? "+" : ""}${analytics.recentMomentum.weeklyTrendPercent}%`}
               hint={`${analytics.recentMomentum.last30DaysLessons} bài trong 30 ngày qua`}
               accent="from-teal-400 to-emerald-600"
@@ -430,11 +436,11 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
             >
               <div className="mb-6 flex items-center justify-between gap-4">
                 <div>
-                  <p className={sectionLabelClass}>Nhịp học 8 tuần gần đây</p>
-                  <h3 className="mt-2 text-lg font-bold text-stone-900 dark:text-stone-50">Hoạt động của bạn theo tuần</h3>
+                  <p className={sectionLabelClass}>{t.analytics.rhythmEyebrow}</p>
+                  <h3 className="mt-2 text-lg font-bold text-stone-900 dark:text-stone-50">{t.analytics.rhythmTitle}</h3>
                 </div>
                 <div className={panelSoftClass + " px-3.5 py-1.5 text-xs text-stone-600 dark:text-stone-300 font-bold"}>
-                  Tuần tốt nhất: {weeklyPeak} bài
+                  {format(t.analytics.rhythmPeak, { count: weeklyPeak })}
                 </div>
               </div>
               <div className="h-[280px]">
@@ -476,13 +482,13 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
               className={panelClass + " p-4 sm:p-6"}
             >
               <div className="mb-6">
-                <p className={sectionLabelClass}>Khung giờ học</p>
-                <h3 className="mt-2 text-lg font-bold text-stone-900 dark:text-stone-50">Giờ học quen thuộc nhất</h3>
-                <p className="mt-1 text-xs text-stone-500 dark:text-stone-400">Dựa trên thời điểm bạn hoàn thành bài học.</p>
+                <p className={sectionLabelClass}>{t.analytics.hoursEyebrow}</p>
+                <h3 className="mt-2 text-lg font-bold text-stone-900 dark:text-stone-50">{t.analytics.hoursTitle}</h3>
+                <p className="mt-1 text-xs text-stone-500 dark:text-stone-400">{t.analytics.hoursSub}</p>
               </div>
               {studyHourData.length === 0 ? (
                 <div className="flex h-[300px] items-center justify-center rounded-2xl bg-stone-50/50 dark:bg-stone-800/40 text-xs text-stone-400 dark:text-stone-500 border border-stone-200/50 dark:border-stone-800/80">
-                  Chưa đủ dữ liệu giờ học để vẽ biểu đồ.
+                  {t.analytics.hoursEmpty}
                 </div>
               ) : (
                 <div className="h-[280px]">
@@ -528,7 +534,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
           <div className="grid gap-4 md:grid-cols-3">
             <MetricCard
               icon={<Brain className="h-5 w-5" />}
-              label="Điểm quiz trung bình"
+              label={t.analytics.cardAvgQuiz}
               value={`${analytics.averageQuizScore}%`}
               hint={`TB ${analytics.averageMinutesPerLesson} phút cho mỗi bài`}
               accent="from-amber-400 to-orange-500"
@@ -536,7 +542,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
             />
             <MetricCard
               icon={<Target className="h-5 w-5" />}
-              label="Bài hoàn thành"
+              label={t.analytics.cardCompleted}
               value={`${analytics.totalLessonsCompleted}`}
               hint={`${analytics.completionRate}% trên ${analytics.totalLessonsStarted} bài đã mở`}
               accent="from-emerald-500 to-teal-500"
@@ -544,7 +550,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
             />
             <MetricCard
               icon={<CheckCircle2 className="h-5 w-5" />}
-              label="Tỷ lệ hoàn thành"
+              label={t.analytics.cardCompletionRate}
               value={`${analytics.completionRate}%`}
               hint="Tỷ số bài kết thúc / bài đã mở"
               accent="from-indigo-400 to-purple-600"
@@ -561,12 +567,12 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
               className={panelClass + " p-4 sm:p-6"}
             >
               <div className="mb-6">
-                <p className={sectionLabelClass}>Cơ cấu track học</p>
-                <h3 className="mt-2 text-lg font-bold text-stone-900 dark:text-stone-50">Lĩnh vực bạn đang tập trung học</h3>
+                <p className={sectionLabelClass}>{t.analytics.trackEyebrow}</p>
+                <h3 className="mt-2 text-lg font-bold text-stone-900 dark:text-stone-50">{t.analytics.trackTitle}</h3>
               </div>
               {trackPieData.length === 0 ? (
                 <div className="flex h-[260px] items-center justify-center rounded-2xl bg-stone-50/50 dark:bg-stone-800/40 text-xs text-stone-400 dark:text-stone-500 border border-stone-200/50 dark:border-stone-800/80">
-                  Chưa có dữ liệu track để hiển thị.
+                  {t.analytics.trackEmpty}
                 </div>
               ) : (
                 <div className="grid min-w-0 items-center gap-6 md:grid-cols-[1fr_1.1fr]">
@@ -589,8 +595,8 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
                       </PieChart>
                     </ResponsiveContainer>
                     <div className="absolute flex flex-col items-center justify-center">
-                      <span className="text-[10px] uppercase font-extrabold tracking-widest text-stone-400 dark:text-stone-500">Tổng cộng</span>
-                      <span className="text-xl font-extrabold text-stone-900 dark:text-stone-50">{analytics.totalLessonsCompleted} bài</span>
+                      <span className="text-[10px] uppercase font-extrabold tracking-widest text-stone-400 dark:text-stone-500">{t.analytics.total}</span>
+                      <span className="text-xl font-extrabold text-stone-900 dark:text-stone-50">{format(t.analytics.lessonCount, { count: analytics.totalLessonsCompleted })}</span>
                     </div>
                   </div>
                   <div className="space-y-2.5">
@@ -603,7 +609,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
                           <span className="h-3 w-3 rounded-full ring-2 ring-white dark:ring-stone-900 shrink-0" style={{ backgroundColor: item.color }} />
                           <span className="font-bold text-stone-800 dark:text-stone-200">{item.name}</span>
                         </div>
-                        <span className="font-extrabold text-stone-900 dark:text-stone-50">{item.value} bài</span>
+                        <span className="font-extrabold text-stone-900 dark:text-stone-50">{format(t.analytics.lessonCount, { count: item.value })}</span>
                       </div>
                     ))}
                   </div>
@@ -620,11 +626,11 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
             >
               <div className="mb-6 flex items-center justify-between gap-4">
                 <div>
-                  <p className={sectionLabelClass}>Độ khó bài đã học</p>
-                  <h3 className="mt-2 text-lg font-bold text-stone-900 dark:text-stone-50">Phân phối độ khó</h3>
+                  <p className={sectionLabelClass}>{t.analytics.difficultyEyebrow}</p>
+                  <h3 className="mt-2 text-lg font-bold text-stone-900 dark:text-stone-50">{t.analytics.difficultyTitle}</h3>
                 </div>
                 <div className={panelSoftClass + " px-3.5 py-1.5 text-xs text-stone-600 dark:text-stone-300 font-bold"}>
-                  {analytics.totalLessonsCompleted} bài đã xong
+                  {format(t.analytics.lessonsDone, { count: analytics.totalLessonsCompleted })}
                 </div>
               </div>
               <div className="space-y-4">
@@ -637,7 +643,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
                           <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: item.color }} />
                           <span className="font-bold text-stone-800 dark:text-stone-200">{item.label}</span>
                         </div>
-                        <span className="font-extrabold text-stone-900 dark:text-stone-50">{item.value} bài ({Math.round(width)}%)</span>
+                        <span className="font-extrabold text-stone-900 dark:text-stone-50">{format(t.analytics.lessonsWithPercent, { count: item.value, percent: Math.round(width) })}</span>
                       </div>
                       <div className="h-2.5 rounded-full bg-stone-100 dark:bg-stone-800 overflow-hidden">
                         <motion.div
@@ -662,7 +668,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
           <div className="grid gap-4 md:grid-cols-3">
             <MetricCard
               icon={<NotebookPen className="h-5 w-5" />}
-              label="Tổng số ghi chú"
+              label={t.analytics.cardTotalNotes}
               value={`${analytics.notes.totalNotes} note`}
               hint={`${analytics.notes.lessonsWithNotes} bài học có lưu note`}
               accent="from-indigo-400 to-purple-600"
@@ -670,7 +676,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
             />
             <MetricCard
               icon={<BookMarked className="h-5 w-5" />}
-              label="Đánh dấu thủ công"
+              label={t.analytics.cardManualFlags}
               value={`${analytics.manualFlags.totalFlags} bài`}
               hint="Các bài tự bấm đánh dấu đã học"
               accent="from-cyan-400 to-sky-500"
@@ -678,7 +684,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
             />
             <MetricCard
               icon={<Award className="h-5 w-5" />}
-              label="Độ ổn định nhịp học"
+              label={t.analytics.cardRhythmStability}
               value={`${analytics.consistencyScore}%`}
               hint="Độ hiện diện đều đặn trong 8 tuần"
               accent="from-stone-500 to-stone-700"
@@ -696,21 +702,21 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
             >
               <div className="mb-6 flex items-center justify-between gap-4">
                 <div>
-                  <p className={sectionLabelClass}>Ghi chú nổi bật</p>
-                  <h3 className="mt-2 text-lg font-bold text-stone-900 dark:text-stone-50">Bài học được note nhiều nhất</h3>
+                  <p className={sectionLabelClass}>{t.analytics.notesEyebrow}</p>
+                  <h3 className="mt-2 text-lg font-bold text-stone-900 dark:text-stone-50">{t.analytics.notesTitle}</h3>
                 </div>
                 <Link
                   href="/ghi-chu"
                   className="inline-flex items-center gap-1 text-xs font-bold text-emerald-600 dark:text-emerald-400 hover:underline"
                 >
-                  Xem tất cả
+                  {t.analytics.seeAll}
                   <ChevronRight className="h-3.5 w-3.5" />
                 </Link>
               </div>
 
               {analytics.notes.topLessons.length === 0 ? (
                 <div className="rounded-xl border border-stone-200/50 dark:border-stone-800/80 bg-stone-50/50 dark:bg-stone-800/40 px-5 py-8 text-xs text-stone-400 dark:text-stone-500 text-center leading-relaxed">
-                  Chưa có ghi chú nào được lưu. Khi bạn note lại ý quan trọng trong bài học, phần này sẽ hiển thị các bài bạn suy ngẫm nhiều nhất.
+                  {t.analytics.notesEmpty}
                 </div>
               ) : (
                 <div className="space-y-2.5">
@@ -729,7 +735,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
                             {lesson.title}
                           </p>
                           <p className="mt-1 text-[10px] text-stone-400 dark:text-stone-500 font-medium">
-                            {lesson.notesCount} ghi chú được lưu
+                            {format(t.analytics.notesSaved, { count: lesson.notesCount })}
                           </p>
                         </div>
                       </div>
@@ -748,8 +754,8 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
               className={panelClass + " p-4 sm:p-6"}
             >
               <div className="mb-6">
-                <p className={sectionLabelClass}>Gợi ý tiếp theo</p>
-                <h3 className="mt-2 text-lg font-bold text-stone-900 dark:text-stone-50">Tận dụng dữ liệu học tập</h3>
+                <p className={sectionLabelClass}>{t.analytics.nextEyebrow}</p>
+                <h3 className="mt-2 text-lg font-bold text-stone-900 dark:text-stone-50">{t.analytics.nextTitle}</h3>
               </div>
 
               <div className="space-y-3">
@@ -757,9 +763,9 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
                   <div className="flex items-start gap-2.5">
                     <CheckCircle2 className="mt-0.5 h-4.5 w-4.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
                     <div>
-                      <p className="font-bold text-stone-900 dark:text-stone-100">Đóng các bài dang dở</p>
+                      <p className="font-bold text-stone-900 dark:text-stone-100">{t.analytics.tipFinishTitle}</p>
                       <p className="mt-1 text-stone-500 dark:text-stone-400 leading-relaxed">
-                        Tỷ lệ hoàn thành đang là {analytics.completionRate}%. Hãy ưu tiên ôn lại và kết thúc các bài học đã bắt đầu thay vì mở bài mới để ghi nhớ sâu sắc hơn.
+                        {format(t.analytics.tipFinishBody, { rate: analytics.completionRate })}
                       </p>
                     </div>
                   </div>
@@ -769,9 +775,9 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
                   <div className="flex items-start gap-2.5">
                     <BarChart3 className="mt-0.5 h-4.5 w-4.5 text-blue-500 dark:text-blue-400 shrink-0" />
                     <div>
-                      <p className="font-bold text-stone-900 dark:text-stone-100">Duy trì cấu trúc giờ học</p>
+                      <p className="font-bold text-stone-900 dark:text-stone-100">{t.analytics.tipHoursTitle}</p>
                       <p className="mt-1 text-stone-500 dark:text-stone-400 leading-relaxed">
-                        Bạn có xu hướng học tốt nhất vào lúc {analytics.bestStudyHour !== null ? formatHour(analytics.bestStudyHour) : "các giờ cố định"}. Thiết lập nhịp học đều đặn mỗi tuần để đạt hiệu quả cao.
+                        {format(t.analytics.tipHoursBody, { hour: analytics.bestStudyHour !== null ? formatHour(analytics.bestStudyHour) : t.analytics.tipHoursFallback })}
                       </p>
                     </div>
                   </div>
@@ -781,9 +787,9 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
                   <div className="flex items-start gap-2.5">
                     <NotebookPen className="mt-0.5 h-4.5 w-4.5 text-indigo-500 dark:text-indigo-400 shrink-0" />
                     <div>
-                      <p className="font-bold text-stone-900 dark:text-stone-100">Biến ghi chú thành lợi thế ôn tập</p>
+                      <p className="font-bold text-stone-900 dark:text-stone-100">{t.analytics.tipNotesTitle}</p>
                       <p className="mt-1 text-stone-500 dark:text-stone-400 leading-relaxed">
-                        Bạn đang có {analytics.notes.totalNotes} ghi chú quan trọng. Hãy thường xuyên ôn tập lại các note để lưu trữ kiến thức bền lâu.
+                        {format(t.analytics.tipNotesBody, { count: analytics.notes.totalNotes })}
                       </p>
                     </div>
                   </div>
@@ -795,14 +801,14 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
                   href="/dashboard"
                   className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-stone-900 px-4 py-2.5 text-xs font-bold text-white transition-colors hover:bg-stone-800 dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-white cursor-pointer"
                 >
-                  Tiếp tục học
+                  {t.analytics.continueLearning}
                   <ArrowRight className="h-3.5 w-3.5" />
                 </Link>
                 <Link
                   href="/ghi-chu"
                   className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 px-4 py-2.5 text-xs font-bold text-stone-800 dark:text-stone-100 transition-colors hover:bg-stone-50 dark:hover:bg-stone-800/50 cursor-pointer"
                 >
-                  Mở ghi chú
+                  {t.analytics.openNotes}
                   <ArrowRight className="h-3.5 w-3.5" />
                 </Link>
               </div>

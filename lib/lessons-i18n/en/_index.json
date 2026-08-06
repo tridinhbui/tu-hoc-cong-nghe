@@ -1,0 +1,52 @@
+{
+  "but-toan-ghi-so-kep-hai-ve": {
+    "title": "Bookkeeping, Lesson 1: Double entry - why every transaction has two sides",
+    "subtitle": "What debit and credit actually mean, the increase/decrease rule for each account type, and why the totals always balance",
+    "duration": "11 min"
+  },
+  "cash-conversion-cycle-2": {
+    "title": "Cash Conversion Cycle (CCC)",
+    "subtitle": "How long from putting money out to getting money back?",
+    "duration": "6 min"
+  },
+  "dong-tien": {
+    "title": "What is cash flow? Why the wealthy look at cash before profit.",
+    "subtitle": "Profit shows efficiency on the statement. Cash flow shows financial capacity in reality.",
+    "duration": "7 min"
+  },
+  "du-an-cho-thue-noi-va-cap-rate": {
+    "title": "Property projects, Lesson 4: Rental assets - NOI and why it differs from accounting profit",
+    "subtitle": "How to calculate net operating income, the relationship between NOI and the cap rate, and the three deductions beginners always forget",
+    "duration": "11 min"
+  },
+  "inventory-turnover-co-ban": {
+    "title": "Inventory Turnover: how fast stock moves",
+    "subtitle": "Whether goods sell fast or slow - a signal of operating efficiency",
+    "duration": "5 min"
+  },
+  "lai-don-lai-kep": {
+    "title": "Simple interest and compound interest.",
+    "subtitle": "Einstein called compounding the eighth wonder of the world. Here's why.",
+    "duration": "7 min"
+  },
+  "lai-suat-la-gi": {
+    "title": "What is an interest rate? Why rates move everything.",
+    "subtitle": "An interest rate is the price of money. When it changes, everything changes with it.",
+    "duration": "7 min"
+  },
+  "lam-phat-la-gi": {
+    "title": "What is inflation? Why money loses value.",
+    "subtitle": "Inflation isn't an accident. It is a built-in feature of every modern economy.",
+    "duration": "7 min"
+  },
+  "on-tap-wacc": {
+    "title": "Deep-dive case: WACC review",
+    "subtitle": "5 quiz questions on the cost of capital - understand it, don't memorise it",
+    "duration": "6 min"
+  },
+  "roic": {
+    "title": "Deep-dive case: ROIC",
+    "subtitle": "Return on Invested Capital - measuring genuine value creation",
+    "duration": "7 min"
+  }
+}

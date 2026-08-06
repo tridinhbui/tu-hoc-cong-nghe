@@ -1,0 +1,176 @@
+{
+  "slug": "on-tap-wacc",
+  "title": "Deep-dive case: WACC review",
+  "subtitle": "5 quiz questions on the cost of capital - understand it, don't memorise it",
+  "duration": "6 min",
+  "openingQuestion": "WACC = Ke × We + Kd × (1−t) × Wd. Why must the cost of debt be multiplied by (1−t)?",
+  "openingOptions": [
+    "Because debt carries no risk",
+    "Because interest is tax-deductible",
+    "Because debt is always cheaper than equity",
+    "Because the accounting requires it"
+  ],
+  "explanation": "WACC is the average cost of all the capital a business is using, weighted by each source, with the debt portion reduced by the tax shield. It is both the minimum threshold every project has to clear and the discount rate used in valuation models. Two things commonly go wrong when applying it: taking the weights from book values rather than market values, and applying the whole company's WACC to a project whose risk is nothing like that of the core business.",
+  "diagram": [
+    { "label": "Cost of equity" },
+    { "label": "After-tax cost of debt" },
+    { "label": "Capital weights" },
+    { "label": "Gives WACC" }
+  ],
+  "realWorldExample": {
+    "company": "Why you can't borrow your way to a lower WACC forever",
+    "description": "In theory, because debt is cheaper than equity thanks to the tax shield, raising the debt weighting pulls WACC down. But that only holds up to a point. Once debt passes a safe level, banks demand higher rates, the credit rating gets cut, and shareholders demand a higher return too as the risk of insolvency rises. Both the cost of debt and the cost of equity rise together, and WACC turns back upward. This is why each business has its own sensible range of capital structure rather than there being one optimal debt ratio for every industry."
+  },
+  "quiz": [
+    {
+      "question": "What is WACC usually used as in valuation?",
+      "options": [
+        "The maximum profit to be achieved",
+        "The bank interest rate",
+        "A minimum hurdle rate",
+        "The gross profit margin"
+      ],
+      "explanation": "WACC is the minimum return a project has to clear in order to create value."
+    },
+    {
+      "question": "Which of these could push WACC up?",
+      "options": [
+        "Raising the tax shield without limit",
+        "The company holding more cash",
+        "A ROIC higher than WACC",
+        "The Fed raising interest rates"
+      ],
+      "explanation": "When the risk-free rate rises, the cost of equity and the cost of capital generally rise with it."
+    },
+    {
+      "question": "Why can't raising the debt weighting lower WACC indefinitely?",
+      "options": [
+        "Because past a safe level, insolvency risk lifts both the cost of debt and the cost of equity, turning WACC back upward",
+        "Because the law caps a company's maximum debt ratio",
+        "Because the tax shield only applies to the first loan taken out",
+        "Because banks will not lend more than three times equity"
+      ],
+      "explanation": "The benefit of the tax shield is progressively cancelled out by the costs of financial distress. Where those two forces cross is what creates a sensible range of capital structure for each business."
+    },
+    {
+      "question": "What happens if you use the whole company's WACC to assess a project far riskier than the core business?",
+      "options": [
+        "The assessment is too pessimistic",
+        "The assessment is too optimistic, since a high-risk project ought to be discounted at a higher rate",
+        "No effect, because WACC is a company-level measure",
+        "It only affects the tax return"
+      ],
+      "explanation": "A discount rate has to reflect the risk of the very cash flow being discounted. Using the general WACC for a high-risk project lowers the bar, making the project look more attractive than it really is."
+    },
+    {
+      "question": "What is the limitation of valuing a long-horizon project at today's WACC?",
+      "options": [
+        "WACC cannot be used for projects running beyond five years under valuation standards",
+        "Today's WACC is always below the real cost of capital, so projects get undervalued",
+        "Both the capital structure and the level of interest rates can change over a project's life",
+        "WACC reflects only the cost of debt; the cost of equity has to be added at a later step"
+      ],
+      "explanation": "WACC is a snapshot: it is tied to today's debt weighting, today's rates and today's risk level. A twenty-year project passes through several different cycles, so a sensitivity table across WACC matters as much as the point estimate."
+    }
+  ],
+  "keyTakeaways": [
+    "WACC is the minimum hurdle rate",
+    "Debt is cheaper than equity thanks to the tax shield, but too much debt raises risk",
+    "WACC is not fixed - it moves with interest rates and capital structure"
+  ],
+  "practicePrompt": {
+    "question": "Which of the following is correct according to this lesson?",
+    "options": [
+      "Real competence is being able to see how the layers connect, not just knowing each formula on its own",
+      "WACC = the minimum hurdle rate",
+      "Operating Margin = EBIT / Revenue",
+      "Businesses go under because they run out of cash, not because a statement shows a loss"
+    ],
+    "explanation": "WACC = the minimum hurdle rate"
+  },
+  "summary": {
+    "keyIdea": "WACC is the weighted average cost of a business's entire funding base.",
+    "commonMistake": "Confusing the nominal cost of debt with the after-tax cost of debt.",
+    "action": "Try a rough WACC calculation for a company you follow."
+  },
+  "application": {
+    "title": "Try it now",
+    "message": "Pick a company you know, estimate its debt/equity weightings, then work out a rough WACC using the after-tax cost of debt and a cost of equity.",
+    "secondary": "Even as an estimate, you'll see why debt is cheaper than equity without always being better."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "WACC (Weighted Average Cost of Capital) is one of the most important figures in corporate finance - and also the most frequently misunderstood."
+    },
+    { "type": "heading", "text": "Why the cost of debt is multiplied by (1−t)" },
+    {
+      "type": "paragraph",
+      "text": "Interest is deducted before corporate income tax, which creates a 'tax shield' - the state indirectly shares part of the interest cost with the business. So the REAL cost of debt is always below the nominal rate written into the loan agreement, and the WACC formula has to multiply by (1−t) to reflect that after-tax cost properly."
+    },
+    {
+      "type": "list",
+      "items": [
+        "WACC is the minimum hurdle rate a project has to clear in order to create value",
+        "Debt is cheaper than equity thanks to the tax shield, but too much debt raises the risk of insolvency",
+        "WACC is not fixed - it moves with market interest rates and with the company's capital structure"
+      ]
+    },
+    {
+      "type": "formula",
+      "title": "The WACC formula",
+      "equation": "WACC = (E/V) × Re + (D/V) × Rd × (1 − t)",
+      "variables": [
+        {
+          "symbol": "E/V",
+          "name": "Equity weighting",
+          "description": "Equity value divided by total capital (E + D). Usually taken at market value, not book value."
+        },
+        {
+          "symbol": "Re",
+          "name": "Cost of equity",
+          "description": "The return shareholders demand, usually estimated with CAPM."
+        },
+        { "symbol": "D/V", "name": "Debt weighting", "description": "Debt value divided by total capital." },
+        {
+          "symbol": "Rd",
+          "name": "Cost of debt",
+          "description": "The average pre-tax borrowing rate."
+        },
+        {
+          "symbol": "t",
+          "name": "Tax rate",
+          "description": "The corporate income tax rate - the source of the tax shield."
+        }
+      ],
+      "example": {
+        "title": "A worked example",
+        "calculation": "0.6 × 14% + 0.4 × 9% × (1 − 20%)",
+        "result": "= 8.4% + 2.88% = 11.28%",
+        "explanation": "A business 60% equity-funded and 40% debt-funded; shareholders demand 14%, borrowing costs 9%, tax is 20%. The after-tax cost of debt is only 7.2% rather than 9% - and that difference is the tax shield."
+      }
+    },
+    { "type": "heading", "text": "Four common errors in calculating and using WACC" },
+    {
+      "type": "list",
+      "items": [
+        "Taking the weights from book values rather than market values - a very large distortion for a listed company whose market value far exceeds its charter capital.",
+        "Forgetting to multiply the cost of debt by (1 − t), which inflates WACC and makes every project look unattractive.",
+        "Using the whole company's WACC for a project whose risk is nothing like that of the core business.",
+        "Treating WACC as a fixed figure to be looked up once and reused forever, when it moves with market rates and capital structure."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "One sentence to remember",
+      "text": "WACC is the minimum return at which a project stops destroying value. A project returning 10% against a WACC of 11.28% is making shareholders poorer, whatever the accounting profit says."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "WACC is not a fixed number to look up in a table.",
+        "It reflects the true cost of every unit of capital the business is actually using."
+      ]
+    }
+  ]
+}

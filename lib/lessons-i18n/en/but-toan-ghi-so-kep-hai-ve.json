@@ -1,0 +1,139 @@
+{
+  "slug": "but-toan-ghi-so-kep-hai-ve",
+  "title": "Bookkeeping, Lesson 1: Double entry - why every transaction has two sides",
+  "subtitle": "What debit and credit actually mean, the increase/decrease rule for each account type, and why the totals always balance",
+  "duration": "11 min",
+  "whyItMatters": "This is the one rule in accounting where, without it, everything that follows is just memorisation. With it, most transactions can be worked out from first principles - including ones you have never seen before.",
+  "openingQuestion": "A company buys a printer for 20 million, paying cash. How is it recorded?",
+  "openingOptions": [
+    "Debit fixed assets 20 million, credit cash 20 million",
+    "Debit expenses 20 million, credit cash 20 million",
+    "Debit cash 20 million, credit fixed assets 20 million",
+    "Debit fixed assets 20 million, credit administrative expenses 20 million"
+  ],
+  "explanation": "One asset rises and another asset falls - total assets are unchanged, and the company has merely changed the form of the same amount of wealth. This is where beginners go wrong: paying money out is not the same thing as incurring an expense. An expense is wealth genuinely consumed; buying a printer consumes nothing, the machine is still there, and it will be consumed gradually through depreciation over several years. Booking it straight to expenses would make this year's profit artificially low and make an asset vanish from the balance sheet. The words \"debit\" and \"credit\" carry no sense of borrowing or owning either - they are simply the names of the left and right columns, kept from the Latin across seven centuries.",
+  "diagram": [
+    { "label": "A transaction occurs" },
+    { "label": "It is recorded in at least two accounts" },
+    { "label": "Total debits = total credits" },
+    { "label": "So the accounting equation balances after every entry" }
+  ],
+  "realWorldExample": {
+    "company": "Luca Pacioli, Venice, 1494",
+    "description": "The Italian mathematician described the double-entry system that Venetian merchants were already using, in a book about arithmetic. Seven centuries and countless technological revolutions later, every accounting package in the world still runs on that same rule - because it is not a convention, it is a consequence of every transaction having two ends."
+  },
+  "quiz": [
+    {
+      "question": "Which account types increase on the debit side?",
+      "options": [
+        "Liabilities and equity",
+        "Assets and expenses",
+        "Revenue and other items of income",
+        "Every account, since a debit is the increase side by convention"
+      ],
+      "explanation": "Assets and expenses increase on the debit side; liabilities, equity and revenue increase on the credit side. This is the one table you have to learn - the rest can be worked out."
+    },
+    {
+      "question": "You borrow 500 million from a bank into the company account. What is the entry?",
+      "options": [
+        "Debit deposits 500, credit finance income 500",
+        "Debit borrowings 500, credit deposits 500",
+        "Debit deposits 500, credit bank borrowings 500",
+        "Debit deposits 500, credit equity 500, since the funding base has grown"
+      ],
+      "explanation": "An asset rises, so it is debited; the obligation to repay rises, so it is credited. Borrowed money is neither revenue nor equity - it has to be paid back."
+    },
+    {
+      "question": "Why does buying an asset not create an expense straight away?",
+      "options": [
+        "Because fixed assets are tracked separately, outside the ledger system",
+        "Because the standards permit the expense to be deferred",
+        "Because an expense arises only when the business disposes of the asset",
+        "Because no wealth is consumed - it has changed from cash into an asset"
+      ],
+      "explanation": "An expense is wealth that has gone. The machine is still there, so nothing has gone yet; it is consumed gradually through depreciation, and each period's depreciation is the expense."
+    },
+    {
+      "question": "After every correct entry, what always stays the same?",
+      "options": [
+        "Assets = liabilities + equity",
+        "The company's total assets",
+        "The cash balance in the till and in the bank accounts",
+        "The ratio of liabilities to equity on the balance sheet"
+      ],
+      "explanation": "The equation always balances - that is what double entry means. Total assets, on the other hand, can change: borrowing raises them, repaying lowers them."
+    },
+    {
+      "question": "An entry records a debit of 10 million and a credit of 12 million. What does that mean?",
+      "options": [
+        "The difference goes to profit at period end",
+        "The entry is wrong, the two sides must be equal",
+        "The entry is valid if the difference is disclosed in the notes",
+        "The entry is valid when a transaction touches more than two accounts"
+      ],
+      "explanation": "An entry can be recorded across several accounts, but the two totals still have to match. An imbalance is an error, and accounting software will refuse to save it."
+    }
+  ],
+  "keyTakeaways": [
+    "Every transaction is recorded in at least two accounts, and total debits always equal total credits.",
+    "Assets and expenses increase on the debit side; liabilities, equity and revenue increase on the credit side.",
+    "Paying money out does not mean an expense has arisen - buying an asset only changes the form of wealth.",
+    "\"Debit\" and \"credit\" are just the names of two columns; they carry no sense of borrowing."
+  ],
+  "summary": {
+    "keyIdea": "Every transaction is recorded in at least two accounts, and total debits always equal total credits",
+    "formula": "Assets = Liabilities + Equity",
+    "commonMistake": "Reading 'debit' and 'credit' as borrowing and owning. They are only column names.",
+    "action": "Take five of your own transactions this month, write both sides of each, then add up the two columns and check they balance."
+  },
+  "application": {
+    "title": "Try recording an asset purchase",
+    "message": "You spend 20 million on a computer for the company. Write both sides of that transaction, then answer: does profit for the month fall by 20 million?",
+    "secondary": "No - that is a change in the form of wealth, not an expense. The expense appears gradually, through depreciation."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Accounting has exactly one root rule, and everything else follows from it: each transaction has two ends, so it has to be recorded twice."
+    },
+    { "type": "heading", "text": "Debit and credit don't mean anything" },
+    {
+      "type": "paragraph",
+      "text": "This is the first obstacle, and it is created entirely by language. \"Debit\" does not mean being in debt; \"credit\" does not mean owning something. They are the names of the left and right columns, translated from Latin and kept unchanged across seven centuries. Anyone who tries to find meaning in those two words gets stuck; anyone who treats them as left and right moves straight on."
+    },
+    {
+      "type": "conceptTable",
+      "title": "The one table you have to learn",
+      "subtitle": "The rest of accounting can be worked out from here",
+      "concepts": [
+        { "def": "Increases are debited, decreases credited. Cash, inventory, machinery, receivables." },
+        { "def": "Increases are debited. The same direction as assets, because both are where wealth ends up." },
+        { "def": "Increases are credited. Bank borrowings, trade payables, taxes owed." },
+        { "def": "Increases are credited. Contributed capital and retained earnings." },
+        { "def": "Increases are credited. The same direction as equity, because revenue makes equity larger." }
+      ]
+    },
+    { "type": "heading", "text": "The four shapes of a transaction" },
+    {
+      "type": "list",
+      "items": [
+        "An asset rises, another asset falls: buying a machine for cash. Total assets unchanged.",
+        "An asset rises, a liability rises: borrowing from a bank. The balance sheet grows on both sides.",
+        "An asset falls, a liability falls: repaying a loan. The balance sheet shrinks on both sides.",
+        "An expense rises, an asset falls or a liability rises: paying wages, receiving an electricity bill. This is the only shape that reduces profit."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Where beginners go wrong most often",
+      "text": "Treating every payment of money as an expense. Wages are an expense because the effort has been consumed; buying a printer is not, because the machine is still there. Telling those two apart is telling the income statement apart from the balance sheet."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Learn the increase/decrease table above, then ask yourself the same question for every transaction: what went up, and what went down.",
+        "Those two answers are the two sides of the entry."
+      ]
+    }
+  ]
+}

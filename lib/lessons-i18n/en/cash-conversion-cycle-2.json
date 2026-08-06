@@ -1,0 +1,132 @@
+{
+  "slug": "cash-conversion-cycle-2",
+  "title": "Cash Conversion Cycle (CCC)",
+  "subtitle": "How long from putting money out to getting money back?",
+  "duration": "6 min",
+  "openingQuestion": "What does a CCC of 45 days mean?",
+  "openingOptions": [
+    "Inventory sits for 45 days",
+    "Debts are repaid in 45 days",
+    "Production takes 45 days",
+    "From buying materials to collecting cash takes 45 days - capital is tied up for 45 days"
+  ],
+  "explanation": "The cash conversion cycle measures the number of days your money is tied up: add the days inventory sits to the days spent waiting for customers to pay, then subtract the days you are allowed to owe your suppliers. The shorter the cycle, the less capital you need to run the same level of revenue. A negative cycle - Amazon, Costco - means the business collects before it has to pay, so the supply chain is funding it for free, and the faster it grows the more cash it accumulates.",
+  "diagram": [
+    { "label": "DSO: days to collect from customers" },
+    { "label": "+ DIO: days of inventory" },
+    { "label": "− DPO: days to pay suppliers" },
+    { "label": "= CCC (Amazon's is negative)" }
+  ],
+  "realWorldExample": {
+    "company": "Amazon",
+    "description": "Amazon's CCC is negative: it collects on a sale almost at once (T+1-2) but pays suppliers after 45-90 days. So Amazon funds its growth with suppliers' money and needs no net working capital."
+  },
+  "quiz": [
+    {
+      "question": "DSO is 60 days in an industry where 30 is normal. What does that mean?",
+      "options": [
+        "Goods are being sold faster than at competitors",
+        "Collection is markedly slower than rivals, tying capital up longer",
+        "Inventory is turning over at half the usual rate",
+        "The business is paying its suppliers faster than it needs to"
+      ],
+      "explanation": "A DSO above the industry means collection is inefficient, or that a lot has to be sold on credit to stay competitive. The risks: rising bad debt and a shortage of cash. Compare against peers and against the trend over time."
+    },
+    {
+      "question": "Why does a company with a large positive Cash Conversion Cycle (say 90 days) need considerably more working capital than one with a CCC near zero, even when both have the same revenue?",
+      "options": [
+        "Because the long-CCC company pays a higher rate on its bank debt",
+        "Because storage costs rise with the number of days",
+        "Because it must bridge all 90 days before the money returns",
+        "Because the long-CCC company recognises its revenue later"
+      ],
+      "explanation": "CCC essentially measures \"how long capital stays tied up\" in the operating cycle - the longer the CCC, the more working capital a company needs on hand to \"bridge\" the stretch between paying money out and collecting it back."
+    },
+    {
+      "question": "DIO 70, DSO 50, DPO 40 days. What is the CCC?",
+      "options": [
+        "20 days (forgetting DPO)",
+        "160 days (= 70 + 50 + 40, adding all three)",
+        "60 days (= 70 − 50 + 40, signs the wrong way)",
+        "80 days (= 70 + 50 − 40 days)"
+      ],
+      "explanation": "CCC = DIO + DSO − DPO = 70 + 50 − 40 = 80 days. The company's money sits outside the till for 80 days per cycle - and every extra unit of revenue needs more capital to feed that same gap."
+    },
+    {
+      "question": "Which way of shortening the CCC does the least damage to relationships?",
+      "options": [
+        "Selling faster, so inventory days come down",
+        "Delaying payments to suppliers",
+        "Tightening credit limits on every existing customer",
+        "Discounting heavily so customers agree to pay immediately"
+      ],
+      "explanation": "The three levers are not equivalent: squeezing suppliers and tightening up on customers are both paid for in relationships, whereas selling faster improves all three figures at once without putting anyone out."
+    },
+    {
+      "question": "Why did Amazon once operate with a negative CCC?",
+      "options": [
+        "Because they held no inventory in any warehouse at all",
+        "Because customers paid at once while suppliers waited weeks",
+        "Because they collected from suppliers before selling the goods",
+        "Because revenue grew faster than the cost of capital did"
+      ],
+      "explanation": "Goods sold within a few days and card payments cleared immediately, but suppliers were paid after 60 days. The more they sold, the more free money they had to use - growth funding itself instead of consuming capital."
+    }
+  ],
+  "keyTakeaways": [
+    "CCC = DSO + DIO − DPO",
+    "A short CCC: capital turns fast, so less of it is needed",
+    "A negative CCC is ideal - customers pay first, suppliers are paid later"
+  ],
+  "practicePrompt": {
+    "question": "A company has DSO = 35 days (collecting from customers), DIO = 45 days (holding inventory), DPO = 30 days (paying suppliers). What is this company's Cash Conversion Cycle (CCC), in days?",
+    "options": [
+      "CCC = DSO + DIO − DPO = 35 + 45 − 30 = 50 days",
+      "CCC = DSO + DIO + DPO = 35 + 45 + 30 = 110 days, adding all three periods together",
+      "CCC = DPO − DSO − DIO = 30 − 35 − 45 = −50 days, since DPO is always subtracted from first",
+      "CCC cannot be worked out without knowing the company's annual revenue"
+    ],
+    "explanation": "CCC = DSO + DIO − DPO = 35 + 45 − 30 = 50 days. The company takes an average of 50 days from paying for goods to collecting the cash from selling them - the shorter the CCC, the less working capital it needs to sustain the same revenue."
+  },
+  "summary": {
+    "keyIdea": "CCC = DSO + DIO − DPO",
+    "commonMistake": "Reading the concept as a sentence rather than as a principle to apply to a real decision.",
+    "action": "A short CCC: capital turns fast, so less of it is needed"
+  },
+  "application": {
+    "title": "Work out the CCC for your own business",
+    "message": "If you run a shop, an online store, or freelance work where money in and money out are out of step, try estimating it: how many days from paying for goods or materials to collecting the cash - that is your real CCC.",
+    "secondary": "The shorter your CCC, the less pressure there is to borrow just to keep operating."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The Cash Conversion Cycle (CCC) answers a very concrete question: from the moment a business pays for raw materials to the moment it collects cash from a customer, how long does that take? The figure determines how much working capital the business needs to run smoothly."
+    },
+    { "type": "heading", "text": "The CCC formula and what each part means" },
+    {
+      "type": "paragraph",
+      "text": "CCC = DSO (Days Sales Outstanding - days taken to collect from customers) + DIO (Days Inventory Outstanding - days inventory sits in the warehouse) − DPO (Days Payable Outstanding - days taken to pay suppliers). The shorter the CCC, the faster capital turns and the less working capital a business needs to sustain the same revenue. If a company's DSO is 60 days while the industry average is only 30, that is a sign it collects less efficiently, or that it has to sell heavily on credit to compete - bringing with it a higher risk of bad debt and of running short of cash."
+    },
+    { "type": "heading", "text": "A negative CCC: a rare financial advantage" },
+    {
+      "type": "paragraph",
+      "text": "A company with a large positive CCC (say 90 days) needs considerably more working capital than one whose CCC is near zero, even at the same revenue - because throughout those 90 days of waiting to be paid, it still needs capital to keep operating. Amazon is the textbook case of a negative CCC: it collects on sales almost immediately (T+1-2 days) but pays suppliers after 45-90 days - meaning Amazon uses its suppliers' own money to fund its growth, and needs no net working capital."
+    },
+    {
+      "type": "list",
+      "items": [
+        "CCC = DSO + DIO − DPO",
+        "A short or negative CCC: a major financial advantage, with growth not dependent on borrowing",
+        "A long CCC: needs substantial working capital on hand to 'bridge' the stretch between paying out and collecting in",
+        "Comparing CCC against competitors in the same industry matters more than the absolute figure"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Amazon and Walmart are not rich merely because they sell a lot - they are rich because they worked out how to have someone else fund their working capital."
+      ]
+    }
+  ]
+}
