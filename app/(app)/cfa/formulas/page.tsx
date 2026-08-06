@@ -1,14 +1,19 @@
 import Link from "next/link";
+import { getServerLocale } from "@/lib/i18n/server";
+import { getDictionary } from "@/lib/i18n";
 import { ChevronLeft } from "lucide-react";
 import CfaFormulaCheatSheet from "@/components/CfaFormulaCheatSheet";
 
-export const metadata = {
-  title: "Sổ Tay Công Thức CFA Level 1 | TuHocTaiChinh.org",
-  description:
-    "Sổ tay công thức CFA Level 1: thẻ phân số tầng trực quan, giải thích từng biến số và ví dụ tính toán bằng số thực tế cho cả mười môn thi.",
-};
+export async function generateMetadata() {
+  const t = getDictionary(await getServerLocale());
+  return {
+    title: t.certPages.formulasMetaTitle,
+    description: t.certPages.formulasMetaDesc,
+  };
+}
 
-export default function CfaFormulasPage() {
+export default async function CfaFormulasPage() {
+  const t = getDictionary(await getServerLocale());
   return (
     <div className="min-h-screen bg-white dark:bg-stone-950">
       <div className="border-b border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950">
@@ -16,13 +21,13 @@ export default function CfaFormulasPage() {
           <Link
             href="/cfa"
             className="flex items-center justify-center w-9 h-9 rounded-full text-stone-400 dark:text-stone-500 hover:bg-stone-100 dark:hover:bg-stone-800 hover:text-stone-700 dark:hover:text-stone-200 transition-colors"
-            aria-label="Về trang CFA Track"
+            aria-label={t.certPages.backToCfa}
           >
             <ChevronLeft className="w-5 h-5" />
           </Link>
           <div>
-            <h1 className="text-xl font-bold text-stone-900 dark:text-stone-100">Sổ Tay Công Thức CFA Level 1</h1>
-            <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">Công thức trọng yếu cả mười môn, kèm ví dụ tính bằng số thực tế</p>
+            <h1 className="text-xl font-bold text-stone-900 dark:text-stone-100">{t.certPages.formulasTitle}</h1>
+            <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">{t.certPages.formulasSubtitle}</p>
           </div>
         </div>
       </div>

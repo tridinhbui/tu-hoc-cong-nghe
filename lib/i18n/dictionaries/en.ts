@@ -2519,4 +2519,42 @@ export const en: Dictionary = {
     allDone: "You've finished every related lesson - revisit your goal",
   },
 
+
+  // Four certification screens: CFA glossary cards, CFA formula book, FRM, and
+  // the "what comes next" block under the CFA track.
+  certPages: {
+    // Page metadata. Safe to translate: these pages already render
+    // dynamically (the root layout reads the locale cookie), and crawlers
+    // carry no cookie so they still get the Vietnamese default - which is what
+    // a Vietnamese site wants indexed.
+    flashcardsMetaTitle: "CFA Glossary Flashcards, English-Vietnamese | TuHocTaiChinh.org",
+    flashcardsMetaDesc:
+      "3D flashcards for CFA Level 1 English terminology, each with a precise Vietnamese definition and the formulas that go with it.",
+    formulasMetaTitle: "CFA Level 1 Formula Book | TuHocTaiChinh.org",
+    formulasMetaDesc:
+      "The CFA Level 1 formula book: layered fraction cards, every variable explained, and worked examples with real numbers across all ten topics.",
+
+    backToCfa: "Back to the CFA track",
+    backToDashboard: "Back to the dashboard",
+    flashcardsTitle: "CFA Level 1 glossary cards",
+    flashcardsSubtitle: "English-Vietnamese flashcards and the related formulas",
+    formulasTitle: "CFA Level 1 formula book",
+    formulasSubtitle: "The formulas that matter across all ten topics, with worked examples",
+
+    frmMockExam: "📝 Mock exam",
+    // The certification's own name - identical in every language.
+    frmTitle: "FRM",
+    frmSubtitle: "Financial Risk Manager - GARP Part I & Part II",
+    frmGlossary: "🗂️ Glossary cards",
+    frmFormulas: "📐 Formula book",
+
+    noLessonsYet: "no lessons yet",
+    pickTrack: "Pick a specialisation:",
+    examWeight: "Exam weight",
+    scaleTo: "on a 0–",
+    nextStages: "What comes next: Level II and Level III",
+    nextStagesBlurb:
+      "TuHocTaiChinh's lessons stop at Level I. Below is the official outline for the other two levels - weights and structure taken from the CFA Institute candidate resources - so you can see how tall the ladder is.",
+  },
+
 };

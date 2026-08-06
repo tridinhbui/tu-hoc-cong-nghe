@@ -1,4 +1,7 @@
 import { CFA_LEVELS, type CfaLevelSpec } from "@/lib/cfa-levels";
+import { getServerLocale } from "@/lib/i18n/server";
+import { getDictionary } from "@/lib/i18n";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 import CfaItemSetPractice from "@/components/CfaItemSetPractice";
 import CfaEssayPractice from "@/components/CfaEssayPractice";
 
@@ -56,7 +59,10 @@ function WeightRow({ name, lo, hi, scale, bar }: { name: string; lo: number; hi:
   );
 }
 
-function LevelCard({ spec }: { spec: CfaLevelSpec }) {
+// Nhận `t` qua prop chứ không tự đọc locale: đây là component con đồng bộ
+// trong một file server, nên nó không await được getServerLocale(). Quy ước
+// "mỗi component con tự gọi useI18n()" trong AGENTS.md nói về phía client.
+function LevelCard({ spec, t }: { spec: CfaLevelSpec; t: Dictionary }) {
   const accent = ACCENT[spec.level];
   // Thang riêng của thẻ này, làm tròn lên cho rãnh có chút khoảng thở ở cuối.
   const scale = Math.max(...spec.topics.map((t) => t.hi));
@@ -69,7 +75,7 @@ function LevelCard({ spec }: { spec: CfaLevelSpec }) {
           {spec.label}
         </span>
         <span className="ml-auto rounded-md border border-stone-200 px-2 py-0.5 text-[9px] font-black uppercase tracking-wide text-stone-400 dark:border-stone-700">
-          chưa có bài
+          {t.certPages.noLessonsYet}
         </span>
       </div>
 
@@ -86,13 +92,13 @@ function LevelCard({ spec }: { spec: CfaLevelSpec }) {
 
       {spec.pathways && (
         <p className="mt-3 text-[11px] leading-relaxed text-stone-600 dark:text-stone-400">
-          <span className="font-bold">Chọn một hướng chuyên sâu:</span> {spec.pathways.join(" · ")}
+          <span className="font-bold">{t.certPages.pickTrack}</span> {spec.pathways.join(" · ")}
         </p>
       )}
 
       <div className="mt-4 flex items-baseline justify-between">
-        <h4 className="text-[10px] font-black uppercase tracking-wide text-stone-400">Trọng số đề thi</h4>
-        <span className="text-[9px] font-bold tabular-nums text-stone-400">thang 0–{scale}%</span>
+        <h4 className="text-[10px] font-black uppercase tracking-wide text-stone-400">{t.certPages.examWeight}</h4>
+        <span className="text-[9px] font-bold tabular-nums text-stone-400">{t.certPages.scaleTo}{scale}%</span>
       </div>
       <ul className="mt-2 space-y-1.5">
         {spec.topics.map((t) => (
@@ -109,22 +115,20 @@ function LevelCard({ spec }: { spec: CfaLevelSpec }) {
   );
 }
 
-export default function CfaNextLevels() {
+export default async function CfaNextLevels() {
+  const t = getDictionary(await getServerLocale());
   return (
     <section className="mt-10">
       <h2 className="text-sm font-black uppercase tracking-wide text-stone-500 dark:text-stone-400">
-        Chặng sau: Level II và Level III
+        {t.certPages.nextStages}
       </h2>
       <p className="mt-2 text-xs leading-relaxed text-stone-500 dark:text-stone-400">
-        Bài học của TuHocTaiChinh hiện dừng ở Level I. Phần dưới là đề cương
-        chính thức của hai cấp còn lại - trọng số và cấu trúc lấy từ trang
-        candidate resources của CFA Institute - để bạn biết mình đang leo một
-        cái thang cao bao nhiêu.
+        {t.certPages.nextStagesBlurb}
       </p>
 
       <div className="mt-5 grid items-stretch gap-4 lg:grid-cols-2">
         {CFA_LEVELS.map((spec) => (
-          <LevelCard key={spec.level} spec={spec} />
+          <LevelCard key={spec.level} spec={spec} t={t} />
         ))}
       </div>
 

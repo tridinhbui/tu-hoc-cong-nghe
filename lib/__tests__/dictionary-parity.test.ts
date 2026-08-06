@@ -48,6 +48,11 @@ const INTENTIONALLY_UNTRANSLATED = new Set([
   "groupChat.pinnedByAdmin",
   // Already English: the in-game clan's own name, not copy to translate.
   "guild.clanTitle",
+  // The FRM certification's own name and its awarding body. "Financial Risk
+  // Manager - GARP Part I & Part II" is what it is called in Vietnamese too;
+  // translating it would name a qualification that does not exist.
+  "certPages.frmTitle",
+  "certPages.frmSubtitle",
   // Ticker symbols. FPT is FPT in every language.
   "guild.step2Tickers",
   // "Tài Tài" again, plus the illustrative learner names in the logged-out

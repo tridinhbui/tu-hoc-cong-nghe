@@ -2666,6 +2666,44 @@ export const vi = {
     allDone: "Đã học hết bài liên quan - xem lại mục tiêu",
   },
 
+
+  // Bốn trang chứng chỉ: CFA thẻ thuật ngữ, CFA sổ tay công thức, FRM, và
+  // khối "chặng sau" dưới lộ trình CFA.
+  certPages: {
+    // metadata của trang. Dịch được vì các trang này vốn đã dựng động (layout
+    // gốc đọc cookie ngôn ngữ), và bọ tìm kiếm không mang cookie nên vẫn nhận
+    // bản tiếng Việt mặc định - đúng thứ mình muốn cho một site tiếng Việt.
+    flashcardsMetaTitle: "Bộ Thẻ Thuật Ngữ CFA Song Ngữ En-Vi | TuHocTaiChinh.org",
+    flashcardsMetaDesc:
+      "Bộ thẻ Flashcard 3D thuật ngữ tiếng Anh chuyên ngành CFA Level 1 kèm định nghĩa tiếng Việt chuẩn và công thức liên quan.",
+    formulasMetaTitle: "Sổ Tay Công Thức CFA Level 1 | TuHocTaiChinh.org",
+    formulasMetaDesc:
+      "Sổ tay công thức CFA Level 1: thẻ phân số tầng trực quan, giải thích từng biến số và ví dụ tính toán bằng số thực tế cho cả mười môn thi.",
+
+    backToCfa: "Về trang CFA Track",
+    backToDashboard: "Về Dashboard",
+    flashcardsTitle: "Bộ Thẻ Thuật Ngữ CFA Level 1",
+    flashcardsSubtitle: "Flashcard Song Ngữ Anh - Việt & Công Thức Liên Quan",
+    formulasTitle: "Sổ Tay Công Thức CFA Level 1",
+    formulasSubtitle: "Công thức trọng yếu cả mười môn, kèm ví dụ tính bằng số thực tế",
+
+    frmMockExam: "📝 Thi thử",
+    // Tên riêng của chứng chỉ, giữ nguyên ở mọi ngôn ngữ - đã khai trong
+    // INTENTIONALLY_UNTRANSLATED của dictionary-parity.test.ts.
+    frmTitle: "FRM",
+    frmSubtitle: "Financial Risk Manager - GARP Part I & Part II",
+    frmGlossary: "🗂️ Thẻ thuật ngữ",
+    frmFormulas: "📐 Sổ tay công thức",
+
+    noLessonsYet: "chưa có bài",
+    pickTrack: "Chọn một hướng chuyên sâu:",
+    examWeight: "Trọng số đề thi",
+    scaleTo: "thang 0–",
+    nextStages: "Chặng sau: Level II và Level III",
+    nextStagesBlurb:
+      "Bài học của TuHocTaiChinh hiện dừng ở Level I. Phần dưới là đề cương chính thức của hai cấp còn lại - trọng số và cấu trúc lấy từ trang candidate resources của CFA Institute - để bạn biết mình đang leo một cái thang cao bao nhiêu.",
+  },
+
 };
 
 export type Dictionary = typeof vi;

@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { getServerLocale } from "@/lib/i18n/server";
+import { getDictionary } from "@/lib/i18n";
 import { ChevronLeft } from "lucide-react";
 import { getLessonsMeta } from "@/lib/lessons-loader";
 import { FRM_SUBJECTS } from "@/lib/frm-track";
@@ -14,6 +16,7 @@ export const dynamic = "force-dynamic";
 // the 10 official FRM subjects they happen to cover. Subjects with no
 // matching lesson yet show a "sẽ xây trong tương lai" placeholder.
 export default async function FrmPage() {
+  const t = getDictionary(await getServerLocale());
   const supabase = await createServerSupabaseClient();
   const {
     data: { user },
@@ -46,13 +49,13 @@ export default async function FrmPage() {
           <Link
             href="/dashboard"
             className="flex items-center justify-center w-9 h-9 rounded-full text-stone-400 dark:text-stone-500 hover:bg-stone-100 dark:hover:bg-stone-800 hover:text-stone-700 dark:hover:text-stone-200 transition-colors"
-            aria-label="Về Dashboard"
+            aria-label={t.certPages.backToDashboard}
           >
             <ChevronLeft className="w-5 h-5" />
           </Link>
           <div className="min-w-0 flex-1">
-            <h1 className="text-xl font-bold text-stone-900 dark:text-stone-100">FRM</h1>
-            <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">Financial Risk Manager - GARP Part I &amp; Part II</p>
+            <h1 className="text-xl font-bold text-stone-900 dark:text-stone-100">{t.certPages.frmTitle}</h1>
+            <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">{t.certPages.frmSubtitle}</p>
           </div>
           {/* Ba thứ duy nhất ở track này dùng được mà không cần mở một bài
               học, nên chúng phải với tới được ngay từ đầu trang. */}
@@ -60,19 +63,19 @@ export default async function FrmPage() {
             href="/frm/thi-thu"
             className="shrink-0 rounded-full bg-red-600 px-3.5 py-1.5 text-xs font-extrabold text-white transition-colors hover:bg-red-500"
           >
-            📝 Thi thử
+            {t.certPages.frmMockExam}
           </Link>
           <Link
             href="/frm/flashcards"
             className="shrink-0 rounded-full border border-red-200 px-3.5 py-1.5 text-xs font-extrabold text-red-700 transition-colors hover:bg-red-50 dark:border-red-900 dark:text-red-300 dark:hover:bg-red-950/40"
           >
-            🗂️ Thẻ thuật ngữ
+            {t.certPages.frmGlossary}
           </Link>
           <Link
             href="/frm/formulas"
             className="shrink-0 rounded-full border border-red-200 px-3.5 py-1.5 text-xs font-extrabold text-red-700 transition-colors hover:bg-red-50 dark:border-red-900 dark:text-red-300 dark:hover:bg-red-950/40"
           >
-            📐 Sổ tay công thức
+            {t.certPages.frmFormulas}
           </Link>
         </div>
       </div>
