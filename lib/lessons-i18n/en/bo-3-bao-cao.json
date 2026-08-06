@@ -1,0 +1,214 @@
+{
+  "slug": "bo-3-bao-cao",
+  "title": "What makes up the three financial statements?",
+  "subtitle": "Income Statement, Balance Sheet, Cash Flow Statement - three views of one business",
+  "duration": "5 min",
+  "openingQuestion": "Which statement do you read to know whether a business is actually generating real cash?",
+  "openingOptions": [
+    "The annual report",
+    "The Balance Sheet",
+    "The Income Statement",
+    "The Cash Flow Statement"
+  ],
+  "explanation": "The three statements answer three different questions: the income statement says how much profit the last period produced, the balance sheet says what the business owns and owes right now, and the cash flow statement says how much real cash actually moved. They are not independent - they lock together: profit flows into retained earnings on the balance sheet, and the cash flow statement's ending cash must match the actual cash balance. Reading only one leaves you without that cross-check.",
+  "diagram": [
+    { "label": "Income statement: did the last period turn a profit or a loss?", "arrow": true },
+    { "label": "Balance sheet: what does the business own and owe right now?", "arrow": true },
+    { "label": "Cash flow: how much real cash actually moved in and out?", "arrow": true },
+    { "label": "The three statements must tie together - a mismatch anywhere is a red flag" }
+  ],
+  "realWorldExample": {
+    "company": "Vingroup (VIC)",
+    "description": "Vingroup's consolidated financial statements are a textbook case for why you must read all three at once: the income statement shows tens of trillions of VND in revenue from real estate, retail, and industry; the balance sheet shows very large total assets alongside significant loans and bonds; the cash flow statement often shows operating cash flow (CFO) negative or far below accounting profit, because most real-estate revenue is recognised by construction progress while cash comes in on an instalment schedule. An investor who only looks at the income statement can be badly misled about the group's real cash health."
+  },
+  "quiz": [
+    {
+      "question": "What do the three main financial statements consist of?",
+      "options": [
+        "Balance sheet, cash flow statement, and notes to the financial statements",
+        "Income Statement, Balance Sheet, Cash Flow Statement",
+        "Income statement, notes to the financial statements, and audit report",
+        "Income statement, balance sheet, and annual report"
+      ],
+      "explanation": "The three statements: P&L (profit/loss), Balance Sheet (what's owned/owed), Cash Flow (cash in/out). Each gives a different view."
+    },
+    {
+      "question": "Which question does the Income Statement answer?",
+      "options": [
+        "How much does the company owe?",
+        "What does the company own?",
+        "Did the company turn a profit or a loss?",
+        "Where is the cash?"
+      ],
+      "explanation": "P&L = revenue - expenses = profit. It answers: how much did the company earn during the period."
+    },
+    {
+      "question": "Which question does the Balance Sheet answer?",
+      "options": [
+        "Did the company turn a profit or loss during the period?",
+        "How fast did revenue grow compared with the same period last year?",
+        "How much real cash actually moved in and out during the period?",
+        "What does it own, how much does it owe, and how much equity does it have?"
+      ],
+      "explanation": "Balance Sheet = Assets = Liabilities + Equity. It answers: at one point in time, what does the company own and how much does it owe."
+    },
+    {
+      "question": "Which question does the Cash Flow Statement answer?",
+      "options": [
+        "How much real cash actually moved in and out?",
+        "Did the company turn a profit or a loss during the period?",
+        "What are total assets and liabilities as of the period-end date?",
+        "How did shareholders' equity change during the period?"
+      ],
+      "explanation": "Cash Flow = cash from operations + investing + financing. It answers: where real cash in/out actually came from."
+    },
+    {
+      "question": "Why do you need all three statements instead of just one?",
+      "options": [
+        "Because regulation requires disclosing all three",
+        "Because profit differs from cash flow, and each statement answers one question",
+        "Because all three give the same result, so they're used to cross-check each other",
+        "Because each statement is prepared for a different group of readers"
+      ],
+      "explanation": "A company can be profitable yet short on cash. You need all three statements to understand the full financial picture."
+    },
+    {
+      "question": "Company A shows 100 million in P&L profit but -50 million in cash flow. Is that normal?",
+      "options": [
+        "No, profit and cash flow must always match",
+        "No, a gap that large is almost certainly an accounting error",
+        "Yes, it can happen from accruals and cash tied up in working capital",
+        "Yes, but only for a business that has been losing money for a long time"
+      ],
+      "explanation": "This is normal for a startup: profit on paper but negative cash. You need to look closely at the cash flow statement."
+    },
+    {
+      "question": "When analysing a company, which statement should an investor start with?",
+      "options": [
+        "Cash Flow first, because cash is the most important thing",
+        "Notes to the financial statements first, since they explain every other number",
+        "Balance Sheet first, to check its financial health",
+        "Income Statement first, to understand profitability"
+      ],
+      "explanation": "Investors typically look at the P&L first to understand earning power, then the Balance Sheet (debt), then Cash Flow (real cash)."
+    },
+    {
+      "question": "Which statement shows solvency (long-term ability to pay debt)?",
+      "options": [
+        "Balance Sheet, through long-term debt and equity",
+        "Income Statement, through profit margins",
+        "Cash Flow, through financing activities",
+        "Notes to the financial statements, through the detailed list of loans"
+      ],
+      "explanation": "Solvency = the ability to repay long-term debt. Check the Balance Sheet: long-term debt versus equity."
+    },
+    {
+      "question": "Which statement shows liquidity (short-term ability to pay debt)?",
+      "options": [
+        "Income Statement, through quarterly revenue growth",
+        "Balance Sheet, through current assets and current liabilities",
+        "Cash Flow, through investing activities",
+        "Notes to the financial statements, through undrawn credit facilities"
+      ],
+      "explanation": "Liquidity = having enough short-term cash/assets to cover short-term debt. Check the Balance Sheet: Current Assets versus Current Liabilities."
+    },
+    {
+      "question": "To check whether a company is really earning cash rather than just 'accrued' profit, which statement should you look at?",
+      "options": [
+        "Income Statement, comparing revenue with the same period last year",
+        "Balance Sheet, comparing current assets with current liabilities",
+        "Cash Flow, comparing operating cash flow with net income",
+        "Notes to the financial statements, checking the revenue recognition policy"
+      ],
+      "explanation": "OCF > Net Income means the company is actually earning cash. OCF < Net Income means profit is heavy with accruals not yet turned into cash."
+    },
+    {
+      "question": "If you could only pick ONE of the three financial statements to judge a company's health, why would that never be enough?",
+      "options": [
+        "Because accounting law requires disclosing all three statements in full",
+        "Because every statement has some error, so cross-checking is required",
+        "Because the longest statement contains enough information on its own",
+        "Because each statement only answers one particular question"
+      ],
+      "explanation": "The three statements complement one another like three cross-sections of the same body: P&L measures performance, the Balance Sheet measures health at one point in time, Cash Flow measures the real blood actually flowing. Skipping any one of them leaves a dangerous blind spot."
+    }
+  ],
+  "keyTakeaways": [
+    "P&L: profit over time",
+    "Balance Sheet: financial position at one point in time",
+    "Cash Flow: real cash in and out - cannot be faked"
+  ],
+  "practicePrompt": {
+    "question": "Investor X wants to know how much real cash Company X actually has right now, investor Y wants to know whether Company X turned a profit or loss over the past year, and investor Z wants to know what Company X owns and owes at the current moment. Which of the three statements answers each of these three questions?",
+    "options": [
+      "All three investors should only need to read the P&L to get a complete answer",
+      "X → Cash Flow (real cash on hand); Y → P&L (profit/loss over time); Z → Balance Sheet (financial position at one point in time)",
+      "X → Balance Sheet; Y → Cash Flow; Z → P&L, because these three statements can swap roles with each other",
+      "None of these three questions can be answered correctly using only the basic financial statements"
+    ],
+    "explanation": "The three statements answer three different questions: P&L measures profit over a span of time, the Balance Sheet is a snapshot of financial position (assets/liabilities/equity) at one specific point in time, and Cash Flow shows real cash moving in and out - something that, unlike accounting profit, is very hard to fake."
+  },
+  "summary": {
+    "keyIdea": "P&L: profit over time",
+    "commonMistake": "Reading a concept as a phrase to memorise rather than a principle to apply to real decisions.",
+    "action": "Balance Sheet: financial position at one point in time"
+  },
+  "application": {
+    "title": "Work out what question each of the three statements answers",
+    "message": "Open a company's financial statements. For each statement (P&L, Balance Sheet, Cash Flow), write down one specific question that statement helps you answer about this company.",
+    "secondary": "If you can't think of a question for one of the statements, that's a sign you should re-read this lesson."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A business is like a living body: you can't judge its health from a single number. The three financial statements - Income Statement, Balance Sheet, Cash Flow Statement - are three complementary cross-sections, each answering a question the other two cannot."
+    },
+    { "type": "heading", "text": "Income Statement: is the business profitable?" },
+    {
+      "type": "paragraph",
+      "text": "The Income Statement (also called the P&L - Profit & Loss statement) measures operating performance over a span of time, such as a quarter or a year. It starts from Revenue and subtracts successive layers of expenses down to Net Income. This is a 'flow' statement - it measures value flowing through a period, not a fixed point in time."
+    },
+    { "type": "heading", "text": "Balance Sheet: where does the business stand?" },
+    {
+      "type": "paragraph",
+      "text": "The Balance Sheet is a snapshot at one specific date - for example, 31/12/2025. It lists all the Assets the company owns, its Liabilities, and its Equity. The fundamental accounting equation always holds: Assets = Liabilities + Equity. This is a 'stock' statement - it measures position at a point in time, not over a span."
+    },
+    { "type": "heading", "text": "Cash Flow Statement: where does the real cash go?" },
+    {
+      "type": "paragraph",
+      "text": "The Cash Flow Statement tracks actual cash moving in and out, split into three groups: CFO (Cash Flow from Operations), CFI (from investing), CFF (from financing, such as borrowing or issuing shares). Unlike Net Income on the P&L - which can be distorted by non-cash accounting entries (depreciation, provisions, revenue recognised by progress) - cash flow is the hardest number to fake."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Income Statement answers: did the business turn a profit this period?",
+        "Balance Sheet answers: how much does the business own, owe, and how much equity does it have at one point in time?",
+        "Cash Flow Statement answers: did real cash actually rise or fall, and from where?",
+        "The three statements link together: Net Income from the P&L flows into Equity on the Balance Sheet and is the starting point of the Cash Flow Statement (indirect method)."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Why you can never read just one statement",
+      "text": "A company can report a large profit on the P&L yet be running out of cash (paper profit, not yet collected), or have a clean Balance Sheet while operating cash flow has been negative for several quarters running. Only by reading all three together do you see the full picture."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Core terminology",
+      "concepts": [
+        { "vi": "Báo cáo kết quả kinh doanh", "en": "Income Statement / P&L", "def": "Measures profit over a period, from revenue down to net income" },
+        { "vi": "Bảng cân đối kế toán", "en": "Balance Sheet", "def": "A snapshot of assets, liabilities, and equity at one point in time" },
+        { "vi": "Báo cáo lưu chuyển tiền tệ", "en": "Cash Flow Statement", "def": "Tracks actual cash moving in/out across three activity groups" },
+        { "vi": "Dòng chảy", "en": "Flow", "def": "Measured over a span of time (P&L, Cash Flow)" },
+        { "vi": "Tồn kho/vị thế", "en": "Stock", "def": "Measured at one fixed point in time (Balance Sheet)" }
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The three statements are three camera angles on the same business - missing any one makes it easy to misread the rest.",
+        "In the next lessons we'll go deeper into each statement, starting with the Income Statement."
+      ]
+    }
+  ]
+}

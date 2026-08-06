@@ -55,7 +55,7 @@
     {
       "question": "To improve WC, a company should:",
       "options": [
-        "Convert long-term debt into current debt",
+        "Convert long-term debt into current debt, since that raises current assets too",
         "Increase current debt to get more cash right away",
         "Buy more fixed assets using cash",
         "Increase current assets or decrease current liabilities"
@@ -66,7 +66,7 @@
       "question": "Retail often has negative WC because:",
       "options": [
         "It collects cash immediately from sales but pays suppliers slowly",
-        "It sells to customers on credit but pays for goods right away",
+        "It sells to customers on credit while paying its own suppliers right away in cash",
         "Inventory always makes up a very large proportion",
         "The retail industry's margins are inherently very thin"
       ],
@@ -78,14 +78,14 @@
         "Good, it proves strong market demand",
         "Bad, goods sit in the warehouse a long time, cash is tied up",
         "Has no effect at all on working capital",
-        "Good, the company stocks enough goods to sell"
+        "Good, it shows the company always has plenty of stock ready to sell"
       ],
       "explanation": "High DIO = goods sit in the warehouse a long time = cash comes in slowly."
     },
     {
       "question": "To optimise WC with a supplier:",
       "options": [
-        "Pay early to get a payment discount",
+        "Pay suppliers early every time to secure a payment discount",
         "Order more to get a better price",
         "Negotiate a longer payment term (increasing AP)",
         "Switch to buying on immediate cash terms"

@@ -1,0 +1,213 @@
+{
+  "slug": "interest-tax-expense",
+  "title": "Interest Expense and Tax Expense",
+  "subtitle": "The last two items before Net Income - the effect of debt and tax",
+  "duration": "5 min",
+  "openingQuestion": "Why does a highly leveraged company end up with lower net income than a debt-free one, even with equal EBIT?",
+  "openingOptions": [
+    "Because its revenue is lower",
+    "Because its tax rate is higher",
+    "Because interest expense reduces pre-tax profit, cutting Net Income",
+    "Because leveraged companies are less efficient"
+  ],
+  "explanation": "The last two lines before net profit reflect two things that don't belong to the business itself: interest comes from a decision about how much to borrow, and tax comes from where the company is registered and what incentives apply. The key point is that interest is subtracted before tax is calculated, so every dong of interest paid also lowers the tax bill - that's the tax shield, and it means the real cost of debt is lower than the rate written on the loan.",
+  "diagram": [
+    { "label": "EBIT", "arrow": true },
+    { "label": "Subtract interest expense: gives pre-tax profit", "arrow": true },
+    { "label": "Pay tax on that amount", "arrow": true },
+    { "label": "What's left is net income - interest is deductible, so it creates a tax shield" }
+  ],
+  "realWorldExample": {
+    "company": "Novaland (NVL)",
+    "description": "Novaland is a clear example of interest expense's impact on Net Income. As a real-estate company using heavy leverage through bonds and bank loans to develop projects, Novaland's interest expense during difficult market periods can take up a very large share of EBIT, sometimes even flipping EBT and Net Income negative while the core business (EBIT) stays positive. This illustrates why an investor needs to separate operating efficiency (EBIT) from financial burden (Interest Expense) when assessing a highly leveraged company."
+  },
+  "quiz": [
+    {
+      "question": "What is Interest Expense?",
+      "options": [
+        "Sales cash the company receives from customers during the reporting period",
+        "A recurring operating cost that sits inside the OpEx group for the period",
+        "Interest cost - the amount owed to lenders because of debt",
+        "Money the company lends out and earns interest on from a third party"
+      ],
+      "explanation": "Interest = the cost of borrowing. It depends on debt × interest rate. The more debt, the higher the Interest Expense."
+    },
+    {
+      "question": "What is Tax Expense?",
+      "options": [
+        "Packaging and shipping cost, part of the selling expense group",
+        "An operating cost inside OpEx, subtracted before reaching EBIT",
+        "Not an expense at all, but a distribution of profit to the state",
+        "Tax owed, calculated as pre-tax profit (EBT) × the tax rate"
+      ],
+      "explanation": "Tax Expense = EBT × Tax Rate. If the Tax Rate is 20% and EBT is 100, Tax = 20."
+    },
+    {
+      "question": "What is EBT?",
+      "options": [
+        "Earnings Before Tax = EBIT − Interest, pre-tax profit",
+        "Earnings Before Total, meaning revenue before any deduction at all",
+        "Earnings Business Total, the sum of profit across every business segment",
+        "After-tax profit, but before any dividend is paid to shareholders"
+      ],
+      "explanation": "EBT = EBIT - Interest = profit after interest but before tax."
+    },
+    {
+      "question": "Net Income = ?",
+      "options": [
+        "Revenue − COGS, the gross profit for the reporting period",
+        "EBT − Tax = EBIT − Interest − Tax, the final profit",
+        "EBIT, since interest and tax have already been subtracted above",
+        "EBT − Interest, since interest is always subtracted after tax is calculated"
+      ],
+      "explanation": "Net Income = EBT - Tax = (Revenue - COGS - OpEx - Interest) - Tax."
+    },
+    {
+      "question": "Company A: EBIT 200, Interest 50, Tax Rate 20%. Net Income = ?",
+      "options": [
+        "150 (= 200 − 50, tax not yet subtracted)",
+        "100 (= 200 × (1 − 0.2) − 50, wrong order)",
+        "120 (= (200 − 50) × (1 − 0.2))",
+        "160 (= 200 × (1 − 0.2))"
+      ],
+      "explanation": "EBT = 200 - 50 = 150. Tax = 150 × 20% = 30. NI = 150 - 30 = 120."
+    },
+    {
+      "question": "What happens if a company carries a lot of debt (high Interest)?",
+      "options": [
+        "Good for shareholders, since the tax shield fully offsets all interest paid",
+        "No effect, since interest sits below the Net Income line",
+        "Good, because heavy debt shows the bank trusts the company",
+        "EBT falls → Net Income falls → the shareholder's share drops sharply"
+      ],
+      "explanation": "High Leverage means high Interest, which lowers Net Income. The risk: if EBIT falls, shareholders bear the heaviest loss."
+    },
+    {
+      "question": "What should a company do if it wants to raise Net Income?",
+      "options": [
+        "Raise EBIT, cut interest expense by paying down debt, or optimise tax",
+        "Simply raise Revenue, since revenue is what ultimately drives final profit",
+        "Take on more debt, since the tax shield lifts Net Income along with interest",
+        "There's nothing it can do, Net Income is decided by the market"
+      ],
+      "explanation": "NI = (EBIT - Interest) × (1 - Tax Rate). Either raising EBIT or cutting Interest increases NI."
+    },
+    {
+      "question": "Why do investors care about the EBIT/Interest ratio (ICR)?",
+      "options": [
+        "There's no need to, ICR is only an internal accounting metric",
+        "ICR reflects the ability to pay interest - below 1.5 is dangerous",
+        "Only banks care about it, equity investors don't need to know it",
+        "ICR measures the rate of profit growth across consecutive years"
+      ],
+      "explanation": "ICR = EBIT / Interest. An ICR of 1.5 means barely enough to pay interest, with nothing left for shareholders. An ICR of 5 is very safe."
+    },
+    {
+      "question": "The tax rate rises from 20% to 25%. What effect does that have?",
+      "options": [
+        "No effect, since tax sits outside the income statement",
+        "Shareholders benefit, because the tax shield from debt becomes more valuable",
+        "Net Income falls, because a higher tax bill must be paid",
+        "It's good, since a higher tax bill shows the company is earning more"
+      ],
+      "explanation": "If EBT stays steady, a rising Tax Rate raises Tax Expense, which lowers NI."
+    },
+    {
+      "question": "A company has positive Net Income, but what hidden danger might it reveal?",
+      "options": [
+        "Low EBIT, since Net Income can't be positive if EBIT is low",
+        "Falling revenue, since falling revenue always drags NI negative",
+        "High COGS, since high COGS also raises the tax owed",
+        "Interest expense is too high - NI is positive but the shareholder's slice is very thin"
+      ],
+      "explanation": "If EBIT is 100, Interest is 80, and Tax is 4, then NI = 16. Net Income is positive, but the shareholder's share is very small because interest is so high."
+    },
+    {
+      "question": "Why is the 'tax shield' from interest considered a benefit, even though the company is still genuinely paying real interest to the bank?",
+      "options": [
+        "Because interest is deducted before tax, lowering the tax bill owed",
+        "Because the bank waives part of the interest for large borrowers",
+        "Because interest doesn't actually need to be paid, it's just an accounting entry",
+        "Because interest is always lower than the tax the company owes for the period"
+      ],
+      "explanation": "If the tax rate is 20%, every 100 dong of interest saves the company 20 dong in tax owed - the 'real' after-tax cost of that interest is only 80 dong. This is why debt has a lower cost than equity."
+    }
+  ],
+  "keyTakeaways": [
+    "EBIT − Interest = EBT; EBT × (1−Tax) = Net Income",
+    "More debt means higher interest expense, meaning lower Net Income",
+    "But interest is tax-deductible - the tax shield"
+  ],
+  "practicePrompt": {
+    "question": "A company has EBIT of 400 billion, interest expense of 100 billion/year, and a 20% tax rate. What is its final Net Income?",
+    "options": [
+      "Net Income = 400 billion, because EBIT is already the company's final profit figure",
+      "Net Income = 240 billion: EBT = 400 - 100 = 300 billion, then Net Income = 300 × (1 - 20%) = 240 billion",
+      "Net Income = 320 billion, because you only need to subtract the 20% tax rate directly from EBIT without subtracting interest first",
+      "Net Income = 300 billion, because tax doesn't apply to companies carrying large interest-bearing loans"
+    ],
+    "explanation": "Formula: EBIT − Interest = EBT (pre-tax profit) = 400 - 100 = 300 billion. Then EBT × (1−Tax) = Net Income = 300 × (1 - 0.2) = 240 billion. Interest is deducted before tax is calculated - this is the debt's 'tax shield'."
+  },
+  "summary": {
+    "keyIdea": "EBIT − Interest = EBT; EBT × (1−Tax) = Net Income",
+    "commonMistake": "Reading a concept as a phrase to memorise rather than a principle to apply to real decisions.",
+    "action": "More debt means higher interest expense, meaning lower Net Income"
+  },
+  "application": {
+    "title": "Calculate the tax shield for a hypothetical loan",
+    "message": "Assume a company has a fixed EBIT, and try calculating Net Income under two scenarios: no debt, and debt at a specific interest rate, to see how interest expense and the tax shield affect the result.",
+    "secondary": "You'll find Net Income falls by less than the actual interest paid, thanks to the tax deduction."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "After EBIT, there are only two more steps to Net Income: subtract interest, then subtract tax. These two steps look simple but reflect two different strategic decisions - capital structure and tax-management efficiency."
+    },
+    { "type": "heading", "text": "Interest Expense: the price of using debt" },
+    {
+      "type": "paragraph",
+      "text": "Interest Expense is the amount a business must pay on its outstanding loans and bonds. EBIT − Interest Expense = EBT (Earnings Before Tax). A highly leveraged business (heavy borrowing) will have large Interest Expense, pulling EBT down much further than a similar business that borrows little, even though both have the same EBIT."
+    },
+    { "type": "heading", "text": "Tax Expense: an obligation to the state" },
+    {
+      "type": "paragraph",
+      "text": "Tax Expense (corporate income tax expense) = EBT × the effective tax rate. In Vietnam the standard rate is 20%, but each company's actual effective rate can differ due to tax incentives, loss carryforwards, or operating across multiple jurisdictions. Net Income = EBT − Tax Expense = EBT × (1 − Tax Rate)."
+    },
+    { "type": "heading", "text": "The tax shield: why debt is 'cheaper' than equity after tax" },
+    {
+      "type": "paragraph",
+      "text": "Because interest is deducted before tax is calculated, every dong of interest paid saves the business a portion of the tax it owes - called the tax shield. **Example:** 100 billion of interest at a 20% tax rate saves 20 billion in tax, so the 'real' after-tax interest cost is only 80 billion. This is why, in corporate finance theory, the cost of debt is always calculated on an after-tax basis."
+    },
+    {
+      "type": "list",
+      "items": [
+        "EBT = EBIT − Interest Expense.",
+        "Net Income = EBT − Tax Expense = EBT × (1 − Tax Rate).",
+        "High financial leverage → large Interest Expense → Net Income more sensitive to interest-rate swings.",
+        "The tax shield makes the after-tax cost of debt lower than its pre-tax cost."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "A risk worth watching",
+      "text": "A highly leveraged business will see Net Income swing much harder when market interest rates change or when EBIT drops during a downturn - this is financial risk stacking on top of business risk."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Interest & Tax terminology",
+      "concepts": [
+        { "vi": "Chi phí lãi vay", "en": "Interest Expense", "def": "The cost owed on loans and bonds outstanding during the period" },
+        { "vi": "Lợi nhuận trước thuế", "en": "Earnings Before Tax (EBT)", "def": "EBIT minus Interest Expense" },
+        { "vi": "Chi phí thuế thu nhập doanh nghiệp", "en": "Tax Expense", "def": "EBT multiplied by the effective tax rate" },
+        { "vi": "Lá chắn thuế", "en": "Tax Shield", "def": "The tax saved because interest is deductible before tax" }
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Interest and Tax are the last two filters turning EBIT into Net Income.",
+        "Next lesson: Net Income - its real meaning and the limits of the 'bottom line' number."
+      ]
+    }
+  ]
+}

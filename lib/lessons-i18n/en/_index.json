@@ -4,9 +4,19 @@
     "subtitle": "Recognised by economic obligation, not by cash flow",
     "duration": "6 min"
   },
+  "balance-sheet-doc": {
+    "title": "Reading a Balance Sheet from start to finish",
+    "subtitle": "How to read a balance sheet in 5 minutes",
+    "duration": "7 min"
+  },
   "bang-can-doi-can-bang": {
     "title": "Why must a balance sheet always balance?",
     "subtitle": "Double-entry bookkeeping and the logic behind every number",
+    "duration": "5 min"
+  },
+  "bo-3-bao-cao": {
+    "title": "What makes up the three financial statements?",
+    "subtitle": "Income Statement, Balance Sheet, Cash Flow Statement - three views of one business",
     "duration": "5 min"
   },
   "but-toan-ghi-so-kep-hai-ve": {
@@ -39,6 +49,16 @@
     "subtitle": "The basic accounting equation and why it always holds",
     "duration": "5 min"
   },
+  "current-long-term-liabilities": {
+    "title": "Current and Long-term Liabilities",
+    "subtitle": "Classifying debt by maturity",
+    "duration": "5 min"
+  },
+  "current-non-current-assets": {
+    "title": "Current Assets and Non-current Assets",
+    "subtitle": "Classifying assets by liquidity",
+    "duration": "5 min"
+  },
   "doanh-thu-ghi-nhan": {
     "title": "Revenue: when is it recognised?",
     "subtitle": "Accrual vs cash - two different views of the same transaction",
@@ -59,6 +79,11 @@
     "subtitle": "How to calculate net operating income, the relationship between NOI and the cap rate, and the three deductions beginners always forget",
     "duration": "11 min"
   },
+  "ebit-operating-income": {
+    "title": "EBIT and Operating Income",
+    "subtitle": "Earnings before interest and tax - measuring pure operating efficiency",
+    "duration": "6 min"
+  },
   "gia-tri-thoi-gian-cua-tien": {
     "title": "The time value of money: 1 million today is not 1 million a year from now.",
     "subtitle": "Present Value and Future Value are the foundation of every quantitative financial decision.",
@@ -73,6 +98,16 @@
     "title": "Who makes up the financial system: banks, funds, companies, investors.",
     "subtitle": "The financial system is the network connecting people with spare money to people who need it.",
     "duration": "7 min"
+  },
+  "income-statement-la-gi": {
+    "title": "Income Statement: the profit-and-loss report",
+    "subtitle": "From revenue down to net income - the story of efficiency",
+    "duration": "6 min"
+  },
+  "interest-tax-expense": {
+    "title": "Interest Expense and Tax Expense",
+    "subtitle": "The last two items before Net Income - the effect of debt and tax",
+    "duration": "5 min"
   },
   "inventory-turnover-co-ban": {
     "title": "Inventory Turnover: how fast stock moves",
@@ -124,6 +159,11 @@
     "subtitle": "Expected Return is a probability-weighted average across every possible scenario.",
     "duration": "7 min"
   },
+  "net-income-y-nghia": {
+    "title": "Net Income: meaning and limits",
+    "subtitle": "The final line of the P&L - it doesn't always tell the whole truth",
+    "duration": "6 min"
+  },
   "no-ngan-han-dai-han": {
     "title": "Current and long-term liabilities",
     "subtitle": "Maturity determines liquidity risk",
@@ -152,6 +192,16 @@
   "on-tap-wacc": {
     "title": "Deep-dive case: WACC review",
     "subtitle": "5 quiz questions on the cost of capital - understand it, don't memorise it",
+    "duration": "6 min"
+  },
+  "operating-expense": {
+    "title": "Operating Expense: SG&A, R&D",
+    "subtitle": "Operating costs - sitting between Gross Profit and Operating Income",
+    "duration": "6 min"
+  },
+  "revenue-cogs-gross-profit": {
+    "title": "Revenue, COGS, and Gross Profit",
+    "subtitle": "The first three lines of the P&L - the foundation of every analysis",
     "duration": "6 min"
   },
   "roic": {

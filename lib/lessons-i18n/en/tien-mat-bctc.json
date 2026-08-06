@@ -66,7 +66,7 @@
       "question": "Buying a 10-year bond is recorded as:",
       "options": [
         "A current asset",
-        "A financing expense",
+        "A long-term financing cost",
         "A long-term investment",
         "A cash equivalent"
       ],
@@ -75,7 +75,7 @@
     {
       "question": "Is rising cash always good?",
       "options": [
-        "Not certain - it depends on the scale of revenue",
+        "Not certain - it depends on the scale of revenue and the industry",
         "Always bad because cash generates no profit",
         "Always good because cash is a safe asset",
         "Not certain - it depends on where the cash comes from"
@@ -87,7 +87,7 @@
       "options": [
         "Cash earns no return, so it should be put into further investment",
         "Too much cash lowers the company's Current Ratio",
-        "Too much cash makes shareholders demand all of it as dividends",
+        "Too much idle cash makes shareholders demand all of it be paid out as dividends",
         "Too much cash raises the income tax owed"
       ],
       "explanation": "Cash = the lowest yield. Better used for investment or dividends."

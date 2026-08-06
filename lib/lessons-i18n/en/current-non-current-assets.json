@@ -1,0 +1,213 @@
+{
+  "slug": "current-non-current-assets",
+  "title": "Current Assets and Non-current Assets",
+  "subtitle": "Classifying assets by liquidity",
+  "duration": "5 min",
+  "openingQuestion": "Which of the following is a Non-current Asset?",
+  "openingOptions": [
+    "Cash",
+    "Inventory",
+    "Accounts receivable",
+    "Plant and equipment (PP&E)"
+  ],
+  "explanation": "Assets are split by a single question: will it turn into cash within twelve months. Current covers cash, receivables, inventory; non-current covers plant, equipment, intangible assets, and long-term investments. The mix between the two groups says a lot about the business model: a business heavy in long-term assets struggles to adapt when demand drops, while an asset-light business is more flexible but also faces lower barriers to entry.",
+  "diagram": [
+    { "label": "Will this asset turn into cash within 12 months?", "arrow": true },
+    { "label": "Yes: current asset - cash, receivables, inventory", "arrow": true },
+    { "label": "No: non-current asset - plant, equipment, intangibles", "arrow": true },
+    { "label": "The mix between the two decides how flexible the business is" }
+  ],
+  "realWorldExample": {
+    "company": "Hoa Phat (HPG)",
+    "description": "Hoa Phat is a textbook example of a Balance Sheet leaning heavily toward Non-current Assets: integrated steel complexes such as Dung Quat represent a PP&E block (plants, blast furnaces, production lines) worth tens of trillions of VND, taking up a very large share of total assets. By contrast, Hoa Phat's Current Assets consist of iron-ore and coke inventory, finished steel, and receivables from distributors. A high share of Non-current Assets reflects the nature of capital-intensive manufacturing - it requires large upfront investment and a long payback period."
+  },
+  "quiz": [
+    {
+      "question": "What is a Current Asset?",
+      "options": [
+        "The highest-value asset on the balance sheet, usually plant and equipment",
+        "An asset that will turn into cash within 12 months: cash, receivables, inventory",
+        "A fixed asset used for production, depreciated gradually over the years",
+        "An asset the company is pledging to a bank for a short-term loan"
+      ],
+      "explanation": "Current Assets = will be used/sold/consumed within 1 year. Includes: Cash, Receivables, Inventory."
+    },
+    {
+      "question": "What is a Non-current Asset?",
+      "options": [
+        "A low-value, insignificant asset that doesn't need separate tracking",
+        "A loss-making or impaired asset awaiting removal from the balance sheet",
+        "An asset held for longer than 12 months: real estate, machinery, patents",
+        "An asset not owned by the company but still being used"
+      ],
+      "explanation": "Non-current Assets = long-term assets = held for >1 year to generate future revenue."
+    },
+    {
+      "question": "Among Current Assets, which one has the highest liquidity?",
+      "options": [
+        "Inventory - goods can always be sold right away",
+        "Prepaid expenses - already paid, so they can be reclaimed at any time",
+        "Receivables - customers owe payment, so it's treated almost like cash",
+        "Cash - needs no conversion, usable immediately"
+      ],
+      "explanation": "Liquidity = how long it takes to become cash. Cash = 0 days, Receivables = 30-60 days, Inventory = 60-90+ days."
+    },
+    {
+      "question": "Working Capital = ?",
+      "options": [
+        "Current Assets - Current Liabilities = ability to pay short-term debt",
+        "Current Assets + Current Liabilities = total short-term funding for the period",
+        "Revenue - COGS = gross profit used to fund operations",
+        "Charter capital divided by headcount, i.e. capital per employee"
+      ],
+      "explanation": "WC = current assets minus current liabilities. Positive = good (can pay debt). Negative = dangerous."
+    },
+    {
+      "question": "If Working Capital falls, what could be the cause?",
+      "options": [
+        "Rising revenue, since higher revenue always pulls working capital down",
+        "Inventory or receivables growing fast, current liabilities rising, or cash falling",
+        "Rising profit, since profit is recorded straight into current liabilities owed",
+        "Paying a stock dividend, which reduces equity accordingly"
+      ],
+      "explanation": "Falling WC means a weaker ability to pay short-term debt. Check: is cash flow OK, is inventory stuck, are receivables not overdue."
+    },
+    {
+      "question": "Current Ratio = ?",
+      "options": [
+        "Current Assets × 2, a double safety buffer for debt coming due",
+        "Current Assets - Revenue, the portion of assets not created by revenue",
+        "Current Assets ÷ Current Liabilities - above 1 is good, below 1 is risky",
+        "Current Liabilities ÷ Current Assets - the higher, the safer"
+      ],
+      "explanation": "CR = current assets / current liabilities. A CR of 1.5 means 1.5 dong of assets against 1 dong of debt, a 50% buffer."
+    },
+    {
+      "question": "Is Inventory a current or non-current asset?",
+      "options": [
+        "Non-current - inventory is an asset the company holds for long-term production",
+        "Intangible - because its value depends on demand",
+        "Fixed - inventory must always be maintained at some minimum level",
+        "Current - most inventory is sold within less than a year"
+      ],
+      "explanation": "Inventory = goods awaiting sale. Usually sold within a month/quarter = current. Exceptions: vintage wine, real estate."
+    },
+    {
+      "question": "Why distinguish Current from Non-current Assets?",
+      "options": [
+        "To assess liquidity: Current will soon become cash, Non-current is used long-term",
+        "Because accounting standards require it, with no other analytical meaning",
+        "Because only Current Assets count toward a company's total assets",
+        "Because Non-current Assets aren't depreciated, so they need separate presentation"
+      ],
+      "explanation": "Current Assets are the short-term liquidity buffer. Non-current is the real long-term capital that generates future cash flow."
+    },
+    {
+      "question": "If a company has a Current Ratio of 0.8 (Current Liabilities > Current Assets), what does that signal?",
+      "options": [
+        "Normal - most businesses sit around 0.8",
+        "Dangerous - not enough current assets to cover current liabilities",
+        "Very good - a ratio below 1 shows the company is using capital very efficiently",
+        "No effect, since the Current Ratio is only a formal accounting metric"
+      ],
+      "explanation": "CR < 1 = insolvency risk. Without improvement, the company may default on its debt."
+    },
+    {
+      "question": "Between Cash Ratio (Cash ÷ Current Liabilities) and Current Ratio, which is more conservative?",
+      "options": [
+        "Current Ratio - since it combines all three types of current asset",
+        "They're equal, since both use Current Liabilities as the denominator",
+        "Cash Ratio - it counts only cash, ignoring receivables and inventory",
+        "They can't be compared, since the two ratios measure completely different things"
+      ],
+      "explanation": "Cash Ratio is ultra-conservative. Current Ratio is more conservative than the Acid-Test Ratio is aggressive. Acid-Test sits in between. Pick based on your risk tolerance."
+    },
+    {
+      "question": "When does Goodwill appear on a company's Balance Sheet, and why doesn't it appear naturally for a company that grew its brand entirely in-house?",
+      "options": [
+        "When the company achieves consistently high profit, the brand gets recognised",
+        "Every company automatically gains goodwill after 5 stable years of operation",
+        "When a company builds a strong brand itself, its value is revalued annually",
+        "Only when a company acquires another business for more than its net asset value"
+      ],
+      "explanation": "Goodwill only arises from M&A: Goodwill = Purchase Price − the fair value of the acquired company's net assets. This is why a company that built its own strong brand internally (like Google or Vinamilk) carries no huge goodwill on its books, even though its real brand value is very large."
+    }
+  ],
+  "keyTakeaways": [
+    "Current assets: cash, AR, inventory - liquid within 1 year",
+    "Non-current: PP&E, intangibles, goodwill - long-term",
+    "The asset mix affects liquidity and risk"
+  ],
+  "practicePrompt": {
+    "question": "A company has: cash 100 billion, receivables 50 billion, inventory 80 billion, a production plant worth 500 billion, and patents worth 30 billion. Which items are classified as current assets?",
+    "options": [
+      "Only the 100 billion of cash is classified as a current asset; everything else is a non-current asset",
+      "Cash, receivables, and inventory (100 + 50 + 80 = 230 billion) - because all three can turn into cash or be consumed within 1 year; the plant and patents are non-current assets",
+      "All five items are classified as current assets, because the company owns and controls all of them",
+      "The production plant and patents are the current assets, since they keep generating value for the company continuously"
+    ],
+    "explanation": "Current assets consist of cash, AR, and inventory - assets that can turn into cash or be consumed within 1 year (230 billion). Non-current consists of PP&E (the plant) and intangibles (the patents) - which deliver benefit over many years."
+  },
+  "summary": {
+    "keyIdea": "Current assets: cash, AR, inventory - liquid within 1 year",
+    "commonMistake": "Reading a concept as a phrase to memorise rather than a principle to apply to real decisions.",
+    "action": "Non-current: PP&E, intangibles, goodwill - long-term"
+  },
+  "application": {
+    "title": "Classify a company's assets by liquidity",
+    "message": "Open a company's Balance Sheet, underline the lines that belong to Current Assets and circle the lines that belong to Non-current Assets, then calculate each group's share of total assets.",
+    "secondary": "A high share of long-term assets usually comes with a more capital-intensive business model."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Not every asset carries the same 'value' in terms of liquidity. The Balance Sheet splits assets into two broad groups based on one criterion: will this asset turn into cash within the next 12 months."
+    },
+    { "type": "heading", "text": "Current Assets" },
+    {
+      "type": "paragraph",
+      "text": "Current Assets are assets expected to turn into cash, be sold, or be consumed within 12 months, including: Cash & Cash Equivalents, Accounts Receivable (AR), Inventory, and short-term investments. This group is usually listed in decreasing order of liquidity, starting from cash."
+    },
+    { "type": "heading", "text": "Non-current Assets" },
+    {
+      "type": "paragraph",
+      "text": "Non-current Assets are assets a company holds and uses for many years, not expected to be sold in the short term: PP&E - Property, Plant & Equipment (land, buildings, machinery), Intangible Assets (patents, brands, software), Goodwill (arising from M&A), and long-term investments."
+    },
+    { "type": "heading", "text": "Goodwill: a special kind of intangible asset" },
+    {
+      "type": "paragraph",
+      "text": "Goodwill arises when a company acquires another business for more than the fair value of the target's net assets - that gap reflects expectations about brand, loyal customers, or synergy from the deal. Goodwill isn't amortised periodically like PP&E, but it must be tested for impairment every year - if the M&A deal underperforms, the company must write down Goodwill, causing a large loss on the P&L."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Current Assets: Cash, AR, Inventory - turn into cash within 12 months.",
+        "Non-current Assets: PP&E, Intangibles, Goodwill - held long-term.",
+        "The Current/Non-current Assets mix reflects the industry: retail usually has a higher share of Current Assets, heavy manufacturing tends to lean Non-current.",
+        "Large Goodwill carries impairment risk if the M&A deal doesn't perform as expected."
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": { "label": "High share of Current Assets", "text": "Common in retail and trading - assets are mostly cash, inventory, and receivables, giving better liquidity." },
+      "right": { "label": "High share of Non-current Assets", "text": "Common in manufacturing, infrastructure, and real estate - requiring large upfront investment with a slower payback." }
+    },
+    {
+      "type": "conceptTable",
+      "title": "Asset classification terminology",
+      "concepts": [
+        { "vi": "Tài sản ngắn hạn", "en": "Current Assets", "def": "Assets turning into cash within 12 months" },
+        { "vi": "Tài sản dài hạn", "en": "Non-current Assets", "def": "Assets held and used over many years" },
+        { "vi": "Tài sản cố định hữu hình", "en": "Property, Plant & Equipment (PP&E)", "def": "Land, buildings, machinery, and equipment" },
+        { "vi": "Lợi thế thương mại", "en": "Goodwill", "def": "The gap between the purchase price and the fair value of net assets in an M&A deal" }
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The asset mix reveals a great deal about a business's model and its degree of liquidity risk.",
+        "Next lesson: the corresponding classification on the other side of the Balance Sheet - Current and Long-term Liabilities."
+      ]
+    }
+  ]
+}

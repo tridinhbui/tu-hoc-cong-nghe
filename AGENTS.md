@@ -188,6 +188,28 @@ npm run audit:lessons        # Vietnamese
 npm run audit:lessons:en     # the translated corpus, its own baseline
 ```
 
+**Translating a batch is two passes, not one.** Translation drifts toward the
+length tell on its own, and telling the translator to aim for chance level does
+not stop it: a faithful English rendering of a correct Vietnamese answer comes
+out longer and more explanatory than the distractors beside it, because that is
+what a correct answer sounds like. Measured on the first 55 lessons — the
+instruction was in the brief, and the batches still landed at 32.3% and then
+again near 30% "correct answer is the uniquely longest option", against a
+`MAX_TELL_SHARE` of 27%.
+
+So the second pass is part of the job, not a repair: translate, then run
+`node scripts/audit-lesson-content.mjs --locale=en`, then rewrite distractors
+until the share is near 25%. A rebalance pass over 46 lessons took them from
+32.3% to 21.8% by lengthening 18 distractors in 9 files, and every fix was a
+distractor made longer by the misconception or the arithmetic that produces it —
+never the correct answer trimmed, which is how the Vietnamese corpus ended up
+drifting the other way to z = −4.6.
+
+Watch that this does not turn into a race: the English corpus crossed 300
+questions while a rebalance and a translation batch ran at the same time, and the
+total share went back up as fast as it came down. Rebalance the batch you just
+wrote, before writing the next one.
+
 The share ceilings are reported but not enforced below 400 questions
 (`MIN_QUESTIONS_FOR_SHARE_GATES`) — at 50 questions a share moves 2 points per
 question, so it would go red on a coin flip. `MAX_LENGTH_BIAS_Z` is enforced at

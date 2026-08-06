@@ -1,0 +1,208 @@
+{
+  "slug": "income-statement-la-gi",
+  "title": "Income Statement: the profit-and-loss report",
+  "subtitle": "From revenue down to net income - the story of efficiency",
+  "duration": "6 min",
+  "openingQuestion": "Where does the Income Statement start, and where does it end?",
+  "openingOptions": [
+    "From equity to dividends",
+    "From cash to investments",
+    "From revenue (top line) to net income (bottom line)",
+    "From assets to liabilities"
+  ],
+  "explanation": "The income statement runs from revenue at the very top down to net income at the very bottom, subtracting each group of costs in a deliberate order: direct costs first, operating costs next, then interest and tax. That order lets you isolate the problem - a shrinking gross margin is a production or pricing issue, a shrinking operating margin is an issue with the business's cost structure, and a falling net income while both margins above it stay steady points to debt.",
+  "diagram": [
+    { "label": "Revenue sits at the very top", "arrow": true },
+    { "label": "Each group of costs is subtracted in turn", "arrow": true },
+    { "label": "Each layer produces a different kind of profit", "arrow": true },
+    { "label": "Down to net income at the very bottom" }
+  ],
+  "realWorldExample": {
+    "company": "FPT Corporation",
+    "description": "FPT's income statement is a clear example of this layered structure: consolidated revenue comes from three segments (Technology, Telecom, Education); after subtracting cost of goods sold you get Gross Profit; after subtracting selling and administrative expenses you get Operating Income; after subtracting interest expense and corporate income tax (usually around 20%) you get Net Income. FPT's net margin has held around 10-13% for several years running, reflecting a technology-services model with a far steadier margin than capital-intensive manufacturers."
+  },
+  "quiz": [
+    {
+      "question": "Which line does the Income Statement start from?",
+      "options": [
+        "Cost of goods sold",
+        "Gross Profit",
+        "Revenue",
+        "Interest expense"
+      ],
+      "explanation": "P&L: Revenue - COGS - OpEx - Interest - Tax = Net Income. Revenue is the very first line."
+    },
+    {
+      "question": "What is the very last line of the Income Statement?",
+      "options": [
+        "Gross Profit",
+        "Operating Income",
+        "EBITDA (before interest, tax, and depreciation)",
+        "Net Income"
+      ],
+      "explanation": "Net Income is the final profit remaining after every expense (COGS, OpEx, Interest, Tax)."
+    },
+    {
+      "question": "Why does the Income Statement matter?",
+      "options": [
+        "It shows whether the business turned a profit or a loss from operations in the period",
+        "It shows how many assets the company owns and how much it owes",
+        "It shows how much real cash actually moved in and out during the period",
+        "It shows the ownership structure and the stakes held by major shareholders"
+      ],
+      "explanation": "Net Income and profit margins reflect operating efficiency. A profitable company reflects core business health."
+    },
+    {
+      "question": "What is the difference between Operating Income and Net Income?",
+      "options": [
+        "Operating has already subtracted depreciation, Net has not",
+        "Operating has not yet subtracted interest and tax, Net has subtracted both",
+        "Operating is measured on a cash basis, Net on an accrual basis",
+        "Operating counts only core revenue, Net also adds in secondary revenue"
+      ],
+      "explanation": "Operating = profit from core operations before interest/tax. Net = profit after interest/tax. Operating reflects business performance; Net reflects shareholder profit."
+    },
+    {
+      "question": "A company has a 20% Operating Margin but only a 12% Net Margin. What explains the gap?",
+      "options": [
+        "Selling and administrative costs are above the industry average",
+        "Rising cost of goods sold has squeezed the gross margin",
+        "Interest expense and tax have eaten up 8 percentage points",
+        "Revenue is recognised on an accrual basis, so cash hasn't been collected yet"
+      ],
+      "explanation": "A high Operating Margin but low Net Margin means the company is profitable at the operating level but interest or high taxes are eating into it further down."
+    },
+    {
+      "question": "What is EBITDA?",
+      "options": [
+        "Gross profit after subtracting selling and administrative expenses",
+        "After-tax profit with dividends paid added back on top",
+        "Net cash flow generated from operations during the period",
+        "Earnings before interest, tax, depreciation, and amortisation"
+      ],
+      "explanation": "EBITDA = Operating Income + Depreciation/Amortisation. It strips out non-cash expenses and the effects of financing and tax, making it useful for comparing companies."
+    },
+    {
+      "question": "If you want to compare the profitability of two companies with different capital structures, which metric should you use?",
+      "options": [
+        "Operating Income or EBITDA",
+        "Each company's Net Income",
+        "Net Margin, expressed as a percentage",
+        "After-tax profit divided by average shareholders' equity"
+      ],
+      "explanation": "Net Income is affected by capital structure and tax. Operating Income/EBITDA give a cleaner comparison of the actual businesses."
+    },
+    {
+      "question": "A company has positive net income but negative Operating Income. Can that actually happen?",
+      "options": [
+        "No, Net can never be larger than Operating in any case",
+        "Yes, if there is an unusual gain, such as from selling an asset",
+        "No, this is definitely an accounting error",
+        "Yes, but only when the company is exempt from income tax"
+      ],
+      "explanation": "Net Income = Operating + Non-operating items. If non-operating gains exceed the operating loss, Net Income can still be positive - though this signals a weak core business."
+    },
+    {
+      "question": "How does seasonality affect the Income Statement?",
+      "options": [
+        "It only affects the balance sheet, not the income statement",
+        "Revenue between quarters always stays stable for a good business",
+        "Revenue swings with the season, so you must compare against the same period last year",
+        "Comparing only against the immediately preceding quarter is enough to see the real trend"
+      ],
+      "explanation": "A company that sells Tet goods sees high Q1 and low Q3 sales. You need a year-over-year (YoY) comparison to understand the real trend."
+    },
+    {
+      "question": "Between Operating Income and Net Income, which one do investors usually care about more?",
+      "options": [
+        "Operating Income, because it reflects core business strength before any debt effects",
+        "Net Income, because it's the final figure after every expense",
+        "EBITDA, because it strips out the effect of depreciation policy",
+        "Both equally, since they always move in the same direction"
+      ],
+      "explanation": "Operating = core business health. Net = also depends on debt/tax. Investors prefer a high Operating figure, since that reflects real growth potential."
+    },
+    {
+      "question": "Two companies in the same industry have equal Revenue, but one has far more 'non-recurring' costs on its Income Statement. How does that affect comparing their Net Income?",
+      "options": [
+        "Non-recurring items should be stripped out before comparing the two",
+        "The company with more non-recurring costs is always the less efficient one",
+        "Equal revenue means the two are directly comparable as-is",
+        "Net Income always reflects a company's true underlying efficiency"
+      ],
+      "explanation": "Unusual items (impairment, asset disposals, restructuring costs) distort a given period's Net Income. Analysts typically normalise for these to compare the companies' true, repeatable operating performance."
+    }
+  ],
+  "keyTakeaways": [
+    "The P&L runs from Revenue down to Net Income",
+    "Each layer reflects a different aspect of operating efficiency",
+    "Top line = Revenue; Bottom line = Net Income"
+  ],
+  "practicePrompt": {
+    "question": "A company has Revenue of 1,000 billion, and after subtracting COGS, operating costs, interest, and tax in turn, is left with Net Income of 80 billion. What principle does this P&L structure express?",
+    "options": [
+      "The P&L is a list of independent line items with no logical order between them",
+      "The P&L runs from Revenue down to Net Income - each layer (Gross Profit, Operating Income, EBT) subtracts a different kind of cost, reflecting a different aspect of the company's efficiency",
+      "Revenue and Net Income must always be equal if a company is well managed and has no unusual costs",
+      "Net Income is simply a fixed 8% of Revenue that applies to every company"
+    ],
+    "explanation": "The P&L runs from Revenue (top line) down to Net Income (bottom line) layer by layer: subtracting COGS gives Gross Profit, subtracting SG&A/R&D gives Operating Income, subtracting interest and tax gives Net Income - each layer reveals a different aspect of efficiency: production, operations, and capital structure."
+  },
+  "summary": {
+    "keyIdea": "The P&L runs from Revenue down to Net Income",
+    "commonMistake": "Reading a concept as a phrase to memorise rather than a principle to apply to real decisions.",
+    "action": "Each layer reflects a different aspect of operating efficiency"
+  },
+  "application": {
+    "title": "Trace a company's Revenue down to its Net Income",
+    "message": "Take a company you're interested in, follow its Income Statement line by line from Revenue down to Net Income, and note down what each deduction represents.",
+    "secondary": "Doing this slowly, one line at a time, is enough to remember the P&L structure for good."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "If the Balance Sheet is a photograph, the Income Statement is a short film telling the story of how a business earned and spent money over a quarter or a year. Reading a P&L correctly means understanding what each layer of profit is telling you."
+    },
+    { "type": "heading", "text": "The layered structure of the Income Statement" },
+    {
+      "type": "paragraph",
+      "text": "The P&L is not one single number but a chain of profit layers, each subtracting a different kind of cost. Starting from Revenue (the top line), subtract Cost of Goods Sold (COGS) to get Gross Profit; subtract Operating Expenses (SG&A, R&D) to get Operating Income (EBIT); subtract Interest Expense to get Earnings Before Tax (EBT); subtract Tax Expense to get Net Income (the bottom line)."
+    },
+    { "type": "heading", "text": "Why look at every layer, not just Net Income" },
+    {
+      "type": "paragraph",
+      "text": "Two companies with equal Net Income can have completely different stories. One may reach a high Net Income through a strong Gross Margin (products with real pricing power), while the other reaches the same Net Income by cutting operating costs or through a one-off unusual gain. Looking at each layer helps an investor tell sustainable profit apart from a one-time boost."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Revenue (Top line): the total value of goods/services sold during the period.",
+        "Gross Profit = Revenue − COGS: profit after the direct cost of production.",
+        "Operating Income (EBIT) = Gross Profit − OpEx: profit from core business operations.",
+        "Net Income (Bottom line) = EBIT − Interest − Tax: the final profit belonging to shareholders."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "A quick-read tip",
+      "text": "When reading an unfamiliar company's P&L, calculate the margin at every layer (Gross Margin, Operating Margin, Net Margin) and compare it with the same period last year or with an industry peer - a sharp swing in margin is usually a signal worth digging into."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Income Statement terminology",
+      "concepts": [
+        { "vi": "Doanh thu (dòng đầu)", "en": "Revenue / Top line", "def": "The total value of goods/services sold before subtracting any cost" },
+        { "vi": "Lợi nhuận ròng (dòng cuối)", "en": "Net Income / Bottom line", "def": "Profit remaining after subtracting every cost, interest, and tax" },
+        { "vi": "Biên lợi nhuận", "en": "Margin", "def": "The percentage a profit layer represents relative to revenue" },
+        { "vi": "Lợi nhuận trước lãi vay và thuế", "en": "EBIT", "def": "Profit from operations, before subtracting interest and tax" }
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The Income Statement is a multi-chapter story, not a single number.",
+        "The next lesson goes deeper into the first three lines: Revenue, COGS, and Gross Profit."
+      ]
+    }
+  ]
+}

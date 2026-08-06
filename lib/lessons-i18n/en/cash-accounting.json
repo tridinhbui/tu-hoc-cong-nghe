@@ -37,7 +37,7 @@
       "options": [
         "Household businesses and very small companies",
         "Companies listed on the stock exchange",
-        "Companies with foreign investment capital",
+        "Companies that have taken on foreign investment capital",
         "Banks and credit institutions"
       ],
       "explanation": "Small and simple → cash basis is enough. Large and complex → accrual is required."

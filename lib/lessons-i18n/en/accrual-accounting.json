@@ -46,7 +46,7 @@
       "question": "The advantage of accrual is:",
       "options": [
         "It reflects the true substance of business activity",
-        "It helps a business reduce the tax it owes",
+        "It lets a company defer taxable income into a later period",
         "It's simpler and costs less in accounting effort",
         "It tells you exactly how much cash is on hand"
       ],
@@ -55,7 +55,7 @@
     {
       "question": "A drawback of Cash Accounting is:",
       "options": [
-        "It isn't accepted by the tax authority for use",
+        "It isn't accepted by any tax authority anywhere in the world",
         "It doesn't reflect the true substance of the business",
         "It's too complex for small-scale businesses",
         "It doesn't show the actual cash balance"
@@ -77,7 +77,7 @@
       "options": [
         "It's simpler, so accountants make fewer mistakes",
         "It helps the tax authority collect more tax",
-        "It's required by longstanding international convention",
+        "It's a longstanding convention that regulators could drop at any time without consequence",
         "It reflects true activity so investors can compare companies"
       ],
       "explanation": "Governments and investors need accurate data → accrual is the global standard."
@@ -88,7 +88,7 @@
         "Both: the income statement for profit/loss, the cash flow statement for real cash",
         "Only the balance sheet, since it sums up both",
         "Only the cash flow statement, since cash doesn't lie",
-        "Only the income statement, since it's the final figure"
+        "Only the income statement, since it's the one figure everyone else, including auditors, relies on"
       ],
       "explanation": "The income statement ≠ the cash flow statement. You need both to avoid being misled."
     }

@@ -54,7 +54,7 @@
     {
       "question": "When interest rates rise, a company borrows long-term to:",
       "options": [
-        "Get a preferential low interest rate from the bank",
+        "Get a preferential rate the bank only ever offers on long-term loans",
         "Convert current liabilities into equity",
         "Lock in the interest cost, avoiding higher rates later",
         "Reduce the debt-to-equity ratio"
@@ -64,7 +64,7 @@
     {
       "question": "A 20-year bond is classified as:",
       "options": [
-        "A current liability (if not near maturity)",
+        "A current liability, since bonds must always be repaid within the year",
         "Not classified",
         "Equity",
         "A long-term liability (matures after 12 months)"

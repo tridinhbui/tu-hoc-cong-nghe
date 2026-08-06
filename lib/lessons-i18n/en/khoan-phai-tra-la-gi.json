@@ -57,7 +57,7 @@
       "options": [
         "To hold onto cash longer, improving cash flow",
         "To raise the company's Current Ratio",
-        "To get a discount on the goods purchased",
+        "To get a discount on the goods purchased from that supplier",
         "To reduce the tax owed for that period"
       ],
       "explanation": "AP is free credit: receiving goods without yet paying for them = optimising cash flow."
@@ -75,7 +75,7 @@
     {
       "question": "Maximising AP to improve cash flow:",
       "options": [
-        "Correct, the longer it can be stretched the better",
+        "Correct, the longer AP can be stretched out, the better cash flow gets",
         "Wrong, because AP raises bank interest expense",
         "Wrong, AP that's too high damages supplier relationships",
         "Correct, because AP incurs no interest cost"
