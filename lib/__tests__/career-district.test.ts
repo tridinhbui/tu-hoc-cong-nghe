@@ -1,7 +1,11 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { FINANCE_CAREERS } from "@/lib/finance-careers";
-import { CAREER_CATEGORY_ORDER, careerCategoryLabelsOf } from "@/lib/career-categories";
+import {
+  CAREER_CATEGORY_ORDER,
+  careerCategoryLabelsOf,
+  isCareerCategory,
+} from "@/lib/career-categories";
 import { insideAnyObstacle, touchingPairs } from "@/lib/walkable-space";
 import {
   buildStageIndex,
@@ -28,6 +32,7 @@ import {
   type DistrictRoom,
 } from "@/components/career-district/district-space";
 import { vi as viDict } from "@/lib/i18n/dictionaries/vi";
+import { en as enDict } from "@/lib/i18n/dictionaries/en";
 
 /** Khu phố nghề được dựng từ dữ liệu nghề, nên mỗi lần thêm một nghề là hình
  *  học của một căn phòng đổi theo. Những ràng buộc dưới đây là thứ giữ cho
@@ -113,6 +118,41 @@ describe("khu phố nghề", () => {
   it("không có hai vùng chặn nào chạm nhau trong cùng một phòng", () => {
     for (const room of ALL_ROOMS) {
       expect(touchingPairs(room.obstacles), `phòng ${room.id}`).toEqual([]);
+    }
+  });
+});
+
+describe("isCareerCategory", () => {
+  it("nhận đúng năm nhóm ngành", () => {
+    for (const category of CAREER_CATEGORY_ORDER) {
+      expect(isCareerCategory(category), category).toBe(true);
+    }
+  });
+
+  it("từ chối tên trên chuỗi nguyên mẫu", () => {
+    // Bản đầu kiểm bằng `id in CAREER_CATEGORY_LABELS`, và `in` đi cả chuỗi
+    // nguyên mẫu: năm chuỗi dưới đây đều LỌT QUA lá chắn kiểu, rồi đi thẳng vào
+    // chỗ đang chờ một nhóm ngành. Cùng lỗ đã bắt ở ?phong= (lesson-room-links).
+    const labels = careerCategoryLabelsOf(viDict);
+    for (const evil of ["constructor", "toString", "valueOf", "__proto__", "hasOwnProperty"]) {
+      expect(evil in labels, `${evil} nằm trên chuỗi nguyên mẫu`).toBe(true);
+      expect(isCareerCategory(evil), `${evil} phải bị từ chối`).toBe(false);
+    }
+  });
+
+  it("từ chối chuỗi vô nghĩa", () => {
+    expect(isCareerCategory("")).toBe(false);
+    expect(isCareerCategory("khong-co-nhom-nay")).toBe(false);
+  });
+
+  it("không phụ thuộc vào từ điển đang chọn", () => {
+    // Lý do thứ hai của lần đổi: nhãn đi theo ngôn ngữ, nên một phép kiểm cấu
+    // trúc đọc bảng nhãn sẽ đổi kết quả theo từ điển. Kiểm bằng cách so với
+    // bảng nhãn tiếng Anh - id là hằng số, nhãn thì không.
+    const enLabels = careerCategoryLabelsOf(enDict);
+    for (const category of CAREER_CATEGORY_ORDER) {
+      expect(enLabels[category], `thiếu nhãn tiếng Anh cho ${category}`).toBeTruthy();
+      expect(isCareerCategory(category)).toBe(true);
     }
   });
 });

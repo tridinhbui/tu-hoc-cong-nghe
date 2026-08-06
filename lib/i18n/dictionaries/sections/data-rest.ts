@@ -138,7 +138,7 @@ export const dataRestVi = {
         },
       ],
       // Label for the synthetic "all categories" filter tab. Every other tab
-      // label comes from CAREER_CATEGORY_LABELS (lib/career-categories.ts).
+      // label comes from careerCategoryLabelsOf() (lib/career-categories.ts).
       allCategoriesLabel: "Tất cả",
     },
     globalSearchModal: {
