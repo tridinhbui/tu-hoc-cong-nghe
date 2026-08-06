@@ -1269,7 +1269,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
       </div>
       )}
 
-      <div className={`${embedded ? "h-full flex flex-col overflow-hidden" : "max-w-7xl mx-auto px-3 sm:px-4 py-3 min-h-[calc(100vh-4rem)] flex flex-col font-sans"}`}>
+      <div className={`${embedded ? "flex flex-col lg:h-full lg:overflow-hidden" : "max-w-7xl mx-auto px-3 sm:px-4 py-3 min-h-[calc(100vh-4rem)] flex flex-col font-sans"}`}>
         {myRoom ? (
           <div className="h-full flex flex-col min-h-0 space-y-3">
             {/* Top Room Info, Lofi Audio & Mobile Segmented Tab Bar */}
@@ -1488,7 +1488,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
             </div>
 
             {/* Main 2-Column Split View */}
-            <div className="flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-4 overflow-hidden">
+            <div className="grid grid-cols-1 gap-3 sm:gap-4 lg:grid-cols-12 lg:flex-1 lg:min-h-0 lg:overflow-hidden">
               {/* LEFT COLUMN: 3D Spatial Table Stage 80% Viewport Height with Mouse Wheel Zoom */}
               {/* Ở chế độ đi lại, KHÔNG gắn các handler xoay phòng: chúng và
                   camera quỹ đạo của cảnh three.js cùng nghe một cú kéo chuột,
