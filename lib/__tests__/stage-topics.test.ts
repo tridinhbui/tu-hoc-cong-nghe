@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { TRACK_PERSONAL, TRACK_PROFESSIONAL } from "../track-stages";
-import { STAGE_TOPIC_TABLES, TOPIC_FALLBACK, stageTopicFor } from "../stage-topics";
+import { STAGE_TOPIC_TABLES, TOPIC_ADVICE, TOPIC_FALLBACK, stageTopicFor } from "../stage-topics";
+import { vi as viDict } from "../i18n/dictionaries/vi";
+import { en as enDict } from "../i18n/dictionaries/en";
 
 // stage-numbering.test.ts đã canh ba bất biến về số chặng, và comment đầu file
 // đó nói thẳng rằng "bảng phân loại của analytics" là thứ không theo lần dời số
@@ -96,7 +98,46 @@ describe("stageTopicFor", () => {
     // suất". Chủ đề đó rồi đi vào topicGapSummary và chọn luôn câu khuyên, nên
     // người học vấp quiz Thuế được khuyên đọc lại một tình huống đầu tư.
     const stageBy = (label: string) => TRACK_PERSONAL.stages.find((s) => s.label === label)!;
-    expect(stageTopicFor(stageBy("Chặng 2").days[0], "personal")).not.toBe("Đầu tư cá nhân");
-    expect(stageTopicFor(stageBy("Chặng 3").days[0], "personal")).not.toBe("Trái phiếu & lãi suất");
+    expect(stageTopicFor(stageBy("Chặng 2").days[0], "personal")).toBe("tax-payroll");
+    expect(stageTopicFor(stageBy("Chặng 3").days[0], "personal")).toBe("money-foundations");
+  });
+});
+
+describe("chủ đề đi qua từ điển, không phải chuỗi tiếng Việt", () => {
+  // Chuyện này là lý do id tồn tại. Bản cũ trả thẳng câu chữ tiếng Việt, và câu
+  // chữ đó vừa hiện lên vừa làm khóa chọn lời khuyên qua
+  // topic.includes("Kế toán" | "Định giá" | ...). Dịch nhãn sang tiếng Anh là
+  // mọi lời khuyên rơi về câu chung: không lỗi, không test đỏ, chỉ là lời khuyên
+  // ngừng liên quan tới điều người học vừa làm sai.
+  const ALL_TOPIC_IDS = [
+    ...new Set([
+      ...Object.values(STAGE_TOPIC_TABLES.personal),
+      ...Object.values(STAGE_TOPIC_TABLES.professional),
+      ...Object.values(TOPIC_FALLBACK),
+      "bonus-cases" as const,
+    ]),
+  ];
+
+  it("mọi id chủ đề dùng thật đều có câu chữ ở cả hai từ điển", () => {
+    for (const id of ALL_TOPIC_IDS) {
+      expect(viDict.topics[id], `vi thiếu topics.${id}`).toBeTruthy();
+      expect(enDict.topics[id], `en thiếu topics.${id}`).toBeTruthy();
+    }
+  });
+
+  it("mọi id chủ đề đều có một câu khuyên, và câu khuyên đó có câu chữ", () => {
+    for (const id of ALL_TOPIC_IDS) {
+      const adviceId = TOPIC_ADVICE[id];
+      expect(adviceId, `TOPIC_ADVICE thiếu ${id}`).toBeTruthy();
+      expect(viDict.topicAdvice[adviceId], `vi thiếu topicAdvice.${adviceId}`).toBeTruthy();
+      expect(enDict.topicAdvice[adviceId], `en thiếu topicAdvice.${adviceId}`).toBeTruthy();
+    }
+  });
+
+  it("không id nào trong TOPIC_ADVICE là id chết", () => {
+    // Hướng còn lại: bỏ một chủ đề khỏi bảng chặng mà quên TOPIC_ADVICE thì
+    // bảng phình ra bằng những dòng không bao giờ tra tới.
+    const unused = Object.keys(TOPIC_ADVICE).filter((id) => !ALL_TOPIC_IDS.includes(id as never));
+    expect(unused, "id có trong TOPIC_ADVICE nhưng không chặng nào dùng").toEqual([]);
   });
 });

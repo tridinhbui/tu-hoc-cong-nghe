@@ -12,6 +12,7 @@ import { getLessonDisplayLabel, getLessonShortTitle } from "@/lib/lesson-labels"
 import { getQuizAnswers } from "@/lib/progress";
 import RecallCard from "@/components/RecallCard";
 import type { RecallItem } from "@/lib/recall-schedule";
+import type { StageTopicId, TopicAdviceId } from "@/lib/stage-topics";
 import { useLocalStorageValue, writeLocalStorageValue } from "@/lib/use-local-storage-value";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
@@ -28,22 +29,21 @@ interface Greeting {
   totalMinutes: number;
   firstName: string | null;
   trackProgress: { completed: number; total: number; percent: number };
-  topicGapSummary: { topic: string; count: number }[];
+  topicGapSummary: { topicId: StageTopicId; count: number }[];
   criticalMistake: {
     lessonId: number;
     lessonSlug: string;
     lessonTitle: string;
-    topic: string;
+    topicId: StageTopicId;
     wrongCount: number;
-    explanation: string;
-    recommendedAction: string;
+    explanation: string | null;
+    adviceId: TopicAdviceId;
   } | null;
   stageReviewInsight: {
     lessonId: number;
     lessonSlug: string;
     lessonTitle: string;
     stageLabel: string;
-    message: string;
   } | null;
 }
 
@@ -401,7 +401,9 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
               {stageReviewInsight && (
                 <div className="rounded-xl border border-amber-200/80 dark:border-amber-900/40 bg-amber-50/70 dark:bg-amber-950/20 p-3 mb-3">
                   <p className="text-xs font-bold text-stone-900 dark:text-stone-100 leading-relaxed">
-                    {format(t.resume.coachReminder, { message: stageReviewInsight.message })}
+                    {format(t.resume.coachReminder, {
+                      message: format(t.resume.stageReviewMessage, { stage: stageReviewInsight.stageLabel }),
+                    })}
                   </p>
                   <Link
                     href={`/bai-hoc/${stageReviewInsight.lessonSlug}`}
@@ -420,10 +422,10 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
                   <div className="flex flex-wrap gap-2">
                     {topicGapSummary.map((item) => (
                       <span
-                        key={item.topic}
+                        key={item.topicId}
                         className="inline-flex items-center gap-1 rounded-full border border-rose-200 dark:border-rose-900/40 bg-rose-50 dark:bg-rose-950/20 px-2.5 py-1 text-[10px] font-extrabold text-rose-700 dark:text-rose-300"
                       >
-                        {item.topic}
+                        {t.topics[item.topicId]}
                         <span className="rounded-full bg-rose-500 text-white px-1.5 py-0.5 text-[9px]">{item.count}</span>
                       </span>
                     ))}
@@ -434,16 +436,16 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
               {criticalMistake && (
                 <div className="rounded-xl border border-stone-200/80 dark:border-stone-800/80 bg-stone-50/70 dark:bg-stone-950/40 p-3">
                   <p className="text-[11px] font-extrabold text-stone-900 dark:text-stone-100">
-                    {format(t.resume.stumblingMost, { topic: criticalMistake.topic })}
+                    {format(t.resume.stumblingMost, { topic: t.topics[criticalMistake.topicId] })}
                   </p>
                   <p className="text-[11px] text-stone-600 dark:text-stone-400 mt-1 leading-relaxed">
                     {format(t.resume.wrongCount, { count: criticalMistake.wrongCount, lesson: getLessonShortTitle({ title: criticalMistake.lessonTitle }) })}
                   </p>
                   <p className="text-[11px] text-stone-700 dark:text-stone-300 mt-2 leading-relaxed">
-                    {criticalMistake.explanation}
+                    {criticalMistake.explanation ?? t.resume.explanationFallback}
                   </p>
                   <p className="text-[11px] font-bold text-emerald-700 dark:text-emerald-300 mt-2 leading-relaxed">
-                    {format(t.resume.coachSuggestion, { action: criticalMistake.recommendedAction })}
+                    {format(t.resume.coachSuggestion, { action: t.topicAdvice[criticalMistake.adviceId] })}
                   </p>
                   <div className="flex flex-wrap gap-2 mt-3">
                     <Link

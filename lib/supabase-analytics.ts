@@ -1,6 +1,6 @@
 import { createClient } from "@/lib/supabase";
 import { handleSupabaseError } from "@/lib/errors";
-import { stageTopicFor } from "@/lib/stage-topics";
+import { stageTopicFor, type StageTopicId } from "@/lib/stage-topics";
 
 function isMissingTableError(error: { code?: string } | null) {
   return error?.code === "PGRST205" || error?.code === "42P01";
@@ -25,8 +25,8 @@ interface LessonMetaRow {
 // Bảng chủ đề theo chặng giờ nằm ở lib/stage-topics.ts, dùng chung với
 // app/(app)/dashboard/actions.ts. Bản ở đây từng là bản duy nhất được sửa sau
 // lần dời số chặng; bản kia không, và không có gì bắt được điều đó.
-function inferAnalyticsTopic(lesson: LessonMetaRow): string {
-  if (lesson.track === "bonus") return "Bài case & ứng dụng";
+function inferAnalyticsTopic(lesson: LessonMetaRow): StageTopicId {
+  if (lesson.track === "bonus") return "bonus-cases";
   return stageTopicFor(lesson.id, lesson.track === "professional" ? "professional" : "personal");
 }
 
@@ -67,8 +67,11 @@ export interface LearningAnalytics {
     xpEarned: number;
     minutesSpent: number;
   }[];
+  // KHÔNG CÓ AI ĐỌC TRƯỜNG NÀY. getLearningAnalytics tính nó rồi trả về, và
+  // grep toàn repo không thấy một chỗ nào đọc `.weakAreas`. Giữ lại và đổi sang
+  // id cho khớp phần còn lại, thay vì bỏ đi trong một thay đổi về i18n.
   weakAreas: {
-    topic: string;
+    topicId: StageTopicId;
     averageScore: number;
     lessonsCount: number;
   }[];
@@ -203,7 +206,7 @@ export async function getUserAnalytics(userId: string): Promise<LearningAnalytic
     professional: 0,
     bonus: 0,
   };
-  const topicMistakeCount = new Map<string, number>();
+  const topicMistakeCount = new Map<StageTopicId, number>();
 
   for (const progress of completedProgress) {
     const lesson = lessonsById.get(progress.lesson_id);
@@ -217,8 +220,8 @@ export async function getUserAnalytics(userId: string): Promise<LearningAnalytic
 
     const quizScore = progress.quiz_score;
     if (typeof quizScore === "number" && quizScore <= 70) {
-      const topic = inferAnalyticsTopic(lesson ?? { id: progress.lesson_id, title: null, slug: null, track: null, difficulty: null });
-      topicMistakeCount.set(topic, (topicMistakeCount.get(topic) ?? 0) + 1);
+      const topicId = inferAnalyticsTopic(lesson ?? { id: progress.lesson_id, title: null, slug: null, track: null, difficulty: null });
+      topicMistakeCount.set(topicId, (topicMistakeCount.get(topicId) ?? 0) + 1);
     }
   }
 
@@ -321,8 +324,8 @@ export async function getUserAnalytics(userId: string): Promise<LearningAnalytic
   const weakAreas = Array.from(topicMistakeCount.entries())
     .sort((a, b) => b[1] - a[1])
     .slice(0, 4)
-    .map(([topic, count]) => ({
-      topic,
+    .map(([topicId, count]) => ({
+      topicId,
       averageScore: Math.max(0, 100 - count * 12),
       lessonsCount: count,
     }));

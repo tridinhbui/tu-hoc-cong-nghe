@@ -1409,9 +1409,59 @@ export const vi = {
     stumblingMost: "Bạn đang vấp nhiều nhất ở: {topic}",
     wrongCount: "Đã sai {count} lần trong bài “{lesson}”",
     coachSuggestion: "Gợi ý của Tài Tài: {action}",
+    // Câu dự phòng khi câu quiz không có explanation. Trước đây server action
+    // tự ghép câu này rồi trả về, tức server sinh câu chữ; giờ nó trả
+    // explanation: null và chỗ này lo phần câu chữ.
+    explanationFallback: "Bạn đang vấp lại đúng một ý cốt lõi của bài này.",
+    stageReviewMessage:
+      "Bạn đã đi gần hết {stage}. Đây là lúc làm bài tổng ôn để khóa lại các ý chính trước khi học tiếp.",
     reviewThisLesson: "Ôn lại bài này",
     makeFlashcard: "Tạo flashcard",
     recallTitle: "Ôn tập",
+  },
+
+  // Chủ đề học, tra bằng StageTopicId (lib/stage-topics.ts). Server action trả
+  // id chứ không trả câu chữ, vì id còn là khóa cộng dồn topicCounts và khóa
+  // chọn câu khuyên - một khóa đổi theo ngôn ngữ thì hai người học cùng một
+  // điểm yếu sẽ cộng vào hai ô khác nhau.
+  topics: {
+    "money-foundations": "Nền tảng tiền bạc & rủi ro",
+    "tax-payroll": "Thuế & lương thực nhận",
+    "personal-investing": "Đầu tư cá nhân",
+    "bonds-rates": "Trái phiếu & lãi suất",
+    "portfolio-retirement": "Danh mục & hưu trí",
+    "housing-protection": "Nhà ở & bảo vệ tài sản",
+    "investing-psychology": "Tâm lý đầu tư",
+    "accounting-reporting": "Kế toán & báo cáo tài chính",
+    "valuation-corp-finance": "Định giá & tài chính doanh nghiệp",
+    "bonds-credit": "Trái phiếu & tín dụng",
+    "risk-portfolio-derivatives": "Rủi ro, danh mục & phái sinh",
+    "risk-frm": "Rủi ro & FRM",
+    "banking-compliance": "Ngân hàng, tín dụng & tuân thủ",
+    "quant-data": "Định lượng & phân tích dữ liệu",
+    "career-application": "Ứng dụng nghề nghiệp",
+    esg: "ESG & tài chính bền vững",
+    "economics-markets": "Kinh tế học & thị trường",
+    "vn-market": "Thị trường Việt Nam",
+    "private-markets": "Private markets & đầu tư thay thế",
+    "wealth-insurance": "Gia sản & bảo hiểm",
+    "real-estate-project": "Bất động sản & tài chính dự án",
+    fintech: "FinTech & sản phẩm tài chính",
+    "personal-finance": "Tài chính cá nhân",
+    "professional-finance": "Tài chính chuyên ngành",
+    "bonus-cases": "Bài case & ứng dụng",
+  },
+
+  // Câu khuyên theo chủ đề, tra bằng TopicAdviceId. Sáu nhánh cho 25 chủ đề,
+  // nên phần lớn chủ đề nhận câu "generic" - bảng này giờ là mắt yếu hơn bảng
+  // chủ đề, và đó là điều bản cũ khớp bằng substring che được.
+  topicAdvice: {
+    accounting: "Ôn lại cách đọc báo cáo và làm lại 1-2 câu quiz ngay khi vừa đọc xong.",
+    valuation: "Xem lại giả định chính và thử tự giải thích công thức bằng lời của bạn.",
+    risk: "Ôn lại ví dụ thực tế trong bài rồi tự trả lời lại câu hỏi sai không nhìn đáp án.",
+    bonds: "Tự viết lại mối quan hệ giữa lãi suất, giá trái phiếu và rủi ro tín dụng.",
+    investing: "Đọc lại bài và so sánh ngay với một tình huống đầu tư cá nhân thực tế của bạn.",
+    generic: "Học lại bài gốc rồi làm lại ngay câu quiz sai để khóa kiến thức.",
   },
 
   // components/RigorousLevelExamModal.tsx - the level-up exam.
