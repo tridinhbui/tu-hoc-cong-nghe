@@ -48,6 +48,15 @@ export const finalTwoVi = {
     roomFixturesGates: {
       studyLabel: "Bước qua cổng → vào Nhóm học",
       districtLabel: "Bước qua cổng → ra Phố nghề",
+      // Cùng cặp `x` / `xShort`: nhãn dài là lời mời hiện khi ĐANG đứng trước
+      // cổng, nên nó phải nói ra hành động. Bảng chỉ đường đã có tiêu đề "Cổng
+      // ở tầng trệt" ngay trên, nên nhắc lại "bước qua cổng" ở mỗi dòng là
+      // thừa - ở đó chỉ cần tên nơi đến, kèm một dòng mô tả cho cân với tám
+      // phòng học phía trên.
+      studyShort: "Nhóm học",
+      studyBlurb: "Phòng học chung, ngồi cùng bạn bè theo thời gian thực",
+      districtShort: "Phố nghề",
+      districtBlurb: "Thành phố nghề tài chính ngay ngoài cửa thư viện",
     },
     cfaContentRenderer: {
       youtubeTitle: "YouTube video",
@@ -181,6 +190,10 @@ export const finalTwoEn: typeof finalTwoVi = {
     roomFixturesGates: {
       studyLabel: "Step through the gate → to Study Group",
       districtLabel: "Step through the gate → to the Career District",
+      studyShort: "Study Group",
+      studyBlurb: "A shared study room, sitting with your friends in real time",
+      districtShort: "Career District",
+      districtBlurb: "The finance career city just outside the library door",
     },
     cfaContentRenderer: {
       youtubeTitle: "YouTube video",

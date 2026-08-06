@@ -30,7 +30,8 @@ import {
 
 /** three.js chỉ chạy phía trình duyệt - ssr:false giữ nó ngoài bundle server,
  *  và người dùng thấy khung chờ thay vì lỗi hydrate. */
-import type { GateTarget } from "./RoomFixtures";
+import type { GateTarget } from "./gates";
+import LobbyDirectory from "./LobbyDirectory";
 import Joystick from "@/components/world-controls/joystick";
 import { createWalkState } from "@/components/world-controls/easy-walk";
 import { useI18n } from "@/lib/i18n/context";
@@ -329,6 +330,14 @@ export default function LobbyClient() {
             </span>
           </Link>
         )}
+
+        {/* Bảng chỉ đường. Nằm trong CHÍNH cột này chứ không neo riêng ở một
+            góc: nó phải xếp chồng dưới thẻ bài kế tiếp, còn một panel neo góc
+            trên màn 390px thì rộng gần hết bề ngang và đè lên thẻ đó.
+            Ẩn cùng lúc với thẻ bài kế tiếp khi đang đứng trước một cửa hoặc
+            một cổng - lúc ấy đích đến đã ở ngay trước mặt, một danh sách mười
+            đích khác chỉ làm nhiễu. */}
+        {!nearGate && !station && <LobbyDirectory />}
       </div>
 
       {/* Ngồi vào bàn / đứng dậy. Nút chỉ xuất hiện khi thực sự đứng cạnh một

@@ -2436,6 +2436,13 @@ export const vi = {
     sessionDone: "Xong!",
     standUp: "Đứng dậy",
     enterRoom: "Vào phòng →",
+    // components/lobby/LobbyDirectory.tsx - bảng chỉ đường trên HUD.
+    directoryToggle: "Đi đâu bây giờ?",
+    directoryTitle: "Có gì trong thư viện",
+    directoryClose: "Thu gọn",
+    directoryUpstairs: "Ban công tầng hai · thang ở đầu bắc",
+    directoryGates: "Cổng ở tầng trệt",
+    directoryHint: "Bấm để vào thẳng, hoặc tự đi bộ tới cửa trong phòng.",
     chatPlaceholder: "Nói gì đó với cả sảnh…",
     send: "Gửi",
     // Split around the <kbd> keys, which are not translatable.

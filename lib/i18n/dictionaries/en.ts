@@ -2288,6 +2288,13 @@ export const en: Dictionary = {
     sessionDone: "Done!",
     standUp: "Stand up",
     enterRoom: "Enter room →",
+    // components/lobby/LobbyDirectory.tsx - the HUD signpost panel.
+    directoryToggle: "Where to next?",
+    directoryTitle: "What's in the library",
+    directoryClose: "Collapse",
+    directoryUpstairs: "Second-floor balcony · stairs at the north end",
+    directoryGates: "Gates on the ground floor",
+    directoryHint: "Tap to go straight there, or walk to the door yourself.",
     chatPlaceholder: "Say something to the lobby…",
     send: "Send",
     // Split around the <kbd> keys, which are not translatable.

@@ -9,6 +9,7 @@ import { boardTexture } from "./room-textures";
 import { getCommunityFeed } from "@/lib/supabase-community";
 import { getLeaderboardByMetric } from "@/lib/supabase-user";
 import { useI18n } from "@/lib/i18n/context";
+import { gatesOf, type GateTarget } from "./gates";
 import type { Dictionary } from "@/lib/i18n";
 
 /** Ba thứ có thể tới xem trong sảnh. Trước đó phòng chỉ có bàn ghế, nên đi hết
@@ -94,13 +95,12 @@ function WallBoard({
 
 /** Cổng vào nhóm học ở đầu bắc. Đứng gần thì phát tín hiệu ra ngoài để HUD
  *  hiện lời mời - việc điều hướng để React lo, cảnh 3D chỉ báo "đang đứng
- *  trong vùng". */
-export interface GateTarget {
-  id: string;
-  href: string;
-  label: string;
-  accent: string;
-}
+ *  trong vùng".
+ *
+ *  Danh sách cổng và kiểu `GateTarget` sống ở `./gates` chứ không ở đây, để
+ *  bảng chỉ đường trên HUD đọc được mà không kéo `three` theo. Xuất lại ở đây
+ *  cho những chỗ đã quen `import ... from "./RoomFixtures"`. */
+export type { GateTarget };
 
 /** Một cánh cổng sang thế giới 3D khác.
  *
@@ -169,25 +169,14 @@ function Gate({
  *  Phố nghề nằm ngay chỗ người chơi xuất hiện - thứ đầu tiên nhìn thấy khi vào
  *  thư viện là còn một thành phố nữa ở ngoài kia. */
 // Labels come from the dictionary at render time; module scope has no
-// useI18n() to call, so these keep only the ids/hrefs/accents and their
-// gate wiring, and the label is filled in by gateStudy()/gateDistrict()
-// inside the component below.
+// useI18n() to call, so ./gates keeps only the ids/hrefs/accents and fills
+// the label in from the dictionary handed to gatesOf().
 function gateStudy(t: Dictionary): GateTarget {
-  return {
-    id: "nhom-hoc",
-    href: "/nhom-hoc",
-    label: t.finalTwo.roomFixturesGates.studyLabel,
-    accent: "#7dd3fc",
-  };
+  return gatesOf(t)[0];
 }
 
 function gateDistrict(t: Dictionary): GateTarget {
-  return {
-    id: "pho-nghe",
-    href: "/pho-nghe",
-    label: t.finalTwo.roomFixturesGates.districtLabel,
-    accent: "#fbbf24",
-  };
+  return gatesOf(t)[1];
 }
 
 export default function RoomFixtures({
