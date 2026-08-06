@@ -13,6 +13,7 @@ export const en: Dictionary = {
     sectionResources: "Resources",
     quiz: "Quiz",
     notes: "Notes",
+    skillTree: "Skill tree",
     studyGroup: "Study groups",
     technicalInterview: "Technical Interview",
     career: "Careers",

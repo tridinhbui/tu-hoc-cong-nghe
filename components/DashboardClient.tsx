@@ -53,10 +53,9 @@ import { useRoutePrefetch } from "@/lib/use-route-prefetch";
 import { getPassedMilestones, savePassedMilestone, type MilestoneCompletion } from "@/lib/supabase-milestones";
 import { syncOfflineQueue } from "@/lib/offline-sync";
 import { isValidAvatar } from "@/lib/avatar-utils";
-import SkillTreeWidget from "@/components/SkillTreeWidget";
-import CosmeticStore from "@/components/CosmeticStore";
-import FinanceCardCollection from "@/components/FinanceCardCollection";
-import WeeklyChallengeWidget from "@/components/WeeklyChallengeWidget";
+// SkillTreeWidget/CosmeticStore/FinanceCardCollection/WeeklyChallengeWidget
+// không còn import ở đây: bốn nhánh render của chúng đã bỏ cùng bốn giá trị tab
+// không ai chọn được. Cây kỹ năng giờ ở /cay-ky-nang, ba cái còn lại ở RPG hub.
 import FinanceCharacterAvatar, { CharacterEquipments } from "@/components/FinanceCharacterAvatar";
 import BossBattleModal from "@/components/BossBattleModal";
 import PvpDuelModal from "@/components/PvpDuelModal";
@@ -148,6 +147,23 @@ function isDashboardTab(value: string | null): value is DashboardTab {
   return value !== null && (DASHBOARD_TABS as readonly string[]).includes(value);
 }
 
+/**
+ * Whether a tab is one the learner can actually get back to.
+ *
+ * Only "personal" and "professional" have a control that selects them (the two
+ * track cards). The other four are leftovers: their tab strip was removed when
+ * the career path moved to /nghe-nghiep-hoc (c3f7ec9), and three of the four
+ * widgets now live in the RPG hub instead. Nothing in the app has set those
+ * values since - but they were persisted, so a learner whose last visit before
+ * that commit ended on one still has it in localStorage, and restoring it opens
+ * the dashboard on a widget with no lesson list below it and no track card
+ * selected. That is the same stale-tab trap c3f7ec9 fixed for "career" and the
+ * CFA/FRM commit fixed before it; these four were just left in the union.
+ */
+function isTrackTab(tab: DashboardTab): tab is "personal" | "professional" {
+  return tab === "personal" || tab === "professional";
+}
+
 export default function DashboardClient({ lessonsMeta, view = "overview" }: { lessonsMeta: LessonMeta[]; view?: DashboardView }) {
   const isLessonsView = view === "lessons";
   const router = useRouter();
@@ -173,12 +189,27 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
   const [activeDashboardTab, setActiveDashboardTab] = useState<DashboardTab>(() => {
     if (typeof window === "undefined") return "personal";
     const saved = window.localStorage.getItem("activeDashboardTab");
-    return isDashboardTab(saved) ? saved : "personal";
+    if (isDashboardTab(saved) && isTrackTab(saved)) return saved;
+    // Falls back to the saved *track*, not to "personal". Onboarding used to
+    // write activeTrack without activeDashboardTab, so every learner who came
+    // through it choosing "chuyên ngành" is sitting on that missing key right
+    // now; defaulting to "personal" leaves them looking at professional stages
+    // with the personal card highlighted and no branch strip.
+    return window.localStorage.getItem("activeTrack") === "professional"
+      ? "professional"
+      : "personal";
   });
   const [professionalBranch, setProfessionalBranch] = useState<ProfessionalBranchId>(() => {
     if (typeof window === "undefined") return "corporate";
     const saved = window.localStorage.getItem("professionalBranch");
-    return saved === "investment" ? "investment" : "corporate";
+    // Validated against PROFESSIONAL_BRANCHES rather than a hand-written list
+    // of ids. The hand-written version only ever recognised "investment", so
+    // the five branches added after it (banking, quant, data, craft, ai) were
+    // written to localStorage and then silently discarded on the next load -
+    // the learner picked a branch, came back, and was on "corporate" again.
+    return PROFESSIONAL_BRANCHES.some((b) => b.id === saved)
+      ? (saved as ProfessionalBranchId)
+      : "corporate";
   });
   const handleSetProfessionalBranch = (branch: ProfessionalBranchId) => {
     setProfessionalBranch(branch);
@@ -198,6 +229,23 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
       window.localStorage.setItem("activeDashboardTab", tab);
     }
   };
+
+  // activeDashboardTab answers "which view" (a track listing, or one of the
+  // widget tabs); activeTrack answers "which track's stages". Only the first
+  // question belongs to the tab, so everything track-shaped below - the two
+  // track cards' selected state and the professional branch strip - reads
+  // activeTrack instead.
+  //
+  // They are separate pieces of state in separate localStorage keys, and the
+  // dashboard rendered a *combination* of them: stages came from activeTrack
+  // while the highlighted card and the branch strip came from activeDashboardTab.
+  // Any write that touched one and not the other therefore produced a screen
+  // that contradicted itself - professional stages under a highlighted
+  // "Cá Nhân" card, with the branch pills ("Tài chính doanh nghiệp" first among
+  // them) not rendered at all. Onboarding was exactly such a write. Deriving
+  // from one value makes that class of bug unrepresentable rather than fixing
+  // the one caller that happened to hit it.
+  const isTrackView = isTrackTab(activeDashboardTab);
 
   // The lesson page redirects here with ?locked=<slug> when a user tries to
   // open a locked lesson directly by URL - surface that instead of silently
@@ -220,7 +268,6 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
   const [stageSearchQuery, setStageSearchQuery] = useState("");
   const [showOnboarding, setShowOnboarding] = useState(false);
   const [onboardingChecked, setOnboardingChecked] = useState(false);
-  const [unlockedLessonIds, setUnlockedLessonIds] = useState<Set<number>>(new Set());
   const [challengePassedIds, setChallengePassedIds] = useState<Set<number>>(new Set());
   const [unlockModalLesson, setUnlockModalLesson] = useState<LessonMeta | null>(null);
   const [challengeGateLesson, setChallengeGateLesson] = useState<LessonMeta | null>(null);
@@ -476,8 +523,14 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
     if (user?.id) {
       try {
         await completeOnboarding(user.id, selectedTrack);
-        setActiveTrackState(selectedTrack);
-        localStorage.setItem("activeTrack", selectedTrack);
+        // setActiveTrack, not setActiveTrackState: the track drives which
+        // stages render, but activeDashboardTab drives which track card looks
+        // selected AND whether the professional branch strip is rendered at
+        // all. Setting only the former left a learner who picked "chuyên
+        // ngành" during onboarding on activeDashboardTab === "personal", so
+        // the branch pills - "Tài chính doanh nghiệp" first among them - never
+        // appeared, and no reload fixed it because the key was never written.
+        setActiveTrack(selectedTrack);
         localStorage.setItem(ONBOARDING_LOCAL_KEY, "1");
         setShowOnboarding(false);
       } catch (error) {
@@ -519,7 +572,6 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
       
       mergeCompletedLessons(cachedLessonState.completed_lessons);
       forceProgressResync((n) => n + 1);
-      setUnlockedLessonIds(new Set(cachedLessonState.unlocked_lesson_ids));
       setFlaggedLessonIds(new Set(cachedLessonState.user_lesson_flags));
       setBookmarks(cachedLessonState.bookmarks.slice(0, 6));
 
@@ -558,7 +610,6 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
 
       mergeCompletedLessons(lessonState.completed_lessons);
       forceProgressResync((n) => n + 1);
-      setUnlockedLessonIds(new Set(lessonState.unlocked_lesson_ids));
       setFlaggedLessonIds(new Set(lessonState.user_lesson_flags));
       setBookmarks(lessonState.bookmarks.slice(0, 6));
 
@@ -1262,7 +1313,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
               // The branch strip below belongs to the professional card, so it
               // sits one grid-gap away rather than a full section break - the
               // section's own margin then comes from the strip instead.
-              activeDashboardTab === "professional" ? "mb-3.5" : "mb-8"
+              isTrackView && activeTrack === "professional" ? "mb-3.5" : "mb-8"
             }`}
           >
             {/* Card 2: Tài chính Cá Nhân (Amber Gold Accent) */}
@@ -1271,7 +1322,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                 type="button"
                 onClick={() => setActiveTrack("personal")}
                 className={`w-full h-full flex flex-col text-left rounded-2xl border-2 px-5 py-4 transition-all duration-300 relative overflow-hidden backdrop-blur-md ${
-                  activeDashboardTab === "personal"
+                  isTrackView && activeTrack === "personal"
                     ? "border-amber-500/80 bg-white/95 dark:bg-stone-900 text-stone-900 dark:text-stone-100 ring-2 ring-amber-500/20 dark:ring-amber-400/30 shadow-md font-extrabold"
                     : "border-stone-200/80 dark:border-stone-800/90 bg-white/95 dark:bg-stone-900/80 text-stone-700 dark:text-stone-300 hover:border-stone-300 dark:hover:border-stone-700 shadow-xs hover:shadow-sm"
                 }`}
@@ -1313,7 +1364,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                 type="button"
                 onClick={() => setActiveTrack("professional")}
                 className={`w-full h-full flex flex-col text-left rounded-2xl border-2 px-5 py-4 transition-all duration-300 relative overflow-hidden backdrop-blur-md ${
-                  activeDashboardTab === "professional"
+                  isTrackView && activeTrack === "professional"
                     ? "border-emerald-500/80 bg-white/95 dark:bg-stone-900 text-stone-900 dark:text-stone-100 ring-2 ring-emerald-500/20 dark:ring-emerald-400/30 shadow-md font-extrabold"
                     : "border-stone-200/80 dark:border-stone-800/90 bg-white/95 dark:bg-stone-900/80 text-stone-700 dark:text-stone-300 hover:border-stone-300 dark:hover:border-stone-700 shadow-xs hover:shadow-sm"
                 }`}
@@ -1361,7 +1412,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
               their column rhythm fought the two-column track selector right
               above. Each branch's subtitle moves to a single line under the
               strip, so only the selected one is spelled out. */}
-          {activeDashboardTab === "professional" && (
+          {isTrackView && activeTrack === "professional" && (
             <div className="mb-8">
               {/* Wraps on desktop instead of scrolling: the seven pills need
                   ~1180px and the content column is narrower than that, so a
@@ -1393,15 +1444,12 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             </div>
           )}
 
-          {activeDashboardTab === "skill-tree" ? (
-            <SkillTreeWidget completedLessonIds={completed} unlockedLessonIds={unlockedLessonIds} />
-          ) : activeDashboardTab === "weekly-challenge" ? (
-            <WeeklyChallengeWidget userId={user?.id || ""} />
-          ) : activeDashboardTab === "cards" ? (
-            <FinanceCardCollection userId={user?.id || ""} />
-          ) : activeDashboardTab === "cosmetics" ? (
-            <CosmeticStore userId={user?.id || ""} />
-          ) : (
+          {/* Bốn nhánh render theo tab widget (skill-tree, weekly-challenge,
+              cards, cosmetics) đã bỏ: isTrackTab chặn bốn giá trị đó ngay ở chỗ
+              đọc localStorage, nên activeDashboardTab không thể mang chúng nữa.
+              Cây kỹ năng có route riêng /cay-ky-nang; ba widget còn lại vẫn ở
+              RPG hub. Đây là bước còn thiếu của c3f7ec9 - commit đó gỡ dải tab
+              nhưng để lại phần render mà dải tab từng mở. */}
           <>
           {/* ── Search Bar (Compact Left) + Flag Mode Controls (Right) ── */}
           <div className="mt-8 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
@@ -2031,7 +2079,6 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             </div>
           )}
           </>
-        )}
       </>
       )}
       </div>

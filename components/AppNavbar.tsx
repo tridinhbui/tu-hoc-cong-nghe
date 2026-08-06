@@ -6,7 +6,7 @@ import Image from "next/image";
 import { isValidAvatar } from "@/lib/avatar-utils";
 import { usePathname, useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { FileText, BarChart3, StickyNote, GraduationCap, Gamepad2, Menu, X, Briefcase, BriefcaseBusiness, BookOpen, Home, Flame, Users, MessageSquareMore, Search, ChevronDown, Award, ShieldAlert, Route, Landmark, type LucideIcon } from "lucide-react";
+import { FileText, BarChart3, StickyNote, GraduationCap, Gamepad2, Menu, X, Briefcase, BriefcaseBusiness, BookOpen, Home, Flame, Users, MessageSquareMore, Search, ChevronDown, Award, ShieldAlert, Route, Landmark, Network, type LucideIcon } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import type { Dictionary } from "@/lib/i18n";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
@@ -92,6 +92,15 @@ const NAV_SECTIONS: NavSection[] = [
       // tôi", trang này là "nghề đó thì học bài nào" - và dùng chung icon
       // cặp táp thì đọc như một mục bị lặp.
       { href: "/nghe-nghiep-hoc", label: "Học theo nghề", icon: Route },
+      // Cùng lý do với /cfa ngay dưới: cây kỹ năng chỉ mở được từ một tab trong
+      // dashboard, tab đó bị gỡ ở c3f7ec9, và không như thẻ/cosmetics/thử thách
+      // tuần - vốn còn bản thứ hai ở RPG hub - nó không tồn tại ở đâu khác. Từ
+      // lúc đó tới nay không có đường nào vào, kể cả gõ URL.
+      //
+      // Đặt cạnh "Học theo nghề" vì hai trang trả lời cùng một dạng câu hỏi
+      // "học bài nào tiếp", chỉ khác trục: một bên theo nghề, một bên theo thứ
+      // tự tiên quyết của khái niệm.
+      { href: "/cay-ky-nang", labelKey: "skillTree", icon: Network },
       // /cfa had no nav entry at all. The only way in was a placement modal
       // that fires once per browser and never again once localStorage records
       // it, so ten subjects, 324 cross-referenced lessons, fourteen

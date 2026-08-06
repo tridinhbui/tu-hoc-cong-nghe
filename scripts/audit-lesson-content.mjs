@@ -283,6 +283,46 @@ const unbaselined = [];
 const hollowDistractors = [];
 /** Câu mà ĐÁP ÁN ĐÚNG là khoảng trống - xem isHollowCorrectAnswer. */
 const hollowCorrect = [];
+
+// ── Giải thích gọi phương án bằng CHỮ CÁI ──────────────────────────────────
+//
+// "Phương án D là lỗi phổ biến nhất" là một câu không thể đúng lâu trong repo
+// này: scripts/generate-lesson-data.mjs chạy balanceLessonQuizzes, thứ XÁO LẠI
+// thứ tự option của từng câu để triệt tiêu tell vị trí. Chữ cái tác giả viết
+// gắn với thứ tự lúc soạn, còn người học đọc thứ tự sau khi xáo - hai thứ khác
+// nhau, và không gì buộc chúng khớp.
+//
+// Trường hợp lộ nhất - và là cái người học báo lại - là chữ cái trôi đúng vào
+// ĐÁP ÁN ĐÚNG: học viên chọn đúng, được chấm đúng, rồi đọc ngay bên dưới rằng
+// lựa chọn đó là "lỗi phổ biến nhất". Đã xảy ra ở bốn câu.
+//
+// `(?![\p{L}\p{M}])` chứ không phải `\b`, và cần cờ `u`. Bản đầu dùng `\b`
+// với cờ `i`, và `\b` trong JS chỉ biết mặt chữ ASCII, nên trong "ba phương án
+// còn lại" nó thấy chữ "c" của "còn" là một từ trọn vẹn (vì "ò" không phải ký
+// tự từ theo ASCII) và báo đây là tham chiếu tới phương án C. 44 câu bị gắn cờ
+// khi con số thật là 13, phần lớn là những câu viết đúng chuẩn. Đúng loại gate
+// mà AGENTS.md nói là sẽ bị người ta học cách phớt lờ.
+const OPTION_LETTER_RE = /(phương án|đáp án|lựa chọn|option|câu trả lời)\s*["']?([A-D])(?![\p{L}\p{M}])/giu;
+
+function findOptionLetterRefs(question) {
+  const explanation = String(question?.explanation ?? "");
+  const found = [];
+  OPTION_LETTER_RE.lastIndex = 0;
+  let match;
+  while ((match = OPTION_LETTER_RE.exec(explanation))) {
+    const index = "ABCD".indexOf(match[2].toUpperCase());
+    // Cửa sổ quanh chỗ nhắc tới, không phải cả đoạn: một giải thích dài thường
+    // có chữ "sai" ở chỗ khác hoàn toàn, và lấy cả đoạn thì câu nào cũng dính.
+    const context = explanation.slice(Math.max(0, match.index - 90), match.index + 120);
+    found.push({ ref: match[0], index, context });
+  }
+  return found;
+}
+
+/** Mọi tham chiếu chữ cái - nợ tiềm ẩn, chỉ báo cáo. */
+const letterRefs = [];
+/** Chữ cái trỏ đúng vào đáp án đúng - gate ở đây. */
+const contradictoryLetterRefs = [];
 /** Baselined lessons that now pass, so the baseline must shrink. */
 const fixedButStillBaselined = [];
 /** Bài thiếu tóm tắt / thiếu khối áp dụng. */
@@ -383,6 +423,25 @@ for (const file of files) {
     // Margin cao có tốt không?" khoá đáp án vào "Không ảnh hưởng", trong khi
     // phần giải thích của chính câu đó nói "cần xem ngành: Retail 20-30%,
     // Software 70-80%". Tìm ra hoàn toàn tình cờ khi đang soi độ dài.
+    for (const ref of findOptionLetterRefs(question)) {
+      const row = {
+        slug: lesson.slug,
+        question: String(question.question ?? "").slice(0, 70),
+        ref: ref.ref,
+        correct: question.correct,
+      };
+      letterRefs.push(row);
+      // Điều kiện chỉ là "chữ cái trỏ vào đáp án đúng", KHÔNG cần câu văn mang
+      // nghĩa phủ định. Bản đầu bắt buộc phải có một trong các từ
+      // lỗi/sai/nhầm/bẫy quanh đó, và nó lọt đúng hai ca: credit-spread Q3 viết
+      // "Phương án D mô tả độ dốc đường cong" và present-value Q3 viết "Phương
+      // án D chính là Future Value" - cả hai đều đang gọi đáp án đúng là một
+      // khái niệm khác, không dùng chữ "sai" nào cả.
+      if (ref.index === question.correct) {
+        contradictoryLetterRefs.push({ ...row, context: ref.context.trim() });
+      }
+    }
+
     if (isHollowCorrectAnswer(lengths.length ? (question.options ?? [])[question.correct] : null)) {
       hollowCorrect.push({
         slug: lesson.slug,
@@ -542,6 +601,22 @@ if (hollowDistractors.length > MAX_HOLLOW_DISTRACTORS) {
         .join("\n") +
       `\n  Replace each with a mistake a learner actually makes. The budget is 0: this is ` +
       `not a backlog, it is a shape of option that should never be written.`
+  );
+}
+
+console.log(
+  `\nOption-letter refs in explanations: ${letterRefs.length} total, ` +
+    `${contradictoryLetterRefs.length} contradicting the keyed answer`
+);
+
+if (contradictoryLetterRefs.length > 0) {
+  tellFailures.push(
+    `${contradictoryLetterRefs.length} explanation(s) gọi chính ĐÁP ÁN ĐÚNG là phương án sai:\n` +
+      contradictoryLetterRefs
+        .map((row) => `    ${row.slug} - "${row.question}"\n      ${row.ref} = correct (index ${row.correct}): ...${row.context}...`)
+        .join("\n") +
+      `\n  Gọi tên phương án sai bằng NỘI DUNG của nó ("cộng thẳng không chiết khấu"),` +
+      ` không bằng chữ cái - thứ tự option bị xáo lại lúc build.`
   );
 }
 

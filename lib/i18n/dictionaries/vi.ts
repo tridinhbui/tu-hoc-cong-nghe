@@ -18,6 +18,7 @@ export const vi = {
     sectionResources: "Tài nguyên",
     quiz: "Kiểm tra",
     notes: "Ghi chú",
+    skillTree: "Cây kỹ năng",
     studyGroup: "Học nhóm",
     technicalInterview: "Phỏng vấn kỹ thuật",
     career: "Sự nghiệp",
