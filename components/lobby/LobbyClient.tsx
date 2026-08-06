@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase";
 import { getUserStreak } from "@/lib/supabase-streak";
 import { getEquippedGear } from "@/lib/supabase-equipment";
+import { getResumeLessonAction } from "@/app/(app)/dashboard/actions";
 import { finishFocusSession, getTodayFocusSeconds, startFocusSession } from "@/lib/focus-session";
 import type { Station } from "./stations";
 import {
@@ -52,6 +53,10 @@ function SceneFallback({ label }: { label: string }) {
 export default function LobbyClient() {
   const router = useRouter();
   const [identity, setIdentity] = useState<LobbyIdentity | null>(null);
+  /** Bài kế tiếp trong lộ trình, để có việc làm ngay khi vừa vào sảnh. */
+  const [nextLesson, setNextLesson] = useState<{ slug: string; title: string; duration?: string } | null>(
+    null
+  );
   const [failed, setFailed] = useState(false);
   const [log, setLog] = useState<LobbyChatMessage[]>([]);
   const [draft, setDraft] = useState("");
@@ -124,6 +129,30 @@ export default function LobbyClient() {
         } catch {
           // giữ tay không
         }
+
+        // Bài kế tiếp, đọc song song với danh tính chứ không đợi.
+        //
+        // Sảnh 3D vốn có cửa dẫn vào /hoc-bai, nhưng chúng nằm trên ban công
+        // TẦNG HAI: phải đi hết sảnh rồi leo lên mới thấy. Người vào lần đầu
+        // đứng giữa một căn phòng đẹp mà không có việc gì để làm ngay, và thứ
+        // họ tới đây để làm - học bài - thì bị chôn sau một quãng đi bộ.
+        //
+        // Thẻ này hiện tên bài THẬT tiếp theo trong lộ trình, không phải một
+        // nút "Vào học" chung chung: nhìn thấy "Day 47 · WACC là gì?" là đã
+        // biết mình sắp làm gì, còn một cái nút thì vẫn phải bấm mới biết.
+        //
+        // Qua Server Action vì lib/resume-learning đọc cả tập bài học - gọi
+        // thẳng từ client sẽ kéo ~1,3MB nội dung bài vào bundle, đúng lỗi mà
+        // chú thích trong dashboard/actions.ts đã ghi lại.
+        const track =
+          typeof window !== "undefined" &&
+          window.localStorage.getItem("activeTrack") === "professional"
+            ? "professional"
+            : "personal";
+        getResumeLessonAction(user.id, track)
+          .then((lesson) => setNextLesson(lesson ?? null))
+          // Hỏng thì sảnh vẫn vào được như cũ, chỉ là không có thẻ gợi ý.
+          .catch(() => setNextLesson(null));
 
         setIdentity({
           userId: user.id,
@@ -254,7 +283,7 @@ export default function LobbyClient() {
       )}
 
       {/* Tiêu đề + số người THẬT trong phòng (đếm từ presence, không phải số dựng) */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex justify-center p-4 pt-[max(1rem,env(safe-area-inset-top))]">
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex flex-col items-center gap-2 p-4 pt-[max(1rem,env(safe-area-inset-top))]">
         <div className="rounded-2xl bg-stone-900/75 px-5 py-2.5 text-center shadow-lg backdrop-blur">
           <h1 className="text-sm font-bold text-amber-200">Thư viện · Phòng đọc Sài Gòn</h1>
           {todayMinutes !== null && todayMinutes > 0 && (
@@ -268,6 +297,28 @@ export default function LobbyClient() {
               : "Bạn đang ở đây một mình"}
           </p>
         </div>
+
+        {/* Bài kế tiếp - ngay tầm mắt lúc vừa vào, không phải sau một quãng đi
+            bộ tới cửa phòng trên ban công. Ẩn khi đang đứng trước một cửa: lúc
+            đó thẻ cửa đã nói đúng việc cần làm, hai thẻ chồng nhau chỉ gây
+            nhiễu. */}
+        {nextLesson && !nearGate && !station && (
+          <Link
+            href={`/bai-hoc/${nextLesson.slug}`}
+            className="pointer-events-auto flex max-w-[min(22rem,90vw)] items-center gap-3 rounded-2xl border border-amber-400/40 bg-stone-900/85 px-4 py-2.5 text-left shadow-xl backdrop-blur transition hover:border-amber-300 hover:bg-stone-900"
+          >
+            <span className="shrink-0 text-xl">📖</span>
+            <span className="min-w-0">
+              <span className="block text-[10px] font-black uppercase tracking-widest text-amber-300">
+                Bài kế tiếp của bạn
+              </span>
+              <span className="block truncate text-sm font-bold text-white">{nextLesson.title}</span>
+            </span>
+            <span className="ml-auto shrink-0 rounded-xl bg-amber-400 px-3 py-1.5 text-[11px] font-black text-stone-950">
+              Vào học
+            </span>
+          </Link>
+        )}
       </div>
 
       {/* Ngồi vào bàn / đứng dậy. Nút chỉ xuất hiện khi thực sự đứng cạnh một
