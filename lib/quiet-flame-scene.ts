@@ -1,6 +1,7 @@
 /**
- * Chuyển động của cảnh 3D trong khung cửa sổ mưa ở /loi-nhan: gió, nhịp nhen
- * lửa, và cách ngọn lửa phản ứng với cả hai.
+ * Chuyển động và bố cục của cảnh 3D ở /loi-nhan - một đốm lửa nhỏ trong mưa
+ * nhỏ giữa rừng: gió, nhịp nhen lửa, cách ngọn lửa phản ứng với cả hai, và vị
+ * trí các thân cây quanh khoảng trống.
  *
  * Tách khỏi component R3F vì hai lý do. Thứ nhất, đây là phần duy nhất của
  * cảnh kiểm chứng được mà không cần WebGL - hình dạng của gió, trần biên độ,
@@ -100,17 +101,126 @@ export function flameMotion(wind: number, kindle: number, t: number): FlameMotio
   };
 }
 
-/** Số hạt mưa ngoài cửa. Đủ dày để đọc ra là mưa, đủ thưa để không phải hạ DPR. */
-export const RAIN_COUNT = 520;
+/** Số hạt mưa. Thấp hơn hẳn bản cũ (520) dù không gian rộng hơn nhiều: mưa
+ *  bây giờ rơi trong cả khối cảnh chứ không phải một màn phẳng sau kính, và
+ *  đây là mưa NHỎ - dày lên là thành mưa rào, mà mưa rào thì không ai ngồi
+ *  lại bên đống lửa. */
+export const RAIN_COUNT = 300;
 
-/** Số giọt đọng chảy trên mặt kính. Ít hơn hẳn mưa ngoài trời: mắt đọc từng
- *  giọt một, nên nhiều quá thì thành nhiễu chứ không thành cửa sổ. */
-export const GLASS_DROP_COUNT = 26;
+/** Số cây trong rừng. Sương mù nuốt phần lớn chúng thành bóng, nên thêm cây
+ *  chủ yếu tốn draw call chứ không dày thêm được rừng. */
+export const TREE_COUNT = 22;
 
-/** Giới hạn xoay khi kéo, radian. Cảnh này là một khung cửa nhìn ra mưa chứ
- *  không phải một vật thể xoay tự do - kéo quá tay là thấy mặt sau của khung. */
-export const DRAG_YAW_LIMIT = 0.5;
-export const DRAG_PITCH_LIMIT = 0.28;
+/** Số tàn lửa bay lên từ đống lửa. Ít, và bay chậm: đây là lửa nhỏ cháy bền,
+ *  không phải đống lửa trại đang bùng. */
+export const EMBER_COUNT = 18;
+
+/** Bán kính khoảng trống quanh đống lửa mà mưa không rơi vào - tán cây ngay
+ *  trên đầu che lại.
+ *
+ *  Đây là câu trả lời cho vấn đề mà bản khung cửa sổ đã né bằng cách đặt lửa
+ *  trong nhà: ngoài trời mưa thì lửa phải tắt, cả về logic lẫn về hình. Một
+ *  đốm lửa cháy giữa màn mưa xuyên thẳng qua nó trông như lỗi dựng hình. Có
+ *  một túi khô ngay trên đầu thì cảnh tự giải thích được, và người xem không
+ *  phải nghĩ về nó một giây nào. */
+export const SHELTER_RADIUS = 1.9;
+
+/** Khoảng dôi ra ngoài mép tán khi đẩy một hạt mưa ra khỏi túi khô. Không có
+ *  nó thì hạt bị đặt đúng lên đường tròn bán kính `SHELTER_RADIUS`, và cả màn
+ *  mưa hiện ra một viền tròn sắc nét - đọc ra là một cái vòng chứ không phải
+ *  mép một tán lá. */
+const SHELTER_MARGIN = 1.25;
+
+/**
+ * Đẩy một điểm trên mặt phẳng ra khỏi vùng có tán che, giữ nguyên hướng.
+ *
+ * Ở trong component thì đây là ba dòng trong hàm đặt lại vị trí hạt mưa, và
+ * cũng chính là ba dòng duy nhất của cả cảnh 3D quyết định một điều người xem
+ * nhìn thấy ngay: đống lửa có bị mưa xuyên qua hay không. Để nguyên trong
+ * `useFrame` thì không có cách nào kiểm chứng ngoài việc nhìn - mà nhìn thì
+ * lại phụ thuộc rAF, thứ không chạy khi khung xem bị ẩn.
+ *
+ * ĐẨY RA chứ không BỎ QUA hạt: bỏ qua thì số hạt thực tế giảm dần theo xác
+ * suất rơi vào vùng che, và màn mưa loãng đi một cách không ai kiểm soát.
+ */
+export function pushOutOfShelter(x: number, z: number): { x: number; z: number } {
+  const d = Math.hypot(x, z);
+  if (d >= SHELTER_RADIUS) return { x, z };
+  // Điểm trùng gốc toạ độ không có hướng để đẩy theo - chọn một hướng cố định
+  // thay vì chia cho 0 và trả về NaN, thứ sẽ làm hỏng cả buffer hình học.
+  if (d < 1e-6) return { x: SHELTER_RADIUS * SHELTER_MARGIN, z: 0 };
+  const scale = (SHELTER_RADIUS / d) * SHELTER_MARGIN;
+  return { x: x * scale, z: z * scale };
+}
+
+export interface ForestTree {
+  x: number;
+  z: number;
+  /** Chiều cao thân, đơn vị cảnh. */
+  height: number;
+  /** Bán kính thân ở gốc. */
+  radius: number;
+  /** Độ nghiêng thân, radian. Rừng thật không có cây nào thẳng tuyệt đối. */
+  lean: number;
+}
+
+/** Bộ sinh số giả ngẫu nhiên tất định (mulberry32).
+ *
+ *  Dùng thay `Math.random` vì bố cục rừng phải GIỐNG NHAU giữa các lần dựng:
+ *  React 18 gọi effect hai lần ở chế độ Strict, và một cảnh tự sắp lại cây mỗi
+ *  lần dựng thì không kiểm chứng được bằng ảnh chụp, cũng không viết được test.
+ *  Bù lại phải trả bằng việc mọi người dùng thấy đúng một khu rừng - chấp nhận
+ *  được, vì thứ chuyển động trong cảnh là mưa và lửa chứ không phải cây. */
+function mulberry32(seed: number): () => number {
+  let a = seed >>> 0;
+  return () => {
+    a = (a + 0x6d2b79f5) >>> 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+/**
+ * Vị trí các thân cây quanh khoảng trống có đống lửa.
+ *
+ * Hai vùng cấm, và cả hai đều là điều kiện để cảnh đọc được chứ không phải
+ * chi tiết trang trí:
+ *
+ *   1. Không cây nào ở gần hơn `SHELTER_RADIUS + 1.4` tính từ đống lửa - đó
+ *      là khoảng trống người ta ngồi.
+ *   2. Không cây nào nằm trong hành lang giữa máy quay và đống lửa (z dương,
+ *      |x| nhỏ). Camera đứng ở z ≈ +4, nên một thân cây rơi vào đó sẽ che mất
+ *      đúng thứ duy nhất cảnh này có để xem.
+ */
+export function forestTrees(count: number = TREE_COUNT): ForestTree[] {
+  const rand = mulberry32(0x5eed_1a3f);
+  const trees: ForestTree[] = [];
+  // Trần vòng lặp: bộ sinh là tất định nên vòng lặp này luôn kết thúc, nhưng
+  // một `while (trees.length < count)` không trần là cách một thay đổi hằng số
+  // vô hại biến thành trang treo cứng.
+  for (let guard = 0; guard < count * 40 && trees.length < count; guard++) {
+    const angle = rand() * Math.PI * 2;
+    const dist = SHELTER_RADIUS + 1.4 + rand() * 10.5;
+    const x = Math.cos(angle) * dist;
+    const z = Math.sin(angle) * dist;
+    if (z > 0.4 && Math.abs(x) < 2.4) continue; // hành lang máy quay
+    trees.push({
+      x,
+      z,
+      height: 3.4 + rand() * 4.6,
+      radius: 0.09 + rand() * 0.13,
+      lean: (rand() - 0.5) * 0.14,
+    });
+  }
+  return trees;
+}
+
+/** Giới hạn xoay khi kéo, radian. Rộng hơn bản khung cửa sổ (0,5 / 0,28): ở
+ *  đó kéo quá tay là thấy mặt sau của khung, còn ở đây quay thêm chỉ là nhìn
+ *  sâu hơn vào rừng. Vẫn có trần, vì cảnh chỉ dựng cây ở phía trong tầm nhìn. */
+export const DRAG_YAW_LIMIT = 0.75;
+export const DRAG_PITCH_LIMIT = 0.3;
 
 /** Kéo góc nhìn về vị trí nghỉ sau khi thả tay. Nhân với delta của khung hình
  *  để tốc độ về không phụ thuộc tốc độ khung hình. */
