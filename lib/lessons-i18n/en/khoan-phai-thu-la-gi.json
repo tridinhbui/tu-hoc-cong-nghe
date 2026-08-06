@@ -1,0 +1,148 @@
+{
+  "slug": "khoan-phai-thu-la-gi",
+  "title": "What are accounts receivable?",
+  "subtitle": "Goods already sold but cash not yet in - a hidden risk in a pretty number",
+  "duration": "5 min",
+  "openingQuestion": "Accounts Receivable rises sharply while revenue rises only slightly. What signal is this?",
+  "openingOptions": [
+    "Customers may be paying more slowly, or revenue quality is declining",
+    "The business is cutting prices",
+    "The business is doing well",
+    "Profit margin is rising"
+  ],
+  "explanation": "Accounts receivable is the portion of revenue already recognised but not yet collected in cash - a direct consequence of selling on credit. The metric to watch is the average collection period, and the worrying case is when receivables grow faster than revenue: either the business is loosening credit terms to inflate the numbers, or customers are struggling. Both scenarios end up in the same place next period - a provision.",
+  "diagram": [
+    { "label": "Sell goods, recognise revenue", "arrow": true },
+    { "label": "Customer hasn't paid yet", "arrow": true },
+    { "label": "Record Accounts Receivable (AR)", "arrow": true },
+    { "label": "AR growing faster than revenue → warning" }
+  ],
+  "realWorldExample": {
+    "company": "Hoa Phat",
+    "description": "Hoa Phat typically sells steel to construction dealers on 30-60 day credit terms - receivables from hundreds of dealers nationwide make up a large portion of the group's current assets."
+  },
+  "quiz": [
+    {
+      "question": "Accounts receivable is 300 billion, revenue for the year is 1,825 billion. What is DSO?",
+      "options": [
+        "60 days (= 300 ÷ (1,825 ÷ 365))",
+        "6 days (= 1,825 ÷ 300, flipping numerator and denominator)",
+        "1,525 billion (= 1,825 − 300, taking the difference)",
+        "16 days (= 300 ÷ 18.25, wrong divisor)"
+      ],
+      "explanation": "DSO = AR / (Revenue / 365) = 300 / 5 = 60 days. On average, 300 billion of the business's money sits in customers' pockets at any given time."
+    },
+    {
+      "question": "Accounts receivable rises sharply while revenue rises only slightly. What signal is this?",
+      "options": [
+        "Positive: the business is expanding its customer base",
+        "Needs investigating: possibly loosening credit terms to inflate sales",
+        "Neutral: these two figures move independently of each other",
+        "Positive: customers are ordering more than before"
+      ],
+      "explanation": "Revenue is recognised at delivery, not at collection. AR swelling faster than revenue means the proportion of credit sales is rising - either a deliberately loosened policy to hit numbers, or customers paying more slowly."
+    },
+    {
+      "question": "Why does a business accept credit sales despite knowing there's a risk of not collecting the cash?",
+      "options": [
+        "Because credit sales help the business reduce the tax it owes",
+        "Because accounting rules require offering customers a credit line",
+        "Because it's a competitive tool, especially in B2B relationships",
+        "Because credit sales are recorded at a higher price than cash sales"
+      ],
+      "explanation": "A steel manufacturer rarely forces a dealer to pay upfront - offering 30 to 90 days of credit is a way to keep customers ahead of competitors. The price is capital tied up and bad-debt risk, so it's a calculated trade-off."
+    },
+    {
+      "question": "DSO drops suddenly from 75 to 40 days. What is the most cautious way to read this?",
+      "options": [
+        "Certainly negative because the business is squeezing its customers",
+        "Certainly positive because cash is coming in much faster than before",
+        "Could be from better collections, or could be from losing customers",
+        "It has no meaning since DSO naturally swings a lot by quarter"
+      ],
+      "explanation": "The same pretty number can have two opposite causes: better credit management, or terms tightened so harshly customers walked away. You have to read DSO alongside revenue to know which it is."
+    },
+    {
+      "question": "Why is a pretty profit figure worrying when accounts receivable is swelling?",
+      "options": [
+        "Because the profit has already been recognised but the cash may never actually arrive",
+        "Because accounts receivable increases the business's interest expense",
+        "Because accounting requires a provision for the entire receivables balance",
+        "Because accounts receivable isn't counted as one of the business's assets"
+      ],
+      "explanation": "Accrual accounting records revenue at delivery. If the customer doesn't pay, the profit already booked will have to be written off through a bad-debt provision next period - today's profit is borrowed against an uncertain collection."
+    }
+  ],
+  "keyTakeaways": [
+    "AR is money customers owe - not guaranteed to be collected",
+    "AR growing faster than revenue = needs investigating",
+    "DSO measures how efficiently a business collects from customers"
+  ],
+  "practicePrompt": {
+    "question": "Company Y reports revenue up 30% but accounts receivable (AR) up as much as 60% year over year. What should an analyst be concerned about?",
+    "options": [
+      "Nothing to worry about, since AR growing faster than revenue is always a sign the company is selling very well",
+      "It's concerning - AR is money owed by customers that may not be collected; AR growing faster than revenue could mean customers paying more slowly, or the company loosening its credit policy to inflate its numbers",
+      "This is simply a rounding error by the accounting department when preparing the report",
+      "This proves the company is collecting cash faster and has very strong cash flow"
+    ],
+    "explanation": "AR is money customers owe - not guaranteed to be collected. When AR grows much faster than revenue, it's a sign to investigate: customers paying more slowly, or the company 'pumping' revenue by selling on credit too loosely - revenue quality is declining."
+  },
+  "summary": {
+    "keyIdea": "AR is money customers owe - not guaranteed to be collected",
+    "commonMistake": "Reading a concept as a phrase to memorise rather than a principle to apply to real decisions.",
+    "action": "AR growing faster than revenue = needs investigating"
+  },
+  "application": {
+    "title": "Review what others currently owe you",
+    "message": "List the amounts of money others owe you (friends, customers if you run a business), note the date it arose and estimate how much longer until you'll collect it - that's your own personal DSO.",
+    "secondary": "The longer a debt sits, the higher the risk of never collecting it - the data is a useful reminder."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Accounts Receivable (AR) is the amount customers have bought on credit but not yet paid. It sits in current assets because accounting trusts the customer will pay in the near future - but that trust isn't always warranted."
+    },
+    { "type": "heading", "text": "Why businesses sell on credit" },
+    {
+      "type": "paragraph",
+      "text": "Selling on credit (allowing customers to pay later) is a common competitive tool, especially in B2B relationships. A steel manufacturer selling to construction dealers rarely demands immediate payment - instead it offers 30, 60, even 90 days of credit to retain customers and compete with rivals. In return, the business bears the risk of customers failing to pay (bad debt)."
+    },
+    { "type": "heading", "text": "DSO - a measure of collection speed" },
+    {
+      "type": "paragraph",
+      "text": "Days Sales Outstanding (DSO) = Accounts Receivable / (Revenue / 365). This is the average number of days it takes to convert a dong of revenue into a dong of actual cash. DSO rising steadily over quarters is a warning sign: either credit policy is loosening to push sales, or customers are facing financial difficulty and paying more slowly."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Low, stable DSO: tight collection policy, healthy cash flow",
+        "Rising DSO: an early warning about revenue quality or bad-debt risk",
+        "DSO dropping suddenly: could be from tightened credit, or could mean losing customers due to harsher terms"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Bad debt and provisions",
+      "text": "A business must set aside a provision for doubtful accounts based on historical experience of the proportion of customers who fail to pay. This provision reduces the actual AR value on the balance sheet, reflecting AR 'net' rather than gross AR."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Accounts receivable terminology",
+      "concepts": [
+        { "vi": "Khoản phải thu", "en": "Accounts Receivable (AR)", "def": "Money customers owe the business from credit sales" },
+        { "vi": "Số ngày thu tiền bình quân", "en": "Days Sales Outstanding (DSO)", "def": "AR / (Revenue/365) - the average number of days to collect cash" },
+        { "vi": "Nợ khó đòi", "en": "Bad debt", "def": "Receivables that cannot be collected from customers" },
+        { "vi": "Dự phòng nợ khó đòi", "en": "Allowance for doubtful accounts", "def": "A provision set aside for the risk of uncollected debt" }
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "AR is 'revenue on paper' - it only becomes real cash once the customer pays.",
+        "Rising DSO is an early sign that warrants investigating revenue quality.",
+        "Always compare AR against operating cash flow (OCF) to assess the true quality of earnings."
+      ]
+    }
+  ]
+}

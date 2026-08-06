@@ -1,0 +1,136 @@
+{
+  "slug": "rui-ro-la-gi",
+  "title": "What is risk? No return ever comes for free.",
+  "subtitle": "Risk isn't something to avoid; it's something to understand and price correctly.",
+  "duration": "7 min",
+  "openingQuestion": "Why do small companies' bonds usually pay a higher interest rate than government bonds?",
+  "openingOptions": [
+    "Because small companies want to attract more investors",
+    "Because their probability of default is higher, and investors need to be compensated for that risk",
+    "Because the government can print money to pay its debts, while a company can't",
+    "Both B and C are correct"
+  ],
+  "explanation": "In finance, risk doesn't mean losing money; it means an outcome that isn't certain - one that can go either way. Investors don't avoid risk, they demand extra payment to bear it, and that extra payment is called the risk premium. This is why government bonds pay less than corporate bonds, and it is the foundation underneath every valuation method that follows: an asset's price is its cash flow discounted for its level of risk.",
+  "diagram": [
+    { "label": "The future outcome is uncertain" },
+    { "label": "Investors demand compensation for that uncertainty" },
+    { "label": "The higher the risk, the higher the required return" },
+    { "label": "Asset price = cash flow discounted for the level of risk" }
+  ],
+  "realWorldExample": {
+    "company": "Credit Default Swaps",
+    "description": "The CDS market prices default risk in real time. As Greece's risk rose in 2010-2012, CDS spreads jumped from 100 to 3,000 basis points."
+  },
+  "quiz": [
+    {
+      "question": "What is a risk premium?",
+      "options": [
+        "An additional personal income tax levied on investment returns under current regulations",
+        "A mandatory insurance fee every investor must pay before being allowed to buy corporate bonds",
+        "The overall level of risk across the whole stock market during a given period",
+        "The extra return an investor demands for accepting more risk than a risk-free asset"
+      ],
+      "explanation": "Risk premium = expected return − the risk-free rate. US stocks have historically carried a risk premium of roughly 5-7% over government bonds. This is the reward for bearing volatility."
+    },
+    {
+      "question": "Which kind of risk does diversification help reduce?",
+      "options": [
+        "Unsystematic risk (risk specific to an individual company or sector)",
+        "Systematic risk (risk affecting the market as a whole)",
+        "Interest rate risk and exchange rate risk",
+        "Every kind of risk, both individual and market-wide"
+      ],
+      "explanation": "Diversification removes the risk specific to a single asset (a company going bankrupt, a scandal, a sector downturn). But market-wide risk (an economy-wide recession) cannot be diversified away."
+    },
+    {
+      "question": "Scenario: You have 1 billion VND to invest. Option A: government bonds paying 6% a year, virtually risk-free. Option B: a VN-Index stock fund, averaging 12% a year historically but capable of -20% in a bad year. Option C: a startup, potentially 10x-ing your capital but with an 80% chance of a total loss. If you'll need the money to buy a house in 3 years, which option fits best?",
+      "options": [
+        "Option B, because the return is higher and 3 years is enough for the market to recover",
+        "Option A, because a short-term goal needs its capital preserved",
+        "Split it evenly across all three options to diversify the portfolio",
+        "Option C, because it offers the highest return potential of the three"
+      ],
+      "explanation": "A house-buying goal 3 years out is short-term, and needs capital preserved. A startup is far too risky, and stocks can drop sharply within 3 years. Government bonds fit best: low risk and preserved capital, even though the return isn't the highest."
+    },
+    {
+      "question": "A portfolio already spread across 30 Vietnamese stocks still can't escape which kind of risk?",
+      "options": [
+        "The liquidity risk of the smallest-cap tickers",
+        "The risk specific to each individual company in the portfolio",
+        "Market-wide risk, when the whole exchange falls together",
+        "The risk of accounting fraud at one particular company"
+      ],
+      "explanation": "Diversification wipes out specific risk - one company faking its books only dents a small slice of the portfolio. But when the whole market falls on rate hikes or a crisis, all 30 tickers turn red together, and that portion of the risk can't be spread away anywhere."
+    },
+    {
+      "question": "Government bonds pay 6% a year; corporate bonds of the same maturity pay 11% a year. What is that 5-percentage-point gap called?",
+      "options": [
+        "A gap caused by the two bond types having different maturities",
+        "A liquidity premium, compensation for how easily it can be traded",
+        "The real interest rate, after subtracting inflation",
+        "A risk premium, compensation for the higher risk of default"
+      ],
+      "explanation": "Same maturity, same currency, differing only in the chance of failing to repay - so that 5-point gap is precisely the market's price on that risk. This gap isn't free money: it exists because a certain share of companies really will default."
+    }
+  ],
+  "keyTakeaways": [
+    "A higher return always comes with higher risk, with no exceptions",
+    "Risk premium: the reward for accepting risk",
+    "Diversification removes specific risk, not market-wide risk"
+  ],
+  "practicePrompt": {
+    "question": "You're comparing two 5-year bonds: a government bond paying 5% a year and a small real-estate company's bond paying 12% a year. Why does the corporate bond pay so much more?",
+    "options": [
+      "Because investors demand a risk premium to compensate for the company's higher probability of default relative to the government",
+      "Because the real-estate company always has steadier cash flow than the government, so it pays more to attract capital",
+      "Because the corporate bond has a shorter maturity than the government bond, so it must pay a higher rate",
+      "Because a company sets its own bond's interest rate freely, unaffected by the market"
+    ],
+    "explanation": "The 7-percentage-point gap is exactly the risk premium the market demands to compensate for a small company's higher default risk compared to the government."
+  },
+  "summary": {
+    "keyIdea": "A higher return always comes with higher risk, with no exceptions",
+    "commonMistake": "Reading the concept as a phrase to memorise rather than a principle to apply to a real decision.",
+    "action": "Risk premium: the reward for accepting risk"
+  },
+  "application": {
+    "title": "List the risk premium you're demanding",
+    "message": "List 2-3 channels you've considered investing in (a savings deposit, stocks, crypto...) and write down the return you expect from each - then check whether that gap matches the real risk involved.",
+    "secondary": "If a channel promises a high return without a matching risk you can see, that's a sign to look again."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Why does a small company's bond always pay a higher rate than a government bond? The answer sits in one unchanging principle: no return ever comes for free."
+    },
+    { "type": "heading", "text": "What is risk, and why does it need to be 'priced'?" },
+    {
+      "type": "paragraph",
+      "text": "Risk is the chance that the actual outcome differs from what was expected - in particular, the chance of losing part or all of your invested capital. Risk isn't something to be avoided at all costs; it is something to be understood clearly and priced correctly, because every opportunity for a return above the risk-free rate comes with a matching level of uncertainty."
+    },
+    { "type": "heading", "text": "The risk premium - the reward for risk" },
+    {
+      "type": "paragraph",
+      "text": "A government bond is nearly risk-free because a government can print money and levy tax to pay its debts. A small company can go bankrupt and default. To compensate for that higher chance of losing capital, investors demand a higher interest rate to buy a corporate bond - that gap is called the risk premium."
+    },
+    {
+      "type": "list",
+      "items": [
+        "A higher expected return always comes with higher risk, with no lasting exception",
+        "Risk premium: the extra interest or return that compensates for the risk accepted",
+        "Diversification removes specific risk (tied to one company), but not market-wide risk"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "A classic scam warning sign",
+      "text": "Any investment pitch promising 'high returns, absolutely no risk' violates this basic principle - it is the clearest scam warning sign in all of finance."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "From now on, whenever you see an attractive investment opportunity, ask yourself: 'what risk sits behind this return, and am I actually being paid enough for it?'"
+      ]
+    }
+  ]
+}

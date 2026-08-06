@@ -1,0 +1,148 @@
+{
+  "slug": "khau-hao-co-ban",
+  "title": "What is depreciation?",
+  "subtitle": "Why buying a 1-billion machine doesn't cut profit by 1 billion right away",
+  "duration": "6 min",
+  "openingQuestion": "Machinery costs 1 billion, with a 5-year life. What is the straight-line depreciation each year?",
+  "openingOptions": [
+    "The full 1 billion is booked as an expense right in the first year the asset is purchased",
+    "A total of 5 billion in expense is recognised, dumped into any single one of the 5 years",
+    "200 million",
+    "The amount depends entirely on the profit the company achieves that year"
+  ],
+  "explanation": "Straight-line depreciation: cost / useful life = 1 billion / 5 = 200 million/year. Depreciation allocates the cost of a long-term asset onto the income statement according to its useful life, better reflecting the economic benefit each year. This is an example of the accrual principle: an expense is recognised as the asset/service is used, not when cash is paid out. The same principle applies to Prepaid Insurance - for example, prepaying 12 million in insurance for a full year means only 1 million is recognised as expense each month, with the rest still sitting on the balance sheet as an asset awaiting use.",
+  "diagram": [
+    { "label": "Buy a long-term asset, record its cost on the balance sheet", "arrow": true },
+    { "label": "Estimate its useful life", "arrow": true },
+    { "label": "Each year, convert a portion of the cost into expense", "arrow": true },
+    { "label": "Remaining value falls gradually, but no cash flows out" }
+  ],
+  "realWorldExample": {
+    "company": "Vietjet Air",
+    "description": "Vietjet depreciates its owned and leased aircraft fleet over their estimated useful life - its depreciation policy directly affects the profit reported each quarter, even though the actual cash was spent long before."
+  },
+  "quiz": [
+    {
+      "question": "Machinery cost 1 billion, with a 5-year useful life. What is the straight-line depreciation each year?",
+      "options": [
+        "500 million (= 1 billion ÷ 2, halving the life)",
+        "1 billion in the first year, since the cash was all paid then",
+        "200 million (= 1 billion ÷ 5 years of use)",
+        "50 million (= 1 billion × 5%, computed as an interest rate)"
+      ],
+      "explanation": "Straight-line depreciation splits the cost evenly across the years of use: 1,000/5 = 200 million each year. Booking the full 1 billion in year one is the most common thinking error - confusing when cash was paid with when the expense is recognised."
+    },
+    {
+      "question": "Why is depreciation called a non-cash expense?",
+      "options": [
+        "Because it's settled with other assets instead of cash",
+        "Because the business gets it refunded when filing taxes",
+        "Because it's only recorded on the balance sheet, not the income statement",
+        "Because the cash all left when the asset was bought, with no further outflow each year"
+      ],
+      "explanation": "All the cash leaves the company right when the asset is bought, recorded under investing activities on the cash flow statement. Depreciation in later years is only an allocation entry, with no accompanying cash outflow - which is why it's added back when computing operating cash flow."
+    },
+    {
+      "question": "How does switching from straight-line to accelerated depreciation affect total expense over the asset's whole life?",
+      "options": [
+        "It falls, because the asset finishes depreciating sooner than expected",
+        "It rises, because the accelerated method recognises more expense overall",
+        "It's unchanged, only shifting more expense to earlier years",
+        "Cannot be determined without knowing the asset's useful life"
+      ],
+      "explanation": "Total depreciation expense always equals the original cost, regardless of method. Accelerated depreciation only changes the timing: lower profit in early years and correspondingly higher profit in later years."
+    },
+    {
+      "question": "Why is depreciation added back when computing Operating Cash Flow from net income?",
+      "options": [
+        "Because it's income the business receives from the asset",
+        "Because it was deducted from profit but never actually involved cash",
+        "Because the tax authority refunds the depreciation amount at year-end",
+        "Because it belongs to investing activities and must be moved to operating activities"
+      ],
+      "explanation": "The indirect method starts from net income - a figure that has already deducted depreciation. Because that deduction wasn't real cash, it has to be added back to arrive at the true operating cash flow."
+    },
+    {
+      "question": "How does Amortization differ from Depreciation?",
+      "options": [
+        "Amortization applies to leased assets, Depreciation to purchased ones",
+        "Amortization is computed monthly, Depreciation annually",
+        "Amortization is for intangible assets, Depreciation for tangible ones",
+        "Amortization is a cash expense, Depreciation is not"
+      ],
+      "explanation": "Two names for the same allocation logic. Patents, software, and goodwill use Amortization; machinery, plants, and vehicles use Depreciation - both are non-cash expenses."
+    }
+  ],
+  "keyTakeaways": [
+    "Depreciation allocates the cost of a long-term asset over multiple years",
+    "Non-cash expense: doesn't directly affect cash flow",
+    "Intangible assets are also depreciated (called amortization)"
+  ],
+  "practicePrompt": {
+    "question": "A transport company buys 10 trucks worth 5 billion in total, depreciated straight-line over 10 years. This year's income statement reports a loss of 200 million, but operating cash flow (OCF) is a positive 300 million. What best explains this difference?",
+    "options": [
+      "This is certainly a sign the company is committing accounting fraud to hide its real situation",
+      "Depreciation of 500 million/year (5 billion ÷ 10 years) is a non-cash expense deducted on the income statement but not a cash outflow, so adding it back makes OCF positive even though the income statement shows a loss",
+      "The company certainly miscalculated the depreciation expense for its truck fleet this reporting year",
+      "This cannot happen in reality - one of the two figures must be wrong"
+    ],
+    "explanation": "Depreciation is a large expense (500 million/year) but not an actual cash outflow - the cash was already spent when the trucks were bought earlier. So even though the income statement shows a 200-million loss (weighed down by heavy depreciation), OCF can still be positive because depreciation is added back when computing operating cash flow."
+  },
+  "summary": {
+    "keyIdea": "Depreciation allocates the cost of a long-term asset over multiple years",
+    "commonMistake": "Reading a concept as a phrase to memorise rather than a principle to apply to real decisions.",
+    "action": "Non-cash expense: doesn't directly affect cash flow"
+  },
+  "application": {
+    "title": "Calculate depreciation for something you own",
+    "message": "Pick an asset you recently bought (laptop, car, phone), estimate its useful life, and compute straight-line depreciation each year = cost / years of use.",
+    "secondary": "This figure shows you the real cost of use each year, not just the original purchase price."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Vietjet Air owns and leases dozens of aircraft worth thousands of billions of dong, but the depreciation expense appearing on its quarterly reports is only a small fraction of that total value. Depreciation is the accounting tool that allocates this enormous cost sensibly over many years."
+    },
+    { "type": "heading", "text": "What depreciation is and the simplest formula" },
+    {
+      "type": "paragraph",
+      "text": "Depreciation is the process of allocating the cost of a tangible long-term asset into expense on the income statement over its estimated useful life. The most common and simplest method is straight-line depreciation: annual depreciation expense = asset cost ÷ useful life in years. A 1-billion-dong machine with a 5-year life → 200 million dong of depreciation is recognised each year, evenly over all 5 years."
+    },
+    { "type": "heading", "text": "Depreciation is a non-cash expense" },
+    {
+      "type": "paragraph",
+      "text": "The most important point to remember: depreciation doesn't cause cash to leave the company at the time it's recognised. All the cash was already spent when the asset was bought (CapEx) - recorded on the cash flow statement at that time. Each year's depreciation afterward is purely an accounting entry, with no corresponding cash outflow. This is why, when computing Operating Cash Flow from Net Income, depreciation is always ADDED BACK - because it was deducted from profit but didn't actually consume cash during that period."
+    },
+    { "type": "heading", "text": "Accelerated depreciation: shifting timing, not the total" },
+    {
+      "type": "paragraph",
+      "text": "Besides straight-line depreciation, a business can choose accelerated depreciation, recognising a larger expense in early years and less in later years. This makes profit lower in early years (due to higher depreciation expense) and correspondingly higher in later years. Importantly: total depreciation over the asset's entire life stays the same regardless of method - only the TIMING of the expense differs, with no effect on the actual cash already spent when the asset was purchased."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Straight-line depreciation - equal expense each year, simple, the most common",
+        "Accelerated/Declining Balance depreciation - higher expense in early years",
+        "Allocating intangible assets is called Amortization (a different name, same logic as Depreciation for tangible assets)",
+        "Depreciation is added back when computing Operating Cash Flow from Net Income (indirect method)"
+      ]
+    },
+    {
+      "type": "conceptTable",
+      "title": "Depreciation terminology",
+      "concepts": [
+        { "vi": "Khấu hao (tài sản hữu hình)", "en": "Depreciation", "def": "Allocating the cost of a tangible asset into expense over its useful life." },
+        { "vi": "Phân bổ (tài sản vô hình)", "en": "Amortization", "def": "Same logic as depreciation but applied to intangible assets like patents and software." },
+        { "vi": "Chi phí phi tiền mặt", "en": "Non-cash Expense", "def": "An expense recognised on the income statement without an accompanying actual cash outflow in that period." },
+        { "vi": "Khấu hao đường thẳng", "en": "Straight-line Depreciation", "def": "The method allocating equal expense each year: cost ÷ years of use." }
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Depreciation is how accounting 'spreads' a large investment across its actual years of use.",
+        "Because it's a non-cash expense, depreciation always needs to be added back when you want a true view of a business's actual cash flow."
+      ]
+    }
+  ]
+}

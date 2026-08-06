@@ -1,0 +1,141 @@
+{
+  "slug": "tai-chinh-la-gi",
+  "title": "What is finance? Why finance is not just about money.",
+  "subtitle": "Finance is the science of allocating scarce resources across time under uncertainty.",
+  "duration": "6 min",
+  "openingQuestion": "You have 10 million VND. Buy a new iPhone, or save it? How is this decision a financial one?",
+  "openingOptions": [
+    "It is, because you are allocating a resource between today and the future",
+    "It isn't, because finance only concerns businesses, not individuals",
+    "It's financial only if you borrow money to buy the iPhone",
+    "Finance only cares about decisions that involve larger sums"
+  ],
+  "explanation": "Every decision about how to use money is a financial decision: spend today, or invest for tomorrow? Finance helps you make that call on firmer ground, by forcing you to weigh three things explicitly: the time value of money, the level of risk you're willing to accept, and the opportunity cost of the option you didn't take.",
+  "diagram": [
+    { "label": "You have a sum of money and several ways to use it" },
+    { "label": "Bring every option to the same point in time" },
+    { "label": "Weigh the risk and the opportunity cost" },
+    { "label": "Choose the option that creates the most value" }
+  ],
+  "realWorldExample": {
+    "company": "An individual",
+    "description": "A household budget, a retirement plan, the choice between buying and renting - all of it is personal finance."
+  },
+  "quiz": [
+    {
+      "question": "What is the most basic difference between finance and accounting?",
+      "options": [
+        "Accounting forecasts cash flow, while finance only records it under a standard",
+        "Accounting records the past, while finance decides for the future",
+        "Finance is only used in banking, while accounting is used everywhere",
+        "Finance works with numbers, while accounting works with legal documents"
+      ],
+      "explanation": "Accounting records precisely what already happened. Finance uses that data to decide what comes next: what to invest in, how much to borrow, how to allocate capital."
+    },
+    {
+      "question": "Why isn't finance just about money?",
+      "options": [
+        "Because money is only a tiny slice of the national and global economy as a whole",
+        "Because finance also demands strong communication and negotiation with clients and partners",
+        "Because finance involves time, risk and opportunities forgone, not only sums of money",
+        "Because finance also covers real estate, which has no direct link to cash at all"
+      ],
+      "explanation": "Finance turns on three axes: the value of time, the level of risk, and opportunity cost. Money is only the unit it is measured in, not the whole story."
+    },
+    {
+      "question": "What is opportunity cost?",
+      "options": [
+        "The gap between the price you paid for an asset and the price you sold it at",
+        "The actual amount of money you spent on the option you chose",
+        "The loss that arises when the option you chose turns out to fail",
+        "The value of the best alternative you give up when you choose"
+      ],
+      "explanation": "If you spend 100 million on a car, the opportunity cost is what you could have earned by investing that 100 million instead. Every decision carries an opportunity cost."
+    },
+    {
+      "question": "Scenario: You have 50 million VND. Option A: buy a new iPhone. Option B: invest in stocks expected to return 15% a year. If you choose A, what is the opportunity cost one year later?",
+      "options": [
+        "50 million VND (the entire original amount of capital)",
+        "7.5 million VND (= 15% × 50 million a year)",
+        "There is no opportunity cost, because an iPhone is an asset",
+        "There is an opportunity cost only if the iPhone loses value"
+      ],
+      "explanation": "Opportunity cost = 50 million × 15% = 7.5 million. That is what you give up by buying the iPhone instead of investing. An opportunity cost exists in every decision."
+    },
+    {
+      "question": "Why is leaving money untouched, doing nothing with it, still a decision that carries an opportunity cost?",
+      "options": [
+        "Because idle money gets charged a management fee by the bank",
+        "Because holding it is also a refusal of every other way to use it",
+        "Because not deciding automatically erodes the money's book value",
+        "Because opportunity cost only arises when a real transaction takes place"
+      ],
+      "explanation": "Opportunity cost is the value of the best option forgone, and doing nothing is itself an option. Holding 500 million in cash while deposit rates run at 6% means giving up 30 million a year - it never shows up on any statement, but it is a real cost all the same."
+    }
+  ],
+  "keyTakeaways": [
+    "Finance is the allocation of resources across time and uncertainty",
+    "Unlike accounting: finance looks forward, accounting records the past",
+    "Every decision about how to use money carries an opportunity cost"
+  ],
+  "practicePrompt": {
+    "question": "If you have 10 million VND today, which use of it best optimises long-term value?",
+    "options": [
+      "Spend it right away on personal items you need now",
+      "Put it toward a short-term savings goal and a small investment",
+      "Lend it out to someone else immediately",
+      "Leave it in an account that earns no return at all"
+    ],
+    "explanation": "A good financial decision usually balances a present need against a future goal. Asking about opportunity cost helps you pick the option with more lasting value."
+  },
+  "summary": {
+    "keyIdea": "Finance is about allocating resources between the present and the future.",
+    "formula": "Opportunity cost = the value of the best option forgone.",
+    "commonMistake": "Confusing spending with investing.",
+    "action": "Look back at a recent money decision of yours and ask: what would I have gained by choosing differently?"
+  },
+  "application": {
+    "title": "Apply it now",
+    "message": "Today, pick one upcoming large expense and ask whether it genuinely creates lasting value."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "You have 10 million VND. Buy an iPhone, or save it? That seemingly simple question is actually a complete financial problem - and how you answer it reveals your entire way of thinking about money."
+    },
+    { "type": "heading", "text": "Finance isn't about 'having a lot of money'" },
+    {
+      "type": "paragraph",
+      "text": "Many people think finance is the study of how to earn more money. In fact, finance is the science of allocating a scarce resource - money, time, capital - across different points in time, under an uncertain future. A person with 10 million and a corporation with 10,000 billion face exactly the same core question: use this resource now, or hold it for later, and if held, where to place it."
+    },
+    { "type": "heading", "text": "The three axes behind every financial decision" },
+    {
+      "type": "paragraph",
+      "text": "Every financial decision, whether as small as buying an iPhone or as large as a trillion-dong M&A deal, turns on three factors: the time value of money (one dong today is not one dong tomorrow), the level of risk you're willing to accept (is the outcome certain?), and opportunity cost (what do you give up by choosing this option?)."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Time value: money can earn a return over time, so 1 million today is worth more than 1 million a year from now",
+        "**Risk:** the future outcome is uncertain, and that uncertainty needs to be priced rather than ignored",
+        "Opportunity cost: choosing A means giving up whatever value B could have brought"
+      ]
+    },
+    { "type": "heading", "text": "Where finance differs from accounting" },
+    {
+      "type": "paragraph",
+      "text": "Accounting answers 'what happened' - it records past transactions precisely. Finance answers 'what should happen next' - it uses that past data to decide what comes ahead: where to invest, how much to borrow, how to save. The two fields complement each other but cannot replace one another."
+    },
+    {
+      "type": "callout",
+      "label": "Applying it to the opening example",
+      "text": "Buying the iPhone now prioritises present value (use it right away, no risk from waiting). Saving and investing is a bet on a larger future value, in exchange for accepting risk and delaying gratification. There is no absolute right answer - only the answer that fits your own priorities."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Over the next 20 days you will learn to measure these three axes precisely - time, risk, opportunity cost - so that every money decision rests on clear ground instead of gut feeling."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,172 @@
+{
+  "slug": "khoan-phai-tra-la-gi",
+  "title": "What is accounts payable?",
+  "subtitle": "Supplier debt - a burden, or a negotiating edge?",
+  "duration": "5 min",
+  "openingQuestion": "Walmart is famous for paying suppliers late, 60-90 days. Is this good or bad for Walmart?",
+  "openingOptions": [
+    "Neutral",
+    "Bad, because it damages its reputation",
+    "Bad - Walmart is short of cash",
+    "Good - Walmart uses supplier money for free, improving FCF"
+  ],
+  "explanation": "Accounts payable is the amount a business still owes its suppliers, and it is an interest-free source of capital. A business with strong negotiating leverage can stretch out its payment days, using its supply chain's capital to fund its own operations - Walmart and Amazon are classic examples. But the same rising number can also mean the business is short of cash and paying late against its will, so it must be read alongside cash balances.",
+  "diagram": [
+    { "label": "Buy from a supplier", "arrow": true },
+    { "label": "Don't pay immediately", "arrow": true },
+    { "label": "Record Accounts Payable (AP)", "arrow": true },
+    { "label": "Paying late = using supplier capital for free" }
+  ],
+  "realWorldExample": {
+    "company": "Walmart",
+    "description": "Walmart is famous for negotiating 60-90 day payment terms with most suppliers while collecting cash from customers instantly - using supplier capital to fund its operations without any interest cost."
+  },
+  "quiz": [
+    {
+      "question": "Accounts payable to suppliers is:",
+      "options": [
+        "Money the company has prepaid to a supplier",
+        "Money the company owes a supplier",
+        "Salaries the company owes its employees",
+        "Money customers still owe the company, unpaid"
+      ],
+      "explanation": "Accounts Payable = a current liability, to be settled within 30-90 days."
+    },
+    {
+      "question": "A company buys 1 billion of goods from a supplier, unpaid. Effect:",
+      "options": [
+        "Assets rise 1 billion, assets fall 1 billion",
+        "Assets rise 1 billion, liabilities rise 1 billion",
+        "Liabilities rise 1 billion, equity rises 1 billion",
+        "No effect on the balance sheet, since no cash has changed hands yet"
+      ],
+      "explanation": "Assets (goods) rise = Liabilities (payable) rise."
+    },
+    {
+      "question": "AP is classified under:",
+      "options": [
+        "Current assets",
+        "Equity",
+        "Long-term liabilities",
+        "Current liabilities"
+      ],
+      "explanation": "AP = payment due <12 months = a current liability."
+    },
+    {
+      "question": "Why does a company want to stretch out AP?",
+      "options": [
+        "To hold onto cash longer, improving cash flow",
+        "To raise the company's Current Ratio",
+        "To get a discount on the goods purchased",
+        "To reduce the tax owed for that period"
+      ],
+      "explanation": "AP is free credit: receiving goods without yet paying for them = optimising cash flow."
+    },
+    {
+      "question": "How does rising AP affect the Current Ratio?",
+      "options": [
+        "Raises the Current Ratio",
+        "Lowers the Current Ratio",
+        "Raises the Current Ratio because AP is an asset",
+        "Raises the Quick Ratio"
+      ],
+      "explanation": "CR = CA/CL. Rising AP → rising CL → falling CR."
+    },
+    {
+      "question": "Maximising AP to improve cash flow:",
+      "options": [
+        "Correct, the longer it can be stretched the better",
+        "Wrong, because AP raises bank interest expense",
+        "Wrong, AP that's too high damages supplier relationships",
+        "Correct, because AP incurs no interest cost"
+      ],
+      "explanation": "A balance is needed: optimise cash but don't damage the supplier relationship."
+    },
+    {
+      "question": "Unpaid salaries are recorded as:",
+      "options": [
+        "Current assets",
+        "Equity",
+        "Long-term liabilities",
+        "Current liabilities"
+      ],
+      "explanation": "Unpaid salaries = an obligation due soon = a current liability."
+    }
+  ],
+  "keyTakeaways": [
+    "High AP = a strong business using supplier cash interest-free",
+    "DPO = AP / (COGS/365) - measures AP management efficiency",
+    "Balance: paying late is good, but not at the cost of the supplier relationship"
+  ],
+  "practicePrompt": {
+    "question": "Walmart is famous for paying its suppliers 45-60 days late while collecting from customers almost instantly (direct retail sales). What advantage does this create for Walmart?",
+    "options": [
+      "Walmart uses supplier money (high AP) as a form of interest-free credit to fund its operations, meaningfully improving free cash flow",
+      "This is a sign Walmart is in financial trouble and cannot afford to pay suppliers on time",
+      "This creates no financial benefit whatsoever, it's simply a management habit of the company",
+      "This is a breach of contract with suppliers and will cause lasting damage to the business relationship"
+    ],
+    "explanation": "High AP at a strong business like Walmart means it's using supplier money as interest-free credit (receive goods, sell them and collect cash, then pay the supplier later) - a very effective way of optimising free cash flow (FCF), not a sign of weakness."
+  },
+  "summary": {
+    "keyIdea": "High AP = a strong business using supplier cash interest-free",
+    "commonMistake": "Reading a concept as a phrase to memorise rather than a principle to apply to real decisions.",
+    "action": "DPO = AP / (COGS/365) - measures AP management efficiency"
+  },
+  "application": {
+    "title": "Check the payment terms you're currently given",
+    "message": "Check your most recent credit card or buy-now-pay-later bill: how many days of credit are you given before you have to pay? That's your own personal DPO, used interest-free.",
+    "secondary": "Using this window correctly is an advantage, but paying late costs you the advantage and adds a penalty fee."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Accounts Payable (AP) is the amount a business owes suppliers because it has purchased goods/services but not yet paid for them. It sounds like 'bad debt', but for a strong business, high AP is actually a subtle financial advantage."
+    },
+    { "type": "heading", "text": "Why paying suppliers late can be an advantage" },
+    {
+      "type": "paragraph",
+      "text": "When a business is large and reputable enough, it has the negotiating power to demand longer payment terms - 30, 60, even 90 days. During that time, the business keeps cash in hand to invest, cycle capital, or simply earn deposit interest, while still using the goods/services already received. This is essentially an 'interest-free loan' from the supplier."
+    },
+    { "type": "heading", "text": "DPO and the limits of the pay-late strategy" },
+    {
+      "type": "paragraph",
+      "text": "Days Payable Outstanding (DPO) = AP / (COGS / 365) - the average number of days a business takes to pay its suppliers. A high DPO is good for the buyer's cash flow, but if stretched beyond what's reasonable for the industry, suppliers may stop extending credit, deprioritise delivery, or raise prices to offset the risk - damaging the long-term partnership."
+    },
+    {
+      "type": "list",
+      "items": [
+        "High DPO + good inventory turnover: a sign of strong negotiating power and skilled working-capital management",
+        "DPO rising suddenly along with other signs of trouble: the company may be short of cash, forced to delay payments",
+        "Compare DPO against DSO and DIO for a full picture of the cash cycle"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Telling the two scenarios apart",
+      "text": "Rising AP isn't automatically good or bad. You also need to check: is operating cash flow positive, is the company paying its loans on schedule, and how long has this trend lasted - to distinguish 'skilled negotiator' from 'running out of cash'."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Accounts payable terminology",
+      "concepts": [
+        { "vi": "Khoản phải trả", "en": "Accounts Payable (AP)", "def": "Money a business owes suppliers for unpaid purchases" },
+        { "vi": "Số ngày phải trả bình quân", "en": "Days Payable Outstanding (DPO)", "def": "AP / (COGS/365) - the average number of days to pay a supplier" },
+        { "vi": "Tín dụng thương mại", "en": "Trade credit", "def": "The implicit credit a supplier extends to a customer through payment terms" }
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": { "label": "High AP from strength", "text": "Walmart, Amazon: market power lets them negotiate slow payment without hurting the supplier relationship" },
+      "right": { "label": "High AP from weakness", "text": "A small business in liquidity trouble is forced to delay payment, which can risk losing suppliers" }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "AP is a double-edged sword - good when it's strategy, bad when it's forced.",
+        "DPO needs to be read alongside DSO and DIO to understand the full capital cycle.",
+        "Skilled businesses optimise all three indicators at once to reduce their working-capital needs."
+      ]
+    }
+  ]
+}

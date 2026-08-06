@@ -1,0 +1,167 @@
+{
+  "slug": "von-luu-dong-la-gi",
+  "title": "What is working capital?",
+  "subtitle": "Working Capital - the daily fuel that runs a business",
+  "duration": "6 min",
+  "openingQuestion": "Working Capital = ?",
+  "openingOptions": [
+    "Current Assets − Current Liabilities",
+    "Total Assets − Total Liabilities",
+    "Revenue − Operating Costs",
+    "Cash + Short-term Investments"
+  ],
+  "explanation": "Working capital is the gap between current assets and current liabilities - the buffer for day-to-day operations. Positive means a safety margin, but too much positive can be a sign cash is dying in inventory and receivables. Negative isn't automatically bad either: supermarkets and businesses that collect cash upfront often run sustainably negative working capital, because customers pay them before they have to pay their suppliers.",
+  "diagram": [
+    { "label": "Current assets: cash, receivables, inventory", "arrow": true },
+    { "label": "Subtract current liabilities: payables, debt due", "arrow": true },
+    { "label": "What's left is working capital", "arrow": true },
+    { "label": "Positive means a buffer; negative needs checking that cash inflow is steady enough" }
+  ],
+  "realWorldExample": {
+    "company": "PNJ",
+    "description": "PNJ (Phú Nhuận Jewelry) needs large working capital to maintain gold and gem inventory across hundreds of stores - efficient working-capital management is a matter of survival for retailers with high inventory value."
+  },
+  "quiz": [
+    {
+      "question": "Working Capital (WC) =",
+      "options": [
+        "Current Assets − Current Liabilities",
+        "Total Assets − Total Liabilities",
+        "Current Assets ÷ Current Liabilities",
+        "Cash + Inventory"
+      ],
+      "explanation": "WC = CA - CL. It measures the ability to pay off current liabilities."
+    },
+    {
+      "question": "WC = 500 million - is that good?",
+      "options": [
+        "Not certain - it depends on the industry",
+        "Not certain - it depends on the company's scale",
+        "Good, because a positive WC is always a good sign",
+        "Bad, because 500 million is far too low a level"
+      ],
+      "explanation": "WC = 500m against 10,000 billion in revenue = very low. WC = 500m against 100m in revenue = high."
+    },
+    {
+      "question": "A negative WC:",
+      "options": [
+        "Bad, because the company is losing money for the period",
+        "Has no bearing on financial health whatsoever",
+        "Always good because the company is using supplier capital",
+        "Bad, current liabilities exceed current assets"
+      ],
+      "explanation": "A negative WC = a liquidity crisis. The company owes more than it has on hand."
+    },
+    {
+      "question": "To improve WC, a company should:",
+      "options": [
+        "Convert long-term debt into current debt",
+        "Increase current debt to get more cash right away",
+        "Buy more fixed assets using cash",
+        "Increase current assets or decrease current liabilities"
+      ],
+      "explanation": "All three approaches would increase WC."
+    },
+    {
+      "question": "Retail often has negative WC because:",
+      "options": [
+        "It collects cash immediately from sales but pays suppliers slowly",
+        "It sells to customers on credit but pays for goods right away",
+        "Inventory always makes up a very large proportion",
+        "The retail industry's margins are inherently very thin"
+      ],
+      "explanation": "Amazon and Walmart have negative WC yet succeed because their cash cycle is optimised."
+    },
+    {
+      "question": "A high Days Inventory Outstanding (DIO):",
+      "options": [
+        "Good, it proves strong market demand",
+        "Bad, goods sit in the warehouse a long time, cash is tied up",
+        "Has no effect at all on working capital",
+        "Good, the company stocks enough goods to sell"
+      ],
+      "explanation": "High DIO = goods sit in the warehouse a long time = cash comes in slowly."
+    },
+    {
+      "question": "To optimise WC with a supplier:",
+      "options": [
+        "Pay early to get a payment discount",
+        "Order more to get a better price",
+        "Negotiate a longer payment term (increasing AP)",
+        "Switch to buying on immediate cash terms"
+      ],
+      "explanation": "Increasing AP = holding onto cash. But balance the business relationship."
+    }
+  ],
+  "keyTakeaways": [
+    "WC = Current Assets − Current Liabilities",
+    "Positive WC: a buffer; negative WC: needs careful management",
+    "Changes in WC directly affect OCF"
+  ],
+  "practicePrompt": {
+    "question": "A manufacturing company has Current Assets = 400 billion, Current Liabilities = 600 billion. What is this company's Working Capital (WC), and what does it mean?",
+    "options": [
+      "WC = -200 billion (negative) - current liabilities exceed current assets, and the company needs to watch its ability to pay obligations coming due carefully",
+      "WC = 1,000 billion (positive) because you add the two figures together under the total-assets formula",
+      "WC = 200 billion (positive) - the company has an adequate financial buffer, no need to worry about liquidity at all",
+      "WC cannot be calculated without information about the company's equity"
+    ],
+    "explanation": "WC = Current Assets − Current Liabilities = 400 - 600 = -200 billion (negative). A negative WC means current liabilities exceed current assets - the company needs to manage its cash flow carefully to ensure it can pay obligations as they come due, though a negative WC isn't always a bad sign (some retail business models run well with negative WC)."
+  },
+  "summary": {
+    "keyIdea": "WC = Current Assets − Current Liabilities",
+    "commonMistake": "Reading a concept as a phrase to memorise rather than a principle to apply to real decisions.",
+    "action": "Positive WC: a buffer; negative WC: needs careful management"
+  },
+  "application": {
+    "title": "Calculate your own personal working capital",
+    "message": "Take total assets convertible to cash within 12 months (cash, short-term savings) minus total liabilities due over the next 12 months - that's your own personal working capital.",
+    "secondary": "A positive number means you have a buffer; a negative number is a signal to adjust spending or income."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Working Capital is the capital a business needs to run day-to-day operations - buying materials, paying salaries, holding inventory - before it collects cash from customers. **Formula:** Working Capital = Current Assets − Current Liabilities."
+    },
+    { "type": "heading", "text": "What positive Working Capital means" },
+    {
+      "type": "paragraph",
+      "text": "When current assets exceed current liabilities, a business has a 'buffer' to cover near-term obligations even during a temporary rough patch. This is common in manufacturing businesses - they need substantial capital to buy raw materials, hold inventory, and wait for customers to pay before recovering that capital."
+    },
+    { "type": "heading", "text": "Negative Working Capital - not always bad" },
+    {
+      "type": "paragraph",
+      "text": "Some business models run with negative WC deliberately and healthily. Supermarkets and retail chains collect cash/card payments immediately from customers but pay suppliers 30-60 days later - they operate on supplier money without needing much of their own capital. This is a structural advantage, not a danger sign, as long as operating cash flow stays positive and stable."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Large positive WC: safe, but may be holding too much idle capital in inventory/AR",
+        "Deliberate negative WC (retail, budget airlines): a structural advantage, collecting cash before paying it out",
+        "Unintentional negative WC (a business in real difficulty): genuine liquidity risk"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "PNJ and its gold inventory",
+      "text": "PNJ needs large working capital to maintain gold and gem inventory across hundreds of stores nationwide - for an industry with high-value inventory like jewellery, efficient working-capital management is a matter of survival that determines the real profit margin."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Working capital terminology",
+      "concepts": [
+        { "vi": "Vốn lưu động", "en": "Working Capital", "def": "Current Assets − Current Liabilities, the capital needed to run daily operations" },
+        { "vi": "Tài sản ngắn hạn", "en": "Current Assets", "def": "Cash, receivables, inventory - converted to cash within 12 months" },
+        { "vi": "Nợ ngắn hạn", "en": "Current Liabilities", "def": "Obligations payable within 12 months" }
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Working Capital measures short-term operating health, not profit.",
+        "Negative WC isn't automatically bad - it depends on the business model and operating cash flow.",
+        "Changes in WC over each period are one of the three main components of operating cash flow (OCF)."
+      ]
+    }
+  ]
+}

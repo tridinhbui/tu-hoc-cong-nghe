@@ -1,0 +1,136 @@
+{
+  "slug": "he-thong-tai-chinh",
+  "title": "Who makes up the financial system: banks, funds, companies, investors.",
+  "subtitle": "The financial system is the network connecting people with spare money to people who need it.",
+  "duration": "7 min",
+  "openingQuestion": "When you put money into a savings account, where does your money go?",
+  "openingOptions": [
+    "The bank invests it directly into international securities to earn a higher return for itself",
+    "It stays untouched in the branch's vault, waiting for the day you come back to withdraw it",
+    "It is handed over to the government to use directly in the annual state budget",
+    "The bank lends it back out to other individuals and businesses, and earns the interest-rate spread"
+  ],
+  "explanation": "The financial system exists to connect people with idle money to people who need capital. A bank does this indirectly: taking deposits at a low rate, lending at a higher rate, and living off the spread while bearing the credit risk. Capital markets do this directly: a company issues stock or bonds and sells them straight to investors. Investment funds sit in between, pooling many small savers' money to invest at a larger scale.",
+  "diagram": [
+    { "label": "Someone with spare money (savings)" },
+    { "label": "A bank or fund (intermediary)" },
+    { "label": "Someone who needs capital (borrowing/investing)" }
+  ],
+  "realWorldExample": {
+    "company": "Vietcombank",
+    "description": "Vietcombank raises roughly 1.4 quadrillion VND from customers (paying 3-5% interest) and lends it out at 7-11%. That 3-6% spread generates tens of trillions of net interest income each year."
+  },
+  "quiz": [
+    {
+      "question": "How does an investment fund differ from a bank?",
+      "options": [
+        "A fund guarantees your capital back, a bank makes no such guarantee",
+        "A fund only buys bonds, a bank only buys stocks",
+        "A fund pools capital to invest; a bank raises deposits to lend out",
+        "A fund needs no licence, while a bank must have one"
+      ],
+      "explanation": "A bank is a credit intermediary (raising deposits, then lending). An investment fund pools money from many people to invest in stocks, bonds, or real estate. A fund's investors bear market risk, and get no guarantee of their capital."
+    },
+    {
+      "question": "How do the primary market and secondary market differ?",
+      "options": [
+        "The primary market trades only stocks, while the secondary market trades only corporate bonds",
+        "The primary market is for beginner investors, and the secondary market for more experienced ones",
+        "The primary market is always better because investors buy at the original issue price",
+        "The primary market is where a company first issues securities; the secondary is where investors trade them"
+      ],
+      "explanation": "An IPO is the primary market: the company receives money directly from investors. From then on, the stock trades on the exchange as the secondary market: money flows between investors, no longer into the company."
+    },
+    {
+      "question": "Scenario: You have 500 million VND to invest. Option A: a bank savings deposit at 6% a year, capital guaranteed. Option B: a stock investment fund, expecting 12% a year but capable of a 20% loss in a bad year. Option C: buying stock directly on the secondary market, expecting 15% a year but with the highest risk. If you'll need the money in 6 months to buy a house and cannot tolerate losing capital, which option fits best?",
+      "options": [
+        "A, because capital is preserved and can be withdrawn any time",
+        "B, because its expected return is roughly twice what the savings deposit pays",
+        "Split evenly across all three to diversify the risk",
+        "C, because it offers the highest return of the three"
+      ],
+      "explanation": "When you need the money in the short term (6 months) and cannot tolerate losing capital, preserving it is the top priority. A savings deposit guarantees capital and can be withdrawn any time. Funds and stocks carry market risk, and their price could fall exactly when you need the cash."
+    },
+    {
+      "question": "A company runs an IPO, selling stock to the public for the first time. Which market does this transaction belong to?",
+      "options": [
+        "The primary market, because the money flows to the company itself",
+        "The secondary market, because the stock begins trading",
+        "Both, because an IPO simultaneously issues new shares and lists them for trading",
+        "Neither, an IPO is its own separate channel"
+      ],
+      "explanation": "The distinction is about where the money flows. In an IPO, the buyer's money goes straight into the company to fund its operations; from the next trading session onward, the stock changes hands between investors and the company receives nothing further."
+    },
+    {
+      "question": "What is the core difference between a bank savings deposit and buying a fund's units?",
+      "options": [
+        "A savings deposit is unaffected by inflation",
+        "A fund always earns a higher return than a savings deposit",
+        "A bank commits to a fixed interest rate, a fund makes no such commitment",
+        "An investment fund's capital is insured by the state against any market loss"
+      ],
+      "explanation": "A bank takes the risk onto itself: whether or not the borrower repays, you still receive exactly the interest promised. A fund only manages the portfolio, while all of its gains and losses belong to whoever bought the units - which is exactly why a fund can offer a higher expected return."
+    }
+  ],
+  "keyTakeaways": [
+    "Bank: a credit intermediary, raising deposits to lend out",
+    "Investment fund: pools capital to invest, with investors bearing market risk",
+    "Primary market: businesses raise capital; secondary market: investors trade among themselves"
+  ],
+  "practicePrompt": {
+    "question": "A tech startup first sells shares to the public through an IPO on the HOSE exchange. Three months later, you buy those shares from another investor on the exchange. Which market does your purchase take place in?",
+    "options": [
+      "The secondary market, because you're buying already-issued shares from another investor, not directly from the company",
+      "The primary market, because those shares still belong to the startup's original IPO",
+      "The over-the-counter (OTC) market, because the trade doesn't go through the official HOSE exchange",
+      "Neither market, since this is simply a private transaction between two investors"
+    ],
+    "explanation": "Any trade of already-issued securities, whether through an exchange or directly between investors, belongs to the secondary market - distinct from the initial issuance in the primary market."
+  },
+  "summary": {
+    "keyIdea": "Bank: a credit intermediary, raising deposits to lend out",
+    "commonMistake": "Reading the concept as a phrase to memorise rather than a principle to apply to a real decision.",
+    "action": "Investment fund: pools capital to invest, with investors bearing market risk"
+  },
+  "application": {
+    "title": "Map the flow of money through your own bank",
+    "message": "Open your banking app, check the savings rate you're earning and the consumer-loan or credit-card rate your bank quotes - calculate the gap to see the real margin the intermediary is earning.",
+    "secondary": "That gap is exactly why banks exist and turn a profit."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "When you put money into a savings account, your money doesn't sit idle in a vault - it enters a complex machine called the financial system."
+    },
+    { "type": "heading", "text": "The financial system: a bridge between spare capital and needed capital" },
+    {
+      "type": "paragraph",
+      "text": "The financial system is the network of institutions and markets connecting people with idle money (who want to save or invest) to people who need capital (for consumption, business, or investment). Without this system, someone wanting to borrow to buy a house would have to go find a stranger with enough spare money willing to lend it - hugely inefficient."
+    },
+    { "type": "heading", "text": "Banks: credit intermediaries" },
+    {
+      "type": "paragraph",
+      "text": "A bank plays the role of a credit intermediary: raising money from millions of savers (paying a low interest rate), then lending it to thousands of other individuals and businesses (charging a higher rate). The gap between these two rates (the net interest margin) is the bank's main source of profit, and also the cost it bears for managing credit risk - the chance that a borrower fails to repay."
+    },
+    { "type": "heading", "text": "Investment funds: pooling capital for collective investing" },
+    {
+      "type": "paragraph",
+      "text": "Unlike a bank (which lends at a fixed rate), an investment fund pools money from many investors to put into stocks, bonds, or other assets - and investors bear the market's volatility directly, with no fixed-return promise like a bank deposit."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Bank: a credit intermediary, raising deposits to lend out, responsible for returning fixed principal and interest to depositors",
+        "Investment fund: pools capital for collective investing, with investors bearing risk directly and earning market returns",
+        "Primary market: where a business or government first raises capital (an IPO, a new bond issuance)",
+        "Secondary market: where investors trade with each other (the day-to-day stock exchange)"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Understanding the structure of the financial system helps you know exactly where your money is going, who's using it, and what kind of risk you're accepting when you choose a savings deposit versus a fund."
+      ]
+    }
+  ]
+}

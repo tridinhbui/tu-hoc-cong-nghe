@@ -1,0 +1,167 @@
+{
+  "slug": "chi-phi-vs-dong-tien-ra",
+  "title": "How does an expense differ from cash going out?",
+  "subtitle": "Why buying a 1-billion machine doesn't cut profit by 1 billion right away",
+  "duration": "6 min",
+  "openingQuestion": "A company buys machinery for 1 billion. How much does that year's profit fall?",
+  "openingOptions": [
+    "Falls immediately by the full 1 billion cost, right in the year the machine is bought",
+    "Doesn't fall at all, because machinery is a long-term asset that accounting treats as not wearing down in value",
+    "The fall depends entirely on the resale price of the used machine on the market at that time",
+    "Equal to that year's depreciation (for example, 200 million/year if depreciated over 5 years)"
+  ],
+  "explanation": "An expense is the portion of economic value consumed during the period, while a cash outflow is when the money actually leaves the account - the two often don't happen at the same time. Buying a one-billion machine is cash out immediately, but the expense is spread evenly through depreciation across the machine's life. Conversely, paying a full year's office rent upfront is a one-time cash outflow while the expense is booked month by month. Understanding this gap is what it takes to read a cash flow statement correctly.",
+  "diagram": [
+    { "label": "Spend 1 billion on a machine: cash out once", "arrow": true },
+    { "label": "The machine serves production for 5 years", "arrow": true },
+    { "label": "Each year, 200 million is booked as depreciation expense", "arrow": true },
+    { "label": "Expense and cash flow are offset in timing" }
+  ],
+  "realWorldExample": {
+    "company": "Vietnam Airlines",
+    "description": "Vietnam Airlines buys aircraft worth thousands of billions of dong but doesn't recognise the full cost immediately - it depreciates gradually over the aircraft's 15-20 year lifespan, so the income statement reflects the true annual value consumed."
+  },
+  "quiz": [
+    {
+      "question": "A company buys machinery worth 500 million, with a 5-year life. What are the cash flow and the expense in the year of purchase?",
+      "options": [
+        "Cash flow: 0, Expense: 500m (treating the purchase as a non-cash expense)",
+        "Cash flow: 500m, Expense: 500m (booked in full right away)",
+        "Cash flow: 100m, Expense: 100m (mistakenly treating it as paid in five equal instalments)",
+        "Cash flow: 500m, Expense: 100m (= 500m ÷ 5 years)"
+      ],
+      "explanation": "CapEx (buying the machine) = 500m cash out immediately. But the accounting expense is only depreciation: 500m ÷ 5 years = 100m/year. Cash flow and expense are separated."
+    },
+    {
+      "question": "Why does Net Income often differ from Operating Cash Flow?",
+      "options": [
+        "Because non-cash expenses like depreciation are deducted in the income statement but aren't a cash outflow",
+        "Because Net Income is calculated after tax while Operating Cash Flow is calculated before tax and interest",
+        "Because OCF has already deducted capital expenditure on fixed assets while Net Income hasn't",
+        "Because the income statement follows the fiscal year while the cash flow statement follows the calendar year"
+      ],
+      "explanation": "Depreciation is a large expense but not a cash outflow. So OCF (profit + depreciation + change in working capital) is usually higher than Net Income."
+    },
+    {
+      "question": "If a company reports positive profit but negative operating cash flow, is that normal?",
+      "options": [
+        "Yes - but only when the company books a large foreign-exchange loss in the period",
+        "Yes - commonly seen in an expanding company where inventory and receivables are growing fast",
+        "No - positive profit forces operating cash flow to be positive too",
+        "No - this is always a sign the company is about to default on its debts"
+      ],
+      "explanation": "Accounting profit ≠ actual cash flow. A startup or expanding company can show a profit on paper while running out of cash fast."
+    },
+    {
+      "question": "A company just signed a full-year insurance contract: 12 million/year. In the first month, how does this affect cash flow and expense?",
+      "options": [
+        "Cash flow: -1m, Expense: -1m (mistakenly treating it as paid monthly in instalments)",
+        "Cash flow: -12m, Expense: -12m (booking the full expense when cash is paid)",
+        "Cash flow: -12m, Expense: -1m (= 12m ÷ 12 months)",
+        "Cash flow: 0, Expense: -1m (only accrued so far)"
+      ],
+      "explanation": "The entire cash goes out immediately (cash flow -12m), but the insurance expense is spread 1m/month. The unused portion (11m) sits as a 'prepaid insurance' asset."
+    },
+    {
+      "question": "Is depreciation an actual cash payment?",
+      "options": [
+        "Only when the asset breaks down before its expected life",
+        "Yes - it's the amount paid gradually to the equipment supplier each year",
+        "Yes - a cash amount is set aside into a depreciation fund each year",
+        "No - the cash already left when the asset was bought; depreciation is only a reallocation"
+      ],
+      "explanation": "Depreciation is an accounting expense, not a cash outflow. The cash already left when the machine was bought; depreciation is just how the consumption of that value is recorded."
+    },
+    {
+      "question": "Why do analysts add depreciation back when computing OCF from Net Income?",
+      "options": [
+        "Because depreciation is deducted from profit but isn't a cash outflow",
+        "Because depreciation belongs to investing cash flow and must be moved to operating cash flow",
+        "Because depreciation is cash received when disposing of an asset",
+        "Because depreciation is double-counted: once on the income statement and once on the balance sheet"
+      ],
+      "explanation": "OCF = Net Income + Depreciation + Amortization - Change in working capital. Depreciation is deducted when computing profit but isn't a cash outflow, so it's added back."
+    },
+    {
+      "question": "A company has: net income = 100m, depreciation = 50m, change in working capital = -30m. What is OCF?",
+      "options": [
+        "180m (= 100 + 50 + 30, wrongly adding the working-capital sign)",
+        "120m (= 100 + 50 − 30 for working capital)",
+        "150m (= 100 + 50, forgetting working capital)",
+        "50m (= 100 − 50, wrongly subtracting depreciation)"
+      ],
+      "explanation": "OCF = Net Income + Depreciation - Increase in working capital = 100 + 50 - 30 = 120m. A negative change in working capital (rising inventory, receivables) means cash is being tied up."
+    }
+  ],
+  "keyTakeaways": [
+    "Accounting expense ≠ cash outflow in the same period",
+    "Buying a long-term asset → depreciated gradually over years",
+    "This is why OCF and Net Income usually differ"
+  ],
+  "practicePrompt": {
+    "question": "A logistics company buys 20 shipping-container trucks worth 4 billion in total (paid entirely in cash upfront), depreciated on a straight-line basis over 8 years. In the year of purchase, how does this 4-billion outlay affect cash flow and accounting expense?",
+    "options": [
+      "Cash flows out immediately by the full 4 billion in the year of purchase, but the accounting expense on that year's income statement is only 500 million (= 4 billion ÷ 8 years), with the rest allocated gradually in later years",
+      "Cash flows out by 500 million and the accounting expense is also only 500 million in the year of purchase, with the remainder paid and recognised in later years",
+      "Cash flow is unchanged in the year of purchase, but the accounting expense recognises the full 4 billion immediately",
+      "Both cash flow and accounting expense recognise the full 4 billion immediately in the year the trucks are purchased"
+    ],
+    "explanation": "CapEx (buying the trucks) is a cash outflow immediately - the full 4 billion leaves the company in the year of purchase. But the accounting expense (depreciation) is allocated gradually: 4 billion ÷ 8 years = 500 million/year. This is exactly why accounting expense differs from cash outflow in the same period."
+  },
+  "summary": {
+    "keyIdea": "Accounting expense ≠ cash outflow in the same period",
+    "commonMistake": "Reading a concept as a phrase to memorise rather than a principle to apply to real decisions.",
+    "action": "Buying a long-term asset → depreciated gradually over years"
+  },
+  "application": {
+    "title": "Tell expense apart from cash outflow in your own wallet",
+    "message": "Think of a valuable asset you once bought (a car, laptop, tools). All the cash left right when you bought it, but imagine 'depreciating' that value over its useful life - how much would that be per year in expense terms.",
+    "secondary": "This is how a business owner thinks about long-term assets, not the way an ordinary consumer usually thinks."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Vietnam Airlines spends thousands of billions of dong on a new aircraft. If the entire sum were booked as an expense in the year of purchase, that year's profit would collapse, while the following years - when the aircraft is still flying and generating revenue - would show no corresponding expense at all. That's why accounting separates cash outflow from expense."
+    },
+    { "type": "heading", "text": "CapEx: cash out, not an immediate expense" },
+    {
+      "type": "paragraph",
+      "text": "When a business buys long-term assets (machinery, plants, aircraft, core software) - called CapEx (Capital Expenditure) - the entire cash amount appears immediately on the cash flow statement under investing activities. But on the income statement, this outlay is NOT booked as a full expense in the year of purchase. Instead, the asset's value is allocated gradually into expense over several years - called depreciation."
+    },
+    {
+      "type": "paragraph",
+      "text": "The simplest formula - straight-line depreciation: annual depreciation expense = asset cost ÷ useful life in years. A 1,000-billion aircraft with a 20-year life → 50 billion of depreciation expense is recognised per year, even though the full 1,000 billion in cash was spent in the very first year."
+    },
+    { "type": "heading", "text": "Prepaid expenses - another variant of this same separation" },
+    {
+      "type": "paragraph",
+      "text": "It isn't only long-term assets - even shorter-term outlays like paying a full year's office rent follow the same logic: the cash all goes out at once when paid, but rent expense is allocated month by month as the business actually 'uses' the office. The amount paid but not yet used sits as a 'prepaid expense' asset on the balance sheet."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Buying machinery, plants, or long-term software licences → depreciated/amortised gradually",
+        "Prepaying a year of rent or insurance → allocated gradually into expense each month it's used",
+        "Buying raw materials not yet used → sits in inventory, becomes an expense (COGS) only when sold",
+        "Paying this month's staff salaries → expense and cash flow line up almost immediately"
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": { "label": "Cash Outflow", "text": "The actual cash that leaves the bank account at a specific point in time - recorded on the cash flow statement." },
+      "right": { "label": "Accounting Expense", "text": "The economic value consumed/used during the reporting period - recorded on the income statement, which can differ enormously in timing from the actual cash outflow." }
+    },
+    {
+      "type": "callout",
+      "label": "Why this matters to investors",
+      "text": "A company with large depreciation expense from fixed assets (because it invested heavily before) often shows accounting profit lower than its actual operating cash flow (CFO), because depreciation is a non-cash expense (added back when computing CFO). Still, free cash flow (FCF) can remain negative if the business keeps making large capex investments. Reading the cash flow statement alongside the income statement helps avoid misjudging a company's real financial health."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Accounting expense is a concept of allocation over time, not an instant record of cash flow.",
+        "Understanding this separation is the key to correctly reading the income statement of capital-intensive businesses."
+      ]
+    }
+  ]
+}

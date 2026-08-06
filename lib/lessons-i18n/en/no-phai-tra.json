@@ -1,0 +1,172 @@
+{
+  "slug": "no-phai-tra",
+  "title": "What are liabilities?",
+  "subtitle": "Financial obligations and how they affect a business",
+  "duration": "5 min",
+  "openingQuestion": "Where does accounts payable to suppliers sit on the financial statements?",
+  "openingOptions": [
+    "Recognised as part of shareholders' equity, since it's a shareholder entitlement",
+    "Recognised as a direct expense on the income statement (P&L)",
+    "Current liabilities",
+    "Recognised as a type of current asset of the company because it has value"
+  ],
+  "explanation": "Liabilities are every present obligation a business has to outside parties, not just bank loans: money still owed to suppliers, unpaid salaries, unpaid taxes, cash customers advanced for goods not yet delivered. They are split by payment term - accounts payable to suppliers is usually 30-90 days, so it's a current liability. Reading this structure carefully matters because supplier debt is interest-free capital, while a bank loan is not.",
+  "diagram": [
+    { "label": "Business receives goods/services", "arrow": true },
+    { "label": "Doesn't pay immediately", "arrow": true },
+    { "label": "Records a liability" }
+  ],
+  "realWorldExample": {
+    "company": "Novaland",
+    "description": "Novaland carries large accounts payable and loan balances tied to real estate projects under development - carefully analysing current versus long-term debt helps investors assess the company's ability to pay."
+  },
+  "quiz": [
+    {
+      "question": "A company borrows 1 billion dong from a bank on a 3-year term. Where is this recognised?",
+      "options": [
+        "Entirely as a current liability, since interest is paid annually",
+        "Recorded as equity, since it's a funding source being used",
+        "Split: the portion due within the year is current",
+        "Entirely as a long-term liability, since the loan term is 3 years"
+      ],
+      "explanation": "A long-term loan has a portion due within the next 12 months that needs to be reclassified as a current liability to accurately reflect payment pressure."
+    },
+    {
+      "question": "What is the most important difference between liabilities and equity?",
+      "options": [
+        "The only difference is that liabilities always carry interest while equity never does",
+        "There is no meaningful difference between liabilities and equity at all",
+        "Liabilities carry no economic value whatsoever to the company that borrowed them",
+        "Liabilities must be repaid on schedule with interest, while equity carries no repayment requirement"
+      ],
+      "explanation": "Liabilities are a mandatory obligation to pay with interest; equity is the owners' stake, which is more flexible."
+    },
+    {
+      "question": "Company ABC has total liabilities = 500 billion, total assets = 1,000 billion. What is its leverage ratio (debt-to-assets)?",
+      "options": [
+        "50%",
+        "100%",
+        "2x",
+        "200%"
+      ],
+      "explanation": "Leverage ratio = Liabilities ÷ Assets = 500 ÷ 1,000 = 50%. This is an important indicator for assessing a company's financial risk."
+    },
+    {
+      "question": "Is high debt good or bad for a business?",
+      "options": [
+        "Always good, because interest expense is tax-deductible",
+        "It depends: if ROA > interest rate it creates value, otherwise it hurts",
+        "Depends on industry: good in manufacturing, always bad in services",
+        "Always bad, because debt raises the risk of bankruptcy"
+      ],
+      "explanation": "Financial leverage is a way to boost ROE, but only when the business earns a return on assets higher than the cost of interest."
+    },
+    {
+      "question": "A company owes suppliers 200 million, expected to be paid in 60 days. Which ratio does this most affect?",
+      "options": [
+        "The company's Gross Margin ratio in the current reporting period",
+        "The company's Operating Margin ratio in the reporting period",
+        "The Current Ratio (current assets ÷ current liabilities)",
+        "The company's final Net Margin ratio on the income statement"
+      ],
+      "explanation": "The Current Ratio is a key measure of short-term ability to pay. Rising current liabilities lower the Current Ratio, which can signal liquidity risk."
+    },
+    {
+      "question": "What does the liabilities section on a balance sheet include?",
+      "options": [
+        "Bank loans and founding shareholders' paid-in capital",
+        "Only loans under a formal credit agreement with a bank",
+        "Bank loans, accounts receivable, and inventory",
+        "Bank loans, accounts payable to suppliers, salaries, and taxes"
+      ],
+      "explanation": "Liabilities are everything the company must pay to someone: banks, suppliers, employees, the state, and so on."
+    },
+    {
+      "question": "A company has debt = 600 billion, equity = 400 billion. What is its Debt-to-Equity ratio?",
+      "options": [
+        "1.5 (600/400)",
+        "0.67 (400/600)",
+        "0.6 (600/1000)",
+        "2.5 (1000/400)"
+      ],
+      "explanation": "D/E = Debt ÷ Equity = 600 ÷ 400 = 1.5. This means the company owes 1.5 times its own equity - a relatively high level, depending on the industry."
+    }
+  ],
+  "keyTakeaways": [
+    "Liabilities = obligations to be paid in the future",
+    "Current liabilities: due within 1 year (AP, salaries, taxes)",
+    "Long-term liabilities: bonds, long-term bank loans"
+  ],
+  "practicePrompt": {
+    "question": "Company Y just received a large order, and the customer paid 500 million upfront, but the company hasn't delivered yet. At the same time, the company owes 300 million to its raw-material suppliers, unpaid. How should both amounts be classified on the balance sheet?",
+    "options": [
+      "Both are liabilities - because both are obligations the company must fulfil in the future (delivering goods or paying money), even though their nature differs (one is a delivery obligation, the other a payment obligation)",
+      "Both are the company's assets, because the company holds control over both this cash and these goods",
+      "The customer prepayment is an asset, and the supplier debt need not be recorded since it isn't due yet",
+      "Neither amount needs to appear on the balance sheet since neither transaction is complete"
+    ],
+    "explanation": "Liabilities are every obligation the company must fulfil in the future, not just 'owing money'. Cash a customer paid upfront (deferred revenue) is a delivery/service obligation; the supplier debt (accounts payable) is a payment obligation - both are liabilities despite differing in nature."
+  },
+  "summary": {
+    "keyIdea": "Liabilities = obligations to be paid in the future",
+    "commonMistake": "Reading a concept as a phrase to memorise rather than a principle to apply to real decisions.",
+    "action": "Current liabilities: due within 1 year (AP, salaries, taxes)"
+  },
+  "application": {
+    "title": "List your own upcoming obligations",
+    "message": "Write down everything you have to pay over the next 90 days (bills, rent, instalments, debts to friends) and classify which ones resemble 'current liabilities' under this lesson's definition.",
+    "secondary": "Seeing the total helps you estimate your real near-term cash needs more accurately."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Novaland owes suppliers, owes banks, owes bondholders - tens of thousands of billions of dong in different financial obligations, each with its own deadline and level of urgency. Correctly reading the structure of liabilities is a survival skill when assessing a business's risk."
+    },
+    { "type": "heading", "text": "What are liabilities?" },
+    {
+      "type": "paragraph",
+      "text": "Liabilities are a business's present obligation arising from past events, whose settlement will reduce the business's future economic resources. Put simply: they are what a business 'owes' someone else - it could be money, goods, or a service not yet provided."
+    },
+    { "type": "heading", "text": "Current and long-term liabilities" },
+    {
+      "type": "paragraph",
+      "text": "Current Liabilities are obligations payable within 12 months: accounts payable to suppliers, salaries owed to employees, taxes payable, and the portion of a long-term loan due in the coming year. Long-term Liabilities include issued bonds, long-term bank loans, and long-term finance lease obligations."
+    },
+    {
+      "type": "paragraph",
+      "text": "This classification matters because it directly affects a liquidity indicator like the Current Ratio = Current Assets ÷ Current Liabilities. If a company has far too many current liabilities relative to current assets, the risk of short-term default rises significantly, even if the company still shows a healthy profit on the income statement."
+    },
+    { "type": "heading", "text": "Not just 'borrowed money' - liabilities are much broader" },
+    {
+      "type": "paragraph",
+      "text": "A common misconception is that liabilities only mean bank loans. In fact, any obligation the company still has to fulfil - even after already receiving cash for it - is a form of liability. For example, cash a customer deposits in advance for an order not yet delivered is recorded as 'unearned revenue', a liability item until the goods are delivered."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Accounts Payable to suppliers - the most common current liability",
+        "Salaries, insurance, taxes owed but not yet due for payment",
+        "Deferred/Unearned Revenue - cash already received, goods/service not yet delivered",
+        "Corporate Bonds Payable - usually a long-term liability",
+        "Long-term bank loans for project or plant investment"
+      ]
+    },
+    {
+      "type": "conceptTable",
+      "title": "Liabilities terminology",
+      "concepts": [
+        { "vi": "Nợ phải trả", "en": "Liabilities", "def": "A business's present obligation, the settlement of which will reduce future economic resources." },
+        { "vi": "Nợ ngắn hạn", "en": "Current Liabilities", "def": "Obligations payable within 12 months." },
+        { "vi": "Khoản phải trả nhà cung cấp", "en": "Accounts Payable (AP)", "def": "Money the company still owes suppliers for goods/services already received." },
+        { "vi": "Tỷ số thanh toán hiện hành", "en": "Current Ratio", "def": "Current assets divided by current liabilities, measuring the ability to pay near-term obligations." }
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Liabilities aren't inherently bad - the issue lies in their size and the ability to pay on time.",
+        "Reading the current/long-term structure carefully helps you correctly assess a business's liquidity risk."
+      ]
+    }
+  ]
+}

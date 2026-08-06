@@ -1,0 +1,172 @@
+{
+  "slug": "von-chu-so-huu",
+  "title": "What is equity?",
+  "subtitle": "What's left after subtracting all debt - who does it really belong to?",
+  "duration": "5 min",
+  "openingQuestion": "Equity = ?",
+  "openingOptions": [
+    "Revenue − Expenses",
+    "Total Assets − Total Liabilities",
+    "Total Assets",
+    "Cash + Investments"
+  ],
+  "explanation": "Equity is what's left of assets after paying off all debt - the portion belonging to shareholders. It comes from two sources: cash shareholders contributed, and profit the company retained over the years instead of paying it all out. One point often misunderstood: this is an accounting figure at cost, not market value, so a good company usually has market capitalisation far above its equity, while negative equity doesn't necessarily mean the company is dying.",
+  "diagram": [
+    { "label": "Total assets", "arrow": true },
+    { "label": "Subtract liabilities", "arrow": true },
+    { "label": "= Equity (belonging to shareholders)" }
+  ],
+  "realWorldExample": {
+    "company": "FPT Corporation",
+    "description": "FPT's equity consists of founding shareholders' original contributed capital plus tens of thousands of billions of dong in retained earnings accumulated over more than 30 years of operation - most of the company's value comes from reinvested profit, not the original contributed capital."
+  },
+  "quiz": [
+    {
+      "question": "What does equity equal?",
+      "options": [
+        "Assets + Liabilities",
+        "Cash in the bank account",
+        "Revenue - Expenses",
+        "Assets - Liabilities"
+      ],
+      "explanation": "The basic formula: Assets = Liabilities + Equity. So: Equity = Assets - Liabilities. This is what's left for owners after paying off all debt."
+    },
+    {
+      "question": "What components make up equity?",
+      "options": [
+        "Contributed capital + retained earnings (undistributed profit)",
+        "Solely the cash the company is currently holding at the reporting date",
+        "Solely the profit the company earned during the most recent reporting period",
+        "Solely the market value of the company's listed shares"
+      ],
+      "explanation": "Equity = Original contributed capital + Accumulated profit - Dividends already paid. Retained earnings are an important part of equity."
+    },
+    {
+      "question": "When a company earns 100 million in profit, how does equity change?",
+      "options": [
+        "Increases by 100 million and liabilities fall by the same amount",
+        "Increases by 100 million if no dividend is paid",
+        "Stays unchanged because profit sits on the income statement, not the balance sheet",
+        "Falls by 100 million because income tax must be paid"
+      ],
+      "explanation": "Profit increases equity (through retained earnings). If the company pays a dividend, equity will fall as cash leaves the company."
+    },
+    {
+      "question": "What is ROE (Return on Equity)?",
+      "options": [
+        "Net income ÷ total assets (that's ROA)",
+        "Equity ÷ net income (inverted)",
+        "Net income ÷ equity",
+        "Gross profit ÷ average equity"
+      ],
+      "explanation": "ROE = Net Income ÷ Equity. Equity investors care about ROE most because it shows how much the company earns from their money."
+    },
+    {
+      "question": "A company has Net Income = 200 million, Equity = 1,000 million. What is its ROE?",
+      "options": [
+        "5%",
+        "0.2%",
+        "2x",
+        "20%"
+      ],
+      "explanation": "ROE = 200 ÷ 1,000 = 20%. The company earns 20% profit on the owners' equity - this is a good ROE level."
+    },
+    {
+      "question": "Why can a profitable company still see its equity fall?",
+      "options": [
+        "Because the company pays dividends or buys back shares, which reduces equity",
+        "This is a situation that can never actually happen in a company's real business",
+        "Because the accounting department made some calculation error in the financial statements",
+        "Because the company's liabilities increased during the reporting period"
+      ],
+      "explanation": "Profit increases equity, but if the company pays out all of it as dividends, equity returns to its starting figure. Buying back shares also reduces equity."
+    },
+    {
+      "question": "A newly founded company has initial contributed capital = 500 million, with no profit or loss. What is its equity?",
+      "options": [
+        "0 million",
+        "500 million",
+        "1,000 million",
+        "250 million"
+      ],
+      "explanation": "Equity = Contributed capital + Retained earnings. With no profit or loss, equity = 500 million (the contributed capital)."
+    }
+  ],
+  "keyTakeaways": [
+    "Equity = Assets − Liabilities",
+    "Made up of: contributed capital + retained earnings + share premium",
+    "ROE measures the return earned on this capital"
+  ],
+  "practicePrompt": {
+    "question": "Company Z has Assets = 800 billion, Liabilities = 500 billion. At year-end, the company earns 50 billion in profit but pays out all 50 billion as dividends to shareholders. How does the company's equity change from the start to the end of the year?",
+    "options": [
+      "Equity is unchanged (still 300 billion), because the 50-billion profit increases equity by 50 billion but the fully-distributed dividend reduces it by exactly the same 50 billion",
+      "Equity increases by 50 billion because the company had a profitable year, unrelated to the dividend decision",
+      "Equity falls by 50 billion because the company had to pay out cash as dividends to shareholders",
+      "It cannot be determined without information about the shareholders' original contributed capital"
+    ],
+    "explanation": "Equity = Assets - Liabilities = 800 - 500 = 300 billion at the start of the year. The 50-billion profit increases retained earnings (+50), but the 50-billion dividend reduces it by exactly that much (-50) - the two effects cancel out, so year-end equity is still 300 billion."
+  },
+  "summary": {
+    "keyIdea": "Equity = Assets − Liabilities",
+    "commonMistake": "Reading a concept as a phrase to memorise rather than a principle to apply to real decisions.",
+    "action": "Made up of: contributed capital + retained earnings + share premium"
+  },
+  "application": {
+    "title": "Calculate your own personal equity",
+    "message": "Add up the total value of assets you hold, subtract your total liabilities - what remains is your own personal 'equity', mirroring the equity line on a company's balance sheet.",
+    "secondary": "This is a way of looking at your net worth through an accounting lens, not just an account balance."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "If FPT sold off every asset it owns and paid off all its debts, who would the remaining cash belong to? The answer is equity - the shareholders' 'real' portion, after every creditor has been paid in full."
+    },
+    { "type": "heading", "text": "The base formula" },
+    {
+      "type": "paragraph",
+      "text": "Equity = Total Assets − Total Liabilities. This is the portion of the business's value that truly belongs to shareholders, after deducting every obligation to third parties (banks, suppliers, bondholders). Equity isn't cash sitting somewhere - it's an accounting figure reflecting the 'leftover' on the balance sheet."
+    },
+    { "type": "heading", "text": "Two main components of equity" },
+    {
+      "type": "paragraph",
+      "text": "Paid-in Capital/Contributed Capital is the cash shareholders paid to buy shares when the company issued them, including par value and share premium. Retained Earnings is the accumulated net profit over the years that the company chooses to keep for reinvestment rather than paying out entirely as dividends. For long-running, well-growing companies like FPT, most of the equity value comes from retained earnings accumulated over decades, not the original contributed capital."
+    },
+    { "type": "heading", "text": "How issuing new shares affects equity" },
+    {
+      "type": "paragraph",
+      "text": "When a company issues new shares to raise capital, equity rises by exactly the amount raised, while the number of shares outstanding also rises. This creates dilution: each existing shareholder still holds the same number of shares, but their ownership percentage of the whole company falls, because the 'pie' is now sliced into more pieces."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Shareholders' Contributed/Paid-in Capital",
+        "Share Premium - the difference between the sale price and the par value of shares",
+        "Retained Earnings - accumulated over the years",
+        "Treasury Stock - reduces equity when the company buys back its own shares"
+      ]
+    },
+    {
+      "type": "conceptTable",
+      "title": "Equity terminology",
+      "concepts": [
+        { "vi": "Vốn chủ sở hữu", "en": "Equity / Shareholders' Equity", "def": "The portion of assets belonging to shareholders after deducting all liabilities." },
+        { "vi": "Lợi nhuận giữ lại", "en": "Retained Earnings", "def": "Accumulated net profit over the years, not yet paid out as dividends, kept for reinvestment." },
+        { "vi": "Thặng dư vốn cổ phần", "en": "Share Premium", "def": "The difference between the actual share sale price and par value at issuance." },
+        { "vi": "Pha loãng", "en": "Dilution", "def": "The fall in existing shareholders' ownership percentage when the company issues new shares." }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Connection to ROE",
+      "text": "Return on Equity (ROE) = Net Income ÷ Equity, measuring how much net profit each dong of equity generates. It's one of the most important indicators for comparing capital efficiency across businesses in the same industry."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Equity is the shareholders' true 'remainder', not the company's total assets.",
+        "Most of the value in sustainably growing companies comes from retained earnings, not the original contributed capital."
+      ]
+    }
+  ]
+}
