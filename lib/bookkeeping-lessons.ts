@@ -71,10 +71,10 @@ export const BOOKKEEPING_LESSONS: Lesson[] = [
       {
         question: "Bên Nợ tăng lên với loại tài khoản nào?",
         options: [
-          "Tài sản và chi phí",
-          "Nợ và vốn chủ",
+          "Tài sản và chi phí, hai nhóm tăng ở bên Nợ",
+          "Nợ phải trả và vốn chủ sở hữu",
           "Doanh thu và các khoản thu nhập khác",
-          "Mọi tài khoản, vì Nợ luôn là vế ghi tăng theo quy ước",
+          "Mọi tài khoản, vì Nợ luôn là vế ghi tăng",
         ],
         correct: 0,
         explanation:
@@ -585,10 +585,10 @@ export const BOOKKEEPING_LESSONS: Lesson[] = [
       {
         question: "Chênh lệch chia hết cho 9 thường là dấu hiệu của lỗi gì?",
         options: [
-          "Đảo chữ số khi nhập liệu",
+          "Đảo thứ tự hai chữ số khi nhập liệu",
           "Ghi trùng một nghiệp vụ vào sổ hai lần",
           "Bỏ sót một nghiệp vụ chưa được ghi vào sổ",
-          "Nhầm lẫn giữa hai tài khoản có số hiệu gần giống nhau",
+          "Nhầm hai tài khoản có số hiệu gần giống nhau",
         ],
         correct: 0,
         explanation:
@@ -742,10 +742,10 @@ export const BOOKKEEPING_LESSONS: Lesson[] = [
       {
         question: "Tài khoản nào là tài khoản tạm thời?",
         options: [
-          "Doanh thu bán hàng",
+          "Doanh thu bán hàng trong kỳ",
           "Phải trả người bán",
-          "Hàng tồn kho",
-          "Vay dài hạn từ ngân hàng thương mại",
+          "Hàng tồn kho cuối kỳ",
+          "Vay dài hạn từ ngân hàng",
         ],
         correct: 0,
         explanation:

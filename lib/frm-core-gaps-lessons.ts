@@ -1054,10 +1054,10 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       {
         question: "Vì sao mỗi sự kiện tổn thất cần được gán đồng thời cả nhóm sự kiện lẫn mảng kinh doanh?",
         options: [
-          "Vì vốn được tính theo ma trận hai chiều",
-          "Vì chỉ chấp nhận hai trường",
-          "Vì gán hai chiều giúp giảm tổng số sự kiện phải ghi nhận xuống một nửa",
-          "Vì mảng kinh doanh quyết định sự kiện đó có phải rủi ro hoạt động hay không"
+          "Vì vốn được tính theo ma trận hai chiều nhóm × mảng",
+          "Vì hệ thống chỉ chấp nhận đúng hai trường",
+          "Vì gán hai chiều giúp giảm nửa số sự kiện phải ghi",
+          "Vì mảng kinh doanh quyết định đó có phải rủi ro hoạt động không"
         ],
         correct: 0,
         explanation: "Gian lận nội bộ ở mảng giao dịch tự doanh có mức thiệt hại tiềm tàng khác hẳn gian lận nội bộ ở mảng bán lẻ. Ma trận hai chiều giữ lại thông tin đó thay vì gộp tất cả vào một con số duy nhất."

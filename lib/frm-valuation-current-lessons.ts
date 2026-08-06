@@ -246,10 +246,10 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
       {
         question: "Khi tăng số bước của cây lên rất lớn, kết quả tiến tới đâu?",
         options: [
-          "Hội tụ về giá Black-Scholes",
-          "Phân kỳ do sai số tích luỹ",
-          "Về đúng giá trị nội tại của quyền chọn tại thời điểm hiện tại",
-          "Về 0 vì mỗi bước nhỏ dần khiến biến động mỗi bước cũng nhỏ dần"
+          "Hội tụ về giá theo công thức Black-Scholes",
+          "Phân kỳ dần do sai số tích luỹ qua từng bước",
+          "Về đúng giá trị nội tại của quyền chọn hôm nay",
+          "Về 0 vì biến động mỗi bước cũng nhỏ dần"
         ],
         correct: 0,
         explanation: "Đây là mối liên hệ đẹp nhất của chương này: cây nhị thức với số bước tiến ra vô cùng hội tụ về công thức Black-Scholes. Hai mô hình trông rất khác nhau nhưng cùng đứng trên một nguyên lý."

@@ -398,10 +398,10 @@ export const FINTECH_LESSONS: Lesson[] = [
       {
         question: "Float của một ví điện tử sinh ra thu nhập bằng cách nào?",
         options: [
-          "Lãi từ số dư gửi tại ngân hàng",
-          "Phí rút tiền khỏi ví",
+          "Lãi sinh ra từ số dư khách gửi nằm tại ngân hàng",
+          "Phí khách trả khi rút tiền khỏi ví",
           "Chênh lệch giữa số tiền nạp vào và số tiền khách đã tiêu",
-          "Phần số dư của khách không hoạt động quá lâu được chuyển thành doanh thu",
+          "Phần số dư khách bỏ quên quá lâu được ghi thành doanh thu",
         ],
         correct: 0,
         explanation:
@@ -882,9 +882,9 @@ export const FINTECH_LESSONS: Lesson[] = [
       {
         question: "Biên đóng góp âm nghĩa là gì?",
         options: [
-          "Bán thêm một đơn vị là lỗ thêm",
-          "Công ty chưa đủ quy mô nhưng sẽ hoà vốn khi khối lượng đủ lớn",
-          "Chi phí cố định quá cao",
+          "Mỗi đơn vị bán thêm làm khoản lỗ to ra",
+          "Công ty chưa đủ quy mô, sẽ hoà vốn khi lớn hơn",
+          "Chi phí cố định quá cao so với quy mô",
           "Sản phẩm cần tăng giá khoảng 10% để về mức an toàn",
         ],
         correct: 0,

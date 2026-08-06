@@ -211,10 +211,10 @@ export const IR_LESSONS: Lesson[] = [
       {
         question: "Đồng hồ công bố bắt đầu chạy từ lúc nào?",
         options: [
-          "Từ khi sự kiện phát sinh",
-          "Từ khi họp xong",
+          "Từ khi sự kiện phát sinh, không phải từ khi họp xong",
+          "Từ khi cuộc họp kết thúc",
           "Từ khi bộ phận pháp chế hoàn tất rà soát nội dung công bố",
-          "Từ phiên giao dịch đầu tiên sau khi thông tin được xác nhận đầy đủ",
+          "Từ phiên giao dịch đầu tiên sau khi xác nhận xong",
         ],
         correct: 0,
         explanation:
