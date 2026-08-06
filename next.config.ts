@@ -35,7 +35,23 @@ const nextConfig: NextConfig = {
       "default-src 'self'",
       `script-src 'self' 'unsafe-inline' ${isDev ? "'unsafe-eval'" : ""}`,
       "style-src 'self' 'unsafe-inline'",
-      "img-src 'self' data: https://lh3.googleusercontent.com https://*.googleusercontent.com https://*.supabase.co",
+      // `blob:` là bắt buộc, không phải nới lỏng cho tiện.
+      //
+      // Mọi tấm ảnh chia sẻ của app - chứng chỉ chặng học, thẻ lên cấp, thẻ
+      // lời nhắn ở /loi-nhan - đều dựng bằng cách serialize một <svg> trong
+      // trang, gói vào Blob, rồi nạp qua `new Image()` để vẽ lên canvas
+      // (lib/share-image.ts). Không có `blob:` ở đây thì trình duyệt chặn
+      // đúng bước nạp đó, `onerror` nổ, và người dùng chỉ thấy "Không thể tạo
+      // ảnh lúc này." - không nút nào trong ba nút ấy từng chạy được.
+      //
+      // Chặn kiểu này không lộ ra ở đâu ngoài console: `data:` được cho phép
+      // nên ảnh avatar, icon, mọi thứ khác vẫn bình thường, và chỉ riêng nhánh
+      // xuất ảnh là chết. Đó là lý do nó sống lâu và bị chẩn đoán nhầm sang
+      // kích thước SVG.
+      //
+      // Rủi ro thấp: blob URL là đối tượng do chính trang này tạo ra và chỉ
+      // trang này đọc được - nó không mở đường cho nguồn ngoài nào.
+      "img-src 'self' data: blob: https://lh3.googleusercontent.com https://*.googleusercontent.com https://*.supabase.co",
       "font-src 'self' data:",
       "connect-src 'self' https://*.supabase.co wss://*.supabase.co",
       // CFA module content (CfaContentRenderer) auto-embeds any YouTube link

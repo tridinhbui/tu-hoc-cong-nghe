@@ -252,7 +252,7 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
               được để nhìn nghiêng. DinhHoaFlame vẫn là thứ hiện ra trước khi
               cảnh tải xong và là thứ duy nhất hiện ra với người bật giảm
               chuyển động - nó là fallback thật, không phải mã chết. */}
-          <QuietForestScene intensity={flame} />
+          <QuietForestScene intensity={flame} setDownCount={setDownCount} />
 
           {motivation ? (
             // Vào chậm và nối tiếp nhau chứ không hiện cùng lúc: nhãn trước,
