@@ -1,5 +1,5 @@
 import { createClient } from "@/lib/supabase";
-import { DomainType, DOMAINS } from "./levels";
+import { DomainType } from "./levels";
 
 export interface SkillNode {
   id: string;
@@ -9,21 +9,44 @@ export interface SkillNode {
   requiredLessonId: number;
 }
 
-// Cây kỹ năng định nghĩa sẵn
+// Cây kỹ năng định nghĩa sẵn.
+//
+// `requiredLessonId` là id thật trong lib/lessons.ts, không phải số thứ tự của
+// node. Bảy giá trị ở đây từng là 1..7 - tức bảy bài NHẬP MÔN của track cá nhân
+// ("Tài chính là gì?", "Tiền là gì?", "Dòng tiền là gì?"...), không liên quan gì
+// tới tên node. Hệ quả: một người mới học xong tuần đầu tiên mở cây kỹ năng ra
+// và thấy cả bảy node xanh hết, gồm "LBO Modeling" và "M&A Valuation" - phần
+// duy nhất của màn hình có ý nghĩa thì nói ngược lại sự thật. Không ai phát
+// hiện vì tab mở cây kỹ năng đã bị gỡ, nên màn hình này chưa từng được ai nhìn.
+//
+// Mỗi id dưới đây là bài dạy đúng khái niệm của node, tra từ lib/lessons-data/_index.json.
 export const SKILL_TREE: SkillNode[] = [
-  { id: "TVM", name: "Time Value of Money", domain: "economics", prerequisites: [], requiredLessonId: 1 },
-  { id: "CAPM", name: "CAPM Model", domain: "investment", prerequisites: ["TVM"], requiredLessonId: 2 },
-  { id: "WACC", name: "WACC Calculation", domain: "corporate_finance", prerequisites: ["CAPM"], requiredLessonId: 3 },
-  { id: "DCF", name: "DCF Valuation", domain: "valuation", prerequisites: ["WACC", "TVM"], requiredLessonId: 4 },
-  { id: "CCA", name: "Comparable Companies Analysis", domain: "valuation", prerequisites: ["WACC"], requiredLessonId: 5 },
-  { id: "LBO", name: "LBO Modeling", domain: "corporate_finance", prerequisites: ["DCF"], requiredLessonId: 6 },
-  { id: "MA", name: "M&A Valuation", domain: "valuation", prerequisites: ["LBO", "CCA"], requiredLessonId: 7 },
+  // 81 present-value, không phải 10 gia-tri-thoi-gian-cua-tien: sáu node còn
+  // lại đều nằm ở track chuyên ngành, nên gốc cây lấy bài mở màn Chặng 4 của
+  // cùng track thay vì bài giới thiệu bên track cá nhân.
+  { id: "TVM", name: "Time Value of Money", domain: "economics", prerequisites: [], requiredLessonId: 81 },
+  { id: "CAPM", name: "CAPM Model", domain: "investment", prerequisites: ["TVM"], requiredLessonId: 97 },
+  { id: "WACC", name: "WACC Calculation", domain: "corporate_finance", prerequisites: ["CAPM"], requiredLessonId: 93 },
+  { id: "DCF", name: "DCF Valuation", domain: "valuation", prerequisites: ["WACC", "TVM"], requiredLessonId: 133 },
+  { id: "CCA", name: "Comparable Companies Analysis", domain: "valuation", prerequisites: ["WACC"], requiredLessonId: 131 },
+  { id: "LBO", name: "LBO Modeling", domain: "corporate_finance", prerequisites: ["DCF"], requiredLessonId: 117 },
+  { id: "MA", name: "M&A Valuation", domain: "valuation", prerequisites: ["LBO", "CCA"], requiredLessonId: 108 },
 ];
 
 /**
- * Kiểm tra các skill mới có thể mở khóa sau khi hoàn thành một lesson
+ * Các node cây kỹ năng user đủ điều kiện học nhưng chưa học.
+ *
+ * `justCompletedLessonId` là thứ biến hàm này thành một thông báo dùng được.
+ * Không có nó, hàm trả về TOÀN BỘ node đang mở - tức là cùng một danh sách sau
+ * mỗi bài học, nên gọi sau mỗi lần hoàn thành bài sẽ báo "mở khoá kỹ năng mới"
+ * lặp đi lặp lại cho những node đã mở từ lâu. Truyền vào id bài vừa xong thì
+ * chỉ những node mà chính bài đó vừa gỡ nốt điều kiện tiên quyết mới được trả
+ * về, và tính được trực tiếp như vậy nên không cần lưu "đã báo chưa" ở đâu cả.
  */
-export async function getUnlockedSkills(userId: string): Promise<SkillNode[]> {
+export async function getUnlockedSkills(
+  userId: string,
+  justCompletedLessonId?: number
+): Promise<SkillNode[]> {
   const supabase = createClient();
 
   // Lấy các bài học user đã hoàn thành
@@ -34,6 +57,7 @@ export async function getUnlockedSkills(userId: string): Promise<SkillNode[]> {
     .eq("completed", true);
 
   const completedLessonIds = new Set(progress?.map((p) => Number(p.lesson_id)) || []);
+  const prereqNodeOf = (prereqId: string) => SKILL_TREE.find((n) => n.id === prereqId);
 
   // Lọc các node mà user chưa hoàn thành nhưng đã hoàn thành tất cả prereq
   return SKILL_TREE.filter((node) => {
@@ -41,91 +65,17 @@ export async function getUnlockedSkills(userId: string): Promise<SkillNode[]> {
     if (completedLessonIds.has(node.requiredLessonId)) return false;
 
     // Phải hoàn thành tất cả prerequisites
-    return node.prerequisites.every((prereqId) => {
-      const prereqNode = SKILL_TREE.find((n) => n.id === prereqId);
+    const allPrereqsDone = node.prerequisites.every((prereqId) => {
+      const prereqNode = prereqNodeOf(prereqId);
       return prereqNode && completedLessonIds.has(prereqNode.requiredLessonId);
     });
+    if (!allPrereqsDone) return false;
+
+    if (justCompletedLessonId === undefined) return true;
+
+    // Chỉ giữ node mà bài vừa học xong chính là điều kiện tiên quyết cuối cùng.
+    return node.prerequisites.some(
+      (prereqId) => prereqNodeOf(prereqId)?.requiredLessonId === justCompletedLessonId
+    );
   });
-}
-
-export interface RandomRewardResult {
-  hasReward: boolean;
-  rewardType?: "xp" | "coin" | "card";
-  rewardValue?: number | string; // số lượng hoặc asset_key của thẻ
-  rewardName?: string;
-}
-
-/**
- * Cơ chế quay thưởng ngẫu nhiên lành mạnh (Random Reward)
- * Giới hạn tối đa 3 hộp quà/ngày
- */
-export async function drawRandomReward(userId: string): Promise<RandomRewardResult> {
-  const supabase = createClient();
-  
-  // 1. Kiểm tra giới hạn ngày (Daily Cap)
-  const todayStart = new Date();
-  todayStart.setHours(0, 0, 0, 0);
-
-  const { count, error } = await supabase
-    .from("user_challenge_attempts")
-    // Dùng bảng attempts hoặc thêm trường logs để track số hộp quà đã nhận hôm nay.
-    // Ở đây ta có thể tính từ logs hoặc một bảng đếm. 
-    // Tạm thời, để đơn giản và đáng tin cậy, ta check số quà nhận được từ user_inventories có acquired_at trong hôm nay.
-    .select("*", { count: "exact", head: true })
-    .eq("user_id", userId)
-    .gte("completed_at", todayStart.toISOString());
-
-  // Giả sử tối đa 3 phần quà ngẫu nhiên từ bài học mỗi ngày
-  // (Chúng ta có thể kiểm tra một bảng ghi nhận lịch sử quay quà, ở đây mock đơn giản để demo)
-  
-  // Tỷ lệ xuất hiện: 50% có quà
-  if (Math.random() > 0.5) {
-    return { hasReward: false };
-  }
-
-  const rand = Math.random();
-  
-  if (rand < 0.60) {
-    // 60% nhận XP
-    const xpBonus = Math.floor(Math.random() * 31) + 20; // 20 - 50 XP
-    return {
-      hasReward: true,
-      rewardType: "xp",
-      rewardValue: xpBonus,
-      rewardName: `+${xpBonus} XP Bonus`
-    };
-  } else if (rand < 0.85) {
-    // 25% nhận Coin
-    const coinBonus = Math.floor(Math.random() * 21) + 10; // 10 - 30 Coins
-    return {
-      hasReward: true,
-      rewardType: "coin",
-      rewardValue: coinBonus,
-      rewardName: `+${coinBonus} Coins`
-    };
-  } else {
-    // 15% nhận Card doanh nghiệp ngẫu nhiên
-    // Lấy một card ngẫu nhiên từ bảng gamification_assets
-    const { data: cards } = await supabase
-      .from("gamification_assets")
-      .select("asset_key, name")
-      .eq("asset_type", "card");
-
-    if (cards && cards.length > 0) {
-      const selected = cards[Math.floor(Math.random() * cards.length)];
-      return {
-        hasReward: true,
-        rewardType: "card",
-        rewardValue: selected.asset_key,
-        rewardName: `Thẻ doanh nghiệp: ${selected.name}`
-      };
-    }
-    
-    return {
-      hasReward: true,
-      rewardType: "coin",
-      rewardValue: 15,
-      rewardName: "+15 Coins"
-    };
-  }
 }

@@ -24,6 +24,7 @@ import { queueOfflineCompletion, removeOfflineCompletion } from "@/lib/offline-s
 import { recalculateUserStats } from "@/lib/supabase-user";
 import { updateStreak, MAX_STREAK_FREEZES } from "@/lib/supabase-streak";
 import { maybeAwardFinanceCardDrop } from "@/lib/finance-cards";
+import { getUnlockedSkills } from "@/lib/gamification";
 import { getReadingProgress, updateReadingProgress } from "@/lib/supabase-reading";
 import { recordQuizMistake } from "@/lib/quiz-mistakes";
 import { getRecallItemsAction } from "@/lib/recall-actions";
@@ -637,6 +638,16 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
         if (typeof window !== "undefined") {
           window.dispatchEvent(new CustomEvent("thtcdn:finance-card-dropped", { detail: cardDrop.card }));
         }
+      }
+      // Cây kỹ năng (/cay-ky-nang) chỉ báo trạng thái chứ không tự nói khi có
+      // node mới mở, nên người học không có lý do gì để mở nó ra đúng lúc có
+      // gì đó thay đổi. `getUnlockedSkills` viết ra để làm việc này nhưng chưa
+      // từng được gọi từ luồng nào - nó nằm trong một API route mà không code
+      // nào fetch tới. Truyền id bài vừa xong để chỉ báo node mà chính bài này
+      // vừa mở, thay vì đọc lại cả danh sách đang mở sau mỗi bài.
+      const newlyUnlocked = await getUnlockedSkills(uid, persistedLessonId);
+      for (const node of newlyUnlocked) {
+        toast.success(`🌲 Mở khoá kỹ năng: ${node.name} - xem ở Cây kỹ năng`);
       }
     } catch (error) {
       console.error("Error updating stats/streak after completion (lesson still saved):", error);
