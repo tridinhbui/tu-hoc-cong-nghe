@@ -5,6 +5,7 @@ import { getCompletedLessons, getTotalTimeSpentMinutes } from "@/lib/supabase-pr
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 import { getLessonsMeta, getLessonById } from "@/lib/lessons-loader";
 import { isLessonIdInTrack, isLessonInRange, TRACK_PERSONAL, TRACK_PROFESSIONAL } from "@/lib/track-stages";
+import { stageTopicFor } from "@/lib/stage-topics";
 import { getLessonRecallDay } from "@/lib/lesson-labels";
 import { RECALL_SCHEDULE, type RecallItem } from "@/lib/recall-schedule";
 import type { LessonMeta } from "@/lib/lesson-types";
@@ -30,31 +31,6 @@ interface StageReviewInsight {
   lessonTitle: string;
   stageLabel: string;
   message: string;
-}
-
-function inferLearningTopic(lesson: LessonMeta, track: "personal" | "professional"): string {
-  const personalStages = TRACK_PERSONAL.stages;
-  const professionalStages = TRACK_PROFESSIONAL.stages;
-  const stages = track === "personal" ? personalStages : professionalStages;
-  const stage = stages.find((item) => isLessonInRange(lesson.id, item));
-
-  if (!stage) {
-    return track === "personal" ? "Tài chính cá nhân" : "Tài chính chuyên ngành";
-  }
-
-  if (track === "personal") {
-    if (stage.label === "Chặng 0" || stage.label === "Chặng 1") return "Nền tảng tiền bạc & rủi ro";
-    if (stage.label === "Chặng 2" || stage.label === "Chặng 5") return "Đầu tư cá nhân";
-    if (stage.label === "Chặng 3") return "Trái phiếu & lãi suất";
-    if (stage.label === "Chặng 4" || stage.label === "Chặng 6") return "Danh mục & hưu trí";
-    return "Nhà ở & bảo vệ tài sản";
-  }
-
-  if (stage.label === "Chặng 1" || stage.label === "Chặng 2" || stage.label === "Chặng 3") return "Kế toán & báo cáo tài chính";
-  if (stage.label === "Chặng 4" || stage.label === "Chặng 5" || stage.label === "Chặng 6") return "Định giá & tài chính doanh nghiệp";
-  if (stage.label === "Chặng 7") return "Trái phiếu & tín dụng";
-  if (stage.label === "Chặng 8" || stage.label === "Chặng 9") return "Rủi ro, danh mục & phái sinh";
-  return "Ứng dụng nghề nghiệp";
 }
 
 function recommendedActionForTopic(topic: string): string {
@@ -205,7 +181,7 @@ export async function getDashboardGreetingAction(userId: string, track: "persona
   for (const row of mistakeRows.data ?? []) {
     const lesson = visibleTrackLessons.find((item) => item.id === row.lesson_id);
     if (!lesson) continue;
-    const topic = inferLearningTopic(lesson, track);
+    const topic = stageTopicFor(lesson.id, track);
     topicCounts.set(topic, (topicCounts.get(topic) ?? 0) + Number(row.wrong_count));
 
     if (!criticalMistake) {

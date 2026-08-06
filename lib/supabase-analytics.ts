@@ -1,6 +1,6 @@
 import { createClient } from "@/lib/supabase";
 import { handleSupabaseError } from "@/lib/errors";
-import { isLessonInRange, TRACK_PERSONAL, TRACK_PROFESSIONAL } from "@/lib/track-stages";
+import { stageTopicFor } from "@/lib/stage-topics";
 
 function isMissingTableError(error: { code?: string } | null) {
   return error?.code === "PGRST205" || error?.code === "42P01";
@@ -22,50 +22,12 @@ interface LessonMetaRow {
   track?: string | null;
 }
 
-// Chủ đề phân tích theo nhãn chặng cá nhân, tra thẳng thay vì chuỗi if.
-//
-// Bảng cũ được viết cho lần đánh số trước - khi chặng "Biết mình" còn là
-// Chặng 0 - và không được cập nhật khi track dời số. Hậu quả không lộ ra ở
-// đâu cả: mọi bài vẫn có một chủ đề, chỉ là sai chủ đề. Chặng 2 (Thuế TNCN)
-// bị đếm vào "Đầu tư cá nhân", Chặng 3 (Tư duy tiền bạc) vào "Trái phiếu &
-// lãi suất", và bốn chặng cuối rơi hết vào nhánh mặc định "Nhà ở".
-//
-// Viết thành bảng vì một mục thiếu ở đây là một nhãn không có chủ đề, dễ
-// thấy hơn một điều kiện if không khớp rồi lặng lẽ rơi xuống dòng return
-// cuối cùng.
-const PERSONAL_STAGE_TOPIC: Record<string, string> = {
-  "Chặng 1": "Nền tảng tiền bạc & rủi ro",
-  "Chặng 2": "Thuế & lương thực nhận",
-  "Chặng 3": "Nền tảng tiền bạc & rủi ro",
-  "Chặng 4": "Đầu tư cá nhân",
-  "Chặng 5": "Trái phiếu & lãi suất",
-  "Chặng 6": "Danh mục & hưu trí",
-  "Chặng 7": "Đầu tư cá nhân",
-  "Chặng 8": "Danh mục & hưu trí",
-  "Chặng 9": "Nhà ở & bảo vệ tài sản",
-  "Chặng 10": "Tâm lý đầu tư",
-};
-
+// Bảng chủ đề theo chặng giờ nằm ở lib/stage-topics.ts, dùng chung với
+// app/(app)/dashboard/actions.ts. Bản ở đây từng là bản duy nhất được sửa sau
+// lần dời số chặng; bản kia không, và không có gì bắt được điều đó.
 function inferAnalyticsTopic(lesson: LessonMetaRow): string {
   if (lesson.track === "bonus") return "Bài case & ứng dụng";
-
-  const personalStage = TRACK_PERSONAL.stages.find((stage) => isLessonInRange(lesson.id, stage));
-  if (lesson.track === "personal" || !lesson.track) {
-    if (!personalStage) return "Tài chính cá nhân";
-    return PERSONAL_STAGE_TOPIC[personalStage.label] ?? "Nhà ở & bảo vệ tài sản";
-  }
-
-  const professionalStage = TRACK_PROFESSIONAL.stages.find((stage) => isLessonInRange(lesson.id, stage));
-  if (!professionalStage) return "Tài chính chuyên ngành";
-  if (professionalStage.label === "Chặng 1" || professionalStage.label === "Chặng 2" || professionalStage.label === "Chặng 3") {
-    return "Kế toán & báo cáo tài chính";
-  }
-  if (professionalStage.label === "Chặng 4" || professionalStage.label === "Chặng 5" || professionalStage.label === "Chặng 6") {
-    return "Định giá & tài chính doanh nghiệp";
-  }
-  if (professionalStage.label === "Chặng 7") return "Trái phiếu & tín dụng";
-  if (professionalStage.label === "Chặng 8" || professionalStage.label === "Chặng 9") return "Rủi ro, danh mục & phái sinh";
-  return "Ứng dụng nghề nghiệp";
+  return stageTopicFor(lesson.id, lesson.track === "professional" ? "professional" : "personal");
 }
 
 export interface LearningAnalytics {
