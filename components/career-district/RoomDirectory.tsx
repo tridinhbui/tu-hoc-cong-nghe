@@ -1,7 +1,7 @@
 "use client";
 
 import {
-  CIVIC_ROOMS,
+  civicRoomsOf,
   getRoom,
   type Doorway,
   type DistrictRoomId,
@@ -55,8 +55,8 @@ export function directoryGroups(t: Dictionary): Array<{ title: string; doors: Do
   // "Phòng nào là phòng dạy" đọc từ cờ `teaching` trong CIVIC_ROOMS chứ không
   // phải một danh sách thứ ba viết ở đây; cờ đó lại được đối chiếu với
   // TEACHING_PANELS bằng test.
-  const teaching = new Set(CIVIC_ROOMS.filter((c) => c.teaching).map((c) => c.id as string));
-  const doors = getRoom("street").doorways.filter(
+  const teaching = new Set(civicRoomsOf(t).filter((c) => c.teaching).map((c) => c.id as string));
+  const doors = getRoom(t, "street").doorways.filter(
     (d) => d.to !== "street" && !CAREER_CATEGORY_ORDER.includes(d.to as never)
   );
   return [
@@ -145,7 +145,7 @@ export default function RoomDirectory({
         ))}
         <Heading>{t.careerDistrict.roomDirectory.careerGroups}</Heading>
         {CAREER_CATEGORY_ORDER.map((c) => {
-          const d = getRoom("street").doorways.find((x) => x.to === (c as DistrictRoomId));
+          const d = getRoom(t, "street").doorways.find((x) => x.to === (c as DistrictRoomId));
           if (!d) return null;
           return (
             <button

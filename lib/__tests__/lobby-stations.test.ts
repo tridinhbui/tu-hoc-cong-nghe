@@ -1,7 +1,11 @@
 import { describe, it, expect } from "vitest";
-import { STATIONS, STATION_X, nearestStation } from "@/components/lobby/stations";
+import { stationsOf, STATION_X, nearestStation as nearestStationOf } from "@/components/lobby/stations";
 import { ARMCHAIR_ZS, CARREL_ZS } from "@/components/lobby/room-obstacles";
 import { MEZZ_BAND } from "@/components/lobby/world";
+import { vi as viDict } from "@/lib/i18n/dictionaries/vi";
+
+const STATIONS = stationsOf(viDict);
+const nearestStation = (x: number, z: number, floor: 0 | 1) => nearestStationOf(STATIONS, x, z, floor);
 
 /** Các cửa phòng học vừa là hình học vừa là điều hướng, nên hai loại lỗi đều
  *  câm lặng: một cái cửa trùng chỗ với cái bàn thì không ai vào được phòng đó,

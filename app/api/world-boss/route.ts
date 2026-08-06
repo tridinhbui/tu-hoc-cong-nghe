@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 import { BOSS_QUESTION_COUNT } from "@/lib/world-boss";
+import { getServerDictionary } from "@/lib/i18n/server";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
 /** Cột id của world_bosses là uuid; chuỗi nào khác dạng đó thì không thể là
  *  một hàng thật, và gửi nó vào truy vấn chỉ tổ sinh lỗi kiểu từ Postgres. */
@@ -8,35 +10,31 @@ function isUuid(value: string | undefined): value is string {
   return !!value && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(value);
 }
 
-// Mock Fallback World Boss Server
-const FALLBACK_WORLD_BOSS = {
-  id: "world-boss-titan-2026",
-  name: "Bạo Chúa Khủng Hoảng Tài Chính (Financial Crisis Titan)",
-  description: "Trùm World Boss Server hàng tuần cực mạnh sở hữu 1,000,000 HP. Toàn bộ người học trên server cùng nhau gây sát thương để giải cứu thị trường!",
-  boss_emoji: "🌋",
-  max_hp: 1000000,
-  current_hp: 745000,
-  start_date: new Date().toISOString().split("T")[0],
-  end_date: new Date(Date.now() + 7 * 86400000).toISOString().split("T")[0],
-  is_active: true,
-  questions: [
-    { prompt: "Khủng hoảng nợ dưới chuẩn (Subprime Mortgage) năm 2008 khởi nguồn chính từ đâu?", options: ["Nợ xấu chứng khoán hóa quá đà & Định giá tín nhiệm sai lầm", "Giá dầu mỏ giảm đột ngột", "Lạm phát tiền tệ ở Châu Âu"], correct: 0 },
-    { prompt: "Khi Ngân hàng Trung ương liên tục nâng lãi suất điều hành (Hawk Policy), thị trường tài sản thường có xu hướng nào?", options: ["Biến động giảm do chi phí vốn tăng & định giá chiết khấu giảm", "Tăng trưởng bùng nổ ngay lập tức", "Không ảnh hưởng"], correct: 0 },
-    { prompt: "Chỉ số VIX (Volatility Index) trên thị trường tài chính thường đại diện cho điều gì?", options: ["Chỉ số đo lường mức độ sợ hãi/biến động của thị trường", "Tỷ lệ lạm phát mục tiêu", "Tỷ lệ thất nghiệp"], correct: 0 },
-    { prompt: "Trong mô hình Black-Scholes định giá quyền chọn, biến số nào tác động mạnh nhất đến Giá trị Thời gian (Time Value)?", options: ["Độ biến động lịch sử/nội hàm (Implied Volatility)", "Số dư tiền gửi", "Mệnh giá cổ phiếu"], correct: 0 },
-    { prompt: "Chiến lược Hedging (Phòng hộ) bằng hợp đồng Tương lai (Futures Contract) giúp doanh nghiệp đạt mục tiêu gì?", options: ["Cố định chi phí/doanh thu rủi ro biến động giá trong tương lai", "Gia tăng nợ vay ngân hàng", "Trốn thuế doanh nghiệp"], correct: 0 },
-    { prompt: "Khi lợi suất trái phiếu chính phủ Mỹ kỳ hạn 10 năm tăng mạnh, định giá cổ phiếu tăng trưởng thường chịu áp lực vì sao?", options: ["Tỷ lệ chiết khấu tăng làm giá trị hiện tại của dòng tiền tương lai giảm", "Doanh thu của doanh nghiệp tự động giảm ngay", "Cổ tức bắt buộc phải bị cắt"], correct: 0 },
-    { prompt: "Một ngân hàng có tỷ lệ nợ xấu (NPL) tăng mạnh nhưng vẫn báo lợi nhuận đẹp. Nhà phân tích nên nghi ngờ điều gì đầu tiên?", options: ["Khả năng trích lập dự phòng chưa đủ hoặc ghi nhận lợi nhuận chưa phản ánh rủi ro tín dụng", "Ngân hàng chắc chắn đang tăng trưởng bền vững", "Chỉ số NPL không liên quan gì đến chất lượng lợi nhuận"], correct: 0 },
-    { prompt: "Trong khủng hoảng thanh khoản, tài sản nào thường bị bán đầu tiên trong danh mục tổ chức?", options: ["Tài sản thanh khoản cao, dễ bán nhanh để lấy tiền mặt", "Tài sản vô hình không thể giao dịch", "Các khoản chi phí trả trước"], correct: 0 },
-    { prompt: "Nếu spread tín dụng doanh nghiệp (credit spread) nới rộng đột ngột, tín hiệu phổ biến nhất là gì?", options: ["Thị trường đang yêu cầu premium rủi ro cao hơn vì lo ngại tín dụng/xác suất vỡ nợ tăng", "Doanh nghiệp tự động được nâng hạng tín nhiệm", "Chi phí vốn cổ phần giảm ngay"], correct: 0 },
-    { prompt: "Một quỹ dùng đòn bẩy cao để ôm tài sản dài hạn nhưng tài trợ bằng vốn ngắn hạn. Rủi ro lớn nhất là gì?", options: ["Rủi ro mismatch kỳ hạn và bị ép thanh lý khi nguồn vốn ngắn hạn rút đi", "Rủi ro này luôn tốt vì ROE tăng", "Không có rủi ro nếu tài sản đang tăng giá"], correct: 0 },
-    { prompt: "Khi thị trường rơi vào panic selling, chỉ báo nào thường phản ánh nhu cầu trú ẩn tăng lên?", options: ["Giá trái phiếu chính phủ tăng và lợi suất giảm", "P/E toàn thị trường mở rộng mạnh vì ai cũng lạc quan", "Margin lending tăng vọt do tâm lý hưng phấn"], correct: 0 },
-    { prompt: "Trong phân tích khủng hoảng doanh nghiệp, chỉ số nào cảnh báo sớm áp lực thanh khoản ngắn hạn?", options: ["Current ratio và dòng tiền từ hoạt động kinh doanh suy yếu", "Số lượng nhân viên không đổi", "Logo thương hiệu mới"], correct: 0 },
-    { prompt: "Một doanh nghiệp báo EBITDA tăng nhưng CFO âm kéo dài. Với boss tài chính, đây thường là dấu hiệu gì?", options: ["Lợi nhuận kế toán chưa chuyển hóa thành tiền mặt, cần soi chất lượng earnings", "Doanh nghiệp chắc chắn rẻ hơn", "Không ảnh hưởng gì đến rủi ro"], correct: 0 },
-    { prompt: "Khi FED pivot từ hawkish sang dovish, nhóm tài sản nào thường phản ứng tích cực sớm nhất?", options: ["Tài sản nhạy cảm lãi suất như cổ phiếu tăng trưởng và trái phiếu dài hạn", "Tiền mặt không sinh lời", "Các khoản phải thu khách hàng"], correct: 0 },
-    { prompt: "Một cú short squeeze xảy ra khi nào?", options: ["Người bán khống buộc phải mua lại cổ phiếu vì giá tăng mạnh, làm giá càng bị đẩy lên", "Doanh nghiệp mua lại toàn bộ nợ vay", "Lợi nhuận gộp giảm do giá nguyên liệu tăng"], correct: 0 }
-  ]
-};
+/** Boss dự phòng khi bảng world_bosses chưa có hàng nào active - chữ hiển thị
+ *  (tên, mô tả, câu hỏi) sống trong `t.worldSpaces.worldBoss` vì route này gửi
+ *  chữ đó xuống làm JSON cho client, không phải render trực tiếp; xem
+ *  AGENTS.md mục "Translating the UI".
+ *
+ *  Route này tính lại mỗi request (không revalidate, không unstable_cache,
+ *  không Cache-Control, không được ghi vào bảng nào) và còn tự xáo thứ tự
+ *  câu hỏi/đáp án bằng Math.random() mỗi lần gọi - nên nó không thể cache
+ *  được ngay cả khi muốn, và đọc locale tại đây (thay vì trả id cho client tự
+ *  tra) là lựa chọn đúng: không có bản JSON nào bị đông cứng ở ngôn ngữ cũ. */
+function fallbackWorldBoss(t: Dictionary) {
+  const wb = t.worldSpaces.worldBoss;
+  return {
+    id: "world-boss-titan-2026",
+    name: wb.fallbackName,
+    description: wb.fallbackDescription,
+    boss_emoji: "🌋",
+    max_hp: 1000000,
+    current_hp: 745000,
+    start_date: new Date().toISOString().split("T")[0],
+    end_date: new Date(Date.now() + 7 * 86400000).toISOString().split("T")[0],
+    is_active: true,
+    questions: wb.questions.map((q) => ({ prompt: q.prompt, options: [...q.options], correct: 0 })),
+  };
+}
 
 function shuffleArray<T>(arr: T[]): T[] {
   const a = [...arr];
@@ -47,7 +45,7 @@ function shuffleArray<T>(arr: T[]): T[] {
   return a;
 }
 
-/** Câu hỏi của world boss, đọc từ bảng hoặc từ FALLBACK_WORLD_BOSS. */
+/** Câu hỏi của world boss, đọc từ bảng hoặc từ fallbackWorldBoss(t). */
 interface BossQuestion {
   options: string[];
   correct?: number;
@@ -56,6 +54,7 @@ interface BossQuestion {
 
 export async function GET(request: NextRequest) {
   const supabase = await createServerSupabaseClient();
+  const t = await getServerDictionary();
 
   const { data: boss } = await supabase
     .from("world_bosses")
@@ -65,7 +64,7 @@ export async function GET(request: NextRequest) {
     .limit(1)
     .maybeSingle();
 
-  const activeBoss = boss || FALLBACK_WORLD_BOSS;
+  const activeBoss = boss || fallbackWorldBoss(t);
 
   // Shuffle question list and each question's option order so correct answer isn't always A
   const shuffledQuestions = shuffleArray(
@@ -102,14 +101,17 @@ export async function GET(request: NextRequest) {
   const leaderboard = (logs as unknown as DamageLogRow[] | null)?.map((log, index) => ({
     rank: index + 1,
     userId: log.user_id,
-    name: log.user_profiles?.full_name || log.user_profiles?.email?.split("@")[0] || "Chiến binh Server",
+    name: log.user_profiles?.full_name || log.user_profiles?.email?.split("@")[0] || t.worldSpaces.worldBoss.defaultWarriorName,
     avatarUrl: log.user_profiles?.avatar_url,
     totalDamage: log.damage_dealt,
-  })) || [
-    { rank: 1, userId: "mock-1", name: "Sói Già Phố Wall", totalDamage: 45000, avatarUrl: null },
-    { rank: 2, userId: "mock-2", name: "Thầy Giáo Định Giá", totalDamage: 38000, avatarUrl: null },
-    { rank: 3, userId: "mock-3", name: "Chiến Thần CFA", totalDamage: 31000, avatarUrl: null },
-  ];
+  })) ||
+    t.worldSpaces.worldBoss.defaultLeaderboardNames.map((name, i) => ({
+      rank: i + 1,
+      userId: `mock-${i + 1}`,
+      name,
+      totalDamage: [45000, 38000, 31000][i],
+      avatarUrl: null,
+    }));
 
   return NextResponse.json({
     boss: bossWithShuffledQuestions,

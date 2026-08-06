@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Brain,
@@ -17,107 +17,49 @@ import {
 } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
-const PANELS = [
-  {
-    id: 0,
-    tag: "01 / NGUYÊN TẮC THIẾT KẾ",
-    badge: "1. Vì sao ở lại",
-    title: "Vì sao 92% học viên duy trì thói quen học mỗi ngày?",
-    subtitle: "Giải quyết 4 rào cản tâm lý lớn nhất khi tự học tài chính bằng thiết kế sản phẩm tinh gọn.",
-    items: [
-      {
-        icon: Brain,
-        title: "Chống quên bài học",
-        desc: "Spaced Repetition tự động nhắc ôn lại đúng thời điểm sắp quên.",
-      },
-      {
-        icon: Sparkles,
-        title: "100% Miễn phí mãi mãi",
-        desc: "Không khoá học trả phí đắt đỏ ẩn phía sau. Tự do học hoàn toàn.",
-      },
-      {
-        icon: GraduationCap,
-        title: "Lộ trình rõ ràng",
-        desc: "Chia chặng từng bước từ cơ bản đến phân tích báo cáo tài chính.",
-      },
-      {
-        icon: Gauge,
-        title: "Đo lường phản xạ",
-        desc: "Quiz Active Recall + XP bảng xếp hạng giúp biết ngay độ hiểu bài.",
-      },
-    ],
-  },
+// Structural shape of the three panels: id and per-item icon. Display copy
+// (tag/badge/title/subtitle/items[].title/tag/desc) comes from
+// `t.dataTables.scrollytelling.panels`; see `panelsOf`.
+const PANEL_ICONS = [
+  { id: 0, panelKey: "panel0" as const, items: [{ icon: Brain }, { icon: Sparkles }, { icon: GraduationCap }, { icon: Gauge }] },
   {
     id: 1,
-    tag: "02 / PHƯƠNG PHÁP KHOA HỌC",
-    badge: "2. Phương pháp",
-    title: "Spaced Repetition & Active Recall — Học ít, nhớ lâu",
-    subtitle: "Phương pháp ghi nhớ bám sát đường cong quên lãng (Forgetting Curve) của não bộ.",
+    panelKey: "panel1" as const,
     items: [
-      {
-        step: "01",
-        icon: Clock,
-        title: "5-7 phút / bài",
-        desc: "Bài học ngắn gọn, tập trung đúng 1 khái niệm cốt lõi.",
-      },
-      {
-        step: "02",
-        icon: Target,
-        title: "Active Recall",
-        desc: "Bắt não kích hoạt nhớ lại kiến thức qua Quiz kiểm tra.",
-      },
-      {
-        step: "03",
-        icon: RotateCcw,
-        title: "Nhắc ôn đúng lúc",
-        desc: "Câu hỏi ôn lặp lại xuất hiện tự động sau ~5 bài tiếp.",
-      },
-      {
-        step: "04",
-        icon: CheckCircle2,
-        title: "Khắc sâu bản chất",
-        desc: "Biến lý thuyết thành phản xạ đọc báo cáo tài chính.",
-      },
+      { step: "01", icon: Clock },
+      { step: "02", icon: Target },
+      { step: "03", icon: RotateCcw },
+      { step: "04", icon: CheckCircle2 },
     ],
   },
-  {
-    id: 2,
-    tag: "03 / ĐỐI TƯỢNG PHÙ HỢP",
-    badge: "3. Đối tượng",
-    title: "Lộ trình được thiết kế dành riêng cho bạn",
-    subtitle: "Dù bạn bắt đầu từ con số 0 hay cần chuẩn hóa kiến thức chuyên sâu.",
-    items: [
-      {
-        icon: Wallet,
-        title: "Tài chính cá nhân",
-        tag: "Dòng tiền",
-        desc: "Dành cho ai muốn quản lý tiền, tiết kiệm và đầu tư an toàn.",
-      },
-      {
-        icon: GraduationCap,
-        title: "Người học CFA",
-        tag: "Candidates",
-        desc: "Cần nạp nền tảng kiến thức chắc chắn và phản xạ lý thuyết.",
-      },
-      {
-        icon: Award,
-        title: "Financial Planner",
-        tag: "Tư vấn",
-        desc: "Chuẩn hóa khung tư duy hoạch định tài chính bài bản.",
-      },
-      {
-        icon: TrendingUp,
-        title: "Nhà đầu tư cá nhân",
-        tag: "Cổ phiếu",
-        desc: "Nắm vững cách đọc chỉ số tài chính và bóc tách doanh nghiệp.",
-      },
-    ],
-  },
+  { id: 2, panelKey: "panel2" as const, items: [{ icon: Wallet }, { icon: GraduationCap }, { icon: Award }, { icon: TrendingUp }] },
 ];
+
+function panelsOf(t: Dictionary) {
+  const copy = t.dataTables.scrollytelling.panels;
+  return PANEL_ICONS.map(({ id, panelKey, items }) => {
+    const panelCopy = copy[panelKey];
+    return {
+      id,
+      tag: panelCopy.tag,
+      badge: panelCopy.badge,
+      title: panelCopy.title,
+      subtitle: panelCopy.subtitle,
+      items: items.map((item, idx) => ({
+        ...item,
+        title: panelCopy.items[idx].title,
+        desc: panelCopy.items[idx].desc,
+        tag: "tag" in panelCopy.items[idx] ? (panelCopy.items[idx] as { tag?: string }).tag : undefined,
+      })),
+    };
+  });
+}
 
 export default function ScrollytellingPinnedSection() {
   const { t } = useI18n();
+  const PANELS = useMemo(() => panelsOf(t), [t]);
   const [activeTab, setActiveTab] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
@@ -128,7 +70,7 @@ export default function ScrollytellingPinnedSection() {
       setActiveTab((prev) => (prev + 1) % PANELS.length);
     }, 6000);
     return () => clearInterval(timer);
-  }, [isPaused]);
+  }, [isPaused, PANELS.length]);
 
   // Mouse wheel scroll to flip tabs smoothly
   const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {

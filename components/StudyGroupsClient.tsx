@@ -60,6 +60,7 @@ import { colorForUser } from "@/lib/supabase-lobby";
 import type { CharacterEquipments } from "@/lib/rpg-items";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
 interface SessionUser {
   id: string;
@@ -207,19 +208,25 @@ const rosterSignature = (members: StudyRoomMember[]) =>
  *  session - the "+15% XP" is flavour, so the only real state worth keeping is
  *  which ones this visitor has already touched, to stop the toast firing on
  *  every idle click. */
-const QUICK_CHEERS = [
-  { emoji: "👋", label: "Đập tay", message: "👋 Đập tay cổ vũ mọi người cùng học bài nào!" },
-  { emoji: "❤️", label: "Bắn tim", message: "❤️ Bắn tim yêu thương tiếp năng lượng học tập!" },
-  { emoji: "🔔", label: "Nhắc học", message: "🔔 Ới ời cả nhóm ơi vào làm bài thôi nào!" },
-  { emoji: "🔥", label: "Tiếp sức", message: "🔥 Tiếp sức cháy hết mình hôm nay!" },
-] as const;
+function quickCheersOf(t: Dictionary) {
+  const d = t.dataRest.studyGroupsClient.quickCheers;
+  return [
+    { emoji: "👋", label: d.clap.label, message: d.clap.message },
+    { emoji: "❤️", label: d.heart.label, message: d.heart.message },
+    { emoji: "🔔", label: d.reminder.label, message: d.reminder.message },
+    { emoji: "🔥", label: d.boost.label, message: d.boost.message },
+  ];
+}
 
-const HOLO_PYLONS = [
-  { id: "valuation", name: "Định Giá", icon: "🏰", angle: 42 },
-  { id: "trading", name: "Giao Dịch", icon: "🏛️", angle: 138 },
-  { id: "cashflow", name: "Dòng Tiền", icon: "⚓", angle: 222 },
-  { id: "fed", name: "Lãi Suất", icon: "⚡", angle: 318 },
-] as const;
+function holoPylonsOf(t: Dictionary) {
+  const d = t.dataRest.studyGroupsClient.holoPylons;
+  return [
+    { id: "valuation" as const, name: d.valuation, icon: "🏰", angle: 42 },
+    { id: "trading" as const, name: d.trading, icon: "🏛️", angle: 138 },
+    { id: "cashflow" as const, name: d.cashflow, icon: "⚓", angle: 222 },
+    { id: "fed" as const, name: d.fed, icon: "⚡", angle: 318 },
+  ];
+}
 
 // "Học cùng nhóm": small (default cap 5) topic-based groups, either
 // randomly matched into an open room or picked manually from the browse
@@ -231,6 +238,8 @@ const HOLO_PYLONS = [
 // the opt-out path for anyone who wants to switch mid-week.
 export default function StudyGroupsClient({ embedded = false }: { embedded?: boolean } = {}) {
   const { t } = useI18n();
+  const quickCheers = useMemo(() => quickCheersOf(t), [t]);
+  const holoPylons = useMemo(() => holoPylonsOf(t), [t]);
   const router = useRouter();
   const supabase = createClient();
   const [user, setUser] = useState<SessionUser | null>(null);
@@ -1563,7 +1572,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                   {/* Quick Cheer Actions Bar */}
                   <div className="flex shrink-0 items-center gap-0.5 rounded-xl border border-stone-800 bg-stone-900/90 px-1.5 py-0.5 shadow-xs backdrop-blur-md sm:gap-1 sm:px-2">
                     <span className="text-[9px] font-bold text-stone-400 mr-1 hidden sm:inline">{t.studyGroups.cheerLabel}</span>
-                    {QUICK_CHEERS.map((cheer) => (
+                    {quickCheers.map((cheer) => (
                       <button
                         key={cheer.emoji}
                         type="button"
@@ -1865,7 +1874,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                       </button>
 
                       {/* ── HOLO PYLONS around the room ── */}
-                      {HOLO_PYLONS.map((node) => {
+                      {holoPylons.map((node) => {
                         const isLit = litPylons.has(node.id);
                         const isActive = activeMapNode === node.id;
                         return (

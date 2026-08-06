@@ -19,6 +19,8 @@ import { certificateQuestsVi, certificateQuestsEn } from "./certificate-quests";
 import { cfaCalculatorsVi, cfaCalculatorsEn } from "./cfa-calculators";
 import { cfaExamVi, cfaExamEn } from "./cfa-exam";
 import { cosmeticsDuelVi, cosmeticsDuelEn } from "./cosmetics-duel";
+import { dataRestVi, dataRestEn } from "./data-rest";
+import { dataTablesVi, dataTablesEn } from "./data-tables";
 import { districtContentVi, districtContentEn } from "./district-content";
 import { docsAuthVi, docsAuthEn } from "./docs-auth";
 import { examsOnboardingVi, examsOnboardingEn } from "./exams-onboarding";
@@ -52,6 +54,8 @@ export const viSections = {
   ...cfaCalculatorsVi,
   ...cfaExamVi,
   ...cosmeticsDuelVi,
+  ...dataRestVi,
+  ...dataTablesVi,
   ...districtContentVi,
   ...docsAuthVi,
   ...examsOnboardingVi,
@@ -86,6 +90,8 @@ export const enSections: typeof viSections = {
   ...cfaCalculatorsEn,
   ...cfaExamEn,
   ...cosmeticsDuelEn,
+  ...dataRestEn,
+  ...dataTablesEn,
   ...districtContentEn,
   ...docsAuthEn,
   ...examsOnboardingEn,

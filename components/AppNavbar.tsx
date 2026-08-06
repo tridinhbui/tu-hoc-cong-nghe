@@ -36,12 +36,16 @@ interface NavProfile {
   coins?: number;
 }
 
-// `labelKey` indexes into the nav section of the dictionary; `label` is for
-// the entries that are proper nouns and read the same in both languages, so
-// translating them would only make the product harder to talk about.
+// `labelKey` indexes into the nav section of the dictionary; `dataLabelKey`
+// indexes into the newer dataRest.appNavbar section (added after this file's
+// labels were audited for hard-coded copy - see AGENTS.md "Translating the
+// UI"); `label` is for the entries that are proper nouns and read the same in
+// both languages, so translating them would only make the product harder to
+// talk about.
 type NavLink =
-  | { href: string; label: string; labelKey?: never; icon: LucideIcon }
-  | { href: string; labelKey: keyof Dictionary["nav"]; label?: never; icon: LucideIcon };
+  | { href: string; label: string; labelKey?: never; dataLabelKey?: never; icon: LucideIcon }
+  | { href: string; labelKey: keyof Dictionary["nav"]; label?: never; dataLabelKey?: never; icon: LucideIcon }
+  | { href: string; dataLabelKey: keyof Dictionary["dataRest"]["appNavbar"]; label?: never; labelKey?: never; icon: LucideIcon };
 
 /**
  * Above the sections, ungrouped, always visible.
@@ -82,7 +86,7 @@ const NAV_SECTIONS: NavSection[] = [
   {
     titleKey: "sectionLearn",
     links: [
-      { href: "/hoc-bai", label: "Học bài", icon: BookOpen },
+      { href: "/hoc-bai", dataLabelKey: "hocBai", icon: BookOpen },
       // Tách khỏi dashboard cùng đợt với CFA và FRM. Cả ba trước đó là thẻ
       // trong dãy chọn track nhưng không phải track trong lộ trình đánh số
       // theo ngày - chúng là các lối học song song, nên thuộc navbar.
@@ -91,7 +95,7 @@ const NAV_SECTIONS: NavSection[] = [
       // hai trang trả lời hai câu khác nhau - trang kia là "nghề nào hợp với
       // tôi", trang này là "nghề đó thì học bài nào" - và dùng chung icon
       // cặp táp thì đọc như một mục bị lặp.
-      { href: "/nghe-nghiep-hoc", label: "Học theo nghề", icon: Route },
+      { href: "/nghe-nghiep-hoc", dataLabelKey: "hocTheoNghe", icon: Route },
       // Cùng lý do với /cfa ngay dưới: cây kỹ năng chỉ mở được từ một tab trong
       // dashboard, tab đó bị gỡ ở c3f7ec9, và không như thẻ/cosmetics/thử thách
       // tuần - vốn còn bản thứ hai ở RPG hub - nó không tồn tại ở đâu khác. Từ
@@ -136,7 +140,7 @@ const NAV_SECTIONS: NavSection[] = [
   },
   {
     titleKey: "sectionResources",
-    links: [{ href: "/tai-lieu", label: "Tài liệu Miễn phí", icon: FileText }],
+    links: [{ href: "/tai-lieu", labelKey: "docsLong", icon: FileText }],
   },
 ];
 
@@ -366,7 +370,7 @@ export default function AppNavbar() {
     router.push("/game?building=shop");
   };
 
-  const displayName = profile?.full_name || profile?.email || "Người dùng";
+  const displayName = profile?.full_name || profile?.email || t.nav.user;
   const initials = displayName
     .split(" ")
     .map((n) => n[0])
@@ -494,8 +498,8 @@ export default function AppNavbar() {
    *  below it. Written once rather than per call site: the badge and
    *  highlight rules already run to a dozen branches, and three copies of
    *  them is how the desktop and mobile menus drifted apart before. */
-  const renderNavItem = ({ href, label, labelKey, icon: Icon }: NavLink, onNavigate?: () => void) => {
-    const navLabel = labelKey ? t.nav[labelKey] : label;
+  const renderNavItem = ({ href, label, labelKey, dataLabelKey, icon: Icon }: NavLink, onNavigate?: () => void) => {
+    const navLabel = labelKey ? t.nav[labelKey] : dataLabelKey ? t.dataRest.appNavbar[dataLabelKey] : label;
     const active = pathname === href;
     const isGame = href === "/game";
     const isCareer = href === "/su-nghiep";
@@ -531,7 +535,7 @@ export default function AppNavbar() {
         }`}
       >
         <Icon className={`h-4 w-4 shrink-0 ${isGame ? "text-amber-600 dark:text-amber-400" : isThuVien ? "text-violet-500 dark:text-violet-400" : isCareer ? "text-emerald-600 dark:text-emerald-400" : isKiemTra && hasPendingNewsQuiz ? "text-rose-500 animate-pulse" : isNhomHoc && hasPendingStudyGroupCheckin ? "text-amber-600 animate-bounce" : ""}`} />
-        <span className="flex-1">{isGame ? "Game Kingdom" : navLabel}</span>
+        <span className="flex-1">{isGame ? t.dataRest.appNavbar.gameKingdomLabel : navLabel}</span>
         {isGame && (
           <span className="inline-flex items-center gap-1 text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-white text-amber-700 border border-amber-200 dark:bg-amber-950 dark:text-amber-300 dark:border-amber-800">
             <Flame className="h-2.5 w-2.5 text-orange-500 dark:text-orange-400" />
@@ -641,7 +645,7 @@ export default function AppNavbar() {
               <span>{t.nav.searchPlaceholder}</span>
             </span>
             <kbd className="px-1.5 py-0.5 rounded-md bg-white dark:bg-stone-800 text-[10px] font-mono border border-stone-200 dark:border-stone-700 shadow-2xs">
-              ⌘K
+              {t.dataRest.appNavbar.cmdKHint}
             </kbd>
           </button>
 
@@ -684,7 +688,7 @@ export default function AppNavbar() {
                     </div>
                   )}
                   <div className="min-w-0 flex-1">
-                    <p className="truncate text-xs font-bold text-stone-900 dark:text-stone-100">{profile.full_name || "Người dùng"}</p>
+                    <p className="truncate text-xs font-bold text-stone-900 dark:text-stone-100">{profile.full_name || t.nav.user}</p>
                     <p className="truncate text-[11px] text-stone-500 dark:text-stone-400">{profile.email}</p>
                   </div>
                 </button>
@@ -874,7 +878,7 @@ export default function AppNavbar() {
                       </div>
                     )}
                     <div className="min-w-0">
-                      <p className="font-bold text-xs text-stone-900 dark:text-stone-100 truncate">{profile.full_name || "Người dùng"}</p>
+                      <p className="font-bold text-xs text-stone-900 dark:text-stone-100 truncate">{profile.full_name || t.nav.user}</p>
                       <p className="text-[10px] text-stone-500 dark:text-stone-400 truncate">{format(t.nav.levelXp, { level: profile.current_level ?? 1, xp: profile.total_xp ?? 0 })}</p>
                     </div>
                   </div>

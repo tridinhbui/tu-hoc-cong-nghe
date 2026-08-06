@@ -6,11 +6,10 @@ import { outdoorBrightnessAt } from "@/components/lobby/daylight";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import {
-  CIVIC_ROOMS,
-  DISTRICT_ROOMS,
+  districtRoomsOf,
   STAGE_FLOOR_ID,
   STREET_SPAWN,
-  TOWER_STOPS,
+  towerStopsOf,
   buildPathRoom,
   getRoom,
   type CareerDesk,
@@ -118,7 +117,7 @@ export default function DistrictWorld({
   const [entry, setEntry] = useState<Pose>(
     () =>
       (startRoom &&
-        DISTRICT_ROOMS.street?.doorways.find((d) => d.to === startRoom)?.arriveAt) ||
+        districtRoomsOf(t).street?.doorways.find((d) => d.to === startRoom)?.arriveAt) ||
       STREET_SPAWN
   );
   const [desk, setDesk] = useState<CareerDesk | null>(null);
@@ -167,7 +166,8 @@ export default function DistrictWorld({
   }, [sound]);
   const seatTaken = useMemo(() => new Set(seated === null ? [] : [seated]), [seated]);
 
-  const room = getRoom(roomId);
+  const room = getRoom(t, roomId);
+  const towerStops = useMemo(() => towerStopsOf(t), [t]);
 
   // Đọc đồng hồ sau khi mount, không lúc render: giờ máy chủ khác giờ người
   // học, và một bầu trời khác nhau giữa hai lần render đầu là lỗi hydrate.
@@ -450,10 +450,12 @@ export default function DistrictWorld({
             {/* Cửa quay lại đã mang sẵn nhãn của nó ("Ra phố", "Về sảnh
                 chặng"); thêm "Bước vào ·" vào trước là đọc thành một câu vô
                 nghĩa. Chỉ cửa ĐI TỚI mới cần chữ mời.
-                door.label is Vietnamese content data from district-space.ts
-                (out of scope here), so this Vietnamese-only regex check is
-                left as-is; only the "Bước vào ·" prefix is translated. */}
-            {/^(Ra|Về)\b/.test(door.label) ? door.label : format(t.careerDistrict.world.enterDoor, { label: door.label })}
+                Từng là một regex chỉ khớp tiếng Việt (/^(Ra|Về)\b/) trên
+                door.label - đúng lúc nhãn cửa còn cố định bằng tiếng Việt,
+                nhưng dịch được thì bản tiếng Anh ("Back to the street") không
+                còn khớp nữa. Cờ `isExit` (đặt tại nơi tạo cửa trong
+                district-space.ts) thay cho việc suy luận từ chữ. */}
+            {door.isExit ? door.label : format(t.careerDistrict.world.enterDoor, { label: door.label })}
           </button>
         </div>
       )}
@@ -675,7 +677,7 @@ export default function DistrictWorld({
             )}
           </div>
           <div className="max-h-72 space-y-0.5 overflow-y-auto">
-            {TOWER_STOPS.map((stop, i) => (
+            {towerStops.map((stop, i) => (
               <button
                 key={stop.id}
                 type="button"

@@ -1,6 +1,9 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { DISTRICT_ROOMS } from "@/components/career-district/district-space";
+import { districtRoomsOf } from "@/components/career-district/district-space";
+import { vi as viDict } from "@/lib/i18n/dictionaries/vi";
+
+const DISTRICT_ROOMS = districtRoomsOf(viDict);
 
 /** Chi phí dựng cảnh, đo bằng số vật thể chứ không bằng cảm giác.
  *

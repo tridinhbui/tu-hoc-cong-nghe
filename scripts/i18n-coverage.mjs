@@ -298,8 +298,24 @@ function findingsIn(src, fileName) {
       for (const decl of node.declarationList.declarations) {
         if (!decl.initializer) continue;
         const walkData = (n, field) => {
+          // A module specifier is not copy. `const TABS = [{ Comp: dynamic(() =>
+          // import("@/components/X")) }]` put an import path in a data table and
+          // the first version of this rule reported it, which is the kind of
+          // noise that teaches people to wrap real findings in i18n-ignore.
+          if (ts.isCallExpression(n) && n.expression.kind === ts.SyntaxKind.ImportKeyword) return;
+          // Nor is anything inside a function body: a component or callback
+          // living in a data table is code, and its own strings are already
+          // covered by the JSX and call rules.
+          if (ts.isArrowFunction(n) || ts.isFunctionExpression(n)) return;
           if (ts.isStringLiteral(n) || ts.isNoSubstitutionTemplateLiteral(n)) {
-            if (!field || !NON_COPY_FIELDS.has(field)) push("data", n.text, n.getStart(source));
+            if (field && NON_COPY_FIELDS.has(field)) return;
+            // A BARE array element - no property name to judge it by - has to
+            // look like prose: whitespace or a diacritic. `const QUIZ_OPTION_TYPES
+            // = ["Analytical", "Compliance", ...] as const` is a union type, never
+            // rendered, and reporting it is the noise that gets a gate ignored.
+            // Copy in a bare array is a sentence; an enum member is one word.
+            if (!field && !/\s/.test(n.text) && !/[à-ỹ]/i.test(n.text)) return;
+            push("data", n.text, n.getStart(source));
             return;
           }
           if (ts.isPropertyAssignment(n)) {

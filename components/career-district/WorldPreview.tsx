@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import DistrictShell from "./DistrictShell";
-import { DISTRICT_ROOMS, getRoom, type DistrictRoomId } from "./district-space";
+import { districtRoomsOf, getRoom, type DistrictRoomId } from "./district-space";
 import { CAREER_CATEGORY_ORDER, type CareerCategory } from "@/lib/career-categories";
 import DistrictScene from "./DistrictScene";
 import { createWalkState } from "@/components/world-controls/easy-walk";
@@ -117,7 +117,7 @@ function WalkableScene({ id }: { id: DistrictRoomId }) {
   // MoveInput là `y` chứ không phải `z`, và `keys` bị bỏ quên.
   const walkRef = useRef(createWalkState());
   const playerRef = useRef({ x: 0, z: 0 });
-  const room = getRoom(id);
+  const room = getRoom(t, id);
   if (!room) return null;
   return (
     <>
@@ -197,14 +197,15 @@ const FAKE_PROGRESS = Object.fromEntries(
 
 export default function WorldPreview() {
   const { t } = useI18n();
-  // Lấy id từ `room.id` chứ không từ Object.keys: DISTRICT_ROOMS khai báo là
-  // Record<string, …> nên keys ra `string`, còn getRoom nhận DistrictRoomId.
+  // Lấy id từ `room.id` chứ không từ Object.keys: districtRoomsOf khai báo
+  // trả về Record<string, …> nên keys ra `string`, còn getRoom nhận
+  // DistrictRoomId.
   const ids = useMemo(
     (): ViewId[] => [
-      ...Object.values(DISTRICT_ROOMS).map((r) => r.id).sort(),
+      ...Object.values(districtRoomsOf(t)).map((r) => r.id).sort(),
       ...CITY_VIEWS,
     ],
-    []
+    [t]
   );
   const [id, setId] = useState<ViewId>("street");
   const [line, setLine] = useState(t.careerDistrict.worldPreview.building);
@@ -222,7 +223,7 @@ export default function WorldPreview() {
   }, []);
 
   const isCity = (CITY_VIEWS as readonly string[]).includes(id);
-  const room = isCity ? null : getRoom(id as DistrictRoomId);
+  const room = isCity ? null : getRoom(t, id as DistrictRoomId);
   const cityHour = id === "sanh-ngoai-troi-dem" ? 21 : 10;
 
   return (

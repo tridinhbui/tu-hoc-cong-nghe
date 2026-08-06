@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 import * as THREE from "three";
-import { CIVIC_ROOMS, type DistrictRoom } from "./district-space";
+import { CIVIC_ROOM_IDS, type DistrictRoom } from "./district-space";
 import { inputsFor } from "@/lib/cash-cycle";
 import { BONDS, RHO_CASE_DEFS, STOCKS, mix } from "@/lib/portfolio-risk";
 import { bookshelfTexture, oakTexture } from "@/components/lobby/room-textures";
@@ -677,7 +677,7 @@ const INTERIORS: Partial<Record<string, (props: { room: DistrictRoom }) => React
 };
 
 export function isCivicRoom(id: string) {
-  return CIVIC_ROOMS.some((c) => c.id === id);
+  return (CIVIC_ROOM_IDS as string[]).includes(id);
 }
 
 export default function CivicScene({ room }: { room: DistrictRoom }) {

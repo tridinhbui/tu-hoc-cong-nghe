@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { linkForLesson, roomHref } from "@/lib/lesson-room-links";
-import { CIVIC_ROOMS } from "@/components/career-district/district-space";
+import { civicRoomsOf } from "@/components/career-district/district-space";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 
@@ -26,8 +26,9 @@ export default function LessonRoomCard({ slug }: { slug: string }) {
 
   // Màu nhấn lấy từ chính căn phòng, không gõ lại: tấm thẻ và cánh cửa phải
   // cùng màu thì người học mới nhận ra mình vừa bấm cái gì khi tới nơi.
-  const accent = CIVIC_ROOMS.find((c) => c.id === link.room)?.accent ?? "#a3e635";
-  const label = CIVIC_ROOMS.find((c) => c.id === link.room)?.label ?? t.miscUi.lessonRoomCard.fallbackDistrictLabel;
+  const civicRooms = civicRoomsOf(t);
+  const accent = civicRooms.find((c) => c.id === link.room)?.accent ?? "#a3e635";
+  const label = civicRooms.find((c) => c.id === link.room)?.label ?? t.miscUi.lessonRoomCard.fallbackDistrictLabel;
 
   return (
     <Link

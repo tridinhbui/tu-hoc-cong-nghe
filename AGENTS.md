@@ -263,7 +263,14 @@ scope is narrow on purpose: only module scope, only property names that are not
 in `NON_COPY_FIELDS` (`id`, `slug`, `href`, `className`, `ticker`, `correct`, …),
 and every existing shape filter still applies, so ids, routes, Tailwind classes
 and enum values stay out. Sampling four of the newly-reported files found zero
-false positives.
+false positives, but two shapes did have to be excluded after the first run, and
+both were excluded in the SCRIPT rather than by wrapping them in
+`i18n-ignore`: a `dynamic(() => import("…"))` module specifier, and a bare array
+element that is one word with no diacritics (`const QUIZ_OPTION_TYPES =
+["Analytical", "Compliance", …] as const` is a union type, never rendered). Copy
+in a bare array is a sentence; an enum member is one word. A gate that cries wolf
+is a gate people learn to ignore, so a false positive belongs in the rule, not in
+a suppression comment.
 
 It also surfaced a category that needs a different fix, not a dictionary:
 `app/api/world-boss/route.ts` builds 62 strings of boss names and flavour text on

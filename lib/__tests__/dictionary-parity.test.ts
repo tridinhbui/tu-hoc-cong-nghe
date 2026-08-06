@@ -118,6 +118,19 @@ const INTENTIONALLY_UNTRANSLATED = new Set([
   "quizSuggestion.greeting",
   "quizSuggestion.suggestionLabel",
   "quizSuggestion.trackIb",
+  // Finance terms whose English name IS the term - the glossary entry for DCF is
+  // titled "DCF (Discounted Cash Flow)" in both languages because that is what
+  // the learner has to recognise on a page or in an interview.
+  "dataRest.globalSearchModal.sampleGlossary",
+  // A watch. Rolex Submariner Gold is the product's name, not a description.
+  "dataTables.rpgInventory.items.watch_rolex.name",
+  // A proper noun and a keyboard shortcut, plus "Tài Tài" inside an otherwise
+  // translated tour title.
+  "dataRest.appNavbar.gameKingdomLabel",
+  "dataRest.appNavbar.cmdKHint",
+  "dataRest.lessonTour.taiTaiTitle",
+  // The mascot's name on the stage-tips banner.
+  "dataTables.stageTips.mascotName",
   // The bare "XP" unit suffix, and a game district's proper name.
   "miscUi.combinedRewardsWidget.xpUnit",
   "miscUi.userStats.xpUnit",

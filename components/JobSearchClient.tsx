@@ -3,6 +3,7 @@
 import { useState, useMemo, useEffect, useRef } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
@@ -251,61 +252,27 @@ function MetricBar({
   );
 }
 
-const QUIZ_QUESTIONS = [
-  {
-    question: "Phong cách xử lý thông tin ưa thích của bạn là gì?",
-    options: [
-      { text: "Phân tích số liệu, lập mô hình dự báo tương lai", type: "Analytical" },
-      { text: "Kiểm tra tính chính xác, rà soát tính tuân thủ quy trình", type: "Compliance" },
-      { text: "Giao tiếp, tư vấn, xây dựng và kết nối mối quan hệ khách hàng", type: "Client-facing" },
-      { text: "Phân tích thống kê định lượng, tính toán xác suất rủi ro", type: "Quantitative" }
-    ]
-  },
-  {
-    question: "Môi trường làm việc lý tưởng trong mơ của bạn là:",
-    options: [
-      { text: "Các quỹ đầu tư lớn, công ty chứng khoán năng động", type: "Analytical" },
-      { text: "Phòng kế toán tập đoàn lớn, hoặc công ty kiểm toán Big4 chuyên nghiệp", type: "Compliance" },
-      { text: "Các chi nhánh ngân hàng thương mại, sàn giao dịch nhộn nhịp", type: "Client-facing" },
-      { text: "Phòng nguồn vốn, ban quản trị rủi ro ở hội sở ngân hàng lớn", type: "Quantitative" }
-    ]
-  },
-  {
-    question: "Bạn đối diện thế nào với áp lực và cân bằng cuộc sống (WLB)?",
-    options: [
-      { text: "Sẵn sàng OT khuya, chịu áp lực tiến độ để đạt thu nhập vượt trội", type: "Analytical" },
-      { text: "Muốn giờ giấc hành chính rõ ràng, công việc ổn định ít đột xuất", type: "Compliance" },
-      { text: "Chấp nhận áp lực chạy doanh số (KPI) để nhận hoa hồng không giới hạn", type: "Client-facing" },
-      { text: "Muốn công việc thiên về kỹ thuật chuyên sâu, ít áp lực doanh số", type: "Quantitative" }
-    ]
-  },
-  {
-    question: "Điểm mạnh nhất mà bạn tự tin muốn phát huy là gì?",
-    options: [
-      { text: "Lập mô hình Excel, phân tích chi phí - lợi ích chiến lược", type: "Analytical" },
-      { text: "Sự cẩn thận, chi tiết tỉ mỉ, tuân thủ nguyên tắc tuyệt đối", type: "Compliance" },
-      { text: "Khả năng ăn nói thuyết phục, đồng cảm và mở rộng quan hệ", type: "Client-facing" },
-      { text: "Tư duy toán học logic, lập trình mô phỏng định lượng (SQL/Python)", type: "Quantitative" }
-    ]
-  },
-  {
-    question: "Nhóm chứng chỉ nghề nghiệp nào thu hút bạn nhất?",
-    options: [
-      { text: "CFA (Phân tích đầu tư) / CMA (Quản trị tài chính)", type: "Analytical" },
-      { text: "ACCA (Kế toán công chứng) / CPA (Kiểm toán viên)", type: "Compliance" },
-      { text: "Chứng chỉ hành nghề Môi giới chứng khoán hoặc Tín dụng ngân hàng", type: "Client-facing" },
-      { text: "FRM (Quản lý rủi ro) / Chứng chỉ nguồn vốn ACI", type: "Quantitative" }
-    ]
-  }
-];
+// Each question's four options map 1:1 (by index) onto this fixed type
+// order - the type drives quiz scoring and is structural, so it stays here
+// rather than in the dictionary. Copy in t.dataRest.jobSearchClient.quizQuestions.
+const QUIZ_OPTION_TYPES = ["Analytical", "Compliance", "Client-facing", "Quantitative"] as const;
+
+function quizQuestionsOf(t: Dictionary) {
+  return t.dataRest.jobSearchClient.quizQuestions.map((q) => ({
+    question: q.question,
+    options: q.options.map((text, i) => ({ text, type: QUIZ_OPTION_TYPES[i] })),
+  }));
+}
 
 // Tên nhóm ngành suy ra từ lib/career-categories.ts thay vì khai lại ở đây:
 // một nhóm mới thêm vào FinanceCareer["category"] sẽ tự có nút lọc, thay vì
 // lặng lẽ không lọc ra được ở màn hình này.
-const CATEGORIES = [
-  { id: "all" as const, label: "Tất cả" },
-  ...CAREER_CATEGORY_ORDER.map((id) => ({ id, label: CAREER_CATEGORY_LABELS[id] })),
-];
+function categoriesOf(t: Dictionary) {
+  return [
+    { id: "all" as const, label: t.dataRest.jobSearchClient.allCategoriesLabel },
+    ...CAREER_CATEGORY_ORDER.map((id) => ({ id, label: CAREER_CATEGORY_LABELS[id] })),
+  ];
+}
 
 // SVG Radar Chart for role traits visualization
 function CareerRadarChart({ traits, color = "#0d9488" }: { traits?: { analytical?: number; compliance?: number; clientFacing?: number; quantitative?: number } | null; color?: string }) {
@@ -615,6 +582,8 @@ type JobTab = "daily" | "insights" | "path" | "skills" | "profile" | "search";
 
 export default function JobSearchClient() {
   const { t } = useI18n();
+  const quizQuestions = useMemo(() => quizQuestionsOf(t), [t]);
+  const categories = useMemo(() => categoriesOf(t), [t]);
   const [selected, setSelected] = useState<FinanceCareer>(FINANCE_CAREERS[0]);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -757,7 +726,7 @@ export default function JobSearchClient() {
     const nextAnswers = [...quizAnswers, optionType];
     setQuizAnswers(nextAnswers);
 
-    if (quizStep < QUIZ_QUESTIONS.length - 1) {
+    if (quizStep < quizQuestions.length - 1) {
       setQuizStep(quizStep + 1);
     } else {
       // Calculate top personality type
@@ -1106,7 +1075,7 @@ export default function JobSearchClient() {
                 ref={categoryTabsRef}
                 className="flex gap-2 overflow-x-auto pb-1.5 scrollbar-none px-7"
               >
-                {CATEGORIES.map((cat) => {
+                {categories.map((cat) => {
                   const isCatSelected = selectedCategory === cat.id;
                   return (
                     <button
@@ -2089,15 +2058,15 @@ export default function JobSearchClient() {
               
               <div className="mb-6">
                 <span className="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400">
-                  {format(t.jobs.quizQuestionCounter, { current: quizStep + 1, total: QUIZ_QUESTIONS.length })}
+                  {format(t.jobs.quizQuestionCounter, { current: quizStep + 1, total: quizQuestions.length })}
                 </span>
                 <h3 className="text-base font-black text-stone-900 dark:text-stone-50 mt-3 leading-snug">
-                  {QUIZ_QUESTIONS[quizStep].question}
+                  {quizQuestions[quizStep].question}
                 </h3>
               </div>
               
               <div className="space-y-2.5">
-                {QUIZ_QUESTIONS[quizStep].options.map((opt, i) => (
+                {quizQuestions[quizStep].options.map((opt, i) => (
                   <button
                     key={i}
                     onClick={() => handleAnswerSelect(opt.type)}

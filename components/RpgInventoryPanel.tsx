@@ -7,6 +7,7 @@ import FinanceCharacterAvatar, { CharacterEquipments } from "@/components/Financ
 import { toast } from "sonner";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
 interface InventoryItem {
   id: string;
@@ -26,80 +27,86 @@ interface InventoryItem {
   isEquipped?: boolean;
 }
 
-const DEFAULT_ITEMS: InventoryItem[] = [
+// Structural shape of the six starter items: id, key, slot, emoji, rarity
+// (kept byte-identical - it may be persisted), rarityColor, stats and default
+// equip state. Display strings (name, description) come from
+// `t.dataTables.rpgInventory.items`, keyed by `key`; see `defaultItemsOf`.
+/* i18n-ignore-start: rarity is a persisted data value (see rarityLabels for its display form), not display copy */
+const DEFAULT_ITEMS_SHAPE: Omit<InventoryItem, "name" | "description">[] = [
   {
     id: "1",
     key: "suit_armani",
-    name: "Vest Armani Executive",
     slot: "suit",
     emoji: "👔",
     rarity: "Huyền Thoại",
     rarityColor: "from-amber-400 to-yellow-600",
     stats: { valuation: 45, defense: 30 },
-    description: "Vest doanh nhân xa xỉ tăng +45 Sức mạnh định giá và phong thái Phố Wall.",
     isEquipped: true,
   },
   {
     id: "2",
     key: "watch_rolex",
-    name: "Rolex Submariner Gold",
     slot: "watch",
     emoji: "⌚",
     rarity: "Huyền Thoại",
     rarityColor: "from-amber-400 to-yellow-600",
     stats: { speed: 40, luck: 25 },
-    description: "Đồng hồ mạ vàng Thụy Sĩ giúp tăng tốc độ đọc BCTC lên +40%.",
     isEquipped: true,
   },
   {
     id: "3",
     key: "glasses_bloomberg",
-    name: "Kính Bloomberg Terminal",
     slot: "glasses",
     emoji: "🕶️",
     rarity: "Hiếm",
     rarityColor: "from-purple-400 to-indigo-600",
     stats: { speed: 30, valuation: 20 },
-    description: "Kính nhìn thấu dòng tiền và chỉ số tài chính thời gian thực.",
     isEquipped: false,
   },
   {
     id: "4",
     key: "pen_gold",
-    name: "Bút Vàng Ký Hợp Đồng M&A",
     slot: "pen",
     emoji: "🖋️",
     rarity: "Huyền Thoại",
     rarityColor: "from-amber-400 to-yellow-600",
     stats: { valuation: 50, luck: 35 },
-    description: "Bút máy mạ vàng chuyên dùng chốt các thương vụ M&A triệu đô.",
     isEquipped: false,
   },
   {
     id: "5",
     key: "potion_x2xp",
-    name: "Thuốc X2 XP Wall Street (24H)",
     slot: "potion",
     emoji: "🧪",
     rarity: "Hiếm",
     rarityColor: "from-emerald-400 to-teal-600",
     stats: { speed: 50 },
-    description: "Nhân đôi toàn bộ XP nhận được khi hoàn thành bài học và Quiz.",
     isEquipped: false,
   },
   {
     id: "6",
     key: "card_vinamilk",
-    name: "Thẻ Doanh Nghiệp Vinamilk (VNM)",
     slot: "card",
     emoji: "📇",
     rarity: "Thường",
     rarityColor: "from-blue-400 to-cyan-600",
     stats: { defense: 20 },
-    description: "Thẻ cổ phiếu đầu ngành tiêu dùng Việt Nam.",
     isEquipped: false,
   },
 ];
+/* i18n-ignore-end */
+
+function defaultItemsOf(t: Dictionary): InventoryItem[] {
+  const copy = t.dataTables.rpgInventory.items;
+  return DEFAULT_ITEMS_SHAPE.map((item) => {
+    const c = copy[item.key as keyof typeof copy];
+    return { ...item, name: c.name, description: c.description };
+  });
+}
+
+function rarityLabel(t: Dictionary, rarity: InventoryItem["rarity"]): string {
+  return t.dataTables.rpgInventory.rarityLabels[rarity];
+}
 
 /** Panel chỉ đọc đúng một trường của hồ sơ, nên prop khai đúng chừng đó -
  *  `any` ở đây từng khiến cả ba component trong chuỗi cùng mất kiểu. */
@@ -109,10 +116,23 @@ export interface RpgProfile {
 
 export default function RpgInventoryPanel({ user }: { user: RpgProfile | null }) {
   const { t } = useI18n();
-  const [items, setItems] = useState<InventoryItem[]>(DEFAULT_ITEMS);
-  const [selectedItem, setSelectedItem] = useState<InventoryItem | null>(DEFAULT_ITEMS[0]);
+  const defaultItems = useMemo(() => defaultItemsOf(t), [t]);
+  // Only the equip state and the selected item's id are actual state - the
+  // rest (name, description, ...) is re-derived from `defaultItems` on every
+  // render, so a locale change re-localizes text without an effect and
+  // without disturbing what the player has equipped or selected.
+  const [equippedIds, setEquippedIds] = useState<Set<string>>(
+    () => new Set(defaultItems.filter((i) => i.isEquipped).map((i) => i.id))
+  );
+  const [selectedId, setSelectedId] = useState<string | null>(defaultItems[0]?.id ?? null);
   const [activeTab, setActiveTab] = useState<"all" | "gear" | "potions">("all");
   const [level] = useState(5);
+
+  const items = useMemo(
+    () => defaultItems.map((i) => ({ ...i, isEquipped: equippedIds.has(i.id) })),
+    [defaultItems, equippedIds]
+  );
+  const selectedItem = items.find((i) => i.id === selectedId) ?? null;
 
   const equippedItems = useMemo(() => items.filter((i) => i.isEquipped), [items]);
   const totalStats = equippedItems.reduce(
@@ -137,23 +157,25 @@ export default function RpgInventoryPanel({ user }: { user: RpgProfile | null })
       return;
     }
 
-    setItems((prev) =>
-      prev.map((i) => {
-        if (i.id === item.id) {
-          const nextEquipState = !i.isEquipped;
-          toast.success(
-            nextEquipState
-              ? format(t.rpgInventory.toastEquipped, { name: i.name })
-              : format(t.rpgInventory.toastUnequipped, { name: i.name })
-          );
-          return { ...i, isEquipped: nextEquipState };
-        }
-        if (i.slot === item.slot && !item.isEquipped) {
-          return { ...i, isEquipped: false };
-        }
-        return i;
-      })
+    const nextEquipState = !item.isEquipped;
+    toast.success(
+      nextEquipState
+        ? format(t.rpgInventory.toastEquipped, { name: item.name })
+        : format(t.rpgInventory.toastUnequipped, { name: item.name })
     );
+    setEquippedIds((prev) => {
+      const next = new Set(prev);
+      if (nextEquipState) {
+        // Unequip any other item in the same slot before equipping this one.
+        for (const i of items) {
+          if (i.slot === item.slot) next.delete(i.id);
+        }
+        next.add(item.id);
+      } else {
+        next.delete(item.id);
+      }
+      return next;
+    });
   };
 
   const filteredItems = items.filter((i) => {
@@ -252,7 +274,7 @@ export default function RpgInventoryPanel({ user }: { user: RpgProfile | null })
                   key={item.id}
                   whileHover={{ scale: 1.04 }}
                   whileTap={{ scale: 0.97 }}
-                  onClick={() => setSelectedItem(item)}
+                  onClick={() => setSelectedId(item.id)}
                   className={`relative flex aspect-square flex-col items-center justify-between rounded-2xl border-2 p-2 transition-all ${
                     isSelected
                       ? "border-amber-500 bg-amber-50 ring-2 ring-amber-400/40"
@@ -286,7 +308,7 @@ export default function RpgInventoryPanel({ user }: { user: RpgProfile | null })
                   <div className="min-w-0">
                     <h4 className="break-words text-sm font-black leading-none text-stone-900">{selectedItem.name}</h4>
                     <span className={`mt-1 inline-block rounded-full bg-gradient-to-r px-2 py-0.5 text-[9px] font-black uppercase tracking-wider text-white ${selectedItem.rarityColor}`}>
-                      {selectedItem.rarity}
+                      {rarityLabel(t, selectedItem.rarity)}
                     </span>
                   </div>
                 </div>

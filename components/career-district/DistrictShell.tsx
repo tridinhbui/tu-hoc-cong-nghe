@@ -10,7 +10,7 @@ import {
   GATE_XS,
   GATE_Z,
   CAFE_COUNTER,
-  CIVIC_ROOMS,
+  civicRoomsOf,
   CAFE_X,
   CAFE_PLANTS,
   CAFE_SHELF_XS,
@@ -32,7 +32,7 @@ import {
   type DistrictRoom,
 } from "./district-space";
 import { formulasFor, type WallFormula } from "./district-content";
-import { STATIONS } from "@/components/lobby/stations";
+import { STATION_IDS } from "@/components/lobby/stations";
 import CivicScene, { isCivicRoom } from "./CivicScenes";
 import { ORGANIC_BUILDINGS } from "@/lib/rpg-buildings";
 import { CAREER_CATEGORY_ORDER, isCareerCategory, type CareerCategory } from "@/lib/career-categories";
@@ -350,7 +350,7 @@ function Tower() {
       <pointLight position={[0, 2.3, 2.2]} intensity={9} distance={11} color="#ffd9a0" />
       <TextBoard
         title={t.careerDistrict.shell.towerTitle}
-        rows={[t.careerDistrict.shell.towerRow1, format(t.careerDistrict.shell.towerRow2, { n: STATIONS.length })]}
+        rows={[t.careerDistrict.shell.towerRow1, format(t.careerDistrict.shell.towerRow2, { n: STATION_IDS.length })]}
         accent="#fbbf24"
         width={9}
         height={2}
@@ -458,6 +458,8 @@ function CafeFront() {
 }
 
 function StreetScene({ progressByCategory }: { progressByCategory: Record<CareerCategory, { done: number; total: number }> }) {
+  const { t } = useI18n();
+  const civicRooms = useMemo(() => civicRoomsOf(t), [t]);
   const asphalt = useMemo(() => asphaltTexture(), []);
   return (
     <group>
@@ -485,7 +487,7 @@ function StreetScene({ progressByCategory }: { progressByCategory: Record<Career
       {/* Sáu căn nhà dân sự dọc phố. Cùng một khuôn mặt tiền, khác màu và khác
           biển - chúng là dãy nhà nền của thành phố, không phải công trình
           điểm nhấn như tháp hay nhà thi đấu. */}
-      {CIVIC_ROOMS.map((c) => (
+      {civicRooms.map((c) => (
         <group key={c.id} position={[c.streetX, 0, STREET.facadeZ]}>
           <mesh position={[0, 4.5, -2]} castShadow receiveShadow>
             <boxGeometry args={[11, 9, 6]} />
@@ -999,7 +1001,7 @@ function OfficeScene({
       ) : room.portals.length === 0 ? (
         <TextBoard
           title={t.careerDistrict.shell.towerTitle}
-          rows={[t.careerDistrict.shell.officeLiftRow, format(t.careerDistrict.shell.officeFloorsRow, { n: STATIONS.length })]}
+          rows={[t.careerDistrict.shell.officeLiftRow, format(t.careerDistrict.shell.officeFloorsRow, { n: STATION_IDS.length })]}
           accent={room.accent}
           width={6.4}
           height={2.4}

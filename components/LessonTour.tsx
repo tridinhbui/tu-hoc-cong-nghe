@@ -1,34 +1,42 @@
 "use client";
 
+import { useMemo } from "react";
 import SpotlightTour, { type TourStep } from "@/components/SpotlightTour";
+import { useI18n } from "@/lib/i18n/context";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
-const STEPS: TourStep[] = [
-  {
-    selector: '[data-tour="lesson-progress"]',
-    title: "Tiến độ đọc bài",
-    text: "Thanh này theo dõi bạn đã đọc đến đâu - tự động lưu lại, quay lại bài học lúc nào cũng thấy đúng chỗ cũ.",
-  },
-  {
-    selector: '[data-tour="lesson-bookmark"]',
-    title: "Lưu bài để đọc sau",
-    text: "Bấm vào đây để đánh dấu bài học này, xem lại nhanh trong danh sách đã lưu của bạn.",
-  },
-  {
-    selector: '[data-tour="lesson-tai-tai"]',
-    title: "Tài Tài - mẹo tự động",
-    text: "Mỗi bài đều có một mẹo ngắn liên quan đến nội dung, tự động chọn cho bạn - không cần hỏi.",
-  },
-  {
-    selector: '[data-tour="lesson-quiz"]',
-    title: "Kiểm tra nhanh",
-    text: "Làm quiz ở đây để tự kiểm tra mình đã hiểu bài chưa - kết quả được lưu lại vào tiến độ học của bạn.",
-  },
-];
+function stepsOf(t: Dictionary): TourStep[] {
+  const d = t.dataRest.lessonTour;
+  return [
+    {
+      selector: '[data-tour="lesson-progress"]',
+      title: d.progressTitle,
+      text: d.progressText,
+    },
+    {
+      selector: '[data-tour="lesson-bookmark"]',
+      title: d.bookmarkTitle,
+      text: d.bookmarkText,
+    },
+    {
+      selector: '[data-tour="lesson-tai-tai"]',
+      title: d.taiTaiTitle,
+      text: d.taiTaiText,
+    },
+    {
+      selector: '[data-tour="lesson-quiz"]',
+      title: d.quizTitle,
+      text: d.quizText,
+    },
+  ];
+}
 
 // Same one-time spotlight walkthrough mechanism as the dashboard, but for a
 // first-time visitor's very first lesson page - including the free preview
 // lesson reachable without an account, which never sees the dashboard tour
 // at all since it never visits /dashboard.
 export default function LessonTour({ userId }: { userId?: string | null }) {
-  return <SpotlightTour steps={STEPS} storageKey="lesson_tour_seen_v1" userId={userId} remoteKey="lesson" />;
+  const { t } = useI18n();
+  const steps = useMemo(() => stepsOf(t), [t]);
+  return <SpotlightTour steps={steps} storageKey="lesson_tour_seen_v1" userId={userId} remoteKey="lesson" />;
 }

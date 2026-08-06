@@ -1,6 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { DISTRICT_ROOMS, STREET } from "@/components/career-district/district-space";
+import { districtRoomsOf, STREET } from "@/components/career-district/district-space";
 import { ROOM as STUDY_ROOM, SEATS, TABLE } from "@/components/study-room/study-room-space";
+import { vi as viDict } from "@/lib/i18n/dictionaries/vi";
+
+const DISTRICT_ROOMS = districtRoomsOf(viDict);
 
 /** Mốc hình học của thế giới 3D.
  *

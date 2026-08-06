@@ -3,12 +3,15 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import type { ReactElement } from "react";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import RoomDirectory, { PLACE_ICONS, directoryGroups } from "@/components/career-district/RoomDirectory";
-import { CIVIC_ROOMS, getRoom } from "@/components/career-district/district-space";
+import { civicRoomsOf, getRoom as getRoomOf } from "@/components/career-district/district-space";
 import { CAREER_CATEGORY_ORDER } from "@/lib/career-categories";
 import { vi as viDict } from "@/lib/i18n/dictionaries/vi";
 import { I18nProvider } from "@/lib/i18n/context";
 
 vi.mock("next/navigation", () => ({ useRouter: () => ({ push: vi.fn(), refresh: vi.fn() }) }));
+
+const CIVIC_ROOMS = civicRoomsOf(viDict);
+const getRoom = (id: Parameters<typeof getRoomOf>[1]) => getRoomOf(viDict, id);
 
 function renderWithI18n(node: ReactElement) {
   return render(<I18nProvider initialLocale="vi">{node}</I18nProvider>);
