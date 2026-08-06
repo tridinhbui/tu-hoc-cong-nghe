@@ -3,6 +3,8 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Loader2, Lightbulb, ChevronRight, ChevronLeft, MessageSquareQuote } from "lucide-react";
 import type { BehavioralPrepQuestion } from "@/app/api/ib-behavioral/route";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 // Behavioral/fit prep, deliberately un-scored. "Walk me through your resume"
 // and "Why banking?" have no single right answer, so the old multiple-choice
@@ -13,6 +15,7 @@ import type { BehavioralPrepQuestion } from "@/app/api/ib-behavioral/route";
 // and paying XP for clicking "reveal" would just be a participation trophy.
 
 export default function BehavioralPrepPanel() {
+  const { t } = useI18n();
   const [questions, setQuestions] = useState<BehavioralPrepQuestion[]>([]);
   const [loading, setLoading] = useState(true);
   const [failed, setFailed] = useState(false);
@@ -69,7 +72,7 @@ export default function BehavioralPrepPanel() {
     return (
       <div className="py-16 flex flex-col items-center gap-3 text-stone-500 dark:text-stone-400">
         <Loader2 className="w-6 h-6 animate-spin" />
-        <p className="text-xs font-bold">Đang tải câu hỏi behavioral...</p>
+        <p className="text-xs font-bold">{t.behavioralPrep.loading}</p>
       </div>
     );
   }
@@ -78,13 +81,13 @@ export default function BehavioralPrepPanel() {
     return (
       <div className="py-12 flex flex-col items-center gap-3">
         <p className="text-sm font-bold text-stone-500 dark:text-stone-400">
-          Không tải được bộ câu hỏi behavioral.
+          {t.behavioralPrep.loadError}
         </p>
         <button
           onClick={() => void load()}
           className="px-4 py-2 rounded-xl bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 text-xs font-black cursor-pointer"
         >
-          Thử lại
+          {t.behavioralPrep.retry}
         </button>
       </div>
     );
@@ -95,8 +98,9 @@ export default function BehavioralPrepPanel() {
       <div className="rounded-2xl border border-sky-200 dark:border-sky-900/60 bg-sky-50/60 dark:bg-sky-950/20 p-4 flex items-start gap-3">
         <MessageSquareQuote className="w-4 h-4 text-sky-600 dark:text-sky-400 shrink-0 mt-0.5" />
         <p className="text-xs font-semibold text-stone-600 dark:text-stone-300 leading-relaxed">
-          Nhóm câu hỏi này <strong>không có đáp án đúng/sai</strong> nên không chấm điểm. Cách dùng: đọc câu hỏi,
-          tự trả lời thành tiếng như đang phỏng vấn thật, rồi mới mở khung gợi ý để đối chiếu.
+          {t.behavioralPrep.notePart1}
+          <strong>{t.behavioralPrep.noteBold}</strong>
+          {t.behavioralPrep.notePart2}
         </p>
       </div>
 
@@ -110,7 +114,7 @@ export default function BehavioralPrepPanel() {
               : "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-stone-600 dark:text-stone-300 hover:border-stone-300"
           }`}
         >
-          Tất cả · {questions.length}
+          {format(t.behavioralPrep.allCategories, { count: questions.length })}
         </button>
         {categories.map(([label, count]) => (
           <button
@@ -146,7 +150,7 @@ export default function BehavioralPrepPanel() {
             <div className="rounded-2xl border border-amber-200 dark:border-amber-900/60 bg-amber-50/70 dark:bg-amber-950/20 p-4">
               <p className="mb-2 text-[10px] font-black uppercase tracking-[0.18em] text-amber-700 dark:text-amber-400 flex items-center gap-1.5">
                 <Lightbulb className="w-3.5 h-3.5" />
-                Khung trả lời gợi ý
+                {t.behavioralPrep.frameworkHeading}
               </p>
               <p className="text-sm leading-relaxed text-stone-700 dark:text-stone-300 whitespace-pre-line select-text">
                 {q.framework}
@@ -157,7 +161,7 @@ export default function BehavioralPrepPanel() {
               onClick={() => setRevealed(true)}
               className="w-full py-3.5 rounded-xl bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 text-sm font-black uppercase tracking-wide cursor-pointer hover:opacity-90 transition-opacity"
             >
-              Xem khung trả lời
+              {t.behavioralPrep.revealFramework}
             </button>
           )}
 
@@ -168,14 +172,14 @@ export default function BehavioralPrepPanel() {
               className="inline-flex items-center gap-1 px-3.5 py-2 rounded-xl border border-stone-200 dark:border-stone-800 text-xs font-bold text-stone-600 dark:text-stone-400 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors cursor-pointer"
             >
               <ChevronLeft className="w-3.5 h-3.5" />
-              Câu trước
+              {t.behavioralPrep.previous}
             </button>
             <button
               onClick={() => go(1)}
               disabled={activeIdx >= filtered.length - 1}
               className="inline-flex items-center gap-1 px-3.5 py-2 rounded-xl border border-stone-200 dark:border-stone-800 text-xs font-bold text-stone-600 dark:text-stone-400 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors cursor-pointer"
             >
-              Câu tiếp theo
+              {t.behavioralPrep.next}
               <ChevronRight className="w-3.5 h-3.5" />
             </button>
           </div>

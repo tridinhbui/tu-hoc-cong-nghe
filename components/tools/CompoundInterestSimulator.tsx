@@ -2,8 +2,11 @@
 
 import { useState } from "react";
 import { TrendingUp, Info } from "lucide-react";
+import { useI18n } from "@/lib/i18n/context";
+import { format, intlLocale } from "@/lib/i18n";
 
 export default function CompoundInterestSimulator() {
+  const { t, locale } = useI18n();
   const [initialAmount, setInitialAmount] = useState<number>(10000000); // 10 Million VND
   const [monthlyContribution, setMonthlyContribution] = useState<number>(1000000); // 1 Million VND
   const [years, setYears] = useState<number>(10);
@@ -30,7 +33,7 @@ export default function CompoundInterestSimulator() {
 
   // Format currency
   const formatVND = (num: number) => {
-    return new Intl.NumberFormat("vi-VN", { style: "currency", currency: "VND" }).format(Math.round(num));
+    return new Intl.NumberFormat(intlLocale(locale), { style: "currency", currency: "VND" }).format(Math.round(num));
   };
 
   // Generate data for visualization (yearly intervals)
@@ -65,8 +68,8 @@ export default function CompoundInterestSimulator() {
           <TrendingUp className="w-5 h-5" />
         </div>
         <div>
-          <h2 className="text-base font-extrabold text-stone-900 dark:text-stone-100">Giả lập Sức mạnh Lãi kép</h2>
-          <p className="text-xs text-stone-500 dark:text-stone-400">Trực quan hóa tài sản sinh sôi khi tích lũy đều đặn</p>
+          <h2 className="text-base font-extrabold text-stone-900 dark:text-stone-100">{t.compoundSim.headerTitle}</h2>
+          <p className="text-xs text-stone-500 dark:text-stone-400">{t.compoundSim.headerSubtitle}</p>
         </div>
       </div>
 
@@ -75,7 +78,7 @@ export default function CompoundInterestSimulator() {
         <div className="space-y-4">
           <div>
             <label className="block text-xs font-bold text-stone-700 dark:text-stone-300 mb-1.5">
-              Số tiền ban đầu (VND)
+              {t.compoundSim.initialAmountLabel}
             </label>
             <input
               type="number"
@@ -90,7 +93,7 @@ export default function CompoundInterestSimulator() {
 
           <div>
             <label className="block text-xs font-bold text-stone-700 dark:text-stone-300 mb-1.5">
-              Tích lũy thêm mỗi tháng (VND)
+              {t.compoundSim.monthlyContributionLabel}
             </label>
             <input
               type="number"
@@ -106,7 +109,7 @@ export default function CompoundInterestSimulator() {
           <div className="grid grid-cols-2 gap-4">
             <div>
               <label className="block text-xs font-bold text-stone-700 dark:text-stone-300 mb-1.5">
-                Thời gian (Năm)
+                {t.compoundSim.yearsLabel}
               </label>
               <input
                 type="number"
@@ -119,7 +122,7 @@ export default function CompoundInterestSimulator() {
             </div>
             <div>
               <label className="block text-xs font-bold text-stone-700 dark:text-stone-300 mb-1.5">
-                Lãi suất (% / Năm)
+                {t.compoundSim.interestRateLabel}
               </label>
               <input
                 type="number"
@@ -139,7 +142,7 @@ export default function CompoundInterestSimulator() {
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-0.5">
               <span className="text-[10px] font-bold text-stone-500 dark:text-stone-400 block uppercase">
-                Tổng gốc đóng góp
+                {t.compoundSim.totalPrincipalLabel}
               </span>
               <span className="text-sm font-extrabold text-stone-900 dark:text-stone-100">
                 {formatVND(totalPrincipal)}
@@ -147,7 +150,7 @@ export default function CompoundInterestSimulator() {
             </div>
             <div className="space-y-0.5">
               <span className="text-[10px] font-bold text-stone-500 dark:text-stone-400 block uppercase">
-                Tiền lãi sinh ra
+                {t.compoundSim.totalInterestLabel}
               </span>
               <span className="text-sm font-extrabold text-emerald-600 dark:text-emerald-400">
                 {formatVND(totalInterest)}
@@ -155,7 +158,7 @@ export default function CompoundInterestSimulator() {
             </div>
             <div className="col-span-2 pt-3 border-t border-stone-200/60 dark:border-stone-800/80 space-y-0.5">
               <span className="text-[10px] font-bold text-stone-500 dark:text-stone-400 block uppercase">
-                Tổng giá trị dự kiến (FV)
+                {t.compoundSim.futureValueLabel}
               </span>
               <span className="text-xl font-black text-stone-900 dark:text-stone-100">
                 {formatVND(futureValue)}
@@ -198,7 +201,12 @@ export default function CompoundInterestSimulator() {
                       rx="1"
                     />
                     {/* Tooltip hint text on hover */}
-                    <title>{`Năm ${d.year}: ${formatVND(d.total)} (Gốc: ${formatVND(d.principal)}, Lãi: ${formatVND(d.interest)})`}</title>
+                    <title>{format(t.compoundSim.tooltipText, {
+                      year: d.year,
+                      total: formatVND(d.total),
+                      principal: formatVND(d.principal),
+                      interest: formatVND(d.interest),
+                    })}</title>
                   </g>
                 );
               })}
@@ -210,7 +218,7 @@ export default function CompoundInterestSimulator() {
                 className="text-[9px] fill-stone-400 font-bold"
                 textAnchor="start"
               >
-                Năm 1
+                {t.compoundSim.yearOneLabel}
               </text>
               <text
                 x={chartWidth - padding}
@@ -218,7 +226,7 @@ export default function CompoundInterestSimulator() {
                 className="text-[9px] fill-stone-400 font-bold"
                 textAnchor="end"
               >
-                Năm {years}
+                {format(t.compoundSim.yearNLabel, { years })}
               </text>
               {/* Horizontal baseline */}
               <line
@@ -233,10 +241,10 @@ export default function CompoundInterestSimulator() {
 
             <div className="flex gap-4 justify-center mt-3 text-[10px] font-bold">
               <span className="flex items-center gap-1.5 text-stone-600 dark:text-stone-400">
-                <span className="w-2.5 h-2.5 bg-stone-300 dark:bg-stone-700 rounded" /> Tiền gốc đóng góp
+                <span className="w-2.5 h-2.5 bg-stone-300 dark:bg-stone-700 rounded" /> {t.compoundSim.legendPrincipal}
               </span>
               <span className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400">
-                <span className="w-2.5 h-2.5 bg-emerald-500 rounded" /> Tiền lãi sinh ra
+                <span className="w-2.5 h-2.5 bg-emerald-500 rounded" /> {t.compoundSim.legendInterest}
               </span>
             </div>
           </div>
@@ -246,7 +254,7 @@ export default function CompoundInterestSimulator() {
       <div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-950/20 border border-amber-200/40 text-xs text-amber-800 dark:text-amber-400 flex items-start gap-2.5">
         <Info className="w-4 h-4 mt-0.5 shrink-0" />
         <p className="leading-relaxed">
-          <strong>Lời khuyên sư phạm:</strong> Càng bắt đầu tích lũy sớm, phần lãi sinh ra càng phình to vượt trội so với tiền gốc bạn tự đóng góp. Đây chính là nguyên lý của quả cầu tuyết tài chính được Warren Buffett ứng dụng suốt sự nghiệp.
+          <strong>{t.compoundSim.adviceLabel}</strong> {t.compoundSim.adviceText}
         </p>
       </div>
     </div>

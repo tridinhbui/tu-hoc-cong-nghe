@@ -5,11 +5,14 @@ import { toast } from "sonner";
 import { Gift, Copy, Check } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import { getMyReferralStats, REFERRER_BONUS_XP, REFERRED_BONUS_XP, type MyReferralStats } from "@/lib/referrals";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 // "Mời bạn học cùng" - both sides get a one-time XP bonus once the invited
 // person completes their first lesson (see lib/referrals.ts for the
 // anti-abuse reasoning: gated on real engagement, not just a signup).
 export default function ReferralCard() {
+  const { t } = useI18n();
   const [userId, setUserId] = useState<string | null>(null);
   const [stats, setStats] = useState<MyReferralStats>({ totalInvited: 0, totalRewarded: 0 });
   const [copied, setCopied] = useState(false);
@@ -32,7 +35,7 @@ export default function ReferralCard() {
   function handleCopy() {
     navigator.clipboard.writeText(link).then(() => {
       setCopied(true);
-      toast.success("Đã sao chép link mời!");
+      toast.success(t.referralCard.copyToast);
       setTimeout(() => setCopied(false), 2000);
     });
   }
@@ -47,12 +50,15 @@ export default function ReferralCard() {
       <div className="flex items-center gap-2 mb-1.5">
         <Gift className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
         <h2 className="text-sm font-extrabold text-stone-900 dark:text-stone-100 uppercase tracking-widest">
-          Mời bạn học cùng
+          {t.referralCard.title}
         </h2>
       </div>
       <p className="text-xs text-stone-500 dark:text-stone-400 mb-4">
-        Bạn nhận <span className="font-bold text-emerald-600 dark:text-emerald-400">+{REFERRER_BONUS_XP} XP</span>, người được mời nhận{" "}
-        <span className="font-bold text-emerald-600 dark:text-emerald-400">+{REFERRED_BONUS_XP} XP</span> - ngay khi họ hoàn thành bài học đầu tiên.
+        {t.referralCard.descPart1}{" "}
+        <span className="font-bold text-emerald-600 dark:text-emerald-400">{format(t.referralCard.descBonus, { xp: REFERRER_BONUS_XP })}</span>
+        {t.referralCard.descPart2}{" "}
+        <span className="font-bold text-emerald-600 dark:text-emerald-400">{format(t.referralCard.descBonus, { xp: REFERRED_BONUS_XP })}</span>{" "}
+        {t.referralCard.descPart3}
       </p>
 
       <div className="flex items-center gap-2 mb-3">
@@ -64,7 +70,7 @@ export default function ReferralCard() {
         />
         <button
           onClick={handleCopy}
-          title="Sao chép link mời"
+          title={t.referralCard.copyButtonTitle}
           className="flex-shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
         >
           {copied ? <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400" /> : <Copy className="w-4 h-4" />}
@@ -79,16 +85,16 @@ export default function ReferralCard() {
         <svg viewBox="0 0 24 24" className="w-4 h-4 flex-shrink-0" fill="currentColor" aria-hidden="true">
           <path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.9h2.54V9.85c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.44 2.9h-2.34V22c4.78-.76 8.44-4.92 8.44-9.94Z" />
         </svg>
-        Chia sẻ lên Facebook
+        {t.referralCard.shareFacebook}
       </button>
 
       {stats.totalInvited > 0 && (
         <p className="text-[11px] text-stone-400 dark:text-stone-500 mt-3 text-center">
-          Đã mời <span className="font-bold text-stone-600 dark:text-stone-300">{stats.totalInvited}</span> người
+          {t.referralCard.invitedPrefix} <span className="font-bold text-stone-600 dark:text-stone-300">{stats.totalInvited}</span> {t.referralCard.invitedUnit}
           {stats.totalRewarded > 0 && (
             <>
               {" · "}
-              <span className="font-bold text-emerald-600 dark:text-emerald-400">{stats.totalRewarded}</span> người đã học bài đầu tiên
+              <span className="font-bold text-emerald-600 dark:text-emerald-400">{stats.totalRewarded}</span> {t.referralCard.rewardedUnit}
             </>
           )}
         </p>

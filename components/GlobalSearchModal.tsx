@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, BookOpen, Calculator, MessageCircle, ArrowRight, X, Sparkles, HelpCircle } from "lucide-react";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 interface SearchResultItem {
   id: string;
@@ -41,6 +43,7 @@ export default function GlobalSearchModal({
   isOpen: boolean;
   onClose: () => void;
 }) {
+  const { t } = useI18n();
   const router = useRouter();
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<SearchResultItem[]>([]);
@@ -94,13 +97,14 @@ export default function GlobalSearchModal({
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Tìm bài học, thuật ngữ, công cụ định giá... (ví dụ: DCF, WACC, P/E)"
+              placeholder={t.globalSearch.inputPlaceholder}
               autoFocus
               className="w-full bg-transparent pl-9 pr-10 text-base font-bold text-stone-900 dark:text-stone-100 placeholder:text-stone-400 focus:outline-none"
             />
             <button
               type="button"
               onClick={onClose}
+              aria-label={t.globalSearch.closeAriaLabel}
               className="absolute right-4 top-1/2 -translate-y-1/2 p-1.5 rounded-full text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-800 cursor-pointer"
             >
               <X className="w-5 h-5" />
@@ -112,8 +116,11 @@ export default function GlobalSearchModal({
             {query.trim() === "" ? (
               <div className="text-center py-8 text-stone-400 space-y-2">
                 <Sparkles className="w-8 h-8 text-emerald-500 mx-auto opacity-70" />
-                <p className="text-xs font-bold">Nhập từ khóa bất kỳ để tìm kiếm toàn bộ hệ thống</p>
+                <p className="text-xs font-bold">{t.globalSearch.emptyPrompt}</p>
                 <div className="flex flex-wrap justify-center gap-2 pt-2 text-[11px]">
+                  {/* i18n-ignore-start: these are search query seeds, not UI copy - they
+                      must match the Vietnamese-only sample data below, so they stay
+                      Vietnamese regardless of UI locale (search behaviour is not copy) */}
                   {["DCF", "WACC", "LBO", "P/E", "ROE", "Nợ vay", "Tích sản"].map((kw) => (
                     <button
                       key={kw}
@@ -124,11 +131,12 @@ export default function GlobalSearchModal({
                       {kw}
                     </button>
                   ))}
+                  {/* i18n-ignore-end */}
                 </div>
               </div>
             ) : results.length === 0 ? (
               <p className="text-center py-8 text-xs text-stone-400">
-                Không tìm thấy kết quả nào phù hợp với &quot;{query}&quot;.
+                {format(t.globalSearch.noResults, { query })}
               </p>
             ) : (
               <div className="space-y-2">
@@ -151,7 +159,11 @@ export default function GlobalSearchModal({
                       <div>
                         <div className="flex items-center gap-2">
                           <span className="text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-500 dark:text-stone-400">
-                            {item.category === "lesson" ? "Bài học" : item.category === "tool" ? "Công cụ" : "Thuật ngữ"}
+                            {item.category === "lesson"
+                              ? t.globalSearch.categoryLesson
+                              : item.category === "tool"
+                              ? t.globalSearch.categoryTool
+                              : t.globalSearch.categoryGlossary}
                           </span>
                         </div>
                         <h4 className="text-xs sm:text-sm font-black text-stone-900 dark:text-stone-100 mt-0.5">

@@ -1,6 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
 // Phí ăn mòn danh mục theo thời gian, widget cho các bài khai `interactiveType:
 // "fee-drag"`.
@@ -30,12 +33,14 @@ function finalValue(
   return net * ((Math.pow(1 + r, months) - 1) / r);
 }
 
-const fmt = (v: number) =>
-  v >= 1_000
-    ? `${(v / 1_000).toFixed(2)} tỷ`
-    : `${v.toFixed(0)} triệu`;
+function fmt(t: Dictionary, v: number): string {
+  return v >= 1_000
+    ? format(t.feeDrag.billionValue, { value: (v / 1_000).toFixed(2) })
+    : format(t.feeDrag.millionValue, { value: v.toFixed(0) });
+}
 
 export default function InteractiveFeeDrag() {
+  const { t } = useI18n();
   const [monthly, setMonthly] = useState(5); // triệu/tháng
   const [years, setYears] = useState(20);
   const [ret, setRet] = useState(10);
@@ -51,43 +56,42 @@ export default function InteractiveFeeDrag() {
   return (
     <div className="rounded-3xl border border-stone-200 bg-white p-6 dark:border-stone-800 dark:bg-stone-900">
       <h3 className="text-sm font-extrabold text-stone-900 dark:text-stone-100">
-        Phí lấy đi bao nhiêu, tính trên số năm bạn thực sự giữ
+        {t.feeDrag.headerTitle}
       </h3>
 
       <div className="mt-4 space-y-3">
-        <Row label="Góp mỗi tháng" value={`${monthly} triệu`}>
+        <Row label={t.feeDrag.monthlyLabel} value={format(t.feeDrag.monthlyValue, { value: monthly })}>
           <input type="range" min={1} max={30} step={1} value={monthly}
             onChange={(e) => setMonthly(Number(e.target.value))} className="w-full cursor-pointer accent-stone-900 dark:accent-stone-100" />
         </Row>
-        <Row label="Số năm giữ" value={`${years} năm`}>
+        <Row label={t.feeDrag.yearsLabel} value={format(t.feeDrag.yearsValue, { value: years })}>
           <input type="range" min={5} max={40} step={1} value={years}
             onChange={(e) => setYears(Number(e.target.value))} className="w-full cursor-pointer accent-stone-900 dark:accent-stone-100" />
         </Row>
-        <Row label="Lợi nhuận gộp/năm" value={`${ret}%`}>
+        <Row label={t.feeDrag.returnLabel} value={format(t.feeDrag.percentValue, { value: ret })}>
           <input type="range" min={4} max={16} step={0.5} value={ret}
             onChange={(e) => setRet(Number(e.target.value))} className="w-full cursor-pointer accent-stone-900 dark:accent-stone-100" />
         </Row>
-        <Row label="Phí quản lý/năm" value={`${fee}%`}>
+        <Row label={t.feeDrag.feeLabel} value={format(t.feeDrag.percentValue, { value: fee })}>
           <input type="range" min={0} max={3} step={0.1} value={fee}
             onChange={(e) => setFee(Number(e.target.value))} className="w-full cursor-pointer accent-stone-900 dark:accent-stone-100" />
         </Row>
-        <Row label="Phí mua mỗi lần góp" value={`${entry}%`}>
+        <Row label={t.feeDrag.entryFeeLabel} value={format(t.feeDrag.percentValue, { value: entry })}>
           <input type="range" min={0} max={3} step={0.25} value={entry}
             onChange={(e) => setEntry(Number(e.target.value))} className="w-full cursor-pointer accent-stone-900 dark:accent-stone-100" />
         </Row>
       </div>
 
       <div className="mt-5 grid gap-3 sm:grid-cols-3">
-        <Card label="Bạn đã góp" value={fmt(contributed)} tone="neutral" />
-        <Card label="Nhận về sau phí" value={fmt(withFee)} tone="good" />
-        <Card label="Phí đã lấy" value={fmt(lost)} tone="bad" />
+        <Card label={t.feeDrag.contributedLabel} value={fmt(t, contributed)} tone="neutral" />
+        <Card label={t.feeDrag.receivedLabel} value={fmt(t, withFee)} tone="good" />
+        <Card label={t.feeDrag.feeLostLabel} value={fmt(t, lost)} tone="bad" />
       </div>
 
       <p className="mt-4 rounded-2xl bg-stone-50 p-4 text-xs leading-relaxed text-stone-600 dark:bg-stone-800/60 dark:text-stone-300">
-        Phí lấy mất <span className="font-bold">{lostShare.toFixed(1)}%</span> số tiền cuối cùng, trong
-        khi con số ghi trên hợp đồng chỉ là {fee}% một năm. Chênh lệch đến từ chỗ phần bị lấy mỗi năm
-        cũng mất luôn toàn bộ số lãi nó đáng lẽ sinh ra trong những năm còn lại — nên kéo thanh
-        &quot;số năm giữ&quot; lên là thấy tỷ lệ này lớn dần, dù mức phí không đổi.
+        {t.feeDrag.explanationPart1}{" "}
+        <span className="font-bold">{format(t.feeDrag.explanationLostShare, { lostShare: lostShare.toFixed(1) })}</span>{" "}
+        {format(t.feeDrag.explanationPart2, { fee })}
       </p>
     </div>
   );

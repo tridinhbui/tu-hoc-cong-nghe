@@ -4,12 +4,15 @@ import { useState, useEffect } from "react";
 import { Flame, BookOpen, Trophy, Sparkles, CheckCircle2, Gift } from "lucide-react";
 import { toast } from "sonner";
 import { recalculateUserStats } from "@/lib/supabase-user";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 interface WeeklyQuestsWidgetProps {
   userId: string;
 }
 
 export default function WeeklyQuestsWidget({ userId }: WeeklyQuestsWidgetProps) {
+  const { t } = useI18n();
   const [streak, setStreak] = useState<number>(0);
   const [weeklyLessonsCount, setWeeklyLessonsCount] = useState<number>(0);
   const [perfectQuizStreak, setPerfectQuizStreak] = useState<number>(0);
@@ -111,14 +114,14 @@ export default function WeeklyQuestsWidget({ userId }: WeeklyQuestsWidgetProps) 
       window.localStorage.setItem(epicClaimedKey, "true");
       setIsEpicClaimed(true);
 
-      toast.success("Chúc mừng! Bạn đã mở khóa Rương Sử Thi: Nhận +3 Rương Quà & +100 XP cực lớn! 🎁🏆👑");
-      
+      toast.success(t.weeklyQuests.claimSuccessToast);
+
       // Dispatch events to refresh chest counters and profile rewards
       window.dispatchEvent(new Event("thtcdn_chests_updated"));
       window.dispatchEvent(new Event("thtcdn_profile_updated"));
     } catch (error) {
       console.error("Error claiming epic chest:", error);
-      toast.error("Lỗi khi nhận phần thưởng. Hãy thử lại.");
+      toast.error(t.weeklyQuests.claimErrorToast);
     } finally {
       setClaiming(false);
     }
@@ -131,14 +134,14 @@ export default function WeeklyQuestsWidget({ userId }: WeeklyQuestsWidgetProps) 
         <div>
           <h4 className="text-xs font-extrabold text-stone-900 dark:text-stone-100 flex items-center gap-1.5">
             <Trophy className="w-4 h-4 text-amber-500 animate-bounce" />
-            Nhiệm Vụ Tuần Lớn
+            {t.weeklyQuests.title}
           </h4>
           <p className="text-[9px] text-stone-400 dark:text-stone-500 font-semibold mt-0.5">
-            Hoàn thành cả 3 mục tiêu để nhận Rương Sử Thi
+            {t.weeklyQuests.subtitle}
           </p>
         </div>
         <span className="text-[10px] font-black text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/40 px-2 py-0.5 rounded">
-          { (quest1Done ? 1 : 0) + (quest2Done ? 1 : 0) + (quest3Done ? 1 : 0) }/3
+          {format(t.weeklyQuests.questCount, { done: (quest1Done ? 1 : 0) + (quest2Done ? 1 : 0) + (quest3Done ? 1 : 0) })}
         </span>
       </div>
 
@@ -149,9 +152,9 @@ export default function WeeklyQuestsWidget({ userId }: WeeklyQuestsWidgetProps) 
           <div className="flex justify-between items-center text-[10px] font-extrabold text-stone-700 dark:text-stone-300">
             <span className="flex items-center gap-1">
               <Flame className="w-3.5 h-3.5 text-orange-500" />
-              Chuỗi Học Tập Kiên Trì
+              {t.weeklyQuests.streakLabel}
             </span>
-            <span>{streakProgress}/5 ngày</span>
+            <span>{format(t.weeklyQuests.streakProgress, { progress: streakProgress })}</span>
           </div>
           <div className="w-full h-1.5 bg-stone-100 dark:bg-stone-800 rounded-full overflow-hidden">
             <div
@@ -166,9 +169,9 @@ export default function WeeklyQuestsWidget({ userId }: WeeklyQuestsWidgetProps) 
           <div className="flex justify-between items-center text-[10px] font-extrabold text-stone-700 dark:text-stone-300">
             <span className="flex items-center gap-1">
               <BookOpen className="w-3.5 h-3.5 text-sky-500" />
-              Chinh Phục Kiến Thức
+              {t.weeklyQuests.lessonsLabel}
             </span>
-            <span>{lessonsProgress}/10 bài học</span>
+            <span>{format(t.weeklyQuests.lessonsProgress, { progress: lessonsProgress })}</span>
           </div>
           <div className="w-full h-1.5 bg-stone-100 dark:bg-stone-800 rounded-full overflow-hidden">
             <div
@@ -183,9 +186,9 @@ export default function WeeklyQuestsWidget({ userId }: WeeklyQuestsWidgetProps) 
           <div className="flex justify-between items-center text-[10px] font-extrabold text-stone-700 dark:text-stone-300">
             <span className="flex items-center gap-1">
               <Sparkles className="w-3.5 h-3.5 text-emerald-500" />
-              Bậc Thầy Trắc Nghiệm
+              {t.weeklyQuests.quizLabel}
             </span>
-            <span>{quizProgress}/3 bài 100%</span>
+            <span>{format(t.weeklyQuests.quizProgress, { progress: quizProgress })}</span>
           </div>
           <div className="w-full h-1.5 bg-stone-100 dark:bg-stone-800 rounded-full overflow-hidden">
             <div
@@ -201,7 +204,7 @@ export default function WeeklyQuestsWidget({ userId }: WeeklyQuestsWidgetProps) 
         isEpicClaimed ? (
           <div className="p-3 bg-stone-50 dark:bg-stone-950 border border-stone-100 dark:border-stone-800 rounded-2xl text-center text-[10px] text-stone-400 dark:text-stone-500 font-bold flex items-center justify-center gap-1.5">
             <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-            Đã nhận phần thưởng tuần này!
+            {t.weeklyQuests.claimedMessage}
           </div>
         ) : (
           <button
@@ -210,12 +213,12 @@ export default function WeeklyQuestsWidget({ userId }: WeeklyQuestsWidgetProps) 
             className="w-full py-3 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white rounded-xl text-xs font-black uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-amber-500/20 active:scale-95 animate-pulse"
           >
             <Gift className="w-4.5 h-4.5" />
-            {claiming ? "Đang nhận quà..." : "Mở Rương Sử Thi! 🎁"}
+            {claiming ? t.weeklyQuests.claiming : t.weeklyQuests.claimButton}
           </button>
         )
       ) : (
         <div className="p-3 bg-stone-50 dark:bg-stone-950 border border-stone-100 dark:border-stone-800 rounded-2xl text-center text-[10px] text-stone-400 dark:text-stone-500 font-bold">
-          🔒 Rương Sử Thi đang bị khóa
+          {t.weeklyQuests.locked}
         </div>
       )}
     </div>

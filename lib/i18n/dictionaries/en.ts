@@ -2318,4 +2318,35 @@ export const en: Dictionary = {
     retryInterview: "Interview again",
     done: "Done",
   },
+  // components/BehavioralPrepPanel.tsx - the unscored behavioural question drill.
+  behavioralPrep: {
+    loading: "Loading behavioural questions...",
+    loadError: "Could not load the behavioural question set.",
+    retry: "Try again",
+    // Split around the <strong> in the middle of the sentence.
+    notePart1: "These questions have ",
+    noteBold: "no right or wrong answer",
+    notePart2:
+      ", so they are not scored. How to use them: read the question, answer out loud as if you were in the real interview, and only then open the framework to compare.",
+    allCategories: "All · {count}",
+    frameworkHeading: "Suggested answer framework",
+    revealFramework: "Show the framework",
+    previous: "Previous",
+    next: "Next question",
+  },
+
+  // components/UserProfile.tsx - the avatar dropdown.
+  userProfile: {
+    fallbackName: "User",
+    level: "Level",
+    xp: "XP",
+    lessons: "Lessons",
+    customizeAvatar: "🎨 Customise 2.5D avatar",
+    analytics: "Learning analytics",
+    documents: "Free documents",
+    profile: "Profile",
+    settings: "Settings",
+    signingOut: "Signing out...",
+    signOut: "Sign out",
+  },
 };

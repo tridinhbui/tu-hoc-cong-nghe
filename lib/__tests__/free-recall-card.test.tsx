@@ -1,17 +1,25 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { renderToStaticMarkup } from "react-dom/server";
+import type { ReactElement } from "react";
 import FreeRecallCard from "@/components/FreeRecallCard";
+import { I18nProvider } from "@/lib/i18n/context";
 
 // The whole point of this component is that it withholds the summary until
 // the learner has tried to recall it unaided. If the children ever leak into
 // the initial render, the exercise is pointless - so that is what is tested,
 // rather than the timer mechanics.
 
+vi.mock("next/navigation", () => ({ useRouter: () => ({ push: vi.fn(), refresh: vi.fn() }) }));
+
+function renderVi(node: ReactElement) {
+  return renderToStaticMarkup(<I18nProvider initialLocale="vi">{node}</I18nProvider>);
+}
+
 const SUMMARY = <div>NOI-DUNG-TOM-TAT</div>;
 
 describe("FreeRecallCard", () => {
   it("hides the summary behind the exercise on a first visit", () => {
-    const html = renderToStaticMarkup(
+    const html = renderVi(
       <FreeRecallCard lessonId={1} lessonSlug="bai-test" takeaways={["Ý một", "Ý hai", "Ý ba"]}>
         {SUMMARY}
       </FreeRecallCard>,
@@ -22,7 +30,7 @@ describe("FreeRecallCard", () => {
   });
 
   it("shows the answer key options only after writing, never up front", () => {
-    const html = renderToStaticMarkup(
+    const html = renderVi(
       <FreeRecallCard lessonId={1} lessonSlug="bai-test" takeaways={["BI-MAT-MOT", "BI-MAT-HAI"]}>
         {SUMMARY}
       </FreeRecallCard>,
@@ -36,7 +44,7 @@ describe("FreeRecallCard", () => {
 
   it("steps aside entirely when there is nothing to score against", () => {
     for (const takeaways of [[], ["Chỉ một ý"]]) {
-      const html = renderToStaticMarkup(
+      const html = renderVi(
         <FreeRecallCard lessonId={1} lessonSlug="bai-test" takeaways={takeaways}>
           {SUMMARY}
         </FreeRecallCard>,
@@ -50,7 +58,7 @@ describe("FreeRecallCard", () => {
     // getServerSnapshot must return false rather than throwing on a server
     // render, where `window` does not exist.
     expect(() =>
-      renderToStaticMarkup(
+      renderVi(
         <FreeRecallCard lessonId={7} lessonSlug="bai-test" takeaways={["Ý một", "Ý hai"]}>
           {SUMMARY}
         </FreeRecallCard>,

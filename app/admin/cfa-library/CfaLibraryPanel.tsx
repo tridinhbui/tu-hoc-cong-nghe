@@ -14,18 +14,24 @@ import {
   upsertQuizQuestionAction,
   deleteQuizQuestionAction,
 } from "./actions";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
-const INTERACTIVE_TYPES = [
-  { value: "", label: "Không có" },
-  { value: "interest-rate", label: "Lãi suất" },
-  { value: "supply-demand", label: "Cung cầu" },
-  { value: "profit-calc", label: "Tính lợi nhuận" },
-  { value: "roe", label: "ROE" },
-  { value: "bond", label: "Trái phiếu" },
-  { value: "money-vs-asset", label: "Tiền vs Tài sản" },
-  { value: "cash-flow-simulator", label: "Mô phỏng dòng tiền" },
-  { value: "inflation-calculator", label: "Tính lạm phát" },
-];
+function getInteractiveTypes(t: Dictionary) {
+  const ti = t.adminTwo.cfaLibrary.interactiveTypes;
+  return [
+    { value: "", label: ti.none },
+    { value: "interest-rate", label: ti.interestRate },
+    { value: "supply-demand", label: ti.supplyDemand },
+    { value: "profit-calc", label: ti.profitCalc },
+    { value: "roe", label: ti.roe },
+    { value: "bond", label: ti.bond },
+    { value: "money-vs-asset", label: ti.moneyVsAsset },
+    { value: "cash-flow-simulator", label: ti.cashFlowSimulator },
+    { value: "inflation-calculator", label: ti.inflationCalculator },
+  ];
+}
 
 function newBlankQuestion(questionNo: number): QuizQuestionInput & { id: string } {
   return {
@@ -41,6 +47,8 @@ function newBlankQuestion(questionNo: number): QuizQuestionInput & { id: string 
 }
 
 export default function CfaLibraryPanel({ books }: { books: AdminBook[] }) {
+  const { t } = useI18n();
+  const tc = t.adminTwo.cfaLibrary;
   const [bookId, setBookId] = useState(books[0]?.id ?? "");
   const [readings, setReadings] = useState<AdminReading[]>([]);
   const [readingId, setReadingId] = useState("");
@@ -62,7 +70,7 @@ export default function CfaLibraryPanel({ books }: { books: AdminBook[] }) {
         setReadings(r);
         if (r[0]) setReadingId(r[0].id);
       } catch (err) {
-        toast.error(err instanceof Error ? err.message : "Không tải được danh sách Reading");
+        toast.error(err instanceof Error ? err.message : tc.loadReadingsError);
       } finally {
         setLoadingReadings(false);
       }
@@ -78,7 +86,7 @@ export default function CfaLibraryPanel({ books }: { books: AdminBook[] }) {
       try {
         setModules(await listModulesAction(readingId));
       } catch (err) {
-        toast.error(err instanceof Error ? err.message : "Không tải được danh sách Module");
+        toast.error(err instanceof Error ? err.message : tc.loadModulesError);
       } finally {
         setLoadingModules(false);
       }
@@ -92,7 +100,7 @@ export default function CfaLibraryPanel({ books }: { books: AdminBook[] }) {
     <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-6">
       <div className="space-y-4">
         <div>
-          <label className="text-xs font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wide mb-1.5 block">Sách</label>
+          <label className="text-xs font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wide mb-1.5 block">{tc.bookLabel}</label>
           <select
             value={bookId}
             onChange={(e) => setBookId(e.target.value)}
@@ -107,9 +115,9 @@ export default function CfaLibraryPanel({ books }: { books: AdminBook[] }) {
         </div>
 
         <div>
-          <label className="text-xs font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wide mb-1.5 block">Reading</label>
+          <label className="text-xs font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wide mb-1.5 block">{tc.readingLabel}</label>
           {loadingReadings ? (
-            <p className="text-xs text-stone-400">Đang tải...</p>
+            <p className="text-xs text-stone-400">{tc.loadingLabel}</p>
           ) : (
             <select
               value={readingId}
@@ -126,9 +134,9 @@ export default function CfaLibraryPanel({ books }: { books: AdminBook[] }) {
         </div>
 
         <div>
-          <label className="text-xs font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wide mb-1.5 block">Module</label>
+          <label className="text-xs font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wide mb-1.5 block">{tc.moduleLabel}</label>
           {loadingModules ? (
-            <p className="text-xs text-stone-400">Đang tải...</p>
+            <p className="text-xs text-stone-400">{tc.loadingLabel}</p>
           ) : (
             <div className="space-y-1 max-h-[60vh] overflow-y-auto">
               {modules.map((m) => (
@@ -158,7 +166,7 @@ export default function CfaLibraryPanel({ books }: { books: AdminBook[] }) {
           />
         ) : (
           <div className="border-2 border-dashed border-stone-200 dark:border-stone-800 rounded-xl p-10 text-center text-sm text-stone-400 dark:text-stone-500">
-            Chọn một module để chỉnh sửa
+            {tc.selectModulePrompt}
           </div>
         )}
       </div>
@@ -178,6 +186,10 @@ function ModuleEditor({
   const [interactiveType, setInteractiveType] = useState(mod.interactiveType ?? "");
   const [savingMeta, setSavingMeta] = useState(false);
 
+  const { t } = useI18n();
+  const tc = t.adminTwo.cfaLibrary;
+  const interactiveTypes = getInteractiveTypes(t);
+
   const [content, setContent] = useState("");
   const [loadingContent, setLoadingContent] = useState(true);
   const [savingContent, setSavingContent] = useState(false);
@@ -193,12 +205,12 @@ function ModuleEditor({
     // reset here.
     getModuleContentAction(mod.id)
       .then(setContent)
-      .catch((err) => toast.error(err instanceof Error ? err.message : "Không tải được nội dung"))
+      .catch((err) => toast.error(err instanceof Error ? err.message : tc.loadContentError))
       .finally(() => setLoadingContent(false));
 
     getModuleQuizAction(mod.id)
       .then(setQuiz)
-      .catch((err) => toast.error(err instanceof Error ? err.message : "Không tải được câu hỏi"))
+      .catch((err) => toast.error(err instanceof Error ? err.message : tc.loadQuizError))
       .finally(() => setLoadingQuiz(false));
   }, [mod.id]);
 
@@ -208,9 +220,9 @@ function ModuleEditor({
       const fields = { title, videoUrl: videoUrl.trim() || null, interactiveType: interactiveType || null };
       await updateModuleAction(mod.id, fields);
       onModuleUpdated(fields);
-      toast.success("Đã lưu thông tin module");
+      toast.success(tc.saveMetaSuccess);
     } catch (err) {
-      toast.error(err instanceof Error ? err.message : "Không lưu được");
+      toast.error(err instanceof Error ? err.message : tc.saveMetaError);
     } finally {
       setSavingMeta(false);
     }
@@ -220,9 +232,9 @@ function ModuleEditor({
     setSavingContent(true);
     try {
       await updateModuleContentAction(mod.id, content);
-      toast.success("Đã lưu nội dung bài học");
+      toast.success(tc.saveContentSuccess);
     } catch (err) {
-      toast.error(err instanceof Error ? err.message : "Không lưu được nội dung");
+      toast.error(err instanceof Error ? err.message : tc.saveContentError);
     } finally {
       setSavingContent(false);
     }
@@ -234,7 +246,7 @@ function ModuleEditor({
 
   async function handleSaveQuestion(q: AdminQuizQuestion | (QuizQuestionInput & { id: string })) {
     if (!q.prompt.trim() || !q.optionA.trim() || !q.optionB.trim() || !q.optionC.trim()) {
-      toast.error("Điền đủ câu hỏi và cả 3 đáp án trước khi lưu");
+      toast.error(tc.questionIncompleteError);
       return;
     }
     setSavingQuestionId(q.id);
@@ -249,9 +261,9 @@ function ModuleEditor({
         correct: q.correct as "A" | "B" | "C",
         explanation: q.explanation,
       });
-      toast.success(`Đã lưu câu ${q.questionNo}`);
+      toast.success(format(tc.saveQuestionSuccess, { questionNo: q.questionNo }));
     } catch (err) {
-      toast.error(err instanceof Error ? err.message : "Không lưu được câu hỏi");
+      toast.error(err instanceof Error ? err.message : tc.saveQuestionError);
     } finally {
       setSavingQuestionId(null);
     }
@@ -261,9 +273,9 @@ function ModuleEditor({
     try {
       await deleteQuizQuestionAction(id);
       setQuiz((prev) => prev.filter((q) => q.id !== id));
-      toast.success("Đã xoá câu hỏi");
+      toast.success(tc.deleteQuestionSuccess);
     } catch (err) {
-      toast.error(err instanceof Error ? err.message : "Không xoá được câu hỏi");
+      toast.error(err instanceof Error ? err.message : tc.deleteQuestionError);
     }
   }
 
@@ -274,9 +286,9 @@ function ModuleEditor({
   return (
     <div className="space-y-6">
       <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl p-5 space-y-4">
-        <h2 className="font-bold text-stone-900 dark:text-stone-100">{mod.code} · Thông tin module</h2>
+        <h2 className="font-bold text-stone-900 dark:text-stone-100">{format(tc.moduleInfoHeading, { code: mod.code })}</h2>
         <div>
-          <label className="text-xs font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wide mb-1.5 block">Tiêu đề</label>
+          <label className="text-xs font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wide mb-1.5 block">{tc.titleLabel}</label>
           <input
             value={title}
             onChange={(e) => setTitle(e.target.value)}
@@ -285,25 +297,25 @@ function ModuleEditor({
         </div>
         <div>
           <label className="text-xs font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wide mb-1.5 flex items-center gap-1.5">
-            <Video className="w-3.5 h-3.5" /> Link video YouTube (tuỳ chọn)
+            <Video className="w-3.5 h-3.5" /> {tc.videoLinkLabel}
           </label>
           <input
             value={videoUrl}
             onChange={(e) => setVideoUrl(e.target.value)}
-            placeholder="https://www.youtube.com/watch?v=..."
+            placeholder={tc.videoLinkPlaceholder}
             className="w-full px-3 py-2 text-sm rounded-lg border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-100"
           />
         </div>
         <div>
           <label className="text-xs font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wide mb-1.5 flex items-center gap-1.5">
-            <Sparkles className="w-3.5 h-3.5" /> Widget tương tác (tuỳ chọn)
+            <Sparkles className="w-3.5 h-3.5" /> {tc.interactiveWidgetLabel}
           </label>
           <select
             value={interactiveType}
             onChange={(e) => setInteractiveType(e.target.value)}
             className="w-full px-3 py-2 text-sm rounded-lg border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-100"
           >
-            {INTERACTIVE_TYPES.map((opt) => (
+            {interactiveTypes.map((opt) => (
               <option key={opt.value} value={opt.value}>
                 {opt.label}
               </option>
@@ -316,14 +328,14 @@ function ModuleEditor({
           className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-bold bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 rounded-lg disabled:opacity-50"
         >
           {savingMeta ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Save className="w-3.5 h-3.5" />}
-          Lưu thông tin
+          {tc.saveInfoButton}
         </button>
       </div>
 
       <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl p-5 space-y-3">
-        <h2 className="font-bold text-stone-900 dark:text-stone-100">Nội dung bài học</h2>
+        <h2 className="font-bold text-stone-900 dark:text-stone-100">{tc.contentHeading}</h2>
         {loadingContent ? (
-          <p className="text-xs text-stone-400">Đang tải...</p>
+          <p className="text-xs text-stone-400">{tc.loadingLabel}</p>
         ) : (
           <>
             <textarea
@@ -338,7 +350,7 @@ function ModuleEditor({
               className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-bold bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 rounded-lg disabled:opacity-50"
             >
               {savingContent ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Save className="w-3.5 h-3.5" />}
-              Lưu nội dung
+              {tc.saveContentButton}
             </button>
           </>
         )}
@@ -346,23 +358,23 @@ function ModuleEditor({
 
       <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl p-5 space-y-4">
         <div className="flex items-center justify-between">
-          <h2 className="font-bold text-stone-900 dark:text-stone-100">Câu hỏi luyện tập ({quiz.length})</h2>
+          <h2 className="font-bold text-stone-900 dark:text-stone-100">{format(tc.practiceQuestionsHeading, { count: quiz.length })}</h2>
           <button
             onClick={handleAddQuestion}
             className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold border-2 border-stone-300 dark:border-stone-700 rounded-lg text-stone-700 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800"
           >
-            <Plus className="w-3.5 h-3.5" /> Thêm câu hỏi
+            <Plus className="w-3.5 h-3.5" /> {tc.addQuestionButton}
           </button>
         </div>
 
         {loadingQuiz ? (
-          <p className="text-xs text-stone-400">Đang tải...</p>
+          <p className="text-xs text-stone-400">{tc.loadingLabel}</p>
         ) : (
           <div className="space-y-4">
             {quiz.map((q) => (
               <div key={q.id} className="border border-stone-200 dark:border-stone-800 rounded-lg p-4 space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-stone-500 dark:text-stone-400">Câu {q.questionNo}</span>
+                  <span className="text-xs font-bold text-stone-500 dark:text-stone-400">{format(tc.questionNumberLabel, { questionNo: q.questionNo })}</span>
                   <button onClick={() => handleDeleteQuestion(q.id)} className="text-stone-400 hover:text-rose-600 dark:hover:text-rose-400">
                     <Trash2 className="w-3.5 h-3.5" />
                   </button>
@@ -370,7 +382,7 @@ function ModuleEditor({
                 <textarea
                   value={q.prompt}
                   onChange={(e) => updateQuestion(q.id, { prompt: e.target.value })}
-                  placeholder="Câu hỏi..."
+                  placeholder={tc.questionPlaceholder}
                   rows={2}
                   className="w-full px-3 py-2 text-sm rounded-lg border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-100 resize-none"
                 />
@@ -389,14 +401,14 @@ function ModuleEditor({
                       name={`correct-${q.id}`}
                       checked={q.correct === letter}
                       onChange={() => updateQuestion(q.id, { correct: letter })}
-                      title="Đáp án đúng"
+                      title={tc.correctAnswerTitle}
                     />
                   </div>
                 ))}
                 <textarea
                   value={q.explanation ?? ""}
                   onChange={(e) => updateQuestion(q.id, { explanation: e.target.value })}
-                  placeholder="Giải thích đáp án..."
+                  placeholder={tc.explanationPlaceholder}
                   rows={2}
                   className="w-full px-3 py-2 text-sm rounded-lg border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-100 resize-none"
                 />
@@ -406,7 +418,7 @@ function ModuleEditor({
                   className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 rounded-lg disabled:opacity-50"
                 >
                   {savingQuestionId === q.id ? <Loader2 className="w-3 h-3 animate-spin" /> : <Save className="w-3 h-3" />}
-                  Lưu câu hỏi
+                  {tc.saveQuestionButton}
                 </button>
               </div>
             ))}

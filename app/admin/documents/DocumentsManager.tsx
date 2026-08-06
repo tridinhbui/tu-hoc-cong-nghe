@@ -12,6 +12,8 @@ import ConfirmDialog from "@/components/admin/ConfirmDialog";
 import Modal from "@/components/admin/Modal";
 import FileDropzone from "@/components/admin/FileDropzone";
 import FilePreviewModal from "@/components/admin/FilePreviewModal";
+import { useI18n } from "@/lib/i18n/context";
+import { format, intlLocale } from "@/lib/i18n";
 
 function formatBytes(bytes: number) {
   if (bytes < 1024) return `${bytes} B`;
@@ -24,6 +26,8 @@ function categoryLabel(value: string) {
 }
 
 export default function DocumentsManager({ documents }: { documents: DocumentRow[] }) {
+  const { t, locale } = useI18n();
+  const td = t.adminTwo.documentsManager;
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [showUpload, setShowUpload] = useState(false);
@@ -41,12 +45,12 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
     setUploading(true);
     try {
       await uploadDocumentAction(formData);
-      toast.success("Đã tải lên tài liệu");
+      toast.success(td.uploadSuccess);
       setShowUpload(false);
       formRef.current?.reset();
       startTransition(() => router.refresh());
     } catch (err) {
-      toast.error(err instanceof Error ? err.message : "Không tải lên được tài liệu");
+      toast.error(err instanceof Error ? err.message : td.uploadError);
     }
     setUploading(false);
   }
@@ -56,11 +60,11 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
     setSavingEdit(true);
     try {
       await updateDocumentAction(toEdit.id, formData);
-      toast.success("Đã lưu thay đổi");
+      toast.success(td.saveSuccess);
       setToEdit(null);
       startTransition(() => router.refresh());
     } catch (err) {
-      toast.error(err instanceof Error ? err.message : "Không lưu được thay đổi");
+      toast.error(err instanceof Error ? err.message : td.saveError);
     }
     setSavingEdit(false);
   }
@@ -69,31 +73,31 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
     if (!toDelete) return;
     try {
       await deleteDocumentAction(toDelete.id);
-      toast.success("Đã xóa tài liệu");
+      toast.success(td.deleteSuccess);
       setToDelete(null);
       startTransition(() => router.refresh());
     } catch (err) {
-      toast.error(err instanceof Error ? err.message : "Không xóa được tài liệu");
+      toast.error(err instanceof Error ? err.message : td.deleteError);
     }
   }
 
   async function handleApprove(doc: DocumentRow) {
     try {
       await approveDocumentAction(doc.id);
-      toast.success("Đã duyệt - tài liệu hiện đã hiển thị công khai");
+      toast.success(td.approveSuccess);
       startTransition(() => router.refresh());
     } catch (err) {
-      toast.error(err instanceof Error ? err.message : "Không duyệt được tài liệu");
+      toast.error(err instanceof Error ? err.message : td.approveError);
     }
   }
 
   async function handleReject(doc: DocumentRow) {
     try {
       await rejectDocumentAction(doc.id);
-      toast.success("Đã từ chối tài liệu");
+      toast.success(td.rejectSuccess);
       startTransition(() => router.refresh());
     } catch (err) {
-      toast.error(err instanceof Error ? err.message : "Không từ chối được tài liệu");
+      toast.error(err instanceof Error ? err.message : td.rejectError);
     }
   }
 
@@ -105,13 +109,13 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
           className="flex items-center gap-2 px-4 py-2 rounded-lg bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 text-sm font-bold hover:bg-stone-800 dark:hover:bg-white transition-colors"
         >
           <Plus className="w-4 h-4" />
-          Tải tài liệu mới
+          {td.uploadNewButton}
         </button>
       </div>
 
       <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl overflow-hidden">
         {documents.length === 0 ? (
-          <EmptyState icon={FileText} title="Chưa có tài liệu nào" description="Tải lên mẫu biểu, ebook, checklist đầu tiên cho học viên." />
+          <EmptyState icon={FileText} title={td.emptyTitle} description={td.emptyDescription} />
         ) : (
           <div className="divide-y divide-stone-200 dark:divide-stone-800">
             {documents.map((doc) => (
@@ -136,12 +140,12 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
                     </span>
                     {doc.status === "pending" && (
                       <span className="text-[10px] font-bold uppercase tracking-wide bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-400 px-2 py-0.5 rounded-full">
-                        Cộng đồng gửi · Chờ duyệt
+                        {td.pendingBadge}
                       </span>
                     )}
                     {doc.status === "rejected" && (
                       <span className="text-[10px] font-bold uppercase tracking-wide bg-rose-100 dark:bg-rose-950/60 text-rose-700 dark:text-rose-400 px-2 py-0.5 rounded-full">
-                        Đã từ chối
+                        {td.rejectedBadge}
                       </span>
                     )}
                   </div>
@@ -149,8 +153,8 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
                     <p className="text-sm text-stone-600 dark:text-stone-400 mt-1">{doc.description}</p>
                   )}
                   <p className="text-[11px] text-stone-400 dark:text-stone-500 mt-1.5">
-                    {doc.file_name} · {formatBytes(doc.file_size)} · {doc.download_count} lượt tải ·{" "}
-                    {new Date(doc.created_at).toLocaleDateString("vi-VN")}
+                    {doc.file_name} · {formatBytes(doc.file_size)} · {doc.download_count} {td.downloadsUnit} ·{" "}
+                    {new Date(doc.created_at).toLocaleDateString(intlLocale(locale))}
                   </p>
                 </div>
                 <div className="flex items-center gap-1 flex-shrink-0">
@@ -158,14 +162,14 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
                     <>
                       <button
                         onClick={() => handleApprove(doc)}
-                        title="Duyệt"
+                        title={td.approveTitle}
                         className="p-2 rounded-lg hover:bg-emerald-50 dark:hover:bg-emerald-950/40 text-stone-500 dark:text-stone-400 hover:text-emerald-600 dark:hover:text-emerald-400"
                       >
                         <Check className="w-4 h-4" />
                       </button>
                       <button
                         onClick={() => handleReject(doc)}
-                        title="Từ chối"
+                        title={td.rejectTitle}
                         className="p-2 rounded-lg hover:bg-rose-50 dark:hover:bg-rose-950/40 text-stone-500 dark:text-stone-400 hover:text-rose-600 dark:hover:text-rose-400"
                       >
                         <X className="w-4 h-4" />
@@ -176,7 +180,7 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
                     href={doc.file_url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    title="Xem/tải xuống"
+                    title={td.viewDownloadTitle}
                     className="p-2 rounded-lg hover:bg-stone-100 dark:hover:bg-stone-800 text-stone-500 dark:text-stone-400"
                   >
                     <Download className="w-4 h-4" />
@@ -186,14 +190,14 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
                       setRemoveImage(false);
                       setToEdit(doc);
                     }}
-                    title="Sửa"
+                    title={td.editTitle}
                     className="p-2 rounded-lg hover:bg-stone-100 dark:hover:bg-stone-800 text-stone-500 dark:text-stone-400"
                   >
                     <Pencil className="w-4 h-4" />
                   </button>
                   <button
                     onClick={() => setToDelete(doc)}
-                    title="Xóa"
+                    title={td.deleteTitle}
                     className="p-2 rounded-lg hover:bg-rose-50 dark:hover:bg-rose-950/40 text-stone-500 dark:text-stone-400 hover:text-rose-600 dark:hover:text-rose-400"
                   >
                     <Trash2 className="w-4 h-4" />
@@ -205,32 +209,32 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
         )}
       </div>
 
-      <Modal open={showUpload} onClose={() => setShowUpload(false)} title="Tải tài liệu mới">
+      <Modal open={showUpload} onClose={() => setShowUpload(false)} title={td.uploadModalTitle}>
         <form
           ref={formRef}
           action={handleUpload}
           className="space-y-4"
         >
           <div className="space-y-2">
-            <label className="text-xs font-bold text-stone-600 dark:text-stone-400 uppercase tracking-wider block">Tiêu đề</label>
+            <label className="text-xs font-bold text-stone-600 dark:text-stone-400 uppercase tracking-wider block">{td.titleLabel}</label>
             <input
               name="title"
               required
-              placeholder="Ví dụ: Mẫu bảng tính tài sản ròng"
+              placeholder={td.titlePlaceholder}
               className="w-full px-3 py-2 rounded-lg border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-800 text-sm text-stone-900 dark:text-stone-100"
             />
           </div>
           <div className="space-y-2">
-            <label className="text-xs font-bold text-stone-600 dark:text-stone-400 uppercase tracking-wider block">Mô tả (không bắt buộc)</label>
+            <label className="text-xs font-bold text-stone-600 dark:text-stone-400 uppercase tracking-wider block">{td.descriptionLabel}</label>
             <textarea
               name="description"
               rows={3}
-              placeholder="Mô tả ngắn về tài liệu này..."
+              placeholder={td.descriptionPlaceholder}
               className="w-full px-3 py-2 rounded-lg border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-800 text-sm text-stone-900 dark:text-stone-100 resize-none"
             />
           </div>
           <div className="space-y-2">
-            <label className="text-xs font-bold text-stone-600 dark:text-stone-400 uppercase tracking-wider block">Danh mục</label>
+            <label className="text-xs font-bold text-stone-600 dark:text-stone-400 uppercase tracking-wider block">{td.categoryFieldLabel}</label>
             <select
               name="category"
               defaultValue="khac"
@@ -243,7 +247,7 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
           </div>
           <FileDropzone
             name="file"
-            label="Tệp (PDF, Word, Excel, PowerPoint - tối đa 25MB)"
+            label={td.fileFieldLabel}
             required
             accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.zip,.png,.jpg,.jpeg"
             onFileChange={(file) => {
@@ -259,12 +263,12 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
               className="inline-flex items-center gap-2 text-sm font-semibold px-3 py-2 rounded-lg bg-blue-100 dark:bg-blue-950/30 text-blue-700 dark:text-blue-400 hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors"
             >
               <Eye className="w-4 h-4" />
-              Xem trước: {previewFile.name}
+              {format(td.previewButton, { fileName: previewFile.name })}
             </button>
           )}
           <FileDropzone
             name="image"
-            label="Ảnh minh hoạ (không bắt buộc - tối đa 5MB)"
+            label={td.imageFieldLabel}
             accept=".png,.jpg,.jpeg,.webp"
           />
           <div className="flex justify-end gap-2 pt-2">
@@ -273,7 +277,7 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
               onClick={() => setShowUpload(false)}
               className="px-4 py-2 rounded-lg border border-stone-200 dark:border-stone-800 text-sm font-bold text-stone-700 dark:text-stone-300"
             >
-              Hủy
+              {td.cancelButton}
             </button>
             <button
               type="submit"
@@ -281,17 +285,17 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
               className="flex items-center gap-2 px-4 py-2 rounded-lg bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 text-sm font-bold disabled:opacity-50"
             >
               <Upload className="w-4 h-4" />
-              {uploading ? "Đang tải lên..." : "Tải lên"}
+              {uploading ? td.uploadingLabel : td.uploadButton}
             </button>
           </div>
         </form>
       </Modal>
 
-      <Modal open={!!toEdit} onClose={() => setToEdit(null)} title="Sửa tài liệu">
+      <Modal open={!!toEdit} onClose={() => setToEdit(null)} title={td.editModalTitle}>
         {toEdit && (
           <form ref={editFormRef} action={handleUpdate} className="space-y-4">
             <div className="space-y-2">
-              <label className="text-xs font-bold text-stone-600 dark:text-stone-400 uppercase tracking-wider block">Tiêu đề</label>
+              <label className="text-xs font-bold text-stone-600 dark:text-stone-400 uppercase tracking-wider block">{td.titleLabel}</label>
               <input
                 name="title"
                 required
@@ -300,7 +304,7 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
               />
             </div>
             <div className="space-y-2">
-              <label className="text-xs font-bold text-stone-600 dark:text-stone-400 uppercase tracking-wider block">Mô tả (không bắt buộc)</label>
+              <label className="text-xs font-bold text-stone-600 dark:text-stone-400 uppercase tracking-wider block">{td.descriptionLabel}</label>
               <textarea
                 name="description"
                 rows={3}
@@ -309,7 +313,7 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
               />
             </div>
             <div className="space-y-2">
-              <label className="text-xs font-bold text-stone-600 dark:text-stone-400 uppercase tracking-wider block">Danh mục</label>
+              <label className="text-xs font-bold text-stone-600 dark:text-stone-400 uppercase tracking-wider block">{td.categoryFieldLabel}</label>
               <select
                 name="category"
                 defaultValue={toEdit.category}
@@ -322,7 +326,7 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
             </div>
             <FileDropzone
               name="file"
-              label="Thay tệp mới (không bắt buộc - để trống nếu giữ tệp hiện tại)"
+              label={td.replaceFileLabel}
               accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.zip,.png,.jpg,.jpeg"
               currentFileName={toEdit.file_name}
               onFileChange={(file) => {
@@ -338,7 +342,7 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
                 className="inline-flex items-center gap-2 text-sm font-semibold px-3 py-2 rounded-lg bg-blue-100 dark:bg-blue-950/30 text-blue-700 dark:text-blue-400 hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors"
               >
                 <Eye className="w-4 h-4" />
-                Xem trước: {previewFile.name}
+                {format(td.previewButton, { fileName: previewFile.name })}
               </button>
             )}
 
@@ -347,19 +351,19 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
                 <div className="flex items-center gap-3 p-3 rounded-lg border border-stone-200 dark:border-stone-700">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={toEdit.image_url} alt="" className="w-12 h-12 rounded-lg object-cover flex-shrink-0" />
-                  <span className="flex-1 text-sm text-stone-600 dark:text-stone-400">Ảnh minh hoạ hiện tại</span>
+                  <span className="flex-1 text-sm text-stone-600 dark:text-stone-400">{td.currentImageLabel}</span>
                   <button
                     type="button"
                     onClick={() => setRemoveImage(true)}
                     className="text-xs font-bold text-rose-600 dark:text-rose-400 hover:underline"
                   >
-                    Xoá ảnh
+                    {td.removeImageButton}
                   </button>
                 </div>
               ) : (
                 <FileDropzone
                   name="image"
-                  label="Ảnh minh hoạ (không bắt buộc - tối đa 5MB)"
+                  label={td.imageFieldLabel}
                   accept=".png,.jpg,.jpeg,.webp"
                 />
               )}
@@ -370,7 +374,7 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
                   onClick={() => setRemoveImage(false)}
                   className="text-xs font-bold text-stone-600 dark:text-stone-400 hover:underline"
                 >
-                  Hoàn tác - giữ ảnh cũ
+                  {td.undoRemoveImageButton}
                 </button>
               )}
             </div>
@@ -381,14 +385,14 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
                 onClick={() => setToEdit(null)}
                 className="px-4 py-2 rounded-lg border border-stone-200 dark:border-stone-800 text-sm font-bold text-stone-700 dark:text-stone-300"
               >
-                Hủy
+                {td.cancelButton}
               </button>
               <button
                 type="submit"
                 disabled={savingEdit}
                 className="flex items-center gap-2 px-4 py-2 rounded-lg bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 text-sm font-bold disabled:opacity-50"
               >
-                {savingEdit ? "Đang lưu..." : "Lưu thay đổi"}
+                {savingEdit ? td.savingLabel : td.saveChangesButton}
               </button>
             </div>
           </form>
@@ -397,9 +401,9 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
 
       <ConfirmDialog
         open={!!toDelete}
-        title="Xóa tài liệu"
-        message={`Bạn có chắc muốn xóa "${toDelete?.title}"? Tệp sẽ bị xóa vĩnh viễn khỏi lưu trữ.`}
-        confirmLabel="Xóa"
+        title={td.deleteDialogTitle}
+        message={format(td.deleteDialogMessage, { title: toDelete?.title ?? "" })}
+        confirmLabel={td.deleteConfirmLabel}
         danger
         onConfirm={confirmDelete}
         onCancel={() => setToDelete(null)}

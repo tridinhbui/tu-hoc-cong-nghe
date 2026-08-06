@@ -38,6 +38,8 @@ import {
   type CfaModuleNote,
   type CfaModuleHighlight,
 } from "@/lib/supabase-cfa-features";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 const INTERACTIVE_WIDGET_TYPES = new Set<string>([
   "interest-rate",
@@ -86,6 +88,7 @@ interface QuizQuestionRow {
 }
 
 export default function CfaModulePageClient({ moduleId }: { moduleId: string }) {
+  const { t } = useI18n();
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
   const [userId, setUserId] = useState<string | null>(null);
@@ -265,11 +268,11 @@ export default function CfaModulePageClient({ moduleId }: { moduleId: string }) 
   const moduleSummary = useMemo(() => {
     const title = toTitleCase(mod?.title ?? "");
     return {
-      keyIdea: `Bài này giúp bạn nắm vững nội dung: ${title}.`,
-      commonMistake: "Học thuộc công thức mà không hiểu bản chất - hãy thử tự giải thích lại bằng lời của mình trước khi làm quiz.",
-      action: "Quay lại làm bài quiz sau vài ngày để kiểm tra xem bạn còn nhớ khái niệm này không.",
+      keyIdea: format(t.cfaModule.summaryKeyIdea, { title }),
+      commonMistake: t.cfaModule.summaryCommonMistake,
+      action: t.cfaModule.summaryAction,
     };
-  }, [mod?.title]);
+  }, [mod?.title, t]);
 
   async function handleQuizFinish(score: number, total: number) {
     setQuizJustFinished(true);
@@ -373,9 +376,9 @@ export default function CfaModulePageClient({ moduleId }: { moduleId: string }) 
   if (notFound || !mod) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center gap-3 bg-white dark:bg-stone-950">
-        <p className="text-sm text-stone-500 dark:text-stone-400">Không tìm thấy bài học CFA này.</p>
+        <p className="text-sm text-stone-500 dark:text-stone-400">{t.cfaModule.notFoundMessage}</p>
         <Link href="/cfa" className="text-sm font-bold text-stone-900 dark:text-stone-100 underline">
-          Về trang CFA
+          {t.cfaModule.notFoundBackLink}
         </Link>
       </div>
     );
@@ -398,11 +401,11 @@ export default function CfaModulePageClient({ moduleId }: { moduleId: string }) 
           <div className="flex items-center gap-2 sm:gap-4 min-w-0">
             <Link
               href="/cfa"
-              aria-label="Về CFA"
+              aria-label={t.cfaModule.backAriaLabel}
               className="inline-flex flex-shrink-0 items-center gap-1.5 whitespace-nowrap w-9 h-9 sm:w-auto sm:px-4 sm:py-2 justify-center rounded-full sm:rounded-lg border-2 border-stone-300 dark:border-stone-700 text-stone-700 dark:text-stone-300 font-bold hover:bg-stone-100 dark:hover:bg-stone-800 hover:border-stone-400 dark:hover:border-stone-600 hover:text-stone-900 dark:hover:text-stone-100 bg-white dark:bg-stone-900 transition-all"
             >
               <ArrowLeft className="w-4 h-4 flex-shrink-0" />
-              <span className="hidden sm:inline">Quay lại</span>
+              <span className="hidden sm:inline">{t.cfaModule.backLabel}</span>
             </Link>
             <div className="min-w-0">
               <p className="font-extrabold text-stone-900 dark:text-stone-100 text-base sm:text-lg leading-tight line-clamp-1">
@@ -420,7 +423,7 @@ export default function CfaModulePageClient({ moduleId }: { moduleId: string }) 
               <button
                 onClick={handleToggleBookmark}
                 disabled={togglingBookmark}
-                title={bookmarked ? "Bỏ đánh dấu" : "Đánh dấu bài học"}
+                title={bookmarked ? t.cfaModule.bookmarkTitleOn : t.cfaModule.bookmarkTitleOff}
                 className={`w-10 h-10 rounded-full flex items-center justify-center transition-all ${
                   bookmarked
                     ? "bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400"
@@ -432,7 +435,7 @@ export default function CfaModulePageClient({ moduleId }: { moduleId: string }) 
             )}
             <span className="text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full bg-amber-100 dark:bg-amber-950/50 text-amber-700 dark:text-amber-400 inline-flex items-center gap-1.5">
               <GraduationCap className="w-3.5 h-3.5" />
-              CFA Level I
+              {t.cfaModule.levelBadge}
             </span>
           </div>
         </div>
@@ -446,7 +449,7 @@ export default function CfaModulePageClient({ moduleId }: { moduleId: string }) 
           className="z-[60] inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-stone-900 dark:bg-white text-white dark:text-stone-900 text-xs font-bold shadow-lg"
         >
           <Highlighter className="w-3.5 h-3.5" />
-          Đánh dấu
+          {t.cfaModule.highlightButton}
         </button>
       )}
 
@@ -454,12 +457,13 @@ export default function CfaModulePageClient({ moduleId }: { moduleId: string }) 
         {previouslyCompleted && (
           <div className="mb-6 flex items-center gap-2 text-xs font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800 rounded-lg px-4 py-2.5">
             <CheckCircle2 className="w-4 h-4 flex-shrink-0" />
-            Bạn đã hoàn thành bài này{previousScore ? ` · ${previousScore.score}/${previousScore.total} câu đúng` : ""}
+            {t.cfaModule.completedBanner}
+            {previousScore ? format(t.cfaModule.completedScoreSuffix, { score: previousScore.score, total: previousScore.total }) : ""}
           </div>
         )}
 
         <span className="text-[10px] font-extrabold text-stone-900 dark:text-white bg-stone-200 dark:bg-stone-800 px-2 py-0.5 rounded uppercase">
-          Module {mod.code}
+          {format(t.cfaModule.moduleLabel, { code: mod.code })}
         </span>
         <h1 className="text-xl sm:text-2xl font-extrabold text-stone-900 dark:text-white mt-3 mb-6">{toTitleCase(mod.title)}</h1>
 
@@ -535,7 +539,8 @@ export default function CfaModulePageClient({ moduleId }: { moduleId: string }) 
             >
               <span className="inline-flex items-center gap-2">
                 <StickyNote className="w-3.5 h-3.5" />
-                Ghi chú của bạn {notes.length > 0 && `(${notes.length})`}
+                {t.cfaModule.notesHeader}
+                {notes.length > 0 && format(t.cfaModule.notesCount, { count: notes.length })}
               </span>
               <span className="text-stone-400">{showNotes ? "−" : "+"}</span>
             </button>
@@ -556,7 +561,7 @@ export default function CfaModulePageClient({ moduleId }: { moduleId: string }) 
                   <textarea
                     value={noteDraft}
                     onChange={(e) => setNoteDraft(e.target.value)}
-                    placeholder="Viết ghi chú cho bài này..."
+                    placeholder={t.cfaModule.notePlaceholder}
                     rows={2}
                     className="flex-1 px-3 py-2 rounded-lg border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 text-xs text-stone-900 dark:text-stone-100 focus:outline-none focus:border-stone-400 resize-none"
                   />
@@ -565,7 +570,7 @@ export default function CfaModulePageClient({ moduleId }: { moduleId: string }) 
                     disabled={!noteDraft.trim() || savingNote}
                     className="px-3 py-2 text-xs font-bold bg-stone-900 hover:bg-stone-800 dark:bg-white dark:text-stone-900 text-white rounded-lg transition-colors disabled:opacity-50 flex-shrink-0"
                   >
-                    Lưu
+                    {t.cfaModule.saveButton}
                   </button>
                 </div>
               </div>
@@ -579,8 +584,8 @@ export default function CfaModulePageClient({ moduleId }: { moduleId: string }) 
         <div className="mb-8 space-y-4">
           <LessonSummaryCard summary={moduleSummary} />
           <ReviewLoopCard
-            prompt={`Nếu bạn chỉ nhớ 1 điều từ bài này, hãy nhớ rằng: ${moduleSummary.keyIdea}`}
-            cta="Ôn lại trong 1 phút trước khi chuyển bài"
+            prompt={format(t.cfaModule.reviewLoopPrompt, { keyIdea: moduleSummary.keyIdea })}
+            cta={t.cfaModule.reviewLoopCta}
           />
         </div>
 
@@ -590,7 +595,7 @@ export default function CfaModulePageClient({ moduleId }: { moduleId: string }) 
         {sidebarQuiz.length > 0 && (
           <section className="border-t border-stone-200 dark:border-stone-800 pt-8">
             <h2 className="text-sm font-extrabold text-stone-900 dark:text-white uppercase tracking-wider mb-5">
-              Luyện tập ({sidebarQuiz.length} câu)
+              {format(t.cfaModule.practiceHeader, { count: sidebarQuiz.length })}
             </h2>
             <CfaQuizSidebar quiz={sidebarQuiz} onFinish={handleQuizFinish} nextModuleId={nextModule?.id ?? null} />
           </section>
@@ -602,7 +607,7 @@ export default function CfaModulePageClient({ moduleId }: { moduleId: string }) 
               href={`/cfa/${nextModule.id}`}
               className="px-4 py-2 text-xs font-bold border-2 border-stone-300 dark:border-stone-700 rounded-lg text-stone-700 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors"
             >
-              Bài tiếp theo →
+              {t.cfaModule.nextModuleLink}
             </Link>
           </div>
         )}

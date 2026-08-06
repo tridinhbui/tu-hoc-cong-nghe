@@ -79,6 +79,12 @@ const INTENTIONALLY_UNTRANSLATED = new Set([
   "pvpDuel.arenaEyebrow",
   "fedVault.buildingAlt",
   "fedVault.fedEyebrow",
+  // Already English in the Vietnamese source: the season pass's own name and
+  // the in-game titles it awards. A title is a proper noun the learner then
+  // wears on their profile, so it reads the same in both languages.
+  "seasonPass.badge",
+  "seasonPass.levelLabel",
+  "seasonPass.rewards",
   // The six illustrative learner nicknames on the logged-out leaderboard.
   // Personal names and a chosen handle are proper nouns; the same reason the
   // leaderboard nicknames in vi.ts are exempt.
@@ -88,6 +94,8 @@ const INTENTIONALLY_UNTRANSLATED = new Set([
   "leaderboardPreview.name4",
   "leaderboardPreview.name5",
   "leaderboardPreview.name6",
+  // A URL, not a sentence: the example YouTube link in the admin video field.
+  "adminTwo.cfaLibrary.videoLinkPlaceholder",
   // Already English in the Vietnamese source: the file-type fallback label the
   // admin preview shows for a spreadsheet.
   "adminOne.filePreview.excelSpreadsheetFallback",

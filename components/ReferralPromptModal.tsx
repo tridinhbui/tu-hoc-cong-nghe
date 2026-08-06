@@ -7,6 +7,8 @@ import { toast } from "sonner";
 import { Gift, Copy, Check, X } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import { REFERRER_BONUS_XP, REFERRED_BONUS_XP } from "@/lib/referrals";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 // Referral is fully wired end-to-end (lib/referrals.ts). It's a permanent
 // floating round button (mirrors ChatWithAdminWidget's bottom-right chat
@@ -19,6 +21,7 @@ import { REFERRER_BONUS_XP, REFERRED_BONUS_XP } from "@/lib/referrals";
 const AUTO_OPEN_KEY = "thtcdn_referral_auto_opened";
 
 export default function ReferralPromptModal() {
+  const { t } = useI18n();
   const [open, setOpen] = useState(false);
   const [userId, setUserId] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
@@ -49,7 +52,7 @@ export default function ReferralPromptModal() {
   function handleCopy() {
     navigator.clipboard.writeText(link).then(() => {
       setCopied(true);
-      toast.success("Đã sao chép link mời!");
+      toast.success(t.referralPrompt.copyToast);
       setTimeout(() => setCopied(false), 2000);
     });
   }
@@ -64,13 +67,13 @@ export default function ReferralPromptModal() {
             animate={{ scale: 1 }}
             exit={{ scale: 0 }}
             onClick={() => setOpen(true)}
-            title="Mời bạn học cùng"
+            title={t.referralPrompt.floatingButtonTitle}
             className="fixed bottom-37 right-4 sm:bottom-40 sm:right-6 z-50 w-14 h-14 rounded-full bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-white shadow-xl hover:scale-108 transition-all duration-200 flex items-center justify-center border-2 border-white dark:border-stone-800 cursor-pointer select-none group"
           >
             <Gift className="w-6 h-6 text-white transition-transform group-hover:rotate-12" />
             <span className="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-red-500 border-2 border-white shadow-xs animate-pulse" />
             <div className="absolute bottom-full right-0 mb-2 bg-stone-900 text-white text-xs px-2.5 py-1 rounded-xl shadow-xl whitespace-nowrap opacity-0 group-hover:opacity-100 transition font-bold border border-stone-700 pointer-events-none">
-              Mời bạn nhận Quà
+              {t.referralPrompt.floatingTooltip}
             </div>
           </motion.button>
         )}
@@ -95,11 +98,13 @@ export default function ReferralPromptModal() {
             <div className="w-12 h-12 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mb-3">
               <Gift className="w-6 h-6" />
             </div>
-            <h2 className="text-lg font-extrabold text-stone-900 dark:text-stone-100">Mời bạn học cùng</h2>
+            <h2 className="text-lg font-extrabold text-stone-900 dark:text-stone-100">{t.referralPrompt.title}</h2>
             <p className="text-sm text-stone-500 dark:text-stone-400 mt-1.5 leading-relaxed">
-              Bạn nhận <span className="font-bold text-emerald-600 dark:text-emerald-400">+{REFERRER_BONUS_XP} XP</span>, bạn bè nhận{" "}
-              <span className="font-bold text-emerald-600 dark:text-emerald-400">+{REFERRED_BONUS_XP} XP</span> ngay khi họ học xong bài đầu tiên -
-              XP đó cũng tính vào tiến độ mở rương quà mỗi tuần.
+              {t.referralPrompt.descPart1}{" "}
+              <span className="font-bold text-emerald-600 dark:text-emerald-400">{format(t.referralPrompt.descBonus, { xp: REFERRER_BONUS_XP })}</span>
+              {t.referralPrompt.descPart2}{" "}
+              <span className="font-bold text-emerald-600 dark:text-emerald-400">{format(t.referralPrompt.descBonus, { xp: REFERRED_BONUS_XP })}</span>{" "}
+              {t.referralPrompt.descPart3}
             </p>
 
             <div className="flex items-center gap-2 mt-4">
@@ -111,7 +116,7 @@ export default function ReferralPromptModal() {
               />
               <button
                 onClick={handleCopy}
-                title="Sao chép link mời"
+                title={t.referralPrompt.copyButtonTitle}
                 className="flex-shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
               >
                 {copied ? <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400" /> : <Copy className="w-4 h-4" />}
@@ -123,14 +128,14 @@ export default function ReferralPromptModal() {
                 onClick={() => setOpen(false)}
                 className="flex-1 px-4 py-2.5 rounded-lg border border-stone-200 dark:border-stone-800 text-sm font-bold text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
               >
-                Để sau
+                {t.referralPrompt.later}
               </button>
               <Link
                 href="/ban-be"
                 onClick={() => setOpen(false)}
                 className="flex-1 px-4 py-2.5 rounded-lg bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 text-sm font-bold text-center hover:opacity-90 transition-opacity"
               >
-                Xem thêm →
+                {t.referralPrompt.viewMore}
               </Link>
             </div>
           </motion.div>

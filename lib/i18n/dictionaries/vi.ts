@@ -2467,6 +2467,37 @@ export const vi = {
     retryInterview: "Phỏng vấn lại",
     done: "Xong",
   },
+  // components/BehavioralPrepPanel.tsx - the unscored behavioural question drill.
+  behavioralPrep: {
+    loading: "Đang tải câu hỏi behavioral...",
+    loadError: "Không tải được bộ câu hỏi behavioral.",
+    retry: "Thử lại",
+    // Split around the <strong> in the middle of the sentence.
+    notePart1: "Nhóm câu hỏi này ",
+    noteBold: "không có đáp án đúng/sai",
+    notePart2:
+      " nên không chấm điểm. Cách dùng: đọc câu hỏi, tự trả lời thành tiếng như đang phỏng vấn thật, rồi mới mở khung gợi ý để đối chiếu.",
+    allCategories: "Tất cả · {count}",
+    frameworkHeading: "Khung trả lời gợi ý",
+    revealFramework: "Xem khung trả lời",
+    previous: "Câu trước",
+    next: "Câu tiếp theo",
+  },
+
+  // components/UserProfile.tsx - the avatar dropdown.
+  userProfile: {
+    fallbackName: "User",
+    level: "Cấp độ",
+    xp: "XP",
+    lessons: "Bài học",
+    customizeAvatar: "🎨 Tùy Chỉnh Avatar 2.5D",
+    analytics: "Thống kê học tập",
+    documents: "Tài liệu miễn phí",
+    profile: "Hồ sơ",
+    settings: "Cài đặt",
+    signingOut: "Đang đăng xuất...",
+    signOut: "Đăng xuất",
+  },
 };
 
 export type Dictionary = typeof vi;

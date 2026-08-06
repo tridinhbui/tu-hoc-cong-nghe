@@ -27,10 +27,15 @@ import LessonFunnelPanel from "@/components/admin/LessonFunnelPanel";
 import { getLessonFunnel, type LessonFunnel } from "@/lib/admin/lesson-funnel";
 import { getWorldUsage, type WorldUsage } from "@/lib/admin/world-usage";
 import NeedsActionPanel from "@/components/admin/NeedsActionPanel";
+import { getServerLocale } from "@/lib/i18n/server";
+import { getDictionary, format } from "@/lib/i18n";
 
 export const dynamic = "force-dynamic";
 
 export default async function AdminOverviewPage() {
+  const locale = await getServerLocale();
+  const t = getDictionary(locale);
+  const ta = t.adminTwo.adminOverview;
   const [
     unreadMessages,
     unreadChat,
@@ -84,7 +89,7 @@ export default async function AdminOverviewPage() {
   const overviewCards = [
     {
       href: "/admin/messages",
-      label: "Tin nhắn chưa đọc",
+      label: ta.cards.unreadMessages,
       value: unreadMessages + unreadChat,
       icon: MessageSquare,
       color: "text-blue-600 dark:text-blue-400",
@@ -92,7 +97,7 @@ export default async function AdminOverviewPage() {
     },
     {
       href: "/admin/users",
-      label: "Tổng người dùng",
+      label: ta.cards.totalUsers,
       value: userCount,
       icon: Users,
       color: "text-emerald-600 dark:text-emerald-400",
@@ -100,7 +105,7 @@ export default async function AdminOverviewPage() {
     },
     {
       href: "/admin/lessons",
-      label: "Tổng bài học",
+      label: ta.cards.totalLessons,
       value: lessonCount,
       icon: BookOpen,
       color: "text-purple-600 dark:text-purple-400",
@@ -108,7 +113,7 @@ export default async function AdminOverviewPage() {
     },
     {
       href: "/admin/lessons",
-      label: "Yêu cầu mở khóa chờ duyệt",
+      label: ta.cards.pendingUnlocks,
       value: pendingUnlocks,
       icon: Clock,
       color: "text-amber-600 dark:text-amber-400",
@@ -116,7 +121,7 @@ export default async function AdminOverviewPage() {
     },
     {
       href: "/admin/documents",
-      label: "Tài liệu giveaway",
+      label: ta.cards.documents,
       value: documentCount,
       icon: FileText,
       color: "text-rose-600 dark:text-rose-400",
@@ -144,10 +149,10 @@ export default async function AdminOverviewPage() {
       <div>
         <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-1 flex items-center gap-2">
           <BarChart3 className="w-6 h-6 text-emerald-500" />
-          Tổng quan & Phân tích Hệ Thống
+          {ta.title}
         </h1>
         <p className="text-sm text-stone-500 dark:text-stone-400">
-          Trạng thái tổng thể, chỉ số phân tích người dùng & hiệu suất học tập realtime.
+          {ta.subtitle}
         </p>
       </div>
 
@@ -185,7 +190,7 @@ export default async function AdminOverviewPage() {
         <div className="rounded-xl p-5 border border-emerald-100 dark:border-emerald-900/50 bg-emerald-50/50 dark:bg-emerald-950/20 flex flex-col justify-between">
           <div>
             <p className="text-[11px] font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-widest mb-1.5">
-              Đăng nhập tuần này (Active)
+              {ta.kpis.activeThisWeek}
             </p>
             <p className="text-2xl font-extrabold text-stone-900 dark:text-stone-100">{activeThisWeek}</p>
           </div>
@@ -197,7 +202,7 @@ export default async function AdminOverviewPage() {
         <div className="rounded-xl p-5 border border-purple-100 dark:border-purple-900/50 bg-purple-50/50 dark:bg-purple-950/20 flex flex-col justify-between">
           <div>
             <p className="text-[11px] font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-widest mb-1.5">
-              Bài học hoàn thành
+              {ta.kpis.lessonsCompleted}
             </p>
             <p className="text-2xl font-extrabold text-stone-900 dark:text-stone-100">{analytics?.totalLessonsCompleted || 0}</p>
           </div>
@@ -209,7 +214,7 @@ export default async function AdminOverviewPage() {
         <div className="rounded-xl p-5 border border-orange-100 dark:border-orange-900/50 bg-orange-50/50 dark:bg-orange-950/20 flex flex-col justify-between">
           <div>
             <p className="text-[11px] font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-widest mb-1.5">
-              Điểm Quiz trung bình
+              {ta.kpis.avgQuizScore}
             </p>
             <p className="text-2xl font-extrabold text-stone-900 dark:text-stone-100">{analytics?.avgQuizScore || 0}%</p>
           </div>
@@ -221,9 +226,9 @@ export default async function AdminOverviewPage() {
         <div className="rounded-xl p-5 border border-pink-100 dark:border-pink-900/50 bg-pink-50/50 dark:bg-pink-950/20 flex flex-col justify-between">
           <div>
             <p className="text-[11px] font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-widest mb-1.5">
-              Thời gian học TB
+              {ta.kpis.avgStudyTime}
             </p>
-            <p className="text-2xl font-extrabold text-stone-900 dark:text-stone-100">{analytics?.avgStudyTimeMinutes || 0} phút</p>
+            <p className="text-2xl font-extrabold text-stone-900 dark:text-stone-100">{analytics?.avgStudyTimeMinutes || 0} {ta.minutesUnit}</p>
           </div>
           <div className="flex justify-end mt-2">
             <Clock className="text-pink-600 dark:text-pink-400 w-5 h-5 opacity-70" />
@@ -237,12 +242,12 @@ export default async function AdminOverviewPage() {
         <div className="lg:col-span-2 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl p-5 shadow-xs">
           <h2 className="text-sm font-extrabold text-stone-800 dark:text-stone-200 uppercase tracking-wider mb-4 flex items-center gap-1.5">
             <TrendingUp className="w-4 h-4 text-emerald-500" />
-            Lượng hoạt động hàng ngày (7 ngày gần nhất)
+            {ta.dauHeading}
           </h2>
 
           {dauData.length === 0 ? (
             <div className="h-48 flex items-center justify-center text-xs text-stone-400">
-              Không có dữ liệu hoạt động.
+              {ta.noActivityData}
             </div>
           ) : (
             <div className="space-y-4">
@@ -274,34 +279,34 @@ export default async function AdminOverviewPage() {
           <div>
             <h2 className="text-sm font-extrabold text-stone-800 dark:text-stone-200 uppercase tracking-wider mb-4 flex items-center gap-1.5">
               <Sparkles className="w-4 h-4 text-purple-500" />
-              Tỷ lệ chọn lộ trình học
+              {ta.trackRatioHeading}
             </h2>
             <div className="space-y-4">
               <div className="h-5 w-full rounded-full overflow-hidden flex bg-stone-100 dark:bg-stone-800">
-                <div style={{ width: `${personalPct}%` }} className="bg-blue-500" title={`Cá nhân: ${personalPct}%`} />
-                <div style={{ width: `${professionalPct}%` }} className="bg-purple-500" title={`Chuyên ngành: ${professionalPct}%`} />
-                <div style={{ width: `${cfaPct}%` }} className="bg-amber-500" title={`CFA: ${cfaPct}%`} />
+                <div style={{ width: `${personalPct}%` }} className="bg-blue-500" title={format(ta.trackTitles.personal, { pct: personalPct })} />
+                <div style={{ width: `${professionalPct}%` }} className="bg-purple-500" title={format(ta.trackTitles.professional, { pct: professionalPct })} />
+                <div style={{ width: `${cfaPct}%` }} className="bg-amber-500" title={format(ta.trackTitles.cfa, { pct: cfaPct })} />
               </div>
 
               <div className="space-y-2.5 pt-2">
                 <div className="flex justify-between items-center text-xs">
                   <div className="flex items-center gap-2">
                     <span className="w-2.5 h-2.5 rounded-full bg-blue-500 shrink-0" />
-                    <span className="text-stone-600 dark:text-stone-400">Tài chính cá nhân</span>
+                    <span className="text-stone-600 dark:text-stone-400">{ta.trackNames.personal}</span>
                   </div>
                   <span className="font-bold text-stone-900 dark:text-stone-100">{personalCount} ({personalPct}%)</span>
                 </div>
                 <div className="flex justify-between items-center text-xs">
                   <div className="flex items-center gap-2">
                     <span className="w-2.5 h-2.5 rounded-full bg-purple-500 shrink-0" />
-                    <span className="text-stone-600 dark:text-stone-400">Tài chính chuyên ngành</span>
+                    <span className="text-stone-600 dark:text-stone-400">{ta.trackNames.professional}</span>
                   </div>
                   <span className="font-bold text-stone-900 dark:text-stone-100">{professionalCount} ({professionalPct}%)</span>
                 </div>
                 <div className="flex justify-between items-center text-xs">
                   <div className="flex items-center gap-2">
                     <span className="w-2.5 h-2.5 rounded-full bg-amber-500 shrink-0" />
-                    <span className="text-stone-600 dark:text-stone-400">CFA Level 1</span>
+                    <span className="text-stone-600 dark:text-stone-400">{ta.trackNames.cfa}</span>
                   </div>
                   <span className="font-bold text-stone-900 dark:text-stone-100">{cfaCount} ({cfaPct}%)</span>
                 </div>
@@ -309,7 +314,7 @@ export default async function AdminOverviewPage() {
             </div>
           </div>
           <div className="pt-4 border-t border-stone-100 dark:border-stone-800 text-[10px] text-stone-400 text-center">
-            Tổng cộng: {totalUsers} tài khoản người học.
+            {format(ta.totalAccountsFooter, { total: totalUsers })}
           </div>
         </div>
       </div>
@@ -320,18 +325,18 @@ export default async function AdminOverviewPage() {
         <div className="lg:col-span-2 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl p-5 shadow-xs">
           <h2 className="text-sm font-extrabold text-stone-800 dark:text-stone-200 uppercase tracking-wider mb-4 flex items-center gap-1.5">
             <BookMarked className="w-4 h-4 text-indigo-500" />
-            Top 5 bài học phổ biến nhất
+            {ta.topLessonsHeading}
           </h2>
           {!analytics?.topLessons || analytics.topLessons.length === 0 ? (
-            <p className="text-xs text-stone-500 dark:text-stone-400">Chưa có dữ liệu bài học hoàn thành.</p>
+            <p className="text-xs text-stone-500 dark:text-stone-400">{ta.noLessonData}</p>
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs">
                 <thead>
                   <tr className="border-b border-stone-100 dark:border-stone-800 text-stone-500 font-bold uppercase tracking-wider">
-                    <th className="py-2.5">Bài học</th>
-                    <th className="py-2.5 text-center">Lượt học xong</th>
-                    <th className="py-2.5 text-right">Điểm quiz TB</th>
+                    <th className="py-2.5">{ta.tableHeaders.lesson}</th>
+                    <th className="py-2.5 text-center">{ta.tableHeaders.completions}</th>
+                    <th className="py-2.5 text-right">{ta.tableHeaders.avgScore}</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-stone-50 dark:divide-stone-800/50">
@@ -363,29 +368,29 @@ export default async function AdminOverviewPage() {
         {/* Right: Study metrics summary */}
         <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl p-5 shadow-xs">
           <h2 className="text-sm font-extrabold text-stone-800 dark:text-stone-200 uppercase tracking-wider mb-4">
-            Hiệu suất trung bình
+            {ta.avgPerformanceHeading}
           </h2>
           <div className="space-y-4">
             <div className="flex justify-between items-center border-b border-stone-50 dark:border-stone-800/50 pb-2 text-xs">
-              <span className="text-stone-600 dark:text-stone-400">Bài học / người dùng</span>
+              <span className="text-stone-600 dark:text-stone-400">{ta.rows.lessonsPerUser}</span>
               <span className="font-extrabold text-stone-900 dark:text-stone-100">
-                {(analytics?.avgLessonsPerUser || 0).toFixed(1)} bài
+                {(analytics?.avgLessonsPerUser || 0).toFixed(1)} {ta.rows.lessonsPerUserUnit}
               </span>
             </div>
             <div className="flex justify-between items-center border-b border-stone-50 dark:border-stone-800/50 pb-2 text-xs">
-              <span className="text-stone-600 dark:text-stone-400">Lượng bài học hoàn tất</span>
+              <span className="text-stone-600 dark:text-stone-400">{ta.rows.lessonsCompleted}</span>
               <span className="font-extrabold text-stone-900 dark:text-stone-100">
-                {analytics?.totalLessonsCompleted || 0} bài
+                {analytics?.totalLessonsCompleted || 0} {ta.rows.lessonsCompletedUnit}
               </span>
             </div>
             <div className="flex justify-between items-center border-b border-stone-50 dark:border-stone-800/50 pb-2 text-xs">
-              <span className="text-stone-600 dark:text-stone-400">Thời gian tự học TB</span>
+              <span className="text-stone-600 dark:text-stone-400">{ta.rows.avgStudyTime}</span>
               <span className="font-extrabold text-stone-900 dark:text-stone-100">
-                {analytics?.avgStudyTimeMinutes || 0} phút / bài
+                {analytics?.avgStudyTimeMinutes || 0} {ta.rows.avgStudyTimeUnit}
               </span>
             </div>
             <div className="flex justify-between items-center text-xs">
-              <span className="text-stone-600 dark:text-stone-400">Điểm số Quiz TB</span>
+              <span className="text-stone-600 dark:text-stone-400">{ta.rows.avgQuizScore}</span>
               <span className="font-extrabold text-stone-900 dark:text-stone-100">
                 {analytics?.avgQuizScore || 0}%
               </span>
