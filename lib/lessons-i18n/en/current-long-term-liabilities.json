@@ -88,7 +88,7 @@
         "Negative Working Capital - not enough current assets to cover current liabilities",
         "Normal, since current liabilities are always larger than current assets",
         "Good - high current liabilities show suppliers fully trust the company",
-        "Excellent - a sign the company manages working capital with total efficiency"
+        "Excellent - a clear sign the company manages its working capital with total efficiency"
       ],
       "explanation": "Negative WC = solvency risk. Check whether cash flow can generate cash fast enough. If it can't, the company may need more borrowing or default."
     },

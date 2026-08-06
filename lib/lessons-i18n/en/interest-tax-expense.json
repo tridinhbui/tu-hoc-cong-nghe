@@ -97,7 +97,7 @@
       "options": [
         "There's no need to, ICR is only an internal accounting metric",
         "ICR reflects the ability to pay interest - below 1.5 is dangerous",
-        "Only banks care about it, equity investors don't need to know it",
+        "Only banks really care about it, since equity investors don't need to know it at all",
         "ICR measures the rate of profit growth across consecutive years"
       ],
       "explanation": "ICR = EBIT / Interest. An ICR of 1.5 means barely enough to pay interest, with nothing left for shareholders. An ICR of 5 is very safe."

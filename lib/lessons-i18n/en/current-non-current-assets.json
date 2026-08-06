@@ -25,7 +25,7 @@
     {
       "question": "What is a Current Asset?",
       "options": [
-        "The highest-value asset on the balance sheet, usually plant and equipment",
+        "The single highest-value asset category on the entire balance sheet, usually plant and equipment",
         "An asset that will turn into cash within 12 months: cash, receivables, inventory",
         "A fixed asset used for production, depreciated gradually over the years",
         "An asset the company is pledging to a bank for a short-term loan"
@@ -67,7 +67,7 @@
       "options": [
         "Rising revenue, since higher revenue always pulls working capital down",
         "Inventory or receivables growing fast, current liabilities rising, or cash falling",
-        "Rising profit, since profit is recorded straight into current liabilities owed",
+        "Rising profit, since profit is always recorded straight into the current liabilities a company owes",
         "Paying a stock dividend, which reduces equity accordingly"
       ],
       "explanation": "Falling WC means a weaker ability to pay short-term debt. Check: is cash flow OK, is inventory stuck, are receivables not overdue."
@@ -125,7 +125,7 @@
     {
       "question": "When does Goodwill appear on a company's Balance Sheet, and why doesn't it appear naturally for a company that grew its brand entirely in-house?",
       "options": [
-        "When the company achieves consistently high profit, the brand gets recognised",
+        "When the company achieves consistently high profit for many years, the brand itself gets recognised",
         "Every company automatically gains goodwill after 5 stable years of operation",
         "When a company builds a strong brand itself, its value is revalued annually",
         "Only when a company acquires another business for more than its net asset value"

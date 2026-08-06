@@ -1,0 +1,176 @@
+{
+  "slug": "investing-cash-flow",
+  "title": "What is Investing Cash Flow?",
+  "subtitle": "Cash spent on buying assets and long-term investments",
+  "duration": "5 min",
+  "openingQuestion": "ICF (Investing Cash Flow) is usually negative at a growing business. What does that mean?",
+  "openingOptions": [
+    "The business is losing money",
+    "Negative ICF is always bad",
+    "The business is investing in long-term assets (CapEx, M&A) - which is normal",
+    "The business is selling off assets"
+  ],
+  "explanation": "Negative investing cash flow is usually a good sign: money flows out to buy machinery, plants, or acquire other companies - in other words, to build future capacity. What should worry you is the opposite: large positive investing cash flow means the company is selling assets, and if those assets were generating revenue, it has just traded its future for cash today. A company claiming to be growing while CapEx sits near zero is usually a company eating into its old assets.",
+  "diagram": [
+    { "label": "Spending on machinery, plants, or acquiring another company", "arrow": true },
+    { "label": "Negative investing cash flow - building future capacity", "arrow": true },
+    { "label": "Selling assets makes this line positive", "arrow": true },
+    { "label": "Large and persistent positive: check whether revenue-generating assets are being sold off" }
+  ],
+  "realWorldExample": {
+    "company": "Vingroup (VIC)",
+    "description": "Vingroup regularly shows very large negative Investing Cash Flow from continuous investment in real-estate projects, VinFast factories, and expanding the Vinhomes and Vinpearl ecosystems. Tens of trillions of VND in negative ICF each year reflects a long-term investment strategy, not a sign of weakness."
+  },
+  "quiz": [
+    {
+      "question": "Where is CapEx found in the financial statements?",
+      "options": [
+        "On the balance sheet",
+        "In the Operating Cash Flow section",
+        "In Investing Cash Flow",
+        "In Financing Cash Flow"
+      ],
+      "explanation": "CapEx is cash flowing out to buy long-term assets (PP&E) - it sits within Investing Activities. On the P&L it only appears indirectly, through depreciation year by year."
+    },
+    {
+      "question": "A company has a large positive Investing Cash Flow in one quarter. Is that always a positive signal?",
+      "options": [
+        "Yes - it means the company is investing more effectively than the prior period",
+        "Yes - positive ICF always means the company is collecting cash",
+        "No - ICF should always be negative at a healthy business",
+        "No - positive ICF could come from selling off long-term assets"
+      ],
+      "explanation": "You need to distinguish: positive ICF from divesting a strategic business unit as part of restructuring is one thing; positive ICF from being forced to sell assets for emergency cash to pay debt is something else entirely. Always read the detail lines within Investing Activities, not just the total figure."
+    },
+    {
+      "question": "What does Investing Cash Flow usually look like at a fast-growing company?",
+      "options": [
+        "Deeply negative, since cash keeps flowing into plants, equipment, and acquisitions",
+        "Largely positive, since the company keeps selling off assets to help fund its reinvestment",
+        "Zero, since investment is recorded in the operating cash flow section",
+        "Hovering around zero, since buying and selling assets usually offset each other"
+      ],
+      "explanation": "Negative investing is a sign of a company building capacity for the future. What's worrying is the reverse: a company claiming to be growing while CapEx sits near zero is usually eating into its old assets."
+    },
+    {
+      "question": "How should an unusually large positive Investing Cash Flow in one quarter be read?",
+      "options": [
+        "It's a good signal, since positive cash flow is always better than negative",
+        "You need to check what the company sold - it could be selling assets for cash",
+        "It's normal for any company in an expansion phase",
+        "It shows the company just received a large investment from new shareholders"
+      ],
+      "explanation": "Selling an asset brings in one-time cash, but if that asset was generating revenue, the company has just traded its future for the present. A struggling business often sells assets before admitting there's a problem."
+    },
+    {
+      "question": "How does maintenance CapEx differ from growth CapEx?",
+      "options": [
+        "Maintenance is self-funded while growth requires a bank loan",
+        "Maintenance is expensed while growth is capitalised as an asset",
+        "Maintenance keeps existing capacity intact, growth expands it further",
+        "The two are really the same thing, just different terms used across different industries"
+      ],
+      "explanation": "Financial statements lump both into one line, so separating them is the analyst's job. A company only spending on maintenance CapEx will show a pretty FCF but is standing still; one spending heavily on growth will show a thinner FCF but a thicker future."
+    },
+    {
+      "question": "Where is acquiring another company recorded on the cash flow statement?",
+      "options": [
+        "It doesn't appear on the acquirer's cash flow statement at all",
+        "Financing, since acquisitions are usually funded with borrowed capital",
+        "Operating, since the acquired company will generate revenue right away",
+        "Investing, since it's cash spent to buy a long-term asset"
+      ],
+      "explanation": "M&A is buying a long-term asset, so it sits in investing alongside CapEx. Any loan taken to fund the deal sits in financing - two separate lines for two separate things."
+    }
+  ],
+  "keyTakeaways": [
+    "Negative ICF = investing in the future (CapEx, M&A)",
+    "Positive ICF = selling assets or recovering investments",
+    "CapEx sits within ICF, not directly on the P&L"
+  ],
+  "practicePrompt": {
+    "question": "Company A has Investing Cash Flow (ICF) of -500 billion for the year (spending on a new plant and a small acquisition). Company B has ICF of +200 billion (having just sold a non-core business). What does this say about the two companies' strategies?",
+    "options": [
+      "Company B is performing better than Company A because it has positive ICF, proving it's collecting more cash",
+      "Company A is investing heavily in the future (CapEx, M&A); Company B is recovering capital from an asset/business unit it sold - both can be sound strategies depending on context, and positive ICF isn't necessarily better than negative ICF",
+      "Negative ICF is always a bad sign showing the company is in serious financial trouble",
+      "ICF has no analytical meaning at all, only Operating Cash Flow matters"
+    ],
+    "explanation": "Negative ICF = investing in the future (CapEx, M&A) - usually a positive sign if the company's OCF is strong enough to fund it. Positive ICF = selling assets or recovering investments - you need to check the reason (strategic restructuring versus a forced asset sale from a cash shortage) before judging it good or bad."
+  },
+  "summary": {
+    "keyIdea": "Negative ICF = investing in the future (CapEx, M&A)",
+    "commonMistake": "Reading a concept as a phrase to memorise rather than a principle to apply to real decisions.",
+    "action": "Positive ICF = selling assets or recovering investments"
+  },
+  "application": {
+    "title": "Check how much a company is investing in its future",
+    "message": "The lesson already gave a real example using FPT's 2025 financials - see the 'Real example' section above. Now open the cash flow statement of another growth company and apply the same reading approach.",
+    "secondary": "A high CapEx/Revenue ratio is normal for a company expanding aggressively, not necessarily a bad sign."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A company spending trillions of dong to build a new plant doesn't record that money on the P&L as an expense for the year. It sits in Investing Cash Flow (ICF), the second section of the Cash Flow Statement, capturing all of a business's long-term asset transactions."
+    },
+    { "type": "heading", "text": "What does ICF record?" },
+    {
+      "type": "paragraph",
+      "text": "Investing Cash Flow includes: CapEx (Capital Expenditures) to purchase or build fixed assets like plants, machinery, land; cash spent on M&A (acquiring other companies); cash spent on long-term financial investments (shares, bonds of other companies). In the other direction, ICF also records cash received when a company sells fixed assets, divests from a subsidiary, or sells financial investments."
+    },
+    {
+      "type": "paragraph",
+      "text": "Because most growing businesses continuously buy more new assets than they sell, ICF at these companies is almost always negative - and a larger negative figure usually reflects a stronger level of investment in the future."
+    },
+    { "type": "heading", "text": "Distinguishing maintenance CapEx from expansion CapEx" },
+    {
+      "type": "paragraph",
+      "text": "Not all CapEx is the same. Maintenance CapEx is spending that keeps current production capacity intact - replacing old machinery, repairing plants. Growth CapEx is spending that adds new production capacity - building more plants, opening more stores. A company with negative ICF mainly from Growth CapEx is usually in a phase of expanding market share; if it's mainly Maintenance CapEx, the company may just be holding steady."
+    },
+    {
+      "type": "list",
+      "items": [
+        "CapEx - purchasing/building fixed assets (plants, machinery, land)",
+        "M&A - cash spent acquiring other companies",
+        "Long-term financial investments - buying shares, bonds of other companies",
+        "Asset disposals, divestitures - the rare positive cash flow within ICF"
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": { "label": "Deeply negative ICF", "text": "Usually a sign the company is investing heavily for future growth (new plants, market expansion) - watch it alongside OCF to see whether the company can fund itself or must borrow." },
+      "right": { "label": "Positive ICF", "text": "Could be a good signal (recovering capital from a profitable investment) or a bad one (forced to sell core assets to cover operations)." }
+    },
+    {
+      "type": "conceptTable",
+      "title": "Investing Cash Flow terminology",
+      "concepts": [
+        { "vi": "Chi tiêu vốn", "en": "Capital Expenditures (CapEx)", "def": "Cash spent purchasing or building long-term fixed assets." },
+        { "vi": "CapEx duy trì", "en": "Maintenance CapEx", "def": "CapEx that keeps existing production capacity intact, without expanding it." },
+        { "vi": "CapEx mở rộng", "en": "Growth CapEx", "def": "CapEx that adds production capacity and expands the scale of the business." },
+        { "vi": "Mua bán & Sáp nhập", "en": "Mergers & Acquisitions (M&A)", "def": "Acquiring or merging with another company, recorded within ICF." }
+      ]
+    },
+    { "type": "heading", "text": "A real example: how much FPT is investing in its future" },
+    {
+      "type": "list",
+      "items": [
+        "FPT's 2025 revenue: VND 70,112.83 billion, up 11.56% from 2024",
+        "After-tax profit: VND 9,369.31 billion, up 19.37%",
+        "Gross margin improved to 39.2% (Q1/2025) versus 37.7% for full-year 2024 - the company is investing in expansion (cloud infrastructure, AI, education) while still raising its margin"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "How to check Investing Activities yourself",
+      "text": "Open the Cash Flow Statement in the financial statements (the company's IR page or a source like Vietstock), find the 'Cash flow from investing activities' section, and compare the 'purchase of fixed assets' (CapEx) line against Revenue to gauge the relative level of investment."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Negative ICF isn't a bad thing - it's usually a sign the business is investing in its future.",
+        "What matters is reading ICF alongside OCF: can the business generate enough cash on its own to fund that investment, or does it have to borrow?"
+      ]
+    }
+  ]
+}

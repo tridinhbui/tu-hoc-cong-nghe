@@ -26,7 +26,7 @@
       "question": "What does Operating Expense (OpEx) include?",
       "options": [
         "SG&A, R&D, and depreciation - operating costs not tied directly to production",
-        "Only sales staff salaries and marketing expense for the period",
+        "Only sales staff salaries and the marketing expense incurred during the period",
         "Raw material costs and direct production labour wages",
         "The company's entire cost base, including COGS and interest"
       ],
@@ -66,7 +66,7 @@
       "question": "Is high OpEx good or bad?",
       "options": [
         "It depends: high while revenue is flat eats into margin, high on R&D can be a good investment",
-        "Always bad - every dong of OpEx reduces the profit that belongs to shareholders",
+        "Always bad - every single dong of OpEx reduces the profit that ultimately belongs to shareholders",
         "Always good - high OpEx shows the company is expanding scale quickly",
         "No effect, since OpEx sits below the Operating Income line"
       ],
@@ -115,7 +115,7 @@
     {
       "question": "Is high Operating Leverage (OpEx large relative to revenue) a good thing?",
       "options": [
-        "Always good, because high fixed costs help a company withstand a long downturn",
+        "Always good, because high fixed costs always help a company withstand even a long economic downturn",
         "Good when revenue is rising because margin improves quickly, dangerous when revenue falls",
         "Always bad, because fixed costs remove flexibility across every business cycle",
         "Unrelated to revenue - it only affects interest expense owed"

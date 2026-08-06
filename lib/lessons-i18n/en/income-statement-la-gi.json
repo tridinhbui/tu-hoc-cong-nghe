@@ -58,7 +58,7 @@
         "Operating has already subtracted depreciation, Net has not",
         "Operating has not yet subtracted interest and tax, Net has subtracted both",
         "Operating is measured on a cash basis, Net on an accrual basis",
-        "Operating counts only core revenue, Net also adds in secondary revenue"
+        "Operating counts only core revenue, while Net also adds in secondary and non-operating revenue"
       ],
       "explanation": "Operating = profit from core operations before interest/tax. Net = profit after interest/tax. Operating reflects business performance; Net reflects shareholder profit."
     },
@@ -116,7 +116,7 @@
       "question": "Between Operating Income and Net Income, which one do investors usually care about more?",
       "options": [
         "Operating Income, because it reflects core business strength before any debt effects",
-        "Net Income, because it's the final figure after every expense",
+        "Net Income, because it's the final figure left after every single expense and tax is subtracted",
         "EBITDA, because it strips out the effect of depreciation policy",
         "Both equally, since they always move in the same direction"
       ],

@@ -46,7 +46,7 @@
       "question": "Which question does the Balance Sheet answer?",
       "options": [
         "Did the company turn a profit or loss during the period?",
-        "How fast did revenue grow compared with the same period last year?",
+        "How fast did revenue grow this year compared with the same period last year and prior years?",
         "How much real cash actually moved in and out during the period?",
         "What does it own, how much does it owe, and how much equity does it have?"
       ],

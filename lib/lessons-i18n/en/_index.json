@@ -39,6 +39,11 @@
     "subtitle": "How long from putting money out to getting money back?",
     "duration": "6 min"
   },
+  "cash-flow-statement-la-gi": {
+    "title": "What is the Cash Flow Statement?",
+    "subtitle": "The three sections of the cash flow statement",
+    "duration": "6 min"
+  },
   "chi-phi-vs-dong-tien-ra": {
     "title": "How does an expense differ from cash going out?",
     "subtitle": "Why buying a 1-billion machine doesn't cut profit by 1 billion right away",
@@ -47,6 +52,16 @@
   "cong-thuc-ke-toan": {
     "title": "Assets = Liabilities + Equity",
     "subtitle": "The basic accounting equation and why it always holds",
+    "duration": "5 min"
+  },
+  "cong-ty-lai-ma-het-tien": {
+    "title": "Why can a profitable company run short of cash?",
+    "subtitle": "The accounting-profit trap versus real cash flow",
+    "duration": "6 min"
+  },
+  "cong-ty-lo-ma-con-tien": {
+    "title": "Why can a company post a loss and still have cash?",
+    "subtitle": "The depreciation shield and the timing gap between P&L and cash",
     "duration": "5 min"
   },
   "current-long-term-liabilities": {
@@ -63,6 +78,11 @@
     "title": "Revenue: when is it recognised?",
     "subtitle": "Accrual vs cash - two different views of the same transaction",
     "duration": "6 min"
+  },
+  "doc-bctc-apple": {
+    "title": "Case study: reading Apple's / Vinamilk's financial statements",
+    "subtitle": "Applying the three statements to a real example",
+    "duration": "7 min"
   },
   "don-bay-tai-chinh": {
     "title": "What is financial leverage?",
@@ -84,10 +104,30 @@
     "subtitle": "Earnings before interest and tax - measuring pure operating efficiency",
     "duration": "6 min"
   },
+  "financial-ratios-la-gi": {
+    "title": "What are Financial Ratios?",
+    "subtitle": "Why you need ratios to compare businesses",
+    "duration": "5 min"
+  },
+  "financing-cash-flow": {
+    "title": "What is Financing Cash Flow?",
+    "subtitle": "Cash flow from borrowing, issuing shares, and paying dividends",
+    "duration": "5 min"
+  },
+  "free-cash-flow-co-ban": {
+    "title": "What is Free Cash Flow?",
+    "subtitle": "OCF − CapEx = the cash a business is genuinely free to use",
+    "duration": "6 min"
+  },
   "gia-tri-thoi-gian-cua-tien": {
     "title": "The time value of money: 1 million today is not 1 million a year from now.",
     "subtitle": "Present Value and Future Value are the foundation of every quantitative financial decision.",
     "duration": "8 min"
+  },
+  "gross-margin": {
+    "title": "Gross Margin",
+    "subtitle": "Measuring production efficiency and pricing power",
+    "duration": "5 min"
   },
   "hang-ton-kho-la-gi": {
     "title": "What is inventory?",
@@ -112,6 +152,11 @@
   "inventory-turnover-co-ban": {
     "title": "Inventory Turnover: how fast stock moves",
     "subtitle": "Whether goods sell fast or slow - a signal of operating efficiency",
+    "duration": "5 min"
+  },
+  "investing-cash-flow": {
+    "title": "What is Investing Cash Flow?",
+    "subtitle": "Cash spent on buying assets and long-term investments",
     "duration": "5 min"
   },
   "ke-toan-la-gi": {
@@ -179,6 +224,11 @@
     "subtitle": "Not every debt is bad. What matters is what the debt creates.",
     "duration": "6 min"
   },
+  "on-tap-3-bao-cao": {
+    "title": "Review: the three financial statements",
+    "subtitle": "Connecting the P&L, Balance Sheet, and Cash Flow Statement",
+    "duration": "7 min"
+  },
   "on-tap-chang-1": {
     "title": "Stage 3 review: money, time, risk, cash flow.",
     "subtitle": "The first 20 days built the foundation. This is the map of the core concepts.",
@@ -192,6 +242,11 @@
   "on-tap-wacc": {
     "title": "Deep-dive case: WACC review",
     "subtitle": "5 quiz questions on the cost of capital - understand it, don't memorise it",
+    "duration": "6 min"
+  },
+  "operating-cash-flow": {
+    "title": "What is Operating Cash Flow?",
+    "subtitle": "Real cash from operations - how it differs from Net Income",
     "duration": "6 min"
   },
   "operating-expense": {
@@ -213,6 +268,11 @@
     "title": "What is risk? No return ever comes for free.",
     "subtitle": "Risk isn't something to avoid; it's something to understand and price correctly.",
     "duration": "7 min"
+  },
+  "shareholders-equity": {
+    "title": "What makes up Shareholders' Equity?",
+    "subtitle": "The components of equity - from paid-in capital to retained earnings",
+    "duration": "6 min"
   },
   "suc-manh-thoi-gian": {
     "title": "The power of time in finance.",

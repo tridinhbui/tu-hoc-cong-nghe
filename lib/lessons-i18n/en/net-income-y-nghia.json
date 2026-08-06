@@ -38,7 +38,7 @@
         "Because it's the final line of the P&L, after every expense and tax is subtracted",
         "Because it's the only metric an investor ever needs to judge a business",
         "Because it always sits at the bottom of the balance sheet, below equity",
-        "Because it's the profit floor a company promises shareholders it will hit"
+        "Because it's the minimum profit floor a company formally promises its shareholders it will hit"
       ],
       "explanation": "The P&L reads top to bottom: Revenue → Gross Profit → Operating Income → EBT → Net Income. NI is the last line."
     },
@@ -95,7 +95,7 @@
     {
       "question": "If Net Income rises but not because of business operations (for example, selling real estate, financial restructuring), is that good or bad?",
       "options": [
-        "No effect, since one-off items have already been excluded from Net Income",
+        "No effect at all, since one-off items have already been fully excluded from reported Net Income figures",
         "Good - profit is profit, investors don't distinguish where it comes from",
         "Bad - it's a one-off item that won't repeat next year; look at Operating Income instead",
         "Good - selling an asset shows the company is optimising its balance sheet"

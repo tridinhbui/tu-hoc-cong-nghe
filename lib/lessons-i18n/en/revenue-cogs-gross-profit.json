@@ -36,7 +36,7 @@
       "question": "What is COGS?",
       "options": [
         "The direct cost of producing the goods that were sold",
-        "Every cost the business incurs during the period",
+        "Every single cost the business incurs during the entire reporting period",
         "Interest expense the business must pay",
         "Selling, marketing, and administrative expenses"
       ],
@@ -96,7 +96,7 @@
       "question": "What does COGS include?",
       "options": [
         "The business's entire operating cost for the period",
-        "Office salaries, marketing, and administrative expenses",
+        "Office salaries, marketing costs, and general administrative expenses",
         "Production wages, raw materials, and factory energy costs",
         "Interest expense and corporate income tax owed"
       ],

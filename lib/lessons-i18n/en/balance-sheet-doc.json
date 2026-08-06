@@ -37,7 +37,7 @@
       "options": [
         "Because it balances revenue against costs to find the period's profit",
         "Because A = L + E must always balance; if it doesn't, that's an error or fraud",
-        "Because it balances cash inflows against outflows within the same period",
+        "Because it balances all cash inflows against all outflows recorded within the same reporting period",
         "Because the left and right columns always list the same number of rows"
       ],
       "explanation": "The word 'balance' means being in equilibrium. A Balance Sheet must balance, or there's an accounting error."
@@ -115,7 +115,7 @@
     {
       "question": "If Assets grow but mostly from Goodwill (from acquiring a company), is that good or bad?",
       "options": [
-        "Very good - Goodwill is the most valuable intangible asset on the balance sheet",
+        "Very good - Goodwill is always the single most valuable intangible asset on the entire balance sheet",
         "A warning sign - Goodwill generates no cash flow and may later require an impairment write-down",
         "Irrelevant - Goodwill is just a technical accounting entry",
         "Good - high Goodwill shows the company bought a strong brand cheaply"

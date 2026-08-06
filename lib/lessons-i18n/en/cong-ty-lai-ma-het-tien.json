@@ -1,0 +1,152 @@
+{
+  "slug": "cong-ty-lai-ma-het-tien",
+  "title": "Why can a profitable company run short of cash?",
+  "subtitle": "The accounting-profit trap versus real cash flow",
+  "duration": "6 min",
+  "openingQuestion": "A company recognises 100 billion in revenue, but the customer pays 90 days later. How much real cash is there this month?",
+  "openingOptions": [
+    "0 (no cash has come in yet)",
+    "It depends on the tax rate",
+    "100 billion",
+    "50 billion"
+  ],
+  "explanation": "A profitable company can still run out of cash, and that's how most small businesses die. Revenue is recognised at delivery, but cash may not arrive for 60-90 days; meanwhile wages, materials, and rent must be paid this very month. The faster a company grows, the wider that gap gets, because it has to front the cash for new orders before collecting on old ones. Profit tells you whether the business is sustainable; cash tells you whether it survives to next month.",
+  "diagram": [
+    { "label": "Goods delivered, profit recognised", "arrow": true },
+    { "label": "Customer pays 60-90 days later", "arrow": true },
+    { "label": "Wages, materials, rent still due this month", "arrow": true },
+    { "label": "The faster the growth, the wider the cash gap" }
+  ],
+  "realWorldExample": {
+    "company": "Novaland (NVL)",
+    "description": "During 2021-2022, many Vietnamese real-estate companies like Novaland recognised revenue and profit from handed-over projects, but real cash flow was stuck in receivables from customers paying in instalments and in an enormous inventory of unfinished projects - leading to a liquidity crisis even while the P&L still showed a profit on the books."
+  },
+  "quiz": [
+    {
+      "question": "What are the three main reasons a company can be profitable yet short of cash?",
+      "options": [
+        "Rising receivables, rising inventory, and large CapEx",
+        "Rising interest expense, rising tax, and heavy dividend payouts",
+        "Falling revenue, rising costs, and FX losses",
+        "Large depreciation, rising provisions, and investment losses"
+      ],
+      "explanation": "The dangerous trio: (1) AR rising sharply means sales without cash collected; (2) Inventory ballooning means cash tied up in goods; (3) large CapEx means cash spent on assets. All three drain cash even while profit is positive."
+    },
+    {
+      "question": "Besides rising receivables, what other working-capital factor often causes a fast-growing company to be 'profitable but short of cash'?",
+      "options": [
+        "Accounts payable rising sharply during the period",
+        "Inventory rising to keep up with growth",
+        "Prepaid expenses falling compared with the prior period",
+        "Deferred revenue rising significantly"
+      ],
+      "explanation": "The classic trio behind being profitable yet short of cash: rising receivables (selling on credit), rising inventory (stocking up for growth), and large CapEx (investing in assets). All three consume cash before the benefit turns back into revenue and collected cash."
+    },
+    {
+      "question": "A construction company wins a large contract, recognises revenue, but the project owner pays 12 months later. What is the main risk?",
+      "options": [
+        "The tax authority will remove that recognised revenue from the year-end filing",
+        "It must front cash for materials and labour while the payment hasn't arrived",
+        "The reported profit will fall by exactly the amount not yet collected",
+        "There's no risk at all, since a signed contract guarantees the cash will arrive"
+      ],
+      "explanation": "This is the classic way contractors go bankrupt: books full of profit, accounts completely empty. Costs run ahead of revenue every month, and just one late-paying client is enough to break the payment chain."
+    },
+    {
+      "question": "Why does 'fast growth' make being profitable but short of cash even worse?",
+      "options": [
+        "Because interest expense rises along with the annual revenue growth rate",
+        "Because fast growth forces the company into a higher income-tax bracket",
+        "Because banks always cut credit lines for fast-growing companies",
+        "Because as revenue rises, receivables and inventory balloon along with it"
+      ],
+      "explanation": "Every extra dong of revenue pulls along inventory that has to be held and receivables that have to be waited on. A company profitable but out of cash from growth is the phenomenon called 'growing broke' - and it hits exactly while everyone is celebrating."
+    },
+    {
+      "question": "What's the earliest sign in the statements that profit hasn't yet turned into cash?",
+      "options": [
+        "Average days sales outstanding rising steadily quarter after quarter",
+        "Gross margin dipping slightly compared with the same period last year",
+        "Selling and administrative expenses growing faster than revenue",
+        "Shares outstanding increasing after a new issuance"
+      ],
+      "explanation": "Rising DSO (days sales outstanding) means customers are paying more slowly than before. It shows up even before cash flow turns negative - which is why analysts track it alongside revenue."
+    },
+    {
+      "question": "How can a company that's profitable but out of cash fix the situation right away?",
+      "options": [
+        "Raise prices so the extra profit collected offsets the cash shortfall",
+        "Tighten collections, cut inventory, and negotiate slower payment to suppliers",
+        "Slow down revenue recognition so profit matches real cash flow",
+        "Shift some costs into next period so that this period's report simply looks more balanced"
+      ],
+      "explanation": "The three levers of the cash cycle: collect faster, hold less inventory, pay slower. The last two options only dress up the statements without generating a single real dong - and that's the path toward fraud."
+    }
+  ],
+  "keyTakeaways": [
+    "Accounting profit ≠ real cash in hand",
+    "Large AR, inventory, or CapEx can drain cash",
+    "Track OCF, not just Net Income"
+  ],
+  "practicePrompt": {
+    "question": "A company reports a profit of 200 billion for the year, but receivables (AR) rose by 150 billion (customers haven't paid yet) and the company just spent 180 billion buying new machinery (CapEx). Why might this company be close to running out of cash despite being 'profitable'?",
+    "options": [
+      "That can't happen - if a company reports 200 billion in profit, its cash balance must also rise by a matching amount",
+      "Accounting profit ≠ real cash in hand - rising AR means most of the '200 billion profit' hasn't actually been collected in cash yet, and on top of that 180 billion was spent on machinery, so real cash can shrink sharply even while the P&L still reports a profit",
+      "This is definitely a sign the company is committing financial-statement fraud to deceive investors",
+      "The newly purchased machinery will automatically generate cash right away, so it won't affect liquidity at all"
+    ],
+    "explanation": "Accounting profit ≠ real cash in hand. Large AR (150 billion) means most of the profit hasn't been collected yet, plus the large CapEx (180 billion) actually spent - a company can genuinely be 'profitable on paper' yet short of cash if it doesn't track OCF closely instead of just looking at Net Income."
+  },
+  "summary": {
+    "keyIdea": "Accounting profit ≠ real cash in hand",
+    "commonMistake": "Reading a concept as a phrase to memorise rather than a principle to apply to real decisions.",
+    "action": "Large AR, inventory, or CapEx can drain cash"
+  },
+  "application": {
+    "title": "Check your own risk of 'paper profit'",
+    "message": "If you run a business or sell goods, list out the amounts you've already recognised as revenue but haven't collected yet, plus your urgent payables this month - see whether you're falling into the trap of being profitable yet short of cash.",
+    "secondary": "Spotting it early lets you arrange your cash flow before it turns into a real crisis."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "This is one of the most shocking paradoxes for anyone new to finance: a company can report hundreds of billions of dong in profit on the P&L, then announce it can't pay its debts a few months later. How can it be profitable yet still run out of cash? The answer lies in the gap between accrual profit and real cash."
+    },
+    { "type": "heading", "text": "Three 'holes' that drain cash even while profitable" },
+    {
+      "type": "paragraph",
+      "text": "First, Accounts Receivable rising fast: the company sells goods, recognising revenue and profit right away, but customers pay 30-90 days later or even longer. If revenue (and AR) grows faster than collections, the company has to front its own cash to cover operating costs while waiting for customers to pay - this is called the 'cash conversion gap'."
+    },
+    {
+      "type": "paragraph",
+      "text": "Second, Inventory ballooning: the company produces or imports more than it sells, cash already spent on materials/goods hasn't yet turned into revenue. Third, large CapEx: the company is investing heavily in new plants and equipment - investing cash flow (ICF) runs deeply negative, consuming all the cash from operations and even exceeding OCF."
+    },
+    { "type": "heading", "text": "A lesson from Vietnam's 2022-2023 real-estate crisis" },
+    {
+      "type": "paragraph",
+      "text": "Many Vietnamese real-estate companies in 2022-2023 are a textbook example: the P&L still recorded profit from projects whose revenue had been booked, but real cash was buried in unfinished-project inventory and receivables from customers paying in instalments. When the bond market froze and banks tightened credit, these companies didn't have enough cash to pay debts as they came due - even while still 'profitable' on paper. This is exactly why professional investors always read the Cash Flow Statement alongside the P&L, rather than trusting the Net Income number alone."
+    },
+    {
+      "type": "list",
+      "items": [
+        "AR growing faster than revenue - a sign of selling but struggling to collect",
+        "Inventory rising abnormally - unsold goods or excess production",
+        "Large CapEx exceeding OCF - investing faster than the ability to self-fund",
+        "All three combined: the company must borrow more to keep operating despite reporting a profit"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "An early warning sign",
+      "text": "When Net Income keeps growing positively but OCF turns negative or keeps falling for 2-3 quarters in a row, that's a serious warning sign worth investigating closely before investing - no matter how good the P&L looks."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Accounting profit doesn't guarantee cash in hand - and that gap can kill a business that's technically 'profitable'.",
+        "Always cross-check Net Income against OCF; if they diverge widely and for a long time, that's a liquidity-risk signal worth taking seriously."
+      ]
+    }
+  ]
+}

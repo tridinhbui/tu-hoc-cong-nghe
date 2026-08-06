@@ -35,7 +35,7 @@
     {
       "question": "How does EBIT differ from Net Income?",
       "options": [
-        "EBIT is always larger than Net Income because it includes financial income",
+        "EBIT is always larger than Net Income because it also includes all financial income",
         "Net Income is always larger than EBIT because a tax refund is added back",
         "EBIT hasn't subtracted interest and tax yet; Net Income has subtracted both",
         "The two metrics are identical, just different names used across standards"
@@ -115,7 +115,7 @@
     {
       "question": "Which important ratio is EBIT used to calculate?",
       "options": [
-        "Gross Margin = EBIT divided by the current period's net revenue",
+        "Gross Margin = EBIT divided by the company's total net revenue for the current reporting period",
         "It's only used to forecast revenue for the next period",
         "Interest Coverage Ratio = EBIT / Interest Expense - the ability to pay interest",
         "None - EBIT is only ever presented, never used in a ratio"
