@@ -142,6 +142,10 @@ function Avatar({ name, avatarUrl }: { name?: string | null; avatarUrl?: string 
   );
 }
 
+/* i18n-ignore-start: these strings are stored values, not copy. handleReact writes
+   the reaction string itself into post.my_reaction and later compares it with
+   ===, so a translated option would no longer match any reaction already saved.
+   The hashtags are matched against stored post content by getPostCategory. */
 const REACTION_OPTIONS = ["💡 Hay", "🧠 Cần phản biện", "❓ Cùng thắc mắc", "📌 Đã lưu", "🔥 Rất thực tế"];
 const TOPICS = [
   // Labels live in t.feed.topics, keyed by this id. `tag` stays here and is
@@ -156,6 +160,7 @@ const TOPICS = [
   { id: "tin-nong", icon: Flame, tag: "#TinNong ", tone: "red" },
   { id: "ai-finance", icon: Zap, tag: "#AITaiChinh ", tone: "violet" },
 ] as const;
+/* i18n-ignore-end */
 
 type TopicId = (typeof TOPICS)[number]["id"];
 

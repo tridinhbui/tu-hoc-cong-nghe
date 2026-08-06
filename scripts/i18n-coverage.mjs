@@ -151,6 +151,10 @@ function isNotCopy(text) {
   // token. Listed rather than inferred: the point is to name the exceptions, not
   // to loosen the test into something a sentence could satisfy.
   const BARE_UTILITIES = new Set([
+    // "border" alone is the 1px default; it appears in almost every input class
+    // string in this repo, and without it one bare token failed the shape test
+    // and reported a whole Tailwind list as prose.
+    "border",
     "absolute",
     "relative",
     "fixed",
@@ -226,12 +230,19 @@ function findingsIn(src, fileName) {
   const isIgnored = (pos) => skip.some(([a, b]) => pos >= a && pos < b);
 
   const found = [];
+  // Counted, not just skipped. An i18n-ignore block is a claim that a string is
+  // not copy, and a claim nobody can see is indistinguishable from the work
+  // being done - the total would simply drop. i18n-scan.mjs has always reported
+  // this; this script only claimed to.
+  let excluded = 0;
   const push = (kind, text, pos) => {
-    if (isIgnored(pos)) return;
     const clean = String(text).replace(/\s+/g, " ").trim();
-    if (!isNotCopy(clean)) {
-      found.push({ kind, text: clean, line: source.getLineAndCharacterOfPosition(pos).line + 1 });
+    if (isNotCopy(clean)) return;
+    if (isIgnored(pos)) {
+      excluded += 1;
+      return;
     }
+    found.push({ kind, text: clean, line: source.getLineAndCharacterOfPosition(pos).line + 1 });
   };
 
   const visit = (node) => {
@@ -379,7 +390,7 @@ function findingsIn(src, fileName) {
     ts.forEachChild(node, visit);
   };
   visit(source);
-  return found;
+  return { found, excluded };
 }
 
 function categorize(file) {
@@ -396,22 +407,25 @@ const target = args.find((a) => !a.startsWith("--"));
 
 if (target) {
   const abs = path.join(root, target);
-  const findings = findingsIn(readFileSync(abs, "utf8"), abs);
+  const { found: findings, excluded } = findingsIn(readFileSync(abs, "utf8"), abs);
   if (asJson) {
     console.log(JSON.stringify(findings, null, 2));
   } else {
-    console.log(`${target} - ${findings.length} hard-coded display string(s)\n`);
+    const note = excluded ? `, ${excluded} excluded by i18n-ignore` : "";
+    console.log(`${target} - ${findings.length} hard-coded display string(s)${note}\n`);
     for (const f of findings) console.log(`  ${String(f.line).padStart(5)}  [${f.kind}] ${f.text}`);
   }
   process.exit(0);
 }
 
 const rows = [];
+let totalExcluded = 0;
 for (const dir of ROOTS) {
   for (const file of walk(path.join(root, dir))) {
     const rel = path.relative(root, file);
-    const count = findingsIn(readFileSync(file, "utf8"), file).length;
-    if (count) rows.push({ file: rel, count, category: categorize(rel) });
+    const { found, excluded } = findingsIn(readFileSync(file, "utf8"), file);
+    totalExcluded += excluded;
+    if (found.length) rows.push({ file: rel, count: found.length, category: categorize(rel) });
   }
 }
 rows.sort((a, b) => b.count - a.count);
@@ -423,6 +437,9 @@ if (asJson) {
 
 const total = rows.reduce((s, r) => s + r.count, 0);
 console.log(`${total} hard-coded display strings in ${rows.length} files`);
+if (totalExcluded) {
+  console.log(`${totalExcluded} more excluded by i18n-ignore (each carries its reason)`);
+}
 console.log(`(parsed, language-agnostic: counts English and undotted Vietnamese too)\n`);
 
 const byCategory = new Map();

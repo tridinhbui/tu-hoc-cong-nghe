@@ -35,6 +35,10 @@ const LIABILITY_FIELD_IDS = ["bankLoan", "creditCard", "installment", "familyLoa
 type AssetField = (typeof ASSET_FIELD_IDS)[number];
 type LiabilityField = (typeof LIABILITY_FIELD_IDS)[number];
 
+/* i18n-ignore-start: these are the KEYS inside each user's saved
+   assets_breakdown / liabilities_breakdown JSON, not labels. Translating one
+   renames the key and orphans every snapshot already stored - a net worth that
+   silently reads zero. The displayed labels come from t.netWorth.* instead. */
 const ASSET_STORAGE_KEYS: Record<AssetField, string> = {
   cash: "Tiền mặt/tiết kiệm",
   investment: "Đầu tư (cổ phiếu/quỹ)",
@@ -50,6 +54,7 @@ const LIABILITY_STORAGE_KEYS: Record<LiabilityField, string> = {
   familyLoan: "Vay người thân",
   other: "Khác",
 };
+/* i18n-ignore-end */
 
 function assetFieldLabel(t: Dictionary, field: AssetField): string {
   const labels: Record<AssetField, string> = {

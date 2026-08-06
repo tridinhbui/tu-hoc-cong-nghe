@@ -247,7 +247,19 @@ Three separate blind spots were found in it by hand, in both directions:
 The coverage script had its own version of the same lesson: its first draft used
 a regex for JSX text and reported `useState<Theme>` as copy. Both scripts respect
 `/* i18n-ignore-start: reason */ … /* i18n-ignore-end */`, which requires a
-reason and still prints the excluded count so nothing disappears quietly.
+reason and prints the excluded count so nothing disappears quietly.
+
+That last clause used to be true of `i18n-scan.mjs` only. `i18n-coverage.mjs`
+silently dropped ignored strings from its total, which meant an ignore block and
+finishing the work looked identical from the outside - the number just went down.
+It reports the count now, and the first honest reading was **101 strings already
+under `i18n-ignore`**. Treat that number with more suspicion than the headline:
+every one of them is an unreviewed claim that a string is not copy. The
+legitimate cases in this repo are all the same shape - a value that is already
+persisted, so translating it orphans stored data: `REACTION_OPTIONS` written into
+`post.my_reaction` and compared with `===`, the hashtags `getPostCategory` finds
+in stored post content, `ASSET_STORAGE_KEYS` used as the keys of each user's
+saved `assets_breakdown` JSON, and `rarity` on the RPG inventory items.
 
 **The coverage number was a floor, and module-scope data was the biggest hole in
 it.** That hole is now closed, and closing it took the total from 1,015 to 2,238:
