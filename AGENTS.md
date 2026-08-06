@@ -249,9 +249,30 @@ a regex for JSX text and reported `useState<Theme>` as copy. Both scripts respec
 `/* i18n-ignore-start: reason */ … /* i18n-ignore-end */`, which requires a
 reason and still prints the excluded count so nothing disappears quietly.
 
-**The coverage number is a floor, not a total.** It does not yet see display
-strings that pass through a variable (`const label = "…"` rendered as `{label}`)
-or module-scope data arrays. Expect it to rise when someone closes those.
+**The coverage number was a floor, and module-scope data was the biggest hole in
+it.** That hole is now closed, and closing it took the total from 1,015 to 2,238:
+1,223 strings that render on screen every day had never appeared in the report,
+because they sit in a `const` at the top of a file rather than in a display
+position. It was found by hand five separate times before anyone fixed the
+script — `KINGDOM_BUILDINGS`, `TONE_STYLE`, `SKILL_TREE`, `ScrollytellingPinnedSection`'s
+`PANELS`, and four `lib/*.ts` teaching-content modules — which is the signature of
+a measurement gap rather than five unrelated oversights.
+
+The `data` rule reports strings inside a top-level `const` array or object. Its
+scope is narrow on purpose: only module scope, only property names that are not
+in `NON_COPY_FIELDS` (`id`, `slug`, `href`, `className`, `ticker`, `correct`, …),
+and every existing shape filter still applies, so ids, routes, Tailwind classes
+and enum values stay out. Sampling four of the newly-reported files found zero
+false positives.
+
+It also surfaced a category that needs a different fix, not a dictionary:
+`app/api/world-boss/route.ts` builds 62 strings of boss names and flavour text on
+the server and sends them to the client. A dictionary section cannot reach that —
+either the route reads the locale, or it returns ids the client resolves.
+
+What the number still does not see: display strings that pass through a local
+variable (`const label = "…"` rendered as `{label}`) inside a component body.
+Expect it to rise again when someone closes that.
 
 ### Guard rails
 

@@ -62,6 +62,51 @@ const DISPLAY_ATTRS = new Set([
   "userName",
 ]);
 
+/**
+ * Object keys in module-scope data whose values are never copy: ids, routes,
+ * assets, styling, and enum/discriminator fields. Everything NOT listed here is
+ * reported, so a new copy-bearing field cannot hide by being unfamiliar.
+ */
+const NON_COPY_FIELDS = new Set([
+  "id",
+  "key",
+  "slug",
+  "value",
+  "href",
+  "url",
+  "src",
+  "image",
+  "img",
+  "icon",
+  "emoji",
+  "color",
+  "accent",
+  "bg",
+  "className",
+  "class",
+  "style",
+  "type",
+  "kind",
+  "variant",
+  "category",
+  "domain",
+  "domain_type",
+  "ticker",
+  "symbol",
+  "path",
+  "route",
+  "event",
+  "eventName",
+  "track",
+  "locale",
+  "format",
+  "unit",
+  "storageKey",
+  "assetKey",
+  "correct",
+  "answer",
+]);
+
 /** Call expressions whose string arguments are shown to the user. */
 const DISPLAY_CALLS = new Set([
   "toast",
@@ -232,6 +277,39 @@ function findingsIn(src, fileName) {
           const text = chunks.join(" ").trim();
           if (text) push("call", text, arg.getStart(source));
         }
+      }
+    }
+
+    // Strings inside a module-scope array or object literal.
+    //
+    // This is the blind spot AGENTS.md warned about, and it was found by hand
+    // five separate times before being closed: KINGDOM_BUILDINGS, TONE_STYLE,
+    // SKILL_TREE, ScrollytellingPinnedSection's PANELS, and four lib/*.ts data
+    // modules all held Vietnamese prose that never appeared in this report,
+    // because the strings sit in a `const` at the top of the file rather than in
+    // a display position. A component reading such a table renders every one of
+    // them, so they are exactly as user-facing as JSX text - and the closer the
+    // total gets to zero, the more a floor that misses them reads as a lie.
+    //
+    // Scope is deliberately narrow: only a top-level `const`, only properties
+    // whose name is not a known non-copy field, and every existing shape filter
+    // still applies. That keeps ids, routes, Tailwind classes and enum values out.
+    if (ts.isVariableStatement(node) && node.parent === source) {
+      for (const decl of node.declarationList.declarations) {
+        if (!decl.initializer) continue;
+        const walkData = (n, field) => {
+          if (ts.isStringLiteral(n) || ts.isNoSubstitutionTemplateLiteral(n)) {
+            if (!field || !NON_COPY_FIELDS.has(field)) push("data", n.text, n.getStart(source));
+            return;
+          }
+          if (ts.isPropertyAssignment(n)) {
+            const name = ts.isIdentifier(n.name) || ts.isStringLiteral(n.name) ? n.name.text : "";
+            walkData(n.initializer, name);
+            return;
+          }
+          n.forEachChild((c) => walkData(c, field));
+        };
+        walkData(decl.initializer, "");
       }
     }
 
