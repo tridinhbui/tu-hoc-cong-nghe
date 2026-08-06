@@ -4,12 +4,15 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { AlertCircle, ArrowRight } from "lucide-react";
 import { createClient } from "@/lib/supabase";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 interface MistakeReviewWidgetProps {
   userId: string;
 }
 
 export default function MistakeReviewWidget({ userId }: MistakeReviewWidgetProps) {
+  const { t } = useI18n();
   const [mistakeCount, setMistakeCount] = useState<number>(0);
   const [loading, setLoading] = useState(true);
 
@@ -43,14 +46,14 @@ export default function MistakeReviewWidget({ userId }: MistakeReviewWidgetProps
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-0.5">
               <h3 className="text-sm font-bold text-rose-900 dark:text-rose-100">
-                Câu sai cần ôn tập
+                {t.finalTwo.mistakeReviewWidget.title}
               </h3>
               <span className="inline-flex items-center justify-center px-2 py-0.5 rounded-full bg-rose-500 text-white text-[10px] font-bold">
-                {mistakeCount} câu
+                {format(t.finalTwo.mistakeReviewWidget.countSuffix, { count: mistakeCount })}
               </span>
             </div>
             <p className="text-xs text-rose-700 dark:text-rose-300/80">
-              Bạn có {mistakeCount} câu hỏi trắc nghiệm đã làm sai cần ôn lại để củng cố kiến thức.
+              {format(t.finalTwo.mistakeReviewWidget.body, { count: mistakeCount })}
             </p>
           </div>
           <div className="flex-shrink-0 text-rose-500 dark:text-rose-400 group-hover:translate-x-1 transition-transform">

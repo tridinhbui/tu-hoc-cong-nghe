@@ -2,6 +2,8 @@
 
 import { useMemo, useState } from "react";
 import { CFA_ITEM_SETS, type CfaItemSet, type ItemSetQuestion } from "@/lib/cfa-item-sets";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 /**
  * Luyện item set - dạng đề của CFA Level II.
@@ -82,13 +84,14 @@ function QuestionBlock({ q, index }: { q: ItemSetQuestion; index: number }) {
 }
 
 function ItemSetView({ set }: { set: CfaItemSet }) {
+  const { t } = useI18n();
   return (
     <div className="grid gap-4 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-start">
       {/* Tình huống dính lại khi cuộn ở màn rộng: đọc câu 4 mà vẫn thấy bảng số
           là đúng cách dạng đề này được làm trên giấy. */}
       <div className="rounded-2xl border border-stone-200 bg-stone-50 p-4 dark:border-stone-800 dark:bg-stone-900/60 lg:sticky lg:top-4">
         <p className="text-[10px] font-black uppercase tracking-widest text-stone-500 dark:text-stone-400">
-          Tình huống · {set.topic}
+          {format(t.finalTwo.cfaItemSetPractice.scenarioLabel, { topic: set.topic })}
         </p>
         <h4 className="mt-1 text-[13px] font-extrabold text-stone-900 dark:text-stone-100">{set.title}</h4>
         <div className="mt-2 space-y-2">
@@ -110,18 +113,17 @@ function ItemSetView({ set }: { set: CfaItemSet }) {
 }
 
 export default function CfaItemSetPractice() {
+  const { t } = useI18n();
   const [openId, setOpenId] = useState<string | null>(null);
   const open = CFA_ITEM_SETS.find((s) => s.id === openId) ?? null;
 
   return (
     <section className="mt-6 rounded-[24px] border border-stone-200 bg-white p-5 dark:border-stone-800 dark:bg-stone-900">
       <h3 className="text-base font-extrabold text-stone-900 dark:text-stone-100">
-        Luyện item set - dạng đề Level II
+        {t.finalTwo.cfaItemSetPractice.title}
       </h3>
       <p className="mt-1 max-w-2xl text-xs leading-relaxed text-stone-500 dark:text-stone-400">
-        Mỗi bộ là một tình huống dài kèm bốn câu hỏi cùng dựa vào nó. Tình huống cố ý chứa nhiều dữ
-        kiện hơn số cần dùng - chọn đúng số là một nửa bài thi. Không tính điểm và không lưu lại:
-        bốn câu không nói được gì về mức sẵn sàng thi.
+        {t.finalTwo.cfaItemSetPractice.subtitle}
       </p>
 
       <div className="mt-4 flex flex-wrap gap-2">
@@ -148,7 +150,7 @@ export default function CfaItemSetPractice() {
         </div>
       ) : (
         <p className="mt-4 rounded-2xl border border-dashed border-stone-300 px-4 py-3 text-xs text-stone-500 dark:border-stone-700 dark:text-stone-400">
-          Chọn một môn ở trên để mở tình huống.
+          {t.finalTwo.cfaItemSetPractice.emptyHint}
         </p>
       )}
     </section>

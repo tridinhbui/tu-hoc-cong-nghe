@@ -155,6 +155,20 @@ const INTENTIONALLY_UNTRANSLATED = new Set([
   // the exam's own language, matching the CFA and FRM syllabus names.
   "cfaFormulas.title",
   "frmFormulas.title",
+  // Product names, an already-English word, and dev-tool debug labels.
+  "finalTwo.logo.productName",
+  "finalTwo.bxhPage.finSocialTitle",
+  "finalTwo.roadmap.title",
+  "finalTwo.cfaContentRenderer.youtubeTitle",
+  "finalTwo.financeCharacterAvatar.levelPrefix",
+  "finalTwo.phongVanKyThuatDifficulty",
+  "finalTwo.uistatsPreview",
+  // Sector names and a guild's own name, already English in the Vietnamese
+  // source: "SaaS & AI Software", "Fintech & Digital Payments", "Private Equity
+  // Syndicate" are how the industry names itself in Vietnamese finance too.
+  "finalOne.dcfGame.industries.tech-titan",
+  "finalOne.dcfGame.industries.fintech-disruptor",
+  "finalOne.guildsRoute.fallbackNames.guild-pe",
   // Formulas: a DuPont decomposition and the compound-interest options, which
   // are algebra in both languages. Translating "FV" or "PV" would stop them
   // matching the lesson that teaches them.

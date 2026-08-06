@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useI18n } from "@/lib/i18n/context";
 
 // Lazy-load katex only when math content actually renders - same pattern
 // as NoteContent.tsx. katex is ~250KB and most CFA content has no math,
@@ -95,11 +96,12 @@ function extractYoutubeId(line: string): string | null {
 // looking or as a wall of text, unlike personal-finance lessons which have
 // a dedicated video block type.
 function YoutubeEmbed({ videoId }: { videoId: string }) {
+  const { t } = useI18n();
   return (
     <div className="my-4 aspect-video w-full rounded-xl overflow-hidden border border-stone-200 dark:border-stone-800 shadow-sm">
       <iframe
         src={`https://www.youtube.com/embed/${videoId}`}
-        title="YouTube video"
+        title={t.finalTwo.cfaContentRenderer.youtubeTitle}
         className="w-full h-full"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowFullScreen

@@ -5,10 +5,12 @@ import { useRouter } from "next/navigation";
 import { Users } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import CommunityFeedClient from "@/components/CommunityFeedClient";
+import { useI18n } from "@/lib/i18n/context";
 
 export const dynamic = "force-dynamic";
 
 export default function LeaderboardPage() {
+  const { t } = useI18n();
   const router = useRouter();
   const supabase = createClient();
   const [loading, setLoading] = useState(true);
@@ -33,7 +35,7 @@ export default function LeaderboardPage() {
   if (loading) {
     return (
       <div className="min-h-screen bg-stone-50 flex items-center justify-center">
-        <p className="text-sm font-medium text-stone-500">Đang tải...</p>
+        <p className="text-sm font-medium text-stone-500">{t.finalTwo.bxhPage.loading}</p>
       </div>
     );
   }
@@ -44,14 +46,14 @@ export default function LeaderboardPage() {
         <div className="mb-6 rounded-[28px] border border-stone-200 bg-white px-5 py-5 shadow-[0_20px_50px_-35px_rgba(15,23,42,0.22)] sm:px-7 sm:py-6">
           <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <h1 className="text-3xl font-black tracking-tight text-stone-900 sm:text-4xl">FinSocial</h1>
+              <h1 className="text-3xl font-black tracking-tight text-stone-900 sm:text-4xl">{t.finalTwo.bxhPage.finSocialTitle}</h1>
               <p className="mt-2 max-w-2xl text-sm leading-6 text-stone-600 sm:text-base">
-                FinSocial là khu vực riêng để mọi người chia sẻ bản tin, câu hỏi và phân tích ngắn.
+                {t.finalTwo.bxhPage.finSocialDesc}
               </p>
             </div>
             <div className="inline-flex items-center gap-2 rounded-2xl border border-emerald-200 bg-emerald-50 px-3.5 py-2 text-sm font-bold text-emerald-700">
               <Users className="h-4 w-4" />
-              Cộng đồng trong hệ học
+              {t.finalTwo.bxhPage.communityBadge}
             </div>
           </div>
         </div>

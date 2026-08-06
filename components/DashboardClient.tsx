@@ -1024,7 +1024,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                             className="inline-flex items-center gap-1 text-[11px] font-extrabold text-stone-600 bg-stone-50 border border-stone-200 px-2.5 py-1.5 rounded-xl hover:bg-stone-100 transition-colors cursor-pointer shadow-2xs"
                             title={t.dashboard.gameSolo}
                           >
-                            🧠 Solo
+                            {t.finalOne.dashboardClient.soloLabel}
                           </Link>
                         </div>
                       </div>
@@ -1114,7 +1114,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                         <p className={`text-[10px] font-extrabold mt-0.5 leading-snug line-clamp-2 flex-1 ${isReached ? "text-stone-900 dark:text-stone-100" : "text-stone-500 dark:text-stone-500"}`}>
                                           {lvl.name}
                                         </p>
-                                        <p className="text-[9px] text-stone-400 dark:text-stone-500 mt-0.5">{lvl.minXp} XP</p>
+                                        <p className="text-[9px] text-stone-400 dark:text-stone-500 mt-0.5">{format(t.finalOne.dashboardClient.xpValue, { xp: lvl.minXp })}</p>
                                         <div className={`inline-flex items-center gap-1 text-[8px] font-bold mt-1 px-1.5 py-0.5 rounded-full w-fit ${isReached ? `${accent.bg} ${accent.text}` : "bg-stone-100 dark:bg-stone-800 text-stone-400 dark:text-stone-500"}`}>
                                           👥 {members.length}
                                         </div>
@@ -1163,7 +1163,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                             {m.name}
                                           </span>
                                           <span className="text-xs font-black text-emerald-600 dark:text-emerald-400 shrink-0">
-                                            {m.xp} XP
+                                            {format(t.finalOne.dashboardClient.xpValue, { xp: m.xp })}
                                           </span>
                                         </Link>
                                       ))}
@@ -1933,7 +1933,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                         {format(t.dashboard.milestone.eligible, { stage: stage.label })}
                       </h4>
                       <p className="text-[10px] text-stone-500 dark:text-stone-400 mt-1 leading-relaxed">
-                        {t.dashboard.milestone.eligibleBodyPart1}<strong>+50 XP</strong>{t.dashboard.milestone.eligibleBodyPart2}
+                        {t.dashboard.milestone.eligibleBodyPart1}<strong>{t.finalOne.dashboardClient.milestoneBonusXp}</strong>{t.dashboard.milestone.eligibleBodyPart2}
                       </p>
                     </div>
                     <button
@@ -1978,7 +1978,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                 className="w-full flex items-baseline gap-4 mb-4 cursor-pointer text-left"
               >
                 <span className="text-xs font-extrabold text-stone-900 dark:text-stone-100 uppercase tracking-widest bg-stone-100 dark:bg-stone-800 px-3 py-1 rounded-lg">
-                  Bonus
+                  {t.finalOne.dashboardClient.bonusLabel}
                 </span>
                 <span className="text-lg font-extrabold text-stone-900 dark:text-stone-100" role="heading" aria-level={2}>{t.dashboard.caseStudies}</span>
                 <span className="ml-auto text-base font-bold text-stone-900 dark:text-stone-100 bg-stone-100 dark:bg-stone-800 px-4 py-1 rounded-lg">
@@ -2253,7 +2253,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             });
             await recalculateUserStats(userId).catch(() => {});
             window.dispatchEvent(new CustomEvent("thtcdn:coin-updated", { detail: { coins: newCoins } }));
-            toast.success(`🎉 Hạ gục Boss thành công! Nhận +${xp} XP & 🪙 +${coins} Coins!`);
+            toast.success(format(t.finalOne.dashboardClient.bossDefeatedToast, { xp, coins }));
           }}
           onClose={() => setShowBossBattle(false)}
         />

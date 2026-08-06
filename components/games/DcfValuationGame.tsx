@@ -11,6 +11,7 @@ import { recordCustomGameSession } from "@/lib/games";
 import { useIsClient } from "@/lib/use-is-client";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
 interface CompanyDeal {
   id: string;
@@ -26,12 +27,17 @@ interface CompanyDeal {
   isUndervalued: boolean; // Correct decision
 }
 
-const DEALS: CompanyDeal[] = [
+// Structural shape of the seven deals: id, ticker, numbers and the
+// correct-decision flag (never shown to the player, so not display copy).
+// `name` is a fictional company name kept identical in both languages -
+// `industry` is real copy and comes from `t.finalOne.dcfGame.industries`,
+// keyed by `id`; see `dealsOf`.
+/* i18n-ignore-start: fictional company names, proper nouns kept identical in both languages */
+const DEAL_SHAPE: Omit<CompanyDeal, "industry">[] = [
   {
     id: "tech-titan",
     name: "Alpha Cloud Tech",
     ticker: "ACT",
-    industry: "SaaS & AI Software",
     fcffYear1: 250,
     defaultWacc: 0.09,
     defaultG: 0.04,
@@ -44,7 +50,6 @@ const DEALS: CompanyDeal[] = [
     id: "consumer-staple",
     name: "Vinafood Global",
     ticker: "VFG",
-    industry: "FMCG & Thực phẩm",
     fcffYear1: 180,
     defaultWacc: 0.11,
     defaultG: 0.03,
@@ -57,7 +62,6 @@ const DEALS: CompanyDeal[] = [
     id: "green-energy",
     name: "Aero Wind Power",
     ticker: "AWP",
-    industry: "Năng lượng tái tạo",
     fcffYear1: 320,
     defaultWacc: 0.08,
     defaultG: 0.035,
@@ -70,7 +74,6 @@ const DEALS: CompanyDeal[] = [
     id: "retail-chain",
     name: "Mega Mart Retails",
     ticker: "MMR",
-    industry: "Bán lẻ đa kênh",
     fcffYear1: 120,
     defaultWacc: 0.10,
     defaultG: 0.02,
@@ -83,7 +86,6 @@ const DEALS: CompanyDeal[] = [
     id: "biotech-pharma",
     name: "Genomics Pharma",
     ticker: "GNP",
-    industry: "Dược phẩm & Sinh học",
     fcffYear1: 400,
     defaultWacc: 0.12,
     defaultG: 0.04,
@@ -96,7 +98,6 @@ const DEALS: CompanyDeal[] = [
     id: "fintech-disruptor",
     name: "PayFlow Digital",
     ticker: "PFD",
-    industry: "Fintech & Digital Payments",
     fcffYear1: 180,
     defaultWacc: 0.10,
     defaultG: 0.05,
@@ -109,7 +110,6 @@ const DEALS: CompanyDeal[] = [
     id: "real-estate-reit",
     name: "Golden Tower REIT",
     ticker: "GTO",
-    industry: "Bất động sản & REIT",
     fcffYear1: 150,
     defaultWacc: 0.07,
     defaultG: 0.02,
@@ -119,10 +119,20 @@ const DEALS: CompanyDeal[] = [
     isUndervalued: false,
   }
 ];
+/* i18n-ignore-end */
+
+function dealsOf(t: Dictionary): CompanyDeal[] {
+  const industries = t.finalOne.dcfGame.industries;
+  return DEAL_SHAPE.map((deal) => ({
+    ...deal,
+    industry: industries[deal.id as keyof typeof industries],
+  }));
+}
 
 export default function DcfValuationGame({ userId, onClose }: { userId: string; onClose: () => void }) {
   const { t } = useI18n();
   const dcf = t.games.dcf;
+  const DEALS = React.useMemo(() => dealsOf(t), [t]);
   const mounted = useIsClient();
   const [round, setRound] = useState(0); // 0 to 4
   const [score, setScore] = useState(0);

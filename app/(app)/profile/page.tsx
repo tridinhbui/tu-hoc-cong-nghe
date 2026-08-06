@@ -644,7 +644,9 @@ export default function ProfilePage() {
                       <div className="flex items-center gap-3 shrink-0">
                         <div className="text-right">
                           <span className="text-xs font-extrabold text-stone-900 dark:text-stone-100">
+                            {/* i18n-ignore-start: "N/A" is language-neutral, the same in both locales */}
                             {lesson.quizScore !== null && lesson.quizScore !== undefined ? `${Math.round(lesson.quizScore)}%` : "N/A"}
+                            {/* i18n-ignore-end */}
                           </span>
                           <p className="text-[9px] text-stone-400 dark:text-stone-500">{t.profile.readAndQuiz}</p>
                         </div>

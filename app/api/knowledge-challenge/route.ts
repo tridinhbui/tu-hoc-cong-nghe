@@ -31,11 +31,16 @@ const QUESTION_COUNT = 5;
  *  sạch kho bài trong một request. */
 const MAX_QUESTION_COUNT = CFA_EXAM.totalQuestions;
 
+/* i18n-ignore-start: `difficulty` is a persisted Vietnamese string-union enum
+ * value compared against lesson.difficulty (see AGENTS.md "Translating the
+ * UI" - difficulty is not translatable, it's a value used across the app),
+ * never sent to the client as display copy. Kept byte-identical. */
 const DIFFICULTY_LABELS: Record<string, string> = {
   de: "Dễ",
   "trung-binh": "Trung bình",
   kho: "Khó",
 };
+/* i18n-ignore-end */
 
 function shuffle<T>(arr: T[]): T[] {
   const a = [...arr];

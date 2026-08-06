@@ -1,7 +1,10 @@
+"use client";
+
 import React from "react";
 import type { LessonSectionBlock } from "@/lib/lesson-types";
 import { highlightGlossaryTerms } from "@/components/GlossaryTerm";
 import FormulaBlock from "@/components/FormulaBlock";
+import { useI18n } from "@/lib/i18n/context";
 
 function renderFormattedText(text: string, seenTerms: Set<string>): React.ReactNode {
   // Split on double or single line breaks for clean paragraph spacing
@@ -54,6 +57,7 @@ export default function LessonSections({
   checkpoint,
   checkpointAfterIndex = -1,
 }: LessonSectionsProps) {
+  const { t } = useI18n();
   // Shared across the whole lesson body so a term already highlighted once
   // (e.g. "dòng tiền" in an early paragraph) doesn't get re-wrapped every
   // time it's mentioned again later in the same lesson.
@@ -119,7 +123,7 @@ export default function LessonSections({
           <div key={i} className="rounded-2xl overflow-hidden border-2 border-stone-900 dark:border-stone-700 shadow-lg my-6">
             <div className="bg-stone-900 dark:bg-stone-800 px-6 py-4">
               <p className="text-white font-extrabold text-lg tracking-wide">{block.title}</p>
-              <p className="text-stone-300 text-sm mt-0.5">{block.subtitle ?? "Chạm hoặc di chuột vào từng dòng"}</p>
+              <p className="text-stone-300 text-sm mt-0.5">{block.subtitle ?? t.finalTwo.lessonSections.defaultConceptTableSubtitle}</p>
             </div>
             <div className="divide-y divide-stone-100 dark:divide-stone-800 bg-white/95 dark:bg-stone-900">
               {block.concepts.map(({ vi, en, def }) => (

@@ -1,7 +1,10 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { renderToStaticMarkup } from "react-dom/server";
 import LessonSections from "@/components/LessonSections";
 import type { LessonSectionBlock } from "@/lib/lesson-types";
+import { I18nProvider } from "@/lib/i18n/context";
+
+vi.mock("next/navigation", () => ({ useRouter: () => ({ push: vi.fn(), refresh: vi.fn() }) }));
 
 // Renders the real component rather than asserting on the placement helper
 // alone, because the bug this guards against was a rendering one: the
@@ -19,7 +22,11 @@ const SECTIONS: LessonSectionBlock[] = [
 const CHECKPOINT = <div>DIEM-KIEM-TRA</div>;
 
 function render(props: Partial<Parameters<typeof LessonSections>[0]> = {}) {
-  return renderToStaticMarkup(<LessonSections sections={SECTIONS} {...props} />);
+  return renderToStaticMarkup(
+    <I18nProvider initialLocale="vi">
+      <LessonSections sections={SECTIONS} {...props} />
+    </I18nProvider>
+  );
 }
 
 describe("LessonSections checkpoint slot", () => {

@@ -97,7 +97,7 @@ export default function FinancialGuildWidget({ userId }: { userId: string }) {
     setStocks(newStocks);
     const nextDay = simulatedDay + numDays;
     setSimulatedDay(nextDay);
-    toast.success(`📈 Đã tua +${numDays} ngày giao dịch thị trường!`);
+    toast.success(format(t.finalTwo.financialGuildWidget.advancedDays, { numDays }));
 
     // Evaluate Portfolio Risk & Generate Financial Lessons
     evaluatePortfolioLessons(newStocks);
@@ -165,7 +165,13 @@ export default function FinancialGuildWidget({ userId }: { userId: string }) {
         [ticker]: { ticker, shares: newTotalShares, avgPrice: newAvgPrice },
       }));
 
-      toast.success(`Đã MUA ${tradeShares.toLocaleString()} cổ phiếu ${ticker} tại giá ${price.toLocaleString()} VNĐ`);
+      toast.success(
+        format(t.finalTwo.financialGuildWidget.boughtShares, {
+          shares: tradeShares.toLocaleString(),
+          ticker,
+          price: price.toLocaleString(),
+        })
+      );
     } else {
       // Sell
       const existing = positions[ticker];
@@ -193,9 +199,21 @@ export default function FinancialGuildWidget({ userId }: { userId: string }) {
       }
 
       if (realizedPnL >= 0) {
-        toast.success(`Đã BÁN ${tradeShares.toLocaleString()} ${ticker}. Lãi thực tế: +${realizedPnL.toLocaleString()} VNĐ! 🎉`);
+        toast.success(
+          format(t.finalTwo.financialGuildWidget.soldProfit, {
+            shares: tradeShares.toLocaleString(),
+            ticker,
+            pnl: realizedPnL.toLocaleString(),
+          })
+        );
       } else {
-        toast.error(`Đã BÁN ${tradeShares.toLocaleString()} ${ticker}. Lỗ thực tế: ${realizedPnL.toLocaleString()} VNĐ!`);
+        toast.error(
+          format(t.finalTwo.financialGuildWidget.soldLoss, {
+            shares: tradeShares.toLocaleString(),
+            ticker,
+            pnl: realizedPnL.toLocaleString(),
+          })
+        );
       }
     }
 

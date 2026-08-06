@@ -6,7 +6,11 @@ import InteractiveBond from "@/components/InteractiveBond";
 import MotivationShareCard from "@/components/MotivationShareCard";
 import { computeDomainCoverage } from "@/lib/career-competency";
 
+/* i18n-ignore-start: dev-only preview route, hard-blocked in production
+   below via notFound() when NODE_ENV === "production" - never reachable by
+   an end user, so its metadata title is not real copy. */
 export const metadata = { title: "Xem cảnh 3D (dev)" };
+/* i18n-ignore-end */
 
 /** Trang xem cảnh 3D không cần đăng nhập, chỉ chạy khi dev.
  *

@@ -5,6 +5,8 @@ import Link from "next/link";
 import { TrendingUp } from "lucide-react";
 import { COMPETENCIES, type CompetencyScore } from "@/lib/career-competency";
 import { fetchCareerProfile } from "@/lib/career-profile";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 // Same GET /api/career-profile the /su-nghiep radar reads (see
 // components/CareerProfilePanel.tsx) - just the competency card grid, none
@@ -30,6 +32,7 @@ interface CompetencyStatsSectionProps {
 }
 
 export default function CompetencyStatsSection({ userId }: CompetencyStatsSectionProps) {
+  const { t } = useI18n();
   const [scores, setScores] = useState<Map<CompetencyScore["id"], CompetencyScore> | null>(null);
   const [totalLessonsCompleted, setTotalLessonsCompleted] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -63,7 +66,7 @@ export default function CompetencyStatsSection({ userId }: CompetencyStatsSectio
   if (loading) {
     return (
       <div className="rounded-2xl border border-stone-200/90 dark:border-stone-800 bg-white/95 dark:bg-stone-900 p-5 sm:p-6">
-        <p className="text-sm text-stone-400 dark:text-stone-500">Đang tải...</p>
+        <p className="text-sm text-stone-400 dark:text-stone-500">{t.finalTwo.competencyStatsSection.loading}</p>
       </div>
     );
   }
@@ -71,7 +74,7 @@ export default function CompetencyStatsSection({ userId }: CompetencyStatsSectio
   if (!userId || failed || !scores) {
     return (
       <div className="rounded-2xl border border-stone-200/90 dark:border-stone-800 bg-white/95 dark:bg-stone-900 p-5 sm:p-6">
-        <p className="text-sm text-stone-500 dark:text-stone-400">Không tải được dữ liệu năng lực.</p>
+        <p className="text-sm text-stone-500 dark:text-stone-400">{t.finalTwo.competencyStatsSection.failed}</p>
       </div>
     );
   }
@@ -81,10 +84,10 @@ export default function CompetencyStatsSection({ userId }: CompetencyStatsSectio
       <div className="flex items-center justify-between gap-3 mb-4">
         <h3 className="text-xs font-extrabold uppercase tracking-widest text-stone-400 dark:text-stone-500 flex items-center gap-1.5">
           <TrendingUp className="w-4 h-4 text-emerald-500" />
-          Năng lực tài chính
+          {t.finalTwo.competencyStatsSection.title}
         </h3>
         <span className="text-[11px] font-bold text-stone-400 dark:text-stone-500">
-          {totalLessonsCompleted} bài đã hoàn thành
+          {format(t.finalTwo.competencyStatsSection.lessonsCompletedSuffix, { count: totalLessonsCompleted })}
         </span>
       </div>
 

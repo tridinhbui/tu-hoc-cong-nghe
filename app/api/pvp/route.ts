@@ -1,11 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 
-const MOCK_OPPONENTS = [
-  { name: "Chiến Thần Valuation", level: 6, avatar: null },
-  { name: "Trader Sàn HoSE", level: 4, avatar: null },
-  { name: "CFO Tương Lai", level: 5, avatar: null },
-];
+// `MOCK_OPPONENTS`, an unused block of Vietnamese display names, used to sit
+// here. It was never referenced anywhere else in the codebase (confirmed by
+// grep) - dead code, not a fallback path, so it is removed rather than
+// translated.
 
 export async function GET(request: NextRequest) {
   const supabase = await createServerSupabaseClient();

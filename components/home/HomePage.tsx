@@ -535,13 +535,13 @@ export default function HomePage() {
                                   {t.home.card.exampleText}
                                 </p>
                               </div>
-                              <div className="rounded-full bg-amber-300/15 px-2 py-1 text-[10px] font-black text-amber-100">P/E</div>
+                              <div className="rounded-full bg-amber-300/15 px-2 py-1 text-[10px] font-black text-amber-100">{t.finalOne.homePage.peBadge}</div>
                             </div>
                             <div className="mt-3 grid grid-cols-3 gap-2 text-center">
                               {[
                                 [t.home.card.priceLabel, t.home.card.priceValue],
-                                ["EPS", t.home.card.epsValue],
-                                ["P/E", t.home.card.peValue],
+                                [t.finalOne.homePage.epsLabel, t.home.card.epsValue],
+                                [t.finalOne.homePage.peBadge, t.home.card.peValue],
                               ].map(([label, value]) => (
                                 <div key={label} className="rounded-[14px] bg-stone-950/45 px-1.5 py-2">
                                   <p className="text-[9px] font-black uppercase tracking-[0.12em] text-stone-500">{label}</p>
@@ -571,7 +571,7 @@ export default function HomePage() {
                             // Đó không phải một tỷ lệ được đo từ đâu cả - nó là
                             // một con số trông giống thống kê. Thay bằng thứ
                             // kiểm chứng được: mỗi bài có 5 câu hỏi.
-                            ["Quiz", t.home.card.metaQuizValue],
+                            [t.finalOne.homePage.quizLabel, t.home.card.metaQuizValue],
                             [t.home.card.metaReview, t.home.card.metaReviewValue],
                           ].map(([label, value]) => (
                             <div key={label} className="rounded-[16px] border border-white/10 bg-white/8 px-3 py-2">
@@ -602,7 +602,7 @@ export default function HomePage() {
                             transform: `perspective(1200px) translate3d(${heroParallaxX * 1.6}px, ${heroParallaxY * 1.15}px, 0) rotateY(${heroParallaxX * 0.9}deg)`,
                           }}
                         >
-                          <p className="text-[10px] font-black uppercase tracking-[0.16em] text-stone-300">Flashcard</p>
+                          <p className="text-[10px] font-black uppercase tracking-[0.16em] text-stone-300">{t.finalOne.homePage.flashcardLabel}</p>
                           <p className="mt-2 text-sm font-black text-white">{t.home.card.flashQuestion}</p>
                           <p className="mt-1 text-xs leading-relaxed text-stone-300">{t.home.card.flashAnswer}</p>
                           <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/10">

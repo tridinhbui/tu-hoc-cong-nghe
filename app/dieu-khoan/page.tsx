@@ -1,11 +1,14 @@
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
+import type { Metadata } from "next";
 import { getServerLocale } from "@/lib/i18n/server";
 import { getDictionary, format } from "@/lib/i18n";
 
-export const metadata = {
-  title: "Điều khoản sử dụng - Tự học Tài chính",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getServerLocale();
+  const t = getDictionary(locale);
+  return { title: t.finalTwo.termsPage.metaTitle };
+}
 
 export default async function TermsPage() {
   const locale = await getServerLocale();

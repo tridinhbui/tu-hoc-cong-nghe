@@ -1,5 +1,7 @@
 "use client";
 
+import { useI18n } from "@/lib/i18n/context";
+
 interface Stage {
   label: string;
   name: string;
@@ -12,11 +14,12 @@ interface RoadmapProps {
 }
 
 export default function Roadmap({ stages, activeTrack }: RoadmapProps) {
+  const { t } = useI18n();
   return (
     <div className="bg-white border-2 border-stone-200 rounded-xl p-5 h-fit sticky top-24 z-0">
       <div className="mb-4">
         <p className="text-xs font-extrabold text-stone-500 uppercase tracking-widest">
-          Roadmap
+          {t.finalTwo.roadmap.title}
         </p>
       </div>
 

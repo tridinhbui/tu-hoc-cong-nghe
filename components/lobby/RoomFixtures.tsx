@@ -9,6 +9,7 @@ import { boardTexture } from "./room-textures";
 import { getCommunityFeed } from "@/lib/supabase-community";
 import { getLeaderboardByMetric } from "@/lib/supabase-user";
 import { useI18n } from "@/lib/i18n/context";
+import type { Dictionary } from "@/lib/i18n";
 
 /** Ba thứ có thể tới xem trong sảnh. Trước đó phòng chỉ có bàn ghế, nên đi hết
  *  chiều dài rồi quay lại là hết việc - không có lý do nào để đi đâu cả.
@@ -167,19 +168,27 @@ function Gate({
  *  sảnh tròn sang Phố nghề. Đặt hai đầu đối nhau để không ai đi nhầm, và cổng
  *  Phố nghề nằm ngay chỗ người chơi xuất hiện - thứ đầu tiên nhìn thấy khi vào
  *  thư viện là còn một thành phố nữa ở ngoài kia. */
-const GATE_STUDY: GateTarget = {
-  id: "nhom-hoc",
-  href: "/nhom-hoc",
-  label: "Bước qua cổng → vào Nhóm học",
-  accent: "#7dd3fc",
-};
+// Labels come from the dictionary at render time; module scope has no
+// useI18n() to call, so these keep only the ids/hrefs/accents and their
+// gate wiring, and the label is filled in by gateStudy()/gateDistrict()
+// inside the component below.
+function gateStudy(t: Dictionary): GateTarget {
+  return {
+    id: "nhom-hoc",
+    href: "/nhom-hoc",
+    label: t.finalTwo.roomFixturesGates.studyLabel,
+    accent: "#7dd3fc",
+  };
+}
 
-const GATE_DISTRICT: GateTarget = {
-  id: "pho-nghe",
-  href: "/pho-nghe",
-  label: "Bước qua cổng → ra Phố nghề",
-  accent: "#fbbf24",
-};
+function gateDistrict(t: Dictionary): GateTarget {
+  return {
+    id: "pho-nghe",
+    href: "/pho-nghe",
+    label: t.finalTwo.roomFixturesGates.districtLabel,
+    accent: "#fbbf24",
+  };
+}
 
 export default function RoomFixtures({
   playerRef,
@@ -191,6 +200,8 @@ export default function RoomFixtures({
   const { t } = useI18n();
   const { posts, ranking } = useBoardData();
   const halfW = ROOM.width / 2;
+  const GATE_STUDY = gateStudy(t);
+  const GATE_DISTRICT = gateDistrict(t);
 
   return (
     <group>

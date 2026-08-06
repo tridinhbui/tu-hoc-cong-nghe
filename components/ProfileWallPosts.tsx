@@ -6,6 +6,7 @@ import { MessageCircle, Heart } from "lucide-react";
 import type { CommunityFeedPost } from "@/lib/supabase-community";
 import { getUserCommunityPosts } from "@/lib/supabase-follows";
 import { timeAgo } from "@/lib/time-ago";
+import { useI18n } from "@/lib/i18n/context";
 
 /** Read-only preview of one person's own FinSocial posts, for their public
  *  profile page (app/(app)/nguoi-hoc/[userId]/page.tsx) - the "tường" (wall)
@@ -14,6 +15,7 @@ import { timeAgo } from "@/lib/time-ago";
  *  same deep link NotificationBell uses, which opens the real feed with the
  *  full comment thread rather than duplicating that UI a second time. */
 export default function ProfileWallPosts({ userId }: { userId: string }) {
+  const { t } = useI18n();
   const [posts, setPosts] = useState<CommunityFeedPost[] | null>(null);
 
   useEffect(() => {
@@ -42,7 +44,7 @@ export default function ProfileWallPosts({ userId }: { userId: string }) {
   }
 
   if (posts.length === 0) {
-    return <p className="text-sm text-stone-500 dark:text-stone-400">Người học này chưa đăng bài nào trên FinSocial.</p>;
+    return <p className="text-sm text-stone-500 dark:text-stone-400">{t.finalTwo.profileWallPosts.noPosts}</p>;
   }
 
   return (

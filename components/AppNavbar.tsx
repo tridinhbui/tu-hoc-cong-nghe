@@ -64,11 +64,18 @@ type NavLink =
  * the row leaving the group it belongs to.
  */
 const TOP_LEVEL_LINKS: NavLink[] = [
+  /* i18n-ignore-start: proper nouns / product names, identical in both languages (Dashboard, FinSocial) */
   { href: "/dashboard", label: "Dashboard", icon: Home },
-  // Thư viện 3D - tên riêng của không gian nên hardcode label như FinSocial.
-  { href: "/cong-dong", label: "Thư viện", icon: Landmark },
+  /* i18n-ignore-end */
+  // "Thư viện" was hardcoded here as the 3D space's own name, like FinSocial.
+  // But the room's own header is translated (t.lobby.title, "Library · Saigon
+  // Reading Room"), so the nav and the page it opens named the same room two
+  // different ways in English. It is a common noun; it gets translated.
+  { href: "/cong-dong", dataLabelKey: "library", icon: Landmark },
   { href: "/nhom-hoc", labelKey: "studyGroup", icon: Users },
+  /* i18n-ignore-start: proper noun / product name, identical in both languages (FinSocial) */
   { href: "/finsocial", label: "FinSocial", icon: MessageSquareMore },
+  /* i18n-ignore-end */
 ];
 
 /** The nav is grouped by what the reader is trying to *do*, not by feature
@@ -110,8 +117,10 @@ const NAV_SECTIONS: NavSection[] = [
       // it, so ten subjects, 324 cross-referenced lessons, fourteen
       // purpose-built Ethics lessons, flashcards and the formula sheet were
       // reachable only by typing the URL.
+      /* i18n-ignore-start: proper nouns / certification names, identical in both languages (CFA Level I, FRM) */
       { href: "/cfa", label: "CFA Level I", icon: Award },
       { href: "/frm", label: "FRM", icon: ShieldAlert },
+      /* i18n-ignore-end */
       // Kiểm tra thuộc nhóm Học tập chứ không phải Thực hành: các bài kiểm tra
       // ở đây chấm đúng phần kiến thức của những lối học ngay phía trên, không
       // phải một trò để luyện tay như Game hay Phỏng vấn.
@@ -130,7 +139,9 @@ const NAV_SECTIONS: NavSection[] = [
   {
     titleKey: "sectionPractice",
     links: [
+      /* i18n-ignore-start: proper noun / product name, identical in both languages (Game) */
       { href: "/game", label: "Game", icon: Gamepad2 },
+      /* i18n-ignore-end */
       { href: "/phong-van-ky-thuat", labelKey: "technicalInterview", icon: BriefcaseBusiness },
     ],
   },

@@ -1,16 +1,25 @@
 import { Suspense } from "react";
+import type { Metadata } from "next";
 import FinancialRpgWorldMap from "@/components/FinancialRpgWorldMap";
+import { getServerLocale } from "@/lib/i18n/server";
+import { getDictionary } from "@/lib/i18n";
 
 export const dynamic = "force-dynamic";
 
-export const metadata = {
-  title: "Thế Giới Game Tài Chính | TuHocTaiChinh.org",
-  description: "Bản đồ thị trấn RPG Tài chính nhập vai với các chế độ Săn Boss Server, Cây kỹ năng, Bang Hội và Đấu Trường 1v1 PvP.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getServerLocale();
+  const t = getDictionary(locale);
+  return {
+    title: t.finalTwo.gamePage.metaTitle,
+    description: t.finalTwo.gamePage.metaDescription,
+  };
+}
 
-export default function GamePage() {
+export default async function GamePage() {
+  const locale = await getServerLocale();
+  const t = getDictionary(locale);
   return (
-    <Suspense fallback={<div className="min-h-screen bg-stone-50 flex items-center justify-center text-stone-500">Đang tải Thế Giới Game...</div>}>
+    <Suspense fallback={<div className="min-h-screen bg-stone-50 flex items-center justify-center text-stone-500">{t.finalTwo.gamePage.loading}</div>}>
       <FinancialRpgWorldMap />
     </Suspense>
   );

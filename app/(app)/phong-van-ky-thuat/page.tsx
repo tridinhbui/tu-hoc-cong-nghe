@@ -13,7 +13,7 @@ import { recordQuizMistake } from "@/lib/quiz-mistakes";
 import { getCareersCoveredByBank, getTechnicalQuestionsForCareer } from "@/lib/ib-question-careers";
 import { FINANCE_CAREERS } from "@/lib/finance-careers";
 import { useI18n } from "@/lib/i18n/context";
-import { format } from "@/lib/i18n";
+import { format, type Dictionary } from "@/lib/i18n";
 
 // Standalone "Technical Interview" drill - split out of /kiem-tra (which
 // stays the general-purpose knowledge-check page) because the 400-question
@@ -36,12 +36,16 @@ interface ChallengeQuestion {
   token: string;
 }
 
-const IB_DIFFICULTY_COPY: Record<QuizDifficulty, string> = {
-  "tat-ca": "Full mixed drill",
-  de: "Foundation screen",
-  "trung-binh": "Analyst round",
-  kho: "Pressure round",
-};
+// Labels come from the dictionary at render time; module scope has no
+// useI18n() to call, so this keeps only the ids and their order.
+function ibDifficultyCopy(t: Dictionary): Record<QuizDifficulty, string> {
+  return {
+    "tat-ca": t.finalTwo.phongVanKyThuatDifficulty.fullMixedDrill,
+    de: t.finalTwo.phongVanKyThuatDifficulty.foundationScreen,
+    "trung-binh": t.finalTwo.phongVanKyThuatDifficulty.analystRound,
+    kho: t.finalTwo.phongVanKyThuatDifficulty.pressureRound,
+  };
+}
 
 // Labels come from the dictionary at render time; module scope has no
 // useI18n() to call, so this keeps only the ids and their order.
@@ -58,6 +62,7 @@ type Mode = "technical" | "behavioral";
 
 export default function TechnicalInterviewPage() {
   const { t } = useI18n();
+  const IB_DIFFICULTY_COPY = ibDifficultyCopy(t);
   const supabase = createClient();
   const [userId, setUserId] = useState<string | null>(null);
   const [mode, setMode] = useState<Mode>("technical");

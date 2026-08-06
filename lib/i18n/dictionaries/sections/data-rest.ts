@@ -10,6 +10,7 @@
 export const dataRestVi = {
   dataRest: {
     appNavbar: {
+      library: "Thư viện",
       // "Học bài" / "Học theo nghề" have no existing dictionary key
       // (t.nav only covers the entries that already went through labelKey).
       hocBai: "Học bài",
@@ -218,6 +219,7 @@ export const dataRestVi = {
 export const dataRestEn: typeof dataRestVi = {
   dataRest: {
     appNavbar: {
+      library: "Library",
       hocBai: "Lessons",
       hocTheoNghe: "Learn by career",
       gameKingdomLabel: "Game Kingdom",

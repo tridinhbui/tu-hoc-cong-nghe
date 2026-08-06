@@ -25,6 +25,8 @@ import { districtContentVi, districtContentEn } from "./district-content";
 import { docsAuthVi, docsAuthEn } from "./docs-auth";
 import { examsOnboardingVi, examsOnboardingEn } from "./exams-onboarding";
 import { financeToolsVi, financeToolsEn } from "./finance-tools";
+import { finalOneVi, finalOneEn } from "./final-one";
+import { finalTwoVi, finalTwoEn } from "./final-two";
 import { formulaGlossaryVi, formulaGlossaryEn } from "./formula-glossary";
 import { gamesVi, gamesEn } from "./games";
 import { interactiveChartsVi, interactiveChartsEn } from "./interactive-charts";
@@ -61,6 +63,8 @@ export const viSections = {
   ...docsAuthVi,
   ...examsOnboardingVi,
   ...financeToolsVi,
+  ...finalOneVi,
+  ...finalTwoVi,
   ...formulaGlossaryVi,
   ...gamesVi,
   ...interactiveChartsVi,
@@ -98,6 +102,8 @@ export const enSections: typeof viSections = {
   ...docsAuthEn,
   ...examsOnboardingEn,
   ...financeToolsEn,
+  ...finalOneEn,
+  ...finalTwoEn,
   ...formulaGlossaryEn,
   ...gamesEn,
   ...interactiveChartsEn,
