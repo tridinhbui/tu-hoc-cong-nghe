@@ -354,6 +354,19 @@ node scripts/i18n-coverage.mjs                         # untranslated UI strings
 node scripts/i18n-coverage.mjs <file>                  # per-file, with line numbers
 ```
 
+**Quiz cũng nằm trong `app/bai-hoc/<slug>/page.tsx`.** Một số bài có trang
+viết tay riêng, và mảng `quiz` của chúng là literal trong chính file đó - không
+có bản nào trong `lib/lessons-data`. Suốt đời bộ kiểm này chúng vô hình, trong
+khi `LessonPageLayout` vẫn ghi `quiz_score` của chúng vào Supabase như mọi bài
+khác. Lúc phát hiện, 58 câu ở đó đứng ở **z = +9,03** cho mẹo "chọn phương án
+dài nhất" - đúng cái lỗi 91% mà cả kho kia đã mất công dọn - trong khi mọi con
+số bộ kiểm in ra đều xanh, vì nó chỉ đọc `lib/lessons-data`.
+
+`scripts/hand-authored-quizzes.mjs` đọc chúng, và bộ kiểm chấm chúng bằng cùng
+thước đo (`handAuthored` là một track riêng trong bảng). Ba cổng nội dung còn
+lại không áp được: nội dung dạy của những bài này nằm trong JSX chứ không phải
+mảng `sections`.
+
 The lesson audit gates CI on three things:
 
 - `MAX_LENGTH_BIAS_Z` — how far each track, and the corpus, sits from chance on

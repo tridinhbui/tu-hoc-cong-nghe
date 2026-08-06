@@ -27,7 +27,7 @@ const quiz: QuizQuestion[] = [
     options: [
       "Dr. Loan 500M / Cr. Cash 500M",
       "Dr. Cash 500M / Cr. Loan Payable 500M",
-      "Dr. Revenue 500M / Cr. Loan 500M",
+      "Dr. Revenue 500M / Cr. Loan Payable 500M",
       "Dr. Cash 500M / Cr. Equity 500M",
     ],
     correct: 1,
@@ -58,10 +58,10 @@ const quiz: QuizQuestion[] = [
   {
     question: "Sau khi close sổ cuối năm, Revenue và Expense accounts được xử lý thế nào?",
     options: [
-      "Giữ nguyên sang năm sau",
-      "Zero out (reset về 0) - chuyển net income vào Retained Earnings",
-      "Chuyển sang Balance Sheet",
-      "Xóa hoàn toàn",
+      "Giữ nguyên số dư sang năm sau",
+      "Đưa về 0, lãi lỗ chuyển vào lợi nhuận giữ lại",
+      "Chuyển thẳng số dư sang bảng cân đối kế toán",
+      "Xoá hoàn toàn khỏi hệ thống sổ sách",
     ],
     correct: 1,
     explanation: "Closing entries: Dr. Revenue / Cr. Income Summary; Dr. Income Summary / Cr. Retained Earnings (nếu lãi). Revenue và Expense là temporary accounts - reset mỗi năm.",

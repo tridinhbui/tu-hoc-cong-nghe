@@ -14,6 +14,7 @@
 
 import { readFileSync, readdirSync, writeFileSync, existsSync } from "fs";
 import { fileURLToPath } from "url";
+import { readHandAuthoredQuizzes } from "./hand-authored-quizzes.mjs";
 import path from "path";
 import { mergeLessonTranslation } from "../lib/lesson-translations.js";
 
@@ -389,7 +390,13 @@ const MAX_LENGTH_BIAS_Z = 4.0;
  */
 const MIN_QUESTIONS_FOR_SHARE_GATES = 400;
 
-const quizStats = { personal: null, professional: null, bonus: null };
+// `handAuthored` là bốn bài học có trang riêng dưới app/bai-hoc/<slug>/ với
+// quiz nằm thẳng trong page.tsx. Chúng KHÔNG có bản trong lib/lessons-data,
+// nên suốt đời bộ kiểm này chúng vô hình - trong khi LessonPageLayout vẫn ghi
+// quiz_score của chúng vào Supabase như mọi bài khác. Lúc phát hiện, 58 câu ở
+// đó đứng ở z = +9,03 cho mẹo "chọn phương án dài nhất", tức đúng cái lỗi mà
+// cả kho kia đã mất công dọn, trong khi mọi con số bộ kiểm in ra đều xanh.
+const quizStats = { personal: null, professional: null, bonus: null, handAuthored: null };
 for (const track of Object.keys(quizStats)) {
   quizStats[track] = {
     questions: 0,
@@ -613,6 +620,65 @@ for (const lesson of corpus) {
   } else if (!failsPerLesson && baseline.has(lesson.slug)) {
     fixedButStillBaselined.push(lesson.slug);
   }
+}
+
+// ── Quiz nằm thẳng trong trang viết tay ────────────────────────────────────
+//
+// Chỉ chạy các phép kiểm về QUIZ. Ba cổng nội dung còn lại
+// (MIN_EXPLANATION_LEN, MIN_DIAGRAM_NODES, MIN_SECTION_BLOCKS) không áp được:
+// nội dung dạy của những bài này nằm trong JSX chứ không phải mảng `sections`,
+// nên đo chúng bằng thước của dữ liệu sẽ ra kết quả vô nghĩa.
+const handAuthored = readHandAuthoredQuizzes(path.join(__dirname, ".."));
+const handAuthoredTooFew = [];
+for (const { slug, quiz } of handAuthored.lessons) {
+  if (quiz.length < MIN_QUIZ_COUNT) handAuthoredTooFew.push({ slug, count: quiz.length });
+  const stats = quizStats.handAuthored;
+  for (const question of quiz) {
+    const options = question.options ?? [];
+    const lengths = options.map((o) => String(o).length);
+    if (lengths.length === 0) continue;
+    const correctLength = lengths[question.correct] ?? 0;
+    const mean = lengths.reduce((a, b) => a + b, 0) / lengths.length;
+    stats.questions++;
+    const maxLength = Math.max(...lengths);
+    const minLength = Math.min(...lengths);
+    if (correctLength === maxLength) stats.longest++;
+    if (correctLength === minLength && lengths.filter((l) => l === minLength).length === 1) {
+      stats.shortest++;
+    }
+    if (lengths.filter((l) => l === maxLength).length === 1) {
+      stats.expectedLongest += 1 / lengths.length;
+      if (correctLength === maxLength) stats.uniqueLongest++;
+    }
+    if (lengths.filter((l) => l === minLength).length === 1) {
+      stats.expectedShortest += 1 / lengths.length;
+      if (correctLength === minLength) stats.uniqueShortest++;
+    }
+    stats.ratioSum += mean > 0 ? correctLength / mean : 0;
+    options.forEach((option, index) => {
+      if (index === question.correct) {
+        if (isHollowCorrectAnswer(option)) {
+          hollowCorrect.push({
+            slug,
+            option: String(option),
+            question: String(question.question ?? "").slice(0, 70),
+          });
+        }
+        return;
+      }
+      if (isHollowDistractor(option)) {
+        hollowDistractors.push({ id: slug, slug, option: String(option) });
+      }
+    });
+  }
+}
+if (handAuthored.skipped.length > 0) {
+  // Bỏ sót IM LẶNG là đúng cách chuyện này xảy ra lần đầu, nên mọi bài không
+  // đọc được đều phải hiện ra.
+  console.log(
+    `\n  ${handAuthored.skipped.length} trang viết tay không đọc được quiz: ` +
+      handAuthored.skipped.map((x) => `${x.slug} (${x.reason})`).join(", ")
+  );
 }
 
 const totalQuestions = Object.values(quizStats).reduce((sum, s) => sum + s.questions, 0);
@@ -878,6 +944,16 @@ if (fixedButStillBaselined.length > 0) {
       `  Run \`node scripts/audit-lesson-content.mjs --write-baseline\` to drop them:\n` +
       fixedButStillBaselined.map((slug) => `    ${slug}`).join("\n")
   );
+}
+
+if (handAuthoredTooFew.length > 0 && !process.argv.includes("--warn-only")) {
+  console.error(
+    `\n${handAuthoredTooFew.length} trang bài học viết tay dưới ${MIN_QUIZ_COUNT} câu quiz:\n` +
+      handAuthoredTooFew.map((x) => `  ${x.slug}: ${x.count} câu`).join("\n") +
+      `\n\n  Quiz của chúng nằm thẳng trong app/bai-hoc/<slug>/page.tsx và VẪN được\n` +
+      `  chấm vào avg_quiz_score, nên chúng chịu cùng ngưỡng với mọi bài khác.`
+  );
+  process.exit(1);
 }
 
 if (hollowCorrect.length > 0 && !process.argv.includes("--warn-only")) {

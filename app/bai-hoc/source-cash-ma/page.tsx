@@ -15,9 +15,9 @@ const quiz: QuizQuestion[] = [
   {
     question: "Trong Leveraged Buyout (LBO), 'leverage' đề cập đến điều gì?",
     options: [
-      "Đòn bẩy thương lượng của bên mua",
-      "Sử dụng nợ vay chiếm phần lớn vốn mua lại, với tài sản/cash flow của target làm collateral",
-      "Khả năng tăng giá sau khi mua",
+      "Đòn bẩy thương lượng của bên mua trên bàn đàm phán",
+      "Phần lớn tiền mua là nợ vay",
+      "Khả năng đẩy giá bán lại lên sau khi mua",
       "Phương pháp định giá doanh nghiệp",
     ],
     correct: 1,
@@ -27,9 +27,9 @@ const quiz: QuizQuestion[] = [
     question: "All-cash deal vs all-stock deal: bên bán thích deal nào hơn về mặt thuế?",
     options: [
       "All-cash - nhận tiền ngay, chắc chắn",
-      "All-stock - deferral thuế capital gain cho đến khi bán cổ phiếu nhận được",
-      "Hai deal ngang nhau về thuế",
-      "Phụ thuộc vào jurisdiction",
+      "All-stock, vì thuế được hoãn lại",
+      "Hai deal ngang nhau, vì thuế tính trên cùng một khoản lãi",
+      "Phụ thuộc luật từng nước nên không có câu trả lời chung",
     ],
     correct: 1,
     explanation: "Stock-for-stock deal trong nhiều jurisdiction được xử lý như tax-free reorganization - bên bán không phải trả thuế capital gain ngay, chỉ trả khi bán cổ phiếu nhận được từ bên mua.",
@@ -38,8 +38,8 @@ const quiz: QuizQuestion[] = [
     question: "Accretive deal là gì?",
     options: [
       "Deal được thực hiện nhanh chóng",
-      "EPS của bên mua tăng sau khi mua lại (earnings contribution > dilution cost)",
-      "Deal có synergy cao",
+      "EPS của bên mua tăng sau thương vụ",
+      "Deal có synergy cao nên tổng lợi nhuận hai bên tăng",
       "Bên bán đồng ý bán với giá thấp hơn market",
     ],
     correct: 1,
@@ -48,8 +48,8 @@ const quiz: QuizQuestion[] = [
   {
     question: "Tại sao PE fund dùng LBO thay vì all-equity deal?",
     options: [
-      "Để tiết kiệm tiền mặt",
-      "Debt magnifies equity return: cùng EBITDA growth nhưng equity return cao hơn nhiều lần",
+      "Để giữ lại tiền mặt của quỹ cho thương vụ khác",
+      "Nợ khuếch đại lợi suất trên phần vốn tự bỏ",
       "Lender yêu cầu PE phải dùng debt",
       "All-equity deal không được phép trong PE",
     ],
@@ -61,7 +61,7 @@ const quiz: QuizQuestion[] = [
     options: [
       "Khoản tiền bên bán phải trả nếu business không đạt target",
       "Phần giá mua phụ thuộc vào performance tương lai của target",
-      "Lãi suất trên deferred payment",
+      "Lãi suất tính trên phần tiền trả chậm",
       "Cổ phiếu bên mua tặng cho management target",
     ],
     correct: 1,

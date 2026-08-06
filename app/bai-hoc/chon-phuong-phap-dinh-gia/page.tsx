@@ -15,8 +15,8 @@ const quiz: QuizQuestion[] = [
   {
     question: "Interviewer hỏi 'How do you choose your valuation method?'- câu trả lời nào thể hiện tư duy tốt nhất?",
     options: [
-      "DCF, comps và precedent transactions là 3 phương pháp chính, mỗi phương pháp có ưu nhược điểm...",
-      "Tôi chọn dựa trên context của doanh nghiệp: cash flow có ổn định không, có deal M&A gần đây không, công ty thuộc ngành asset-heavy không?",
+      "Kể tên ba phương pháp chính rồi nêu ưu nhược của từng cái",
+      "Chọn theo đặc điểm của chính doanh nghiệp đó",
       "Tôi dùng cả 3 phương pháp cho mọi tình huống để đảm bảo accuracy",
       "DCF luôn là phương pháp tốt nhất vì phản ánh intrinsic value",
     ],
@@ -27,9 +27,9 @@ const quiz: QuizQuestion[] = [
     question: "Bạn đang định giá một startup SaaS, ARR tăng 80%/năm nhưng đang lỗ. Phương pháp nào ít phù hợp nhất?",
     options: [
       "EV/Revenue comps với các SaaS peers",
-      "DCF với terminal value cao",
-      "Asset-based (Book Value)",
-      "Precedent transactions trong ngành SaaS",
+      "DCF với giá trị cuối kỳ chiếm phần lớn",
+      "Asset-based (giá trị sổ sách)",
+      "Precedent transactions từ các thương vụ SaaS gần đây",
     ],
     correct: 2,
     explanation: "Asset-based không phù hợp với SaaS - giá trị nằm ở recurring revenue, customer retention, growth rate, không phải tài sản hữu hình. Book value gần như không có ý nghĩa với software company.",
@@ -38,9 +38,9 @@ const quiz: QuizQuestion[] = [
     question: "Precedent transactions cho implied value cao hơn trading comps vì lý do gì?",
     options: [
       "Dữ liệu precedent transactions luôn cũ hơn nên outdated",
-      "Precedent transactions include acquisition premium - bên mua phải trả thêm để thuyết phục cổ đông bán",
+      "Nó đã gồm phần trả thêm để mua đứt",
       "Trading comps dùng forward multiples trong khi precedent dùng trailing",
-      "Không có lý do rõ ràng",
+      "Không có lý do hệ thống, chỉ là ngẫu nhiên của mẫu dữ liệu",
     ],
     correct: 1,
     explanation: "Acquisition premium thường 20-40% trên market price. Khi bên mua trả premium, tất cả multiples (EV/EBITDA, EV/Revenue) trong precedent transactions đều cao hơn. Đó là lý do precedent transactions cho 'ceiling' trong football field chart.",
@@ -49,8 +49,8 @@ const quiz: QuizQuestion[] = [
     question: "'No single method is perfect, so I triangulate.' Câu này muốn nói điều gì?",
     options: [
       "Dùng nhiều phương pháp để tính trung bình và lấy con số ở giữa",
-      "Mỗi phương pháp cho góc nhìn khác nhau; khi chúng converge thì valuation đáng tin; khi diverge thì phải hiểu tại sao",
-      "Không có phương pháp nào đúng nên chỉ cần chọn ngẫu nhiên",
+      "Trùng nhau thì tin, lệch nhau thì phải hiểu vì sao",
+      "Không phương pháp nào đúng nên chọn cái nào cũng như nhau",
       "Dùng 3 phương pháp để thuyết phục client",
     ],
     correct: 1,
@@ -61,8 +61,8 @@ const quiz: QuizQuestion[] = [
     options: [
       "Với mọi công ty để kiểm tra floor valuation",
       "Với công ty holding, real estate, hoặc khi công ty đang trong quá trình thanh lý",
-      "Với startup không có doanh thu",
-      "Khi không có comparable companies",
+      "Với startup chưa có đồng doanh thu nào",
+      "Khi không tìm được công ty nào để so sánh",
     ],
     correct: 1,
     explanation: "Asset-based phù hợp khi: (1) Giá trị nằm ở tài sản hữu hình (BĐS, holdings), (2) Liquidation scenario, (3) Financial holding companies. Không phù hợp với business tạo ra value từ intangibles (brand, IP, human capital).",

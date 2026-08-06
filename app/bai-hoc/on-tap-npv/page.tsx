@@ -14,10 +14,10 @@ const quiz: QuizQuestion[] = [
   {
     question: "Dự án cần đầu tư 200 triệu ngay hôm nay, tạo ra 120 triệu/năm trong 2 năm. Discount rate 10%. NPV là?",
     options: [
-      "NPV = +40 triệu (nên đầu tư)",
+      "+40 triệu (= 240 − 200, quên chiết khấu)",
       "NPV = +8.3 triệu (nên đầu tư)",
-      "NPV = -8.3 triệu (không nên đầu tư)",
-      "NPV = 0 (hòa vốn)",
+      "−8,3 triệu (đảo dấu dòng tiền vào và ra)",
+      "0, tức hoà vốn đúng bằng chi phí vốn",
     ],
     correct: 1,
     explanation: "PV(120M, Y1) = 120/1.1 = 109.1M. PV(120M, Y2) = 120/1.21 = 99.2M. Tổng PV = 208.3M. NPV = 208.3 - 200 = +8.3M → nên đầu tư.",
@@ -25,10 +25,10 @@ const quiz: QuizQuestion[] = [
   {
     question: "Nếu IRR của một dự án = 15% và WACC = 18%, bạn nên:",
     options: [
-      "Đầu tư vì IRR dương",
-      "Không đầu tư - chi phí vốn cao hơn return kỳ vọng, NPV < 0",
-      "Đầu tư nếu có funding",
-      "Phụ thuộc vào ngành",
+      "Đầu tư, vì IRR dương là đã có lãi",
+      "Không đầu tư, vì NPV âm",
+      "Đầu tư nếu vẫn còn hạn mức vốn chưa dùng",
+      "Phụ thuộc ngành, vì mỗi ngành một ngưỡng IRR",
     ],
     correct: 1,
     explanation: "IRR < WACC → NPV < 0. Dự án tạo ra return thấp hơn chi phí vốn → hủy giá trị. Nguyên tắc: chỉ đầu tư khi IRR > WACC (hoặc NPV > 0).",
@@ -36,10 +36,10 @@ const quiz: QuizQuestion[] = [
   {
     question: "Mutually exclusive projects: Dự án A NPV = 50M, IRR = 30%. Dự án B NPV = 80M, IRR = 20%. Chọn dự án nào?",
     options: [
-      "Dự án A vì IRR cao hơn",
-      "Dự án B vì NPV cao hơn - NPV rule beats IRR rule",
+      "Dự án A, vì IRR cao hơn nên đồng vốn hiệu quả hơn",
+      "Dự án B, vì NPV cao hơn",
       "Phụ thuộc vào vốn có sẵn",
-      "Cần thêm thông tin",
+      "Cần thêm thông tin về thời gian hoàn vốn",
     ],
     correct: 1,
     explanation: "Với mutually exclusive projects, NPV rule cho kết quả đúng. Dự án B tạo ra 80M giá trị tuyệt đối nhiều hơn dù IRR thấp hơn. IRR có thể mislead khi scale dự án khác nhau.",
@@ -48,8 +48,8 @@ const quiz: QuizQuestion[] = [
     question: "Terminal Value trong DCF thường chiếm bao nhiêu % tổng giá trị?",
     options: [
       "10-20% - phần lớn là dòng tiền trong kỳ dự báo",
-      "60-80% - tại sao terminal value assumptions rất quan trọng",
-      "50% - thường chia đôi",
+      "60-80%",
+      "50%, vì hai phần thường chia đôi giá trị",
       "100% - forecast period không đáng kể",
     ],
     correct: 1,
@@ -61,7 +61,7 @@ const quiz: QuizQuestion[] = [
       "Ke = 4% + 1.5×6% = 13%; WACC = 13%×0.6 + 7%×(1-20%)×0.4 = 10%",
       "Ke = 13%; WACC = 13%×0.6 + 7%×0.4 = 10.6%",
       "Ke = 10%; WACC = 10%×0.6 + 7%×0.8×0.4 = 8.24%",
-      "Không đủ thông tin",
+      "Không đủ thông tin để tính ra WACC",
     ],
     correct: 0,
     explanation: "Ke = Rf + β×ERP = 4% + 1.5×6% = 13%. WACC = Ke×We + Kd×(1-t)×Wd = 13%×0.6 + 7%×0.8×0.4 = 7.8% + 2.24% = 10.04% ≈ 10%.",

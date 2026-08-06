@@ -34,6 +34,32 @@ const quiz: QuizQuestion[] = [
     correct: 0,
     explanation: "Annual D&A = 900/15 = 60M/năm. Sau 3 năm: Accumulated Depreciation = 3 × 60 = 180M. Book Value = 900 - 180 = 720M.",
   },
+  {
+    question:
+      "Cùng chiếc máy 600 triệu, tuổi thọ 10 năm, nhưng giá trị thanh lý ước tính 100 triệu. Khấu hao thẳng mỗi năm là?",
+    options: [
+      "60 triệu (= 600/10, bỏ quên giá trị thanh lý)",
+      "50 triệu",
+      "70 triệu (= (600+100)/10, cộng nhầm dấu)",
+      "10 triệu (= 100/10, khấu hao đúng phần thanh lý)",
+    ],
+    correct: 1,
+    explanation:
+      "Khấu hao thẳng = (nguyên giá − giá trị thanh lý) / số năm = (600 − 100) / 10 = 50 triệu. Giá trị thanh lý là phần KHÔNG được khấu hao, vì đó là số tiền dự kiến vẫn thu về được khi bán thanh lý; khấu hao chỉ phân bổ phần giá trị thực sự tiêu hao đi.",
+  },
+  {
+    question:
+      "Khấu hao tăng thêm 100 triệu trong kỳ, thuế suất 20%. Tiền mặt cuối kỳ thay đổi thế nào?",
+    options: [
+      "Giảm 100 triệu vì đó là một khoản chi phí",
+      "Tăng 20 triệu",
+      "Không đổi vì khấu hao không phải khoản chi tiền",
+      "Giảm 80 triệu, đúng bằng phần lợi nhuận sau thuế mất đi",
+    ],
+    correct: 1,
+    explanation:
+      "Khấu hao +100 làm lợi nhuận trước thuế −100, nên thuế phải nộp giảm 20. Bản thân khấu hao không ra khỏi két, nên thứ duy nhất thực sự động đến tiền là khoản thuế tiết kiệm được: tiền mặt TĂNG 20 triệu. Đây gọi là lá chắn thuế của khấu hao, và nó là lý do hai doanh nghiệp giống hệt nhau nhưng khấu hao khác nhau sẽ có dòng tiền khác nhau.",
+  },
 ];
 
 function DepreciationChart() {

@@ -15,8 +15,8 @@ const quiz: QuizQuestion[] = [
   {
     question: "Income Approach (DCF) phù hợp nhất khi nào?",
     options: [
-      "Công ty mới thành lập, chưa có doanh thu",
-      "Công ty có dòng tiền ổn định và dự báo được",
+      "Công ty mới thành lập, chưa có dòng tiền nào để chiết khấu",
+      "Dòng tiền ổn định và dự báo được",
       "Khi muốn biết giá thị trường hiện tại",
       "Khi công ty có nhiều tài sản hữu hình",
     ],
@@ -27,9 +27,9 @@ const quiz: QuizQuestion[] = [
     question: "EV/EBITDA của công ty A là 12x. Ngành trung bình là 10x. Điều này ngụ ý gì?",
     options: [
       "Công ty A đang rẻ hơn ngành",
-      "Công ty A đang đắt hơn ngành - có thể justified nếu growth cao hơn",
+      "Thị trường đang trả giá cao hơn cho công ty A",
       "Công ty A có EBITDA cao hơn",
-      "Không thể kết luận gì",
+      "Không so được, vì EV/EBITDA đổi theo cấu trúc vốn của từng bên",
     ],
     correct: 1,
     explanation: "EV/EBITDA cao hơn ngành = thị trường đang định giá premium. Justified nếu growth nhanh hơn, moat tốt hơn, margin cao hơn. Không justified = overvalued.",
@@ -38,8 +38,8 @@ const quiz: QuizQuestion[] = [
     question: "Football field chart trong M&A dùng để làm gì?",
     options: [
       "Phân tích thị phần của doanh nghiệp",
-      "Tổng hợp kết quả định giá từ nhiều phương pháp thành một dải giá trị",
-      "Dự báo doanh thu tương lai",
+      "Gom kết quả nhiều phương pháp thành một dải giá",
+      "Dự báo doanh thu tương lai theo từng kịch bản tăng trưởng",
       "So sánh biên lợi nhuận với đối thủ",
     ],
     correct: 1,
@@ -48,10 +48,10 @@ const quiz: QuizQuestion[] = [
   {
     question: "Precedent Transactions approach cho ra giá trị thường cao hơn Trading Comps vì:",
     options: [
-      "Sử dụng số liệu tốt hơn",
-      "Bao gồm acquisition premium (bên mua phải trả thêm để thuyết phục cổ đông bán)",
-      "Chiết khấu rủi ro thấp hơn",
-      "Ngành tương tự nhau",
+      "Số liệu giao dịch thật nên đáng tin hơn giá niêm yết",
+      "Nó đã gồm phần trả thêm để mua đứt",
+      "Chiết khấu rủi ro thấp hơn vì thương vụ đã hoàn tất",
+      "Các bên trong thương vụ cùng ngành nên so sát hơn",
     ],
     correct: 1,
     explanation: "Acquisition premium thường 20-40% trên giá thị trường. Precedent transactions capture premium này → implied value cao hơn trading comps (giá standalone).",
@@ -62,7 +62,7 @@ const quiz: QuizQuestion[] = [
       "Với doanh nghiệp công nghệ tăng trưởng cao",
       "Với công ty holding, BĐS, hoặc khi thanh lý (liquidation)",
       "Với mọi loại doanh nghiệp để kiểm tra chéo",
-      "Khi không có số liệu tài chính",
+      "Khi không có số liệu tài chính nào đáng tin",
     ],
     correct: 1,
     explanation: "Asset-based phù hợp: công ty holding (giá trị = portfolio assets), BĐS, công ty đang thanh lý. Không phù hợp với doanh nghiệp có nhiều intangible assets (brand, IP, team).",

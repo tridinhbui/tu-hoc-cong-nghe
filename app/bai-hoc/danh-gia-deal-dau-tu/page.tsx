@@ -14,10 +14,10 @@ const quiz: QuizQuestion[] = [
   {
     question: "Khi trình bày một thương vụ mua lại dùng nợ vay (LBO), câu đầu tiên nhà đầu tư thường hỏi là gì?",
     options: [
-      "Doanh thu là bao nhiêu?",
-      "Mua vào và bán ra ở mức định giá bao nhiêu lần lợi nhuận vận hành?",
-      "Bao nhiêu nhân viên?",
-      "Lãi suất vay là bao nhiêu?",
+      "Doanh thu năm ngoái là bao nhiêu?",
+      "Mua vào và bán ra ở bội số nào?",
+      "Công ty có bao nhiêu nhân viên?",
+      "Lãi suất khoản vay là bao nhiêu phần trăm?",
     ],
     correct: 1,
     explanation: "LBO là thương vụ mua doanh nghiệp bằng nhiều nợ vay. Nhà đầu tư nhìn rất kỹ mức định giá lúc mua vào và bán ra: mua ở bao nhiêu lần EBITDA, bán ở bao nhiêu lần EBITDA. EBITDA là lợi nhuận trước lãi vay, thuế, khấu hao và phân bổ.",
@@ -26,8 +26,8 @@ const quiz: QuizQuestion[] = [
     question: "3 nguồn tạo lợi nhuận chính trong một thương vụ LBO là gì?",
     options: [
       "Tăng doanh thu, cắt chi phí, tái cấp vốn",
-      "Tăng lợi nhuận vận hành, trả bớt nợ, bán ra ở mức định giá cao hơn",
-      "Bán tài sản, rút cổ tức bằng nợ, IPO",
+      "Tăng lợi nhuận, trả bớt nợ, bán bội số cao hơn",
+      "Bán bớt tài sản, rút cổ tức bằng tiền vay, rồi niêm yết",
       "Tăng trưởng nội bộ, mua bán sáp nhập, tăng thị phần",
     ],
     correct: 1,
@@ -37,8 +37,8 @@ const quiz: QuizQuestion[] = [
     question: "Tại sao quỹ đầu tư tư nhân thích doanh nghiệp có doanh thu lặp lại?",
     options: [
       "Doanh thu lặp lại luôn cao hơn doanh thu một lần",
-      "Dự đoán được, ổn định → có thể vay nợ nhiều hơn vì bên cho vay tin tưởng hơn",
-      "Doanh thu lặp lại không bị thuế",
+      "Dòng tiền đoán được nên vay được nhiều hơn",
+      "Doanh thu lặp lại được ưu đãi thuế nên giữ lại nhiều hơn",
       "Nhà đầu tư chỉ thích mô hình thuê bao",
     ],
     correct: 1,
@@ -46,7 +46,7 @@ const quiz: QuizQuestion[] = [
   },
   {
     question: "Nhân 3 lần vốn trong 5 năm tương đương tỷ suất sinh lời hằng năm khoảng bao nhiêu?",
-    options: ["~15%", "~25%", "~50%", "~60%"],
+    options: ["~15% (= 300%/5 năm, chia đều thay vì gộp lãi)", "~25%", "~50% (= 3 lần chia 6, nhầm số năm)", "~60% (= 300%/5, quên trừ vốn gốc)"],
     correct: 1,
     explanation: "MOIC là số lần nhân vốn: bỏ 1 đồng thu về 3 đồng là MOIC 3x. IRR là tỷ suất sinh lời hằng năm. MOIC 3x trong 5 năm tương đương IRR khoảng 25%.",
   },
@@ -55,8 +55,8 @@ const quiz: QuizQuestion[] = [
     options: [
       "Biên lợi nhuận vận hành dưới 20%",
       "Phụ thuộc hoàn toàn vào 1-2 cá nhân chủ chốt",
-      "Công ty chưa niêm yết",
-      "Revenue dưới 500 tỷ",
+      "Công ty chưa niêm yết trên sàn chứng khoán",
+      "Doanh thu năm gần nhất dưới 500 tỷ",
     ],
     correct: 1,
     explanation: "Rủi ro phụ thuộc cá nhân chủ chốt nghĩa là nếu CEO hoặc founder rời đi, doanh nghiệp có thể suy yếu mạnh. Nhà đầu tư thích mô hình có thể vận hành bền vững, không phụ thuộc quá nặng vào một người.",
