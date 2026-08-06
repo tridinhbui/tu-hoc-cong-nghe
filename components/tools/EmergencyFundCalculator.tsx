@@ -3,10 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import { getEmergencyFund, saveEmergencyFund } from "@/lib/financial-tools";
-
-function formatVnd(value: number): string {
-  return Math.round(value || 0).toLocaleString("vi-VN");
-}
+import { useI18n } from "@/lib/i18n/context";
+import { format, intlLocale } from "@/lib/i18n";
 
 interface EmergencyFundCalculatorProps {
   userId: string;
@@ -15,6 +13,9 @@ interface EmergencyFundCalculatorProps {
 // Emergency fund sizing tool: target = monthlyExpenses * targetMonths, shows
 // how much is left to save and % progress toward that target.
 export default function EmergencyFundCalculator({ userId }: EmergencyFundCalculatorProps) {
+  const { t, locale } = useI18n();
+  const formatVnd = (value: number): string =>
+    Math.round(value || 0).toLocaleString(intlLocale(locale));
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [monthlyExpenses, setMonthlyExpenses] = useState<string>("");
@@ -33,7 +34,7 @@ export default function EmergencyFundCalculator({ userId }: EmergencyFundCalcula
           setCurrentSaved(String(fund.currentSaved));
         }
       } catch {
-        if (!cancelled) toast.error("Không thể tải quỹ khẩn cấp đã lưu.");
+        if (!cancelled) toast.error(t.emergencyFund.loadError);
       } finally {
         if (!cancelled) setLoading(false);
       }
@@ -41,7 +42,7 @@ export default function EmergencyFundCalculator({ userId }: EmergencyFundCalcula
     return () => {
       cancelled = true;
     };
-  }, [userId]);
+  }, [userId, t.emergencyFund.loadError]);
 
   const expenses = Number(monthlyExpenses) || 0;
   const saved = Number(currentSaved) || 0;
@@ -52,7 +53,7 @@ export default function EmergencyFundCalculator({ userId }: EmergencyFundCalcula
 
   const handleSave = async () => {
     if (expenses <= 0) {
-      toast.error("Vui lòng nhập chi tiêu hàng tháng.");
+      toast.error(t.emergencyFund.expensesRequired);
       return;
     }
     if (savingRef.current) return;
@@ -64,9 +65,9 @@ export default function EmergencyFundCalculator({ userId }: EmergencyFundCalcula
         targetMonths,
         currentSaved: saved,
       });
-      toast.success("Đã lưu quỹ khẩn cấp");
+      toast.success(t.emergencyFund.saveSuccess);
     } catch {
-      toast.error("Không thể lưu. Vui lòng thử lại.");
+      toast.error(t.emergencyFund.saveError);
     } finally {
       savingRef.current = false;
       setSaving(false);
@@ -85,14 +86,14 @@ export default function EmergencyFundCalculator({ userId }: EmergencyFundCalcula
     <div className="space-y-4">
       <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl p-5">
         <p className="text-xs text-stone-500 dark:text-stone-400">
-          Quỹ khẩn cấp giúp bạn có tiền dự phòng khi mất việc hoặc ốm đau, thay vì phải vay nợ.
+          {t.emergencyFund.intro}
         </p>
       </div>
 
       <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl p-5 space-y-4">
         <div>
           <label className="block text-sm font-bold text-stone-900 dark:text-stone-100 mb-2">
-            Chi tiêu hàng tháng (VNĐ)
+            {t.emergencyFund.monthlyExpensesLabel}
           </label>
           <input
             type="number"
@@ -100,7 +101,7 @@ export default function EmergencyFundCalculator({ userId }: EmergencyFundCalcula
             min={0}
             value={monthlyExpenses}
             onChange={(e) => setMonthlyExpenses(e.target.value)}
-            placeholder="VD: 8000000"
+            placeholder={t.emergencyFund.monthlyExpensesPlaceholder}
             className="w-full px-4 py-3 rounded-xl border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 focus:border-stone-400 dark:focus:border-stone-500 focus:ring-1 focus:ring-stone-900/5 focus:outline-none text-stone-900 dark:text-stone-100"
           />
         </div>
@@ -108,10 +109,10 @@ export default function EmergencyFundCalculator({ userId }: EmergencyFundCalcula
         <div>
           <div className="flex items-center justify-between mb-2">
             <label className="text-sm font-bold text-stone-900 dark:text-stone-100">
-              Số tháng mục tiêu
+              {t.emergencyFund.targetMonthsLabel}
             </label>
             <span className="text-sm font-bold text-emerald-600 dark:text-emerald-400">
-              {targetMonths} tháng
+              {format(t.emergencyFund.monthsUnit, { months: targetMonths })}
             </span>
           </div>
           <input
@@ -124,14 +125,14 @@ export default function EmergencyFundCalculator({ userId }: EmergencyFundCalcula
             className="w-full accent-emerald-600"
           />
           <div className="flex justify-between text-xs text-stone-400 dark:text-stone-500 mt-1">
-            <span>3 tháng</span>
-            <span>12 tháng</span>
+            <span>{t.emergencyFund.monthsUnitMin}</span>
+            <span>{t.emergencyFund.monthsUnitMax}</span>
           </div>
         </div>
 
         <div>
           <label className="block text-sm font-bold text-stone-900 dark:text-stone-100 mb-2">
-            Số tiền đã có (VNĐ)
+            {t.emergencyFund.currentSavedLabel}
           </label>
           <input
             type="number"
@@ -139,7 +140,7 @@ export default function EmergencyFundCalculator({ userId }: EmergencyFundCalcula
             min={0}
             value={currentSaved}
             onChange={(e) => setCurrentSaved(e.target.value)}
-            placeholder="VD: 20000000"
+            placeholder={t.emergencyFund.currentSavedPlaceholder}
             className="w-full px-4 py-3 rounded-xl border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 focus:border-stone-400 dark:focus:border-stone-500 focus:ring-1 focus:ring-stone-900/5 focus:outline-none text-stone-900 dark:text-stone-100"
           />
         </div>
@@ -149,10 +150,10 @@ export default function EmergencyFundCalculator({ userId }: EmergencyFundCalcula
         <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl p-5 space-y-4">
           <div className="flex items-center justify-between">
             <span className="text-sm font-semibold text-stone-500 dark:text-stone-400">
-              Mục tiêu quỹ khẩn cấp
+              {t.emergencyFund.targetTitle}
             </span>
             <span className="text-lg font-bold text-stone-900 dark:text-stone-100">
-              {formatVnd(target)} đ
+              {format(t.emergencyFund.targetAmount, { amount: formatVnd(target) })}
             </span>
           </div>
 
@@ -164,17 +165,17 @@ export default function EmergencyFundCalculator({ userId }: EmergencyFundCalcula
               />
             </div>
             <p className="text-xs text-stone-500 dark:text-stone-400 mt-1.5">
-              Đã đạt {progressPct.toFixed(0)}%
+              {format(t.emergencyFund.progressLabel, { pct: progressPct.toFixed(0) })}
             </p>
           </div>
 
           {isDone ? (
             <p className="text-sm font-semibold text-emerald-600 dark:text-emerald-400">
-              Đã đủ (thậm chí vượt) mục tiêu quỹ khẩn cấp. Dư {formatVnd(-remaining)} đ.
+              {format(t.emergencyFund.doneMessage, { amount: formatVnd(-remaining) })}
             </p>
           ) : (
             <p className="text-sm font-semibold text-amber-600 dark:text-amber-400">
-              Còn thiếu {formatVnd(remaining)} đ để đạt mục tiêu.
+              {format(t.emergencyFund.remainingMessage, { amount: formatVnd(remaining) })}
             </p>
           )}
         </div>
@@ -185,7 +186,7 @@ export default function EmergencyFundCalculator({ userId }: EmergencyFundCalcula
         disabled={saving || expenses <= 0}
         className="w-full py-3 bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 font-bold rounded-xl disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
       >
-        {saving ? "Đang lưu..." : "Lưu"}
+        {saving ? t.emergencyFund.savingButton : t.emergencyFund.saveButton}
       </button>
     </div>
   );

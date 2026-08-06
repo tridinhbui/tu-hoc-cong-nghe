@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { X, Download, Eye } from "lucide-react";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 interface FilePreviewModalProps {
   open: boolean;
@@ -10,6 +12,8 @@ interface FilePreviewModalProps {
 }
 
 export default function FilePreviewModal({ open, file, onClose }: FilePreviewModalProps) {
+  const { t } = useI18n();
+  const tp = t.adminOne.filePreview;
   const [previewUrl, setPreviewUrl] = useState<string>("");
   const [fileInfo, setFileInfo] = useState<{ type: string; size: string } | null>(null);
 
@@ -52,7 +56,7 @@ export default function FilePreviewModal({ open, file, onClose }: FilePreviewMod
           <div className="flex items-center gap-2">
             <Eye className="w-5 h-5 text-stone-600 dark:text-stone-400" />
             <h3 className="font-bold text-stone-900 dark:text-stone-100">
-              Xem trước: {file.name}
+              {format(tp.previewOf, { name: file.name })}
             </h3>
           </div>
           <button
@@ -69,7 +73,7 @@ export default function FilePreviewModal({ open, file, onClose }: FilePreviewMod
             <div className="flex justify-center">
               <img
                 src={previewUrl}
-                alt="Preview"
+                alt={tp.previewAlt}
                 className="max-w-full max-h-[60vh] rounded-lg object-contain"
               />
             </div>
@@ -79,33 +83,33 @@ export default function FilePreviewModal({ open, file, onClose }: FilePreviewMod
             <iframe
               src={previewUrl}
               className="w-full h-[60vh] rounded-lg border border-stone-200 dark:border-stone-700"
-              title="PDF Preview"
+              title={tp.pdfPreviewTitle}
             />
           )}
 
           {isExcel && fileInfo && (
             <div className="space-y-4">
               <div className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
-                <p className="text-sm text-stone-600 dark:text-stone-400 mb-2">📊 File thông tin</p>
+                <p className="text-sm text-stone-600 dark:text-stone-400 mb-2">{tp.fileInfoTitle}</p>
                 <div className="space-y-2 text-sm">
                   <p>
-                    <span className="font-semibold text-stone-700 dark:text-stone-300">Tên:</span>{" "}
+                    <span className="font-semibold text-stone-700 dark:text-stone-300">{tp.nameLabel}</span>{" "}
                     <span className="text-stone-600 dark:text-stone-400">{file.name}</span>
                   </p>
                   <p>
-                    <span className="font-semibold text-stone-700 dark:text-stone-300">Loại:</span>{" "}
+                    <span className="font-semibold text-stone-700 dark:text-stone-300">{tp.typeLabel}</span>{" "}
                     <span className="text-stone-600 dark:text-stone-400">
-                      {fileInfo.type || "Excel Spreadsheet"}
+                      {fileInfo.type || tp.excelSpreadsheetFallback}
                     </span>
                   </p>
                   <p>
-                    <span className="font-semibold text-stone-700 dark:text-stone-300">Kích thước:</span>{" "}
+                    <span className="font-semibold text-stone-700 dark:text-stone-300">{tp.sizeLabel}</span>{" "}
                     <span className="text-stone-600 dark:text-stone-400">{fileInfo.size}</span>
                   </p>
                 </div>
               </div>
               <div className="bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800 rounded-lg p-4 text-sm text-amber-800 dark:text-amber-200">
-                💡 Excel files không thể xem trước trực tiếp. Vui lòng kiểm tra file trước khi upload.
+                {tp.excelCannotPreview}
               </div>
             </div>
           )}
@@ -116,18 +120,18 @@ export default function FilePreviewModal({ open, file, onClose }: FilePreviewMod
                 <p className="text-2xl mb-2">📄</p>
                 <p className="font-semibold text-stone-900 dark:text-stone-100 mb-2">{file.name}</p>
                 <p className="text-sm text-stone-600 dark:text-stone-400">
-                  Loại file này không hỗ trợ xem trước
+                  {tp.unsupportedPreview}
                 </p>
               </div>
               <div className="grid grid-cols-2 gap-3">
                 <div className="bg-stone-50 dark:bg-stone-800 rounded-lg p-3">
-                  <p className="text-xs text-stone-600 dark:text-stone-400">Loại</p>
+                  <p className="text-xs text-stone-600 dark:text-stone-400">{tp.typeCaption}</p>
                   <p className="font-semibold text-stone-900 dark:text-stone-100 text-sm">
-                    {fileInfo.type || "Unknown"}
+                    {fileInfo.type || tp.unknownFallback}
                   </p>
                 </div>
                 <div className="bg-stone-50 dark:bg-stone-800 rounded-lg p-3">
-                  <p className="text-xs text-stone-600 dark:text-stone-400">Kích thước</p>
+                  <p className="text-xs text-stone-600 dark:text-stone-400">{tp.sizeCaption}</p>
                   <p className="font-semibold text-stone-900 dark:text-stone-100 text-sm">
                     {fileInfo.size}
                   </p>
@@ -149,13 +153,13 @@ export default function FilePreviewModal({ open, file, onClose }: FilePreviewMod
             }`}
           >
             <Download className="w-4 h-4" />
-            Tải xuống
+            {tp.download}
           </a>
           <button
             onClick={onClose}
             className="px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm transition-colors"
           >
-            Đóng
+            {tp.close}
           </button>
         </div>
       </div>

@@ -2,6 +2,8 @@
 
 import { useMemo, useState } from "react";
 import { normalQuantile, tQuantile } from "@/lib/tail-risk";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 // VaR dưới hai giả định phân phối, widget cho các bài khai `interactiveType:
 // "tail-risk"`.
@@ -21,6 +23,7 @@ import { normalQuantile, tQuantile } from "@/lib/tail-risk";
 // Basel đã chuyển sang ES chính vì chỗ đó.
 
 export default function InteractiveTailRisk() {
+  const { t } = useI18n();
   const [portfolio, setPortfolio] = useState(1000); // tỷ đồng
   const [vol, setVol] = useState(20); // % năm
   const [conf, setConf] = useState(99);
@@ -45,44 +48,51 @@ export default function InteractiveTailRisk() {
   return (
     <div className="rounded-3xl border border-stone-200 bg-white p-6 dark:border-stone-800 dark:bg-stone-900">
       <h3 className="text-sm font-extrabold text-stone-900 dark:text-stone-100">
-        Cùng dữ liệu, hai giả định phân phối, hai con số rủi ro
+        {t.tailRisk.title}
       </h3>
 
       <div className="mt-4 space-y-3">
-        <Row label="Quy mô danh mục" value={`${portfolio} tỷ`}>
+        <Row label={t.tailRisk.portfolioSizeLabel} value={format(t.tailRisk.portfolioSizeValue, { value: portfolio })}>
           <input type="range" min={100} max={5000} step={100} value={portfolio}
-            onChange={(e) => setPortfolio(Number(e.target.value))} aria-label="Quy mô danh mục"
+            onChange={(e) => setPortfolio(Number(e.target.value))} aria-label={t.tailRisk.portfolioSizeAriaLabel}
             className="w-full cursor-pointer accent-stone-900 dark:accent-stone-100" />
         </Row>
-        <Row label="Biến động năm" value={`${vol}%`}>
+        <Row label={t.tailRisk.volatilityLabel} value={`${vol}%`}>
           <input type="range" min={5} max={60} step={1} value={vol}
-            onChange={(e) => setVol(Number(e.target.value))} aria-label="Biến động năm"
+            onChange={(e) => setVol(Number(e.target.value))} aria-label={t.tailRisk.volatilityAriaLabel}
             className="w-full cursor-pointer accent-stone-900 dark:accent-stone-100" />
         </Row>
-        <Row label="Mức tin cậy" value={`${conf}%`}>
+        <Row label={t.tailRisk.confidenceLabel} value={`${conf}%`}>
           <input type="range" min={90} max={99.5} step={0.5} value={conf}
-            onChange={(e) => setConf(Number(e.target.value))} aria-label="Mức tin cậy"
+            onChange={(e) => setConf(Number(e.target.value))} aria-label={t.tailRisk.confidenceAriaLabel}
             className="w-full cursor-pointer accent-stone-900 dark:accent-stone-100" />
         </Row>
-        <Row label="Độ dày đuôi (bậc tự do t)" value={df >= 30 ? `${df} — gần như chuẩn` : `${df} — đuôi dày`}>
+        <Row
+          label={t.tailRisk.tailThicknessLabel}
+          value={
+            df >= 30
+              ? format(t.tailRisk.tailThicknessNearNormal, { df })
+              : format(t.tailRisk.tailThicknessFat, { df })
+          }
+        >
           <input type="range" min={3} max={30} step={1} value={df}
-            onChange={(e) => setDf(Number(e.target.value))} aria-label="Bậc tự do"
+            onChange={(e) => setDf(Number(e.target.value))} aria-label={t.tailRisk.tailThicknessAriaLabel}
             className="w-full cursor-pointer accent-stone-900 dark:accent-stone-100" />
         </Row>
       </div>
 
       <div className="mt-5 grid gap-3 sm:grid-cols-3">
-        <Card label="VaR 1 ngày (chuẩn)" value={numbers.varNorm} />
-        <Card label="VaR 1 ngày (đuôi dày)" value={numbers.varT} tone="bad" />
-        <Card label="Expected Shortfall (chuẩn)" value={numbers.esNorm} tone="warn" />
+        <Card label={t.tailRisk.varNormalCard} value={numbers.varNorm} suffixTemplate={t.tailRisk.cardValueSuffix} />
+        <Card label={t.tailRisk.varFatTailCard} value={numbers.varT} tone="bad" suffixTemplate={t.tailRisk.cardValueSuffix} />
+        <Card label={t.tailRisk.esNormalCard} value={numbers.esNorm} tone="warn" suffixTemplate={t.tailRisk.cardValueSuffix} />
       </div>
 
       <p className="mt-4 rounded-2xl bg-stone-50 p-4 text-xs leading-relaxed text-stone-600 dark:bg-stone-800/60 dark:text-stone-300">
         {df >= 25
-          ? "Bậc tự do đã đủ lớn để phân phối t gần như trùng với chuẩn, và hai con số VaR gặp nhau. Kéo ngược xuống 3-5 để thấy khoảng cách mở ra."
-          : `Cùng một danh mục và cùng một mức tin cậy, giả định đuôi dày đòi thêm ${numbers.gap.toFixed(1)} tỷ vốn so với giả định chuẩn. Khoảng cách đó không nằm ở dữ liệu — nó nằm ở giả định, và giả định thì không hiện trên báo cáo.`}
+          ? t.tailRisk.convergedHint
+          : format(t.tailRisk.gapHint, { gap: numbers.gap.toFixed(1) })}
         {" "}
-        Expected Shortfall luôn lớn hơn VaR cùng mức tin cậy vì nó trả lời một câu khác: không phải &quot;ngưỡng bị vượt bao lâu một lần&quot; mà &quot;vượt rồi thì mất trung bình bao nhiêu&quot;. Đó là lý do Basel chuyển thước đo sang ES.
+        {t.tailRisk.esExplainer}
       </p>
     </div>
   );
@@ -100,7 +110,17 @@ function Row({ label, value, children }: { label: string; value: string; childre
   );
 }
 
-function Card({ label, value, tone }: { label: string; value: number; tone?: "bad" | "warn" }) {
+function Card({
+  label,
+  value,
+  tone,
+  suffixTemplate,
+}: {
+  label: string;
+  value: number;
+  tone?: "bad" | "warn";
+  suffixTemplate: string;
+}) {
   const color =
     tone === "bad"
       ? "text-rose-600 dark:text-rose-400"
@@ -110,7 +130,9 @@ function Card({ label, value, tone }: { label: string; value: number; tone?: "ba
   return (
     <div className="rounded-2xl border border-stone-200 p-3 dark:border-stone-800">
       <p className="text-[11px] font-bold uppercase tracking-wide text-stone-500 dark:text-stone-400">{label}</p>
-      <p className={`mt-0.5 text-lg font-extrabold tabular-nums ${color}`}>{value.toFixed(1)} tỷ</p>
+      <p className={`mt-0.5 text-lg font-extrabold tabular-nums ${color}`}>
+        {format(suffixTemplate, { value: value.toFixed(1) })}
+      </p>
     </div>
   );
 }

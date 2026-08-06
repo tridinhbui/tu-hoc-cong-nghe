@@ -19,13 +19,22 @@ import {
   remainingMs,
   shouldEndForAway,
 } from "@/lib/study-session";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 /** three.js chỉ chạy phía trình duyệt: ssr:false giữ nó ngoài bundle server, và
  *  người dùng thấy khung chờ thay vì lỗi hydrate. */
 const StudyRoomScene = dynamic(() => import("./StudyRoomScene"), {
   ssr: false,
-  loading: () => <SceneFallback label="Đang mở cửa phòng…" />,
+  loading: () => <SceneFallbackLoader />,
 });
+
+/** Wrapper so the dynamic-import loading state gets its own translation
+ *  instead of a hard-coded Vietnamese string baked into the `dynamic()` call. */
+function SceneFallbackLoader() {
+  const { t } = useI18n();
+  return <SceneFallback label={t.studyWorld.loadingRoom} />;
+}
 
 function SceneFallback({ label }: { label: string }) {
   return (
@@ -76,6 +85,7 @@ export default function StudyRoomWorld({
   members = [],
   onExit,
 }: StudyRoomWorldProps) {
+  const { t } = useI18n();
   const [seatable, setSeatable] = useState<number | null>(null);
   const [seated, setSeated] = useState<number | null>(null);
   const [seatStartedAt, setSeatStartedAt] = useState<number | null>(null);
@@ -248,8 +258,8 @@ export default function StudyRoomWorld({
 
   const boardRows = useMemo(() => {
     const pct = Math.min(100, Math.round((weeklyXpProgress / Math.max(1, weeklyXpGoal)) * 100));
-    return [`Mục tiêu tuần: ${weeklyXpProgress}/${weeklyXpGoal} XP (${pct}%)`, ...missionLines.slice(0, 4)];
-  }, [weeklyXpProgress, weeklyXpGoal, missionLines]);
+    return [format(t.studyWorld.boardGoalLine, { progress: weeklyXpProgress, goal: weeklyXpGoal, pct }), ...missionLines.slice(0, 4)];
+  }, [weeklyXpProgress, weeklyXpGoal, missionLines, t]);
 
   return (
     <div className="relative h-full w-full overflow-hidden rounded-2xl bg-stone-950">
@@ -267,13 +277,13 @@ export default function StudyRoomWorld({
           onChatMessage={pushLog}
           selfSpeech={selfSpeech}
           members={members}
-          boardTitle={`Phòng ${topicLabel}`}
+          boardTitle={format(t.studyWorld.boardTitle, { topic: topicLabel })}
           boardRows={boardRows}
           lampColor={lighting.lampColor}
           daylight={lighting.daylight}
         />
       ) : (
-        <SceneFallback label="Đang bật đèn…" />
+        <SceneFallback label={t.studyWorld.loadingLights} />
       )}
 
       {/* Số người THẬT đang ở trong phòng, đếm từ presence chứ không phải sĩ số
@@ -282,17 +292,17 @@ export default function StudyRoomWorld({
       <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex items-start justify-center gap-2 p-3">
         <div className="rounded-2xl bg-stone-900/75 px-4 py-1.5 text-center shadow-lg backdrop-blur">
           <p className="text-[11px] font-bold text-emerald-300">
-            🚪 Phòng học · {topicLabel}
+            {format(t.studyWorld.roomHeader, { topic: topicLabel })}
           </p>
           <p className="text-[10px] text-stone-400">
-            {peerCount > 1 ? `${peerCount} người đang ở trong phòng` : "Bạn đang ở đây một mình"}
+            {peerCount > 1 ? format(t.studyWorld.peerCount, { count: peerCount }) : t.studyWorld.aloneLabel}
           </p>
           {/* Ở cùng phòng khác với đang cùng học. Cả căn phòng dựng lên vì sự
               hiện diện của người khác, nên phân biệt hai điều đó là thông tin
               đáng hiện nhất ở đây. */}
           {seatedCount > 0 && (
             <p className="mt-0.5 text-[10px] font-bold text-amber-300">
-              📖 {seatedCount} người đang trong phiên học
+              {format(t.studyWorld.seatedCount, { count: seatedCount })}
             </p>
           )}
           {/* Tổng thời gian đã ngồi học hôm nay. Hiện sau phiên đầu tiên chứ
@@ -300,7 +310,7 @@ export default function StudyRoomWorld({
               lời trách móc, không phải thông tin. */}
           {todayMinutes !== null && todayMinutes > 0 && (
             <p className="mt-0.5 text-[10px] font-bold text-emerald-300">
-              ⏱ Hôm nay bạn đã ngồi học {todayMinutes} phút
+              {format(t.studyWorld.todayMinutes, { minutes: todayMinutes })}
             </p>
           )}
         </div>
@@ -309,7 +319,7 @@ export default function StudyRoomWorld({
         <button
           type="button"
           onClick={sound.toggle}
-          aria-label={sound.enabled ? "Tắt âm thanh" : "Bật âm thanh"}
+          aria-label={sound.enabled ? t.studyWorld.soundOnAria : t.studyWorld.soundOffAria}
           className="pointer-events-auto cursor-pointer rounded-2xl bg-stone-900/75 px-3 py-2 text-[13px] shadow-lg backdrop-blur transition hover:bg-stone-800"
         >
           {sound.enabled ? "🔊" : "🔈"}
@@ -333,7 +343,7 @@ export default function StudyRoomWorld({
               }}
               className="pointer-events-auto cursor-pointer rounded-2xl bg-emerald-500 px-5 py-2.5 text-xs font-bold text-white shadow-xl transition hover:bg-emerald-400"
             >
-              Ngồi xuống học · phiên 25 phút
+              {t.studyWorld.sitButton}
             </button>
           ) : (
             <div
@@ -343,7 +353,7 @@ export default function StudyRoomWorld({
             >
               <span className="font-mono text-base font-bold tabular-nums text-emerald-300">
                 {sessionDone ? (
-                  <span className="text-white">Xong một phiên · nghỉ một chút</span>
+                  <span className="text-white">{t.studyWorld.sessionDone}</span>
                 ) : (
                   formatCountdown(remainingMs(seatStartedAt, nowTick, POMODORO_MS))
                 )}
@@ -356,7 +366,7 @@ export default function StudyRoomWorld({
                 }}
                 className="cursor-pointer rounded-xl bg-stone-700 px-3 py-1.5 text-[11px] font-bold text-stone-100 transition hover:bg-stone-600"
               >
-                Đứng dậy
+                {t.studyWorld.standButton}
               </button>
             </div>
           )}
@@ -370,16 +380,16 @@ export default function StudyRoomWorld({
         <div className="pointer-events-none absolute inset-x-0 bottom-24 z-10 flex justify-center px-4">
           <div className="pointer-events-auto flex items-center gap-3 rounded-2xl bg-stone-900/90 px-4 py-2.5 shadow-xl backdrop-blur">
             <p className="text-[11px] leading-snug text-stone-200">
-              Phiên đã dừng vì bạn rời khỏi tab quá {Math.round(AWAY_MS / 60000)} phút.
+              {t.studyWorld.endedAwayPart1}{Math.round(AWAY_MS / 60000)}{t.studyWorld.endedAwayPart2}
               <br />
-              Phần đã ngồi trước đó vẫn được tính.
+              {t.studyWorld.endedAwayResumeHint}
             </p>
             <button
               type="button"
               onClick={() => setEndedAway(false)}
               className="shrink-0 cursor-pointer rounded-xl bg-stone-700 px-3 py-1.5 text-[11px] font-bold text-stone-100 hover:bg-stone-600"
             >
-              Đã hiểu
+              {t.studyWorld.endedAwayAck}
             </button>
           </div>
         </div>
@@ -393,7 +403,7 @@ export default function StudyRoomWorld({
             onClick={onExit}
             className="pointer-events-auto cursor-pointer rounded-2xl bg-sky-500/90 px-4 py-2 text-xs font-bold text-white shadow-xl backdrop-blur transition hover:bg-sky-400"
           >
-            Bước ra cửa → xem phòng dạng bàn học
+            {t.studyWorld.exitDoorButton}
           </button>
         </div>
       )}
@@ -417,8 +427,8 @@ export default function StudyRoomWorld({
                   <button
                     type="button"
                     onClick={() => setMutedIds((prev) => new Set(prev).add(m.userId))}
-                    title={`Ẩn lời của ${m.name} trong phiên này`}
-                    aria-label={`Ẩn lời của ${m.name}`}
+                    title={format(t.studyWorld.hideSpeechTitle, { name: m.name })}
+                    aria-label={format(t.studyWorld.hideSpeechAria, { name: m.name })}
                     className="shrink-0 cursor-pointer text-stone-500 opacity-0 transition-opacity hover:text-stone-200 group-hover:opacity-100"
                   >
                     ✕
@@ -432,7 +442,7 @@ export default function StudyRoomWorld({
               onClick={() => setMutedIds(new Set())}
               className="pointer-events-auto cursor-pointer self-start rounded-lg bg-stone-800/70 px-2 py-0.5 text-[10px] font-bold text-stone-400 hover:text-stone-200"
             >
-              Đang ẩn {mutedIds.size} người · bỏ ẩn
+              {format(t.studyWorld.hiddenCount, { count: mutedIds.size })}
             </button>
           )}
         </div>
@@ -447,7 +457,7 @@ export default function StudyRoomWorld({
               value={draft}
               onChange={(e) => setDraft(e.target.value)}
               maxLength={CHAT_MAX_LENGTH}
-              placeholder="Nói với người trong phòng…"
+              placeholder={t.studyWorld.speakPlaceholder}
               className="min-w-0 flex-1 rounded-2xl border border-stone-700 bg-stone-900/85 px-3 py-2 text-xs text-stone-100 placeholder:text-stone-500 shadow-lg backdrop-blur outline-none focus:border-emerald-500"
             />
             <button
@@ -455,12 +465,13 @@ export default function StudyRoomWorld({
               disabled={!draft.trim()}
               className="shrink-0 cursor-pointer rounded-2xl bg-emerald-500 px-3 py-2 text-xs font-bold text-white shadow-lg transition hover:bg-emerald-400 disabled:opacity-40"
             >
-              Nói
+              {t.studyWorld.speakButton}
             </button>
           </form>
           <p className="pointer-events-none hidden text-[10px] font-medium text-stone-400 sm:block">
-            Chạm vào chỗ muốn tới, kéo cần điều khiển, hoặc bấm{" "}
-            <kbd className="rounded bg-stone-800 px-1 py-0.5">W A S D</kbd> · kéo để đổi góc nhìn · lời nói ở đây không được lưu
+            {t.studyWorld.controlsHintPart1}
+            <kbd className="rounded bg-stone-800 px-1 py-0.5">{t.studyWorld.controlsHintKeys}</kbd>
+            {t.studyWorld.controlsHintPart2}
           </p>
         </div>
         <Joystick

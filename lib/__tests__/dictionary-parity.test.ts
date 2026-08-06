@@ -79,6 +79,40 @@ const INTENTIONALLY_UNTRANSLATED = new Set([
   "pvpDuel.arenaEyebrow",
   "fedVault.buildingAlt",
   "fedVault.fedEyebrow",
+  // The six illustrative learner nicknames on the logged-out leaderboard.
+  // Personal names and a chosen handle are proper nouns; the same reason the
+  // leaderboard nicknames in vi.ts are exempt.
+  "leaderboardPreview.name1",
+  "leaderboardPreview.name2",
+  "leaderboardPreview.name3",
+  "leaderboardPreview.name4",
+  "leaderboardPreview.name5",
+  "leaderboardPreview.name6",
+  // Already English in the Vietnamese source: the file-type fallback label the
+  // admin preview shows for a spreadsheet.
+  "adminOne.filePreview.excelSpreadsheetFallback",
+  // Formulas, not sentences. "Revenue - COGS - OpEx" is the same line of
+  // accounting in both languages; translating the terms would stop them
+  // matching the statements the lesson teaches.
+  "cashFlowSim.accountingProfitFormula",
+  "cashFlowSim.realCashFlowFormula",
+  "cashFlowSim.cashFlowLineFormula",
+  "roeCalc.formulaBreakdown",
+  // "Tự Học Tài Chính" is the product's own name and stays in an English
+  // sentence, the same way the terms page names the project it governs.
+  "terms.section1Body",
+  "levelUp.shareCaption",
+  "levelUp.shareCaptionWithName",
+  // The example name in a name field. The learners are Vietnamese, so a
+  // Vietnamese placeholder name is the useful hint in either UI language.
+  "chatbot.namePlaceholder",
+  // Already English in the Vietnamese source: two org badges on the Goldman
+  // widget, the boss arena's own name, and the glossary's title (it is a
+  // bilingual glossary, so its heading is English on both sides on purpose).
+  "bossBattle.arenaBadge",
+  "goldmanWidget.orgBadge",
+  "goldmanWidget.trackBadge",
+  "cfaGlossary.heading",
   // Already English: a banner label and the world-boss HP readout, both of
   // which are the game's own English chrome in the Vietnamese source too.
   "resume.heroBanner",
@@ -101,13 +135,24 @@ function flatten(obj: unknown, prefix = ""): Map<string, string> {
   for (const [key, value] of Object.entries(obj as Record<string, unknown>)) {
     const path = prefix ? `${prefix}.${key}` : key;
     if (typeof value === "string") out.set(path, value);
-    // An array is ONE value, not N keys. The teach-back keyword markers are
-    // per-language lists used to match a free-text answer, and the two
-    // languages need different numbers of them - 10 Vietnamese phrases against
-    // 8 English ones is correct, not a gap. Indexing each element turned that
-    // into 38 "missing keys" and would have pushed someone to pad the shorter
-    // list with filler to make the build green.
-    else if (Array.isArray(value)) out.set(path, value.join(" | "));
+    // An array OF STRINGS is one value, not N keys. The teach-back keyword
+    // markers are per-language lists used to match a free-text answer, and the
+    // two languages need different numbers of them - 10 Vietnamese phrases
+    // against 8 English ones is correct, not a gap. Indexing each element turned
+    // that into 38 "missing keys" and would have pushed someone to pad the
+    // shorter list with filler to make the build green.
+    //
+    // An array of OBJECTS still has to be walked. Joining one gives
+    // "[object Object] | ..." on both sides, which reads as byte-identical and
+    // marked the seven translated news quizzes as untranslated copy-paste.
+    else if (Array.isArray(value)) {
+      if (value.every((v) => typeof v === "string")) out.set(path, value.join(" | "));
+      else {
+        value.forEach((element, index) => {
+          for (const [k, v] of flatten(element, `${path}.${index}`)) out.set(k, v);
+        });
+      }
+    }
     else if (typeof value === "object" && value !== null) {
       for (const [k, v] of flatten(value, path)) out.set(k, v);
     }

@@ -3,6 +3,8 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { ChevronLeft, Clock, Flag, Loader2 } from "lucide-react";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 /** Bộ chạy bài thi thử, dùng chung cho CFA và FRM.
  *
@@ -111,6 +113,7 @@ function ExamShell({ config, children }: { config: ExamConfig; children: React.R
 }
 
 export default function MockExamClient({ config }: { config: ExamConfig }) {
+  const { t } = useI18n();
   const [stage, setStage] = useState<Stage>("intro");
   const [questions, setQuestions] = useState<ExamQuestion[]>([]);
   const [answers, setAnswers] = useState<(number | null)[]>([]);
@@ -145,7 +148,7 @@ export default function MockExamClient({ config }: { config: ExamConfig }) {
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = await res.json();
       const list: ExamQuestion[] = data.questions ?? [];
-      if (list.length === 0) throw new Error("Không lấy được câu hỏi nào");
+      if (list.length === 0) throw new Error(t.mockExam.noQuestionsError);
       setQuestions(list);
       setAnswers(new Array(list.length).fill(null));
       setFlags(new Array(list.length).fill(false));
@@ -154,7 +157,7 @@ export default function MockExamClient({ config }: { config: ExamConfig }) {
       setDeadline(Date.now() + config.sessions[0].minutes * 60_000);
       setStage("running");
     } catch (e) {
-      setErrorText(e instanceof Error ? e.message : "Lỗi không rõ");
+      setErrorText(e instanceof Error ? e.message : t.mockExam.unknownError);
       setStage("error");
     }
   };
@@ -254,7 +257,7 @@ export default function MockExamClient({ config }: { config: ExamConfig }) {
       <ExamShell config={config}>
         <div className="flex flex-col items-center gap-3 py-24 text-stone-500 dark:text-stone-400">
           <Loader2 className="h-6 w-6 animate-spin" />
-          <p className="text-sm font-medium">Đang chuẩn bị đề…</p>
+          <p className="text-sm font-medium">{t.mockExam.preparingExam}</p>
         </div>
       </ExamShell>
     );
@@ -265,7 +268,7 @@ export default function MockExamClient({ config }: { config: ExamConfig }) {
       <ExamShell config={config}>
         <div className="py-20 text-center">
           <p className="text-sm font-semibold text-stone-800 dark:text-stone-200">
-            Không mở được đề thi thử.
+            {t.mockExam.fetchFailedTitle}
           </p>
           <p className="mt-1 text-xs text-stone-500">{errorText}</p>
           <button
@@ -273,7 +276,7 @@ export default function MockExamClient({ config }: { config: ExamConfig }) {
             onClick={() => setStage("intro")}
             className="mt-5 rounded-xl bg-stone-900 px-5 py-2.5 text-sm font-bold text-white dark:bg-stone-100 dark:text-stone-900"
           >
-            Thử lại
+            {t.mockExam.tryAgain}
           </button>
         </div>
       </ExamShell>
@@ -308,7 +311,7 @@ export default function MockExamClient({ config }: { config: ExamConfig }) {
             onClick={start}
             className="mt-6 w-full rounded-2xl bg-stone-900 px-6 py-3.5 text-sm font-bold text-white transition hover:bg-stone-700 dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-white"
           >
-            Bắt đầu {config.sessions[0].label.toLowerCase()}
+            {format(t.mockExam.startSession, { session: config.sessions[0].label.toLowerCase() })}
           </button>
         </div>
       </ExamShell>
@@ -321,18 +324,17 @@ export default function MockExamClient({ config }: { config: ExamConfig }) {
       <ExamShell config={config}>
         <div className="mx-auto max-w-md py-20 text-center">
           <h2 className="text-xl font-bold text-stone-900 dark:text-stone-100">
-            Hết {config.sessions[session].label.toLowerCase()}
+            {format(t.mockExam.sessionEnded, { session: config.sessions[session].label.toLowerCase() })}
           </h2>
           <p className="mt-2 text-sm text-stone-600 dark:text-stone-400">
-            Đã trả lời {done}/{sessionEnd - sessionStart} câu. Ngày thi thật bạn được nghỉ giữa hai
-            ca - nghỉ đủ rồi hãy bấm.
+            {format(t.mockExam.sessionAnsweredSummary, { done, total: sessionEnd - sessionStart })}
           </p>
           <button
             type="button"
             onClick={nextSession}
             className="mt-6 rounded-2xl bg-stone-900 px-6 py-3 text-sm font-bold text-white dark:bg-stone-100 dark:text-stone-900"
           >
-            Vào {config.sessions[session + 1]?.label.toLowerCase() ?? "phần tiếp"}
+            {format(t.mockExam.goToSession, { session: config.sessions[session + 1]?.label.toLowerCase() ?? "" })}
           </button>
         </div>
       </ExamShell>
@@ -353,7 +355,7 @@ export default function MockExamClient({ config }: { config: ExamConfig }) {
             }`}
           >
             <p className="text-[11px] font-bold uppercase tracking-wider text-stone-500">
-              Kết quả thi thử
+              {t.mockExam.resultTitle}
             </p>
             <p className="mt-2 text-4xl font-black tabular-nums text-stone-900 dark:text-stone-100">
               {result.score}/{result.total}
@@ -362,14 +364,14 @@ export default function MockExamClient({ config }: { config: ExamConfig }) {
               {(ratio * 100).toFixed(1)}%
             </p>
             <p className="mt-3 text-xs leading-relaxed text-stone-600 dark:text-stone-400">
-              {passed
-                ? `Trên ngưỡng ${Math.round(config.passRatio * 100)}%.`
-                : `Dưới ngưỡng ${Math.round(config.passRatio * 100)}%.`}{" "}
+              {format(passed ? t.mockExam.aboveThreshold : t.mockExam.belowThreshold, {
+                pct: Math.round(config.passRatio * 100),
+              })}{" "}
               {config.passNote}
             </p>
           </div>
 
-          <h3 className="mt-8 text-sm font-bold text-stone-900 dark:text-stone-100">Điểm theo môn</h3>
+          <h3 className="mt-8 text-sm font-bold text-stone-900 dark:text-stone-100">{t.mockExam.scoreBySubject}</h3>
           <div className="mt-3 space-y-2">
             {result.bySubject.map((s) => {
               const pct = s.total > 0 ? (s.correct / s.total) * 100 : 0;
@@ -413,7 +415,7 @@ export default function MockExamClient({ config }: { config: ExamConfig }) {
               }}
               className="flex-1 rounded-2xl bg-stone-900 px-5 py-3 text-sm font-bold text-white dark:bg-stone-100 dark:text-stone-900"
             >
-              Thi lại
+              {t.mockExam.retakeExam}
             </button>
           </div>
         </div>
@@ -430,8 +432,11 @@ export default function MockExamClient({ config }: { config: ExamConfig }) {
       <div className="mx-auto max-w-2xl pb-32">
         <div className="sticky top-0 z-10 -mx-6 flex items-center justify-between gap-3 border-b border-stone-200 bg-white/90 px-6 py-3 backdrop-blur dark:border-stone-800 dark:bg-stone-950/90">
           <span className="text-xs font-bold text-stone-500">
-            {config.sessions[session].label} · câu {active - sessionStart + 1}/
-            {sessionEnd - sessionStart}
+            {format(t.mockExam.sessionProgress, {
+              session: config.sessions[session].label,
+              current: active - sessionStart + 1,
+              total: sessionEnd - sessionStart,
+            })}
           </span>
           <span
             className={`flex items-center gap-1.5 font-mono text-sm font-bold tabular-nums ${
@@ -464,7 +469,9 @@ export default function MockExamClient({ config }: { config: ExamConfig }) {
                     : "border-stone-200 text-stone-700 hover:border-stone-400 dark:border-stone-800 dark:text-stone-300"
                 }`}
               >
+                {/* i18n-ignore-start: option letters, not translatable copy */}
                 <span className="mr-2 font-bold">{"ABCDE"[i]}.</span>
+                {/* i18n-ignore-end */}
                 {opt}
               </button>
             );
@@ -490,10 +497,10 @@ export default function MockExamClient({ config }: { config: ExamConfig }) {
             }`}
           >
             <Flag className="h-3.5 w-3.5" />
-            {flags[active] ? "Đã đánh dấu" : "Đánh dấu xem lại"}
+            {flags[active] ? t.mockExam.flagged : t.mockExam.flagForReview}
           </button>
           <span className="text-xs text-stone-400">
-            {answeredInSession}/{sessionEnd - sessionStart} câu đã trả lời
+            {format(t.mockExam.answeredCount, { done: answeredInSession, total: sessionEnd - sessionStart })}
           </span>
         </div>
 
@@ -509,7 +516,7 @@ export default function MockExamClient({ config }: { config: ExamConfig }) {
                 key={idx}
                 type="button"
                 onClick={() => setActive(idx)}
-                aria-label={`Câu ${i + 1}`}
+                aria-label={format(t.mockExam.questionAria, { n: i + 1 })}
                 className={`relative h-8 rounded-lg text-[11px] font-bold tabular-nums transition ${
                   idx === active
                     ? "bg-stone-900 text-white dark:bg-stone-100 dark:text-stone-900"
@@ -536,7 +543,7 @@ export default function MockExamClient({ config }: { config: ExamConfig }) {
             onClick={() => setActive((a) => Math.max(sessionStart, a - 1))}
             className="rounded-xl border border-stone-300 px-4 py-2.5 text-sm font-bold text-stone-600 disabled:opacity-30 dark:border-stone-700 dark:text-stone-400"
           >
-            Trước
+            {t.mockExam.prevCta}
           </button>
           {active + 1 < sessionEnd ? (
             <button
@@ -544,7 +551,7 @@ export default function MockExamClient({ config }: { config: ExamConfig }) {
               onClick={() => setActive((a) => a + 1)}
               className="flex-1 rounded-xl bg-stone-900 px-5 py-2.5 text-sm font-bold text-white dark:bg-stone-100 dark:text-stone-900"
             >
-              Câu tiếp
+              {t.mockExam.nextQuestionCta}
             </button>
           ) : (
             <button
@@ -552,7 +559,9 @@ export default function MockExamClient({ config }: { config: ExamConfig }) {
               onClick={() => (lastSession ? void finish() : setStage("break"))}
               className="flex-1 rounded-xl bg-emerald-600 px-5 py-2.5 text-sm font-bold text-white hover:bg-emerald-500"
             >
-              {lastSession ? "Nộp bài" : `Kết thúc ${config.sessions[session].label.toLowerCase()}`}
+              {lastSession
+                ? t.mockExam.submitExam
+                : format(t.mockExam.endSession, { session: config.sessions[session].label.toLowerCase() })}
             </button>
           )}
         </div>

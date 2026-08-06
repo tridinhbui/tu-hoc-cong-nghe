@@ -1,4 +1,6 @@
 import type { LessonFunnel } from "@/lib/admin/lesson-funnel";
+import { getServerLocale } from "@/lib/i18n/server";
+import { getDictionary, format, intlLocale } from "@/lib/i18n";
 
 /** Bài nào bị bỏ dở, và `whyItMatters` có giữ chân được ai không.
  *
@@ -9,30 +11,34 @@ import type { LessonFunnel } from "@/lib/admin/lesson-funnel";
  *  Khi chưa có dữ liệu thì nói RÕ LÝ DO chứ không bày bảng rỗng - một bảng
  *  rỗng đọc thành "không ai bỏ bài nào", và đó là kết luận sai nguy hiểm nhất
  *  có thể rút ra từ chỗ này. */
-export default function LessonFunnelPanel({ funnel }: { funnel: LessonFunnel }) {
+export default async function LessonFunnelPanel({ funnel }: { funnel: LessonFunnel }) {
+  // Stays a server component: it renders a table from a prop and needs no
+  // browser API, so reading the dictionary on the server keeps the admin bundle
+  // as it was rather than shipping this panel's JS to make one label swap.
+  const locale = await getServerLocale();
+  const t = getDictionary(locale);
   return (
     <section className="rounded-2xl border border-stone-200 bg-white p-5 dark:border-stone-800 dark:bg-stone-900">
       <h2 className="text-sm font-black uppercase tracking-widest text-stone-500">
-        Phễu bài học · 30 ngày
+        {t.adminFunnel.title}
       </h2>
 
       {!funnel.available ? (
         <p className="mt-3 rounded-xl bg-amber-50 p-3 text-[13px] leading-relaxed text-amber-900 dark:bg-amber-950/40 dark:text-amber-200">
-          {funnel.reason ?? "Chưa đọc được dữ liệu."}
+          {funnel.reason ?? t.adminFunnel.noDataFallback}
         </p>
       ) : (
         <>
           <p className="mt-1 text-[12px] text-stone-500">
-            Đếm theo (bài, người), không theo số dòng — một người đọc lại năm lần vẫn là một
-            người. Tổng {funnel.totalOpens.toLocaleString("vi-VN")} lượt mở.
+            {format(t.adminFunnel.totalOpens, { total: funnel.totalOpens.toLocaleString(intlLocale(locale)) })}
           </p>
 
           {funnel.whySplit && (
             <div className="mt-4 grid gap-2 sm:grid-cols-2">
               {(
                 [
-                  ["Có whyItMatters", funnel.whySplit.withWhy],
-                  ["Không có", funnel.whySplit.withoutWhy],
+                  [t.adminFunnel.withWhy, funnel.whySplit.withWhy],
+                  [t.adminFunnel.withoutWhy, funnel.whySplit.withoutWhy],
                 ] as const
               ).map(([label, b]) => {
                 const rate = b.opens > 0 ? b.reachedRecall / b.opens : 0;
@@ -43,7 +49,10 @@ export default function LessonFunnelPanel({ funnel }: { funnel: LessonFunnel }) 
                       {(rate * 100).toFixed(0)}%
                     </p>
                     <p className="text-[11px] text-stone-500">
-                      đọc hết thân bài · {b.lessons} bài, {b.opens.toLocaleString("vi-VN")} lượt mở
+                      {format(t.adminFunnel.splitCaption, {
+                        lessons: b.lessons,
+                        opens: b.opens.toLocaleString(intlLocale(locale)),
+                      })}
                     </p>
                   </div>
                 );
@@ -52,20 +61,18 @@ export default function LessonFunnelPanel({ funnel }: { funnel: LessonFunnel }) 
           )}
           {funnel.whySplit && (
             <p className="mt-2 text-[11px] leading-relaxed text-stone-500">
-              Chỉ tính bài có ít nhất {funnel.minOpensForSplit} lượt mở. Đây KHÔNG phải bằng chứng
-              nhân quả — bài có <code>whyItMatters</code> thường cũng là bài được chăm hơn về mọi
-              mặt. Nhưng nếu hai con số gần bằng nhau thì viết lại 396 bài gần như chắc chắn không
-              đáng, và đó đã đủ để quyết.
+              {format(t.adminFunnel.splitNote, { min: funnel.minOpensForSplit })}{" "}
+              <code>{t.adminFunnel.splitNoteWhyItMattersCode}</code> {t.adminFunnel.splitNoteSuffix}
             </p>
           )}
 
           <table className="mt-4 w-full text-left text-[12px]">
             <thead className="text-[10px] uppercase tracking-widest text-stone-400">
               <tr>
-                <th className="pb-1">Bài</th>
-                <th className="pb-1 text-right">Mở</th>
-                <th className="pb-1 text-right">Đọc hết</th>
-                <th className="pb-1 text-right">Bỏ dở</th>
+                <th className="pb-1">{t.adminFunnel.colLesson}</th>
+                <th className="pb-1 text-right">{t.adminFunnel.colOpens}</th>
+                <th className="pb-1 text-right">{t.adminFunnel.colReached}</th>
+                <th className="pb-1 text-right">{t.adminFunnel.colDrop}</th>
               </tr>
             </thead>
             <tbody>
@@ -85,7 +92,7 @@ export default function LessonFunnelPanel({ funnel }: { funnel: LessonFunnel }) 
             </tbody>
           </table>
           {funnel.rows.length === 0 && (
-            <p className="mt-2 text-[12px] text-stone-500">Chưa có bài nào đủ dữ liệu.</p>
+            <p className="mt-2 text-[12px] text-stone-500">{t.adminFunnel.noRowsData}</p>
           )}
         </>
       )}

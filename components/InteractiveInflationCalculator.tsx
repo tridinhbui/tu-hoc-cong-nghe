@@ -2,8 +2,11 @@
 
 import { useState } from "react";
 import { TrendingDown, Calculator, AlertTriangle } from "lucide-react";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 export default function InteractiveInflationCalculator() {
+  const { t } = useI18n();
   const [amount, setAmount] = useState(100);
   const [years, setYears] = useState(10);
   const [inflationRate, setInflationRate] = useState(6);
@@ -12,7 +15,7 @@ export default function InteractiveInflationCalculator() {
     const purchasingPower = amount / Math.pow(1 + inflationRate / 100, years);
     const loss = amount - purchasingPower;
     const lossPercentage = ((loss / amount) * 100).toFixed(1);
-    
+
     return {
       purchasingPower: purchasingPower.toFixed(2),
       loss: loss.toFixed(2),
@@ -25,17 +28,17 @@ export default function InteractiveInflationCalculator() {
   return (
     <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl p-6">
       <h3 className="font-bold text-lg text-stone-900 dark:text-stone-100 mb-4">
-        Máy tính Lạm phát
+        {t.inflationCalc.title}
       </h3>
       <p className="text-sm text-stone-600 dark:text-stone-400 mb-6">
-        Xem tiền của bạn mất giá như thế nào theo thời gian
+        {t.inflationCalc.subtitle}
       </p>
 
       {/* Input Controls */}
       <div className="space-y-4 mb-6">
         <div>
           <label className="text-sm font-semibold text-stone-700 dark:text-stone-300 mb-2 block">
-            Số tiền hiện tại (triệu VNĐ): {amount}M
+            {format(t.inflationCalc.amountLabel, { amount })}
           </label>
           <input
             type="range"
@@ -50,7 +53,7 @@ export default function InteractiveInflationCalculator() {
 
         <div>
           <label className="text-sm font-semibold text-stone-700 dark:text-stone-300 mb-2 block">
-            Số năm: {years}
+            {format(t.inflationCalc.yearsLabel, { years })}
           </label>
           <input
             type="range"
@@ -64,7 +67,7 @@ export default function InteractiveInflationCalculator() {
 
         <div>
           <label className="text-sm font-semibold text-stone-700 dark:text-stone-300 mb-2 block">
-            Tỷ lệ lạm phát (%/năm): {inflationRate}%
+            {format(t.inflationCalc.rateLabel, { rate: inflationRate })}
           </label>
           <input
             type="range"
@@ -83,11 +86,11 @@ export default function InteractiveInflationCalculator() {
           <div className="flex items-center gap-2 mb-2">
             <Calculator className="w-4 h-4 text-stone-600 dark:text-stone-400" />
             <span className="text-xs font-bold text-stone-600 dark:text-stone-400 uppercase">
-              Giá trị hiện tại
+              {t.inflationCalc.currentValueLabel}
             </span>
           </div>
           <p className="text-2xl font-bold text-stone-900 dark:text-stone-100">
-            {amount}M
+            {format(t.inflationCalc.millionSuffix, { amount })}
           </p>
         </div>
 
@@ -95,11 +98,11 @@ export default function InteractiveInflationCalculator() {
           <div className="flex items-center gap-2 mb-2">
             <TrendingDown className="w-4 h-4 text-rose-600 dark:text-rose-400" />
             <span className="text-xs font-bold text-rose-700 dark:text-rose-400 uppercase">
-              Giá trị sau {years} năm
+              {format(t.inflationCalc.valueAfterYearsLabel, { years })}
             </span>
           </div>
           <p className="text-2xl font-bold text-rose-900 dark:text-rose-100">
-            {result.purchasingPower}M
+            {format(t.inflationCalc.millionSuffix, { amount: result.purchasingPower })}
           </p>
         </div>
       </div>
@@ -109,39 +112,47 @@ export default function InteractiveInflationCalculator() {
         <div className="flex items-center gap-2 mb-2">
           <AlertTriangle className="w-4 h-4 text-amber-600 dark:text-amber-400" />
           <span className="text-sm font-bold text-amber-800 dark:text-amber-300">
-            Mất sức mua
+            {t.inflationCalc.lossTitle}
           </span>
         </div>
         <p className="text-3xl font-bold text-amber-900 dark:text-amber-100 mb-1">
-          {result.loss}M
+          {format(t.inflationCalc.millionSuffix, { amount: result.loss })}
         </p>
         <p className="text-sm text-amber-700 dark:text-amber-400">
-          ({result.lossPercentage}% giá trị ban đầu)
+          {format(t.inflationCalc.lossPercentOfOriginal, { pct: result.lossPercentage })}
         </p>
       </div>
 
       {/* Explanation */}
       <div className="p-4 bg-stone-50 dark:bg-stone-800 rounded-xl">
         <h4 className="font-semibold text-sm text-stone-900 dark:text-stone-100 mb-3">
-          Công thức tính:
+          {t.inflationCalc.formulaTitle}
         </h4>
         <div className="space-y-2 text-sm">
           <p className="text-stone-700 dark:text-stone-300 font-mono">
-            Giá trị tương lai = Hiện tại / (1 + lạm phát)<sup>năm</sup>
+            {t.inflationCalc.formulaLine}
           </p>
           <p className="text-stone-700 dark:text-stone-300">
-            {amount} / (1 + {inflationRate / 100})<sup>{years}</sup> = {result.purchasingPower}M
+            {format(t.inflationCalc.formulaApplied, {
+              amount,
+              rate: inflationRate / 100,
+              years,
+              result: result.purchasingPower,
+            })}
           </p>
         </div>
 
         <div className="mt-4 pt-4 border-t border-stone-200 dark:border-stone-700">
           <h4 className="font-semibold text-sm text-stone-900 dark:text-stone-100 mb-2">
-            Ý nghĩa:
+            {t.inflationCalc.meaningTitle}
           </h4>
           <p className="text-sm text-stone-600 dark:text-stone-400">
-            Nếu bạn giữ {amount} triệu tiền mặt trong {years} năm với lạm phát {inflationRate}%/năm, 
-            số tiền đó chỉ còn giá trị mua được tương đương {result.purchasingPower} triệu ngày nay. 
-            Đây là lý do cần đầu tư để lợi nhuận vượt lạm phát.
+            {format(t.inflationCalc.meaningBody, {
+              amount,
+              years,
+              rate: inflationRate,
+              result: result.purchasingPower,
+            })}
           </p>
         </div>
       </div>

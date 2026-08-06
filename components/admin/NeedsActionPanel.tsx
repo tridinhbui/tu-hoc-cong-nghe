@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { AlertCircle, ShieldQuestion, Bug, Unlock, FileText, MessageSquare, PartyPopper } from "lucide-react";
+import { getServerLocale } from "@/lib/i18n/server";
+import { getDictionary, format } from "@/lib/i18n";
 
 interface NeedsActionItem {
   key: string;
@@ -14,7 +16,7 @@ interface NeedsActionItem {
 // is a historical number, this is the only one that turns into a to-do list.
 // Pure props in, no data fetching of its own, so the counts here can never
 // drift from what AdminSidebar's badges show - both read the same helpers.
-export default function NeedsActionPanel({
+export default async function NeedsActionPanel({
   pendingAppeals,
   openBugReports,
   pendingUnlocks,
@@ -27,12 +29,19 @@ export default function NeedsActionPanel({
   pendingDocuments: number;
   unreadMessages: number;
 }) {
+  // Stays a server component: pure props in, no browser API, so the
+  // dictionary is read on the server rather than shipping this panel's JS.
+  const locale = await getServerLocale();
+  const t = getDictionary(locale);
+  const ta = t.adminOne.needsAction;
+  const labels = ta.items;
+
   const items: NeedsActionItem[] = [
-    { key: "appeals", label: "Khiếu nại chờ duyệt", count: pendingAppeals, href: "/admin/appeals", icon: ShieldQuestion },
-    { key: "bugs", label: "Báo lỗi đang mở", count: openBugReports, href: "/admin/messages", icon: Bug },
-    { key: "unlocks", label: "Yêu cầu mở khóa bài học", count: pendingUnlocks, href: "/admin/lessons", icon: Unlock },
-    { key: "documents", label: "Tài liệu chờ duyệt", count: pendingDocuments, href: "/admin/documents", icon: FileText },
-    { key: "messages", label: "Tin nhắn & chat chưa đọc", count: unreadMessages, href: "/admin/messages", icon: MessageSquare },
+    { key: "appeals", label: labels.appeals, count: pendingAppeals, href: "/admin/appeals", icon: ShieldQuestion },
+    { key: "bugs", label: labels.bugs, count: openBugReports, href: "/admin/messages", icon: Bug },
+    { key: "unlocks", label: labels.unlocks, count: pendingUnlocks, href: "/admin/lessons", icon: Unlock },
+    { key: "documents", label: labels.documents, count: pendingDocuments, href: "/admin/documents", icon: FileText },
+    { key: "messages", label: labels.messages, count: unreadMessages, href: "/admin/messages", icon: MessageSquare },
   ];
 
   const totalPending = items.reduce((sum, item) => sum + item.count, 0);
@@ -42,22 +51,20 @@ export default function NeedsActionPanel({
       <div className="flex items-center justify-between mb-1">
         <h2 className="text-sm font-extrabold text-stone-900 dark:text-stone-100 uppercase tracking-widest flex items-center gap-2">
           <AlertCircle className="w-4 h-4 text-amber-500" />
-          Cần xử lý ngay
+          {ta.title}
         </h2>
         {totalPending > 0 && (
-          <span className="text-xs text-stone-500 dark:text-stone-400">{totalPending} việc</span>
+          <span className="text-xs text-stone-500 dark:text-stone-400">
+            {format(ta.pendingCount, { count: totalPending })}
+          </span>
         )}
       </div>
-      <p className="text-xs text-stone-500 dark:text-stone-400 mb-4">
-        Mọi hàng đợi cần admin duyệt hoặc trả lời, gộp về một chỗ.
-      </p>
+      <p className="text-xs text-stone-500 dark:text-stone-400 mb-4">{ta.subtitle}</p>
 
       {totalPending === 0 ? (
         <div className="py-8 flex flex-col items-center gap-2 text-center">
           <PartyPopper className="w-8 h-8 text-emerald-500" />
-          <p className="text-sm font-bold text-stone-700 dark:text-stone-300">
-            Không có việc gì cần xử lý 🎉
-          </p>
+          <p className="text-sm font-bold text-stone-700 dark:text-stone-300">{ta.allClear}</p>
         </div>
       ) : (
         <div className="space-y-2">
@@ -89,10 +96,10 @@ export default function NeedsActionPanel({
                     href={item.href}
                     className="shrink-0 inline-flex items-center gap-1 text-xs font-bold px-3 py-1.5 rounded-lg bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 hover:opacity-90 transition-opacity"
                   >
-                    Xử lý ngay →
+                    {ta.actionNow}
                   </Link>
                 ) : (
-                  <span className="shrink-0 text-xs font-semibold text-stone-400 dark:text-stone-600">Đã xong</span>
+                  <span className="shrink-0 text-xs font-semibold text-stone-400 dark:text-stone-600">{ta.done}</span>
                 )}
               </div>
             );

@@ -1,8 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { useI18n } from "@/lib/i18n/context";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 import {
   LayoutDashboard,
   MessageSquare,
@@ -26,18 +28,21 @@ export interface AdminBadgeCounts {
   appeals: number;
 }
 
-const NAV_ITEMS = [
-  { href: "/admin", label: "Tổng quan", icon: LayoutDashboard, exact: true },
-  { href: "/admin/messages", label: "Tin nhắn & Thông báo", icon: MessageSquare, badgeKey: "messages" as const },
-  { href: "/admin/appeals", label: "Khiếu nại & Báo lỗi AI", icon: ShieldQuestion, badgeKey: "appeals" as const },
-  { href: "/admin/users", label: "Người dùng", icon: Users },
-  { href: "/admin/lessons", label: "Bài học", icon: BookOpen, badgeKey: "unlocks" as const },
-  { href: "/admin/videos", label: "Video", icon: Play },
-  { href: "/admin/games", label: "Trò chơi", icon: Gamepad2 },
-  { href: "/admin/cfa-library", label: "Thư viện CFA", icon: GraduationCap },
-  { href: "/admin/documents", label: "Tài liệu", icon: FileText, badgeKey: "documents" as const },
-  { href: "/admin/settings", label: "Cài đặt", icon: Settings },
-];
+function getNavItems(t: Dictionary) {
+  const nav = t.adminOne.sidebar.navItems;
+  return [
+    { href: "/admin", label: nav.overview, icon: LayoutDashboard, exact: true },
+    { href: "/admin/messages", label: nav.messages, icon: MessageSquare, badgeKey: "messages" as const },
+    { href: "/admin/appeals", label: nav.appeals, icon: ShieldQuestion, badgeKey: "appeals" as const },
+    { href: "/admin/users", label: nav.users, icon: Users },
+    { href: "/admin/lessons", label: nav.lessons, icon: BookOpen, badgeKey: "unlocks" as const },
+    { href: "/admin/videos", label: nav.videos, icon: Play },
+    { href: "/admin/games", label: nav.games, icon: Gamepad2 },
+    { href: "/admin/cfa-library", label: nav.cfaLibrary, icon: GraduationCap },
+    { href: "/admin/documents", label: nav.documents, icon: FileText, badgeKey: "documents" as const },
+    { href: "/admin/settings", label: nav.settings, icon: Settings },
+  ];
+}
 
 function NavBadge({ count }: { count: number }) {
   if (count <= 0) return null;
@@ -55,23 +60,26 @@ export default function AdminSidebar({
   adminEmail: string;
   badgeCounts?: AdminBadgeCounts;
 }) {
+  const { t } = useI18n();
+  const ts = t.adminOne.sidebar;
+  const navItems = useMemo(() => getNavItems(t), [t]);
   const pathname = usePathname();
   const router = useRouter();
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     // Prefetch all admin routes in the background on mount for zero-latency tab switching
-    NAV_ITEMS.forEach((item) => {
+    navItems.forEach((item) => {
       router.prefetch(item.href);
     });
-  }, [router]);
+  }, [router, navItems]);
 
   const isActive = (href: string, exact?: boolean) =>
     exact ? pathname === href : pathname.startsWith(href);
 
   const NavLinks = (
     <nav className="flex-1 px-3 py-4 space-y-1">
-      {NAV_ITEMS.map((item) => {
+      {navItems.map((item) => {
         const Icon = item.icon;
         const active = isActive(item.href, item.exact);
         const count = item.badgeKey && badgeCounts ? badgeCounts[item.badgeKey] : 0;
@@ -100,11 +108,11 @@ export default function AdminSidebar({
     <>
       {/* Mobile top bar */}
       <div className="lg:hidden fixed top-0 inset-x-0 z-30 bg-white dark:bg-stone-900 border-b border-stone-200 dark:border-stone-800 px-4 py-3 flex items-center justify-between">
-        <span className="font-bold text-stone-900 dark:text-stone-100">Admin</span>
+        <span className="font-bold text-stone-900 dark:text-stone-100">{ts.brandShort}</span>
         <button
           onClick={() => setMobileOpen(true)}
           className="p-2 rounded-lg hover:bg-stone-100 dark:hover:bg-stone-800"
-          aria-label="Mở menu"
+          aria-label={ts.openMenu}
         >
           <Menu className="w-5 h-5 text-stone-700 dark:text-stone-300" />
         </button>
@@ -119,11 +127,11 @@ export default function AdminSidebar({
           />
           <div className="absolute left-0 top-0 bottom-0 w-64 bg-white dark:bg-stone-900 flex flex-col">
             <div className="flex items-center justify-between px-4 py-3 border-b border-stone-200 dark:border-stone-800">
-              <span className="font-bold text-stone-900 dark:text-stone-100">Admin</span>
+              <span className="font-bold text-stone-900 dark:text-stone-100">{ts.brandShort}</span>
               <button
                 onClick={() => setMobileOpen(false)}
                 className="p-1.5 rounded-lg hover:bg-stone-100 dark:hover:bg-stone-800"
-                aria-label="Đóng menu"
+                aria-label={ts.closeMenu}
               >
                 <X className="w-5 h-5 text-stone-700 dark:text-stone-300" />
               </button>
@@ -137,8 +145,8 @@ export default function AdminSidebar({
       {/* Desktop sidebar */}
       <aside className="hidden lg:flex fixed left-0 top-0 bottom-0 w-64 bg-white dark:bg-stone-900 border-r border-stone-200 dark:border-stone-800 flex-col z-20">
         <div className="px-4 py-4 border-b border-stone-200 dark:border-stone-800">
-          <span className="font-bold text-lg text-stone-900 dark:text-stone-100">Admin Panel</span>
-          <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">Tự Học Tài Chính</p>
+          <span className="font-bold text-lg text-stone-900 dark:text-stone-100">{ts.brandFull}</span>
+          <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">{ts.appName}</p>
         </div>
         {NavLinks}
         <SidebarFooter adminEmail={adminEmail} />
@@ -151,6 +159,7 @@ export default function AdminSidebar({
 }
 
 function SidebarFooter({ adminEmail }: { adminEmail: string }) {
+  const { t } = useI18n();
   return (
     <div className="px-3 py-4 border-t border-stone-200 dark:border-stone-800 space-y-1">
       <p className="px-3 text-xs text-stone-500 dark:text-stone-400 truncate mb-1">{adminEmail}</p>
@@ -159,7 +168,7 @@ function SidebarFooter({ adminEmail }: { adminEmail: string }) {
         className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-semibold text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors"
       >
         <ArrowLeft className="w-4 h-4" />
-        Quay lại app
+        {t.adminOne.sidebar.backToApp}
       </Link>
     </div>
   );

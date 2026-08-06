@@ -8,6 +8,10 @@ import {
   SCHEDULE_CURRENT,
   type TaxSchedule,
 } from "@/lib/vn-income-tax";
+import { useI18n } from "@/lib/i18n/context";
+import { format, intlLocale } from "@/lib/i18n";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
+import type { Locale } from "@/lib/i18n/locales";
 
 // Cắt lát thu nhập theo bậc thuế, widget cho các bài khai `interactiveType:
 // "tax-brackets"`.
@@ -34,12 +38,14 @@ const COLORS = [
   "bg-stone-500 dark:bg-stone-400",
 ];
 
-const fmt = (trieu: number) =>
-  trieu >= 1
-    ? `${trieu.toLocaleString("vi-VN", { maximumFractionDigits: 2 })} tr`
-    : `${Math.round(trieu * 1000).toLocaleString("vi-VN")} ng`;
+function fmt(trieu: number, t: Dictionary, locale: Locale) {
+  return trieu >= 1
+    ? format(t.taxBrackets.millionUnit, { value: trieu.toLocaleString(intlLocale(locale), { maximumFractionDigits: 2 }) })
+    : format(t.taxBrackets.thousandUnit, { value: Math.round(trieu * 1000).toLocaleString(intlLocale(locale)) });
+}
 
 export default function InteractiveTaxBrackets() {
+  const { t, locale } = useI18n();
   const [gross, setGross] = useState(30);
   const [dependents, setDependents] = useState(0);
   const [scheduleId, setScheduleId] = useState<"current" | "2026">("current");
@@ -57,21 +63,21 @@ export default function InteractiveTaxBrackets() {
   return (
     <div className="rounded-3xl border border-stone-200 bg-white p-6 dark:border-stone-800 dark:bg-stone-900">
       <h3 className="text-sm font-extrabold text-stone-900 dark:text-stone-100">
-        Lương của bạn bị cắt thành mấy lát, mỗi lát chịu thuế bao nhiêu
+        {t.taxBrackets.title}
       </h3>
 
       <div className="mt-4 grid gap-3 sm:grid-cols-2">
-        <Row label="Lương gộp mỗi tháng" value={`${gross} triệu`}>
+        <Row label={t.taxBrackets.grossSalaryLabel} value={format(t.taxBrackets.grossSalaryValue, { value: gross })}>
           <input
             type="range" min={5} max={150} step={1} value={gross}
-            onChange={(e) => setGross(Number(e.target.value))} aria-label="Lương gộp mỗi tháng"
+            onChange={(e) => setGross(Number(e.target.value))} aria-label={t.taxBrackets.grossSalaryAriaLabel}
             className="w-full cursor-pointer accent-stone-900 dark:accent-stone-100"
           />
         </Row>
-        <Row label="Người phụ thuộc" value={`${dependents}`}>
+        <Row label={t.taxBrackets.dependentsLabel} value={`${dependents}`}>
           <input
             type="range" min={0} max={4} step={1} value={dependents}
-            onChange={(e) => setDependents(Number(e.target.value))} aria-label="Số người phụ thuộc"
+            onChange={(e) => setDependents(Number(e.target.value))} aria-label={t.taxBrackets.dependentsAriaLabel}
             className="w-full cursor-pointer accent-stone-900 dark:accent-stone-100"
           />
         </Row>
@@ -98,27 +104,34 @@ export default function InteractiveTaxBrackets() {
       {/* Ba khoản trừ trước khi chạm tới bậc thuế nào - phần lớn người tưởng
           thuế tính thẳng trên lương gộp. */}
       <div className="mt-4 space-y-1 rounded-2xl bg-stone-50 p-3 text-[12px] dark:bg-stone-800/60">
-        <Line label="Lương gộp" value={fmt(gross)} />
-        <Line label={`− Bảo hiểm bắt buộc (${(INSURANCE_RATE * 100).toFixed(1)}%)`} value={`−${fmt(r.insurance)}`} />
+        <Line label={t.taxBrackets.grossSalaryLineLabel} value={fmt(gross, t, locale)} />
         <Line
-          label={`− Giảm trừ bản thân${dependents ? ` và ${dependents} người phụ thuộc` : ""}`}
-          value={`−${fmt(r.deduction)}`}
+          label={format(t.taxBrackets.insuranceLineLabel, { rate: (INSURANCE_RATE * 100).toFixed(1) })}
+          value={`−${fmt(r.insurance, t, locale)}`}
+        />
+        <Line
+          label={
+            dependents
+              ? format(t.taxBrackets.deductionLineWithDependents, { count: dependents })
+              : t.taxBrackets.deductionLineLabel
+          }
+          value={`−${fmt(r.deduction, t, locale)}`}
         />
         <div className="border-t border-stone-200 pt-1 dark:border-stone-700">
-          <Line label="Thu nhập tính thuế" value={fmt(r.taxableIncome)} bold />
+          <Line label={t.taxBrackets.taxableIncomeLineLabel} value={fmt(r.taxableIncome, t, locale)} bold />
         </div>
       </div>
 
       {r.slices.length > 0 ? (
         <>
           <div className="mt-4 flex h-7 w-full overflow-hidden rounded-full" role="img"
-            aria-label={`Thu nhập tính thuế chia thành ${r.slices.length} lát theo bậc thuế`}>
+            aria-label={format(t.taxBrackets.slicesAriaLabel, { count: r.slices.length })}>
             {r.slices.map((s, i) => (
               <div
                 key={i}
                 className={COLORS[i % COLORS.length]}
                 style={{ width: `${(s.amount / r.taxableIncome) * 100}%` }}
-                title={`${(s.rate * 100).toFixed(0)}% trên ${fmt(s.amount)}`}
+                title={format(t.taxBrackets.sliceTitle, { rate: (s.rate * 100).toFixed(0), amount: fmt(s.amount, t, locale) })}
               />
             ))}
           </div>
@@ -127,10 +140,10 @@ export default function InteractiveTaxBrackets() {
               <div key={i} className="flex items-center gap-2 text-[11px]">
                 <span className={`h-2.5 w-2.5 shrink-0 rounded-sm ${COLORS[i % COLORS.length]}`} />
                 <span className="text-stone-600 dark:text-stone-300">
-                  {fmt(s.amount)} chịu {(s.rate * 100).toFixed(0)}%
+                  {format(t.taxBrackets.sliceLine, { amount: fmt(s.amount, t, locale), rate: (s.rate * 100).toFixed(0) })}
                 </span>
                 <span className="ml-auto font-bold tabular-nums text-stone-800 dark:text-stone-100">
-                  {fmt(s.tax)}
+                  {fmt(s.tax, t, locale)}
                 </span>
               </div>
             ))}
@@ -138,32 +151,31 @@ export default function InteractiveTaxBrackets() {
         </>
       ) : (
         <p className="mt-4 rounded-2xl border border-dashed border-stone-300 px-3 py-2 text-[12px] text-stone-500 dark:border-stone-700 dark:text-stone-400">
-          Sau bảo hiểm và giảm trừ thì không còn thu nhập tính thuế - không phải nộp đồng nào.
+          {t.taxBrackets.noTaxableIncomeNote}
         </p>
       )}
 
       <div className="mt-4 grid gap-3 sm:grid-cols-3">
-        <Card label="Thuế phải nộp" value={fmt(r.tax)} />
-        <Card label="Thuế suất biên" value={`${(r.marginalRate * 100).toFixed(0)}%`} tone="warn" />
-        <Card label="Thuế suất thực tế" value={`${(r.effectiveRate * 100).toFixed(1)}%`} tone="good" />
+        <Card label={t.taxBrackets.taxDueLabel} value={fmt(r.tax, t, locale)} />
+        <Card label={t.taxBrackets.marginalRateLabel} value={`${(r.marginalRate * 100).toFixed(0)}%`} tone="warn" />
+        <Card label={t.taxBrackets.effectiveRateLabel} value={`${(r.effectiveRate * 100).toFixed(1)}%`} tone="good" />
       </div>
 
       <p className="mt-4 rounded-2xl bg-stone-50 p-4 text-xs leading-relaxed text-stone-600 dark:bg-stone-800/60 dark:text-stone-300">
-        Thuế suất biên {(r.marginalRate * 100).toFixed(0)}% chỉ áp cho lát trên cùng, nên thuế suất
-        thực tế trên toàn bộ lương chỉ là {(r.effectiveRate * 100).toFixed(1)}%. Tăng lương thêm 1
-        triệu thì nộp thêm <span className="font-bold">{fmt(nextMillion)}</span> và giữ lại phần còn
-        lại — không có mức lương nào khiến tăng lương làm bạn nhận về ít đi.{" "}
+        {format(t.taxBrackets.summaryText, {
+          marginalRate: (r.marginalRate * 100).toFixed(0),
+          effectiveRate: (r.effectiveRate * 100).toFixed(1),
+          nextMillion: fmt(nextMillion, t, locale),
+        })}{" "}
         {diff > 0.001
-          ? `Cùng hồ sơ này, ${other.label} thu nhiều hơn ${fmt(diff)} mỗi tháng.`
+          ? format(t.taxBrackets.scheduleEarnsMoreNote, { label: other.label, amount: fmt(diff, t, locale) })
           : diff < -0.001
-            ? `Cùng hồ sơ này, ${other.label} thu ít hơn ${fmt(-diff)} mỗi tháng.`
-            : `Ở mức lương này hai biểu thuế thu như nhau.`}
+            ? format(t.taxBrackets.scheduleEarnsLessNote, { label: other.label, amount: fmt(-diff, t, locale) })
+            : t.taxBrackets.scheduleSameNote}
       </p>
 
       <p className="mt-2 text-[10px] leading-relaxed text-stone-400 dark:text-stone-500">
-        Mô hình dạy học: bảo hiểm tính thẳng {(INSURANCE_RATE * 100).toFixed(1)}% trên lương gộp,
-        bỏ qua trần đóng bảo hiểm — nên với lương rất cao, số bảo hiểm ở đây cao hơn thực tế và
-        thuế thấp hơn một chút.
+        {format(t.taxBrackets.modelNote, { rate: (INSURANCE_RATE * 100).toFixed(1) })}
       </p>
     </div>
   );
