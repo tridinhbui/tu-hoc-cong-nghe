@@ -25,7 +25,7 @@ import {
 } from "@/lib/quiet-corner";
 import MotivationShareCard from "@/components/MotivationShareCard";
 import BreathingCircle from "@/components/BreathingCircle";
-import QuietWindowScene from "@/components/QuietWindowScene";
+import QuietForestScene from "@/components/QuietForestScene";
 import { FLARE_MS, flameAt } from "@/lib/quiet-flame";
 import {
   WORRY_THEMES,
@@ -252,7 +252,7 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
               được để nhìn nghiêng. DinhHoaFlame vẫn là thứ hiện ra trước khi
               cảnh tải xong và là thứ duy nhất hiện ra với người bật giảm
               chuyển động - nó là fallback thật, không phải mã chết. */}
-          <QuietWindowScene intensity={flame} />
+          <QuietForestScene intensity={flame} />
 
           {motivation ? (
             // Vào chậm và nối tiếp nhau chứ không hiện cùng lúc: nhãn trước,

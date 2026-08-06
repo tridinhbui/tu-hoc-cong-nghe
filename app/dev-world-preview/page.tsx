@@ -1,5 +1,8 @@
 import { notFound } from "next/navigation";
 import WorldPreview from "@/components/career-district/WorldPreview";
+import QuietForestScene from "@/components/QuietForestScene";
+import TopicMasteryWidget from "@/components/TopicMasteryWidget";
+import { computeDomainCoverage } from "@/lib/career-competency";
 
 export const metadata = { title: "Xem cảnh 3D (dev)" };
 
@@ -23,7 +26,41 @@ export const metadata = { title: "Xem cảnh 3D (dev)" };
  *  private folder và loại hẳn khỏi routing. Bản đầu đặt ở `app/_world_preview`
  *  và ra 404 kể cả khi dev, trông y hệt như trang bị proxy chặn. */
 
-export default function WorldPreviewPage() {
+/** `?scene=forest` mở cảnh đống lửa ở /loi-nhan; không có tham số thì vẫn là
+ *  phố nghề như trước.
+ *
+ *  Có công tắc thay vì sửa tạm file này rồi nhớ revert - đúng cái vòng lặp mà
+ *  chú thích ngay trên đã ghi là đã làm ba lần. Cảnh đống lửa nằm sau tường
+ *  đăng nhập ở /loi-nhan, nên không có lối này thì không nhìn được nó bằng
+ *  ảnh chụp trong lúc dựng. */
+export default async function WorldPreviewPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ scene?: string }>;
+}) {
   if (process.env.NODE_ENV === "production") notFound();
+  const { scene } = await searchParams;
+  if (scene === "mastery") {
+    // Một tập bài "đã học" giả lập, chỉ để nhìn bố cục: lấy 40 bài đầu của
+    // track cá nhân cộng vài bài định giá, đủ để bảng có cả mảng cao lẫn mảng
+    // gần bằng 0 và kiểm được cả ba mức màu.
+    const fake = [...Array.from({ length: 40 }, (_, i) => i + 1), 131, 133, 135];
+    return (
+      <div className="min-h-screen bg-stone-100 p-6 dark:bg-stone-950">
+        <div className="mx-auto max-w-3xl">
+          <TopicMasteryWidget coverage={computeDomainCoverage(fake)} />
+        </div>
+      </div>
+    );
+  }
+  if (scene === "forest") {
+    return (
+      <div className="min-h-screen bg-stone-950 p-6">
+        <div className="mx-auto h-[420px] max-w-2xl overflow-hidden rounded-2xl">
+          <QuietForestScene intensity={0.85} />
+        </div>
+      </div>
+    );
+  }
   return <WorldPreview />;
 }

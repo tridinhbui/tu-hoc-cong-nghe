@@ -1,10 +1,14 @@
 import { describe, expect, it } from "vitest";
 import {
   KINDLE_SECONDS,
+  SHELTER_RADIUS,
+  TREE_COUNT,
   ambientWind,
   flameMotion,
+  forestTrees,
   gustAt,
   kindleProgress,
+  pushOutOfShelter,
   springBack,
 } from "../quiet-flame-scene";
 
@@ -118,5 +122,71 @@ describe("ve vi tri nghi sau khi tha tay", () => {
   it("khong vot qua 0 du delta lon bat thuong", () => {
     expect(springBack(0.5, 10)).toBe(0);
     expect(springBack(-0.5, 10)).toBe(0);
+  });
+});
+
+describe("bo cuc rung", () => {
+  it("dung so cay yeu cau", () => {
+    expect(forestTrees()).toHaveLength(TREE_COUNT);
+    expect(forestTrees(7)).toHaveLength(7);
+  });
+
+  it("khong cay nao moc trong khoang trong quanh dong lua", () => {
+    for (const t of forestTrees()) {
+      expect(Math.hypot(t.x, t.z)).toBeGreaterThanOrEqual(SHELTER_RADIUS + 1.4);
+    }
+  });
+
+  // Cay roi vao hanh lang giua may quay (z ~ +5) va dong lua se che mat dung
+  // thu duy nhat canh nay co de xem.
+  it("khong cay nao chan tam nhin cua may quay", () => {
+    for (const t of forestTrees()) {
+      expect(t.z > 0.4 && Math.abs(t.x) < 2.4).toBe(false);
+    }
+  });
+
+  // Bo sinh phai tat dinh: React goi effect hai lan o che do Strict, va mot khu
+  // rung tu sap lai moi lan dung thi khong chup anh kiem chung duoc.
+  it("cho ra dung mot khu rung o moi lan goi", () => {
+    expect(forestTrees()).toEqual(forestTrees());
+  });
+
+  it("moi cay co kich thuoc doc duoc", () => {
+    for (const t of forestTrees()) {
+      expect(t.height).toBeGreaterThan(0);
+      expect(t.radius).toBeGreaterThan(0);
+      expect(Math.abs(t.lean)).toBeLessThan(0.1 + 0.05);
+    }
+  });
+});
+
+describe("tui kho duoi tan cay", () => {
+  it("de nguyen diem da o ngoai vung che", () => {
+    const p = pushOutOfShelter(6, -9);
+    expect(p.x).toBe(6);
+    expect(p.z).toBe(-9);
+  });
+
+  // Day la tinh chat quyet dinh viec mua co xuyen qua dong lua hay khong.
+  it("day moi diem ben trong ra han ngoai mep tan", () => {
+    for (let x = -SHELTER_RADIUS; x <= SHELTER_RADIUS; x += 0.13) {
+      for (let z = -SHELTER_RADIUS; z <= SHELTER_RADIUS; z += 0.13) {
+        const p = pushOutOfShelter(x, z);
+        expect(Math.hypot(p.x, p.z)).toBeGreaterThanOrEqual(SHELTER_RADIUS);
+      }
+    }
+  });
+
+  it("giu nguyen huong khi day ra", () => {
+    const p = pushOutOfShelter(0.6, 0.8); // huong 3-4-5
+    expect(p.x / p.z).toBeCloseTo(0.6 / 0.8, 10);
+  });
+
+  // Chia cho 0 o day se nhet NaN vao buffer hinh hoc va lam bien mat ca man mua.
+  it("khong tra ve NaN o ngay goc toa do", () => {
+    const p = pushOutOfShelter(0, 0);
+    expect(Number.isFinite(p.x)).toBe(true);
+    expect(Number.isFinite(p.z)).toBe(true);
+    expect(Math.hypot(p.x, p.z)).toBeGreaterThanOrEqual(SHELTER_RADIUS);
   });
 });

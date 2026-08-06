@@ -10,7 +10,7 @@ import { startRain, type RainHandle } from "@/lib/rain-audio";
 /** three.js chỉ chạy phía trình duyệt - ssr:false giữ nó ngoài bundle server,
  *  và trong lúc chờ thì ngọn lửa 2D cũ đứng thế chỗ. Đó cũng là lý do
  *  DinhHoaFlame không bị xoá: nó là fallback thật, không phải mã chết. */
-const SceneInner = dynamic(() => import("./QuietWindowSceneInner"), {
+const SceneInner = dynamic(() => import("./QuietForestSceneInner"), {
   ssr: false,
   loading: () => <FlameFallback />,
 });
@@ -24,8 +24,14 @@ function FlameFallback({ intensity = 0.6 }: { intensity?: number }) {
 }
 
 /**
- * Khung cửa sổ mưa với ngọn lửa 3D, thay cho ngọn lửa phẳng ở đầu trang
+ * Một đốm lửa nhỏ trong mưa nhỏ giữa rừng, thay cho ngọn lửa phẳng ở đầu trang
  * /loi-nhan.
+ *
+ * Trước đây cảnh này là một khung cửa sổ: người xem ngồi trong nhà nhìn mưa
+ * qua kính, và tấm kính đó giữ mưa với lửa ở hai phía không bao giờ gặp nhau.
+ * Bỏ kính đi thì mưa rơi cả trước lẫn sau ngọn lửa - khác biệt giữa "nhìn mưa"
+ * và "đang ở trong mưa" - đổi lại phải trả lời được vì sao lửa không tắt, và
+ * câu trả lời là tán cây ngay trên đầu (SHELTER_RADIUS).
  *
  * Ba quyết định đáng nói:
  *
@@ -38,7 +44,7 @@ function FlameFallback({ intensity = 0.6 }: { intensity?: number }) {
  *      ngọn lửa tĩnh như trước. Đây là nhóm mà chuyển động gây khó chịu thật,
  *      nên "vẫn chạy nhưng chậm hơn" không phải một đáp án.
  */
-export default function QuietWindowScene({ intensity = 0.6 }: { intensity?: number }) {
+export default function QuietForestScene({ intensity = 0.6 }: { intensity?: number }) {
   const reduced = useReducedMotion();
   const [visible, setVisible] = useState(false);
   const [rainOn, setRainOn] = useState(false);
