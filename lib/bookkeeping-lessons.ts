@@ -30,12 +30,27 @@ export const BOOKKEEPING_LESSONS: Lesson[] = [
     track: "professional",
     whyItMatters:
       "Đây là quy tắc duy nhất trong kế toán mà nếu không nắm thì mọi thứ phía sau chỉ là học thuộc. Nắm rồi thì phần lớn nghiệp vụ tự suy ra được, kể cả những nghiệp vụ chưa gặp bao giờ.",
-    openingQuestion: "Công ty mua một máy in giá 20 triệu, trả bằng tiền mặt. Ghi sổ thế nào?",
+    // 50 triệu, không phải 20 triệu như bản đầu.
+    //
+    // Theo Thông tư 45/2013/TT-BTC, một khoản chỉ được ghi nhận là tài sản cố
+    // định khi nguyên giá từ 30 triệu đồng trở lên. Chiếc máy in 20 triệu ở bản
+    // cũ không đạt ngưỡng đó: nó phải vào công cụ dụng cụ rồi phân bổ dần qua
+    // chi phí trả trước. Nhưng bốn phương án lại không có phương án nào như
+    // vậy, nên người học nào biết luật sẽ không tìm thấy đáp án đúng và buộc
+    // phải chọn một câu sai - một kế toán viên đã phản hồi đúng điều này.
+    //
+    // Chữa bằng cách nâng giá trị vượt ngưỡng chứ không thêm phương án công cụ
+    // dụng cụ: bài này dạy nguyên tắc ghi sổ kép và chuyện "bỏ tiền ra không
+    // phải là phát sinh chi phí", còn ranh giới TSCĐ/CCDC là một bài khác. Thêm
+    // phương án đó vào đây sẽ đổi hẳn câu hỏi đang hỏi về điều gì, và phần giải
+    // thích nói về khấu hao nhiều năm cũng không còn đúng (CCDC phân bổ qua tài
+    // khoản 242, không khấu hao như TSCĐ).
+    openingQuestion: "Công ty mua một máy in giá 50 triệu, trả bằng tiền mặt. Ghi sổ thế nào?",
     openingOptions: [
-      "Nợ tài sản cố định 20 triệu, Có tiền mặt 20 triệu",
-      "Nợ chi phí 20 triệu, Có tiền mặt 20 triệu",
-      "Nợ tiền mặt 20 triệu, Có tài sản cố định 20 triệu",
-      "Nợ tài sản cố định 20 triệu, Có chi phí quản lý doanh nghiệp 20 triệu",
+      "Nợ tài sản cố định 50 triệu, Có tiền mặt 50 triệu",
+      "Nợ chi phí 50 triệu, Có tiền mặt 50 triệu",
+      "Nợ tiền mặt 50 triệu, Có tài sản cố định 50 triệu",
+      "Nợ tài sản cố định 50 triệu, Có chi phí quản lý doanh nghiệp 50 triệu",
     ],
     correctOption: 0,
     explanation:
