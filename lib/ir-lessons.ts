@@ -64,7 +64,7 @@ export const IR_LESSONS: Lesson[] = [
       {
         question: "Vì sao IR không được chọn thời điểm đẹp để công bố tin xấu?",
         options: [
-          "Vì quy định buộc công bố khi thông tin phát sinh, không khi thuận lợi",
+          "Vì quy định buộc công bố khi thông tin phát sinh",
           "Vì tin xấu công bố muộn sẽ bị báo chí phát hiện và đưa tin trước",
           "Vì ban điều hành thường muốn công bố sớm để giảm áp lực nội bộ",
           "Vì nhà đầu tư tổ chức luôn biết trước qua các kênh riêng của họ",
@@ -76,7 +76,7 @@ export const IR_LESSONS: Lesson[] = [
       {
         question: "Nhà đầu tư tổ chức đánh giá cao điều gì nhất ở một bộ phận IR?",
         options: [
-          "Tính nhất quán - nói gì thì quý sau vẫn đo lại được bằng cùng thước đo",
+          "Tính nhất quán giữa các quý",
           "Khả năng trình bày trực quan và bộ tài liệu được thiết kế đẹp",
           "Tốc độ phản hồi email và số buổi gặp gỡ tổ chức trong năm",
           "Quan hệ tốt với các công ty chứng khoán đang khuyến nghị mua cổ phiếu",
@@ -88,9 +88,9 @@ export const IR_LESSONS: Lesson[] = [
       {
         question: "Cung cấp thông tin trọng yếu riêng cho một quỹ lớn trước khi công bố là gì?",
         options: [
-          "Vi phạm nguyên tắc công bằng thông tin giữa cổ đông",
+          "Vi phạm nguyên tắc công bằng thông tin",
           "Chăm sóc nhà đầu tư lớn, ngành vẫn chấp nhận",
-          "Rủi ro truyền thông nhưng không vi phạm quy định",
+          "Rủi ro truyền thông nhưng chưa vi phạm quy định nào",
           "Hợp lệ nếu bên nhận có cam kết bảo mật",
         ],
         correct: 0,
