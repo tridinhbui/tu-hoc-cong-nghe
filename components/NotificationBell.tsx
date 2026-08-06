@@ -14,6 +14,7 @@ import {
 } from "@/lib/supabase-community";
 import { isValidAvatar } from "@/lib/avatar-utils";
 import { timeAgo } from "@/lib/time-ago";
+import { useI18n } from "@/lib/i18n/context";
 
 function notificationText(n: CommunityNotification): string {
   if (n.type === "comment") return `${n.actor_name} đã bình luận vào bài viết của bạn`;
@@ -25,6 +26,7 @@ function notificationText(n: CommunityNotification): string {
  *  in AppNavbar, same as the rest of the always-visible chrome, so it works
  *  from any page - not just while looking at the feed itself. */
 export default function NotificationBell({ userId }: { userId: string }) {
+  const { t } = useI18n();
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [unreadCount, setUnreadCount] = useState(0);
@@ -160,7 +162,7 @@ export default function NotificationBell({ userId }: { userId: string }) {
         ref={buttonRef}
         type="button"
         onClick={() => void toggleOpen()}
-        aria-label="Thông báo"
+        aria-label={t.notifications.ariaLabel}
         aria-expanded={open}
         className="relative flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-lg border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-900 transition-colors shrink-0"
       >
@@ -179,23 +181,23 @@ export default function NotificationBell({ userId }: { userId: string }) {
           className="overflow-y-auto overscroll-contain rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 shadow-xl z-[60]"
         >
           <div className="flex items-center justify-between gap-2 px-4 py-3 border-b border-stone-100 dark:border-stone-800">
-            <p className="text-xs font-black uppercase tracking-wide text-stone-500 dark:text-stone-400">Thông báo</p>
+            <p className="text-xs font-black uppercase tracking-wide text-stone-500 dark:text-stone-400">{t.notifications.title}</p>
             {unreadCount > 0 && (
               <button
                 type="button"
                 onClick={() => void handleMarkAllRead()}
                 className="text-[11px] font-bold text-emerald-600 dark:text-emerald-400 hover:underline"
               >
-                Đánh dấu đã đọc tất cả
+                {t.notifications.markAllRead}
               </button>
             )}
           </div>
 
           {loading ? (
-            <p className="px-4 py-6 text-center text-xs text-stone-400">Đang tải...</p>
+            <p className="px-4 py-6 text-center text-xs text-stone-400">{t.notifications.loading}</p>
           ) : !notifications || notifications.length === 0 ? (
             <p className="px-4 py-6 text-center text-xs text-stone-400">
-              Chưa có thông báo nào. Đăng bài hoặc bình luận trên FinSocial để bắt đầu nhận thông báo khi có người tương tác.
+              {t.notifications.empty}
             </p>
           ) : (
             <div className="divide-y divide-stone-100 dark:divide-stone-800">

@@ -2469,4 +2469,54 @@ export const en: Dictionary = {
     ariaLabel: "Mark it yourself",
   },
 
+
+  // components/RecallCard.tsx - the spaced-repetition question on the dashboard.
+  recallCard: {
+    // The sentence has a coloured <span> around the day number in the middle,
+    // so it is split into three pieces rather than holding HTML in one value -
+    // the order of those pieces differs by language, and a value carrying a
+    // tag would need dangerouslySetInnerHTML to render at all.
+    fromLabel: "From",
+    defaultTitle: "Recall before moving on",
+    dayLabel: "Day {day}",
+    questionSuffix: "({title}) - which of these is right?",
+    correct: "Correct - that one is sticking.",
+    wrong: "Not quite - which is exactly when reviewing earns its keep.",
+  },
+
+  // components/StreakReminderManager.tsx - the browser-notification prompt.
+  streakReminder: {
+    title: "Turn on reminders so you don't lose your streak or miss a review",
+    note: "You'll only be reminded while this tab is open or when you come back to it.",
+    enable: "Turn on notifications",
+    later: "Not now",
+    close: "Close",
+  },
+
+  // components/TopicMasteryWidget.tsx
+  topicMastery: {
+    title: "Coverage by topic",
+    subtitle: "Based on lessons completed · furthest topic first",
+    byCareer: "By career",
+    done: "{done} of {total} lessons",
+  },
+
+  // components/NotificationBell.tsx
+  notifications: {
+    ariaLabel: "Notifications",
+    title: "Notifications",
+    markAllRead: "Mark all as read",
+    loading: "Loading...",
+    empty:
+      "Nothing yet. Post or comment on FinSocial and you'll hear about it here when someone responds.",
+  },
+
+  // components/CareerGoalWidget.tsx
+  careerGoalWidget: {
+    title: "Career goal",
+    progress: "{completed} of {total} related lessons done",
+    continue: "Continue: {title}",
+    allDone: "You've finished every related lesson - revisit your goal",
+  },
+
 };

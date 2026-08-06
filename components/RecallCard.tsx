@@ -3,6 +3,8 @@
 import { useMemo, useState } from "react";
 import { RotateCcw, Check, X } from "lucide-react";
 import type { RecallItem } from "@/lib/recall-schedule";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 function shuffledOptions(item: RecallItem, seed: number): { text: string; correct: boolean }[] {
   const options = [
@@ -24,7 +26,11 @@ function shuffledOptions(item: RecallItem, seed: number): { text: string; correc
 // learner to pick which statement matches a concept from a few lessons back
 // - a genuine retrieval test (right/wrong, immediate feedback), not a
 // self-reported "did you remember?" which doesn't actually test recall.
-export default function RecallCard({ items, title = "Nhớ lại trước khi học tiếp" }: { items: RecallItem[]; title?: string }) {
+export default function RecallCard({ items, title }: { items: RecallItem[]; title?: string }) {
+  const { t } = useI18n();
+  // Tiêu đề mặc định KHÔNG đặt ở giá trị tham số: hook chỉ gọi được trong thân
+  // hàm, và một chuỗi nằm trong chữ ký hàm cũng là chỗ bộ đếm không nhìn tới.
+  const heading = title ?? t.recallCard.defaultTitle;
   const [picked, setPicked] = useState<(number | null)[]>(items.map(() => null));
   const optionSets = useMemo(
     () => items.map((item, i) => shuffledOptions(item, item.fromDay * 31 + i * 7 + 11)),
@@ -35,7 +41,7 @@ export default function RecallCard({ items, title = "Nhớ lại trước khi h�
     <div className="rounded-2xl border-2 border-amber-200 dark:border-amber-900 bg-amber-50/60 dark:bg-amber-950/20 p-6 space-y-4">
       <div className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-amber-700 dark:text-amber-400">
         <RotateCcw className="w-3.5 h-3.5" />
-        {title}
+        {heading}
       </div>
       {items.map((item, i) => {
         const options = optionSets[i];
@@ -44,7 +50,11 @@ export default function RecallCard({ items, title = "Nhớ lại trước khi h�
         return (
           <div key={i} className="bg-white dark:bg-stone-900 rounded-xl border border-amber-200 dark:border-amber-900/60 p-4 space-y-3">
             <p className="text-sm font-semibold text-stone-800 dark:text-stone-200">
-              Từ <span className="text-amber-700 dark:text-amber-400">Day {item.fromDay}</span> ({item.fromTitle}) - ý nào dưới đây đúng?
+              {t.recallCard.fromLabel}{" "}
+              <span className="text-amber-700 dark:text-amber-400">
+                {format(t.recallCard.dayLabel, { day: item.fromDay })}
+              </span>{" "}
+              {format(t.recallCard.questionSuffix, { title: item.fromTitle })}
             </p>
             <div className="space-y-2">
               {options.map((opt, optIndex) => {
@@ -86,8 +96,8 @@ export default function RecallCard({ items, title = "Nhớ lại trước khi h�
                 }`}
               >
                 {isCorrect(picked[i] as number)
-                  ? "Chính xác - kiến thức đang được củng cố."
-                  : "Chưa đúng - không sao, đây chính là lúc ôn lại phát huy tác dụng."}
+                  ? t.recallCard.correct
+                  : t.recallCard.wrong}
               </p>
             )}
           </div>

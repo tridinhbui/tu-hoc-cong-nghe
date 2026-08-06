@@ -8,6 +8,8 @@ import { getCareerLessonProgress, type CareerLessonProgress } from "@/lib/career
 import { FINANCE_CAREERS } from "@/lib/finance-careers";
 import { useLocalStorageValue } from "@/lib/use-local-storage-value";
 import { CAREER_GOAL_KEY, CAREER_GOAL_STORAGE_EVENT } from "@/lib/career-goal-storage";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 // Dashboard-side half of "Đặt Mục tiêu Sự nghiệp" (set on /su-nghiep, see
 // lib/supabase-career-goals.ts) - surfaces the pinned career and real
@@ -16,6 +18,7 @@ import { CAREER_GOAL_KEY, CAREER_GOAL_STORAGE_EVENT } from "@/lib/career-goal-st
 // checklist. Renders nothing if no goal is set, so it doesn't take up
 // sidebar space for users who haven't used this feature.
 export default function CareerGoalWidget({ userId }: { userId?: string }) {
+  const { t } = useI18n();
   // Đọc thẳng localStorage thay vì chép vào state lúc mount. Widget này nằm
   // ở dashboard trong khi mục tiêu được đặt ở trang Sự nghiệp; trước đây nó
   // KHÔNG nghe kênh báo đổi nào, nên đổi mục tiêu xong quay lại dashboard vẫn
@@ -71,12 +74,12 @@ export default function CareerGoalWidget({ userId }: { userId?: string }) {
       <div className="flex items-center gap-2 mb-2">
         <Briefcase className="w-4 h-4 text-indigo-500" />
         <p className="text-[11px] font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-widest">
-          Mục tiêu sự nghiệp
+          {t.careerGoalWidget.title}
         </p>
       </div>
       <p className="text-sm font-bold text-stone-900 dark:text-stone-100">{career.title}</p>
       <div className="flex items-center justify-between text-xs font-semibold text-stone-500 dark:text-stone-400 mt-2 mb-1.5">
-        <span>Đã học {completed}/{total} bài liên quan</span>
+        <span>{format(t.careerGoalWidget.progress, { completed, total })}</span>
         <span>{percent}%</span>
       </div>
       <div className="h-1.5 rounded-full bg-stone-100 dark:bg-stone-800 overflow-hidden mb-3">
@@ -90,7 +93,7 @@ export default function CareerGoalWidget({ userId }: { userId?: string }) {
           href={`/bai-hoc/${nextLesson.slug}`}
           className="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline"
         >
-          Học tiếp: {nextLesson.title}
+          {format(t.careerGoalWidget.continue, { title: nextLesson.title })}
           <ArrowRight className="w-3.5 h-3.5" />
         </Link>
       ) : (
@@ -98,7 +101,7 @@ export default function CareerGoalWidget({ userId }: { userId?: string }) {
           href="/su-nghiep"
           className="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline"
         >
-          Đã học hết bài liên quan - xem lại mục tiêu
+          {t.careerGoalWidget.allDone}
           <ArrowRight className="w-3.5 h-3.5" />
         </Link>
       )}

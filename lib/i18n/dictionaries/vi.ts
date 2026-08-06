@@ -2616,6 +2616,56 @@ export const vi = {
     ariaLabel: "Tự đánh dấu đã học",
   },
 
+
+  // components/RecallCard.tsx - câu ôn lại bài cũ trên dashboard.
+  recallCard: {
+    // Câu hỏi có thẻ <span> tô màu số ngày ở giữa, nên nó bị cắt làm ba mảnh
+    // thay vì nhét HTML vào một giá trị - trật tự ba mảnh khác nhau theo ngôn
+    // ngữ, và một chuỗi mang thẻ HTML thì phải dựng bằng
+    // dangerouslySetInnerHTML mới hiện ra được.
+    fromLabel: "Từ",
+    defaultTitle: "Nhớ lại trước khi học tiếp",
+    dayLabel: "Day {day}",
+    questionSuffix: "({title}) - ý nào dưới đây đúng?",
+    correct: "Chính xác - kiến thức đang được củng cố.",
+    wrong: "Chưa đúng - không sao, đây chính là lúc ôn lại phát huy tác dụng.",
+  },
+
+  // components/StreakReminderManager.tsx - lời mời bật thông báo trình duyệt.
+  streakReminder: {
+    title: "Bật nhắc nhở để không quên streak và bài ôn tập",
+    note: "Chỉ nhắc khi bạn đang mở hoặc quay lại tab này.",
+    enable: "Bật thông báo",
+    later: "Để sau",
+    close: "Đóng",
+  },
+
+  // components/TopicMasteryWidget.tsx
+  topicMastery: {
+    title: "Độ phủ theo mảng kiến thức",
+    subtitle: "Tính trên số bài đã hoàn thành · mảng đi xa nhất xếp trước",
+    byCareer: "Theo nghề",
+    done: "Đã học {done} / {total} bài",
+  },
+
+  // components/NotificationBell.tsx
+  notifications: {
+    ariaLabel: "Thông báo",
+    title: "Thông báo",
+    markAllRead: "Đánh dấu đã đọc tất cả",
+    loading: "Đang tải...",
+    empty:
+      "Chưa có thông báo nào. Đăng bài hoặc bình luận trên FinSocial để bắt đầu nhận thông báo khi có người tương tác.",
+  },
+
+  // components/CareerGoalWidget.tsx
+  careerGoalWidget: {
+    title: "Mục tiêu sự nghiệp",
+    progress: "Đã học {completed}/{total} bài liên quan",
+    continue: "Học tiếp: {title}",
+    allDone: "Đã học hết bài liên quan - xem lại mục tiêu",
+  },
+
 };
 
 export type Dictionary = typeof vi;
