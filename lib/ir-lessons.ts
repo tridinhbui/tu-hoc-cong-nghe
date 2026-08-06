@@ -711,10 +711,10 @@ export const IR_LESSONS: Lesson[] = [
       {
         question: "Một thông cáo về tin xấu nên có gì mà thông cáo kém thường thiếu?",
         options: [
-          "Con số cụ thể và mốc thời gian đã biết",
-          "Lời xin lỗi cổ đông",
+          "Con số cụ thể và mốc thời gian đã biết, kể cả khi chưa đủ",
+          "Lời xin lỗi gửi tới cổ đông",
           "Cam kết sự việc sẽ không bao giờ lặp lại trong tương lai",
-          "So sánh cho thấy các doanh nghiệp cùng ngành cũng gặp vấn đề tương tự",
+          "So sánh cho thấy doanh nghiệp cùng ngành cũng gặp vấn đề",
         ],
         correct: 0,
         explanation:

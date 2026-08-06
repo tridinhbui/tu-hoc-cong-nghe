@@ -72,9 +72,9 @@ export const FINTECH_LESSONS: Lesson[] = [
         question:
           "Nền tảng A: TPV 50.000 tỷ, take rate 0,3%. Nền tảng B: TPV 3.000 tỷ, take rate 9%. Nền tảng nào doanh thu cao hơn?",
         options: [
-          "B, doanh thu 270 tỷ so với 150 tỷ",
+          "B, vì doanh thu 270 tỷ so với 150 tỷ của A",
           "A, vì khối lượng lớn hơn 16 lần",
-          "Bằng nhau, vì take rate cao bù lại đúng phần khối lượng thấp",
+          "Bằng nhau, vì take rate cao bù đúng phần khối lượng thấp",
           "Không kết luận được nếu chưa biết số người dùng",
         ],
         correct: 0,
@@ -96,10 +96,10 @@ export const FINTECH_LESSONS: Lesson[] = [
       {
         question: "Nguồn doanh thu nào thường có take rate hiệu dụng cao nhất?",
         options: [
-          "Cho vay tiêu dùng qua ứng dụng",
+          "Cho vay tiêu dùng ngay trên ứng dụng ví",
           "Nạp tiền điện thoại và thanh toán hoá đơn điện nước",
           "Chuyển tiền trong cùng ví",
-          "Quét mã thanh toán tại cửa hàng tạp hoá và quán ăn nhỏ",
+          "Quét mã thanh toán tại tạp hoá và quán ăn nhỏ",
         ],
         correct: 0,
         explanation:
@@ -558,10 +558,10 @@ export const FINTECH_LESSONS: Lesson[] = [
       {
         question: "Chi phí rủi ro trong một sản phẩm cho vay là gì?",
         options: [
-          "Phần dư nợ dự kiến không thu hồi được",
+          "Phần dư nợ dự kiến sẽ không thu hồi được",
           "Phí trả cho bên chấm điểm tín dụng",
           "Lãi phải trả cho nguồn vốn công ty đi vay để cho vay lại",
-          "Khoản dự phòng bắt buộc phải nộp cho cơ quan quản lý theo quy định",
+          "Khoản dự phòng bắt buộc nộp cho cơ quan quản lý",
         ],
         correct: 0,
         explanation:

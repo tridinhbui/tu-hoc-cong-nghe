@@ -216,8 +216,8 @@ export const FRM_LESSONS: Lesson[] = [
         question: "Văn hoá rủi ro lành mạnh khác gì so với việc chỉ có đầy đủ chính sách rủi ro bằng văn bản?",
         options: [
           "Không có gì khác biệt, có chính sách bằng văn bản là đủ",
-          "Văn hoá lành mạnh nghĩa là nhân viên thực sự dám báo cáo và được lắng nghe, không chỉ có quy định trên giấy",
-          "Văn hoá rủi ro chỉ thực sự quan trọng ở các ngân hàng nhỏ mới thành lập, còn ngân hàng lớn đã có đủ hệ thống công nghệ nên không cần quan tâm tới yếu tố con người này nữa",
+          "Nhân viên dám báo cáo và được lắng nghe, không chỉ có quy định trên giấy",
+          "Chỉ ngân hàng nhỏ mới cần, ngân hàng lớn đã đủ hệ thống",
           "Văn hoá rủi ro là trách nhiệm duy nhất của phòng nhân sự",
         ],
         correct: 1,

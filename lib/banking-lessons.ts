@@ -290,9 +290,9 @@ export const BANKING_LESSONS: Lesson[] = [
         question: "Công thức liên hệ P/B với ROE trong mô hình tăng trưởng bền vững là gì?",
         options: [
           "P/B = ROE × ke, nhân suất sinh lời với chi phí vốn chủ",
-          "P/B = (ROE − g) / (ke − g)",
+          "P/B = (ROE − g) / (ke − g), công thức Gordon",
           "P/B = ke / ROE, chi phí vốn chia cho suất sinh lời",
-          "P/B = ROE + g − ke, cộng tăng trưởng rồi trừ chi phí vốn",
+          "P/B = ROE + g − ke, cộng tăng trưởng trừ chi phí vốn",
         ],
         correct: 1,
         explanation:

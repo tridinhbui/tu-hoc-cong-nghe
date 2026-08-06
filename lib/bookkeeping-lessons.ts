@@ -84,9 +84,9 @@ export const BOOKKEEPING_LESSONS: Lesson[] = [
         question: "Vay ngân hàng 500 triệu về tài khoản công ty. Bút toán là gì?",
         options: [
           "Nợ tiền gửi 500, Có vay ngân hàng 500",
-          "Nợ vay 500, Có tiền gửi 500",
+          "Nợ vay ngân hàng 500, Có tiền gửi 500",
           "Nợ tiền gửi 500, Có doanh thu tài chính 500",
-          "Nợ tiền gửi 500, Có vốn chủ sở hữu 500 do nguồn vốn tăng thêm",
+          "Nợ tiền gửi 500, Có vốn chủ 500 vì nguồn vốn tăng",
         ],
         correct: 0,
         explanation:
@@ -236,10 +236,10 @@ export const BOOKKEEPING_LESSONS: Lesson[] = [
       {
         question: "Nhật ký chung sắp xếp theo tiêu chí nào?",
         options: [
-          "Thứ tự thời gian phát sinh",
-          "Theo số hiệu tài khoản",
+          "Thứ tự thời gian nghiệp vụ phát sinh",
+          "Theo số hiệu của từng tài khoản",
           "Giá trị nghiệp vụ từ lớn xuống nhỏ trong kỳ",
-          "Loại chứng từ gốc kèm theo từng nghiệp vụ ghi nhận",
+          "Loại chứng từ gốc kèm theo từng nghiệp vụ",
         ],
         correct: 0,
         explanation:

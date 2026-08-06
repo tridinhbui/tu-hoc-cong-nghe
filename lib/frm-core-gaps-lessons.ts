@@ -240,10 +240,10 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       {
         question: "Khi một hạn mức bị vượt, phản ứng đúng theo khung quản trị rủi ro là gì?",
         options: [
-          "Kích hoạt quy trình leo thang đã định sẵn",
-          "Tự động nâng hạn mức lên bằng mức vị thế hiện tại để không còn vi phạm",
-          "Bỏ qua nếu khoản lỗ chưa thực sự phát sinh trên báo cáo tài chính",
-          "Chờ tới kỳ rà soát hằng năm"
+          "Kích hoạt đúng quy trình leo thang đã định sẵn",
+          "Tự nâng hạn mức lên bằng vị thế hiện tại",
+          "Bỏ qua nếu khoản lỗ chưa phát sinh trên báo cáo",
+          "Chờ tới kỳ rà soát hạn mức hằng năm"
         ],
         correct: 0,
         explanation: "Điều làm hệ thống hạn mức có giá trị không phải bản thân con số mà là quy trình xử lý khi vượt. Nâng hạn mức cho khớp vị thế là cách phổ biến nhất để một hệ thống hạn mức trở nên vô nghĩa mà trên giấy tờ vẫn đầy đủ."
@@ -1065,10 +1065,10 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       {
         question: "Ngưỡng ghi nhận tổn thất đặt quá cao gây hệ quả gì cho mô hình?",
         options: [
-          "Phần thân của phân phối bị cắt mất",
+          "Phần thân của phân phối tổn thất bị cắt mất",
           "Mô hình sẽ tự động cho ra mức vốn yêu cầu cao hơn thực tế",
-          "Sự kiện lớn bị bỏ sót",
-          "Ngân hàng không còn phải phân loại sự kiện theo nhóm Basel nữa"
+          "Sự kiện lớn bị bỏ sót khỏi dữ liệu",
+          "Ngân hàng không phải phân loại theo nhóm Basel nữa"
         ],
         correct: 0,
         explanation: "Ngưỡng cao loại bỏ các sự kiện nhỏ và vừa - phần đông đảo nhất của dữ liệu. Ước lượng tần suất tính trên phần còn lại sẽ thấp hơn thực tế, và việc khớp phân phối trên dữ liệu bị cắt cụt cần kỹ thuật hiệu chỉnh riêng nếu không muốn tham số bị lệch."
@@ -2075,10 +2075,10 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       {
         question: "Vì sao một tổ chức có tỷ lệ vốn tốt vẫn có thể đổ vỡ vì thanh khoản?",
         options: [
-          "Vì vốn đo khả năng hấp thụ lỗ trong dài hạn",
-          "Vì tỷ lệ vốn không được cơ quan quản lý công nhận trong tình huống khủng hoảng",
+          "Vì vốn đo khả năng hấp thụ lỗ, không đo tiền sẵn có",
+          "Vì tỷ lệ vốn không được công nhận khi khủng hoảng",
           "Vì vốn chủ sở hữu tự động thành nợ",
-          "Vì tổ chức có vốn cao luôn bị rút tiền nhiều hơn tổ chức có vốn thấp"
+          "Vì tổ chức vốn cao luôn bị rút tiền nhiều hơn"
         ],
         correct: 0,
         explanation: "Vốn và thanh khoản trả lời hai câu hỏi khác nhau: có đủ tài sản hơn nợ không, và có đủ tiền để trả khoản đến hạn sáng mai không. Một bảng cân đối lành mạnh gồm toàn tài sản dài hạn vẫn không trả được khoản tiền gửi bị rút hôm nay."
@@ -2598,10 +2598,10 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       {
         question: "Vì sao giả định về hành vi rút tiền gửi là tham số nhạy cảm nhất trong kiểm định thanh khoản?",
         options: [
-          "Vì tiền gửi thường là nguồn vốn lớn nhất",
-          "Vì tiền gửi là khoản mục duy nhất không xuất hiện trên bảng cân đối kế toán",
-          "Vì cấm dùng dữ liệu lịch sử",
-          "Vì tỷ lệ rút tiền gửi luôn cố định ở mức quy định cho mọi ngân hàng"
+          "Vì tiền gửi thường là nguồn vốn lớn nhất của ngân hàng",
+          "Vì tiền gửi không xuất hiện trên bảng cân đối",
+          "Vì bị cấm dùng dữ liệu lịch sử",
+          "Vì tỷ lệ rút tiền gửi luôn cố định theo quy định"
         ],
         correct: 0,
         explanation: "Với một ngân hàng bán lẻ, tiền gửi chiếm phần lớn nguồn vốn. Chênh lệch giữa giả định rút 5% và rút 15% trong ba mươi ngày có thể là khác biệt giữa dư dả và mất khả năng thanh toán - trong khi cả hai con số đều có thể biện minh được."
@@ -3298,10 +3298,10 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       {
         question: "Sau khi ước lượng tham số, bước kiểm định độ khớp cần chú ý điều gì nhất trong ứng dụng rủi ro?",
         options: [
-          "Độ khớp riêng ở vùng đuôi phân phối",
-          "Độ khớp ở vùng trung tâm, vì đó là nơi tập trung phần lớn quan sát",
-          "Số lượng tham số của mô hình, càng nhiều tham số càng đáng tin cậy",
-          "Thời gian chạy của thuật toán"
+          "Độ khớp riêng ở vùng đuôi của phân phối",
+          "Độ khớp ở vùng trung tâm, nơi tập trung quan sát",
+          "Số tham số của mô hình, càng nhiều càng đáng tin",
+          "Thời gian chạy của thuật toán ước lượng"
         ],
         correct: 0,
         explanation: "Các kiểm định độ khớp thông dụng bị chi phối bởi phần thân nơi có nhiều quan sát. Một mô hình qua được kiểm định tổng thể vẫn có thể đánh giá thấp nghiêm trọng xác suất ở đuôi - đúng vùng mà VaR và ES được tính."
