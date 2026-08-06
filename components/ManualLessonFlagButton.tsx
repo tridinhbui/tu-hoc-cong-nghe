@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { createClient } from "@/lib/supabase";
 import { getLessonProgress } from "@/lib/supabase-progress";
 import { isLessonFlagged, toggleLessonFlag } from "@/lib/supabase-lesson-flags";
+import { useI18n } from "@/lib/i18n/context";
 
 interface ManualLessonFlagButtonProps {
   lessonId: number;
@@ -18,6 +19,7 @@ export default function ManualLessonFlagButton({
   lessonSlug,
   lessonTitle,
 }: ManualLessonFlagButtonProps) {
+  const { t } = useI18n();
   const [flagged, setFlagged] = useState(false);
   const [completed, setCompleted] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -52,8 +54,8 @@ export default function ManualLessonFlagButton({
 
   const handleToggle = async () => {
     if (completed) {
-      toast.message("Bài này đã được hệ thống tính rồi trên bảng xếp hạng.", {
-        description: "Bạn đã hoàn thành quiz hoặc đọc đủ, nên không cần tự đánh dấu nữa.",
+      toast.message(t.manualLessonFlag.alreadyCounted, {
+        description: t.manualLessonFlag.alreadyCountedNote,
       });
       return;
     }
@@ -73,7 +75,7 @@ export default function ManualLessonFlagButton({
       } = await supabase.auth.getUser();
 
       if (!user) {
-        toast.error("Bạn cần đăng nhập để tự đánh dấu bài đã học.");
+        toast.error(t.manualLessonFlag.needLogin);
         return;
       }
 
@@ -81,13 +83,13 @@ export default function ManualLessonFlagButton({
       setFlagged(result.flagged);
 
       if (result.flagged) {
-        toast.success("Đã đánh dấu bài này là bạn đã học.");
+        toast.success(t.manualLessonFlag.marked);
       } else {
-        toast.success("Đã bỏ đánh dấu tự xác nhận.");
+        toast.success(t.manualLessonFlag.unmarked);
       }
     } catch (error) {
       console.error("Error toggling manual lesson flag:", error);
-      toast.error("Không thể cập nhật đánh dấu. Vui lòng thử lại.");
+      toast.error(t.manualLessonFlag.failed);
     } finally {
       setToggling(false);
     }
@@ -115,7 +117,7 @@ export default function ManualLessonFlagButton({
             ? "bg-sky-100 dark:bg-sky-900/30 text-sky-600 dark:text-sky-400"
             : "bg-stone-100 dark:bg-stone-800 text-stone-500 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-700"
       } ${toggling ? "opacity-50 cursor-not-allowed" : "hover:scale-110"}`}
-      aria-label="Tự đánh dấu đã học"
+      aria-label={t.manualLessonFlag.ariaLabel}
     >
       {completed ? <CheckCircle2 className="w-5 h-5" /> : <CheckCheck className="w-5 h-5" />}
     </button>

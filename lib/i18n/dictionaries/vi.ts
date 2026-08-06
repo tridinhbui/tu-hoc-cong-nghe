@@ -1088,6 +1088,26 @@ export const vi = {
     cardDeleted: "Đã xoá thẻ thành công.",
     cardDeleteFailed: "Không thể xoá thẻ.",
     sampleImportFailed: "Lỗi khi nhập thẻ mẫu.",
+    generatedFromMistakes: "Đã tự động tạo thành công {count} thẻ ôn tập từ các câu làm sai! ⚡🗂️",
+    nextReview: "Đã nhớ! Lần ôn tiếp theo: {days} ngày tới.",
+    bulkAdded: "Đã thêm {added} thẻ mới!",
+    // Đuôi tuỳ chọn, ghép sau câu chính khi có thẻ bị bỏ qua. Tách thành khoá
+    // riêng chứ không nhét vào câu chính: trật tự vế trong câu đổi theo ngôn
+    // ngữ, và một chuỗi mang sẵn dấu ngoặc đơn thì không đổi được.
+    bulkSkippedSuffix: " (bỏ qua {skipped} thẻ đã có sẵn)",
+    bulkAllExisted: "Cả {skipped} thẻ đều đã có sẵn trong hộp thẻ của bạn.",
+    copiedToClipboard: "Đã sao chép {count} thẻ vào clipboard.",
+    confirmDelete: "Bạn có chắc chắn muốn xoá thẻ \"{term}\"?",
+    sampleImported: "Đã nhập thành công {count} thẻ từ vựng mẫu! 🎉",
+
+    // components/flashcard/FlashcardAlbumsGallery.tsx
+    albumImported: "Đã nhập {added} thẻ từ \"{title}\" vào bộ của bạn!",
+    albumSkippedSuffix: " (bỏ qua {skipped} thẻ đã có)",
+    albumAllExisted: "Bạn đã có sẵn toàn bộ {skipped} thẻ trong \"{title}\" rồi.",
+    albumBack: "Quay lại danh sách",
+    albumCards: "thẻ",
+    albumImporting: "Đang nhập...",
+    albumImportCta: "Nhập {count} thẻ vào bộ của tôi",
 
     back: "Quay lại",
     title: "Thẻ ghi nhớ",
@@ -2567,6 +2587,33 @@ export const vi = {
     characters: "ký tự",
     highlight: "Tô Highlight Quan Trọng",
     reportAi: "Báo đoạn này do AI viết",
+  },
+
+
+  // components/LessonAppealModal.tsx - khiếu nại khi bài không tự đánh dấu xong.
+  lessonAppeal: {
+    sent: "Đã gửi khiếu nại - admin sẽ kiểm tra và duyệt sớm nhất có thể.",
+    sendFailed: "Không thể gửi khiếu nại. Vui lòng thử lại.",
+    title: "Khiếu nại hoàn thành",
+    // Dấu ngoặc kép quanh hai nhãn nút trong câu này là chữ, không phải mã:
+    // trong JSX chúng phải viết &quot;, ở đây thì viết thẳng được.
+    blurb:
+      "Nếu bạn đã thực sự đọc hết, làm xong quiz và câu hỏi giữa bài (nếu có) nhưng bài vẫn hiện \"Tự đánh dấu\" thay vì \"Xong\", gửi khiếu nại để admin kiểm tra và duyệt thủ công.",
+    notePlaceholder:
+      "Mô tả thêm (tuỳ chọn) - VD: đã làm xong 4/4 câu quiz và câu hỏi giữa bài lúc 20h...",
+    sending: "Đang gửi...",
+    submit: "Gửi khiếu nại",
+  },
+
+  // components/ManualLessonFlagButton.tsx - tự đánh dấu đã học.
+  manualLessonFlag: {
+    alreadyCounted: "Bài này đã được hệ thống tính rồi trên bảng xếp hạng.",
+    alreadyCountedNote: "Bạn đã hoàn thành quiz hoặc đọc đủ, nên không cần tự đánh dấu nữa.",
+    needLogin: "Bạn cần đăng nhập để tự đánh dấu bài đã học.",
+    marked: "Đã đánh dấu bài này là bạn đã học.",
+    unmarked: "Đã bỏ đánh dấu tự xác nhận.",
+    failed: "Không thể cập nhật đánh dấu. Vui lòng thử lại.",
+    ariaLabel: "Tự đánh dấu đã học",
   },
 
 };

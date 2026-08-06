@@ -1023,6 +1023,27 @@ export const en: Dictionary = {
     cardDeleted: "Card deleted.",
     cardDeleteFailed: "Couldn't delete the card.",
     sampleImportFailed: "Something went wrong importing the sample cards.",
+    generatedFromMistakes: "Created {count} review cards from your wrong answers. ⚡🗂️",
+    nextReview: "Got it! Next review in {days} days.",
+    bulkAdded: "Added {added} new cards.",
+    // Optional tail appended to the sentence above when some cards were
+    // skipped. A separate key rather than part of the sentence: clause order
+    // differs by language, and a string that already carries its brackets
+    // cannot be reordered.
+    bulkSkippedSuffix: " ({skipped} already in your deck)",
+    bulkAllExisted: "All {skipped} cards are already in your deck.",
+    copiedToClipboard: "Copied {count} cards to the clipboard.",
+    confirmDelete: "Delete the card \"{term}\"?",
+    sampleImported: "Imported {count} sample vocabulary cards. 🎉",
+
+    // components/flashcard/FlashcardAlbumsGallery.tsx
+    albumImported: "Imported {added} cards from \"{title}\" into your deck.",
+    albumSkippedSuffix: " ({skipped} already there)",
+    albumAllExisted: "You already have all {skipped} cards from \"{title}\".",
+    albumBack: "Back to the list",
+    albumCards: "cards",
+    albumImporting: "Importing...",
+    albumImportCta: "Import {count} cards into my deck",
 
     back: "Back",
     title: "Flashcards",
@@ -2418,6 +2439,34 @@ export const en: Dictionary = {
     characters: "characters",
     highlight: "Mark as important",
     reportAi: "Report this passage as AI-written",
+  },
+
+
+  // components/LessonAppealModal.tsx - appeal when a lesson will not mark itself done.
+  lessonAppeal: {
+    sent: "Appeal sent - an admin will review and approve it as soon as they can.",
+    sendFailed: "Could not send the appeal. Please try again.",
+    title: "Appeal a completion",
+    // The quotation marks around the two button labels here are copy, not
+    // code: inside JSX they have to be written &quot;, here they can be
+    // written plainly.
+    blurb:
+      "If you really did read it all, finish the quiz and answer the mid-lesson question (where there is one) but the lesson still shows \"Mark it yourself\" instead of \"Done\", send an appeal and an admin will check and approve it by hand.",
+    notePlaceholder:
+      "Anything to add (optional) - e.g. finished all 4 quiz questions and the mid-lesson one at 8pm...",
+    sending: "Sending...",
+    submit: "Send appeal",
+  },
+
+  // components/ManualLessonFlagButton.tsx - marking a lesson done yourself.
+  manualLessonFlag: {
+    alreadyCounted: "The system already counts this lesson on the leaderboard.",
+    alreadyCountedNote: "You finished the quiz or read enough, so there is nothing to mark.",
+    needLogin: "Sign in to mark a lesson as done yourself.",
+    marked: "Marked as read by you.",
+    unmarked: "Self-confirmation removed.",
+    failed: "Could not update the mark. Please try again.",
+    ariaLabel: "Mark it yourself",
   },
 
 };

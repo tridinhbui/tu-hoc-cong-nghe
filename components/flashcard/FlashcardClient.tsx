@@ -82,7 +82,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
         if (ok) count++;
       }
       if (count > 0) {
-        toast.success(`Đã tự động tạo thành công ${count} thẻ ôn tập từ các câu làm sai! ⚡🗂️`);
+        toast.success(format(t.flashcards.generatedFromMistakes, { count }));
         const list = await getFlashcards(userId);
         setCards(list);
       } else {
@@ -153,7 +153,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
     const ok = await saveFlashcard(userId, updatedCard);
     if (ok) {
       if (quality >= 3) {
-        toast.success(`Đã nhớ! Lần ôn tiếp theo: ${interval} ngày tới.`);
+        toast.success(format(t.flashcards.nextReview, { days: interval }));
       } else {
         toast.info(t.flashcards.markedForReview);
       }
@@ -251,13 +251,16 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
     try {
       const { added, skipped } = await saveFlashcardsBulk(userId, parsed);
       if (added > 0) {
-        toast.success(`Đã thêm ${added} thẻ mới!${skipped > 0 ? ` (bỏ qua ${skipped} thẻ đã có sẵn)` : ""}`);
+        toast.success(
+          format(t.flashcards.bulkAdded, { added }) +
+            (skipped > 0 ? format(t.flashcards.bulkSkippedSuffix, { skipped }) : "")
+        );
         const list = await getFlashcards(userId);
         setCards(list);
         setBulkText("");
         setShowBulkPanel(false);
       } else if (skipped > 0) {
-        toast.info(`Cả ${skipped} thẻ đều đã có sẵn trong hộp thẻ của bạn.`);
+        toast.info(format(t.flashcards.bulkAllExisted, { skipped }));
       } else {
         toast.error(t.flashcards.bulkSaveFailed);
       }
@@ -273,12 +276,12 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
     }
     const text = cards.map((c) => `${c.term} | ${c.definition}`).join("\n");
     navigator.clipboard.writeText(text).then(() => {
-      toast.success(`Đã sao chép ${cards.length} thẻ vào clipboard.`);
+      toast.success(format(t.flashcards.copiedToClipboard, { count: cards.length }));
     });
   }
 
   const handleDeleteCard = async (term: string) => {
-    if (!confirm(`Bạn có chắc chắn muốn xoá thẻ "${term}"?`)) return;
+    if (!confirm(format(t.flashcards.confirmDelete, { term }))) return;
     const ok = await deleteFlashcard(userId, term);
     if (ok) {
       toast.success(t.flashcards.cardDeleted);
@@ -304,7 +307,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
         const ok = await saveFlashcard(userId, card);
         if (ok) count++;
       }
-      toast.success(`Đã nhập thành công ${count} thẻ từ vựng mẫu! 🎉`);
+      toast.success(format(t.flashcards.sampleImported, { count }));
       const list = await getFlashcards(userId);
       setCards(list);
     } catch {

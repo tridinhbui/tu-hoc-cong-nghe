@@ -5,6 +5,8 @@ import { toast } from "sonner";
 import { Download, ArrowLeft } from "lucide-react";
 import { FLASHCARD_ALBUMS, type FlashcardAlbum } from "@/lib/flashcard-albums";
 import { saveFlashcardsBulk } from "@/lib/supabase-flashcards";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 interface FlashcardAlbumsGalleryProps {
   userId: string;
@@ -19,6 +21,7 @@ interface FlashcardAlbumsGalleryProps {
 // an album that overlaps with cards you already added yourself) never
 // overwrites anything you're already reviewing.
 export default function FlashcardAlbumsGallery({ userId, onImported }: FlashcardAlbumsGalleryProps) {
+  const { t } = useI18n();
   const [openAlbum, setOpenAlbum] = useState<FlashcardAlbum | null>(null);
   const [importing, setImporting] = useState(false);
 
@@ -27,11 +30,14 @@ export default function FlashcardAlbumsGallery({ userId, onImported }: Flashcard
     try {
       const { added, skipped } = await saveFlashcardsBulk(userId, album.cards);
       if (added > 0) {
-        toast.success(`Đã nhập ${added} thẻ từ "${album.title}" vào bộ của bạn!${skipped > 0 ? ` (bỏ qua ${skipped} thẻ đã có)` : ""}`);
+        toast.success(
+          format(t.flashcards.albumImported, { added, title: album.title }) +
+            (skipped > 0 ? format(t.flashcards.albumSkippedSuffix, { skipped }) : "")
+        );
         onImported();
         setOpenAlbum(null);
       } else {
-        toast.info(`Bạn đã có sẵn toàn bộ ${skipped} thẻ trong "${album.title}" rồi.`);
+        toast.info(format(t.flashcards.albumAllExisted, { skipped, title: album.title }));
       }
     } finally {
       setImporting(false);
@@ -46,14 +52,14 @@ export default function FlashcardAlbumsGallery({ userId, onImported }: Flashcard
             onClick={() => setOpenAlbum(null)}
             className="inline-flex items-center gap-1.5 text-xs font-bold text-white/90 hover:text-white mb-3"
           >
-            <ArrowLeft className="w-3.5 h-3.5" /> Quay lại danh sách
+            <ArrowLeft className="w-3.5 h-3.5" /> {t.flashcards.albumBack}
           </button>
           <div className="flex items-start gap-3">
             <span className="text-4xl flex-shrink-0">{openAlbum.emoji}</span>
             <div className="min-w-0">
               <h3 className="text-lg font-extrabold">{openAlbum.title}</h3>
               <p className="text-sm text-white/85 mt-0.5">{openAlbum.description}</p>
-              <p className="text-xs text-white/70 mt-1.5 font-bold uppercase tracking-wide">{openAlbum.cards.length} thẻ</p>
+              <p className="text-xs text-white/70 mt-1.5 font-bold uppercase tracking-wide">{openAlbum.cards.length} {t.flashcards.albumCards}</p>
             </div>
           </div>
         </div>
@@ -74,7 +80,9 @@ export default function FlashcardAlbumsGallery({ userId, onImported }: Flashcard
             className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 font-bold text-sm hover:opacity-90 transition-opacity disabled:opacity-50 cursor-pointer"
           >
             <Download className="w-4 h-4" />
-            {importing ? "Đang nhập..." : `Nhập ${openAlbum.cards.length} thẻ vào bộ của tôi`}
+            {importing
+              ? t.flashcards.albumImporting
+              : format(t.flashcards.albumImportCta, { count: openAlbum.cards.length })}
           </button>
         </div>
       </div>
@@ -93,7 +101,7 @@ export default function FlashcardAlbumsGallery({ userId, onImported }: Flashcard
             <div className={`bg-gradient-to-br ${album.gradient} h-20 flex items-center justify-center relative overflow-hidden`}>
               <span className="text-4xl transition-transform duration-300 group-hover:scale-110">{album.emoji}</span>
               <span className="absolute top-2 right-2 text-[10px] font-extrabold text-white/90 bg-black/20 rounded-full px-2 py-0.5">
-                {album.cards.length} thẻ
+                {album.cards.length} {t.flashcards.albumCards}
               </span>
             </div>
             <div className="p-3.5">
