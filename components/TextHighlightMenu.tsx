@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import { Highlighter, Flag, Check, Sparkles } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import { createHighlight, type LessonHighlight } from "@/lib/lesson-highlights";
+import { useI18n } from "@/lib/i18n/context";
 
 interface TextHighlightMenuProps {
   containerRef: RefObject<HTMLElement | null>;
@@ -17,6 +18,7 @@ const MIN_SELECTION_LENGTH = 3;
 const MAX_SELECTION_LENGTH = 1000;
 
 export default function TextHighlightMenu({ containerRef, lessonId, lessonSlug, onCreated }: TextHighlightMenuProps) {
+  const { t } = useI18n();
   const [menu, setMenu] = useState<{ x: number; y: number; quote: string; isRightClick: boolean } | null>(null);
   const [saving, setSaving] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -102,15 +104,15 @@ export default function TextHighlightMenu({ containerRef, lessonId, lessonSlug, 
       const supabase = createClient();
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) {
-        toast.error("Bạn cần đăng nhập để đánh dấu đoạn văn.");
+        toast.error(t.textHighlight.needLogin);
         return;
       }
       const highlight = await createHighlight(user.id, lessonId, lessonSlug, menu.quote, kind);
       onCreated(highlight);
-      toast.success(kind === "important" ? "✨ Đã tô highlight đoạn quan trọng!" : "🚩 Đã báo cáo đoạn văn này!");
+      toast.success(kind === "important" ? t.textHighlight.savedImportant : t.textHighlight.savedFlag);
     } catch (error) {
       console.error("Error saving highlight:", error);
-      toast.error("Không thể lưu đánh dấu. Vui lòng thử lại.");
+      toast.error(t.textHighlight.saveFailed);
     } finally {
       setSaving(false);
       setMenu(null);
@@ -129,10 +131,10 @@ export default function TextHighlightMenu({ containerRef, lessonId, lessonSlug, 
       <div className="px-3 py-1.5 border-b border-stone-100 dark:border-stone-800 flex items-center justify-between mb-1">
         <span className="text-[10px] font-black uppercase tracking-wider text-amber-600 dark:text-amber-400 flex items-center gap-1">
           <Sparkles className="w-3 h-3" />
-          Đánh dấu văn bản
+          {t.textHighlight.title}
         </span>
         <span className="text-[9px] text-stone-400 font-medium">
-          {menu.quote.length} ký tự
+          {menu.quote.length} {t.textHighlight.characters}
         </span>
       </div>
 
@@ -146,7 +148,7 @@ export default function TextHighlightMenu({ containerRef, lessonId, lessonSlug, 
           <div className="w-6 h-6 rounded-lg bg-amber-500 text-white flex items-center justify-center shadow-xs group-hover:scale-110 transition-transform">
             <Highlighter className="w-3.5 h-3.5" />
           </div>
-          <span>Tô Highlight Quan Trọng</span>
+          <span>{t.textHighlight.highlight}</span>
         </div>
         <span className="w-2 h-2 rounded-full bg-amber-400" />
       </button>
@@ -161,7 +163,7 @@ export default function TextHighlightMenu({ containerRef, lessonId, lessonSlug, 
           <div className="w-6 h-6 rounded-lg bg-rose-500 text-white flex items-center justify-center shadow-xs group-hover:scale-110 transition-transform">
             <Flag className="w-3.5 h-3.5" />
           </div>
-          <span>Báo đoạn này do AI viết</span>
+          <span>{t.textHighlight.reportAi}</span>
         </div>
         <span className="w-2 h-2 rounded-full bg-rose-400" />
       </button>

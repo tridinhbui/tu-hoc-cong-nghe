@@ -2498,6 +2498,77 @@ export const vi = {
     signingOut: "Đang đăng xuất...",
     signOut: "Đăng xuất",
   },
+
+  // components/QuietCornerClient.tsx - góc yên tĩnh, màn hình duy nhất trong
+  // app cố ý không thưởng gì cả.
+  quietCorner: {
+    home: "Về trang chủ",
+    breatheTitle: "Một phút thở",
+    breatheBlurb:
+      "Nhịp 4-4-4-4, bốn vòng. Không tính điểm, không lưu lại, không ai biết bạn có làm hay không.",
+    burdenTitle: "Đặt xuống một gánh nặng",
+    burdenBlurb:
+      "Chọn nỗi lo đang nằm trong đầu bạn để xem một góc nhìn khác. Đây là cách nghĩ, không phải lời khuyên nên mua gì hay tiêu bao nhiêu.",
+    noXp: "Không có XP nào ở trang này. Đó là chủ ý.",
+  },
+
+  // components/BreathingCircle.tsx
+  breathing: {
+    round: "Vòng",
+    inhale: "Hít vào",
+    hold: "Giữ",
+    exhale: "Thở ra",
+    doneTitle: "Xong rồi. Không có điểm nào cả — chỉ là một phút của bạn.",
+    idleBlurb: "Bốn nhịp thở, khoảng một phút",
+    again: "Thở thêm một phút",
+    start: "Bắt đầu thở",
+    stop: "Dừng lại",
+  },
+
+  // components/WarmLamps.tsx - đèn đọc kéo thả được.
+  warmLamps: {
+    title: "Đèn ấm",
+    close: "Đóng bảng điều khiển đèn",
+    intensity: "Độ đậm",
+    addLamp: "Thêm đèn",
+    lamp: "Đèn",
+    hint:
+      "Kéo chấm sáng để soi chỗ khác, bấm vào nó để đổi cỡ. Đèn càng đậm thì xung quanh càng chìm vào bóng tối.",
+  },
+
+  // components/ReadingProgress.tsx
+  readingProgress: {
+    open: "Mở thanh tiến độ",
+    reading: "Đang đọc",
+    closeTitle: "Đóng thanh tiến độ",
+    close: "Đóng",
+    finished: "Hoàn thành chặng đua!",
+    congrats: "Chúc mừng! Bạn đã đọc {percent}%",
+    keepGoing: "Hãy tiếp tục - bạn đang làm rất tốt!",
+  },
+
+  // components/FontSizeControl.tsx
+  fontSize: {
+    decrease: "Giảm cỡ chữ",
+    increase: "Tăng cỡ chữ",
+    // Ký hiệu, không phải câu chữ: "A-" và "A+" đọc như nhau ở mọi ngôn ngữ,
+    // nên hai giá trị này trùng nhau ở cả hai từ điển một cách hợp lệ.
+    smaller: "A-",
+    larger: "A+",
+  },
+
+  // components/TextHighlightMenu.tsx - menu hiện khi bôi đen một đoạn.
+  textHighlight: {
+    needLogin: "Bạn cần đăng nhập để đánh dấu đoạn văn.",
+    saveFailed: "Không thể lưu đánh dấu. Vui lòng thử lại.",
+    savedImportant: "✨ Đã tô highlight đoạn quan trọng!",
+    savedFlag: "🚩 Đã báo cáo đoạn văn này!",
+    title: "Đánh dấu văn bản",
+    characters: "ký tự",
+    highlight: "Tô Highlight Quan Trọng",
+    reportAi: "Báo đoạn này do AI viết",
+  },
+
 };
 
 export type Dictionary = typeof vi;

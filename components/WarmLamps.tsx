@@ -2,6 +2,7 @@
 
 import { useCallback, useRef, useState, useSyncExternalStore } from "react";
 import { Lightbulb, Plus, X } from "lucide-react";
+import { useI18n } from "@/lib/i18n/context";
 import {
   DEFAULT_LAMP_STATE,
   LAMPS_STORAGE_KEY,
@@ -92,6 +93,7 @@ function nextLampId(): string {
 }
 
 export default function WarmLamps() {
+  const { t } = useI18n();
   const isDark = useIsDark();
   // Read synchronously so a learner who left two lamps on does not watch the
   // room brighten for a frame before they come back.
@@ -232,11 +234,11 @@ export default function WarmLamps() {
         {panelOpen && (
           <div className="w-60 rounded-2xl border border-stone-800 bg-stone-950/95 p-3.5 shadow-2xl backdrop-blur">
             <div className="mb-2.5 flex items-center justify-between">
-              <span className="text-xs font-bold uppercase tracking-wide text-amber-200/80">Đèn ấm</span>
+              <span className="text-xs font-bold uppercase tracking-wide text-amber-200/80">{t.warmLamps.title}</span>
               <button
                 type="button"
                 onClick={() => setPanelOpen(false)}
-                aria-label="Đóng bảng điều khiển đèn"
+                aria-label={t.warmLamps.close}
                 className="rounded-lg p-1 text-stone-500 transition hover:bg-stone-900 hover:text-stone-300"
               >
                 <X className="h-3.5 w-3.5" />
@@ -244,7 +246,7 @@ export default function WarmLamps() {
             </div>
 
             <label className="block text-[11px] font-semibold text-stone-400" htmlFor="warm-lamp-intensity">
-              Độ đậm
+              {t.warmLamps.intensity}
             </label>
             <input
               id="warm-lamp-intensity"
@@ -264,7 +266,7 @@ export default function WarmLamps() {
                 disabled={state.lamps.length >= MAX_LAMPS}
                 className="inline-flex items-center gap-1 rounded-xl border border-amber-500/30 bg-amber-500/10 px-2.5 py-1.5 text-[11px] font-bold text-amber-200 transition hover:bg-amber-500/20 disabled:cursor-not-allowed disabled:opacity-40"
               >
-                <Plus className="h-3 w-3" /> Thêm đèn
+                <Plus className="h-3 w-3" /> {t.warmLamps.addLamp}
               </button>
               {state.lamps.map((lamp, index) => (
                 <button
@@ -273,13 +275,13 @@ export default function WarmLamps() {
                   onClick={() => commit(removeLamp(state, lamp.id))}
                   className="inline-flex items-center gap-1 rounded-xl border border-stone-800 px-2.5 py-1.5 text-[11px] font-semibold text-stone-400 transition hover:border-stone-700 hover:text-stone-200"
                 >
-                  <X className="h-3 w-3" /> Đèn {index + 1}
+                  <X className="h-3 w-3" /> {t.warmLamps.lamp} {index + 1}
                 </button>
               ))}
             </div>
 
             <p className="mt-2.5 text-[11px] leading-relaxed text-stone-500">
-              Kéo chấm sáng để soi chỗ khác, bấm vào nó để đổi cỡ. Đèn càng đậm thì xung quanh càng chìm vào bóng tối.
+              {t.warmLamps.hint}
             </p>
           </div>
         )}

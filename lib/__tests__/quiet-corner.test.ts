@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   BREATH_CYCLES,
   BREATH_CYCLE_SECONDS,
-  BREATH_PHASES,
+  BREATH_STEPS,
   QUIET_CORNER_CLOSING,
   QUIET_CORNER_LIMITS,
   QUIET_CORNER_QUESTIONS,
@@ -53,7 +53,7 @@ describe("cau chao theo gio", () => {
 
 describe("nhip tho", () => {
   it("la nhip hop 4-4-4-4, mot vong 16 giay", () => {
-    expect(BREATH_PHASES.map((p) => p.seconds)).toEqual([4, 4, 4, 4]);
+    expect(BREATH_STEPS.map((p) => p.seconds)).toEqual([4, 4, 4, 4]);
     expect(BREATH_CYCLE_SECONDS).toBe(16);
   });
 
@@ -64,7 +64,7 @@ describe("nhip tho", () => {
   });
 
   it("vong tron phinh ra khi hit vao va co lai khi tho ra", () => {
-    const [inhale, , exhale] = BREATH_PHASES;
+    const [inhale, , exhale] = BREATH_STEPS;
     expect(inhale.scale).toBeGreaterThan(exhale.scale);
   });
 });

@@ -2349,4 +2349,75 @@ export const en: Dictionary = {
     signingOut: "Signing out...",
     signOut: "Sign out",
   },
+
+  // components/QuietCornerClient.tsx - the quiet corner, the one screen in the
+  // app that deliberately rewards nothing.
+  quietCorner: {
+    home: "Back to home",
+    breatheTitle: "One minute of breathing",
+    breatheBlurb:
+      "A 4-4-4-4 rhythm, four rounds. Nothing is scored, nothing is saved, and nobody knows whether you did it.",
+    burdenTitle: "Put down one worry",
+    burdenBlurb:
+      "Pick the worry sitting in your head and see another angle on it. This is a way of thinking, not advice on what to buy or how much to spend.",
+    noXp: "There is no XP on this page. That is on purpose.",
+  },
+
+  // components/BreathingCircle.tsx
+  breathing: {
+    round: "Round",
+    inhale: "Breathe in",
+    hold: "Hold",
+    exhale: "Breathe out",
+    doneTitle: "That's it. Nothing was scored — that minute was just yours.",
+    idleBlurb: "Four breaths, about a minute",
+    again: "Breathe for another minute",
+    start: "Start breathing",
+    stop: "Stop",
+  },
+
+  // components/WarmLamps.tsx - draggable reading lamps.
+  warmLamps: {
+    title: "Warm lamps",
+    close: "Close the lamp controls",
+    intensity: "Intensity",
+    addLamp: "Add a lamp",
+    lamp: "Lamp",
+    hint:
+      "Drag a glow to light somewhere else, or tap it to change its size. The brighter the lamp, the deeper everything around it falls into shadow.",
+  },
+
+  // components/ReadingProgress.tsx
+  readingProgress: {
+    open: "Show the progress bar",
+    reading: "Reading",
+    closeTitle: "Hide the progress bar",
+    close: "Close",
+    finished: "You reached the finish line!",
+    congrats: "Nice work! You've read {percent}%",
+    keepGoing: "Keep going - you're doing well.",
+  },
+
+  // components/FontSizeControl.tsx
+  fontSize: {
+    decrease: "Smaller text",
+    increase: "Larger text",
+    // Symbols, not copy: "A-" and "A+" read the same in every language, so
+    // these two values are legitimately identical in both dictionaries.
+    smaller: "A-",
+    larger: "A+",
+  },
+
+  // components/TextHighlightMenu.tsx - the menu that appears on selection.
+  textHighlight: {
+    needLogin: "Sign in to highlight a passage.",
+    saveFailed: "Could not save the highlight. Please try again.",
+    savedImportant: "✨ Passage highlighted as important.",
+    savedFlag: "🚩 Passage reported.",
+    title: "Highlight text",
+    characters: "characters",
+    highlight: "Mark as important",
+    reportAi: "Report this passage as AI-written",
+  },
+
 };

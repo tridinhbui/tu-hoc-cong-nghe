@@ -1,5 +1,7 @@
 "use client";
 
+import { useI18n } from "@/lib/i18n/context";
+
 const SCALES = [0.875, 1, 1.125, 1.25, 1.375];
 const STORAGE_KEY = "lesson_font_scale";
 // Default reading size is one notch above the control's own 100% baseline
@@ -26,6 +28,7 @@ interface Props {
 // wrapper wouldn't cascade into those fixed-rem children, but `zoom` rescales
 // the whole rendered subtree uniformly regardless of how descendants size themselves.
 export default function FontSizeControl({ scale, onChange }: Props) {
+  const { t } = useI18n();
   const index = SCALES.indexOf(scale);
 
   function set(newIndex: number) {
@@ -40,11 +43,11 @@ export default function FontSizeControl({ scale, onChange }: Props) {
       <button
         onClick={() => set(index - 1)}
         disabled={index === 0}
-        aria-label="Giảm cỡ chữ"
-        title="Giảm cỡ chữ"
+        aria-label={t.fontSize.decrease}
+        title={t.fontSize.decrease}
         className="w-7 h-7 rounded-full flex items-center justify-center text-stone-600 dark:text-stone-400 text-xs font-bold hover:bg-stone-200 dark:hover:bg-stone-700 disabled:opacity-30 disabled:cursor-not-allowed transition-colors cursor-pointer"
       >
-        A-
+        {t.fontSize.smaller}
       </button>
       <span className="text-[11px] font-bold text-stone-500 dark:text-stone-400 w-9 text-center tabular-nums">
         {Math.round(scale * 100)}%
@@ -52,11 +55,11 @@ export default function FontSizeControl({ scale, onChange }: Props) {
       <button
         onClick={() => set(index + 1)}
         disabled={index === SCALES.length - 1}
-        aria-label="Tăng cỡ chữ"
-        title="Tăng cỡ chữ"
+        aria-label={t.fontSize.increase}
+        title={t.fontSize.increase}
         className="w-7 h-7 rounded-full flex items-center justify-center text-stone-600 dark:text-stone-400 text-sm font-bold hover:bg-stone-200 dark:hover:bg-stone-700 disabled:opacity-30 disabled:cursor-not-allowed transition-colors cursor-pointer"
       >
-        A+
+        {t.fontSize.larger}
       </button>
     </div>
   );
