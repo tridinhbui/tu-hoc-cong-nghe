@@ -166,8 +166,18 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
         // Trừ vào ngân sách đang giữ trong state, để các nhiệm vụ còn lại trên
         // cùng màn hình cập nhật ngay thay vì đợi lần load sau.
         setWeeklyXpRemaining((prev) => (prev === null ? prev : Math.max(0, prev - xpEarned)));
+        // Ba lý do khác nhau cho cùng một con số 0, và nói nhầm lý do thì
+        // người học kết luận là hệ thống nuốt mất XP của mình. Cái nhãn trên
+        // nút đã phân biệt được từ lần sửa trước (isCappedOut), riêng thông
+        // báo sau khi bấm thì vẫn đổ hết cho trần tuần - kể cả với ba nhiệm vụ
+        // vốn được đặt 0 XP trong lib/quest-rewards.ts (điểm danh, đăng nhập,
+        // vào Game). Người bấm "Đăng nhập mỗi ngày" được báo là đã hết ngân
+        // sách tuần, trong khi ngân sách còn nguyên và nhiệm vụ đó chưa bao
+        // giờ cộng XP.
         if (xpEarned > 0) {
           toast.success(`Chúc mừng! Nhận thành công +${xpEarned} XP học thuật! 🌟`);
+        } else if (quest.xpReward === 0) {
+          toast.success("Đã hoàn thành! Nhiệm vụ điểm danh không cộng XP - XP đến từ bài học và thời gian ngồi học.");
         } else {
           toast.success("Đã hoàn thành nhiệm vụ! (Đã đạt giới hạn XP nhiệm vụ trong tuần này, thử lại vào tuần sau)");
         }
