@@ -143,7 +143,12 @@ export const BOOKKEEPING_LESSONS: Lesson[] = [
     },
     application: {
       title: "Ghi thử một nghiệp vụ mua tài sản",
-      message: "Bạn chi 20 triệu mua một chiếc máy tính cho công ty. Ghi hai vế của nghiệp vụ đó, rồi trả lời: lợi nhuận trong tháng có giảm 20 triệu không.",
+      // 50 triệu, cùng lý do với câu hỏi mở đầu ở trên: dưới 30 triệu thì
+      // theo Thông tư 45/2013/TT-BTC nó là công cụ dụng cụ, phân bổ qua tài
+      // khoản 242 chứ KHÔNG khấu hao - nên câu trả lời "chi phí xuất hiện dần
+      // qua khấu hao" sai ngay ở ví dụ của chính nó. Câu hỏi mở đầu đã được
+      // nâng lên 50 triệu; ô này bị bỏ sót trong cùng lần sửa đó.
+      message: "Bạn chi 50 triệu mua một chiếc máy tính cho công ty. Ghi hai vế của nghiệp vụ đó, rồi trả lời: lợi nhuận trong tháng có giảm 50 triệu không.",
       secondary: "Không - đó là đổi hình thái của cải, không phải chi phí. Chi phí chỉ xuất hiện dần qua khấu hao.",
     },
     sections: [
