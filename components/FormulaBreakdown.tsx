@@ -1,6 +1,7 @@
+"use client";
+
 import type { ReactNode } from "react";
-import { getServerLocale } from "@/lib/i18n/server";
-import { getDictionary } from "@/lib/i18n";
+import { useI18n } from "@/lib/i18n/context";
 
 /**
  * Bảng "con số này ở đâu ra": công thức chữ, rồi cùng công thức đó với số thật
@@ -28,7 +29,7 @@ export interface FormulaStep {
   value: string;
 }
 
-export default async function FormulaBreakdown({
+export default function FormulaBreakdown({
   formula,
   steps,
   result,
@@ -42,8 +43,15 @@ export default async function FormulaBreakdown({
   /** Câu cảnh báo hoặc điều kiện áp dụng, nếu có. */
   note?: ReactNode;
 }) {
-  const locale = await getServerLocale();
-  const t = getDictionary(locale);
+  // Component CLIENT, không phải server.
+  //
+  // Nó chỉ được dùng bởi InteractiveBond, mà file đó là "use client". Một
+  // client component import một server component thì Next kéo cả cây đó vào
+  // bundle trình duyệt, và lib/i18n/server.ts mang theo "server-only" cùng
+  // next/headers - build production đổ ngay ở đó với ba lỗi cùng một gốc.
+  // Trên máy dev không thấy vì Turbopack dev không dựng đồ thị client đầy đủ
+  // theo cách đó.
+  const { t } = useI18n();
   return (
     <details className="group rounded-2xl border border-stone-200 bg-stone-50 dark:border-stone-800 dark:bg-stone-950/40">
       {/* Mặc định đóng: người học lần đầu cần thấy con số và ý nghĩa của nó
