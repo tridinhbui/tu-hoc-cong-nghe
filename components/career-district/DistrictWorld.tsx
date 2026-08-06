@@ -31,7 +31,7 @@ import Minimap, { type MinimapPeer } from "./Minimap";
 import RoomDirectory from "./RoomDirectory";
 import CivicPanel from "./CivicPanel";
 import type { CharacterEquipments } from "@/lib/rpg-items";
-import { CAREER_CATEGORY_ORDER, CAREER_CATEGORY_LABELS, isCareerCategory } from "@/lib/career-categories";
+import { CAREER_CATEGORY_ORDER, isCareerCategory } from "@/lib/career-categories";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 

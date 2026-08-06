@@ -2570,4 +2570,25 @@ export const en: Dictionary = {
       "TuHocTaiChinh's lessons stop at Level I. Below is the official outline for the other two levels - weights and structure taken from the CFA Institute candidate resources - so you can see how tall the ladder is.",
   },
 
+
+  // lib/career-categories.ts - the five career-category names and one-liners.
+  // Used on the career street, in the room directory, and in the jobs filter.
+  careerCategories: {
+    labels: {
+      investment: "Investing & Research",
+      accounting: "Accounting & Control",
+      banking: "Banking & Treasury",
+      advisory: "Advisory & Client Services",
+      data: "Data & Technology",
+    },
+    // One line saying what the group actually does, for the shopfront sign.
+    blurbs: {
+      investment: "Valuation, stock picking, portfolio management",
+      banking: "Raising capital, credit, bank funding",
+      advisory: "Client advice and financial planning",
+      accounting: "Recording, auditing, internal control",
+      data: "Models, data and financial technology",
+    },
+  },
+
 };

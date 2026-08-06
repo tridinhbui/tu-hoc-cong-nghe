@@ -28,7 +28,7 @@ import {
   STREET_TREE_XS,
   TREE_Z,
   careerCountIn,
-  CAREER_CATEGORY_BLURBS,
+  careerCategoryBlurbsOf,
   type DistrictRoom,
 } from "./district-space";
 import { formulasFor, type WallFormula } from "./district-content";
@@ -287,7 +287,7 @@ function Shophouse({ category, progress }: { category: CareerCategory; progress:
       <TextBoard
         title={t.careerDistrict.shopSigns[category]}
         rows={[
-          CAREER_CATEGORY_BLURBS[category],
+          careerCategoryBlurbsOf(t)[category],
           // Biển hiệu đổi khi vượt mốc: đi ngang một căn nhà đã xong và một
           // căn chưa động tới phải thấy khác nhau, nếu không cả dãy phố trông
           // y hệt nhau suốt cả trăm bài học.

@@ -2717,6 +2717,27 @@ export const vi = {
       "Bài học của TuHocTaiChinh hiện dừng ở Level I. Phần dưới là đề cương chính thức của hai cấp còn lại - trọng số và cấu trúc lấy từ trang candidate resources của CFA Institute - để bạn biết mình đang leo một cái thang cao bao nhiêu.",
   },
 
+
+  // lib/career-categories.ts - tên và mô tả năm nhóm ngành. Dùng ở phố nghề,
+  // mục lục phòng, và bộ lọc trang việc làm.
+  careerCategories: {
+    labels: {
+      investment: "Đầu tư & Nghiên cứu",
+      accounting: "Kế toán & Kiểm soát",
+      banking: "Ngân hàng & Nguồn vốn",
+      advisory: "Dịch vụ & Tư vấn",
+      data: "Dữ liệu & Công nghệ",
+    },
+    // Một dòng nói nhóm ngành này làm gì, cho biển hiệu ngoài cửa.
+    blurbs: {
+      investment: "Định giá, chọn cổ phiếu, quản lý danh mục",
+      banking: "Thu xếp vốn, tín dụng, nguồn vốn ngân hàng",
+      advisory: "Tư vấn khách hàng, hoạch định tài chính",
+      accounting: "Ghi nhận, kiểm toán, kiểm soát nội bộ",
+      data: "Mô hình, dữ liệu và công nghệ tài chính",
+    },
+  },
+
 };
 
 export type Dictionary = typeof vi;

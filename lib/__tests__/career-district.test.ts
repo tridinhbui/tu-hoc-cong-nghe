@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { FINANCE_CAREERS } from "@/lib/finance-careers";
-import { CAREER_CATEGORY_ORDER, CAREER_CATEGORY_LABELS } from "@/lib/career-categories";
+import { CAREER_CATEGORY_ORDER, careerCategoryLabelsOf } from "@/lib/career-categories";
 import { insideAnyObstacle, touchingPairs } from "@/lib/walkable-space";
 import {
   buildStageIndex,
@@ -61,7 +61,7 @@ describe("khu phố nghề", () => {
       CAREER_CATEGORY_ORDER.length + STATIONS.length + 7 + CIVIC_ROOMS.length
     );
     for (const category of CAREER_CATEGORY_ORDER) {
-      expect(getRoom(category).label).toBe(CAREER_CATEGORY_LABELS[category]);
+      expect(getRoom(category).label).toBe(careerCategoryLabelsOf(viDict)[category]);
     }
   });
 

@@ -10,13 +10,17 @@ import type { FinanceCareer } from "@/lib/finance-careers";
 
 export type CareerCategory = FinanceCareer["category"];
 
-export const CAREER_CATEGORY_LABELS: Record<CareerCategory, string> = {
-  investment: "Đầu tư & Nghiên cứu",
-  accounting: "Kế toán & Kiểm soát",
-  banking: "Ngân hàng & Nguồn vốn",
-  advisory: "Dịch vụ & Tư vấn",
-  data: "Dữ liệu & Công nghệ",
-};
+/** Tên năm nhóm ngành, đọc từ từ điển.
+ *
+ *  Là HÀM chứ không phải hằng số vì câu chữ phải theo ngôn ngữ đang chọn -
+ *  cùng khuôn với districtRoomsOf(t). Thứ tự và MÀU thì vẫn là hằng số ở dưới:
+ *  chúng là cấu trúc, không phải câu chữ, và một bảng màu đổi theo ngôn ngữ là
+ *  thứ không ai muốn gỡ về sau. */
+export function careerCategoryLabelsOf(
+  t: { careerCategories: { labels: Record<CareerCategory, string> } }
+): Record<CareerCategory, string> {
+  return t.careerCategories.labels;
+}
 
 /** Thứ tự trưng bày, cũng là thứ tự các căn nhà dọc phố nghề. */
 export const CAREER_CATEGORY_ORDER: CareerCategory[] = [
@@ -38,19 +42,29 @@ export const CAREER_CATEGORY_COLORS: Record<CareerCategory, string> = {
 };
 
 /** Một dòng nói nhóm ngành này làm gì, cho biển hiệu ngoài cửa. */
-export const CAREER_CATEGORY_BLURBS: Record<CareerCategory, string> = {
-  investment: "Định giá, chọn cổ phiếu, quản lý danh mục",
-  banking: "Thu xếp vốn, tín dụng, nguồn vốn ngân hàng",
-  advisory: "Tư vấn khách hàng, hoạch định tài chính",
-  accounting: "Ghi nhận, kiểm toán, kiểm soát nội bộ",
-  data: "Mô hình, dữ liệu và công nghệ tài chính",
-};
+export function careerCategoryBlurbsOf(
+  t: { careerCategories: { blurbs: Record<CareerCategory, string> } }
+): Record<CareerCategory, string> {
+  return t.careerCategories.blurbs;
+}
+
+const CAREER_CATEGORY_SET: ReadonlySet<string> = new Set(CAREER_CATEGORY_ORDER);
 
 /** Chuỗi này có phải một nhóm ngành không.
  *
  *  Cần thiết khi id phòng trong thế giới 3D là hợp của nhiều loại (phố, tháp,
- *  tầng, nhóm ngành): so sánh bằng `in` trên Record cho TypeScript thu hẹp kiểu
- *  đúng chỗ, thay vì ép kiểu và mất luôn lá chắn. */
+ *  tầng, nhóm ngành): hàm này cho TypeScript thu hẹp kiểu đúng chỗ, thay vì ép
+ *  kiểu và mất luôn lá chắn.
+ *
+ *  Dùng Set chứ KHÔNG dùng `id in RECORD`. Hai lý do, và cả hai đều thật:
+ *
+ *  1. `in` đi cả chuỗi nguyên mẫu, nên isCareerCategory("constructor") và
+ *     ("toString") trả về true - đúng lỗ đã bắt được ở proxy.ts khi kiểm tham
+ *     số ?phong=. Ở đây nó nghĩa là một id phòng bịa ra có thể lọt qua lá chắn
+ *     kiểu rồi đi thẳng vào chỗ chờ một nhóm ngành.
+ *  2. Bản cũ kiểm trên BẢNG NHÃN, tức một phép kiểm cấu trúc đọc dữ liệu câu
+ *     chữ. Giờ nhãn đi theo ngôn ngữ đang chọn, nên nếu để nguyên thì lá chắn
+ *     kiểu sẽ phụ thuộc vào từ điển. */
 export function isCareerCategory(id: string): id is CareerCategory {
-  return id in CAREER_CATEGORY_LABELS;
+  return CAREER_CATEGORY_SET.has(id);
 }

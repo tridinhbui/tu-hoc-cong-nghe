@@ -6,7 +6,7 @@ import {
   type Doorway,
   type DistrictRoomId,
 } from "./district-space";
-import { CAREER_CATEGORY_LABELS, CAREER_CATEGORY_ORDER } from "@/lib/career-categories";
+import { careerCategoryLabelsOf, CAREER_CATEGORY_ORDER } from "@/lib/career-categories";
 import { useI18n } from "@/lib/i18n/context";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
@@ -154,7 +154,7 @@ export default function RoomDirectory({
               onClick={() => onGo(d)}
               className="block w-full cursor-pointer rounded-lg px-2 py-1 text-left text-[11px] font-bold text-stone-300 transition hover:bg-stone-800"
             >
-              <span style={{ color: d.accent }}>■</span> {CAREER_CATEGORY_LABELS[c]}
+              <span style={{ color: d.accent }}>■</span> {careerCategoryLabelsOf(t)[c]}
             </button>
           );
         })}

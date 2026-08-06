@@ -1,8 +1,8 @@
 import { FINANCE_CAREERS } from "@/lib/finance-careers";
 import {
-  CAREER_CATEGORY_BLURBS,
+  careerCategoryBlurbsOf,
   CAREER_CATEGORY_COLORS,
-  CAREER_CATEGORY_LABELS,
+  careerCategoryLabelsOf,
   CAREER_CATEGORY_ORDER,
   type CareerCategory,
 } from "@/lib/career-categories";
@@ -251,7 +251,11 @@ function roomDepthFor(count: number) {
   return Math.max(14, perRow * DESK_PITCH + 8);
 }
 
-function buildOffice(category: CareerCategory, exitLabel: string): DistrictRoom {
+function buildOffice(
+  category: CareerCategory,
+  exitLabel: string,
+  labels: Record<CareerCategory, string>
+): DistrictRoom {
   const careers = careersIn(category);
   const depth = roomDepthFor(careers.length);
   const halfD = depth / 2;
@@ -292,7 +296,7 @@ function buildOffice(category: CareerCategory, exitLabel: string): DistrictRoom 
 
   return {
     id: category,
-    label: CAREER_CATEGORY_LABELS[category],
+    label: labels[category],
     kind: "office",
     accent: CAREER_CATEGORY_COLORS[category],
     size: { width, depth, height: 4.2 },
@@ -939,7 +943,11 @@ export function isAtCivicStand(room: DistrictRoom, x: number, z: number): boolea
   return Math.hypot(x - 0, z - -1) <= CIVIC_STAND_REACH + 1.3;
 }
 
-function buildStreetRoom(d: Dictionary["worldSpaces"]["district"], civicRooms: CivicSpec[]): DistrictRoom {
+function buildStreetRoom(
+  d: Dictionary["worldSpaces"]["district"],
+  civicRooms: CivicSpec[],
+  labels: Record<CareerCategory, string>
+): DistrictRoom {
   return {
     id: "street",
     label: d.street,
@@ -1059,7 +1067,7 @@ function buildStreetRoom(d: Dictionary["worldSpaces"]["district"], civicRooms: C
         x: SHOP_X[category],
         z: STREET.facadeZ + 1.4,
         reach: 2.3,
-        label: CAREER_CATEGORY_LABELS[category],
+        label: labels[category],
         arriveAt: { x: 0, z: roomDepthFor(careersIn(category).length) / 2 - 2.2, ry: 0 },
         accent: CAREER_CATEGORY_COLORS[category],
       })),
@@ -1071,8 +1079,9 @@ function buildDistrictRooms(t: Dictionary): Record<string, DistrictRoom> {
   const d = t.worldSpaces.district;
   const stations = stationsOf(t);
   const civicRooms = civicRoomsOf(t);
+  const labels = careerCategoryLabelsOf(t);
   const rooms: DistrictRoom[] = [
-    buildStreetRoom(d, civicRooms),
+    buildStreetRoom(d, civicRooms, labels),
     buildTowerLobby(d),
     buildStageFloor(d),
     buildGameSquare(d),
@@ -1080,7 +1089,7 @@ function buildDistrictRooms(t: Dictionary): Record<string, DistrictRoom> {
     buildCenterRoom(d),
     buildCafeRoom(d),
     ...civicRooms.map((c) => buildCivic(c, d.exitToStreet)),
-    ...CAREER_CATEGORY_ORDER.map((category) => buildOffice(category, d.exitToStreet)),
+    ...CAREER_CATEGORY_ORDER.map((category) => buildOffice(category, d.exitToStreet, labels)),
     ...stations.map(buildFloor),
   ];
   return Object.fromEntries(rooms.map((r) => [r.id, r]));
@@ -1129,7 +1138,7 @@ export function careerCountIn(category: CareerCategory) {
   return careersIn(category).length;
 }
 
-export { CAREER_CATEGORY_BLURBS };
+export { careerCategoryBlurbsOf };
 
 // ── Đi lại ──────────────────────────────────────────────────────────────────
 

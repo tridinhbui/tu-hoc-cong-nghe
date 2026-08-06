@@ -42,7 +42,7 @@ import Image from "next/image";
 import CareerRoadmapMap from "@/components/CareerRoadmapMap";
 import CareerProfilePanel from "@/components/CareerProfilePanel";
 import { SUGGESTED_JOB_KEYWORDS } from "@/lib/job-search-links";
-import { CAREER_CATEGORY_LABELS, CAREER_CATEGORY_ORDER } from "@/lib/career-categories";
+import { careerCategoryLabelsOf, CAREER_CATEGORY_ORDER } from "@/lib/career-categories";
 import { notifyLocalStorageChanged, useLocalStorageValue } from "@/lib/use-local-storage-value";
 import { CAREER_GOAL_EVENT, CAREER_GOAL_KEY, CAREER_GOAL_STORAGE_EVENT, CAREER_ITEMS_KEY } from "@/lib/career-goal-storage";
 
@@ -270,7 +270,7 @@ function quizQuestionsOf(t: Dictionary) {
 function categoriesOf(t: Dictionary) {
   return [
     { id: "all" as const, label: t.dataRest.jobSearchClient.allCategoriesLabel },
-    ...CAREER_CATEGORY_ORDER.map((id) => ({ id, label: CAREER_CATEGORY_LABELS[id] })),
+    ...CAREER_CATEGORY_ORDER.map((id) => ({ id, label: careerCategoryLabelsOf(t)[id] })),
   ];
 }
 
