@@ -1,24 +1,76 @@
-"use client";
-
-import { useState } from "react";
 import Link from "next/link";
-import { DOMAIN_NAMES, type DomainType } from "@/lib/levels";
-import { BrainCircuit, CheckCircle2, AlertCircle, ArrowRight, Sparkles } from "lucide-react";
+import { BrainCircuit, ArrowRight } from "lucide-react";
+import { SKILL_DOMAINS, type SkillDomainId } from "@/lib/career-competency";
 
-export default function TopicMasteryWidget({ compact = false }: { compact?: boolean }) {
-  // Mastery scores inspired by user's actual progress stats
-  const [mastery] = useState<Record<DomainType, { score: number; level: string; totalLessons: number; done: number }>>({
-    accounting: { score: 85, level: "Thành thục", totalLessons: 12, done: 10 },
-    valuation: { score: 45, level: "Cần cải thiện", totalLessons: 10, done: 4 },
-    corporate_finance: { score: 70, level: "Khá tốt", totalLessons: 15, done: 11 },
-    economics: { score: 90, level: "Thành thục", totalLessons: 8, done: 7 },
-    investment: { score: 60, level: "Trung bình", totalLessons: 14, done: 8 },
-    risk_management: { score: 50, level: "Trung bình", totalLessons: 6, done: 3 },
-    ai_for_finance: { score: 80, level: "Khá tốt", totalLessons: 8, done: 6 },
-  });
+/**
+ * Đi được bao xa ở từng mảng kiến thức.
+ *
+ * SỐ Ở ĐÂY LÀ SỐ THẬT. Bản trước giữ một bảng điểm viết cứng trong `useState`
+ * - "Kế toán 85%, Định giá 45%" - kèm chú thích "inspired by user's actual
+ * progress stats", nghĩa là mọi người học đều thấy đúng một bộ số bịa và không
+ * ai trong số đó là của họ. Nó không bị phát hiện suốt thời gian dài chỉ vì
+ * component này không được render ở đâu cả.
+ *
+ * Nguồn số bây giờ là `computeDomainCoverage` trong lib/career-competency.ts -
+ * cùng hàm, cùng bảng ánh xạ bài-học-sang-lĩnh vực đang chạy cho /su-nghiep, và
+ * đã có test riêng. Không tự tính lại ở đây: hai chỗ cùng đo một thứ bằng hai
+ * công thức là cách chúng bắt đầu lệch nhau.
+ *
+ * KHÔNG trùng với panel khoảng trống kỹ năng ở /su-nghiep, dù dùng chung dữ
+ * liệu: panel kia chỉ hiện khi người học đã ghim một nghề mục tiêu và luôn đo
+ * theo yêu cầu của nghề đó. Bảng này trả lời một câu hỏi không cần mục tiêu
+ * nào - "tôi đang mạnh yếu ở đâu" - nên nó đứng cạnh cây kỹ năng.
+ *
+ * Là server component: dữ liệu tới từ trang đã fetch sẵn, không có tương tác
+ * nào, nên không cần đẩy gì vào bundle client.
+ */
+export interface DomainCoverage {
+  done: number;
+  total: number;
+  percent: number;
+}
+
+/** Ngưỡng đọc ra chữ. Cố tình thấp hơn cảm giác thông thường: đây là ĐỘ PHỦ
+ *  giáo trình chứ không phải điểm thi, và học hết 60% số bài của một mảng đã
+ *  là đi được một quãng dài. */
+function band(percent: number): { label: string; tone: "high" | "mid" | "low" } {
+  if (percent >= 60) return { label: "Vững", tone: "high" };
+  if (percent >= 25) return { label: "Đang đi", tone: "mid" };
+  return { label: "Mới bắt đầu", tone: "low" };
+}
+
+export default function TopicMasteryWidget({
+  coverage,
+  compact = false,
+}: {
+  coverage: Record<SkillDomainId, DomainCoverage>;
+  compact?: boolean;
+}) {
+  // Mảng đi được xa nhất lên trước.
+  //
+  // Bản đầu tôi xếp ngược lại - yếu nhất lên trước - với lý do "trả lời học gì
+  // tiếp". Nhìn thật thì thấy hỏng: giáo trình có 715 bài chia cho 14 mảng, nên
+  // gần như người học nào cũng đang ở 0% tại phần lớn các mảng. Xếp yếu trước
+  // đẩy nguyên một bức tường "0 / 114 bài" lên đầu, và thứ tự giữa chúng chỉ
+  // còn phản ánh mảng nào nhiều bài hơn - không phải thông tin. Phần người học
+  // thực sự có tiến độ thì bị đẩy xuống tận đáy.
+  //
+  // Xếp xuôi thì dòng đầu tiên luôn nói được một điều thật về người đang đọc,
+  // và các mảng còn trống vẫn nằm ngay bên dưới.
+  const rows = SKILL_DOMAINS.map((domain) => ({
+    id: domain.id,
+    label: domain.label,
+    ...(coverage[domain.id] ?? { done: 0, total: 0, percent: 0 }),
+  }))
+    .filter((r) => r.total > 0)
+    .sort((a, b) => b.percent - a.percent);
 
   return (
-    <div className={`rounded-3xl bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 shadow-sm space-y-4 font-sans ${compact ? "p-3.5 mt-3" : "p-5"}`}>
+    <div
+      className={`rounded-3xl bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 shadow-sm space-y-4 font-sans ${
+        compact ? "p-3.5 mt-3" : "p-5"
+      }`}
+    >
       <div className="flex items-center justify-between border-b border-stone-100 dark:border-stone-800 pb-3">
         <div className="flex items-center gap-2">
           <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-purple-100 dark:bg-purple-950/80 text-purple-600 dark:text-purple-400 shrink-0">
@@ -26,60 +78,59 @@ export default function TopicMasteryWidget({ compact = false }: { compact?: bool
           </span>
           <div>
             <h3 className="text-xs sm:text-sm font-black text-stone-900 dark:text-stone-100 leading-snug">
-              Bản Đồ Độ Thành Thạo Kiến Thức
+              Độ phủ theo mảng kiến thức
             </h3>
-            <p className="text-[10px] font-bold text-stone-400">Phân tích điểm mạnh & điểm yếu cá nhân</p>
+            <p className="text-[10px] font-bold text-stone-400">
+              Tính trên số bài đã hoàn thành · mảng đi xa nhất xếp trước
+            </p>
           </div>
         </div>
 
         <Link
-          href="/analytics"
+          href="/su-nghiep"
           className="text-[11px] font-black text-emerald-600 dark:text-emerald-400 hover:underline flex items-center gap-1 shrink-0"
         >
-          Chi tiết <ArrowRight className="w-3 h-3" />
+          Theo nghề <ArrowRight className="w-3 h-3" />
         </Link>
       </div>
 
       <div className={`grid gap-2.5 ${compact ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-2"}`}>
-        {(Object.entries(mastery) as [DomainType, typeof mastery[DomainType]][]).map(([key, item]) => {
-          const isHigh = item.score >= 80;
-          const isLow = item.score < 50;
+        {rows.map((row) => {
+          const { label, tone } = band(row.percent);
 
           return (
             <div
-              key={key}
+              key={row.id}
               className="p-3 rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50/70 dark:bg-stone-950/50 space-y-1.5"
             >
-              <div className="flex items-center justify-between">
-                <span className="text-[11px] font-black text-stone-900 dark:text-stone-100 truncate max-w-[170px]">
-                  {DOMAIN_NAMES[key]}
+              <div className="flex items-center justify-between gap-2">
+                <span className="text-[11px] font-black text-stone-900 dark:text-stone-100 truncate">
+                  {row.label}
                 </span>
                 <span
-                  className={`px-2 py-0.5 rounded-full text-[9px] font-black uppercase border ${
-                    isHigh
+                  className={`px-2 py-0.5 rounded-full text-[9px] font-black uppercase border shrink-0 ${
+                    tone === "high"
                       ? "bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 border-emerald-300 dark:border-emerald-800"
-                      : isLow
-                      ? "bg-rose-100 dark:bg-rose-950 text-rose-700 dark:text-rose-300 border-rose-300 dark:border-rose-800"
-                      : "bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300 border-amber-300 dark:border-amber-800"
+                      : tone === "low"
+                        ? "bg-stone-100 dark:bg-stone-900 text-stone-600 dark:text-stone-400 border-stone-300 dark:border-stone-700"
+                        : "bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300 border-amber-300 dark:border-amber-800"
                   }`}
                 >
-                  {item.level} ({item.score}%)
+                  {label} ({row.percent}%)
                 </span>
               </div>
 
-              {/* Progress fill */}
               <div className="h-1.5 w-full rounded-full bg-stone-200 dark:bg-stone-800 overflow-hidden">
                 <div
-                  style={{ width: `${item.score}%` }}
+                  style={{ width: `${row.percent}%` }}
                   className={`h-full rounded-full transition-all duration-500 ${
-                    isHigh ? "bg-emerald-500" : isLow ? "bg-rose-500" : "bg-amber-500"
+                    tone === "high" ? "bg-emerald-500" : tone === "low" ? "bg-stone-400" : "bg-amber-500"
                   }`}
                 />
               </div>
 
-              <div className="flex items-center justify-between text-[9px] text-stone-400 font-bold">
-                <span>Đã làm: {item.done} / {item.totalLessons} bài</span>
-                {isLow && <span className="text-rose-500 font-black">Nên ôn lại</span>}
+              <div className="text-[9px] text-stone-400 font-bold">
+                Đã học {row.done} / {row.total} bài
               </div>
             </div>
           );

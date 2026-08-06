@@ -7,10 +7,13 @@ import Link from "next/link";
 
 interface SkillTreeWidgetProps {
   completedLessonIds: number[];
-  unlockedLessonIds: Set<number>;
+  /** Slug của bài tương ứng mỗi `SkillNode.requiredLessonId`, để nút "Học ngay"
+   *  dẫn tới đúng bài của node. Node nào không tra được slug thì không render
+   *  nút - thà thiếu một lối đi còn hơn một lối đi sai. */
+  lessonSlugById: Record<number, string>;
 }
 
-export default function SkillTreeWidget({ completedLessonIds, unlockedLessonIds }: SkillTreeWidgetProps) {
+export default function SkillTreeWidget({ completedLessonIds, lessonSlugById }: SkillTreeWidgetProps) {
   const completedIdsSet = new Set(completedLessonIds);
 
   const getStatus = (node: SkillNode) => {
@@ -96,9 +99,14 @@ export default function SkillTreeWidget({ completedLessonIds, unlockedLessonIds 
                 </div>
                 <h4 className="font-bold text-stone-900 dark:text-stone-100 mt-1">{node.name}</h4>
                 
-                {status === "in_progress" ? (
+                {/* Trỏ tới bài của chính node này. Trước đây mọi node đều dẫn
+                    về một slug viết cứng - `/bai-hoc/dcf-valuation`, kèm luôn
+                    ghi chú "Giả sử link dynamic" - và slug đó còn không tồn tại
+                    trong corpus, nên mọi nút ở đây đều là một cú bấm ra trang
+                    404. */}
+                {status === "in_progress" && lessonSlugById[node.requiredLessonId] ? (
                   <Link
-                    href={`/bai-hoc/dcf-valuation`} // Giả sử link dynamic hoặc dẫn đến roadmap
+                    href={`/bai-hoc/${lessonSlugById[node.requiredLessonId]}`}
                     className="inline-flex items-center gap-1.5 text-xs text-amber-600 dark:text-amber-400 font-bold mt-2 hover:underline"
                   >
                     Học ngay bài học tương ứng &rarr;
