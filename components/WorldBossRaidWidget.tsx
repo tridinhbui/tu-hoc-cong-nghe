@@ -133,13 +133,13 @@ export default function WorldBossRaidWidget({
 
     if (isCorrect) {
       setHitState("hit_boss");
-      setLastDamageText(`💥 -${hitDamage.toLocaleString()} DMG!`);
+      setLastDamageText(format(t.miscUi.worldBossRaidWidget.hitDamage, { damage: hitDamage.toLocaleString() }));
       setSessionDamage((prev) => prev + hitDamage);
       setSessionScore((prev) => prev + 1);
-      toast.success(`💥 Nổ sát thương Combo: +${hitDamage.toLocaleString()} DMG!`);
+      toast.success(format(t.miscUi.worldBossRaidWidget.comboDamage, { damage: hitDamage.toLocaleString() }));
     } else {
       setHitState("hit_hero");
-      setLastDamageText("⚠️ MISS! BOSS PHẢN CÔNG");
+      setLastDamageText(t.miscUi.worldBossRaidWidget.missCounterattack);
       setHeroHp((hp) => Math.max(0, hp - 34));
       toast.error(t.worldBoss.counterattack);
     }
@@ -169,7 +169,7 @@ export default function WorldBossRaidWidget({
             // Im lặng ở đây là lý do lỗi cũ sống lâu: đánh xong, được chúc
             // mừng, và không có gì thay đổi.
             const detail = await res.json().catch(() => null);
-            toast.error(detail?.error ?? "Không ghi được sát thương lên máy chủ.");
+            toast.error(detail?.error ?? t.miscUi.worldBossRaidWidget.submitFailedError);
           } else {
             const result = await res.json();
             window.dispatchEvent(new CustomEvent("thtcdn:coin-updated", { detail: { coins: result.newCoins } }));
@@ -177,7 +177,13 @@ export default function WorldBossRaidWidget({
             // Con số của MÁY CHỦ, không phải tổng cộng dồn ở đây: chỉ nó mới
             // là thứ thực sự trừ vào thanh máu.
             setSessionDamage(result.damageDealt ?? finalDamage);
-            toast.success(`🎉 Tổng sát thương trận này: ${(result.damageDealt ?? finalDamage).toLocaleString()} DMG! +${result.xpReward} XP & +${result.coinReward} Coins`);
+            toast.success(
+              format(t.miscUi.worldBossRaidWidget.raidSummary, {
+                damage: (result.damageDealt ?? finalDamage).toLocaleString(),
+                xp: result.xpReward,
+                coins: result.coinReward,
+              })
+            );
             fetchBossData();
           }
         } catch (error) {

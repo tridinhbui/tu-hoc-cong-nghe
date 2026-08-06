@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import TaiTaiAvatar from "@/components/TaiTaiAvatar";
 import { TRACK_PERSONAL, TRACK_PROFESSIONAL } from "@/lib/track-stages";
+import { useI18n } from "@/lib/i18n/context";
 
 // Keyed by "<track>-<chặng label>" so tips always match the lesson's actual
 // topic. Previously this bucketed by Math.floor((lessonId-1)/20), capped at
@@ -194,6 +195,7 @@ interface Props {
 }
 
 export default function StageTipsBanner({ lessonId, lessonTitle }: Props) {
+  const { t } = useI18n();
   const tip = getTip(lessonId, lessonTitle);
   const [displayed, setDisplayed] = useState("");
   const [phase, setPhase] = useState<"waiting" | "typing" | "done">("waiting");
@@ -234,10 +236,10 @@ export default function StageTipsBanner({ lessonId, lessonTitle }: Props) {
         </div>
         <div className="flex-1 min-w-0">
           <span className="text-white font-bold text-sm">Tài Tài</span>
-          <span className="text-stone-500 text-xs ml-2">· mẹo tự động cho bài này</span>
+          <span className="text-stone-500 text-xs ml-2">{t.miscUi.stageTipsBanner.autoTipSuffix}</span>
         </div>
         <div className="flex items-center gap-1.5">
-          <span className="text-stone-500 text-xs uppercase tracking-wide">Tự động</span>
+          <span className="text-stone-500 text-xs uppercase tracking-wide">{t.miscUi.stageTipsBanner.auto}</span>
         </div>
       </div>
 

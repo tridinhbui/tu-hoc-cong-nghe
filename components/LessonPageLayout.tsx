@@ -633,11 +633,11 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
       const streakResult = await updateStreak(uid);
       if (streakResult.freezeUsedThisUpdate) {
         const remaining = MAX_STREAK_FREEZES - (streakResult.freezes_used ?? 0);
-        toast.info(`🧊 Bạn đã lỡ mất 1 ngày, nhưng chuỗi ${streakResult.current_streak} ngày vẫn được giữ nguyên nhờ lượt bảo vệ chuỗi (còn ${remaining} lượt).`);
+        toast.info(format(t.miscUi.lessonPageLayout.streakFreezeUsed, { streak: streakResult.current_streak, remaining }));
       }
       const cardDrop = await maybeAwardFinanceCardDrop(uid, finalScore);
       if (cardDrop.dropped && cardDrop.card) {
-        toast.success(`📇 Rơi thẻ mới: ${cardDrop.card.ticker} - ${cardDrop.card.name}!`);
+        toast.success(format(t.miscUi.lessonPageLayout.cardDropped, { ticker: cardDrop.card.ticker, name: cardDrop.card.name }));
         if (typeof window !== "undefined") {
           window.dispatchEvent(new CustomEvent("thtcdn:finance-card-dropped", { detail: cardDrop.card }));
         }
@@ -650,14 +650,14 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
       // vừa mở, thay vì đọc lại cả danh sách đang mở sau mỗi bài.
       const newlyUnlocked = await getUnlockedSkills(uid, persistedLessonId);
       for (const node of newlyUnlocked) {
-        toast.success(`🌲 Mở khoá kỹ năng: ${node.name} - xem ở Cây kỹ năng`);
+        toast.success(format(t.miscUi.lessonPageLayout.skillUnlocked, { name: node.name }));
       }
     } catch (error) {
       console.error("Error updating stats/streak after completion (lesson still saved):", error);
     }
 
     if (typeof window !== "undefined") {
-      window.dispatchEvent(new CustomEvent("thtcdn:xp-gained", { detail: { xp: 10, label: "Hoàn thành bài học!" } }));
+      window.dispatchEvent(new CustomEvent("thtcdn:xp-gained", { detail: { xp: 10, label: t.miscUi.lessonPageLayout.lessonCompletedLabel } }));
     }
     toast.success(t.lessonLayout.saved);
     return true;

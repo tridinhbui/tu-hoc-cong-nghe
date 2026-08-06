@@ -1,10 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Compass, CheckCircle2, ArrowRight, Sparkles, X, BrainCircuit, Award } from "lucide-react";
 import { toast } from "sonner";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
 interface DiagnosticQuestion {
   id: number;
@@ -12,38 +15,43 @@ interface DiagnosticQuestion {
   options: { text: string; scoreTrack: "personal" | "professional" | "cfa" | "ai" }[];
 }
 
-const DIAGNOSTIC_QUESTIONS: DiagnosticQuestion[] = [
-  {
-    id: 1,
-    question: "Mục tiêu tài chính lớn nhất của bạn trong 6 - 12 tháng tới là gì?",
-    options: [
-      { text: "Quản lý thu chi cá nhân, lập quỹ khẩn cấp & tích sản", scoreTrack: "personal" },
-      { text: "Đọc hiểu Báo cáo tài chính doanh nghiệp & phân tích đầu tư", scoreTrack: "professional" },
-      { text: "Chinh phục chứng chỉ quốc tế CFA & chuyên sâu Corporate Finance", scoreTrack: "cfa" },
-      { text: "Ứng dụng AI (ChatGPT, Claude) để tự động hóa phân tích tài chính", scoreTrack: "ai" },
-    ],
-  },
-  {
-    id: 2,
-    question: "Bạn đánh giá mức độ hiểu biết của mình về Báo cáo tài chính (BCTC) ra sao?",
-    options: [
-      { text: "Chưa biết gì, muốn bắt đầu từ khái niệm cơ bản nhất", scoreTrack: "personal" },
-      { text: "Biết sơ bộ Bảng cân đối kế toán & Báo cáo kết quả kinh doanh", scoreTrack: "professional" },
-      { text: "Thành thục kết nối 3 báo cáo tài chính & tính toán dòng tiền FCF", scoreTrack: "cfa" },
-      { text: "Muốn dùng Prompt Engineering để AI đọc & bóc tách BCTC tự động", scoreTrack: "ai" },
-    ],
-  },
-  {
-    id: 3,
-    question: "Bạn đã từng thực hiện định giá cổ phiếu hoặc phân tích doanh nghiệp chưa?",
-    options: [
-      { text: "Chưa từng, tôi muốn tích lũy kiến thức quản lý tiền cá nhân trước", scoreTrack: "personal" },
-      { text: "Đã tìm hiểu các chỉ số P/E, P/B, ROE cơ bản", scoreTrack: "professional" },
-      { text: "Đã thực hành các mô hình DCF, WACC, LBO chuyên sâu", scoreTrack: "cfa" },
-      { text: "Tôi muốn kết hợp công cụ AI để chạy giả lập kịch bản vĩ mô", scoreTrack: "ai" },
-    ],
-  },
-];
+// Scoring is purely by `scoreTrack` per option (question id + option order),
+// never by option text - translating the labels below must never change
+// which track an option scores toward.
+function buildDiagnosticQuestions(t: Dictionary): DiagnosticQuestion[] {
+  return [
+    {
+      id: 1,
+      question: t.diagnostic.q1,
+      options: [
+        { text: t.diagnostic.q1Opt1, scoreTrack: "personal" },
+        { text: t.diagnostic.q1Opt2, scoreTrack: "professional" },
+        { text: t.diagnostic.q1Opt3, scoreTrack: "cfa" },
+        { text: t.diagnostic.q1Opt4, scoreTrack: "ai" },
+      ],
+    },
+    {
+      id: 2,
+      question: t.diagnostic.q2,
+      options: [
+        { text: t.diagnostic.q2Opt1, scoreTrack: "personal" },
+        { text: t.diagnostic.q2Opt2, scoreTrack: "professional" },
+        { text: t.diagnostic.q2Opt3, scoreTrack: "cfa" },
+        { text: t.diagnostic.q2Opt4, scoreTrack: "ai" },
+      ],
+    },
+    {
+      id: 3,
+      question: t.diagnostic.q3,
+      options: [
+        { text: t.diagnostic.q3Opt1, scoreTrack: "personal" },
+        { text: t.diagnostic.q3Opt2, scoreTrack: "professional" },
+        { text: t.diagnostic.q3Opt3, scoreTrack: "cfa" },
+        { text: t.diagnostic.q3Opt4, scoreTrack: "ai" },
+      ],
+    },
+  ];
+}
 
 export default function DiagnosticPlacementModal({
   userId,
@@ -55,6 +63,7 @@ export default function DiagnosticPlacementModal({
   onClose: () => void;
 }) {
   const router = useRouter();
+  const { t } = useI18n();
   const [step, setStep] = useState<"quiz" | "result">("quiz");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [scores, setScores] = useState<Record<string, number>>({
@@ -63,6 +72,8 @@ export default function DiagnosticPlacementModal({
     cfa: 0,
     ai: 0,
   });
+
+  const DIAGNOSTIC_QUESTIONS = useMemo(() => buildDiagnosticQuestions(t), [t]);
 
   const handleSelectOption = (track: "personal" | "professional" | "cfa" | "ai") => {
     setScores((prev) => ({ ...prev, [track]: prev[track] + 1 }));
@@ -83,26 +94,26 @@ export default function DiagnosticPlacementModal({
 
   const trackNames: Record<string, { title: string; desc: string; url: string; emoji: string }> = {
     personal: {
-      title: "Lộ Trình Tài Chính Cá Nhân",
-      desc: "Phù hợp nhất cho người mới bắt đầu: Quản lý ngân sách 50/30/20, Quỹ khẩn cấp & Tích sản dài hạn.",
+      title: t.diagnostic.trackPersonalTitle,
+      desc: t.diagnostic.trackPersonalDesc,
       url: "/dashboard?track=personal",
       emoji: "🌱",
     },
     professional: {
-      title: "Lộ Trình Phân Tích Doanh Nghiệp & Đầu Tư",
-      desc: "Phù hợp cho người đã có nền tảng: Đọc BCTC, Phân tích chỉ số tài chính & Chiến lược đầu tư.",
+      title: t.diagnostic.trackProfessionalTitle,
+      desc: t.diagnostic.trackProfessionalDesc,
       url: "/dashboard?track=professional",
       emoji: "💼",
     },
     cfa: {
-      title: "Lộ Trình Chuyên Sâu CFA & Corporate Finance",
-      desc: "Phù hợp cho định hướng chuyên nghiệp: Mô hình định giá DCF, WACC, LBO & Chứng chỉ CFA Level 1.",
+      title: t.diagnostic.trackCfaTitle,
+      desc: t.diagnostic.trackCfaDesc,
       url: "/cfa",
       emoji: "🎓",
     },
     ai: {
-      title: "Lộ Trình AI For Finance",
-      desc: "Phù hợp cho tín đồ công nghệ: Ứng dụng Prompt Engineering & AI Agents trong phân tích tài chính.",
+      title: t.diagnostic.trackAiTitle,
+      desc: t.diagnostic.trackAiDesc,
       url: "/dashboard?track=professional",
       emoji: "🤖",
     },
@@ -121,7 +132,7 @@ export default function DiagnosticPlacementModal({
     try {
       localStorage.setItem(`thtcdn_placement_test_${userId}`, recommendedTrack);
     } catch (e) {}
-    toast.success(`🎉 Đã thiết lập Lộ trình học: ${rec.title}`);
+    toast.success(format(t.diagnostic.setupToastSuccess, { title: rec.title }));
     onClose();
     router.push(rec.url);
   };
@@ -145,16 +156,16 @@ export default function DiagnosticPlacementModal({
               </span>
               <div>
                 <h3 className="text-sm font-black text-stone-900 dark:text-stone-100">
-                  Chẩn Đoán Trình Độ Đầu Vào
+                  {t.diagnostic.modalTitle}
                 </h3>
-                <p className="text-[11px] font-bold text-stone-400">Khảo sát 3 phút xếp lớp tự động</p>
+                <p className="text-[11px] font-bold text-stone-400">{t.diagnostic.modalSubtitle}</p>
               </div>
             </div>
             <button
               type="button"
               onClick={handleDismiss}
               className="p-1.5 rounded-full text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-800 cursor-pointer transition-colors"
-              title="Bỏ qua"
+              title={t.diagnostic.dismissTitle}
             >
               <X className="w-4 h-4" />
             </button>
@@ -168,13 +179,13 @@ export default function DiagnosticPlacementModal({
                 return (
                   <div className="space-y-4">
                     <div className="flex items-center justify-between text-xs font-black text-stone-400">
-                      <span>Câu hỏi {currentIndex + 1} / {DIAGNOSTIC_QUESTIONS.length}</span>
+                      <span>{format(t.diagnostic.questionCounter, { current: currentIndex + 1, total: DIAGNOSTIC_QUESTIONS.length })}</span>
                       <button
                         type="button"
                         onClick={handleDismiss}
                         className="text-[11px] font-bold text-stone-400 hover:text-stone-600 dark:hover:text-stone-200 underline cursor-pointer"
                       >
-                        Để sau
+                        {t.diagnostic.skipForNow}
                       </button>
                     </div>
 
@@ -204,7 +215,7 @@ export default function DiagnosticPlacementModal({
                 <div className="text-5xl">{rec.emoji}</div>
                 <div>
                   <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 text-[10px] font-black uppercase tracking-wider border border-emerald-300 dark:border-emerald-800">
-                    <Sparkles className="w-3 h-3 text-emerald-500" /> KẾT QUẢ GỢI Ý LỘ TRÌNH DÀNH CHO BẠN
+                    <Sparkles className="w-3 h-3 text-emerald-500" /> {t.diagnostic.resultBadge}
                   </span>
                   <h3 className="text-lg font-black text-stone-900 dark:text-stone-100 mt-2">
                     {rec.title}
@@ -219,7 +230,7 @@ export default function DiagnosticPlacementModal({
                   onClick={handleComplete}
                   className="w-full py-3 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-black text-sm transition-all shadow-md cursor-pointer flex items-center justify-center gap-2"
                 >
-                  Bắt đầu học ngay <ArrowRight className="w-4 h-4" />
+                  {t.diagnostic.startLearningNow} <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
             )}

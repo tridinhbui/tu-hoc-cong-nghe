@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase";
 import { useRoutePrefetch } from "@/lib/use-route-prefetch";
 import { isValidAvatar } from "@/lib/avatar-utils";
+import { useI18n } from "@/lib/i18n/context";
 
 interface UserMenuProps {
   name?: string;
@@ -15,6 +16,7 @@ interface UserMenuProps {
 }
 
 export default function UserMenu({ name, email, avatarUrl }: UserMenuProps) {
+  const { t } = useI18n();
   const router = useRouter();
   const supabase = createClient();
   const [isOpen, setIsOpen] = useState(false);
@@ -41,7 +43,7 @@ export default function UserMenu({ name, email, avatarUrl }: UserMenuProps) {
     router.replace("/login");
   };
 
-  const displayName = name || email || "Người dùng";
+  const displayName = name || email || t.userMenu.defaultUserName;
   const initials = displayName
     .split(" ")
     .map((n) => n[0])
@@ -79,42 +81,42 @@ export default function UserMenu({ name, email, avatarUrl }: UserMenuProps) {
               onClick={() => setIsOpen(false)}
               className="block px-4 py-2 text-sm font-semibold text-stone-900 dark:text-stone-100 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
             >
-              Hồ sơ
+              {t.userMenu.menuProfile}
             </Link>
             <Link
               href="/ban-be"
               onClick={() => setIsOpen(false)}
               className="block px-4 py-2 text-sm font-semibold text-stone-900 dark:text-stone-100 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
             >
-              Bạn bè & chat
+              {t.userMenu.menuFriendsChat}
             </Link>
             <Link
               href="/ghi-chu"
               onClick={() => setIsOpen(false)}
               className="block px-4 py-2 text-sm font-semibold text-stone-900 dark:text-stone-100 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
             >
-              Ghi chú của tôi
+              {t.userMenu.menuMyNotes}
             </Link>
             <Link
               href="/game"
               onClick={() => setIsOpen(false)}
               className="block px-4 py-2 text-sm font-bold text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950/30 transition-colors"
             >
-              🎮 Mini Game
+              {t.userMenu.menuMiniGame}
             </Link>
             <Link
               href="/cong-cu"
               onClick={() => setIsOpen(false)}
               className="block px-4 py-2 text-sm font-semibold text-stone-900 dark:text-stone-100 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
             >
-              Công cụ cá nhân
+              {t.userMenu.menuPersonalTools}
             </Link>
             <Link
               href="/settings"
               onClick={() => setIsOpen(false)}
               className="block px-4 py-2 text-sm font-semibold text-stone-900 dark:text-stone-100 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
             >
-              Cài đặt
+              {t.userMenu.menuSettings}
             </Link>
           </div>
 
@@ -127,7 +129,7 @@ export default function UserMenu({ name, email, avatarUrl }: UserMenuProps) {
               }}
               className="w-full text-left px-2 py-2 text-sm font-semibold text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/50 rounded transition-colors"
             >
-              Đăng xuất
+              {t.userMenu.signOut}
             </button>
           </div>
         </div>

@@ -6,6 +6,7 @@ import { useReducedMotion } from "framer-motion";
 import { Volume2, VolumeX } from "lucide-react";
 import DinhHoaFlame from "@/components/DinhHoaFlame";
 import { startRain, type RainHandle } from "@/lib/rain-audio";
+import { useI18n } from "@/lib/i18n/context";
 
 /** three.js chỉ chạy phía trình duyệt - ssr:false giữ nó ngoài bundle server,
  *  và trong lúc chờ thì ngọn lửa 2D cũ đứng thế chỗ. Đó cũng là lý do
@@ -55,6 +56,7 @@ export default function QuietForestScene({
    *  không chỉ là ngọn lửa sáng thêm vài phần trăm. */
   setDownCount?: number;
 }) {
+  const { t } = useI18n();
   const reduced = useReducedMotion();
   const [visible, setVisible] = useState(false);
   const [rainOn, setRainOn] = useState(false);
@@ -124,10 +126,10 @@ export default function QuietForestScene({
             className="absolute right-2 top-2 inline-flex items-center gap-1.5 rounded-full border border-stone-300/70 bg-white/70 px-3 py-1.5 text-[11px] font-bold text-stone-600 backdrop-blur transition-colors hover:bg-white dark:border-stone-700/70 dark:bg-stone-900/70 dark:text-stone-300 dark:hover:bg-stone-900"
           >
             {rainOn ? <Volume2 className="h-3.5 w-3.5" /> : <VolumeX className="h-3.5 w-3.5" />}
-            {rainOn ? "Tắt tiếng mưa" : "Bật tiếng mưa"}
+            {rainOn ? t.miscUi.quietForestScene.turnOffRain : t.miscUi.quietForestScene.turnOnRain}
           </button>
           <p className="pointer-events-none absolute bottom-1 left-0 right-0 text-center text-[10px] font-semibold text-stone-400 dark:text-stone-500">
-            Kéo để nhìn nghiêng · lướt nhanh ngang để thổi vào lửa
+            {t.miscUi.quietForestScene.dragHint}
           </p>
         </>
       )}

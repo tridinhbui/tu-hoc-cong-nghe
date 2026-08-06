@@ -4,6 +4,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { UserPlus, UserCheck } from "lucide-react";
 import { followUser, unfollowUser } from "@/lib/supabase-follows";
+import { useI18n } from "@/lib/i18n/context";
 
 interface FollowButtonProps {
   currentUserId: string;
@@ -19,6 +20,7 @@ interface FollowButtonProps {
 }
 
 export default function FollowButton({ currentUserId, targetUserId, initialFollowing, size = "sm", onChange }: FollowButtonProps) {
+  const { t } = useI18n();
   const [following, setFollowing] = useState(initialFollowing);
   const [busy, setBusy] = useState(false);
 
@@ -54,7 +56,7 @@ export default function FollowButton({ currentUserId, targetUserId, initialFollo
       // Roll back - the toggle above was optimistic.
       setFollowing(!next);
       onChange?.(!next);
-      toast.error(error instanceof Error ? error.message : "Không thực hiện được. Vui lòng thử lại.");
+      toast.error(error instanceof Error ? error.message : t.miscUi.followButton.genericError);
     } finally {
       setBusy(false);
     }
@@ -83,7 +85,7 @@ export default function FollowButton({ currentUserId, targetUserId, initialFollo
       }
     >
       <Icon className={isSmall ? "h-3 w-3" : "h-4 w-4"} />
-      {following ? "Đang theo dõi" : "Theo dõi"}
+      {following ? t.miscUi.followButton.following : t.miscUi.followButton.follow}
     </button>
   );
 }

@@ -7,8 +7,11 @@ import { toast } from "sonner";
 import { CFA_FORMULAS_DATA, type CfaFormulaItem } from "@/lib/cfa-formulas-data";
 import { CFA_LEVEL_1_SUBJECTS } from "@/lib/cfa-track";
 import FormulaBlock from "@/components/FormulaBlock";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 export default function CfaFormulaCheatSheet() {
+  const { t } = useI18n();
   const [selectedSubject, setSelectedSubject] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -34,15 +37,15 @@ export default function CfaFormulaCheatSheet() {
         <div>
           <div className="flex items-center gap-2">
             <span className="text-[10px] font-black uppercase tracking-widest bg-amber-500/20 text-amber-300 px-3 py-1 rounded-full border border-amber-500/40">
-              📐 SỔ TAY CÔNG THỨC CFA LEVEL 1
+              {t.cfaFormulas.badge}
             </span>
             <span className="text-[10px] font-black uppercase tracking-widest bg-stone-800 text-stone-300 px-2.5 py-1 rounded-full border border-stone-700">
-              {CFA_FORMULAS_DATA.length} Công thức chuẩn
+              {format(t.cfaFormulas.countBadge, { count: CFA_FORMULAS_DATA.length })}
             </span>
           </div>
-          <h2 className="text-2xl font-black text-white mt-2">CFA Level I Formula Cheat Sheet</h2>
+          <h2 className="text-2xl font-black text-white mt-2">{t.cfaFormulas.title}</h2>
           <p className="text-xs sm:text-sm text-stone-300 mt-1 max-w-xl">
-            Tổng hợp công thức thi CFA với hiển thị phân số tầng trực quan, giải thích ký hiệu biến số, ví dụ tính bằng số và nút copy công thức tức thì.
+            {t.cfaFormulas.subtitle}
           </p>
         </div>
 
@@ -51,7 +54,7 @@ export default function CfaFormulaCheatSheet() {
           className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 font-extrabold text-xs text-white transition-all shadow-md self-start sm:self-auto cursor-pointer"
         >
           <Printer className="w-4 h-4" />
-          <span>In / Xuất PDF Sổ tay</span>
+          <span>{t.cfaFormulas.printCta}</span>
         </button>
       </div>
 
@@ -61,7 +64,7 @@ export default function CfaFormulaCheatSheet() {
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-400" />
           <input
             type="text"
-            placeholder="Tìm kiếm công thức (VD: WACC, ROE, TVM, DDM, CAPM...)..."
+            placeholder={t.cfaFormulas.searchPlaceholder}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full pl-11 pr-4 py-3 rounded-2xl bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 text-sm font-semibold focus:outline-none focus:border-amber-500 shadow-sm"
@@ -77,7 +80,7 @@ export default function CfaFormulaCheatSheet() {
                 : "bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-300 hover:bg-stone-200"
             }`}
           >
-            Tất cả Môn thi
+            {t.cfaFormulas.allSubjects}
           </button>
 
           {CFA_LEVEL_1_SUBJECTS.map((s) => (
@@ -90,7 +93,7 @@ export default function CfaFormulaCheatSheet() {
                   : "bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-300 hover:bg-stone-200"
               }`}
             >
-              {s.name} ({s.weight})
+              {format(t.cfaFormulas.subjectOption, { name: s.name, weight: s.weight })}
             </button>
           ))}
         </div>
@@ -103,7 +106,7 @@ export default function CfaFormulaCheatSheet() {
             <FormulaBlock
               key={item.id}
               title={item.title}
-              label={item.badge || "CFA FORMULA"}
+              label={item.badge || t.cfaFormulas.defaultBadge}
               numerator={item.numerator}
               denominator={item.denominator}
               multiplier={item.multiplier}
@@ -115,7 +118,7 @@ export default function CfaFormulaCheatSheet() {
         </div>
       ) : (
         <div className="text-center py-12 text-stone-500">
-          Không tìm thấy công thức phù hợp với từ khóa tìm kiếm.
+          {t.cfaFormulas.noResults}
         </div>
       )}
     </div>

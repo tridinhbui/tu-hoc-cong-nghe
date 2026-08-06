@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { linkForLesson, roomHref } from "@/lib/lesson-room-links";
 import { CIVIC_ROOMS } from "@/components/career-district/district-space";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 /** Đường dẫn từ một bài học sang căn phòng 3D dạy đúng điều đó.
  *
@@ -18,13 +20,14 @@ import { CIVIC_ROOMS } from "@/components/career-district/district-space";
  *  Bài nào không có trong bảng thì không dựng gì cả - đa số bài không có, và
  *  gắn một cái nút vào mọi bài sẽ khiến nó thành thứ ai cũng lướt qua. */
 export default function LessonRoomCard({ slug }: { slug: string }) {
+  const { t } = useI18n();
   const link = linkForLesson(slug);
   if (!link) return null;
 
   // Màu nhấn lấy từ chính căn phòng, không gõ lại: tấm thẻ và cánh cửa phải
   // cùng màu thì người học mới nhận ra mình vừa bấm cái gì khi tới nơi.
   const accent = CIVIC_ROOMS.find((c) => c.id === link.room)?.accent ?? "#a3e635";
-  const label = CIVIC_ROOMS.find((c) => c.id === link.room)?.label ?? "Phố nghề";
+  const label = CIVIC_ROOMS.find((c) => c.id === link.room)?.label ?? t.miscUi.lessonRoomCard.fallbackDistrictLabel;
 
   return (
     <Link
@@ -44,12 +47,12 @@ export default function LessonRoomCard({ slug }: { slug: string }) {
             className="text-[10px] font-black uppercase tracking-widest"
             style={{ color: accent }}
           >
-            Đi xem trong không gian 3D · {label}
+            {format(t.miscUi.lessonRoomCard.viewIn3d, { label })}
           </p>
           <p className="mt-1 text-lg font-extrabold leading-snug text-white">{link.cta}</p>
           <p className="mt-1 text-sm leading-relaxed text-stone-400">{link.why}</p>
           <p className="mt-2 text-sm font-bold text-stone-300 group-hover:text-white">
-            Mở phòng →
+            {t.miscUi.lessonRoomCard.openRoom}
           </p>
         </div>
       </div>

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { List } from "lucide-react";
 import type { LessonSectionBlock } from "@/lib/lesson-types";
+import { useI18n } from "@/lib/i18n/context";
 
 interface TocItem {
   id: string;
@@ -15,6 +16,7 @@ interface LessonTableOfContentsProps {
 }
 
 export default function LessonTableOfContents({ sections }: LessonTableOfContentsProps) {
+  const { t } = useI18n();
   const [activeId, setActiveId] = useState<string>("");
   const [tocItems, setTocItems] = useState<TocItem[]>([]);
 
@@ -69,7 +71,7 @@ export default function LessonTableOfContents({ sections }: LessonTableOfContent
         <div className="flex items-center gap-2 mb-3">
           <List className="w-4 h-4 text-stone-500 dark:text-stone-400" />
           <p className="text-xs font-extrabold uppercase tracking-widest text-stone-500 dark:text-stone-400">
-            Mục lục
+            {t.miscUi.lessonTableOfContents.title}
           </p>
         </div>
         <nav className="space-y-1">

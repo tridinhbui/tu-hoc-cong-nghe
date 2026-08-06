@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { AlertTriangle, Info, ShieldAlert, X } from "lucide-react";
 import { getUnreadAnnouncements, markAnnouncementRead, type Announcement } from "@/lib/announcements";
+import { useI18n } from "@/lib/i18n/context";
 
 const SEVERITY_STYLE: Record<Announcement["severity"], { wrap: string; icon: typeof Info }> = {
   info: {
@@ -24,6 +25,7 @@ const SEVERITY_STYLE: Record<Announcement["severity"], { wrap: string; icon: typ
 // dismissing writes announcement_reads so it never shows again for this
 // user unless the admin sends a new one.
 export default function AnnouncementBanner({ userId }: { userId: string }) {
+  const { t } = useI18n();
   const [announcements, setAnnouncements] = useState<Announcement[]>([]);
   const [dismissing, setDismissing] = useState<number | null>(null);
 
@@ -68,7 +70,7 @@ export default function AnnouncementBanner({ userId }: { userId: string }) {
             <button
               onClick={() => dismiss(a.id)}
               disabled={dismissing === a.id}
-              aria-label="Đóng thông báo"
+              aria-label={t.miscUi.announcementBanner.closeLabel}
               className="flex-shrink-0 p-1 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 transition-colors disabled:opacity-50"
             >
               <X className="w-4 h-4" />

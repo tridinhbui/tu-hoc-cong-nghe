@@ -182,7 +182,7 @@ export default function FinancialRpgWorldMap() {
       }
       const newCoins = coins + 5;
       setCoins(newCoins);
-      toast.success(`🕵️ ĐÃ GIẢI MÃ VÙNG ĐẤT BÍ ẨN! Thưởng thám hiểm +5 Coins!`);
+      toast.success(t.miscUi.financialRpgWorldMap.regionDiscovered);
       if (user?.id) {
         createClient().from("user_profiles").update({ coins: newCoins, discovered_buildings: updated }).eq("id", user.id).then(({ error }) => {
           if (error) console.warn("Supabase user_profiles update notice:", error.message);
@@ -198,12 +198,12 @@ export default function FinancialRpgWorldMap() {
       setIsMoving(false);
 
       if (targetBuilding?.isUnderConstruction) {
-        toast.info(`🏗️ Vùng đất "${targetBuilding.name}" đang trong quá trình mở rộng & thi công! Yêu cầu Level ${reqLevel} để khám phá.`);
+        toast.info(format(t.miscUi.financialRpgWorldMap.underConstruction, { name: targetBuilding.name, level: reqLevel }));
         return;
       }
 
       if (level < reqLevel) {
-        toast.error(`🔒 Công trình này yêu cầu Level ${reqLevel}! Hãy hoàn thành thêm bài học để mở khóa.`);
+        toast.error(format(t.miscUi.financialRpgWorldMap.levelLocked, { level: reqLevel }));
         return;
       }
 

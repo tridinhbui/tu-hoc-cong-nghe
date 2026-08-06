@@ -118,6 +118,20 @@ const INTENTIONALLY_UNTRANSLATED = new Set([
   "quizSuggestion.greeting",
   "quizSuggestion.suggestionLabel",
   "quizSuggestion.trackIb",
+  // The bare "XP" unit suffix, and a game district's proper name.
+  "miscUi.combinedRewardsWidget.xpUnit",
+  "miscUi.userStats.xpUnit",
+  "miscUi.xpFloatingPopup.xpUnit",
+  "miscUi.lessonRoomCard.fallbackDistrictLabel",
+  // "Tài Tài" the coach and the product's own name, in English sentences.
+  "smartRemediation.titlePart1",
+  "motivationShare.downloadedFilenameCaption",
+  // A wheel prize's own name, already English in the Vietnamese source.
+  "fortuneWheel.sectorChampagne",
+  // Already English in the Vietnamese source: both cheat sheets are titled in
+  // the exam's own language, matching the CFA and FRM syllabus names.
+  "cfaFormulas.title",
+  "frmFormulas.title",
   // Formulas: a DuPont decomposition and the compound-interest options, which
   // are algebra in both languages. Translating "FV" or "PV" would stop them
   // matching the lesson that teaches them.

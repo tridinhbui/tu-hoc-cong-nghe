@@ -465,7 +465,7 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
               <h3 className="text-lg font-black text-stone-900 dark:text-stone-100 flex items-center justify-center gap-1.5">
                 {rewardReveal.type === "title" && <Trophy className="w-5 h-5 text-amber-500" />}
                 {rewardReveal.value}
-                {rewardReveal.type === "xp" && " XP"}
+                {rewardReveal.type === "xp" && ` ${t.miscUi.combinedRewardsWidget.xpUnit}`}
               </h3>
               <p className="text-xs text-stone-500 dark:text-stone-400">{rewardReveal.desc}</p>
             </div>

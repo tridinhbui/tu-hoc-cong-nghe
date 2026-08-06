@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, Zap, Trophy } from "lucide-react";
+import { useI18n } from "@/lib/i18n/context";
 
 interface XpEventDetail {
   xp: number;
@@ -53,6 +54,7 @@ function playXpChimeSound() {
 }
 
 export default function XpFloatingPopup() {
+  const { t } = useI18n();
   const [items, setItems] = useState<XpItem[]>([]);
 
   useEffect(() => {
@@ -63,7 +65,7 @@ export default function XpFloatingPopup() {
       const newItem: XpItem = {
         id: `${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
         xp: detail.xp,
-        label: detail.label || "Tích lũy điểm kinh nghiệm",
+        label: detail.label || t.miscUi.xpFloatingPopup.defaultLabel,
       };
 
       setItems((prev) => [...prev.slice(-2), newItem]);
@@ -78,7 +80,7 @@ export default function XpFloatingPopup() {
     return () => {
       window.removeEventListener("thtcdn:xp-gained", handleXpGained);
     };
-  }, []);
+  }, [t]);
 
   if (items.length === 0) return null;
 
@@ -110,7 +112,7 @@ export default function XpFloatingPopup() {
             {/* XP Count & Label */}
             <div className="flex items-center gap-1.5 pr-1">
               <span className="font-black text-xl tracking-tight text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]">
-                +{item.xp} XP
+                +{item.xp} {t.miscUi.xpFloatingPopup.xpUnit}
               </span>
               <Sparkles className="w-4 h-4 text-amber-200 animate-spin" style={{ animationDuration: "2.5s" }} />
               {item.label && (

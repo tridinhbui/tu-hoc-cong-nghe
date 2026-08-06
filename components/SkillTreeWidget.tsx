@@ -4,6 +4,7 @@ import React from "react";
 import { SKILL_TREE, SkillNode } from "@/lib/gamification";
 import { CheckCircle2, Lock, Play } from "lucide-react";
 import Link from "next/link";
+import { useI18n } from "@/lib/i18n/context";
 
 interface SkillTreeWidgetProps {
   completedLessonIds: number[];
@@ -14,6 +15,7 @@ interface SkillTreeWidgetProps {
 }
 
 export default function SkillTreeWidget({ completedLessonIds, lessonSlugById }: SkillTreeWidgetProps) {
+  const { t } = useI18n();
   const completedIdsSet = new Set(completedLessonIds);
 
   const getStatus = (node: SkillNode) => {
@@ -35,10 +37,10 @@ export default function SkillTreeWidget({ completedLessonIds, lessonSlugById }: 
   return (
     <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl p-6 shadow-sm mt-6">
       <h3 className="text-lg font-bold text-stone-900 dark:text-stone-100 mb-2">
-        🌲 Cây Kỹ Năng Tài Chính (Finance Skill Tree)
+        {t.skillTree.title}
       </h3>
       <p className="text-sm text-stone-500 dark:text-stone-400 mb-6">
-        Theo dõi lộ trình phát triển năng lực tài chính cốt lõi theo logic tiên quyết khoa học.
+        {t.skillTree.subtitle}
       </p>
 
       <div className="flex flex-col gap-6 max-w-lg mx-auto relative">
@@ -94,7 +96,7 @@ export default function SkillTreeWidget({ completedLessonIds, lessonSlugById }: 
                         : "bg-stone-100 text-stone-600 dark:bg-stone-800 dark:text-stone-400"
                     }`}
                   >
-                    {status === "completed" ? "Đã học" : status === "in_progress" ? "Đang học" : "Đang khóa"}
+                    {status === "completed" ? t.skillTree.statusCompleted : status === "in_progress" ? t.skillTree.statusInProgress : t.skillTree.statusLocked}
                   </span>
                 </div>
                 <h4 className="font-bold text-stone-900 dark:text-stone-100 mt-1">{node.name}</h4>
@@ -109,11 +111,11 @@ export default function SkillTreeWidget({ completedLessonIds, lessonSlugById }: 
                     href={`/bai-hoc/${lessonSlugById[node.requiredLessonId]}`}
                     className="inline-flex items-center gap-1.5 text-xs text-amber-600 dark:text-amber-400 font-bold mt-2 hover:underline"
                   >
-                    Học ngay bài học tương ứng &rarr;
+                    {t.skillTree.goToLesson}
                   </Link>
                 ) : status === "locked" && node.prerequisites.length > 0 ? (
                   <div className="text-[11px] text-stone-500 dark:text-stone-400 mt-2">
-                    Yêu cầu hoàn thành trước: <span className="font-bold">{node.prerequisites.join(", ")}</span>
+                    {t.skillTree.prerequisitesLabel} <span className="font-bold">{node.prerequisites.join(", ")}</span>
                   </div>
                 ) : null}
               </div>

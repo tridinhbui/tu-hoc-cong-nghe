@@ -8,6 +8,7 @@ import { ROTUNDA_Z } from "./room-obstacles";
 import { boardTexture } from "./room-textures";
 import { getCommunityFeed } from "@/lib/supabase-community";
 import { getLeaderboardByMetric } from "@/lib/supabase-user";
+import { useI18n } from "@/lib/i18n/context";
 
 /** Ba thứ có thể tới xem trong sảnh. Trước đó phòng chỉ có bàn ghế, nên đi hết
  *  chiều dài rồi quay lại là hết việc - không có lý do nào để đi đâu cả.
@@ -187,6 +188,7 @@ export default function RoomFixtures({
   playerRef: React.MutableRefObject<{ x: number; z: number }>;
   onPortalProximity: (target: GateTarget | null) => void;
 }) {
+  const { t } = useI18n();
   const { posts, ranking } = useBoardData();
   const halfW = ROOM.width / 2;
 
@@ -197,7 +199,7 @@ export default function RoomFixtures({
       <WallBoard
         position={[-halfW + 0.3, 3.5, -6]}
         rotation={[0, Math.PI / 2, 0]}
-        title="Bảng tin cộng đồng"
+        title={t.miscUi.roomFixtures.communityBoard}
         rows={posts}
         accent="#c9a227"
       />
@@ -208,7 +210,7 @@ export default function RoomFixtures({
       <WallBoard
         position={[halfW - 0.3, 8.4, 6]}
         rotation={[0, -Math.PI / 2, 0]}
-        title="Bảng vàng tuần này"
+        title={t.miscUi.roomFixtures.weeklyLeaderboard}
         rows={ranking}
         accent="#e5b567"
       />

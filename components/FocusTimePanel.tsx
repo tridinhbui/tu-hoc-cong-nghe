@@ -2,6 +2,8 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { createClient } from "@/lib/supabase";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 /** Thời gian đã ngồi học trong thế giới 3D.
  *
@@ -20,18 +22,22 @@ interface SessionRow {
   started_at: string;
 }
 
-const WORLD_LABELS: Record<string, string> = {
-  "thu-vien": "Thư viện",
-  "nhom-hoc": "Phòng nhóm",
-  "pho-nghe": "Phố nghề",
-};
-
 function dayKey(d: Date) {
   return d.toLocaleDateString("sv-SE");
 }
 
 export default function FocusTimePanel({ userId }: { userId: string }) {
+  const { t } = useI18n();
   const [rows, setRows] = useState<SessionRow[] | null>(null);
+
+  // World ids ("thu-vien" / "nhom-hoc" / "pho-nghe") are the storage keys
+  // written by the 3D world - kept byte-identical here, only the displayed
+  // label is translated.
+  const WORLD_LABELS: Record<string, string> = {
+    "thu-vien": t.focusTime.worldLibrary,
+    "nhom-hoc": t.focusTime.worldGroupRoom,
+    "pho-nghe": t.focusTime.worldCareerStreet,
+  };
 
   useEffect(() => {
     if (!userId) return;
@@ -101,19 +107,19 @@ export default function FocusTimePanel({ userId }: { userId: string }) {
       <div className="flex items-start justify-between gap-3">
         <div>
           <h3 className="text-sm font-black text-stone-900 dark:text-stone-100">
-            ⏱ Thời gian ngồi học trong thành phố 3D
+            {t.focusTime.cardTitle}
           </h3>
           <p className="mt-0.5 text-xs text-stone-500 dark:text-stone-400">
-            30 ngày gần nhất · đo bằng đồng hồ máy chủ, không phải tự khai
+            {t.focusTime.cardSubtitle}
           </p>
         </div>
       </div>
 
       <div className="mt-4 grid grid-cols-3 gap-3">
         {[
-          { label: "Tổng", value: `${stats.totalMinutes} phút` },
-          { label: "Số phiên", value: String(stats.sessions) },
-          { label: "Trung bình", value: `${stats.averageMinutes} phút` },
+          { label: t.focusTime.statTotal, value: format(t.focusTime.statTotalValue, { minutes: stats.totalMinutes }) },
+          { label: t.focusTime.statSessions, value: String(stats.sessions) },
+          { label: t.focusTime.statAverage, value: format(t.focusTime.statAverageValue, { minutes: stats.averageMinutes }) },
         ].map((s) => (
           <div key={s.label} className="rounded-2xl bg-stone-50 px-3 py-2 dark:bg-stone-800">
             <p className="text-[10px] font-bold uppercase tracking-wider text-stone-500 dark:text-stone-400">
@@ -126,7 +132,7 @@ export default function FocusTimePanel({ userId }: { userId: string }) {
 
       <div className="mt-4">
         <p className="mb-1.5 text-[10px] font-bold uppercase tracking-wider text-stone-500 dark:text-stone-400">
-          Bảy ngày gần nhất
+          {t.focusTime.last7DaysTitle}
         </p>
         <div className="flex h-20 items-end gap-1.5">
           {stats.days.map((d) => (
@@ -134,7 +140,7 @@ export default function FocusTimePanel({ userId }: { userId: string }) {
               <div
                 className="w-full rounded-t-md bg-emerald-500/80 transition-all"
                 style={{ height: `${Math.max(2, (d.minutes / peak) * 100)}%` }}
-                title={`${d.key}: ${d.minutes} phút`}
+                title={format(t.focusTime.barTooltip, { day: d.key, minutes: d.minutes })}
               />
               <span className="text-[9px] tabular-nums text-stone-400">{d.minutes}</span>
             </div>
@@ -144,7 +150,7 @@ export default function FocusTimePanel({ userId }: { userId: string }) {
 
       <div className="mt-4">
         <p className="mb-1.5 text-[10px] font-bold uppercase tracking-wider text-stone-500 dark:text-stone-400">
-          Ngồi ở đâu
+          {t.focusTime.whereSatTitle}
         </p>
         <div className="space-y-1">
           {stats.worlds.map((w) => (
@@ -159,7 +165,7 @@ export default function FocusTimePanel({ userId }: { userId: string }) {
                 />
               </div>
               <span className="w-14 shrink-0 text-right tabular-nums text-stone-500 dark:text-stone-400">
-                {w.minutes} phút
+                {format(t.focusTime.minutesSuffix, { minutes: w.minutes })}
               </span>
             </div>
           ))}

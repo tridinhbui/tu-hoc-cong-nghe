@@ -257,7 +257,7 @@ export default function UserStats({
             sidebar ? "text-[10px] px-2.5 py-0.5" : "text-[11px] px-3 py-1.5"
           }`}>
             <Sparkles className={sidebar ? "w-2.5 h-2.5" : "w-3 h-3"} />
-            {xp} XP
+            {xp} {t.miscUi.userStats.xpUnit}
           </span>
         </div>
       </div>

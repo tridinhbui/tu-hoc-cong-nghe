@@ -15,6 +15,8 @@ import {
   TrendingUp,
   Award,
 } from "lucide-react";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 const PANELS = [
   {
@@ -115,6 +117,7 @@ const PANELS = [
 ];
 
 export default function ScrollytellingPinnedSection() {
+  const { t } = useI18n();
   const [activeTab, setActiveTab] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
@@ -151,7 +154,7 @@ export default function ScrollytellingPinnedSection() {
           <div className="flex items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
             <span className="text-xs font-black uppercase tracking-widest text-emerald-600 dark:text-emerald-400">
-              Khám phá sản phẩm
+              {t.miscUi.scrollytellingPinnedSection.exploreProduct}
             </span>
           </div>
 
@@ -233,7 +236,7 @@ export default function ScrollytellingPinnedSection() {
                           </div>
                           {"step" in item && item.step && (
                             <span className="text-[10px] font-black text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded-md border border-emerald-200 dark:border-emerald-900/50">
-                              Bước {item.step}
+                              {format(t.miscUi.scrollytellingPinnedSection.stepLabel, { step: item.step })}
                             </span>
                           )}
                           {"tag" in item && item.tag && (

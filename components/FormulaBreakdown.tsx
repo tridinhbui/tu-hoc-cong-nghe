@@ -1,4 +1,6 @@
 import type { ReactNode } from "react";
+import { getServerLocale } from "@/lib/i18n/server";
+import { getDictionary } from "@/lib/i18n";
 
 /**
  * Bảng "con số này ở đâu ra": công thức chữ, rồi cùng công thức đó với số thật
@@ -26,7 +28,7 @@ export interface FormulaStep {
   value: string;
 }
 
-export default function FormulaBreakdown({
+export default async function FormulaBreakdown({
   formula,
   steps,
   result,
@@ -40,6 +42,8 @@ export default function FormulaBreakdown({
   /** Câu cảnh báo hoặc điều kiện áp dụng, nếu có. */
   note?: ReactNode;
 }) {
+  const locale = await getServerLocale();
+  const t = getDictionary(locale);
   return (
     <details className="group rounded-2xl border border-stone-200 bg-stone-50 dark:border-stone-800 dark:bg-stone-950/40">
       {/* Mặc định đóng: người học lần đầu cần thấy con số và ý nghĩa của nó
@@ -47,13 +51,13 @@ export default function FormulaBreakdown({
           sẵn thì khối tính toán át mất phần đang dạy. */}
       <summary className="cursor-pointer list-none px-4 py-3 text-xs font-black uppercase tracking-wider text-stone-500 transition-colors hover:text-stone-800 dark:hover:text-stone-200">
         <span className="mr-1.5 inline-block transition-transform group-open:rotate-90">▸</span>
-        Cách tính con số này
+        {t.miscUi.formulaBreakdown.howThisIsCalculated}
       </summary>
 
       <div className="space-y-3 px-4 pb-4">
         <div>
           <div className="mb-1 text-[10px] font-bold uppercase tracking-wider text-stone-400">
-            Công thức
+            {t.miscUi.formulaBreakdown.formula}
           </div>
           <code className="block overflow-x-auto whitespace-pre rounded-xl bg-white px-3 py-2 font-mono text-[12px] leading-relaxed text-stone-800 dark:bg-stone-900 dark:text-stone-100">
             {formula}
@@ -63,7 +67,7 @@ export default function FormulaBreakdown({
         {steps && steps.length > 0 && (
           <div>
             <div className="mb-1 text-[10px] font-bold uppercase tracking-wider text-stone-400">
-              Thay số
+              {t.miscUi.formulaBreakdown.substitution}
             </div>
             <div className="space-y-1">
               {steps.map((step) => (

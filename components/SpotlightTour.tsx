@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { hasSeenTour, markTourSeen } from "@/lib/tour-flags";
+import { useI18n } from "@/lib/i18n/context";
 
 export interface TourStep {
   selector: string;
@@ -37,6 +38,7 @@ interface Props {
 // flag is the actual source of truth; localStorage just avoids a network
 // round trip on the common case where it's already known to be seen.
 export default function SpotlightTour({ steps, storageKey, userId, remoteKey }: Props) {
+  const { t } = useI18n();
   const [stepIndex, setStepIndex] = useState(-1);
   const [rect, setRect] = useState<DOMRect | null>(null);
   const [viewport, setViewport] = useState({ width: 0, height: 0 });
@@ -240,13 +242,13 @@ export default function SpotlightTour({ steps, storageKey, userId, remoteKey }: 
         <p className="text-xs text-stone-300 leading-snug mb-3">{step.text}</p>
         <div className="flex items-center justify-between">
           <button onClick={finish} className="text-xs text-stone-400 hover:text-white cursor-pointer p-1 -m-1">
-            Bỏ qua
+            {t.miscUi.spotlightTour.skip}
           </button>
           <button
             onClick={next}
             className="bg-white text-stone-900 text-xs font-bold px-3 py-1.5 rounded-lg hover:bg-stone-200 transition-colors cursor-pointer"
           >
-            {isLast ? "Xong" : "Tiếp →"}
+            {isLast ? t.miscUi.spotlightTour.done : t.miscUi.spotlightTour.next}
           </button>
         </div>
       </div>

@@ -725,7 +725,7 @@ export default function JobSearchClient() {
       localStorage.setItem("thtcdn_career_goal", careerId);
       localStorage.setItem(CAREER_ITEMS_KEY, JSON.stringify([]));
       notifyLocalStorageChanged(CAREER_GOAL_STORAGE_EVENT);
-      toast.success(`🎯 Đã đặt làm Mục tiêu Sự nghiệp mới!`);
+      toast.success(t.miscUi.jobSearchClient.goalSetSuccess);
       window.dispatchEvent(new CustomEvent(CAREER_GOAL_EVENT, { detail: { careerId } }));
       // A failed write used to be logged and forgotten while the success
       // toast above stood - so a goal that never left the browser looked
@@ -837,7 +837,7 @@ export default function JobSearchClient() {
         claimQuestReward(userId, "career_assessment", "once")
           .then(({ claimed, xpEarned }) => {
             if (claimed && xpEarned > 0) {
-              toast.success(`Chúc mừng! Bạn đã nhận được +${xpEarned} XP cho Trắc nghiệm Hướng nghiệp! 🧭`);
+              toast.success(format(t.miscUi.jobSearchClient.quizRewardSuccess, { xp: xpEarned }));
               void recalculateUserStats(userId).catch(() => {});
             }
           })

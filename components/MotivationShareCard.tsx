@@ -5,6 +5,7 @@ import { Share2 } from "lucide-react";
 import { toast } from "sonner";
 import { svgToPngBlob, shareOrDownloadImage } from "@/lib/share-image";
 import { wrapQuoteLines } from "@/lib/daily-motivation";
+import { useI18n } from "@/lib/i18n/context";
 
 // Nút chia sẻ + card PNG ẩn, gói chung một chỗ. Trước đây phần này nằm thẳng
 // trong DailyMotivationWidget; khi trang /loi-nhan cần đúng tấm ảnh đó thì tách
@@ -18,6 +19,7 @@ export default function MotivationShareCard({
   /** "lg" cho trang riêng, "sm" cho card nhỏ trên dashboard. */
   size?: "sm" | "lg";
 }) {
+  const { t } = useI18n();
   const svgRef = useRef<SVGSVGElement>(null);
   const [sharing, setSharing] = useState(false);
   const lines = wrapQuoteLines(text);
@@ -32,15 +34,15 @@ export default function MotivationShareCard({
       const outcome = await shareOrDownloadImage(
         blob,
         "loi-nhan-hom-nay.png",
-        "Lời nhắn hôm nay của mình trên Tự học Tài chính 🔥",
+        t.motivationShare.downloadedFilenameCaption,
       );
-      if (outcome === "shared") toast.success("Đã chia sẻ lời nhắn!");
+      if (outcome === "shared") toast.success(t.motivationShare.sharedToast);
       else if (outcome === "downloaded") {
-        toast.success("Đã tải ảnh - đăng lên story/Facebook và đính kèm ảnh này nhé!");
+        toast.success(t.motivationShare.downloadedToast);
       }
     } catch (error) {
       console.error("Error sharing daily motivation:", error);
-      toast.error("Không thể tạo ảnh lúc này.");
+      toast.error(t.motivationShare.errorToast);
     } finally {
       setSharing(false);
     }
@@ -59,7 +61,7 @@ export default function MotivationShareCard({
         }
       >
         <Share2 className={size === "lg" ? "h-4 w-4" : "h-3.5 w-3.5"} />
-        {sharing ? "Đang tạo ảnh..." : "Chia sẻ lời nhắn"}
+        {sharing ? t.motivationShare.generatingImage : t.motivationShare.shareMessage}
       </button>
 
       {/* Card vuông để xuất PNG - không bao giờ hiện trên màn hình, chỉ được
@@ -94,7 +96,7 @@ export default function MotivationShareCard({
         <path d="M 50 50 L 750 50 L 750 750 L 50 750 Z" fill="none" stroke="url(#motivationAccent)" strokeWidth="3" opacity="0.85" />
 
         <text x="400" y="135" textAnchor="middle" fill="#fbbf24" fontSize="14" fontWeight="900" letterSpacing="5">
-          TỰ HỌC TÀI CHÍNH MỖI NGÀY
+          {t.motivationShare.brandHeader}
         </text>
         <text x="400" y="240" textAnchor="middle" fontSize="86">
           🔥
@@ -118,7 +120,7 @@ export default function MotivationShareCard({
 
         <line x1="250" y1="660" x2="550" y2="660" stroke="url(#motivationAccent)" strokeWidth="1.5" opacity="0.7" />
         <text x="400" y="710" textAnchor="middle" fill="#a8a29e" fontSize="12" fontWeight="700" letterSpacing="1">
-          HỌC TÀI CHÍNH MỖI NGÀY · TUHOCTAICHINH.COM
+          {t.motivationShare.brandFooter}
         </text>
       </svg>
     </>

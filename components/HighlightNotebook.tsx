@@ -9,6 +9,7 @@ import { groupByStage } from "@/lib/highlight-stage-grouping";
 import { shuffleArray } from "@/lib/level-exams";
 import HighlightReview from "@/components/HighlightReview";
 import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 interface LessonInfo {
   slug: string;
@@ -48,7 +49,7 @@ export default function HighlightNotebook({ highlights, lessonsById }: Highlight
       setRows((prev) => prev.filter((h) => h.id !== id));
     } catch (error) {
       console.error("Error deleting highlight:", error);
-      toast.error("Không thể xoá. Vui lòng thử lại.");
+      toast.error(t.highlightNotebook.deleteError);
     } finally {
       setDeletingId(null);
     }
@@ -58,10 +59,9 @@ export default function HighlightNotebook({ highlights, lessonsById }: Highlight
     return (
       <div className="rounded-2xl border border-dashed border-stone-300 dark:border-stone-700 p-6 text-center">
         <Highlighter className="w-6 h-6 mx-auto text-stone-300 dark:text-stone-600 mb-2" />
-        <p className="text-sm font-bold text-stone-700 dark:text-stone-300">Chưa có đoạn nào được tô</p>
+        <p className="text-sm font-bold text-stone-700 dark:text-stone-300">{t.highlightNotebook.emptyTitle}</p>
         <p className="text-xs text-stone-500 dark:text-stone-400 mt-1 leading-relaxed">
-          Bôi đen một đoạn trong bài học rồi chọn &quot;Tô Highlight Quan Trọng&quot; - đoạn đó sẽ nổi
-          màu ngay trong bài và xuất hiện ở đây.
+          {t.highlightNotebook.emptySubtitle}
         </p>
       </div>
     );
@@ -82,7 +82,7 @@ export default function HighlightNotebook({ highlights, lessonsById }: Highlight
     <div className="space-y-3.5">
       <div className="flex items-center justify-between gap-3">
         <p className="text-xs font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-widest">
-          Đoạn đã tô · {rows.length}
+          {format(t.highlightNotebook.countLabel, { count: rows.length })}
         </p>
         <button
           type="button"
@@ -90,7 +90,7 @@ export default function HighlightNotebook({ highlights, lessonsById }: Highlight
           className="inline-flex items-center gap-1.5 rounded-xl bg-amber-500 px-3 py-1.5 text-xs font-black text-white shadow-xs transition-colors hover:bg-amber-400 cursor-pointer"
         >
           <Repeat className="w-3.5 h-3.5" />
-          Ôn tập
+          {t.highlightNotebook.reviewButton}
         </button>
       </div>
 
@@ -109,7 +109,7 @@ export default function HighlightNotebook({ highlights, lessonsById }: Highlight
             >
               <div className="min-w-0">
                 <p className={`text-[11px] font-black uppercase tracking-wider ${TRACK_LABEL_STYLES[group.stage.track]}`}>
-                  {group.stage.label} · {group.items.length} đoạn
+                  {format(t.highlightNotebook.groupCountLabel, { label: group.stage.label, count: group.items.length })}
                 </p>
                 <p className="text-xs font-bold text-stone-800 dark:text-stone-200 mt-0.5 leading-snug">
                   {group.stage.name}
@@ -145,7 +145,7 @@ export default function HighlightNotebook({ highlights, lessonsById }: Highlight
                           type="button"
                           onClick={() => handleDelete(h.id)}
                           disabled={deletingId === h.id}
-                          aria-label="Xoá đoạn đã tô"
+                          aria-label={t.highlightNotebook.deleteAria}
                           className="p-1 rounded-lg text-stone-300 dark:text-stone-600 hover:text-rose-500 dark:hover:text-rose-400 transition-colors disabled:opacity-50 cursor-pointer"
                         >
                           {deletingId === h.id ? (

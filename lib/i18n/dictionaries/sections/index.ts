@@ -23,6 +23,7 @@ import { districtContentVi, districtContentEn } from "./district-content";
 import { docsAuthVi, docsAuthEn } from "./docs-auth";
 import { examsOnboardingVi, examsOnboardingEn } from "./exams-onboarding";
 import { financeToolsVi, financeToolsEn } from "./finance-tools";
+import { formulaGlossaryVi, formulaGlossaryEn } from "./formula-glossary";
 import { gamesVi, gamesEn } from "./games";
 import { interactiveChartsVi, interactiveChartsEn } from "./interactive-charts";
 import { interactiveEconVi, interactiveEconEn } from "./interactive-econ";
@@ -30,9 +31,11 @@ import { interactiveRestVi, interactiveRestEn } from "./interactive-rest";
 import { legalChatVi, legalChatEn } from "./legal-chat";
 import { libDataVi, libDataEn } from "./lib-data";
 import { lessonAdminVi, lessonAdminEn } from "./lesson-admin";
+import { miscUiVi, miscUiEn } from "./misc-ui";
 import { moreCalculatorsVi, moreCalculatorsEn } from "./more-calculators";
 import { networthUnlockVi, networthUnlockEn } from "./networth-unlock";
 import { notesStatsVi, notesStatsEn } from "./notes-stats";
+import { placementFocusVi, placementFocusEn } from "./placement-focus";
 import { practicePreviewVi, practicePreviewEn } from "./practice-preview";
 import { questsReferralVi, questsReferralEn } from "./quests-referral";
 import { rpgStudyRoomVi, rpgStudyRoomEn } from "./rpg-study-room";
@@ -53,6 +56,7 @@ export const viSections = {
   ...docsAuthVi,
   ...examsOnboardingVi,
   ...financeToolsVi,
+  ...formulaGlossaryVi,
   ...gamesVi,
   ...interactiveChartsVi,
   ...interactiveEconVi,
@@ -60,9 +64,11 @@ export const viSections = {
   ...legalChatVi,
   ...libDataVi,
   ...lessonAdminVi,
+  ...miscUiVi,
   ...moreCalculatorsVi,
   ...networthUnlockVi,
   ...notesStatsVi,
+  ...placementFocusVi,
   ...practicePreviewVi,
   ...questsReferralVi,
   ...rpgStudyRoomVi,
@@ -84,6 +90,7 @@ export const enSections: typeof viSections = {
   ...docsAuthEn,
   ...examsOnboardingEn,
   ...financeToolsEn,
+  ...formulaGlossaryEn,
   ...gamesEn,
   ...interactiveChartsEn,
   ...interactiveEconEn,
@@ -91,9 +98,11 @@ export const enSections: typeof viSections = {
   ...legalChatEn,
   ...libDataEn,
   ...lessonAdminEn,
+  ...miscUiEn,
   ...moreCalculatorsEn,
   ...networthUnlockEn,
   ...notesStatsEn,
+  ...placementFocusEn,
   ...practicePreviewEn,
   ...questsReferralEn,
   ...rpgStudyRoomEn,

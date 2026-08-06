@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useRef, useState } from "react";
+import { useI18n } from "@/lib/i18n/context";
 
 /**
  * Cần điều khiển ảo dùng chung cho cả ba thế giới 3D.
@@ -26,6 +27,7 @@ export default function Joystick({
 }: {
   onVector: (x: number, y: number) => void;
 }) {
+  const { t } = useI18n();
   const base = useRef<HTMLDivElement>(null);
   const [knob, setKnob] = useState({ x: 0, y: 0 });
   const active = useRef(false);
@@ -76,14 +78,14 @@ export default function Joystick({
       onPointerCancel={stop}
       onPointerLeave={() => active.current && stop()}
       role="application"
-      aria-label="Cần điều khiển: kéo để đi"
+      aria-label={t.miscUi.joystick.ariaLabel}
     >
       <div
         className="absolute left-1/2 top-1/2 h-12 w-12 rounded-full bg-emerald-500/85 shadow-lg transition-[background] duration-150"
         style={{ transform: `translate(calc(-50% + ${knob.x}px), calc(-50% + ${knob.y}px))` }}
       />
       <span className="pointer-events-none absolute inset-x-0 -bottom-5 text-center text-[10px] font-bold text-stone-400">
-        kéo để đi
+        {t.miscUi.joystick.dragToMove}
       </span>
     </div>
   );

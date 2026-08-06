@@ -6,6 +6,8 @@ import { findGlossaryMatches } from "@/lib/finance-glossary";
 import { createClient } from "@/lib/supabase";
 import { saveFlashcard, getFlashcards } from "@/lib/supabase-flashcards";
 import { toast } from "sonner";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 // Global cache of saved terms for the active user to avoid redundant fetches
 let cachedSavedTerms: Set<string> | null = null;
@@ -34,6 +36,7 @@ function updateSavedTermCache(userId: string, term: string) {
 
 // Dotted-underline term with an interactive tooltip showing English translation & instant Flashcard saving
 function GlossaryTermSpan({ term, en }: { term: string; en: string }) {
+  const { t } = useI18n();
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [userId, setUserId] = useState<string | null>(null);
@@ -106,14 +109,14 @@ function GlossaryTermSpan({ term, en }: { term: string; en: string }) {
     }
 
     if (!currentUserId) {
-      toast.error("Vui lòng đăng nhập để lưu thẻ Flashcard!");
+      toast.error(t.glossaryTerm.loginRequired);
       return;
     }
 
     setSaveState("saving");
     const card = {
       term,
-      definition: `Thuật ngữ tiếng Anh: ${en}. Được lưu từ bài học hệ thống.`,
+      definition: format(t.glossaryTerm.definitionTemplate, { en }),
       interval: 1,
       ease_factor: 2.5,
       repetitions: 0,
@@ -131,20 +134,20 @@ function GlossaryTermSpan({ term, en }: { term: string; en: string }) {
       // from a lesson had no way to find them again. A reader asked exactly
       // that: "làm sao để ôn tập những từ đã lưu ạ". The action makes the
       // toast the answer instead of a dead end.
-      toast.success(`Đã thêm "${term}" vào bộ Flashcards của bạn! 🗂️✨`, {
+      toast.success(format(t.glossaryTerm.savedToast, { term }), {
         action: {
-          label: "Ôn tập ngay",
+          label: t.glossaryTerm.reviewNowAction,
           onClick: () => router.push("/cfa/flashcards"),
         },
       });
-      
+
       if (typeof window !== "undefined") {
-        window.dispatchEvent(new CustomEvent("thtcdn:xp-gained", { detail: { xp: 5, label: "Tạo Flashcard mới!" } }));
+        window.dispatchEvent(new CustomEvent("thtcdn:xp-gained", { detail: { xp: 5, label: t.glossaryTerm.xpGainedLabel } }));
       }
       setTimeout(() => setOpen(false), 1200);
     } else {
       setSaveState("error");
-      toast.error("Không thể lưu thẻ Flashcard. Vui lòng thử lại.");
+      toast.error(t.glossaryTerm.saveErrorToast);
     }
   };
 
@@ -193,12 +196,12 @@ function GlossaryTermSpan({ term, en }: { term: string; en: string }) {
             }`}
           >
             {saveState === "saving"
-              ? "⏳ Đang lưu..."
+              ? t.glossaryTerm.savingButton
               : isSaved || saveState === "saved"
-                ? "✓ Đã có trong Flashcard"
+                ? t.glossaryTerm.savedButton
                 : saveState === "error"
-                  ? "⚠ Thử lại"
-                  : "+ 🗂️ Lưu vào Flashcard (+5 XP)"}
+                  ? t.glossaryTerm.retryButton
+                  : t.glossaryTerm.saveButton}
           </button>
         </span>
       </span>
