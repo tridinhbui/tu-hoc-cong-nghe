@@ -1,0 +1,162 @@
+{
+  "slug": "quy-tac-4-phan-tram",
+  "title": "The 4% rule: how much you can withdraw in retirement",
+  "subtitle": "Safe withdrawal rate - use caution applying it in Vietnam",
+  "duration": "7 min",
+  "openingQuestion": "Uncle Hai retires with a 3-billion-VND portfolio. Applying the 4% rule, roughly how much can he withdraw in the first year, and what should he KEEP IN MIND applying this rule in Vietnam?",
+  "openingOptions": [
+    "Withdraw the full 120 million VND right in the first year; this rule is considered absolutely correct in every country and at every stage of the global financial markets, with no exceptions at all",
+    "Withdraw the full 3 billion VND right in the first year, since he has officially reached retirement age under current social insurance law",
+    "He shouldn't withdraw any amount at all, and should live entirely off interest from a bank savings account for the rest of his retirement",
+    "Withdraw about 120 million in the first year, then adjust for inflation, but exercise caution in Vietnam"
+  ],
+  "explanation": "The 4% rule suggests withdrawing 4% of the portfolio's value in the first year of retirement, then adjusting the withdrawal amount for inflation in subsequent years to preserve purchasing power. This comes from the Trinity study, based on a long stretch of US market data - applying it in Vietnam calls for caution, since Vietnam's historical inflation has had periods significantly higher than the US, and Vietnam's capital market is younger, which could mean the actual safe withdrawal rate is lower than 4%.",
+  "diagram": [
+    { "label": "Withdraw 4% of portfolio value in year one", "arrow": true },
+    { "label": "Adjust for inflation in later years", "arrow": true },
+    { "label": "Based on the Trinity Study - use caution in Vietnam" }
+  ],
+  "realWorldExample": {
+    "company": "The Trinity study (US) and Vietnam's inflation context",
+    "description": "The Trinity study is a US academic paper (published in 1998, based on US market data from 1926-1995) concluding that withdrawing 4%/year (inflation-adjusted) from a balanced stock-bond portfolio has a high probability of not running out of money over 30 years. However, Vietnam's inflation has had periods exceeding 20%/year (such as 2008 and 2011) and its long-run average tends to run higher than the US. Many financial planners recommend that people in Vietnam use a more conservative withdrawal rate (for example 3-3.5%/year) or track and adjust flexibly based on actual market conditions, rather than rigidly applying the US study's 4% figure."
+  },
+  "quiz": [
+    {
+      "question": "How does the 4% rule (safe withdrawal rate) actually work?",
+      "options": [
+        "Only withdraw the portion of return above 4% and keep the principal untouched",
+        "Withdraw 4% in year one, then adjust that amount for inflation in later years",
+        "Withdraw 4% every year until the portfolio is completely depleted",
+        "Withdraw exactly 4% of the portfolio's current value every single year"
+      ],
+      "correct": 1,
+      "explanation": "The key point that's easy to misunderstand: the year-one withdrawal is 4% x the initial portfolio value, and in later years only the AMOUNT is adjusted FOR INFLATION (not recalculated as 4% of the portfolio's fluctuating value each year), so as to keep purchasing power stable over time."
+    },
+    {
+      "question": "Why exercise caution applying the 4% rule (Trinity study) in Vietnam?",
+      "options": [
+        "Because Vietnamese returns are higher, so you can withdraw more than 4%",
+        "Because the 4% rule only applies to people retiring before age 50",
+        "Because the Trinity study is based on US market data",
+        "Because Vietnamese inflation is lower than the US, making 4% too little"
+      ],
+      "correct": 2,
+      "explanation": "The original study is based on US market and inflation history over a specific period. Vietnam has a history of much sharper inflation swings (once exceeding 20%/year) and a stock market far younger than the US's, so mechanically applying the 4% figure may not fit - it calls for a more cautious adjustment or flexible tracking."
+    },
+    {
+      "question": "A 5-billion-VND portfolio at retirement. How much does the 4% rule allow withdrawing in year one?",
+      "options": [
+        "20 million VND per month, fixed for the entire retirement",
+        "400 million VND, i.e. 4% doubled to cover expected inflation",
+        "200 million VND, then adjusted for inflation in later years",
+        "Impossible to determine without knowing what assets the portfolio holds"
+      ],
+      "correct": 2,
+      "explanation": "5 billion x 4% = 200 million for year one. In later years, you don't recalculate 4% of the new balance - you keep purchasing power stable: 200 million plus inflation. That's the most commonly misunderstood part of this rule."
+    },
+    {
+      "question": "What study is the 4% rule based on, and under what assumption?",
+      "options": [
+        "The Trinity Study, using a stock-bond portfolio over a 30-year period",
+        "A World Bank study on retirement in developing countries",
+        "A social insurance agency recommendation applied to every country",
+        "The real-world experience of major pension funds over the past decade"
+      ],
+      "correct": 0,
+      "explanation": "The Trinity Study examined decades of US market data and asked: which withdrawal rate survives 30 years across most historical periods. That condition matters - the portfolio has to stay invested in the market."
+    },
+    {
+      "question": "Why might the 4% rule be unsafe for someone retiring at age 45?",
+      "options": [
+        "Because young people are legally barred from withdrawing from a pension fund early",
+        "Because 30 years isn't enough - the money has to last 40 to 50 years for an early retiree",
+        "Because a young person's investment returns are always lower than an older person's",
+        "Because a 45-year-old's spending is always much lower than a 65-year-old's"
+      ],
+      "correct": 1,
+      "explanation": "The rule was tested for 30 years. Retiring at 45 means the portfolio has to last 45 years or more, and at that horizon the recommended safe withdrawal rate is usually lowered to around 3-3.5%."
+    },
+    {
+      "question": "What does 'sequence of returns' risk mean?",
+      "options": [
+        "The order of withdrawals between accounts determines the tax owed each year",
+        "Each year's return is calculated in the order the assets appear in the portfolio",
+        "A sharp market drop right in the early retirement years causes far more damage",
+        "Average returns over 30 years don't depend on the order of the up and down years"
+      ],
+      "correct": 2,
+      "explanation": "Two people with the same 30-year average return can still end up with very different outcomes if one hits a downturn in the very first year. Withdrawing from a portfolio that's down means selling more units, and that capital is no longer there to recover."
+    }
+  ],
+  "keyTakeaways": [
+    "The 4% rule: withdraw 4% of the portfolio's value in the first year of retirement, then adjust that amount for inflation in later years",
+    "This comes from the Trinity study - research based on historical US market data, not an immutable law of physics",
+    "Vietnam's inflation has had periods far more volatile than the US, so many experts recommend a more conservative rate (3-3.5%/year) when applying it in Vietnam",
+    "Treat the 4% rule as an initial reference point, combined with flexible tracking and adjustment based on how the portfolio and inflation actually behave"
+  ],
+  "practicePrompt": {
+    "question": "Uncle Hai retires with a 3-billion-VND portfolio, applies the 4% rule, and withdraws 120 million in year one. A friend in the US tells him to just follow the Trinity study formula exactly with no adjustment. Does this advice fully fit Uncle Hai's situation?",
+    "options": [
+      "Not entirely - the Trinity study is based on US market data, and many experts in Vietnam recommend 3-3.5%",
+      "It fits perfectly, since the 4% rule is a universal mathematical formula that applies identically to every country and every currency",
+      "It doesn't fit at all, since the 4% rule is just a theory with no basis in reality and shouldn't be applied anywhere",
+      "It fits partially, but only because Uncle Hai's portfolio is larger than 3 billion VND compared to the average American retiree's"
+    ],
+    "correct": 0,
+    "explanation": "The Trinity study is based on US data - Vietnam's inflation and capital market differ considerably, so caution and a lower-than-4% withdrawal rate are worth considering rather than mechanically applying the rule."
+  },
+  "summary": {
+    "keyIdea": "The 4% rule: withdraw 4% of the portfolio's value in the first year of retirement, then adjust that amount for inflation in later years",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to a real decision.",
+    "action": "This comes from the Trinity study - research based on historical US market data, not an immutable law of physics"
+  },
+  "application": {
+    "title": "Try applying the withdrawal rule",
+    "message": "Take the retirement savings target you just estimated, and calculate 4% and 3.5% of that figure to compare how different annual withdrawal rates play out given Vietnam's inflation context.",
+    "secondary": "A small difference in withdrawal rate can decide how long your retirement fund actually lasts."
+  },
+  "track": "personal",
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Once you know your retirement savings target, the next question is: once retired, how much can you withdraw from the portfolio each year without running out of money too soon? This is exactly the question the 4% rule tries to answer."
+    },
+    {
+      "type": "heading",
+      "text": "What the 4% rule and the Trinity study are"
+    },
+    {
+      "type": "paragraph",
+      "text": "In 1998, three professors at Trinity University (US) published a study analyzing US stock and bond market data from 1926-1995, looking for the annual withdrawal rate from a retirement portfolio with a high probability of NOT running out of money over 30 years of retirement. The famous result: withdrawing 4% of the portfolio's value in the first year, then adjusting that amount for inflation each year after, had a high success rate across most of the historical periods studied."
+    },
+    {
+      "type": "paragraph",
+      "text": "A concrete example: a 3-billion-VND portfolio, year-one withdrawal of 4% = 120 million VND. If inflation the following year is 4%, in year two you withdraw 120 million x 1.04 = 124.8 million VND - not a fresh 4% calculated on the new portfolio value (which may have risen or fallen from investing), just the absolute amount adjusted for inflation to keep purchasing power the same."
+    },
+    {
+      "type": "heading",
+      "text": "Why caution is needed applying it in Vietnam"
+    },
+    {
+      "type": "list",
+      "items": [
+        "The Trinity study is based entirely on historical US market data - the US stock market has a long history, relatively stable, and deep liquidity",
+        "Vietnam's historical inflation has had periods of very sharp swings (such as 2008 and 2011, when inflation exceeded double digits), considerably higher than US inflation during the study period",
+        "Vietnam's stock market is much younger (only operating since 2000), with far shorter historical data than the 70 years the Trinity study used",
+        "Vietnam's retirement structure differs from the US (it includes a BHXH pension), so the withdrawal rate for the personal portfolio portion alone needs to be considered in that broader context, not treated in isolation the way the original study assumed"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Practical recommendations for people in Vietnam",
+      "text": "Many financial planners recommend that people in Vietnam treat 4% as a reference CEILING, and consider a more conservative rate (around 3-3.5%/year) for a larger safety margin against unusually high inflation risk. It's also worth taking a flexible approach: if the portfolio drops sharply in a given year, consider temporarily reducing the withdrawal amount, rather than rigidly raising it for inflation regardless of how the portfolio is actually doing."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The 4% rule is a useful starting point for picturing a retirement withdrawal rate, but it isn't an unchanging formula that applies everywhere.",
+        "In Vietnam, combining a more conservative withdrawal rate with flexible tracking of inflation and actual market conditions is safer than mechanically applying a figure from US research."
+      ]
+    }
+  ]
+}

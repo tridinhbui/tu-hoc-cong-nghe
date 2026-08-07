@@ -1,0 +1,162 @@
+{
+  "slug": "theo-doi-chi-tieu-truoc-khi-lap-ngan-sach",
+  "title": "Track 1, Lesson 1: Tracking spending - measure before you allocate",
+  "subtitle": "You can't budget money when you don't know where it is currently going",
+  "duration": "6 min",
+  "whyItMatters": "Most budgets fail not because the numbers are wrong but because they were built from memory. Writing down what you spend for a few weeks is the dullest task in personal finance and the one that changes the outcome most - because it turns a feeling into data.",
+  "openingQuestion": "Why track your spending before building a budget?",
+  "openingOptions": [
+    "Because banks ask for a spending statement when you open a savings account",
+    "Because a budget built on what you estimate in your head is usually far off",
+    "Because tracking spending cuts your outgoings straight away, with no effort at all",
+    "Because the 50/30/20 rule can only be applied after three years of records"
+  ],
+  "explanation": "Everyone believes they know what they spend, and almost everyone is wrong - usually about the small repeated purchases, which memory never stores. A budget built on a wrong estimate produces a beautiful plan nobody can actually follow, and then people conclude they lack discipline. The problem is not discipline, it is the input data. A few weeks of records gives you the real number, and only a real number can build a real plan.",
+  "diagram": [
+    {
+      "label": "Write down every payment",
+      "arrow": true
+    },
+    {
+      "label": "Group them after a few weeks",
+      "arrow": true
+    },
+    {
+      "label": "Compare against take-home pay",
+      "arrow": true
+    },
+    {
+      "label": "Now you can build a budget"
+    }
+  ],
+  "realWorldExample": {
+    "company": "The gap between the feeling and the statement",
+    "description": "Someone estimates they spend about 2 million a month eating out. After four weeks of records the real figure is 4.5 million - and the difference is not in expensive meals but in dozens of coffees, deliveries and snacks, each a few tens of thousands and so never lodged in memory. This is the most common distortion of all: everybody remembers the large purchases, and the small repeated ones are where the money disappears."
+  },
+  "quiz": [
+    {
+      "question": "Which category of spending is most often estimated wrongly?",
+      "options": [
+        "Transfers made to family members living in the same household",
+        "Large once-a-year payments such as school fees or annual insurance",
+        "Rent and the fixed monthly bills that arrive on the same date",
+        "Small amounts that repeat many times over the course of the month"
+      ],
+      "explanation": "Everyone recalls their rent precisely, because it is large and repeats on a schedule. Nobody can recall thirty payments of fifty thousand, but together they are still one and a half million - and that is usually where the gap between the feeling and the statement sits."
+    },
+    {
+      "question": "How long should you track spending before building a budget?",
+      "options": [
+        "Long enough to cover one spending cycle, usually a few weeks",
+        "Exactly one day, since spending habits repeat in much the same way",
+        "At least three years, so the trend data is genuinely reliable",
+        "No tracking is needed - just compare the balance at each month end"
+      ],
+      "explanation": "A day is too short to show a pattern, and after three years you would have given up long ago. What matters is covering the items that appear only once a month, like bills and rent, so a few weeks is the realistic mark."
+    },
+    {
+      "question": "Can comparing your balance at the start and end of the month replace keeping records?",
+      "options": [
+        "Yes, because the change in balance is exactly your total spending",
+        "No, because it doesn't tell you where any of the money went",
+        "Yes, provided you only ever transfer and never spend cash",
+        "No, because a balance doesn't reflect your real income accurately"
+      ],
+      "explanation": "Knowing you spent fifteen million does not help you decide what to cut. A budget is an allocation problem, and allocating requires knowing the composition, not just the total."
+    },
+    {
+      "question": "Income of 18 million; after four weeks of records you have spent 17.2 million. What is the most sensible next step?",
+      "options": [
+        "Conclude your income is simply too low and look for ways to raise it",
+        "Set a 20% savings target immediately, in line with the standard rule",
+        "Look at the composition first, to see where anything can be cut",
+        "Stop recording, since you now know your total monthly spending"
+      ],
+      "explanation": "Setting a 20% target while spending 96% of your income is setting a target certain to fail. The data you just gathered is valuable precisely because it shows which category is unusually swollen - and that is where to start."
+    },
+    {
+      "question": "Why does the act of recording spending, by itself, reduce it for many people?",
+      "options": [
+        "Because keeping records takes time, so people go shopping less often",
+        "Because the app automatically blocks transactions above the limit you set",
+        "Because banks reduce fees on accounts that have spending tracking enabled",
+        "Because having to write it down turns spending into a conscious decision"
+      ],
+      "explanation": "Most small spending happens automatically, without thought. Knowing you will have to write it down shortly is enough to stop some of it happening at all - the effect is real, and it is the bonus that comes with measuring."
+    }
+  ],
+  "keyTakeaways": [
+    "A budget built from memory is nearly always wrong, and most wrong about small repeated purchases",
+    "A few weeks of records covers a full spending cycle, including the monthly bills",
+    "The change in your balance gives the total, not the composition - and allocating needs the composition",
+    "Recording spending reduces it by itself, because it turns automatic purchases into conscious decisions"
+  ],
+  "practicePrompt": {
+    "question": "You kept records for two weeks and then stopped because it felt like too much work. What is the most realistic way to handle it?",
+    "options": [
+      "Give up tracking altogether and build the budget on your own estimates instead",
+      "Reduce the detail: record by broad category rather than item by item",
+      "Start again from scratch and try to record everything in detail for three months",
+      "Wait until the start of next year and begin again with more determination"
+    ],
+    "explanation": "A rough system you keep up always beats a perfect one you abandon after two weeks. Recording into five or six broad categories still shows where the money flows, and it is far easier to sustain than logging every coffee."
+  },
+  "summary": {
+    "keyIdea": "Measure first, allocate second - a budget is only as good as the data under it",
+    "commonMistake": "Building a budget from estimates in your head, then blaming yourself for lacking discipline",
+    "action": "Record every payment over the next two weeks, group them into five categories, then compare with take-home pay."
+  },
+  "application": {
+    "title": "Start tonight",
+    "message": "Open your bank and e-wallet statements for the last thirty days. Group them into five categories: housing, food, transport, shopping, everything else. Which one is bigger than you thought?",
+    "secondary": "The statement has already recorded most of your transactions - you only have to categorise them, not start from nothing."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The next lesson will teach you to split income 50/30/20. But to split it, you need to know how you are splitting it today - and the number in your head is almost certainly not the number on your statement."
+    },
+    {
+      "type": "heading",
+      "text": "Why memory is not trustworthy here"
+    },
+    {
+      "type": "paragraph",
+      "text": "The brain records by notable event, not by frequency. A three-hundred-thousand restaurant meal stays vivid; thirty coffees at forty thousand blur into the background and disappear. But those thirty come to one point two million, four times the restaurant meal. This is not poor memory, it is how memory works - so the fix is to write things down, not to try harder to remember."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Three ways to track - pick the one you will keep up",
+      "subtitle": "The best system is the one you don't abandon after two weeks",
+      "concepts": [
+        {
+          "vi": "Đọc lại sao kê",
+          "en": "Statement review",
+          "def": "The least effort: open thirty days of bank and e-wallet statements and categorise. Misses cash, but it is enough to start with."
+        },
+        {
+          "vi": "Ghi theo nhóm",
+          "en": "Category logging",
+          "def": "Put each payment into one of five or six broad categories, without itemising. It balances effort against what you learn."
+        },
+        {
+          "vi": "Ghi từng khoản",
+          "en": "Line-item tracking",
+          "def": "The most detailed and the easiest to abandon. Sensible for one month to understand your habits, not as a permanent routine."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "The goal is not to track forever",
+      "text": "You do not need to track spending for the rest of your life. The goal is to know it well enough to build a budget and to notice when something drifts off course. Many people track closely for the first few months and then move to a quarterly check - and that is enough."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "What you cannot measure you cannot manage, and personal finance is no exception.",
+        "With real numbers in hand, the 50/30/20 lesson becomes a tool rather than a slogan."
+      ]
+    }
+  ]
+}

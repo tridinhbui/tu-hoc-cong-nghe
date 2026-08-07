@@ -1,0 +1,213 @@
+{
+  "slug": "luong-gross-vs-net-thuc-nhan",
+  "title": "Tax Track, Lesson 1: Gross vs Net salary - what actually reaches you?",
+  "subtitle": "From the number on the contract to the money in your account",
+  "duration": "7 min",
+  "whyItMatters": "Almost every personal finance decision - a budget, an emergency fund, how much debt you can carry - rests on the income you ACTUALLY RECEIVE, not the number written on the contract. This lesson gives you the formula from gross to net so everything you plan afterwards stands on the right figure.",
+  "openingQuestion": "Your contract says 30 million VND a month (gross) and you have no dependants. Roughly how much lands in your account each month?",
+  "openingOptions": [
+    "Exactly 30 million, because the company pays the tax",
+    "About 26.2 million, after compulsory insurance and personal income tax",
+    "About 21 million, because income tax takes roughly 30% of salary",
+    "It can't be worked out until you know the year-end bonus"
+  ],
+  "explanation": "A gross salary of 30 million is reduced by two layers: (1) the employee's share of compulsory insurance, 10.5% = 3.15 million; (2) personal income tax, charged on what remains after the personal deduction. For a single person with no dependants in 2026 the tax is about 635,000 VND. Net ≈ 30 − 3.15 − 0.635 = 26.215 million.",
+  "diagram": [
+    {
+      "label": "GROSS salary (as written in the contract)",
+      "arrow": true
+    },
+    {
+      "label": "− Compulsory insurance (10.5%)",
+      "arrow": true
+    },
+    {
+      "label": "− Personal income tax (progressive)",
+      "arrow": true
+    },
+    {
+      "label": "= NET salary (into your account)"
+    }
+  ],
+  "realWorldExample": {
+    "company": "The Vietnamese job market",
+    "description": "Vietnamese job ads quote gross in some places, net in others, and very often don't say which. The same figure of '30 million' can differ by more than 3.7 million VND a month depending on how it is read - nearly 45 million over a year. That is why the first question to ask about an offer is: 'Is this gross or net?'"
+  },
+  "quiz": [
+    {
+      "question": "What is gross salary?",
+      "options": [
+        "The money that actually arrives in your account each month",
+        "Total income before insurance and tax are deducted",
+        "Base pay, excluding allowances and bonuses",
+        "Total income after every deduction has been taken"
+      ],
+      "explanation": "Gross is total income before any deduction. Net is the final figure you receive after compulsory insurance and personal income tax."
+    },
+    {
+      "question": "What are the two main layers of deduction between gross and net?",
+      "options": [
+        "VAT and personal income tax",
+        "Union dues and personal income tax",
+        "Compulsory insurance (social, health, unemployment) and personal income tax",
+        "Only personal income tax, because the company pays every insurance contribution for you"
+      ],
+      "explanation": "The employee pays 10.5% towards compulsory insurance, and personal income tax is then charged on what remains after the deductions."
+    },
+    {
+      "question": "Why ask 'gross or net?' before accepting a job?",
+      "options": [
+        "Because income tax only applies to salaries quoted as gross",
+        "Because labour law requires it to be stated in the contract",
+        "Because social insurance contributions are calculated on net salary",
+        "Because the two figures differ by tens of millions a year"
+      ],
+      "explanation": "The gross-to-net gap is typically 12-20%, depending on the salary level and the number of dependants. Misreading it throws off the whole spending plan from day one."
+    },
+    {
+      "question": "If a company commits to paying 'net 26 million', who covers the tax and insurance?",
+      "options": [
+        "The company grosses the figure up and absorbs the difference",
+        "The employee still pays the tax out of that 26 million",
+        "The two sides split the tax and insurance due between them",
+        "The tax authority exempts contracts that quote a net salary"
+      ],
+      "explanation": "On a net contract the company has to 'gross up': work backwards to the gross figure at which, after insurance and tax, you receive exactly the net amount promised."
+    },
+    {
+      "question": "Why might the higher gross salary of two offers not be the higher take-home pay?",
+      "options": [
+        "Because the tax rate applied to new joiners is always higher in the first year",
+        "Because the salary insurance is calculated on, and the allowances, can differ a lot",
+        "Because companies paying a high gross salary tend to pay later than those paying net",
+        "Because gross salary excludes the year-end bonus while net salary includes it"
+      ],
+      "explanation": "Two offers with the same gross but a different structure produce two different take-home figures: a higher insurance base is deducted more heavily straight away, while lunch and travel allowances within the cap are untaxed. So the right question is always what you actually receive."
+    }
+  ],
+  "keyTakeaways": [
+    "Gross = before deductions; Net = after compulsory insurance and income tax - always ask which one an offer means",
+    "Two layers of deduction: compulsory insurance at 10.5% (the employee's share), then progressive income tax",
+    "Every budget and debt plan has to be built on NET salary, not gross"
+  ],
+  "practicePrompt": {
+    "question": "You have two offers: Company A pays 32 million gross, Company B pays 27 million net. You are single with no dependants. Which comment is right?",
+    "options": [
+      "Offer A is better because 32 is a bigger number than 27",
+      "The two are equivalent, since the gap is exactly the tax",
+      "Convert A to net first: 32 gross ≈ 27.8 net, so A is slightly ahead",
+      "They can't be compared, since gross and net are entirely different quantities"
+    ],
+    "explanation": "Comparing offers means putting them on one measure. On 32 million gross: insurance 10.5% = 3.36 million; taxable income = 32 − 3.36 − 15.5 = 13.14 million; tax = 10×5% + 3.14×10% = 0.5 + 0.314 = 0.814 million; net ≈ 27.8 million. So A beats B by about 0.8 million a month."
+  },
+  "summary": {
+    "keyIdea": "Gross − compulsory insurance − income tax = Net",
+    "formula": "Net = Gross − (Gross × 10.5%) − Personal income tax",
+    "commonMistake": "Budgeting on gross salary, and so spending more than the money actually available each month.",
+    "action": "Work out your real net salary today and check it against your most recent payslip."
+  },
+  "application": {
+    "title": "Check your own payslip",
+    "message": "Open your most recent payslip and find three lines: total income (gross), the insurance deduction, and personal income tax. Add them back up and see whether they reconcile to the amount that reached your account.",
+    "secondary": "If they don't, it is usually either an untaxed allowance or a dependant you haven't registered - the subjects of the next two lessons."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The number on an employment contract and the number the bank reports each month are almost never the same. The gap between them is no mystery - it is two subtractions with a clear formula, and understanding them is the precondition for any personal financial plan at all."
+    },
+    {
+      "type": "heading",
+      "text": "Two layers of deduction, in this order"
+    },
+    {
+      "type": "paragraph",
+      "text": "The order matters, because the second layer is calculated on what the first one leaves behind. **Layer 1 - compulsory insurance:** the employee pays 10.5% of the salary used as the contribution base (8% pension, 1.5% health, 1% unemployment). **Layer 2 - personal income tax:** charged on income after insurance AND after the personal deduction, on a progressive scale applied band by band."
+    },
+    {
+      "type": "formula",
+      "title": "The formula from gross to net",
+      "equation": "Net = Gross − Compulsory insurance − Personal income tax",
+      "variables": [
+        {
+          "symbol": "Gross",
+          "name": "Total income",
+          "description": "The number on the contract, before any deduction"
+        },
+        {
+          "symbol": "Insurance",
+          "name": "The employee's share",
+          "description": "10.5% of the salary used as the contribution base"
+        },
+        {
+          "symbol": "Income tax",
+          "name": "Personal income tax",
+          "description": "Charged progressively on taxable income"
+        }
+      ],
+      "example": {
+        "title": "Gross salary 30 million, single, 2026",
+        "calculation": "Insurance = 30 × 10.5% = 3.15m → Taxable income = 30 − 3.15 − 15.5 = 11.35m → Tax = (10 × 5%) + (1.35 × 10%) = 0.5 + 0.135 = 0.635m",
+        "result": "Net ≈ 26.215 million VND",
+        "explanation": "Total deductions of 3.785 million, or 12.6% of gross salary. That share rises as salary rises, because the tax scale is progressive."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "Why 'gross or net' is the question you have to ask"
+    },
+    {
+      "type": "paragraph",
+      "text": "At a salary of 30 million the gross-net gap is nearly 3.8 million VND a month - over 45 million a year. A candidate who reads '30 million' as net while the company means gross will plan spending beyond their actual means from the very first month."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Contract quotes GROSS",
+        "text": "You carry the 10.5% insurance share and the whole of the income tax. What reaches your account is lower than the number on the contract."
+      },
+      "right": {
+        "label": "Contract quotes NET",
+        "text": "The company works backwards (grosses up) and absorbs the difference, guaranteeing you receive the figure promised."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "A note on the insurance cap",
+      "text": "The salary used as the base for social, health and unemployment insurance is capped by regulation, so at very high salaries the insurance does not keep rising at 10.5% forever. Look up the current cap when working out large salaries."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Payslip terminology",
+      "concepts": [
+        {
+          "vi": "Lương gross",
+          "en": "Gross salary",
+          "def": "Total income before compulsory insurance and personal income tax"
+        },
+        {
+          "vi": "Lương net",
+          "en": "Net salary / take-home pay",
+          "def": "What you actually receive after every compulsory deduction"
+        },
+        {
+          "vi": "Quy đổi ngược",
+          "en": "Gross-up",
+          "def": "Working backwards from net to gross so the company pays the net figure it promised"
+        },
+        {
+          "vi": "Thu nhập tính thuế",
+          "en": "Taxable income",
+          "def": "What is left of income after insurance and the personal deduction"
+        }
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Gross is the number you negotiate with; net is the number you live on.",
+        "Next lesson: why moving into a higher tax band is nothing like as frightening as people assume."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,190 @@
+{
+ "slug": "trai-phieu-vs-co-phieu",
+ "title": "Bond returns vs. stock returns",
+ "subtitle": "Bonds vs stocks return comparison",
+ "duration": "6 min",
+ "openingQuestion": "Over the long run (20-30 years), why do stocks usually deliver a higher average return than bonds?",
+ "openingOptions": [
+  "Because stocks always rise at a fixed, predetermined rate every year, with no real-world exception in the stock market",
+  "Because shareholders bear higher risk, so they're compensated with an equity risk premium",
+  "Because stocks are inherently far lower risk than bonds at every stage of the financial market, even when a company goes bankrupt",
+  "Because current law reserves bonds solely for large institutional investors, and individuals are entirely barred from trading them"
+ ],
+ "explanation": "A basic finance principle: higher risk must come with a higher expected return, or no one would accept that risk. Because shareholders bear more risk than bondholders (no fixed interest, and a total loss if the company goes bankrupt), the market compensates with a higher average expected return over the long run - even though stocks can still post heavy losses in any given year.",
+ "diagram": [
+  {
+   "label": "Bondholders get paid first, on a fixed schedule",
+   "arrow": true
+  },
+  {
+   "label": "Shareholders get what's left, and can lose everything",
+   "arrow": true
+  },
+  {
+   "label": "Bearing more risk, they demand a higher expected return",
+   "arrow": true
+  },
+  {
+   "label": "That gap is the equity risk premium - visible only long-term"
+  }
+ ],
+ "interactiveType": "bond",
+ "realWorldExample": {
+  "company": "The VN-Index compared with the 10-year government bond rate",
+  "description": "Looking back over the past 20 years, the VN-Index (representing Vietnam's stock market) has delivered an estimated average annual return of about 10-12%/year (including dividends), despite deep drops such as 2008 (down over 60%) or 2022 (down over 30%). Meanwhile, the 10-year government bond delivered a stable yield of only around 3-5%/year over the same period, but has almost never posted a loss when held to maturity. This clearly illustrates the trade-off between a higher return (with larger swings) and a lower return (with stability)."
+ },
+ "quiz": [
+  {
+   "question": "What is the 'equity risk premium'?",
+   "options": [
+    "The personal income tax due when receiving a dividend",
+    "The brokerage fee paid to a securities firm when buying",
+    "The higher expected return that compensates for equity risk, so the coupon payment functions no differently than a company's discretionary dividend",
+    "Extra money a company pays to long-tenured shareholders"
+   ],
+   "correct": 2,
+   "explanation": "The equity risk premium is the gap between a stock's expected return and the risk-free yield (usually benchmarked against a government bond). It's the reward investors demand for accepting the higher risk of investing in stocks."
+  },
+  {
+   "question": "An investor says: 'I'll only invest in stocks because they always earn more than bonds every year.' Is this correct?",
+   "options": [
+    "Correct, because bonds earn nothing for the holder",
+    "Incorrect, because new bonds always earn more than stocks",
+    "Correct, stocks beat bonds in every single year",
+    "Incorrect - stocks only beat bonds on average over the long run, and this only holds true when both firms belong to the exact same industry sector"
+   ],
+   "correct": 3,
+   "explanation": "The stock advantage only shows up clearly when looking at average returns over a long span (10-20-30 years). In the short run, stocks can swing sharply and post far heavier losses than bonds in any given year."
+  },
+  {
+   "question": "During periods like 2008 or 2022, how did an all-stock portfolio differ from a 60/40 portfolio?",
+   "options": [
+    "The 60/40 portfolio fell less, because the bond portion cushioned the drop",
+    "Both fell by the exact same amount, since a crisis drags every asset down equally",
+    "The 60/40 portfolio fell harder, because bonds always lose value faster than stocks, which is exactly opposite to what happened when the two asset classes were compared in 2008",
+    "The all-stock portfolio rose, because investors poured money into cheap stocks"
+   ],
+   "correct": 0,
+   "explanation": "That's why people accept a lower expected yield to hold bonds. Note that 2022 was a memorable exception: rapidly rising rates pushed both stocks and bonds down together, and that cushion was thinner than usual."
+  },
+  {
+   "question": "In developed markets, how large is the equity risk premium usually, per year?",
+   "options": [
+    "About 20-25%, meaning stocks earn many times what government bonds do",
+    "About 4-6% above the government bond yield, averaged over the long run",
+    "About 0.5%, too small to be worth accepting extra risk for, a point that trips up many beginners",
+    "It can't be measured, since this figure changes completely randomly each year"
+   ],
+   "correct": 1,
+   "explanation": "Long-run studies usually find a level of 4-6%/year. That number sounds modest, but compounded over 30 years it creates a difference of several times in the final balance - which is why someone with plenty of time is advised to prioritize stocks."
+  },
+  {
+   "question": "Why is the stock advantage only reliable over the long run, not year by year?",
+   "options": [
+    "Because a stock is only allowed to pay a dividend after being held for a full ten consecutive years",
+    "Because the risk premium is only paid out by regulators at the end of each ten-year cycle",
+    "Because short-term volatility is huge, and in many years stocks lose more than bonds",
+    "Because in the short run, stocks consistently and reliably earn less than bonds, something worth double-checking in practice"
+   ],
+   "correct": 2,
+   "explanation": "The risk premium is an average, not a yearly guarantee. There are years when stocks fall 30% while bonds stay positive. That very uncertainty is why the premium exists - if winning were guaranteed, no one would call it risk."
+  },
+  {
+   "question": "A 60-year-old asks: 'So should I just put everything into stocks to capture the risk premium?'",
+   "options": [
+    "Yes, because the risk premium applies equally to every investor at every age",
+    "No, because people over 60 are legally barred from holding stocks",
+    "Yes, as long as the stocks chosen pay a high, steady dividend",
+    "No - the premium only becomes real if there's enough time to wait out downturns"
+   ],
+   "correct": 3,
+   "explanation": "The equity risk premium is the reward for enduring volatility, and enduring it takes time. Someone about to withdraw money doesn't have that time - for them, a deep drop isn't a chapter in the middle of the story, it's the ending."
+  }
+ ],
+ "keyTakeaways": [
+  "Stocks usually earn a higher average return than bonds over the long run, to compensate for higher risk - called the equity risk premium",
+  "The stock return advantage is only clear over the long run; in the short run, stocks can absolutely lose more than bonds",
+  "Bonds deliver a lower yield but one that's far more stable and predictable - which is why both have a distinct role in a portfolio"
+ ],
+ "practicePrompt": {
+  "question": "In 2022, the VN-Index fell over 30% while government bonds kept paying interest steadily. Looking only at 2022 in isolation, which conclusion about comparing stocks and bonds is correct?",
+  "options": [
+   "In 2022 bonds outperformed stocks, but that doesn't disprove stocks being higher over the long run",
+   "Stocks are always better than bonds every year, including 2022, since this is just a passing event not worth noting",
+   "The 2022 result proves bonds are always the better choice over any long-term investment horizon going forward",
+   "No conclusion can be drawn from any single year at all, since one year's data is entirely meaningless"
+  ],
+  "correct": 0,
+  "explanation": "The equity risk premium is only clear when viewed over the long run - a specific year like 2022 can absolutely go the opposite way without disproving the long-term trend."
+ },
+ "summary": {
+  "keyIdea": "Stocks usually earn a higher average return than bonds over the long run, to compensate for higher risk - called the equity risk premium",
+  "commonMistake": "Reading the concept as a line to recite rather than a principle to apply to a real decision.",
+  "action": "The stock return advantage is only clear over the long run; in the short run, stocks can absolutely lose more than bonds"
+ },
+ "application": {
+  "title": "Compare expected yields",
+  "message": "Write down the long-run average return you expect from stocks and from a bond you're considering, then ask yourself whether that gap is enough to compensate for the stock's higher risk.",
+  "secondary": "Putting the two numbers side by side makes the allocation decision clearer."
+ },
+ "sections": [
+  {
+   "type": "lead",
+   "text": "If bonds are safer and more stable, why doesn't everyone just invest in bonds? The answer lies in the most fundamental trade-off in finance: higher risk must come with a higher expected return."
+  },
+  {
+   "type": "heading",
+   "text": "Why stocks 'have to' earn more over the long run"
+  },
+  {
+   "type": "paragraph",
+   "text": "Shareholders stand behind bondholders in the order of payment - if a company goes bankrupt, bondholders get paid first, and shareholders only get what's left (often very little or nothing). Shareholders also don't get a fixed return like a bond coupon - their return depends entirely on whether the business does well or poorly. Because this risk is much larger than being a creditor, investors won't put money into stocks unless they expect a significantly higher average return than bonds - otherwise everyone would simply choose the safer bond."
+  },
+  {
+   "type": "conceptTable",
+   "title": "Comparing average historical returns (illustrative, not a promise of future results)",
+   "subtitle": "Figures are for long-term reference only",
+   "concepts": [
+    {
+     "vi": "Vietnam government bond (10-year)",
+     "en": "Government bond yield",
+     "def": "About 3-5%/year, stable, almost never negative if held to maturity"
+    },
+    {
+     "vi": "VN-Index (stocks)",
+     "en": "Stock market average return",
+     "def": "Estimated average of 10-12%/year long-term, but with some years dropping 30-60%"
+    },
+    {
+     "vi": "Bank savings deposit",
+     "en": "Bank savings deposit",
+     "def": "About 4-6%/year, near-absolute safety (covered by deposit insurance), highly liquid"
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "text": "A higher average return doesn't mean winning every year"
+  },
+  {
+   "type": "paragraph",
+   "text": "This is where many newcomers get it wrong. 'Stocks earn more than bonds' is true when looking at a 15-20-30 year average, but is completely wrong applied to any specific year. In 2022, the VN-Index fell more than 30%, while government bonds kept paying interest exactly as promised. Anyone fully invested in stocks that year and forced to withdraw right at the bottom took a heavy hit, while bondholders were unaffected."
+  },
+  {
+   "type": "callout",
+   "label": "A practical lesson",
+   "text": "A stock's higher return only 'pays out' to those patient enough to hold through volatile periods without panic-selling. If you're not sure you can handle watching your account drop 30% in a year, you may need a higher bond allocation to sleep well."
+  },
+  {
+   "type": "paragraph",
+   "text": "So the question isn't 'should I choose stocks or bonds', but rather understanding the trade-off between the two asset types well enough to allocate a proportion that fits your own goals, investment horizon, and risk tolerance."
+  },
+  {
+   "type": "closing",
+   "lines": [
+    "Stocks earn more than bonds over the long run because investors demand a reward for the higher risk.",
+    "But that advantage only shows up over many years, not every year - and only for those patient enough not to sell during a downturn."
+   ]
+  }
+ ]
+}

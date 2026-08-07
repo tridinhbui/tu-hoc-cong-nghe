@@ -1,0 +1,166 @@
+{
+  "slug": "danh-muc-la-gi",
+  "title": "What is a portfolio? Why you shouldn't put it all in one basket",
+  "subtitle": "Portfolio diversification",
+  "duration": "6 min",
+  "openingQuestion": "Ms. Hang put her entire 300 million VND in savings into one real estate company's stock, convinced the price would surge. Six months later the company hit trouble and the stock fell 60%. What was the biggest problem in her decision?",
+  "openingOptions": [
+    "She picked the wrong sector - she should have chosen a tech stock instead of real estate",
+    "There's nothing to discuss here, since every form of investment always carries some level of risk",
+    "She should borrow more from the bank to buy even more of that stock now that the price has dropped sharply",
+    "Putting her entire wealth into a single investment"
+  ],
+  "explanation": "The lesson isn't about picking the right or wrong stock - it's about putting all your eggs in one basket. A portfolio is the collection of different investments you hold at the same time. When one investment drops sharply, the others can hold steady or even rise, making your overall wealth less volatile.",
+  "diagram": [
+    { "label": "Getting one stock right or wrong", "arrow": true },
+    { "label": "Matters less than dumping everything into one ticker", "arrow": true },
+    { "label": "Splitting across many investments = a Portfolio" }
+  ],
+  "realWorldExample": {
+    "company": "Vietnamese retail investors, 2022",
+    "description": "Many investors put their entire capital into real estate stocks or corporate bonds of a few large conglomerates during 2021-2022. When the corporate bond and real estate markets ran into trouble in late 2022, those who hadn't diversified lost most of their wealth, while those spread across stocks, government bonds, deposits, and gold were only partially affected."
+  },
+  "quiz": [
+    {
+      "question": "What is a portfolio?",
+      "options": [
+        "A bank loan taken out to invest in stocks",
+        "The full collection of investments a person holds",
+        "A bank account holding all of someone's savings",
+        "A single stock with a much larger market cap than the others"
+      ],
+      "correct": 1,
+      "explanation": "A portfolio is the entire 'basket of assets' you hold. Managing it well means looking at the risk and return of the WHOLE basket, not each holding on its own."
+    },
+    {
+      "question": "Why does the saying 'don't put all your eggs in one basket' hold true in investing?",
+      "options": [
+        "Because the law requires individual investors to diversify",
+        "Because diversifying always produces higher returns than not diversifying",
+        "Because one asset's own risk can drag the whole portfolio down",
+        "Because the more assets you hold, the closer risk gets to zero"
+      ],
+      "correct": 2,
+      "explanation": "Diversification doesn't guarantee a higher return - it reduces unnecessary risk (the risk specific to one asset, company, or industry), while the risk of the market as a whole can never be fully removed."
+    },
+    {
+      "question": "A portfolio holds 10 stocks, but all 10 are banks. Is that diversified?",
+      "options": [
+        "Not yet, but only because ten tickers is still below the twenty-ticker threshold required",
+        "Yes, because ten different assets is already well past the minimum bar for diversification",
+        "Yes, as long as those ten banks are headquartered in different provinces around the country",
+        "No - all 10 face the same interest-rate risk and the same industry policy shifts"
+      ],
+      "correct": 3,
+      "explanation": "Diversification is measured by how differently assets move, not by how many you hold. When interest rates rise or industry rules change, all ten tickers react the same way - you hold ten assets but only one real bet."
+    },
+    {
+      "question": "Beyond stocks and bonds, what's the point of adding other asset classes to a portfolio?",
+      "options": [
+        "Adding things that don't move in step with stocks, to reduce overall swings",
+        "Raising the number of assets high enough that total risk drifts toward zero",
+        "Meeting a mandatory rule on portfolio composition for individual investors",
+        "Guaranteeing that at least one asset class turns a profit every single year"
+      ],
+      "correct": 0,
+      "explanation": "An asset's value in a portfolio isn't just its own return - it's how it behaves when everything else is falling. A middling-return asset that moves the opposite way can be more useful than a high-return asset that moves in step."
+    },
+    {
+      "question": "Does diversification lower a portfolio's expected return?",
+      "options": [
+        "Yes, always, because you're forced to shift some capital into weaker assets",
+        "Not necessarily - it lowers volatility without necessarily lowering return",
+        "No, diversification always raises return and lowers risk at the same time",
+        "Yes, because trading fees across many assets eat up any extra return"
+      ],
+      "correct": 1,
+      "explanation": "This is why diversification is called finance's only free lunch: if assets don't move in lockstep, the portfolio's volatility falls below the weighted average of the individual volatilities, while expected return stays the weighted average."
+    },
+    {
+      "question": "Which risk does diversification fail to remove?",
+      "options": [
+        "The risk that one specific industry gets hit with tighter rules and the whole sector drops sharply",
+        "The risk that one specific company runs into a scandal and its stock loses serious value",
+        "Systemic risk - a recession, a rate shock, a crisis that hits everything at once",
+        "Diversification removes every kind of risk if you hold enough assets"
+      ],
+      "correct": 2,
+      "explanation": "Spreading capital across many companies removes each company's own risk. But when the whole economy turns down, everything falls together - in 2022 stocks and bonds fell at the same time. That's the risk you're paid to carry."
+    }
+  ],
+  "keyTakeaways": [
+    "A portfolio is a collection of investments managed as one unit, not as separate holdings",
+    "Putting all your capital into one asset leaves you carrying concentration risk you didn't need to take on",
+    "Diversifying across asset classes, industries, and investment types reduces the volatility of your overall wealth",
+    "Diversification isn't 'buy as many tickers as possible' - it's choosing assets that don't move together"
+  ],
+  "practicePrompt": {
+    "question": "Mr. Nam has 3 holdings: VNM stock, FPT stock, and a savings deposit - but he treats each as a separate decision rather than looking at them as a whole. Does this approach fit the idea of a 'portfolio'?",
+    "options": [
+      "Not really a fit - a portfolio should be viewed as one unit, with risk assessed at the whole level",
+      "A perfect fit, because each investment always needs to be managed fully independently of the others",
+      "Unrelated to the concept of a portfolio, since that term only applies to professional investment funds",
+      "Partly a fit, but only if Mr. Nam holds at least 5 or more different investments in his account"
+    ],
+    "correct": 0,
+    "explanation": "A portfolio needs to be viewed and managed as one unit - assessing overall risk, weightings, and the correlation between holdings, rather than looking at each holding in isolation."
+  },
+  "summary": {
+    "keyIdea": "A portfolio is a collection of investments managed as one unit, not as separate holdings",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to a real decision.",
+    "action": "Putting all your capital into one asset leaves you carrying concentration risk you didn't need to take on"
+  },
+  "application": {
+    "title": "Count your own 'baskets of eggs'",
+    "message": "List every investment you currently hold, and check whether they're tightly correlated with each other (for example, all bank stocks) - if they are, that's a sign you aren't truly diversified yet.",
+    "secondary": "Holding many tickers doesn't mean diversification if they all move the same direction."
+  },
+  "track": "personal",
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Have you ever heard the saying 'don't put all your eggs in one basket'? In investing, that old adage is exactly the core principle behind the idea of a portfolio."
+    },
+    {
+      "type": "paragraph",
+      "text": "A portfolio is simply everything you're invested in, combined into one overall picture: a few million in a savings account, a bit of stock, maybe fund units, gold, or a rental apartment. Instead of looking at each holding separately, portfolio thinking looks at the whole picture: is your total wealth rising or falling, is it swinging a lot or a little, and does it match your goals and your appetite for risk?"
+    },
+    {
+      "type": "heading",
+      "text": "Why putting it all in one place is dangerous"
+    },
+    {
+      "type": "paragraph",
+      "text": "Every investment carries two kinds of risk. Systematic risk is the risk shared by the whole economy - rising interest rates, recession, inflation - and it touches nearly every asset, so diversification can't remove it. Unsystematic risk belongs to one specific company or industry - poor management, an industry-wide crisis, a new competitor showing up. This is the risk you CAN meaningfully reduce by not putting all your capital in one place."
+    },
+    {
+      "type": "list",
+      "items": [
+        "If you only hold one company's stock, your entire wealth depends on that one company's fate",
+        "If you only hold one industry (say, all in real estate), a shock specific to that industry can wipe out most of your wealth",
+        "If you only hold one asset class (only stocks, or only bonds), you lose the chance to offset swings when that asset class moves hard",
+        "Sensible diversification: multiple industries, multiple asset classes (stocks, bonds, deposits, maybe gold or real estate), sometimes international markets too"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "A simple illustration",
+      "text": "You have 200 million VND. Option A: put it all into one steel company's stock. Option B: split it 40% stocks (across several industries), 30% bonds, 20% deposits, 10% gold. If the steel industry runs into trouble from a sudden spike in raw material costs, Option A could lose 40-50% of its value in a few months, while Option B would only dip slightly, since most of its value has nothing to do with steel."
+    },
+    {
+      "type": "heading",
+      "text": "Diversification isn't about buying lots of tickers"
+    },
+    {
+      "type": "paragraph",
+      "text": "A common misconception: buying lots of stocks automatically means you're diversified. In reality, if you buy 20 stocks that are all in real estate, you're still carrying heavy concentration risk - because those stocks tend to rise and fall together (high correlation). Effective diversification means choosing assets with low correlation to each other: when stocks fall, bonds or deposits stay stable; when the domestic market struggles, assets in other markets may not be affected the same way."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A portfolio is a way of viewing your wealth as a whole, and diversification is the most effective tool for cutting concentration risk without needing to predict the market accurately.",
+        "The lessons ahead in this track will show you how to build a portfolio suited to your age, your risk tolerance, and your own retirement goals."
+      ]
+    }
+  ]
+}

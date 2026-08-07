@@ -1,0 +1,171 @@
+{
+  "slug": "cai-cach-thue-tncn-2026-tu-7-bac-xuong-5-bac",
+  "title": "Tax Track, Lesson 5: The 2026 reform - from 7 bands to 5, and who gains",
+  "subtitle": "Comparing the tax bill before and after the reform",
+  "duration": "8 min",
+  "whyItMatters": "This is the biggest change to Vietnamese income tax in over a decade, in force from the 2026 tax year. If you have not recalculated your net salary under the new rules, your personal budget is running on old numbers.",
+  "openingQuestion": "What does the income tax reform, in force from the 2026 tax year, actually change?",
+  "openingOptions": [
+    "Only the personal deduction rises; the scale stays at 7 bands",
+    "Only the number of bands falls from 7 to 5; the deductions stay put",
+    "It cuts 7 bands to 5, raises the personal deduction, and lowers the middle rates",
+    "It moves to a flat 10% rate at every level of income"
+  ],
+  "explanation": "The reform makes three changes at once: (1) the scale drops from 7 bands to 5, with wider gaps between them; (2) the band 2 rate falls from 15% to 10% and band 3 from 25% to 20%; (3) the family circumstance deduction rises from 11 to 15.5 million (yourself) and from 4.4 to 6.2 million (per dependant). All three point the same way - a lighter tax burden.",
+  "diagram": [
+    {
+      "label": "Before: 7 bands, 11m deduction",
+      "arrow": true
+    },
+    {
+      "label": "Cut down to 5 bands",
+      "arrow": true
+    },
+    {
+      "label": "Lower the middle rates",
+      "arrow": true
+    },
+    {
+      "label": "After: 5 bands, 15.5m deduction"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Someone on 30 million, single",
+    "description": "Under the old rules: taxable income = 30 − 3.15 − 11 = 15.85 million, tax due about 1,627,500 VND a month. Under the 2026 rules: taxable income = 30 − 3.15 − 15.5 = 11.35 million, tax of only 635,000 VND a month. That saves nearly 993,000 VND every month, or about 11.9 million VND a year."
+  },
+  "quiz": [
+    {
+      "question": "How does the band 2 rate change under the reform?",
+      "options": [
+        "It falls from 10% to 5%",
+        "It falls from 15% to 10%",
+        "It rises from 10% to 15%",
+        "It stays at 15%, as before"
+      ],
+      "explanation": "Band 2 falls from 15% to 10%, and band 3 from 25% to 20% - the two bands most salaried people fall into."
+    },
+    {
+      "question": "Which group gains most clearly from this reform?",
+      "options": [
+        "The lowest earners, who are exempt from tax entirely from 2026",
+        "The highest earners, because the threshold for the very top rate has been raised",
+        "Middle earners, who get both a higher deduction and lower rates",
+        "Everyone gains equally, because the cut is applied uniformly"
+      ],
+      "explanation": "Middle earners gain twice over: the higher deduction pulls taxable income down, and what remains is taxed at lower rates in the middle bands."
+    },
+    {
+      "question": "How does the threshold for the top 35% rate change?",
+      "options": [
+        "The 35% band is removed from the new scale entirely from 2026",
+        "It falls from 80 million to 60 million VND a month",
+        "It stays at 80 million VND a month",
+        "It rises from 80 million to 100 million VND a month"
+      ],
+      "explanation": "The threshold for the 35% rate rises from above 80 million to above 100 million VND of taxable income a month."
+    },
+    {
+      "question": "Beyond cutting tax, what does going from 7 bands to 5 achieve?",
+      "options": [
+        "A simpler scale, with less band-jumping as pay rises",
+        "Taxpayers no longer have to file a year-end reconciliation",
+        "Companies no longer have to withhold tax at source",
+        "Investment income now falls under the same scale"
+      ],
+      "explanation": "Fewer bands with wider gaps make the calculation simpler, and a modest pay rise is less likely to push you into a higher band."
+    },
+    {
+      "question": "Of the three changes in the 2026 reform, which matters most to a middle earner?",
+      "options": [
+        "Cutting the scale from seven bands to five, because the calculation gets simpler",
+        "Raising the family circumstance deduction, because it comes straight off taxable income",
+        "Raising the top-rate threshold, because it lightens the burden in the highest band",
+        "Widening the gaps between bands, because rising pay moves you up more slowly"
+      ],
+      "explanation": "The deduction acts at the root: it cuts the income that ever enters the scale, so it helps even someone sitting only in the first band. A change to the top threshold is only reached by high earners."
+    }
+  ],
+  "keyTakeaways": [
+    "The 2026 scale: 5 bands (5/10/20/30/35%) at 10 - 30 - 60 - 100 million, replacing the old 7",
+    "Band 2 falls 15%→10%, band 3 falls 25%→20%",
+    "The family circumstance deduction rises: 11→15.5 million for yourself, 4.4→6.2 million per dependant",
+    "A single person on 30 million saves about 993,000 VND a month against the old rules"
+  ],
+  "practicePrompt": {
+    "question": "Hung earns 45 million gross and is single. Under the 2026 rules, what is his monthly income tax? (Insurance 10.5%)",
+    "options": [
+      "About 4.5 million VND",
+      "About 1.98 million VND",
+      "About 2.52 million VND",
+      "About 900,000 VND"
+    ],
+    "explanation": "Insurance = 45 × 10.5% = 4.725 million. Taxable income = 45 − 4.725 − 15.5 = 24.775 million. Sliced by band: 10 million × 5% = 500,000 VND; the part from 10 to 24.775 million (that is, 14.775 million) × 10% = 1,477,500 VND. Total tax = 1,977,500 VND, about 1.98 million. Worth noting: the effective rate is only about 4.4% of gross salary, even though Hung is 'in the 10% band'."
+  },
+  "summary": {
+    "keyIdea": "The 2026 reform cuts the number of bands, lowers the middle rates and raises the deduction - all three reduce tax",
+    "commonMistake": "Still calculating net salary on the old 11 million deduction, and so misjudging take-home pay.",
+    "action": "Recalculate your net salary on the 2026 scale and deduction."
+  },
+  "application": {
+    "title": "Rebuild your budget on the new rates",
+    "message": "If you built your budget before 2026, work out your net salary again on the 15.5 million deduction and the 5-band scale. The difference can go towards a higher savings rate rather than quietly disappearing into spending.",
+    "secondary": "Tax rules change over time - check again at the start of each financial year."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "From the 2026 tax year, Vietnamese personal income tax moves in the taxpayer's favour on all three fronts at once: fewer bands, lower rates in the middle, and a considerably larger deduction."
+    },
+    {
+      "type": "heading",
+      "text": "Three changes at the same time"
+    },
+    {
+      "type": "list",
+      "items": [
+        "The scale drops from 7 bands to 5, with wider gaps between them (Article 9, Law 109/2025/QH15)",
+        "The band 2 rate falls from 15% to 10%; band 3 falls from 25% to 20%",
+        "The threshold for the top 35% rate rises from above 80 million to above 100 million VND a month",
+        "The family circumstance deduction rises by nearly 41%: 11 → 15.5 million for yourself, 4.4 → 6.2 million per dependant (Resolution 110/2025/UBTVQH15)"
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "The comparison in real numbers"
+    },
+    {
+      "type": "formula",
+      "title": "Someone on 30 million gross, single",
+      "equation": "Saving = Tax under the old rules − Tax under the 2026 rules",
+      "example": {
+        "title": "Before and after the reform",
+        "calculation": "OLD: taxable = 30 − 3.15 − 11 = 15.85m → tax = (5×5%) + (5×10%) + (5.85×15%) = 1,627,500 VND  ||  NEW: taxable = 30 − 3.15 − 15.5 = 11.35m → tax = (10×5%) + (1.35×10%) = 635,000 VND",
+        "result": "Saving ≈ 992,500 VND a month, about 11.9 million VND a year",
+        "explanation": "The gain comes from both sides: the higher deduction pulls taxable income down by 4.5 million, and what remains is taxed more lightly now that band 2 has fallen from 15% to 10%."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "On when it applies",
+      "text": "The 2025 Personal Income Tax Law takes effect on 1 July 2026, but the provisions on income from wages and salaries and on the family circumstance deduction apply from the 2026 tax year - that is, across the whole of 2026. The difference for the early months is settled at the year-end reconciliation."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "The old scale - 7 bands",
+        "text": "Thresholds at 5 - 10 - 18 - 32 - 52 - 80 million, rates of 5/10/15/20/25/30/35%. Narrow bands, so pay rises crossed them easily."
+      },
+      "right": {
+        "label": "The 2026 scale - 5 bands",
+        "text": "Thresholds at 10 - 30 - 60 - 100 million, rates of 5/10/20/30/35%. Wider, simpler, and lower tax across the common income range."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The 2026 reform cuts tax most clearly for middle earners.",
+        "Next lesson: the year-end reconciliation - and when you get money back."
+      ]
+    }
+  ]
+}

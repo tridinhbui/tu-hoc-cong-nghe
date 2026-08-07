@@ -1,0 +1,184 @@
+{
+  "slug": "tu-van-tai-chinh",
+  "title": "When you need a professional financial advisor",
+  "subtitle": "When to hire an advisor",
+  "duration": "6 min",
+  "openingQuestion": "Duc, 40, just received a 5-billion-VND inheritance, is considering starting his own company, and has 2 children about to start university in a few years - his financial situation has suddenly become complex with several major decisions at once. Is this a reasonable time to seek out an independent financial advisor?",
+  "openingOptions": [
+    "Yes - when many major decisions happen at once, an independent advisor charging by the hour helps you see the whole picture",
+    "No, only the ultra-wealthy with over 100 billion VND in assets actually need professional financial advice - everyone else can manage on their own",
+    "Never need a financial advisor under any circumstance, since reading books and self-study is always enough for any complex situation",
+    "No, instead he should go to a bank employee who sells insurance for advice, since that's completely free and as objective as possible in this situation"
+  ],
+  "explanation": "Professional financial advice isn't for every situation - for everyday spending and simple saving, self-education is entirely enough. But when several major, complex decisions with long-term trade-offs happen at the same time (an inheritance, starting a business, retirement/education planning, tax optimization), an experienced independent expert can help you see the whole picture, avoid emotional mistakes, and save more than the advisory fee costs. The important thing is choosing an advisor with a clear fee structure (hourly or a fixed service package - a 'fee-only' model), rather than someone who only earns commission selling insurance/investment products, since a commission model easily creates a conflict of interest.",
+  "diagram": [
+    { "label": "Simple spending and saving", "arrow": true },
+    { "label": "-> self-study is enough", "arrow": true },
+    { "label": "Major, complex, long-term decisions", "arrow": true },
+    { "label": "-> professional advice is needed" }
+  ],
+  "realWorldExample": {
+    "company": "The personal financial advisory market in Vietnam",
+    "description": "In Vietnam, independent personal financial planning (fee-only financial planner) is still fairly new compared to developed countries; most 'financial advisors' present themselves through insurance sales or stock brokerage channels, earning a commission on the products sold - which easily creates a conflict of interest when the advice isn't purely in the client's best interest. Some independent financial advisory firms charging by the hour or by service package are gradually appearing more in major cities, serving clients with assets and complex planning needs."
+  },
+  "quiz": [
+    {
+      "question": "In which situation is it usually SENSIBLE to seek a professional financial advisor?",
+      "options": [
+        "When you want someone to guarantee a return on your investment portfolio",
+        "When several major financial decisions happen at the same time",
+        "When your savings account balance exceeds 100 million VND",
+        "When you need someone else to hold a brokerage account on your behalf"
+      ],
+      "correct": 1,
+      "explanation": "Professional advice delivers the most value when a situation is complex, with many variables and long-term trade-offs - that's when the benefit of an expert's perspective usually far exceeds the advisory fee."
+    },
+    {
+      "question": "Why prefer an advisor charging an hourly or fixed service fee (fee-only) over someone who only earns commission on products sold?",
+      "options": [
+        "Because paying by the hour is always cheaper than paying by commission",
+        "Because fee-only advisors always hold a higher professional certification",
+        "Because a commission-based model on products easily creates a conflict of interest",
+        "Because commission-based advisors aren't legally allowed to give individual advice"
+      ],
+      "correct": 2,
+      "explanation": "When an advisor's income depends on selling a specific product (insurance, an open fund), there's a natural incentive to recommend whichever product pays the highest commission, not necessarily the one that best fits the client's needs - this is the conflict of interest to watch for."
+    },
+    {
+      "question": "Which situation is genuinely worth paying for professional financial advice?",
+      "options": [
+        "Building a monthly household spending sheet and carefully tracking every single expense line",
+        "Picking which stock will rise the most in the coming quarter this year",
+        "Deciding whether to open a 6-month or 12-month term deposit at a bank",
+        "A major, complex decision: an inheritance, selling a business, a retirement plan"
+      ],
+      "correct": 3,
+      "explanation": "Advice is worth paying for when a decision is large, rarely repeated, and hard to undo if wrong. A monthly budget or picking a deposit term are things you can do well yourself after a few lessons."
+    },
+    {
+      "question": "Why does how an advisor gets paid matter more than their credentials?",
+      "options": [
+        "Because if the income comes from product commissions, the advice will lean toward the product",
+        "Because financial industry credentials aren't officially recognized by any regulatory authority at all",
+        "Because an advisor with higher credentials usually charges above the market average",
+        "Because the payment method determines how much time the advisor spends per client"
+      ],
+      "correct": 0,
+      "explanation": "Someone living off insurance commissions will see every solution shaped like an insurance contract - not necessarily because they're dishonest, but because that's what they're paid to sell. Ask 'how are you paid' before you ask anything else."
+    },
+    {
+      "question": "How does a fee-only advisor differ from a product-selling agent?",
+      "options": [
+        "They're legally allowed to manage assets on a client's behalf without authorization",
+        "They're paid directly by the client, so they have no incentive to push any specific product",
+        "They always charge a fee that works out much lower than the commission a product agent would earn",
+        "They guarantee a minimum return for whatever portfolio they advise on"
+      ],
+      "correct": 1,
+      "explanation": "Whoever pays them is who they serve. A direct fee looks more expensive because you see the number, while a commission is hidden inside the product - but the hidden amount is usually larger."
+    },
+    {
+      "question": "What's a sign you should leave a financial advisor?",
+      "options": [
+        "Advising you to hold your portfolio steady instead of trading constantly on price moves",
+        "Declining to predict whether the market will rise or fall over the next six months",
+        "Dodging questions about fees, or pushing for a fast decision with no time to think",
+        "Suggesting a full review of your financial goals before discussing any product"
+      ],
+      "correct": 2,
+      "explanation": "The other three options are all signs of a good advisor. Dodging the fee question and creating time pressure are two red flags - an advisor working in your interest isn't afraid of you taking a few more days to think."
+    }
+  ],
+  "keyTakeaways": [
+    "Not everyone needs a professional financial advisor - for simple needs, self-education and self-management are enough",
+    "Seek advice when several major, complex decisions happen at the same time (inheritance, starting a business, retirement/education planning)",
+    "Prefer an advisor with a clear fee structure (hourly/service package) over one earning only product commissions, to reduce conflicts of interest",
+    "Self-taught knowledge (like the lessons in this track) helps you ask smarter questions and judge the quality of an expert's advice"
+  ],
+  "practicePrompt": {
+    "question": "Huong has stable income, simple spending, a clear financial goal (buying a home in 5 years), and has already self-studied basic financial lessons. Does she need to hire a professional financial advisor right now?",
+    "options": [
+      "Not necessarily - simple needs can be self-managed; only seek advice when several major decisions happen at once",
+      "Yes, every individual, regardless of financial complexity, must hire a professional advisor from the very start",
+      "Never needs an advisor under any circumstance, since self-education is always the optimal solution for every financial situation",
+      "Yes, but she should only choose a commission-based advisor, since they're always the most motivated to give the best advice for the client"
+    ],
+    "correct": 0,
+    "explanation": "Not everyone needs a professional financial advisor - with simple needs and existing self-taught knowledge, self-management is enough; seek advice when several major, complex decisions happen at the same time."
+  },
+  "summary": {
+    "keyIdea": "Not everyone needs a professional financial advisor - for simple needs, self-education and self-management are enough",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to a real decision.",
+    "action": "Seek advice when several major, complex decisions happen at the same time (inheritance, starting a business, retirement/education planning)"
+  },
+  "application": {
+    "title": "Assess yourself",
+    "message": "The lesson gave a real example with 3 specific situations that call for an advisor - review the 'A real example' section above. Now list out the major financial decisions you're currently facing.",
+    "secondary": "Not everyone needs one, but knowing when you do is an important skill."
+  },
+  "track": "personal",
+  "sections": [
+    {
+      "type": "lead",
+      "text": "After self-studying hundreds of lessons on personal finance, a fair question comes up: so when is self-study enough, and when do you need a real expert? The answer isn't 'always' or 'never' - it depends on how complex the situation is."
+    },
+    {
+      "type": "paragraph",
+      "text": "For most everyday financial decisions - budgeting, building an emergency fund, choosing an index fund for regular investing - self-taught knowledge is entirely enough, and the cost of hiring a professional advisor for these tasks usually doesn't match the benefit gained. But there are moments in life when complexity spikes, and a mistake can cost far more than several advisory fees combined."
+    },
+    {
+      "type": "heading",
+      "text": "Situations worth considering professional advice for"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Suddenly receiving a large sum (an inheritance, selling an asset, a large bonus) that needs a sensible allocation decision",
+        "Preparing to retire in a few years, needing to shift the portfolio from accumulation to preservation/withdrawal",
+        "Facing a complex tax situation (income from multiple sources, business income, overseas investments)",
+        "Planning finances for a family with several goals at once (children's education, buying a home, retirement, caring for elderly parents)",
+        "Going through a major life event (divorce, losing a family breadwinner, starting a business)"
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Self-education is enough",
+        "text": "Budgeting, an emergency fund, regular investing into a diversified index fund, basic consumer debt management."
+      },
+      "right": {
+        "label": "Worth considering professional advice",
+        "text": "A sudden inheritance/windfall, transitioning into retirement, complex tax optimization, multi-goal family financial planning."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "How to choose a trustworthy advisor",
+      "text": "Ask clearly about the fee model before starting: charged by the hour, by a fixed service package, or as a percentage of assets managed (usually more transparent) versus earning only a commission on products sold. Also ask about professional certifications, experience with situations similar to yours, and ask for the reasoning behind each recommendation to be explained clearly, rather than just hearing the conclusion."
+    },
+    {
+      "type": "heading",
+      "text": "A real example: 3 situations that genuinely need an advisor"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Buying a home with a bank loan: a one-time decision, large in value, hard to fix if you pick the wrong term/rate",
+        "Inheriting assets: involves legal and tax matters - high risk if handled incorrectly on your own",
+        "Starting a business with accumulated savings: a trade-off between personal financial safety and business risk, needing a view of the whole financial picture, not just the project alone"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "How to assess it yourself",
+      "text": "If you have 2 or more complex decisions like these happening at once, the cost of hiring an advisor charging by the hour (commonly 500 thousand - 2 million VND/hour in Vietnam) is usually far cheaper than the risk of getting a decision wrong on your own."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Professional financial advice is a tool, not a requirement - its value scales with how complex the situation you're facing is.",
+        "Self-taught knowledge doesn't fully replace an expert in every case, but it makes you a smarter client - one who knows how to ask the right questions and recognize whether advice is genuinely in your own interest."
+      ]
+    }
+  ]
+}

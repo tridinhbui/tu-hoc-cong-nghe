@@ -1,0 +1,157 @@
+{
+  "slug": "bai-cuoi-phan-tich-doanh-nghiep-hoan-chinh",
+  "title": "Final lesson - Analyze a complete company from A to Z yourself",
+  "subtitle": "Applying all 200 days to a real analysis workflow",
+  "openingQuestion": "After 200 days, what is the single most important thing you've learned about finance?",
+  "openingOptions": [
+    "Finance is a connected system, not scattered pieces",
+    "How to pick a stock that wins big in the short term",
+    "How to use complex derivatives to make quick profit",
+    "How to beat the market with a single formula"
+  ],
+  "explanation": "The 200-day journey: from basic money mindset → accounting → reading the three financial statements → financial ratios → time value of money → corporate finance → stock valuation → bonds and credit → portfolio and risk management → derivatives. Each stage builds on the foundation of the one before. The workflow for analyzing a complete company: read the 3 statements → compute key ratios → estimate intrinsic value (DCF, multiples) → assess risk (leverage, liquidity, industry) → compare against the market price to decide.",
+  "diagram": [
+    {
+      "label": "Basic money mindset",
+      "arrow": true
+    },
+    {
+      "label": "Reading financial statements",
+      "arrow": true
+    },
+    {
+      "label": "Valuation and risk",
+      "arrow": true
+    },
+    {
+      "label": "Analyzing a complete company yourself"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Charlie Munger - Mental Models",
+    "description": "Charlie Munger, Warren Buffett's longtime partner, always stressed: 'A person with more mental models will make better decisions than one who only knows one kind.' Finance provides a powerful set of mental models: DCF (value), WACC (cost of capital), Portfolio Theory (risk), Options Thinking (scenario analysis) - this is the real value of these 200 days."
+  },
+  "quiz": [
+    {
+      "question": "In real company analysis, which matters more: memorizing formulas or understanding the thinking behind them?",
+      "options": [
+        "Understanding the thinking, since a formula only means something when you know when to use it",
+        "Memorizing formulas, since real analysis requires fast calculation under exam-style time pressure",
+        "Both matter equally in every analysis situation",
+        "It depends on the role - analysts need to memorize formulas more"
+      ],
+      "explanation": "200 days wasn't about memorizing hundreds of formulas - it was about building an analytical way of thinking: when to use P/E instead of DCF, when a ratio is being distorted by accounting, when leverage risk should worry you more than a growth opportunity. This is the foundation for confidently reading and analyzing ANY company in the future, even industries you've never studied."
+    },
+    {
+      "question": "If you had to carry forward exactly ONE skill from these 200 days into every future financial decision - whether reading a new financial statement, evaluating an investment opportunity, or understanding an economic news story - what should it be?",
+      "options": [
+        "Memorizing every valuation formula you've learned no matter how the industry later changes",
+        "Knowing how to ask the right question before every number",
+        "Being proficient with financial modeling software",
+        "Following market news every single day without fail"
+      ],
+      "explanation": "This is the core message closing the entire 200-day journey: real value doesn't lie in memorizing formulas or short-term forecasting, but in systems thinking - the ability to see the CONNECTIONS between pieces of knowledge to understand the full financial picture of any situation in the future, even ones you've never studied."
+    },
+    {
+      "question": "Where should the process of analyzing a company begin?",
+      "options": [
+        "Comparing valuation against peers in the same industry",
+        "Immediately calculating financial ratios for the last three years",
+        "Understanding the business model before opening numbers",
+        "Reading securities firms' recommendations about the stock"
+      ],
+      "explanation": "If you don't know how a company makes money, you don't know which ratio is worth looking at. A 20% gross margin is great for retail and poor for software - only context gives a number meaning."
+    },
+    {
+      "question": "Which sign is most worrying when reading a set of financial statements?",
+      "options": [
+        "Selling costs rising quickly during an expansion phase even if the underlying business barely changed",
+        "Revenue growing slower than the industry average",
+        "Gross margin lower than the closest competitor",
+        "Profit rising steadily while operating cash flow can't keep up"
+      ],
+      "explanation": "Profit is an accountant's opinion, cash flow is the truth. A widening gap between the two numbers is the most reliable early warning sign about revenue quality."
+    },
+    {
+      "question": "After finishing an analysis, how should the conclusion be presented?",
+      "options": [
+        "With a range of values and the key assumptions behind it",
+        "As a single target price, for the sake of clarity",
+        "Only a buy or sell recommendation, no numbers needed",
+        "With the entire spreadsheet so readers can verify it themselves"
+      ],
+      "explanation": "A single number creates a false sense of certainty the model never had. A range with its assumptions tells the reader where the thesis would be wrong - far more useful than one point."
+    }
+  ],
+  "keyTakeaways": [
+    "Finance is a connected system from accounting to derivatives, not separate modules",
+    "The complete workflow: read statements → compute ratios → valuation → assess risk → compare against the market",
+    "200 days built analytical thinking, not a list of formulas to memorize - this is the foundation for analyzing any company yourself"
+  ],
+  "practicePrompt": {
+    "question": "After 200 days learning from basic accounting, financial ratios, time value of money, stocks/bonds, to derivatives, you realize the knowledge doesn't sit separately in each stage but is tightly linked (for example: EBITDA from accounting is used to compute EV/EBITDA in valuation, WACC from cost of capital is used to discount in DCF). What is the single most important takeaway from these 200 days?",
+    "options": [
+      "The most important lesson is to memorize as many formulas as possible to apply when needed",
+      "Finance is a connected system from accounting to derivatives, not separate modules",
+      "Each stage of knowledge should be learned and applied completely independently of the others",
+      "After finishing the 200 days, there's no need to keep updating or reviewing the material"
+    ],
+    "explanation": "Finance is a connected system from accounting to derivatives, not separate modules. The complete workflow (read statements → compute ratios → valuation → assess risk → compare against the market) is exactly the thinking built over 200 days, not a disconnected list of formulas to memorize."
+  },
+  "summary": {
+    "keyIdea": "Finance is a connected system from accounting to derivatives, not separate modules",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to real decisions.",
+    "action": "The complete workflow: read statements → compute ratios → valuation → assess risk → compare against the market"
+  },
+  "application": {
+    "title": "Analyze a real company yourself",
+    "message": "Pick a company you're interested in, read its most recent financial statements, calculate a few key ratios, try estimating value with simple multiples, then compare against the current market price.",
+    "secondary": "This exercise pulls together all 200 days - it doesn't need to be perfect, just go through the whole process once."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "200 days, from basic money mindset to complex derivatives - the journey has passed through accounting, reading the three financial statements, financial ratios, time value of money, corporate finance, stock valuation, bonds and credit, portfolio and risk management. Each stage builds on the foundation of the one before."
+    },
+    {
+      "type": "heading",
+      "text": "The workflow for analyzing a complete company"
+    },
+    {
+      "type": "paragraph",
+      "text": "Read the three financial statements to understand the current situation → compute key ratios to compare and spot anomalies → estimate intrinsic value via DCF or multiples → assess risk around leverage, liquidity, industry → compare against the market price to make the final decision. This is a sequential process, each step needing the one before as its foundation."
+    },
+    {
+      "type": "heading",
+      "text": "Thinking matters more than formulas"
+    },
+    {
+      "type": "paragraph",
+      "text": "200 days wasn't about memorizing hundreds of formulas, but about building an analytical way of thinking: when to use P/E instead of DCF, when a ratio is being distorted by accounting, when leverage risk should worry you more than a growth opportunity. Charlie Munger, Warren Buffett's longtime partner, always stressed that a person with more mental models will make better decisions than one who only knows one kind - finance provides a powerful set of mental models: DCF, WACC, Portfolio Theory, Options Thinking."
+    },
+    {
+      "type": "heading",
+      "text": "The one skill worth carrying forward"
+    },
+    {
+      "type": "paragraph",
+      "text": "If you had to carry forward exactly one skill from these 200 days, it's the ability to ask the right question and find connections between pieces of information - understanding that a financial number never stands alone but always connects to the accounting, valuation, risk, and market context around it. This is systems thinking, not a single calculation skill."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Workflow: read statements → compute ratios → valuation → assess risk → compare against the market",
+        "Finance is a connected system, not separate modules",
+        "Real value lies in systems thinking, not memorizing formulas",
+        "This foundation helps you confidently analyze any company, even industries you've never studied"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The 200 days end here, but the way you look at a financial statement, an economic news story, or an investment opportunity - has changed permanently.",
+        "That is the thing truly worth carrying forward."
+      ]
+    }
+  ]
+}

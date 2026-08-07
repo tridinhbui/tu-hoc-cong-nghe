@@ -1,0 +1,180 @@
+{
+  "slug": "tong-on-cong-cu-phai-sinh",
+  "title": "Derivatives review",
+  "subtitle": "Connecting Forwards, Futures, Options and Swaps into one picture",
+  "openingQuestion": "If you could keep only one principle to remember about the entire world of derivatives, what should it be?",
+  "openingOptions": [
+    "Only large institutions should use derivatives",
+    "Derivatives only matter for commodity markets",
+    "Derivatives are neutral - their value depends on the purpose",
+    "Derivatives are always dangerous and should be avoided entirely"
+  ],
+  "explanation": "The four tools - Forward, Futures, Options, Swaps - all revolve around the same core idea: transferring risk from a party unwilling to bear it to a party willing to (in exchange for a fee or an expected profit). The difference lies in the degree of standardization (customized Forward vs standardized Futures), asymmetry (Options), or periodicity (Swaps). Whether derivatives are good or bad depends entirely on the purpose and risk-management discipline of the user.",
+  "diagram": [
+    {
+      "label": "Forward and Futures: a commitment to trade",
+      "arrow": true
+    },
+    {
+      "label": "Options: a right, not an obligation",
+      "arrow": true
+    },
+    {
+      "label": "Swaps: exchanging cash flows periodically",
+      "arrow": true
+    },
+    {
+      "label": "All transfer risk between two parties"
+    }
+  ],
+  "realWorldExample": {
+    "company": "A summary across the finance industry",
+    "description": "From an airline hedging fuel prices, to a pension fund protecting its portfolio with put options, to an exporter locking in an exchange rate with a forward - derivatives, used for their intended purpose, are an indispensable risk-management tool of the modern economy."
+  },
+  "quiz": [
+    {
+      "question": "What is the single most important thing Forward, Futures, Options and Swaps have in common?",
+      "options": [
+        "All four transfer risk from a party unwilling to bear it to a party willing to",
+        "All four must be traded through an exchange with central clearing under exchange rules in most major markets",
+        "All four require a minimum margin set by exchange regulation",
+        "All four have a fixed maturity date of no more than twelve months"
+      ],
+      "explanation": "Though their structures differ (binding commitments for Forward/Futures, a right for Options, periodic exchanges for Swaps), the shared nature of every derivative is that it lets a specific kind of risk (price, interest rate, exchange rate) be transferred between parties in a structured, priceable way."
+    },
+    {
+      "question": "A student who just finished learning about Options, Futures and Swaps asks: \"If derivatives are this dangerous, why not ban them outright to protect the financial system?\" What is the most reasonable answer?",
+      "options": [
+        "Banning them would reduce stock market liquidity",
+        "Banning them is reasonable because systemic risk outweighs the benefit, a step regulators in most major markets already require",
+        "They cannot be banned because they trade across borders",
+        "Banning them would strip thousands of real businesses of their hedging tool"
+      ],
+      "explanation": "This is an important balance lesson: the sensible policy response is not an extreme ban on a tool with real value (hedging for the real economy), but systematic risk management - transparency, leverage limits, central clearing - to maximize benefit while minimizing potential harm."
+    },
+    {
+      "question": "What structurally sets an option apart from the other three tools?",
+      "options": [
+        "An option grants a right rather than creating an obligation for the buyer",
+        "An option has no fixed maturity date in the contract",
+        "An option only applies to stocks; the other three apply to any asset for whatever asset class is involved",
+        "An option doesn't need a counterparty on the other side"
+      ],
+      "explanation": "Forward, futures and swap are all two-way commitments. An option is asymmetric: the buyer pays a premium for the right to exercise or not - and that premium is precisely the price of that asymmetry."
+    },
+    {
+      "question": "A company needs to hedge a foreign-currency payment for an exact date and amount. Which tool fits best?",
+      "options": [
+        "Futures, for its high liquidity and low counterparty risk",
+        "A forward, since it can be customized for amount and delivery date",
+        "An option, to keep the right not to exercise if unfavorable",
+        "A swap, suited to cash flows recurring over multiple periods and the exact delivery date required"
+      ],
+      "explanation": "Futures are standardized so they rarely match an exact amount and date. In exchange for accepting counterparty risk, a forward can match the exact need - the most important thing when hedging one specific transaction."
+    },
+    {
+      "question": "What is the question that must be answered before opening any derivative position?",
+      "options": [
+        "Which direction is the market forecast to move next quarter based on recent macroeconomic commentary",
+        "Which tool currently has the lowest trading fee",
+        "What is my underlying risk, how large is it, and when does it occur",
+        "What is the maximum leverage the exchange allows"
+      ],
+      "explanation": "If you can't answer those three parts, the position you're about to open isn't a hedge - it's a new risk, added on top of what you already have rather than subtracted from it."
+    }
+  ],
+  "keyTakeaways": [
+    "The four main derivative tools all revolve around structured risk transfer",
+    "The value of a derivative depends on its purpose of use: hedging creates real value, undisciplined speculation can cause disaster",
+    "Understanding the underlying risk-transfer nature helps correctly evaluate any new derivative product in the future"
+  ],
+  "practicePrompt": {
+    "question": "After reviewing forwards, futures, options and swaps, you realize these four tools are very different in structure (standardized or customized, an obligation or just a right), but they all serve the same core purpose. What is that purpose?",
+    "options": [
+      "The sole purpose of all four is to generate maximum speculative profit for their users",
+      "All four revolve around structured risk transfer, differing only in form",
+      "These four tools have nothing in common - each serves a completely independent purpose",
+      "The sole purpose is to help investment banks collect trading fees from clients"
+    ],
+    "explanation": "The four main derivative tools all revolve around structured risk transfer. The value of a derivative depends on its purpose of use: hedging creates real value (transferring away unwanted risk), while undisciplined speculation (using leverage to bet rather than hedge) can cause disaster."
+  },
+  "summary": {
+    "keyIdea": "The four main derivative tools all revolve around structured risk transfer",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to real decisions.",
+    "action": "The value of a derivative depends on its purpose of use: hedging creates real value, undisciplined speculation can cause disaster"
+  },
+  "application": {
+    "title": "Draw a comparison chart of the four derivative tools",
+    "message": "Draw a four-column table for Forward, Futures, Options, Swaps and write one short sentence in each column about that tool's key distinguishing feature.",
+    "secondary": "Summarizing in a table yourself helps you remember far longer than re-reading theory."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "After going through Forward, Futures, Options and Swaps, it's time to step back and see the whole picture: these four tools aren't four separate things, but all revolve around the same core idea - transferring risk from a party unwilling to bear it to a party willing to, in exchange for a fee or an expected profit."
+    },
+    {
+      "type": "heading",
+      "text": "The difference is in structure, not in nature"
+    },
+    {
+      "type": "paragraph",
+      "text": "Forward and Futures are both binding commitments, differing in degree of standardization: Forward is customized to the two parties' needs (OTC), Futures is standardized and traded through an exchange with a clearing house guarantee. Options are asymmetric - a right rather than an obligation, in exchange for a premium. Swaps are periodic - exchanging cash flows repeatedly according to an agreed formula. Despite differing structures, all are tools that transfer a specific type of risk (price, interest rate, exchange rate) in a structured, priceable way."
+    },
+    {
+      "type": "heading",
+      "text": "Why not ban derivatives outright?"
+    },
+    {
+      "type": "paragraph",
+      "text": "Banning derivatives outright would strip away the essential hedging tool that thousands of real businesses - airlines, farmers, exporters - use to manage legitimate business risk. A more sensible solution is strict management: transparency, central clearing, leverage limits - instead of an outright ban on a tool that has both benefits and harms."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Four tools, which to choose",
+      "subtitle": "The same question: who bears the risk, and what do they pay to stop bearing it",
+      "concepts": [
+        {
+          "vi": "Kỳ hạn",
+          "en": "Forward",
+          "def": "When you need to match the exact amount and date of a real transaction. The price is counterparty risk and almost no way out midway."
+        },
+        {
+          "vi": "Tương lai",
+          "en": "Futures",
+          "def": "When you need liquidity and don't want counterparty worry. The price is accepting a standard contract size and posting extra margin daily when the price moves against you."
+        },
+        {
+          "vi": "Quyền chọn",
+          "en": "Options",
+          "def": "When you want to block the downside while keeping the upside. The price is a premium lost outright, even if never used."
+        },
+        {
+          "vi": "Hoán đổi",
+          "en": "Swaps",
+          "def": "When the risk recurs regularly over many periods - loan interest, foreign-currency flows. The price is a long-term commitment that's hard to unwind, with its market value sitting on the balance sheet."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "The question that filters out everything else",
+      "text": "Before choosing a tool, be able to answer: what is my underlying risk, how large is it, and when does it occur? If you can't answer those three questions, the derivative position you're about to open isn't a hedge - it's a new risk, added on top of what you already have rather than subtracted from it."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Forward: OTC, customized, binding commitment",
+        "Futures: standardized, exchange-traded, binding commitment, mark-to-market",
+        "Options: a right rather than an obligation, in exchange for a premium",
+        "Swaps: periodic cash-flow exchange according to an agreed formula"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The value of a derivative depends on its purpose of use: hedging creates real value, undisciplined speculation can cause disaster."
+      ]
+    }
+  ]
+}

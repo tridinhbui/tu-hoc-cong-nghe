@@ -1,0 +1,160 @@
+{
+  "slug": "khi-nao-ban-co-phieu",
+  "title": "When should you sell a stock?",
+  "subtitle": "Exit strategy",
+  "openingQuestion": "A stock you're holding drops 20% over two weeks, but the company's revenue, profit, and sector outlook haven't changed at all since you bought. What should you do?",
+  "openingOptions": [
+    "Buy double the amount right away without taking any time to review any of the company's fundamentals before deciding",
+    "Sell the entire position immediately to 'cut losses' just because you saw a 20% drop, regardless of whether the real reason behind that drop is even related to the business",
+    "Review your original investment thesis: if it still holds, you can keep holding",
+    "Sell the entire position immediately and set a rigid rule to never buy that company's stock again in the future"
+  ],
+  "explanation": "A sell decision should be based on whether the original investment thesis (the business's fundamentals) still holds, not just on short-term price movement. If the business is still sound and it's just a broader market correction, panic-selling is usually a mistake.",
+  "diagram": [
+    {
+      "label": "Does the original investment thesis still hold?",
+      "arrow": true
+    },
+    {
+      "label": "Yes → hold, the swing is only short-term",
+      "arrow": true
+    },
+    {
+      "label": "No → the business's fundamentals have deteriorated, consider selling"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Selling principles of value-investing funds in Vietnam",
+    "description": "Value-investing funds like VinaCapital's VESAF or Dragon Capital's DCDS usually publish a principle: only sell a stock when (1) the original investment thesis no longer holds - for example the business has lost a competitive advantage or governance has weakened, (2) the price has run far past fair value (overvaluation), or (3) a more attractive investment opportunity is found to reallocate capital toward - not selling just because the price dropped short-term."
+  },
+  "quiz": [
+    {
+      "question": "How does 'emotional cutting losses' (selling just because you saw the price drop, with no analysis of the cause) differ from 'disciplined cutting losses' (a planned stop-loss)?",
+      "options": [
+        "No difference at all - both are selling when the price falls",
+        "Emotional cutting works better since it reacts faster",
+        "Disciplined cutting is based on a threshold set before buying",
+        "Disciplined cutting only applies to bonds, not stocks"
+      ],
+      "explanation": "The key difference is PLANNING: disciplined cutting losses is defined in advance (while calm) as part of risk management, while emotional cutting is an impulsive reaction right when the market is moving, usually leading to selling right at the bottom."
+    },
+    {
+      "question": "Which of the following is a REASONABLE basis for selling a stock?",
+      "options": [
+        "A friend has a feeling the market is about to fall sharply",
+        "The price just rose 5% in one session with no clear reason",
+        "The price falls for one session due to a broad market correction",
+        "The original investment thesis no longer holds"
+      ],
+      "explanation": "A reasonable basis for selling is when the business's fundamentals have truly deteriorated - not short-term price movement of the broader market, not a rumor, and not a single up/down session that doesn't reflect a real change."
+    },
+    {
+      "question": "Why do many investors use partial profit-taking (selling part of the position when a target return is reached, keeping the rest)?",
+      "options": [
+        "Because it locks in part of the gain, keeping room for more upside",
+        "Because selling in parts always gives a higher total return than selling everything",
+        "Because it's a mandatory requirement under regulation when taking profit",
+        "Because selling in parts helps entirely avoid the 0.1% tax on selling"
+      ],
+      "explanation": "Partial profit-taking is a balanced strategy: locking in part of the profit to reduce risk (in case the price reverses), while keeping part of the position so you don't completely miss out if the stock keeps rising."
+    },
+    {
+      "question": "A stock's rise pushes its weighting in the portfolio from 10% to 35%. Why do many investors sell some even though the business is still doing well?",
+      "options": [
+        "Because once a stock has risen sharply, the probability of falling next period is always higher",
+        "To bring the portfolio back to the concentration-risk level they originally chose",
+        "Because holding over 30% in one ticker is something securities law doesn't allow",
+        "Because taking early profit reduces the transfer tax owed later"
+      ],
+      "explanation": "This is rebalancing, not a price forecast. A position that has ballooned makes the whole portfolio's outcome depend on a single business - a risk level you never chose. Selling some brings the portfolio back to the intended risk level, even though the investment thesis still holds."
+    },
+    {
+      "question": "Which of the following is NOT a reasonable basis for selling a stock?",
+      "options": [
+        "You've found another opportunity that's clearly better for the same capital",
+        "The original investment thesis has been disproven by reality",
+        "The price has fallen 15% from what you once paid",
+        "You need the money for a goal you've already planned in advance"
+      ],
+      "explanation": "Your cost basis is a personal number the market doesn't know and doesn't care about. The other three reasons are all forward-looking: the thesis is wrong, there's a better opportunity, or a predetermined cash need - while 'down 15% from what I paid' says nothing about the business."
+    }
+  ],
+  "keyTakeaways": [
+    "A sell decision should be based on whether the original investment thesis (the business's fundamentals) still holds, not just on short-term price movement",
+    "Disciplined cutting losses (a threshold set in advance) is completely different from emotional cutting losses (an impulsive panic reaction to seeing red)",
+    "Three reasonable bases for selling: the investment thesis no longer holds, the valuation has become too high relative to real value, or there's a more attractive opportunity to reallocate capital toward",
+    "Partial profit-taking is a balanced strategy between locking in profit and keeping the chance to benefit if the price keeps rising"
+  ],
+  "practicePrompt": {
+    "question": "You bought stock Y at VND 40,000 believing in its long-term growth outlook. The price has now risen to VND 55,000 (a 37% gain), but you worry the price might correct downward. What approach balances locking in profit with keeping room for further upside?",
+    "options": [
+      "Sell part of the position to lock in some profit and cut risk, keeping the rest for further upside",
+      "Sell the entire position immediately, since any gain achieved should be fully locked in at once to avoid risk",
+      "Buy double the current amount right now, since the price rising means this stock is certain to keep rising strongly",
+      "Keep the entire position unchanged with no adjustment at all, since selling in parts only complicates the investment decision"
+    ],
+    "explanation": "Partial profit-taking locks in part of the gain, reduces overall risk, while still keeping the chance to benefit if the stock keeps rising further."
+  },
+  "summary": {
+    "keyIdea": "A sell decision should be based on whether the original investment thesis (the business's fundamentals) still holds, not just on short-term price movement",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to real decisions.",
+    "action": "Disciplined cutting losses (a threshold set in advance) is completely different from emotional cutting losses (an impulsive panic reaction to seeing red)"
+  },
+  "application": {
+    "title": "Write your sell thesis in advance",
+    "message": "For an investment you're currently holding, write down 2-3 specific conditions in advance that would make you sell (for example: the business's fundamentals deteriorate, valuation becomes too high) - before price movement makes you panic.",
+    "secondary": "Writing your plan down while calm helps you avoid deciding while scared."
+  },
+  "track": "personal",
+  "sections": [
+    {
+      "type": "lead",
+      "text": "If 'what should I buy' is the question asked most often when starting to invest, 'when should I sell' is the question most often overlooked - even though this is actually the moment that decides your final profit."
+    },
+    {
+      "type": "heading",
+      "text": "A common mistake: selling based on short-term price movement"
+    },
+    {
+      "type": "paragraph",
+      "text": "The natural reaction upon seeing a stock's price drop is to want to sell immediately to 'preserve remaining capital'. But if the cause of the drop is just broader market movement (for example due to macro worry, unrelated to the specific business), while the company's revenue, profit, and outlook remain unchanged, selling in this situation is usually selling unnecessarily right when the price is low."
+    },
+    {
+      "type": "heading",
+      "text": "Three reasonable bases for selling"
+    },
+    {
+      "type": "paragraph",
+      "text": "There are three legitimate reasons to sell a stock. First, the original investment thesis no longer holds: the business has lost its competitive edge, governance has seriously weakened, or the sector has entered long-term structural decline (not a temporary cycle). Second, valuation has run far past fair value - the stock has risen too hot relative to real profit outlook, making the risk/reward ratio no longer attractive. Third, you've found another investment opportunity that's more attractive and need to reallocate capital."
+    },
+    {
+      "type": "list",
+      "items": [
+        "The original investment thesis no longer holds (the business has genuinely deteriorated, not just a feeling)",
+        "Valuation has run far past fair value relative to profit outlook",
+        "There's a more attractive investment opportunity, needing to reallocate capital",
+        "You need money for a specific financial goal already planned in advance (buying a house, retirement...)"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Disciplined cutting losses vs emotional cutting losses",
+      "text": "Disciplined cutting losses (a stop-loss) is setting a specific threshold BEFORE buying - for example 'if the price falls more than 15% from my purchase price, I'll sell to limit the damage' - and following that threshold regardless of how you feel at the time. This is completely different from panic-selling the moment you see red with no criteria set in advance. A cut-loss threshold should be decided while calm, not while the market is moving sharply."
+    },
+    {
+      "type": "heading",
+      "text": "Partial profit-taking: a balanced strategy"
+    },
+    {
+      "type": "paragraph",
+      "text": "Instead of selling everything or holding everything, many investors choose partial profit-taking: when a stock reaches a target return (for example a 30% gain from purchase), sell part of it (for example 30-50% of the shares) to lock in profit and reduce risk, while keeping the rest so as not to miss out if the stock keeps rising."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Selling because the business has genuinely deteriorated is completely different from selling out of panic over short-term price movement - always keep these two clearly distinct.",
+        "A cut-loss threshold or a profit target set in advance, while calm, is always more reliable than a decision made while the market is moving."
+      ]
+    }
+  ]
+}

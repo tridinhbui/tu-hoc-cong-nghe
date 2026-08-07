@@ -1,0 +1,180 @@
+{
+  "slug": "co-phieu-la-gi",
+  "title": "What is a stock? Why beginners should understand it",
+  "subtitle": "Stocks at a basic level",
+  "openingQuestion": "You hear a friend say 'I bought FPT stock.' In the simplest terms, what did they just do?",
+  "openingOptions": [
+    "Bought a product or service from FPT",
+    "Bet on whether FPT's price will go up or down, like a lottery",
+    "Lent FPT some money to earn interest",
+    "Paid to buy a tiny slice of FPT the company, and is now a co-owner"
+  ],
+  "explanation": "A stock is a share of business ownership, not a piece of paper to trade back and forth. Holding a stock means you have a claim on what's left of profit after the business pays everyone else - so you keep the full upside and bear the full downside. The practical consequence for a beginner: the first question must be how this business makes money, not where the price is heading next week.",
+  "diagram": [
+    {
+      "label": "Pay to buy a piece of a company",
+      "arrow": true
+    },
+    {
+      "label": "Become a real shareholder",
+      "arrow": true
+    },
+    {
+      "label": "Not lending, not gambling"
+    }
+  ],
+  "realWorldExample": {
+    "company": "FPT Corporation (ticker FPT, HOSE)",
+    "description": "FPT has about 1.3 billion shares outstanding. If you buy 100 FPT shares (about 100 x VND 130,000 = VND 13 million at 2024-2025 prices), you own 100/1,300,000,000 of the company - a tiny fraction, but enough to earn dividends, have (theoretical) voting rights, and benefit if the share price rises as the company performs well."
+  },
+  "quiz": [
+    {
+      "question": "Why can a company's share price rise over time?",
+      "options": [
+        "Because the number of shares outstanding automatically shrinks over time without the company doing anything",
+        "Because the company performs better, profit grows, and more people want to buy that ownership",
+        "Because the exchange's trading system automatically raises all listed share prices every year",
+        "Because the State requires listed share prices to rise by a fixed rate"
+      ],
+      "explanation": "A share price reflects the market's expectation of the company's future value. When revenue and profit grow sustainably, more people are willing to pay a higher price to own a piece of that company, pushing the price up."
+    },
+    {
+      "question": "What is the most important thing a beginner should understand about stocks before buying?",
+      "options": [
+        "Knowing the company's name and sector is enough to decide",
+        "Any stock held long enough will eventually rise, no need to worry about swings",
+        "A stock is real ownership, its value tied to business results",
+        "You need 10 years of trading experience before you can buy"
+      ],
+      "explanation": "Correctly understanding what a stock is - you're owning a piece of a real business, with factories, employees, customers - helps you avoid treating a stock as a random number on a screen, and keeps you focused on whether the company is actually performing well."
+    },
+    {
+      "question": "Buying FPT shares means you have what right?",
+      "options": [
+        "The right to take part in the company's day-to-day operations",
+        "The right to require the company to buy back your shares anytime at the original price",
+        "The right to receive fixed annual interest from the company like a bank deposit",
+        "Ownership of a piece of the company, including voting and receiving dividends"
+      ],
+      "explanation": "A shareholder owns a piece of the business: entitled to a share of profit when the company pays and decides to pay dividends, and to vote at the shareholders' meeting in proportion to their holding. But a shareholder doesn't run the company day-to-day - that's the board's job - and isn't guaranteed to get their capital back the way a saver is."
+    },
+    {
+      "question": "If a company goes bankrupt, where do shareholders stand in the order of who gets paid?",
+      "options": [
+        "Last - after creditors and other obligations are paid",
+        "Ahead of bank creditors but behind employees and tax authorities",
+        "Equal with creditors, split proportionally by the money each side put in",
+        "First, since shareholders are the true owners of the company"
+      ],
+      "explanation": "This is the flip side of ownership: shareholders hold a residual claim - taking the largest share if the company succeeds, but the last in line when the company goes bankrupt. In practice, shareholders often recover nothing at all."
+    },
+    {
+      "question": "Why does a share price move every day even though the company changes nothing that day?",
+      "options": [
+        "Because the company revalues its own assets every trading session",
+        "Because the price reflects buyer and seller expectations, which shift constantly",
+        "Because the exchange adjusts the price based on that session's trading volume",
+        "Because the price is recalculated from financial statements published every day even when the business itself stood still that day"
+      ],
+      "explanation": "Price is the result of buyers and sellers matching orders, reflecting their expectations about the company's future. Sector news, interest rates, or simply market sentiment all shift those expectations - even as the business itself keeps operating exactly as it did yesterday."
+    },
+    {
+      "question": "Two people buy the same stock: one holds for 10 years, the other sells after 1 week. Where does the fundamental difference lie?",
+      "options": [
+        "The one who sells after a week gets dividend priority over the long-term holder though both technically hold identical rights",
+        "The 10-year holder is guaranteed a profit because stocks always rise long-term",
+        "The long-term holder ties their result to the business, the other to price swings",
+        "The only difference is the trading fee each of them pays"
+      ],
+      "explanation": "Both own the same rights, but their outcomes come from two different sources: the long-term holder benefits from what the company creates over many years; the short-term trader depends on this week's price being higher than last week's - something no one can predict reliably."
+    }
+  ],
+  "keyTakeaways": [
+    "Buying a stock is buying real ownership of a company, not lending money or gambling",
+    "A share price reflects expectations about the company's future business, not a random number",
+    "Beginners should start by understanding what the company they own is doing, before caring about short-term price swings"
+  ],
+  "practicePrompt": {
+    "question": "You're considering buying shares of a manufacturing company you've never researched, just because you saw the price rising sharply on the ticker recently. Given the true nature of stock ownership, which approach makes more sense?",
+    "options": [
+      "Research what the company does, its profit and outlook, before buying - since you're buying real ownership, not just a number on a screen",
+      "Buy as much as possible right away before the price rises further, since recent price momentum is reliable enough to act on",
+      "Wait for the price to fall back to a level it traded at before, then buy, since the old price is always the most reasonable reference point",
+      "Ask many other people on social media who already bought this stock, since the crowd's choice is always more reliable than an individual's"
+    ],
+    "explanation": "Because a stock is real ownership tied to the health of the business, a buying decision should be based on understanding that company, not just short-term price movement on the ticker."
+  },
+  "summary": {
+    "keyIdea": "Buying a stock is buying real ownership of a company, not lending money or gambling",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to real decisions.",
+    "action": "A share price reflects expectations about the company's future business, not a random number"
+  },
+  "application": {
+    "title": "Identify a company you actually understand",
+    "message": "Pick a listed company whose products you use or whose business you understand well, and try to explain in your own words how that company makes money before looking at its share price.",
+    "secondary": "Understanding the company before looking at the price is the single most important habit of a long-term investor."
+  },
+  "track": "personal",
+  "sections": [
+    {
+      "type": "lead",
+      "text": "If you've ever heard the phrase 'buy stocks' and felt it sounded like some sophisticated financial game, stop for a moment - its true nature is far simpler than the complex-looking apps make it seem."
+    },
+    {
+      "type": "paragraph",
+      "text": "A company like Vinamilk, FPT, or Hoa Phat needs capital to operate and expand. Instead of only borrowing from a bank, a company can split its ownership into millions or billions of small 'pieces' called shares, then sell those pieces to anyone who wants to buy. When you buy a share, you're not lending the company money - you're outright buying a slice of ownership of that company."
+    },
+    {
+      "type": "heading",
+      "text": "What does a shareholder actually own?"
+    },
+    {
+      "type": "paragraph",
+      "text": "As a shareholder, even holding just 10 shares out of billions outstanding, you theoretically have three basic rights: the right to receive a share of profit if the company decides to pay dividends, the right to vote at the shareholders' meeting (in proportion to shares held), and the right to benefit if the company's value rises over time."
+    },
+    {
+      "type": "list",
+      "items": [
+        "You don't manage the company day-to-day - that's the board's job",
+        "You're not legally liable for the company's debts beyond the amount you invested",
+        "You benefit (or lose) in proportion to changes in the company's value",
+        "You can sell your shares back anytime the market is open, no permission from the company needed"
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Why beginners should understand stocks, even before wanting to invest"
+    },
+    {
+      "type": "paragraph",
+      "text": "Many Vietnamese people have idle money but only know how to put it in a bank savings account, because stocks sound risky and hard to understand. But in reality, saving also carries its own risk - inflation eroding the value of money over time, even though a 5-6%/year savings rate sounds safe."
+    },
+    {
+      "type": "callout",
+      "label": "An easy example",
+      "text": "Suppose you and three friends pool money to open a coffee shop together, each contributing 25% - so each of you becomes a 'shareholder', holding 25% of the shop. If the shop profits, it's split exactly by that contribution ratio. Stock in a listed company works exactly the same way, just with millions of contributors, and your share of ownership can change hands right on the exchange anytime, instead of waiting for the shop to close down to get your capital back."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Bank savings",
+        "text": "You're a creditor of the bank. You receive a fixed interest rate, with low risk of losing capital, but your return is capped and can be lower than long-term inflation."
+      },
+      "right": {
+        "label": "Buying stock",
+        "text": "You're a co-owner of the company. Potential profit is higher if the company grows, but you could also lose part or all of your capital if the company performs poorly."
+      }
+    },
+    {
+      "type": "paragraph",
+      "text": "Understanding stocks doesn't mean you have to rush into buying tomorrow. It means you understand one more tool for your money to have a chance to grow alongside the economy's development, instead of just sitting still in a savings account."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A stock is a real slice of ownership of a real company.",
+        "Understanding this correctly is the first step to neither fearing nor having illusions about the stock market."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,169 @@
+{
+  "slug": "dac-tinh-ca-nhan",
+  "title": "Personal temperament: cautious or bold",
+  "subtitle": "Risk tolerance assessment",
+  "duration": "6 min",
+  "openingQuestion": "A stock you hold drops 20% in just two weeks because of bad news for the market as a whole. Which reaction shows LOWER risk tolerance?",
+  "openingOptions": [
+    "You treat it as a chance to buy more at a lower price, following the plan you set beforehand",
+    "You lose sleep, keep checking the price, and decide to sell everything to 'preserve what's left' even though your investment goal is still 10 years away",
+    "You review your long-term plan, notice your goal hasn't changed, and leave the portfolio as it is",
+    "You have no reaction at all, since you had already planned for this kind of swing"
+  ],
+  "explanation": "Risk tolerance isn't just a financial number (how much you CAN lose without affecting your life) - it's also a psychological factor (how much volatility you can WITHSTAND without making a panicked decision). Selling out of fear, against your original plan, is a sign the portfolio carries more risk than you can actually handle.",
+  "diagram": [
+    { "label": "Financial capacity: how much you can afford to lose", "arrow": true },
+    { "label": "+ Psychological capacity: tolerance for volatility", "arrow": true },
+    { "label": "= Your personal risk appetite" }
+  ],
+  "realWorldExample": {
+    "company": "Risk-profile questionnaires from fund managers in Vietnam",
+    "description": "Before opening an investment account or joining a voluntary supplementary pension fund, companies such as Dragon Capital, VinaCapital, and Manulife typically require a risk profile questionnaire covering age, goals, time horizon, and hypothetical reactions to a portfolio losing value, then sort the client into a 'conservative', 'balanced', or 'growth' group to suggest a suitable portfolio."
+  },
+  "quiz": [
+    {
+      "question": "What does risk tolerance in investing consist of?",
+      "options": [
+        "Only financial capacity - psychology doesn't factor into it",
+        "Only the volatility level of the assets currently in the portfolio",
+        "The number of years of investing experience an investor has built up",
+        "Both financial capacity and psychological tolerance"
+      ],
+      "correct": 3,
+      "explanation": "Risk tolerance has two sides: risk capacity (objective financial ability) and risk attitude (subjective psychological reaction to volatility). Someone with a high income can still have poor psychological tolerance for risk, and vice versa."
+    },
+    {
+      "question": "Why assess your own risk tolerance BEFORE building a portfolio, rather than picking the portfolio with the highest expected return?",
+      "options": [
+        "Because exceeding your psychological threshold makes it easy to sell out during a deep drop",
+        "Because the highest-return portfolio is always the best portfolio",
+        "Because your risk tolerance determines the tax you'll owe later",
+        "Because high expected returns always come with high management fees"
+      ],
+      "correct": 0,
+      "explanation": "A portfolio that is 'optimal on paper' but panics you into selling at the market bottom is actually worse than a more conservative portfolio you can hold onto with discipline. Sticking to the plan matters more than theoretical optimization."
+    },
+    {
+      "question": "Two people of the same age and income react very differently when their portfolio drops 30%. What does that show?",
+      "options": [
+        "The calmer person definitely has far better investing knowledge",
+        "Different psychological tolerance despite identical finances",
+        "Their financial capacity actually wasn't the same to begin with",
+        "The different reaction is only because one of them checks prices more"
+      ],
+      "correct": 1,
+      "explanation": "The two halves of risk tolerance are separate: financial capacity is measured in numbers, psychological capacity is measured by what you actually do at 2am when the market is red. Someone who can afford the loss can still sell out because they can't sleep."
+    },
+    {
+      "question": "How is a portfolio that's 'suitable' for someone defined?",
+      "options": [
+        "The portfolio with the highest expected return among the options considered",
+        "The portfolio a financial advisor recommends choosing",
+        "The portfolio that person can actually hold through a long, deep downturn",
+        "The portfolio with the lowest management fee available in the market today"
+      ],
+      "correct": 2,
+      "explanation": "A theoretically optimal portfolio that you dump at the bottom is far worse than a modest one you hold onto the whole way through. Your real return depends on how long you stay invested, not the expected number you started with."
+    },
+    {
+      "question": "Is a person's risk tolerance fixed for life?",
+      "options": [
+        "Yes, it's an innate personality trait that can't change",
+        "No, but it only changes once a person passes age sixty",
+        "Yes, because it's determined once when you open an investment account",
+        "No - it changes with income, family, and market experience"
+      ],
+      "correct": 3,
+      "explanation": "Having a child, losing a job, or simply living through your first crash can all change how much you can actually handle. That's why it's worth revisiting your risk tolerance after every major life event, not just once when opening an account."
+    },
+    {
+      "question": "What's the biggest limitation of a brokerage's risk-tolerance questionnaire?",
+      "options": [
+        "Answering it in calm markets looks nothing like actual behavior during a crash",
+        "The results are legally barred from being used to recommend a portfolio",
+        "The questionnaire only measures financial capacity and nothing else",
+        "It's only valid for investors with more than three years of experience"
+      ],
+      "correct": 0,
+      "explanation": "On paper, everyone picks 'I can handle a 30% drop.' The real answer only shows up the first time you actually see that number in your own account - and for a lot of people, it's completely different."
+    }
+  ],
+  "keyTakeaways": [
+    "Risk tolerance has two parts: objective financial capacity and subjective psychological attitude toward volatility",
+    "A suitable portfolio is one you can actually hold through downturns, not the one with the highest expected return on paper",
+    "Assess yourself honestly by picturing your actual reaction if the portfolio dropped 20-30% in value",
+    "Risk tolerance can change over time, with life circumstances, and with market experience - reassess it periodically"
+  ],
+  "practicePrompt": {
+    "question": "You're building your own portfolio and a friend advises picking the one with the highest expected return on paper (90% stocks). Why should you assess your own risk tolerance before following that advice?",
+    "options": [
+      "Because if the portfolio exceeds your actual psychological tolerance, you're likely to sell out right when the market drops sharply",
+      "Because a 90% stock portfolio is always the wrong choice for every investor, regardless of financial or psychological capacity",
+      "Because assessing your own risk tolerance is a mandatory regulatory requirement before opening a brokerage account",
+      "Because the portfolio with the highest expected return on paper always guarantees the best real-world outcome in the long run"
+    ],
+    "correct": 0,
+    "explanation": "A suitable portfolio is one you can actually hold through downturns - exceeding your real psychological tolerance easily leads to selling out and turning a temporary loss into a permanent one."
+  },
+  "summary": {
+    "keyIdea": "Risk tolerance has two parts: objective financial capacity and subjective psychological attitude toward volatility",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to a real decision.",
+    "action": "A suitable portfolio is one you can actually hold through downturns, not the one with the highest expected return on paper"
+  },
+  "application": {
+    "title": "Test your own risk tolerance",
+    "message": "Picture your portfolio specifically dropping 25% in value over a month - write down your real reaction (sell, hold, buy more) to honestly assess your actual psychological tolerance.",
+    "secondary": "Being honest with yourself here matters more than any theoretical number you once picked."
+  },
+  "track": "personal",
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Two people of the same age, the same income, and the same financial goals can still need two completely different portfolios. The reason lies in a very personal factor: risk tolerance."
+    },
+    {
+      "type": "paragraph",
+      "text": "Risk tolerance is the level of value fluctuation you can accept without making a panicked, mistaken decision. It isn't a fixed number that applies the same way to everyone - it's a combination of two factors: objective financial capacity (risk capacity) and subjective psychological attitude (risk attitude)."
+    },
+    {
+      "type": "heading",
+      "text": "Financial capacity is different from psychological attitude"
+    },
+    {
+      "type": "paragraph",
+      "text": "Financial capacity is an objective question: how much money can you afford to lose without affecting your daily life, your plan to buy a home, or your children's future? Someone younger, with stable income and no major financial burdens, usually has higher financial capacity. But psychological attitude is a different matter - some people with good income still lose sleep when their account drops 10%, while others stay calm even as their portfolio falls 30%. A suitable portfolio needs to balance both factors, not rely on the financial number alone."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Ask yourself: if the portfolio dropped 20-30% over a few months, would you sell out immediately to 'cut losses', or stick to the plan?",
+        "Ask yourself: do you check investment prices several times a day and feel anxious seeing red?",
+        "Ask yourself: is this money you'll need within the next 1-2 years, or is it genuinely long-term idle capital?",
+        "Ask yourself: have you lived through a sharp market downturn before (like 2018, 2020, 2022), and what was your actual reaction at the time?"
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Someone with low risk tolerance",
+        "text": "Prioritizes capital preservation, accepts a lower return in exchange for stability; the portfolio leans toward bonds, deposits, with few highly volatile stocks."
+      },
+      "right": {
+        "label": "Someone with high risk tolerance",
+        "text": "Accepts large short-term swings in pursuit of long-term growth; the portfolio leans heavily toward stocks, possibly including highly volatile growth stocks."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "A common mistake",
+      "text": "Many people assess their own risk tolerance based on how they feel while the market is rising ('I can handle high risk') but then panic once the market actually drops sharply. A more reliable way to assess it is to look back at your actual reaction (or picture it concretely) during a sharp downturn, rather than relying only on the optimism you feel when everything is going well."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The best portfolio isn't the one with the highest expected return on paper - it's the one you can hold onto through every phase of the market.",
+        "Understanding your own risk tolerance correctly is the foundation before deciding on a specific stock-bond weighting for your portfolio."
+      ]
+    }
+  ]
+}

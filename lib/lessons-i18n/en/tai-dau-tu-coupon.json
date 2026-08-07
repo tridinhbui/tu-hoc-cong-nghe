@@ -1,0 +1,168 @@
+{
+ "slug": "tai-dau-tu-coupon",
+ "title": "Reinvesting coupons: the actual return",
+ "subtitle": "Reinvestment considerations",
+ "duration": "6 min",
+ "openingQuestion": "You buy a 5-year bond, 8%/year coupon, receiving cash interest every year. If you don't reinvest that interest (just leave it in a non-yielding account) and spend it right away, what happens to the actual return you end up receiving compared to the advertised 8% figure?",
+ "openingOptions": [
+  "It will always be higher than the originally announced 8%, since the longer the holding period, the more the actual return tends to rise",
+  "The whole-period return can end up below 8% due to reinvestment risk",
+  "It has nothing at all to do with whether you decide to reinvest the coupon interest you've received",
+  "It stays exactly 8%/year as originally advertised, since that's the coupon fixed at issuance"
+ ],
+ "explanation": "The 'yield to maturity' figure issuers usually announce assumes you reinvest every coupon you receive at exactly that same yield. If in reality you don't reinvest (or reinvest at a lower rate), the total actual return you receive over the whole term will be lower than the originally advertised figure. This is called reinvestment risk.",
+ "diagram": [
+  {
+   "label": "Coupon received periodically",
+   "arrow": true
+  },
+  {
+   "label": "Reinvested at exactly the announced yield",
+   "arrow": true
+  },
+  {
+   "label": "→ achieves exactly the calculated Yield to Maturity"
+  }
+ ],
+ "interactiveType": "bond",
+ "realWorldExample": {
+  "company": "An individual investor buying a 10-year government bond",
+  "description": "Someone buys a 10-year Vietnamese government bond, 6%/year coupon, receiving interest once a year into a bank account. If market savings rates later fall to 4%/year, and this person just leaves the interest received in a checking account (near 0% interest) instead of redepositing it, the actual average return over the full 10 years will be noticeably lower than the original 6%, because the 'compounding' from reinvesting the coupon was missed."
+ },
+ "quiz": [
+  {
+   "question": "When does reinvestment risk occur?",
+   "options": [
+    "When the issuer fails to repay the principal",
+    "When a bond is resold above its purchase price",
+    "When rates fall and the coupon can't be reinvested at the old level",
+    "When a bond's price rises on the secondary market"
+   ],
+   "correct": 2,
+   "explanation": "Reinvestment risk arises when market rates fall after you've bought the bond: the coupons received periodically can only be reinvested at a lower rate, reducing the actual total return over the whole term compared with the originally announced figure."
+  },
+  {
+   "question": "Which type of bond is least affected by reinvestment risk?",
+   "options": [
+    "A high-coupon bond paying interest steadily every year",
+    "A floating rate bond, since the coupon adjusts periodically",
+    "Every bond is affected by reinvestment risk equally",
+    "A zero-coupon bond, since there's no interim coupon"
+   ],
+   "correct": 3,
+   "explanation": "A zero-coupon bond pays no periodic interest, with the entire value received once at maturity, so there's no 'coupon payment' at all that needs reinvesting mid-term - so this type is immune to reinvestment risk, though it still carries price-swing risk from interest rates."
+  },
+  {
+   "question": "Why might the announced yield to maturity not be the actual return you receive?",
+   "options": [
+    "Because it assumes every coupon is reinvested at exactly that same yield",
+    "Because it hasn't deducted the personal income tax owed on the interest",
+    "Because it's calculated on face value rather than the price you actually paid",
+    "Because the issuer has the right to adjust this figure mid-term"
+   ],
+   "correct": 0,
+   "explanation": "YTM is an internal rate of return with a strong implicit assumption: every coupon dong received is reinvested right away at exactly that same YTM. In real life, rates change and you may have nowhere to reinvest at the old level - so the whole-period return ends up lower."
+  },
+  {
+   "question": "How do reinvestment risk and interest rate risk work against each other?",
+   "options": [
+    "A rate rise lowers the price, but coupons can then be reinvested at a better rate, even in the specific case where every coupon received is reinvested at the original rate",
+    "Both cause a loss for the investor whenever market rates change",
+    "A rate rise lowers both the bond's price and the reinvestment yield together",
+    "These two risks are entirely independent and never affect each other"
+   ],
+   "correct": 0,
+   "explanation": "This is exactly the foundation of immunization: the two risks cancel out. Rates rising means a price loss but a reinvestment gain; rates falling means the opposite. Choosing the right duration means choosing the point where these two effects balance."
+  },
+  {
+   "question": "Which investor bears the heaviest reinvestment risk?",
+   "options": [
+    "Someone who buys a bond and resells it just a few weeks later",
+    "Someone who buys a zero-coupon bond and holds it exactly to maturity",
+    "Someone who lives off coupon income and needs to reinvest all the interest received, and this remains true regardless of how frequently that bond happens to pay its coupon",
+    "Someone who only holds government bonds with a term under three months"
+   ],
+   "correct": 2,
+   "explanation": "The more money that returns to your hands in between, the more often you have to find somewhere to reinvest it at an unknown future rate. A high-coupon, long-term bond is the case that carries this risk the heaviest - exactly the type someone seeking steady income tends to choose."
+  },
+  {
+   "question": "Why is a zero-coupon bond immune to reinvestment risk?",
+   "options": [
+    "Because a zero-coupon's yield automatically adjusts to the market each period",
+    "Because the issuer commits to reinvesting on the investor's behalf at the original rate",
+    "Because a zero-coupon always has too short a term for rates to change meaningfully",
+    "Because there's no interim coupon, so there's nothing that needs reinvesting"
+   ],
+   "correct": 3,
+   "explanation": "The entire return already sits in the gap between the purchase price and face value, locked in from the day of purchase. In exchange, precisely because all the value is concentrated at the final day, a zero-coupon bond is the most sensitive type to rate swings if you have to sell early."
+  }
+ ],
+ "keyTakeaways": [
+  "The originally announced yield to maturity assumes you reinvest every coupon at exactly that same yield",
+  "If market rates fall after purchase, the coupons received can only be reinvested at a lower rate, making the actual whole-period return lower than the advertised figure - this is reinvestment risk",
+  "A zero-coupon bond carries no reinvestment risk since there's no interim coupon, but in exchange it's more sensitive to price swings from interest rates (high duration)"
+ ],
+ "practicePrompt": {
+  "question": "You buy a 5-year bond, 8%/year coupon. After receiving the first year's interest, market rates fall sharply to 5%. You want to reinvest the interest just received into a similar bond. What happens?",
+  "options": [
+   "You can only reinvest the interest at about 5%/year instead of 8% - this is exactly reinvestment risk",
+   "You still reinvest at exactly 8%/year as before, since that's the fixed coupon of the bond you're holding",
+   "The market rate falling has no effect at all on your ability to reinvest the coupon interest just received",
+   "You'll automatically receive a compensation payment from the bond's issuer to maintain the original 8%/year yield"
+  ],
+  "correct": 0,
+  "explanation": "When market rates fall, the coupon received can only be reinvested at a lower yield, lowering the actual whole-period return compared with the originally advertised figure - this is the essence of reinvestment risk."
+ },
+ "summary": {
+  "keyIdea": "The originally announced yield to maturity assumes you reinvest every coupon at exactly that same yield",
+  "commonMistake": "Reading the concept as a line to recite rather than a principle to apply to a real decision.",
+  "action": "If market rates fall after purchase, the coupons received can only be reinvested at a lower rate, making the actual whole-period return lower than the advertised figure - this is reinvestment risk"
+ },
+ "application": {
+  "title": "Try picturing reinvestment risk",
+  "message": "Suppose you receive 8 million dong of coupon interest each year from a bond, but market rates fall to 5% by the time you reinvest it - calculate the gap yourself compared with reinvesting at the full 8%.",
+  "secondary": "Reinvestment risk is easy to overlook, since it's far quieter than a price swing."
+ },
+ "sections": [
+  {
+   "type": "lead",
+   "text": "When a bond advertises an 8%/year yield, that figure carries an implicit assumption many people overlook: you have to reinvest every bit of interest received at exactly that 8%. In reality, that isn't always the case."
+  },
+  {
+   "type": "heading",
+   "text": "Why the announced yield and the actual yield can differ"
+  },
+  {
+   "type": "paragraph",
+   "text": "Yield to maturity (YTM) is the figure securities firms or issuers usually announce, calculated on the assumption that every time you receive a coupon, you immediately reinvest that money at exactly the YTM level. But in real life, market rates change constantly - some years high, some years low - so the coupon you receive isn't always reinvested at the same 8% as originally advertised."
+  },
+  {
+   "type": "callout",
+   "label": "An illustrative example",
+   "text": "A 100-million bond, 8%/year coupon (8 million/year), 5-year term. If you reinvest 8 million every year at exactly 8%, after 5 years you'd have a total of about 146.9 million (principal plus compounded interest). But if in the last 3 years the reinvestment rate is only 4%, your final total will be lower than that 146.9 million figure - even though the coupon printed on the bond itself remains an unchanged 8%."
+  },
+  {
+   "type": "heading",
+   "text": "Who is most affected by reinvestment risk"
+  },
+  {
+   "type": "list",
+   "items": [
+    "A high-coupon bond paying interest frequently (annually or semi-annually) carries more reinvestment risk, since there's more money that needs a place to be reinvested in between",
+    "A zero-coupon bond (received only once at maturity) is entirely immune to reinvestment risk, since there's no interim cash flow to deal with",
+    "A retiree living off bond coupons for monthly spending is usually less affected by reinvestment risk (since they spend it right away rather than reinvesting), but someone building long-term wealth needs to pay closer attention"
+   ]
+  },
+  {
+   "type": "paragraph",
+   "text": "A practical way to reduce reinvestment risk is to diversify across bond terms (covered in depth in the lesson on the ladder strategy), rather than concentrating everything in a single term and having to reinvest it all at once at a time when rates might be low."
+  },
+  {
+   "type": "closing",
+   "lines": [
+    "A bond's advertised yield is only a theoretical figure, assuming you reinvest the coupon at exactly that yield.",
+    "The actual return you receive depends on whether market rates rise or fall throughout the time you hold the bond - this is the reinvestment risk worth keeping in mind."
+   ]
+  }
+ ]
+}

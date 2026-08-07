@@ -1,0 +1,169 @@
+{
+  "slug": "pe-ratio",
+  "title": "Simple P/E ratio: is a stock cheap or expensive",
+  "subtitle": "How to read a stock quote",
+  "openingQuestion": "Stock A costs VND 100,000, stock B costs VND 20,000. Which statement below is CORRECT?",
+  "openingOptions": [
+    "Stock A is definitely more expensive than stock B, proportionally, by exactly 5 times the listed price difference",
+    "The listed price on the exchange always accurately and fully reflects how cheap or expensive a company really is",
+    "Stock B is definitely cheaper in every respect, so investors should prefer buying stock B over stock A",
+    "It can't be concluded from the listed price alone - you must compare against profit"
+  ],
+  "explanation": "A stock's price by itself says nothing about whether it's cheap or expensive, because it depends on how many pieces the business has split its capital into. P/E fixes that by dividing price by earnings per share, telling you how many dong you're paying for one dong of profit. Two caveats when using it: it's only comparable between businesses in the same sector with similar growth outlook, and it's meaningless for a business running at a loss.",
+  "diagram": [
+    {
+      "label": "Share price alone",
+      "arrow": true
+    },
+    {
+      "label": "Divide by EPS (earnings per share)",
+      "arrow": true
+    },
+    {
+      "label": "= P/E → know relative cheap or expensive"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Comparing FPT and a small real-estate company",
+    "description": "Suppose FPT trades at a P/E around 18x (investors pay 18 dong for every 1 dong FPT earns each year), while a small real-estate company has a P/E of 8x. At a glance, the real-estate company looks 'cheaper'. But a low P/E can also be because the market fears risk (high debt, delayed projects) - it doesn't automatically mean a bargain."
+  },
+  "quiz": [
+    {
+      "question": "What is the simple formula for P/E?",
+      "options": [
+        "P/E = Share price multiplied by the number of shares outstanding",
+        "P/E = Share price divided by Earnings Per Share (EPS)",
+        "P/E = Dividend divided by Share price",
+        "P/E = Profit divided by Revenue"
+      ],
+      "explanation": "P/E (Price-to-Earnings) = the market price of a share divided by earnings per share (EPS) over the trailing 12 months. This is the most basic measure to answer the question: how much is an investor paying for each dong of profit the company generates."
+    },
+    {
+      "question": "A stock with a very low P/E compared to the sector average is always a bargain to buy right away - true or false?",
+      "options": [
+        "False, P/E has nothing to do with cheap or expensive",
+        "True, a low P/E always means the stock is undervalued",
+        "False - a low P/E can reflect risk the market has already spotted",
+        "True, P/E is the only metric you need to check before buying"
+      ],
+      "explanation": "A low P/E can be an opportunity, but it can also be a 'value trap' - the market prices it low for good reason such as financial risk, a declining sector, or profit coming from a one-off item that won't recur. You need to understand the cause before treating it as a bargain."
+    },
+    {
+      "question": "Stock A costs VND 100,000 with EPS of VND 10,000. Stock B costs VND 20,000 with EPS of VND 1,000. Which is 'more expensive' by P/E?",
+      "options": [
+        "A is more expensive, since its per-share price is five times higher than B's",
+        "Can't be compared without knowing the book value of both companies",
+        "Equal, since both belong to the same stock market",
+        "B is more expensive - a P/E of 20x versus A's P/E of 10x"
+      ],
+      "explanation": "A has P/E = 100,000/10,000 = 10x; B has P/E = 20,000/1,000 = 20x. Investors are paying 20 dong for each dong of B's profit, but only 10 dong for A's - so B is more expensive, even though its listed price is five times smaller. This is exactly why you can't look at a share's price to conclude cheap or expensive."
+    },
+    {
+      "question": "Why shouldn't you compare a bank's P/E with a software company's P/E?",
+      "options": [
+        "Because the fair P/E level depends on each sector's growth and risk",
+        "Because the two sectors report profit in different currency units",
+        "Because P/E only applies to manufacturing businesses",
+        "Because banks don't publish EPS, so their P/E can't be calculated"
+      ],
+      "explanation": "P/E reflects how much the market is willing to pay for one dong of profit, and that level depends on expected growth rate and risk. A fast-growing software company usually has a higher P/E than a bank, without that meaning it's mispriced. Comparison only makes sense within the same sector."
+    },
+    {
+      "question": "A company running at a loss (negative EPS) - what is its P/E?",
+      "options": [
+        "Zero, since negative profit is rounded to zero when computing valuation multiples",
+        "Exactly equal to the current share price divided by a VND 10,000 par value",
+        "Meaningless - a negative denominator makes P/E unusable for comparison",
+        "Very high, and that's a sign the stock is being overvalued"
+      ],
+      "explanation": "When EPS is negative, the division still produces a number but it's economically meaningless, so data sites usually leave it blank or mark 'N/A'. For a company without profit yet, investors must use another metric - such as EV/Revenue or a per-user comparison - the same way early-stage tech companies get valued."
+    },
+    {
+      "question": "A company's P/E rises from 12 to 25 while profit stays unchanged. What happened?",
+      "options": [
+        "The company issued more shares, diluting its profit",
+        "The company cut its dividend, causing the valuation multiple to be recalculated higher",
+        "The share price has risen - the market expects more from the future",
+        "Interest expense fell sharply, automatically pushing the P/E multiple up"
+      ],
+      "explanation": "P/E = Price / EPS. If EPS stays flat while P/E doubles, the price must have doubled. That could be because the market believes profit is about to surge - or simply because the crowd is euphoric. P/E alone doesn't tell you which."
+    }
+  ],
+  "keyTakeaways": [
+    "A share's price alone says nothing about cheap or expensive; P/E (price divided by earnings per share) is a fairer comparison metric",
+    "A high P/E usually reflects high expected growth; a low P/E can be an opportunity or a warning sign of risk",
+    "Compare a company's P/E against its own past and against peers in the same sector, not across completely different sectors"
+  ],
+  "practicePrompt": {
+    "question": "Company X's stock has P/E = 5, much lower than the sector average of P/E = 15. A friend says 'that's so cheap, just buy it'. Before deciding, what should you do?",
+    "options": [
+      "Find out why the P/E is low - debt, sector decline, or unsustainable profit",
+      "Buy immediately since a P/E lower than the sector average always means the stock is certainly undervalued, since a lower P/E than peers is decisive on its own",
+      "Skip this stock entirely since a low P/E is always a sign the company is about to go bankrupt",
+      "Compare company X's P/E against the P/E of the entire global stock market to reach a final conclusion"
+    ],
+    "explanation": "A low P/E can be an opportunity or a warning sign of risk - you need to find out the specific reason (debt, sector, sustainability of profit) rather than jumping to a conclusion from one number alone."
+  },
+  "summary": {
+    "keyIdea": "A share's price alone says nothing about cheap or expensive; P/E (price divided by earnings per share) is a fairer comparison metric",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to real decisions.",
+    "action": "A high P/E usually reflects high expected growth; a low P/E can be an opportunity or a warning sign of risk"
+  },
+  "application": {
+    "title": "Try calculating a P/E",
+    "message": "Take the share price and earnings per share (EPS) of a company you're interested in, calculate the P/E yourself, then compare it to the sector average P/E to see whether it's relatively cheap or expensive.",
+    "secondary": "A single P/E number says very little - comparison is what gives it meaning."
+  },
+  "track": "personal",
+  "sections": [
+    {
+      "type": "lead",
+      "text": "One of the most common misunderstandings among beginners is looking at a share's price to guess whether it's 'cheap' or 'expensive'. A price of VND 20,000 isn't cheaper than VND 200,000 if you don't know how much profit that company earns."
+    },
+    {
+      "type": "paragraph",
+      "text": "Imagine you're planning to buy a coffee shop. You wouldn't just ask 'how much does it cost' - you'd certainly also ask 'how much does this shop profit each year'. If shop A costs VND 2 billion but profits VND 500 million/year, and shop B costs VND 1 billion but only profits VND 50 million/year, shop A is actually 'cheaper' despite its higher listed price - because you recoup your capital much faster."
+    },
+    {
+      "type": "heading",
+      "text": "P/E: a tool for fair comparison"
+    },
+    {
+      "type": "paragraph",
+      "text": "P/E (Price-to-Earnings ratio) answers exactly that question for a stock: the current share price divided by the earnings the company generates per share in a year (EPS - Earnings Per Share). If P/E = 15, that means you're paying 15 dong to own the right to receive 1 dong of that company's annual profit - in other words, if profit stays flat, you'd need 15 years to 'recoup your capital' through the company's earnings."
+    },
+    {
+      "type": "list",
+      "items": [
+        "P/E = Share price / Earnings per share (EPS)",
+        "High P/E (25-30x or above): the market expects the company's profit to grow quickly in the future",
+        "Low P/E (below 10x): could be an undervalued opportunity, or the market worried about some risk",
+        "P/E only makes sense compared within the same sector - a bank's P/E and a tech company's P/E are inherently different in nature"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "An easy example",
+      "text": "If stock X costs VND 50,000 and its EPS (earnings per share) is VND 5,000, then P/E = 50,000/5,000 = 10x. If stock Y costs VND 200,000 but its EPS is VND 25,000, P/E = 200,000/25,000 = 8x. Even though Y's price is 4 times higher than X's, by P/E, Y is actually slightly 'cheaper' than X."
+    },
+    {
+      "type": "heading",
+      "text": "A low P/E isn't automatically a bargain"
+    },
+    {
+      "type": "paragraph",
+      "text": "This is where beginners often get it wrong. A low P/E can be for two very different reasons: (1) the market is unreasonably underpricing it, creating a buying opportunity - or (2) the market has already seen a real risk (high debt, a declining sector, profit from an unsustainable source) and the low price is justified. Buying just because you see a low P/E without understanding the reason can land you in a 'value trap' - a cheap stock that keeps getting cheaper."
+    },
+    {
+      "type": "paragraph",
+      "text": "The most sensible way for a beginner to use P/E: compare a company's current P/E against its own 3-5 year average, and against the average P/E of peers in the same sector, rather than comparing across entirely different sectors."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A share's price alone tells you nothing - P/E helps you compare stocks fairly.",
+        "A low P/E can be an opportunity or a warning of risk - always find out the reason behind the number before deciding."
+      ]
+    }
+  ]
+}

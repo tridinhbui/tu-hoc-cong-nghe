@@ -1,0 +1,186 @@
+{
+  "slug": "quyet-toan-thue-tncn-hoan-thue",
+  "title": "Tax Track, Lesson 6: The year-end tax finalisation and refunds",
+  "subtitle": "When you have to file, and when money comes back to you",
+  "duration": "8 min",
+  "whyItMatters": "The tax withheld each month is only a provisional figure. Finalisation is when the whole year is recalculated properly - and for a great many people, that is when overpaid tax comes back. Not filing means giving up that refund.",
+  "openingQuestion": "Why do so many salaried people receive a REFUND at the year-end finalisation?",
+  "openingOptions": [
+    "Because the state rewards taxpayers who file on time",
+    "Because monthly withholding is provisional and may not reflect all deductions, or income spread unevenly across the months",
+    "Because rates are cut retroactively every year",
+    "Because companies are required to over-withhold by 10%"
+  ],
+  "explanation": "Each month the company withholds based on that month's income alone. At year end the tax is recalculated on the full year's income with every deduction counted. If you registered a dependant late, had low-income months, or worked only part of the year, the amount withheld is usually more than what is actually owed - and the difference is refunded.",
+  "diagram": [
+    {
+      "label": "Provisional monthly withholding",
+      "arrow": true
+    },
+    {
+      "label": "Add up the whole year's income",
+      "arrow": true
+    },
+    {
+      "label": "Recalculate with all deductions",
+      "arrow": true
+    },
+    {
+      "label": "Pay the balance, or get a refund"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Someone who started work mid-year",
+    "description": "A graduate starts work in July on 20 million a month. Each month the company withholds tax as though that income ran for all 12 months. At finalisation, though, the year's income is only six months of salary, while the personal deduction counts for all 12. The near-certain result is a refund of all, or nearly all, of the tax provisionally paid."
+  },
+  "quiz": [
+    {
+      "question": "What is the nature of the income tax withheld each month?",
+      "options": [
+        "It is the final figure for the year and is never revisited at the finalisation",
+        "It is a non-refundable deposit",
+        "It is provisional, and gets recalculated at the year-end finalisation",
+        "It applies only to people earning over 100 million"
+      ],
+      "explanation": "Monthly withholding is provisional. Finalisation is the step that establishes what you actually owe for the year."
+    },
+    {
+      "question": "Which situation is MOST LIKELY to produce a refund?",
+      "options": [
+        "Steady income across all 12 months, with every dependant registered from January",
+        "Income above 100 million a month",
+        "Extra income from several different places",
+        "Working only half the year, or registering a dependant late"
+      ],
+      "explanation": "When income does not run evenly across the year, or deductions were not counted in full from the start, the amount withheld usually exceeds what is really owed."
+    },
+    {
+      "question": "What should someone with income from two or more sources note?",
+      "options": [
+        "They usually have to file themselves, since each payer withholds only on its own share and the total may be wrong",
+        "Nothing - each payer withholds and that settles it",
+        "They are exempt at the second source, because the first payer already withheld on the full year's income",
+        "They pay tax twice on the same income"
+      ],
+      "explanation": "Each payer only sees its own portion. Added together across the year, total income may fall into a higher band, so you file yourself to get it right."
+    },
+    {
+      "question": "Who is authorising the company to finalise on your behalf suitable for?",
+      "options": [
+        "People with income from several different sources",
+        "People with income from a single source over the year",
+        "People wanting to declare additional, unusual deductions themselves",
+        "Everybody, with no exceptions"
+      ],
+      "explanation": "Authorising the company is the simplest route when you have one source of income. With several sources you generally have to file yourself so everything is brought together."
+    },
+    {
+      "question": "How must someone with income from two or more places during the year handle finalisation?",
+      "options": [
+        "Authorise the company they worked at most recently in the tax year",
+        "Authorise the company that paid the most to finalise on their behalf",
+        "File directly with the tax authority themselves; no company can be authorised",
+        "Skip finalisation entirely if both places withheld tax every month"
+      ],
+      "explanation": "Each place withholds only on the income it pays, so the combined total usually falls into a higher band and leaves tax outstanding. Nobody has the full picture, which is why bringing it together has to be done by the taxpayer."
+    }
+  ],
+  "keyTakeaways": [
+    "Monthly withholding is only provisional; finalisation establishes what you actually owe for the year",
+    "Working part of the year, or registering a dependant late, usually produces a refund",
+    "With income from two or more places you generally have to file YOURSELF; authorisation is not available",
+    "Not filing when you have overpaid means giving up money you are owed"
+  ],
+  "practicePrompt": {
+    "question": "You start work in September 2026 on 25 million a month, single, with no other income that year. At finalisation, what is most likely?",
+    "options": [
+      "You owe more tax, because the salary is fairly high",
+      "There is nothing to do, since you only just started work",
+      "Most of the tax provisionally paid is refunded",
+      "You are fined for filing late"
+    ],
+    "explanation": "Total income for the year = 25 × 4 = 100 million. The personal deduction for the year = 15.5 × 12 = 186 million, already more than total income, before insurance is even counted. So the year's tax liability is zero and everything withheld over those 4 months comes back - but only if you go through the finalisation."
+  },
+  "summary": {
+    "keyIdea": "Finalisation = recalculating tax on the year's total income with every deduction counted",
+    "commonMistake": "Skipping finalisation on the grounds that 'the company already deducted it', while an overpayment sits waiting to be refunded.",
+    "action": "Check whether you have to file yourself this year, or can authorise your company."
+  },
+  "application": {
+    "title": "Work out whether you are owed a refund",
+    "message": "Add up your taxable income for the year, subtract total insurance and the total family circumstance deduction (multiplied by 12 months). Work out the tax on what remains and compare it with everything withheld across your payslips.",
+    "secondary": "If the amount withheld is larger, you have money waiting. The procedure and deadlines are set by the tax authority each year - look up the current dates."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The tax figure taken off your payslip each month is not the final one. It is a provisional estimate, and at year end everything is recalculated once, properly - that is finalisation."
+    },
+    {
+      "type": "heading",
+      "text": "Why the monthly estimate usually misses"
+    },
+    {
+      "type": "paragraph",
+      "text": "The company withholds on that month's income alone, assuming income stays level. In practice several things make the annual figure differ: you worked only part of the year, one month carried an unusually large bonus, you registered a dependant mid-year, or you changed jobs. Finalisation gathers it all up and works on the total."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Working fewer than 12 months - the deduction still counts for the full year, so you usually overpay",
+        "Registering a dependant late - the earlier months missed the 6.2 million per person",
+        "Income spread unevenly - high months are withheld at a band above the annual average",
+        "Income from several places - each one withholds only on its own share"
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Authorise your company",
+        "text": "Suitable when your income came from ONE source over the year. The company does it for you and you simply sign to confirm."
+      },
+      "right": {
+        "label": "File yourself",
+        "text": "Needed when income came from two or more places, or when you want to declare deductions the company has not picked up."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Refunds are not automatic",
+      "text": "Even when you are certain you overpaid, the tax authority does not simply send the money back. You have to go through finalisation and request the refund. Not doing so leaves the money in the state budget."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Finalisation terminology",
+      "concepts": [
+        {
+          "vi": "Tạm khấu trừ",
+          "en": "Withholding",
+          "def": "The tax the company takes off your payslip in advance each month"
+        },
+        {
+          "vi": "Quyết toán thuế",
+          "en": "Tax finalisation",
+          "def": "Recalculating what you owe on the whole year's income"
+        },
+        {
+          "vi": "Hoàn thuế",
+          "en": "Tax refund",
+          "def": "Getting back what you paid above your actual liability"
+        },
+        {
+          "vi": "Ủy quyền quyết toán",
+          "en": "Authorised finalisation",
+          "def": "Having the income payer finalise for you, available when there is only one source of income"
+        }
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Finalisation is the only step that turns an overpayment back into money in your pocket.",
+        "Next lesson: income outside your salary - freelancing, renting out property, and household businesses."
+      ]
+    }
+  ]
+}

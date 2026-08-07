@@ -1,0 +1,182 @@
+{
+  "slug": "chon-etf",
+  "title": "How to choose the right ETF for you",
+  "subtitle": "Building a stock portfolio",
+  "openingQuestion": "Two ETFs both track VN30, but ETF X has average daily trading volume of 2 million fund certificates, while ETF Y only has 20,000. What factor should make you think twice about ETF Y?",
+  "openingOptions": [
+    "ETF Y must definitely be charging a much higher management fee than ETF X even though they track the same index",
+    "There's nothing to worry about, since both funds track the same index so investment performance will be exactly the same",
+    "Low liquidity makes it hard to buy/sell at a reasonable price",
+    "ETF Y will definitely always deliver a lower return than ETF X even though both track the same benchmark index"
+  ],
+  "explanation": "Liquidity (trading volume) is one of the important criteria when choosing an ETF, even though it doesn't affect index-tracking performance. A low-liquidity ETF can have a wider bid-ask spread and be harder to match at a desired price, which is especially unfavorable when you need to sell urgently.",
+  "diagram": [
+    {
+      "label": "Determine your goal and risk appetite",
+      "arrow": true
+    },
+    {
+      "label": "Compare cost (expense ratio)",
+      "arrow": true
+    },
+    {
+      "label": "Check liquidity before choosing an ETF"
+    }
+  ],
+  "interactiveType": "fee-drag",
+  "realWorldExample": {
+    "company": "Comparing domestic ETFs: E1VFVN30, FUEVFVND, FUESSVFL",
+    "description": "When choosing between ETFs tracking different index baskets in Vietnam, investors should compare not only the tracked asset (VN30 versus VNDiamond or VNFinlead) but also fund size (assets under management - AUM), daily trading liquidity, and expense ratio. An ETF with large AUM and high liquidity is usually more stable and easier to trade than a small, newly launched ETF."
+  },
+  "quiz": [
+    {
+      "question": "When choosing an ETF, which of the following is NOT an important factor to consider?",
+      "options": [
+        "Trading liquidity (average daily buy/sell volume)",
+        "Whether the asset/index tracked fits your investment goal",
+        "The color scheme of the fund manager's app interface",
+        "Expense ratio (annual management fee)"
+      ],
+      "explanation": "The core criteria for choosing an ETF are: cost (expense ratio), liquidity, fund size (AUM), and whether the tracked asset/index fits your risk appetite and goals. App interface design has nothing to do with the ETF's own quality."
+    },
+    {
+      "question": "Why does fund size (AUM - assets under management) matter when choosing an ETF?",
+      "options": [
+        "Because AUM is the only metric you need to check when choosing a fund which is precisely why AUM belongs on the checklist",
+        "Because a larger AUM always means certainly higher investment returns",
+        "Because AUM directly affects how the benchmark index is calculated",
+        "Because too small an AUM risks the fund closing or merging"
+      ],
+      "explanation": "An ETF with too small an AUM (usually below a certain threshold) risks not being economically viable to sustain, leading to possible closure or merger - forcing the investor to receive cash back and find another fund, causing disruption and possibly unwanted tax/fee costs."
+    },
+    {
+      "question": "If your goal is long-term investment in Vietnam's stable large-cap stocks, which ETF among VN30, VNDiamond, or VNFinlead is the best fit to start with?",
+      "options": [
+        "A VN30-tracking ETF - the broadest basket representing large caps",
+        "Choose VNFinlead because bank stocks always generate the highest returns",
+        "All three are the same, no need to consider any other factor",
+        "You should avoid ETFs entirely and buy individual stocks yourself for control"
+      ],
+      "explanation": "VN30 broadly represents 30 large-cap stocks across many different sectors, giving better diversification than sector-specific ETFs like VNFinlead (focused only on finance). For a beginner wanting a stable portfolio foundation, a broad-index ETF like VN30 is usually a more sensible starting choice."
+    },
+    {
+      "question": "Two ETFs both track VN30, one charging 0.6%/year, the other 0.2%/year. After 20 years, how does that fee difference matter?",
+      "options": [
+        "Not significant since 0.4% is too small a number compared to market volatility",
+        "It erodes accumulated return since fees compound yearly",
+        "It only matters in the first year, after which a larger fund naturally lowers fees",
+        "It's offset by the higher-fee fund since they pick better stocks within the basket"
+      ],
+      "explanation": "The management fee is deducted from assets every year, so the deducted portion also loses its ability to compound in the years after. With the same benchmark index, the lower-fee ETF almost always ends up ahead - and a passive ETF doesn't 'pick better stocks', both simply replicate the exact VN30 basket."
+    },
+    {
+      "question": "What does an ETF's tracking error measure?",
+      "options": [
+        "The margin of error when the fund manager publishes end-of-day net asset value",
+        "The gap between the buying price and selling price on the exchange at a point in time",
+        "The gap between the fund's performance and the performance of the index it tracks",
+        "The volatility of the benchmark index compared to its multi-year average"
+      ],
+      "explanation": "Tracking error is the deviation between an ETF's return and the return of the index it replicates, arising from fees, undeployed cash, and portfolio-rebalancing timing. The gap between buy and sell price is the bid-ask spread, a different concept about liquidity."
+    }
+  ],
+  "keyTakeaways": [
+    "Four core criteria for choosing an ETF: management fee (expense ratio), trading liquidity, fund size (AUM), and whether the tracked asset/index fits your investment goal",
+    "Low liquidity can make it hard to buy/sell at a reasonable price, especially unfavorable when you need to trade urgently or in large volume",
+    "A broad-index ETF (like VN30) is usually more suitable as a portfolio foundation for beginners than a narrow sector-specific ETF"
+  ],
+  "practicePrompt": {
+    "question": "You're deciding between 2 ETFs: ETF P (AUM VND 5,000 billion, fee 0.7%/year, high trading volume) and ETF Q (AUM VND 50 billion, fee 0.5%/year, very low trading volume). You plan to invest VND 500 million long-term. What should you prioritize?",
+    "options": [
+      "Weigh all 4 criteria instead of just choosing the lowest fee, since low AUM creates risk when selling",
+      "Always choose the ETF with the lowest management fee, since this is the only factor that truly affects long-term investment results",
+      "Always choose the ETF with the largest AUM in the market, regardless of whether the benchmark index fits your investment goal",
+      "There's no meaningful difference between the two funds, since both are commonly called ETF fund certificates on the exchange"
+    ],
+    "explanation": "The four criteria (fee, liquidity, AUM, tracked index) need to be weighed together - ETF Q's lower fee doesn't offset the liquidity risk when you need to trade a large volume."
+  },
+  "summary": {
+    "keyIdea": "Four core criteria for choosing an ETF: management fee (expense ratio), trading liquidity, fund size (AUM), and whether the tracked asset/index fits your investment goal",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to real decisions.",
+    "action": "Low liquidity can make it hard to buy/sell at a reasonable price, especially unfavorable when you need to trade urgently or in large volume"
+  },
+  "application": {
+    "title": "Score an ETF",
+    "message": "The lesson already has a real example scoring E1VFVN30 against the 4 criteria - see the 'Real example' section above. Now pick another ETF trading in Vietnam and score it yourself using those same 4 criteria.",
+    "secondary": "Getting used to checking these four criteria will help you choose ETFs faster and more confidently."
+  },
+  "track": "personal",
+  "sections": [
+    {
+      "type": "lead",
+      "text": "After understanding what an ETF is, the natural next question is: there are so many ETFs, which one should I choose? This is where you need a clear set of criteria instead of picking randomly by a familiar-sounding name."
+    },
+    {
+      "type": "heading",
+      "text": "Criterion 1: Does the tracked asset/index fit your goal"
+    },
+    {
+      "type": "paragraph",
+      "text": "First, determine which basket of assets that ETF tracks. In Vietnam there are popular options like VN30 (the 30 largest-cap stocks, multi-sector), VNDiamond (large-cap stocks that have hit their foreign-ownership limit, attractive to foreign investors who can't buy directly), VNFinlead (focused on financial-sector stocks - banking). If you want a balanced, multi-sector portfolio, a VN30-tracking ETF is usually a more sensible foundation than narrow sector-specific ETFs."
+    },
+    {
+      "type": "heading",
+      "text": "Criterion 2: Cost (expense ratio)"
+    },
+    {
+      "type": "paragraph",
+      "text": "As mentioned in the previous lesson, even a small management cost accumulates meaningfully over a long horizon. When comparing two ETFs tracking the same index, prioritize the one with a lower expense ratio, since index-tracking performance is essentially the same."
+    },
+    {
+      "type": "heading",
+      "text": "Criterion 3: Liquidity"
+    },
+    {
+      "type": "paragraph",
+      "text": "Liquidity is measured by average daily trading volume. A high-liquidity ETF lets you buy/sell easily near net asset value (NAV), while a low-liquidity ETF may have a wider bid-ask spread, meaning you might pay more to buy or receive less when selling than the actual value."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Tracked asset/index: does it match your goal and risk appetite",
+        "Expense ratio: annual management fee, the lower the better if other factors are equal",
+        "Liquidity: average daily trading volume, affecting your ability to buy/sell at a reasonable price",
+        "Fund size (AUM): too small a fund risks closure or merger, disrupting the investor"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Criterion 4: Fund size (AUM)",
+      "text": "AUM (Assets Under Management) is the total value of assets a fund manages. An ETF with too small an AUM may not be economically viable to sustain long-term, leading to a risk of closure or merger into another fund. In that case, the investor is forced to take back cash and find a replacement fund - disrupting long-term investment plans, and possibly triggering unwanted tax or trading costs."
+    },
+    {
+      "type": "paragraph",
+      "text": "A simple approach for beginners: start with a broad-index ETF, with large AUM, high liquidity and low fees (for example a VN30-tracking ETF from a reputable, long-established fund manager), then once you've gained experience and better understand your own risk appetite, consider adding sector- or theme-specific ETFs to further diversify your portfolio."
+    },
+    {
+      "type": "heading",
+      "text": "A real example: scoring E1VFVN30 on the 4 criteria"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Management fee: 0.65%/year - among the lowest of the domestic ETFs",
+        "Total expense ratio: about 0.9%/year - the figure to use for comparing ETFs, not just the management fee alone",
+        "Tracked index: VN30 - the 30 largest-cap stocks on HOSE",
+        "Rebalancing frequency: every 6 months (January and July), matching HOSE's schedule for reviewing the VN30 basket"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "How to apply this to another ETF",
+      "text": "Use these same 4 criteria (plus average trading volume and fund AUM if available) to score any other ETF trading in Vietnam, then compare against E1VFVN30 as a benchmark."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Choosing an ETF shouldn't be based on a familiar name but on four criteria: tracked asset, cost, liquidity, and fund size.",
+        "For beginners, a broad-index ETF with large AUM, high liquidity, and low fees is usually the safest starting point."
+      ]
+    }
+  ]
+}

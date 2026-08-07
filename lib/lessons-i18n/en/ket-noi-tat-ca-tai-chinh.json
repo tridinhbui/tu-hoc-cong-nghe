@@ -1,0 +1,162 @@
+{
+  "slug": "ket-noi-tat-ca-tai-chinh",
+  "title": "Connecting it all - Financial statements, Valuation, Risk, Markets",
+  "subtitle": "Looking back at the whole journey as one tightly linked system",
+  "openingQuestion": "What is a skilled analyst actually doing when reading a company's financial statements?",
+  "openingOptions": [
+    "Simply checking whether the company made a profit or a loss",
+    "Connecting accounting, valuation, risk, and markets",
+    "Just reading the summary the company itself published",
+    "Just comparing P/E against other companies"
+  ],
+  "explanation": "The entire 200-day journey essentially built four tightly linked layers of competence: (1) Accounting and the three financial statements - the language for reading numbers; (2) Valuation - turning accounting numbers into estimates of real value (DCF, multiples); (3) Risk management - understanding what could make valuation assumptions wrong (leverage, interest-rate swings, derivatives); (4) Markets - understanding the psychology, supply and demand, and collective behavior that affect short-term prices. These four layers are not separate - missing one leaves any analysis one-sided.",
+  "diagram": [
+    {
+      "label": "Accounting: the language for reading numbers",
+      "arrow": true
+    },
+    {
+      "label": "Valuation: turning numbers into value",
+      "arrow": true
+    },
+    {
+      "label": "Risk and markets: the context for decisions"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Analyzing a real stock",
+    "description": "When valuing a company, a professional analyst doesn't just look at P/E (valuation) but also checks earnings quality (accounting), debt structure and interest-rate sensitivity (risk), and the cash-flow psychology flowing into/out of that sector (markets) before making a recommendation."
+  },
+  "quiz": [
+    {
+      "question": "Why can a company with a low P/E (seemingly 'cheap') sometimes still be a bad investment?",
+      "options": [
+        "Because low P/E can only be calculated for long-listed companies",
+        "Because a low P/E usually comes with very poor share liquidity",
+        "Because a low P/E means the company doesn't pay dividends regularly",
+        "Because a low P/E can reflect poor prospects, not a bargain"
+      ],
+      "explanation": "This is exactly the lesson of connecting the four layers: a single valuation metric (low P/E) alone isn't enough to decide - you need to check earnings quality (accounting: is the profit sustainable, or from a one-off item), risk (high debt leverage, a declining industry), and market psychology (does the low price correctly reflect the risk, or is it a mispriced opportunity)."
+    },
+    {
+      "question": "An analyst who is only good at reading financial statements but doesn't understand valuation, market risk, or derivatives (Stage 10). What is their biggest limitation when analyzing a real business?",
+      "options": [
+        "They can read the past but can't value the future",
+        "They can't calculate basic financial ratios",
+        "They can't access real-time market data",
+        "They don't understand current international accounting standards"
+      ],
+      "explanation": "This is exactly why the whole 200-day program was designed as ONE INTERCONNECTED SYSTEM - each stage builds the competence needed for real analysis and investment decisions, and missing any piece (accounting, valuation, risk, derivatives) leaves a dangerous blind spot in a complete analysis process."
+    },
+    {
+      "question": "P/E of 6x, debt/EBITDA of 5.5x, operating cash flow negative for two years running. How should this be read?",
+      "options": [
+        "A rare opportunity because the market hasn't recognized the true value yet",
+        "Cheap for good reason - risk is very high",
+        "Normal, since a low P/E is always a sign of attractive valuation",
+        "Can't be concluded without knowing the stock's dividend yield"
+      ],
+      "explanation": "Three layers of information all point the same way: low valuation, heavy leverage, cash flow that can't service the debt. This is the classic shape of a value trap, not an overlooked opportunity."
+    },
+    {
+      "question": "What are the four layers of competence the program builds, in order?",
+      "options": [
+        "Saving, investing, borrowing, then retirement planning",
+        "Accounting, tax, auditing, then preparing financial statements regardless of the company or its industry",
+        "Reading statements, computing ratios, valuation, then risk management",
+        "Industry analysis, stock picking, trading, then taking profit"
+      ],
+      "explanation": "Each layer only stands firm on the one before it: without reading statements, ratios are meaningless; without understanding valuation, you don't know what price is fair; without understanding risk, you don't know how much you're betting."
+    },
+    {
+      "question": "Why is a single metric never enough for an investment decision?",
+      "options": [
+        "Because individual investors can't calculate metrics accurately",
+        "Because metrics are published at different points in time",
+        "Because accounting standards change and make old metrics obsolete, a change most analysts would notice immediately",
+        "Because every metric only sees one angle and can each be distorted"
+      ],
+      "explanation": "P/E is skewed by leverage, ROE is inflated by debt, EBITDA hides investment costs, the Current Ratio masks inventory quality. They only cover each other's blind spots when read together."
+    }
+  ],
+  "keyTakeaways": [
+    "Comprehensive financial analysis connects four layers: accounting, valuation, risk, markets",
+    "A single metric (like P/E) is never enough for an investment decision on its own",
+    "Real competence is the ability to see the links between the layers, not memorizing individual formulas"
+  ],
+  "practicePrompt": {
+    "question": "You read a company's financial statements (accounting), calculate P/E and EV/EBITDA (valuation), assess Beta and volatility (risk), then compare against sector trends and current market psychology (markets). What does combining all four steps reveal about the nature of professional financial analysis?",
+    "options": [
+      "Doing just one of these four steps is already enough for a reliable investment decision",
+      "Comprehensive financial analysis connects four layers: accounting, valuation, risk, markets",
+      "These four steps are completely independent of each other and don't need to be combined for an investment decision",
+      "Only professional analysts need all four steps; individual investors don't need to"
+    ],
+    "explanation": "Comprehensive financial analysis connects four layers: accounting, valuation, risk, markets. This is the closing lesson of the whole professional track - real competence lies in seeing the links between knowledge layers, not in memorizing individual formulas."
+  },
+  "summary": {
+    "keyIdea": "Comprehensive financial analysis connects four layers: accounting, valuation, risk, markets",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to real decisions.",
+    "action": "A single metric (like P/E) is never enough for an investment decision on its own"
+  },
+  "application": {
+    "title": "Draw a map of the 4 layers of financial competence",
+    "message": "The lesson already has a real example applying the 4-layer map to FPT - see the 'Real example' section above. Now draw a similar diagram for a stock you're interested in.",
+    "secondary": "This exercise immediately reveals which layer you're strong at and which one still needs work."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Looking back at the whole financial-learning journey, it essentially built four tightly linked layers of competence: accounting and financial statements, valuation, risk management, and markets. Miss one layer, and every analysis becomes one-sided."
+    },
+    {
+      "type": "heading",
+      "text": "The four layers of competence"
+    },
+    {
+      "type": "paragraph",
+      "text": "Accounting and the three financial statements are the language for reading numbers. Valuation turns those accounting numbers into estimates of real value, through DCF or multiples methods. Risk management helps understand what could make valuation assumptions wrong - leverage, interest-rate swings, derivatives. Markets help understand the psychology, supply and demand, and collective behavior that affect prices in the short term. When analyzing a real stock, a professional analyst doesn't just look at P/E but also checks earnings quality, debt structure, interest-rate sensitivity, and sector cash-flow psychology before making a recommendation."
+    },
+    {
+      "type": "heading",
+      "text": "Why a low P/E isn't necessarily 'cheap'"
+    },
+    {
+      "type": "paragraph",
+      "text": "A company with a low P/E (seemingly 'cheap') can sometimes still be a bad investment, because a low P/E can reflect genuinely high risk - heavy debt, poor-quality earnings, a declining sector - that the market has already priced correctly. 'Cheap' doesn't mean 'good' without combining it with risk and earnings-quality analysis. This is exactly the lesson of connecting the four layers: a single valuation metric is never enough for a decision on its own."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Accounting: the language for reading numbers through the three financial statements",
+        "Valuation: turning accounting numbers into value estimates (DCF, multiples)",
+        "Risk management: understanding what could make valuation assumptions wrong",
+        "Markets: understanding the psychology and collective behavior that affect short-term prices"
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "A real example: applying the 4-layer map to FPT"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Accounting: revenue of VND 70,112.83 billion, after-tax profit of VND 9,369.31 billion (2025), gross margin 39.2%",
+        "Valuation: current P/E around 10.5x, below the 3-year average (18.4x) - the market is pricing it cautiously",
+        "**Risk:** Vietnamese tech stocks usually have a beta above 1 (more volatile than the market); FPT's specific risk is AI potentially replacing part of traditional IT services",
+        "Markets: FPT is listed on HOSE, has high liquidity, and belongs to the VN30 basket"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "How to apply this to a stock you're interested in",
+      "text": "Repeat these exact 4 questions (Accounting, Valuation, Risk, Markets) with another company, writing the specific figures you find into each box instead of leaving it blank or vague."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "An analyst who is only good at reading financial statements but doesn't understand valuation, risk, or derivatives leaves a dangerous blind spot in every recommendation."
+      ]
+    }
+  ]
+}

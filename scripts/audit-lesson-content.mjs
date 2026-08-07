@@ -393,6 +393,16 @@ const baseline = new Set(
 // nhiễu. Con số này là cái chặn đợt MỚI trôi, không phải cái đích phải chạm.
 const MAX_LENGTH_BIAS_Z = 3.4;
 
+/** Cổng cho chiều thứ ba: đáp án đúng nằm ở GIỮA, không dài nhất mà cũng không
+ *  ngắn nhất. Đặt cùng bậc với MAX_LENGTH_BIAS_Z vì nó khai thác được y như
+ *  vậy - loại hai đầu rồi đoán giữa hai cái còn lại.
+ *
+ *  Thêm vào sau khi kho tiếng Anh đo được z = +5,2 ở chiều này trong lúc HAI
+ *  cổng kia đều xanh (longest 24%, shortest 20%). Đó là hệ quả trực tiếp của
+ *  việc chữa "đừng để đáp án đúng dài nhất" bằng cách cắt bớt đáp án đúng: nó
+ *  không thành ngắn nhất, nó thành ở giữa. */
+const MAX_MIDDLE_BIAS_Z = 3.4;
+
 /**
  * Below this many questions, the corpus-wide SHARE gates are reported but not
  * enforced.
@@ -438,6 +448,8 @@ for (const track of Object.keys(quizStats)) {
     // theo chúng.
     uniqueLongest: 0,
     uniqueShortest: 0,
+      middle: 0,
+      expectedMiddle: 0,
     // Kỳ vọng khi KHÔNG có mẹo nào, cộng dồn từng câu. Không phải 25%: câu nào
     // có hai phương án dài bằng nhau thì không góp gì vào phía "dài nhất duy
     // nhất", nên mốc ngẫu nhiên của mỗi track phụ thuộc vào số câu bị hoà của
@@ -715,6 +727,23 @@ for (const lesson of corpus) {
       stats.expectedShortest += 1 / lengths.length;
       if (correctLength === minLength) stats.uniqueShortest++;
     }
+
+    // Chiều thứ BA, và nó được thêm vào vì đã bị khai thác một lần: đáp án đúng
+    // không phải cực đại duy nhất mà cũng không phải cực tiểu duy nhất, tức nằm
+    // ở GIỮA. Hai phép đo trên đo hai chiều riêng rẽ, nên một kho vừa ít khi
+    // dài nhất vừa ít khi ngắn nhất sẽ qua cả hai cổng - trong khi loại bỏ hai
+    // đầu rồi đoán giữa hai cái còn lại vẫn ăn.
+    //
+    // Chuyện đã xảy ra thật: sau một đợt sửa "đừng để đáp án đúng dài nhất",
+    // kho tiếng Anh có longest 24% và shortest 20% (cả hai đạt) mà tỉ lệ ở giữa
+    // là 58,9% so với kỳ vọng 52,8%, z = +5,2. Cắt bớt một đáp án đúng không
+    // làm nó ngắn nhất - nó làm nó thôi không còn dài nhất, và dồn vào giữa.
+    const uniqueMax = lengths.filter((l) => l === maxLength).length === 1 ? 1 : 0;
+    const uniqueMin = lengths.filter((l) => l === minLength).length === 1 ? 1 : 0;
+    stats.expectedMiddle += (lengths.length - uniqueMax - uniqueMin) / lengths.length;
+    const isUniqueMax = uniqueMax === 1 && correctLength === maxLength;
+    const isUniqueMin = uniqueMin === 1 && correctLength === minLength;
+    if (!isUniqueMax && !isUniqueMin) stats.middle++;
     stats.ratioSum += mean > 0 ? correctLength / mean : 0;
     (question.options ?? []).forEach((option, index) => {
       if (index === question.correct) return;
@@ -807,6 +836,23 @@ for (const { slug, quiz } of handAuthored.lessons) {
       stats.expectedShortest += 1 / lengths.length;
       if (correctLength === minLength) stats.uniqueShortest++;
     }
+
+    // Chiều thứ BA, và nó được thêm vào vì đã bị khai thác một lần: đáp án đúng
+    // không phải cực đại duy nhất mà cũng không phải cực tiểu duy nhất, tức nằm
+    // ở GIỮA. Hai phép đo trên đo hai chiều riêng rẽ, nên một kho vừa ít khi
+    // dài nhất vừa ít khi ngắn nhất sẽ qua cả hai cổng - trong khi loại bỏ hai
+    // đầu rồi đoán giữa hai cái còn lại vẫn ăn.
+    //
+    // Chuyện đã xảy ra thật: sau một đợt sửa "đừng để đáp án đúng dài nhất",
+    // kho tiếng Anh có longest 24% và shortest 20% (cả hai đạt) mà tỉ lệ ở giữa
+    // là 58,9% so với kỳ vọng 52,8%, z = +5,2. Cắt bớt một đáp án đúng không
+    // làm nó ngắn nhất - nó làm nó thôi không còn dài nhất, và dồn vào giữa.
+    const uniqueMax = lengths.filter((l) => l === maxLength).length === 1 ? 1 : 0;
+    const uniqueMin = lengths.filter((l) => l === minLength).length === 1 ? 1 : 0;
+    stats.expectedMiddle += (lengths.length - uniqueMax - uniqueMin) / lengths.length;
+    const isUniqueMax = uniqueMax === 1 && correctLength === maxLength;
+    const isUniqueMin = uniqueMin === 1 && correctLength === minLength;
+    if (!isUniqueMax && !isUniqueMin) stats.middle++;
     stats.ratioSum += mean > 0 ? correctLength / mean : 0;
     options.forEach((option, index) => {
       if (index === question.correct) {
@@ -879,6 +925,7 @@ for (const [track, st] of Object.entries(quizStats)) {
     name: track,
     zLong: biasZ(st.uniqueLongest, st.expectedLongest, st.questions),
     zShort: biasZ(st.uniqueShortest, st.expectedShortest, st.questions),
+    zMid: biasZ(st.middle, st.expectedMiddle, st.questions),
     st,
   });
 }
@@ -889,13 +936,24 @@ const totals = Object.values(quizStats).reduce(
     uniqueShortest: a.uniqueShortest + st.uniqueShortest,
     expectedLongest: a.expectedLongest + st.expectedLongest,
     expectedShortest: a.expectedShortest + st.expectedShortest,
+    middle: a.middle + st.middle,
+    expectedMiddle: a.expectedMiddle + st.expectedMiddle,
   }),
-  { questions: 0, uniqueLongest: 0, uniqueShortest: 0, expectedLongest: 0, expectedShortest: 0 }
+  {
+    questions: 0,
+    uniqueLongest: 0,
+    uniqueShortest: 0,
+    expectedLongest: 0,
+    expectedShortest: 0,
+    middle: 0,
+    expectedMiddle: 0,
+  }
 );
 biasRows.push({
   name: "TOTAL",
   zLong: biasZ(totals.uniqueLongest, totals.expectedLongest, totals.questions),
   zShort: biasZ(totals.uniqueShortest, totals.expectedShortest, totals.questions),
+  zMid: biasZ(totals.middle, totals.expectedMiddle, totals.questions),
   st: totals,
 });
 
@@ -910,9 +968,14 @@ for (const r of biasRows) {
       `   shortest ${String(r.st.uniqueShortest).padStart(5)} vs ` +
       `${String(Math.round(r.st.expectedShortest)).padStart(5)}  z=${r.zShort.toFixed(1).padStart(5)}${mark(r.zShort)}`
   );
+  console.log(
+    `  ${"".padEnd(13)} middle  ${String(r.st.middle).padStart(5)} vs ` +
+      `${String(Math.round(r.st.expectedMiddle)).padStart(5)} expected  z=${r.zMid.toFixed(1).padStart(5)}` +
+      `${Math.abs(r.zMid) > MAX_MIDDLE_BIAS_Z ? " <<<" : ""}`
+  );
 }
 const worstBias = biasRows.reduce(
-  (w, r) => Math.max(w, Math.abs(r.zLong), Math.abs(r.zShort)),
+  (w, r) => Math.max(w, Math.abs(r.zLong), Math.abs(r.zShort), Math.abs(r.zMid)),
   0
 );
 console.log(
@@ -979,7 +1042,10 @@ if (openingStats.questions > 0) {
   );
 }
 const biasFailures = biasRows.filter(
-  (r) => Math.abs(r.zLong) > MAX_LENGTH_BIAS_Z || Math.abs(r.zShort) > MAX_LENGTH_BIAS_Z
+  (r) =>
+    Math.abs(r.zLong) > MAX_LENGTH_BIAS_Z ||
+    Math.abs(r.zShort) > MAX_LENGTH_BIAS_Z ||
+    Math.abs(r.zMid) > MAX_MIDDLE_BIAS_Z
 );
 console.log(
   `  baseline: ${baseline.size} lessons grandfathered  ·  ` +

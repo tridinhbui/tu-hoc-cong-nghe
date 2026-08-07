@@ -1,0 +1,185 @@
+{
+ "slug": "trai-phieu-lua-chon-tot",
+ "title": "When bonds are the right choice",
+ "subtitle": "When to choose bonds",
+ "duration": "6 min",
+ "openingQuestion": "Ms. Hoa, 55, plans to retire in 5 years and wants steady cash flow to spend after retiring, unwilling to accept a large loss of capital. Which choice below fits her best?",
+ "openingOptions": [
+  "Borrow on margin to invest more in stocks, trying to make up for the remaining accumulation time before retirement",
+  "Put all her current savings into a group of aggressive growth stocks to try to maximize returns over 5 years",
+  "Increase her bond allocation since she's close to when she'll need the money",
+  "Keep all the money as cash, not investing in any financial asset at all"
+ ],
+ "explanation": "When close to the point of needing the money (retirement, buying a house, a child's education) and prioritizing capital preservation with stable cash flow, a good-quality bond is a better fit than a stock - which swings sharply and doesn't suit a short timeframe or a low risk tolerance.",
+ "diagram": [
+  {
+   "label": "What is this money for, and when is it needed?",
+   "arrow": true
+  },
+  {
+   "label": "Needed in a few years and can't withstand a drop",
+   "arrow": true
+  },
+  {
+   "label": "Prioritize good-quality bonds for predictable cash flow",
+   "arrow": true
+  },
+  {
+   "label": "In a long-term portfolio, its role is a shock absorber, not a growth engine"
+  }
+ ],
+ "interactiveType": "bond",
+ "realWorldExample": {
+  "company": "A typical retirement portfolio by age",
+  "description": "A common personal-finance planning principle is the '100 minus age' rule: the stock share in a portfolio should be roughly (100 - age)%, with the rest in bonds and deposits. For example, a 30-year-old might hold about 70% stocks, 30% bonds; a 60-year-old should reverse that mix, holding most of it in bonds and stable assets to preserve a lifetime of savings before retiring. This isn't an absolute formula, but it reflects the right logic: bonds fit better when the remaining investment time is short."
+ },
+ "quiz": [
+  {
+   "question": "In which of the following situations is a bond usually a better fit than a stock?",
+   "options": [
+    "When wanting to maximize long-term returns regardless of volatility",
+    "When needing a specific amount of money in the next 1-3 years",
+    "When 30 years remain before this money is needed",
+    "When the investor is young and can tolerate high risk"
+   ],
+   "correct": 1,
+   "explanation": "Bonds fit best when there's a specific financial goal in the short-to-medium term, where losing capital or facing sharp volatility right when the money is needed would cause serious damage - a good-quality bond helps preserve capital and gives predictable cash flow."
+  },
+  {
+   "question": "Why is a higher bond allocation usually recommended as an investor gets close to retirement?",
+   "options": [
+    "Because older people aren't allowed to trade stocks, and this stays true even when the company's underlying business risk has clearly worsened",
+    "Because the law requires older investors to gradually shift into bonds",
+    "Because the closer to needing to withdraw money, the more priority shifts to preserving capital",
+    "Because bonds always deliver a higher yield than stocks"
+   ],
+   "correct": 2,
+   "explanation": "As retirement approaches, the time available to 'wait out' the market recovering after a short drop shrinks considerably, so a common strategy is to gradually shift from stocks (volatile) to bonds (more stable), protecting accumulated gains and avoiding the risk of having to sell assets right when the market has fallen sharply."
+  },
+  {
+   "question": "During a period of very low interest rates, are bonds still a good choice?",
+   "options": [
+    "Not at all; everything should be moved into stocks and gold instead, and this reasoning applies only to a coupon rate that happens to be a round number",
+    "Still just as good as any other period, since bond yields don't depend on interest rates at all",
+    "Even better, since low rates make bond prices keep rising afterward",
+    "Less attractive in terms of yield, but they still keep their role of reducing portfolio volatility"
+   ],
+   "correct": 3,
+   "explanation": "Low rates mean the income you receive is small, and since bond prices are already high, there's less room left to rise further. But the shock-absorbing role for the portfolio remains - just a thinner cushion, exactly as happened in 2022."
+  },
+  {
+   "question": "You need 500 million dong to pay your child's tuition in exactly 3 years. Which strategy fits?",
+   "options": [
+    "A bond or deposit maturing exactly when the money is needed",
+    "Growth stocks, to maximize the return of the money over the three-year wait",
+    "A 15-year corporate bond to earn the highest possible rate",
+    "Keep all of it as cash in a safe, avoiding any possible risk"
+   ],
+   "correct": 0,
+   "explanation": "When the date the money is needed is fixed, matching the asset's maturity to that date is the most thorough way to eliminate risk - you don't have to care about price movement in between. This is exactly the immunization idea applied to a personal goal."
+  },
+  {
+   "question": "Why doesn't a corporate bond paying 12% automatically beat a government bond paying 5%?",
+   "options": [
+    "Because corporate bonds are taxed far more heavily than government bonds",
+    "Because the 7% gap is the price of the default risk you're taking on",
+    "Because corporate bonds always have a longer term, making them harder to resell",
+    "Because the Government pays interest monthly while a company only pays once at the end"
+   ],
+   "correct": 1,
+   "explanation": "The market doesn't hand out 7% for free. That gap is compensation for the possibility you lose your entire capital - and if that happens, a few years of high interest won't make up for it. The right question isn't 'how much interest' but 'what risk that interest is compensating for'."
+  },
+  {
+   "question": "Do bonds suit someone who wants to grow their wealth quickly?",
+   "options": [
+    "Yes, as long as the investor picks bonds with a term over twenty years",
+    "Yes, because high-interest corporate bonds grow faster than stocks",
+    "No - the return is capped at the coupon, without sharing in the company's growth, and this ceiling remains fixed even if the company's profit later grows by ten times over",
+    "No, but only because tax on coupon interest reduces the return"
+   ],
+   "correct": 2,
+   "explanation": "A bondholder has a ceiling on returns: even if the company grows tenfold, you still only receive the agreed coupon. In exchange, you have a floor - paid before shareholders. A bond is a tool for preservation and cash flow, not a wealth-building tool."
+  }
+ ],
+ "keyTakeaways": [
+  "Bonds fit when: you need to preserve capital, have a specific spending goal in the short-to-medium term, or want predictable, stable cash flow",
+  "Bonds also fit as a 'shock absorber' in a diversified portfolio, reducing overall volatility when combined with stocks",
+  "The closer you are to needing the money (retirement, buying a house, a child's tuition), the more the bond allocation in your portfolio should rise to reduce the risk of losing capital right when it's needed"
+ ],
+ "practicePrompt": {
+  "question": "Mr. Tuan, 35, has 25 years left before retiring, has a high risk tolerance, and won't need his long-term savings for at least the next 10 years. Which asset should he prioritize in his long-term portfolio?",
+  "options": [
+   "Prioritize stocks or equity funds with a high allocation, since there's plenty of time to recover from volatility and capture long-term growth",
+   "Prioritize government bonds at the highest possible allocation, since these are always the safest choice regardless of age or remaining investment time",
+   "Keep all the money as uninvested cash, since at 35 it's still too early to start any form of long-term investing",
+   "Allocate exactly like someone about to retire (prioritizing bonds), since asset allocation rules apply the same way to every age and circumstance"
+  ],
+  "correct": 0,
+  "explanation": "Having plenty of time before needing the money allows accepting short-term volatility to capture stocks' long-term growth - the opposite of someone near retirement, who needs to prioritize preserving capital."
+ },
+ "summary": {
+  "keyIdea": "Bonds fit when: you need to preserve capital, have a specific spending goal in the short-to-medium term, or want predictable, stable cash flow",
+  "commonMistake": "Reading the concept as a line to recite rather than a principle to apply to a real decision.",
+  "action": "Bonds also fit as a 'shock absorber' in a diversified portfolio, reducing overall volatility when combined with stocks"
+ },
+ "application": {
+  "title": "Review your nearest financial goal",
+  "message": "List one financial goal you'll need money for in the next 1-3 years (buying a house, tuition...), and ask yourself whether the capital for that goal should sit in bonds or stocks.",
+  "secondary": "Tying the decision to a specific goal is far easier than thinking about it in the abstract."
+ },
+ "sections": [
+  {
+   "type": "lead",
+   "text": "Having understood the types of bonds, how they're priced, interest rate risk, and taxes, the last practical question is: when should you choose bonds over other investment channels?"
+  },
+  {
+   "type": "heading",
+   "text": "Four situations to prioritize bonds"
+  },
+  {
+   "type": "list",
+   "items": [
+    "When you have a specific financial goal in the short-to-medium term (1-5 years), such as buying a house, paying tuition, or a large emergency reserve - and can't afford to lose capital right when the money is needed",
+    "When close to or already in retirement, needing a steady coupon cash flow for regular spending, rather than having to sell a volatile asset whenever cash is needed",
+    "When wanting to balance an overall investment portfolio: bonds often move opposite to, or with little correlation to, stocks during bad market periods, helping reduce the portfolio's overall volatility",
+    "When you have a low risk tolerance, prioritizing certainty over maximum return - accepting a lower yield than stocks in exchange for stability"
+   ]
+  },
+  {
+   "type": "heading",
+   "text": "When bonds are not the optimal choice"
+  },
+  {
+   "type": "paragraph",
+   "text": "Conversely, if you have plenty of time before needing the money (for example saving for retirement at just 25-30 years old), putting too much into bonds can leave your wealth growing far more slowly than its potential, since bond yields are usually lower than the long-term expected return of stocks. A long horizon lets you 'withstand' the short-term volatility of stocks and benefit from long-term growth."
+  },
+  {
+   "type": "conceptTable",
+   "title": "Summary: when to prioritize bonds and when not to",
+   "concepts": [
+    {
+     "vi": "Should prioritize bonds",
+     "en": "Bond-friendly scenario",
+     "def": "Short/medium-term goal, near retirement, needs stable cash flow, low risk tolerance."
+    },
+    {
+     "vi": "Shouldn't concentrate everything in bonds",
+     "en": "Growth-friendly scenario",
+     "def": "Plenty of investment time left (over 10 years), prioritizing wealth growth, accepting short-term volatility."
+    },
+    {
+     "vi": "Combine both",
+     "en": "Balanced portfolio",
+     "def": "Most investors should hold both stocks and bonds, with the allocation adjusted by age and specific goals."
+    }
+   ]
+  },
+  {
+   "type": "closing",
+   "lines": [
+    "A bond isn't absolutely the 'best' or 'worst' investment channel - it fits best when the goal is preserving capital and having stable cash flow in the near term.",
+    "Choose your bond allocation based on the actual timeframe of your financial goal, not on gut feeling or generic advice."
+   ]
+  }
+ ]
+}

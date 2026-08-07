@@ -1,0 +1,183 @@
+{
+  "slug": "quy-tuong-tac",
+  "title": "Active funds: expert management",
+  "subtitle": "Managed funds",
+  "openingQuestion": "The VESAF fund (managed by VinaCapital) has an analyst team hand-picking promising small- and mid-cap stocks, instead of replicating an existing index. What type of fund is this?",
+  "openingOptions": [
+    "An active fund - experts pick stocks themselves hoping to beat the market",
+    "A passive ETF that simply tracks the VN30 index closely with no subjective selection at all",
+    "An index fund operating entirely by mechanical formula, with no analyst team needed to pick stocks",
+    "A government bond fund only investing in state-issued debt instruments, unrelated to stocks"
+  ],
+  "explanation": "An active fund hires an analyst team to pick stocks, aiming to beat the benchmark index. In exchange they charge a much higher management fee than an index fund, and that is exactly the bar they must clear before there's any benefit to investors at all. Long-term evidence across many markets shows most active funds fail to beat the index after fees - so the question to ask is what exactly that extra fee is buying.",
+  "diagram": [
+    {
+      "label": "Experts analyze and research",
+      "arrow": true
+    },
+    {
+      "label": "Actively pick stocks to buy/sell",
+      "arrow": true
+    },
+    {
+      "label": "Goal: outperform the benchmark index"
+    }
+  ],
+  "interactiveType": "fee-drag",
+  "realWorldExample": {
+    "company": "VESAF fund (VinaCapital) and VEOF fund (VinaCapital)",
+    "description": "VESAF is an active open-ended fund focused on promising small- and mid-cap stocks, managed by VinaCapital's analyst team. This team studies financial statements, meets with company leadership, and assesses sector outlook to decide which stocks to buy and at what weighting - completely different from simply replicating an existing index like a VN30 ETF."
+  },
+  "quiz": [
+    {
+      "question": "Why do active funds usually charge higher management fees than index funds?",
+      "options": [
+        "Because they need to pay salaries for an analyst team that picks stocks",
+        "Because active funds must pay higher corporate tax",
+        "Because the law requires active funds to charge higher fees",
+        "Because active funds are required to hold fewer stocks so they offset with higher fees"
+      ],
+      "explanation": "Running an active fund costs far more because it requires maintaining a professional research team, studying companies, and continuously building and adjusting the portfolio - unlike an index fund which just follows a formula replicating an existing index."
+    },
+    {
+      "question": "Which of the following is NOT true about active funds?",
+      "options": [
+        "Active funds have higher management fees than index funds",
+        "Active funds always outperform index funds in every period, with no exceptions",
+        "Active funds rely on human judgment and research instead of mechanical formulas",
+        "Active funds can outperform the market in some periods if experts pick the right stocks"
+      ],
+      "explanation": "This is a common misconception to avoid: many long-term studies show most active funds do NOT outperform their benchmark index after fees, especially over the long run. Some excellent active funds can outperform in certain periods, but sustaining that form reliably over many years is very rare."
+    },
+    {
+      "question": "Why do most active funds fail to beat the index long-term even with experts?",
+      "options": [
+        "Because active funds are legally capped on the return they're allowed to disclose",
+        "Because active funds aren't allowed to hold a stock for more than six months straight where information reaches prices fastest of all",
+        "Because markets are fairly efficient, and management fees eat up the outperformance created",
+        "Because fund managers usually have less information than individual investors"
+      ],
+      "explanation": "There are two layers of difficulty stacked together. First, to beat the market you must be better than all the other professionals analyzing the same pool of information. Second, even if you beat it by 1%/year, a 1.5-2% management fee already takes more than that."
+    },
+    {
+      "question": "When does an active fund have the clearest chance of creating real value versus an index fund?",
+      "options": [
+        "When investors contribute additional capital steadily every month into that fund certificate",
+        "In the most developed market, where information is disclosed fully and instantly",
+        "During a strong bull market, since active funds are allowed to use leverage",
+        "In an inefficient market, with few analysts watching"
+      ],
+      "explanation": "The advantage of active analysis is greatest where prices haven't fully absorbed information yet: small-cap stocks, emerging markets, under-followed companies. In the US market, with thousands of analysts scrutinizing one stock, that gap has almost disappeared."
+    },
+    {
+      "question": "Fund A charges a 2%/year fee and earns 11%; an index fund charges 0.5% and earns 10%. What does the investor actually receive?",
+      "options": [
+        "Fund A gets 9% and the index fund gets 9.5% - the index fund still wins after fees",
+        "Fund A gets 11% and the index fund gets 10%, since the fee is absorbed by the management company itself",
+        "Equal, since the return gap exactly matches the fee gap",
+        "Fund A gets 13% and the index fund gets 10.5%, since the fee is added on top of gross profit"
+      ],
+      "explanation": "The number a fund advertises is usually pre-fee return. After fees: 11% − 2% = 9% versus 10% − 0.5% = 9.5%. The active fund beat the market by 1% and the investor still ends up behind - this is why fees must be looked at beforehand, not after the fact."
+    },
+    {
+      "question": "What is the most important question to ask before choosing an active fund?",
+      "options": [
+        "Did the fund achieve the highest performance in the market over the past 12 months",
+        "Does the manager have a clear strategy and stay long-term",
+        "Is the fund the most popular choice among domestic individual investors",
+        "Does the fund hold stocks that are being talked about a lot in the press"
+      ],
+      "explanation": "One year of performance barely predicts anything about the next year - this year's top fund usually falls to the lower ranks the following year. What's worth asking is whether the strategy has been consistent, and how long the person who produced that result has stayed."
+    }
+  ],
+  "keyTakeaways": [
+    "An active fund hires expert analysts to pick stocks themselves, aiming to beat the market, unlike an index fund which replicates mechanically",
+    "Active fund management costs are significantly higher due to needing a professional research team",
+    "Most active funds don't outperform their benchmark index after fees in the long run - weigh this carefully before choosing"
+  ],
+  "practicePrompt": {
+    "question": "Fund X hires 10 analysts to research and pick stocks, confident it can beat the VN30 index every year. After 10 years, market statistics show most active funds don't outperform index funds after fees. What is the lesson here?",
+    "options": [
+      "Weigh the high management fee carefully against the real ability to outperform the market long-term",
+      "Always choose an active fund because a professional analyst team guarantees it will certainly outperform the market",
+      "An index fund is completely unsuitable for any investor because no human directly manages the portfolio",
+      "The more analysts a fund has, the more certain its performance will outperform the overall market"
+    ],
+    "explanation": "Long-term statistics show most active funds don't outperform index funds after their higher management fees - this is exactly why you should weigh this carefully before paying a high fee for the expectation of outperformance."
+  },
+  "summary": {
+    "keyIdea": "An active fund hires expert analysts to pick stocks themselves, aiming to beat the market, unlike an index fund which replicates mechanically",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to real decisions.",
+    "action": "Active fund management costs are significantly higher due to needing a professional research team"
+  },
+  "application": {
+    "title": "Compare real performance",
+    "message": "The lesson already has a real example comparing VESAF's performance against the VN-Index - see the 'Real example' section above. Now find another active fund yourself and compare it the same way.",
+    "secondary": "Don't just trust a fund's own marketing - cross-check the numbers yourself."
+  },
+  "track": "personal",
+  "sections": [
+    {
+      "type": "lead",
+      "text": "If an index fund is like a machine faithfully mimicking the market, an active fund is like hiring a team of experts to bet that they can pick better stocks than the market average."
+    },
+    {
+      "type": "paragraph",
+      "text": "An actively managed fund is run by a professional fund management team. They read financial statements, analyze sectors, meet with company leadership, forecast business outlook, then decide which stocks to buy, which to sell, and at what weighting in the portfolio - entirely based on human judgment, not a mechanical formula like an index fund."
+    },
+    {
+      "type": "heading",
+      "text": "Goal: outperform the market"
+    },
+    {
+      "type": "paragraph",
+      "text": "While an index fund accepts a return exactly equal to the market average, an active fund sets a more ambitious goal: create a return higher than the benchmark index (called 'alpha'). To do this, active funds usually concentrate on a select group of stocks they believe are undervalued or have outstanding growth potential, rather than spreading evenly by market weighting."
+    },
+    {
+      "type": "list",
+      "items": [
+        "A team of experts researches and analyzes companies and sectors before making investment decisions",
+        "The portfolio can concentrate on a few 'favorite' stocks instead of spreading evenly like an index",
+        "Management cost (expense ratio) is usually significantly higher than an index fund, due to paying an analyst team's salary",
+        "Performance depends heavily on the fund manager's skill and luck - there's no guarantee at all"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "A truth to know before choosing an active fund",
+      "text": "Many long-term academic studies (tracking decades) show that most active funds don't outperform their benchmark index after management fees, and the longer the period tracked, the fewer active funds sustainably 'beat' the market. This doesn't mean active funds are useless, but you need to select carefully and not assume that having an expert manager automatically means higher returns."
+    },
+    {
+      "type": "heading",
+      "text": "When should you consider an active fund?"
+    },
+    {
+      "type": "paragraph",
+      "text": "An active fund can be a fit when you want exposure to market segments that are hard to invest in passively, for example promising small- and mid-cap stocks not yet meeting the standards for major indices like VN30 - this is where a deeply specialized analyst team can truly make a difference by finding opportunities the market hasn't priced correctly. In contrast, for large-cap stocks tracked closely by hundreds of analysts, it's much harder for an active fund to find an information edge to sustainably outperform."
+    },
+    {
+      "type": "heading",
+      "text": "A real example: the VESAF active fund outperforming the VN-Index"
+    },
+    {
+      "type": "list",
+      "items": [
+        "VESAF (VinaCapital): an average return of 22.9%/year over the 5 years to 30 June 2025",
+        "VN-Index over the same period: an average of 10.8%/year",
+        "This is one of the few active funds that truly outperformed long-term - many other active funds (including in Vietnam) don't achieve this kind of gap, so don't assume \"having an expert manager\" automatically means outperformance"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "How to compare another fund yourself",
+      "text": "Look up a Vietnamese active fund's return over the past 3-5 years (published on the fund's site or platforms like Fmarket, Finhay), and set it beside the VN-Index's gain over the same period to make your own assessment."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "An active fund bets on human skill in stock selection, at a higher cost than an index fund.",
+        "Sustainably outperforming the market is very hard, even for experts - weigh the fee and long-term track record carefully before choosing."
+      ]
+    }
+  ]
+}

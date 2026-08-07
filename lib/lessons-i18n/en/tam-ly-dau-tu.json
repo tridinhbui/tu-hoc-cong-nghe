@@ -1,0 +1,165 @@
+{
+  "slug": "tam-ly-dau-tu",
+  "title": "Investor psychology: greed and fear",
+  "subtitle": "Behavioral finance basics",
+  "openingQuestion": "The VN-Index falls 7% in a single trading session. You're up 20% on a stock you're holding. Which reaction below best shows the psychological trap of 'fear' in investing?",
+  "openingOptions": [
+    "Carefully re-examine your original investment thesis to assess whether the company's business fundamentals have actually changed",
+    "Re-check your current asset-allocation weighting to see if it still fits the risk appetite you set for yourself",
+    "Panic-sell even though the business fundamentals haven't changed",
+    "Continue with the periodic investment plan (DCA) you set from the start, unchanged regardless of short-term market swings"
+  ],
+  "explanation": "Two emotions drive most bad investment decisions: greed at the top and fear at the bottom, and both push people to act opposite to what they'd intend when calm. The key thing to recognize is you can't remove them just by knowing more - knowledge doesn't stop a racing heartbeat. What does help is process: writing down your thesis and sell criteria beforehand, then following that written plan instead of today's feeling.",
+  "diagram": [
+    {
+      "label": "Price falls for one session",
+      "arrow": true
+    },
+    {
+      "label": "Fear overrides reason",
+      "arrow": true
+    },
+    {
+      "label": "Panic-sell even though the business fundamentals haven't changed"
+    }
+  ],
+  "interactiveType": "prospect",
+  "realWorldExample": {
+    "company": "The VN-Index sell-offs in April 2025 and March 2020",
+    "description": "During the sharp drop from US tariff news in April 2025, the VN-Index had a session where many tickers fell near their floor limit; many individual investors panic-sold at low prices, only for the market to recover strongly a few weeks later. Similarly, in March 2020 when Covid-19 broke out, the VN-Index fell over 30% within a few weeks; those who panic-sold at the bottom completely missed the strong recovery and growth throughout 2020-2021."
+  },
+  "quiz": [
+    {
+      "question": "What behavior does 'FOMO' (Fear Of Missing Out) in investing usually lead to?",
+      "options": [
+        "Chasing the price out of fear of missing out, without analyzing real value",
+        "Selling the entire portfolio the moment the market just corrects even though almost everyone knows better in hindsight",
+        "Selling again a few minutes after buying to lock in a small gain",
+        "Never participating in any investment of any kind at all"
+      ],
+      "explanation": "FOMO makes investors buy into a price zone that has already risen sharply, usually near a peak, purely out of fear of missing the rally, while skipping the assessment of whether that price is still reasonable relative to the business's actual value."
+    },
+    {
+      "question": "Why is 'greed' considered one of the two most dangerous emotions in investing, alongside fear?",
+      "options": [
+        "Because greed only affects investors with large assets",
+        "Because it makes investors accept excessive risk and leverage",
+        "Because greed makes people never participate in the market at all",
+        "Because greed is a positive emotion so it's always beneficial for investing"
+      ],
+      "explanation": "When the market is running hot, greed pushes investors to over-leverage with margin, concentrate all their capital in a few 'hot' tickers, or ignore valuations that have already gotten too high - all raising the risk of heavy loss when the market reverses."
+    },
+    {
+      "question": "Which strategy below helps reduce the influence of emotion on investment decisions?",
+      "options": [
+        "Buy and sell repeatedly during the day to exploit volatility",
+        "Watch the price board continuously to react fast",
+        "Set an investment plan in advance and follow it with discipline",
+        "Make decisions based on advice from social media"
+      ],
+      "explanation": "Having a plan and a clear set of criteria set in advance - built while calm, not swayed by market movement - helps an investor follow discipline instead of reacting emotionally when the market moves sharply."
+    },
+    {
+      "question": "An investor keeps holding a stock down 40% with the reasoning 'wait for it to break even, then sell', while having already sold early the tickers that were in profit. This is a sign of which bias?",
+      "options": [
+        "Anchoring: fixating on a random past reference price",
+        "Herding: acting with the crowd instead of by personal analysis",
+        "Confirmation bias: seeking information that supports an existing decision",
+        "Loss aversion: the pain of losing hits harder than the joy of an equal gain"
+      ],
+      "explanation": "This is the disposition effect, a consequence of loss aversion: selling winners to 'lock in' the feeling of victory, holding losers to avoid admitting defeat. Your cost basis isn't information the market cares about - the right question is always 'if I didn't already hold this, would I buy it today'."
+    },
+    {
+      "question": "Why does writing your investment thesis and sell criteria in advance help reduce emotional influence?",
+      "options": [
+        "Because it creates a standard set while calm to compare against when panicking",
+        "Because it completely eliminates any possibility of loss if you follow the plan correctly",
+        "Because the market usually moves exactly according to the script written in advance",
+        "Because the written plan helps you predict the market's turning point more accurately"
+      ],
+      "explanation": "A plan written in advance doesn't make you more correct, it just ensures the decision made when the market drops comes from a calm person, not a scared one. When the price falls, what matters is checking whether the thesis still holds - and the written plan gives you something to check against."
+    }
+  ],
+  "keyTakeaways": [
+    "Fear makes investors panic-sell in low price zones; greed makes investors chase prices or over-leverage in high price zones",
+    "FOMO (fear of missing out) is a common expression of greed, making investors buy in after the price has already risen sharply without analyzing real value",
+    "Having a clear investment plan set in advance and following it with discipline is the most effective way to reduce the influence of emotion on decisions",
+    "Short-term price movement doesn't equal a change in a business's fundamental value - clearly distinguish the two before acting"
+  ],
+  "practicePrompt": {
+    "question": "The VN-Index just rose 30% in only 3 months, and people around you keep bragging about big gains. You feel pressure to 'jump in' right away even though you haven't researched any specific company. What psychological trap is this, and how should you handle it?",
+    "options": [
+      "This is a sign of FOMO - you should return to your original investment plan instead of chasing the crowd",
+      "This is a good sign that you should buy as much as possible right away before the market rises further",
+      "This is ordinary fear - you should sell all your current assets to avoid the risk of the market continuing to overheat",
+      "This isn't a psychological issue at all, just a sign the market is operating efficiently"
+    ],
+    "explanation": "FOMO makes investors chase the crowd once prices have already risen sharply without analyzing real value - discipline in sticking to your original plan is the most effective defense."
+  },
+  "summary": {
+    "keyIdea": "Fear makes investors panic-sell in low price zones; greed makes investors chase prices or over-leverage in high price zones",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to real decisions.",
+    "action": "FOMO (fear of missing out) is a common expression of greed, making investors buy in after the price has already risen sharply without analyzing real value"
+  },
+  "application": {
+    "title": "Reflect on your own reactions",
+    "message": "Recall the last time you saw an investment's value drop sharply - did you react by selling immediately, or by first reviewing the underlying fundamentals of that asset?",
+    "secondary": "Correctly identifying your own emotion is the first step to controlling it."
+  },
+  "track": "personal",
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Warren Buffett has a quote cited so often it's become almost a cliché, yet still true: 'Be fearful when others are greedy, and greedy when others are fearful.' The problem is it's easy to say, hard to do - because greed and fear are two instinctive emotions, deeply wired into the human brain."
+    },
+    {
+      "type": "heading",
+      "text": "Fear: the enemy that makes you sell right at the bottom"
+    },
+    {
+      "type": "paragraph",
+      "text": "When the market falls sharply, the human brain reacts to the pain of loss far more strongly than the joy of gaining the same amount (a phenomenon called 'loss aversion' - a core concept in behavioral finance). This makes many investors sell off stock the moment they see red, even though the business fundamentals haven't changed at all, just to relieve the immediate psychological pain."
+    },
+    {
+      "type": "paragraph",
+      "text": "What's the result? Selling right when the price is low, then when the market recovers (which almost always happens after panic-driven drops, as long as the business keeps performing well), they still don't dare buy back in for fear of a further drop - and end up missing the entire recovery."
+    },
+    {
+      "type": "heading",
+      "text": "Greed: the enemy that makes you buy right at the peak"
+    },
+    {
+      "type": "paragraph",
+      "text": "Conversely, when the market keeps running hot, especially when friends and colleagues are bragging about gains on social media, the feeling of 'fear of missing out' (FOMO) surges. Investors start chasing the price, even using margin to increase their position, no longer caring whether the price is still reasonable relative to the company's real profit and outlook."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Loss aversion: the pain of losing money is felt about twice as strongly as the joy of gaining an equivalent amount",
+        "Herding behavior: the tendency to follow the crowd, buying when everyone buys, selling when everyone sells",
+        "Confirmation bias: only seeking information that supports a decision already made, ignoring warning signals",
+        "Overconfidence: after a few wins, believing you're always right and taking on excessive risk"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "The typical emotional cycle of a new investor",
+      "text": "Optimism → excitement as the price rises → peak excitement, buying more with margin (peak of greed) → the market reverses, worry → denial, believing it's just a temporary correction → panic as the price keeps falling → despair, panic-selling near the bottom (peak of fear) → discouragement, standing outside the market → the market recovers without them. This cycle repeats for many individual investors, especially beginners who've never been through a full up-down cycle."
+    },
+    {
+      "type": "heading",
+      "text": "How to reduce emotional influence"
+    },
+    {
+      "type": "paragraph",
+      "text": "No one can eliminate emotion entirely, but you can reduce its influence by building rules in advance: clearly define your investment goal, asset-allocation ratio, and specific criteria for buying more or selling - all written while calm, not while the market is swinging wildly. Using DCA (learned in the previous lesson), limiting how often you check the price board, and staying away from 'stock tip' chat groups also significantly reduce emotional pressure."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The market isn't always rational, but you can choose to react to it more rationally.",
+        "An investment plan written while calm is worth far more than any decision made while panicking or euphoric."
+      ]
+    }
+  ]
+}

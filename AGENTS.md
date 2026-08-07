@@ -231,6 +231,31 @@ npm run audit:lessons        # Vietnamese
 npm run audit:lessons:en     # the translated corpus, its own baseline
 ```
 
+**There is a THIRD length direction, and fixing the first two created it.**
+`MAX_LENGTH_BIAS_Z` measures "uniquely longest" and "uniquely shortest"
+separately, so a corpus that is rarely either passes both gates - while the
+correct answer sits in the MIDDLE of the four lengths systematically. Eliminate
+the longest and the shortest option, guess between the two survivors, and you are
+ahead of chance.
+
+Measured, not hypothesised. After a round of batches were told "do not let the
+correct answer be the longest", the English corpus read longest 24% and shortest
+20% - both comfortably inside their ceilings - with the correct answer in the
+middle on **58.9% of questions against a 52.8% expectation, z = +5.2**. The cause
+is mechanical: the agents fixed a longest-bias by TRIMMING the correct answer,
+which does not make it the shortest. It makes it neither.
+
+`MAX_MIDDLE_BIAS_Z` now gates that direction too, per track and overall, against
+the same tie-aware expectation. Vietnamese passes it untouched (worst |z| 3.29),
+which is the property a new gate should have - set at the level the corpus
+already meets.
+
+The rule this yields, and it is the important one: **fix a length tell by
+rewriting a DISTRACTOR, never by trimming the correct answer.** Rule 1 already
+says the correct option states the claim and nothing more, so there is nothing
+to trim without losing the claim - and every trim pushes the answer toward the
+middle, where the third gate now catches it.
+
 **Translating a batch is two passes, not one.** Translation drifts toward the
 length tell on its own, and telling the translator to aim for chance level does
 not stop it: a faithful English rendering of a correct Vietnamese answer comes

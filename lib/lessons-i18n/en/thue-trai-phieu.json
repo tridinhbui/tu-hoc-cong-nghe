@@ -1,0 +1,172 @@
+{
+ "slug": "thue-trai-phieu",
+ "title": "Tax on bond interest income",
+ "subtitle": "Bond tax implications",
+ "duration": "6 min",
+ "openingQuestion": "An individual in Vietnam receives 20 million dong in coupon interest from a corporate bond during the year. Under current personal income tax rules, how much tax is owed on this interest?",
+ "openingOptions": [
+  "1 million dong, i.e. 5% of the interest received",
+  "It depends on that individual's total annual income, calculated on a progressive scale",
+  "No tax is owed, because bond interest is fully tax-exempt",
+  "20% of the interest received, the same as tax on securities transfer income"
+ ],
+ "explanation": "Under Vietnam's personal income tax rules, an individual's income from bond interest (except government bonds, which are exempt under certain specific rules) is taxed at 5% on the interest amount (classified as capital investment income), usually withheld at source by the issuer or paying agent before the money is paid to the investor.",
+ "diagram": [
+  {
+   "label": "Receives a coupon from a corporate bond",
+   "arrow": true
+  },
+  {
+   "label": "The paying agent withholds tax at the source immediately",
+   "arrow": true
+  },
+  {
+   "label": "The amount actually received is lower than the announced yield",
+   "arrow": true
+  },
+  {
+   "label": "Comparing investment channels requires comparing after-tax yields"
+  }
+ ],
+ "interactiveType": "bond",
+ "realWorldExample": {
+  "company": "Privately-placed corporate bonds and government bonds in Vietnam",
+  "description": "For a corporate bond, when an individual investor receives a coupon, the issuer or paying agent is responsible for withholding 5% personal income tax (capital investment income) before transferring the actual interest into the investor's account. In addition, if an investor sells the bond before maturity and earns a gain from the price difference, that gain may be counted as separate taxable income depending on the nature of the transaction. Government bonds and Treasury bills carry certain separate exemptions or tax incentives that vary by period, so investors should check the current official guidance rather than applying a rule mechanically."
+ },
+ "quiz": [
+  {
+   "question": "What personal income tax rate applies to corporate bond interest (coupon) received by an individual in Vietnam?",
+   "options": [
+    "0%, fully exempt",
+    "20%, the same as corporate income tax",
+    "A flat 10% for every type of financial income",
+    "5% on the interest received"
+   ],
+   "correct": 3,
+   "explanation": "Corporate bond interest received by an individual is classified as capital investment income, subject to 5% personal income tax on the actual interest received, usually withheld at source by the paying party before the money reaches the investor."
+  },
+  {
+   "question": "What does tax being withheld 'at the source' mean?",
+   "options": [
+    "The paying entity automatically deducts the tax before transferring the interest, and this exemption applies identically whether the account is held at a bank or a brokerage",
+    "The investor self-declares and pays the tax at the end of the fiscal year",
+    "Tax only arises if the investor proactively files a declaration",
+    "It has nothing to do with the investor's own tax obligation"
+   ],
+   "correct": 0,
+   "explanation": "Withholding at source means the paying party (the issuer or paying agent) is responsible for automatically deducting the 5% tax before transferring the remaining interest into the investor's account, simplifying the individual's tax obligation."
+  },
+  {
+   "question": "A corporate bond pays 9% interest, and a bank deposit pays 7%. Which comparison is correct?",
+   "options": [
+    "The bond wins by exactly 2 percentage points, since both are taxed at the same rate, a gap that narrows further once brokerage fees on both channels are also taken into account",
+    "You must compare after tax: the bond coupon is taxed 5%, while personal savings interest is exempt",
+    "The deposit wins, because savings interest always comes with deposit insurance added on top",
+    "The two can't be compared at all, since they're entirely different asset types"
+   ],
+   "correct": 1,
+   "explanation": "An individual's savings deposit interest is currently exempt from personal income tax, while a corporate bond coupon is taxed 5%. So the bond's 9% becomes about 8.55% after tax, versus the deposit's full 7% - a narrower gap than the advertised numbers suggest."
+  },
+  {
+   "question": "Besides tax on coupon interest, what other tax might an individual investor owe when selling a bond?",
+   "options": [
+    "20% corporate income tax on the gap between the sale price and the purchase price",
+    "No other tax at all; only the 5% tax on coupon interest applies",
+    "A tax on the transfer value when reselling the bond before maturity",
+    "A 10% value-added tax on the total value of the bond transferred"
+   ],
+   "correct": 2,
+   "explanation": "Transferring a bond is taxed on the transfer value, similarly to how it applies to securities - meaning you owe tax even if the sale is at a loss. This detail is easy to miss when calculating the real return of an early buy-sell strategy."
+  },
+  {
+   "question": "Why are government bonds more attractive to institutional investors than the raw yield figure suggests?",
+   "options": [
+    "Because an institution holding government bonds is exempt from all its own tax obligations",
+    "Because the Government commits to buying back at face value whenever an institution requests it",
+    "Because government bond yields are always higher than corporate bonds of the same term",
+    "Because they carry tax incentives and are used as collateral in many transactions"
+   ],
+   "correct": 3,
+   "explanation": "The yield on paper isn't the whole story: tax incentives, the ability to use them as collateral for interbank loans, and their low risk weighting in capital-adequacy calculations give government bonds real value higher than the suggested yield figure."
+  },
+  {
+   "question": "When planning long-term investments, which metric should be used to compare channels?",
+   "options": [
+    "The actual return after tax and after inflation, not the nominal rate",
+    "The announced nominal rate, since it's the easiest number to compare across channels",
+    "The total amount of interest received, without regard for how long it's held",
+    "The issuer's credit rating, since it determines the entire return"
+   ],
+   "correct": 0,
+   "explanation": "A 9% return taxed at 5% in a 4%-inflation environment is only about 4.5% in real terms. The advertised figure is always the pre-tax nominal rate - and the gap between it and what you actually keep is where most bad decisions begin."
+  }
+ ],
+ "keyTakeaways": [
+  "Corporate bond interest (coupon) received by an individual in Vietnam is subject to 5% personal income tax on the interest received, usually withheld at source",
+  "When comparing yields across investment channels (savings, bonds, fund units), compare after-tax yields rather than just looking at the announced rate on paper",
+  "Government bonds and certain state debt instruments may carry separate tax incentives - check the current official guidance rather than applying the same rate mechanically to every type of bond"
+ ],
+ "practicePrompt": {
+  "question": "You receive 30 million dong in coupon interest from a corporate bond this year. You're comparing it against a bank savings deposit with a slightly higher announced rate. What factor do you need to account for to compare the two channels fairly?",
+  "options": [
+   "The after-tax yield of both channels, since corporate bond coupon interest is withheld 5% personal income tax at source",
+   "Only the announced rates on paper for both channels, since personal income tax doesn't affect the investment decision",
+   "Just pick whichever channel has the higher announced rate, since all interest income in Vietnam is equally fully tax-exempt",
+   "No further comparison is needed, since corporate bonds are always better than savings deposits in every case"
+  ],
+  "correct": 0,
+  "explanation": "Corporate bond coupon interest is withheld 5% personal income tax at source - you need to compare after-tax yields between investment channels rather than just looking at the announced rate."
+ },
+ "summary": {
+  "keyIdea": "Corporate bond interest (coupon) received by an individual in Vietnam is subject to 5% personal income tax on the interest received, usually withheld at source",
+  "commonMistake": "Reading the concept as a line to recite rather than a principle to apply to a real decision.",
+  "action": "When comparing yields across investment channels (savings, bonds, fund units), compare after-tax yields rather than just looking at the announced rate on paper"
+ },
+ "application": {
+  "title": "Calculate the after-tax yield",
+  "message": "Take the announced coupon rate of a corporate bond, subtract 5% personal income tax yourself to get the actual return received, then compare it against the bank savings rate for the same term.",
+  "secondary": "Comparing after tax is the only fair way to compare investment channels."
+ },
+ "sections": [
+  {
+   "type": "lead",
+   "text": "Many people comparing bond yields with savings deposits only look at the announced rate and forget an important factor: tax. The amount that actually lands in your account is always lower than the listed rate."
+  },
+  {
+   "type": "heading",
+   "text": "Tax rules on corporate bond interest"
+  },
+  {
+   "type": "paragraph",
+   "text": "Under current personal income tax rules in Vietnam, an individual's income from corporate bond interest is classified as 'capital investment income', subject to a 5% tax rate on the actual interest received. This tax is usually withheld by the issuer or paying agent right when the interest is paid, meaning the amount that lands in your account is already the after-tax amount."
+  },
+  {
+   "type": "callout",
+   "label": "An example tax calculation",
+   "text": "You hold a corporate bond with a 200-million-dong face value, 10%/year coupon. The gross interest each year is 20 million dong. The 5% personal income tax on this amount is 1 million dong. The amount actually landing in your account is 19 million dong, equivalent to an after-tax yield of about 9.5%/year instead of the advertised 10%."
+  },
+  {
+   "type": "heading",
+   "text": "Why you need to compare after-tax yields"
+  },
+  {
+   "type": "list",
+   "items": [
+    "An individual's bank savings deposit interest is currently exempt from personal income tax, while corporate bond interest is taxed 5% - this narrows the yield gap between the two channels compared with the listed figures",
+    "When comparing a bond coupon of 9%/year with a savings deposit at 7%/year, don't rush to conclude the bond wins by a full 2 percentage points - after tax, the bond is only about 8.55%/year, narrowing the real gap to 1.55 percentage points",
+    "If investing through a bond fund (open-end fund units), the tax treatment can differ - usually involving tax when selling fund units at a gain, rather than withholding on each coupon payment as with a direct bond - so read the fund's prospectus carefully to understand it correctly"
+   ]
+  },
+  {
+   "type": "paragraph",
+   "text": "Besides tax on the coupon, if you sell a bond before maturity and earn a gain from the price difference (buying low, selling high on the secondary market), that gain may also trigger a separate tax obligation depending on the type of transaction and account you use. Since tax rules can change over time, always check the most current official tax guidance or ask the securities firm/bank you trade through for the exact figure."
+  },
+  {
+   "type": "closing",
+   "lines": [
+    "Corporate bond interest received by an individual in Vietnam is subject to 5% personal income tax, usually withheld at source.",
+    "Always compare after-tax yields between investment channels, rather than just looking at the listed rate on paper."
+   ]
+  }
+ ]
+}

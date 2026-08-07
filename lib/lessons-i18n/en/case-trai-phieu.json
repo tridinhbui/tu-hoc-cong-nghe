@@ -1,0 +1,173 @@
+{
+ "slug": "case-trai-phieu",
+ "title": "Case study: building a simple bond portfolio",
+ "subtitle": "Bond portfolio example",
+ "duration": "6 min",
+ "openingQuestion": "Mr. Minh, 40, has 500 million dong of idle savings and wants to allocate it into bonds to complement his existing stock holdings. What should he consider first before deciding the ratio between government bonds (safe, low yield) and a corporate bond fund (higher risk, higher yield)?",
+ "openingOptions": [
+  "Clearly determine when he'll need the money before deciding the allocation ratio",
+  "Just pick whichever type of bond has the highest yield advertised in the media, with no need to consider anything else",
+  "No further analysis is needed at all, since essentially every bond on the market is exactly the same",
+  "Put all 500 million into a corporate bond fund since this type's yield is always higher than government bonds"
+ ],
+ "explanation": "Before deciding on an allocation, the financial goal needs to be clear: what the money is for, when it's needed, and how much price-swing or credit risk is acceptable. Only from there can a sensible ratio be set between the absolutely safe portion (government bonds) and the higher-yield, higher-risk portion (a corporate bond fund).",
+ "diagram": [
+  {
+   "label": "Determine the goal and when the money is needed",
+   "arrow": true
+  },
+  {
+   "label": "Split a certain portion from a risk-tolerant portion",
+   "arrow": true
+  },
+  {
+   "label": "The certain portion: government bonds",
+   "arrow": true
+  },
+  {
+   "label": "The rest: a diversified corporate bond fund"
+  }
+ ],
+ "interactiveType": "bond",
+ "realWorldExample": {
+  "company": "A specific case: Mr. Minh's 500-million-dong allocation",
+  "description": "Mr. Minh, 40, has a stable job, already has his own emergency fund, and holds part of a stock portfolio. This 500 million is medium-term idle money, expected to be used in 5-7 years to help fund his child's university education. He decides to split it: 300 million (60%) into 5-year government bonds through retail bonds or a government bond fund, prioritizing absolute safety for the most important portion of principal; the remaining 200 million (40%) into a diversified corporate bond fund (holding many bonds from different companies, professionally managed), accepting slightly higher credit risk for an expected 1.5-2 percentage point increase in yield per year."
+ },
+ "quiz": [
+  {
+   "question": "Why doesn't Mr. Minh put the entire 500 million into the corporate bond fund, even though its expected yield is higher?",
+   "options": [
+    "Because the fund can't accept a large amount of capital from one individual",
+    "Because corporate bonds always yield less than government bonds",
+    "Because the law caps how much an individual can invest in corporate bonds, and this restriction only applies to individuals who have never previously purchased a bond",
+    "Because the money has a specific goal, and part of it needs solid protection"
+   ],
+   "correct": 3,
+   "explanation": "Because this money has an important specific goal (his child's tuition), Mr. Minh balances between protecting most of the principal (through safe government bonds) and seeking a higher yield on a portion he's willing to accept more credit risk for (through a diversified corporate bond fund)."
+  },
+  {
+   "question": "Why does Mr. Minh choose a diversified corporate bond fund instead of buying a single company's bond directly?",
+   "options": [
+    "Because diversifying across many companies reduces concentration risk",
+    "Because an individual buying corporate bonds directly is illegal",
+    "Because a corporate bond fund carries no risk at all",
+    "Because a fund always yields more than buying directly"
+   ],
+   "correct": 0,
+   "explanation": "Diversification is a basic risk-management principle: when capital is spread across many bonds from many different companies within a fund, the risk that any one specific company hits a credit problem only affects a small slice of the portfolio, instead of the entire amount as when concentrating everything in a single company's bond."
+  },
+  {
+   "question": "If, 5 years later, when he needs to withdraw money for his child's tuition, market rates happen to be lower than when Mr. Minh bought the government bonds, what happens to that 300 million if he holds it to maturity?",
+   "options": [
+    "He loses part of the principal since rates fell",
+    "He still receives the full face value and interest as promised",
+    "He's forced to sell the entire amount at a loss before maturity",
+    "The bond automatically extends for another 5 years"
+   ],
+   "correct": 1,
+   "explanation": "This is the core point from earlier lessons: if a bond is held exactly to its maturity date, swings in rates and secondary-market price in the meantime don't matter - the investor still receives the full face value and interest exactly as originally promised."
+  },
+  {
+   "question": "Mr. Minh's portfolio has a 5-year government bond and a corporate bond fund. Market rates rise sharply by 2 percentage points. Which part faces a larger price swing?",
+   "options": [
+    "The corporate fund portion, since credit risk makes its price react more to rates",
+    "The government bond portion, since safe bonds are always more sensitive to rates",
+    "Whichever has the longer remaining term, regardless of government or corporate",
+    "Both equally, since market rates affect every bond the same way"
+   ],
+   "correct": 2,
+   "explanation": "Rate sensitivity is determined by term (duration), not by who the issuer is. Credit risk is a separate axis: it works through the credit spread, while a broad rate shock hits hardest whichever cash flows sit farthest in the future."
+  },
+  {
+   "question": "If Mr. Minh holds the government bond exactly to maturity, how does the price swing over those 5 years affect the amount he receives?",
+   "options": [
+    "No effect, but he'll lose all the coupons from periods when the price was below face value",
+    "A direct effect, since the amount repaid is calculated at the maturity-date market price",
+    "A partial effect, since the issuer will adjust the final periods' coupons to compensate",
+    "No effect - he receives the full face value plus all the coupons already earned"
+   ],
+   "correct": 3,
+   "explanation": "A price swing only becomes a real gain or loss if you sell before maturity. Held to maturity, the cash flow was fixed from the day of purchase. The remaining risk isn't price - it's the issuer failing to pay, and for a bond denominated in the government's own currency, that risk is very low."
+  }
+ ],
+ "keyTakeaways": [
+  "Before allocating capital into bonds, it's essential to clearly determine the purpose of the money, when it's needed, and the level of risk that's acceptable",
+  "Combining government bonds (absolutely safe, low yield) with a diversified corporate bond fund (higher yield, higher credit risk) balances safety with return",
+  "Diversifying through a fund reduces concentration risk compared with buying a single company's bond directly",
+  "Holding a bond to maturity eliminates the risk of price swings in the meantime - important when there's a specific financial goal tied to a timeline"
+ ],
+ "practicePrompt": {
+  "question": "Ms. Lan, 45, has 400 million dong, and wants to set some aside for retirement in 20 years and some for a home renovation in the next 2 years. What principle should she apply before splitting the ratio between government bonds and a corporate bond fund?",
+  "options": [
+   "Clearly identify the goal and timing for each amount: the 2-year goal prioritizes safety, the 20-year goal can accept more risk",
+   "Split it 50-50 between the two types of bonds regardless of the goals, since this is always the safest and most sensible ratio, which would also make sense if this money were not earmarked for tuition at all",
+   "Put all of it into the corporate bond fund since a higher yield will help her reach both goals faster",
+   "There's no need to distinguish between the two goals, since every dong invested in bonds should be treated the same way"
+  ],
+  "correct": 0,
+  "explanation": "Clearly identifying the goal and timing for each amount of money is the first step before deciding the allocation ratio - a short-term goal needs safety, while a long-term goal can accept higher risk."
+ },
+ "summary": {
+  "keyIdea": "Before allocating capital into bonds, it's essential to clearly determine the purpose of the money, when it's needed, and the level of risk that's acceptable",
+  "commonMistake": "Reading the concept as a line to recite rather than a principle to apply to a real decision.",
+  "action": "Combining government bonds (absolutely safe, low yield) with a diversified corporate bond fund (higher yield, higher credit risk) balances safety with return"
+ },
+ "application": {
+  "title": "Sketch out your own bond portfolio",
+  "message": "Write down the purpose of a specific amount of money you have, then propose your own ratio between government bonds and a corporate bond fund for that amount, along with your reasoning.",
+  "secondary": "There's no single right answer - what matters is having a clear reason for your choice."
+ },
+ "sections": [
+  {
+   "type": "lead",
+   "text": "Having learned the individual concepts about bonds, let's walk through a specific real-world situation to see how all that knowledge applies to a capital allocation decision."
+  },
+  {
+   "type": "heading",
+   "text": "The setup: Mr. Minh and his 500 million dong of idle savings"
+  },
+  {
+   "type": "paragraph",
+   "text": "Mr. Minh, 40, already has his own emergency fund (about 6 months of spending) and part of a stock portfolio for a long-term goal (retirement). He has an extra 500 million dong of idle money, expected to be needed in 5-7 years to fund his child's university tuition. This is an important goal that can't accept a large loss of capital, but he still wants a better yield than a plain savings deposit."
+  },
+  {
+   "type": "heading",
+   "text": "Step 1: identify the goal and timeframe"
+  },
+  {
+   "type": "paragraph",
+   "text": "With 5-7 years remaining and a clear purpose (his child's tuition), Mr. Minh determines this isn't money to 'gamble' on a volatile asset like stocks. But because he has 5-7 years (not needed immediately), he also doesn't need to keep 100% at the absolutely safe, lowest-yield level - he can accept a moderate amount of risk to raise the expected yield."
+  },
+  {
+   "type": "heading",
+   "text": "Step 2: decide the allocation ratio"
+  },
+  {
+   "type": "list",
+   "items": [
+    "300 million dong (60%) into 5-year government bonds: this is the 'safe core', ensuring that whatever the market does, most of the tuition money remains fully intact if held to maturity",
+    "200 million dong (40%) into a diversified corporate bond fund, managed by a reputable fund management company, holding bonds from many different companies: accepting slightly higher credit risk for an expected yield boost of 1.5-2 percentage points a year over government bonds"
+   ]
+  },
+  {
+   "type": "callout",
+   "label": "Why not put everything into just one type",
+   "text": "If he put 100% into government bonds, Mr. Minh would be 'absolutely safe' but miss out on the higher yield he could otherwise capture. If he put 100% into corporate bonds (even diversified), he'd be accepting credit risk on all of this important money. A 60/40 split is the balance point that fits his goal and risk tolerance."
+  },
+  {
+   "type": "heading",
+   "text": "Step 3: monitor and adjust"
+  },
+  {
+   "type": "paragraph",
+   "text": "Mr. Minh doesn't need to check bond prices daily, since the plan is to hold to maturity or close to it. However, with about 1-2 years left before needing the money, he should gradually shift the corporate bond portion into safer instruments or short-term deposits, to avoid the risk of a price swing right at the moment he urgently needs to withdraw."
+  },
+  {
+   "type": "closing",
+   "lines": [
+    "A sensible bond portfolio isn't about picking whichever has the highest yield - it's about balancing the purpose of the money, the timeframe, and the level of risk that's acceptable.",
+    "Combining safe government bonds with a diversified corporate bond fund is a common way to both preserve capital and improve the overall yield."
+   ]
+  }
+ ]
+}

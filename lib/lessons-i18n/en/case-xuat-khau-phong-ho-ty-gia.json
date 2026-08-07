@@ -1,0 +1,150 @@
+{
+  "slug": "case-xuat-khau-phong-ho-ty-gia",
+  "title": "Small case - An exporter hedges its FX exposure",
+  "subtitle": "Real-world application: protecting export revenue from exchange-rate swings",
+  "openingQuestion": "A Vietnamese company exports goods to the US and will receive $1 million in 3 months. The current rate is 25,000 VND/USD but it may move. What tool locks in the exchange rate?",
+  "openingOptions": [
+    "Wait until the money arrives, then convert to VND",
+    "Switch to invoicing in VND immediately",
+    "No tool can help with this",
+    "Sign a forward contract to sell USD at a fixed rate"
+  ],
+  "explanation": "An exporter has a 'long' exposure to USD (it will receive USD in the future) but its operating costs are in VND - the risk is that VND appreciates (USD depreciates), reducing the converted value. Signing a forward to sell USD for VND at a fixed rate today removes this uncertainty completely, regardless of which way the market rate later moves.",
+  "diagram": [
+    {
+      "label": "Exporter will receive USD in the future",
+      "arrow": true
+    },
+    {
+      "label": "Operating costs are in VND",
+      "arrow": true
+    },
+    {
+      "label": "Sign a forward to sell USD for VND now",
+      "arrow": true
+    },
+    {
+      "label": "Rate locked in, risk avoided"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Vietnamese garment exporters",
+    "description": "Vietnamese garment and seafood exporters commonly sign FX forward contracts with commercial banks to lock in the conversion rate for their USD receivables, protecting the profit margin they calculated when signing the export contract."
+  },
+  "quiz": [
+    {
+      "question": "If VND depreciates sharply against USD after the company has signed a forward to sell USD at a fixed rate, has the company 'lost out'?",
+      "options": [
+        "Yes, they missed the chance to receive more VND had they not hedged",
+        "They lose an opportunity, but the goal of eliminating risk was achieved",
+        "The forward contract automatically cancels if the exchange rate moves",
+        "The bank must compensate the company for the exchange-rate difference, though banks rarely intervene unless asked"
+      ],
+      "explanation": "Same as the oil-hedging case: once a company has chosen certainty over speculating on a favorable rate move, it accepts the trade-off of opportunity."
+    },
+    {
+      "question": "If the exporter in this case had hedged with an option (buying a put option to sell USD) instead of a forward contract, how would flexibility differ from using a forward?",
+      "options": [
+        "An option grants a right, not an obligation - more flexible but a premium must be paid",
+        "Options are not allowed for hedging FX risk on export revenue under current Vietnamese securities regulation",
+        "An option is always cheaper than a forward contract in every case",
+        "There is no difference at all between these two hedging tools"
+      ],
+      "explanation": "This is the core trade-off between a forward and an option: a forward is free (no premium) but must be exercised even if unfavorable; an option costs a premium but leaves the upside open."
+    },
+    {
+      "question": "What is the exporter most worried about regarding the exchange rate?",
+      "options": [
+        "The State Bank changing the allowed trading band for the rate",
+        "VND depreciating and raising the cost of imported materials",
+        "The rate staying flat so the profit margin doesn't improve",
+        "VND appreciating, cutting the VND value of USD revenue"
+      ],
+      "explanation": "The company sells goods for USD but pays costs in VND - so a stronger VND is the bad scenario. This is why exporters sell USD forward, while importers do the opposite."
+    },
+    {
+      "question": "How does hedging with a forward differ from hedging with an option?",
+      "options": [
+        "A forward locks both directions; an option only blocks the downside",
+        "A forward costs a premium upfront; an option costs nothing",
+        "A forward only works for USD; an option works for any currency in every market scenario without exception",
+        "A forward can be cancelled anytime; an option cannot"
+      ],
+      "explanation": "A forward is free but gives up the upside if the rate moves favorably. An option keeps the upside but requires paying a premium immediately - choosing between the two is choosing between certainty and flexibility."
+    },
+    {
+      "question": "A company hedges 100% and then the rate moves favorably. How should this be judged?",
+      "options": [
+        "A mistake - they should have waited on the rate, not locked in early",
+        "As planned - hedging trades away the upside for protection from the downside",
+        "Cannot be judged without knowing the year-end exchange rate",
+        "A success because the company avoided every possible risk"
+      ],
+      "explanation": "Hedging is not a forecast. Judging it by which way the rate eventually moved is the wrong criterion - the right question is whether the company could plan on a fixed, certain number."
+    }
+  ],
+  "keyTakeaways": [
+    "FX forward: the most common tool for hedging import/export exchange-rate risk",
+    "A company with future foreign-currency cash flows should clearly identify its exposure before choosing a hedging tool",
+    "Accepting the trade-off of potential upside for certainty is the essence of hedging"
+  ],
+  "practicePrompt": {
+    "question": "A Vietnamese exporter will receive $1 million from an overseas customer in 6 months, and worries VND may appreciate against USD in that time (meaning fewer converted VND). Which derivative should the company use to lock in the conversion rate now?",
+    "options": [
+      "The company should wait until it receives the money, then convert at whatever rate applies then, with no derivative needed",
+      "An FX forward is the most common tool for hedging import/export exchange-rate risk",
+      "The company should use an Interest Rate Swap, since this tool solves every type of corporate financial risk",
+      "The company should buy shares of other exporters to hedge its exchange-rate risk"
+    ],
+    "explanation": "FX forward: the most common tool for hedging import/export exchange-rate risk. A company with future foreign-currency cash flows should clearly identify its exposure before choosing a hedging tool - accepting the trade-off of potential upside (if the rate moves favorably) for certainty is the essence of hedging."
+  },
+  "summary": {
+    "keyIdea": "FX forward: the most common tool for hedging import/export exchange-rate risk",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to real decisions.",
+    "action": "A company with future foreign-currency cash flows should clearly identify its exposure before choosing a hedging tool"
+  },
+  "application": {
+    "title": "Work through an FX forward calculation",
+    "message": "Suppose a company will receive $100,000 in 6 months and signs a forward to sell USD for VND at today's fixed rate - calculate the guaranteed VND amount it will receive regardless of how the market rate later moves.",
+    "secondary": "This simple calculation captures exactly the uncertainty-removing nature of hedging."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "An exporter signs a sales contract and will receive USD after a few months - it is 'long' future USD, but its operating costs are in VND. **The risk:** if VND appreciates (USD depreciates), the converted value of that USD receivable falls."
+    },
+    {
+      "type": "heading",
+      "text": "Forward: locking in the rate, removing uncertainty"
+    },
+    {
+      "type": "paragraph",
+      "text": "Signing a forward to sell USD for VND at today's fixed rate removes this uncertainty completely, regardless of which way the market rate later moves. Vietnamese garment and seafood exporters commonly sign FX forward contracts with commercial banks to lock in the conversion rate for USD receivables, protecting the profit margin calculated when signing the export contract."
+    },
+    {
+      "type": "heading",
+      "text": "If VND depreciates after hedging, is that a 'loss'?"
+    },
+    {
+      "type": "paragraph",
+      "text": "If VND depreciates sharply against USD after the company has signed a forward to sell USD at a fixed rate, it's true they miss the chance to receive more VND had they not hedged - but this is only an opportunity cost. The original goal was to eliminate volatility risk, and they achieved exactly that risk-management goal, not a profit-maximization goal."
+    },
+    {
+      "type": "heading",
+      "text": "Forward or option: trading off free versus flexible"
+    },
+    {
+      "type": "paragraph",
+      "text": "If the company chooses to hedge with a put option (buying the right to sell USD) instead of a forward, it has the RIGHT - not the obligation - to sell USD at the chosen rate. If the market rate later turns out more favorable, it can choose NOT to exercise and sell at the better market rate - a flexibility the forward (a binding obligation) doesn't have. In exchange, it must pay a premium upfront, while the forward costs nothing but must be executed even if unfavorable."
+    },
+    {
+      "type": "list",
+      "items": [
+        "FX forward: the most common tool for hedging import/export exchange-rate risk",
+        "Clearly identify the exposure (long or short the foreign currency) before choosing a hedging tool",
+        "Forward: free but must be executed",
+        "Option: costs a premium but is more flexible, can be left unexercised if unfavorable"
+      ]
+    }
+  ]
+}

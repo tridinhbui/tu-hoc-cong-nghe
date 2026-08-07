@@ -1,0 +1,191 @@
+{
+  "slug": "bieu-thue-luy-tien-tung-phan-5-bac",
+  "title": "Tax Track, Lesson 2: The progressive tax bands - what 'moving up a band' really means",
+  "subtitle": "Why a pay rise never leaves you with less money",
+  "duration": "8 min",
+  "whyItMatters": "Plenty of people turn down a pay rise or extra work for fear of 'jumping a tax band and being taxed more'. This is the single most common misunderstanding about income tax, and it costs people real income. This lesson settles it for good.",
+  "openingQuestion": "Your taxable income is 9.8 million a month (band 1, taxed at 5%). If it rises to 11 million, crossing the 10 million threshold into band 2 (10%), what happens?",
+  "openingOptions": [
+    "All 11 million is taxed at 10%, so you take home less than before",
+    "Only the 1 million above the threshold is taxed at 10%; the first 10 million is still taxed at 5%",
+    "You have to pay back tax for all the earlier months as well",
+    "The rate for the whole year is lifted to 10% from January"
+  ],
+  "explanation": "This is what 'progressive BAND BY BAND' means: each band's rate applies only to the income falling inside that band. The first 10 million is always taxed at 5%, whatever your total income. Only the 1 million above the threshold is taxed at 10%. So when income rises, take-home pay ALWAYS rises - a pay rise can never leave you with less.",
+  "diagram": [
+    { "label": "First 10 million → 5%", "arrow": true },
+    { "label": "The part from 10 to 30 million → 10%", "arrow": true },
+    { "label": "The part from 30 to 60 million → 20%", "arrow": true },
+    { "label": "Add them up = total tax due" }
+  ],
+  "realWorldExample": {
+    "company": "A common misunderstanding at work",
+    "description": "'Don't take on another project, you'll jump a tax band' is bad advice that spreads very widely. Under band-by-band progression, the extra income is taxed only at the rate of the band it falls into, and the income you already had is entirely unaffected. Turning down income for fear of a tax band is always a losing decision."
+  },
+  "quiz": [
+    {
+      "question": "What does 'progressive band by band' mean?",
+      "options": [
+        "All income is taxed at the rate of the highest band reached",
+        "The rate rises month by month over the course of the year",
+        "Each slice of income is taxed only at the rate of the band it falls into",
+        "The tax is paid in several instalments across the year"
+      ],
+      "explanation": "Income is 'sliced' by band; each slice carries that band's own rate, and the results are added together."
+    },
+    {
+      "question": "Taxable income of 35 million a month in 2026. How is the tax calculated?",
+      "options": [
+        "Only the part above 30 million is taxed; the rest is exempt",
+        "Multiply all 35 million by the top rate reached, 20%",
+        "Multiply 35 million by the average tax rate for the year",
+        "(10 × 5%) + (20 × 10%) + (5 × 20%) = 3.5 million"
+      ],
+      "explanation": "Slice it: the first 10 million × 5% = 0.5; the part from 10 to 30 (that is, 20 million) × 10% = 2; the part from 30 to 35 (that is, 5 million) × 20% = 1. Total = 3.5 million."
+    },
+    {
+      "question": "How does the marginal rate differ from the effective rate?",
+      "options": [
+        "Marginal applies to the next dong earned; effective is total tax over total income",
+        "Marginal is worked out yearly while effective is worked out month by month",
+        "Marginal is published by the tax authority, effective is calculated by the taxpayer",
+        "They are the same idea, named differently in different documents"
+      ],
+      "explanation": "On taxable income of 35 million the marginal rate is 20% (the band you are standing in), but the effective rate is only 3.5/35 = 10%. These two numbers are constantly confused."
+    },
+    {
+      "question": "Why can a pay rise never reduce your take-home pay?",
+      "options": [
+        "Because the increase is exempt from tax in the first year",
+        "Because the top rate is only 35%, which is always less than 100%",
+        "Because the progressive scale applies to the whole of your income",
+        "Because the personal deduction rises along with the new salary"
+      ],
+      "explanation": "Even in the top band at 35%, you still keep 65% of the extra income. There is no threshold at which net income falls as gross income rises."
+    },
+    {
+      "question": "Why is the effective rate always below the marginal rate under a band-by-band scale?",
+      "options": [
+        "Because the effective rate is worked out after all insurance has been deducted",
+        "Because the marginal rate applies only to income above the highest threshold",
+        "Because income sitting in the lower bands still carries those bands' lower rates",
+        "Because the tax authority refunds the difference between the two rates"
+      ],
+      "explanation": "The marginal rate is what applies to the next dong of income; the effective rate is total tax divided by total income. Because the first dongs always enjoy the lower bands, the second figure is always smaller - and this is where many people believe they are paying more than they really are."
+    }
+  ],
+  "keyTakeaways": [
+    "The 2026 scale has 5 bands: 5% / 10% / 20% / 30% / 35%, at thresholds of 10 - 30 - 60 - 100 million",
+    "Progressive BAND BY BAND: each rate applies only to income inside that band, never to the whole",
+    "The effective rate is always below the marginal rate - don't confuse the two numbers",
+    "More income always means more take-home pay, with no exceptions"
+  ],
+  "practicePrompt": {
+    "question": "Nam has taxable income of 62 million a month. He is offered an extra project worth 3 million a month but worries he will 'jump into the 30% band' and lose out. What is the right advice?",
+    "options": [
+      "Turn it down, because all 65 million will now be taxed at 30%",
+      "Take it: only the extra 3 million is taxed at 30%, so 0.9 million more tax and he still keeps 2.1 million",
+      "Take it, but ask to be paid in cash to avoid the tax",
+      "Turn it down, because his effective rate will pass 30%"
+    ],
+    "explanation": "Nam is already in band 4 (above 60 million, taxed at 30%). The extra 3 million is taxed at exactly 30% = 0.9 million, leaving him 2.1 million. The original 60 million still carries the lower-band rates exactly as before, entirely unchanged. Turning it down means throwing away 2.1 million a month."
+  },
+  "summary": {
+    "keyIdea": "Each band's rate applies only to the income inside that band",
+    "commonMistake": "Believing that crossing a threshold taxes ALL your income at the new rate, and so turning down chances to earn more.",
+    "action": "Work out your own effective rate and compare it with your marginal rate to see the gap."
+  },
+  "application": {
+    "title": "Work out your effective tax rate",
+    "message": "Take your total income tax for the year and divide it by your total income for the year. That number is almost always far below the 'tax band' you think you are in.",
+    "secondary": "This is the figure to use when comparing job offers, not the marginal rate."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "If there is one misunderstanding about tax worth settling for good, it is the warning to 'watch out for jumping a tax band'. Getting band-by-band progression wrong leads people to turn income down on purpose - a loss that is entirely unnecessary."
+    },
+    {
+      "type": "heading",
+      "text": "The 5-band scale, from the 2026 tax year"
+    },
+    {
+      "type": "paragraph",
+      "text": "Under Article 9 of the 2025 Personal Income Tax Law (Law 109/2025/QH15), the progressive scale drops from 7 bands to 5, applying to income from wages and salaries. Important: the thresholds below are measured on **taxable income** - what remains AFTER compulsory insurance and the personal deduction, not on gross salary."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Band 1 - up to 10 million VND a month: 5%",
+        "Band 2 - above 10 up to 30 million VND a month: 10%",
+        "Band 3 - above 30 up to 60 million VND a month: 20%",
+        "Band 4 - above 60 up to 100 million VND a month: 30%",
+        "Band 5 - above 100 million VND a month: 35%"
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Slicing the income: how it is actually calculated"
+    },
+    {
+      "type": "formula",
+      "title": "Example: taxable income of 35 million VND a month",
+      "equation": "Tax = (10 × 5%) + (20 × 10%) + (5 × 20%)",
+      "example": {
+        "title": "Sliced by band",
+        "calculation": "Slice 1: 10 million × 5% = 0.5 million · Slice 2: 20 million (the part from 10 to 30) × 10% = 2 million · Slice 3: 5 million (the part from 30 to 35) × 20% = 1 million",
+        "result": "Total tax = 3.5 million VND",
+        "explanation": "The marginal rate is 20% (the band you are standing in), but the effective rate is only 3.5 / 35 = 10%. This is why a 'tax band' sounds far more frightening than it is."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "The crux",
+      "text": "There is no income level at which crossing over reduces your take-home pay. Even in the top band at 35%, you keep 65 cents of every extra dong. Turning down a pay rise for fear of tax is always wrong arithmetically."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "WRONG reading (whole-income progression)",
+        "text": "Income of 35 million → all of it taxed at 20% → tax of 7 million. This is not how Vietnamese law works."
+      },
+      "right": {
+        "label": "RIGHT reading (band-by-band progression)",
+        "text": "Income of 35 million → sliced by band → tax of 3.5 million. Exactly half the wrong figure."
+      }
+    },
+    {
+      "type": "conceptTable",
+      "title": "Tax band terminology",
+      "concepts": [
+        {
+          "vi": "Lũy tiến từng phần",
+          "en": "Progressive marginal taxation",
+          "def": "Each slice of income carries its own band's rate, rather than one rate across the whole"
+        },
+        {
+          "vi": "Thuế suất biên",
+          "en": "Marginal tax rate",
+          "def": "The rate applied to the next dong of income you earn"
+        },
+        {
+          "vi": "Thuế suất hiệu dụng",
+          "en": "Effective tax rate",
+          "def": "Total tax divided by total income - always below the marginal rate"
+        },
+        {
+          "vi": "Thu nhập tính thuế",
+          "en": "Taxable income",
+          "def": "Income after compulsory insurance and the personal deduction"
+        }
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A tax band applies to a slice of income, never to the whole of it.",
+        "Next lesson: the personal deduction - the largest deduction you have, and the one many people forget to register."
+      ]
+    }
+  ]
+}

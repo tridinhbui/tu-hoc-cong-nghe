@@ -1,0 +1,175 @@
+{
+  "slug": "giam-tru-gia-canh-nguoi-phu-thuoc",
+  "title": "Tax Track, Lesson 3: The personal deduction - the biggest deduction you have",
+  "subtitle": "15.5 million for yourself, 6.2 million for each dependant",
+  "duration": "8 min",
+  "whyItMatters": "The family circumstance deduction is the largest single item in the income tax formula - larger even than compulsory insurance. Forgetting to register one dependant can mean overpaying by millions of dong a year, and a great many people have no idea they qualify.",
+  "openingQuestion": "In 2026, how much is the family circumstance deduction for the taxpayer themselves, per month?",
+  "openingOptions": [
+    "11 million VND, unchanged for many years",
+    "9 million VND",
+    "15.5 million VND, a sharp rise on the old level",
+    "There is no fixed amount; it depends on the province you work in"
+  ],
+  "explanation": "The family circumstance deduction comes off your income before the tax scale is applied, and for most salaried people it is the largest deduction they have. From the 2026 tax year the amount for yourself is 15.5 million a month, and 6.2 million for each dependant. The part you have to act on: dependants must be registered with supporting documents, each dependant can be claimed by only one taxpayer, and not registering simply means overpaying.",
+  "diagram": [
+    { "label": "Income after insurance", "arrow": true },
+    { "label": "− 15.5m (yourself)", "arrow": true },
+    { "label": "− 6.2m × number of dependants", "arrow": true },
+    { "label": "= Taxable income" }
+  ],
+  "realWorldExample": {
+    "company": "An employee with a young child and elderly parents",
+    "description": "An employee on 30 million gross with 2 dependants (a young child and a parent past working age with no income) has total deductions of 15.5 + 12.4 = 27.9 million VND. After a further 3.15 million of insurance, taxable income is NEGATIVE - meaning no income tax is due at all. Without registering the dependants, that same person pays tax as normal."
+  },
+  "quiz": [
+    {
+      "question": "How much is the 2026 deduction for each dependant?",
+      "options": [
+        "4.4 million VND a month",
+        "50% of the personal deduction, varying with income",
+        "15.5 million VND a month",
+        "6.2 million VND a month"
+      ],
+      "explanation": "Resolution 110/2025/UBTVQH15 sets 6.2 million VND a month per dependant, up from the previous 4.4 million."
+    },
+    {
+      "question": "What is the formula for the total family circumstance deduction?",
+      "options": [
+        "15.5 million + (6.2 million × number of dependants)",
+        "6.2 million × number of dependants, with nothing for yourself",
+        "15.5 million × number of people in the household",
+        "15.5 million flat, regardless of how many dependants there are"
+      ],
+      "explanation": "The taxpayer always gets 15.5 million, plus 6.2 million for each validly registered dependant."
+    },
+    {
+      "question": "What happens if you qualify for a dependant but never register them?",
+      "options": [
+        "You face an administrative penalty",
+        "You pay more tax than you actually owe",
+        "Nothing, because the tax authority updates it automatically",
+        "The dependant has to file and pay on your behalf"
+      ],
+      "explanation": "The dependant deduction only applies once you register and provide supporting documents. Not registering means volunteering to overpay."
+    },
+    {
+      "question": "How many taxpayers can claim the same dependant at once?",
+      "options": [
+        "No limit - anyone supporting them can claim",
+        "Up to two, for instance both the mother and the father",
+        "Only one, within a single tax period",
+        "It is up to the family to agree; there is no rule"
+      ],
+      "explanation": "Each dependant can be counted once, against one taxpayer, in a tax period. Couples need to agree who registers, or the duplicate is struck out at the annual reconciliation."
+    },
+    {
+      "question": "What must a dependant satisfy to be registered for the deduction?",
+      "options": [
+        "No income, or income below the prescribed threshold, plus supporting documents",
+        "Living at the same registered address as the taxpayer for the whole tax year",
+        "Being a biological child or parent of the taxpayer, with no other relationship counted",
+        "Never having been registered as a dependant by any taxpayer in the past"
+      ],
+      "explanation": "The conditions turn on whether the person can support themselves, not on where they live or on a direct blood line. The practical point to remember: each dependant can be claimed by only one taxpayer, so couples have to agree whose name it goes under."
+    }
+  ],
+  "keyTakeaways": [
+    "2026: 15.5 million a month for yourself, 6.2 million a month per dependant (Resolution 110/2025/UBTVQH15)",
+    "Total deduction = 15.5m + 6.2m × number of dependants",
+    "You have to register, with supporting documents - not registering means overpaying tax",
+    "Each dependant can be registered against only ONE taxpayer in the same tax period"
+  ],
+  "practicePrompt": {
+    "question": "Lan earns 28 million gross and has one young child, but has never registered a dependant. If she registers, how much tax does she save each month? (Insurance 10.5%)",
+    "options": [
+      "Nothing, since her income is already below the taxable threshold",
+      "About 620,000 VND - exactly 10% of 6.2 million",
+      "About 310,000 VND, because the extra deduction comes off income sitting in the 5% band",
+      "About 6.2 million VND, exactly the deduction itself"
+    ],
+    "explanation": "Before registering: taxable income = 28 − 2.94 − 15.5 = 9.56 million, entirely within band 1 → tax = 9.56 × 5% = 478,000 VND. After registering: 9.56 − 6.2 = 3.36 million → tax = 3.36 × 5% = 168,000 VND. Saving = 478,000 − 168,000 = 310,000 VND a month, about 3.7 million a year. Because the deducted slice sits in the 5% band, the saving is exactly 6.2m × 5%."
+  },
+  "summary": {
+    "keyIdea": "Total deduction = 15.5m (yourself) + 6.2m × number of dependants",
+    "formula": "Taxable income = Gross − Insurance − Family circumstance deduction",
+    "commonMistake": "Not registering a dependant who qualifies, or having both spouses register the same child.",
+    "action": "Go through the dependants you are entitled to register and file the paperwork now."
+  },
+  "application": {
+    "title": "Review your dependants",
+    "message": "List children below the prescribed age, parents past working age with no or very low income, and relatives you directly support. Check them against the current conditions and file the registration through your company.",
+    "secondary": "If you find you missed someone in earlier periods, the overpayment can be dealt with at the annual reconciliation - the subject of lesson 6."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "In the income tax formula, the family circumstance deduction is the largest item - larger even than the 10.5% of compulsory insurance. At the 2026 levels, the personal part alone is enough that someone earning below 19 million pays almost no tax at all."
+    },
+    {
+      "type": "heading",
+      "text": "The new amounts, from the 2026 tax year"
+    },
+    {
+      "type": "paragraph",
+      "text": "Under Resolution 110/2025/UBTVQH15 the deduction rises considerably: **the taxpayer's own amount goes from 11 to 15.5 million VND a month**, and **each dependant from 4.4 to 6.2 million VND a month**. That is a rise of nearly 41%, reflecting an adjustment for prices and income levels."
+    },
+    {
+      "type": "formula",
+      "title": "Total family circumstance deduction",
+      "equation": "Deduction = 15.5 million + (6.2 million × number of dependants)",
+      "example": {
+        "title": "Someone with 2 dependants",
+        "calculation": "15.5 + (6.2 × 2) = 15.5 + 12.4",
+        "result": "27.9 million VND a month",
+        "explanation": "On 30 million gross with 3.15 million of insurance, taxable income = 30 − 3.15 − 27.9 = −1.05 million. A negative figure means no income tax arises."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "No registration, no deduction"
+    },
+    {
+      "type": "paragraph",
+      "text": "The deduction for yourself is applied automatically. The deduction for dependants is **not**. You have to declare them and file supporting documents through HR or directly with the tax authority. Many people qualify and have never registered, and every month that passes is an overpayment you cannot recover except at the annual reconciliation."
+    },
+    {
+      "type": "callout",
+      "label": "One dependant, one claimant",
+      "text": "Each dependant can be counted against only ONE taxpayer in the same tax period. Both parents registering the same child is a common error and will be struck out when the tax authority reconciles the data - agree in advance who should claim (usually whoever sits in the higher tax band)."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Deduction terminology",
+      "concepts": [
+        {
+          "vi": "Giảm trừ gia cảnh",
+          "en": "Family circumstance deduction",
+          "def": "The amount taken off income before tax is calculated, covering both yourself and your dependants"
+        },
+        {
+          "vi": "Người phụ thuộc",
+          "en": "Dependant",
+          "def": "Someone the taxpayer is responsible for supporting, under the conditions set in law"
+        },
+        {
+          "vi": "Hồ sơ chứng minh",
+          "en": "Supporting documents",
+          "def": "Papers confirming the relationship and the dependant's circumstances at registration"
+        },
+        {
+          "vi": "Mã số thuế người phụ thuộc",
+          "en": "Dependant tax code",
+          "def": "A code issued by the tax authority, used to stop one person being claimed in several places"
+        }
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The family circumstance deduction is your largest one - but only once you register it.",
+        "Next lesson: where the 10.5% deducted for insurance goes, and what you get back for it."
+      ]
+    }
+  ]
+}

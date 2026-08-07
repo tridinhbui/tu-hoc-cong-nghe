@@ -1,0 +1,183 @@
+{
+ "slug": "loai-trai-phieu-khac",
+ "title": "Other bond-like products: insurance, deposits",
+ "subtitle": "Other bond types",
+ "duration": "6 min",
+ "openingQuestion": "How does a Certificate of Deposit (CD) differ from an ordinary bank savings deposit?",
+ "openingOptions": [
+  "A CD and an ordinary savings deposit are essentially identical, differing only in the name the bank uses",
+  "A fixed term, a slightly higher rate than savings, and it can be transferred",
+  "A CD carries a risk of losing capital comparable to investing directly in stocks on an exchange",
+  "A CD carries no deposit insurance at all, while an ordinary savings passbook is always fully insured"
+ ],
+ "explanation": "A Certificate of Deposit (CD) is a negotiable instrument issued by a bank, essentially similar to a term deposit but usually with a longer fixed term, a slightly higher rate, and the ability to be transferred/traded between investors - unlike an ordinary savings passbook, which is tied to a specific individual and hard to transfer.",
+ "diagram": [
+  {
+   "label": "Beyond bonds, there are other fixed-income instruments",
+   "arrow": true
+  },
+  {
+   "label": "Certificate of Deposit: like a term deposit but transferable",
+   "arrow": true
+  },
+  {
+   "label": "Investment-linked insurance: a hybrid of protection and investment, higher fees",
+   "arrow": true
+  },
+  {
+   "label": "Read the fees, term, and early-withdrawal conditions of each carefully"
+  }
+ ],
+ "interactiveType": "bond",
+ "realWorldExample": {
+  "company": "Certificates of Deposit at Vietnamese commercial banks and investment-linked insurance bonds",
+  "description": "Many banks in Vietnam, such as SHB, HDBank, and others, have issued long-term certificates of deposit (18-24 months or more) at a rate higher than ordinary savings, especially attractive when the bank needs to raise long-term capital. In addition, some life insurers (Prudential, Manulife, AIA) offer investment-linked insurance products where part of the premium is allocated into bond funds or balanced funds - this isn't strictly a 'bond' in the true sense but operates on a similar logic: a committed return and a priority on preserving capital, compared with pure equity funds."
+ },
+ "quiz": [
+  {
+   "question": "What is the main difference between a Certificate of Deposit (CD) and an ordinary savings passbook?",
+   "options": [
+    "A CD is only for institutions; individuals aren't allowed to buy one",
+    "A CD carries a risk of losing capital comparable to investing in stocks",
+    "A CD can be transferred and its rate is slightly higher than savings",
+    "A CD earns no interest at all for the holder"
+   ],
+   "correct": 2,
+   "explanation": "A certificate of deposit differs from a savings passbook by being transferable as a negotiable instrument, usually coming with a longer fixed term and a slightly higher rate to compensate for lower liquidity (hard to withdraw early without losing interest)."
+  },
+  {
+   "question": "How does investment-linked life insurance (with a portion allocated to bond funds) differ from buying a bond directly?",
+   "options": [
+    "Investment-linked insurance always delivers a higher return than a bond",
+    "The two products are identical in nature and in how they operate",
+    "No insurance product has anything to do with bonds, and this transferability applies only to certificates issued with a term under twelve months",
+    "It combines protection and investment, with extra fees and its own terms"
+   ],
+   "correct": 3,
+   "explanation": "Investment-linked insurance is a hybrid product, combining financial protection (a payout when a covered risk occurs) with indirect investment in funds (which may include bonds), usually with management fees and contract terms far more complex than buying a specific bond directly."
+  },
+  {
+   "question": "Why does a certificate of deposit usually pay a slightly higher rate than a savings passbook of the same term?",
+   "options": [
+    "Because the buyer commits to a longer deposit and the bank gets more stable funding",
+    "Because a certificate of deposit isn't covered by deposit insurance like a passbook",
+    "Because a certificate of deposit is only sold to large institutional investors",
+    "Because CD interest is fully tax-exempt"
+   ],
+   "correct": 0,
+   "explanation": "A bank pays extra in exchange for a more stable, longer-term source of funds, which helps it match its funding with long-term loans. That slightly higher rate is the cost the bank is willing to pay for that certainty."
+  },
+  {
+   "question": "Why is investment-linked insurance hard to compare directly with a bond?",
+   "options": [
+    "Because investment-linked insurance always delivers a higher return than every type of bond",
+    "Because insurance fees and benefits are mixed into the investment portion, making the return hard to isolate, and this distinction only matters once the insurance premium itself exceeds a certain threshold",
+    "Because insurance products contain no financial investment component whatsoever",
+    "Because bonds and insurance are both managed by the exact same government agency"
+   ],
+   "correct": 1,
+   "explanation": "You're buying two things in one contract: protection against death risk, and an investment. The insurance charge, fund management fee, and initial fee are deducted before the remainder is invested, so the announced return figure can't be compared directly with a bond's coupon."
+  },
+  {
+   "question": "How does a convertible bond differ from an ordinary bond?",
+   "options": [
+    "It lets the investor demand early repayment of principal at any point in time",
+    "It lets the issuer switch to a different currency when the exchange rate swings sharply",
+    "It lets the holder convert to shares at a predetermined ratio, so the coupon is usually lower, and this right only becomes valuable once the underlying stock price has already doubled",
+    "It lets the entire investment be transferred to a different company in the same industry"
+   ],
+   "correct": 2,
+   "explanation": "The conversion right is a valuable option: if the stock rises sharply, you convert into shares and capture that gain. Because you're given an extra right, the issuer pays a lower coupon - that's how it borrows more cheaply."
+  },
+  {
+   "question": "What should a beginner pay most attention to when offered products described as 'like a bond but with higher interest'?",
+   "options": [
+    "It's enough just to confirm a bank is distributing the product",
+    "Choose whichever product has the highest rate",
+    "Prioritize whichever product the most acquaintances have recently bought",
+    "Ask clearly who is actually responsible for paying and where the risk lies"
+   ],
+   "correct": 3,
+   "explanation": "A bank distributing a product doesn't mean the bank is responsible for repaying it - this is exactly the misunderstanding that cost many people money in the 2022 bond incidents. The first question is always: if the issuer doesn't pay, who does?"
+  }
+ ],
+ "keyTakeaways": [
+  "A Certificate of Deposit (CD) is a negotiable instrument issued by a bank, similar to a term deposit but transferable and usually with a slightly higher rate",
+  "Investment-linked life insurance has a portion allocated to bond funds, but it's a hybrid product combining protection and investment, with its own management fees and terms - read the contract carefully before signing up",
+  "When comparing these 'bond-like' products, always consider: the term, liquidity (does withdrawing early lose interest), the actual return received, and the fees involved"
+ ],
+ "practicePrompt": {
+  "question": "An advisor offers you an 'investment-linked insurance' product with a portion allocated to a bond fund, saying it's 'exactly like buying a bond directly but safer'. Is this claim accurate?",
+  "options": [
+   "Not entirely accurate - investment-linked insurance is a hybrid product, with extra management fees and its own terms",
+   "Completely accurate, since investment-linked insurance and buying a bond directly are just two different names for the same financial product",
+   "Not accurate, because investment-linked insurance always delivers a far lower return than buying a bond directly in every case",
+   "Partly accurate, but only because investment-linked insurance has much lower management fees than buying a bond directly"
+  ],
+  "correct": 0,
+  "explanation": "Investment-linked insurance is a hybrid product, not a pure bond - the contract needs to be read carefully to understand its fees and terms before comparing it with buying a bond directly."
+ },
+ "summary": {
+  "keyIdea": "A Certificate of Deposit (CD) is a negotiable instrument issued by a bank, similar to a term deposit but transferable and usually with a slightly higher rate",
+  "commonMistake": "Reading the concept as a line to recite rather than a principle to apply to a real decision.",
+  "action": "Investment-linked life insurance has a portion allocated to bond funds, but it's a hybrid product combining protection and investment, with its own management fees and terms - read the contract carefully before signing up"
+ },
+ "application": {
+  "title": "Compare a CD and a savings deposit",
+  "message": "Look up the certificate-of-deposit rate and the savings rate for a comparable term at one bank, and note the different early-withdrawal terms between the two.",
+  "secondary": "The early-withdrawal terms usually matter more than the small rate gap."
+ },
+ "sections": [
+  {
+   "type": "lead",
+   "text": "Beyond the government and corporate bonds you're already familiar with, the financial market has several products that are 'relatives' of bonds, easy to confuse if you don't understand their true nature."
+  },
+  {
+   "type": "heading",
+   "text": "Certificate of Deposit (CD)"
+  },
+  {
+   "type": "paragraph",
+   "text": "A certificate of deposit is a negotiable instrument issued by a bank to raise capital, similar to a term deposit but with a few differences: it usually has a fixed term (from a few months to a few years), a rate usually slightly higher than a savings deposit of the same term to compensate for lower flexibility, and most importantly it can be transferred and traded between investors on the secondary market - something an ordinary savings passbook cannot do."
+  },
+  {
+   "type": "comparison",
+   "left": {
+    "label": "Ordinary savings passbook",
+    "text": "Tied to a specific individual, not transferable, early withdrawal usually only earns the demand-deposit rate (very low)."
+   },
+   "right": {
+    "label": "Certificate of Deposit (CD)",
+    "text": "Can be transferred as a negotiable instrument, usually a slightly higher rate, but still carries term commitments and rules for handling early withdrawal."
+   }
+  },
+  {
+   "type": "heading",
+   "text": "Investment-linked life insurance"
+  },
+  {
+   "type": "paragraph",
+   "text": "Some life insurance products today come with an investment feature, called investment-linked insurance. Part of the premium you pay is allocated into investment funds, including bond funds or balanced funds (a mix of stocks and bonds). This isn't 'buying a bond' in the true sense, but buying fund units indirectly through an insurance contract, combined with a protection purpose (paying out on death or illness)."
+  },
+  {
+   "type": "callout",
+   "label": "An important note",
+   "text": "Investment-linked insurance usually carries management fees, risk-insurance charges, and fairly high early-withdrawal fees in the first years - so this product needs a long-term commitment (usually over 10 years) to optimize its cost. Don't mistake it for a pure bond-investing channel with a return equivalent to buying a bond directly."
+  },
+  {
+   "type": "list",
+   "items": [
+    "When considering these 'bond-like' products, always ask clearly: what is the committed rate/return, is it guaranteed or just an estimate, and what are the term and early-withdrawal conditions",
+    "A certificate of deposit fits someone who wants a slightly higher rate than savings while keeping a similarly high level of safety",
+    "Investment-linked insurance fits when the main goal is long-term financial protection combined with saving, not when the goal is purely optimizing investment return"
+   ]
+  },
+  {
+   "type": "closing",
+   "lines": [
+    "Not every product with a fixed rate is a pure bond - a certificate of deposit and investment-linked insurance are hybrid products whose true nature needs to be understood before signing up.",
+    "Always read the terms on fees, term, and early-withdrawal conditions carefully, rather than only looking at the advertised interest or return figure."
+   ]
+  }
+ ]
+}

@@ -23,6 +23,10 @@
     "subtitle": "How much revenue does each dong of assets generate?",
     "duration": "5 min"
   },
+  "bai-cuoi-phan-tich-doanh-nghiep-hoan-chinh": {
+    "title": "Final lesson - Analyze a complete company from A to Z yourself",
+    "subtitle": "Applying all 200 days to a real analysis workflow"
+  },
   "balance-sheet-doc": {
     "title": "Reading a Balance Sheet from start to finish",
     "subtitle": "How to read a balance sheet in 5 minutes",
@@ -33,6 +37,16 @@
     "subtitle": "Double-entry bookkeeping and the logic behind every number",
     "duration": "5 min"
   },
+  "bao-hiem": {
+    "title": "Insurance: protecting your portfolio from risk",
+    "subtitle": "Insurance role in planning",
+    "duration": "7 min"
+  },
+  "bao-mat-tai-chinh": {
+    "title": "Financial security: protecting your money from fraud",
+    "subtitle": "Financial security",
+    "duration": "7 min"
+  },
   "beta-la-gi": {
     "title": "What is Beta in finance?",
     "subtitle": "Measuring a stock's sensitivity to the broader market",
@@ -42,6 +56,16 @@
     "title": "Beta in a portfolio",
     "subtitle": "Measuring how sensitive a portfolio is to the broad market's swings",
     "duration": "6 min"
+  },
+  "bhxh-bhyt-bhtn-10-phay-5-phan-tram": {
+    "title": "Tax Track, Lesson 4: Social, health and unemployment insurance - where does 10.5% of your salary go?",
+    "subtitle": "The second-largest deduction on your payslip, and what you get for it",
+    "duration": "8 min"
+  },
+  "bieu-thue-luy-tien-tung-phan-5-bac": {
+    "title": "Tax Track, Lesson 2: The progressive tax bands - what 'moving up a band' really means",
+    "subtitle": "Why a pay rise never leaves you with less money",
+    "duration": "8 min"
   },
   "bo-3-bao-cao": {
     "title": "What makes up the three financial statements?",
@@ -68,9 +92,23 @@
     "subtitle": "Three financial actors, three different goals, three different toolkits.",
     "duration": "7 min"
   },
+  "cach-mua-co-phieu": {
+    "title": "How to buy stocks",
+    "subtitle": "Your first step into the stock market"
+  },
+  "cai-cach-thue-tncn-2026-tu-7-bac-xuong-5-bac": {
+    "title": "Tax Track, Lesson 5: The 2026 reform - from 7 bands to 5, and who gains",
+    "subtitle": "Comparing the tax bill before and after the reform",
+    "duration": "8 min"
+  },
   "call-option-la-gi": {
     "title": "What Is a Call Option?",
     "subtitle": "The right to buy an asset at a fixed price - expecting the price to rise"
+  },
+  "can-bang-tuoi": {
+    "title": "Balancing stocks and bonds by age",
+    "subtitle": "Age-based allocation",
+    "duration": "7 min"
   },
   "capex-vs-opex": {
     "title": "CapEx vs OpEx",
@@ -87,6 +125,11 @@
     "subtitle": "Capital Asset Pricing Model",
     "duration": "7 min"
   },
+  "case-danh-muc-gia-dinh": {
+    "title": "Case study: Building a portfolio for a family",
+    "subtitle": "Family portfolio example",
+    "duration": "8 min"
+  },
   "case-dinh-gia-pe-va-dcf": {
     "title": "Mini case - Valuing a company with P/E and a simple DCF",
     "subtitle": "Practical application: combining relative and absolute methods to make a decision",
@@ -101,9 +144,23 @@
     "title": "Small Case - An Airline Hedges Oil Prices",
     "subtitle": "Applying theory in practice: building a hedging strategy for fuel cost"
   },
+  "case-tong-ket-tinh-thue-toi-uu-hop-phap": {
+    "title": "Tax Track, Lesson 8: Putting it together - working out tax for 3 real profiles",
+    "subtitle": "Assembling the whole formula, and the legal ways to pay less",
+    "duration": "10 min"
+  },
+  "case-trai-phieu": {
+    "title": "Case study: building a simple bond portfolio",
+    "subtitle": "Bond portfolio example",
+    "duration": "6 min"
+  },
   "case-xay-danh-muc-3-tai-san": {
     "title": "Small Case - Building a 3-Asset Portfolio",
     "subtitle": "Applying theory in practice: combining stocks, bonds, and gold based on correlation"
+  },
+  "case-xuat-khau-phong-ho-ty-gia": {
+    "title": "Small case - An exporter hedges its FX exposure",
+    "subtitle": "Real-world application: protecting export revenue from exchange-rate swings"
   },
   "cash-accounting": {
     "title": "What is cash accounting?",
@@ -135,15 +192,28 @@
     "subtitle": "How do the Fed and the State Bank steer the economy through interest rates?",
     "duration": "7 min"
   },
+  "chon-etf": {
+    "title": "How to choose the right ETF for you",
+    "subtitle": "Building a stock portfolio"
+  },
   "co-phieu-la-gi-day121": {
     "title": "What is a stock?",
     "subtitle": "A certificate of ownership in part of a business",
     "duration": "6 min"
   },
+  "co-phieu-la-gi": {
+    "title": "What is a stock? Why beginners should understand it",
+    "subtitle": "Stocks at a basic level"
+  },
   "co-tuc-chinh-sach": {
     "title": "Dividend Policy",
     "subtitle": "Pay a dividend or retain earnings for reinvestment?",
     "duration": "6 min"
+  },
+  "commodity": {
+    "title": "What is a commodity?",
+    "subtitle": "Standardized goods - the cost driver of the entire economy",
+    "duration": "7 min"
   },
   "comparable-company-analysis-la-gi": {
     "title": "What is Comparable Company Analysis?",
@@ -159,6 +229,10 @@
     "title": "Assets = Liabilities + Equity",
     "subtitle": "The basic accounting equation and why it always holds",
     "duration": "5 min"
+  },
+  "cong-ty-cong-khai": {
+    "title": "Public company vs private company",
+    "subtitle": "What is an IPO"
   },
   "cong-ty-lai-ma-het-tien": {
     "title": "Why can a profitable company run short of cash?",
@@ -229,6 +303,25 @@
     "subtitle": "Does the business have enough cash to pay its debts in the next 12 months?",
     "duration": "5 min"
   },
+  "dac-tinh-ca-nhan": {
+    "title": "Personal temperament: cautious or bold",
+    "subtitle": "Risk tolerance assessment",
+    "duration": "6 min"
+  },
+  "danh-muc-la-gi": {
+    "title": "What is a portfolio? Why you shouldn't put it all in one basket",
+    "subtitle": "Portfolio diversification",
+    "duration": "6 min"
+  },
+  "danh-muc-toi-uu": {
+    "title": "The optimal portfolio: how much in bonds, how much in stocks",
+    "subtitle": "Allocation between bonds and stocks",
+    "duration": "6 min"
+  },
+  "dca": {
+    "title": "DCA: investing periodically rather than all at once",
+    "subtitle": "Dollar-cost averaging"
+  },
   "dcf-la-gi-day133": {
     "title": "What is DCF?",
     "subtitle": "Valuing a company as the present value of all its future cash flows",
@@ -298,6 +391,11 @@
     "subtitle": "How to calculate net operating income, the relationship between NOI and the cap rate, and the three deductions beginners always forget",
     "duration": "11 min"
   },
+  "duration": {
+    "title": "Duration: a bond's sensitivity to interest rates",
+    "subtitle": "Bond duration concept",
+    "duration": "6 min"
+  },
   "ebit-operating-income": {
     "title": "EBIT and Operating Income",
     "subtitle": "Earnings before interest and tax - measuring pure operating efficiency",
@@ -326,6 +424,10 @@
   "etf-la-gi-day176": {
     "title": "What is an ETF?",
     "subtitle": "Exchange-traded fund - trades like a stock, diversifies like a fund"
+  },
+  "etf-la-gi": {
+    "title": "What is an ETF? Why is it safer than individual stocks",
+    "subtitle": "Diversified investment vehicle"
   },
   "ev-ebitda-dung-khi-nao": {
     "title": "When should EV/EBITDA be used?",
@@ -405,6 +507,11 @@
     "subtitle": "Present Value and Future Value are the foundation of every quantitative financial decision.",
     "duration": "8 min"
   },
+  "giam-tru-gia-canh-nguoi-phu-thuoc": {
+    "title": "Tax Track, Lesson 3: The personal deduction - the biggest deduction you have",
+    "subtitle": "15.5 million for yourself, 6.2 million for each dependant",
+    "duration": "8 min"
+  },
   "gordon-growth-method": {
     "title": "Gordon Growth Method",
     "subtitle": "The most common formula for calculating Terminal Value based on perpetual growth",
@@ -432,6 +539,11 @@
   "hedging-la-gi": {
     "title": "What Is Hedging?",
     "subtitle": "Using derivatives to reduce risk, not to earn extra profit"
+  },
+  "huu-tri-som": {
+    "title": "Early retirement: how much money you need",
+    "subtitle": "Early retirement planning",
+    "duration": "7 min"
   },
   "income-statement-la-gi": {
     "title": "Income Statement: the profit-and-loss report",
@@ -476,10 +588,19 @@
     "subtitle": "The discount rate that makes NPV = 0 - measuring a project's true return",
     "duration": "7 min"
   },
+  "ke-hoach-thua-ke": {
+    "title": "Estate planning: what to leave your children",
+    "subtitle": "Estate planning basics",
+    "duration": "7 min"
+  },
   "ke-toan-la-gi": {
     "title": "Accounting is the language of business",
     "subtitle": "Why every financial decision needs accounting",
     "duration": "5 min"
+  },
+  "ket-noi-tat-ca-tai-chinh": {
+    "title": "Connecting it all - Financial statements, Valuation, Risk, Markets",
+    "subtitle": "Looking back at the whole journey as one tightly linked system"
   },
   "khau-hao-co-ban": {
     "title": "What is depreciation?",
@@ -491,6 +612,10 @@
     "subtitle": "Not just a line of numbers on a screen - but a real economic right",
     "duration": "6 min"
   },
+  "khi-nao-ban-co-phieu": {
+    "title": "When should you sell a stock?",
+    "subtitle": "Exit strategy"
+  },
   "khoan-phai-thu-la-gi": {
     "title": "What are accounts receivable?",
     "subtitle": "Goods already sold but cash not yet in - a hidden risk in a pretty number",
@@ -501,20 +626,49 @@
     "subtitle": "Supplier debt - a burden, or a negotiating edge?",
     "duration": "5 min"
   },
+  "ky-vong-loi-nhuan": {
+    "title": "Realistic return expectations from stocks",
+    "subtitle": "Realistic return expectations"
+  },
+  "ladder": {
+    "title": "The ladder strategy: buying bonds of different terms",
+    "subtitle": "Bond laddering strategy",
+    "duration": "6 min"
+  },
   "lai-don-lai-kep": {
     "title": "Simple interest and compound interest.",
     "subtitle": "Einstein called compounding the eighth wonder of the world. Here's why.",
     "duration": "7 min"
+  },
+  "lai-noi-va-lai-co-dinh": {
+    "title": "Floating rate bonds and fixed rate bonds",
+    "subtitle": "Fixed vs floating rate bonds",
+    "duration": "6 min"
   },
   "lai-suat-la-gi": {
     "title": "What is an interest rate? Why rates move everything.",
     "subtitle": "An interest rate is the price of money. When it changes, everything changes with it.",
     "duration": "7 min"
   },
+  "lai-suat-tang-gia-giam": {
+    "title": "Why a rate rise makes bond prices fall",
+    "subtitle": "Inverse relationship explained",
+    "duration": "6 min"
+  },
   "lai-suat-thuc-vs-danh-nghia": {
     "title": "Real interest rate vs. nominal interest rate",
     "subtitle": "The Fisher Equation and the real purchasing power of an interest rate",
     "duration": "6 min"
+  },
+  "lai-suat-trai-phieu": {
+    "title": "Interest rates and bond prices",
+    "subtitle": "Bond pricing basics",
+    "duration": "6 min"
+  },
+  "lam-phat-huu-tri": {
+    "title": "Inflation and retirement: why you need to invest",
+    "subtitle": "Inflation impact on retirement",
+    "duration": "7 min"
   },
   "lam-phat-la-gi": {
     "title": "What is inflation? Why money loses value.",
@@ -526,19 +680,43 @@
     "subtitle": "Which assets protect purchasing power best?",
     "duration": "6 min"
   },
+  "lap-ngan-sach-50-30-20": {
+    "title": "Track 1, Lesson 4: The 50/30/20 budget - control your money before it controls you",
+    "subtitle": "A simple rule for where your money should go, instead of wondering at month end where it went.",
+    "duration": "5 min"
+  },
   "lbo-la-gi": {
     "title": "What is an LBO?",
     "subtitle": "Leveraged Buyout - buying a company using debt leverage",
     "duration": "11 min"
+  },
+  "loai-trai-phieu-khac": {
+    "title": "Other bond-like products: insurance, deposits",
+    "subtitle": "Other bond types",
+    "duration": "6 min"
   },
   "loi-nhuan-cac-cap-do": {
     "title": "Gross, operating, and net profit",
     "subtitle": "Three tiers of profit - each tells a different story",
     "duration": "7 min"
   },
+  "loi-nhuan-co-phieu": {
+    "title": "Profit from stocks: capital gains and dividends",
+    "subtitle": "Making money from stocks"
+  },
   "loi-nhuan-ky-vong": {
     "title": "What is expected return?",
     "subtitle": "Expected Return is a probability-weighted average across every possible scenario.",
+    "duration": "7 min"
+  },
+  "loi-the-thue-huu-tri": {
+    "title": "The tax advantage of a retirement account",
+    "subtitle": "Personal income tax relief for joining a voluntary supplementary pension",
+    "duration": "6 min"
+  },
+  "luong-gross-vs-net-thuc-nhan": {
+    "title": "Tax Track, Lesson 1: Gross vs Net salary - what actually reaches you?",
+    "subtitle": "From the number on the contract to the money in your account",
     "duration": "7 min"
   },
   "ma-la-gi": {
@@ -560,6 +738,11 @@
     "title": "The Modigliani-Miller Theorem",
     "subtitle": "Does capital structure matter? - a controversial answer",
     "duration": "10 min"
+  },
+  "mua-trai-phieu": {
+    "title": "When should you buy bonds",
+    "subtitle": "Bond investment decision",
+    "duration": "6 min"
   },
   "municipal-bond-la-gi": {
     "title": "What is a municipal bond?",
@@ -694,10 +877,28 @@
     "subtitle": "How many times profit does an investor pay to buy a share",
     "duration": "6 min"
   },
+  "pe-ratio": {
+    "title": "Simple P/E ratio: is a stock cheap or expensive",
+    "subtitle": "How to read a stock quote"
+  },
   "perpetuity": {
     "title": "Perpetuity: cash flows forever",
     "subtitle": "A level cash flow that continues indefinitely",
     "duration": "5 min"
+  },
+  "phan-tich-co-phieu": {
+    "title": "Case study: Analyzing a stock, step by step",
+    "subtitle": "Stock analysis example",
+    "duration": "8 min"
+  },
+  "phi-quan-ly": {
+    "title": "Expense ratios: the cost of your portfolio",
+    "subtitle": "Expense optimization",
+    "duration": "7 min"
+  },
+  "phi-quy": {
+    "title": "Fund fees: the hidden cost you're paying",
+    "subtitle": "Expense ratio"
   },
   "portfolio-la-gi": {
     "title": "What is a portfolio?",
@@ -727,6 +928,34 @@
     "title": "Quick Ratio: Acid-Test Liquidity",
     "subtitle": "Excludes inventory - stricter than the Current Ratio",
     "duration": "5 min"
+  },
+  "quy-chi-so": {
+    "title": "Index funds: tracking the market",
+    "subtitle": "Index funds"
+  },
+  "quy-khan-cap-tam-dem": {
+    "title": "Track 1, Lesson 5: The emergency fund - a cushion against every shock",
+    "subtitle": "Without an emergency fund, a small shock (job loss, illness) can push you into a spiral of debt.",
+    "duration": "5 min"
+  },
+  "quy-tac-4-phan-tram": {
+    "title": "The 4% rule: how much you can withdraw in retirement",
+    "subtitle": "Safe withdrawal rate - use caution applying it in Vietnam",
+    "duration": "7 min"
+  },
+  "quy-trai-phieu": {
+    "title": "Bond funds: lending without picking each bond yourself",
+    "subtitle": "Bond funds",
+    "duration": "6 min"
+  },
+  "quy-tuong-tac": {
+    "title": "Active funds: expert management",
+    "subtitle": "Managed funds"
+  },
+  "quyet-toan-thue-tncn-hoan-thue": {
+    "title": "Tax Track, Lesson 6: The year-end tax finalisation and refunds",
+    "subtitle": "When you have to file, and when money comes back to you",
+    "duration": "8 min"
   },
   "receivables-turnover": {
     "title": "Receivables Turnover",
@@ -773,10 +1002,28 @@
     "subtitle": "Return on Invested Capital - measuring genuine value creation",
     "duration": "7 min"
   },
+  "rui-ro-danh-muc": {
+    "title": "Risk of an individual stock vs a portfolio",
+    "subtitle": "Risk management"
+  },
   "rui-ro-la-gi": {
     "title": "What is risk? No return ever comes for free.",
     "subtitle": "Risk isn't something to avoid; it's something to understand and price correctly.",
     "duration": "7 min"
+  },
+  "rui-ro-lai-suat": {
+    "title": "Interest rate risk: how bond prices change",
+    "subtitle": "Interest rate risk",
+    "duration": "6 min"
+  },
+  "rui-ro-vo-no": {
+    "title": "Default risk: bond credit ratings",
+    "subtitle": "Credit ratings for bonds",
+    "duration": "6 min"
+  },
+  "sai-lam-dau-tu": {
+    "title": "Common mistakes of new investors",
+    "subtitle": "Pitfalls to avoid"
   },
   "sensitivity-analysis-la-gi": {
     "title": "What is Sensitivity Analysis?",
@@ -825,10 +1072,29 @@
     "subtitle": "1+1=3 - or just an illusion?",
     "duration": "9 min"
   },
+  "tai-can-bang": {
+    "title": "Rebalancing your portfolio every year",
+    "subtitle": "Portfolio rebalancing",
+    "duration": "6 min"
+  },
   "tai-chinh-la-gi": {
     "title": "What is finance? Why finance is not just about money.",
     "subtitle": "Finance is the science of allocating scarce resources across time under uncertainty.",
     "duration": "6 min"
+  },
+  "tai-dau-tu-coupon": {
+    "title": "Reinvesting coupons: the actual return",
+    "subtitle": "Reinvestment considerations",
+    "duration": "6 min"
+  },
+  "tai-khoan-huu-tri": {
+    "title": "Retirement accounts: BHXH and voluntary options in Vietnam",
+    "subtitle": "Social insurance (BHXH) and voluntary supplementary pension funds",
+    "duration": "7 min"
+  },
+  "tai-khoan-tu-quan": {
+    "title": "Self-directed vs managed accounts",
+    "subtitle": "Account types"
   },
   "tai-san-tieu-san": {
     "title": "Assets and liabilities: getting it right, without going to extremes.",
@@ -840,6 +1106,10 @@
     "subtitle": "Current assets, non-current assets, and how they create value",
     "duration": "6 min"
   },
+  "tam-ly-dau-tu": {
+    "title": "Investor psychology: greed and fear",
+    "subtitle": "Behavioral finance basics"
+  },
   "terminal-value-la-gi": {
     "title": "What is Terminal Value?",
     "subtitle": "The single largest share of value in most DCF models",
@@ -848,6 +1118,16 @@
   "thanh-khoan-la-gi": {
     "title": "What is liquidity? Assets that sell easily, and assets that don't.",
     "subtitle": "Liquidity is the ability to turn an asset into cash quickly without losing much value.",
+    "duration": "6 min"
+  },
+  "theo-doi-chi-tieu-truoc-khi-lap-ngan-sach": {
+    "title": "Track 1, Lesson 1: Tracking spending - measure before you allocate",
+    "subtitle": "You can't budget money when you don't know where it is currently going",
+    "duration": "6 min"
+  },
+  "theo-doi-danh-muc": {
+    "title": "Monitoring your portfolio: how often should you check",
+    "subtitle": "Monitoring frequency",
     "duration": "6 min"
   },
   "thi-truong-tai-chinh": {
@@ -859,6 +1139,25 @@
     "title": "Income, expenses, saving and investing.",
     "subtitle": "Four basic concepts that build the whole of personal finance.",
     "duration": "6 min"
+  },
+  "thue-co-phieu": {
+    "title": "Calculating tax on stock investment profit",
+    "subtitle": "Tax implications"
+  },
+  "thue-thu-nhap-ngoai-luong-freelance-cho-thue-nha": {
+    "title": "Tax Track, Lesson 7: Income outside your salary - freelancing, renting out property, household businesses",
+    "subtitle": "Three common sources of income, and three different ways they are taxed",
+    "duration": "9 min"
+  },
+  "thue-trai-phieu": {
+    "title": "Tax on bond interest income",
+    "subtitle": "Bond tax implications",
+    "duration": "6 min"
+  },
+  "tien-huu-tri": {
+    "title": "How much money for a comfortable retirement",
+    "subtitle": "Setting a retirement savings target in VND",
+    "duration": "7 min"
   },
   "tien-la-gi": {
     "title": "What is money? How money differs from an asset.",
@@ -875,6 +1174,26 @@
     "subtitle": "A practical application: opening a new branch - is it worth it?",
     "duration": "7 min"
   },
+  "to-khai-tai-chinh": {
+    "title": "A personal financial statement: knowing what you actually have",
+    "subtitle": "Net worth statement",
+    "duration": "6 min"
+  },
+  "tong-ket-hanh-trinh-tai-chinh-ca-nhan": {
+    "title": "262-day journey review - building sustainable financial habits",
+    "subtitle": "From money mindset to portfolios and retirement: looking back at the whole program",
+    "duration": "9 min"
+  },
+  "tong-on-chang-2": {
+    "title": "Stage 4 review: fundamentals of stock investing",
+    "subtitle": "Stage 2 summary",
+    "duration": "9 min"
+  },
+  "tong-on-chang-3": {
+    "title": "Stage 5 review: bonds for the conservative investor",
+    "subtitle": "Stage 3 summary",
+    "duration": "8 min"
+  },
   "tong-on-chang-8-trai-phieu": {
     "title": "Review: Bonds, Interest Rates and Credit - Bonds are a world of interest rates and trust",
     "subtitle": "Connecting coupon, yield, credit risk and the yield curve into one complete picture",
@@ -884,9 +1203,23 @@
     "title": "Review - Portfolio and Risk Management Track: Investing Is Managing Risk, Not Just Hunting Returns",
     "subtitle": "Connecting diversification, correlation, MPT, the Sharpe Ratio, and fund types"
   },
+  "tong-on-cong-cu-phai-sinh": {
+    "title": "Derivatives review",
+    "subtitle": "Connecting Forwards, Futures, Options and Swaps into one picture"
+  },
   "tracking-error-la-gi": {
     "title": "What is tracking error?",
     "subtitle": "Measuring how far a fund strays from the benchmark it tracks",
+    "duration": "6 min"
+  },
+  "trai-phieu-chinh-phu": {
+    "title": "Government bonds vs. corporate bonds",
+    "subtitle": "Government vs corporate bonds",
+    "duration": "6 min"
+  },
+  "trai-phieu-co-ban": {
+    "title": "What is a bond? Who is the money lent to",
+    "subtitle": "Introduction to bonds",
     "duration": "6 min"
   },
   "trai-phieu-doanh-nghiep": {
@@ -899,15 +1232,45 @@
     "subtitle": "A basic debt instrument - you lend, they pay interest",
     "duration": "5 min"
   },
+  "trai-phieu-lua-chon-tot": {
+    "title": "When bonds are the right choice",
+    "subtitle": "When to choose bonds",
+    "duration": "6 min"
+  },
+  "trai-phieu-quoc-te": {
+    "title": "International bonds: currency risk",
+    "subtitle": "International bonds",
+    "duration": "6 min"
+  },
+  "trai-phieu-vs-co-phieu": {
+    "title": "Bond returns vs. stock returns",
+    "subtitle": "Bonds vs stocks return comparison",
+    "duration": "6 min"
+  },
   "treasury-bond-la-gi": {
     "title": "What is a Treasury bond?",
     "subtitle": "Government bonds - the market's safest reference point",
+    "duration": "6 min"
+  },
+  "tu-do-tai-chinh": {
+    "title": "Track review: from safety net to financial freedom",
+    "subtitle": "Stage 4 summary",
+    "duration": "8 min"
+  },
+  "tu-van-tai-chinh": {
+    "title": "When you need a professional financial advisor",
+    "subtitle": "When to hire an advisor",
     "duration": "6 min"
   },
   "unit-economics": {
     "title": "Unit Economics",
     "subtitle": "Profit per unit - the foundation of every business model",
     "duration": "7 min"
+  },
+  "vay-gia-dinh": {
+    "title": "Siblings, friends, family: how to lend money",
+    "subtitle": "Lending to loved ones",
+    "duration": "6 min"
   },
   "vay-tien-giau-hay-pha-san": {
     "title": "Why borrowing can make you rich, or bankrupt you.",

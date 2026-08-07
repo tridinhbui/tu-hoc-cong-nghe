@@ -1,0 +1,164 @@
+{
+  "slug": "phi-quan-ly",
+  "title": "Expense ratios: the cost of your portfolio",
+  "subtitle": "Expense optimization",
+  "duration": "7 min",
+  "openingQuestion": "Duc invests through 3 channels: an actively managed open fund (1.8%/year expense ratio), self-directed stock trading through a brokerage (0.15-0.25% fee per order), and a financial advisor charging 1%/year on total assets advised. What is Duc most likely to overlook when assessing his portfolio's cost?",
+  "openingOptions": [
+    "The financial advisor's fee is always fully refunded to the client if their portfolio ends the year at a loss",
+    "Only the stock trading fee is actually worth worrying about - the other fee types aren't worth examining further at all",
+    "The open fund's fee already automatically covers every other cost that could arise throughout the investment process",
+    "Total cost is all the fees added together, not just any single one on its own"
+  ],
+  "explanation": "Many investors look at each fee type in isolation and forget to add up the ENTIRE cost of the whole portfolio. When you add fund fees, trading fees, and advisory fees together, the total annual cost can reach 2-3% or more - large enough to meaningfully erode returns compounded over many years.",
+  "diagram": [
+    { "label": "Fund fee", "arrow": true },
+    { "label": "+ Trading fee", "arrow": true },
+    { "label": "+ Advisory fee", "arrow": true },
+    { "label": "= Total portfolio cost (can reach 2-3%/year)" }
+  ],
+  "realWorldExample": {
+    "company": "The fee structure facing individual investors using multiple financial services in Vietnam",
+    "description": "A typical Vietnamese investor might pay: an open fund/ETF management fee (0.6%-2%/year), a brokerage trading fee per buy/sell order (0.1%-0.35%/trade), a custody or account maintenance fee (some brokerages charge a small annual fee), and, if using advisory or discretionary management services, an additional advisory fee (usually 0.5%-2%/year on assets). Add these up, and the real total cost of a portfolio is usually far higher than an investor assumes when looking at just one fee type."
+  },
+  "quiz": [
+    {
+      "question": "Why assess the TOTAL cost of the whole portfolio, rather than just looking at each fee type on its own?",
+      "options": [
+        "Because the different fee types in a portfolio tend to cancel each other out",
+        "Because the fees add up to something larger than they look individually",
+        "Because custody fees always make up the largest share of total cost",
+        "Because the law requires investors to calculate their own total annual fee"
+      ],
+      "correct": 1,
+      "explanation": "The compounding effect of several small fees is easy to underestimate. An investor paying 1.8% fund fee + 1% advisory fee could be losing 2.8%/year - large enough to meaningfully shrink accumulated wealth after 20-30 years."
+    },
+    {
+      "question": "Which of the following sensibly lowers a portfolio's total cost?",
+      "options": [
+        "Not bothering with fees at all, since fees don't affect returns",
+        "Trading very frequently to capture every price swing",
+        "Favoring low-cost passive ETFs and limiting unnecessary trading",
+        "Choosing the fund with the highest management fee because it's managed better"
+      ],
+      "correct": 2,
+      "explanation": "Combining low-cost passive ETFs for most of the portfolio, limiting frequent trading (to cut trading fees), and paying for advice only when truly needed is a practical way to keep total cost reasonable while still achieving the diversification you need."
+    },
+    {
+      "question": "A 1 billion VND portfolio carries a total fee of 2.5%/year. How much do you pay each year?",
+      "options": [
+        "250 million VND, since the fee compounds across the years held",
+        "2.5 million VND, since the fee is charged on profit, not on capital",
+        "Nothing at all if the portfolio earns zero return that year",
+        "25 million VND, deducted gradually from assets rather than appearing on a statement"
+      ],
+      "correct": 3,
+      "explanation": "The fee is charged on assets, not on profit - meaning in a loss year you still pay the full amount. And because it's deducted from the NAV rather than shown as a line on a statement, most investors never actually see that 25-million figure."
+    },
+    {
+      "question": "Which fee type gets overlooked most often when calculating a portfolio's total cost?",
+      "options": [
+        "The bid-ask spread and the price impact of frequent trading",
+        "The fund management fee, since it's always printed in bold in the prospectus",
+        "The custody fee, since it's the single largest item in total annual cost",
+        "Personal income tax, since it's collected directly by the tax authority"
+      ],
+      "correct": 0,
+      "explanation": "Hidden costs don't appear in any fee table: every trade costs you the gap between the buy price and the sell price, and a large order can even push the price against you. The more you trade, the bigger this cost gets - and nobody sends you an invoice for it."
+    },
+    {
+      "question": "A 1%/year fee versus a 2%/year fee, on 500 million VND held for 25 years - how big is the gap between them?",
+      "options": [
+        "About 5 million VND, exactly the one-year fee difference multiplied out",
+        "Several hundred million - the difference compounds enormously through compound interest",
+        "Negligible, since investment returns are always far larger than the fee",
+        "About 25 million VND, i.e. 1% times the number of years held"
+      ],
+      "correct": 1,
+      "explanation": "Every dong of fee isn't lost just once - it also loses all the growth that dong would have earned in every remaining year. That's why a fee gap that sounds small ends up deciding most of the difference between two otherwise identical investors."
+    },
+    {
+      "question": "Is a high fee ever worth paying?",
+      "options": [
+        "Yes, because a high-fee fund always performs better than a low-fee fund",
+        "Never - the lowest fee is always the right choice in every situation",
+        "Yes, if in exchange you get something you genuinely need and can't do yourself",
+        "No, unless the investor has a portfolio worth more than ten billion VND"
+      ],
+      "correct": 2,
+      "explanation": "An advisor who kept you from selling out in 2022 has already paid back more than their fee. But that has to be real, specific value - a high fee paid for a promise to 'beat the market' is money thrown away most of the time."
+    }
+  ],
+  "keyTakeaways": [
+    "Portfolio cost is the sum of several fee types: fund expense ratio, trading fees, custody fees, advisory fees - not just one single item",
+    "Adding up small fees can produce a total annual cost of 2-3% or more, meaningfully eroding long-term returns",
+    "Periodically list out every fee you're paying to get the full picture, instead of looking at each piece in isolation",
+    "Cutting unnecessary fees (over-frequent trading, a high-cost fund whose performance doesn't justify it) is the most controllable way to improve your net return"
+  ],
+  "practicePrompt": {
+    "question": "Linh invests through an open fund charging 2%/year and an advisor charging 1%/year on total assets. Added together, her total annual fee is 3%, while the portfolio's average return is only about 8%/year. What is most concerning here?",
+    "options": [
+      "The 3%/year total cost is eating up nearly 40% of the portfolio's gross return, since 3% is being taken out of the 8% earned each year",
+      "Nothing to worry about - as long as the portfolio still shows a positive return, the fee level doesn't matter",
+      "The only concerning item is the advisory fee - the 2%/year open fund fee is a completely normal level that doesn't need examining",
+      "There's no issue at all, since total fees are always automatically deducted from returns before any calculation, with no further effect"
+    ],
+    "correct": 0,
+    "explanation": "A 3%/year total cost eats up nearly 40% of the 8%/year gross return - this is exactly why you need to assess the whole portfolio's total cost, instead of looking at each fee in isolation."
+  },
+  "summary": {
+    "keyIdea": "Portfolio cost is the sum of several fee types: fund expense ratio, trading fees, custody fees, advisory fees - not just one single item",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to a real decision.",
+    "action": "Adding up small fees can produce a total annual cost of 2-3% or more, meaningfully eroding long-term returns"
+  },
+  "application": {
+    "title": "Add up every fee you pay",
+    "message": "List every fee you're paying for investing - fund fees, trading fees, custody fees, advisory fees if any - then add them into a single %/year figure.",
+    "secondary": "Seeing the total fee at once is usually far more surprising than looking at each item separately."
+  },
+  "track": "personal",
+  "sections": [
+    {
+      "type": "lead",
+      "text": "You already know a single fund can charge a management fee (expense ratio). But when you look at your whole portfolio - multiple funds, multiple accounts, maybe an advisory service too - what is the real total cost you're actually paying?"
+    },
+    {
+      "type": "paragraph",
+      "text": "The cost of a portfolio doesn't live in a single fee. It's the sum of several different fee types, each sounding small on its own, but together they can become a significant number that directly cuts into the net return you actually receive."
+    },
+    {
+      "type": "heading",
+      "text": "The fee types that make up a portfolio's cost"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Fund management fee (expense ratio): deducted annually from the net asset value of the open fund/ETF you hold, usually 0.3%-2.5%/year depending on the fund",
+        "Stock trading fee: paid on every buy/sell order, usually 0.1%-0.35% of trade value at Vietnamese brokerages",
+        "Custody fee, account maintenance fee: some brokerages/funds charge a small annual fee to keep the account active",
+        "Advisory/discretionary management fee: if you use a personal financial advisory service or hand over portfolio management, usually charged as a % of assets managed (0.5%-2%/year)",
+        "Fund unit issuance/redemption fee: some open funds charge an extra fee on purchase (issuance fee) or on early resale (redemption fee)"
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "How to calculate a portfolio's total cost"
+    },
+    {
+      "type": "paragraph",
+      "text": "To get a realistic picture, list every holding in the portfolio along with its corresponding fee, then compute the weighted average by each holding's share. **Example:** 60% of the portfolio in an ETF charging 0.7%/year, 40% in an actively managed fund charging 1.8%/year - the weighted average cost is (0.6 x 0.7%) + (0.4 x 1.8%) = 0.42% + 0.72% = 1.14%/year. Add an advisory fee of 1%/year on the whole portfolio, and the real total cost climbs to 2.14%/year."
+    },
+    {
+      "type": "callout",
+      "label": "The long-term impact of fees",
+      "text": "With 500 million VND invested at an average market return of 9%/year before fees, after 25 years: if total portfolio cost is 0.8%/year, the ending balance could reach roughly 3.4 billion VND; if total cost is 2.5%/year, the ending balance would be only about 2.4 billion VND - a 1-billion-VND gap purely from the fee difference, built up through the compounding effect over many years."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Portfolio cost is the sum of many small fees added together, not a single number - list them all out to know what you're really paying.",
+        "Controlling cost is one of the few factors you can fully manage yourself, while nobody can predict market returns with any certainty."
+      ]
+    }
+  ]
+}

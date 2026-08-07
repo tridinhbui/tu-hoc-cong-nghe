@@ -1,0 +1,167 @@
+{
+  "slug": "can-bang-tuoi",
+  "title": "Balancing stocks and bonds by age",
+  "subtitle": "Age-based allocation",
+  "duration": "7 min",
+  "openingQuestion": "Long is 28, just started working, and plans to invest for retirement 30 years from now. Under the age-based allocation rule, where should his portfolio lean?",
+  "openingOptions": [
+    "Split it exactly 50/50 regardless of his current age, since this is considered the standard formula that applies to everyone",
+    "Put all of it into a bank savings deposit to guarantee absolute safety for a long-term investment",
+    "A high stock weighting of 70-90%, since he still has plenty of time to recover",
+    "Put it all into high-yield corporate bonds to get a steady income stream right away"
+  ],
+  "explanation": "The classic rule of '100 (or 110/120) minus your age' suggests your stock weighting should decline as you get older. At 28 with a 30-year horizon, Long has plenty of time for his portfolio to recover from short-term drops, so he can accept higher volatility in exchange for better long-term growth.",
+  "diagram": [
+    { "label": "How many years until you need to withdraw?", "arrow": true },
+    { "label": "Many years left: enough time to recover from drops", "arrow": true },
+    { "label": "Should hold a higher stock weighting", "arrow": true },
+    { "label": "Close to the goal: shift gradually into bonds to cut volatility" }
+  ],
+  "realWorldExample": {
+    "company": "Age-based model portfolios at Vietnam's voluntary supplementary pension funds",
+    "description": "Voluntary supplementary pension funds such as Manulife, Prudential, and Dai-ichi Life in Vietnam typically offer several 'sub-funds' by age or risk level: a growth fund (high stock weighting, for younger participants), a balanced fund, and a capital-preservation fund (mostly bonds and deposits, for those near retirement age). Participants are encouraged to shift gradually from the growth fund to the preservation fund as they get older."
+  },
+  "quiz": [
+    {
+      "question": "What is the '110 minus age' rule used for?",
+      "options": [
+        "Calculating the savings interest rate appropriate for your age",
+        "Calculating the monthly social insurance contribution you owe",
+        "Estimating the stock weighting a portfolio should hold",
+        "Calculating how many years remain until retirement age"
+      ],
+      "correct": 2,
+      "explanation": "This is a quick rule of thumb: take 100, 110, or 120 and subtract your current age to get a suggested stock weighting, with the remainder going to bonds and other safer assets."
+    },
+    {
+      "question": "Why should someone nearing retirement age lower their stock weighting?",
+      "options": [
+        "Because bonds always earn more than stocks from that point on",
+        "Because stock prices always fall once an investor reaches old age",
+        "Because the law requires older people to lower this weighting",
+        "Because there's less time for the portfolio to recover if the market drops"
+      ],
+      "correct": 3,
+      "explanation": "The biggest risk for someone near retirement is 'sequence-of-returns risk': if the market drops sharply right when they need to withdraw, the portfolio doesn't have enough time to recover. So the weighting in stable assets (bonds, deposits) should rise gradually as retirement approaches."
+    },
+    {
+      "question": "Why are there several versions of the rule: 100 minus age, 110 minus age, 120 minus age?",
+      "options": [
+        "Because longer lifespans and lower interest rates mean later versions allow more stock exposure",
+        "Because each brokerage sets its own version of the rule to attract customers",
+        "Because the number depends on the inflation rate announced in each particular year",
+        "Because the three versions apply to low-, middle-, and high-income groups respectively"
+      ],
+      "correct": 0,
+      "explanation": "The original rule dates from a time when lifespans were shorter and bonds paid higher yields. Living longer means the portfolio needs to keep growing after retirement, while low interest rates mean bonds alone can no longer support anyone - so newer versions push the stock weighting higher."
+    },
+    {
+      "question": "Two people are both 40: one has a stable salary for the next 20 years, the other is self-employed with irregular income. Should they hold the same weighting?",
+      "options": [
+        "Yes, because the age-based rule applies the same way to everyone of the same age",
+        "No - stable income allows for tolerating more portfolio volatility",
+        "No, the self-employed person should put their entire wealth into growth stocks",
+        "Yes, because occupation isn't a factor considered in asset allocation"
+      ],
+      "correct": 1,
+      "explanation": "Stable income acts like an invisible 'bond' within your total wealth - it lets the investment portion take on more risk. Someone with irregular income needs a bigger cash buffer and a less volatile portfolio, even at the same age."
+    },
+    {
+      "question": "What matters more than getting the age-based weighting exactly right?",
+      "options": [
+        "Finding the stock with the strongest gains in whichever sector is leading right now",
+        "Timing purchases and sales correctly within each market cycle",
+        "Sticking to the plan through a deep downturn, instead of selling out right at the bottom",
+        "Changing the portfolio weighting the moment you hit a round-number birthday"
+      ],
+      "correct": 2,
+      "explanation": "A 60/40 portfolio you actually hold through a crash beats a 'perfectly optimized' 90/10 portfolio you dump after a 30% drop. The right weighting is the one you can live with on the worst day."
+    },
+    {
+      "question": "When should you actually adjust your stock-bond weighting?",
+      "options": [
+        "Once a month, to keep the portfolio closely tracking the latest market moves",
+        "Every time the market has a single session down more than three percent",
+        "Whenever pundits in the press forecast the market is about to enter a new cycle",
+        "When your life circumstances change, or on a scheduled rebalance back to target"
+      ],
+      "correct": 3,
+      "explanation": "Two legitimate reasons: your life changes (having a child, changing careers, approaching retirement), or the weighting has drifted from your target because of market moves. Adjusting based on market forecasts is a form of market timing - something even professionals routinely get wrong."
+    }
+  ],
+  "keyTakeaways": [
+    "Stock weighting should decline gradually with age, since the time available to recover from a drop gets shorter",
+    "Quick rule of thumb: 100 (or 110/120) minus age = suggested stock percentage in the portfolio",
+    "This is only a reference starting point - adjust it for your own risk tolerance and personal goals",
+    "Near retirement, prioritize capital preservation over growth to avoid sequence-of-returns risk"
+  ],
+  "practicePrompt": {
+    "question": "Nga, 62, will retire in 1 year and needs to withdraw part of her portfolio for monthly expenses. Under the age-based allocation rule, how should she adjust her portfolio compared to when she was 30?",
+    "options": [
+      "Sharply cut the stock weighting and raise bonds/deposits, since there's less time left for the portfolio to recover before she needs to withdraw",
+      "Keep the same high stock weighting as at age 30, since the age-based rule is only a reference and doesn't need to be applied once you're older",
+      "Increase the stock weighting compared to age 30 to try to make up for the shrinking accumulation period before retirement",
+      "Move the entire portfolio into physical gold, since it's the only vehicle suited to someone near retirement under the allocation rule"
+    ],
+    "correct": 0,
+    "explanation": "The closer you get to retirement, the less time there is to recover from a drop - so lowering the stock weighting and raising the stable-asset weighting makes sense, the exact opposite of the portfolio at age 30."
+  },
+  "summary": {
+    "keyIdea": "Stock weighting should decline gradually with age, since the time available to recover from a drop gets shorter",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to a real decision.",
+    "action": "Quick rule of thumb: 100 (or 110/120) minus age = suggested stock percentage in the portfolio"
+  },
+  "application": {
+    "title": "Calculate your own suggested weighting",
+    "message": "Take your age, apply the '100 minus age' formula to get a suggested stock percentage, then compare it with your actual current weighting and note the gap, if there is one.",
+    "secondary": "Knowing the gap between theory and reality is the first step toward adjusting it."
+  },
+  "track": "personal",
+  "sections": [
+    {
+      "type": "lead",
+      "text": "One of the most common questions when building a long-term portfolio is: how much should go to stocks, and how much to bonds? The answer depends heavily on one simple factor: your age."
+    },
+    {
+      "type": "paragraph",
+      "text": "The classic rule in personal finance is to take a fixed number (100, 110, or 120, depending on your risk tolerance) and subtract your current age to get a suggested stock weighting. Using the '110 minus age' formula: a 25-year-old should hold roughly 85% stocks, a 45-year-old roughly 65%, a 60-year-old roughly 50%. The rest goes to bonds, deposits, and other more stable assets."
+    },
+    {
+      "type": "heading",
+      "text": "Why age determines the weighting"
+    },
+    {
+      "type": "paragraph",
+      "text": "The logic behind this rule is your remaining time horizon. Stocks swing hard in the short run but tend to grow better than bonds over the long run. Someone young with 20-30 years ahead should have enough time for the portfolio to recover from downturns - even a 30-40% crash still leaves many years to make it back. Someone near retirement doesn't have that 'time buffer', so preserving capital should take priority."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Ages 20-30: high stock weighting (70-90%), using the long horizon to grow, accepting short-term swings",
+        "Ages 35-45: start becoming more balanced (60-75% stocks), still prioritizing growth but gradually raising the stable portion",
+        "Ages 50-55: gradually lower the stock weighting (50-60%), raise bonds and deposits to reduce volatility as the goal approaches",
+        "Near retirement (58-60+): prioritize capital preservation (30-45% stocks), and make sure there's enough cash or highly liquid assets to cover the first few years of spending after retiring"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Important note",
+      "text": "This is a rule of thumb, not a mandatory rule. Someone with another stable income source (a pension, rental income) can accept a higher stock weighting even at an older age. Conversely, someone prone to panicking when the market drops should choose a lower weighting than the formula suggests, to avoid selling out at the bottom out of fear."
+    },
+    {
+      "type": "heading",
+      "text": "Applying it in practice in Vietnam"
+    },
+    {
+      "type": "paragraph",
+      "text": "In Vietnam, besides stocks and bonds, many people also treat real estate and gold as part of a long-term portfolio. When applying the age-based rule, you can group 'growth assets' (stocks, some investment real estate) and 'stable assets' (bonds, deposits, gold held as a reserve) into two main categories, then adjust the weighting between the two groups based on your age and your own specific financial goals."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Age determines how much time you have left to recover from a downturn - the younger you are, the more risk you can accept in exchange for growth.",
+        "Use the age-based formula as a starting point, then adjust it for your own actual risk tolerance - the next lesson will help you assess that."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,198 @@
+{
+ "slug": "danh-muc-toi-uu",
+ "title": "The optimal portfolio: how much in bonds, how much in stocks",
+ "subtitle": "Allocation between bonds and stocks",
+ "duration": "6 min",
+ "openingQuestion": "Using the '100 minus age' rule of thumb, what share of the portfolio should a 30-year-old allocate to stocks?",
+ "openingOptions": [
+  "Should allocate exactly 50% of the portfolio's value to stocks, based on a separate rule of thumb unrelated to age",
+  "Should allocate the entire 100% of the investment portfolio's value to stocks, keeping nothing in any other form",
+  "Should only allocate 30% of the portfolio's value to stocks, keeping the rest as non-yielding cash",
+  "70%, with the remaining 30% going into bonds and other stable assets"
+ ],
+ "explanation": "The '100 minus age' rule suggests: stock allocation = 100 - age. For a 30-year-old, that's 100 - 30 = 70% stocks, 30% bonds/stable assets. This is only a simple rule of thumb to start thinking with, not an absolute formula - it needs adjusting for personal risk tolerance and circumstances.",
+ "diagram": [
+  {
+   "label": "Determine the years left before needing the money",
+   "arrow": true
+  },
+  {
+   "label": "The longer that is, the more volatility you can bear",
+   "arrow": true
+  },
+  {
+   "label": "Take a starting allocation, e.g. 100 minus age",
+   "arrow": true
+  },
+  {
+   "label": "Adjust for risk tolerance and real financial obligations"
+  }
+ ],
+ "interactiveType": "bond",
+ "realWorldExample": {
+  "company": "Target-date retirement funds around the world",
+  "description": "Many retirement funds in the US and other developed countries offer a 'target-date fund' product - a fund that automatically adjusts its stock/bond allocation to the saver's age, gradually reducing the stock share and increasing the bond share as they approach a target retirement date (for example, a 'Target 2055' fund for someone planning to retire in 2055 holds a high stock share while that date is far off, and gradually lowers it as it approaches). In Vietnam this concept isn't yet widely available through retirement funds, but the principle of 'reducing portfolio risk as a financial goal approaches' can be applied entirely on your own when managing a personal portfolio."
+ },
+ "quiz": [
+  {
+   "question": "Why does the '100 minus age' rule recommend lowering the stock share as an investor gets older?",
+   "options": [
+    "Because an older person has less time to wait for the market to recover",
+    "Because brokerages don't allow older people to open an account, which is a separate restriction that applies only to certain regulated retirement accounts",
+    "Because older people are usually less familiar with online trading",
+    "Because the law only permits buying stocks up to a certain age, which can be easy to misjudge without context"
+   ],
+   "correct": 0,
+   "explanation": "The remaining investment horizon is the key factor determining tolerance for volatility. A young person has many years to wait out a market drop, while someone near retirement needs the money sooner and has less 'buffer time' to wait for a recovery if the market falls right when they need to withdraw."
+  },
+  {
+   "question": "Is the '100 minus age' rule a mandatory formula applied identically to everyone?",
+   "options": [
+    "Yes, an exact formula everyone must follow, a subtlety that only shows up under scrutiny",
+    "No, this is only a reference starting point",
+    "Yes, and it must not be changed under any circumstances",
+    "No, this rule only applies to people under 20"
+   ],
+   "correct": 1,
+   "explanation": "This is a rule of thumb that helps a beginner think systematically, not a precise scientific formula. Depending on risk tolerance, specific financial goals, and other income sources (pension, rental property...), each person may adjust this ratio differently."
+  },
+  {
+   "question": "Besides age, what is the most important factor when deciding the stock/bond allocation?",
+   "options": [
+    "The number of stock and bond tickers you've been tracking on a price board",
+    "The savings interest rate major banks are currently listing this month, though this is often assumed rather than verified",
+    "When you'll actually need to use that money, and your tolerance for volatility",
+    "The opinions of acquaintances who currently invest in the same type of asset as you"
+   ],
+   "correct": 2,
+   "explanation": "The age-based rule is just a shorthand for 'time remaining'. But a 30-year-old planning to buy a house in 3 years shouldn't put 70% into stocks. The right question is always: when will you need the money, and can you sleep at night if the portfolio drops 30%."
+  },
+  {
+   "question": "What does rebalancing a portfolio mean?",
+   "options": [
+    "Depositing more new money into the account every time the portfolio's value drops too much",
+    "Selling the entire current portfolio and buying it all back at the latest market price",
+    "Moving the entire portfolio into whichever asset class rose the most this year",
+    "Selling off the part that rose sharply and buying more of the part that lagged, bringing the mix back to target, and this remains true even after accounting for how the portfolio's weights have drifted"
+   ],
+   "correct": 3,
+   "explanation": "After a year of strong stock gains, a 70/30 mix might become 80/20 - your portfolio has become riskier than intended, without you ever deciding that. Rebalancing brings it back to the intended level, and incidentally forces you to sell high and buy low."
+  },
+  {
+   "question": "Why is rebalancing psychologically difficult to do?",
+   "options": [
+    "Because it forces you to sell what's doing well and buy what looks bad, even in years when trading costs and taxes on the sale would otherwise be significant",
+    "Because a large fee has to be paid every time you rebalance",
+    "Because regulation only permits rebalancing once per fiscal year",
+    "Because a complex formula is required to calculate it"
+   ],
+   "correct": 0,
+   "explanation": "Right when stocks are winning big, the rule tells you to sell some to buy the dull-looking bonds. It always feels wrong, and that's exactly why it works - it counteracts the tendency to keep pouring money into whatever just went up."
+  },
+  {
+   "question": "Is a 100%-stock portfolio always a bad choice for a young person?",
+   "options": [
+    "Yes, every portfolio must include at least some bonds for safety",
+    "Not necessarily - with a very long horizon and a steady temperament, it can be a reasonable choice, and that condition alone is often enough to outweigh every other factor in the decision",
+    "Yes, because without bonds a portfolio won't enjoy annual compounding",
+    "No, because people under 35 aren't legally allowed to buy bonds"
+   ],
+   "correct": 1,
+   "explanation": "With 30-40 years ahead, the equity risk premium has time to play out. The condition is that you can genuinely stomach seeing the portfolio drop by half without selling - and most people only find out whether they can once they've lived through it for the first time."
+  }
+ ],
+ "keyTakeaways": [
+  "The '100 minus age' rule is a simple starting point: stock allocation = 100 minus your age, with the rest in bonds and stable assets",
+  "The core principle behind the rule: the more investment time remaining, the more volatility can be accepted in exchange for growth; the closer you are to needing the money, the more you should prioritize stability",
+  "This is only a reference guideline that needs adjusting for personal risk tolerance, not a rigid formula applied identically to everyone"
+ ],
+ "practicePrompt": {
+  "question": "You're 40, but have a very low risk tolerance, plan to retire early at 50, and need stability. The '100 minus age' rule suggests 60% stocks. Do you have to follow that number exactly?",
+  "options": [
+   "Not necessarily - the rule is only a starting point, and can be lowered below 60% for a low risk tolerance",
+   "Yes, you must allocate exactly 60% to stocks because this is a fixed mathematical formula that applies to every case",
+   "No, you should ignore this rule entirely and allocate 100% to stocks to maximize returns before retiring, a claim that deserves a second look",
+   "Yes, because at age 40 regulation requires applying the '100 minus age' formula exactly, with no deviation"
+  ],
+  "correct": 0,
+  "explanation": "The '100 minus age' rule is only a reference starting point, not a rigid formula - a low risk tolerance and an early-retirement goal are valid reasons to adjust the allocation lower."
+ },
+ "summary": {
+  "keyIdea": "The '100 minus age' rule is a simple starting point: stock allocation = 100 minus your age, with the rest in bonds and stable assets",
+  "commonMistake": "Reading the concept as a line to recite rather than a principle to apply to a real decision.",
+  "action": "The core principle behind the rule: the more investment time remaining, the more volatility can be accepted in exchange for growth; the closer you are to needing the money, the more you should prioritize stability"
+ },
+ "application": {
+  "title": "Calculate your age-based allocation",
+  "message": "Apply the '100 minus age' formula to yourself to get a suggested stock allocation, then compare it with your portfolio's actual stock/bond mix today.",
+  "secondary": "This is only a reference starting point, not a number you're required to follow."
+ },
+ "sections": [
+  {
+   "type": "lead",
+   "text": "If you've grasped that stocks and bonds each have their own role, the natural next question is: so what percentage should go to each? This is a classic question in personal portfolio management."
+  },
+  {
+   "type": "heading",
+   "text": "The '100 minus age' rule - a simple starting point"
+  },
+  {
+   "type": "paragraph",
+   "text": "A common, easy-to-remember rule of thumb: take 100 minus your age, and that number is the percentage to allocate to stocks, with the rest going into bonds and other stable assets. A 25-year-old: 75% stocks, 25% bonds. A 50-year-old: 50% stocks, 50% bonds. A 70-year-old: 30% stocks, 70% bonds."
+  },
+  {
+   "type": "conceptTable",
+   "title": "Example applying the 100-minus-age rule",
+   "subtitle": "Illustrative only, not specific investment advice",
+   "concepts": [
+    {
+     "vi": "Age 25",
+     "en": "Early career",
+     "def": "75% stocks / 25% bonds - plenty of time left to withstand volatility"
+    },
+    {
+     "vi": "Age 45",
+     "en": "Mid career",
+     "def": "55% stocks / 45% bonds - gradually balancing growth and stability"
+    },
+    {
+     "vi": "Age 65",
+     "en": "Near/in retirement",
+     "def": "35% stocks / 65% bonds - prioritizing preserving capital and steady cash flow"
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "text": "Why this is only a starting point, not a rigid formula"
+  },
+  {
+   "type": "paragraph",
+   "text": "This rule is built on an average assumption about risk tolerance by age, but in reality each person differs. A 50-year-old with a stable government pension who doesn't depend entirely on their investment portfolio might accept a stock share above 50%. Conversely, a 30-year-old who's highly sensitive to volatility and prone to panic-selling when the market falls might need a higher bond share than recommended, to avoid making a bad decision out of fear."
+  },
+  {
+   "type": "callout",
+   "label": "Factors to weigh besides age",
+   "text": "Beyond age, consider: (1) whether you have another stable income source besides investing (salary, rental income...); (2) whether you already have a separate emergency fund (which you should have before investing heavily in stocks); (3) how you've reacted in the past when watching your account drop sharply in value."
+  },
+  {
+   "type": "list",
+   "items": [
+    "Increase the bond share if: you'll need the money soon, you panic easily when the market falls, or you don't yet have a separate emergency fund",
+    "Increase the stock share if: you have many years left to invest, you have other stable income, you already have an emergency fund, and you stay calm through volatility",
+    "Rebalance the portfolio periodically each year, bringing the allocation back to the original target after market swings have shifted the mix"
+   ]
+  },
+  {
+   "type": "paragraph",
+   "text": "A sensible allocation between stocks and bonds doesn't just optimize the expected return for the risk you can accept - more importantly, it helps you stick to long-term investing discipline, not panic-selling in a bad market and not missing out on growth in a good one."
+  },
+  {
+   "type": "closing",
+   "lines": [
+    "The '100 minus age' rule is a sensible starting point for thinking about stock/bond allocation, but it needs adjusting for personal circumstances.",
+    "The optimal portfolio isn't the one with the highest return - it's the one you can stay disciplined enough to hold through the whole long journey."
+   ]
+  }
+ ]
+}

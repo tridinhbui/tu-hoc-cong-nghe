@@ -1,0 +1,176 @@
+{
+  "slug": "cong-ty-cong-khai",
+  "title": "Public company vs private company",
+  "subtitle": "What is an IPO",
+  "openingQuestion": "Why can't you go to the stock exchange to buy shares of a family-run noodle shop, even if it's always packed with customers?",
+  "openingOptions": [
+    "Because current law absolutely bans every small household business from selling shares to the public",
+    "Because the noodle shop hasn't met food-safety standards under current Ministry of Health regulations",
+    "Because the noodle shop is a private company, not listed for the public to trade shares",
+    "Because the noodle shop hasn't fully paid its corporate income tax to the local tax authority"
+  ],
+  "explanation": "Only a listed company has shares trading publicly; most businesses in the world are private companies whose ownership only changes hands through private negotiation. The biggest difference for an outsider isn't size but information: a listed company is required to publish periodic reports and material events, giving you a basis for analysis. In exchange, they bear compliance costs and quarterly performance pressure.",
+  "diagram": [
+    {
+      "label": "Company completes an IPO",
+      "arrow": true
+    },
+    {
+      "label": "Shares listed on an exchange",
+      "arrow": true
+    },
+    {
+      "label": "= A public company (publicly traded)"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Mobile World (MWG) and a family grocery store",
+    "description": "MWG used to be a small private company, then IPO'd and listed on HOSE in 2014, and now has tens of thousands of shareholders and a market cap worth tens of trillions of dong. A family grocery store next door, despite steady revenue, is still a private company - only the owner and family own it, and no one else can buy 'shares' of the store on an exchange."
+  },
+  "quiz": [
+    {
+      "question": "What is an IPO (Initial Public Offering)?",
+      "options": [
+        "The first time a company issues bonds to the public",
+        "The first quarterly profit report after incorporation",
+        "The first time a company sells shares to the public and lists on an exchange",
+        "The business-registration procedure when a company is newly formed overseen by the securities regulator"
+      ],
+      "explanation": "An IPO is the process by which a private company first sells shares to the public and lists on an exchange, turning it from a private company into a public company."
+    },
+    {
+      "question": "Why might a private company decide to IPO and become a public company?",
+      "options": [
+        "To reduce its disclosure obligations",
+        "To be exempted from corporate income tax after listing once the listing process is fully complete",
+        "Because the law requires an IPO 10 years after incorporation",
+        "To raise large amounts of capital from a broad base of investors"
+      ],
+      "explanation": "An IPO gives a company access to enormous capital from thousands of investors at once, instead of relying only on a few original owners or bank loans. In exchange, the company must publish periodic financial reports, become more transparent, and submit to regulatory oversight."
+    },
+    {
+      "question": "Why must a public company publish periodic financial reports while a private company doesn't have to?",
+      "options": [
+        "Because it uses public money, so it must be transparent",
+        "Because private companies don't need to prepare financial statements",
+        "Because public companies are tax-exempt, so they must account for their income and spending",
+        "Because tax authorities only audit companies that have listed on an exchange"
+      ],
+      "explanation": "This is the price of raising capital from the public: thousands of small shareholders can't personally check the books, so the law requires listed companies to disclose financial reports, governance reports, and unusual events. A private company still has to prepare statements, but only files them with regulators and its owners."
+    },
+    {
+      "question": "A family noodle shop is always packed but you can't buy a share of it. Why?",
+      "options": [
+        "Because restaurants are a sector banned from issuing shares to the public",
+        "Because it's a private company, its shares don't trade publicly",
+        "Because the shop's revenue is too small to have outside shareholders",
+        "Because only companies with foreign capital are allowed to sell shares externally"
+      ],
+      "explanation": "Only companies that have completed an IPO and been approved for listing have shares trading publicly. For a private company, buying a piece of ownership requires negotiating directly with the owner - no exchange matches orders for you."
+    },
+    {
+      "question": "After an IPO, who decides the company's share price each day?",
+      "options": [
+        "The board of directors meets and announces a price at the start of every session",
+        "The State Securities Commission sets the trading band",
+        "Supply and demand on the exchange - buyers and sellers matching orders",
+        "The underwriting investment bank keeps setting the price for 5 years"
+      ],
+      "explanation": "The company sets a price only once, at the IPO, together with the underwriting bank. After listing, the price is decided by the market through each buy and sell order; the company no longer controls it, even if it believes the market is mispricing it."
+    },
+    {
+      "question": "What disadvantage does a public company face compared to when it was private?",
+      "options": [
+        "It can no longer borrow from banks since it has raised capital from shareholders",
+        "It loses the right to decide business strategy to the Exchange",
+        "It must distribute all annual profit to shareholders as dividends",
+        "It bears short-term performance pressure and compliance/disclosure costs"
+      ],
+      "explanation": "In exchange for large capital, a public company must bear audit and disclosure costs, and is regularly judged by its quarterly results - which makes some management teams reluctant to invest for the long term. This is why some large companies choose to stay private, or buy back shares to delist."
+    }
+  ],
+  "keyTakeaways": [
+    "A private company is owned by a small group (family, founders, an investment fund); a public company sells shares broadly to the public through an exchange",
+    "An IPO is the process of converting from private to public to raise large amounts of capital",
+    "In exchange for the capital raised, a public company must periodically disclose its financial information to investors"
+  ],
+  "practicePrompt": {
+    "question": "A coffee chain is doing well with 50 stores, owned by 3 founders. They want to expand to 500 stores in 5 years and need to raise VND 2,000 billion, while bank loans aren't enough. Which path fits for raising this much capital?",
+    "options": [
+      "Carry out an IPO, selling shares to the public through the exchange in exchange for periodic disclosure",
+      "Stay a private company and only borrow more from relatives and friends to avoid disclosing any financial information publicly",
+      "Double the price of every cup of coffee at all 50 current stores to accumulate enough of the VND 2,000 billion over a few years",
+      "It's impossible to raise this much capital unless the company is already a long-operating multinational conglomerate"
+    ],
+    "explanation": "An IPO is the path for a private company to raise large capital from a broad base of investors, in exchange for disclosing financial information - exactly the tool that fits a VND 2,000 billion expansion."
+  },
+  "summary": {
+    "keyIdea": "A private company is owned by a small group (family, founders, an investment fund); a public company sells shares broadly to the public through an exchange",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to real decisions.",
+    "action": "An IPO is the process of converting from private to public to raise large amounts of capital"
+  },
+  "application": {
+    "title": "Find a real example",
+    "message": "Look up a family business you know (a restaurant, a shop) and a company listed on HOSE - write down the biggest difference you notice about ownership and disclosure.",
+    "secondary": "A direct comparison makes the IPO concept far less abstract."
+  },
+  "track": "personal",
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Not every company has shares you can buy on the exchange. The difference between a public company and a private company is the first thing to distinguish clearly before diving deeper into stock investing."
+    },
+    {
+      "type": "paragraph",
+      "text": "A private company - like a family noodle shop, a grocery store, or even an unlisted tech startup - is owned by a limited group of people: founders, family, or a few venture investors who put in the initial capital. To buy a piece of that company, you must negotiate directly with the owner - there's no public exchange letting you 'click buy' the way you would with a listed stock."
+    },
+    {
+      "type": "heading",
+      "text": "IPO: the door turning a private company into a public one"
+    },
+    {
+      "type": "paragraph",
+      "text": "When a private company grows to a certain scale and needs to raise large capital to expand, one option is an IPO (Initial Public Offering) - selling shares to the public for the first time. After the IPO, the company's shares are listed on an exchange (in Vietnam that's HOSE, HNX, or UPCoM), and anyone can buy or sell those shares through a securities account."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Before IPO: the company is owned by a small group, financial information isn't required to be widely disclosed",
+        "After IPO: thousands or millions of shareholders can trade shares, the company must publish quarterly and annual financial reports",
+        "An IPO helps a company raise large capital but also means tighter oversight from the State Securities Commission and shareholders",
+        "Founders usually still hold a large stake after an IPO, but no longer have the absolute control they had before"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "A real example in Vietnam",
+      "text": "Mobile World, Vinamilk, Hoa Phat, FPT were all mid-sized private companies before their IPOs and listings. After listing, these companies have tens of thousands of shareholders and must periodically publish financial reports that anyone can look up on the website of the State Securities Commission or securities firms."
+    },
+    {
+      "type": "heading",
+      "text": "Why this distinction matters for new investors"
+    },
+    {
+      "type": "paragraph",
+      "text": "When you open a securities account and look to buy shares, you can only buy shares of public companies that have listed - because only these companies have publicly traded, transparent, and liquid (easy to buy and sell) prices. Private companies, even if doing very well, offer no way to invest directly unless you're a professional venture investor or personally know the owner."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Private company",
+        "text": "Owned by a small group, no public share price, not required to disclose financial reports widely, hard to buy or sell a stake."
+      },
+      "right": {
+        "label": "Public company",
+        "text": "Shares listed on an exchange, anyone can trade, must periodically disclose financial reports, subject to regulatory oversight."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Only a public company has shares you can buy on the exchange.",
+        "An IPO is the door that opens a private company up to public investment - in exchange for mandatory transparency."
+      ]
+    }
+  ]
+}

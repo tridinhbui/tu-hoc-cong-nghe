@@ -6,6 +6,7 @@ import { createClient } from "@/lib/supabase";
 import { ITEM_DESCRIPTIONS, WEARABLE_IN_3D, type CharacterEquipments } from "@/lib/rpg-items";
 import { COMPETENCIES } from "@/lib/career-competency";
 import { getLeaderboardByMetric, type LeaderboardRow } from "@/lib/supabase-user";
+import { getMySocialGraph } from "@/lib/supabase-social";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
@@ -408,43 +409,57 @@ function FriendsHouse({ accent, userId, onClose }: Props) {
 
   useEffect(() => {
     let cancelled = false;
-    const supabase = createClient();
-    void supabase
-      .from("user_connections")
-      .select("requester_id, addressee_id, status")
-      .or(`requester_id.eq.${userId},addressee_id.eq.${userId}`)
-      .eq("status", "accepted")
-      .then(async ({ data, error }) => {
+
+    // Qua getMySocialGraph (RPC get_my_social_graph), KHÔNG query bảng thẳng.
+    //
+    // Bản trước đọc `user_connections` với các cột `requester_id`/`addressee_id`.
+    // Không có bảng nào tên đó: không migration nào tạo, SUPABASE_SCHEMA.md cũng
+    // không nhắc tới. Bảng thật là `user_friendships`, và cột của nó là
+    // `user_a`/`user_b`/`requested_by` - nên cả tên bảng lẫn tên cột đều sai.
+    //
+    // Không ai thấy vì `if (error || !data?.length)` gộp lỗi vào chung với
+    // "chưa có bạn nào" rồi setFriends([]): toà Nhà Bạn Bè trong phố nghề luôn
+    // hiện "chưa có bạn nào" kèm nút mời kết bạn, kể cả với người có đủ bạn.
+    // Một bảng không tồn tại trông y hệt một danh sách rỗng.
+    //
+    // Dùng lại RPC mà /ban-be đang chạy thì tên bảng không còn nằm ở đây nữa,
+    // và nó trả sẵn full_name + current_level nên bớt được một vòng đọc
+    // user_profiles.
+    void getMySocialGraph()
+      .then(async (graph) => {
         if (cancelled) return;
-        if (error || !data?.length) {
+        const accepted = graph.filter((c) => c.direction === "friend");
+        if (accepted.length === 0) {
           setFriends([]);
           return;
         }
-        const ids = data.map((r) =>
-          (r as { requester_id: string; addressee_id: string }).requester_id === userId
-            ? (r as { addressee_id: string }).addressee_id
-            : (r as { requester_id: string }).requester_id
-        );
-        const [profiles, streaks] = await Promise.all([
-          supabase.from("user_profiles").select("id, full_name, current_level").in("id", ids),
-          supabase.from("user_streaks").select("user_id, current_streak").in("user_id", ids),
-        ]);
+        const ids = accepted.map((c) => c.user_id);
+        // Chuỗi ngày học không nằm trong đồ thị bạn bè, nên vẫn phải đọc riêng.
+        const supabase = createClient();
+        const { data: streaks } = await supabase
+          .from("user_streaks")
+          .select("user_id, current_streak")
+          .in("user_id", ids);
         if (cancelled) return;
         const streakBy = new Map(
-          (streaks.data ?? []).map((s) => [(s as { user_id: string }).user_id, (s as { current_streak: number }).current_streak])
+          (streaks ?? []).map((s) => [
+            (s as { user_id: string }).user_id,
+            (s as { current_streak: number }).current_streak,
+          ])
         );
         setFriends(
-          (profiles.data ?? []).map((p) => {
-            const row = p as { id: string; full_name: string | null; current_level: number | null };
-            return {
-              user_id: row.id,
-              name: row.full_name || t.careerDistrict.civic.defaultLearnerName,
-              level: row.current_level ?? 1,
-              streak: streakBy.get(row.id) ?? 0,
-            };
-          })
+          accepted.map((c) => ({
+            user_id: c.user_id,
+            name: c.full_name || t.careerDistrict.civic.defaultLearnerName,
+            level: c.current_level ?? 1,
+            streak: streakBy.get(c.user_id) ?? 0,
+          }))
         );
+      })
+      .catch(() => {
+        if (!cancelled) setFriends([]);
       });
+
     return () => {
       cancelled = true;
     };

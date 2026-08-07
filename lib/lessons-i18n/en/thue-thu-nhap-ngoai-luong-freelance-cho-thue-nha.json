@@ -1,0 +1,182 @@
+{
+  "slug": "thue-thu-nhap-ngoai-luong-freelance-cho-thue-nha",
+  "title": "Tax Track, Lesson 7: Income outside your salary - freelancing, renting out property, household businesses",
+  "subtitle": "Three common sources of income, and three different ways they are taxed",
+  "duration": "9 min",
+  "whyItMatters": "More and more people earn something outside their main salary. Each kind of income is taxed its own way, and the thresholds changed substantially in 2026. Not knowing the rules leads to paying the wrong amount and being chased for the difference.",
+  "openingQuestion": "You receive 6 million VND for a freelance project from a company you have no long-term employment contract with. What does the company do?",
+  "openingOptions": [
+    "Pays the full 6 million and leaves you to pay the tax later",
+    "Withholds 10% income tax before paying, because the payment is 5 million or more",
+    "Withholds under the 5-band progressive scale, as with salary",
+    "Withholds nothing, because this is not salary"
+  ],
+  "explanation": "Under Decree 253/2026/ND-CP, occasional income of 5 million VND or more per payment has 10% income tax withheld at source. That threshold was raised from the previous 2 million. You receive 5.4 million, and 600,000 VND is paid on your behalf. It is all recalculated when you finalise for the year.",
+  "diagram": [
+    {
+      "label": "Occasional income ≥ 5 million per payment",
+      "arrow": true
+    },
+    {
+      "label": "10% withheld at source",
+      "arrow": true
+    },
+    {
+      "label": "Brought together at year-end finalisation",
+      "arrow": true
+    },
+    {
+      "label": "Pay the balance, or get a refund"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Someone taking on work on the side",
+    "description": "An office worker takes on design projects worth 6-8 million VND each. On every payment the payer withholds 10%. At the year-end finalisation, salary and freelance income are added together and recalculated on the progressive scale. If total income still sits in a low band, the 10% withheld may exceed the real liability and is refunded."
+  },
+  "quiz": [
+    {
+      "question": "Under the 2026 rules, at what level is 10% withheld from occasional income?",
+      "options": [
+        "From 2 million VND per payment upwards",
+        "On every payment, with no threshold",
+        "From 10 million VND per payment upwards",
+        "From 5 million VND per payment upwards"
+      ],
+      "explanation": "Decree 253/2026/ND-CP raises the threshold from 2 million to 5 million VND per payment. Below it nothing is withheld at source, but it still has to be declared at finalisation."
+    },
+    {
+      "question": "Above what annual revenue does an individual renting out property pay income tax?",
+      "options": [
+        "500 million VND",
+        "200 million VND",
+        "100 million VND",
+        "From the very first dong"
+      ],
+      "explanation": "The 2025 Personal Income Tax Law raises the taxable threshold for business activity, including renting out property, from 200 million to 500 million VND a year."
+    },
+    {
+      "question": "What major change applies to household businesses from 1 January 2026?",
+      "options": [
+        "They are exempt from tax entirely",
+        "The lump-sum method is abolished, replaced by declaration",
+        "They must now pay compulsory social insurance in the same way that employees do",
+        "Nothing changes"
+      ],
+      "explanation": "Under Resolution 198/2025/QH15, household and individual businesses no longer use the lump-sum tax method from 1 January 2026, and declare on actual revenue instead."
+    },
+    {
+      "question": "Why does income that has already had 10% withheld still need to be declared at finalisation?",
+      "options": [
+        "Because the law requires every payment to be declared, even though the amount you finally owe does not change",
+        "Because another 10% has to be paid on top",
+        "Because the 10% is only provisional; the year's total income decides the real liability, and part may be refunded",
+        "Because that income is taxed twice"
+      ],
+      "explanation": "The 10% is a fixed withholding at source and does not reflect your real tax band. Once the year is added up and deductions applied, the real liability may be lower - and the difference is refunded."
+    },
+    {
+      "question": "Why must occasional income that already had 10% withheld be declared again at finalisation?",
+      "options": [
+        "Because everything withheld is refunded in full once the declaration is complete",
+        "Because the tax authority needs to reconcile it against the payer's own report",
+        "Because occasional income carries its own rate, higher than the rate on salary",
+        "Because the 10% is only provisional; the real liability is worked out across the year"
+      ],
+      "explanation": "Ten percent is a fixed figure applied for convenience, not your actual liability. Lower earners usually get most of it back, while higher earners may owe more - only finalisation produces the right number."
+    }
+  ],
+  "keyTakeaways": [
+    "Occasional income from 5 million VND per payment has 10% withheld at source (Decree 253/2026/ND-CP)",
+    "Renting out property: the taxable threshold rises from 200 to 500 million VND of annual revenue",
+    "Household businesses drop the lump-sum method from 1 January 2026 and declare instead (Resolution 198/2025/QH15)",
+    "Everything with 10% withheld still goes into the year-end finalisation - and part is often refunded"
+  ],
+  "practicePrompt": {
+    "question": "Mai earns 18 million a month in her main job and takes on 4 freelance projects during the year, each worth 7 million VND. Which statement is right?",
+    "options": [
+      "The freelance income is exempt because her main salary is already taxed",
+      "Each project has 10% withheld, and it is all brought together at year end",
+      "Each project is taxed on its own separate progressive scale",
+      "She must register a household business before she can take freelance work"
+    ],
+    "explanation": "Each 7 million project passes the 5 million threshold, so 10% = 700,000 VND is withheld, 2.8 million across all four. Because she has income from several sources, Mai has to file herself: add 216 million of salary to 28 million of freelance income, subtract insurance and the family circumstance deduction, then apply the progressive scale. What was withheld is credited against the final liability."
+  },
+  "summary": {
+    "keyIdea": "Each kind of non-salary income has its own tax mechanism, but they all meet at the year-end finalisation",
+    "commonMistake": "Assuming that once 10% has been withheld the obligation is settled, and so skipping finalisation and losing the refund.",
+    "action": "List every source of income outside your salary this year."
+  },
+  "application": {
+    "title": "Keep a record of income outside your salary",
+    "message": "Note each payment: the date, the amount, who paid it, and how much tax was withheld. At year end these are exactly the details you need to finalise and reclaim any overpayment.",
+    "secondary": "The rules on household businesses and revenue thresholds are in transition - check the latest guidance before you file."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Income outside a salary keeps getting more common: freelancing, renting out an apartment, selling online. These three sources are taxed under three different mechanisms, and all three changed substantially in 2026."
+    },
+    {
+      "type": "heading",
+      "text": "1. Occasional income: 10% withheld at source"
+    },
+    {
+      "type": "paragraph",
+      "text": "When you are paid by an organisation that has no long-term employment contract with you, that payment counts as occasional income. Under Decree 253/2026/ND-CP, payments **of 5 million VND or more** have 10% withheld as they are made. The threshold has been raised from the 2 million that applied before - a change that helps people doing small pieces of work."
+    },
+    {
+      "type": "callout",
+      "label": "10% is not the final figure",
+      "text": "The 10% withholding is fixed and takes no account of your real tax band. If your total income for the year sits in a low band, what you actually owe may be far less - and the difference comes back at finalisation. This is why anyone with freelance income should almost always file."
+    },
+    {
+      "type": "heading",
+      "text": "2. Renting out property: the 500 million a year threshold"
+    },
+    {
+      "type": "paragraph",
+      "text": "The 2025 Personal Income Tax Law raises the taxable revenue threshold for an individual's business activity, including renting out real estate, **from 200 million to 500 million VND a year**. Below it, renting out property creates no income tax liability; above it, the excess is taxed as a percentage of revenue rather than on the progressive salary scale."
+    },
+    {
+      "type": "heading",
+      "text": "3. Household businesses: no more lump-sum tax from 2026"
+    },
+    {
+      "type": "paragraph",
+      "text": "Under Resolution 198/2025/QH15, from 1 January 2026 household and individual businesses **no longer use the lump-sum method** - the approach that set a fixed monthly tax regardless of actual revenue. They declare on real revenue instead. The change demands much more careful bookkeeping and invoicing than before."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Three kinds of non-salary income",
+      "concepts": [
+        {
+          "vi": "Thu nhập vãng lai",
+          "en": "Occasional income",
+          "def": "Payment from an organisation with no long-term employment contract; 10% withheld from 5 million per payment"
+        },
+        {
+          "vi": "Cho thuê tài sản",
+          "en": "Rental income",
+          "def": "Taxable once revenue passes 500 million VND a year, as a percentage of revenue"
+        },
+        {
+          "vi": "Hộ kinh doanh",
+          "en": "Household business",
+          "def": "From 1 January 2026 declares on real revenue, with no lump-sum tax"
+        },
+        {
+          "vi": "Khấu trừ tại nguồn",
+          "en": "Withholding at source",
+          "def": "The payer holds back the tax and remits it for you before paying you"
+        }
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Every source of income has its own rules, but at year end they all meet in one finalisation.",
+        "Last lesson of the track: putting it all together through three real profiles."
+      ]
+    }
+  ]
+}

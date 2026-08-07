@@ -1,0 +1,206 @@
+{
+ "slug": "tong-on-chang-3",
+ "title": "Stage 5 review: bonds for the conservative investor",
+ "subtitle": "Stage 3 summary",
+ "duration": "8 min",
+ "openingQuestion": "After the whole of Stage 5, what is the core idea running through everything about bonds?",
+ "openingOptions": [
+  "Bonds carry a trade-off between yield and risk, depending on each person's goal",
+  "A bond is inherently always a much higher-yielding asset than a stock in every case and every phase of the financial market",
+  "Under current law, bonds are reserved solely for large institutions, and individuals should not and are not permitted to participate in this type of investment",
+  "A bond is always absolutely safe for every investor, with no risk of any kind existing for the holder under any circumstance"
+ ],
+ "explanation": "Running through the whole stage, the core message is: a bond isn't a single uniform 'absolutely safe' product, but a diverse family of financial instruments, each with its own trade-off between yield and various risks (credit, interest rate, reinvestment, liquidity). Understanding these trade-offs helps you pick the right instrument for the right goal.",
+ "diagram": [
+  {
+   "label": "A bond is a promise to pay money on a schedule",
+   "arrow": true
+  },
+  {
+   "label": "Its price moves opposite to interest rates",
+   "arrow": true
+  },
+  {
+   "label": "Credit risk determines the yield premium",
+   "arrow": true
+  },
+  {
+   "label": "Choosing a type means choosing a trade-off - there's no absolutely safe type"
+  }
+ ],
+ "interactiveType": "bond",
+ "realWorldExample": {
+  "company": "A summary of the bond-learning journey across 20 lessons",
+  "description": "Across the stage's 20 lessons, you went from the most basic concept (what is a bond, who issues it, why businesses and the Government need to borrow through bonds) to more advanced ideas (pricing via a discount rate, duration, credit risk, tax, and how to build a practical bond portfolio). This is foundational knowledge that lets anyone, even without a finance background, confidently read a bond or bond fund prospectus and understand what they're actually investing in."
+ },
+ "quiz": [
+  {
+   "question": "Which of the following risk groups is NOT one of the main bond risks covered in this stage?",
+   "options": [
+    "Currency risk, which applies to every domestically issued bond denominated in home currency",
+    "Credit risk: the issuer becomes unable to repay both principal and interest when due, a risk that likewise applies to every bond regardless of the currency it happens to be issued in",
+    "Interest rate risk: a bond's price moves with interest rates",
+    "Reinvestment risk: a coupon can't be reinvested at the old level"
+   ],
+   "correct": 0,
+   "explanation": "Currency risk only arises with international bonds or bonds denominated in a foreign currency. A Vietnamese government bond issued in VND to a domestic investor carries no currency risk - the other three risks (credit, interest rate, reinvestment) are broader and more commonly applicable."
+  },
+  {
+   "question": "Why do the ladder strategy and identifying a financial goal before investing matter equally in managing a bond portfolio?",
+   "options": [
+    "Both aim to reduce risk, but they intervene at two different stages",
+    "Both are purely formal and have no effect on the final investment outcome",
+    "Only one of the two needs to be applied; both aren't necessary",
+    "Both are mandatory requirements under securities law"
+   ],
+   "correct": 0,
+   "explanation": "Ladder is a timing-risk management technique (when to mature, when to reinvest), while identifying a financial goal is the foundational step that decides the right type of bond and risk allocation from the start. These two factors complement each other, rather than replace each other, in a well-managed bond portfolio."
+  },
+  {
+   "question": "In what order do beginners usually come to recognize these four bond risks?",
+   "options": [
+    "Only default risk is real; the other three are purely theoretical concepts",
+    "Currency risk first, then reinvestment, then interest rate, and finally default risk",
+    "Every kind of risk is recognized at the same time, right from the first investment",
+    "Default first, then interest rate, then reinvestment, and finally currency and inflation, a sequence that also holds even for an investor who has never lived through a market downturn"
+   ],
+   "correct": 3,
+   "explanation": "Default is the most intuitive - everyone understands it right away. Interest rate risk only shows up when forced to sell early; reinvestment risk when a coupon arrives with nowhere obvious to go; and inflation is the quietest of all, eroding purchasing power while the statement still shows a positive number."
+  },
+  {
+   "question": "Someone says: 'I bought a corporate bond at 11% interest and I'll hold it to maturity, so there's no risk at all.' Where is this wrong?",
+   "options": [
+    "Wrong because an 11% rate is a figure that doesn't exist at all in the Vietnamese bond market",
+    "Not wrong at all; holding to maturity makes every kind of risk disappear completely",
+    "Wrong because a corporate bond doesn't allow an investor to hold to maturity",
+    "Holding to maturity only eliminates price-swing risk, not default risk"
+   ],
+   "correct": 3,
+   "explanation": "This is the most common misunderstanding across the whole stage. Holding to maturity makes you immune to price swings - but if the issuer can't pay, no maturity date will save you. That 11% is exactly the market telling you how large that risk is."
+  },
+  {
+   "question": "You're 30, have a full 6-month emergency fund, and are saving for retirement. What is bonds' sensible role for you?",
+   "options": [
+    "A small portion to reduce the portfolio's volatility, with most still in stocks",
+    "The entire portfolio should be bonds for absolute capital preservation for retirement",
+    "There shouldn't be any bonds at all until past age fifty-five",
+    "Split exactly half stocks and half bonds at every age"
+   ],
+   "correct": 0,
+   "explanation": "With 30 years ahead, time is your biggest asset - enough to ride out several down cycles. A portion in bonds is still useful to keep you from panic-selling at the bottom, but keeping most of it in bonds trades away growth for unnecessary peace of mind."
+  },
+  {
+   "question": "What is the most important thing to remember about the relationship between yield and risk across this whole stage?",
+   "options": [
+    "A higher yield is a sign the issuer is running its business more efficiently",
+    "A higher yield is always compensation for some specific risk",
+    "Yield and risk are two independent concepts with no connection to each other",
+    "A higher yield only reflects a longer term, not risk"
+   ],
+   "correct": 1,
+   "explanation": "If a product pays above the market level, there's always a reason - and it's your job to find that reason before putting money down. Not finding the risk doesn't mean it isn't there; it usually just means you haven't looked in the right place yet."
+  }
+ ],
+ "keyTakeaways": [
+  "The foundations group: what a bond is, who issues it, the rate-price relationship, credit risk, and credit ratings",
+  "The valuation and sensitivity group: the factors affecting a bond's price, the discount formula PV=FV/(1+r), the concept of Duration",
+  "The risks and real costs group: coupon reinvestment risk, the 5% personal income tax on corporate bond interest",
+  "The strategy and real-world application group: the ladder strategy, when to prioritize bonds, related products (CDs, investment-linked insurance), and a specific portfolio-allocation case"
+ ],
+ "practicePrompt": {
+  "question": "After finishing Stage 5 on bonds, a friend asks: 'So in the end, are bonds always absolutely safe?' Based on everything you've learned, how would you answer?",
+  "options": [
+   "No - bonds carry a trade-off between yield and credit, interest rate, and reinvestment risk, depending on the goal",
+   "Yes, every bond regardless of issuer is completely absolutely safe, with no risk of any kind worth noting, a conclusion that would also follow even if the bond had never once missed a payment",
+   "No, because bonds are actually riskier than stocks in every case, so it's best to avoid them entirely",
+   "Yes, just pick the bond with the highest coupon on the market and absolute safety is always guaranteed"
+  ],
+  "correct": 0,
+  "explanation": "Bonds still carry trade-off risks (credit, interest rate, reinvestment) - choosing the type and allocation needs to be based on a specific financial goal; there's no universal 'absolutely safe' formula."
+ },
+ "summary": {
+  "keyIdea": "The foundations group: what a bond is, who issues it, the rate-price relationship, credit risk, and credit ratings",
+  "commonMistake": "Reading the concept as a line to recite rather than a principle to apply to a real decision.",
+  "action": "The valuation and sensitivity group: the factors affecting a bond's price, the discount formula PV=FV/(1+r), the concept of Duration"
+ },
+ "application": {
+  "title": "Grade yourself on Stage 5",
+  "message": "Write four summary sentences, one for each knowledge group: bond foundations, valuation and duration, real risks/costs, and applied strategy - in your own words.",
+  "secondary": "Summarizing in your own words is how you check whether you truly understood it, or just skimmed."
+ },
+ "sections": [
+  {
+   "type": "lead",
+   "text": "Stage 5 took you from the most basic question - what is a bond - to being able to analyze and build a bond portfolio suited to your own goals. Let's look back over the whole journey across four broad topic groups."
+  },
+  {
+   "type": "heading",
+   "text": "Group 1: Foundations - what a bond is and who issues it"
+  },
+  {
+   "type": "paragraph",
+   "text": "You learned that a bond is essentially a loan contract: the bond buyer is the lender, the issuer (Government, business) is the borrower, committing to pay periodic interest (the coupon) and repay principal (the face value) at maturity. You also understood why a rise in market rates makes an existing bond's price fall - because a fixed coupon can't adjust itself, so the price must compensate for the actual yield to match the new level. Alongside that came the concept of credit ratings, assessing an issuer's ability to repay."
+  },
+  {
+   "type": "heading",
+   "text": "Group 2: Valuation and interest-rate sensitivity"
+  },
+  {
+   "type": "paragraph",
+   "text": "At a deeper level, you saw that a bond's price is essentially a present-value calculation of future cash flows, through the simple formula PV = FV/(1+r). From there, the concept of Duration gave you an intuitive understanding: the longer the term, the more sensitive a bond is to rate swings - an important principle when choosing a term that fits your own tolerance for volatility."
+  },
+  {
+   "type": "heading",
+   "text": "Group 3: Real risks and costs often overlooked"
+  },
+  {
+   "type": "list",
+   "items": [
+    "Reinvestment risk: the originally announced yield assumes you reinvest the coupon at exactly that level - if market rates fall later, the actual whole-period return will be lower than the advertised figure",
+    "Tax: corporate bond interest received by an individual in Vietnam is subject to 5% personal income tax, withheld at source - always compare after-tax yields between investment channels",
+    "Liquidity: not every bond is easy to resell before maturity at a good price, especially privately-placed corporate bonds"
+   ]
+  },
+  {
+   "type": "heading",
+   "text": "Group 4: Strategy and real-world application"
+  },
+  {
+   "type": "paragraph",
+   "text": "Finally, you learned applied tools: the ladder strategy spreads reinvestment timing risk across several years; a principle for recognizing when to prioritize bonds (short-to-medium-term goals, near retirement, prioritizing capital preservation); distinguishing bonds from 'relative' products like certificates of deposit and investment-linked insurance; and how to apply all this knowledge to a specific portfolio-allocation case, balancing safe government bonds against a higher-yielding corporate bond fund."
+  },
+  {
+   "type": "conceptTable",
+   "title": "Overall map of Stage 5",
+   "concepts": [
+    {
+     "vi": "Foundations",
+     "en": "Bond basics",
+     "def": "What a bond is, who issues it, the rate-price relationship, credit ratings."
+    },
+    {
+     "vi": "Valuation",
+     "en": "Valuation & sensitivity",
+     "def": "The formula PV=FV/(1+r), the concept of Duration, sensitivity by term."
+    },
+    {
+     "vi": "Risks & costs",
+     "en": "Risks & costs",
+     "def": "Reinvestment risk, 5% personal income tax, liquidity."
+    },
+    {
+     "vi": "Applied strategy",
+     "en": "Strategy & application",
+     "def": "Ladder, when to prioritize bonds, related products, a portfolio-allocation case."
+    }
+   ]
+  },
+  {
+   "type": "closing",
+   "lines": [
+    "A bond is a tool for trading off yield against risk (credit, interest rate, reinvestment), not a single uniform 'absolutely safe' product.",
+    "Having mastered the four knowledge groups of Stage 5, you now have enough foundation to confidently read a bond prospectus and build a bond portfolio suited to your own financial goals."
+   ]
+  }
+ ]
+}

@@ -1,0 +1,174 @@
+{
+  "slug": "tai-khoan-huu-tri",
+  "title": "Retirement accounts: BHXH and voluntary options in Vietnam",
+  "subtitle": "Social insurance (BHXH) and voluntary supplementary pension funds",
+  "duration": "7 min",
+  "openingQuestion": "Tung works an office job, and his company pays mandatory social insurance (BHXH) for him every month. He's heard BHXH will pay him a pension when he's older, but worries that pension won't be enough to live on. Which option lets him add to his retirement savings beyond mandatory BHXH?",
+  "openingOptions": [
+    "There is no option whatsoever beyond mandatory BHXH to prepare for retirement later, whether voluntary or self-directed investing",
+    "The only option is a bank savings deposit - no other supplementary pension product of any kind is permitted to operate in Vietnam",
+    "Join voluntary BHXH and a voluntary supplementary pension fund, plus invest on his own for the long term",
+    "He must open a 401(k) account in the US to properly prepare for his own retirement, even while living and working in Vietnam"
+  ],
+  "explanation": "In Vietnam, mandatory BHXH is the main foundation for a pension, but the benefit typically replaces only part of a worker's income while employed. To supplement it, workers can join a voluntary supplementary pension fund (under Decree 88/2016/ND-CP, offered by life insurers or licensed fund managers) and build their own long-term personal investment portfolio.",
+  "diagram": [
+    { "label": "Mandatory BHXH: the pension foundation", "arrow": true },
+    { "label": "Replaces only part of your income", "arrow": true },
+    { "label": "Voluntary supplementary pension fund: fills the gap" }
+  ],
+  "realWorldExample": {
+    "company": "Vietnam Social Security and voluntary supplementary pension funds",
+    "description": "Vietnam Social Security (BHXH Vietnam) manages the mandatory pension fund for tens of millions of workers, funded by contributions from both employees and employers. Alongside it, under Decree 88/2016/ND-CP on voluntary supplementary pension programs, companies such as Manulife, Prudential, Dai-ichi Life, and some fund managers offer supplementary pension products, letting workers (individually or through their employer) contribute extra, receive personal income tax relief within the prescribed limit, and withdraw the accumulated balance at retirement age."
+  },
+  "quiz": [
+    {
+      "question": "In Vietnam, what is the main foundation for the pension of workers in the formal sector?",
+      "options": [
+        "A long-term savings deposit at a commercial bank",
+        "A voluntary pension fund the worker chooses to buy on their own",
+        "Mandatory social insurance (BHXH), funded by both sides",
+        "Investment-linked life insurance bought through an agent"
+      ],
+      "correct": 2,
+      "explanation": "Mandatory BHXH is the main pillar of Vietnam's pension system, playing a role similar to social security systems in other countries, but operating under Vietnam's own specific regulations."
+    },
+    {
+      "question": "What characterizes the voluntary supplementary pension fund under Decree 88/2016/ND-CP?",
+      "options": [
+        "It fully replaces mandatory BHXH once a person joins",
+        "It's legally mandatory for every single worker who has signed a contract of 3 months or more",
+        "It's fully funded by the State, with no contribution from the worker",
+        "It's voluntary, contributed on top of BHXH, and comes with personal income tax relief"
+      ],
+      "correct": 3,
+      "explanation": "This is a supplementary program - not mandatory and not a replacement for BHXH. Its purpose is to help participants build an extra pension pot beyond their BHXH pension, similar in role to tax-advantaged retirement accounts in other countries (like 401(k)s or IRAs in the US), but under Vietnam's own separate legal framework."
+    },
+    {
+      "question": "Why does the BHXH pension often fail to maintain someone's standard of living in retirement?",
+      "options": [
+        "Because the benefit is calculated on the salary used for contributions, which is usually lower than actual income",
+        "Because BHXH benefits legally stop paying out completely after exactly the first ten years of retirement",
+        "Because the BHXH pension is taxed at a very high personal income tax rate",
+        "Because a worker only receives it after having contributed for at least thirty-five years"
+      ],
+      "correct": 0,
+      "explanation": "The benefit is calculated on the average salary used as the contribution base - usually lower than actual income, especially for people with income outside their salary. The gap between the benefit and the standard of living you want is the part you have to cover yourself."
+    },
+    {
+      "question": "What option is available to a self-employed worker in Vietnam?",
+      "options": [
+        "Mandatory BHXH, but only provided they can produce a formal, signed labor contract",
+        "Voluntary BHXH, which lets them choose both the contribution amount and the payment schedule",
+        "No option at all is available to them - they are required to save entirely on their own with no support",
+        "Only the supplementary pension fund that happens to be set up specifically by an employer for staff"
+      ],
+      "correct": 1,
+      "explanation": "Voluntary BHXH is open to people not covered by the mandatory scheme, letting them choose the contribution level and schedule, with the State subsidizing part of it. The key difference: its benefits are narrower than mandatory BHXH, covering mainly retirement and death benefits."
+    },
+    {
+      "question": "What's the downside of a lump-sum BHXH withdrawal instead of waiting for a pension?",
+      "options": [
+        "It's only a downside if the worker hasn't contributed for at least ten years",
+        "There's no downside, since the lump sum received is always larger than total pension payments",
+        "You lose a lifetime income stream and the portion the employer contributed on your behalf",
+        "You get fined administratively and can't rejoin the BHXH system"
+      ],
+      "correct": 2,
+      "explanation": "A lump-sum withdrawal trades a lifetime income stream for one tidy sum - and gives up the portion your employer contributed for you as well. For someone who lives a long life, this is often the single most expensive decision in their entire financial plan."
+    },
+    {
+      "question": "How does the voluntary supplementary pension fund differ from a long-term savings deposit?",
+      "options": [
+        "It pays a fixed interest rate announced annually by the Ministry of Finance",
+        "The State fully guarantees the principal, just like a bank deposit",
+        "It can be withdrawn at any time without losing the tax benefit",
+        "It carries a tax benefit and restricts withdrawal before retirement age"
+      ],
+      "correct": 3,
+      "explanation": "The tax benefit comes with a restriction - that's the design on purpose: the money gets favorable tax treatment because it has to stay put until retirement. In exchange for giving up flexibility, you get the tax savings right in the year you contribute."
+    }
+  ],
+  "keyTakeaways": [
+    "Mandatory BHXH is the main pillar for a pension in Vietnam, funded jointly by workers and employers",
+    "Voluntary BHXH is for people not covered by the mandatory scheme (self-employed, business owners...) who want to build up pension entitlements",
+    "The voluntary supplementary pension fund (Decree 88/2016/ND-CP) is an optional extra layer, with tax relief, offered by insurers/fund managers",
+    "In other countries (like the US with 401(k)s and IRAs), the idea of a 'tax-advantaged retirement account' exists in a different form, but the shared principle is using tax relief to encourage long-term saving for old age"
+  ],
+  "practicePrompt": {
+    "question": "Tung has fully paid his mandatory BHXH contributions but worries his pension won't cover his living costs later. His company has just rolled out a voluntary supplementary pension program under Decree 88/2016/ND-CP. Should he join it as well?",
+    "options": [
+      "He should consider joining, since it's a voluntary add-on beyond mandatory BHXH and comes with personal income tax relief within the prescribed limit",
+      "No need, since mandatory BHXH is the sole and sufficient pillar for all of a worker's retirement needs",
+      "He shouldn't, since the voluntary supplementary pension fund would automatically fully replace his mandatory BHXH obligation",
+      "He should only join if he's a state civil servant, since by regulation this program doesn't apply to private-company employees"
+    ],
+    "correct": 0,
+    "explanation": "The voluntary supplementary pension fund is an add-on beyond mandatory BHXH, not a replacement for it - it helps build extra savings and comes with tax relief within the prescribed limit."
+  },
+  "summary": {
+    "keyIdea": "Mandatory BHXH is the main pillar for a pension in Vietnam, funded jointly by workers and employers",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to a real decision.",
+    "action": "Voluntary BHXH is for people not covered by the mandatory scheme (self-employed, business owners...) who want to build up pension entitlements"
+  },
+  "application": {
+    "title": "Check your BHXH status",
+    "message": "Look up your current number of years of BHXH contributions (via the VssID app) and estimate what percentage of your current income your future pension will replace.",
+    "secondary": "Knowing the specific number helps you decide whether you need a voluntary supplementary fund."
+  },
+  "track": "personal",
+  "sections": [
+    {
+      "type": "lead",
+      "text": "When talk turns to 'preparing for retirement', a lot of international material references 401(k)s or IRAs - concepts specific to the US system. In Vietnam, the retirement landscape has its own structure, and understanding that structure correctly is the first step toward a realistic retirement plan."
+    },
+    {
+      "type": "heading",
+      "text": "The main pillar: social insurance (BHXH)"
+    },
+    {
+      "type": "paragraph",
+      "text": "Mandatory BHXH is the main social insurance scheme for workers with a labor contract in Vietnam. Every month, both the worker and the employer contribute to the BHXH fund at rates set as a percentage of salary. Once a worker meets the age and years-of-contribution requirements, they receive a monthly pension calculated using a formula based on their average BHXH contribution salary and their years of participation."
+    },
+    {
+      "type": "paragraph",
+      "text": "For self-employed workers, household businesses, or anyone not covered by mandatory BHXH, the State offers voluntary BHXH - letting people contribute on their own so they still receive a pension later, though the contribution levels and benefits differ somewhat from mandatory BHXH."
+    },
+    {
+      "type": "heading",
+      "text": "The supplementary layer: the voluntary supplementary pension fund"
+    },
+    {
+      "type": "paragraph",
+      "text": "Because the pension from BHXH usually replaces only part (not 100%) of a worker's income while employed, many people need an extra layer of savings. Decree 88/2016/ND-CP governs the voluntary supplementary pension program, allowing employers or individuals to contribute to pension funds run by licensed life insurers or fund managers. Contributions within the prescribed limit get personal income tax relief, and the accumulated balance is invested to grow over many years before the participant can withdraw it at retirement age."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Mandatory BHXH: the main foundation, a legally required contribution for anyone with a labor contract",
+        "Voluntary BHXH: for people not covered by the mandatory scheme, contributing on their own to secure a pension later",
+        "Voluntary supplementary pension fund (Decree 88/2016/ND-CP): an optional extra layer with tax relief, offered by insurers/fund managers",
+        "Personal investing: building your own portfolio (stocks, bonds, open funds, real estate) to actively add to your retirement income beyond the channels above"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "An international comparison for context",
+      "text": "In the US, workers can participate in a 401(k) (an employer-organized retirement account, often with an employer matching contribution) or an IRA (a self-opened individual retirement account), both carrying tax relief to encourage long-term saving. This is offered as an example to illustrate the general idea of a 'tax-advantaged retirement account' - but the specific structure, contribution limits, and tax rules of the US system do NOT apply in Vietnam. Readers in Vietnam should look into BHXH regulations and Decree 88/2016/ND-CP rather than mechanically applying 401(k)/IRA figures."
+    },
+    {
+      "type": "heading",
+      "text": "Why you shouldn't rely on just one source"
+    },
+    {
+      "type": "paragraph",
+      "text": "Just like the principle of portfolio diversification, preparing for retirement should also draw on multiple sources: the BHXH pension as a stable foundation, the voluntary supplementary pension fund adding tax-advantaged savings, and a personal investment portfolio letting you actively control and grow your wealth toward your own goals. Relying on a single source alone - especially if the expected BHXH pension won't cover living costs in old age - is a risk that should be recognized early."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Vietnam's retirement system has its own structure: mandatory/voluntary BHXH as the foundation, with the voluntary supplementary pension fund and personal investing as additional layers.",
+        "Understanding Vietnam's own context correctly - rather than mechanically applying the US 401(k)/IRA model - helps you build a retirement plan that's realistic and actually achievable."
+      ]
+    }
+  ]
+}

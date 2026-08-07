@@ -1,0 +1,184 @@
+{
+  "slug": "bao-hiem",
+  "title": "Insurance: protecting your portfolio from risk",
+  "subtitle": "Insurance role in planning",
+  "duration": "7 min",
+  "openingQuestion": "Tuan, 35, is the sole breadwinner for a family with 2 young children. An insurance agent offers him an 'investment-linked insurance' package that both protects and grows his money, costing 40 million/year. He could also buy pure term life insurance with a premium of only about 5-8 million/year for the same coverage, then invest the difference himself. Which choice is usually the more financially sound recommendation?",
+  "openingOptions": [
+    "Buy pure term life insurance and invest the difference himself",
+    "Only buy the investment-linked insurance, since term insurance is seen as 'wasted money' if nothing happens during the contract term",
+    "He doesn't need any life insurance at all, if the family already has state-provided health insurance",
+    "The investment-linked package is always clearly better than term insurance, since it both protects and offers a chance to grow money"
+  ],
+  "explanation": "Investment-linked insurance (universal life, unit-linked) bundles the cost of protection with the cost of investment/management, usually carrying high hidden costs and a weaker investment return than investing directly on your own. Term life insurance focuses purely on protection - the premium is many times cheaper because there's no investment accumulation component. A strategy commonly recommended by financial experts is 'buy term, invest the difference' - buy cheap term insurance to cover death/disability risk, then invest the money you saved into a channel with more transparent costs.",
+  "diagram": [
+    { "label": "Investment-linked insurance: high hidden fees", "arrow": true },
+    { "label": "Term life insurance: cheap, pure protection", "arrow": true },
+    { "label": "Keeping insurance and investing separate is more effective" }
+  ],
+  "realWorldExample": {
+    "company": "Vietnam's life insurance market (Bao Viet, Manulife, Prudential, AIA)",
+    "description": "Vietnam's major insurers sell both product lines: pure term life insurance (advertised less aggressively since agent commissions are lower) and investment-linked/universal life insurance (pushed by agents far more, since commissions are considerably higher). Vietnam's Ministry of Finance has had to issue directives correcting insurance agents who market investment-linked products as 'high-interest savings', misleading customers - especially after numerous complaints related to bank-sold insurance (bancassurance) during 2022-2023."
+  },
+  "quiz": [
+    {
+      "question": "Why is term life insurance usually MUCH CHEAPER than investment-linked insurance for the same coverage?",
+      "options": [
+        "Because it provides pure protection only, with no investment component attached",
+        "Because the State subsidizes the cost of this product for insurers",
+        "Because it only pays out a small fraction of the coverage amount promised",
+        "Because it's only available to people under 30, keeping the premium low"
+      ],
+      "correct": 0,
+      "explanation": "Investment-linked insurance bundles an investment/accumulation component into the premium, along with fund management fees and other hidden costs, making the total premium much higher than pure protection insurance."
+    },
+    {
+      "question": "What does the 'buy term, invest the difference' strategy mean?",
+      "options": [
+        "Only buying insurance when the premium gap is large enough to profit from",
+        "Buying cheap term insurance, then investing the money saved yourself",
+        "Buying term insurance from several different companies at the same time",
+        "Buying an investment-linked package, then withdrawing the investment portion later"
+      ],
+      "correct": 1,
+      "explanation": "This is a strategy that separates risk protection (which should be bought cheap and used for its actual purpose) from investing (which should be self-controlled and cost-transparent), usually more financially effective than bundling both into one product."
+    },
+    {
+      "question": "Why is insurance ranked ahead of investing in financial priority order?",
+      "options": [
+        "Because the law requires life insurance before an investment account can be opened",
+        "Because insurance contract returns are always higher than stock investment returns",
+        "Because a single major event can wipe out many years of investment accumulation",
+        "Because insurance premiums are fully deductible from taxable personal income"
+      ],
+      "correct": 2,
+      "explanation": "Insurance doesn't create wealth - it stops wealth from being wiped out. A single long hospital stay or a loss of earning capacity can take away more than a decade of investment gains."
+    },
+    {
+      "question": "How does term life insurance differ from investment-linked insurance?",
+      "options": [
+        "The two are essentially the same thing, agents just call them different names",
+        "Term has a higher-return investment component, while investment-linked doesn't have one at all",
+        "Term is only for people over 50, while investment-linked is for younger people",
+        "Term only protects, costs much less, and has no investment accumulation component"
+      ],
+      "correct": 3,
+      "explanation": "Term buys exactly what you need: a payout if something bad happens during the years your children still depend on you. Because it doesn't bundle in investing, the premium is much lower - you invest the difference yourself, at lower cost."
+    },
+    {
+      "question": "How is a reasonable life insurance coverage amount usually estimated?",
+      "options": [
+        "Enough to replace income and pay off debt for dependents over several years",
+        "Exactly equal to the total premiums the buyer will pay over the whole contract",
+        "Equal to the entire value of assets the insured person currently owns",
+        "As high as possible, with no regard for the ability to pay the annual premium"
+      ],
+      "correct": 0,
+      "explanation": "The right question is: if I died today, how much would my family need to keep living and pay off debt. A single person with no dependents may not need life insurance at all - something very few agents will tell you."
+    },
+    {
+      "question": "Which type of insurance is usually most underestimated relative to its real risk?",
+      "options": [
+        "Fire insurance for a paid-off apartment that's currently lived in",
+        "Critical illness and disability insurance while still working",
+        "International travel insurance for short regional trips",
+        "Motorcycle physical damage insurance for a bike worth under thirty million VND"
+      ],
+      "correct": 1,
+      "explanation": "The probability of losing earning capacity before age 65 is higher than the probability of dying, but most people only think about life insurance. Losing income while still having living costs is the hardest financial scenario to handle."
+    }
+  ],
+  "keyTakeaways": [
+    "Insurance should be understood as a RISK-TRANSFER tool, not a return-generating investment tool",
+    "Pure term life insurance is usually much cheaper and more transparent than investment-linked insurance for the same coverage",
+    "Someone with dependents (young children, elderly parents) who is the family's breadwinner needs life insurance the most",
+    "Always read the benefit and fee illustration table carefully before signing a long-term insurance contract - don't just take the agent's word for it"
+  ],
+  "practicePrompt": {
+    "question": "Mai, 30, has 1 young child and is considering an investment-linked insurance package costing 30 million/year. A friend suggests the 'buy term, invest the difference' strategy with term insurance costing only 5 million/year. How should she understand this strategy?",
+    "options": [
+      "Buy cheap term insurance for just 5 million/year, then invest the 25 million/year difference herself in a separate index fund",
+      "Buy both types of insurance at once to maximize coverage, regardless of the total annual cost involved",
+      "Borrow more from the bank to raise the investment-linked premium even higher to increase potential returns",
+      "Drop the idea of buying insurance entirely, since this strategy recommends not joining any type of insurance at all"
+    ],
+    "correct": 0,
+    "explanation": "The 'buy term, invest the difference' strategy separates protection (buying cheap term insurance) from investing (investing the difference yourself), usually more cost-transparent than a bundled investment-linked package serving both purposes at once."
+  },
+  "summary": {
+    "keyIdea": "Insurance should be understood as a RISK-TRANSFER tool, not a return-generating investment tool",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to a real decision.",
+    "action": "Pure term life insurance is usually much cheaper and more transparent than investment-linked insurance for the same coverage"
+  },
+  "application": {
+    "title": "Check your contract",
+    "message": "The lesson listed 4 real fee types to look for in an investment-linked insurance contract - review the section above. Now open your own benefit illustration table (if you have one) and apply that same way of reading it.",
+    "secondary": "If you don't have any insurance yet, try quickly looking up the price of a term life package that fits your income."
+  },
+  "track": "personal",
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Insurance is usually misunderstood in two opposite extremes: either seen as 'wasted money if nothing happens', or sold as an attractive return-generating investment. Both misread its real nature - a RISK-TRANSFER tool."
+    },
+    {
+      "type": "paragraph",
+      "text": "The essence of insurance is that you pay a small, steady premium in exchange for the insurer taking on a large but rarely occurring financial risk (death, accident, critical illness) on your behalf. It shouldn't be expected to generate a return - its role is to stop a bad event from wrecking the entire financial plan and investment portfolio you've worked hard to build."
+    },
+    {
+      "type": "heading",
+      "text": "Two common life insurance product lines in Vietnam"
+    },
+    {
+      "type": "paragraph",
+      "text": "Term life insurance only provides coverage for a fixed period (10, 20, 30 years). If the insured person dies within that term, the family receives the payout. If the term ends with no claim, the contract simply ends with nothing returned - exactly like home insurance or car insurance. By contrast, investment-linked insurance (universal life, unit-linked) combines coverage with a portion of the money invested into funds managed by the insurer, promising both protection and accumulating value."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Term life insurance: low premium (usually 1/5 to 1/8 of an investment-linked policy for the same coverage), transparent, no accumulation component",
+        "Investment-linked insurance: a much higher premium, with an investment account value but usually reduced by several fee types (mortality charge, contract administration fee, fund management fee) especially in the early years",
+        "Many investment-linked contracts have a surrender value that's very low or zero if cancelled within the first 3-5 years - read the illustration table carefully before signing",
+        "Health insurance is a separate product covering hospital/treatment costs, and should be considered independently from life insurance"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "A principle for setting how much coverage to buy",
+      "text": "A common rule of thumb: life insurance coverage should be enough to replace the breadwinner's income for 7-10 years, plus outstanding debt (home loan, consumer loan) and expected education costs for the children. For example, if Tuan earns 300 million/year and still owes 1.5 billion on a home loan, a reasonable coverage amount might be around 3-4.5 billion VND - not an arbitrary figure the agent happens to suggest."
+    },
+    {
+      "type": "heading",
+      "text": "Why separating protection from investing is usually better"
+    },
+    {
+      "type": "paragraph",
+      "text": "When protection and investing are bundled into one product, it's hard for the buyer to tell how much of the fee is for protection, how much is for investment management, and how the actual investment performance compares to investing directly in an index fund or a savings deposit. Separating the two - buying cheap term insurance for protection, investing the fee difference into a transparent channel yourself - lets the buyer control and assess the effectiveness of both sides far better."
+    },
+    {
+      "type": "heading",
+      "text": "The real fee types inside investment-linked insurance"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Initial fee (allocation fee): deducted from the premium - some companies deduct up to 90% of the first-year premium, tapering down in later years. This is the biggest drag on the account value in the first 2-3 years of the contract",
+        "Mortality/risk charge: pays for the death/critical illness benefit, deducted monthly from the account value",
+        "Fund management fee: charged as a %/year on the net asset value (NAV) of the unit-linked fund you chose",
+        "Contract administration fee: a fixed or %/year fee to keep the contract in force"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "How to read the benefit illustration table",
+      "text": "Look for the 'Account value' column across the years in the illustration table, and compare it to cumulative premiums paid. If the account value in years 1-3 is far below the premiums paid, the cause is usually the heavy initial fee deducted in the early period - not a sign of a poorly performing investment product."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Insurance is the safety net for your investment portfolio and financial plan, not a place to look for returns.",
+        "Before signing any long-term insurance contract, clearly separate the question 'what do I need to protect' from the question 'where do I want to invest' - and always read the fee and benefit illustration table carefully."
+      ]
+    }
+  ]
+}

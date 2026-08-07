@@ -1,0 +1,191 @@
+{
+  "slug": "case-tong-ket-tinh-thue-toi-uu-hop-phap",
+  "title": "Tax Track, Lesson 8: Putting it together - working out tax for 3 real profiles",
+  "subtitle": "Assembling the whole formula, and the legal ways to pay less",
+  "duration": "10 min",
+  "whyItMatters": "The previous seven lessons gave you the pieces. This one assembles them into a procedure you can run on your own payslip, and points out entirely legal ways to reduce tax that many people overlook.",
+  "openingQuestion": "What is the right order of steps from gross salary to income tax due?",
+  "openingOptions": [
+    "Gross → subtract tax → subtract insurance → subtract the family deduction",
+    "Gross → subtract the family deduction → subtract insurance → apply the scale",
+    "Gross → subtract compulsory insurance → subtract the family deduction → apply the progressive scale",
+    "Gross → apply the scale → subtract insurance and the deduction"
+  ],
+  "explanation": "The order is fixed: (1) subtract compulsory insurance at 10.5%; (2) subtract the family circumstance deduction of 15.5 million plus 6.2 million per dependant; (3) what remains is taxable income, to which the 5-band progressive scale applies. Reversing the order gives the wrong answer, because each step works on what the previous one left.",
+  "diagram": [
+    {
+      "label": "Gross salary",
+      "arrow": true
+    },
+    {
+      "label": "− Insurance 10.5%",
+      "arrow": true
+    },
+    {
+      "label": "− Family circumstance deduction",
+      "arrow": true
+    },
+    {
+      "label": "Apply the 5-band scale → tax due"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Three typical profiles",
+    "description": "The same gross salary of 30 million VND with three different family situations produces three completely different tax bills: a single person pays 635,000 VND a month, someone with 1 dependant pays 325,000 VND, and someone with 2 dependants pays nothing at all. Same salary; the only difference is how many dependants have been registered."
+  },
+  "quiz": [
+    {
+      "question": "On a gross salary of 30 million with 2 dependants, what is taxable income?",
+      "options": [
+        "A negative figure, so no tax arises",
+        "About 5 million, taxed in the first band",
+        "About 2 million, after compulsory insurance",
+        "Exactly 30 million, since deductions do not apply to gross salary"
+      ],
+      "explanation": "30 − 3.15 (insurance) − 27.9 (deduction of 15.5 + 6.2×2) = −1.05 million. Negative taxable income means no income tax liability arises."
+    },
+    {
+      "question": "Which of these is LEGAL tax optimisation?",
+      "options": [
+        "Taking part of your salary in cash so it need not be declared",
+        "Registering every dependant you qualify for and paying into a voluntary pension fund",
+        "Splitting your income across several contracts at different companies so each stays small",
+        "Declaring a lower contract salary and making it up with bonuses"
+      ],
+      "explanation": "Registering dependants and paying into a voluntary supplementary pension are deductions the law expressly allows. The other options are tax evasion or avoidance schemes, and carry legal risk."
+    },
+    {
+      "question": "Someone on 19 million gross, single, with no dependants pays how much tax a month?",
+      "options": [
+        "About 500,000 VND",
+        "About 1.5 million VND",
+        "Nothing at all",
+        "About 75,000 VND"
+      ],
+      "explanation": "Insurance = 19 × 10.5% = 1.995 million. Taxable income = 19 − 1.995 − 15.5 = 1.505 million, entirely within band 1. Tax = 1.505 × 5% ≈ 75,000 VND a month. With the new 15.5 million deduction, tax now only starts to arise at around 17.3 million of gross salary - much higher than before the reform."
+    },
+    {
+      "question": "What should you do straight after finishing this track?",
+      "options": [
+        "Switch to a collaborator contract to get a lower rate",
+        "Wait until the year-end finalisation before reviewing anything",
+        "Renegotiate your employment contract onto a net basis",
+        "Review any unregistered dependants and recalculate your net salary"
+      ],
+      "explanation": "These are concrete actions that can produce real money now: deductions missed, budgets built on the wrong figure, and refunds not yet claimed."
+    },
+    {
+      "question": "Which of these is legal optimisation rather than evasion?",
+      "options": [
+        "Registering every dependant and keeping receipts for charitable donations",
+        "Agreeing with the company to record an insurance base below your real salary",
+        "Taking part of your income in cash so it need not be declared",
+        "Splitting occasional contracts to keep each below the withholding threshold"
+      ],
+      "explanation": "The line falls between using rights the law grants you and concealing income you really earned. The family deduction, charitable donations and voluntary pension contributions are all set out in law - and all require documentation."
+    }
+  ],
+  "keyTakeaways": [
+    "The procedure: Gross → subtract insurance at 10.5% → subtract the family deduction → apply the 5-band scale",
+    "At the same salary, the number of registered dependants makes an enormous difference to the tax",
+    "Legal optimisation: register every dependant, use a voluntary supplementary pension, and file to reclaim overpayments",
+    "Tax rules change year to year - always check the current deduction and scale"
+  ],
+  "practicePrompt": {
+    "question": "Tuan earns 40 million gross and has 1 registered dependant. What is his monthly income tax?",
+    "options": [
+      "About 2.4 million VND",
+      "About 910,000 VND of tax",
+      "About 1.8 million VND",
+      "About 4 million VND"
+    ],
+    "explanation": "Insurance = 40 × 10.5% = 4.2 million. Family deduction = 15.5 + 6.2 = 21.7 million. Taxable income = 40 − 4.2 − 21.7 = 14.1 million. Sliced by band: 10 million × 5% = 500,000 VND; the remaining 4.1 million × 10% = 410,000 VND. Total tax = 910,000 VND a month, an effective rate of just 2.3% of gross salary."
+  },
+  "summary": {
+    "keyIdea": "Gross − Insurance − Family deduction = Taxable income → apply the 5-band scale",
+    "formula": "Tax = Σ (income within each band × that band's rate)",
+    "commonMistake": "Leaving a dependant unregistered and never filing - two pieces of real money left behind.",
+    "action": "Run the three-step procedure on this month's payslip."
+  },
+  "application": {
+    "title": "Action checklist for the track",
+    "message": "1) Review and register every dependant you qualify for. 2) Recalculate your net salary on the 2026 scale and deduction. 3) Check whether you file yourself or authorise your company, and whether you have an overpayment to reclaim.",
+    "secondary": "Important: the figures in this track are correct as at the time of writing (mid-2026). Tax policy changes from year to year - check the current legislation or ask a tax professional before any major decision."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The previous seven lessons handed you the pieces: gross vs net, the progressive scale, the family deduction, insurance, the 2026 reform, finalisation, and income outside salary. This one assembles them into a three-step procedure and checks it against three real profiles."
+    },
+    {
+      "type": "heading",
+      "text": "The three steps, in order"
+    },
+    {
+      "type": "formula",
+      "title": "From gross salary to tax due",
+      "equation": "Taxable income = Gross − Insurance (10.5%) − Family circumstance deduction",
+      "variables": [
+        {
+          "symbol": "Step 1",
+          "name": "Subtract compulsory insurance",
+          "description": "10.5% of the contribution salary base"
+        },
+        {
+          "symbol": "Step 2",
+          "name": "Subtract the family deduction",
+          "description": "15.5 million + 6.2 million × number of dependants"
+        },
+        {
+          "symbol": "Step 3",
+          "name": "Apply the 5-band scale",
+          "description": "Slice at the 10 - 30 - 60 - 100 million thresholds"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Three profiles, all on 30 million gross"
+    },
+    {
+      "type": "list",
+      "items": [
+        "**Profile A - single:** taxable = 30 − 3.15 − 15.5 = 11.35m → tax = (10×5%) + (1.35×10%) = 635,000 VND a month",
+        "**Profile B - 1 dependant:** taxable = 30 − 3.15 − 21.7 = 5.15m → tax = 5.15 × 5% = 257,500 VND a month",
+        "**Profile C - 2 dependants:** taxable = 30 − 3.15 − 27.9 = −1.05m → no tax liability arises"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Where the difference comes from",
+      "text": "Three people on the same salary, at the same company, with the same insurance. The only difference is how many dependants they REGISTERED. From 635,000 VND to nothing each month - more than 7.6 million VND a year - purely from completing an administrative step."
+    },
+    {
+      "type": "heading",
+      "text": "Legal optimisation vs working around the law"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Legal - worth doing",
+        "text": "Register every dependant you qualify for; pay into a voluntary supplementary pension within the deductible limit; file your finalisation to reclaim overpayments."
+      },
+      "right": {
+        "label": "Risky - don't",
+        "text": "Taking pay off the books; understating income; splitting contracts to dodge the withholding threshold. This is evasion, and it can be assessed and penalised."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Check before you decide",
+      "text": "Every figure in this track is based on the 2025 Personal Income Tax Law (109/2025/QH15), Resolution 110/2025/UBTVQH15, Decree 253/2026/ND-CP and Resolution 198/2025/QH15, correct at the time of writing. Tax policy is revised periodically - for any large financial decision, check the current legislation or consult a tax professional."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Tax is not something to fear - it is a three-step formula you can work out yourself.",
+        "And most of the money saved comes from completing the paperwork, not from clever tricks."
+      ]
+    }
+  ]
+}

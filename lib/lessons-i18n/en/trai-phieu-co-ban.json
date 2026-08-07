@@ -1,0 +1,191 @@
+{
+ "slug": "trai-phieu-co-ban",
+ "title": "What is a bond? Who is the money lent to",
+ "subtitle": "Introduction to bonds",
+ "duration": "6 min",
+ "openingQuestion": "When you buy a bond, what are you actually doing?",
+ "openingOptions": [
+  "Betting on whether that company's stock price will rise or fall over a set period",
+  "Placing a fixed-term deposit at a legally licensed commercial bank",
+  "Lending money to the issuer, in exchange for interest and repayment of principal at maturity",
+  "Buying a share of ownership in the issuing company, becoming a shareholder with voting rights"
+ ],
+ "explanation": "A bond is a loan contract: you hand over money, and the issuer commits to paying interest on a schedule and repaying principal at maturity. Being a creditor means you get paid before shareholders if the business goes bankrupt, but you also get nothing extra if the business outperforms expectations. In exchange for that certainty come two risks to remember: the issuer may fail to pay, and the bond's price moves opposite to interest rates if you need to sell before maturity.",
+ "diagram": [
+  {
+   "label": "The issuer needs to borrow money",
+   "arrow": true
+  },
+  {
+   "label": "You buy the bond, becoming a creditor",
+   "arrow": true
+  },
+  {
+   "label": "You receive coupon interest on schedule",
+   "arrow": true
+  },
+  {
+   "label": "At maturity you get your principal back"
+  }
+ ],
+ "interactiveType": "bond",
+ "realWorldExample": {
+  "company": "A 10-year Vietnamese Government Bond",
+  "description": "When the State Treasury issues a 10-year bond with a 3%/year interest rate, someone buying 100 million dong of this bond receives about 3 million dong in interest each year for 10 years, and gets back exactly 100 million dong of principal in year 10. This is how the State borrows money from the public and institutions to fund its budget spending, much like a company borrowing to expand production."
+ },
+ "quiz": [
+  {
+   "question": "You buy a corporate bond with a face value of 100 million dong, an 8%/year coupon rate, and a 5-year term. How much interest do you receive each year (assuming annual payments)?",
+   "options": [
+    "800,000 dong, which can be easy to misjudge without context",
+    "8 million dong",
+    "80 million dong",
+    "8 million dong, plus a profit-share if the company turns a profit"
+   ],
+   "correct": 1,
+   "explanation": "Annual interest = Coupon rate x Face value = 8% x 100 million = 8 million dong. This figure is fixed, regardless of whether the company posts a profit or a loss that year - as long as it doesn't default."
+  },
+  {
+   "question": "What is the single most basic difference between a bond buyer and a stock buyer of the same company?",
+   "options": [
+    "Stocks have a fixed maturity date, while bonds don't, a subtlety that only shows up under scrutiny",
+    "Bonds always earn a higher return than stocks at every stage",
+    "A bond buyer is a creditor, while a stock buyer is an owner",
+    "There's no difference at all - both are owners of the company"
+   ],
+   "correct": 2,
+   "explanation": "A bondholder is a creditor - if the company goes bankrupt, they're paid before shareholders. A shareholder is an owner - they only receive what's left of the assets after every debt, including bonds, has been paid off."
+  },
+  {
+   "question": "What are the three core figures to read first on any bond?",
+   "options": [
+    "Expected dividend, bonus-share ratio, and the annual shareholder meeting schedule",
+    "Market price, trading volume, and the intraday price band",
+    "Charter capital, number of shareholders, and the issuer's foreign-ownership ratio",
+    "Face value, coupon rate, and the bond's maturity term"
+   ],
+   "correct": 3,
+   "explanation": "Face value tells you how much you get back, the coupon tells you how much interest you receive each period, and the maturity tells you when you get your principal back. These three numbers are enough to work out the cash flow you'll receive - something a stock never tells you in advance."
+  },
+  {
+   "question": "The company that issued the bond you're holding is doing extremely well, and its profit has doubled. What extra do you get?",
+   "options": [
+    "Nothing extra - the coupon is fixed, but your certainty of being repaid is stronger",
+    "The coupon automatically rises in line with the company's profit growth that year, though this is often assumed rather than verified",
+    "You get a share of the extra profit beyond plan, in proportion to your bond holding",
+    "You're given priority to convert your bond into shares at a preferential price right away"
+   ],
+   "correct": 0,
+   "explanation": "This is the flip side of being a creditor: you don't share in the upside when the company succeeds. What you get instead is lower risk - strong profit means a higher chance of being paid interest and principal on time, and your bond may also rise in price on the market."
+  },
+  {
+   "question": "Why are bondholders given priority over shareholders when a company runs into trouble?",
+   "options": [
+    "Because bondholders are usually large institutions with a stronger voice than shareholders",
+    "Because bond interest and principal are contractual obligations, while dividends are not",
+    "Because shareholders already received dividends in prior years, so it's their turn to wait",
+    "Because a bond is always guaranteed in full by a bank standing behind the payment, a claim that deserves a second look"
+   ],
+   "correct": 1,
+   "explanation": "Paying bond interest is a mandatory obligation - failing to pay is a default, with legal consequences. A dividend is only paid when the board decides to pay one. That same order is also the order in which each side gets paid if the company goes bankrupt."
+  },
+  {
+   "question": "Is a bond a 'risk-free' investment?",
+   "options": [
+    "Yes, because the issuer has committed by contract, so full payment is certain",
+    "Yes, as long as the investor holds the bond exactly until its maturity date",
+    "No - there's still default risk, interest rate risk, and inflation risk",
+    "No, but that's only true for unrated corporate bonds"
+   ],
+   "correct": 2,
+   "explanation": "A bond carries less risk than a stock, not zero risk. The issuer can lose the ability to repay (Tan Hoang Minh, 2022); rising rates push the bond's price down if you have to sell early; and high inflation can erode the entire fixed coupon payment."
+  }
+ ],
+ "keyTakeaways": [
+  "A bond is a loan certificate: you lend money to a government or a business, and in exchange receive periodic interest and repayment of principal at maturity",
+  "Every bond has three core figures: face value (the principal amount), coupon rate (the periodic interest rate), and maturity (the time until it comes due)",
+  "A bond buyer is a creditor, paid ahead of shareholders if the company runs into financial trouble"
+ ],
+ "practicePrompt": {
+  "question": "Company X issues a bond with a 100-million face value, a 9%/year coupon, and a 3-year term, and also has shares listed on the exchange. If Company X runs into financial trouble and has to liquidate its assets, who gets paid first?",
+  "options": [
+   "Bondholders, because they're creditors with a priority claim, while shareholders only receive what's left after all debt is paid",
+   "Shareholders, because they own the company, so they're always paid before anyone else regardless of the situation, and immediately regains full ownership control over the company's remaining assets",
+   "Both groups split the liquidation proceeds equally, in proportion to each side's original capital contribution",
+   "Neither is given priority - all liquidated assets are handed over to the state budget to manage"
+  ],
+  "correct": 0,
+  "explanation": "Bondholders are creditors with a priority claim; shareholders are owners who only receive what remains after all debt is paid - this is the single most basic difference between the two kinds of investors."
+ },
+ "summary": {
+  "keyIdea": "A bond is a loan certificate: you lend money to a government or a business, and in exchange receive periodic interest and repayment of principal at maturity",
+  "commonMistake": "Reading the concept as a line to recite rather than a principle to apply to a real decision.",
+  "action": "Every bond has three core figures: face value (the principal amount), coupon rate (the periodic interest rate), and maturity (the time until it comes due)"
+ },
+ "application": {
+  "title": "Find a real bond",
+  "message": "Look up information on a bond currently trading (government or corporate) and note down three figures: the face value, the coupon rate, and the remaining time to maturity.",
+  "secondary": "Looking at three concrete figures makes the concept of a bond feel far less abstract."
+ },
+ "sections": [
+  {
+   "type": "lead",
+   "text": "If a stock means contributing capital to own a piece of a company, a bond is much simpler: you're just lending someone money, and that person promises to pay you interest on time."
+  },
+  {
+   "type": "paragraph",
+   "text": "Imagine a neighbor who needs to borrow 50 million dong to renovate their house, offering to pay you 1% interest per month, and to repay the full 50 million principal after a year. If you agree and there's paperwork spelling out the terms, that's exactly what a bond is at its core - the only difference is the much larger scale, and the borrower being a government or a listed business rather than your neighbor."
+  },
+  {
+   "type": "heading",
+   "text": "The three numbers to remember for every bond"
+  },
+  {
+   "type": "list",
+   "items": [
+    "Face value: the principal amount you lend, and also the amount you get back when the bond matures - typically 100,000 dong or 100 million dong per bond depending on the type",
+    "Coupon rate: a percentage of face value that determines how much interest you receive each period (usually annually or every six months)",
+    "Maturity: the time from issuance to the due date - anywhere from 1 year (short-term bonds) to 20-30 years (long-term bonds)"
+   ]
+  },
+  {
+   "type": "paragraph",
+   "text": "Who borrows by issuing bonds? Most commonly in Vietnam it's the Government (through the State Treasury, to cover the budget deficit and fund public investment), and large businesses (to raise capital for expanding production or building factories, rather than only borrowing from banks)."
+  },
+  {
+   "type": "heading",
+   "text": "Why don't businesses and the government simply borrow from banks instead?"
+  },
+  {
+   "type": "paragraph",
+   "text": "Bank loans typically come with limits, and banks demand collateral and a complex approval process. Issuing bonds allows raising a very large amount of capital at once, from thousands of small and institutional investors, at an interest rate that can be lower than a bank loan if the issuer's credit standing is good. That's why large corporations like Vingroup and Masan, as well as the Government itself, regularly issue bonds every year."
+  },
+  {
+   "type": "callout",
+   "label": "An easy example to picture",
+   "text": "You buy a corporate bond with a 100-million-dong face value, a 9%/year coupon, and a 3-year term. Each year you receive 9 million dong in interest (100 million x 9%). After 3 years, on top of the 27 million dong in total interest received, you also get back exactly 100 million dong of principal - as long as the company doesn't default during that time."
+  },
+  {
+   "type": "comparison",
+   "left": {
+    "label": "Bondholder (buys a bond)",
+    "text": "Is a creditor. Receives fixed interest on schedule, regardless of whether the company profits or loses money. Has priority to claim repayment first if the company goes bankrupt. No voting rights in the company."
+   },
+   "right": {
+    "label": "Shareholder (buys a stock)",
+    "text": "Is an owner. Returns (dividends, price gains) are not fixed and depend on business results. Only receives what's left after the company pays off all debt if it goes bankrupt. Has voting rights."
+   }
+  },
+  {
+   "type": "paragraph",
+   "text": "Precisely because bondholders are paid first and receive fixed interest, bonds are generally seen as a lower-risk investment channel than stocks - but in exchange, the potential return is also lower. This basic trade-off is one you'll keep meeting throughout the coming lessons on bonds."
+  },
+  {
+   "type": "closing",
+   "lines": [
+    "A bond, put simply, is a documented loan, with an interest rate and an agreed repayment date.",
+    "Understanding the three numbers - face value, coupon, maturity - is the foundation for understanding everything more complex about bonds that follows."
+   ]
+  }
+ ]
+}
