@@ -102,6 +102,8 @@ export const CFA_LEVEL_1_SUBJECTS: CfaSubject[] = [
     weight: "6–9%",
     lessonIds: [
       101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 120, 1002,
+      // 1047: ôn tập NPV - capital budgeting, cùng chỗ với on-tap-wacc (1002).
+      1047,
       1014, 1017, 1020, 1021, 1024, 1027, 1028, 1034, 1038,
       // 1454: quản trị công ty và giao dịch bên liên quan.
       1454,
