@@ -294,7 +294,7 @@ export const FINANCIAL_MODELING_LESSONS: Lesson[] = [
         "Một nhà máy có công suất tối đa 1 triệu sản phẩm/năm, hiện chạy 800.000 sản phẩm. Mô hình dự phóng sản lượng tăng 15%/năm trong 5 năm. Vấn đề là gì?",
       options: [
         "Không có vấn đề, 15% là mức tăng trưởng hợp lý",
-        "Ngay năm thứ 2 sản lượng đã vượt công suất (800k → 920k → 1,058 triệu), nên mô hình cần giả định đầu tư mở rộng hoặc phải chặn ở mức trần công suất",
+        "Năm thứ 2 sản lượng đã vượt công suất thiết kế",
         "Nên giảm xuống 10% cho an toàn",
         "Cần đổi sang dự phóng theo doanh thu thay vì sản lượng",
       ],
@@ -1464,7 +1464,7 @@ export const FINANCIAL_MODELING_LESSONS: Lesson[] = [
         "Mô hình dự phóng biên lợi nhuận gộp tăng từ 22% lên 38% trong 3 năm cho một doanh nghiệp bán lẻ, trong khi trung bình ngành là 20-25%. Phản ứng đúng là gì?",
       options: [
         "Chấp nhận vì mô hình đã cân đối và không báo lỗi",
-        "Yêu cầu giải thích cụ thể điều gì tạo ra mức cải thiện đó - đổi cơ cấu sản phẩm, tăng giá, hay tự động hóa - và nếu không có căn cứ thì phải điều chỉnh giả định",
+        "Yêu cầu giải thích điều gì tạo ra mức cải thiện đó",
         "Tăng luôn lên 45% cho nhất quán với tăng trưởng doanh thu",
         "Bỏ qua vì biên lợi nhuận không ảnh hưởng định giá",
       ],

@@ -91,7 +91,7 @@ export const FRM_LESSONS: Lesson[] = [
       {
         question: "Vai trò của hội đồng quản trị trong khung ERM là gì?",
         options: [
-          "Trực tiếp phê duyệt từng giao dịch riêng lẻ của mọi trading desk trong tổ chức trước khi lệnh được đặt ra thị trường mỗi ngày",
+          "Trực tiếp phê duyệt từng giao dịch của mọi bàn",
           "Đặt khẩu vị rủi ro và giám sát tuân thủ",
           "Thay hoàn toàn vai trò phòng Quản trị Rủi ro",
           "Chỉ họp khi khủng hoảng đã xảy ra",
@@ -425,7 +425,7 @@ export const FRM_LESSONS: Lesson[] = [
       question: "Một quỹ đầu tư báo cáo danh mục \"đa dạng hoá tốt\" dựa trên tương quan lịch sử thấp giữa các tài sản trong 5 năm thị trường ổn định gần nhất. Rủi ro nào bạn nên đặt câu hỏi ngay?",
       options: [
         "Rủi ro tỷ giá, vì quỹ có thể đầu tư ra nước ngoài",
-        "Rủi ro tương quan hội tụ: liệu các tài sản này có giữ nguyên tương quan thấp khi thị trường rơi vào khủng hoảng, hay chúng chỉ trông tách biệt trong giai đoạn bình yên",
+        "Tương quan có hội tụ khi thị trường khủng hoảng không",
         "Rủi ro thuế, vì mỗi tài sản có thể chịu thuế suất khác nhau",
         "Rủi ro về phí quản lý quỹ quá cao",
       ],
@@ -570,7 +570,7 @@ export const FRM_LESSONS: Lesson[] = [
       question: "Một ngân hàng chỉ dùng 3 năm dữ liệu tổn thất nội bộ để ước lượng vốn dự phòng rủi ro vận hành, không có sự cố cực lớn nào trong giai đoạn đó. Rủi ro của cách làm này là gì?",
       options: [
         "Không có rủi ro gì, 3 năm dữ liệu là đủ chính xác",
-        "Mô hình sẽ đánh giá thấp phần đuôi của phân phối mức độ nghiêm trọng, vì sự kiện cực đoan (như Knight Capital) hiếm khi xảy ra trong một cửa sổ 3 năm ngắn",
+        "Đánh giá thấp phần đuôi vì cửa sổ 3 năm quá ngắn",
         "Mô hình sẽ đánh giá quá cao vốn dự phòng cần thiết",
         "Vấn đề chỉ là dữ liệu quá cũ, cần cập nhật dữ liệu mới nhất",
       ],
@@ -1326,7 +1326,7 @@ export const FRM_LESSONS: Lesson[] = [
       question: "Một ngân hàng dùng tiền gửi không kỳ hạn (có thể rút bất kỳ lúc nào) để tài trợ cho các khoản vay mua nhà lãi suất cố định kỳ hạn 20 năm. Khi lãi suất thị trường tăng mạnh, rủi ro nào xuất hiện đồng thời?",
       options: [
         "Chỉ rủi ro tín dụng của người vay mua nhà",
-        "Cả rủi ro lãi suất trên sổ ngân hàng (giá trị kinh tế của khoản vay cố định giảm, chi phí huy động tiền gửi có thể tăng) lẫn rủi ro thanh khoản nếu người gửi rút tiền tìm nơi lãi suất cao hơn",
+        "Cả rủi ro lãi suất trên sổ ngân hàng lẫn rủi ro thanh khoản nếu người gửi rút",
         "Chỉ rủi ro vận hành vì quy trình xử lý hồ sơ vay chậm hơn",
         "Không có rủi ro nào đáng kể vì tiền gửi không kỳ hạn thường lãi suất thấp và ổn định",
       ],

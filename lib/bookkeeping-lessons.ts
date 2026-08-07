@@ -284,10 +284,10 @@ export const BOOKKEEPING_LESSONS: Lesson[] = [
       {
         question: "Số dư trên báo cáo tài chính lấy từ đâu?",
         options: [
-          "Sổ cái của từng tài khoản",
+          "Sổ cái của từng tài khoản riêng",
           "Nhật ký chung",
           "Tập hợp chứng từ gốc của kỳ",
-          "Sổ chi tiết của từng đối tượng công nợ",
+          "Sổ chi tiết theo từng đối tượng công nợ",
         ],
         correct: 0,
         explanation:
@@ -756,8 +756,8 @@ export const BOOKKEEPING_LESSONS: Lesson[] = [
         options: [
           "Lợi nhuận giữ lại thuộc vốn chủ sở hữu",
           "Tài khoản tiền mặt tại ngân hàng",
-          "Quỹ đầu tư phát triển theo tỷ lệ do đại hội cổ đông quyết định",
-          "Tài khoản phải thu khách hàng, chờ tới khi thu được tiền về",
+          "Quỹ đầu tư phát triển theo tỷ lệ đại hội duyệt",
+          "Tài khoản phải thu, chờ tới khi thu được tiền",
         ],
         correct: 0,
         explanation:

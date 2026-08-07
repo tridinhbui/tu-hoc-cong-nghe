@@ -120,7 +120,7 @@ export const BANKING_LESSONS: Lesson[] = [
         "Ngân hàng A: NIM 4,2%, CASA 35%, NPL 1,1%, bao phủ nợ xấu 180%. Ngân hàng B: NIM 4,5%, CASA 12%, NPL 2,3%, bao phủ nợ xấu 60%. Nhận định nào hợp lý nhất?",
       options: [
         "B tốt hơn vì NIM cao hơn",
-        "A có chất lượng lợi nhuận tốt hơn: NIM đến từ giá vốn rẻ nhờ CASA và có bộ đệm dự phòng dày, còn NIM của B nhiều khả năng đến từ cho vay rủi ro cao với bộ đệm mỏng",
+        "A tốt hơn: NIM từ CASA rẻ, bộ đệm dày",
         "Hai ngân hàng tương đương vì các chỉ số bù trừ nhau",
         "Không thể so sánh nếu chưa biết giá cổ phiếu",
       ],

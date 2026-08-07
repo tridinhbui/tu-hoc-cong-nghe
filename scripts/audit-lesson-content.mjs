@@ -492,14 +492,14 @@ const missingPractice = [];
 
 /** Trần cho điểm của chiến lược "chọn phương án dài nhất" trong practicePrompt.
  *
- *  Đặt ở 0,87 vì kho đang ở 0,866 - đúng luật của AGENTS.md: cổng đặt ở mức
+ *  Đặt ở 0,55 vì kho đang ở 0,542 - đúng luật của AGENTS.md: cổng đặt ở mức
  *  kho ĐÃ ĐẠT, không tạo nợ. Ở mức này nó chưa chặn được gì; việc của nó lúc
  *  này là làm con số hiện ra trong CI và bị hạ dần sau mỗi đợt viết lại, y
  *  như MAX_TELL_SHARE đã được hạ từ 0,91 xuống. Mức đích là 0,25 - may rủi.
  *
  *  Cách sửa một câu: cắt đáp án đúng về đúng mệnh đề, vì phần lý lẽ đã nằm
  *  sẵn ở `explanation` ngay bên dưới. Không phải kéo dài các phương án nhiễu. */
-const MAX_PRACTICE_LONGEST_SCORE = 0.87;
+const MAX_PRACTICE_LONGEST_SCORE = 0.55;
 const practiceStats = { questions: 0, longestScore: 0, randomScore: 0 };
 
 for (const lesson of corpus) {

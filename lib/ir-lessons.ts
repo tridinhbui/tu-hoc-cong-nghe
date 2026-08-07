@@ -76,10 +76,10 @@ export const IR_LESSONS: Lesson[] = [
       {
         question: "Nhà đầu tư tổ chức đánh giá cao điều gì nhất ở một bộ phận IR?",
         options: [
-          "Tính nhất quán giữa các quý",
+          "Tính nhất quán giữa các quý báo cáo",
           "Khả năng trình bày trực quan và bộ tài liệu được thiết kế đẹp",
           "Tốc độ phản hồi email và số buổi gặp gỡ tổ chức trong năm",
-          "Quan hệ tốt với các công ty chứng khoán đang khuyến nghị mua cổ phiếu",
+          "Quan hệ tốt với công ty chứng khoán đang khuyến nghị mua",
         ],
         correct: 0,
         explanation:

@@ -410,8 +410,8 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
         options: [
           "Doanh thu dự phóng của năm cuối trong giai đoạn mô hình hóa",
           "Tiền mặt dư thừa hoặc hạn mức vay quay vòng",
-          "Vốn chủ sở hữu, được điều chỉnh cho khớp với tổng tài sản mỗi kỳ",
-          "Chi phí bán hàng và quản lý, được ước lượng theo tỷ lệ trên doanh thu",
+          "Vốn chủ sở hữu, chỉnh cho khớp tổng tài sản",
+          "Chi phí bán hàng, ước theo tỷ lệ trên doanh thu",
         ],
         correct: 1,
         explanation:
@@ -791,7 +791,7 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
         "Bạn mất hai giờ mỗi tháng để làm sạch cùng một loại báo cáo. Cách tiếp cận đúng là gì?",
       options: [
         "Làm nhanh hơn bằng cách bỏ bớt vài bước kiểm tra",
-        "Đầu tư một lần để dựng quy trình Power Query cho đúng chuỗi thao tác đó, chấp nhận tốn thời gian hơn ở lần đầu để các kỳ sau chỉ còn vài phút và luôn nhất quán",
+        "Dựng quy trình Power Query dùng lại các kỳ sau",
         "Thuê người khác làm phần việc này",
         "Chuyển sang làm báo cáo theo quý để giảm số lần",
       ],
@@ -981,7 +981,7 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
         "Bạn ghép bảng danh mục 200 mã với bảng giá bằng INNER JOIN và kết quả chỉ còn 187 dòng. Nên làm gì?",
       options: [
         "Chấp nhận 187 dòng vì chênh lệch nhỏ",
-        "Đổi sang LEFT JOIN để giữ đủ 200 dòng, xác định 13 mã nào không có giá và tìm hiểu vì sao - có thể là mã đã hủy niêm yết, sai định dạng, hoặc thiếu dữ liệu ngày đó",
+        "Đổi sang LEFT JOIN để thấy 13 mã thiếu giá",
         "Nhân kết quả với hệ số 200 chia 187 để bù lại",
         "Chạy lại truy vấn nhiều lần cho đến khi đủ 200",
       ],

@@ -1023,7 +1023,7 @@ export const VN_TAX_LESSONS: Lesson[] = [
       options: [
         "Phải nộp thêm thuế vì lương khá cao",
         "Không phải làm gì vì mới đi làm",
-        "Được hoàn lại phần lớn hoặc toàn bộ thuế đã tạm khấu trừ, vì giảm trừ gia cảnh tính cho cả năm trong khi bạn chỉ có thu nhập 4 tháng",
+        "Được hoàn phần lớn thuế tạm nộp",
         "Bị phạt vì kê khai muộn",
       ],
       correct: 2,

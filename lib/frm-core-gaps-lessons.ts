@@ -566,9 +566,9 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       {
         question: "Phê phán Roll về kiểm định CAPM chỉ ra vấn đề gì?",
         options: [
-          "Danh mục thị trường thực sự không quan sát được",
-          "CAPM không thể áp dụng cho tài sản có beta âm trong bất kỳ trường hợp nào",
-          "Lãi suất phi rủi ro thay đổi theo thời gian nên công thức CAPM không xác định",
+          "Danh mục thị trường thật thì không quan sát được",
+          "CAPM không áp dụng được cho tài sản beta âm",
+          "Lãi suất phi rủi ro đổi theo thời gian nên CAPM vô nghĩa",
           "Beta không ước lượng được từ dữ liệu"
         ],
         correct: 0,
@@ -3287,9 +3287,9 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       {
         question: "Vì sao ước lượng tham số đuôi đặc biệt khó và nhạy cảm?",
         options: [
-          "Vì rất ít quan sát rơi vào vùng đuôi",
-          "Vì các phân phối lý thuyết không có tham số nào mô tả phần đuôi",
-          "Vì dữ liệu đuôi luôn bị cơ quan quản lý yêu cầu loại bỏ khỏi mẫu",
+          "Vì rất ít quan sát rơi được vào vùng đuôi",
+          "Vì phân phối lý thuyết không có tham số cho đuôi",
+          "Vì cơ quan quản lý bắt loại dữ liệu đuôi khỏi mẫu",
           "Vì phần đuôi không ảnh hưởng tới con số rủi ro cuối cùng"
         ],
         correct: 0,
