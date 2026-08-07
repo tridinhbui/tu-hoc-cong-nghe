@@ -892,7 +892,7 @@ export const DATA_THINKING_LESSONS: Lesson[] = [
       "Một mô hình chấm điểm tín dụng không hề dùng giới tính làm biến đầu vào. Nó có thể phân biệt đối xử theo giới không?",
     openingOptions: [
       "Không, vì biến giới tính đã bị loại khỏi mô hình",
-      "Có, vì biến khác có thể tương quan với giới tính",
+      "Có, vì các biến khác có thể tương quan với giới tính",
       "Không, trừ khi người xây mô hình cố tình can thiệp",
       "Có, nhưng chỉ khi dữ liệu huấn luyện quá nhỏ",
     ],

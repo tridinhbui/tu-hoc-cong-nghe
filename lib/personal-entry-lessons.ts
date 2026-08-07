@@ -29,7 +29,7 @@ export const PERSONAL_ENTRY_LESSONS: Lesson[] = [
     openingQuestion: "Vì sao nên theo dõi chi tiêu trước khi lập ngân sách?",
     openingOptions: [
       "Vì ngân hàng yêu cầu bảng kê chi tiêu khi mở tài khoản tiết kiệm",
-      "Vì ngân sách dựa trên ước lượng trong đầu thường lệch xa thực tế",
+      "Vì ngân sách dựa trên ước lượng trong đầu thường lệch rất xa so với thực tế",
       "Vì theo dõi chi tiêu giúp giảm chi ngay lập tức mà không cần cố gắng",
       "Vì quy tắc 50/30/20 chỉ áp dụng được sau khi đã ghi chép ba năm",
     ],

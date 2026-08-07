@@ -505,7 +505,7 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
       "Bạn nghi ngờ một ô kết quả sai nhưng công thức trông có vẻ đúng. Kỹ thuật kiểm tra hiệu quả nhất là gì?",
     openingOptions: [
       "Xóa công thức và gõ lại từ đầu",
-      "Bôi đen từng phần công thức rồi bấm F9",
+      "Bôi đen từng phần công thức rồi bấm phím F9",
       "Chuyển sang máy tính cầm tay để tính lại",
       "Sao chép công thức sang một file mới",
     ],

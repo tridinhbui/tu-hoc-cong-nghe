@@ -521,7 +521,7 @@ export const VN_MARKET_LESSONS: Lesson[] = [
       "Vì sao giao dịch với bên liên quan là khoản mục cần soi kỹ nhất trong thuyết minh?",
     openingOptions: [
       "Vì các giao dịch này luôn bị pháp luật cấm và cần được báo cáo cho cơ quan quản lý",
-      "Vì đó là kênh giá trị có thể chuyển từ công ty sang cổ đông lớn mà vẫn hợp lệ",
+      "Vì đó là kênh giá trị có thể chuyển từ công ty sang cổ đông lớn mà vẫn hoàn toàn hợp lệ",
       "Vì chúng làm sai lệch việc tính thuế thu nhập doanh nghiệp phải nộp trong kỳ",
       "Vì chuẩn mực kế toán yêu cầu loại bỏ toàn bộ các giao dịch này khỏi báo cáo",
     ],

@@ -192,7 +192,7 @@ export const FRM_LESSONS: Lesson[] = [
     openingQuestion: "Điều gì thường khiến nhân viên tuyến 2 (Rủi ro/Tuân thủ) ngần ngại báo cáo một rủi ro nghiêm trọng, dù họ nhìn thấy nó rõ ràng?",
     openingOptions: [
       "Vì họ không được đào tạo đủ về kỹ thuật đo lường rủi ro",
-      "Vì thưởng và sự nghiệp của họ gắn với kết quả kinh doanh",
+      "Vì thưởng và sự nghiệp của họ gắn chặt với kết quả kinh doanh",
       "Vì hệ thống công nghệ thông tin quá chậm để tổng hợp báo cáo",
       "Vì họ không có quyền truy cập vào dữ liệu giao dịch",
     ],
@@ -634,7 +634,7 @@ export const FRM_LESSONS: Lesson[] = [
     openingQuestion: "Kế hoạch Liên tục Kinh doanh (Business Continuity Plan - BCP) khác gì với Kế hoạch Khôi phục sau Thảm hoạ (Disaster Recovery - DR)?",
     openingOptions: [
       "Hai kế hoạch này hoàn toàn giống nhau, chỉ khác tên gọi",
-      "BCP giữ chức năng kinh doanh thiết yếu; DR khôi phục hệ thống IT",
+      "BCP giữ chức năng kinh doanh thiết yếu; DR khôi phục hệ thống IT và dữ liệu",
       "DR chỉ áp dụng cho thiên tai, BCP chỉ áp dụng cho tấn công mạng",
       "BCP là trách nhiệm của phòng IT, DR là trách nhiệm của phòng nhân sự",
     ],
@@ -958,7 +958,7 @@ export const FRM_LESSONS: Lesson[] = [
     openingQuestion: "Tỷ lệ Bảo đảm Thanh khoản (Liquidity Coverage Ratio - LCR) đo lường điều gì?",
     openingOptions: [
       "Tỷ lệ vốn chủ sở hữu trên tổng tài sản có rủi ro",
-      "Đủ tài sản thanh khoản chịu 30 ngày căng thẳng",
+      "Đủ tài sản thanh khoản chịu 30 ngày căng thẳng liền",
       "Tỷ lệ nợ xấu trên tổng dư nợ cho vay",
       "Mức độ đa dạng hoá danh mục đầu tư của ngân hàng",
     ],

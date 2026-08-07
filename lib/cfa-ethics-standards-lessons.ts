@@ -1715,7 +1715,7 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
       "Một khách hàng hài lòng đề nghị thưởng riêng cho bạn nếu danh mục của họ vượt 15% năm tới. Bạn nên làm gì?",
     openingOptions: [
       "Từ chối vì mọi khoản thưởng từ khách hàng đều bị cấm tuyệt đối",
-      "Nhận nếu nhà tuyển dụng đồng ý bằng văn bản sau khi báo rõ",
+      "Nhận nếu nhà tuyển dụng đồng ý bằng văn bản, sau khi đã báo rõ hết",
       "Nhận vì đó là phần thưởng cho kết quả tốt của chính bạn",
       "Nhận nhưng chỉ cần báo miệng cho quản lý trực tiếp là đủ",
     ],

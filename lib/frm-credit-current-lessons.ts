@@ -24,7 +24,7 @@ export const FRM_CREDIT_CURRENT_LESSONS: Lesson[] = [
       "CDS là công cụ phái sinh tín dụng phổ biến nhất, đồng thời là nhân vật trung tâm của khủng hoảng 2008 (AIG bán CDS mà không đủ vốn dự phòng). Hiểu cơ chế CDS là điều kiện để hiểu cả cách phòng hộ rủi ro tín dụng lẫn cách rủi ro đó có thể lan ra ngoài bảng cân đối kế toán của ngân hàng gốc.",
     openingQuestion: "Trong một hợp đồng Credit Default Swap (CDS), bên mua bảo vệ (protection buyer) làm gì?",
     openingOptions: [
-      "Trả phí định kỳ để đổi lấy khoản bồi thường nếu bên vay vỡ nợ",
+      "Trả phí định kỳ để đổi lấy khoản bồi thường nếu bên vay bị vỡ nợ",
       "Cho tổ chức tham chiếu vay tiền trực tiếp với lãi suất cố định",
       "Mua cổ phiếu của tổ chức tham chiếu để phòng hộ rủi ro giá",
       "Nhận phí định kỳ và chịu rủi ro nếu tổ chức tham chiếu vỡ nợ",

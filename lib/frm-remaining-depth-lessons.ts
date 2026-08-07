@@ -1022,7 +1022,7 @@ export const FRM_REMAINING_DEPTH_LESSONS: Lesson[] = [
     openingQuestion:
       "Trong một hợp đồng repo, haircut tăng từ 2% lên 10%. Với cùng lượng tài sản bảo đảm, bên vay huy động được ít hơn bao nhiêu?",
     openingOptions: [
-      "Khoảng 8% giá trị tài sản, và phải tìm nguồn khác bù vào",
+      "Khoảng 8% giá trị tài sản, và phải tìm nguồn khác bù vào đó",
       "Không đổi, vì haircut chỉ ảnh hưởng tới lãi suất repo",
       "Khoảng 10% giá trị tài sản, tương ứng đúng mức haircut mới",
       "Không xác định được nếu chưa biết kỳ hạn của hợp đồng repo",
@@ -1379,7 +1379,7 @@ export const FRM_REMAINING_DEPTH_LESSONS: Lesson[] = [
       "Chỉ số lợi suất ngành quỹ phòng hộ thường cao hơn lợi suất thực tế nhà đầu tư nhận được. Nguyên nhân chính là gì?",
     openingOptions: [
       "Vì chỉ số tính bằng trung bình có trọng số theo tài sản quản lý",
-      "Vì quỹ đóng cửa ngừng báo cáo nên chỉ còn quỹ sống sót trong dữ liệu",
+      "Vì quỹ đóng cửa ngừng báo cáo nên chỉ còn quỹ sống sót lại trong dữ liệu",
       "Vì phí quản lý không được trừ khỏi lợi suất công bố",
       "Vì chỉ số được tính bằng đồng tiền khác với đồng tiền nhà đầu tư dùng",
     ],

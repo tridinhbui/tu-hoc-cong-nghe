@@ -697,7 +697,7 @@ export const FRM_MARKET_RISK_LESSONS: Lesson[] = [
       "Hai tài sản có hệ số tương quan 0,3. Điều đó bảo đảm gì về hành vi của chúng trong khủng hoảng?",
     openingOptions: [
       "Bảo đảm chúng chỉ cùng giảm trong 30% số trường hợp",
-      "Không bảo đảm gì: tương quan đo quan hệ tuyến tính",
+      "Không bảo đảm gì: tương quan chỉ đo quan hệ tuyến tính",
       "Bảo đảm danh mục gồm hai tài sản này giảm tối đa 30%",
       "Bảo đảm chúng độc lập khi thị trường bình thường",
     ],

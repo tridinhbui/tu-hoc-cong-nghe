@@ -403,7 +403,7 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
     whyItMatters: "FRM không kiểm tra bạn có nhớ công thức không - nó kiểm tra bạn có biết công thức sai ở đâu không. Mọi thất bại phái sinh lớn đều là một giả định của mô hình này gãy trong thực tế.",
     openingQuestion: "Đầu vào nào của Black-Scholes không quan sát trực tiếp được trên thị trường?",
     openingOptions: [
-      "Độ biến động tài sản cơ sở trong kỳ còn lại",
+      "Độ biến động của tài sản cơ sở trong kỳ còn lại",
       "Giá thực hiện ghi trong hợp đồng quyền chọn",
       "Thời gian còn lại tính tới ngày đáo hạn",
       "Giá hiện tại của tài sản cơ sở trên thị trường"
@@ -1775,7 +1775,7 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
     whyItMatters: "Rất nhiều ngân hàng trung ương đang nghiên cứu hoặc thí điểm CBDC. Câu hỏi rủi ro không phải công nghệ mà là cấu trúc: nó động thẳng vào nguồn vốn rẻ nhất và ổn định nhất của ngân hàng thương mại.",
     openingQuestion: "Rủi ro lớn nhất mà CBDC bán lẻ đặt ra cho hệ thống ngân hàng thương mại là gì?",
     openingOptions: [
-      "Tiền gửi chảy khỏi ngân hàng thương mại, làm mất nguồn vốn rẻ và ổn định",
+      "Tiền gửi chảy khỏi ngân hàng thương mại, làm mất nguồn vốn rẻ và ổn định nhất",
       "Ngân hàng thương mại phải nâng cấp toàn bộ hệ thống công nghệ lõi",
       "Chi phí tuân thủ chống rửa tiền tăng lên do có thêm một kênh thanh toán",
       "Ngân hàng trung ương sẽ trực tiếp cạnh tranh trong mảng cho vay doanh nghiệp"

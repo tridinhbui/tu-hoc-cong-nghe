@@ -219,7 +219,7 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
       "Bạn giới thiệu một khách hàng sang một công ty quản lý tài sản khác và nhận phí giới thiệu. Nghĩa vụ của bạn là gì?",
     openingOptions: [
       "Không có nghĩa vụ nào vì bạn không còn phục vụ khách đó",
-      "Công bố cho khách sự tồn tại và bản chất của khoản phí",
+      "Công bố cho khách sự tồn tại và bản chất của khoản phí đó",
       "Chỉ cần báo cho nhà tuyển dụng của bạn là đủ",
       "Chỉ phải công bố nếu khách hàng chủ động hỏi về việc này",
     ],
@@ -412,7 +412,7 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
       "Standard I(D) áp dụng cho hành vi cá nhân nào ngoài công việc?",
     openingOptions: [
       "Mọi hành vi cá nhân, vì thành viên CFA phải gương mẫu",
-      "Hành vi liên quan tới tính trung thực và năng lực nghề",
+      "Hành vi liên quan tới tính trung thực và năng lực nghề nghiệp",
       "Không hành vi nào, vì đời tư nằm ngoài phạm vi chuẩn mực",
       "Chỉ hành vi đã bị tòa án kết án bằng bản án có hiệu lực",
     ],
@@ -1143,7 +1143,7 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
       "Một quỹ đầu tư mời riêng bạn tham gia vòng gọi vốn hạn chế, quy mô nhỏ, không đủ chỗ cho khách hàng. Bạn được tham gia không?",
     openingOptions: [
       "Được, vì lời mời dành cho cá nhân bạn chứ không cho công ty",
-      "Phải xét trước xem cơ hội có phù hợp khách hàng nào không",
+      "Phải xét trước xem cơ hội đó có phù hợp khách hàng nào không",
       "Được, nếu bạn công bố việc tham gia cho khách hàng biết",
       "Không được trong mọi trường hợp vì đây là xung đột lợi ích",
     ],
@@ -1333,7 +1333,7 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
       "Trong ba tháng trước khi nghỉ, hành động nào của bạn là vi phạm?",
     openingOptions: [
       "Đăng ký thành lập công ty mới và thuê văn phòng",
-      "Sao chép danh sách khách hàng vào máy tính cá nhân",
+      "Sao chép danh sách khách hàng vào máy tính cá nhân mình",
       "Trao đổi với nhà tuyển dụng tiềm năng về cơ hội mới",
       "Chuẩn bị hồ sơ năng lực cá nhân để gửi đi",
     ],
@@ -1541,7 +1541,7 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
       "Bạn phát hiện một đồng nghiệp đang phân bổ các lệnh có lãi vào tài khoản cá nhân và lệnh lỗ vào tài khoản khách. Bước đầu tiên là gì?",
     openingOptions: [
       "Báo ngay cho cơ quan quản lý bên ngoài công ty",
-      "Nêu vấn đề qua kênh nội bộ và ngừng mọi tham gia liên quan",
+      "Nêu vấn đề qua kênh nội bộ và ngừng mọi tham gia liên quan tới nó",
       "Nói trực tiếp với các khách hàng bị ảnh hưởng",
       "Thu thập thêm bằng chứng trong vài tháng trước khi hành động",
     ],
@@ -1742,7 +1742,7 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
       "Tài liệu chào bán quỹ mới ghi: 'Chiến lược đạt 18%/năm giai đoạn 2019-2024' - trong đó 2019-2022 là mô phỏng ngược. Vấn đề nằm ở đâu?",
     openingOptions: [
       "Không có vấn đề nếu phần mô phỏng được tính đúng phương pháp",
-      "Trình bày sai lệch: gộp mô phỏng với vận hành thật vào một",
+      "Trình bày sai lệch: gộp mô phỏng với vận hành thật vào một đường",
       "Chỉ là vấn đề nếu giai đoạn mô phỏng cho kết quả cao hơn",
       "Vấn đề duy nhất là chưa nêu rõ mức phí đã trừ hay chưa",
     ],

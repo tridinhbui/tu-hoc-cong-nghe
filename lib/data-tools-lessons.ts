@@ -723,7 +723,7 @@ export const DATA_TOOLS_LESSONS: Lesson[] = [
       "Vì sao nhiều dashboard sau vài tuần thì không ai mở nữa?",
     openingOptions: [
       "Vì dữ liệu cập nhật chậm",
-      "Vì trả lời câu hỏi không dẫn tới hành động",
+      "Vì nó trả lời câu hỏi không dẫn tới hành động",
       "Vì thiếu màu sắc và hình ảnh hấp dẫn",
       "Vì người dùng chưa được đào tạo cách sử dụng",
     ],

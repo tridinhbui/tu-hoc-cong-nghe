@@ -192,7 +192,7 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
       "Một khách hàng hưu trí, khẩu vị rủi ro thấp, yêu cầu bạn mua một cổ phiếu công nghệ biến động mạnh. Bạn nên làm gì?",
     openingOptions: [
       "Từ chối vì cổ phiếu đó không phù hợp với khẩu vị rủi ro của khách",
-      "Xét ảnh hưởng tới rủi ro danh mục rồi giải thích lại với khách",
+      "Xét ảnh hưởng tới rủi ro của cả danh mục rồi giải thích lại với khách",
       "Thực hiện ngay vì khách hàng có quyền quyết định tiền của họ",
       "Yêu cầu khách ký cam kết miễn trừ trách nhiệm rồi thực hiện",
     ],
@@ -568,7 +568,7 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
       "Bạn sắp nghỉ việc để mở công ty riêng. Trong tháng cuối còn làm, bạn được làm gì?",
     openingOptions: [
       "Chuẩn bị mọi thứ kể cả liên hệ trước với khách hàng hiện tại",
-      "Chuẩn bị hành chính, nhưng không dùng nguồn lực công ty",
+      "Chuẩn bị hành chính, nhưng không dùng nguồn lực của công ty cũ",
       "Không được chuẩn bị gì cho tới ngày chính thức nghỉ",
       "Tùy chọn, miễn là năng suất công việc hiện tại không giảm",
     ],
@@ -1448,7 +1448,7 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
       "Một công ty quản lý quỹ tuyên bố 'quỹ cổ phiếu tăng trưởng của chúng tôi tuân thủ GIPS'. Vấn đề ở đâu?",
     openingOptions: [
       "Không có vấn đề nếu quỹ đó thực sự tuân thủ đầy đủ",
-      "GIPS chỉ tuyên bố được ở cấp công ty, không riêng",
+      "GIPS chỉ tuyên bố được ở cấp toàn công ty, không riêng lẻ",
       "Vấn đề là chưa nêu rõ giai đoạn nào đã tuân thủ",
       "Vấn đề là chưa có bên thứ ba xác minh tuyên bố đó",
     ],

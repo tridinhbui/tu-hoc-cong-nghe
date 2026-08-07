@@ -718,7 +718,7 @@ export const QUANT_METHODS_LESSONS: Lesson[] = [
       "Vì sao thêm biến giải thích vào mô hình hầu như luôn làm tăng R bình phương?",
     openingOptions: [
       "Vì biến mới luôn chứa thông tin hữu ích",
-      "Vì thêm biến không bao giờ làm khớp kém đi",
+      "Vì thêm biến không bao giờ làm khớp kém đi cả",
       "Vì phần mềm tự động loại bỏ biến vô dụng",
       "Vì R bình phương không phụ thuộc vào số biến",
     ],

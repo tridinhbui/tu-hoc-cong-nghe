@@ -25,7 +25,7 @@ export const FINANCIAL_MODELING_LESSONS: Lesson[] = [
       "Nguyên tắc quan trọng nhất khi bố cục một mô hình tài chính là gì?",
     openingOptions: [
       "Dùng càng nhiều sheet càng tốt để chia nhỏ nội dung",
-      "Tách bạch giả định, phần tính toán và phần kết quả",
+      "Tách bạch giả định, phần tính toán và phần kết quả ra",
       "Giấu các dòng trung gian để bảng trông gọn gàng",
       "Viết công thức càng dài càng tốt để giảm số dòng",
     ],
@@ -212,7 +212,7 @@ export const FINANCIAL_MODELING_LESSONS: Lesson[] = [
       "Cách dự phóng doanh thu nào có sức thuyết phục cao nhất khi trình bày với nhà đầu tư?",
     openingOptions: [
       "Giả định doanh thu tăng đều 10% mỗi năm trong 5 năm",
-      "Tách thành động lực kiểm chứng được: lượng × giá",
+      "Tách thành các động lực kiểm chứng được: lượng × giá",
       "Lấy trung bình tăng trưởng ngành rồi áp cho công ty",
       "Dùng đúng mức tăng trưởng của năm gần nhất",
     ],
@@ -901,7 +901,7 @@ export const FINANCIAL_MODELING_LESSONS: Lesson[] = [
     openingOptions: [
       "Dòng tiền năm thứ nhất",
       "Tổng dòng tiền 5 năm dự phóng",
-      "Giá trị cuối, thường chiếm 60-80% tổng",
+      "Giá trị cuối, thường chiếm 60-80% tổng giá trị",
       "Giá trị tài sản cố định trên bảng cân đối",
     ],
     correctOption: 2,

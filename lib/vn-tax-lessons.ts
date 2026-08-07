@@ -759,7 +759,7 @@ export const VN_TAX_LESSONS: Lesson[] = [
     openingOptions: [
       "Chỉ tăng mức giảm trừ gia cảnh, biểu thuế giữ nguyên 7 bậc",
       "Chỉ giảm số bậc từ 7 xuống 5, giữ nguyên mức giảm trừ",
-      "Vừa giảm từ 7 xuống 5 bậc, vừa nâng mức giảm trừ gia cảnh",
+      "Vừa giảm từ 7 xuống 5 bậc, vừa nâng mức giảm trừ gia cảnh lên",
       "Chuyển sang thuế suất cố định 10% cho mọi mức thu nhập",
     ],
     correctOption: 2,

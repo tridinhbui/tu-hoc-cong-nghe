@@ -174,7 +174,7 @@ export const FRM_MARKET_RISK_DEPTH_LESSONS: Lesson[] = [
       "Một danh mục mua trái phiếu 2 năm và bán khống trái phiếu 10 năm, tổng duration đúng bằng 0. Rủi ro lớn nhất còn lại là gì?",
     openingOptions: [
       "Không còn rủi ro lãi suất nào vì duration đã bằng 0",
-      "Rủi ro đường cong đổi hình dạng chứ không song song",
+      "Rủi ro đường cong đổi hình dạng chứ không dịch song song",
       "Rủi ro tín dụng của tổ chức phát hành hai trái phiếu",
       "Rủi ro thanh khoản khi cần đóng vị thế bán khống",
     ],
@@ -339,7 +339,7 @@ export const FRM_MARKET_RISK_DEPTH_LESSONS: Lesson[] = [
     openingQuestion:
       "Vì sao không tính VaR trực tiếp trên từng công cụ riêng lẻ trong danh mục?",
     openingOptions: [
-      "Vì ma trận hiệp phương sai phình theo bình phương số công cụ",
+      "Vì ma trận hiệp phương sai phình theo bình phương số công cụ nắm giữ",
       "Vì cơ quan quản lý yêu cầu gộp về nhóm nhân tố chuẩn hoá",
       "Vì từng công cụ riêng lẻ không có đủ biến động để tính được VaR",
       "Vì VaR chỉ định nghĩa được ở cấp danh mục chứ không ở cấp công cụ",
