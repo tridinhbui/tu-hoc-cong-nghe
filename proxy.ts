@@ -1,6 +1,5 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
-import { isLessonLockedForUser } from "@/lib/lesson-locking";
 
 // Simple in-memory rate limiting for API endpoints
 const rateLimit = new Map<string, { count: number; resetTime: number }>();
@@ -42,53 +41,22 @@ setInterval(() => {
   }
 }, RATE_WINDOW);
 
-// A handful of lessons are hand-authored as their own static page
-// (app/bai-hoc/<slug>/page.tsx) instead of going through the data-driven
-// app/bai-hoc/[slug]/page.tsx route. Next.js resolves the static route
-// first, so [slug]'s own server-side lock check (lib/lesson-locking.ts)
-// never runs for these — they would otherwise ship full lesson content to
-// anyone who requests the URL, locked or not, logged in or not.
+// Khoá bài học ĐÃ TẮT, và đây là quyết định của chủ dự án chứ không phải một
+// trạng thái tạm. Trước đây chỗ này giữ một bảng slug -> id cho các bài có
+// trang viết tay riêng, vì Next giải route tĩnh trước route dữ liệu nên phép
+// kiểm khoá của app/bai-hoc/[slug]/page.tsx không chạy cho chúng, và proxy là
+// chỗ duy nhất chặn được trước khi trang dựng.
 //
-// This is the only place that can catch it before the static page renders.
-// Scoped to just this known list (not every /bai-hoc/* request) so the
-// common case — lessons served by [slug], which already checks itself —
-// doesn't pay for a second DB round trip per page view.
+// Bảng đó đã bị gỡ cùng lời gọi isLessonLockedForUser: hàm ấy trả false vô
+// điều kiện, nên cả khối là công việc không đổi kết quả gì trên mọi request tới
+// /bai-hoc/*. Nó cũng đã lệch khỏi thực tế 767 commit mà không ai thấy - 38 mục
+// trỏ vào trang đã xoá, 13 trang đang tồn tại thì không mục nào có - đúng vì
+// không có gì phụ thuộc vào nó để mà hỏng.
 //
-// THIS LIST HAD ZERO OVERLAP WITH REALITY when it was last measured. All 38
-// slugs it named — "roic", "walmart-earnings", "vingroup-cash-flow" and the
-// rest — had their page.tsx deleted 767 commits earlier and now come from the
-// data route, which checks itself. Meanwhile all 13 pages that DO still exist
-// were absent. Nothing broke, only because lesson locking is disabled
-// site-wide (isLessonLockedForUser returns false unconditionally), so the map
-// has been decorative the whole time. The day someone follows the instructions
-// at the top of lib/lesson-locking.ts and turns locking back on, every one of
-// those 13 pages would serve its full content to anyone with the URL — the
-// exact defect this map exists to prevent — while 38 dead entries made it look
-// maintained.
-//
-// The maintenance note below is what failed: it asked a human to remember.
-// lib/__tests__/static-lesson-pages.test.ts now checks it instead, in both
-// directions, against the filesystem.
-//
-// Maintenance note: if a new lesson is hand-coded as its own static page
-// under app/bai-hoc/<slug>/ AND is not isFundamental (i.e. meant to be
-// locked behind a prerequisite), its slug + numeric lesson id must be added
-// here too, or its lock is purely cosmetic on the dashboard.
-const STATIC_PAGE_LESSON_IDS: Record<string, number> = {
-  "10-cong-thuc-finance": 9001,
-  "bang-can-doi-ke-toan": 9002,
-  "bao-cao-luu-chuyen-tien-te": 9003,
-  "cac-loai-debt": 9004,
-  "chon-phuong-phap-dinh-gia": 9005,
-  "credit-debit-phan-1": 9006,
-  "fair-value": 9009,
-  "free-cash-flow": 9010,
-  "interest-coverage": 9011,
-  "khau-hao": 9012,
-  "source-cash-ma": 9014,
-  "synergy-ma": 9015,
-  "time-value-of-money": 9016,
-};
+// Muốn bật lại khoá: xem git history của file này và của lib/lesson-locking.ts.
+// Khi đó phải dựng lại CẢ bảng lẫn một bài test giữ nó đồng bộ với thư mục
+// app/bai-hoc/, vì một ghi chú nhờ người đọc nhớ đã thử và trượt một lần rồi.
+
 
 // Default-deny route gate: every page requires a signed-in session UNLESS
 // its path is explicitly listed here. Previously there was no such gate at
@@ -190,19 +158,6 @@ export async function proxy(request: NextRequest) {
     const loginUrl = new URL("/login", request.url);
     loginUrl.searchParams.set("next", pathname);
     return NextResponse.redirect(loginUrl);
-  }
-
-  const [, section, slug] = request.nextUrl.pathname.split("/");
-  if (section === "bai-hoc" && slug) {
-    const lessonId = STATIC_PAGE_LESSON_IDS[slug];
-    if (lessonId !== undefined) {
-      const locked = await isLessonLockedForUser(lessonId, user?.id ?? null);
-      if (locked) {
-        return NextResponse.redirect(
-          new URL(`/dashboard?locked=${encodeURIComponent(slug)}`, request.url)
-        );
-      }
-    }
   }
 
   return response;
