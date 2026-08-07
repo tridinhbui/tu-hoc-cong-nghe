@@ -107,6 +107,19 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
       "explanation": "Lý thuyết giả định giao dịch không mất phí và vốn vô hạn. Trong thực tế, khoản chênh vài điểm cơ bản đòi đòn bẩy lớn để đáng làm, mà đòn bẩy lớn thì kéo theo rủi ro bị gọi ký quỹ trước khi giá hội tụ - đúng thứ đã kết liễu LTCM."
     }
     ],
+    practicePrompt: {
+      question:
+        "Cổ phiếu đang 100.000đ, lãi suất phi rủi ro 6% một năm, không trả cổ tức. Một hợp đồng kỳ hạn một năm đang được chào ở 104.000đ. Nên làm gì?",
+      options: [
+        "Mua kỳ hạn và bán khống cổ phiếu, chốt 2.000đ",
+        "Bán kỳ hạn và mua cổ phiếu, chốt 2.000đ",
+        "Không làm gì, vì 104.000 vẫn cao hơn giá giao ngay",
+        "Mua cả hai, vì giá kỳ hạn thấp báo hiệu giá sẽ tăng",
+      ],
+      correct: 0,
+      explanation:
+        "Giá kỳ hạn hợp lý là 100.000 × 1,06 = 106.000đ, nên hợp đồng đang được chào rẻ 2.000đ. Cách khai thác: bán khống cổ phiếu lấy 100.000đ, gửi số tiền đó ở lãi suất phi rủi ro thành 106.000đ sau một năm, đồng thời mua kỳ hạn để cam kết mua lại cổ phiếu ở 104.000đ. Sau một năm trả cổ phiếu về, còn dư đúng 2.000đ mà không chịu rủi ro giá nào - dù cổ phiếu lên hay xuống. Phương án bán kỳ hạn và mua cổ phiếu là đúng chiều ngược lại, và nó lỗ đúng 2.000đ. Chú ý phép tính không cần biết gì về triển vọng của cổ phiếu.",
+    },
     keyTakeaways: [
       "Hai dòng tiền giống hệt nhau phải có cùng một giá, nếu không sẽ có tiền rơi",
       "Danh mục sao chép biến bài toán định giá thành bài toán cộng giá các thành phần",
@@ -278,6 +291,19 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
       "explanation": "Quyền thực hiện sớm là một quyết định lặp lại ở mọi thời điểm, và cây nhị thức có sẵn cấu trúc để kiểm tra nó tại từng nút. Công thức đóng thì cho ra một con số duy nhất, không có chỗ nào để chèn quyết định trung gian đó vào."
     }
     ],
+    practicePrompt: {
+      question:
+        "Cây một bước: cổ phiếu đang 100, sau một kỳ lên 120 hoặc xuống 90. Quyền chọn mua có giá thực hiện 105. Delta của quyền chọn bằng bao nhiêu?",
+      options: [
+        "0,50 (= chênh 15 chia chênh 30)",
+        "0,15 (= 15 chia giá cổ phiếu 100)",
+        "1,00 vì quyền chọn đang có lãi",
+        "0,33 (= 10 chia cho chênh 30)",
+      ],
+      correct: 0,
+      explanation:
+        "Ở nhánh lên, quyền chọn đáng 120 − 105 = 15; ở nhánh xuống nó vô giá trị. Delta là chênh lệch giá trị quyền chọn chia chênh lệch giá cổ phiếu: 15 / (120 − 90) = 0,50. Con số đó có nghĩa rất cụ thể - nắm nửa cổ phiếu cho mỗi quyền chọn bán ra là dựng được danh mục sao chép cho cùng dòng tiền ở cả hai nhánh, và chi phí dựng danh mục đó CHÍNH LÀ giá quyền chọn. Không chỗ nào trong phép tính cần biết xác suất thật của việc giá lên hay xuống, và đó là toàn bộ sức mạnh của nguyên lý không chênh lệch giá.",
+    },
     keyTakeaways: [
       "Giá quyền chọn = chi phí dựng danh mục sao chép, không cần xác suất thật",
       "Delta = chênh lệch giá trị quyền chọn chia chênh lệch giá cổ phiếu",
@@ -464,6 +490,19 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
       "explanation": "Lợi suất thật có đuôi dày hơn phân phối chuẩn, nên cú sốc cực đoan xảy ra thường xuyên hơn mức mô hình dự báo. Sai lệch này có hệ thống và lệch về một phía - đó là lý do nó nguy hiểm hơn một sai số ngẫu nhiên."
     }
     ],
+    practicePrompt: {
+      question:
+        "Trên cùng một cổ phiếu và cùng ngày đáo hạn, quyền chọn giá thực hiện thấp có biến động hàm ý 34%, còn giá thực hiện cao có 22%. Điều này nói lên gì?",
+      options: [
+        "Thị trường định giá đuôi trái dày hơn phân phối chuẩn",
+        "Có cơ hội kinh doanh chênh lệch giữa hai quyền chọn này",
+        "Một trong hai quyền chọn đang bị định giá sai rõ rệt",
+        "Biến động thật của cổ phiếu sẽ nằm giữa 22% và 34%",
+      ],
+      correct: 0,
+      explanation:
+        "Black-Scholes giả định một độ biến động duy nhất cho mọi giá thực hiện, nên nếu giả định đó đúng thì đường biến động hàm ý phải phẳng. Nó không phẳng, và độ dốc nghiêng về phía giá thực hiện thấp nói rằng thị trường trả thêm tiền cho bảo hiểm chống sụt giá - tức tin rằng một cú giảm mạnh xảy ra thường xuyên hơn phân phối chuẩn cho phép. Đó là một tuyên bố về phân phối, không phải một sai lệch định giá, nên không có chênh lệch nào để kiếm. Và biến động hàm ý là giá quy đổi ra một đơn vị so sánh được, không phải dự báo về biến động thật sẽ xảy ra.",
+    },
     keyTakeaways: [
       "Bốn đầu vào quan sát được, riêng độ biến động tương lai thì không",
       "Thực tế chạy ngược công thức để ra biến động hàm ý từ giá thị trường",
@@ -657,6 +696,19 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
       "explanation": "Trong một ngày, giá cơ sở có thể động vài phần trăm còn lãi suất gần như đứng yên - nên delta và gamma chi phối. Nhưng với quyền chọn kỳ hạn dài, hoặc trong giai đoạn ngân hàng trung ương đổi lãi suất nhanh, rho trở lại thành đại lượng đáng theo dõi."
     }
     ],
+    practicePrompt: {
+      question:
+        "Một vị thế bán quyền chọn đã được trung hoà delta vào cuối phiên. Qua đêm cổ phiếu nhảy 12%. Vì sao vị thế vẫn lỗ nặng?",
+      options: [
+        "Gamma âm: delta lệch nhanh khi giá chạy xa điểm trung hoà",
+        "Vega âm khiến vị thế lỗ khi biến động hàm ý giảm xuống",
+        "Theta dương nên vị thế mất giá trị theo thời gian trôi",
+        "Rho âm khiến lãi suất qua đêm ăn vào giá trị vị thế",
+      ],
+      correct: 0,
+      explanation:
+        "Trung hoà delta chỉ đúng TẠI MỘT ĐIỂM GIÁ, và gamma cho biết nó hỏng nhanh cỡ nào khi giá rời điểm đó. Người bán quyền chọn có gamma âm, nên giá chạy về phía nào thì delta cũng lệch về phía bất lợi, và cú nhảy càng lớn thì phần lỗ càng lớn theo bình phương chứ không theo tỷ lệ. Đó là mặt trái của theta dương: người bán được trả tiền cho thời gian trôi, và cái giá là họ chịu toàn bộ phần phi tuyến khi giá nhảy. Vega âm và theta dương trong ba phương án kia đều mô tả đúng dấu của một vị thế bán quyền, chỉ là không cái nào giải thích được khoản lỗ do một cú nhảy giá qua đêm.",
+    },
     keyTakeaways: [
       "Delta đo độ nhạy với giá, gamma đo tốc độ thay đổi của chính delta",
       "Vega dương với mọi vị thế mua quyền chọn, cả mua lẫn bán quyền",
@@ -865,6 +917,19 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
       "explanation": "Đường cong hiếm khi dịch song song - phần lớn biến động thật là đổi độ dốc và độ cong. Đó là lý do người quản lý danh mục trái phiếu phải bổ sung đo lường theo từng điểm kỳ hạn thay vì chỉ nhìn một con số duration."
     }
     ],
+    practicePrompt: {
+      question:
+        "Danh mục trái phiếu trị giá 500 tỷ có duration hiệu dụng 6,2. Lãi suất tăng 25 điểm cơ bản. Giá trị danh mục mất xấp xỉ bao nhiêu?",
+      options: [
+        "7,75 tỷ (= 500 × 6,2 × 0,25%)",
+        "3,1 tỷ (= 500 × 6,2 × 0,1%)",
+        "31 tỷ (= 500 × 6,2 × 1%)",
+        "1,55 tỷ (= 500 × 6,2 × 0,05%)",
+      ],
+      correct: 0,
+      explanation:
+        "Duration hiệu dụng nhân giá trị danh mục nhân mức thay đổi lãi suất cho phần mất xấp xỉ: 500 × 6,2 × 0,0025 = 7,75 tỷ. Đây là xấp xỉ BẬC MỘT, tức nó coi quan hệ giá - lãi suất là đường thẳng. Với 25 điểm cơ bản thì sai số nhỏ; với một cú dịch 200 điểm thì convexity bắt đầu đáng kể, và nó luôn nghiêng về phía có lợi cho người nắm trái phiếu thường: giá giảm ít hơn con số duration dự báo khi lãi suất tăng, và tăng nhiều hơn khi lãi suất giảm. Cả hai con số đều giả định đường cong dịch song song, điều thực tế hiếm khi đúng.",
+    },
     keyTakeaways: [
       "DV01 quy độ nhạy lãi suất ra tiền nên cộng được giữa các vị thế",
       "Convexity là phần cong mà xấp xỉ bậc một của duration bỏ sót",
@@ -1033,6 +1098,19 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
       "explanation": "Lập luận đằng sau là rủi ro chuyển đổi và chuyển tiền: chính phủ gặp khó có thể hạn chế chuyển ngoại tệ ra ngoài, và khi đó doanh nghiệp khoẻ mạnh vẫn không trả được nợ ngoại tệ. Có ngoại lệ, nhưng phải chứng minh nguồn thu nằm ngoài lãnh thổ."
     }
     ],
+    practicePrompt: {
+      question:
+        "Một doanh nghiệp có các chỉ số tài chính tương đương mức A, nhưng quốc gia của nó đang được xếp hạng BB. Xếp hạng ngoại tệ của doanh nghiệp thường sẽ ra sao?",
+      options: [
+        "Bị chặn quanh mức BB vì trần quốc gia áp lên",
+        "Vẫn là A, vì xếp hạng đo chính doanh nghiệp",
+        "Trung bình cộng của A và BB, tức khoảng BBB",
+        "Cao hơn A, vì doanh nghiệp mạnh hơn quốc gia",
+      ],
+      correct: 0,
+      explanation:
+        "Trần quốc gia phản ánh một rủi ro mà bảng cân đối của doanh nghiệp không nói gì được: khi một quốc gia gặp khủng hoảng ngoại tệ, chính phủ có thể hạn chế chuyển đổi hoặc chuyển tiền ra nước ngoài, và khi đó một doanh nghiệp hoàn toàn khoẻ mạnh vẫn không trả được nợ ngoại tệ đúng hạn. Đó là lý do trần áp lên xếp hạng NGOẠI TỆ chứ không phải xếp hạng nội tệ. Vẫn có ngoại lệ vượt trần - doanh nghiệp có nguồn thu ngoại tệ nằm ngoài nước hoặc có bảo lãnh từ công ty mẹ nước ngoài - nhưng đó là ngoại lệ phải chứng minh, không phải mặc định.",
+    },
     keyTakeaways: [
       "Xếp hạng bên ngoài là thứ hạng tương đối, không phải xác suất vỡ nợ tuyệt đối",
       "Xếp hạng nội bộ phải ánh xạ sang PD cụ thể để đưa vào mô hình vốn",
@@ -1209,6 +1287,19 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
       "explanation": "Với mô hình tín dụng, kết quả thật chỉ biết sau nhiều tháng - lúc đó khoản lỗ đã phát sinh. Theo dõi độ trôi của chính dữ liệu đầu vào là tín hiệu sớm duy nhất có được ngay, và nó không cần chờ nhãn thực tế nào."
     }
     ],
+    practicePrompt: {
+      question:
+        "Mô hình chấm điểm tín dụng học máy giữ nguyên độ chính xác 88% suốt sáu tháng, nhưng tỷ lệ hồ sơ lao động tự do trong dòng vào đã tăng từ 5% lên 30%. Việc cần làm là gì?",
+      options: [
+        "Theo dõi phân phối đầu vào: trôi mô hình đến trước khi độ chính xác rơi",
+        "Không cần làm gì, vì độ chính xác 88% vẫn giữ nguyên suốt sáu tháng",
+        "Huấn luyện lại ngay bằng toàn bộ dữ liệu lịch sử đã có từ trước",
+        "Bỏ biến nghề nghiệp khỏi mô hình để tránh thiên lệch nhóm này",
+      ],
+      correct: 0,
+      explanation:
+        "Độ chính xác được đo trên các hồ sơ đã có kết quả, tức các khoản vay giải ngân từ nhiều tháng trước, khi dòng vào còn giống dữ liệu huấn luyện. Nó là chỉ báo trễ. Phân phối đầu vào thì đo được ngay hôm nay, và một nhóm đi từ 5% lên 30% nghĩa là mô hình đang chấm điểm cho một tổng thể khác với tổng thể nó học - độ chính xác sẽ rơi, chỉ là chưa quan sát được. Bỏ biến nghề nghiệp không giải quyết gì: mô hình học máy tái tạo được thiên lệch qua các biến tương quan mà không cần biến nhạy cảm nào, nên bỏ biến chỉ làm mất khả năng nhìn thấy chứ không làm mất thiên lệch.",
+    },
     keyTakeaways: [
       "Đánh đổi trung tâm: độ chính xác cao hơn đổi lấy khả năng giải thích thấp hơn",
       "Mô hình học cả thiên lệch trong dữ liệu quá khứ, kể cả khi không có biến nhạy cảm",
@@ -1392,6 +1483,19 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
       "explanation": "Giá tài sản phản ánh kỳ vọng, và kỳ vọng dịch chuyển theo bậc: một quyết định chính sách, một mốc chi phí công nghệ bị vượt qua. Quá trình vật lý thì chậm, còn việc thị trường thừa nhận nó diễn ra trong vài phiên."
     }
     ],
+    practicePrompt: {
+      question:
+        "Một nhà máy nhiệt điện than còn 18 năm tuổi thọ kỹ thuật, nhưng quy định mới vừa ban hành buộc dừng vận hành sau 7 năm. Ngân hàng đang cho vay kỳ hạn 12 năm nên làm gì?",
+      options: [
+        "Ghi nhận tài sản mắc kẹt và soát lại thời hạn khoản vay",
+        "Không đổi gì, vì tài sản vẫn vận hành tốt về kỹ thuật",
+        "Chờ tới khi quy định có hiệu lực rồi mới đánh giá lại",
+        "Chuyển khoản vay sang nhóm rủi ro vật lý thay vì chuyển đổi",
+      ],
+      correct: 0,
+      explanation:
+        "Tài sản mắc kẹt là tài sản còn nguyên giá trị KỸ THUẬT nhưng mất giá trị KINH TẾ trước hạn, và đây là ví dụ sạch nhất của nó: máy vẫn chạy được 18 năm, nhưng dòng tiền chỉ còn 7 năm. Khoản vay 12 năm vì thế mất nguồn trả nợ từ năm thứ tám, và tài sản bảo đảm gần như không còn giá trị thanh lý vào đúng lúc cần tới nó. Chờ tới khi quy định có hiệu lực là muộn năm năm: giá trị kinh tế rơi vào ngày quy định được BAN HÀNH, không phải ngày nó có hiệu lực - đó cũng là lý do rủi ro chuyển đổi xuất hiện đột ngột dù quá trình chuyển đổi diễn ra chậm.",
+    },
     keyTakeaways: [
       "Rủi ro vật lý là thiệt hại từ thiên tai; rủi ro chuyển đổi là từ chính sách và công nghệ",
       "Tài sản mắc kẹt: còn giá trị kỹ thuật nhưng mất giá trị kinh tế trước hạn",
@@ -1575,6 +1679,19 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
       "explanation": "LIBOR chống đỡ hàng trăm nghìn tỷ đô hợp đồng trong khi thị trường thật đằng sau nó teo lại gần như không còn giao dịch. Không ai sở hữu rủi ro đó, và nó chỉ lộ ra khi bê bối thao túng buộc phải nhìn kỹ."
     }
     ],
+    practicePrompt: {
+      question:
+        "Một hợp đồng cũ trả LIBOR 3 tháng cộng 1,2%. Khi chuyển sang lãi suất tham chiếu mới nhìn lại sau, vì sao phải thêm một khoản chênh lệch điều chỉnh?",
+      options: [
+        "Vì LIBOR chứa rủi ro tín dụng ngân hàng, cái mới thì không",
+        "Vì lãi suất mới luôn cao hơn LIBOR ở mọi kỳ hạn tham chiếu",
+        "Vì kỳ hạn ba tháng không có bản tương ứng ở lãi suất mới",
+        "Vì cơ quan quản lý yêu cầu mọi hợp đồng phải đổi cùng mức",
+      ],
+      correct: 0,
+      explanation:
+        "LIBOR là lãi suất mà một ngân hàng ước tính mình phải trả để vay không bảo đảm, nên nó luôn cao hơn lãi suất phi rủi ro đúng bằng phần bù rủi ro tín dụng ngân hàng. Các lãi suất tham chiếu mới dựa trên giao dịch thật, phần lớn có bảo đảm hoặc qua đêm, nên không mang phần bù đó. Thay thẳng một chuỗi bằng chuỗi kia là lặng lẽ cắt vài chục điểm cơ bản khỏi tiền lãi của một bên và chuyển cho bên kia - khoản chênh lệch điều chỉnh tồn tại để việc chuyển đổi trung tính về giá trị kinh tế, chứ không phải để hai con số bằng nhau.",
+    },
     keyTakeaways: [
       "LIBOR dựa trên báo giá ước tính, lãi suất mới dựa trên giao dịch thật",
       "LIBOR chứa rủi ro tín dụng ngân hàng nên chuyển đổi cần chênh lệch điều chỉnh",
@@ -1744,6 +1861,19 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
       "explanation": "Mô hình này giữ lại vai trò của ngân hàng thương mại ở khâu định danh khách hàng, dịch vụ và xử lý tranh chấp - những việc ngân hàng trung ương không có bộ máy để làm. Nó cũng giảm bớt phần nào lực hút vốn khỏi hệ thống ngân hàng."
     }
     ],
+    practicePrompt: {
+      question:
+        "Một quốc gia phát hành CBDC bán lẻ không đặt trần nắm giữ cho mỗi cá nhân. Trong một đợt căng thẳng, rủi ro lớn nhất với ngân hàng thương mại là gì?",
+      options: [
+        "Tiền gửi chạy sang CBDC ngay lập tức, không cần xếp hàng",
+        "Chi phí công nghệ để kết nối với hệ thống CBDC tăng vọt",
+        "Ngân hàng trung ương cạnh tranh lãi suất huy động trực tiếp",
+        "Khách hàng mất niềm tin vì tiền gửi không còn được bảo hiểm",
+      ],
+      correct: 0,
+      explanation:
+        "Trong một đợt tháo chạy truyền thống, người gửi tiền phải chuyển sang một ngân hàng khác - mà ngân hàng đó cũng có thể đang bị nghi ngờ - hoặc rút tiền mặt, việc bị giới hạn bởi quầy và cây ATM. Cả hai đều tạo ma sát, và ma sát đó là thứ mua thời gian cho cơ quan quản lý. CBDC xoá ma sát: nó là nghĩa vụ của ngân hàng trung ương, an toàn tuyệt đối theo định nghĩa, và chuyển sang nó chỉ mất vài giây trên điện thoại. Đó là lý do gần như mọi thiết kế CBDC đều kèm trần nắm giữ hoặc lãi suất bậc thang - không phải vì công nghệ, mà để dựng lại đúng phần ma sát vừa bị xoá.",
+    },
     keyTakeaways: [
       "Rủi ro chính của CBDC bán lẻ là hút tiền gửi khỏi ngân hàng thương mại",
       "Thiết kế thường kèm trần nắm giữ hoặc lãi suất bậc thang để hãm nguy cơ tháo chạy",
@@ -1909,6 +2039,19 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
       "explanation": "Không ngân hàng nào tự phòng ngừa được rủi ro này bằng biện pháp nội bộ, nên khung giám sát cũ - đặt nghĩa vụ lên từng định chế - không giải quyết được. Cách đang đi là đưa chính nhà cung cấp vào phạm vi giám sát khi họ đủ quan trọng với hệ thống."
     }
     ],
+    practicePrompt: {
+      question:
+        "Mười hai ngân hàng lớn của một nước đều chọn cùng một nhà cung cấp đám mây, và mỗi bên đều đã thẩm định nhà cung cấp đó rất kỹ. Vấn đề nằm ở đâu?",
+      options: [
+        "Mỗi quyết định đều đúng, tổng lại thành điểm đổ vỡ chung",
+        "Thẩm định của cả mười hai bên đều đã bỏ sót cùng một điểm",
+        "Nhà cung cấp đó có rủi ro vận hành cao hơn các bên khác",
+        "Hợp đồng thuê ngoài của họ thiếu điều khoản chuyển đổi",
+      ],
+      correct: 0,
+      explanation:
+        "Đây là nghịch lý hợp thành ở dạng sạch nhất: mỗi ngân hàng chọn nhà cung cấp có hạ tầng tốt nhất và thẩm định kỹ nhất, và chính vì tất cả cùng làm đúng nên tất cả cùng chọn một bên. Rủi ro sinh ra không nằm trong bất kỳ quyết định nào và cũng không ai sở hữu nó - không ngân hàng nào có thể tự sửa, vì bên duy nhất nhìn thấy toàn cảnh là cơ quan quản lý. Khung thuê ngoài truyền thống không với tới được, vì nó giả định một quan hệ song phương trong đó bên thuê có quyền mặc cả, còn ở đây bên thuê nhỏ hơn nhà cung cấp nhiều lần.",
+    },
     keyTakeaways: [
       "Hợp lý ở cấp từng tổ chức nhưng tạo điểm đổ vỡ chung ở cấp hệ thống",
       "Khung thuê ngoài truyền thống giả định quan hệ song phương cân bằng, điều không đúng ở đây",
@@ -2094,6 +2237,19 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
       "explanation": "Chuẩn thanh khoản được xây trên hình dung về hàng người xếp trước quầy. Khi chuyển tiền chỉ mất vài thao tác và tin lan trong vài giờ, cả tháng đệm bị nén thành một buổi chiều - và không lượng tài sản thanh khoản nào bán kịp."
     }
     ],
+    practicePrompt: {
+      question:
+        "Một ngân hàng có danh mục giữ tới đáo hạn 90.000 tỷ đang lỗ chưa thực hiện 12.000 tỷ, trong khi vốn chủ sở hữu ghi sổ là 10.000 tỷ. Nhận định nào đúng?",
+      options: [
+        "Vốn kinh tế đã âm, dù báo cáo vẫn cho thấy đủ vốn",
+        "Vẫn an toàn vì lỗ chưa thực hiện không phải lỗ thật",
+        "Chỉ thành vấn đề nếu chất lượng tín dụng xấu đi",
+        "Đủ vốn, vì giữ tới đáo hạn thì thu về đủ mệnh giá",
+      ],
+      correct: 0,
+      explanation:
+        "Phân loại giữ tới đáo hạn cho phép không ghi nhận biến động giá vào vốn, nên báo cáo vẫn hiển thị 10.000 tỷ vốn chủ. Nhưng nếu bán ra hôm nay thì khoản lỗ 12.000 tỷ thành thật và vốn chủ âm 2.000 tỷ. Lập luận 'giữ tới đáo hạn thì thu đủ mệnh giá' đúng về mặt số học và vô dụng về mặt thanh khoản: nó chỉ thành lập nếu ngân hàng KHÔNG BAO GIỜ PHẢI BÁN, mà cái buộc phải bán chính là người gửi tiền rút. Đây là điểm khác 2008: khoản lỗ đến từ rủi ro lãi suất chưa phòng hộ, không từ tín dụng, nên soi chất lượng khoản vay sẽ không thấy gì.",
+    },
     keyTakeaways: [
       "Khoản lỗ đến từ rủi ro lãi suất, không phải rủi ro tín dụng - khác hẳn 2008",
       "Phân loại giữ tới đáo hạn giấu được lỗ trên báo cáo nhưng không cứu được khi phải bán",
