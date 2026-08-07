@@ -123,7 +123,7 @@ export const FRM_LESSONS: Lesson[] = [
       question: "Một công ty chứng khoán để cùng một nhân viên vừa thực hiện lệnh mua/bán vừa tự đối chiếu sổ sách cuối ngày cho chính mình. Rủi ro lớn nhất ở đây là gì?",
       options: [
         "Nhân viên đó làm việc quá tải, năng suất giảm",
-        "Không còn tuyến kiểm soát độc lập nào phát hiện được vị thế sai lệch hoặc gian lận trước khi nó phình to",
+        "Không còn tuyến kiểm soát độc lập nào phát hiện",
         "Công ty phải trả lương cao hơn cho vị trí kiêm nhiệm",
         "Khách hàng sẽ khiếu nại vì xử lý lệnh chậm",
       ],

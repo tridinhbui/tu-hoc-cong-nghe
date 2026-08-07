@@ -12,10 +12,21 @@
   ],
   "explanation": "Accounts receivable is the portion of revenue already recognised but not yet collected in cash - a direct consequence of selling on credit. The metric to watch is the average collection period, and the worrying case is when receivables grow faster than revenue: either the business is loosening credit terms to inflate the numbers, or customers are struggling. Both scenarios end up in the same place next period - a provision.",
   "diagram": [
-    { "label": "Sell goods, recognise revenue", "arrow": true },
-    { "label": "Customer hasn't paid yet", "arrow": true },
-    { "label": "Record Accounts Receivable (AR)", "arrow": true },
-    { "label": "AR growing faster than revenue → warning" }
+    {
+      "label": "Sell goods, recognise revenue",
+      "arrow": true
+    },
+    {
+      "label": "Customer hasn't paid yet",
+      "arrow": true
+    },
+    {
+      "label": "Record Accounts Receivable (AR)",
+      "arrow": true
+    },
+    {
+      "label": "AR growing faster than revenue → warning"
+    }
   ],
   "realWorldExample": {
     "company": "Hoa Phat",
@@ -82,7 +93,7 @@
     "question": "Company Y reports revenue up 30% but accounts receivable (AR) up as much as 60% year over year. What should an analyst be concerned about?",
     "options": [
       "Nothing to worry about, since AR growing faster than revenue is always a sign the company is selling very well",
-      "It's concerning - AR is money owed by customers that may not be collected; AR growing faster than revenue could mean customers paying more slowly, or the company loosening its credit policy to inflate its numbers",
+      "Worrying - AR is money customers owe, and growing faster than revenue points to slower collection",
       "This is simply a rounding error by the accounting department when preparing the report",
       "This proves the company is collecting cash faster and has very strong cash flow"
     ],
@@ -103,12 +114,18 @@
       "type": "lead",
       "text": "Accounts Receivable (AR) is the amount customers have bought on credit but not yet paid. It sits in current assets because accounting trusts the customer will pay in the near future - but that trust isn't always warranted."
     },
-    { "type": "heading", "text": "Why businesses sell on credit" },
+    {
+      "type": "heading",
+      "text": "Why businesses sell on credit"
+    },
     {
       "type": "paragraph",
       "text": "Selling on credit (allowing customers to pay later) is a common competitive tool, especially in B2B relationships. A steel manufacturer selling to construction dealers rarely demands immediate payment - instead it offers 30, 60, even 90 days of credit to retain customers and compete with rivals. In return, the business bears the risk of customers failing to pay (bad debt)."
     },
-    { "type": "heading", "text": "DSO - a measure of collection speed" },
+    {
+      "type": "heading",
+      "text": "DSO - a measure of collection speed"
+    },
     {
       "type": "paragraph",
       "text": "Days Sales Outstanding (DSO) = Accounts Receivable / (Revenue / 365). This is the average number of days it takes to convert a dong of revenue into a dong of actual cash. DSO rising steadily over quarters is a warning sign: either credit policy is loosening to push sales, or customers are facing financial difficulty and paying more slowly."
@@ -130,10 +147,26 @@
       "type": "conceptTable",
       "title": "Accounts receivable terminology",
       "concepts": [
-        { "vi": "Khoản phải thu", "en": "Accounts Receivable (AR)", "def": "Money customers owe the business from credit sales" },
-        { "vi": "Số ngày thu tiền bình quân", "en": "Days Sales Outstanding (DSO)", "def": "AR / (Revenue/365) - the average number of days to collect cash" },
-        { "vi": "Nợ khó đòi", "en": "Bad debt", "def": "Receivables that cannot be collected from customers" },
-        { "vi": "Dự phòng nợ khó đòi", "en": "Allowance for doubtful accounts", "def": "A provision set aside for the risk of uncollected debt" }
+        {
+          "vi": "Khoản phải thu",
+          "en": "Accounts Receivable (AR)",
+          "def": "Money customers owe the business from credit sales"
+        },
+        {
+          "vi": "Số ngày thu tiền bình quân",
+          "en": "Days Sales Outstanding (DSO)",
+          "def": "AR / (Revenue/365) - the average number of days to collect cash"
+        },
+        {
+          "vi": "Nợ khó đòi",
+          "en": "Bad debt",
+          "def": "Receivables that cannot be collected from customers"
+        },
+        {
+          "vi": "Dự phòng nợ khó đòi",
+          "en": "Allowance for doubtful accounts",
+          "def": "A provision set aside for the risk of uncollected debt"
+        }
       ]
     },
     {

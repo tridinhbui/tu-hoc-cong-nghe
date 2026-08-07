@@ -64,6 +64,11 @@ import FollowButton from "@/components/FollowButton";
 import { useLocalStorageValue, writeLocalStorageValue } from "@/lib/use-local-storage-value";
 import { useI18n } from "@/lib/i18n/context";
 import { format, intlLocale, type Dictionary } from "@/lib/i18n";
+import {
+  getPostCategory,
+  isPostVisibleInFeed,
+  type FeedTopicId,
+} from "@/lib/community-feed-visibility";
 
 /** Kênh báo khi một lá phiếu vừa được lưu, trong cùng tab. */
 const VOTE_CHANGED_EVENT = "thtcdn:community-vote";
@@ -120,6 +125,8 @@ function FeedSkeleton() {
 }
 
 function Avatar({ name, avatarUrl }: { name?: string | null; avatarUrl?: string | null }) {
+  // Sub-component, nên có useI18n() riêng thay vì luồn `t` qua prop.
+  const { t } = useI18n();
   const initials = (name || "U")
     .split(" ")
     .map((part) => part[0])
@@ -130,7 +137,7 @@ function Avatar({ name, avatarUrl }: { name?: string | null; avatarUrl?: string 
   return isValidAvatar(avatarUrl) ? (
     <Image
       src={avatarUrl}
-      alt={name || "User"}
+      alt={name || t.chat.userAlt}
       width={40}
       height={40}
       className="rounded-full object-cover ring-2 ring-white shadow-[0_8px_18px_-16px_rgba(15,23,42,0.35)] flex-shrink-0"
@@ -144,39 +151,25 @@ function Avatar({ name, avatarUrl }: { name?: string | null; avatarUrl?: string 
 
 /* i18n-ignore-start: these strings are stored values, not copy. handleReact writes
    the reaction string itself into post.my_reaction and later compares it with
-   ===, so a translated option would no longer match any reaction already saved.
-   The hashtags are matched against stored post content by getPostCategory. */
+   ===, so a translated option would no longer match any reaction already saved. */
 const REACTION_OPTIONS = ["💡 Hay", "🧠 Cần phản biện", "❓ Cùng thắc mắc", "📌 Đã lưu", "🔥 Rất thực tế"];
-const TOPICS = [
-  // Labels live in t.feed.topics, keyed by this id. `tag` stays here and is
-  // never translated: getPostCategory classifies a post by finding that
-  // hashtag in the stored content, so changing it would orphan every post
-  // already filed under it.
-  { id: "all", icon: Newspaper, tag: "", tone: "stone" },
-  { id: "meo-tai-chinh", icon: Sparkles, tag: "#MeoTaiChinh ", tone: "emerald" },
-  { id: "phan-tich", icon: BarChart3, tag: "#PhanTich ", tone: "sky" },
-  { id: "thanh-tuu", icon: Target, tag: "#ThanhTuu ", tone: "amber" },
-  { id: "hoi-dap", icon: HelpCircle, tag: "#HoiDap ", tone: "orange" },
-  { id: "tin-nong", icon: Flame, tag: "#TinNong ", tone: "red" },
-  { id: "ai-finance", icon: Zap, tag: "#AITaiChinh ", tone: "violet" },
-] as const;
 /* i18n-ignore-end */
 
-type TopicId = (typeof TOPICS)[number]["id"];
+// Chỉ còn icon và tông màu. Nhãn nằm ở t.feed.topics theo id, và các hashtag
+// nhận diện chủ đề nằm ở lib/community-feed-visibility.ts cùng với hàm đọc
+// chúng - chúng từng được chép lại ở đây trong một trường `tag` mà không dòng
+// nào đọc tới, bên cạnh một hàm phân loại viết thẳng đúng những chuỗi đó.
+const TOPICS = [
+  { id: "all", icon: Newspaper, tone: "stone" },
+  { id: "meo-tai-chinh", icon: Sparkles, tone: "emerald" },
+  { id: "phan-tich", icon: BarChart3, tone: "sky" },
+  { id: "thanh-tuu", icon: Target, tone: "amber" },
+  { id: "hoi-dap", icon: HelpCircle, tone: "orange" },
+  { id: "tin-nong", icon: Flame, tone: "red" },
+  { id: "ai-finance", icon: Zap, tone: "violet" },
+] as const;
 
-function getPostCategory(post: CommunityFeedPost): TopicId {
-  const metadataCategory = post.metadata && typeof post.metadata === "object" ? String(post.metadata.category ?? "") : "";
-  if (TOPICS.some((topic) => topic.id === metadataCategory)) return metadataCategory as TopicId;
-  const content = post.content || "";
-  if (content.includes("#MeoTaiChinh")) return "meo-tai-chinh";
-  if (content.includes("#PhanTich")) return "phan-tich";
-  if (content.includes("#ThanhTuu")) return "thanh-tuu";
-  if (content.includes("#HoiDap")) return "hoi-dap";
-  if (content.includes("#TinNong")) return "tin-nong";
-  if (content.includes("#AITaiChinh")) return "ai-finance";
-  if (post.kind === "streak") return "thanh-tuu";
-  return "all";
-}
+type TopicId = FeedTopicId;
 
 function getTopicMeta(topicId: TopicId) {
   return TOPICS.find((topic) => topic.id === topicId) ?? TOPICS[0];
@@ -303,8 +296,8 @@ function MarketSentimentWidget({ onShareSentiment }: { onShareSentiment?: (text:
 
     toast.success(
       option === "bullish"
-        ? "🐂 Đã ghi nhận nhận định Biển Xanh Bullish của bạn!"
-        : "🐻 Đã ghi nhận nhận định Biển Đỏ Bearish của bạn!"
+        ? t.feed.sentimentBullish
+        : t.feed.sentimentBearish
     );
   };
 
@@ -645,7 +638,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
       toast.success(t.feed.posted);
       toast.success(t.feed.postedShare);
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Không đăng được bài. Vui lòng thử lại.");
+      toast.error(error instanceof Error ? error.message : t.feed.postFailed);
     } finally {
       setPosting(false);
     }
@@ -749,7 +742,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
     } catch (error) {
       // updateOwnPost turns an RLS refusal into a thrown error, so this also
       // covers "the database said no" - not just network failures.
-      toast.error(error instanceof Error ? error.message : "Không sửa được bài viết");
+      toast.error(error instanceof Error ? error.message : t.feed.postEditFailed);
     } finally {
       setSavingEdit(false);
     }
@@ -785,7 +778,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
       await refreshFeed();
       setOpenComments((prev) => ({ ...prev, [postId]: true }));
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Không gửi được bình luận.");
+      toast.error(error instanceof Error ? error.message : t.feed.commentFailed);
     } finally {
       setPostingComment((prev) => ({ ...prev, [postId]: false }));
     }
@@ -837,7 +830,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
       }));
       cancelEditComment();
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Không sửa được bình luận");
+      toast.error(error instanceof Error ? error.message : t.feed.commentEditFailed);
     } finally {
       setSavingCommentEdit(false);
     }
@@ -882,16 +875,14 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
     });
   }, [posts, searchParams]);
 
-  const visiblePosts = posts.filter((post) => {
-    const category = getPostCategory(post);
-    const matchesTopic = feedFilter === "all" || category === feedFilter;
-    const query = searchQuery.trim().toLowerCase();
-    const matchesSearch =
-      !query ||
-      post.content.toLowerCase().includes(query) ||
-      post.user_name.toLowerCase().includes(query);
-    return matchesTopic && matchesSearch;
-  });
+  // Quy tắc "bài thành tựu ra khỏi dòng chính" nằm ở
+  // lib/community-feed-visibility.ts cùng bộ test của nó - màn hình này tự lấy
+  // dữ liệu từ Supabase sau tường đăng nhập, nên đó là chỗ duy nhất kiểm được
+  // nó mà không cần một phiên đăng nhập thật và vài chục bài dựng sẵn.
+  const searchTerm = searchQuery.trim().toLowerCase();
+  const achievementPosts = posts.filter((post) => getPostCategory(post) === "thanh-tuu");
+  const visiblePosts = posts.filter((post) => isPostVisibleInFeed(post, feedFilter, searchQuery));
+  const hiddenAchievements = feedFilter === "all" && !searchTerm ? achievementPosts.length : 0;
   const totalReactions = posts.reduce((sum, post) => sum + post.reaction_count, 0);
   const totalComments = posts.reduce((sum, post) => sum + post.comment_count, 0);
   const activeTopics = TOPICS.filter((topic) => posts.some((post) => getPostCategory(post) === topic.id && topic.id !== "all")).length;
@@ -1226,7 +1217,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                       <textarea
                         value={content}
                         onChange={(e) => setContent(e.target.value)}
-                        placeholder={`${(user?.user_metadata?.full_name || "Bạn").split(" ").pop()} ơi, bạn đang nghĩ gì thế?`}
+                        placeholder={format(t.feed.composerPlaceholder, { name: (user?.user_metadata?.full_name || t.feed.composerFallbackName).split(" ").pop() ?? "" })}
                         rows={6}
                         autoFocus
                         className="w-full resize-none border-0 text-base sm:text-lg text-stone-900 dark:text-stone-100 placeholder:text-stone-400 dark:placeholder:text-stone-500 focus:outline-none bg-transparent"
@@ -1281,7 +1272,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                                     const val = e.target.value;
                                     setPollOptions((prev) => prev.map((o, i) => (i === idx ? val : o)));
                                   }}
-                                  placeholder={`Lựa chọn ${idx + 1}`}
+                                  placeholder={format(t.feed.pollOptionPlaceholder, { index: idx + 1 })}
                                   className="flex-1 px-3 py-1.5 rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-xs text-stone-900 dark:text-stone-100 focus:outline-none"
                                 />
                                 {pollOptions.length > 2 && (
@@ -1365,9 +1356,20 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
         {loading ? (
           <FeedSkeleton />
         ) : visiblePosts.length === 0 ? (
-          <p className="text-center text-sm text-stone-400 py-12">
-            {t.feed.feedEmpty}
-          </p>
+          <div className="py-12 text-center">
+            <p className="text-sm text-stone-400">{t.feed.feedEmpty}</p>
+            {/* Chưa ai viết bài chia sẻ nào, nhưng có thành tựu đang bị lọc ra:
+                nói thẳng ra thay vì để màn hình trông như cộng đồng trống rỗng. */}
+            {hiddenAchievements > 0 && (
+              <button
+                type="button"
+                onClick={() => setFeedFilter("thanh-tuu")}
+                className="mt-3 rounded-full border border-amber-200 bg-amber-50 px-4 py-1.5 text-xs font-bold text-amber-700 transition hover:bg-amber-100 dark:border-amber-900 dark:bg-amber-950/30 dark:text-amber-300"
+              >
+                {format(t.feed.achievementsOnlyCta, { count: hiddenAchievements })}
+              </button>
+            )}
+          </div>
         ) : (
           <div className="space-y-4">
             <AnimatePresence initial={false}>
@@ -1414,7 +1416,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                         // moved after they did.
                         <span
                           className="text-xs text-stone-400 dark:text-stone-500"
-                          title={`Chỉnh sửa ${timeAgo(post.edited_at)}`}
+                          title={format(t.feed.editedAt, { when: timeAgo(post.edited_at) })}
                         >
                           {t.feed.edited}
                         </span>
@@ -1700,7 +1702,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                                     <span className="text-sm font-black text-stone-900 dark:text-stone-100">{comment.user_name}</span>
                                     <span className="text-xs text-stone-400">{timeAgo(comment.created_at)}</span>
                                     {comment.edited_at && (
-                                      <span className="text-xs text-stone-400" title={`Chỉnh sửa ${timeAgo(comment.edited_at)}`}>
+                                      <span className="text-xs text-stone-400" title={format(t.feed.editedAt, { when: timeAgo(comment.edited_at) })}>
                                         {t.feed.edited}
                                       </span>
                                     )}
@@ -1824,6 +1826,53 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                   </motion.div>
                 )}
               </AnimatePresence>
+            </div>
+
+            {/* Thành tựu: gọn, cuộn trong chính nó, không đẩy phần còn lại của
+                cột xuống. max-h cố định là điểm mấu chốt - danh sách này dài
+                theo số ngày học của cả cộng đồng, nên để nó tự do cao lên là
+                đưa đúng vấn đề vừa dọn khỏi dòng chính sang cột bên. */}
+            <div className="rounded-[22px] bg-white p-4.5 shadow-[0_14px_30px_-26px_rgba(15,23,42,0.18)] ring-1 ring-stone-100/70 dark:bg-stone-900/80 dark:ring-stone-800/60">
+              <div className="mb-3 flex items-center justify-between gap-2">
+                <div className="flex items-center gap-2">
+                  <Target className="h-5 w-5 text-amber-500" />
+                  <h2 className="text-sm font-black uppercase tracking-[0.14em] text-stone-900 dark:text-stone-100">{t.feed.achievementsTitle}</h2>
+                </div>
+                {achievementPosts.length > 0 && (
+                  <span className="rounded-full bg-amber-50 px-2 py-0.5 text-[11px] font-black text-amber-700 dark:bg-amber-950/40 dark:text-amber-300">
+                    {achievementPosts.length}
+                  </span>
+                )}
+              </div>
+              {achievementPosts.length === 0 ? (
+                <p className="text-sm text-stone-400">{t.feed.achievementsEmpty}</p>
+              ) : (
+                <div className="max-h-[16rem] space-y-2 overflow-y-auto pr-1">
+                  {achievementPosts.map((post) => (
+                    <button
+                      key={post.id}
+                      type="button"
+                      onClick={() => {
+                        setFeedFilter("thanh-tuu");
+                        requestAnimationFrame(() => {
+                          document
+                            .getElementById(`community-post-${post.id}`)
+                            ?.scrollIntoView({ behavior: "smooth", block: "center" });
+                        });
+                      }}
+                      className="w-full rounded-[16px] bg-stone-50 p-2.5 text-left transition hover:bg-amber-50 dark:bg-stone-950/60 dark:hover:bg-amber-950/20"
+                    >
+                      <p className="truncate text-xs font-bold text-stone-900 dark:text-stone-100">{post.user_name}</p>
+                      <p className="mt-1 line-clamp-2 text-[11px] font-medium leading-relaxed text-stone-500 dark:text-stone-400">
+                        {post.content || t.feed.postWithImage}
+                      </p>
+                      <p className="mt-1 text-[10px] font-bold text-stone-400">
+                        {post.reaction_count} {t.feed.reactionsSuffix}
+                      </p>
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
 
             <div className="rounded-[22px] bg-white p-4.5 shadow-[0_14px_30px_-26px_rgba(15,23,42,0.18)] ring-1 ring-stone-100/70 dark:bg-stone-900/80 dark:ring-stone-800/60">

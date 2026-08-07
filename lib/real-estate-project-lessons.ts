@@ -110,6 +110,19 @@ export const REAL_ESTATE_PROJECT_LESSONS: Lesson[] = [
           "Nhưng nó không miễn phí: đổi lại là nghĩa vụ bàn giao đúng hạn, và tiền phạt chậm bàn giao trong hợp đồng thường không nhỏ.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Chủ đầu tư đã bỏ ra 800 tỷ, chi phí vốn 12% một năm. Mốc đủ điều kiện huy động vốn bị chậm 9 tháng so với kế hoạch. Riêng việc chậm đó tốn bao nhiêu?",
+      options: [
+        "72 tỷ đồng (= 800 tỷ × 12% × 9/12 năm)",
+        "96 tỷ (= 800 × 12%, trọn một năm)",
+        "0 đồng, vì chưa xây nên chưa tốn thêm",
+        "9 tỷ (= 800 × 12% chia cho 9 tháng)",
+      ],
+      correct: 0,
+      explanation:
+        "Chậm pháp lý không tạo ra hoá đơn nào, nên nó là khoản chi phí duy nhất của dự án không ai phải ký duyệt - và cũng vì thế nó hay bị bỏ qua. Nhưng 800 tỷ đã bỏ ra vẫn phải trả chi phí vốn suốt thời gian chờ: 800 × 12% × 9/12 = 72 tỷ, tương đương gần một phần mười tổng vốn đã bỏ. Đó là lý do chậm pháp lý đắt hơn vượt chi phí xây dựng cùng giá trị: vượt chi phí là một khoản một lần, còn chậm là chi phí vốn nhân thời gian, áp lên toàn bộ số tiền đã nằm trong dự án.",
+    },
     keyTakeaways: [
       "Bốn mốc: chấp thuận chủ trương, quyền sử dụng đất, giấy phép xây dựng, đủ điều kiện huy động vốn.",
       "Mốc thứ tư quyết định dòng tiền vào - trước đó mọi đồng đều là vốn chủ hoặc vốn vay.",
@@ -258,6 +271,19 @@ export const REAL_ESTATE_PROJECT_LESSONS: Lesson[] = [
           "Đất, pháp lý và móng đều phải trả trước khi được phép nhận đồng đầu tiên của khách. Hình chữ J là hệ quả trực tiếp của trình tự đó.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Dòng tiền tích luỹ của dự án theo từng quý, đơn vị tỷ đồng: −120, −310, −480, −390, −150, +220. Đỉnh vốn âm là bao nhiêu và nó nói lên điều gì?",
+      options: [
+        "480 tỷ - hạn mức vốn phải thu xếp được",
+        "1.450 tỷ - cộng dồn mọi quý có số âm",
+        "220 tỷ - kết quả ròng cuối cùng của dự án",
+        "170 tỷ - mức giảm sâu nhất giữa hai quý liền",
+      ],
+      correct: 0,
+      explanation:
+        "Đỉnh vốn âm là điểm THẤP NHẤT của dòng tiền tích luỹ, ở đây là −480 tại quý 3. Nó trả lời câu hỏi khác hẳn NPV và IRR: không phải 'dự án này có đáng làm không' mà 'chủ đầu tư có thu xếp nổi 480 tỷ cùng lúc không'. Một dự án IRR 30% vẫn chết nếu đỉnh vốn âm vượt khả năng huy động, và đó là lý do ngân hàng nhìn con số này trước. Cộng dồn các quý âm thành 1.450 tỷ là nhầm dòng tiền tích luỹ với dòng tiền từng kỳ - con số đã tích luỹ rồi, cộng thêm lần nữa là đếm hai lần.",
+    },
     keyTakeaways: [
       "NPV và IRR nói dự án có đáng làm không; đỉnh vốn âm nói có làm nổi không.",
       "Đỉnh vốn âm là điểm thấp nhất của dòng tiền tích luỹ, và nó quyết định hạn mức vay.",
@@ -419,6 +445,19 @@ export const REAL_ESTATE_PROJECT_LESSONS: Lesson[] = [
           "Trên lý thuyết vốn chủ đứng cuối hàng và chịu lỗ đầu tiên. Thực tế thu hồi từ một dự án dở dang thường không đủ, nên các bên phía sau vẫn mất.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Dự án huy động 1.000 tỷ: vốn chủ 250, vay xây dựng có bảo đảm 450, tiền người mua trả trước 300. Dự án dừng, bán tài sản dở dang thu về 600 tỷ. Vốn chủ nhận lại bao nhiêu?",
+      options: [
+        "0 đồng, vì 600 chưa đủ cho vay và người mua",
+        "150 tỷ, phần còn lại sau khi trả vay 450",
+        "60 tỷ, chia theo tỷ lệ góp 250 trên 1.000",
+        "250 tỷ, vì vốn chủ được ưu tiên hoàn trả trước",
+      ],
+      correct: 0,
+      explanation:
+        "Thứ tự thiệt hại đi ngược thứ tự lợi nhuận. Ngân hàng có bảo đảm đứng đầu hàng và lấy đủ 450. Người mua nhà đứng tiếp theo với 300 tỷ nghĩa vụ, nhưng chỉ còn 150 tỷ - họ đã mất 150 tỷ. Vốn chủ đứng cuối cùng và không còn gì. Đó chính là lý do vốn chủ là nguồn vốn đắt nhất: nó đòi tỷ suất cao vì nó chịu toàn bộ phần lỗ đầu tiên. Phương án 'vốn chủ được ưu tiên hoàn trả trước' đảo ngược đúng trật tự này, và nó là niềm tin khiến nhiều nhà đầu tư cá nhân góp vốn dự án mà tưởng mình an toàn hơn người mua nhà.",
+    },
     keyTakeaways: [
       "Ba nguồn: vốn chủ (đắt nhất, chịu rủi ro đầu), vay xây dựng (có bảo đảm), tiền người mua (rẻ nhất).",
       "Giai đoạn pháp lý khó vay ngân hàng nhất, nên thường phải dựa vào vốn chủ hoặc trái phiếu.",
@@ -566,6 +605,19 @@ export const REAL_ESTATE_PROJECT_LESSONS: Lesson[] = [
           "Lợi nhuận kế toán có chuẩn mực và có kiểm toán. NOI là một quy ước ngành, nên mỗi hồ sơ có thể định nghĩa hơi khác - và chênh lệch đó nhân thẳng vào giá.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Toà nhà cho thuê: doanh thu theo hợp đồng 60 tỷ một năm, tỷ lệ trống 8%, chi phí vận hành 14 tỷ, lãi vay 11 tỷ, khấu hao 6 tỷ. NOI bằng bao nhiêu?",
+      options: [
+        "41,2 tỷ (= 55,2 − 14 vận hành)",
+        "46 tỷ (= 60 − 14, bỏ qua trống)",
+        "30,2 tỷ (= 41,2 − 11 lãi vay)",
+        "24,2 tỷ (= trừ cả lãi vay và khấu hao)",
+      ],
+      correct: 0,
+      explanation:
+        "Doanh thu thực tế là 60 × 92% = 55,2 tỷ, trừ 14 tỷ vận hành còn 41,2 tỷ. Lãi vay và khấu hao đứng NGOÀI NOI, và đó là toàn bộ ý nghĩa của chỉ số này: nó đo tài sản chứ không đo cách tài trợ, nên hai toà nhà giống hệt nhau có cùng NOI dù một cái vay 70% còn cái kia mua bằng tiền mặt. Trừ lãi vay vào là đánh mất khả năng so sánh đó. Bỏ qua tỷ lệ trống là lỗi hay gặp nhất khi đọc bảng chào bán, vì con số 60 tỷ là doanh thu trên hợp đồng chứ không phải tiền thực nhận.",
+    },
     keyTakeaways: [
       "NOI = doanh thu thuê thực tế − chi phí vận hành. Đứng trước lãi vay, thuế và khấu hao.",
       "Giá trị = NOI / cap rate. Cap rate là mẫu số nên quan hệ với giá là nghịch đảo.",
@@ -720,6 +772,19 @@ export const REAL_ESTATE_PROJECT_LESSONS: Lesson[] = [
           "Chậm làm tăng chi phí, chi phí tăng làm cạn vốn, cạn vốn làm chậm thêm. Đó là một vòng lặp, và mô hình tuyến tính không mô tả được vòng lặp.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Bảng độ nhạy cho thấy: chậm 12 tháng kéo IRR từ 22% xuống 15%; vượt chi phí 10% kéo xuống 16%; giá bán giảm 8% kéo xuống 14%. Nên đọc bảng này thế nào?",
+      options: [
+        "Cả ba cùng xảy ra cho kết quả tệ hơn mọi ô trong bảng",
+        "Rủi ro lớn nhất là giá bán, vì IRR rơi sâu nhất",
+        "Dự án chịu được cả ba vì IRR vẫn trên 14%",
+        "Lấy trung bình ba kịch bản ra IRR kỳ vọng 15%",
+      ],
+      correct: 0,
+      explanation:
+        "Mỗi ô trong bảng độ nhạy một chiều thay đổi đúng một biến và giữ nguyên phần còn lại, nên dải kết quả nó vẽ ra hẹp hơn dải rủi ro thật. Ba rủi ro này tương quan dương: chậm pháp lý kéo dài thời gian xây, thời gian dài hơn thì chi phí vật liệu và nhân công vượt lên, và chậm 12 tháng cũng đủ để rơi vào một pha khác của chu kỳ thị trường. Chúng đến cùng nhau, nên con số cần biết không phải 14% mà là IRR khi cả ba cùng xảy ra - thường âm. Đọc 'chịu được cả ba vì mọi ô đều trên 14%' là đúng cái kết luận bảng này dụ người ta rút ra.",
+    },
     keyTakeaways: [
       "Ba rủi ro chính: chậm pháp lý, vượt chi phí, thị trường quay đầu - và chúng tương quan dương.",
       "Bảng độ nhạy một chiều cho dải kết quả hẹp hơn dải rủi ro thật.",

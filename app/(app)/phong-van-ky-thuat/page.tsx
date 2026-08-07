@@ -618,7 +618,7 @@ export default function TechnicalInterviewPage() {
             <div className="rounded-2xl border-2 border-amber-300 dark:border-amber-900 bg-amber-50 dark:bg-amber-950/30 p-5">
               <p className="text-xs font-bold uppercase tracking-wide mb-1 text-amber-700 dark:text-amber-400">{t.interview.xpEarned}</p>
               <p className="text-3xl font-extrabold text-amber-700 dark:text-amber-400">
-                {xpAwarded === null ? "..." : `+${xpAwarded} XP`}
+                {xpAwarded === null ? "..." : format(t.miscUi.xpGain, { count: xpAwarded })}
               </p>
             </div>
 

@@ -12,10 +12,21 @@
   ],
   "explanation": "The income statement runs from revenue at the very top down to net income at the very bottom, subtracting each group of costs in a deliberate order: direct costs first, operating costs next, then interest and tax. That order lets you isolate the problem - a shrinking gross margin is a production or pricing issue, a shrinking operating margin is an issue with the business's cost structure, and a falling net income while both margins above it stay steady points to debt.",
   "diagram": [
-    { "label": "Revenue sits at the very top", "arrow": true },
-    { "label": "Each group of costs is subtracted in turn", "arrow": true },
-    { "label": "Each layer produces a different kind of profit", "arrow": true },
-    { "label": "Down to net income at the very bottom" }
+    {
+      "label": "Revenue sits at the very top",
+      "arrow": true
+    },
+    {
+      "label": "Each group of costs is subtracted in turn",
+      "arrow": true
+    },
+    {
+      "label": "Each layer produces a different kind of profit",
+      "arrow": true
+    },
+    {
+      "label": "Down to net income at the very bottom"
+    }
   ],
   "realWorldExample": {
     "company": "FPT Corporation",
@@ -142,7 +153,7 @@
     "question": "A company has Revenue of 1,000 billion, and after subtracting COGS, operating costs, interest, and tax in turn, is left with Net Income of 80 billion. What principle does this P&L structure express?",
     "options": [
       "The P&L is a list of independent line items with no logical order between them",
-      "The P&L runs from Revenue down to Net Income - each layer (Gross Profit, Operating Income, EBT) subtracts a different kind of cost, reflecting a different aspect of the company's efficiency",
+      "The P&L runs from Revenue down to Net Income, with each tier subtracting another distinct kind of cost",
       "Revenue and Net Income must always be equal if a company is well managed and has no unusual costs",
       "Net Income is simply a fixed 8% of Revenue that applies to every company"
     ],
@@ -163,12 +174,18 @@
       "type": "lead",
       "text": "If the Balance Sheet is a photograph, the Income Statement is a short film telling the story of how a business earned and spent money over a quarter or a year. Reading a P&L correctly means understanding what each layer of profit is telling you."
     },
-    { "type": "heading", "text": "The layered structure of the Income Statement" },
+    {
+      "type": "heading",
+      "text": "The layered structure of the Income Statement"
+    },
     {
       "type": "paragraph",
       "text": "The P&L is not one single number but a chain of profit layers, each subtracting a different kind of cost. Starting from Revenue (the top line), subtract Cost of Goods Sold (COGS) to get Gross Profit; subtract Operating Expenses (SG&A, R&D) to get Operating Income (EBIT); subtract Interest Expense to get Earnings Before Tax (EBT); subtract Tax Expense to get Net Income (the bottom line)."
     },
-    { "type": "heading", "text": "Why look at every layer, not just Net Income" },
+    {
+      "type": "heading",
+      "text": "Why look at every layer, not just Net Income"
+    },
     {
       "type": "paragraph",
       "text": "Two companies with equal Net Income can have completely different stories. One may reach a high Net Income through a strong Gross Margin (products with real pricing power), while the other reaches the same Net Income by cutting operating costs or through a one-off unusual gain. Looking at each layer helps an investor tell sustainable profit apart from a one-time boost."
@@ -191,10 +208,26 @@
       "type": "conceptTable",
       "title": "Income Statement terminology",
       "concepts": [
-        { "vi": "Doanh thu (dòng đầu)", "en": "Revenue / Top line", "def": "The total value of goods/services sold before subtracting any cost" },
-        { "vi": "Lợi nhuận ròng (dòng cuối)", "en": "Net Income / Bottom line", "def": "Profit remaining after subtracting every cost, interest, and tax" },
-        { "vi": "Biên lợi nhuận", "en": "Margin", "def": "The percentage a profit layer represents relative to revenue" },
-        { "vi": "Lợi nhuận trước lãi vay và thuế", "en": "EBIT", "def": "Profit from operations, before subtracting interest and tax" }
+        {
+          "vi": "Doanh thu (dòng đầu)",
+          "en": "Revenue / Top line",
+          "def": "The total value of goods/services sold before subtracting any cost"
+        },
+        {
+          "vi": "Lợi nhuận ròng (dòng cuối)",
+          "en": "Net Income / Bottom line",
+          "def": "Profit remaining after subtracting every cost, interest, and tax"
+        },
+        {
+          "vi": "Biên lợi nhuận",
+          "en": "Margin",
+          "def": "The percentage a profit layer represents relative to revenue"
+        },
+        {
+          "vi": "Lợi nhuận trước lãi vay và thuế",
+          "en": "EBIT",
+          "def": "Profit from operations, before subtracting interest and tax"
+        }
       ]
     },
     {

@@ -12,10 +12,18 @@
   ],
   "explanation": "Enterprise Value (EV) = Market Cap + Total Debt − Cash and cash equivalents. EV reflects the real cost of 'buying out' a company's entire operating business: paying shareholders (Market Cap), taking on its existing debt, but getting some of that back through the cash the company already holds.",
   "diagram": [
-    { "label": "Market Cap" },
-    { "label": "+ Total Debt" },
-    { "label": "− Cash and cash equivalents" },
-    { "label": "= Enterprise Value" }
+    {
+      "label": "Market Cap"
+    },
+    {
+      "label": "+ Total Debt"
+    },
+    {
+      "label": "− Cash and cash equivalents"
+    },
+    {
+      "label": "= Enterprise Value"
+    }
   ],
   "realWorldExample": {
     "company": "Real-world M&A",
@@ -81,7 +89,7 @@
   "practicePrompt": {
     "question": "A company has Market Cap = 5,000 billion, Total Debt = 2,000 billion, Cash = 500 billion. What is this company's Enterprise Value (EV - the value of the whole business), and why must you add debt and subtract cash compared to Market Cap?",
     "options": [
-      "EV = 5,000 + 2,000 - 500 = 6,500 billion, because the buyer takes on the debt and is compensated by the cash",
+      "EV = 5,000 + 2,000 - 500 = 6,500 billion, since a buyer takes on the debt but gets the cash",
       "EV = Market Cap = 5,000 billion, because market capitalization already fully reflects the business's value",
       "EV = Market Cap - Debt + Cash = 3,500 billion, reversing the standard formula",
       "EV has nothing to do with the company's debt and cash, it depends only on the share price"
@@ -103,12 +111,18 @@
       "type": "lead",
       "text": "If you wanted to buy an entire company outright - not just a few loose shares - the amount you'd really need to pay isn't the Market Cap. It's the Enterprise Value."
     },
-    { "type": "heading", "text": "The EV formula" },
+    {
+      "type": "heading",
+      "text": "The EV formula"
+    },
     {
       "type": "paragraph",
       "text": "Enterprise Value (EV) = Market Cap + Total Debt − Cash and cash equivalents. The logic is very intuitive: to own the whole company, you have to pay existing shareholders (Market Cap), while also taking on the debt the company already carries (since that debt still has to be repaid after you buy it), but you get some of that back through the cash the company already holds (since you can use that cash right away)."
     },
-    { "type": "heading", "text": "A worked example" },
+    {
+      "type": "heading",
+      "text": "A worked example"
+    },
     {
       "type": "paragraph",
       "text": "Company A has Market Cap 100 billion, debt 30 billion, cash 10 billion → EV = 100 + 30 − 10 = 120 billion. On the other hand, a 'net cash' company - Market Cap 500 billion, no debt, but 200 billion in cash - would have EV = 500 − 200 = 300 billion, LOWER than Market Cap. In theory, a buyer of this company only needs to put up 300 billion, since they can immediately use the 200 billion in cash on hand to offset part of the acquisition cost."

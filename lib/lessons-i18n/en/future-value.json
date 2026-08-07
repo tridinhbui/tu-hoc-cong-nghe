@@ -12,10 +12,21 @@
   ],
   "explanation": "Future value answers: what will an amount of money today become if it earns a return steadily over many years? The formula is FV = PV × (1 + r)^n, and the power lies in the exponent, not the interest rate itself: interest gets added to the principal and then keeps earning on itself. 100 million at 10% over 10 years becomes 259 million, while simple interest would only give 200 million - the entire 59 million gap is interest earned on interest, and that portion grows larger over time.",
   "diagram": [
-    { "label": "An amount of money today", "arrow": true },
-    { "label": "Earning r each year, interest added to principal", "arrow": true },
-    { "label": "Multiply by (1+r) raised to the number of years", "arrow": true },
-    { "label": "The portion above simple interest is interest earned on interest" }
+    {
+      "label": "An amount of money today",
+      "arrow": true
+    },
+    {
+      "label": "Earning r each year, interest added to principal",
+      "arrow": true
+    },
+    {
+      "label": "Multiply by (1+r) raised to the number of years",
+      "arrow": true
+    },
+    {
+      "label": "The portion above simple interest is interest earned on interest"
+    }
   ],
   "realWorldExample": {
     "company": "Pension funds and long-term saving",
@@ -81,7 +92,7 @@
   "practicePrompt": {
     "question": "You deposit 100 million dong at a compound interest rate of 8%/year for 3 years. What is the future value (FV) of this amount after 3 years?",
     "options": [
-      "FV = PV × (1+r)^n = 100 × (1.08)^3 ≈ 125.97 million dong - the amount you'll receive after 3 years thanks to compound interest accumulating year over year",
+      "FV = PV × (1+r)^n = 100 × (1.08)³ ≈ 125.97 million dong, thanks to interest compounding every single year",
       "FV = PV + r × n = 100 + 8×3 = 124 million dong, calculating simple interest accumulated year by year",
       "FV always equals PV = 100 million because a savings deposit doesn't change in principal value",
       "FV = PV / (1+r)^n ≈ 79.4 million dong, since you need to discount the initial amount backward"
@@ -103,12 +114,18 @@
       "type": "lead",
       "text": "If PV pulls future money back to the present, Future Value (FV) does the opposite: an amount of money today, invested at rate r for n years, will become how much? This is the tool for visualizing the true power of compound interest over time."
     },
-    { "type": "heading", "text": "The FV formula" },
+    {
+      "type": "heading",
+      "text": "The FV formula"
+    },
     {
       "type": "paragraph",
       "text": "FV = PV × (1+r)^n. **Example:** 100 million dong invested at a compound interest rate of 10%/year for 10 years: FV = 100 × (1.1)^10 = 100 × 2.5937 ≈ 259 million dong. Under simple interest only (no compounding): 100 + 100×10%×10 = 200 million dong. The 59 million dong gap is exactly 'interest on interest' - the reward of compounding."
     },
-    { "type": "heading", "text": "The Rule of 72" },
+    {
+      "type": "heading",
+      "text": "The Rule of 72"
+    },
     {
       "type": "paragraph",
       "text": "The Rule of 72 helps you estimate quickly: divide 72 by the interest rate %/year to get the number of years for money to double. At 8%/year: 72/8 = 9 years. At 12%/year: 72/12 = 6 years. This is a handy mental shortcut for sensing the growth speed of an investment without needing a calculator."
@@ -118,9 +135,21 @@
       "title": "Future Value",
       "equation": "FV = PV × (1 + r)^n",
       "variables": [
-        { "symbol": "PV", "name": "Amount today", "description": "Present Value - initial capital" },
-        { "symbol": "r", "name": "Interest rate per period", "description": "Must match n's unit of time" },
-        { "symbol": "n", "name": "Number of periods", "description": "Sits in the exponent - this is why time beats interest rate" }
+        {
+          "symbol": "PV",
+          "name": "Amount today",
+          "description": "Present Value - initial capital"
+        },
+        {
+          "symbol": "r",
+          "name": "Interest rate per period",
+          "description": "Must match n's unit of time"
+        },
+        {
+          "symbol": "n",
+          "name": "Number of periods",
+          "description": "Sits in the exponent - this is why time beats interest rate"
+        }
       ],
       "example": {
         "title": "50 million, 7%/year, left alone for 30 years",

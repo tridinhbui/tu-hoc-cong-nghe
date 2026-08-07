@@ -288,7 +288,7 @@ export const VN_STANDARDS_TAX_LESSONS: Lesson[] = [
         "Một chuỗi bán lẻ thuê 300 mặt bằng chuyển sang IFRS. Chỉ số nào bị ảnh hưởng mạnh nhất?",
       options: [
         "Biên lợi nhuận gộp, vì giá vốn hàng bán được tính lại theo phương pháp mới",
-        "Tỷ lệ nợ trên vốn chủ và EBITDA, do nợ thuê và chi phí thuê được xếp lại",
+        "Tỷ lệ nợ trên vốn chủ và EBITDA, do nợ thuê và chi phí thuê được xếp lại chỗ",
         "Vòng quay hàng tồn kho, vì hàng tồn được đánh giá lại theo giá trị hợp lý",
         "Số dư tiền mặt cuối kỳ, do tiền thuê được phân loại lại trên bảng cân đối",
       ],

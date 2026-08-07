@@ -12,10 +12,18 @@
   ],
   "explanation": "Telling good debt from bad debt has nothing to do with the interest rate - it's about where the borrowed money goes. Borrowing 200 million at 8% to buy an asset earning 10% leaves a surplus every year, and you end up owning something your own capital couldn't have bought outright. Borrowing to consume has no offsetting income stream, so the instalment eats straight into future income. At the same interest rate, these two loans head in opposite directions.",
   "diagram": [
-    { "label": "Borrow a sum at a fixed interest rate" },
-    { "label": "Where does the borrowed money go: an earning asset or consumption?" },
-    { "label": "Asset yield higher than the loan rate: good debt" },
-    { "label": "Lower, or earning nothing at all: bad debt" }
+    {
+      "label": "Borrow a sum at a fixed interest rate"
+    },
+    {
+      "label": "Where does the borrowed money go: an earning asset or consumption?"
+    },
+    {
+      "label": "Asset yield higher than the loan rate: good debt"
+    },
+    {
+      "label": "Lower, or earning nothing at all: bad debt"
+    }
   ],
   "realWorldExample": {
     "company": "A mortgage versus a loan for an iPhone",
@@ -81,7 +89,7 @@
   "practicePrompt": {
     "question": "You earn 25 million a month and currently pay 6 million a month on a mortgage (DTI 24%). You're considering borrowing an extra 6 million a month to co-fund a business with a friend, expecting a profit of 4 million a month after costs. If the recommended safe DTI threshold is under 40%, should you take on this extra loan?",
     "options": [
-      "No, because the new DTI would be 48% (12 million / 25 million), exceeding the 40% safe threshold even though the investment earns a return",
+      "No - the new DTI would be 48% (12 million/25 million), past the 40% safety line even if it pays off",
       "Yes, because the business's 4-million-a-month profit is more than enough to cover the extra 6-million-a-month loan",
       "Yes, because the new DTI is only 24%, still far below the 40% safe threshold",
       "It can't be determined, because DTI doesn't apply to loans used for business purposes"
@@ -103,12 +111,18 @@
       "type": "lead",
       "text": "You borrow 200 million at 8% a year to buy a rental apartment, earning 20 million a year after costs. Is this good debt or bad debt? The answer lies in what the debt creates, not in whether you have debt at all."
     },
-    { "type": "heading", "text": "Not every debt is bad" },
+    {
+      "type": "heading",
+      "text": "Not every debt is bad"
+    },
     {
       "type": "paragraph",
       "text": "Many people have a general aversion to debt, but debt is neutral by nature - what matters is what it's used for. Good debt is a loan used to buy an asset that generates cash flow or value greater than the interest cost of the loan. Bad debt is a loan used for consumption (shopping, entertainment) or to buy a depreciating asset, generating no return to offset the interest."
     },
-    { "type": "heading", "text": "Solving the rental apartment problem" },
+    {
+      "type": "heading",
+      "text": "Solving the rental apartment problem"
+    },
     {
       "type": "paragraph",
       "text": "Annual interest = 200 million × 8% = 16 million. Rental income = 20 million a year. After paying interest, you have 4 million a year left over, while owning an apartment your own capital wasn't enough to buy outright. This is good debt: it gives you access to an earning asset that would have been out of reach without borrowing."

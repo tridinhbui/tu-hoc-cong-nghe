@@ -12,10 +12,21 @@
   ],
   "explanation": "The interest coverage ratio shows how many times operating profit covers interest expense. Its value doesn't lie in the current number but in stress-testing it against a bad scenario: a ratio of 2.0 sounds safe until you cut EBIT by thirty percent and watch it drop to 1.4. Since interest must be paid on schedule regardless of how business is going, this is the metric creditors look at before they even check the debt-to-equity ratio.",
   "diagram": [
-    { "label": "EBIT for the period", "arrow": true },
-    { "label": "Divide by interest expense due", "arrow": true },
-    { "label": "Get how many times profit covers interest", "arrow": true },
-    { "label": "Stress-test by lowering EBIT under a bad scenario to see how much margin remains" }
+    {
+      "label": "EBIT for the period",
+      "arrow": true
+    },
+    {
+      "label": "Divide by interest expense due",
+      "arrow": true
+    },
+    {
+      "label": "Get how many times profit covers interest",
+      "arrow": true
+    },
+    {
+      "label": "Stress-test by lowering EBIT under a bad scenario to see how much margin remains"
+    }
   ],
   "realWorldExample": {
     "company": "Novaland during its difficult period",
@@ -81,7 +92,7 @@
   "practicePrompt": {
     "question": "A company has EBIT = 200 billion, annual interest expense = 40 billion. What is this company's Interest Coverage Ratio, and what does it mean for its creditors?",
     "options": [
-      "Interest Coverage = EBIT / Interest Expense = 200/40 = 5 times - the company generates operating profit five times the interest it must pay, showing a fairly safe ability to service its debt",
+      "Interest Coverage = EBIT / interest expense = 200/40 = 5x, so the interest bill is covered several times over already",
       "Interest Coverage = 40/200 = 0.2, a figure showing the company can barely pay its interest at all",
       "Interest Coverage = 200-40 = 160 billion, the amount left over after the company pays off the year's interest",
       "Interest Coverage has no relevance to a bank when it reviews an application for the company's loan"
@@ -103,13 +114,23 @@
       "type": "lead",
       "text": "Interest Coverage answers a life-or-death question for any business carrying debt: how many times over does operating profit cover interest expense? This is one of the most important leading indicators of default risk."
     },
-    { "type": "callout", "label": "The formula", "text": "Interest Coverage = EBIT / Interest Expense" },
-    { "type": "heading", "text": "The danger threshold and the Novaland lesson" },
+    {
+      "type": "callout",
+      "label": "The formula",
+      "text": "Interest Coverage = EBIT / Interest Expense"
+    },
+    {
+      "type": "heading",
+      "text": "The danger threshold and the Novaland lesson"
+    },
     {
       "type": "paragraph",
       "text": "Interest Coverage below 1.5 is considered dangerous - the safety margin is too thin, so just a slight dip in revenue leaves EBIT unable to cover interest. During the difficult 2022-2023 real-estate market, Interest Coverage at many businesses like Novaland fell sharply: operating profit declined while bond interest expense stayed fixed - pushing the company close to the point of being unable to pay."
     },
-    { "type": "heading", "text": "Why trend matters more than the number at a single point in time" },
+    {
+      "type": "heading",
+      "text": "Why trend matters more than the number at a single point in time"
+    },
     {
       "type": "paragraph",
       "text": "A company whose Interest Coverage falls from 5x to 1.8x over 2 years is far more worrying than one holding steady at 2.5x for years - even though the second company's absolute figure is still lower. A rapidly declining trend shows the safety margin is shrinking at a dangerous pace, and if it continues, the company may soon be unable to pay interest at all in the near future."

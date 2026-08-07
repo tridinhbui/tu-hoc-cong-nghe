@@ -12,10 +12,21 @@
   ],
   "explanation": "An item is only recognised as an asset when the business controls it, it promises future economic benefit, and its value can be measured reliably. That third condition is where the biggest gap opens up between the books and reality: a self-built brand, a great team, or a loyal customer base all generate money but have no clear original cost, so they don't appear on the balance sheet.",
   "diagram": [
-    { "label": "Does the business control this resource?", "arrow": true },
-    { "label": "Does it promise future economic benefit?", "arrow": true },
-    { "label": "Can it be reliably measured in money?", "arrow": true },
-    { "label": "Only if all three hold is it recognised as an asset" }
+    {
+      "label": "Does the business control this resource?",
+      "arrow": true
+    },
+    {
+      "label": "Does it promise future economic benefit?",
+      "arrow": true
+    },
+    {
+      "label": "Can it be reliably measured in money?",
+      "arrow": true
+    },
+    {
+      "label": "Only if all three hold is it recognised as an asset"
+    }
   ],
   "realWorldExample": {
     "company": "Vinamilk",
@@ -101,7 +112,7 @@
   "practicePrompt": {
     "question": "A tech startup spends 2 billion building a strong engineering team and company culture over 3 years - something competitors find hard to copy. Why does this '2-billion worth of people' not appear on the balance sheet as an asset?",
     "options": [
-      "Because accounting only recognises what a company owns and controls with a value that can be objectively measured in money - team capability doesn't meet this criterion, despite being genuinely valuable",
+      "Because accounting only records what the company owns and can measure objectively in money",
       "Because the company deliberately hid this asset to reduce the tax it owes the state",
       "Because Vietnamese accounting law hasn't yet been updated to reflect newly emerging types of technology assets",
       "Because this is actually a wasted expense that created no real value for the company at all"
@@ -123,12 +134,18 @@
       "type": "lead",
       "text": "Vinamilk's dairy plant, worth tens of thousands of billions of dong, is an asset. The 'Vinamilk' brand - the thing that has earned consumer trust for nearly 50 years - doesn't appear as a separate figure on the balance sheet. Why this strange difference?"
     },
-    { "type": "heading", "text": "The definition of an asset in accounting" },
+    {
+      "type": "heading",
+      "text": "The definition of an asset in accounting"
+    },
     {
       "type": "paragraph",
       "text": "An item is recognised as an Asset when it satisfies three conditions: (1) the business controls the resource, (2) the resource is expected to bring future economic benefit, and (3) its value can be reliably measured in money - usually based on the cost incurred to obtain it (historical cost). This is why a self-built brand, however valuable on the market, isn't recognised: there's no clear 'purchase invoice' to value it under accounting's prudence principle."
     },
-    { "type": "heading", "text": "Two groups of assets: current and non-current" },
+    {
+      "type": "heading",
+      "text": "Two groups of assets: current and non-current"
+    },
     {
       "type": "paragraph",
       "text": "Current Assets are resources expected to convert into cash or be used up within 12 months: cash, accounts receivable, inventory. Non-current/Fixed Assets bring benefit over many years: plants, machinery, equipment, land-use rights, intangible assets such as acquired patents or software."
@@ -151,10 +168,26 @@
       "type": "conceptTable",
       "title": "Asset terminology",
       "concepts": [
-        { "vi": "Tài sản", "en": "Asset", "def": "An economic resource controlled by the business, expected to bring future benefit, measurable in money." },
-        { "vi": "Tài sản ngắn hạn", "en": "Current Assets", "def": "Converted to cash or used up within 12 months." },
-        { "vi": "Tài sản dài hạn", "en": "Non-current Assets / Fixed Assets", "def": "Provide economic benefit over many years, usually depreciated gradually." },
-        { "vi": "Nguyên giá lịch sử", "en": "Historical Cost", "def": "The value at which an asset is recognised, based on the actual cost incurred to acquire it, not its current market price." }
+        {
+          "vi": "Tài sản",
+          "en": "Asset",
+          "def": "An economic resource controlled by the business, expected to bring future benefit, measurable in money."
+        },
+        {
+          "vi": "Tài sản ngắn hạn",
+          "en": "Current Assets",
+          "def": "Converted to cash or used up within 12 months."
+        },
+        {
+          "vi": "Tài sản dài hạn",
+          "en": "Non-current Assets / Fixed Assets",
+          "def": "Provide economic benefit over many years, usually depreciated gradually."
+        },
+        {
+          "vi": "Nguyên giá lịch sử",
+          "en": "Historical Cost",
+          "def": "The value at which an asset is recognised, based on the actual cost incurred to acquire it, not its current market price."
+        }
       ]
     },
     {

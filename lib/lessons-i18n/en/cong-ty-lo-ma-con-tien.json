@@ -12,10 +12,21 @@
   ],
   "explanation": "A loss on the books doesn't mean cash in the account is falling. Depreciation is a cost that spends no cash - the cash was already spent years earlier when the asset was bought - so it gets added back when calculating operating cash flow. Cash a customer pays in advance (deferred revenue) also makes cash flow positive while the revenue is still spread out later. A company that's loss-making but has positive operating cash flow can survive a long time; but if the loss comes from a negative margin rather than from depreciation, the cash will eventually run dry too.",
   "diagram": [
-    { "label": "A loss on the income statement", "arrow": true },
-    { "label": "Add back depreciation: cash spent years earlier", "arrow": true },
-    { "label": "Add cash customers paid ahead for undelivered service", "arrow": true },
-    { "label": "Operating cash flow stays positive even while the books show a loss" }
+    {
+      "label": "A loss on the income statement",
+      "arrow": true
+    },
+    {
+      "label": "Add back depreciation: cash spent years earlier",
+      "arrow": true
+    },
+    {
+      "label": "Add cash customers paid ahead for undelivered service",
+      "arrow": true
+    },
+    {
+      "label": "Operating cash flow stays positive even while the books show a loss"
+    }
   ],
   "realWorldExample": {
     "company": "Vietjet Air (VJC)",
@@ -92,7 +103,7 @@
     "question": "A SaaS company posts an accounting loss of 100 billion for the year (from heavy depreciation on infrastructure investment and other non-cash costs), but collects 300 billion upfront from customers for long-term service packages (deferred revenue). Why might this company still have plentiful cash despite being 'loss-making'?",
     "options": [
       "That can't be right - if the P&L reports a 100 billion loss, the company must be facing a matching cash shortfall",
-      "An accounting loss ≠ being out of cash - depreciation (D&A) is a large non-cash cost creating a paper loss, while deferred revenue (300 billion collected upfront) is real cash that has already landed in the company's pocket even though it isn't yet recognised as revenue - this is why OCF can be strongly positive despite a P&L loss",
+      "An accounting loss isn't the same as running out of cash: D&A is a non-cash charge, and deferred revenue is real money",
       "This is definitely a sign of accounting fraud, since a loss and plentiful cash can't coexist",
       "Deferred revenue has nothing to do with the company's real cash position"
     ],
@@ -113,7 +124,10 @@
       "type": "lead",
       "text": "If the previous lesson showed 'profitable yet out of cash', this is the flip side of that coin: a company can perfectly well report a loss on the P&L while cash in its account still rises. It sounds illogical, but makes complete sense once you understand accrual accounting's mechanics."
     },
-    { "type": "heading", "text": "The depreciation shield - depreciation that spends no cash" },
+    {
+      "type": "heading",
+      "text": "The depreciation shield - depreciation that spends no cash"
+    },
     {
       "type": "paragraph",
       "text": "D&A (depreciation and amortisation) is a large cost on the P&L of many businesses with heavy fixed assets (airlines, telecom, manufacturing), but by itself it consumes no cash in the current period - the cash was already spent earlier, when the asset was bought. If a company's D&A is very large relative to Net Income, the loss on the P&L can be entirely 'offset' by D&A once it's added back into OCF, leaving operating cash flow positive even while accounting profit is negative."
@@ -122,7 +136,10 @@
       "type": "paragraph",
       "text": "Besides D&A, another important factor is Deferred Revenue - when a customer pays in advance for a service not yet delivered (for example: buying a plane ticket before the flight date, subscribing to an annual prepaid service). That cash comes in immediately, raising cash on hand, but isn't recognised as revenue on the P&L until the service is actually delivered."
     },
-    { "type": "heading", "text": "A classic case: Amazon lost money for years yet kept growing" },
+    {
+      "type": "heading",
+      "text": "A classic case: Amazon lost money for years yet kept growing"
+    },
     {
       "type": "paragraph",
       "text": "Amazon is the most cited example in modern financial history: for years running, the company reported Net Income near zero or negative, due to enormous R&D and CapEx investment in logistics infrastructure and AWS data centres. Yet Amazon's Operating Cash Flow was always strongly positive, thanks to three factors: enormous D&A from its infrastructure, Prime customers paying fees upfront (deferred revenue), and the ability to negotiate slower payment to suppliers (a long AP cycle). Thanks to strong OCF, Amazon had enough cash to keep reinvesting continuously without depending entirely on debt or share issuance."

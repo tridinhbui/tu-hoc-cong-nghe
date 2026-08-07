@@ -12,10 +12,21 @@
   ],
   "explanation": "The quick ratio also measures short-term solvency but strips inventory out of the numerator, because goods sitting in a warehouse can take months to sell and usually have to be discounted if sold urgently. The gap between the two ratios is the valuable piece of information: a large gap means a company's ability to pay depends heavily on selling its goods - which isn't guaranteed to happen exactly when the cash is most needed.",
   "diagram": [
-    { "label": "Current Assets", "arrow": true },
-    { "label": "Subtract Inventory", "arrow": true },
-    { "label": "Divide by Current Liabilities", "arrow": true },
-    { "label": "= Quick Ratio (a stricter test)" }
+    {
+      "label": "Current Assets",
+      "arrow": true
+    },
+    {
+      "label": "Subtract Inventory",
+      "arrow": true
+    },
+    {
+      "label": "Divide by Current Liabilities",
+      "arrow": true
+    },
+    {
+      "label": "= Quick Ratio (a stricter test)"
+    }
   ],
   "realWorldExample": {
     "company": "The fashion retail industry",
@@ -82,7 +93,7 @@
     "question": "A retailer has Current Assets = 500 billion (of which Inventory = 300 billion), Current Liabilities = 300 billion. Current Ratio = 500/300 ≈ 1.67 (looks fine). But what about the Quick Ratio, and why is it stricter?",
     "options": [
       "The Quick Ratio exactly equals the Current Ratio since both formulas use the same current assets and current liabilities",
-      "Quick Ratio = (500-300)/300 ≈ 0.67 - much lower because the Quick Ratio excludes inventory from current assets (inventory being the least liquid asset, hard to sell immediately to repay debt)",
+      "Quick Ratio = (500-300)/300 ≈ 0.67, because inventory is stripped out of current assets",
       "The Quick Ratio is always higher than the Current Ratio because it adds in the company's long-term investments",
       "The Quick Ratio doesn't apply to retail since retail always carries a lot of inventory"
     ],
@@ -103,13 +114,23 @@
       "type": "lead",
       "text": "The Quick Ratio is a stricter version of the Current Ratio: it excludes inventory from current assets, because inventory isn't always sellable quickly or at full cost."
     },
-    { "type": "callout", "label": "The formula", "text": "Quick Ratio = (Cash + Marketable Securities + Accounts Receivable) / Current Liabilities" },
-    { "type": "heading", "text": "Why inventory has to be excluded" },
+    {
+      "type": "callout",
+      "label": "The formula",
+      "text": "Quick Ratio = (Cash + Marketable Securities + Accounts Receivable) / Current Liabilities"
+    },
+    {
+      "type": "heading",
+      "text": "Why inventory has to be excluded"
+    },
     {
       "type": "paragraph",
       "text": "Among the three main types of current assets - cash, receivables, and inventory - inventory is the least liquid and riskiest. It can lose value quickly (obsolescence, going out of season, damage) and isn't guaranteed to sell at the expected price in a short time. The Quick Ratio strips this factor out entirely to answer a stricter question: if the company sold no more goods at all, would it still have enough cash and receivables to pay its short-term debts?"
     },
-    { "type": "heading", "text": "The gap with the Current Ratio is a warning signal" },
+    {
+      "type": "heading",
+      "text": "The gap with the Current Ratio is a warning signal"
+    },
     {
       "type": "paragraph",
       "text": "Seasonal fashion chains are the clearest example: most of their current assets sit in seasonal clothing inventory, an asset type that can lose 50-70% of its value if the selling season is missed. When a company's Current Ratio looks high (e.g. 2.5) but its Quick Ratio is low (e.g. 0.8), that's a sign the company's 'liquidity' largely depends on being able to sell its inventory - a far riskier dependency than having cash on hand."

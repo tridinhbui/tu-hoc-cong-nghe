@@ -105,10 +105,10 @@ export default function ManualLessonFlagButton({
       disabled={toggling}
       title={
         completed
-          ? "Bài này đã được hệ thống tính tiến độ"
+          ? t.manualLessonFlag.alreadyCountedTitle
           : flagged
-            ? "Bỏ đánh dấu tự xác nhận"
-            : "Tự đánh dấu đã học"
+            ? t.manualLessonFlag.unflagTitle
+            : t.manualLessonFlag.flagTitle
       }
       className={`w-10 h-10 rounded-full flex items-center justify-center transition-all ${
         completed

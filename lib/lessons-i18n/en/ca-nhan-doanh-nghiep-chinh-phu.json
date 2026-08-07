@@ -12,10 +12,18 @@
   ],
   "explanation": "An individual running a deficit has to borrow from someone else or sell an asset. A government has extra options: issuing bonds (borrowing from the market) or, in some cases, expanding the money supply within its own country. A government's two main tools for managing the economy are fiscal policy - taxing and spending state funds, decided directly by the government - and monetary policy - regulating the money supply and interest rates, carried out by the central bank. Both tools carry long-run consequences if overused.",
   "diagram": [
-    { "label": "A deficit: the shortfall needs covering" },
-    { "label": "An individual: borrows, or sells an asset" },
-    { "label": "A business: takes on debt, or issues shares" },
-    { "label": "A government: issues bonds, taxes, or uses monetary policy" }
+    {
+      "label": "A deficit: the shortfall needs covering"
+    },
+    {
+      "label": "An individual: borrows, or sells an asset"
+    },
+    {
+      "label": "A business: takes on debt, or issues shares"
+    },
+    {
+      "label": "A government: issues bonds, taxes, or uses monetary policy"
+    }
   ],
   "realWorldExample": {
     "company": "The US budget deficit",
@@ -81,7 +89,7 @@
   "practicePrompt": {
     "question": "A startup is weighing whether to pay its profit out as a dividend to investors now, or retain it to reinvest and expand into new markets. If the reinvestment opportunity earns more than the cost of capital, what should the company prioritise?",
     "options": [
-      "Retain the profit to reinvest, because that growth creates more long-run value for shareholders than an immediate dividend",
+      "Retain the profit and reinvest, because that growth is worth more to shareholders long term",
       "Pay the dividend right away, because shareholders always prefer cash in hand over a promise of future growth",
       "Do nothing at all, holding the cash in reserve against any risk that might arise",
       "Use the entire profit to pay off a bank loan first, regardless of the cost of capital or the reinvestment opportunity"
@@ -103,17 +111,26 @@
       "type": "lead",
       "text": "The government spends more than it collects this year - it sounds exactly like an individual spending beyond their income. But a government has tools an individual never has."
     },
-    { "type": "heading", "text": "Three actors, three different toolkits" },
+    {
+      "type": "heading",
+      "text": "Three actors, three different toolkits"
+    },
     {
       "type": "paragraph",
       "text": "Individuals, businesses and governments all manage money, but toward entirely different goals and with entirely different tools. An individual optimises consumption and asset accumulation across their whole lifetime. A business optimises profit and value for its shareholders. A government balances economic growth, price stability, and fair distribution across society as a whole - goals that sometimes pull against each other."
     },
-    { "type": "heading", "text": "Running a deficit: where individuals and governments differ" },
+    {
+      "type": "heading",
+      "text": "Running a deficit: where individuals and governments differ"
+    },
     {
       "type": "paragraph",
       "text": "An individual in deficit (spending more than they earn) has only two options: borrow from someone else, or sell an asset. A government has options an individual doesn't: issuing government bonds to borrow from domestic and international markets, or - under certain conditions - expanding the money supply through the central bank (though this risks inflation if overused)."
     },
-    { "type": "heading", "text": "A government's two main tools: fiscal and monetary" },
+    {
+      "type": "heading",
+      "text": "A government's two main tools: fiscal and monetary"
+    },
     {
       "type": "paragraph",
       "text": "Fiscal policy is the government adjusting state revenue and spending through taxation and public spending, decided directly by the government. Monetary policy is regulating the money supply and interest rates in the economy, carried out by the central bank, which in many countries operates independently of the government. Both tools are powerful, but both carry long-run consequences (inflation, public debt) if overused."

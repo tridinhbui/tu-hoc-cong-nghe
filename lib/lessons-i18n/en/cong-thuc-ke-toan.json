@@ -12,10 +12,21 @@
   ],
   "explanation": "Assets equal liabilities plus equity, and this equation always balances because it's simply two views of the same pool of assets: what the business has, and who has a claim on it. Every transaction touches at least two spots to keep the balance - borrowing money to buy a machine makes both assets and liabilities rise together. This underlies double-entry bookkeeping, and it's also why a balance sheet off by even one dong signals an error somewhere.",
   "diagram": [
-    { "label": "Borrow 1 billion to buy a machine", "arrow": true },
-    { "label": "Assets rise 1 billion (machinery)", "arrow": true },
-    { "label": "Liabilities rise 1 billion (the loan)", "arrow": true },
-    { "label": "Both sides still balance: Assets = Liabilities + Equity" }
+    {
+      "label": "Borrow 1 billion to buy a machine",
+      "arrow": true
+    },
+    {
+      "label": "Assets rise 1 billion (machinery)",
+      "arrow": true
+    },
+    {
+      "label": "Liabilities rise 1 billion (the loan)",
+      "arrow": true
+    },
+    {
+      "label": "Both sides still balance: Assets = Liabilities + Equity"
+    }
   ],
   "realWorldExample": {
     "company": "Any listed business",
@@ -101,7 +112,7 @@
   "practicePrompt": {
     "question": "A company just borrowed an additional 300 million in cash from a bank to expand its warehouse. Right after this transaction, how do the two sides of the accounting equation Assets = Liabilities + Equity change?",
     "options": [
-      "Both sides increase by exactly 300 million: Assets (cash) rise 300 million, and Liabilities rise by a corresponding 300 million - the equation still balances",
+      "Both sides rise by 300 million: assets go up, liabilities go up by the same amount, and it still balances",
       "Only the Assets side rises by 300 million, while Liabilities and Equity remain completely unchanged",
       "Only the Liabilities side rises by 300 million, while the company's Assets don't change at all",
       "Equity will rise by 300 million because this is new cash the company received to use"
@@ -123,12 +134,18 @@
       "type": "lead",
       "text": "Before reading any detailed figure on a set of financial statements, an auditor always checks one thing first: does Assets equal Liabilities plus Equity. If it doesn't balance, the entire report has a serious problem."
     },
-    { "type": "heading", "text": "The basic accounting equation" },
+    {
+      "type": "heading",
+      "text": "The basic accounting equation"
+    },
     {
       "type": "paragraph",
       "text": "Assets = Liabilities + Equity is the most foundational equation of the entire accounting system. It reflects a simple truth: every asset a business holds is financed from one of two sources - either borrowed (liabilities), or contributed by shareholders/accumulated profit (equity). No asset 'falls from the sky' without a corresponding funding source."
     },
-    { "type": "heading", "text": "Every transaction affects at least two line items" },
+    {
+      "type": "heading",
+      "text": "Every transaction affects at least two line items"
+    },
     {
       "type": "paragraph",
       "text": "Because the equation must always balance, every economic transaction must simultaneously affect at least two positions in the equation. **Example:** a company borrows 500 million dong from a bank to buy machinery - assets rise by 500 million (new machinery), while liabilities also rise by 500 million (the bank loan). Both sides rise together, and the equation stays balanced."
@@ -150,9 +167,21 @@
       "type": "conceptTable",
       "title": "The accounting equation",
       "concepts": [
-        { "vi": "Phương trình kế toán", "en": "Accounting Equation", "def": "Assets = Liabilities + Equity - always holds for every business, at every point in time." },
-        { "vi": "Ghi sổ kép", "en": "Double-entry Bookkeeping", "def": "The system of recording every transaction into at least two accounts to keep the equation balanced." },
-        { "vi": "Nguồn tài trợ", "en": "Financing Sources", "def": "The only two sources funding assets: liabilities or equity." }
+        {
+          "vi": "Phương trình kế toán",
+          "en": "Accounting Equation",
+          "def": "Assets = Liabilities + Equity - always holds for every business, at every point in time."
+        },
+        {
+          "vi": "Ghi sổ kép",
+          "en": "Double-entry Bookkeeping",
+          "def": "The system of recording every transaction into at least two accounts to keep the equation balanced."
+        },
+        {
+          "vi": "Nguồn tài trợ",
+          "en": "Financing Sources",
+          "def": "The only two sources funding assets: liabilities or equity."
+        }
       ]
     },
     {

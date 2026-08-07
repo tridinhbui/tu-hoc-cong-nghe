@@ -400,7 +400,7 @@ export const FRM_CREDIT_CURRENT_LESSONS: Lesson[] = [
     practicePrompt: {
       question: "Một ngân hàng ký hợp đồng swap lãi suất với một công ty vừa bị hạ xếp hạng tín nhiệm từ A xuống BB. Hợp đồng hiện đang có giá trị dương 5 triệu USD với ngân hàng. Điều gì nên xảy ra với khoản CVA ngân hàng ghi nhận?",
       options: [
-        "CVA nên tăng lên, vì xác suất vỡ nợ của đối tác tăng làm tăng chi phí kỳ vọng của việc không thu được khoản 5 triệu USD đang có lợi cho ngân hàng",
+        "CVA nên tăng lên, vì xác suất vỡ nợ của chính đối tác đó đã tăng lên",
         "CVA không cần điều chỉnh vì hợp đồng đã ký, xếp hạng tín nhiệm sau này không còn liên quan",
         "Ngân hàng nên xoá bỏ hoàn toàn giá trị hợp đồng khỏi sổ sách ngay lập tức",
         "CVA chỉ áp dụng cho hợp đồng CDS, không áp dụng cho swap lãi suất",

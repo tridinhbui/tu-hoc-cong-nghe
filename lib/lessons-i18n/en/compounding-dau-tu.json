@@ -12,10 +12,21 @@
   ],
   "explanation": "Compounding is interest being added to principal and then continuing to earn interest, and the key point is that it grows exponentially rather than in a straight line. So most of the result comes from the final years rather than the early ones: ten million at 10% after thirty years becomes 174 million, but with ten more years it becomes 452 million. The consequence for an investor is that when you start matters more than how much you start with, and withdrawing partway through costs far more than it appears to.",
   "diagram": [
-    { "label": "Put in capital and leave it alone", "arrow": true },
-    { "label": "At the end of each year, interest gets added to principal", "arrow": true },
-    { "label": "The following year earns interest on a larger base", "arrow": true },
-    { "label": "The more years, the steeper the growth curve" }
+    {
+      "label": "Put in capital and leave it alone",
+      "arrow": true
+    },
+    {
+      "label": "At the end of each year, interest gets added to principal",
+      "arrow": true
+    },
+    {
+      "label": "The following year earns interest on a larger base",
+      "arrow": true
+    },
+    {
+      "label": "The more years, the steeper the growth curve"
+    }
   ],
   "realWorldExample": {
     "company": "Warren Buffett and Berkshire Hathaway",
@@ -81,7 +92,7 @@
   "practicePrompt": {
     "question": "Two people each invest 100 million dong at a return of 10%/year. Person A withdraws the interest to spend every year, keeping only the original 100 million. Person B lets the interest reinvest continuously (compounding). After 20 years, who has more assets, and where does the gap come from?",
     "options": [
-      "Person B has far more assets - because compounding is interest on interest on interest, an exponential effect where each year's interest is calculated on both the principal and previously accumulated interest, producing ever-faster growth over time",
+      "B ends up with far more, because compounding earns interest on the principal and on the interest already accrued",
       "Both have equal assets since they started with the same original capital of 100 million",
       "Person A has more assets because withdrawing interest to use immediately captures the value of money right away",
       "The gap between the two only becomes significant if the investment period runs beyond 50 years"
@@ -103,12 +114,18 @@
       "type": "lead",
       "text": "Compounding is the engine behind the FV formula - but its real value only becomes clear over very long stretches of time, where a few decades of difference produces a multiple-fold gap in final wealth."
     },
-    { "type": "heading", "text": "Example: how a 10-year head start makes a difference" },
+    {
+      "type": "heading",
+      "text": "Example: how a 10-year head start makes a difference"
+    },
     {
       "type": "paragraph",
       "text": "Person A invests 10 million dong at age 25, leaving it alone until age 65 (40 years), at a compound interest rate of 10%/year: FV = 10 × (1.1)^40 ≈ 10 × 45.26 ≈ 452 million dong. Person B invests the exact same 10 million dong but starts at age 35, having only 30 years to compound: FV = 10 × (1.1)^30 ≈ 10 × 17.45 ≈ 174 million dong. With the same principal, only differing by a 10-year earlier start, Person A ends up with about 278 million dong more - nearly 2.6 times as much."
     },
-    { "type": "heading", "text": "Why interruption destroys compounding" },
+    {
+      "type": "heading",
+      "text": "Why interruption destroys compounding"
+    },
     {
       "type": "paragraph",
       "text": "Compounding only reaches its full power when interest is continuously reinvested, not withdrawn along the way. Every withdrawal shrinks the 'base' used to calculate compound interest for subsequent periods, significantly slowing future growth - especially damaging if withdrawn early, since most of compounding's value accumulates in the final years."
@@ -118,7 +135,11 @@
       "title": "Why losing 50% requires a 100% gain to break even",
       "equation": "Required gain = 1 ÷ (1 − Loss rate) − 1",
       "variables": [
-        { "symbol": "Loss rate", "name": "Fraction of capital lost", "description": "0.5 means losing half" }
+        {
+          "symbol": "Loss rate",
+          "name": "Fraction of capital lost",
+          "description": "0.5 means losing half"
+        }
       ],
       "example": {
         "title": "Three levels of loss, three levels needed to recover",

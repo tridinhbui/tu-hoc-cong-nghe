@@ -12,9 +12,15 @@
   ],
   "explanation": "Warren Buffett: 'Price is what you pay, value is what you get.' Price is the result of instant supply and demand in the market, which can be swayed by crowd psychology, short-term news, and liquidity. Intrinsic value is an estimate based on the cash flow, assets, and real business prospects of the company - calculated using valuation methods (DCF, comparable company analysis).",
   "diagram": [
-    { "label": "Price: instant supply and demand in the market" },
-    { "label": "Value: what the business is intrinsically really worth" },
-    { "label": "The two numbers can diverge" }
+    {
+      "label": "Price: instant supply and demand in the market"
+    },
+    {
+      "label": "Value: what the business is intrinsically really worth"
+    },
+    {
+      "label": "The two numbers can diverge"
+    }
   ],
   "realWorldExample": {
     "company": "The Dot-com bubble of 2000",
@@ -81,7 +87,7 @@
     "question": "A company's intrinsic value (based on fundamental analysis) is estimated at around 50,000 dong/share, but the price trading on the exchange is 80,000 dong due to a spreading positive rumor. What principle does this gap illustrate about the relationship between price and value?",
     "options": [
       "Stock price always accurately reflects business value, so this gap couldn't happen in reality",
-      "Stock price (price): the result of instant supply and demand, which can diverge from true value - market sentiment, rumors, and short-term supply and demand can push price far from a business's intrinsic value, creating either opportunity or risk for a value investor",
+      "Share price is the result of instant supply and demand, so it can drift a very long way from intrinsic value",
       "Intrinsic value is always wrong and needs to be adjusted to match the current market price",
       "This gap between price and value only happens with small companies, not with large, long-listed companies"
     ],
@@ -102,12 +108,18 @@
       "type": "lead",
       "text": "\"Price is what you pay, value is what you get\" - Warren Buffett's classic line sums up one of the most important distinctions in investing: the stock price you pay on the exchange and the real value you actually get are two different things, and sometimes very different indeed."
     },
-    { "type": "heading", "text": "Price is supply and demand, value is cash flow" },
+    {
+      "type": "heading",
+      "text": "Price is supply and demand, value is cash flow"
+    },
     {
       "type": "paragraph",
       "text": "Stock price is the result of instant supply and demand in the market - it can be swayed by crowd psychology, short-term news, or liquidity. Intrinsic value is an estimate based on the cash flow, assets, and real business prospects, calculated using valuation methods like DCF or comparable company analysis. The two numbers can coincide in the long run, but in the short run they often diverge significantly."
     },
-    { "type": "heading", "text": "A lesson from the dot-com bubble" },
+    {
+      "type": "heading",
+      "text": "A lesson from the dot-com bubble"
+    },
     {
       "type": "paragraph",
       "text": "During the dot-com bubble of 2000, many internet companies with no profit at all still had extremely high stock prices and market caps - market price at the time had completely detached from intrinsic value, and crashed hard when the market 'woke up'. What's more notable: the price-value gap during a period of euphoria doesn't narrow right away, it tends to WIDEN for an extended period, as FOMO psychology pushes price far beyond value for a long time before it finally corrects."

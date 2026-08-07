@@ -11,9 +11,17 @@
   ],
   "explanation": "Interest Rate Swap (IRS): the business still pays SOFR+2% to the original lending bank, while also signing an additional IRS contract with a swap dealer: receiving SOFR (offsetting the floating leg), paying a fixed rate (e.g. 5%). Net result: the business pays a total of 5%+2%=7% fixed, no longer worrying about SOFR fluctuations.",
   "diagram": [
-    { "label": "Pay a floating rate on the original loan", "arrow": true },
-    { "label": "Sign an additional IRS contract", "arrow": true },
-    { "label": "Receive floating, pay fixed → stable cost" }
+    {
+      "label": "Pay a floating rate on the original loan",
+      "arrow": true
+    },
+    {
+      "label": "Sign an additional IRS contract",
+      "arrow": true
+    },
+    {
+      "label": "Receive floating, pay fixed → stable cost"
+    }
   ],
   "realWorldExample": {
     "company": "A multinational corporation",
@@ -80,7 +88,7 @@
     "question": "A company borrows VND 500 billion from a bank at a floating rate, worried rates will rise sharply over the next 3 years. To 'lock in' the interest cost at a fixed level without restructuring the original loan, what instrument should the company use, and how does the mechanism work?",
     "options": [
       "The company should buy interest-rate insurance, a product unrelated to the derivatives market",
-      "Sign an IRS contract paying fixed - receiving floating to lock in the interest cost at a fixed level",
+      "Sign an IRS to pay fixed and receive floating, which locks the real interest cost at a fixed level",
       "The company should short government bonds to offset the risk of rising interest rates",
       "The company has no tool to handle this risk other than paying off the entire loan immediately"
     ],
@@ -101,12 +109,18 @@
       "type": "lead",
       "text": "An Interest Rate Swap (IRS) is a tool that lets a business convert between fixed and floating interest rates without restructuring the original loan - just by signing an additional parallel contract with a swap dealer."
     },
-    { "type": "heading", "text": "Mechanism: two layers of contracts stacked together" },
+    {
+      "type": "heading",
+      "text": "Mechanism: two layers of contracts stacked together"
+    },
     {
       "type": "paragraph",
       "text": "The business still pays SOFR+2% to the original lending bank as usual. At the same time, they sign an additional IRS contract with a swap dealer: receiving SOFR (offsetting exactly the floating leg they're paying), paying back a fixed rate - say 5%. Net result: the business pays a total of 5% + 2% = 7% fixed, no longer worrying about SOFR fluctuations even though the original loan remains floating."
     },
-    { "type": "heading", "text": "Application in bank risk management" },
+    {
+      "type": "heading",
+      "text": "Application in bank risk management"
+    },
     {
       "type": "paragraph",
       "text": "A bank with many floating-rate loans but funded by fixed-rate deposits faces a risk: if market rates FALL, income from floating-rate loans falls along with them while the fixed deposit rate stays the same, shrinking the net interest margin. The bank can use an IRS to convert part of its floating loan income into fixed, matching their fixed-cost funding structure - this is asset-liability management."
@@ -116,9 +130,21 @@
       "title": "Adding two layers of contracts into one number",
       "equation": "Net interest rate = (Original loan rate − Amount received from the swap) + Amount paid to the swap",
       "variables": [
-        { "symbol": "Original loan rate", "name": "The original loan", "description": "Unchanged, floating, untouched" },
-        { "symbol": "Received from swap", "name": "The floating leg", "description": "Designed to exactly match the floating amount being paid" },
-        { "symbol": "Paid to swap", "name": "The fixed leg", "description": "The fixed level agreed with the dealer" }
+        {
+          "symbol": "Original loan rate",
+          "name": "The original loan",
+          "description": "Unchanged, floating, untouched"
+        },
+        {
+          "symbol": "Received from swap",
+          "name": "The floating leg",
+          "description": "Designed to exactly match the floating amount being paid"
+        },
+        {
+          "symbol": "Paid to swap",
+          "name": "The fixed leg",
+          "description": "The fixed level agreed with the dealer"
+        }
       ],
       "example": {
         "title": "Borrowing at SOFR + 2%, signing an IRS receiving SOFR and paying 5% fixed",

@@ -4,13 +4,29 @@
   "subtitle": "Weighted average cost of capital - the discount rate in DCF",
   "duration": "10 min",
   "openingQuestion": "A company has 60% equity (Ke=12%) and 40% debt (Kd=6%, tax=20%). What is the WACC?",
-  "openingOptions": ["10%", "9%", "7%", "8.88%"],
+  "openingOptions": [
+    "10%",
+    "9%",
+    "7%",
+    "8.88%"
+  ],
   "explanation": "WACC is the average cost of all the capital a business is currently using, weighted by each source: 60%×12% + 40%×6%×(1−20%) = 9.12%. The (1 − tax rate) term applies only to debt, because interest is tax-deductible while dividends are not. This figure is the minimum threshold every project must clear to create value, and it's also the discount rate used in DCF - so being off by one percentage point here throws a valuation far off course.",
   "diagram": [
-    { "label": "Calculate the cost of equity and the cost of debt", "arrow": true },
-    { "label": "Reduce the cost of debt for the tax shield", "arrow": true },
-    { "label": "Multiply each by its weight in total capital", "arrow": true },
-    { "label": "Add them up to get WACC - the discount rate used in DCF" }
+    {
+      "label": "Calculate the cost of equity and the cost of debt",
+      "arrow": true
+    },
+    {
+      "label": "Reduce the cost of debt for the tax shield",
+      "arrow": true
+    },
+    {
+      "label": "Multiply each by its weight in total capital",
+      "arrow": true
+    },
+    {
+      "label": "Add them up to get WACC - the discount rate used in DCF"
+    }
   ],
   "realWorldExample": {
     "company": "Real DCF valuation models",
@@ -76,7 +92,7 @@
   "practicePrompt": {
     "question": "A company's capital structure is 60% equity with a Cost of Equity of 15%, and 40% debt with an after-tax Cost of Debt of 6%. What is this company's WACC (weighted average cost of capital)?",
     "options": [
-      "WACC = Ke×(E/V) + Kd×(1−T)×(D/V) = 15%×0.6 + 6%×0.4 = 9% + 2.4% = 11.4% - this is the minimum return the company must generate to avoid destroying value for both shareholders and creditors",
+      "WACC = 15% × 0.6 + 6% × 0.4 = 11.4%, the minimum return the company has to clear",
       "WACC = 15% + 6% = 21%, adding the two costs of capital directly together",
       "WACC always equals Cost of Equity because that is the higher and more important cost of capital",
       "WACC = (15%+6%)/2 = 10.5%, a simple average not weighted by proportion"
@@ -98,12 +114,18 @@
       "type": "lead",
       "text": "WACC (Weighted Average Cost of Capital) combines the cost of both borrowed capital and equity into a single number, weighted exactly by the proportion the business currently uses of each - this is the standard discount rate used in most DCF models."
     },
-    { "type": "heading", "text": "The WACC formula" },
+    {
+      "type": "heading",
+      "text": "The WACC formula"
+    },
     {
       "type": "paragraph",
       "text": "WACC = (E/V) × Ke + (D/V) × Kd × (1−T), where E is the value of equity, D is the value of debt, V = E+D, Ke is the cost of equity, Kd is the pre-tax cost of debt, T is the tax rate. **Example:** a business with 60% equity (Ke=12%) and 40% debt (Kd=6%, tax rate 20%): WACC = 60%×12% + 40%×6%×(1−20%) = 7.2% + 1.92% = 9.12%."
     },
-    { "type": "heading", "text": "How WACC drives a DCF valuation" },
+    {
+      "type": "heading",
+      "text": "How WACC drives a DCF valuation"
+    },
     {
       "type": "paragraph",
       "text": "The higher the WACC, the more heavily future cash flow is discounted, the lower the PV → the lower the DCF valuation. This is why growth stocks (whose value lies mostly in cash flow far in the future) are especially sensitive to changes in interest rates - rising rates push WACC up, which cuts their valuation more sharply than value stocks."
@@ -113,9 +135,21 @@
       "title": "WACC",
       "equation": "WACC = (E/V) × Ke + (D/V) × Kd × (1 − T)",
       "variables": [
-        { "symbol": "E/V, D/V", "name": "Weight of equity and debt", "description": "By MARKET value, not book value" },
-        { "symbol": "Ke", "name": "Cost of equity", "description": "Usually estimated via CAPM: Rf + β × Market Risk Premium" },
-        { "symbol": "Kd × (1 − T)", "name": "After-tax cost of debt", "description": "Interest is tax-deductible, so debt is cheaper than it looks on the surface" }
+        {
+          "symbol": "E/V, D/V",
+          "name": "Weight of equity and debt",
+          "description": "By MARKET value, not book value"
+        },
+        {
+          "symbol": "Ke",
+          "name": "Cost of equity",
+          "description": "Usually estimated via CAPM: Rf + β × Market Risk Premium"
+        },
+        {
+          "symbol": "Kd × (1 − T)",
+          "name": "After-tax cost of debt",
+          "description": "Interest is tax-deductible, so debt is cheaper than it looks on the surface"
+        }
       ],
       "example": {
         "title": "How much does the valuation shift for a 1-percentage-point WACC change",

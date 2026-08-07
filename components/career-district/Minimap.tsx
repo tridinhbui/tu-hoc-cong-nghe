@@ -2,6 +2,8 @@
 
 import { useEffect, useRef } from "react";
 import type { DistrictRoom } from "./district-space";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 /** Bản đồ nhỏ của căn phòng đang đứng.
  *
@@ -31,6 +33,7 @@ const SIZE = 120;
 const PAD = 6;
 
 export default function Minimap({ room, playerRef, peers }: Props) {
+  const { t } = useI18n();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const peersRef = useRef(peers);
   // Ghi trong effect, không ghi lúc render. Bản đồ vẽ trong một vòng
@@ -128,7 +131,7 @@ export default function Minimap({ room, playerRef, peers }: Props) {
       <canvas
         ref={canvasRef}
         role="img"
-        aria-label={`Bản đồ nhỏ của ${room.label}, hiện vị trí của bạn và những người đang ở cùng phòng`}
+        aria-label={format(t.careerDistrict.civic.minimapAria, { room: room.label })}
         style={{ width: SIZE, height: SIZE }}
       />
       <p className="mt-0.5 text-center text-[9px] font-bold text-stone-500">{room.label}</p>

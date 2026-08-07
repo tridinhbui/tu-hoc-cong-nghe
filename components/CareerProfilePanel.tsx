@@ -111,7 +111,7 @@ export default function CareerProfilePanel({ userId, careerId }: CareerProfilePa
       }
       await load();
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Không nhận được thưởng");
+      toast.error(error instanceof Error ? error.message : t.careerProfile.claimFailed);
     }
     setClaimingId(null);
   }
@@ -125,7 +125,7 @@ export default function CareerProfilePanel({ userId, careerId }: CareerProfilePa
       toast.success(t.careerProfile.bulletSaved);
       await load();
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Không lưu được bullet");
+      toast.error(error instanceof Error ? error.message : t.careerProfile.bulletSaveFailed);
     }
     setSavingBullet(false);
   }
@@ -135,7 +135,7 @@ export default function CareerProfilePanel({ userId, careerId }: CareerProfilePa
       await deleteCvBullet(id);
       await load();
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Không xoá được bullet");
+      toast.error(error instanceof Error ? error.message : t.careerProfile.bulletDeleteFailed);
     }
   }
 
@@ -302,7 +302,7 @@ export default function CareerProfilePanel({ userId, careerId }: CareerProfilePa
                   <div className="flex items-center justify-between gap-2">
                     <span className="text-xs font-black text-stone-900 dark:text-stone-100 flex items-center gap-1.5">
                       {item.met && <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />}
-                      {item.label}
+                      {t.skillDomains[item.domain].label}
                       {item.priority === "must" && !item.met && (
                         <span className="px-1.5 py-0.5 rounded-md bg-rose-500/15 text-rose-600 dark:text-rose-400 text-[9px] uppercase tracking-wider">
                           {t.careerProfile.required}
@@ -318,8 +318,8 @@ export default function CareerProfilePanel({ userId, careerId }: CareerProfilePa
                   </div>
                   <p className="mt-2 text-[11px] text-stone-500 dark:text-stone-400 leading-relaxed">
                     {item.met
-                      ? `Đã đạt yêu cầu về ${item.gapHint}.`
-                      : `Còn thiếu ${item.gapHint} · học thêm ~${item.lessonsToGo} bài.`}
+                      ? format(t.careerProfile.requirementMet, { hint: t.skillDomains[item.domain].gapHint })
+                      : format(t.careerProfile.requirementGap, { hint: t.skillDomains[item.domain].gapHint, count: item.lessonsToGo })}
                   </p>
                 </div>
               ))}

@@ -46,6 +46,8 @@ export const careerDistrictVi = {
       balanceCheck: "Hai vế lệch nhau: {n} ✓",
     },
     civic: {
+      levelShort: "Lv.{level}",
+      minimapAria: "Bản đồ nhỏ của {room}, hiện vị trí của bạn và những người đang ở cùng phòng",
       close: "đóng",
       shopTitle: "Cửa hàng & Gương thử đồ",
       shopSubtitle: "Bấm để mặc thử — nhìn nhân vật trước gương rồi mới quyết",
@@ -324,6 +326,8 @@ export const careerDistrictEn: typeof careerDistrictVi = {
       balanceCheck: "Both sides differ by: {n} ✓",
     },
     civic: {
+      levelShort: "Lv.{level}",
+      minimapAria: "Minimap of {room}, showing you and everyone else in the room",
       close: "close",
       shopTitle: "Shop & Fitting Mirror",
       shopSubtitle: "Tap to try it on — check the mirror before deciding",

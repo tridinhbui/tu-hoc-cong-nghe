@@ -151,6 +151,19 @@ console.log(
 
 const results = { personal: [], professional: [], bonus: [] };
 
+/** z-score lệch độ dài ở một chiều, so với kỳ vọng có tính hoà.
+ *  Tên khác `biasZ` phía dưới - hàm đó đo corpus quiz với chữ ký khác. */
+function optionBiasZ(stats, side) {
+  const observed = side === "longest" ? stats.longest : stats.shortest;
+  const expected = side === "longest" ? stats.expLongest : stats.expShortest;
+  const variance = side === "longest" ? stats.varLongest : stats.varShortest;
+  if (variance <= 0) return 0;
+  return (observed - expected) / Math.sqrt(variance);
+}
+
+const practiceBiasZ = (side) => optionBiasZ(practiceStats, side);
+const openingBiasZ = (side) => optionBiasZ(openingStats, side);
+
 for (const lesson of corpus) {
   const issues = auditLesson(lesson);
   if (issues.length === 0) continue;
@@ -488,17 +501,91 @@ const missingSummary = [];
 const missingApplication = [];
 const missingPractice = [];
 
-/** Trần cho điểm của chiến lược "chọn phương án dài nhất" trong practicePrompt.
+/** Ngưỡng lệch độ dài của practicePrompt, đo bằng z-score HAI CHIỀU.
  *
- *  Đặt ở 0,55 vì kho đang ở 0,542 - đúng luật của AGENTS.md: cổng đặt ở mức
- *  kho ĐÃ ĐẠT, không tạo nợ. Ở mức này nó chưa chặn được gì; việc của nó lúc
- *  này là làm con số hiện ra trong CI và bị hạ dần sau mỗi đợt viết lại, y
- *  như MAX_TELL_SHARE đã được hạ từ 0,91 xuống. Mức đích là 0,25 - may rủi.
+ *  VÌ SAO KHÔNG CÒN LÀ TRẦN MỘT CHIỀU. Cổng cũ là `MAX_PRACTICE_LONGEST_SCORE`,
+ *  một trần trên tỉ lệ "đáp án đúng là phương án dài nhất", và nó được hạ dần
+ *  0,92 → 0,87 → 0,71 → 0,55 → 0,38 sau mỗi đợt viết lại. Nhìn vào con số đó
+ *  thì mọi thứ đều đang tốt lên: 88,5% xuống 21,7%.
  *
- *  Cách sửa một câu: cắt đáp án đúng về đúng mệnh đề, vì phần lý lẽ đã nằm
- *  sẵn ở `explanation` ngay bên dưới. Không phải kéo dài các phương án nhiễu. */
-const MAX_PRACTICE_LONGEST_SCORE = 0.55;
-const practiceStats = { questions: 0, longestScore: 0, randomScore: 0 };
+ *  Con số đó đúng và vô dụng. Cách sửa từng câu là cắt đáp án đúng cho ngắn
+ *  lại, mà với bốn phương án thì "không phải dài nhất" rất dễ thành "ngắn
+ *  nhất". Đo lại cả hai chiều sau 312 câu viết lại:
+ *
+ *      dài nhất : 147/642 (22,9%) - kỳ vọng 172 - z = −2,25
+ *      ngắn nhất: 275/642 (42,8%) - kỳ vọng 174 - z = +9,16
+ *
+ *  Tức là "chọn phương án NGẮN nhất" giờ ăn 42,8% so với may rủi ~27%. Một
+ *  mách nước đã bị thay bằng một mách nước khác, và cái trần một chiều không
+ *  thấy gì cả vì nó chỉ nhìn đúng chiều đang tốt lên.
+ *
+ *  Đây đúng là bài học AGENTS.md đã ghi cho corpus `quiz` - "every gate was a
+ *  ceiling and this is a floor" - lặp lại nguyên vẹn ở `practicePrompt`, vì
+ *  cổng này được dựng theo hình dạng cũ. Nên nó thành z-score hai chiều, so
+ *  với kỳ vọng có tính hoà, giống `MAX_LENGTH_BIAS_Z`.
+ *
+ *  Cách sửa một câu KHÔNG phải là cắt cho ngắn nhất có thể. Chữa chiều "dài"
+ *  bằng cách đẩy tất cả xuống đáy chỉ tạo ra chiều "ngắn", và điều đó đã xảy
+ *  ra hai lần trong cùng một ngày - một lần ở kho tiếng Việt, một lần nữa ở
+ *  kho tiếng Anh ngay sau đó, z(dài) tụt xuống −8,19 vì 111 câu đều được viết
+ *  về giữa nhóm cùng lúc.
+ *
+ *  Cái đích là PHÂN BỐ, không phải một hướng: khoảng một phần tư số câu đáp án
+ *  đúng là dài nhất, một phần tư là ngắn nhất, đúng như rule 2 của AGENTS.md.
+ *  Sau khi viết lại 100 câu theo cả hai hướng - 25 câu nới lên thành dài nhất,
+ *  75 câu nới lên giữa nhóm - hai kho về đúng mức may rủi:
+ *
+ *      tiếng Việt: dài z = +0,25   ngắn z = −0,13   (654 câu)
+ *      tiếng Anh : dài z = +0,04   ngắn z = −1,59   (200 câu)
+ *
+ *  Ngưỡng hạ từ 9,2 xuống 3. Không hạ tiếp xuống sát 0,25: z là đại lượng có
+ *  nhiễu, và một kho vài trăm câu sẽ dao động vài phần mười chỉ vì thêm dăm bài
+ *  mới. 3 độ lệch chuẩn là mức phân biệt được trôi thật với dao động thường,
+ *  cùng bậc với MAX_LENGTH_BIAS_Z bên corpus quiz. */
+const MAX_PRACTICE_BIAS_Z = 3;
+
+/** Ngưỡng lệch độ dài của openingOptions - câu hỏi mở đầu mỗi bài.
+ *
+ *  TRƯỜNG THỨ BA TRONG CÙNG MỘT HỌ. `quiz` được đo từ lâu, `practicePrompt`
+ *  mới được đo và hoá ra hỏng nặng, và đây là trường còn lại: nó có
+ *  `correctOption`, `OpeningQuestionBlock` chấm đúng/sai và đổi màu ô, nhưng
+ *  suốt cả đời bộ kiểm này chưa ai nhìn vào bên trong nó lần nào.
+ *
+ *  Đo lần đầu: 610 trên 715 bài có đáp án đúng là phương án dài nhất, so với
+ *  kỳ vọng 184. z = +36,6. "Chọn phương án dài nhất" ăn khoảng 85% ở câu mở
+ *  đầu của mọi bài học.
+ *
+ *  Nó KHÔNG vào `avg_quiz_score`, không vào XP, không vào cổng mở khoá - đó là
+ *  lý do nó ở mức nghiêm trọng thấp hơn `practicePrompt` dù con số tệ hơn.
+ *  Nhưng nó là tương tác đầu tiên của người học với mỗi bài, và ở mức này nó
+ *  dạy đúng một điều trước khi họ kịp đọc gì: đoán theo độ dài là ăn.
+ *
+ *  Ngưỡng đặt ở 37 vì kho đang ở 36,64 - cùng cách `MAX_PRACTICE_BIAS_Z` từng
+ *  được đặt ở 9,2. Đây là mức kho đang HỎNG, ghi vào để con số hiện ra trong
+ *  CI và bị hạ dần sau mỗi đợt viết lại, không phải để chấp nhận. 610 câu là
+ *  đợt việc riêng, lớn hơn toàn bộ những gì đã làm cho practicePrompt. */
+const MAX_OPENING_BIAS_Z = 37;
+const openingStats = {
+  questions: 0,
+  longest: 0,
+  shortest: 0,
+  expLongest: 0,
+  varLongest: 0,
+  expShortest: 0,
+  varShortest: 0,
+};
+
+const practiceStats = {
+  questions: 0,
+  longestScore: 0,
+  randomScore: 0,
+  longest: 0,
+  shortest: 0,
+  expLongest: 0,
+  varLongest: 0,
+  expShortest: 0,
+  varShortest: 0,
+};
 
 for (const lesson of corpus) {
   const stats = quizStats[isPersonalOrProfessionalTrack(lesson)];
@@ -521,13 +608,49 @@ for (const lesson of corpus) {
   if (pp?.options?.length) {
     const lengths = pp.options.map((option) => String(option).length);
     const longest = Math.max(...lengths);
+    const shortest = Math.min(...lengths);
+    const correctLength = lengths[pp.correct] ?? 0;
     practiceStats.questions++;
     // Điểm kỳ vọng của chiến lược, không phải tỉ lệ trúng - hoà nhau thì
     // người đoán vẫn phải chọn trong số các phương án dài bằng nhau.
-    if ((lengths[pp.correct] ?? 0) === longest) {
+    if (correctLength === longest) {
       practiceStats.longestScore += 1 / lengths.filter((l) => l === longest).length;
     }
     practiceStats.randomScore += 1 / lengths.length;
+
+    // Kỳ vọng có tính hoà: nếu hai phương án dài bằng nhau thì xác suất đáp án
+    // đúng là một trong số đó không còn là 1/4. Dùng 25% phẳng sẽ báo sai ở
+    // đúng những câu có phương án trùng độ dài.
+    const pLongest = lengths.filter((l) => l === longest).length / lengths.length;
+    const pShortest = lengths.filter((l) => l === shortest).length / lengths.length;
+    practiceStats.expLongest += pLongest;
+    practiceStats.varLongest += pLongest * (1 - pLongest);
+    practiceStats.expShortest += pShortest;
+    practiceStats.varShortest += pShortest * (1 - pShortest);
+    if (correctLength === longest) practiceStats.longest++;
+    if (correctLength === shortest) practiceStats.shortest++;
+  }
+
+  // openingOptions: cùng hình dạng, cùng cách đo. Chỉ số đúng nằm ở
+  // `correctOption` chứ không phải `correct` - tên khác với mọi trường khác,
+  // và đó là một phần lý do nó không được đo suốt thời gian qua.
+  const opening = lesson.openingOptions;
+  if (opening?.length && typeof lesson.correctOption === "number") {
+    const lengths = opening.map((option) => String(option).length);
+    const longest = Math.max(...lengths);
+    const shortest = Math.min(...lengths);
+    openingStats.questions++;
+    if (longest !== shortest) {
+      const correctLength = lengths[lesson.correctOption] ?? 0;
+      const pLongest = lengths.filter((l) => l === longest).length / lengths.length;
+      const pShortest = lengths.filter((l) => l === shortest).length / lengths.length;
+      openingStats.expLongest += pLongest;
+      openingStats.varLongest += pLongest * (1 - pLongest);
+      openingStats.expShortest += pShortest;
+      openingStats.varShortest += pShortest * (1 - pShortest);
+      if (correctLength === longest) openingStats.longest++;
+      if (correctLength === shortest) openingStats.shortest++;
+    }
   }
 
   let lessonLongest = 0;
@@ -790,12 +913,35 @@ if (missingSummary.length === 0 && missingApplication.length === 0 && missingPra
 if (practiceStats.questions > 0) {
   const score = practiceStats.longestScore / practiceStats.questions;
   const chance = practiceStats.randomScore / practiceStats.questions;
+  const zLong = practiceBiasZ("longest");
+  const zShort = practiceBiasZ("shortest");
   console.log(
     `  practicePrompt: ${practiceStats.questions} câu · "chọn phương án dài nhất" ăn ` +
-      `${(score * 100).toFixed(1)}% (may rủi ${(chance * 100).toFixed(1)}%) · trần ` +
-      `${(MAX_PRACTICE_LONGEST_SCORE * 100).toFixed(0)}%`
+      `${(score * 100).toFixed(1)}% (may rủi ${(chance * 100).toFixed(1)}%)`
   );
-  console.log(`  Hạ trần sau mỗi đợt viết lại; đích là mức may rủi.`);
+  console.log(
+    `    dài nhất : ${practiceStats.longest} vs ${practiceStats.expLongest.toFixed(0)} kỳ vọng` +
+      `  z = ${zLong.toFixed(2)}`
+  );
+  console.log(
+    `    ngắn nhất: ${practiceStats.shortest} vs ${practiceStats.expShortest.toFixed(0)} kỳ vọng` +
+      `  z = ${zShort.toFixed(2)}   (trần |z| ${MAX_PRACTICE_BIAS_Z})`
+  );
+  console.log(
+    `  Đích là đáp án đúng nằm GIỮA nhóm - cắt cho ngắn nhất chỉ đổi mách nước này lấy mách nước kia.`
+  );
+}
+
+if (openingStats.questions > 0) {
+  const zLong = openingBiasZ("longest");
+  const zShort = openingBiasZ("shortest");
+  console.log(
+    `  openingOptions: ${openingStats.questions} câu mở đầu` +
+      `  ·  dài nhất ${openingStats.longest} vs ${openingStats.expLongest.toFixed(0)} kỳ vọng` +
+      `  z = ${zLong.toFixed(2)}` +
+      `  ·  ngắn nhất ${openingStats.shortest} vs ${openingStats.expShortest.toFixed(0)}` +
+      `  z = ${zShort.toFixed(2)}   (trần |z| ${MAX_OPENING_BIAS_Z})`
+  );
 }
 const biasFailures = biasRows.filter(
   (r) => Math.abs(r.zLong) > MAX_LENGTH_BIAS_Z || Math.abs(r.zShort) > MAX_LENGTH_BIAS_Z
@@ -982,17 +1128,65 @@ if (biasFailures.length > 0 && !process.argv.includes("--warn-only")) {
   process.exit(1);
 }
 
-if (practiceStats.questions >= MIN_QUESTIONS_FOR_SHARE_GATES) {
-  const score = practiceStats.longestScore / practiceStats.questions;
-  if (score > MAX_PRACTICE_LONGEST_SCORE) {
+if (practiceStats.questions > 0) {
+  const zLong = practiceBiasZ("longest");
+  const zShort = practiceBiasZ("shortest");
+  const worst = Math.abs(zLong) > Math.abs(zShort) ? zLong : zShort;
+  if (Math.abs(worst) > MAX_PRACTICE_BIAS_Z && !process.argv.includes("--warn-only")) {
     console.error(
-      `\npracticePrompt: chiến lược "chọn phương án dài nhất" ăn ${(score * 100).toFixed(1)}%, ` +
-        `vượt trần ${(MAX_PRACTICE_LONGEST_SCORE * 100).toFixed(0)}%.\n` +
-        `  Cắt đáp án đúng về đúng mệnh đề - phần lý lẽ đã nằm ở explanation ngay bên dưới.\n` +
-        `  Đừng kéo dài phương án nhiễu, và đừng nâng trần.`
+      `\npracticePrompt lệch độ dài |z| = ${Math.abs(worst).toFixed(2)}, vượt ngưỡng ` +
+        `${MAX_PRACTICE_BIAS_Z}.\n` +
+        `  z(dài) = ${zLong.toFixed(2)}, z(ngắn) = ${zShort.toFixed(2)}\n\n` +
+        `  Cả hai chiều đều khai thác được. Dương ở chiều "dài": chọn phương án dài\n` +
+        `  nhất là ăn. Dương ở chiều "ngắn": chọn phương án ngắn nhất là ăn. Cắt đáp\n` +
+        `  án đúng xuống ngắn nhất để chữa chiều thứ nhất chính là cách tạo ra chiều\n` +
+        `  thứ hai - đích là đáp án đúng nằm GIỮA nhóm.\n` +
+        `  Sửa bằng cách viết lại phương án, không bằng cách nâng ngưỡng.`
     );
     process.exit(1);
   }
+}
+
+if (openingStats.questions > 0) {
+  const zLong = openingBiasZ("longest");
+  const zShort = openingBiasZ("shortest");
+  const worst = Math.abs(zLong) > Math.abs(zShort) ? zLong : zShort;
+  if (Math.abs(worst) > MAX_OPENING_BIAS_Z && !process.argv.includes("--warn-only")) {
+    console.error(
+      `\nopeningOptions lệch độ dài |z| = ${Math.abs(worst).toFixed(2)}, vượt ngưỡng ` +
+        `${MAX_OPENING_BIAS_Z}.\n` +
+        `  z(dài) = ${zLong.toFixed(2)}, z(ngắn) = ${zShort.toFixed(2)}\n\n` +
+        `  Cắt đáp án đúng về đúng mệnh đề - phần lý lẽ đã nằm ở explanation của bài.\n` +
+        `  Đích là PHÂN BỐ: khoảng một phần tư dài nhất, một phần tư ngắn nhất.\n` +
+        `  Sửa bằng cách viết lại phương án, không bằng cách nâng ngưỡng.`
+    );
+    process.exit(1);
+  }
+}
+
+/** Trần cho số bài THIẾU practicePrompt.
+ *
+ *  Đặt ở 61 vì kho đang thiếu đúng 61 - luật quen thuộc của AGENTS.md: cổng đặt
+ *  ở mức kho ĐÃ ĐẠT, đủ để chặn phình thêm, không tạo nợ cho những gì đã có.
+ *
+ *  Ở đây một ĐẾM là đúng, chứ không phải một tỉ lệ - ngược với MAX_TELL_SHARE.
+ *  Lý do: đây là một tồn đọng phải rút về 0, không phải một phân phối. Kho lớn
+ *  thêm mười bài đều có practicePrompt thì số này đứng yên và đúng là nên đứng
+ *  yên; một bài mới thiếu nó thì số lên 98 và CI đỏ ngay. Tỉ lệ sẽ làm ngược
+ *  lại: viết thêm bài đủ nhiều là tỉ lệ tự đẹp mà không ai sửa gì.
+ *
+ *  Hạ nó sau mỗi đợt viết; khi về 0 thì bỏ hằng số này và đổi thành cổng cứng
+ *  như MIN_QUIZ_COUNT. Không bao giờ nâng để một build đỏ thành xanh. */
+const MAX_MISSING_PRACTICE = 61;
+
+if (missingPractice.length > MAX_MISSING_PRACTICE && !process.argv.includes("--warn-only")) {
+  console.error(
+    `\n${missingPractice.length} bài thiếu practicePrompt, vượt trần ${MAX_MISSING_PRACTICE}.\n` +
+      `  Một bài MỚI không được thêm vào tồn đọng này. Viết practicePrompt cho nó:\n` +
+      `  một tình huống áp dụng, bốn phương án theo luật 1-6 của AGENTS.md.\n` +
+      `  Hạ trần sau khi viết; đừng nâng nó.`
+  );
+  process.exit(1);
 }
 
 if (tellFailures.length > 0 && !process.argv.includes("--warn-only")) {

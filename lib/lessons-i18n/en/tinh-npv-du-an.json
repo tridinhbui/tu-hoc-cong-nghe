@@ -4,13 +4,29 @@
   "subtitle": "A practical application: opening a new branch - is it worth it?",
   "duration": "7 min",
   "openingQuestion": "Opening a branch: invest 500 million, receive 200 million/year for 5 years, WACC 10%. Roughly what is the NPV?",
-  "openingOptions": ["500 million", "258 million (positive NPV - should invest)", "−258 million", "0"],
+  "openingOptions": [
+    "500 million",
+    "258 million (positive NPV - should invest)",
+    "−258 million",
+    "0"
+  ],
   "explanation": "Calculating a project's NPV means bringing every future cash flow back to today and subtracting the initial outlay. A positive NPV means the project creates value beyond the cost of capital - meaning it has already accounted for the cost of putting money here rather than elsewhere. Two common mistakes: using accounting profit instead of cash flow, and forgetting that the result is far more sensitive to the discount rate than to the revenue forecast.",
   "diagram": [
-    { "label": "List the project's free cash flow for each year", "arrow": true },
-    { "label": "Choose a discount rate equal to the cost of capital", "arrow": true },
-    { "label": "Discount each year and add them up", "arrow": true },
-    { "label": "Subtract the initial investment to get NPV - then try again with a higher r" }
+    {
+      "label": "List the project's free cash flow for each year",
+      "arrow": true
+    },
+    {
+      "label": "Choose a discount rate equal to the cost of capital",
+      "arrow": true
+    },
+    {
+      "label": "Discount each year and add them up",
+      "arrow": true
+    },
+    {
+      "label": "Subtract the initial investment to get NPV - then try again with a higher r"
+    }
   ],
   "realWorldExample": {
     "company": "FPT Retail",
@@ -76,7 +92,7 @@
   "practicePrompt": {
     "question": "A project requires an initial investment of 400 million VND. After discounting all its future cash flow back to the present using an appropriate discount rate, the total PV of that cash flow is 550 million VND. Calculate the project's NPV.",
     "options": [
-      "NPV = PV(cash flow) − Initial investment = 550 - 400 = 150 million VND (positive) - the project creates value beyond the initial investment cost",
+      "NPV = PV(cash flows) − initial investment = 550 - 400 = 150 million dong, so the project creates value",
       "NPV = 550 + 400 = 950 million VND, adding together the PV of the cash flow and the initial investment",
       "NPV always equals the PV of the cash flow = 550 million VND because the initial investment is not subtracted from NPV",
       "NPV cannot be calculated without information about the project's IRR"
@@ -98,17 +114,26 @@
       "type": "lead",
       "text": "The theory of NPV, WACC, and annuities only really matters once applied to a concrete decision. Consider a typical scenario: a retail business is weighing whether to open a new branch - is it worth investing in?"
     },
-    { "type": "heading", "text": "The problem data" },
+    {
+      "type": "heading",
+      "text": "The problem data"
+    },
     {
       "type": "paragraph",
       "text": "Initial investment cost (CapEx, fit-out, equipment): 500 million VND. Expected cash flow: 200 million VND/year, level for 5 years. The company's WACC: 10%. Question: should this branch be opened?"
     },
-    { "type": "heading", "text": "Calculating NPV step by step" },
+    {
+      "type": "heading",
+      "text": "Calculating NPV step by step"
+    },
     {
       "type": "paragraph",
       "text": "Step 1: calculate the PV of the level annuity of 200 million VND/year for 5 years at r=10%: annuity factor = [1−(1.1)^−5]/0.1 ≈ 3.791. PV = 200 × 3.791 ≈ 758.2 million VND. Step 2: subtract the initial investment cost: NPV = 758.2 − 500 = +258.2 million VND. Because the NPV is positive, this branch should be opened - it creates about 258 million VND of additional value after fully accounting for the cost of capital."
     },
-    { "type": "heading", "text": "Checking sensitivity to WACC" },
+    {
+      "type": "heading",
+      "text": "Checking sensitivity to WACC"
+    },
     {
       "type": "paragraph",
       "text": "If WACC rises to 14% (say business risk increases), the annuity factor falls to about 3.433, PV = 200 × 3.433 ≈ 687 million VND, NPV = 687 − 500 = +187 million VND - still positive but much lower. If WACC continues to rise further (say to 30%), NPV could well turn negative. This is why retail businesses always run sensitivity analysis on WACC before approving new branch openings, and close branches whose actual NPV turns negative after the first few years of operation."

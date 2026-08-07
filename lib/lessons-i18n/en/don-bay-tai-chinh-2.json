@@ -12,10 +12,21 @@
   ],
   "explanation": "Financial leverage works through a single mechanism: debt has a fixed cost, so every unit of profit above that cost belongs entirely to shareholders - less equity, roughly the same profit, and ROE jumps. But that same mechanism runs in reverse just as sharply when ROIC falls below the borrowing rate, and interest still has to be paid on time regardless. So the real question when using leverage is how stable the cash flow is, not how attractive the ROE looks.",
   "diagram": [
-    { "label": "Replace part of equity with debt", "arrow": true },
-    { "label": "Interest is a fixed cost, paid first", "arrow": true },
-    { "label": "Profit above the interest cost flows entirely to shareholders", "arrow": true },
-    { "label": "Above the borrowing rate ROE rises, below it ROE falls faster" }
+    {
+      "label": "Replace part of equity with debt",
+      "arrow": true
+    },
+    {
+      "label": "Interest is a fixed cost, paid first",
+      "arrow": true
+    },
+    {
+      "label": "Profit above the interest cost flows entirely to shareholders",
+      "arrow": true
+    },
+    {
+      "label": "Above the borrowing rate ROE rises, below it ROE falls faster"
+    }
   ],
   "realWorldExample": {
     "company": "Vietnam's real estate sector, 2021-2023",
@@ -81,7 +92,7 @@
   "practicePrompt": {
     "question": "Two companies both invest 1,000 billion in a project, with an expected ROA of 12%. Company A funds it with 100% equity; company B funds it with 50% equity and 50% debt at an 8% interest rate. If the project succeeds as expected, which company has the higher ROE, and what happens if the project fails (ROA turns negative)?",
     "options": [
-      "Company B has the higher ROE when the project succeeds (because ROA 12% > interest rate 8%, the spread flows into a smaller equity base), but if the project fails, B also loses much more heavily than A - leverage amplifies both profit and risk in both directions",
+      "B has the higher ROE when the project works (ROA 12% > 8% interest), but it also loses far more heavily if it fails",
       "Company A always has a higher ROE than B in every scenario because it doesn't have to share profit with creditors",
       "Both companies have the same ROE regardless of success or failure because they invested the same amount",
       "Financial leverage only affects risk when the company fails, it has no effect at all when the company succeeds"
@@ -103,20 +114,32 @@
       "type": "lead",
       "text": "Financial Leverage is Corporate Finance's classic double-edged sword: it amplifies return on equity (ROE) when everything goes well, but amplifies losses at the exact same rate when things turn bad."
     },
-    { "type": "heading", "text": "An example of amplified ROE" },
+    {
+      "type": "heading",
+      "text": "An example of amplified ROE"
+    },
     {
       "type": "paragraph",
       "text": "Compare company A using leverage (Equity = 500 million, borrows the rest to generate EBIT = 200 million, pays 30 million interest → EBT = 170 million, roughly 136 million after tax → ROE = 136/500 = 27.2%) with company B using no debt (Equity = 1 billion, similar after-tax profit around 160 million → ROE = 16%). Company A has a much higher ROE because it used less equity to generate similar profit - this is exactly the amplification mechanism of leverage when ROIC (return on invested capital) is higher than the cost of debt."
     },
-    { "type": "heading", "text": "When leverage amplifies in the opposite direction" },
+    {
+      "type": "heading",
+      "text": "When leverage amplifies in the opposite direction"
+    },
     {
       "type": "paragraph",
       "text": "That mechanism only holds when ROIC > cost of debt (Kd). If ROIC falls below Kd - typically when business turns difficult and revenue declines - leverage amplifies in the opposite direction: ROE falls much more sharply than for an unlevered company, because the business still has to pay fixed interest while returns on invested capital aren't enough to cover it. When revenue falls 20%, a highly leveraged business can see EBIT fall 60-80% - this mechanism sits behind many corporate financial crises, the classic example being Lehman Brothers' collapse in 2008 with a D/E over 30x."
     },
     {
       "type": "comparison",
-      "left": { "label": "ROIC > Cost of debt", "text": "Leverage is a 'friend' - it amplifies ROE higher than an unlevered company, with every additional unit of borrowed debt generating profit beyond the cost of servicing it." },
-      "right": { "label": "ROIC < Cost of debt", "text": "Leverage becomes an 'enemy' - amplifying losses, since the company still has to pay fixed interest while operating profit isn't enough to cover it, accelerating the risk of financial distress." }
+      "left": {
+        "label": "ROIC > Cost of debt",
+        "text": "Leverage is a 'friend' - it amplifies ROE higher than an unlevered company, with every additional unit of borrowed debt generating profit beyond the cost of servicing it."
+      },
+      "right": {
+        "label": "ROIC < Cost of debt",
+        "text": "Leverage becomes an 'enemy' - amplifying losses, since the company still has to pay fixed interest while operating profit isn't enough to cover it, accelerating the risk of financial distress."
+      }
     },
     {
       "type": "list",

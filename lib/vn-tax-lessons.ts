@@ -114,7 +114,7 @@ export const VN_TAX_LESSONS: Lesson[] = [
       options: [
         "Offer A tốt hơn vì con số 32 lớn hơn 27",
         "Hai offer tương đương vì chênh lệch đúng bằng thuế",
-        "Cần quy đổi A về net trước khi so sánh; 32 triệu gross cho người độc thân thực nhận khoảng 27,8 triệu, nên A nhỉnh hơn B một chút",
+        "Quy đổi A về net trước: 32 gross ≈ 27,8 net, nên A nhỉnh hơn",
         "Không thể so sánh vì gross và net là hai đại lượng khác nhau hoàn toàn",
       ],
       correct: 2,
@@ -1208,7 +1208,7 @@ export const VN_TAX_LESSONS: Lesson[] = [
         "Chị Mai có lương chính 18 triệu/tháng và nhận thêm 4 dự án freelance trong năm, mỗi dự án 7 triệu đồng. Nhận định nào đúng?",
       options: [
         "Các khoản freelance được miễn thuế vì đã có lương chính chịu thuế",
-        "Mỗi dự án bị khấu trừ 10% (700.000đ), và cuối năm chị cần quyết toán gộp cả lương lẫn freelance để tính lại cho đúng",
+        "Mỗi dự án bị khấu trừ 10%, cuối năm quyết toán gộp",
         "Mỗi dự án bị đánh thuế theo biểu lũy tiến riêng biệt",
         "Chị phải đăng ký hộ kinh doanh mới được nhận dự án freelance",
       ],
@@ -1372,7 +1372,7 @@ export const VN_TAX_LESSONS: Lesson[] = [
         "Anh Tuấn lương gross 40 triệu, có 1 người phụ thuộc đã đăng ký. Thuế TNCN mỗi tháng của anh là bao nhiêu?",
       options: [
         "Khoảng 2,4 triệu đồng",
-        "Khoảng 910.000 đồng",
+        "Khoảng 910.000 đồng tiền thuế",
         "Khoảng 1,8 triệu đồng",
         "Khoảng 4 triệu đồng",
       ],

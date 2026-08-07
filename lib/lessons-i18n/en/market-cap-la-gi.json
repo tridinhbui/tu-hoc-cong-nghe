@@ -12,9 +12,15 @@
   ],
   "explanation": "Market Capitalization (market cap) = current share price × total shares outstanding. This is the fastest way to estimate a listed company's size from the market's point of view, commonly used to classify companies: large-cap, mid-cap, small-cap. It only measures the value of the equity slice, though - it says nothing yet about the debt or cash sitting inside the business.",
   "diagram": [
-    { "label": "Current share price" },
-    { "label": "× total shares outstanding" },
-    { "label": "= Market Cap (market capitalization)" }
+    {
+      "label": "Current share price"
+    },
+    {
+      "label": "× total shares outstanding"
+    },
+    {
+      "label": "= Market Cap (market capitalization)"
+    }
   ],
   "realWorldExample": {
     "company": "Apple Inc.",
@@ -81,7 +87,7 @@
     "question": "Company A's stock trades at 200,000 dong, with 50 million shares outstanding. Company B's stock trades at 20,000 dong, with 800 million shares outstanding. Which company has a larger market capitalization (Market Cap)?",
     "options": [
       "Company A is larger because it has a much higher share price - share price directly determines company scale",
-      "Company B is larger: Market Cap = Share price × shares outstanding, A = 200,000 × 50 million = 10,000 billion; B = 20,000 × 800 million = 16,000 billion - B has the larger market cap despite a much lower price per share",
+      "B is the larger one: A = 200,000 × 50 million = 10,000 billion, while B = 20,000 × 800 million = 16,000 billion",
       "The two companies can't be compared if we only know share price and shares outstanding",
       "Both companies are the same size because price × count always gives an equivalent result"
     ],
@@ -102,12 +108,18 @@
       "type": "lead",
       "text": "If you could only ask one question to quickly estimate a listed company's size, the answer is almost always: what is its Market Cap?"
     },
-    { "type": "heading", "text": "The formula and its meaning" },
+    {
+      "type": "heading",
+      "text": "The formula and its meaning"
+    },
     {
       "type": "paragraph",
       "text": "Market Capitalization (market cap) = current share price × total shares outstanding. This is the fastest way to measure a company's size from the market's perspective, and the basis for classification: large-cap, mid-cap, small-cap. Apple once had a Market Cap exceeding $3,000 billion - larger than the GDP of most countries in the world."
     },
-    { "type": "heading", "text": "Price per share doesn't tell you 'expensiveness'" },
+    {
+      "type": "heading",
+      "text": "Price per share doesn't tell you 'expensiveness'"
+    },
     {
       "type": "paragraph",
       "text": "If the share price doubles while shares outstanding stay the same, Market Cap also doubles - directly proportional. But this is where many new investors get confused: two companies with the same Market Cap of 10,000 billion dong, company A with 100 million shares outstanding (100,000 dong/share), company B with 1 billion shares (10,000 dong/share). A's price per share is 10 times higher, but that does NOT mean stock A is 'more expensive' - price per share depends only on how the company chose to divide its Market Cap, a completely arbitrary decision via a stock split."

@@ -119,6 +119,19 @@ export const FINTECH_LESSONS: Lesson[] = [
           "Doanh thu = GMV × take rate. GMV tăng nhanh hơn doanh thu nghĩa là take rate bình quân đang mỏng đi, thường vì tăng trưởng đến từ mảng phí thấp hoặc vì phải giảm giá để giành thị phần.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Nền tảng có TPV 40.000 tỷ với take rate gộp 1,2%, trong đó phần phải trả cho ngân hàng và tổ chức thẻ là 0,85%. Doanh thu ròng bằng bao nhiêu?",
+      options: [
+        "140 tỷ đồng (= 40.000 tỷ × 0,35%)",
+        "480 tỷ (= 40.000 × 1,2% gộp)",
+        "340 tỷ (= 40.000 × 0,85% đã trả)",
+        "620 tỷ (= cộng cả hai take rate)",
+      ],
+      correct: 0,
+      explanation:
+        "Take rate ròng là 1,2% − 0,85% = 0,35%, nên doanh thu ròng là 140 tỷ. Con số 480 tỷ có thật và thường là con số lên thông cáo báo chí, nhưng gần ba phần tư nó chảy thẳng ra ngoài cho ngân hàng và tổ chức thẻ trước khi công ty được giữ gì. Chỉ so sánh được hai công ty fintech ở mức ròng, vì cùng một mô hình kinh doanh có thể ghi nhận doanh thu gộp hay ròng tuỳ chuẩn mực áp dụng, và chênh lệch giữa hai cách trình bày ở đây là 3,4 lần.",
+    },
     keyTakeaways: [
       "Doanh thu = khối lượng giao dịch × take rate. Khối lượng là con số lên tiêu đề, take rate mới là con số quyết định.",
       "Doanh thu gộp trừ phần trả cho ngân hàng và tổ chức thẻ mới ra doanh thu ròng - chỉ so sánh được ở mức ròng.",
@@ -286,6 +299,19 @@ export const FINTECH_LESSONS: Lesson[] = [
           "CAC leo thang trong khi giá trị mỗi khách không đổi nghĩa là những khách dễ thuyết phục đã hết, và công ty đang trả giá cao dần cho nhóm khách kém phù hợp hơn.",
       },
     ],
+    practicePrompt: {
+      question:
+        "CAC là 900.000 đồng, mỗi khách mang về 60.000 đồng lợi nhuận gộp mỗi tháng, tỷ lệ rời bỏ 4% một tháng. Con số nào đáng lo nhất?",
+      options: [
+        "Hoàn vốn 15 tháng, dài hơn mức được coi là lành mạnh",
+        "LTV trên CAC bằng 1,67 nên mô hình đã ổn",
+        "Tỷ lệ rời bỏ 4% là mức rất tốt cho fintech",
+        "LTV 1,5 triệu cho thấy khách có giá trị cao",
+      ],
+      correct: 0,
+      explanation:
+        "LTV = 60.000 / 4% = 1,5 triệu, nên LTV/CAC = 1,67 - đã dưới mức 3 thường được coi là lành. Nhưng con số đáng lo hơn là thời gian hoàn vốn: 900.000 / 60.000 = 15 tháng tiền mặt nằm ngoài công ty trước khi một khách hàng hoàn vốn. LTV là một con số nhiều năm và nó giả định khách ở lại đủ lâu; thời gian hoàn vốn là tiền mặt thật và nó quyết định công ty phải gọi thêm bao nhiêu vốn để tăng trưởng. Còn rời bỏ 4% mỗi tháng nghĩa là mất gần nửa tập khách mỗi năm - đó là vấn đề, không phải điểm mạnh.",
+    },
     keyTakeaways: [
       "CAC = chi phí thu hút / số khách mà chi phí đó mang về. Đừng gộp khách đến tự nhiên vào mẫu số.",
       "LTV tính trên lợi nhuận gộp, không phải doanh thu - nếu không thì chi phí phục vụ biến mất khỏi phép tính.",
@@ -444,6 +470,19 @@ export const FINTECH_LESSONS: Lesson[] = [
           "Float là một chỉ báo về hành vi người dùng, không phải một dòng doanh thu. Doanh thu chỉ tăng nếu số tiền đó được đem đi giao dịch, hoặc gián tiếp qua phần lãi thu thêm.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Số dư ví của người dùng tăng từ 3.000 tỷ lên 6.000 tỷ trong một quý. Giá trị ròng của công ty ví thay đổi thế nào ngay tại thời điểm đó?",
+      options: [
+        "Không đổi: tài sản và nợ phải trả tăng bằng nhau",
+        "Tăng 3.000 tỷ vì tiền đã nằm trong tài khoản công ty",
+        "Tăng bằng phần lãi sinh ra trên 3.000 tỷ tăng thêm",
+        "Giảm vì nghĩa vụ trả người dùng đã tăng gấp đôi",
+      ],
+      correct: 0,
+      explanation:
+        "Người dùng nạp tiền vào ví thì công ty nhận được 3.000 tỷ ở tài khoản đảm bảo thanh toán và đồng thời ghi nhận 3.000 tỷ nợ phải trả họ. Hai vế phình lên bằng nhau, giá trị ròng đứng yên. Phương án 'tăng bằng phần lãi sinh ra' gần đúng nhưng lệch thời điểm: lãi là thu nhập của các kỳ SAU, phát sinh dần khi tiền nằm lại, chứ không xuất hiện ngay lúc số dư tăng. Đây là chỗ float hay bị đọc sai theo cả hai chiều - nó không làm công ty giàu thêm khi phình ra, và nó cũng không phải một khoản nợ đáng sợ khi bản thân tiền vẫn nằm đó.",
+    },
     keyTakeaways: [
       "Số dư ví là nợ phải trả, không phải doanh thu và không phải tài sản thuộc về công ty.",
       "Tiền tương ứng nằm ở tài khoản đảm bảo thanh toán riêng, và quy định cấm dùng nó cho hoạt động của công ty.",
@@ -616,6 +655,19 @@ export const FINTECH_LESSONS: Lesson[] = [
           "Đây là bài toán đánh đổi chi phí. Với khoản vài triệu đồng, gọi điện xác minh còn tốn hơn số tiền cứu được; với khoản vài trăm triệu thì ngược lại hoàn toàn.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Danh mục cho vay tăng 12% mỗi tháng, tỷ lệ nợ xấu trên tổng dư nợ là 2,1% và đã giảm đều suốt sáu tháng. Kết luận đúng là gì?",
+      options: [
+        "Chưa kết luận được, vì mẫu số đang chạy nhanh hơn tử số",
+        "Chất lượng tín dụng đang cải thiện rõ rệt theo tháng",
+        "Nợ xấu 2,1% là mức an toàn cho vay tiêu dùng số",
+        "Cần tăng trưởng nhanh hơn nữa để pha loãng nợ xấu",
+      ],
+      correct: 0,
+      explanation:
+        "Một khoản vay cần vài tháng mới kịp xấu, nên tử số phản ánh các tập giải ngân cũ trong khi mẫu số đã có thêm toàn bộ các tập mới còn quá trẻ để hỏng. Danh mục càng lớn nhanh thì tỷ lệ càng trông đẹp, và nó đẹp nhất đúng lúc trước khi các tập mới tới tuổi. Cách đọc đúng là tách theo tập giải ngân: lấy nhóm khách vay tháng 1 và xem sau 6 tháng bao nhiêu phần trăm hỏng, rồi so với nhóm tháng 2, tháng 3. Phương án 'tăng trưởng nhanh hơn để pha loãng' mô tả chính xác cái bẫy, chỉ là nhầm nó thành giải pháp.",
+    },
     keyTakeaways: [
       "Lãi suất cao là giá của rủi ro cao, không phải dấu hiệu lợi nhuận cao.",
       "Biên thật = lãi thu − chi phí vốn − chi phí vận hành − chi phí rủi ro. Thiếu vế cuối là thiếu vế quyết định.",
@@ -775,6 +827,19 @@ export const FINTECH_LESSONS: Lesson[] = [
           "Mất kết nối là hậu quả tồi tệ nhất vì nó chấm dứt hoạt động, không chỉ làm giảm lợi nhuận. Đó là lý do quản trị gian lận thuộc nhóm rủi ro sống còn chứ không phải rủi ro chi phí.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Sau khi siết ngưỡng chặn, thiệt hại gian lận giảm từ 12 tỷ xuống 5 tỷ một năm, nhưng đơn hàng bị chặn nhầm khiến mất 19 tỷ doanh thu. Kết luận là gì?",
+      options: [
+        "Siết quá tay: cứu được 7 tỷ nhưng mất tới 19 tỷ",
+        "Đúng hướng vì gian lận đã giảm hơn một nửa",
+        "Cần siết tiếp cho tới khi gian lận về gần 0",
+        "Không so được vì hai khoản khác bản chất",
+      ],
+      correct: 0,
+      explanation:
+        "Chặn nhầm là chi phí thật, chỉ khác ở chỗ nó không có hoá đơn và không ai trong công ty phải giải trình về nó, trong khi mỗi vụ gian lận đều có một con số cụ thể ai đó phải báo cáo. Sự bất đối xứng đó là lý do gần như mọi đội kiểm soát đều siết quá tay. Ở đây phần cứu được là 7 tỷ, phần mất thêm là 19 tỷ, nên bước siết này lỗ ròng 12 tỷ. Mục tiêu không phải gian lận bằng không mà là điểm mà đồng chi phí biên cuối cùng bỏ ra để chặn vừa đúng bằng đồng thiệt hại nó cứu được.",
+    },
     keyTakeaways: [
       "Gian lận ăn vào khối lượng, doanh thu chỉ là lát mỏng của khối lượng - phải so trên cùng mẫu số mới thấy mức thiệt hại.",
       "Chargeback lấy đi cả khoản tiền lẫn phí xử lý, và vượt ngưỡng thì mất luôn quyền kết nối.",
@@ -928,6 +993,19 @@ export const FINTECH_LESSONS: Lesson[] = [
           "Chỉ khi biên đóng góp dương thì tăng trưởng mới đưa công ty lại gần hoà vốn. Doanh thu tăng nhanh hơn chi phí có thể chỉ là do cắt giảm, và gọi vốn thì không sửa gì trong mô hình.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Công ty còn 480 tỷ tiền mặt, đốt 40 tỷ mỗi tháng và mức đốt đang tăng dần, biên đóng góp vẫn âm. Việc cần làm đầu tiên là gì?",
+      options: [
+        "Sửa biên đóng góp âm trước khi tăng trưởng thêm",
+        "Cắt marketing để kéo dài runway lên 18 tháng",
+        "Gọi vốn ngay vì runway chỉ còn đúng 12 tháng",
+        "Tăng trưởng nhanh hơn để đạt quy mô hoà vốn",
+      ],
+      correct: 0,
+      explanation:
+        "Biên đóng góp âm nghĩa là mỗi đơn vị bán thêm làm khoản lỗ to ra, nên mọi việc dựa vào quy mô đều đi sai hướng - đó là lý do 'tăng trưởng để đạt quy mô hoà vốn' là phương án nguy hiểm nhất trong bốn phương án. Runway 480/40 = 12 tháng là con số đúng nhưng nó chỉ đo thời gian còn lại, không nói gì về việc bao giờ hoà vốn. Cắt marketing kéo dài được thời gian và không sửa được mô hình; nó chỉ đáng làm sau khi biên đóng góp đã dương, để mua thời gian cho một thứ đang chạy đúng hướng.",
+    },
     keyTakeaways: [
       "Biên đóng góp dương là điều kiện cần: nếu âm, tăng trưởng chỉ làm lỗ lớn hơn.",
       "Runway = tiền mặt / mức đốt, và nó không trả lời câu hỏi bao giờ hoà vốn.",

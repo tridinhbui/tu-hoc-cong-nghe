@@ -106,7 +106,7 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
         "Bạn cần cộng một cột 500 dòng nhưng không biết dòng cuối ở đâu. Cách nhanh nhất là gì?",
       options: [
         "Cuộn chuột xuống tìm dòng cuối rồi gõ vùng bằng tay",
-        "Đứng ở ô đầu tiên, nhấn Ctrl + Shift + mũi tên xuống để chọn hết vùng dữ liệu liên tiếp, rồi dùng tổ hợp tự động tính tổng",
+        "Ctrl + Shift + mũi tên xuống rồi tự động tính tổng",
         "Chọn toàn bộ cột rồi cộng, chấp nhận cộng cả ô trống",
         "Nhập công thức cho từng nhóm 50 dòng rồi cộng lại",
       ],
@@ -254,7 +254,7 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
         "Công thức tra cứu của bạn trả về lỗi không tìm thấy cho khoảng 10% số dòng, dù mã rõ ràng có trong bảng nguồn. Nguyên nhân khả dĩ nhất là gì?",
       options: [
         "Excel bị lỗi cần cài lại",
-        "Khác biệt vô hình trong dữ liệu: khoảng trắng thừa ở đầu hoặc cuối, hoặc một bên là dạng số còn bên kia là dạng văn bản",
+        "Khoảng trắng thừa, hoặc số và chữ lẫn lộn",
         "Bảng nguồn có quá nhiều dòng",
         "Cần sắp xếp lại bảng nguồn theo thứ tự tăng dần",
       ],

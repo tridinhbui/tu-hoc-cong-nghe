@@ -150,7 +150,7 @@ export default function ChatWithAdminWidget({
   function togglePinMessage(msgId: number) {
     setPinnedMsgId((prev) => {
       const next = prev === msgId ? null : msgId;
-      toast.success(next ? "Đã ghim tin nhắn" : "Đã bỏ ghim tin nhắn");
+      toast.success(next ? t.chat.pinned : t.chat.unpinned);
       return next;
     });
   }
@@ -302,7 +302,7 @@ export default function ChatWithAdminWidget({
         setEditingMessage(null);
         toast.success(t.chat.edited);
       } catch (error) {
-        toast.error(error instanceof Error ? error.message : "Không sửa được tin nhắn");
+        toast.error(error instanceof Error ? error.message : t.chat.editFailed);
       } finally {
         setSending(false);
       }
@@ -356,7 +356,7 @@ export default function ChatWithAdminWidget({
       console.error("Error sending chat image:", error);
       setMessages((prev) => prev.filter((m) => m.id !== optimisticId));
       setInput(rawContent);
-      toast.error(error instanceof Error ? error.message : "Không gửi được tin nhắn. Vui lòng thử lại.");
+      toast.error(error instanceof Error ? error.message : t.chat.sendFailedRetry);
     } finally {
       if (localPreview) URL.revokeObjectURL(localPreview);
       setUploadingImage(false);
@@ -444,8 +444,8 @@ export default function ChatWithAdminWidget({
               <button
                 onClick={() => setIsExpanded((prev) => !prev)}
                 className="hidden sm:flex text-stone-400 hover:text-white hover:bg-white/10 p-1.5 rounded-xl transition-all flex-shrink-0 active:scale-95 cursor-pointer"
-                aria-label={isExpanded ? "Thu nhỏ chat" : "Phóng to chat"}
-                title={isExpanded ? "Thu nhỏ chat" : "Phóng to chat"}
+                aria-label={isExpanded ? t.adminChat.collapseChat : t.adminChat.expandChat}
+                title={isExpanded ? t.adminChat.collapseChat : t.adminChat.expandChat}
               >
                 {isExpanded ? <Minimize2 className="w-4 h-4" /> : <Maximize2 className="w-4 h-4" />}
               </button>
@@ -612,7 +612,7 @@ export default function ChatWithAdminWidget({
                                       setActiveMenuMsgId(null);
                                     }}
                                     className="hover:scale-130 transition-transform p-0.5 text-[11px] cursor-pointer"
-                                    title={`Thả ${emoji}`}
+                                    title={format(t.chat.reactionTitle, { emoji })}
                                   >
                                     {emoji}
                                   </button>
@@ -832,7 +832,7 @@ export default function ChatWithAdminWidget({
                     }
                   }}
                   onPaste={handlePaste}
-                  placeholder={editingMessage ? "Chỉnh lại nội dung tin nhắn..." : "Nhập tin nhắn, dán ảnh..."}
+                  placeholder={editingMessage ? t.chat.editPlaceholder : t.adminChat.inputPlaceholder}
                   className="flex-1 min-w-0 px-3 py-2 border border-stone-100 dark:border-stone-800/40 bg-stone-50/50 dark:bg-stone-950/60 text-stone-900 dark:text-stone-100 rounded-xl text-xs focus:outline-none focus:border-stone-400 dark:focus:border-stone-700 focus:bg-white dark:focus:bg-stone-950 transition-all placeholder:text-stone-400"
                 />
 

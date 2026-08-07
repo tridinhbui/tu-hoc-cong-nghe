@@ -4,13 +4,29 @@
   "subtitle": "The real after-tax interest rate on a loan",
   "duration": "5 min",
   "openingQuestion": "A company borrows at 8%/year, tax rate 20%. What is the after-tax cost of debt?",
-  "openingOptions": ["1.6%", "10%", "6.4% (= 8% × (1−20%))", "8%"],
+  "openingOptions": [
+    "1.6%",
+    "10%",
+    "6.4% (= 8% × (1−20%))",
+    "8%"
+  ],
   "explanation": "The real cost of debt is lower than the interest rate written in the contract, because interest is deducted before tax is calculated: Kd after-tax = Kd × (1 − tax rate) = 8% × 0.8 = 6.4%. In other words, for every 100 units of interest owed, the government effectively covers 20 units through the reduced tax bill. This is the 'tax shield' - the reason debt is cheaper than equity, and also the reason a loss-making company (which pays no tax) loses this benefit entirely.",
   "diagram": [
-    { "label": "The actual interest rate a company is paying", "arrow": true },
-    { "label": "Interest is deducted before tax is calculated", "arrow": true },
-    { "label": "Multiply by (1 − tax rate)", "arrow": true },
-    { "label": "Gives the after-tax cost of debt - lower than the stated rate" }
+    {
+      "label": "The actual interest rate a company is paying",
+      "arrow": true
+    },
+    {
+      "label": "Interest is deducted before tax is calculated",
+      "arrow": true
+    },
+    {
+      "label": "Multiply by (1 − tax rate)",
+      "arrow": true
+    },
+    {
+      "label": "Gives the after-tax cost of debt - lower than the stated rate"
+    }
   ],
   "realWorldExample": {
     "company": "Listed Vietnamese corporate bonds",
@@ -76,7 +92,7 @@
   "practicePrompt": {
     "question": "A company borrows from a bank at an interest rate of 10%/year, with a corporate tax rate of 20%. What is the actual after-tax Cost of Debt on this loan, and why is it lower than the stated interest rate?",
     "options": [
-      "Cost of Debt after-tax = Interest rate × (1 − Tax rate) = 10% × (1-0.2) = 8% - lower than the stated 10% rate because interest is tax-deductible (a tax shield), reducing the real cost the company bears",
+      "The after-tax Cost of Debt is 10% × (1 - 0.2) = 8%, because interest is deducted before tax is charged",
       "Cost of Debt after-tax = 10% + 20% = 12%, adding the interest rate and the tax rate directly",
       "Cost of Debt after-tax always equals the stated 10% because tax has no effect on the cost of debt",
       "Cost of Debt after-tax = 10% × 20% = 2%, multiplying the interest rate directly by the tax rate"
@@ -98,12 +114,18 @@
       "type": "lead",
       "text": "Cost of Debt seems simple - just the interest rate on a loan - but there are two things to keep in mind: the real cost must be calculated after tax, and it's better to use the current market borrowing rate, not the rate on old loans signed years earlier."
     },
-    { "type": "heading", "text": "The formula and the tax shield" },
+    {
+      "type": "heading",
+      "text": "The formula and the tax shield"
+    },
     {
       "type": "paragraph",
       "text": "Cost of Debt after-tax = Kd × (1 − Tax Rate). **Example:** a business borrows at 8%/year, corporate tax rate 20%: Kd after-tax = 8% × (1−0.2) = 8% × 0.8 = 6.4%. The real cost is lower than the stated interest rate because interest is deducted before corporate income tax is calculated - this tax savings is called the debt 'tax shield'."
     },
-    { "type": "heading", "text": "Which rate should you use?" },
+    {
+      "type": "heading",
+      "text": "Which rate should you use?"
+    },
     {
       "type": "paragraph",
       "text": "The most accurate way to estimate Cost of Debt is to use the YTM (yield to maturity) of the company's bonds trading in the secondary market - because this reflects exactly what the company would pay if it borrowed more right now. Using the rate on a bank loan signed 5 years ago can be misleading, because credit conditions and market rates have changed since then - WACC needs to reflect the marginal cost of capital for future investment decisions, not a historical cost."

@@ -129,6 +129,19 @@ export const BOOKKEEPING_LESSONS: Lesson[] = [
           "Một bút toán được ghi vào nhiều tài khoản, nhưng tổng hai bên vẫn phải khớp. Lệch là sai, và phần mềm kế toán sẽ từ chối lưu.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Đầu tháng tổng tài sản 800 triệu. Trong tháng: mua máy 120 triệu trả tiền ngay, vay ngân hàng 200 triệu, trả lương 30 triệu. Tổng tài sản cuối tháng là bao nhiêu?",
+      options: [
+        "970 triệu (= 800 + 200 − 30 tiền lương)",
+        "1.090 triệu (= cộng thêm cả máy 120)",
+        "850 triệu (= trừ tiền mua máy 120)",
+        "1.000 triệu (= lương trừ vào vốn chủ)",
+      ],
+      correct: 0,
+      explanation:
+        "Ba nghiệp vụ, ba tác động khác nhau. Mua máy không đổi tổng tài sản: tiền giảm 120, máy tăng 120 - của cải chỉ đổi hình thái. Vay ngân hàng làm tài sản tăng 200 và nợ phải trả tăng 200 cùng lúc, nên phương trình vẫn cân. Trả lương là chi phí thật, làm tài sản giảm 30 và vốn chủ giảm 30. 800 + 200 − 30 = 970. Hai lỗi hay gặp nằm ở nghiệp vụ mua máy: hoặc cộng máy vào mà quên tiền đã ra, hoặc trừ tiền ra mà quên máy vẫn nằm trong tài sản. Cả hai đều là quên mất rằng bút toán có hai vế.",
+    },
     keyTakeaways: [
       "Mỗi nghiệp vụ ghi vào ít nhất hai tài khoản, tổng Nợ luôn bằng tổng Có.",
       "Tài sản và chi phí tăng bên Nợ; nợ phải trả, vốn chủ và doanh thu tăng bên Có.",
@@ -294,6 +307,19 @@ export const BOOKKEEPING_LESSONS: Lesson[] = [
           "Sổ cái là nơi số dư cuối kỳ của từng tài khoản được kết lại. Nhật ký chỉ có các bút toán rời, chưa cộng thành số dư.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Bảng cân đối thử cân bằng, nhưng doanh thu tháng này trông cao bất thường so với các tháng trước. Bước tìm kiếm đúng đầu tiên là gì?",
+      options: [
+        "Mở sổ cái tài khoản doanh thu và lần ngược từng bút toán",
+        "Đọc lại toàn bộ nhật ký chung từ đầu tháng theo thứ tự thời gian",
+        "Cộng lại bảng cân đối thử để loại trừ khả năng sai số học",
+        "Đối chiếu với sao kê ngân hàng xem tiền đã thực về chưa",
+      ],
+      correct: 0,
+      explanation:
+        "Sổ cái gom mọi bút toán của cùng một tài khoản về một chỗ, nên nghi con số nào thì mở đúng sổ cái tài khoản đó - đó là đường ngắn nhất từ báo cáo về chứng từ. Nhật ký chung sắp theo thời gian chứ không theo tài khoản, nên đọc nó là lọc thủ công cả tháng để tìm vài dòng. Cộng lại bảng cân đối thử không giúp gì: nó đã cân, và cân bằng chỉ chứng minh tổng Nợ bằng tổng Có chứ không chứng minh ghi đúng tài khoản - ghi nhầm doanh thu sang một tài khoản doanh thu khác vẫn cân. Còn sao kê ngân hàng trả lời câu hỏi về tiền, mà doanh thu ghi nhận không đi cùng nhịp với tiền về.",
+    },
     keyTakeaways: [
       "Chứng từ → nhật ký (theo thời gian) → sổ cái (theo tài khoản) → bảng cân đối thử → báo cáo.",
       "Bảng cân đối thử chỉ bắt lỗi số học, không bắt lỗi ghi nhầm tài khoản.",
@@ -472,6 +498,19 @@ export const BOOKKEEPING_LESSONS: Lesson[] = [
           "Nguyên tắc dồn tích: ghi nhận theo thời điểm phát sinh, không theo thời điểm có giấy tờ hay có tiền. Hoá đơn là chứng từ, không phải điều kiện.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Ngày 1/10 doanh nghiệp trả trước 120 triệu tiền thuê văn phòng cho trọn 12 tháng. Bút toán điều chỉnh ngày 31/12 ghi vào chi phí bao nhiêu?",
+      options: [
+        "30 triệu (= 120 triệu × 3 tháng / 12)",
+        "120 triệu (= ghi hết khi trả tiền)",
+        "10 triệu (= 120/12, chỉ một tháng)",
+        "90 triệu (= phần chưa dùng tới)",
+      ],
+      correct: 0,
+      explanation:
+        "Trả tiền và phát sinh chi phí là hai thời điểm khác nhau. Lúc trả 120 triệu, doanh nghiệp mua một quyền sử dụng 12 tháng - đó là tài sản (chi phí trả trước), chưa phải chi phí. Tới 31/12 đã dùng hết 3 tháng, nên 30 triệu chuyển từ tài sản sang chi phí và 90 triệu còn lại vẫn nằm trên bảng cân đối. Ghi hết 120 triệu ngay lúc trả là lỗi kinh điển của người chỉ ghi sổ khi thấy phiếu chi: nó dồn chi phí của cả năm sau vào quý này. Ghi 10 triệu là quên rằng bút toán điều chỉnh cuối quý phải gộp cả ba tháng đã trôi qua.",
+    },
     keyTakeaways: [
       "Bút toán điều chỉnh không có chứng từ nhắc - chúng phát sinh vì thời gian trôi.",
       "Bốn nhóm: trích trước, phân bổ chi phí trả trước, khấu hao, dự phòng.",
@@ -619,6 +658,19 @@ export const BOOKKEEPING_LESSONS: Lesson[] = [
           "Sửa sổ cho khớp trước là xoá mất dấu vết. Thiếu hàng có thể là ghi sai, xuất nhầm, hoặc mất - ba nguyên nhân dẫn tới ba xử lý hoàn toàn khác nhau.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Sổ quỹ ghi số dư 45.360.000, sao kê ngân hàng ghi 45.630.000, chênh đúng 270.000 đồng. Nghi ngờ đầu tiên nên hướng vào đâu?",
+      options: [
+        "Lỗi đảo chữ số, vì phần chênh lệch chia hết cho 9",
+        "Phí dịch vụ ngân hàng chưa được ghi vào sổ quỹ",
+        "Một séc đã phát hành nhưng người nhận chưa rút",
+        "Tiền về cuối ngày ngân hàng chưa kịp hạch toán",
+      ],
+      correct: 0,
+      explanation:
+        "270.000 chia hết cho 9, và một chênh lệch chia hết cho 9 gần như luôn là đảo chữ số: ở đây 45.360 và 45.630 chỉ khác nhau ở chỗ hoán vị 36 thành 63. Đó là tính chất số học chứ không phải kinh nghiệm - đảo hai chữ số của cùng một số luôn tạo ra hiệu chia hết cho 9. Ba phương án còn lại đều là chênh lệch do thời điểm hoặc do khoản chưa ghi, và chúng có thật, nhưng chúng không có lý do gì để rơi trúng một con số chia hết cho 9. Loại trừ chênh lệch do thời điểm trước; phần còn lệch mới là lỗi thật.",
+    },
     keyTakeaways: [
       "Loại trừ chênh lệch do thời điểm trước; phần còn lệch mới là lỗi thật.",
       "Phí và lãi ngân hàng phải ghi bổ sung; séc chưa rút thì không ghi gì.",
@@ -800,6 +852,19 @@ export const BOOKKEEPING_LESSONS: Lesson[] = [
           "Ngưỡng trọng yếu quyết định. Sai sót nhỏ xử lý ở kỳ hiện tại; sai sót trọng yếu phải điều chỉnh hồi tố và trình bày lại số liệu so sánh.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Đầu năm lợi nhuận giữ lại là 500 triệu. Trong năm doanh nghiệp lãi 180 triệu và chia cổ tức 60 triệu. Lợi nhuận giữ lại cuối năm là bao nhiêu?",
+      options: [
+        "620 triệu (= 500 + 180 − 60)",
+        "680 triệu (= 500 + 180, quên cổ tức)",
+        "180 triệu (= chỉ lãi trong năm)",
+        "440 triệu (= 500 − 60, chưa kết chuyển)",
+      ],
+      correct: 0,
+      explanation:
+        "Lợi nhuận giữ lại là số cộng dồn từ ngày thành lập, nên nó nhận thêm lãi của kỳ vừa khoá rồi trừ đi phần đã chia cho cổ đông: 500 + 180 − 60 = 620. Chọn 180 là nhầm nó với tài khoản tạm thời - lợi nhuận trong kỳ về 0 sau khi khoá sổ, còn lợi nhuận giữ lại thì không, vì nó đo một thời điểm chứ không đo một khoảng thời gian. Quên trừ cổ tức là lỗi hay gặp hơn cả, và nó thổi phồng vốn chủ sở hữu đúng bằng số tiền đã rời khỏi doanh nghiệp.",
+    },
     keyTakeaways: [
       "Tài khoản tạm thời (doanh thu, chi phí) đo một khoảng thời gian nên về 0 mỗi kỳ.",
       "Tài khoản thường xuyên (tài sản, nợ, vốn chủ) đo một thời điểm nên mang số dư sang kỳ sau.",

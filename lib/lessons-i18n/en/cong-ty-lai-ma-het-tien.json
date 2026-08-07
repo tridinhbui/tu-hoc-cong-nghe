@@ -12,10 +12,21 @@
   ],
   "explanation": "A profitable company can still run out of cash, and that's how most small businesses die. Revenue is recognised at delivery, but cash may not arrive for 60-90 days; meanwhile wages, materials, and rent must be paid this very month. The faster a company grows, the wider that gap gets, because it has to front the cash for new orders before collecting on old ones. Profit tells you whether the business is sustainable; cash tells you whether it survives to next month.",
   "diagram": [
-    { "label": "Goods delivered, profit recognised", "arrow": true },
-    { "label": "Customer pays 60-90 days later", "arrow": true },
-    { "label": "Wages, materials, rent still due this month", "arrow": true },
-    { "label": "The faster the growth, the wider the cash gap" }
+    {
+      "label": "Goods delivered, profit recognised",
+      "arrow": true
+    },
+    {
+      "label": "Customer pays 60-90 days later",
+      "arrow": true
+    },
+    {
+      "label": "Wages, materials, rent still due this month",
+      "arrow": true
+    },
+    {
+      "label": "The faster the growth, the wider the cash gap"
+    }
   ],
   "realWorldExample": {
     "company": "Novaland (NVL)",
@@ -92,7 +103,7 @@
     "question": "A company reports a profit of 200 billion for the year, but receivables (AR) rose by 150 billion (customers haven't paid yet) and the company just spent 180 billion buying new machinery (CapEx). Why might this company be close to running out of cash despite being 'profitable'?",
     "options": [
       "That can't happen - if a company reports 200 billion in profit, its cash balance must also rise by a matching amount",
-      "Accounting profit ≠ real cash in hand - rising AR means most of the '200 billion profit' hasn't actually been collected in cash yet, and on top of that 180 billion was spent on machinery, so real cash can shrink sharply even while the P&L still reports a profit",
+      "Accounting profit isn't cash in hand: receivables rose and 180 billion of CapEx was actually paid out",
       "This is definitely a sign the company is committing financial-statement fraud to deceive investors",
       "The newly purchased machinery will automatically generate cash right away, so it won't affect liquidity at all"
     ],
@@ -113,7 +124,10 @@
       "type": "lead",
       "text": "This is one of the most shocking paradoxes for anyone new to finance: a company can report hundreds of billions of dong in profit on the P&L, then announce it can't pay its debts a few months later. How can it be profitable yet still run out of cash? The answer lies in the gap between accrual profit and real cash."
     },
-    { "type": "heading", "text": "Three 'holes' that drain cash even while profitable" },
+    {
+      "type": "heading",
+      "text": "Three 'holes' that drain cash even while profitable"
+    },
     {
       "type": "paragraph",
       "text": "First, Accounts Receivable rising fast: the company sells goods, recognising revenue and profit right away, but customers pay 30-90 days later or even longer. If revenue (and AR) grows faster than collections, the company has to front its own cash to cover operating costs while waiting for customers to pay - this is called the 'cash conversion gap'."
@@ -122,7 +136,10 @@
       "type": "paragraph",
       "text": "Second, Inventory ballooning: the company produces or imports more than it sells, cash already spent on materials/goods hasn't yet turned into revenue. Third, large CapEx: the company is investing heavily in new plants and equipment - investing cash flow (ICF) runs deeply negative, consuming all the cash from operations and even exceeding OCF."
     },
-    { "type": "heading", "text": "A lesson from Vietnam's 2022-2023 real-estate crisis" },
+    {
+      "type": "heading",
+      "text": "A lesson from Vietnam's 2022-2023 real-estate crisis"
+    },
     {
       "type": "paragraph",
       "text": "Many Vietnamese real-estate companies in 2022-2023 are a textbook example: the P&L still recorded profit from projects whose revenue had been booked, but real cash was buried in unfinished-project inventory and receivables from customers paying in instalments. When the bond market froze and banks tightened credit, these companies didn't have enough cash to pay debts as they came due - even while still 'profitable' on paper. This is exactly why professional investors always read the Cash Flow Statement alongside the P&L, rather than trusting the Net Income number alone."

@@ -12,10 +12,21 @@
   ],
   "explanation": "FCFE (Free Cash Flow to Equity) = FCFF - After-tax interest expense + Net new borrowing (or - net debt repayment). FCFE is the cash flow that genuinely belongs to SHAREHOLDERS after the company has met all its obligations to creditors. Discounting FCFE with Cost of Equity (not WACC) gives Equity Value directly.",
   "diagram": [
-    { "label": "Start from FCFF", "arrow": true },
-    { "label": "Subtract after-tax interest", "arrow": true },
-    { "label": "Add new borrowing, subtract principal repayment", "arrow": true },
-    { "label": "Get FCFE - discount with cost of equity for equity value" }
+    {
+      "label": "Start from FCFF",
+      "arrow": true
+    },
+    {
+      "label": "Subtract after-tax interest",
+      "arrow": true
+    },
+    {
+      "label": "Add new borrowing, subtract principal repayment",
+      "arrow": true
+    },
+    {
+      "label": "Get FCFE - discount with cost of equity for equity value"
+    }
   ],
   "interactiveType": "profit-calc",
   "realWorldExample": {
@@ -82,7 +93,7 @@
   "practicePrompt": {
     "question": "When valuing with DCF at the Equity Value level (value belonging only to shareholders) and discounting with Cost of Equity, which type of cash flow should the analyst use, and how does it differ from FCFF?",
     "options": [
-      "FCFE is the cash flow left for shareholders after debt obligations, discounted with Cost of Equity",
+      "FCFE is the cash left for shareholders after debt, discounted at the Cost of Equity",
       "FCFF, since it's the only cash flow type accepted in every standard DCF method",
       "Net Income, since this is precisely the cash flow belonging to shareholders after all expenses",
       "There's no difference between FCFE and FCFF when applied to a DCF valuation"
@@ -104,12 +115,18 @@
       "type": "lead",
       "text": "If FCFF is the slice of the pie for all investors, FCFE is the remaining slice that truly belongs to shareholders - after the company has met all its obligations to creditors."
     },
-    { "type": "heading", "text": "The FCFE formula" },
+    {
+      "type": "heading",
+      "text": "The FCFE formula"
+    },
     {
       "type": "paragraph",
       "text": "FCFE (Free Cash Flow to Equity) = FCFF - After-tax interest expense + Net new borrowing (or - net debt repayment if the company reduces debt in the period). Discounting FCFE with Cost of Equity (not WACC) gives Equity Value directly, without needing an extra step to subtract net debt as with FCFF. For a company with almost no debt, FCFE and FCFF are nearly identical because there is no meaningful interest expense or borrowing/repayment cash flow."
     },
-    { "type": "heading", "text": "FCFE is sensitive to borrowing policy" },
+    {
+      "type": "heading",
+      "text": "FCFE is sensitive to borrowing policy"
+    },
     {
       "type": "paragraph",
       "text": "If a company takes on a large new loan during the year, that year's FCFE INCREASES by the new cash received (an inflow from financing activities), even though the company will eventually have to pay interest and principal on this loan. By contrast, FCFF is NOT directly affected by borrowing decisions - because it is calculated BEFORE considering the capital structure, correctly reflecting FCFF's purpose of measuring the core business's cash-generating power, independent of how it is financed."

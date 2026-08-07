@@ -12,10 +12,18 @@
   ],
   "explanation": "EV/EBITDA = Enterprise Value / EBITDA (earnings before interest, tax, depreciation and amortization). Because both EV and EBITDA are 'neutral' to capital structure (unaffected by how much a company borrows, or which depreciation method it uses), this ratio allows a fairer comparison between companies with different financial leverage or accounting policies - especially useful in M&A.",
   "diagram": [
-    { "label": "Calculate enterprise value: market cap plus debt minus cash" },
-    { "label": "Divide by EBITDA" },
-    { "label": "Both numerator and denominator are independent of capital structure" },
-    { "label": "Lets you compare two companies with different debt levels and depreciation" }
+    {
+      "label": "Calculate enterprise value: market cap plus debt minus cash"
+    },
+    {
+      "label": "Divide by EBITDA"
+    },
+    {
+      "label": "Both numerator and denominator are independent of capital structure"
+    },
+    {
+      "label": "Lets you compare two companies with different debt levels and depreciation"
+    }
   ],
   "realWorldExample": {
     "company": "Comparing capital-intensive companies",
@@ -81,7 +89,7 @@
   "practicePrompt": {
     "question": "A company has Enterprise Value = 8,000 billion, EBITDA = 800 billion. What is this company's EV/EBITDA, and in what situation is this ratio especially more useful than P/E?",
     "options": [
-      "EV/EBITDA = Enterprise Value / EBITDA = 8,000/800 = 10x - this ratio is especially useful when comparing companies with significantly different capital structures (debt ratios), since it's neutral to interest expense and depreciation",
+      "EV/EBITDA = 8,000/800 = 10x, which is useful when the companies being compared carry different capital structures",
       "EV/EBITDA = EBITDA / Enterprise Value = 800/8,000 = 0.1x, calculated by reversing the standard formula",
       "EV/EBITDA should only be used when a company has absolutely no debt in its capital structure",
       "EV/EBITDA always gives the exact same result as P/E, so the two can be used interchangeably in every case"
@@ -103,12 +111,18 @@
       "type": "lead",
       "text": "When two companies have identical core operations but one carries heavy debt while the other has almost none, their P/Es will diverge even though the underlying business is the same. EV/EBITDA was made exactly to solve this problem."
     },
-    { "type": "heading", "text": "Why EV/EBITDA is neutral to capital structure" },
+    {
+      "type": "heading",
+      "text": "Why EV/EBITDA is neutral to capital structure"
+    },
     {
       "type": "paragraph",
       "text": "EV/EBITDA = Enterprise Value / EBITDA (earnings before interest, tax, depreciation and amortization). Both the numerator (EV includes debt) and the denominator (EBITDA is calculated before interest) are 'neutral' to how a company chooses to finance itself. If company A borrows heavily and B has almost no debt, but both have equal EBITDA - A's Net Income will be lower than B's due to its larger interest expense, distorting A's P/E (usually higher) even though core operations are equivalent. EV/EBITDA avoids this distortion entirely."
     },
-    { "type": "heading", "text": "A higher-than-industry multiple isn't automatically mispricing" },
+    {
+      "type": "heading",
+      "text": "A higher-than-industry multiple isn't automatically mispricing"
+    },
     {
       "type": "paragraph",
       "text": "A company with EV/EBITDA = 20x while the industry average is only 10x isn't necessarily overvalued. The company might have outstanding expected EBITDA growth, a stronger competitive moat, or be priced by the market as a potential M&A target carrying a control premium. Always look for the REASON behind a multiple gap before concluding it's right or wrong."

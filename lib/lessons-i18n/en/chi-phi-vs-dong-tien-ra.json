@@ -12,10 +12,21 @@
   ],
   "explanation": "An expense is the portion of economic value consumed during the period, while a cash outflow is when the money actually leaves the account - the two often don't happen at the same time. Buying a one-billion machine is cash out immediately, but the expense is spread evenly through depreciation across the machine's life. Conversely, paying a full year's office rent upfront is a one-time cash outflow while the expense is booked month by month. Understanding this gap is what it takes to read a cash flow statement correctly.",
   "diagram": [
-    { "label": "Spend 1 billion on a machine: cash out once", "arrow": true },
-    { "label": "The machine serves production for 5 years", "arrow": true },
-    { "label": "Each year, 200 million is booked as depreciation expense", "arrow": true },
-    { "label": "Expense and cash flow are offset in timing" }
+    {
+      "label": "Spend 1 billion on a machine: cash out once",
+      "arrow": true
+    },
+    {
+      "label": "The machine serves production for 5 years",
+      "arrow": true
+    },
+    {
+      "label": "Each year, 200 million is booked as depreciation expense",
+      "arrow": true
+    },
+    {
+      "label": "Expense and cash flow are offset in timing"
+    }
   ],
   "realWorldExample": {
     "company": "Vietnam Airlines",
@@ -101,7 +112,7 @@
   "practicePrompt": {
     "question": "A logistics company buys 20 shipping-container trucks worth 4 billion in total (paid entirely in cash upfront), depreciated on a straight-line basis over 8 years. In the year of purchase, how does this 4-billion outlay affect cash flow and accounting expense?",
     "options": [
-      "Cash flows out immediately by the full 4 billion in the year of purchase, but the accounting expense on that year's income statement is only 500 million (= 4 billion ÷ 8 years), with the rest allocated gradually in later years",
+      "Cash goes out in full - 4 billion - in the year of purchase, but the P&L that year only records 500 million (4 billion ÷ 8 years)",
       "Cash flows out by 500 million and the accounting expense is also only 500 million in the year of purchase, with the remainder paid and recognised in later years",
       "Cash flow is unchanged in the year of purchase, but the accounting expense recognises the full 4 billion immediately",
       "Both cash flow and accounting expense recognise the full 4 billion immediately in the year the trucks are purchased"
@@ -123,7 +134,10 @@
       "type": "lead",
       "text": "Vietnam Airlines spends thousands of billions of dong on a new aircraft. If the entire sum were booked as an expense in the year of purchase, that year's profit would collapse, while the following years - when the aircraft is still flying and generating revenue - would show no corresponding expense at all. That's why accounting separates cash outflow from expense."
     },
-    { "type": "heading", "text": "CapEx: cash out, not an immediate expense" },
+    {
+      "type": "heading",
+      "text": "CapEx: cash out, not an immediate expense"
+    },
     {
       "type": "paragraph",
       "text": "When a business buys long-term assets (machinery, plants, aircraft, core software) - called CapEx (Capital Expenditure) - the entire cash amount appears immediately on the cash flow statement under investing activities. But on the income statement, this outlay is NOT booked as a full expense in the year of purchase. Instead, the asset's value is allocated gradually into expense over several years - called depreciation."
@@ -132,7 +146,10 @@
       "type": "paragraph",
       "text": "The simplest formula - straight-line depreciation: annual depreciation expense = asset cost ÷ useful life in years. A 1,000-billion aircraft with a 20-year life → 50 billion of depreciation expense is recognised per year, even though the full 1,000 billion in cash was spent in the very first year."
     },
-    { "type": "heading", "text": "Prepaid expenses - another variant of this same separation" },
+    {
+      "type": "heading",
+      "text": "Prepaid expenses - another variant of this same separation"
+    },
     {
       "type": "paragraph",
       "text": "It isn't only long-term assets - even shorter-term outlays like paying a full year's office rent follow the same logic: the cash all goes out at once when paid, but rent expense is allocated month by month as the business actually 'uses' the office. The amount paid but not yet used sits as a 'prepaid expense' asset on the balance sheet."
@@ -148,8 +165,14 @@
     },
     {
       "type": "comparison",
-      "left": { "label": "Cash Outflow", "text": "The actual cash that leaves the bank account at a specific point in time - recorded on the cash flow statement." },
-      "right": { "label": "Accounting Expense", "text": "The economic value consumed/used during the reporting period - recorded on the income statement, which can differ enormously in timing from the actual cash outflow." }
+      "left": {
+        "label": "Cash Outflow",
+        "text": "The actual cash that leaves the bank account at a specific point in time - recorded on the cash flow statement."
+      },
+      "right": {
+        "label": "Accounting Expense",
+        "text": "The economic value consumed/used during the reporting period - recorded on the income statement, which can differ enormously in timing from the actual cash outflow."
+      }
     },
     {
       "type": "callout",

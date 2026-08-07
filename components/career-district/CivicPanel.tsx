@@ -308,7 +308,7 @@ function Apartment({ accent, userId, onClose }: Props) {
           <div className="grid grid-cols-2 gap-1.5">
             {[
               { label: `🔥 ${t.careerDistrict.civic.metricStreak}`, value: format(t.careerDistrict.civic.streakDays, { n: stats.streak }) },
-              { label: `⭐ ${t.careerDistrict.civic.level}`, value: `Lv.${stats.level}` },
+              { label: `⭐ ${t.careerDistrict.civic.level}`, value: format(t.careerDistrict.civic.levelShort, { level: stats.level }) },
               { label: `✨ ${t.careerDistrict.civic.metricXp}`, value: String(stats.xp) },
               { label: `📚 ${t.careerDistrict.civic.lessonsDone}`, value: String(stats.lessons) },
             ].map((s) => (

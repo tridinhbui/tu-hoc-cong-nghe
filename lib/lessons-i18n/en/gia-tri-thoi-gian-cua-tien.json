@@ -12,10 +12,18 @@
   ],
   "explanation": "1 billion today isn't equal to 1.2 billion two years from now, because today's money can earn a return over that stretch of time: deposited at 10% a year, it becomes 1.21 billion after two years, not 1.2 billion - the extra bit is interest earned on interest. The practical consequence: never compare two sums of money at two different points in time directly. Bring them to the same point first, using present value - and that is the calculation underneath every valuation model you will meet later on.",
   "diagram": [
-    { "label": "Two sums of money at two different points in time" },
-    { "label": "Pick a discount rate equal to the opportunity cost" },
-    { "label": "Bring both sums to present value" },
-    { "label": "Only now can they be compared" }
+    {
+      "label": "Two sums of money at two different points in time"
+    },
+    {
+      "label": "Pick a discount rate equal to the opportunity cost"
+    },
+    {
+      "label": "Bring both sums to present value"
+    },
+    {
+      "label": "Only now can they be compared"
+    }
   ],
   "realWorldExample": {
     "company": "Discounted Cash Flow (DCF) valuation",
@@ -81,7 +89,7 @@
   "practicePrompt": {
     "question": "You're valuing an investment opportunity that will pay back 50 million VND in exactly 3 years. You can otherwise put money into a savings deposit at 8% a year with almost no risk. What is the most reasonable discount rate for calculating the present value of that 50 million?",
     "options": [
-      "About 8% a year, because that is the real opportunity cost of capital - the return you give up by not putting it in a savings deposit",
+      "Around 8% a year, the real opportunity cost of capital - the return you give up by not saving",
       "0% a year, because money in the future is always worth exactly its face amount",
       "The inflation rate expected over the next 3 years, because that's the only factor affecting money's value",
       "The highest expected return you could possibly find in the market, regardless of the risk that comes with it"
@@ -103,12 +111,18 @@
       "type": "lead",
       "text": "You win the lottery and are offered a choice: 1 billion right now, or 1.2 billion in 2 years. On the surface, 1.2 billion looks more attractive - but the maths of finance gives a different answer."
     },
-    { "type": "heading", "text": "Present Value (PV) and Future Value (FV)" },
+    {
+      "type": "heading",
+      "text": "Present Value (PV) and Future Value (FV)"
+    },
     {
       "type": "paragraph",
       "text": "The time value of money is the most foundational principle in quantitative finance: 1 dong today is always worth more than 1 dong in the future, because today's dong can be invested to earn a return starting right now. Present Value (PV) is the value a future sum converts to when brought back to today; Future Value (FV) is the value a present sum grows into in the future if invested."
     },
-    { "type": "heading", "text": "Solving the lottery problem" },
+    {
+      "type": "heading",
+      "text": "Solving the lottery problem"
+    },
     {
       "type": "paragraph",
       "text": "If you take 1 billion today and deposit it at 10% a year, after 2 years you have: 1 billion × (1.1)^2 = 1.21 billion - more than the 1.2 billion promised after 2 years. So the option 'take 1 billion now' is actually the better one, even though 1.2 billion looks more appealing at first glance. This is why sums of money at different points in time can never be compared directly without converting them to the same point in time first."

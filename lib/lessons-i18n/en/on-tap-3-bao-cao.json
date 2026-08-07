@@ -12,10 +12,21 @@
   ],
   "explanation": "The three statements are three cross-sections of the same entity, so they lock together through fixed links: net profit adds into retained earnings on the balance sheet, and is also the first line of the cash flow statement; the cash flow statement's ending cash must equal the cash balance on the balance sheet. Because they're locked together so tightly, a number distorted in one place leaves a trace in the other two.",
   "diagram": [
-    { "label": "Net profit on the income statement", "arrow": true },
-    { "label": "Adds into retained earnings on the balance sheet", "arrow": true },
-    { "label": "Is also the first line of the cash flow statement", "arrow": true },
-    { "label": "Ending cash loops back to match the balance sheet" }
+    {
+      "label": "Net profit on the income statement",
+      "arrow": true
+    },
+    {
+      "label": "Adds into retained earnings on the balance sheet",
+      "arrow": true
+    },
+    {
+      "label": "Is also the first line of the cash flow statement",
+      "arrow": true
+    },
+    {
+      "label": "Ending cash loops back to match the balance sheet"
+    }
   ],
   "realWorldExample": {
     "company": "Independent audit",
@@ -92,7 +103,7 @@
     "question": "After reviewing all three financial statements, you notice Net Income from the P&L reappears on the Balance Sheet (through Retained Earnings) and is also the starting point for calculating OCF on the Cash Flow Statement. What important principle does this illustrate?",
     "options": [
       "These three statements are really just three copies of the same data, presented in three different formats",
-      "The 3 statements connect through Net Income and cash - you can't fully understand one statement while ignoring the other two, since each is a complementary slice of the overall financial picture",
+      "The three statements link to one another through Net Income and cash, so none of them can be read on its own",
       "Reading just the P&L is enough, since Net Income is the most important number and it runs through all three statements",
       "The three statements are entirely independent of each other, and Net Income appearing in multiple places is just a coincidence"
     ],
@@ -113,27 +124,42 @@
       "type": "lead",
       "text": "The last 20 lessons walked through the three core financial statements - each answering a different question, but none existing in isolation. This review lesson pulls together this whole track on the three financial statements and shows the thread connecting them."
     },
-    { "type": "heading", "text": "Group 1: The Balance Sheet - what a company owns and owes" },
+    {
+      "type": "heading",
+      "text": "Group 1: The Balance Sheet - what a company owns and owes"
+    },
     {
       "type": "paragraph",
       "text": "The Balance Sheet answers 'at one point in time, what does the company have and who does it owe'. The core equation Assets = Liabilities + Shareholders' Equity underlies every analysis. You've learned to distinguish current/non-current assets, current/long-term liabilities, and liquidity ratios (current ratio, quick ratio) to assess the ability to pay short-term debt."
     },
-    { "type": "heading", "text": "Group 2: Shareholders' Equity - equity in detail" },
+    {
+      "type": "heading",
+      "text": "Group 2: Shareholders' Equity - equity in detail"
+    },
     {
       "type": "paragraph",
       "text": "Shareholders' equity isn't one uniform block but consists of Common Stock, APIC, Retained Earnings, and Treasury Stock. Negative Retained Earnings (an accumulated deficit) and large Treasury Stock (from buybacks) are two common reasons Equity can be low or even negative at some mature companies."
     },
-    { "type": "heading", "text": "Group 3: The Cash Flow Statement - three cash flows" },
+    {
+      "type": "heading",
+      "text": "Group 3: The Cash Flow Statement - three cash flows"
+    },
     {
       "type": "paragraph",
       "text": "The Cash Flow Statement splits cash flow into Operating (from core business), Investing (buying/selling long-term assets), and Financing (borrowing, issuing/buying back shares, dividends). OCF = Net Income + D&A − ΔNWC is the central formula for understanding why accounting profit differs from real cash."
     },
-    { "type": "heading", "text": "Group 4: Why profit/loss doesn't mean the same thing as cash" },
+    {
+      "type": "heading",
+      "text": "Group 4: Why profit/loss doesn't mean the same thing as cash"
+    },
     {
       "type": "paragraph",
       "text": "Two important paradoxes: a company can be profitable yet short of cash (from AR, Inventory rising fast, large CapEx), or loss-making yet still have cash (thanks to large D&A and deferred revenue). Free Cash Flow (FCF = OCF − CapEx) is the combined metric showing how much real free cash a business generates after sustaining its operations - the foundation of DCF valuation and Buffett's concept of 'owner earnings'."
     },
-    { "type": "heading", "text": "The thread connecting the three statements" },
+    {
+      "type": "heading",
+      "text": "The thread connecting the three statements"
+    },
     {
       "type": "paragraph",
       "text": "Net Income from the P&L flows into Retained Earnings on the Balance Sheet, and is also the starting point of the Cash Flow Statement under the indirect method. Ending cash on the Cash Flow Statement must match the Cash and Cash Equivalents item on the Balance Sheet. Depreciation (D&A) on the P&L lowers fixed-asset value on the Balance Sheet, while being added back on the Cash Flow Statement since it's a non-cash cost. Changing a number on one statement always forces a change on the other two - which is why you can never read one statement while ignoring the other two."
@@ -151,9 +177,21 @@
       "type": "conceptTable",
       "title": "The three core financial statements",
       "concepts": [
-        { "vi": "Báo cáo kết quả kinh doanh", "en": "Income Statement (P&L)", "def": "Measures revenue, cost, and profit over an accounting period." },
-        { "vi": "Bảng cân đối kế toán", "en": "Balance Sheet", "def": "Measures assets, liabilities, and equity at one point in time." },
-        { "vi": "Báo cáo lưu chuyển tiền tệ", "en": "Cash Flow Statement", "def": "Measures real cash flow across three activities: operating, investing, financing." }
+        {
+          "vi": "Báo cáo kết quả kinh doanh",
+          "en": "Income Statement (P&L)",
+          "def": "Measures revenue, cost, and profit over an accounting period."
+        },
+        {
+          "vi": "Bảng cân đối kế toán",
+          "en": "Balance Sheet",
+          "def": "Measures assets, liabilities, and equity at one point in time."
+        },
+        {
+          "vi": "Báo cáo lưu chuyển tiền tệ",
+          "en": "Cash Flow Statement",
+          "def": "Measures real cash flow across three activities: operating, investing, financing."
+        }
       ]
     },
     {

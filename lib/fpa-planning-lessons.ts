@@ -287,7 +287,7 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
         "Công ty đóng băng tuyển dụng hoàn toàn từ 1/1 năm sau. Chi phí lương năm sau so với năm nay sẽ thế nào?",
       options: [
         "Giữ nguyên, vì số nhân sự không đổi",
-        "Vẫn tăng, do hiệu ứng tràn của những người tuyển trong năm nay cộng với tăng lương định kỳ",
+        "Vẫn tăng, do hiệu ứng tràn cộng tăng lương",
         "Giảm, vì không còn chi phí tuyển dụng",
         "Không dự đoán được nếu chưa biết tỷ lệ nghỉ việc",
       ],
@@ -471,7 +471,7 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
         "Bảng 13 tuần cho thấy tuần thứ 7 số dư tiền xuống dưới mức tối thiểu. Hành động hợp lý nhất bây giờ là gì?",
       options: [
         "Chờ thêm vài tuần xem tình hình có tự cải thiện không",
-        "Xử lý ngay: giãn một khoản chi lớn, đẩy nhanh thu từ vài khách lớn, hoặc thu xếp hạn mức tín dụng",
+        "Xử lý ngay: giãn chi, đẩy thu, thu xếp tín dụng",
         "Cắt giảm nhân sự để giảm chi phí",
         "Ghi nhận và báo cáo trong cuộc họp tháng",
       ],
@@ -639,7 +639,7 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
         "Ban lãnh đạo hỏi: kế hoạch này có đạt được không? Cách trả lời hữu ích nhất là gì?",
       options: [
         "Có, dựa trên các giả định hiện tại",
-        "Kế hoạch đạt được nếu tỷ lệ chuyển đổi giữ trên 3,2%; dưới mức đó thì hụt khoảng 15% và ta nên hoãn phần mở rộng",
+        "Đạt nếu tỷ lệ chuyển đổi giữ trên 3,2%; dưới thì hụt 15%",
         "Không thể trả lời chắc chắn vì tương lai không dự đoán được",
         "Có, với xác suất khoảng 70%",
       ],
@@ -982,7 +982,7 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
         "Doanh thu tháng vượt kế hoạch 15% nhờ một hợp đồng lớn ký sớm hơn dự kiến một quý. Bình luận nên viết thế nào?",
       options: [
         "Doanh thu vượt kế hoạch 15%, kết quả tích cực",
-        "Vượt 15% do hợp đồng X ký sớm hơn một quý; đây là dịch chuyển thời điểm, nên quý sau sẽ hụt tương ứng và dự báo cần điều chỉnh",
+        "Vượt 15% do hợp đồng X ký sớm một quý, nên quý sau sẽ hụt",
         "Doanh thu vượt kế hoạch, đề nghị nâng chỉ tiêu các quý còn lại",
         "Cần thêm thời gian để đánh giá xu hướng",
       ],

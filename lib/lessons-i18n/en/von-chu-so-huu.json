@@ -12,9 +12,17 @@
   ],
   "explanation": "Equity is what's left of assets after paying off all debt - the portion belonging to shareholders. It comes from two sources: cash shareholders contributed, and profit the company retained over the years instead of paying it all out. One point often misunderstood: this is an accounting figure at cost, not market value, so a good company usually has market capitalisation far above its equity, while negative equity doesn't necessarily mean the company is dying.",
   "diagram": [
-    { "label": "Total assets", "arrow": true },
-    { "label": "Subtract liabilities", "arrow": true },
-    { "label": "= Equity (belonging to shareholders)" }
+    {
+      "label": "Total assets",
+      "arrow": true
+    },
+    {
+      "label": "Subtract liabilities",
+      "arrow": true
+    },
+    {
+      "label": "= Equity (belonging to shareholders)"
+    }
   ],
   "realWorldExample": {
     "company": "FPT Corporation",
@@ -100,7 +108,7 @@
   "practicePrompt": {
     "question": "Company Z has Assets = 800 billion, Liabilities = 500 billion. At year-end, the company earns 50 billion in profit but pays out all 50 billion as dividends to shareholders. How does the company's equity change from the start to the end of the year?",
     "options": [
-      "Equity is unchanged (still 300 billion), because the 50-billion profit increases equity by 50 billion but the fully-distributed dividend reduces it by exactly the same 50 billion",
+      "Equity is unchanged at 300 billion: the profit adds 50 billion, and the full dividend takes the same 50 back out",
       "Equity increases by 50 billion because the company had a profitable year, unrelated to the dividend decision",
       "Equity falls by 50 billion because the company had to pay out cash as dividends to shareholders",
       "It cannot be determined without information about the shareholders' original contributed capital"
@@ -122,17 +130,26 @@
       "type": "lead",
       "text": "If FPT sold off every asset it owns and paid off all its debts, who would the remaining cash belong to? The answer is equity - the shareholders' 'real' portion, after every creditor has been paid in full."
     },
-    { "type": "heading", "text": "The base formula" },
+    {
+      "type": "heading",
+      "text": "The base formula"
+    },
     {
       "type": "paragraph",
       "text": "Equity = Total Assets − Total Liabilities. This is the portion of the business's value that truly belongs to shareholders, after deducting every obligation to third parties (banks, suppliers, bondholders). Equity isn't cash sitting somewhere - it's an accounting figure reflecting the 'leftover' on the balance sheet."
     },
-    { "type": "heading", "text": "Two main components of equity" },
+    {
+      "type": "heading",
+      "text": "Two main components of equity"
+    },
     {
       "type": "paragraph",
       "text": "Paid-in Capital/Contributed Capital is the cash shareholders paid to buy shares when the company issued them, including par value and share premium. Retained Earnings is the accumulated net profit over the years that the company chooses to keep for reinvestment rather than paying out entirely as dividends. For long-running, well-growing companies like FPT, most of the equity value comes from retained earnings accumulated over decades, not the original contributed capital."
     },
-    { "type": "heading", "text": "How issuing new shares affects equity" },
+    {
+      "type": "heading",
+      "text": "How issuing new shares affects equity"
+    },
     {
       "type": "paragraph",
       "text": "When a company issues new shares to raise capital, equity rises by exactly the amount raised, while the number of shares outstanding also rises. This creates dilution: each existing shareholder still holds the same number of shares, but their ownership percentage of the whole company falls, because the 'pie' is now sliced into more pieces."
@@ -150,10 +167,26 @@
       "type": "conceptTable",
       "title": "Equity terminology",
       "concepts": [
-        { "vi": "Vốn chủ sở hữu", "en": "Equity / Shareholders' Equity", "def": "The portion of assets belonging to shareholders after deducting all liabilities." },
-        { "vi": "Lợi nhuận giữ lại", "en": "Retained Earnings", "def": "Accumulated net profit over the years, not yet paid out as dividends, kept for reinvestment." },
-        { "vi": "Thặng dư vốn cổ phần", "en": "Share Premium", "def": "The difference between the actual share sale price and par value at issuance." },
-        { "vi": "Pha loãng", "en": "Dilution", "def": "The fall in existing shareholders' ownership percentage when the company issues new shares." }
+        {
+          "vi": "Vốn chủ sở hữu",
+          "en": "Equity / Shareholders' Equity",
+          "def": "The portion of assets belonging to shareholders after deducting all liabilities."
+        },
+        {
+          "vi": "Lợi nhuận giữ lại",
+          "en": "Retained Earnings",
+          "def": "Accumulated net profit over the years, not yet paid out as dividends, kept for reinvestment."
+        },
+        {
+          "vi": "Thặng dư vốn cổ phần",
+          "en": "Share Premium",
+          "def": "The difference between the actual share sale price and par value at issuance."
+        },
+        {
+          "vi": "Pha loãng",
+          "en": "Dilution",
+          "def": "The fall in existing shareholders' ownership percentage when the company issues new shares."
+        }
       ]
     },
     {

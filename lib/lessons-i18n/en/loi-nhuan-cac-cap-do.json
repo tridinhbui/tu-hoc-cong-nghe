@@ -12,10 +12,21 @@
   ],
   "explanation": "The income statement peels profit into three tiers, and each one answers a different question. Gross profit tells you whether making the product is profitable. Operating profit tells you what's left after feeding the entire sales and admin machine. Net income tells you the final piece belonging to shareholders, after interest and tax. Reading all three is what reveals whether a problem sits in production, in operations, or in the capital structure.",
   "diagram": [
-    { "label": "Revenue", "arrow": true },
-    { "label": "Subtract cost of goods sold: left with gross profit", "arrow": true },
-    { "label": "Subtract selling and admin expenses: left with operating profit", "arrow": true },
-    { "label": "Subtract interest and tax: left with net profit" }
+    {
+      "label": "Revenue",
+      "arrow": true
+    },
+    {
+      "label": "Subtract cost of goods sold: left with gross profit",
+      "arrow": true
+    },
+    {
+      "label": "Subtract selling and admin expenses: left with operating profit",
+      "arrow": true
+    },
+    {
+      "label": "Subtract interest and tax: left with net profit"
+    }
   ],
   "realWorldExample": {
     "company": "Mobile World (Thế Giới Di Động)",
@@ -101,7 +112,7 @@
   "practicePrompt": {
     "question": "Garment company X has a Gross Margin of 45% (very good for its industry) but an Operating Margin of only 4% (far below competitors' 10%). Where does company X's problem lie?",
     "options": [
-      "In operations - SG&A costs (sales, admin, marketing) are too high relative to revenue, eating up most of the strong gross profit already generated",
+      "The problem sits in operations: SG&A (selling, admin, marketing) is too high against revenue and eats up the strong gross margin",
       "In production - because a 45% Gross Margin shows the company producing less efficiently than its competitors",
       "There's no problem at all since a 4% Operating Margin is still a positive figure - the company is still profitable",
       "In paying too much interest on debt, since that's the only line item sitting between Gross Profit and Operating Income"
@@ -123,17 +134,26 @@
       "type": "lead",
       "text": "Mobile World can announce 'profit' three different ways in the same report - and all three are correct, each just answering a different question. Without understanding these three tiers, investors easily get confused comparing companies against each other."
     },
-    { "type": "heading", "text": "Tier 1: Gross Profit" },
+    {
+      "type": "heading",
+      "text": "Tier 1: Gross Profit"
+    },
     {
       "type": "paragraph",
       "text": "Gross Profit = Revenue − Cost of Goods Sold (COGS). This is the first and most basic figure, measuring how much the business profits from selling its products/services before accounting for other operating costs like office staff salaries, marketing, or rent. Gross Margin = Gross Profit ÷ Revenue, showing what percentage of each dong of revenue is left after deducting direct production/purchasing costs."
     },
-    { "type": "heading", "text": "Tier 2: Operating Profit" },
+    {
+      "type": "heading",
+      "text": "Tier 2: Operating Profit"
+    },
     {
       "type": "paragraph",
       "text": "Operating Profit = Gross Profit − Operating Expenses (including SG&A: sales, admin; and R&D if applicable). This figure reflects the efficiency of the entire core business operation, before accounting for capital structure (how much debt is used) or tax. This is the figure analysts most often use to compare operational efficiency between companies in the same industry, since it strips out the effect of how a company finances itself."
     },
-    { "type": "heading", "text": "Tier 3: Net Income" },
+    {
+      "type": "heading",
+      "text": "Tier 3: Net Income"
+    },
     {
       "type": "paragraph",
       "text": "Net Income = Operating Profit − Interest Expense − Corporate Income Tax ± other one-off items. This is the 'final' figure - what truly belongs to shareholders after all obligations are settled, used to calculate EPS (earnings per share) and ROE."
@@ -151,10 +171,26 @@
       "type": "conceptTable",
       "title": "The three profit tiers",
       "concepts": [
-        { "vi": "Giá vốn hàng bán", "en": "COGS (Cost of Goods Sold)", "def": "The direct cost of producing/purchasing the goods sold during the period." },
-        { "vi": "Chi phí bán hàng & quản lý", "en": "SG&A (Selling, General & Administrative)", "def": "Indirect operating costs: office salaries, marketing, rent." },
-        { "vi": "Biên lợi nhuận", "en": "Margin", "def": "The percentage a given profit tier represents of revenue." },
-        { "vi": "Lợi nhuận trên mỗi cổ phiếu", "en": "EPS (Earnings Per Share)", "def": "Net Income divided by the number of shares outstanding." }
+        {
+          "vi": "Giá vốn hàng bán",
+          "en": "COGS (Cost of Goods Sold)",
+          "def": "The direct cost of producing/purchasing the goods sold during the period."
+        },
+        {
+          "vi": "Chi phí bán hàng & quản lý",
+          "en": "SG&A (Selling, General & Administrative)",
+          "def": "Indirect operating costs: office salaries, marketing, rent."
+        },
+        {
+          "vi": "Biên lợi nhuận",
+          "en": "Margin",
+          "def": "The percentage a given profit tier represents of revenue."
+        },
+        {
+          "vi": "Lợi nhuận trên mỗi cổ phiếu",
+          "en": "EPS (Earnings Per Share)",
+          "def": "Net Income divided by the number of shares outstanding."
+        }
       ]
     },
     {

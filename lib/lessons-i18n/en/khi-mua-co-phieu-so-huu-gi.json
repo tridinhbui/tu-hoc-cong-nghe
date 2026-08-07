@@ -12,10 +12,18 @@
   ],
   "explanation": "Owning stock means owning a proportional share in: (1) the company's net assets; (2) its stream of future profit; (3) voting rights on major decisions (electing the board, mergers...). The price on the screen is just the market's expression of these real economic rights. Because these three rights are what really matters, purely accounting moves like a stock split or reverse stock split - which only change the number of shares and the price per share by an agreed ratio - do not change a shareholder's actual ownership percentage or economic value at all, just like exchanging a 100,000-dong note for ten 10,000-dong notes doesn't make you richer or poorer.",
   "diagram": [
-    { "label": "Owning a stock" },
-    { "label": "= a proportional share of net assets" },
-    { "label": "+ future profit stream" },
-    { "label": "+ voting rights" }
+    {
+      "label": "Owning a stock"
+    },
+    {
+      "label": "= a proportional share of net assets"
+    },
+    {
+      "label": "+ future profit stream"
+    },
+    {
+      "label": "+ voting rights"
+    }
   ],
   "realWorldExample": {
     "company": "Small shareholders and voting rights",
@@ -82,7 +90,7 @@
     "question": "You own 0.001% of a listed company's shares. Besides the right to receive dividends (if declared), what other specific rights do you hold as a shareholder, even with such a tiny ownership stake?",
     "options": [
       "Only the right to receive dividends - no other right, since the ownership stake is too small to matter",
-      "Owning stock = owning a proportional share of the assets, profit, and voting rights - even at a tiny ratio, you still have the right to vote at the shareholder meeting and a corresponding claim on net assets if the company is dissolved",
+      "Owning shares means owning a proportional claim on assets, profits and voting rights",
       "Only the right to resell the shares on the exchange - no right at all related to the company's assets or governance",
       "Shareholder rights only arise once the ownership stake reaches at least 5%"
     ],
@@ -103,12 +111,18 @@
       "type": "lead",
       "text": "When you tap the buy button on an app, what you actually get isn't just a number in your account - it's a real ownership ratio in the assets, future profit, and voice of a business."
     },
-    { "type": "heading", "text": "Three layers of economic right" },
+    {
+      "type": "heading",
+      "text": "Three layers of economic right"
+    },
     {
       "type": "paragraph",
       "text": "Owning stock means owning a proportional share of: (1) the company's net assets - factories, cash, inventory minus debt; (2) the profit the company will generate in the future; (3) voting rights on major decisions like electing the board or approving mergers. The price on the screen is just how the market 'prices' these three layers of right at a given moment - it can drift away from real value, but that doesn't change the nature of the ownership right underneath."
     },
-    { "type": "heading", "text": "The number of shares alone tells you nothing" },
+    {
+      "type": "heading",
+      "text": "The number of shares alone tells you nothing"
+    },
     {
       "type": "paragraph",
       "text": "100 shares of a company with a 10,000-billion-dong market cap carries completely different economic value from 100 shares of a company with a 10-billion-dong market cap - because the real ownership stake in assets and profit is very different. Similarly, when a company does a 10:1 reverse stock split - turning 1 billion shares into 100 million shares with the price per share rising tenfold - each shareholder's ownership ratio and economic value doesn't change at all. It's just exchanging ten 10,000-dong notes for one 100,000-dong note, making no one richer or poorer."

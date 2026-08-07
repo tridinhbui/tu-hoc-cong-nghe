@@ -1075,7 +1075,7 @@ export const ADVANCED_MASTERCLASS_LESSONS: Lesson[] = [
         "Doanh nghiệp cam kết 'trung hoà carbon vào 2050' nhưng không nêu năm gốc, không có mốc trung hạn và không có bên kiểm chứng. Nên đánh giá thế nào?",
       options: [
         "Cam kết mạnh, vì 2050 trùng với mục tiêu quốc gia",
-        "Cam kết yếu và mang dấu hiệu tẩy xanh: thiếu cả ba yếu tố khiến một cam kết có thể kiểm chứng được",
+        "Cam kết yếu, mang dấu hiệu tẩy xanh",
         "Không đánh giá được nếu chưa xem báo cáo tài chính",
         "Cam kết tốt vì đã công bố công khai",
       ],

@@ -12,10 +12,21 @@
   ],
   "explanation": "Dividend policy answers the question of whether the remaining profit should be kept or returned to shareholders, and the answer depends on a single comparison: does the business still have reinvestment opportunities earning more than the cost of capital? If so, retaining it creates more value; if not, retaining it only dilutes efficiency. One important practical point: the market reads a dividend as a promise, so cutting it is a very strong negative signal.",
   "diagram": [
-    { "label": "The company has after-tax profit", "arrow": true },
-    { "label": "Is there still reinvestment with ROIC above the cost of capital?", "arrow": true },
-    { "label": "Yes: retain it, growth creates more value", "arrow": true },
-    { "label": "No: return it to shareholders via dividends or buybacks" }
+    {
+      "label": "The company has after-tax profit",
+      "arrow": true
+    },
+    {
+      "label": "Is there still reinvestment with ROIC above the cost of capital?",
+      "arrow": true
+    },
+    {
+      "label": "Yes: retain it, growth creates more value",
+      "arrow": true
+    },
+    {
+      "label": "No: return it to shareholders via dividends or buybacks"
+    }
   ],
   "realWorldExample": {
     "company": "Amazon",
@@ -81,7 +92,7 @@
   "practicePrompt": {
     "question": "A company has ROIC (return on invested capital) = 18%, while its Cost of Capital (WACC) is only 10%. Management is weighing: should it pay out all profit as dividends, or retain it for reinvestment? Which decision creates more value?",
     "options": [
-      "Should retain earnings for reinvestment - because ROIC (18%) > Cost of Capital (10%), every unit of profit retained and reinvested creates more added value for shareholders than paying it all out as dividends",
+      "The company should retain the profit and reinvest it, because ROIC of 18% exceeds the 10% cost of capital",
       "Should pay out all profit as a dividend immediately because shareholders always prefer cash over letting the company reinvest",
       "ROIC and Cost of Capital have nothing to do with the decision to pay a dividend or retain earnings",
       "This decision should be based purely on management's preference, without comparing ROIC to Cost of Capital"
@@ -103,12 +114,18 @@
       "type": "lead",
       "text": "When a business has profit, the next question is: return it to shareholders immediately as a dividend, or retain it for reinvestment to create more value in the future? The answer depends on a simple but decisive comparison: ROIC versus the cost of capital."
     },
-    { "type": "heading", "text": "The core principle: ROIC versus the cost of capital" },
+    {
+      "type": "heading",
+      "text": "The core principle: ROIC versus the cost of capital"
+    },
     {
       "type": "paragraph",
       "text": "If a business's ROIC (return on invested capital) is higher than its cost of capital, retaining money for reinvestment creates more value than paying it out as dividends and letting shareholders find their own investments. This is exactly why Amazon didn't pay dividends for over 20 years - all its free cash flow was reinvested into AWS, its logistics network, and Prime, segments with an outstanding ROIC. Conversely, once growth slows and high-return investment opportunities dry up, a business starts paying dividends - as Microsoft did starting in 2003 when its revenue growth flattened."
     },
-    { "type": "heading", "text": "Why dividends are usually 'stickier' than actual profit" },
+    {
+      "type": "heading",
+      "text": "Why dividends are usually 'stickier' than actual profit"
+    },
     {
       "type": "paragraph",
       "text": "A company's profit can swing sharply every quarter, but dividend policy is usually stable or steadily increasing - a phenomenon called 'dividend smoothing'. The reason: the market reacts very negatively to a dividend cut, seeing it as a bad signal about the company's long-term outlook. So management usually only raises the dividend when confident it can be sustained long-term, and tries to avoid cutting it at almost any cost, even if profit temporarily declines."

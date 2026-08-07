@@ -773,7 +773,7 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
         "Bạn nhận thư yêu cầu giải trình về một khiếu nại mà bạn tin là hoàn toàn vô căn cứ. Nên làm gì?",
       options: [
         "Bỏ qua vì khiếu nại không có cơ sở nên không cần trả lời",
-        "Trả lời đầy đủ và đúng hạn, cung cấp tài liệu chứng minh - việc bạn tin mình vô can không thay thế nghĩa vụ hợp tác",
+        "Trả lời đầy đủ và đúng hạn, kèm tài liệu chứng minh",
         "Trả lời ngắn gọn rằng khiếu nại vô căn cứ, không kèm tài liệu",
         "Chờ tới khi có yêu cầu lần thứ hai rồi mới phản hồi",
       ],
@@ -954,7 +954,7 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
         "Bạn dùng dự báo ngành từ một công ty tư vấn cho phần định giá. Sau đó phát hiện dự báo đó do chính doanh nghiệp bạn đang phân tích đặt hàng. Nên làm gì?",
       options: [
         "Giữ nguyên vì công ty tư vấn là bên độc lập",
-        "Thẩm định lại các giả định chính, công bố nguồn gốc tài trợ, và tìm nguồn đối chiếu độc lập trước khi giữ kết luận",
+        "Thẩm định lại giả định và công bố nguồn tài trợ",
         "Bỏ hoàn toàn phần định giá dựa trên dự báo đó",
         "Giữ nguyên nhưng thêm ghi chú nhỏ về nguồn tài trợ",
       ],
@@ -1310,7 +1310,7 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
         "Sau khi phân bổ cho khách, còn dư một phần nhỏ và bạn muốn lấy phần đó. Được không?",
       options: [
         "Không, phần dư phải được trả lại cho bên chào bán",
-        "Được, nếu khách hàng phù hợp đã được phân bổ đầy đủ theo quy trình và bạn công bố vị thế cá nhân đó",
+        "Được, nếu khách hàng đã được phân bổ đủ và bạn công bố",
         "Được, không cần công bố vì bạn chỉ lấy phần dư",
         "Không, vì tham gia cùng khách hàng luôn là xung đột lợi ích",
       ],
@@ -1518,7 +1518,7 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
         "Một khách hàng cũ chủ động gọi cho bạn hai tuần sau khi bạn nghỉ, đề nghị chuyển tài sản sang chỗ mới. Bạn nhận được không?",
       options: [
         "Không, vì hai tuần là quá sớm sau khi nghỉ việc",
-        "Được, nếu bạn không chủ động liên hệ trước và không có cam kết không lôi kéo khách ràng buộc bạn",
+        "Được, nếu bạn không phải người chủ động liên hệ trước",
         "Được, nhưng phải thông báo cho công ty cũ trước",
         "Không, vì khách hàng vẫn thuộc về công ty cũ",
       ],
@@ -1719,7 +1719,7 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
         "Bạn đã báo lên tuân thủ, họ kết luận không có vi phạm, nhưng bạn vẫn tin là có. Nên làm gì?",
       options: [
         "Chấp nhận kết luận vì đã hoàn thành nghĩa vụ báo cáo",
-        "Tiếp tục tách mình khỏi hoạt động liên quan, và cân nhắc leo thang lên cấp cao hơn nếu cơ sở của bạn vẫn vững",
+        "Tách khỏi hoạt động liên quan, cân nhắc leo thang",
         "Báo ngay ra cơ quan quản lý bên ngoài",
         "Tự thu thập thêm bằng chứng để báo cáo lại lần hai",
       ],

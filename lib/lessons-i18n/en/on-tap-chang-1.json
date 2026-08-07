@@ -12,10 +12,18 @@
   ],
   "explanation": "This stage rests on a single idea: money has a price across time, so one dong today is worth more than one dong a year from now. From that comes the formula PV = FV / (1+r)^n, and everything else follows - compounding, NPV, valuation. The most important consequence is the direction r moves things: a higher interest rate makes the denominator larger, so present value falls, which is why stock valuations drop the moment rates rise, even when the underlying business hasn't changed a thing.",
   "diagram": [
-    { "label": "Money loses value over time because of inflation" },
-    { "label": "So money today is worth more than money next year" },
-    { "label": "Convert it to the present using PV = FV / (1+r)^n" },
-    { "label": "r reflects risk: as r rises, every valuation falls" }
+    {
+      "label": "Money loses value over time because of inflation"
+    },
+    {
+      "label": "So money today is worth more than money next year"
+    },
+    {
+      "label": "Convert it to the present using PV = FV / (1+r)^n"
+    },
+    {
+      "label": "r reflects risk: as r rises, every valuation falls"
+    }
   ],
   "realWorldExample": {
     "company": "A macro chain of cause and effect",
@@ -82,7 +90,7 @@
   "practicePrompt": {
     "question": "A friend says: 'I just borrowed 200 million from the bank at 10% a year to invest in a project promising 25% a year - sounded so good I put in the whole amount, keeping nothing back for safety.' Based on stage 3's concepts (leverage, risk, liquidity), what advice makes the most sense?",
     "options": [
-      "Keep some liquidity in reserve, and weigh the risk that the project might not actually reach the promised 25%, since leverage amplifies both gains and losses",
+      "Keep some liquidity in reserve, because leverage magnifies the losses just as much as the gains",
       "Completely reasonable, since the 15%-a-year gap between the loan rate and the expected return is certain to be profitable",
       "Never take on any loan under any circumstances, since borrowing is always a risky decision",
       "It doesn't matter, since a 10%-a-year loan rate is low enough not to warrant weighing extra risk"
@@ -104,12 +112,18 @@
       "type": "lead",
       "text": "Over the past 20 days, you've gone from 'what is finance' to deeper concepts like leverage, the time value of money, and the financial system. Now is the moment to connect it all into one unified picture."
     },
-    { "type": "heading", "text": "The four pillars of Stage 3" },
+    {
+      "type": "heading",
+      "text": "The four pillars of Stage 3"
+    },
     {
       "type": "paragraph",
       "text": "All 20 lessons so far turn around four tightly linked pillars: Money (a medium of exchange, losing value to inflation), Time (compounding, the time value of money, PV/FV), Risk (never free, needs to be priced, diversification reduces specific risk), and Cash flow (the real state of financial health, more important than profit on paper)."
     },
-    { "type": "heading", "text": "An example that connects all four pillars" },
+    {
+      "type": "heading",
+      "text": "An example that connects all four pillars"
+    },
     {
       "type": "paragraph",
       "text": "When inflation runs high, a central bank usually raises interest rates to contain it (connecting Money and monetary policy). A higher rate raises the discount rate (r) in the formula PV = FV/(1+r)^n, which lowers the present value of every future cash flow (connecting Time). This is exactly why, when the US Federal Reserve raises rates, stock valuations across the whole market tend to fall - even when the underlying businesses have changed nothing about their operations."

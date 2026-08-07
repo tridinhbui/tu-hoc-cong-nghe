@@ -12,10 +12,21 @@
   ],
   "explanation": "Cash accounting only records when cash actually moves in or out, so it's very simple and suits small household businesses. The weakness shows immediately once there's buying or selling on credit: a month collecting a lot of old debt looks like a boom month, while a month prepaying a full year's rent looks like a loss-making month. Because profit jumps around based on the timing of cash flows rather than actual activity, any business past a small scale must move to accrual.",
   "diagram": [
-    { "label": "Only track cash in and out", "arrow": true },
-    { "label": "Record right when cash moves", "arrow": true },
-    { "label": "Simple, suits small household businesses", "arrow": true },
-    { "label": "But profit jumps with the timing of receipts and payments, not the actual period" }
+    {
+      "label": "Only track cash in and out",
+      "arrow": true
+    },
+    {
+      "label": "Record right when cash moves",
+      "arrow": true
+    },
+    {
+      "label": "Simple, suits small household businesses",
+      "arrow": true
+    },
+    {
+      "label": "But profit jumps with the timing of receipts and payments, not the actual period"
+    }
   ],
   "realWorldExample": {
     "company": "Small grocery stores, household businesses",
@@ -102,7 +113,7 @@
     "question": "A small household business sells 50 million of goods to a customer in June, but the customer agrees to pay in August. If this business uses cash accounting, how much revenue will the June report recognise from this transaction?",
     "options": [
       "Recognise the full 50 million in June, exactly as accrual accounting would",
-      "0 dong - because cash accounting only recognises revenue when the cash actually lands in the account, so it must wait until August",
+      "Zero - cash accounting only books the revenue when the money actually lands, so that is August",
       "25 million - recognising half right away and the remaining half in August",
       "It cannot be determined without information about the corresponding cost of goods sold"
     ],
@@ -123,12 +134,18 @@
       "type": "lead",
       "text": "Cash Accounting is the opposite of accrual accounting: it only recognises revenue and expenses when cash actually moves into or out of the business. Simple, intuitive, but clearly limited as a business grows in scale."
     },
-    { "type": "heading", "text": "The advantage of cash accounting" },
+    {
+      "type": "heading",
+      "text": "The advantage of cash accounting"
+    },
     {
       "type": "paragraph",
       "text": "For a small household business, a grocery store, or a freelancer, cash accounting fits well because there are few credit transactions and a simple business cycle - sell and collect cash right away, buy and pay cash right away. No need to track complex receivables and payables, and the books are easy to understand and easy to reconcile against the actual bank balance."
     },
-    { "type": "heading", "text": "The limits as a business grows" },
+    {
+      "type": "heading",
+      "text": "The limits as a business grows"
+    },
     {
       "type": "paragraph",
       "text": "The problem with cash accounting is that it allows - whether accidentally or deliberately - profit to be distorted between periods. A business can delay paying an expense into the next month to make this month's profit look better, or ask customers to pay early to pull revenue into the current period. Without a matching principle, two adjacent reporting periods may not accurately reflect true operating performance, making it hard for investors to compare."
@@ -150,15 +167,33 @@
       "type": "conceptTable",
       "title": "Cash accounting terminology",
       "concepts": [
-        { "vi": "Kế toán tiền mặt", "en": "Cash Accounting", "def": "Recognises revenue/expenses only when cash actually moves in or out" },
-        { "vi": "Hộ kinh doanh cá thể", "en": "Sole proprietorship", "def": "A small business form that usually applies simple cash accounting" },
-        { "vi": "Bóp méo lợi nhuận theo kỳ", "en": "Earnings timing distortion", "def": "Profit shifting between periods because it's recognised by when cash moves" }
+        {
+          "vi": "Kế toán tiền mặt",
+          "en": "Cash Accounting",
+          "def": "Recognises revenue/expenses only when cash actually moves in or out"
+        },
+        {
+          "vi": "Hộ kinh doanh cá thể",
+          "en": "Sole proprietorship",
+          "def": "A small business form that usually applies simple cash accounting"
+        },
+        {
+          "vi": "Bóp méo lợi nhuận theo kỳ",
+          "en": "Earnings timing distortion",
+          "def": "Profit shifting between periods because it's recognised by when cash moves"
+        }
       ]
     },
     {
       "type": "comparison",
-      "left": { "label": "Cash accounting", "text": "Simple, easy to understand, suits small businesses with few credit transactions - but easily distorts profit by period" },
-      "right": { "label": "Accrual accounting", "text": "More complex but reflects true operating performance, mandatory for listed businesses" }
+      "left": {
+        "label": "Cash accounting",
+        "text": "Simple, easy to understand, suits small businesses with few credit transactions - but easily distorts profit by period"
+      },
+      "right": {
+        "label": "Accrual accounting",
+        "text": "More complex but reflects true operating performance, mandatory for listed businesses"
+      }
     },
     {
       "type": "closing",

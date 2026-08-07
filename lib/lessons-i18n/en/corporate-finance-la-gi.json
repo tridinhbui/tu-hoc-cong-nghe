@@ -12,9 +12,17 @@
   ],
   "explanation": "Corporate finance boils down to three recurring questions: where to invest, where to get the money from, and what to do with what's left over. The first question is answered with NPV - only accept projects that earn more than the cost of capital. The second is a balancing act between the tax shield of debt and the risk of insolvency. The third depends on whether the business still has reinvestment opportunities earning more than the cost of capital.",
   "diagram": [
-    { "label": "Investment: where to invest?", "arrow": true },
-    { "label": "Financing: use debt or equity?", "arrow": true },
-    { "label": "Dividend: how much to return to shareholders?" }
+    {
+      "label": "Investment: where to invest?",
+      "arrow": true
+    },
+    {
+      "label": "Financing: use debt or equity?",
+      "arrow": true
+    },
+    {
+      "label": "Dividend: how much to return to shareholders?"
+    }
   ],
   "realWorldExample": {
     "company": "CFOs of listed corporations",
@@ -81,7 +89,7 @@
     "question": "A CFO is weighing: (1) should we build a new plant, (2) should we raise capital through debt or by issuing shares, (3) how much profit should be paid out as dividends to shareholders. Which group of Corporate Finance decisions do these three questions belong to?",
     "options": [
       "All three belong to a single decision: day-to-day cash flow management",
-      "Three decisions: Investment (building the plant), Financing (debt or issuing shares), Dividend (how much to pay shareholders) - these are the three core pillars of Corporate Finance",
+      "Three decisions: Investment (build the plant), Financing (debt or equity), and Dividends (what to pay out)",
       "Only the second decision (debt or issuing shares) belongs to Corporate Finance, the other two belong to a different field",
       "These three decisions are unrelated and should be handled entirely independently by different departments"
     ],
@@ -102,17 +110,26 @@
       "type": "lead",
       "text": "Corporate Finance isn't a subject reserved for investment bankers - it's the framework any CFO, from a 5-person startup to a listed conglomerate, uses to answer three life-or-death questions: where should money go, where does the money come from, and what should be done with the profit?"
     },
-    { "type": "heading", "text": "The three pillars of every corporate financial decision" },
+    {
+      "type": "heading",
+      "text": "The three pillars of every corporate financial decision"
+    },
     {
       "type": "paragraph",
       "text": "The investment decision answers: which project/asset is worth investing in? The classic criterion is NPV > 0 - meaning the present value of the future cash flow the project generates must exceed the initial outlay. The financing decision answers: where should the money to fund that project come from - debt (cheaper thanks to the tax shield but carries bankruptcy risk) or issuing shares (no fixed obligation but dilutes ownership)? The dividend decision answers: now that profit has been made, should it be returned to shareholders or retained for reinvestment?"
     },
-    { "type": "heading", "text": "Why the goal is business value, not profit" },
+    {
+      "type": "heading",
+      "text": "Why the goal is business value, not profit"
+    },
     {
       "type": "paragraph",
       "text": "A common mistake is thinking a CFO only needs to maximize profit or revenue. In fact, the ultimate goal of Corporate Finance is to maximize long-term business value (shareholder value). These two goals can conflict: a company can boost short-term profit by cutting R&D or marketing, but doing so destroys its competitive ability and long-term value - which is exactly why smart investors always look beyond this quarter's EPS."
     },
-    { "type": "heading", "text": "The three decisions always interact" },
+    {
+      "type": "heading",
+      "text": "The three decisions always interact"
+    },
     {
       "type": "paragraph",
       "text": "These three decisions can't be separated. **Example:** a company that borrows heavily to finance itself will have more money to invest in a new project, but must simultaneously prioritize paying interest and principal, reducing its ability to pay a large dividend. A good CFO always balances all three as a linked system, rather than optimizing each piece separately."

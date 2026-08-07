@@ -12,10 +12,21 @@
   ],
   "explanation": "The first three lines of the income statement tell a tight little story: how much did we sell (Revenue), how much did it cost to make exactly that amount of goods (COGS), and what's left over (Gross Profit). COGS only covers direct costs - raw materials, production labour - not office salaries or marketing; those sit further down. That boundary matters, because it decides whether the gross margin reflects production efficiency rather than operating efficiency.",
   "diagram": [
-    { "label": "Sale happens: revenue is recorded", "arrow": true },
-    { "label": "Subtract the direct cost of making exactly that amount of goods", "arrow": true },
-    { "label": "What's left is gross profit", "arrow": true },
-    { "label": "Divide by revenue to get gross margin - a measure of pricing power" }
+    {
+      "label": "Sale happens: revenue is recorded",
+      "arrow": true
+    },
+    {
+      "label": "Subtract the direct cost of making exactly that amount of goods",
+      "arrow": true
+    },
+    {
+      "label": "What's left is gross profit",
+      "arrow": true
+    },
+    {
+      "label": "Divide by revenue to get gross margin - a measure of pricing power"
+    }
   ],
   "realWorldExample": {
     "company": "Vinamilk (VNM)",
@@ -142,7 +153,7 @@
     "question": "A garment workshop sells shirts at 300k each. Fabric, thread, and direct sewing labour cost 180k per shirt; allocated office rent and accounting salaries add another 40k per shirt. Which of these two cost items counts as COGS?",
     "options": [
       "Only the 40k of office rent and accounting salaries counts as COGS, because it's a fixed monthly cost",
-      "The 180k (fabric, thread, direct sewing labour) is COGS - because it's the direct cost of making the product; the 40k belongs to SG&A (indirect operating cost)",
+      "The 180k for fabric, thread and sewing labour is COGS, while the 40k belongs in SG&A instead of sitting there",
       "The full 220k counts as COGS, because all of it is spending the company must make to sell the product",
       "Neither amount counts as COGS, because COGS only applies to large-scale manufacturers"
     ],
@@ -163,17 +174,26 @@
       "type": "lead",
       "text": "The first three lines of the Income Statement - Revenue, COGS, Gross Profit - are the foundation for every deeper analysis. Misread these three lines and every ratio calculated afterward drifts along with them."
     },
-    { "type": "heading", "text": "Revenue: more than just 'how much money came in'" },
+    {
+      "type": "heading",
+      "text": "Revenue: more than just 'how much money came in'"
+    },
     {
       "type": "paragraph",
       "text": "Revenue is the total value of goods/services delivered to customers during the period, recognised under the accrual principle rather than when cash lands in the account. A company can report large revenue while the actual cash comes in much later - which is why you need to cross-check against the Cash Flow Statement."
     },
-    { "type": "heading", "text": "COGS: the direct cost tied to the product" },
+    {
+      "type": "heading",
+      "text": "COGS: the direct cost tied to the product"
+    },
     {
       "type": "paragraph",
       "text": "Cost of Goods Sold is the full direct cost of producing the goods or services that were sold: raw materials, direct production labour, allocated factory overhead. The key point: COGS is only counted for the portion of goods actually SOLD, not everything produced - unsold inventory still sits on the Balance Sheet as Inventory."
     },
-    { "type": "heading", "text": "Gross Profit and Gross Margin" },
+    {
+      "type": "heading",
+      "text": "Gross Profit and Gross Margin"
+    },
     {
       "type": "paragraph",
       "text": "Gross Profit = Revenue − COGS. This is the profit left after subtracting direct cost, before subtracting any other operating expense. Gross Margin = Gross Profit / Revenue, measuring the percentage of revenue kept after cost of goods - an important indicator of pricing power and competitive advantage."
@@ -189,20 +209,45 @@
     },
     {
       "type": "comparison",
-      "left": { "label": "High Gross Margin (40-70%)", "text": "Common among companies with strong brands or differentiated products - for example branded consumer goods, software, and pharmaceuticals." },
-      "right": { "label": "Low Gross Margin (5-20%)", "text": "Common in industries competing on price, or that are capital-intensive or distribution-heavy - for example retail, trading, and logistics." }
+      "left": {
+        "label": "High Gross Margin (40-70%)",
+        "text": "Common among companies with strong brands or differentiated products - for example branded consumer goods, software, and pharmaceuticals."
+      },
+      "right": {
+        "label": "Low Gross Margin (5-20%)",
+        "text": "Common in industries competing on price, or that are capital-intensive or distribution-heavy - for example retail, trading, and logistics."
+      }
     },
     {
       "type": "conceptTable",
       "title": "First-three-lines terminology",
       "concepts": [
-        { "vi": "Doanh thu", "en": "Revenue", "def": "The total value of goods/services delivered during the period, recognised on an accrual basis" },
-        { "vi": "Giá vốn hàng bán", "en": "Cost of Goods Sold (COGS)", "def": "The direct cost of producing the goods that were sold" },
-        { "vi": "Lợi nhuận gộp", "en": "Gross Profit", "def": "Revenue minus COGS" },
-        { "vi": "Biên lợi nhuận gộp", "en": "Gross Margin", "def": "Gross Profit divided by Revenue, expressed as a %" }
+        {
+          "vi": "Doanh thu",
+          "en": "Revenue",
+          "def": "The total value of goods/services delivered during the period, recognised on an accrual basis"
+        },
+        {
+          "vi": "Giá vốn hàng bán",
+          "en": "Cost of Goods Sold (COGS)",
+          "def": "The direct cost of producing the goods that were sold"
+        },
+        {
+          "vi": "Lợi nhuận gộp",
+          "en": "Gross Profit",
+          "def": "Revenue minus COGS"
+        },
+        {
+          "vi": "Biên lợi nhuận gộp",
+          "en": "Gross Margin",
+          "def": "Gross Profit divided by Revenue, expressed as a %"
+        }
       ]
     },
-    { "type": "heading", "text": "A real example: FPT's Gross Margin" },
+    {
+      "type": "heading",
+      "text": "A real example: FPT's Gross Margin"
+    },
     {
       "type": "list",
       "items": [

@@ -2,8 +2,10 @@
 
 import { useState } from "react";
 import { getInitialTheme, setTheme as persistTheme, type Theme } from "@/lib/theme";
+import { useI18n } from "@/lib/i18n/context";
 
 export default function ThemeToggle() {
+  const { t } = useI18n();
   const [theme, setThemeState] = useState<Theme>(() => getInitialTheme());
   const isDark = theme === "dark";
 
@@ -14,7 +16,7 @@ export default function ThemeToggle() {
         setThemeState(next);
         persistTheme(next);
       }}
-      aria-label={isDark ? "Chuyển sang chế độ sáng" : "Chuyển sang chế độ tối"}
+      aria-label={isDark ? t.miscUi.themeToggle.toLight : t.miscUi.themeToggle.toDark}
       className={`w-12 h-6 rounded-full border-2 transition-colors flex items-center cursor-pointer ${
         isDark ? "bg-emerald-600 border-emerald-700" : "bg-stone-200 border-stone-300"
       }`}

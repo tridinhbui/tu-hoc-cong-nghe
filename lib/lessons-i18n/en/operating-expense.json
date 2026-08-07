@@ -12,10 +12,21 @@
   ],
   "explanation": "Operating expenses feed the organisation itself rather than directly making the product: sales salaries, marketing, management salaries, office rent, plus research and development. What's worth noticing is that they should be read differently: administrative costs growing faster than revenue signals a bloating organisation, while slashing R&D makes this year's profit look better by borrowing against future years.",
   "diagram": [
-    { "label": "Start from gross profit", "arrow": true },
-    { "label": "Subtract selling and administrative expense", "arrow": true },
-    { "label": "Subtract research and development expense", "arrow": true },
-    { "label": "What's left is operating income" }
+    {
+      "label": "Start from gross profit",
+      "arrow": true
+    },
+    {
+      "label": "Subtract selling and administrative expense",
+      "arrow": true
+    },
+    {
+      "label": "Subtract research and development expense",
+      "arrow": true
+    },
+    {
+      "label": "What's left is operating income"
+    }
   ],
   "realWorldExample": {
     "company": "Mobile World (MWG)",
@@ -142,7 +153,7 @@
     "question": "A software company spends 2 billion/year on the engineering team writing new product code (R&D) and 3 billion/year on sales, marketing, and management (SG&A). Where do both of these sit on the P&L, and what is the fundamental difference between them?",
     "options": [
       "Both sit inside COGS, since both are costs the company must incur to operate and sell its product",
-      "Both sit below Gross Profit as indirect operating costs; R&D is an investment in the future (usually expensed right away), while SG&A is the current cost of selling and managing the business",
+      "Both sit below Gross Profit: R&D is an investment in the future, SG&A is the cost of running today",
       "R&D is counted in COGS because it directly creates the product, while SG&A sits below Gross Profit as a separate item",
       "There is no difference between R&D and SG&A - they're just two different names for the same type of cost"
     ],
@@ -163,17 +174,26 @@
       "type": "lead",
       "text": "After Gross Profit, a business still has to pay for the machinery running behind the product: the sales team, management, research and development. This is Operating Expense (OpEx) - the second layer of cost on the Income Statement."
     },
-    { "type": "heading", "text": "SG&A: selling and administrative expense" },
+    {
+      "type": "heading",
+      "text": "SG&A: selling and administrative expense"
+    },
     {
       "type": "paragraph",
       "text": "SG&A (Selling, General & Administrative) is indirect cost not tied directly to producing each unit, split into two groups: Selling (commissions, marketing, sales team salaries) and General & Administrative (leadership salaries, office rent, accounting, legal). Unlike COGS, SG&A doesn't rise and fall in proportion to units sold."
     },
-    { "type": "heading", "text": "R&D: an investment in the future, an expense today" },
+    {
+      "type": "heading",
+      "text": "R&D: an investment in the future, an expense today"
+    },
     {
       "type": "paragraph",
       "text": "Research & Development is spending invested in future products/technology. Economically, R&D behaves more like a long-term investment than an operating cost, but under accounting standards most R&D still has to be expensed in the period it's incurred (aside from certain conditionally capitalised software cases)."
     },
-    { "type": "heading", "text": "Operating Income = Gross Profit − OpEx" },
+    {
+      "type": "heading",
+      "text": "Operating Income = Gross Profit − OpEx"
+    },
     {
       "type": "paragraph",
       "text": "Operating Income (often called EBIT) is the profit left after subtracting all SG&A and R&D from Gross Profit. This is a key metric for judging core operating efficiency, independent of how the company finances itself (debt or equity) and its applicable tax rate."
@@ -196,10 +216,26 @@
       "type": "conceptTable",
       "title": "Operating Expense terminology",
       "concepts": [
-        { "vi": "Chi phí bán hàng & quản lý doanh nghiệp", "en": "SG&A", "def": "Indirect cost of selling and running the management apparatus" },
-        { "vi": "Nghiên cứu và phát triển", "en": "R&D", "def": "Investment spending on developing new products/technology" },
-        { "vi": "Lợi nhuận hoạt động", "en": "Operating Income", "def": "Gross Profit minus all Operating Expense" },
-        { "vi": "Đòn bẩy hoạt động", "en": "Operating Leverage", "def": "How much faster profit swings than revenue because of fixed costs" }
+        {
+          "vi": "Chi phí bán hàng & quản lý doanh nghiệp",
+          "en": "SG&A",
+          "def": "Indirect cost of selling and running the management apparatus"
+        },
+        {
+          "vi": "Nghiên cứu và phát triển",
+          "en": "R&D",
+          "def": "Investment spending on developing new products/technology"
+        },
+        {
+          "vi": "Lợi nhuận hoạt động",
+          "en": "Operating Income",
+          "def": "Gross Profit minus all Operating Expense"
+        },
+        {
+          "vi": "Đòn bẩy hoạt động",
+          "en": "Operating Leverage",
+          "def": "How much faster profit swings than revenue because of fixed costs"
+        }
       ]
     },
     {

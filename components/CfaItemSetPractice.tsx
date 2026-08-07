@@ -39,6 +39,8 @@ function shuffledOrder(question: ItemSetQuestion): number[] {
 }
 
 function QuestionBlock({ q, index }: { q: ItemSetQuestion; index: number }) {
+  // Sub-component, nên có useI18n() riêng.
+  const { t } = useI18n();
   const [picked, setPicked] = useState<number | null>(null);
   const order = useMemo(() => shuffledOrder(q), [q]);
   const answered = picked !== null;
@@ -49,7 +51,7 @@ function QuestionBlock({ q, index }: { q: ItemSetQuestion; index: number }) {
         <span className="text-stone-400 dark:text-stone-500">{index + 1}. </span>
         {q.question}
       </p>
-      <div className="mt-2.5 space-y-1.5" role="group" aria-label={`Các lựa chọn cho câu ${index + 1}`}>
+      <div className="mt-2.5 space-y-1.5" role="group" aria-label={format(t.finalTwo.cfaItemSetPractice.optionsAria, { index: index + 1 })}>
         {order.map((optionIndex) => {
           const isCorrect = optionIndex === q.correct;
           const isPicked = picked === optionIndex;

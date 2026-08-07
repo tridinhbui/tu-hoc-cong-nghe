@@ -169,7 +169,7 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
         "Công ty môi giới đề nghị trả tiền thuê hệ thống dữ liệu thị trường cho công ty bạn, đổi lại bạn định tuyến thêm lệnh giao dịch của khách qua họ. Đánh giá?",
       options: [
         "Hợp lệ vì hệ thống dữ liệu phục vụ công việc phân tích đầu tư",
-        "Phải kiểm tra hai điều: hệ thống đó có phục vụ trực tiếp khách đã trả hoa hồng không, và việc định tuyến có còn đạt thực thi tốt nhất cho khách không",
+        "Có phục vụ đúng khách trả phí, và có thực thi tốt nhất không",
         "Hợp lệ nếu công ty bạn công bố thỏa thuận này trong báo cáo năm",
         "Vi phạm tuyệt đối vì mọi thỏa thuận soft dollar đều bị cấm",
       ],
@@ -545,7 +545,7 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
         "Trong hồ sơ một khách hàng, bạn thấy dấu hiệu họ đang nhận tiền từ nguồn không giải thích được. Xử lý thế nào?",
       options: [
         "Giữ bảo mật tuyệt đối vì đó là thông tin khách hàng",
-        "Báo cáo nội bộ theo quy trình chống rửa tiền và để bộ phận tuân thủ xử lý tiếp với cơ quan có thẩm quyền",
+        "Báo cáo nội bộ theo quy trình chống rửa tiền",
         "Hỏi thẳng khách rồi quyết định dựa trên câu trả lời của họ",
         "Chấm dứt quan hệ mà không nêu lý do với bất kỳ ai",
       ],
@@ -714,7 +714,7 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
         "Ngày cuối làm việc, bạn gửi email cho danh sách khách hàng thông báo mình chuyển sang công ty mới kèm thông tin liên hệ. Đánh giá?",
       options: [
         "Hợp lệ vì đây là ngày làm việc cuối cùng của bạn",
-        "Vi phạm: bạn vẫn đang trong quan hệ lao động, và danh sách khách hàng là tài sản của công ty chứ không phải của bạn",
+        "Vi phạm: danh sách khách hàng là tài sản của công ty",
         "Hợp lệ nếu email chỉ thông báo mà không mời chào dịch vụ",
         "Chỉ vi phạm nếu có khách hàng thực sự chuyển theo bạn",
       ],
@@ -885,7 +885,7 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
         "Bạn quản lý ba nhân viên. Công ty có quy chế giao dịch cá nhân nhưng chưa bao giờ ai kiểm tra việc tuân thủ. Bạn nên làm gì?",
       options: [
         "Không cần làm gì vì quy chế đã tồn tại bằng văn bản",
-        "Thiết lập việc kiểm tra định kỳ - một quy chế không được giám sát thì chưa phải hệ thống kiểm soát",
+        "Thiết lập việc kiểm tra định kỳ, không chỉ có quy chế",
         "Chờ tới khi có dấu hiệu vi phạm rồi mới kiểm tra",
         "Báo cáo lên cấp trên và coi như đã hoàn thành nghĩa vụ",
       ],
@@ -1081,7 +1081,7 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
         "Bạn chuyển sang công ty mới và muốn tiếp tục khuyến nghị một cổ phiếu đã theo dõi ở công ty cũ. Cần làm gì?",
       options: [
         "Viện dẫn nghiên cứu đã làm ở công ty cũ làm cơ sở",
-        "Dựng lại cơ sở phân tích bằng dữ liệu và nguồn tiếp cận được ở nơi mới - hồ sơ cũ không còn thuộc về bạn",
+        "Dựng lại cơ sở phân tích bằng dữ liệu ở nơi mới",
         "Yêu cầu công ty cũ cung cấp bản sao hồ sơ nghiên cứu",
         "Đưa khuyến nghị và ghi chú rằng cơ sở nằm ở công ty trước",
       ],
@@ -1243,7 +1243,7 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
         "Công ty bạn đang bảo lãnh phát hành cho doanh nghiệp X, và bạn được giao viết báo cáo phân tích về X. Xử lý thế nào?",
       options: [
         "Viết bình thường vì bạn cá nhân không có lợi ích trong thương vụ",
-        "Công bố nổi bật quan hệ bảo lãnh phát hành trong chính báo cáo, và kiểm tra xem cơ chế tách bộ phận của công ty có cho phép bạn viết báo cáo này không",
+        "Công bố nổi bật quan hệ bảo lãnh phát hành ngay trong báo cáo",
         "Từ chối viết báo cáo vì xung đột không thể khắc phục",
         "Viết và gửi bản thảo cho doanh nghiệp X xem trước",
       ],
@@ -1614,7 +1614,7 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
         "Một công ty ghi trong tài liệu chào bán: 'Hiệu suất đã được xác minh GIPS'. Bạn nên hiểu điều gì đã được xác nhận?",
       options: [
         "Mọi con số hiệu suất trong tài liệu đã được kiểm tra là chính xác",
-        "Quy trình dựng composite và tính hiệu suất của công ty phù hợp chuẩn - không phải từng con số cụ thể đã được kiểm chứng",
+        "Quy trình dựng composite phù hợp chuẩn, không phải từng con số",
         "Công ty đạt mức hiệu suất vượt trội so với các đối thủ",
         "Toàn bộ báo cáo tài chính của công ty đã qua kiểm toán",
       ],
@@ -1783,7 +1783,7 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
         "Bạn làm ở bộ phận phân tích và muốn mua cổ phiếu một doanh nghiệp. Mã đó không nằm trong danh sách hạn chế. Bạn được mua chưa?",
       options: [
         "Được, vì không nằm trong danh sách hạn chế nghĩa là không bị cấm",
-        "Chưa - vẫn phải đăng ký trước theo quy trình, vì mã có thể đang nằm trong danh sách theo dõi mà bạn không được biết",
+        "Chưa - vẫn phải đăng ký trước theo đúng quy trình",
         "Được, nếu bạn không phải người viết báo cáo về doanh nghiệp đó",
         "Chưa, phải chờ hết kỳ báo cáo tài chính gần nhất của doanh nghiệp",
       ],
@@ -1965,7 +1965,7 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
         "Mô hình phân bổ tài sản của công ty bạn hoạt động tốt suốt năm năm. Gần đây kết quả xấu đi nhưng chưa ai kiểm tra lại. Nghĩa vụ của bạn là gì?",
       options: [
         "Chờ thêm dữ liệu vì năm năm tốt là bằng chứng đủ mạnh",
-        "Rà soát ngay xem điều kiện thị trường có còn khớp với dữ liệu huấn luyện không - và báo khách nếu quy trình cần thay đổi",
+        "Rà soát xem thị trường còn khớp dữ liệu huấn luyện",
         "Ngừng dùng mô hình và quay lại phán đoán thủ công",
         "Chuyển trách nhiệm sang bộ phận xây dựng mô hình",
       ],
@@ -2127,7 +2127,7 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
         "Bạn nghe trong một bữa ăn rằng một doanh nghiệp niêm yết sắp có thay đổi lớn về ban lãnh đạo. Người nói là bạn của một thành viên hội đồng quản trị. Bạn nên làm gì?",
       options: [
         "Giao dịch bình thường vì bạn không phải người trong công ty",
-        "Không giao dịch mã đó, và nếu công việc yêu cầu thì báo bộ phận tuân thủ để họ đưa vào danh sách theo dõi",
+        "Không giao dịch mã đó, và báo bộ phận tuân thủ",
         "Xác minh lại thông tin rồi mới quyết định có giao dịch không",
         "Chia sẻ cho đồng nghiệp để cùng đánh giá mức độ tin cậy",
       ],

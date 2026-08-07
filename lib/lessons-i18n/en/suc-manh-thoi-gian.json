@@ -12,10 +12,18 @@
   ],
   "explanation": "What decides the outcome isn't how many years you contribute, but how many years your money is left to grow. Someone who starts at 25 and stops contributing after ten years still has forty years for that money to compound; someone who starts at 35 and contributes steadily for thirty years only gets thirty years of growth. The practical consequence: ten years of delay is a loss that contributing more later cannot make up for.",
   "diagram": [
-    { "label": "Start putting money in early" },
-    { "label": "Stop contributing, but leave it in the account" },
-    { "label": "The years of growth keep running" },
-    { "label": "The outcome is set by years of growth, not years of contributing" }
+    {
+      "label": "Start putting money in early"
+    },
+    {
+      "label": "Stop contributing, but leave it in the account"
+    },
+    {
+      "label": "The years of growth keep running"
+    },
+    {
+      "label": "The outcome is set by years of growth, not years of contributing"
+    }
   ],
   "realWorldExample": {
     "company": "A pension fund",
@@ -82,7 +90,7 @@
     "question": "Why is investing steadily each month usually more sensible than waiting for the 'right' moment to invest a lump sum?",
     "options": [
       "Because investing just once is enough",
-      "Because it reduces the impact of price swings and avoids buying right at the peak",
+      "It softens the impact of short-term price swings",
       "Because inflation stops mattering",
       "Because the interest rate is always fixed"
     ],
@@ -103,12 +111,18 @@
       "type": "lead",
       "text": "Two people each invest 5 million a month at 10% a year. Person A invests for 10 years (age 25-35) then stops entirely. Person B invests for 30 years (age 35-65). By age 65, who has more money? The answer surprises most people."
     },
-    { "type": "heading", "text": "Years of growth, not years of contributing" },
+    {
+      "type": "heading",
+      "text": "Years of growth, not years of contributing"
+    },
     {
       "type": "paragraph",
       "text": "Person A only contributes for 10 years, but that money has a full 40 years (from age 25 to 65) to grow through compounding. Person B contributes steadily for 30 years, but the first contribution only has 30 years to grow, and the last contribution has barely had time to earn anything at all. The result: despite contributing far less in total, Person A often ends up with an equal or even larger amount than Person B."
     },
-    { "type": "heading", "text": "Why is this counter-intuitive?" },
+    {
+      "type": "heading",
+      "text": "Why is this counter-intuitive?"
+    },
     {
       "type": "paragraph",
       "text": "Our instinct says 'contributing longer = ending up with more money'. But compounding works exponentially, meaning the EARLIEST years of growth are worth far more than later years, because they have the most time left to multiply. A dong invested at 25 'works' for 40 years; a dong invested at 60 only 'works' for 5."

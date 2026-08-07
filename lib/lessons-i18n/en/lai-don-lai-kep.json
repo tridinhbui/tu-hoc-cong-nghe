@@ -12,10 +12,18 @@
   ],
   "explanation": "Simple interest is always calculated on the original principal; compound interest adds each period's interest to the principal and calculates the next period on the larger figure. It sounds like a small technical difference, but over twenty years at 10% the same 100 million becomes 300 million under simple interest and 672 million under compound. All 372 million of the gap is interest earned on interest, and that share grows as time goes on - which is why the rule of 72 says the years to double equal 72 divided by the rate.",
   "diagram": [
-    { "label": "Put in the original principal" },
-    { "label": "Interest is earned at period end" },
-    { "label": "Simple: take the interest out, principal unchanged" },
-    { "label": "Compound: add the interest to the principal, so the next period earns on a larger figure" }
+    {
+      "label": "Put in the original principal"
+    },
+    {
+      "label": "Interest is earned at period end"
+    },
+    {
+      "label": "Simple: take the interest out, principal unchanged"
+    },
+    {
+      "label": "Compound: add the interest to the principal, so the next period earns on a larger figure"
+    }
   ],
   "realWorldExample": {
     "company": "Warren Buffett",
@@ -80,7 +88,12 @@
   ],
   "practicePrompt": {
     "question": "If you invest 100 million VND at 10% a year, roughly how much will you have after 10 years?",
-    "options": ["260 million", "100 million", "150 million", "500 million"],
+    "options": [
+      "260 million",
+      "100 million",
+      "150 million",
+      "500 million"
+    ],
     "explanation": "100 million × 1.1^10 ≈ 259 million. That is compounding: the total grows faster the longer the horizon."
   },
   "summary": {
@@ -98,12 +111,18 @@
       "type": "lead",
       "text": "Albert Einstein is said to have called compound interest 'the eighth wonder of the world'. The quote may be apocryphal, but the mathematics behind it is entirely real."
     },
-    { "type": "heading", "text": "Simple interest: linear, predictable" },
+    {
+      "type": "heading",
+      "text": "Simple interest: linear, predictable"
+    },
     {
       "type": "paragraph",
       "text": "Deposit 100 million VND at 10% a year as simple interest: every year you receive exactly 10 million in interest (10% of the original 100 million), unchanged. After 20 years: 100 million + (10 million × 20) = 300 million. That is linear growth - a straight line."
     },
-    { "type": "heading", "text": "Compound interest: interest earns interest, and it grows exponentially" },
+    {
+      "type": "heading",
+      "text": "Compound interest: interest earns interest, and it grows exponentially"
+    },
     {
       "type": "paragraph",
       "text": "With compound interest, each year's interest is added to the principal, and the following year's interest is calculated on the principal plus everything accumulated before it. After 20 years: 100 million × (1.1)^20 ≈ 672 million - 372 million more than simple interest. That gap does not come from a higher rate; it comes from interest being continuously reinvested, producing a 'snowball' that grows larger the longer it runs."

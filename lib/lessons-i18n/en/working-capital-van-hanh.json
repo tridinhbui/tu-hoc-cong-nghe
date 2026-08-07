@@ -12,10 +12,21 @@
   ],
   "explanation": "Working capital is cash tied up in daily operations: goods sitting in the warehouse, cash sitting with customers who haven't paid yet, offset by what the business still owes its suppliers. The cash cycle CCC = DIO + DSO − DPO measures the number of days cash stays tied up that way. A negative CCC - like Amazon or Costco - means the company collects from customers before it has to pay suppliers, essentially getting free financing from its supply chain, and the more it grows, the more cash it has left over.",
   "diagram": [
-    { "label": "Pay for goods, they sit in the warehouse (DIO)", "arrow": true },
-    { "label": "Sell on credit, wait for customer payment (DSO)", "arrow": true },
-    { "label": "Subtract the days it's allowed to owe suppliers (DPO)", "arrow": true },
-    { "label": "What's left is the number of days cash is tied up - the cash cycle" }
+    {
+      "label": "Pay for goods, they sit in the warehouse (DIO)",
+      "arrow": true
+    },
+    {
+      "label": "Sell on credit, wait for customer payment (DSO)",
+      "arrow": true
+    },
+    {
+      "label": "Subtract the days it's allowed to owe suppliers (DPO)",
+      "arrow": true
+    },
+    {
+      "label": "What's left is the number of days cash is tied up - the cash cycle"
+    }
   ],
   "realWorldExample": {
     "company": "Highlands Coffee chain",
@@ -102,7 +113,7 @@
     "question": "Company A has a Cash Conversion Cycle (CCC) of 45 days; its competitor in the same industry has a CCC of 12 days. What does this gap say about the two companies?",
     "options": [
       "Company A is managing working capital far more effectively because it has a longer cycle to optimise operations",
-      "The competitor is managing working capital far more effectively - a shorter CCC means it turns inventory and collects from customers faster, needing less working capital to run the business",
+      "The rival is more efficient: a shorter CCC means it needs less working capital to operate",
       "CCC doesn't reflect anything meaningful about the operating efficiency of these two companies",
       "Company A certainly has higher profit because it has a longer cash conversion cycle"
     ],
@@ -123,12 +134,18 @@
       "type": "lead",
       "text": "The Cash Conversion Cycle (CCC) measures the average number of days from when a business pays cash to buy raw materials to when it collects cash back from customers. **Formula:** CCC = DIO + DSO − DPO."
     },
-    { "type": "heading", "text": "The three components of CCC" },
+    {
+      "type": "heading",
+      "text": "The three components of CCC"
+    },
     {
       "type": "paragraph",
       "text": "DIO (Days Inventory Outstanding) is the number of days goods sit in the warehouse before being sold. DSO (Days Sales Outstanding) is the number of days to collect cash from customers after a sale. DPO (Days Payable Outstanding) is the number of days a business is allowed to delay paying its suppliers. The shorter the CCC, the faster cash cycles, and the less a business depends on borrowed capital to sustain operations."
     },
-    { "type": "heading", "text": "A negative CCC - the financial weapon of large retailers" },
+    {
+      "type": "heading",
+      "text": "A negative CCC - the financial weapon of large retailers"
+    },
     {
       "type": "paragraph",
       "text": "When DPO is larger than DIO plus DSO, CCC turns negative - meaning the business collects from customers before it has to pay its suppliers. Amazon and Costco are classic examples: customers pay immediately upon purchase (DSO near zero), goods turn over quickly (low DIO), but suppliers must wait 45-90 days to be paid (high DPO). As a result, these companies are essentially given free working-capital financing by their own supply chain."
@@ -150,10 +167,26 @@
       "type": "conceptTable",
       "title": "Cash Conversion Cycle terminology",
       "concepts": [
-        { "vi": "Chu kỳ chuyển đổi tiền mặt", "en": "Cash Conversion Cycle (CCC)", "def": "DIO + DSO − DPO, the number of days to convert capital to cash and back" },
-        { "vi": "Số ngày tồn kho", "en": "Days Inventory Outstanding (DIO)", "def": "The average number of days goods sit in the warehouse before being sold" },
-        { "vi": "Số ngày thu tiền", "en": "Days Sales Outstanding (DSO)", "def": "The average number of days to collect cash from customers after a sale" },
-        { "vi": "Số ngày trả tiền", "en": "Days Payable Outstanding (DPO)", "def": "The average number of days a business is allowed to delay paying suppliers" }
+        {
+          "vi": "Chu kỳ chuyển đổi tiền mặt",
+          "en": "Cash Conversion Cycle (CCC)",
+          "def": "DIO + DSO − DPO, the number of days to convert capital to cash and back"
+        },
+        {
+          "vi": "Số ngày tồn kho",
+          "en": "Days Inventory Outstanding (DIO)",
+          "def": "The average number of days goods sit in the warehouse before being sold"
+        },
+        {
+          "vi": "Số ngày thu tiền",
+          "en": "Days Sales Outstanding (DSO)",
+          "def": "The average number of days to collect cash from customers after a sale"
+        },
+        {
+          "vi": "Số ngày trả tiền",
+          "en": "Days Payable Outstanding (DPO)",
+          "def": "The average number of days a business is allowed to delay paying suppliers"
+        }
       ]
     },
     {

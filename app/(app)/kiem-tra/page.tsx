@@ -500,7 +500,7 @@ export default function KiemTraPage() {
             <div className="rounded-2xl border-2 p-5 border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/40">
               <p className="text-xs font-bold uppercase tracking-wide mb-1 text-emerald-700 dark:text-emerald-400">{t.quizPage.xpEarned}</p>
               <p className="text-3xl font-extrabold text-emerald-700 dark:text-emerald-400">
-                {xpAwarded === null ? "..." : `+${xpAwarded} XP`}
+                {xpAwarded === null ? "..." : format(t.miscUi.xpGain, { count: xpAwarded })}
               </p>
             </div>
 

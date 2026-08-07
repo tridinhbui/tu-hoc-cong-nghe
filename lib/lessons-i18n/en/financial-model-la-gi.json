@@ -12,9 +12,15 @@
   ],
   "explanation": "A financial model is an Excel/Google Sheets spreadsheet that simulates a company's financial operations based on assumptions. Used for: DCF valuation, LBO analysis, M&A accretion/dilution, budget planning. The 3-statement model is the foundation: P&L → Balance Sheet → Cash Flow, all linked together.",
   "diagram": [
-    { "label": "Input assumptions (revenue, costs)" },
-    { "label": "Linked 3-statement model" },
-    { "label": "Used for DCF, LBO, M&A, budgeting" }
+    {
+      "label": "Input assumptions (revenue, costs)"
+    },
+    {
+      "label": "Linked 3-statement model"
+    },
+    {
+      "label": "Used for DCF, LBO, M&A, budgeting"
+    }
   ],
   "realWorldExample": {
     "company": "The financial model behind VinFast's IPO valuation",
@@ -80,7 +86,7 @@
   "practicePrompt": {
     "question": "An analyst builds an Excel spreadsheet forecasting a company's revenue, costs, and profit over the next 5 years, based on assumptions about growth rate, margin, and interest rate on debt. What is this tool called?",
     "options": [
-      "Financial model: forecasting finances based on assumptions - this tool helps simulate a company's future financial results based on input assumptions, supporting valuation and investment decisions",
+      "A financial model forecasts the financials from assumptions, supporting valuation and decisions",
       "This is called a Balance Sheet, because the spreadsheet contains the company's asset and liability figures",
       "This is called an Audit Report, because the spreadsheet checks the accuracy of already-published financial statements",
       "This is just a plain spreadsheet with no specific technical name in finance"
@@ -102,12 +108,18 @@
       "type": "lead",
       "text": "The Financial Model is the central tool of every financial analyst - a spreadsheet simulating a company's financial operations based on assumptions, used for valuation, forecasting, and investment decisions."
     },
-    { "type": "heading", "text": "The 3-statement model: the foundation of every financial model" },
+    {
+      "type": "heading",
+      "text": "The 3-statement model: the foundation of every financial model"
+    },
     {
       "type": "paragraph",
       "text": "A 3-statement model links three financial statements together: the P&L (Net Income) flows into the Balance Sheet (increasing Retained Earnings) and into the Cash Flow Statement (starting from Net Income). Depreciation from the P&L is added back in operating cash flow (CFO). CapEx is subtracted in CFO but increases PP&E on the Balance Sheet. New debt issuance appears in financing cash flow (CFF) and increases Notes Payable on the Balance Sheet. The three statements are linked so tightly that changing one small assumption ripples through all three."
     },
-    { "type": "heading", "text": "Why the 3-statement model is mandatory before DCF and LBO" },
+    {
+      "type": "heading",
+      "text": "Why the 3-statement model is mandatory before DCF and LBO"
+    },
     {
       "type": "paragraph",
       "text": "Both DCF valuation and LBO analysis need an accurate free cash flow (FCF) forecast - and FCF can only be calculated correctly when the three financial statements are consistently linked, ensuring every change in one statement is properly reflected in the other two (a property called 'articulation'). Before VinFast's IPO, investment banks and analysts had to build detailed financial models forecasting electric vehicle sales, profit margins, and factory investment capital needs over many years to arrive at a well-founded valuation for the IPO."

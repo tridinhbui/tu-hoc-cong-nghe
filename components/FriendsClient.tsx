@@ -43,6 +43,8 @@ function Avatar({
   avatarUrl?: string | null;
   size?: number;
 }) {
+  // Sub-component, nên có useI18n() riêng thay vì luồn `t` qua prop.
+  const { t } = useI18n();
   const initials = (name || "U")
     .split(" ")
     .map((part) => part[0])
@@ -53,7 +55,7 @@ function Avatar({
   return isValidAvatar(avatarUrl) ? (
     <Image
       src={avatarUrl}
-      alt={name || "User"}
+      alt={name || t.chat.userAlt}
       width={size}
       height={size}
       className="rounded-full object-cover border border-stone-200 dark:border-stone-700"
@@ -118,7 +120,7 @@ export default function FriendsClient() {
       setConnections(nextConnections);
     } catch (error) {
       console.error("Error loading social graph:", error);
-      toast.error(error instanceof Error ? error.message : "Không tải được danh sách bạn bè");
+      toast.error(error instanceof Error ? error.message : t.friends.listLoadFailed);
     } finally {
       setLoadingConnections(false);
     }
@@ -184,7 +186,7 @@ export default function FriendsClient() {
         setSearchResults(results);
       } catch (error) {
         console.error("Error searching accounts:", error);
-        toast.error(error instanceof Error ? error.message : "Không tìm được tài khoản");
+        toast.error(error instanceof Error ? error.message : t.friends.searchFailed);
       } finally {
         setSearching(false);
       }
@@ -210,7 +212,7 @@ export default function FriendsClient() {
       } catch (error) {
         console.error("Error loading messages:", error);
         if (!cancelled) {
-          toast.error(error instanceof Error ? error.message : "Không tải được tin nhắn");
+          toast.error(error instanceof Error ? error.message : t.friends.messagesLoadFailed);
         }
       } finally {
         if (!cancelled) {
@@ -247,7 +249,7 @@ export default function FriendsClient() {
       }
       await loadConnections();
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Không gửi được lời mời");
+      toast.error(error instanceof Error ? error.message : t.friends.requestSendFailed);
     } finally {
       setBusyUserId(null);
     }
@@ -257,10 +259,10 @@ export default function FriendsClient() {
     setBusyUserId(String(friendshipId));
     try {
       await respondToFriendRequest(friendshipId, status);
-      toast.success(status === "accepted" ? "Đã chấp nhận lời mời" : "Đã từ chối lời mời");
+      toast.success(status === "accepted" ? t.friends.requestAccepted : t.friends.requestDeclined);
       await loadConnections();
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Không cập nhật được lời mời");
+      toast.error(error instanceof Error ? error.message : t.friends.requestUpdateFailed);
     } finally {
       setBusyUserId(null);
     }
@@ -274,7 +276,7 @@ export default function FriendsClient() {
       setMessages((prev) => (prev.some((existing) => existing.id === message.id) ? prev : [...prev, message]));
       setMessageInput("");
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Không gửi được tin nhắn");
+      toast.error(error instanceof Error ? error.message : t.friends.messageSendFailed);
     } finally {
       setSendingMessage(false);
     }
@@ -475,7 +477,7 @@ export default function FriendsClient() {
                       href={`/nguoi-hoc/${connection.user_id}`}
                       className="shrink-0 p-2 rounded-lg text-stone-500 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-700 hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
                       title={t.friends.viewProfileTitle}
-                      aria-label={`Xem hồ sơ của ${connection.full_name || "người dùng"}`}
+                      aria-label={format(t.friends.viewProfileAria, { name: connection.full_name || t.friends.unnamedUser })}
                     >
                       <UserRound className="w-4 h-4" />
                     </Link>

@@ -12,10 +12,21 @@
   ],
   "explanation": "The cost of capital is the minimum return a project must achieve so as not to make the capital provider poorer. Creditors demand that minimum in the visible form of a contracted interest rate. Shareholders demand it too, but in the form of opportunity cost - they could take their money elsewhere - so it never appears on any line of the financial statements. Precisely because it's invisible, the cost of equity is often treated as zero, and that is the source of a great many value-destroying decisions.",
   "diagram": [
-    { "label": "A business raises capital from creditors and shareholders", "arrow": true },
-    { "label": "Each side demands a return matching the risk they bear", "arrow": true },
-    { "label": "Averaged together, this becomes the cost of capital", "arrow": true },
-    { "label": "That is the minimum threshold every project must clear" }
+    {
+      "label": "A business raises capital from creditors and shareholders",
+      "arrow": true
+    },
+    {
+      "label": "Each side demands a return matching the risk they bear",
+      "arrow": true
+    },
+    {
+      "label": "Averaged together, this becomes the cost of capital",
+      "arrow": true
+    },
+    {
+      "label": "That is the minimum threshold every project must clear"
+    }
   ],
   "realWorldExample": {
     "company": "Capital structure of listed corporations",
@@ -82,7 +93,7 @@
     "question": "A business owner says: 'I'm using my own money to expand the plant, not borrowing from the bank, so this investment costs nothing.' Is this correct under the Cost of Capital principle?",
     "options": [
       "Correct, because there's no bank interest to pay, so the investment funded with personal money is entirely free financially",
-      "Incorrect - every source of capital has an opportunity cost, including the owner's own money: that money could have been put in a savings account or invested elsewhere to earn a return, so a reasonable 'cost of equity' still has to be counted when evaluating the project",
+      "Wrong - every source of capital carries an opportunity cost, including the owner's own money",
       "Only correct if the business is losing money; if it's profitable, personal money still has a cost",
       "Cost of capital only applies to publicly listed companies, not small private businesses"
     ],
@@ -103,12 +114,18 @@
       "type": "lead",
       "text": "No source of capital is free. Whether it's a bank loan (with a clearly visible interest payment) or capital raised from shareholders (no direct interest, but still not free), a business always pays a 'price' for using capital - this is the Cost of Capital."
     },
-    { "type": "heading", "text": "Cost of capital comes from two main sources" },
+    {
+      "type": "heading",
+      "text": "Cost of capital comes from two main sources"
+    },
     {
       "type": "paragraph",
       "text": "Cost of Debt: the business pays interest to banks or bondholders - this cost is clear and directly observable. Cost of Equity: shareholders don't receive a fixed 'interest rate', but they expect a return commensurate with the risk they've accepted (via share price appreciation and dividends) - this is an opportunity cost that doesn't show clearly on the financial statements but is entirely real."
     },
-    { "type": "heading", "text": "Are retained earnings 'free'?" },
+    {
+      "type": "heading",
+      "text": "Are retained earnings 'free'?"
+    },
     {
       "type": "paragraph",
       "text": "A common misconception: that using retained earnings to fund a project is free because there's no interest to pay or new shares to issue. This isn't actually true - that money fundamentally belongs to shareholders, and could have been paid out as a dividend for them to invest elsewhere. So the cost of capital for retained earnings is still calculated as exactly the Cost of Equity, not zero."

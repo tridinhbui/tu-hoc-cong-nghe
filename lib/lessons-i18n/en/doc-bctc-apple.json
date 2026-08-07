@@ -12,9 +12,17 @@
   ],
   "explanation": "Reading a real financial statement is very different from studying each ratio in isolation: numbers only mean something once placed next to each other and next to context. A classic example is Apple holding a mountain of cash while also borrowing to buy back shares - reading each line alone looks contradictory, but most of that cash sat abroad and bringing it home would be taxed, so borrowing domestically was cheaper. The general lesson is to always ask why before concluding good or bad.",
   "diagram": [
-    { "label": "Apple holds cash abroad", "arrow": true },
-    { "label": "Repatriating it would trigger tax", "arrow": true },
-    { "label": "Borrows domestically to fund buybacks instead of repatriating" }
+    {
+      "label": "Apple holds cash abroad",
+      "arrow": true
+    },
+    {
+      "label": "Repatriating it would trigger tax",
+      "arrow": true
+    },
+    {
+      "label": "Borrows domestically to fund buybacks instead of repatriating"
+    }
   ],
   "realWorldExample": {
     "company": "Apple Inc.",
@@ -91,7 +99,7 @@
     "question": "Analysing Apple's real financial statements, you see very large OCF, CapEx relatively small compared with OCF (so FCF is close to OCF), and the company spending tens of billions of USD every year buying back shares. What does this show about Apple's business model?",
     "options": [
       "Apple is struggling to find new investment opportunities, forcing it to use cash for buybacks instead",
-      "Apple has a business model that generates enormous cash relative to its reinvestment needs (low CapEx), leaving it plenty of room to return capital to shareholders through continuous buybacks - a sign of a mature, capital-efficient company",
+      "Apple generates far more cash than its CapEx needs, so it can keep handing the surplus to shareholders",
       "Continuous buybacks are always a bad sign showing management doesn't know how to use cash effectively",
       "Large OCF with FCF close to OCF is unusual and worrying for investors"
     ],
@@ -112,22 +120,34 @@
       "type": "lead",
       "text": "Theory only really sinks in once applied to real numbers. This lesson walks through analysing the financial statements of two companies at opposite ends of the world: Apple - the American tech giant with a mountain of cash, and Vinamilk - Vietnam's leading dairy company with an impressive profit margin."
     },
-    { "type": "heading", "text": "Step 1: read the P&L - what does the margin say?" },
+    {
+      "type": "heading",
+      "text": "Step 1: read the P&L - what does the margin say?"
+    },
     {
       "type": "paragraph",
       "text": "Vinamilk has a Gross Margin around 40-45%: meaning for every 100 dong of revenue, after subtracting raw-milk cost and production cost, 40-45 dong remains as gross profit. This is high for the consumer-goods industry generally, reflecting a strong brand (pricing power - the ability to sell above production cost) and efficient large-scale plant operations. Apple has an even higher Gross Margin, around 45%, despite selling hardware - thanks to its closed ecosystem (App Store, services) and extremely strong brand pricing."
     },
-    { "type": "heading", "text": "Step 2: read the Balance Sheet - asset and debt structure" },
+    {
+      "type": "heading",
+      "text": "Step 2: read the Balance Sheet - asset and debt structure"
+    },
     {
       "type": "paragraph",
       "text": "Apple owns hundreds of billions of USD in cash and short-term investment securities, yet also carries significant borrowing - a curiosity for a beginner. The reason: most of Apple's cash was generated and held at its foreign subsidiaries; instead of bringing it back to the US and paying heavy repatriation tax, Apple borrowed domestically at low rates to fund share buybacks - a sophisticated tax-optimisation and capital-structure strategy."
     },
-    { "type": "heading", "text": "Step 3: read the Cash Flow Statement - cash-flow quality" },
+    {
+      "type": "heading",
+      "text": "Step 3: read the Cash Flow Statement - cash-flow quality"
+    },
     {
       "type": "paragraph",
       "text": "Both companies have very strong OCF relative to their scale. Apple's OCF runs around $110 billion/year, and because its CapEx is relatively small relative to its revenue scale (Apple doesn't manufacture its own hardware but outsources through Foxconn and other partners), Apple's FCF is close to its OCF - around $100 billion. This is one of the largest free-cash-flow machines in the world."
     },
-    { "type": "heading", "text": "Step 4: read the capital-allocation strategy through Financing Cash Flow" },
+    {
+      "type": "heading",
+      "text": "Step 4: read the capital-allocation strategy through Financing Cash Flow"
+    },
     {
       "type": "paragraph",
       "text": "Apple uses most of its FCF to buy back shares - around $90 billion/year - clearly visible in a very large negative Financing Cash Flow. This signals the company believes there's no better reinvestment opportunity than returning cash to shareholders through buybacks (which raise EPS by shrinking shares outstanding) and dividends. Vinamilk also has a tradition of paying high, steady cash dividends, reflecting a similar capital-allocation philosophy despite its much smaller scale."
@@ -143,8 +163,14 @@
     },
     {
       "type": "comparison",
-      "left": { "label": "Apple", "text": "Revenue ~$400 billion, Gross Margin ~45%, OCF ~$110 billion, FCF ~$100 billion, buybacks ~$90 billion/year. An 'asset-light' model thanks to outsourced manufacturing, keeping invested capital low relative to the cash it generates." },
-      "right": { "label": "Vinamilk", "text": "Gross Margin ~40-45%, running its own large-scale production plants, relatively higher CapEx than Apple, but still maintaining stable positive FCF to pay a regular annual dividend." }
+      "left": {
+        "label": "Apple",
+        "text": "Revenue ~$400 billion, Gross Margin ~45%, OCF ~$110 billion, FCF ~$100 billion, buybacks ~$90 billion/year. An 'asset-light' model thanks to outsourced manufacturing, keeping invested capital low relative to the cash it generates."
+      },
+      "right": {
+        "label": "Vinamilk",
+        "text": "Gross Margin ~40-45%, running its own large-scale production plants, relatively higher CapEx than Apple, but still maintaining stable positive FCF to pay a regular annual dividend."
+      }
     },
     {
       "type": "callout",

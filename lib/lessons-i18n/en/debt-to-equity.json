@@ -12,10 +12,21 @@
   ],
   "explanation": "D/E compares total debt against shareholders' equity, measuring how much debt each dong of shareholder capital is carrying. Leverage amplifies results in both directions: when ROIC is higher than the interest rate, it pushes ROE up; when it's lower, it pulls ROE down even faster. What level is safe depends on how stable cash flow is - a utility can bear a D/E that would bankrupt a tech startup.",
   "diagram": [
-    { "label": "Total Debt", "arrow": true },
-    { "label": "Divide by Shareholders' Equity", "arrow": true },
-    { "label": "= D/E Ratio", "arrow": true },
-    { "label": "Higher → more leverage and risk" }
+    {
+      "label": "Total Debt",
+      "arrow": true
+    },
+    {
+      "label": "Divide by Shareholders' Equity",
+      "arrow": true
+    },
+    {
+      "label": "= D/E Ratio",
+      "arrow": true
+    },
+    {
+      "label": "Higher → more leverage and risk"
+    }
   ],
   "realWorldExample": {
     "company": "Power utility POW vs a tech startup",
@@ -81,7 +92,7 @@
   "practicePrompt": {
     "question": "Company A has Total Debt = 300 billion, Equity = 700 billion. Company B has Total Debt = 900 billion, Equity = 300 billion. Compare the financial leverage (D/E) of these two companies.",
     "options": [
-      "A's D/E = 300/700 ≈ 0.43; B's D/E = 900/300 = 3.0 - B is using much higher financial leverage than A, meaning B carries significantly higher financial risk if operations run into trouble",
+      "A's D/E = 300/700 ≈ 0.43 while B's is 900/300 = 3.0, so B is carrying far more financial risk here",
       "The two companies' D/E is equal since total capital (Debt + Equity) for both is 1,000 billion",
       "A's D/E is higher than B's because A has larger Equity, and larger Equity always means higher D/E",
       "D/E doesn't reflect a company's financial risk at all - it's only for reference"
@@ -103,13 +114,23 @@
       "type": "lead",
       "text": "Debt-to-Equity (D/E) measures how much a business relies on borrowed money versus shareholders' equity to fund operations - a classic double-edged sword in corporate finance: high leverage amplifies profit when business is good, but also amplifies risk when business turns bad."
     },
-    { "type": "callout", "label": "The formula", "text": "D/E = Total Debt / Shareholders' Equity" },
-    { "type": "heading", "text": "The 'safe' D/E level depends entirely on the industry" },
+    {
+      "type": "callout",
+      "label": "The formula",
+      "text": "D/E = Total Debt / Shareholders' Equity"
+    },
+    {
+      "type": "heading",
+      "text": "The 'safe' D/E level depends entirely on the industry"
+    },
     {
       "type": "paragraph",
       "text": "Power companies like POW typically operate with high D/E, 2-3 times, and that's completely normal: cash flow from long-term electricity sale contracts is very stable and predictable, allowing steady debt repayment without worrying about volatility. By contrast, a tech startup with unproven revenue and no significant collateral must keep D/E very low - borrowing heavily against uncertain cash flow is the shortest path to bankruptcy when a tough quarter hits."
     },
-    { "type": "heading", "text": "Why there is no single D/E threshold for every industry" },
+    {
+      "type": "heading",
+      "text": "Why there is no single D/E threshold for every industry"
+    },
     {
       "type": "paragraph",
       "text": "A business's ability to carry debt depends on how stable and predictable its generated cash flow is - not a single absolute number applied uniformly. A D/E of 1.5 might be perfectly safe for a utility company but extremely risky for a cyclical real-estate company, or a startup whose revenue is still unpredictable."

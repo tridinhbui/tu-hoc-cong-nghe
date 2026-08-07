@@ -121,7 +121,7 @@ export const PERSONAL_ENTRY_LESSONS: Lesson[] = [
         "Bạn ghi chép hai tuần rồi bỏ vì thấy mất công. Cách xử lý thực tế nhất là gì?",
       options: [
         "Bỏ hẳn việc theo dõi và lập ngân sách dựa trên ước lượng của mình",
-        "Giảm độ chi tiết: chỉ ghi nhóm lớn thay vì từng khoản một",
+        "Giảm độ chi tiết lại: chỉ ghi theo nhóm lớn thay vì từng khoản một",
         "Bắt đầu lại từ đầu và cố gắng ghi thật chi tiết trong ba tháng",
         "Chờ tới đầu năm sau rồi bắt đầu lại với quyết tâm cao hơn",
       ],

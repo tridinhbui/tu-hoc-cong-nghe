@@ -639,7 +639,7 @@ export const MA_EXECUTION_LESSONS: Lesson[] = [
         "Tập đoàn bán một mảng với giá cao hơn giá trị sổ sách và ghi nhận lãi. Vì sao lợi nhuận năm sau vẫn có thể giảm?",
       options: [
         "Vì khoản lãi từ thương vụ chỉ được ghi nhận một lần",
-        "Vì mất phần lợi nhuận thường xuyên của mảng đó, cộng với chi phí chung bị bỏ lại dồn sang các mảng còn lại",
+        "Mất lợi nhuận thường xuyên, chi phí chung dồn lại",
         "Vì phải nộp thuế trên khoản lãi",
         "Vì bên mua sẽ cạnh tranh trực tiếp",
       ],
@@ -798,7 +798,7 @@ export const MA_EXECUTION_LESSONS: Lesson[] = [
         "Thương vụ đã ký, đang chờ phê duyệt. Bốn tháng sau, lợi nhuận bên bán giảm 40% do thị trường chung suy thoái. Bên mua có rút được không?",
       options: [
         "Có, vì kết quả kinh doanh đã xấu đi rõ rệt",
-        "Tùy điều khoản: nếu thay đổi bất lợi trọng yếu loại trừ biến động chung của ngành thì bên mua không rút được",
+        "Tùy điều khoản MAC quy định thế nào",
         "Không, vì đã ký thì bắt buộc phải hoàn tất",
         "Có, nhưng phải trả toàn bộ giá trị thương vụ",
       ],
@@ -968,7 +968,7 @@ export const MA_EXECUTION_LESSONS: Lesson[] = [
         "Hội đồng chấp nhận đề nghị đầu tiên nhận được, có ý kiến về tính công bằng ủng hộ. Cổ đông kiện vì cho rằng chưa chào bán cạnh tranh. Ý kiến đó có bảo vệ được hội đồng không?",
       options: [
         "Có, vì đã có tổ chức độc lập xác nhận giá công bằng",
-        "Không hoàn toàn: nó chứng minh giá nằm trong khoảng hợp lý, nhưng không chứng minh quy trình đã tìm được phương án tốt nhất",
+        "Không hẳn: chứng minh giá hợp lý, không phải tốt nhất",
         "Không, vì ý kiến này không có giá trị pháp lý",
         "Có, nếu ý kiến do một tổ chức không nhận phí thành công phát hành",
       ],

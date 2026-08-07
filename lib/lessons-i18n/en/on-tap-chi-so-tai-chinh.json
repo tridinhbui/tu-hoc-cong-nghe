@@ -12,10 +12,21 @@
   ],
   "explanation": "No single metric says anything on its own; the power lies in reading them as four groups and cross-checking them against each other. Profitability asks whether the business makes money, liquidity asks whether it will survive the next twelve months, leverage asks what shocks it can absorb, and valuation asks whether the current price already reflects all of that. And every comparison only means something within the same industry and stage of development.",
   "diagram": [
-    { "label": "Profitability: is it profitable?", "arrow": true },
-    { "label": "Liquidity: enough short-term cash?", "arrow": true },
-    { "label": "Leverage: is debt excessive?", "arrow": true },
-    { "label": "Valuation: is the price reasonable?" }
+    {
+      "label": "Profitability: is it profitable?",
+      "arrow": true
+    },
+    {
+      "label": "Liquidity: enough short-term cash?",
+      "arrow": true
+    },
+    {
+      "label": "Leverage: is debt excessive?",
+      "arrow": true
+    },
+    {
+      "label": "Valuation: is the price reasonable?"
+    }
   ],
   "realWorldExample": {
     "company": "Comprehensive business analysis",
@@ -82,7 +93,7 @@
     "question": "Having finished the financial-ratios track, you want to comprehensively assess a company: profitability, short-term solvency, debt level, and whether the share price is reasonable. Which groups of metrics do you need?",
     "options": [
       "Just a single metric like P/E is enough to comprehensively assess every aspect of the company",
-      "4 groups of ratios: Profitability, Liquidity, Leverage, Valuation - all four need to be combined",
+      "Four groups - Profitability, Liquidity, Leverage and Valuation - and all four are needed together",
       "Just the Leverage group, since debt level decides all of the company's risk and potential",
       "Every group of ratios gives the same result, so calculating just one group is enough"
     ],
@@ -107,18 +118,40 @@
       "type": "conceptTable",
       "title": "The 4 core groups of metrics",
       "concepts": [
-        { "vi": "Khả năng sinh lời", "en": "Profitability", "def": "Gross/Operating/Net Margin, ROA, ROE, ROIC - is the business profitable, and profitable efficiently?" },
-        { "vi": "Thanh khoản", "en": "Liquidity", "def": "Current Ratio, Quick Ratio - is there enough cash to pay short-term debt?" },
-        { "vi": "Đòn bẩy tài chính", "en": "Leverage", "def": "D/E, Interest Coverage - is debt at a safe level?" },
-        { "vi": "Định giá", "en": "Valuation", "def": "P/E, P/B, EV/EBITDA - is the share price reasonable relative to fundamentals?" }
+        {
+          "vi": "Khả năng sinh lời",
+          "en": "Profitability",
+          "def": "Gross/Operating/Net Margin, ROA, ROE, ROIC - is the business profitable, and profitable efficiently?"
+        },
+        {
+          "vi": "Thanh khoản",
+          "en": "Liquidity",
+          "def": "Current Ratio, Quick Ratio - is there enough cash to pay short-term debt?"
+        },
+        {
+          "vi": "Đòn bẩy tài chính",
+          "en": "Leverage",
+          "def": "D/E, Interest Coverage - is debt at a safe level?"
+        },
+        {
+          "vi": "Định giá",
+          "en": "Valuation",
+          "def": "P/E, P/B, EV/EBITDA - is the share price reasonable relative to fundamentals?"
+        }
       ]
     },
-    { "type": "heading", "text": "Why no single metric ever tells the whole story" },
+    {
+      "type": "heading",
+      "text": "Why no single metric ever tells the whole story"
+    },
     {
       "type": "paragraph",
       "text": "Picture a stock with a very high ROE (30%) - a figure that sounds attractive immediately. But if D/E is also very high (4.0) and the Current Ratio is below 1, the picture changes entirely: that high ROE may largely come from risky financial leverage, combined with genuine short-term liquidity pressure. This is a classic warning combination in financial analysis - profitability may be being 'bought' with high financial risk, a trade-off investors need to recognize before being drawn in by an impressive ROE figure."
     },
-    { "type": "heading", "text": "The process for analyzing any business" },
+    {
+      "type": "heading",
+      "text": "The process for analyzing any business"
+    },
     {
       "type": "paragraph",
       "text": "A professional analyst, whether assessing a bank or a manufacturer, always runs through all 4 groups of metrics before concluding: starting with Profitability to understand whether the business earns well, moving to Liquidity and Leverage to understand financial risk, and only then to Valuation to see whether the current price accurately reflects the quality of business just analyzed. Skipping any group can lead to a seriously mistaken conclusion."

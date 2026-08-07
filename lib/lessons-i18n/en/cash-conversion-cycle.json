@@ -12,10 +12,21 @@
   ],
   "explanation": "The cash conversion cycle measures how many days your cash is tied up between paying suppliers and collecting from customers. Paying suppliers slower (a high DPO) shortens that cycle, because you're using their capital for longer - for free. When the cycle drops below zero, as with Amazon or Costco, customers pay you before you even have to pay your suppliers: the business can expand without raising extra working capital, and that's a real competitive advantage.",
   "diagram": [
-    { "label": "DIO: days in inventory", "arrow": true },
-    { "label": "+ DSO: days to collect", "arrow": true },
-    { "label": "− DPO: days to pay suppliers", "arrow": true },
-    { "label": "= Cash Conversion Cycle" }
+    {
+      "label": "DIO: days in inventory",
+      "arrow": true
+    },
+    {
+      "label": "+ DSO: days to collect",
+      "arrow": true
+    },
+    {
+      "label": "− DPO: days to pay suppliers",
+      "arrow": true
+    },
+    {
+      "label": "= Cash Conversion Cycle"
+    }
   ],
   "realWorldExample": {
     "company": "Amazon",
@@ -81,7 +92,7 @@
   "practicePrompt": {
     "question": "A company has DIO (time holding inventory) = 40 days, DSO (time to collect from customers) = 30 days, DPO (time to pay suppliers) = 25 days. What is this company's Cash Conversion Cycle (CCC), and what does it mean?",
     "options": [
-      "CCC = DIO + DSO − DPO = 40 + 30 - 25 = 45 days - this is the average number of days from when the company spends cash on raw materials to when it actually collects cash from customers",
+      "CCC = DIO + DSO − DPO = 40 + 30 - 25 = 45 days from paying out cash to collecting it",
       "CCC = DIO + DSO + DPO = 40 + 30 + 25 = 95 days, adding all three periods together",
       "CCC = DPO - DIO - DSO = 25 - 40 - 30 = -45 days, since DPO must always be subtracted from the other two",
       "CCC has no practical meaning, it's just a theoretical formula rarely applied"
@@ -103,13 +114,23 @@
       "type": "lead",
       "text": "The Cash Conversion Cycle (CCC) combines three metrics already learned - DIO, DSO, DPO - into a single picture: from the moment cash is spent on raw materials, to the sale, to the moment cash is collected, how many days in total does that take?"
     },
-    { "type": "callout", "label": "The formula", "text": "CCC = DIO + DSO − DPO   (DPO = Days Payable Outstanding, the average number of days to pay suppliers)" },
-    { "type": "heading", "text": "Why Amazon has a negative CCC - and why that's a major advantage" },
+    {
+      "type": "callout",
+      "label": "The formula",
+      "text": "CCC = DIO + DSO − DPO   (DPO = Days Payable Outstanding, the average number of days to pay suppliers)"
+    },
+    {
+      "type": "heading",
+      "text": "Why Amazon has a negative CCC - and why that's a major advantage"
+    },
     {
       "type": "paragraph",
       "text": "Amazon is famous for a negative CCC: it collects from customers almost instantly via credit card, but pays suppliers after 60-90 days. That means Amazon is using its own suppliers' capital to fund its operations without incurring interest expense - a form of 'free financing.' This is one of the strongest financial competitive advantages a business can have: it allows expansion without needing to raise much additional working capital."
     },
-    { "type": "heading", "text": "How make-to-order shortens the CCC" },
+    {
+      "type": "heading",
+      "text": "How make-to-order shortens the CCC"
+    },
     {
       "type": "paragraph",
       "text": "A make-to-order manufacturer only produces once it has a confirmed order, so it holds far less inventory than make-to-stock (produce first, sell later) - lower DIO means a shorter CCC. The choice of production model, therefore, directly affects a business's working-capital needs."

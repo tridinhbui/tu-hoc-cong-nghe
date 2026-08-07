@@ -12,9 +12,17 @@
   ],
   "explanation": "A portfolio's Expected Return = the sum of (each asset's weight × that asset's expected return). This is a WEIGHTED average, not a simple arithmetic average - an asset with a larger weight has more influence on the overall result, and this is the calculation every asset-allocation decision ultimately rests on.",
   "diagram": [
-    { "label": "Asset A's weight × asset A's expected return", "arrow": true },
-    { "label": "+ Asset B's weight × asset B's expected return", "arrow": true },
-    { "label": "= the portfolio's Expected Return" }
+    {
+      "label": "Asset A's weight × asset A's expected return",
+      "arrow": true
+    },
+    {
+      "label": "+ Asset B's weight × asset B's expected return",
+      "arrow": true
+    },
+    {
+      "label": "= the portfolio's Expected Return"
+    }
   ],
   "realWorldExample": {
     "company": "The classic 60/40 portfolio",
@@ -80,7 +88,7 @@
   "practicePrompt": {
     "question": "A portfolio holds 60% stocks (expected return 12%/year) and 40% bonds (expected return 5%/year). What is the Expected Return of the whole portfolio?",
     "options": [
-      "The portfolio's Expected Return = a weighted average by each asset's allocation = 0.6×12% + 0.4×5% = 7.2% + 2% = 9.2%",
+      "Portfolio Expected Return is the weighted average: 0.6 × 12% + 0.4 × 5% = 7.2% + 2% = 9.2%",
       "Expected Return = (12%+5%)/2 = 8.5%, a simple arithmetic average with no weighting",
       "Expected Return = 12% + 5% = 17%, directly adding the two assets' expected returns",
       "The portfolio's Expected Return always exactly equals the return of the asset with the largest weight, i.e. 12%"
@@ -102,17 +110,26 @@
       "type": "lead",
       "text": "A portfolio's Expected Return is not a simple arithmetic average of its component assets, but a WEIGHTED average: the sum of (each asset's weight × that asset's expected return). An asset with a larger weight influences the overall result more, whether its expected return is high or low."
     },
-    { "type": "heading", "text": "The formula and a 60/40 example" },
+    {
+      "type": "heading",
+      "text": "The formula and a 60/40 example"
+    },
     {
       "type": "paragraph",
       "text": "For the classic 60% stocks / 40% bonds portfolio, if stocks have an expected return of 9%/year and bonds 3%/year, the portfolio's Expected Return = 0.6 × 9% + 0.4 × 3% = 5.4% + 1.2% = 6.6%/year. This is the classic asset-allocation formula recommended by many financial advisors, balancing growth against stability."
     },
-    { "type": "heading", "text": "Raising the weight of the higher-return asset" },
+    {
+      "type": "heading",
+      "text": "Raising the weight of the higher-return asset"
+    },
     {
       "type": "paragraph",
       "text": "If you raise the stock weight from 60% to 80% (lowering bonds accordingly, keeping each asset's expected return unchanged), the portfolio's Expected Return rises: 0.8 × 9% + 0.2 × 3% = 7.8%. Because stocks have a higher expected return than bonds, raising their weight in the weighted-average formula pulls the overall Expected Return higher - but the portfolio's volatility rises along with it. This is a basic risk-return trade-off; there's no free lunch at this step."
     },
-    { "type": "heading", "text": "Estimation errors propagate by weight" },
+    {
+      "type": "heading",
+      "text": "Estimation errors propagate by weight"
+    },
     {
       "type": "paragraph",
       "text": "If you misestimate an asset's expected return (say, too optimistically), that error propagates into the portfolio's overall Expected Return exactly in proportion to that asset's weight. An asset making up 50% of the portfolio with a 3-percentage-point estimation error will shift the overall Expected Return by up to 1.5 percentage points - this is why assumptions about expected return always deserve careful scrutiny, especially for assets with a large weight."

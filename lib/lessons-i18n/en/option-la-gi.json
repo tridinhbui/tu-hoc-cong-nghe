@@ -11,9 +11,17 @@
   ],
   "explanation": "An option grants the buyer a right - but not an obligation - to buy (a call) or sell (a put) an asset at a set price (the strike price) on or before an expiration date. The option buyer pays a fee called the premium for this right; if it isn't favorable, they can simply choose not to exercise it.",
   "diagram": [
-    { "label": "Pay a premium to buy an Option", "arrow": true },
-    { "label": "Have the RIGHT - not the obligation", "arrow": true },
-    { "label": "Buy (Call) or sell (Put) at the strike price" }
+    {
+      "label": "Pay a premium to buy an Option",
+      "arrow": true
+    },
+    {
+      "label": "Have the RIGHT - not the obligation",
+      "arrow": true
+    },
+    {
+      "label": "Buy (Call) or sell (Put) at the strike price"
+    }
   ],
   "realWorldExample": {
     "company": "The Chicago Board Options Exchange (CBOE)",
@@ -80,7 +88,7 @@
     "question": "You buy a contract that lets you (but doesn't require you to) buy VNM stock at VND 80,000 within the next 3 months. If the market price falls to VND 70,000, you can simply choose not to exercise the contract and only lose the fee already paid. This 'can choose not to perform' feature is the core distinguishing characteristic of which derivative type?",
     "options": [
       "This is a feature of a Forward, since both parties are obligated to perform the contract at maturity",
-      "Option: a right - not an obligation - to buy/sell at the strike, with maximum risk equal to the premium",
+      "An Option is a right, not an obligation, to trade at the strike price; the most you lose is the premium",
       "This is a feature of Futures, since the contract is standardized and exchange-traded",
       "Every derivative contract type has this feature, there's nothing special about an Option"
     ],
@@ -101,12 +109,18 @@
       "type": "lead",
       "text": "An option differs fundamentally from a forward and futures in one key way: it gives the buyer a RIGHT, not an OBLIGATION, to buy (call) or sell (put) an asset at a set price (the strike price) on or before an expiration date. If unfavorable, the buyer simply doesn't exercise that right."
     },
-    { "type": "heading", "text": "Premium: the price of choice" },
+    {
+      "type": "heading",
+      "text": "Premium: the price of choice"
+    },
     {
       "type": "paragraph",
       "text": "This right isn't free. The option buyer must pay a fee called the premium at the moment of purchase - regardless of whether they later exercise the right. This is exactly what makes an option comparable to financial insurance: you pay a fixed fee for the right to be protected against an unfavorable price move, and your maximum risk is limited to that premium paid - you never lose more."
     },
-    { "type": "heading", "text": "Betting on volatility, not direction" },
+    {
+      "type": "heading",
+      "text": "Betting on volatility, not direction"
+    },
     {
       "type": "paragraph",
       "text": "An interesting strategy is a straddle: buying both a call option and a put option at the same strike price, same expiration date, on the same stock. The investor isn't betting price will rise or fall, but that it will move SHARPLY in either direction - often used ahead of a major event such as an earnings report. If price stays near the strike, both options lose value and the investor loses both premiums paid."
@@ -120,7 +134,10 @@
         "CBOE (Chicago Board Options Exchange): the world's largest options exchange"
       ]
     },
-    { "type": "heading", "text": "Real-world example: reading the VN30F1M derivatives price board" },
+    {
+      "type": "heading",
+      "text": "Real-world example: reading the VN30F1M derivatives price board"
+    },
     {
       "type": "list",
       "items": [

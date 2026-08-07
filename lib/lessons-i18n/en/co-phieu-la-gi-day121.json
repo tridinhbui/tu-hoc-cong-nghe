@@ -12,9 +12,15 @@
   ],
   "explanation": "A stock (or share) is a certificate of ownership in part of a business. A shareholder has the right to: receive dividends (if the company distributes them), vote at the shareholder meeting, and receive a share of the remaining assets if the company is dissolved (after all debts are paid). This is completely different from a bond - a shareholder is an owner, not a creditor.",
   "diagram": [
-    { "label": "The business issues shares" },
-    { "label": "An investor buys → becomes a shareholder" },
-    { "label": "Rights: dividends, voting, remaining assets" }
+    {
+      "label": "The business issues shares"
+    },
+    {
+      "label": "An investor buys → becomes a shareholder"
+    },
+    {
+      "label": "Rights: dividends, voting, remaining assets"
+    }
   ],
   "realWorldExample": {
     "company": "The HOSE exchange in Vietnam",
@@ -81,7 +87,7 @@
     "question": "A friend says: 'Buying Vinamilk stock is just like lending Vinamilk money, and they'll pay you back with interest.' Does this correctly capture the nature of owning a stock?",
     "options": [
       "Correct, buying stock is essentially identical to lending a company money and receiving periodic interest like a bond",
-      "Incorrect - a stock is a certificate of ownership in part of a business, not a loan; a shareholder is an owner sharing both risk and profit with the company, with no fixed repayment commitment like a creditor has",
+      "Wrong - a share is a claim of part-ownership in the business, not a loan you have made to it",
       "Partly correct, because a stock is both an ownership right and a loan with a fixed interest rate",
       "Incorrect, because a stock is just a piece of paper with no real economic value at all"
     ],
@@ -102,12 +108,18 @@
       "type": "lead",
       "text": "A stock isn't just a number flickering on a screen - it's a certificate that you own a real slice of a real business, with its own factories, brand, staff, and cash flow. Buying a VNM share means you become a co-owner of Vinamilk, however small the ratio."
     },
-    { "type": "heading", "text": "Three benefits that come with a stock" },
+    {
+      "type": "heading",
+      "text": "Three benefits that come with a stock"
+    },
     {
       "type": "paragraph",
       "text": "A shareholder has three basic rights: (1) receive dividends if the company decides to distribute them; (2) vote at the shareholder meeting on major matters such as electing the board, mergers, issuing new shares; (3) receive a share of the remaining assets if the company is dissolved - but only after everything owed to creditors has been paid. These three rights are exactly what creates the real economic value behind that stock certificate."
     },
-    { "type": "heading", "text": "Why shareholders carry more risk than bondholders" },
+    {
+      "type": "heading",
+      "text": "Why shareholders carry more risk than bondholders"
+    },
     {
       "type": "paragraph",
       "text": "When a company goes bankrupt, the repayment order is always: secured creditors → unsecured creditors (including bondholders) → preferred shareholders → common shareholders. Common shareholders stand at the back of the line - if the liquidated assets aren't enough to cover all the debt, shareholders lose everything. This is why stock is always considered a riskier asset than bonds, and in exchange, has far greater profit potential if the business succeeds."

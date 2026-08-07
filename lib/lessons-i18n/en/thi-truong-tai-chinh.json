@@ -12,9 +12,15 @@
   ],
   "explanation": "A financial market is where price forms through buying and selling, and that price sums up every participant's expectations about the future. That's why a stock's price reacts not only to news about the company itself, but to interest rates, exchange rates, foreign capital flows and overall sentiment. A consequence that's often overlooked: good news that everyone already anticipated barely moves the price at all, because it's already baked into the current price.",
   "diagram": [
-    { "label": "Idle capital looking for a return" },
-    { "label": "The financial market (price)" },
-    { "label": "A business or government that needs capital" }
+    {
+      "label": "Idle capital looking for a return"
+    },
+    {
+      "label": "The financial market (price)"
+    },
+    {
+      "label": "A business or government that needs capital"
+    }
   ],
   "realWorldExample": {
     "company": "The VN-Index, 2022",
@@ -80,7 +86,7 @@
   "practicePrompt": {
     "question": "The VN-Index just released a listed-company profit report that beat forecasts. Within the same trading session, most stock prices had already jumped before the news was widely reported in the press. What does this best illustrate?",
     "options": [
-      "The Efficient Market Hypothesis - price reflects information almost instantly as it appears, without waiting for wide publication",
+      "Efficient Market Hypothesis - prices absorb information almost instantly, before any wide public announcement",
       "A bull market - because the stock price is in a sustained upward trend over many consecutive months",
       "Risk premium - because investors demand extra return to compensate for the risk of unclear information",
       "Liquidity premium - because market liquidity spiked right after the profit news was announced"
@@ -102,17 +108,26 @@
       "type": "lead",
       "text": "VNM's stock falls 5% in a single day even though the company has no bad news. What is actually happening behind that number?"
     },
-    { "type": "heading", "text": "A financial market is where expectations meet" },
+    {
+      "type": "heading",
+      "text": "A financial market is where expectations meet"
+    },
     {
       "type": "paragraph",
       "text": "A financial market is where people with spare capital meet people who need capital, through the mechanism of price. The price of an asset (a stock, a bond) at any given moment doesn't only reflect a company's 'intrinsic value' - it is the combined result of the expectations, beliefs, and behaviour of EVERY participant in the market at that moment."
     },
-    { "type": "heading", "text": "Why does price fall when a company has no bad news?" },
+    {
+      "type": "heading",
+      "text": "Why does price fall when a company has no bad news?"
+    },
     {
       "type": "paragraph",
       "text": "A stock's price is affected by many factors beyond the company itself: interest-rate moves (affecting the cost of capital and valuations across the whole market), exchange-rate moves, overall investor sentiment (fear or optimism), foreign capital flowing out or in, and other macro events. A company can be perfectly stable while its stock price still falls, if the whole market is in a pessimistic mood."
     },
-    { "type": "heading", "text": "The Efficient Market Hypothesis (EMH)" },
+    {
+      "type": "heading",
+      "text": "The Efficient Market Hypothesis (EMH)"
+    },
     {
       "type": "paragraph",
       "text": "The efficient market hypothesis holds that an asset's price already reflects almost all publicly available information at that moment - so it is very hard for an individual investor to consistently 'beat the market' simply by analysing public information that anyone else can also access."

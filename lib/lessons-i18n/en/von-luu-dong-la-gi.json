@@ -12,10 +12,21 @@
   ],
   "explanation": "Working capital is the gap between current assets and current liabilities - the buffer for day-to-day operations. Positive means a safety margin, but too much positive can be a sign cash is dying in inventory and receivables. Negative isn't automatically bad either: supermarkets and businesses that collect cash upfront often run sustainably negative working capital, because customers pay them before they have to pay their suppliers.",
   "diagram": [
-    { "label": "Current assets: cash, receivables, inventory", "arrow": true },
-    { "label": "Subtract current liabilities: payables, debt due", "arrow": true },
-    { "label": "What's left is working capital", "arrow": true },
-    { "label": "Positive means a buffer; negative needs checking that cash inflow is steady enough" }
+    {
+      "label": "Current assets: cash, receivables, inventory",
+      "arrow": true
+    },
+    {
+      "label": "Subtract current liabilities: payables, debt due",
+      "arrow": true
+    },
+    {
+      "label": "What's left is working capital",
+      "arrow": true
+    },
+    {
+      "label": "Positive means a buffer; negative needs checking that cash inflow is steady enough"
+    }
   ],
   "realWorldExample": {
     "company": "PNJ",
@@ -101,7 +112,7 @@
   "practicePrompt": {
     "question": "A manufacturing company has Current Assets = 400 billion, Current Liabilities = 600 billion. What is this company's Working Capital (WC), and what does it mean?",
     "options": [
-      "WC = -200 billion (negative) - current liabilities exceed current assets, and the company needs to watch its ability to pay obligations coming due carefully",
+      "WC = -200 billion: current liabilities exceed current assets, so watch the near-term obligations",
       "WC = 1,000 billion (positive) because you add the two figures together under the total-assets formula",
       "WC = 200 billion (positive) - the company has an adequate financial buffer, no need to worry about liquidity at all",
       "WC cannot be calculated without information about the company's equity"
@@ -123,12 +134,18 @@
       "type": "lead",
       "text": "Working Capital is the capital a business needs to run day-to-day operations - buying materials, paying salaries, holding inventory - before it collects cash from customers. **Formula:** Working Capital = Current Assets − Current Liabilities."
     },
-    { "type": "heading", "text": "What positive Working Capital means" },
+    {
+      "type": "heading",
+      "text": "What positive Working Capital means"
+    },
     {
       "type": "paragraph",
       "text": "When current assets exceed current liabilities, a business has a 'buffer' to cover near-term obligations even during a temporary rough patch. This is common in manufacturing businesses - they need substantial capital to buy raw materials, hold inventory, and wait for customers to pay before recovering that capital."
     },
-    { "type": "heading", "text": "Negative Working Capital - not always bad" },
+    {
+      "type": "heading",
+      "text": "Negative Working Capital - not always bad"
+    },
     {
       "type": "paragraph",
       "text": "Some business models run with negative WC deliberately and healthily. Supermarkets and retail chains collect cash/card payments immediately from customers but pay suppliers 30-60 days later - they operate on supplier money without needing much of their own capital. This is a structural advantage, not a danger sign, as long as operating cash flow stays positive and stable."
@@ -150,9 +167,21 @@
       "type": "conceptTable",
       "title": "Working capital terminology",
       "concepts": [
-        { "vi": "Vốn lưu động", "en": "Working Capital", "def": "Current Assets − Current Liabilities, the capital needed to run daily operations" },
-        { "vi": "Tài sản ngắn hạn", "en": "Current Assets", "def": "Cash, receivables, inventory - converted to cash within 12 months" },
-        { "vi": "Nợ ngắn hạn", "en": "Current Liabilities", "def": "Obligations payable within 12 months" }
+        {
+          "vi": "Vốn lưu động",
+          "en": "Working Capital",
+          "def": "Current Assets − Current Liabilities, the capital needed to run daily operations"
+        },
+        {
+          "vi": "Tài sản ngắn hạn",
+          "en": "Current Assets",
+          "def": "Cash, receivables, inventory - converted to cash within 12 months"
+        },
+        {
+          "vi": "Nợ ngắn hạn",
+          "en": "Current Liabilities",
+          "def": "Obligations payable within 12 months"
+        }
       ]
     },
     {

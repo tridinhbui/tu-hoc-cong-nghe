@@ -12,10 +12,18 @@
   ],
   "explanation": "An interest rate is the price of money, so it turns up in almost every financial decision. When it rises: borrowing costs more, so people borrow less; saving pays better, so people spend less; businesses postpone projects; and asset prices come under pressure because future cash flows are discounted more heavily. That last channel is the least intuitive and the most powerful - it is why stock markets react the moment a central bank moves rates.",
   "diagram": [
-    { "label": "The central bank changes its policy rate" },
-    { "label": "Borrowing costs and deposit yields follow" },
-    { "label": "Firms and households borrow and spend less" },
-    { "label": "Future cash flows get discounted harder: asset prices fall" }
+    {
+      "label": "The central bank changes its policy rate"
+    },
+    {
+      "label": "Borrowing costs and deposit yields follow"
+    },
+    {
+      "label": "Firms and households borrow and spend less"
+    },
+    {
+      "label": "Future cash flows get discounted harder: asset prices fall"
+    }
   ],
   "realWorldExample": {
     "company": "The Fed, 2022-2023",
@@ -103,12 +111,18 @@
       "type": "lead",
       "text": "The State Bank raises its policy rate from 4% to 6%. The headline sounds dry, but it will reach your wallet through more channels than you would expect."
     },
-    { "type": "heading", "text": "An interest rate is 'the price of money'" },
+    {
+      "type": "heading",
+      "text": "An interest rate is 'the price of money'"
+    },
     {
       "type": "paragraph",
       "text": "Just like the price of rice or of petrol, an interest rate is what you pay to 'rent' someone else's money (when you borrow), or the reward you receive for letting someone rent yours (when you save). When that price moves, every decision about borrowing, lending and investing moves with it."
     },
-    { "type": "heading", "text": "The chain reaction when rates rise" },
+    {
+      "type": "heading",
+      "text": "The chain reaction when rates rise"
+    },
     {
       "type": "paragraph",
       "text": "When rates rise: borrowing becomes more expensive (instalments on a house or a car go up), saving becomes more attractive (people shift out of risky investments into safe deposits), businesses borrow less to expand (a higher cost of capital leaves fewer projects still profitable), and assets like equities and property usually come under downward pressure (future cash flows are discounted at a higher rate, which lowers their present value)."

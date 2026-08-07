@@ -12,10 +12,21 @@
   ],
   "explanation": "Revenue is recognised when the business has fulfilled its obligation - delivered the goods or completed the service - not when the customer pays. This is the accrual principle, and it exists so profit reflects the period the business activity actually happened in. The cost is a gap between revenue and real cash, which is where accounts receivable lives, and also where a business can show a beautiful income statement while its bank account is nearly empty.",
   "diagram": [
-    { "label": "Contract signed with customer", "arrow": true },
-    { "label": "Goods delivered or service completed", "arrow": true },
-    { "label": "Revenue recognised right at this point", "arrow": true },
-    { "label": "Cash arrives later - becomes a receivable while waiting" }
+    {
+      "label": "Contract signed with customer",
+      "arrow": true
+    },
+    {
+      "label": "Goods delivered or service completed",
+      "arrow": true
+    },
+    {
+      "label": "Revenue recognised right at this point",
+      "arrow": true
+    },
+    {
+      "label": "Cash arrives later - becomes a receivable while waiting"
+    }
   ],
   "realWorldExample": {
     "company": "Amazon",
@@ -101,7 +112,7 @@
   "practicePrompt": {
     "question": "A software company signs a 120-million-dong-per-year SaaS contract, and the customer pays the full 120 million upfront on the signing date (1 January). By 31 March (end of Q1), how much revenue should the company recognise from this contract?",
     "options": [
-      "30 million - because the company has only completed 3 of 12 months of its service obligation, and the rest is deferred revenue",
+      "30 million, because the company has only completed 3 of the 12 months of the service it promised to deliver",
       "120 million - because the customer already paid the full amount upfront, so it's all recognised at once",
       "0 dong - because revenue can only be recognised once the entire contract year has passed",
       "60 million - because half the contract value is always recognised as soon as cash arrives"
@@ -123,7 +134,10 @@
       "type": "lead",
       "text": "Two companies each sell a batch of goods worth 100 million dong on day 1. One books the revenue immediately on day 1; the other waits until day 30, when the customer pays, before booking it. Who is right? The answer sits in one of accounting's most important principles: accrual."
     },
-    { "type": "heading", "text": "Accrual accounting: recognised by obligation, not by cash flow" },
+    {
+      "type": "heading",
+      "text": "Accrual accounting: recognised by obligation, not by cash flow"
+    },
     {
       "type": "paragraph",
       "text": "Under the accrual principle that most large businesses follow (and that Vietnamese accounting law requires), revenue is recognised once the business has completed its obligation to deliver goods or provide a service to the customer - regardless of whether cash has arrived. By contrast, cash accounting only recognises revenue when cash actually lands in the account. Small businesses and household enterprises can use cash accounting for its simplicity, but listed companies must use accrual to correctly reflect the economic substance of a transaction."
@@ -132,7 +146,10 @@
       "type": "paragraph",
       "text": "An important consequence: a company's income statement can look very good - revenue growing, profit positive - while actual cash flow is negative, because customers haven't paid yet. This is exactly why investors always have to read both the income statement and the cash flow statement, never just one."
     },
-    { "type": "heading", "text": "Accounts receivable - 'revenue not yet turned into cash'" },
+    {
+      "type": "heading",
+      "text": "Accounts receivable - 'revenue not yet turned into cash'"
+    },
     {
       "type": "paragraph",
       "text": "When revenue is recognised but the cash hasn't arrived, the gap sits in Accounts Receivable on the balance sheet - essentially the customer's 'promise to pay'. If receivables grow much faster than revenue, that can be a warning sign: the company is selling well on paper but struggling to collect the actual cash."
@@ -147,17 +164,39 @@
     },
     {
       "type": "comparison",
-      "left": { "label": "Accrual accounting", "text": "Recognises revenue when the delivery/service obligation is completed. Reflects the true substance of business activity, but can mask cash-flow problems if not read alongside the cash flow statement." },
-      "right": { "label": "Cash accounting", "text": "Recognises revenue only when cash actually lands in the account. Simple, suits small household businesses, but doesn't reflect the true scale of activity if the business has many credit transactions." }
+      "left": {
+        "label": "Accrual accounting",
+        "text": "Recognises revenue when the delivery/service obligation is completed. Reflects the true substance of business activity, but can mask cash-flow problems if not read alongside the cash flow statement."
+      },
+      "right": {
+        "label": "Cash accounting",
+        "text": "Recognises revenue only when cash actually lands in the account. Simple, suits small household businesses, but doesn't reflect the true scale of activity if the business has many credit transactions."
+      }
     },
     {
       "type": "conceptTable",
       "title": "Revenue recognition terms",
       "concepts": [
-        { "vi": "Kế toán dồn tích", "en": "Accrual Accounting", "def": "Recognises revenue/expenses when the obligation arises, regardless of when cash is received/paid." },
-        { "vi": "Khoản phải thu", "en": "Accounts Receivable (AR)", "def": "The amount customers still owe the company after revenue has been recognised." },
-        { "vi": "Doanh thu chưa thực hiện", "en": "Deferred/Unearned Revenue", "def": "Cash received in advance but the delivery/service obligation is not yet complete." },
-        { "vi": "Nghĩa vụ thực hiện", "en": "Performance Obligation", "def": "A specific commitment the business makes to a customer, and the trigger for recognising revenue." }
+        {
+          "vi": "Kế toán dồn tích",
+          "en": "Accrual Accounting",
+          "def": "Recognises revenue/expenses when the obligation arises, regardless of when cash is received/paid."
+        },
+        {
+          "vi": "Khoản phải thu",
+          "en": "Accounts Receivable (AR)",
+          "def": "The amount customers still owe the company after revenue has been recognised."
+        },
+        {
+          "vi": "Doanh thu chưa thực hiện",
+          "en": "Deferred/Unearned Revenue",
+          "def": "Cash received in advance but the delivery/service obligation is not yet complete."
+        },
+        {
+          "vi": "Nghĩa vụ thực hiện",
+          "en": "Performance Obligation",
+          "def": "A specific commitment the business makes to a customer, and the trigger for recognising revenue."
+        }
       ]
     },
     {

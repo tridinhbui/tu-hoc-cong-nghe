@@ -122,7 +122,7 @@ export const AUDIT_LESSONS: Lesson[] = [
         "Bạn đọc báo cáo có ý kiến chấp nhận toàn phần, kèm đoạn nhấn mạnh về hoạt động liên tục. Nên hiểu thế nào?",
       options: [
         "Báo cáo tốt, đoạn nhấn mạnh chỉ là thủ tục",
-        "Số liệu đáng tin, nhưng kiểm toán viên đang cảnh báo doanh nghiệp có thể không tồn tại đủ 12 tháng tới",
+        "Số liệu tin được, nhưng nghi ngờ tồn tại tiếp",
         "Báo cáo có sai sót trọng yếu",
         "Kiểm toán viên không đủ bằng chứng để kết luận",
       ],
@@ -780,7 +780,7 @@ export const AUDIT_LESSONS: Lesson[] = [
         "Doanh nghiệp có lợi nhuận tăng 25% mỗi năm suốt bốn năm, nhưng dòng tiền từ hoạt động kinh doanh gần như đứng yên. Nên nghĩ gì?",
       options: [
         "Doanh nghiệp đang tăng trưởng tốt",
-        "Cần tìm hiểu vì sao lợi nhuận không chuyển thành tiền: có thể là phải thu phình to hoặc doanh thu ghi nhận sớm",
+        "Cần tìm hiểu vì sao lợi nhuận không thành tiền",
         "Đây là chuyện bình thường với doanh nghiệp tăng trưởng",
         "Doanh nghiệp đang đầu tư mạnh vào tài sản cố định",
       ],
@@ -951,7 +951,7 @@ export const AUDIT_LESSONS: Lesson[] = [
         "Trưởng kiểm toán nội bộ báo cáo trực tiếp và duy nhất cho tổng giám đốc. Vấn đề ở đâu?",
       options: [
         "Không có vấn đề gì, đó là cấu trúc báo cáo thông thường",
-        "Mất tính độc lập: phát hiện bất lợi cho ban điều hành phải đi qua chính người bị kiểm tra trước khi tới hội đồng",
+        "Mất độc lập: báo cáo phải qua chính người bị kiểm tra",
         "Trưởng kiểm toán nội bộ sẽ quá tải công việc",
         "Chi phí bộ phận kiểm toán nội bộ sẽ tăng lên",
       ],

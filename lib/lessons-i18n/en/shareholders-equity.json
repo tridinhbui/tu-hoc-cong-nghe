@@ -12,10 +12,21 @@
   ],
   "explanation": "Shareholders' equity has a part contributed by shareholders - paid-in capital plus issuance premium - and a part made of profit the company has kept over the years, minus treasury shares bought back. Negative retained earnings means historical losses exceed historical profit, which is quite normal for a business in a cash-burning growth phase. Conversely, a business that has bought back stock for years can carry very thin equity while remaining perfectly healthy.",
   "diagram": [
-    { "label": "Shareholders contribute the initial capital", "arrow": true },
-    { "label": "Add the premium from issuing shares above par", "arrow": true },
-    { "label": "Add up retained earnings accumulated over the years", "arrow": true },
-    { "label": "Subtract treasury shares bought back" }
+    {
+      "label": "Shareholders contribute the initial capital",
+      "arrow": true
+    },
+    {
+      "label": "Add the premium from issuing shares above par",
+      "arrow": true
+    },
+    {
+      "label": "Add up retained earnings accumulated over the years",
+      "arrow": true
+    },
+    {
+      "label": "Subtract treasury shares bought back"
+    }
   ],
   "realWorldExample": {
     "company": "Mobile World (MWG)",
@@ -122,7 +133,7 @@
     "question": "A tech company keeps buying back its own shares (a buyback) year after year, making the 'treasury stock' item increasingly negative. Retained earnings stays positive but smaller than the cumulative buyback amount. What could happen to the company's total Equity?",
     "options": [
       "Equity is bound to always stay positive and grow, since the company keeps accumulating profit every year",
-      "Equity can turn negative if treasury stock (negative) exceeds total common stock + APIC + retained earnings - something that can actually happen at aggressive buyback companies like Apple",
+      "Equity can go negative if treasury stock grows larger than common stock + APIC + retained earnings combined",
       "Equity is never affected by a company buying back its own shares",
       "A buyback only affects Cash Flow and has absolutely no impact on the Equity section of the balance sheet"
     ],
@@ -143,7 +154,10 @@
       "type": "lead",
       "text": "You've learned that the Balance Sheet consists of Assets = Liabilities + Shareholders' Equity. But 'Shareholders' Equity' isn't a single number - it's the sum of several pieces, each telling a different story about the origin of the value shareholders hold."
     },
-    { "type": "heading", "text": "The four main components of Equity" },
+    {
+      "type": "heading",
+      "text": "The four main components of Equity"
+    },
     {
       "type": "paragraph",
       "text": "Common Stock is the nominal value of shares issued, usually a small figure with little real economic meaning. Additional Paid-in Capital (APIC) is the gap between what shareholders actually paid for newly issued shares and their par value - this is where the real money a company raised in an IPO or a follow-on offering shows up."
@@ -152,7 +166,10 @@
       "type": "paragraph",
       "text": "Retained Earnings is the cumulative total of all profit the company has generated since founding, minus dividends paid out. This is usually the largest component at long-established, consistently profitable companies like Vinamilk or FPT. Treasury Stock is a negative item - when a company uses cash to buy back its own shares on the market, those shares aren't cancelled but held in treasury, and the repurchase value is deducted directly from equity."
     },
-    { "type": "heading", "text": "Why can Retained Earnings go negative?" },
+    {
+      "type": "heading",
+      "text": "Why can Retained Earnings go negative?"
+    },
     {
       "type": "paragraph",
       "text": "A young company investing heavily to win market share (as many early-stage tech and e-commerce companies do) can lose money for several years running. When cumulative losses exceed cumulative historical profit, Retained Earnings turns negative - called an accumulated deficit. This doesn't automatically mean the company is about to go bankrupt, but it shows the company has never created positive net value for shareholders since founding, and an investor needs to judge whether the path to profitability is clear."
@@ -175,10 +192,26 @@
       "type": "conceptTable",
       "title": "Shareholders' Equity terminology",
       "concepts": [
-        { "vi": "Vốn cổ phần", "en": "Common Stock", "def": "The par value of common shares issued." },
-        { "vi": "Thặng dư vốn cổ phần", "en": "Additional Paid-in Capital (APIC)", "def": "The gap between the actual issue price and the par value of the shares." },
-        { "vi": "Lợi nhuận chưa phân phối", "en": "Retained Earnings", "def": "Cumulative profit since founding, after dividends paid." },
-        { "vi": "Cổ phiếu quỹ", "en": "Treasury Stock", "def": "Shares the company bought back from the market, recorded as a negative item within Equity." }
+        {
+          "vi": "Vốn cổ phần",
+          "en": "Common Stock",
+          "def": "The par value of common shares issued."
+        },
+        {
+          "vi": "Thặng dư vốn cổ phần",
+          "en": "Additional Paid-in Capital (APIC)",
+          "def": "The gap between the actual issue price and the par value of the shares."
+        },
+        {
+          "vi": "Lợi nhuận chưa phân phối",
+          "en": "Retained Earnings",
+          "def": "Cumulative profit since founding, after dividends paid."
+        },
+        {
+          "vi": "Cổ phiếu quỹ",
+          "en": "Treasury Stock",
+          "def": "Shares the company bought back from the market, recorded as a negative item within Equity."
+        }
       ]
     },
     {

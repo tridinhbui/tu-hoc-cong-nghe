@@ -111,6 +111,19 @@ export const ACTUARIAL_LESSONS: Lesson[] = [
           "Dùng thẳng sẽ cho tỷ lệ tử vong cao hơn thực tế của tập khách hàng, dẫn tới phí cao hơn cần thiết và mất khách vào tay đối thủ.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Hợp đồng tử kỳ một năm, số tiền bảo hiểm 1 tỷ đồng, xác suất tử vong theo bảng là 0,2%, lãi suất chiết khấu 6%. Phí thuần xấp xỉ bao nhiêu?",
+      options: [
+        "1,89 triệu (= 2 triệu / 1,06)",
+        "2 triệu (= chưa chiết khấu về hiện tại)",
+        "2,12 triệu (= 2 triệu × 1,06)",
+        "0,2 triệu (= nhầm 0,2% thành 0,02%)",
+      ],
+      correct: 0,
+      explanation:
+        "Phí thuần là xác suất xảy ra nhân số tiền bảo hiểm, rồi chiết khấu về hiện tại: 0,2% × 1.000 triệu = 2 triệu tiền bồi thường kỳ vọng, trả vào cuối năm, nên hiện giá là 2/1,06 = 1,89 triệu. Nhân với 1,06 thay vì chia là lộn chiều thời gian - công ty thu phí trước và trả bồi thường sau, nên dòng tiền phải kéo về, không đẩy đi. Và đây mới là phí thuần: phí gộp mà khách hàng thực trả còn cộng thêm chi phí quản lý, hoa hồng và biên an toàn.",
+    },
     keyTakeaways: [
       "Phí thuần = xác suất xảy ra × số tiền bảo hiểm, chiết khấu về hiện tại.",
       "Phí gộp = phí thuần + chi phí quản lý + hoa hồng + biên an toàn.",
@@ -270,6 +283,19 @@ export const ACTUARIAL_LESSONS: Lesson[] = [
           "Doanh nghiệp thường biết chi phí rồi mới định giá bán. Bảo hiểm định giá trước rồi nhiều năm sau mới biết chi phí thật.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Một hợp đồng bảo hiểm một năm thu phí 240 triệu, hiệu lực từ ngày 1/9. Dự phòng phí chưa được hưởng tại ngày 31/12 là bao nhiêu?",
+      options: [
+        "160 triệu (= 240 × 8/12 còn lại)",
+        "80 triệu (= 240 × 4/12 phần đã trôi)",
+        "240 triệu (= toàn bộ phí đã thu)",
+        "20 triệu (= 240/12, một tháng)",
+      ],
+      correct: 0,
+      explanation:
+        "Phí thu một lần nhưng nghĩa vụ bảo hiểm trải đều suốt 12 tháng, nên tại 31/12 công ty mới hưởng được 4 tháng và còn nợ khách hàng 8 tháng bảo vệ. Phần chưa hưởng đó là 240 × 8/12 = 160 triệu và nằm bên nợ phải trả, không phải doanh thu. Chọn 80 triệu là lấy đúng phần đã hưởng - tức trả lời ngược câu hỏi. Giữ nguyên 240 triệu là ghi nhận doanh thu ngay khi thu tiền, và nó thổi phồng lợi nhuận năm nay đúng bằng phần nghĩa vụ còn treo sang năm sau.",
+    },
     keyTakeaways: [
       "Ba loại: dự phòng phí chưa được hưởng, dự phòng bồi thường đã báo, và IBNR.",
       "IBNR là tổn thất đã xảy ra mà công ty chưa biết - ước tính khó nhất trên báo cáo.",
@@ -416,6 +442,19 @@ export const ACTUARIAL_LESSONS: Lesson[] = [
           "Đây là mặt trái của việc phân tán rủi ro ra toàn cầu: nó cũng truyền giá từ nơi này sang nơi khác, kể cả nơi không có tổn thất nào.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Hợp đồng tái theo mức vượt: công ty gốc giữ 5 tỷ đầu tiên, nhà tái nhận phần trên đó cho tới 50 tỷ. Một tổn thất 62 tỷ thì công ty gốc trả bao nhiêu?",
+      options: [
+        "12 tỷ (= 5 giữ lại + 7 vượt trần tái)",
+        "5 tỷ (= chỉ phần giữ lại ban đầu)",
+        "62 tỷ (= nhà tái không nhận tổn thất lớn)",
+        "7 tỷ (= chỉ phần vượt trên 55 tỷ)",
+      ],
+      correct: 0,
+      explanation:
+        "Tái theo mức vượt có cả sàn lẫn trần. Nhà tái đỡ từ 5 tỷ lên tới 55 tỷ, tức đúng 50 tỷ ở giữa; phần trên 55 tỷ lại rơi về công ty gốc. Tổn thất 62 tỷ chia thành 5 tỷ giữ lại, 50 tỷ nhà tái trả, và 7 tỷ vượt trần quay lại công ty gốc - tổng cộng 12 tỷ. Trả lời 5 tỷ là quên mất cái trần, và đó chính là lỗi khiến một công ty tưởng mình đã mua đủ sự chắc chắn về mức mất tối đa trong khi chưa. Tái bảo hiểm chốt mức mất tối đa, nhưng chỉ chốt trong khoảng đã mua.",
+    },
     keyTakeaways: [
       "Tái bảo hiểm mua sự chắc chắn về mức mất tối đa, không mua giảm tổn thất trung bình.",
       "Theo tỷ lệ chia đều phí và tổn thất; theo mức vượt chỉ trả phần trên ngưỡng.",
@@ -559,6 +598,19 @@ export const ACTUARIAL_LESSONS: Lesson[] = [
           "Bắt buộc là cách trực tiếp nhất để chặn vòng xoáy lựa chọn bất lợi: không ai chọn được nên tập tham gia đúng bằng tập dân số.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Sau khi bỏ thời gian chờ 30 ngày của sản phẩm bảo hiểm nha khoa, tỷ lệ bồi thường trong hai tháng đầu hợp đồng tăng vọt. Đây là vấn đề nào, và xử lý bằng gì?",
+      options: [
+        "Lựa chọn bất lợi - khôi phục thời gian chờ và thẩm định",
+        "Rủi ro đạo đức - tăng mức miễn thường cho hợp đồng mới",
+        "Rủi ro đạo đức - hạ hoa hồng cho đại lý bán sản phẩm này",
+        "Lựa chọn bất lợi - nâng phí đều cho toàn bộ tập khách hàng",
+      ],
+      correct: 0,
+      explanation:
+        "Bồi thường dồn vào hai tháng đầu là dấu hiệu người mua đã biết mình sắp cần điều trị trước khi ký - đó là lựa chọn bất lợi, xảy ra TRƯỚC hợp đồng, chứ không phải rủi ro đạo đức vốn xảy ra sau. Thời gian chờ tồn tại đúng để chặn cái này, nên bỏ nó đi là tự mở cửa. Mức miễn thường là công cụ của vế kia: nó khiến người đã có bảo hiểm cẩn thận hơn, nhưng không ngăn được người đang đau răng mua hợp đồng hôm nay. Còn nâng phí đều cho mọi người là cách vòng xoáy bắt đầu - người khoẻ rời đi trước, tập khách hàng còn lại xấu thêm.",
+    },
     keyTakeaways: [
       "Lựa chọn bất lợi xảy ra trước khi ký: người rủi ro cao mua nhiều hơn.",
       "Rủi ro đạo đức xảy ra sau khi ký: có bảo hiểm rồi thì cẩn thận ít đi.",
@@ -710,6 +762,19 @@ export const ACTUARIAL_LESSONS: Lesson[] = [
           "Đây là chu kỳ kinh điển của ngành: giành thị phần bằng giá, tỷ lệ kết hợp xấu dần, rồi cả thị trường phải tăng phí sau một năm tổn thất lớn.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Phí thu 2.000 tỷ, tỷ lệ bồi thường 72%, tỷ lệ chi phí 31%. Float 5.000 tỷ, lợi suất đầu tư đạt 6%. Tổng kết quả trước thuế là bao nhiêu?",
+      options: [
+        "Lãi 240 tỷ (= 300 đầu tư − 60 lỗ nghiệp vụ)",
+        "Lỗ 60 tỷ (= chỉ tính kết quả nghiệp vụ)",
+        "Lãi 300 tỷ (= chỉ tính thu nhập đầu tư)",
+        "Lãi 360 tỷ (= cộng 60 lỗ vào 300 lãi)",
+      ],
+      correct: 0,
+      explanation:
+        "Tỷ lệ kết hợp là 72% + 31% = 103%, tức lỗ nghiệp vụ 3% của 2.000 tỷ, bằng 60 tỷ. Float 5.000 tỷ sinh 300 tỷ. Cộng lại còn lãi 240 tỷ trước thuế. Con số đáng nhìn không phải 240 mà là tỷ lệ kết hợp 103%: nó nói float này có giá 60 tỷ một năm, tức khoảng 1,2% - vẫn rẻ hơn đi vay, nên mô hình vẫn lành. Nếu tỷ lệ kết hợp dưới 100% thì công ty được trả tiền để giữ float, và đó là trạng thái tốt nhất một công ty bảo hiểm có thể ở. Phương án 360 tỷ cộng nhầm dấu, biến khoản lỗ thành khoản thu.",
+    },
     keyTakeaways: [
       "Tỷ lệ kết hợp = tỷ lệ bồi thường + tỷ lệ chi phí. Trên 100% là lỗ nghiệp vụ.",
       "Float là tiền phí đã thu chưa phải trả - công ty đầu tư nó trong khoảng giữa.",

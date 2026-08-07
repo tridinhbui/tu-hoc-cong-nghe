@@ -118,7 +118,7 @@ export const DERIVATIVES_PRICING_LESSONS: Lesson[] = [
         "Vì sao có thể kiểm tra parity mà không cần biết độ biến động của cổ phiếu?",
       options: [
         "Vì độ biến động không ảnh hưởng đến giá quyền chọn",
-        "Vì lập luận dựa trên việc hai danh mục cho cùng dòng tiền trong mọi kịch bản, nên xác suất xảy ra từng kịch bản không còn quan trọng",
+        "Vì hai danh mục cho cùng dòng tiền ở mọi kịch bản",
         "Vì độ biến động đã nằm sẵn trong lãi suất phi rủi ro",
         "Vì parity chỉ đúng khi độ biến động bằng 0",
       ],
@@ -302,7 +302,7 @@ export const DERIVATIVES_PRICING_LESSONS: Lesson[] = [
         "Một quyền chọn mua đang được định giá với độ biến động hàm ý 45%, trong khi bạn tin biến động thực tế sẽ chỉ khoảng 25%. Chiến lược tương ứng là gì?",
       options: [
         "Mua quyền chọn mua vì nó sẽ tăng giá",
-        "Bán quyền chọn và phòng hộ delta - bạn đang bán biến động ở mức đắt so với mức bạn tin sẽ xảy ra",
+        "Bán quyền chọn và phòng hộ delta, đang bán biến động đắt",
         "Mua cổ phiếu cơ sở",
         "Không làm gì vì độ biến động không ảnh hưởng đến lợi nhuận",
       ],
@@ -494,7 +494,7 @@ export const DERIVATIVES_PRICING_LESSONS: Lesson[] = [
         "Một quỹ bán quyền chọn bán ngoài tiền hàng tháng để thu phí, danh mục được giữ trung hòa delta. Rủi ro lớn nhất là gì?",
       options: [
         "Theta âm bào mòn lợi nhuận",
-        "Gamma âm kết hợp vega âm: một cú giảm mạnh vừa làm lỗ tăng theo bình phương vừa đẩy độ biến động lên, khiến khoản lỗ nhân đôi",
+        "Gamma âm cộng vega âm khiến lỗ nhân đôi",
         "Lãi suất tăng làm giảm rho",
         "Không có rủi ro đáng kể vì đã trung hòa delta",
       ],

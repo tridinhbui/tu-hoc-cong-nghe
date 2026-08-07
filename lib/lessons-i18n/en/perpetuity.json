@@ -92,7 +92,7 @@
   "practicePrompt": {
     "question": "A preferred stock pays a fixed dividend of 8 million VND/year forever (with no end date). If the appropriate discount rate is 10%/year, what is the present value (PV) of this entire perpetual dividend stream?",
     "options": [
-      "PV Perpetuity = C / r = 8 / 0.1 = 80 million VND - this is the present value of the entire stream of 8 million/year dividends received forever, discounted at 10%",
+      "PV of a Perpetuity = C / r = 8 / 0.1 = 80 million dong, discounting the stream at 10% forever",
       "PV = C × r = 8 × 0.1 = 0.8 million VND, multiplying the dividend directly by the discount rate",
       "PV cannot be calculated for a cash flow that lasts forever because there's no end date to compute against",
       "PV = C × n where n is the number of years, but since n is infinite, PV must also be infinite"

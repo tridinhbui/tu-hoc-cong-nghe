@@ -12,10 +12,18 @@
   ],
   "explanation": "Borrowing doesn't make you rich or poor by itself - the sign of the gap between the investment's return and the loan's interest rate does. Someone who borrows at 10% to earn 20% grows richer every year; someone who borrows at 10% to earn 5% grows poorer every year, even though both are 'using leverage'. And leverage magnifies both scenarios, so the real question isn't 'should I borrow', but 'how confident am I in that return'.",
   "diagram": [
-    { "label": "Borrow at a fixed interest rate" },
-    { "label": "Invest that money, earning some return" },
-    { "label": "Compare the return against the loan's interest rate" },
-    { "label": "A positive gap means growing richer, a negative gap means growing poorer - and leverage magnifies both" }
+    {
+      "label": "Borrow at a fixed interest rate"
+    },
+    {
+      "label": "Invest that money, earning some return"
+    },
+    {
+      "label": "Compare the return against the loan's interest rate"
+    },
+    {
+      "label": "A positive gap means growing richer, a negative gap means growing poorer - and leverage magnifies both"
+    }
   ],
   "realWorldExample": {
     "company": "Vietnamese real estate, 2019-2022 versus 2023",
@@ -81,7 +89,7 @@
   "practicePrompt": {
     "question": "You borrow 400 million at 9% a year to invest in stocks on margin. In the first year, your portfolio loses 15% while the loan interest still has to be paid regularly. What is happening to your net worth compared to not using leverage?",
     "options": [
-      "Net worth falls far more sharply than without borrowing, because leverage amplifies both the loss and the interest cost that still has to be paid",
+      "Net worth falls much harder than it would without the loan, since leverage magnifies the loss and the interest",
       "Net worth is unchanged, because the 15% loss only applies to your own capital, not the borrowed portion",
       "Net worth rises slightly, because the 9%-a-year interest rate is much lower than the portfolio's 15% loss",
       "Net worth falls by exactly 15%, the same as without leverage, since the percentage loss is identical"
@@ -103,12 +111,18 @@
       "type": "lead",
       "text": "Two people each borrow 1 billion VND at 10% a year. Person A invests it to earn 20% a year, person B only earns 5% a year. After 5 years, who has grown richer, and who is facing bankruptcy?"
     },
-    { "type": "heading", "text": "The spread - the gap that decides everything" },
+    {
+      "type": "heading",
+      "text": "The spread - the gap that decides everything"
+    },
     {
       "type": "paragraph",
       "text": "In the context of borrowing to invest, the 'spread' is the gap between the investment's rate of return (ROI) and the interest rate owed on the loan. Person A has a positive spread: 20% − 10% = 10% a year - every year their net worth grows thanks to this gap. Person B has a negative spread: 5% − 10% = −5% a year - every year they grow poorer, because the investment's return isn't enough to cover the loan's interest."
     },
-    { "type": "heading", "text": "The core principle: investment ROI must exceed the cost of capital" },
+    {
+      "type": "heading",
+      "text": "The core principle: investment ROI must exceed the cost of capital"
+    },
     {
       "type": "paragraph",
       "text": "This is the principle that decides whether borrowing money makes you rich or leads to bankruptcy: only borrow when you have a reasonable basis (not bare hope) for believing the investment's return will sustainably exceed the loan's interest rate. Without that certainty, borrowing to invest is a high-risk gamble."

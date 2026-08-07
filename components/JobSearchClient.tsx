@@ -48,6 +48,8 @@ import { CAREER_GOAL_EVENT, CAREER_GOAL_KEY, CAREER_GOAL_STORAGE_EVENT, CAREER_I
 
 // Beautiful custom 3D card tilt and glow component
 function CareerAvatar({ career, size = 110, className = "" }: { career?: FinanceCareer | null; size?: number; className?: string }) {
+  // Sub-component, nên có useI18n() riêng.
+  const { t } = useI18n();
   if (!career) return null;
   return (
     <div
@@ -77,7 +79,7 @@ function CareerAvatar({ career, size = 110, className = "" }: { career?: Finance
         {career.avatar3d ? (
           <Image
             src={career.avatar3d}
-            alt={career.title || "Career"}
+            alt={career.title || t.jobs.careerAlt}
             width={size}
             height={size}
             className="w-full h-full object-cover select-none relative z-10"
@@ -143,7 +145,7 @@ function RelatedLessonsPanel({ career }: { career: FinanceCareer }) {
           {cfaSubjects.map((s) => (
             <span
               key={s.id}
-              title={`Tỷ trọng đề thi: ${s.weight}`}
+              title={format(t.jobs.examWeightTitle, { weight: s.weight })}
               className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-indigo-100 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-300"
             >
               {s.name}

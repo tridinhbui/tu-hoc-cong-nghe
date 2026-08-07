@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { BrainCircuit, ArrowRight } from "lucide-react";
 import { SKILL_DOMAINS, type SkillDomainId } from "@/lib/career-competency";
-import { useI18n } from "@/lib/i18n/context";
+import { getServerDictionary } from "@/lib/i18n/server";
 import { format } from "@/lib/i18n";
 
 /**
@@ -25,6 +25,16 @@ import { format } from "@/lib/i18n";
  *
  * Là server component: dữ liệu tới từ trang đã fetch sẵn, không có tương tác
  * nào, nên không cần đẩy gì vào bundle client.
+ *
+ * VÀ VÌ THẾ CÂU CHỮ PHẢI ĐỌC BẰNG getServerDictionary(), KHÔNG PHẢI useI18n().
+ * Bản trước gọi useI18n() ở đây - một hook React đọc Context - trong một
+ * component không có "use client". Nó throw ngay khi render, nên /cay-ky-nang
+ * không mở được: "An error occurred in the Server Components render", và trong
+ * production thì thông điệp bị ẩn nên console chỉ còn lại đúng câu đó.
+ *
+ * Không có gì bắt được nó trước khi lên live: tsc không mô hình hoá ranh giới
+ * server/client, và `next build` không render trang này vì nó là
+ * force-dynamic - build vẫn xanh. Chỉ một lần mở trang thật mới lộ.
  */
 export interface DomainCoverage {
   done: number;
@@ -34,21 +44,27 @@ export interface DomainCoverage {
 
 /** Ngưỡng đọc ra chữ. Cố tình thấp hơn cảm giác thông thường: đây là ĐỘ PHỦ
  *  giáo trình chứ không phải điểm thi, và học hết 60% số bài của một mảng đã
- *  là đi được một quãng dài. */
-function band(percent: number): { label: string; tone: "high" | "mid" | "low" } {
-  if (percent >= 60) return { label: "Vững", tone: "high" };
-  if (percent >= 25) return { label: "Đang đi", tone: "mid" };
-  return { label: "Mới bắt đầu", tone: "low" };
+ *  là đi được một quãng dài.
+ *
+ *  Trả về TONE, không trả câu chữ. Bản trước trả thẳng "Vững"/"Đang đi"/"Mới
+ *  bắt đầu" từ trong thân hàm - chỗ mà không script i18n nào soi tới: quy tắc
+ *  `data` của i18n-coverage chỉ đọc const ở module scope, còn đây là literal
+ *  trong thân một hàm. Ba chuỗi ấy render mỗi ngày và chưa từng xuất hiện
+ *  trong bất kỳ báo cáo nào. */
+function band(percent: number): "high" | "mid" | "low" {
+  if (percent >= 60) return "high";
+  if (percent >= 25) return "mid";
+  return "low";
 }
 
-export default function TopicMasteryWidget({
+export default async function TopicMasteryWidget({
   coverage,
   compact = false,
 }: {
   coverage: Record<SkillDomainId, DomainCoverage>;
   compact?: boolean;
 }) {
-  const { t } = useI18n();
+  const t = await getServerDictionary();
   // Mảng đi được xa nhất lên trước.
   //
   // Bản đầu tôi xếp ngược lại - yếu nhất lên trước - với lý do "trả lời học gì
@@ -62,7 +78,7 @@ export default function TopicMasteryWidget({
   // và các mảng còn trống vẫn nằm ngay bên dưới.
   const rows = SKILL_DOMAINS.map((domain) => ({
     id: domain.id,
-    label: domain.label,
+    label: t.skillDomains[domain.id].label,
     ...(coverage[domain.id] ?? { done: 0, total: 0, percent: 0 }),
   }))
     .filter((r) => r.total > 0)
@@ -99,7 +115,8 @@ export default function TopicMasteryWidget({
 
       <div className={`grid gap-2.5 ${compact ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-2"}`}>
         {rows.map((row) => {
-          const { label, tone } = band(row.percent);
+          const tone = band(row.percent);
+          const bandLabel = t.masteryBands[tone];
 
           return (
             <div
@@ -119,7 +136,7 @@ export default function TopicMasteryWidget({
                         : "bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300 border-amber-300 dark:border-amber-800"
                   }`}
                 >
-                  {label} ({row.percent}%)
+                  {bandLabel} ({row.percent}%)
                 </span>
               </div>
 

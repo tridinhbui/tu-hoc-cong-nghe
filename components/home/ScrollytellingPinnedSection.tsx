@@ -214,7 +214,7 @@ export default function ScrollytellingPinnedSection() {
                 className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
                   activeTab === idx ? "w-8 bg-emerald-500" : "w-2 bg-stone-300 dark:bg-stone-700"
                 }`}
-                title={`Chuyển tới Tab ${idx + 1}`}
+                title={format(t.miscUi.scrollytelling.goToTab, { index: idx + 1 })}
               />
             ))}
           </div>

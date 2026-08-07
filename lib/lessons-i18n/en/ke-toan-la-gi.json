@@ -12,10 +12,21 @@
   ],
   "explanation": "Accounting is the shared set of conventions for describing a business in numbers, so that investors elsewhere, banks and management all read the same picture. Worth remembering from the start: this is a language with its own rules, and many of those rules don't match ordinary intuition - revenue isn't cash received, an expense isn't cash paid, and profit isn't cash left over.",
   "diagram": [
-    { "label": "An economic transaction happens", "arrow": true },
-    { "label": "Accounting records and classifies it", "arrow": true },
-    { "label": "Financial statements", "arrow": true },
-    { "label": "Investors and banks make decisions" }
+    {
+      "label": "An economic transaction happens",
+      "arrow": true
+    },
+    {
+      "label": "Accounting records and classifies it",
+      "arrow": true
+    },
+    {
+      "label": "Financial statements",
+      "arrow": true
+    },
+    {
+      "label": "Investors and banks make decisions"
+    }
   ],
   "realWorldExample": {
     "company": "Vingroup",
@@ -101,7 +112,7 @@
   "practicePrompt": {
     "question": "Your boss - who has no finance background - asks: 'Why does a marketer like me need to learn to read financial statements?' Which answer best matches the spirit of this lesson?",
     "options": [
-      "Because accounting is the shared language of business - understanding financial statements helps every role, not just accountants, make better decisions grounded in the company's actual situation",
+      "Because accounting is the shared language of business, and it helps every role make better decisions",
       "It isn't necessary, since reading financial statements is solely the job of the accounting and internal audit department",
       "It's only necessary if marketing wants to move into a professional accounting career in the future",
       "Only the CEO and CFO genuinely need to understand a company's financial statements"
@@ -123,7 +134,10 @@
       "type": "lead",
       "text": "You can read a menu in Vietnamese because you know the Vietnamese alphabet. In the same way, you can only read the financial health of Vingroup, Vinamilk or FPT if you know the 'letters' of accounting - the shared language every business in the world uses to tell its own money story."
     },
-    { "type": "heading", "text": "What does accounting record?" },
+    {
+      "type": "heading",
+      "text": "What does accounting record?"
+    },
     {
       "type": "paragraph",
       "text": "Every day, a business generates hundreds or thousands of transactions: sales, salary payments, raw material purchases, bank loans, payments to suppliers. Accounting is the system tasked with recording, classifying and summarising all of those transactions into structured reports - mainly three statements: the Balance Sheet, the Income Statement and the Cash Flow Statement."
@@ -132,7 +146,10 @@
       "type": "paragraph",
       "text": "Without accounting, a company with revenue of 50,000 billion dong like Vinamilk could not know precisely whether it is profitable or losing money, how much it owes, or what assets it truly holds. Accounting turns millions of separate transactions into a handful of summary numbers everyone can read and understand."
     },
-    { "type": "heading", "text": "Why call it a 'language'?" },
+    {
+      "type": "heading",
+      "text": "Why call it a 'language'?"
+    },
     {
       "type": "paragraph",
       "text": "A language needs shared grammar so speaker and listener understand each other the same way. Accounting is the same - it has standards (VAS in Vietnam, IFRS in many countries, US GAAP in the US) that specify precisely when an item is recognised as revenue, an asset or an expense. Thanks to this shared standard, an investor in Hanoi can read the financial statements of a company in New York and understand the substance correctly, even without knowing anything about that company's actual operations."
@@ -152,10 +169,26 @@
       "title": "A few opening accounting terms",
       "subtitle": "Vietnamese – English, which you'll meet again throughout the Foundational Accounting track",
       "concepts": [
-        { "vi": "Kế toán", "en": "Accounting", "def": "The system for recording, classifying and summarising an organisation's economic transactions." },
-        { "vi": "Báo cáo tài chính", "en": "Financial Statements", "def": "The set of three summary reports: the balance sheet, the income statement, and the cash flow statement." },
-        { "vi": "Chuẩn mực kế toán", "en": "Accounting Standards (VAS/IFRS/GAAP)", "def": "The shared rulebook for how financial items are recognised and presented." },
-        { "vi": "Bên liên quan", "en": "Stakeholders", "def": "Investors, banks, suppliers, tax authorities - everyone who needs to read financial statements." }
+        {
+          "vi": "Kế toán",
+          "en": "Accounting",
+          "def": "The system for recording, classifying and summarising an organisation's economic transactions."
+        },
+        {
+          "vi": "Báo cáo tài chính",
+          "en": "Financial Statements",
+          "def": "The set of three summary reports: the balance sheet, the income statement, and the cash flow statement."
+        },
+        {
+          "vi": "Chuẩn mực kế toán",
+          "en": "Accounting Standards (VAS/IFRS/GAAP)",
+          "def": "The shared rulebook for how financial items are recognised and presented."
+        },
+        {
+          "vi": "Bên liên quan",
+          "en": "Stakeholders",
+          "def": "Investors, banks, suppliers, tax authorities - everyone who needs to read financial statements."
+        }
       ]
     },
     {

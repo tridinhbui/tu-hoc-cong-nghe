@@ -178,6 +178,19 @@ export const READING_STATEMENTS_LESSONS: Lesson[] = [
           "Đổi chính sách là hợp lệ nhưng phải giải thích, và thời điểm đổi trùng với lúc cần đạt chỉ tiêu là lý do để đọc kỹ. Thuyết minh dài hơn ba bảng số là chuyện bình thường ở mọi doanh nghiệp. Công bố bên liên quan và nêu nợ tiềm tàng đều là nghĩa vụ minh bạch - có chúng là đúng quy định, không có mới là điều lạ.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Thuyết minh nêu doanh nghiệp đang bảo lãnh khoản vay 900 tỷ cho một công ty liên kết, trong khi vốn chủ sở hữu của chính nó là 1.200 tỷ. Đọc thế nào cho đúng?",
+      options: [
+        "Một nghĩa vụ tiềm tàng bằng 75% vốn chủ, phải cân nhắc như rủi ro thật",
+        "Chưa đáng lo vì khoản bảo lãnh không nằm trên bảng cân đối kế toán",
+        "Đáng lo vừa phải vì công ty liên kết vẫn phải tự trả phần của mình trước",
+        "Chỉ cần theo dõi nếu kiểm toán viên đã nêu nó thành ý kiến ngoại trừ",
+      ],
+      correct: 0,
+      explanation:
+        "Bảo lãnh là nghĩa vụ có điều kiện: nó chỉ thành nợ thật khi bên được bảo lãnh mất khả năng trả, nên nó không được ghi vào bảng cân đối và chỉ xuất hiện trong thuyết minh. Nhưng điều kiện đó là thứ vỡ ra đúng lúc xấu nhất, và 900 tỷ trên nền vốn chủ 1.200 tỷ nghĩa là một lần vỡ nợ của bên kia có thể xoá gần hết vốn chủ của bên này. Lập luận 'chưa nằm trên bảng cân đối nên chưa đáng lo' đảo ngược đúng mục đích của phần thuyết minh. Còn chờ kiểm toán viên nêu ngoại trừ thì quá muộn: ngoại trừ nói về việc kiểm toán viên có xác nhận được con số không, không nói về việc rủi ro lớn hay nhỏ.",
+    },
     keyTakeaways: [
       "Ba bảng số nói 'bao nhiêu', thuyết minh nói 'bằng cách nào'",
       "Đọc chính sách kế toán trước, vì nó quyết định mọi con số phía sau",
@@ -338,6 +351,19 @@ export const READING_STATEMENTS_LESSONS: Lesson[] = [
           "Hai chiều trả lời hai câu hỏi khác nhau: ta đứng đâu so với đối thủ, và ta đang đi về đâu so với chính mình. Cả hai đều dùng chung một gốc chuẩn hoá tuỳ theo loại báo cáo, đều áp dụng cho cả hai báo cáo, và đều là công cụ của bất kỳ ai đọc báo cáo.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Năm nay tổng tài sản 4.000 tỷ với hàng tồn kho 900 tỷ; năm trước tổng tài sản 2.500 tỷ với hàng tồn kho 700 tỷ. Bảng tỷ trọng cho thấy điều gì?",
+      options: [
+        "Tỷ trọng tồn kho giảm từ 28% xuống 22,5%",
+        "Tồn kho tăng 200 tỷ nên đang chiếm chỗ nhiều hơn",
+        "Tỷ trọng tồn kho tăng từ 22,5% lên 28% năm nay",
+        "Chưa kết luận được nếu chưa biết doanh thu hai năm",
+      ],
+      correct: 0,
+      explanation:
+        "700/2.500 = 28% và 900/4.000 = 22,5%, nên tồn kho tăng 200 tỷ về số tuyệt đối nhưng thu hẹp về tỷ trọng - tổng tài sản tăng nhanh hơn nó. Đó chính là loại kết luận mà bảng số tuyệt đối không nói ra và bảng tỷ trọng nói ra ngay. Đọc 'tăng 200 tỷ nên chiếm chỗ nhiều hơn' là bỏ qua đúng bước chuẩn hoá mà bài này dạy. Và doanh thu không cần thiết ở đây: gốc chuẩn hoá của bảng cân đối là tổng tài sản, doanh thu là gốc của báo cáo kết quả kinh doanh.",
+    },
     keyTakeaways: [
       "Quy mọi khoản mục về phần trăm của một gốc chung trước khi so bất cứ thứ gì",
       "Báo cáo KQKD lấy gốc doanh thu; bảng cân đối lấy gốc tổng tài sản",
@@ -515,6 +541,19 @@ export const READING_STATEMENTS_LESSONS: Lesson[] = [
           "Một ý kiến trái ngược hoặc từ chối khiến mọi phép tính phía sau mất cơ sở, nên hai phút đọc trước tiết kiệm được cả buổi phân tích. Báo cáo kiểm toán không tính tỷ số, không xếp hạng doanh nghiệp, và cũng không có quy định nào bắt đọc theo thứ tự trang.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Báo cáo có ý kiến ngoại trừ liên quan tới một khoản phải thu 12 tỷ. Tổng tài sản là 6.000 tỷ và lợi nhuận sau thuế 480 tỷ. Kết luận hợp lý là gì?",
+      options: [
+        "Khoản ngoại trừ nhỏ so với cả hai gốc, phân tích tiếp được",
+        "Bỏ hẳn bộ số này, vì đã có ngoại trừ thì không còn tin được",
+        "Trừ thẳng 12 tỷ khỏi lợi nhuận rồi mới bắt đầu phân tích",
+        "Chờ báo cáo soát xét kỳ sau rồi mới đưa ra bất kỳ kết luận",
+      ],
+      correct: 0,
+      explanation:
+        "Ngoại trừ nêu đích danh khoản mục, nên việc phải làm là đo nó: 12 tỷ là 0,2% tổng tài sản và 2,5% lợi nhuận sau thuế. Ở cỡ đó, kể cả khi khoản phải thu mất trắng thì kết luận phân tích cũng không đổi, nên bộ số vẫn dùng được. Bỏ cả báo cáo là phản ứng quá tay và làm mất chính lợi thế của ý kiến ngoại trừ so với từ chối đưa ý kiến - nó khoanh vùng thiệt hại thay vì phủ nhận toàn bộ. Trừ thẳng 12 tỷ cũng sai: kiểm toán viên nói họ không xác nhận được, không nói khoản đó bằng không.",
+    },
     keyTakeaways: [
       "Đọc ý kiến kiểm toán trước bảng số - hai phút quyết định mọi phân tích phía sau",
       "Chấp nhận toàn phần nói về cách trình bày, không nói doanh nghiệp khoẻ",
