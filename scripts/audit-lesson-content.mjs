@@ -1012,6 +1012,31 @@ if (practiceStats.questions >= MIN_QUESTIONS_FOR_SHARE_GATES) {
   }
 }
 
+/** Trần cho số bài THIẾU practicePrompt.
+ *
+ *  Đặt ở 84 vì kho đang thiếu đúng 84 - luật quen thuộc của AGENTS.md: cổng đặt
+ *  ở mức kho ĐÃ ĐẠT, đủ để chặn phình thêm, không tạo nợ cho những gì đã có.
+ *
+ *  Ở đây một ĐẾM là đúng, chứ không phải một tỉ lệ - ngược với MAX_TELL_SHARE.
+ *  Lý do: đây là một tồn đọng phải rút về 0, không phải một phân phối. Kho lớn
+ *  thêm mười bài đều có practicePrompt thì số này đứng yên và đúng là nên đứng
+ *  yên; một bài mới thiếu nó thì số lên 98 và CI đỏ ngay. Tỉ lệ sẽ làm ngược
+ *  lại: viết thêm bài đủ nhiều là tỉ lệ tự đẹp mà không ai sửa gì.
+ *
+ *  Hạ nó sau mỗi đợt viết; khi về 0 thì bỏ hằng số này và đổi thành cổng cứng
+ *  như MIN_QUIZ_COUNT. Không bao giờ nâng để một build đỏ thành xanh. */
+const MAX_MISSING_PRACTICE = 84;
+
+if (missingPractice.length > MAX_MISSING_PRACTICE && !process.argv.includes("--warn-only")) {
+  console.error(
+    `\n${missingPractice.length} bài thiếu practicePrompt, vượt trần ${MAX_MISSING_PRACTICE}.\n` +
+      `  Một bài MỚI không được thêm vào tồn đọng này. Viết practicePrompt cho nó:\n` +
+      `  một tình huống áp dụng, bốn phương án theo luật 1-6 của AGENTS.md.\n` +
+      `  Hạ trần sau khi viết; đừng nâng nó.`
+  );
+  process.exit(1);
+}
+
 if (tellFailures.length > 0 && !process.argv.includes("--warn-only")) {
   console.error(`\n${tellFailures.join("\n\n")}`);
   process.exit(1);
