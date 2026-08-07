@@ -687,6 +687,9 @@ export const TRACK_PROFESSIONAL = {
       label: "Chặng 32",
       name: "Cơ chế thương vụ M&A",
       days: [1521, 1526] as [number, number],
+      // 1049 (danh-gia-deal-dau-tu) là trang viết tay được kéo về corpus:
+      // khung đọc một thương vụ mua lại, đúng chủ đề chặng này.
+      extraLessonIds: [1049],
       available: true,
       isNew: true,
       parts: [
