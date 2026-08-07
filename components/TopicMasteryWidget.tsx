@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { BrainCircuit, ArrowRight } from "lucide-react";
 import { SKILL_DOMAINS, type SkillDomainId } from "@/lib/career-competency";
-import { useI18n } from "@/lib/i18n/context";
+import { getServerDictionary } from "@/lib/i18n/server";
 import { format } from "@/lib/i18n";
 
 /**
@@ -25,6 +25,16 @@ import { format } from "@/lib/i18n";
  *
  * Là server component: dữ liệu tới từ trang đã fetch sẵn, không có tương tác
  * nào, nên không cần đẩy gì vào bundle client.
+ *
+ * VÀ VÌ THẾ CÂU CHỮ PHẢI ĐỌC BẰNG getServerDictionary(), KHÔNG PHẢI useI18n().
+ * Bản trước gọi useI18n() ở đây - một hook React đọc Context - trong một
+ * component không có "use client". Nó throw ngay khi render, nên /cay-ky-nang
+ * không mở được: "An error occurred in the Server Components render", và trong
+ * production thì thông điệp bị ẩn nên console chỉ còn lại đúng câu đó.
+ *
+ * Không có gì bắt được nó trước khi lên live: tsc không mô hình hoá ranh giới
+ * server/client, và `next build` không render trang này vì nó là
+ * force-dynamic - build vẫn xanh. Chỉ một lần mở trang thật mới lộ.
  */
 export interface DomainCoverage {
   done: number;
@@ -41,14 +51,14 @@ function band(percent: number): { label: string; tone: "high" | "mid" | "low" } 
   return { label: "Mới bắt đầu", tone: "low" };
 }
 
-export default function TopicMasteryWidget({
+export default async function TopicMasteryWidget({
   coverage,
   compact = false,
 }: {
   coverage: Record<SkillDomainId, DomainCoverage>;
   compact?: boolean;
 }) {
-  const { t } = useI18n();
+  const t = await getServerDictionary();
   // Mảng đi được xa nhất lên trước.
   //
   // Bản đầu tôi xếp ngược lại - yếu nhất lên trước - với lý do "trả lời học gì
