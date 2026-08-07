@@ -1,0 +1,140 @@
+{
+  "slug": "vi-sao-doanh-nghiep-dung-phai-sinh-phong-ho",
+  "title": "Why Do Businesses Use Derivatives to Hedge?",
+  "subtitle": "Stabilizing cash flow and protecting profit margin from market volatility",
+  "openingQuestion": "An airline's CFO says: 'We hedge not to earn more profit, but to be able to predict our profit.' What does this statement mean?",
+  "openingOptions": [
+    "This statement has no real financial meaning",
+    "The CFO is dodging responsibility for risk management",
+    "The main goal of hedging is to reduce the uncertainty (volatility) of cash flow and profit, helping a business plan its finances more accurately - not to maximize profit",
+    "The CFO is contradicting themselves, hedging must generate profit to be meaningful"
+  ],
+  "explanation": "Businesses use derivatives for hedging mainly for: (1) stabilizing cash flow to make budgeting and investment planning more accurate; (2) protecting profit margin from input/exchange-rate/interest-rate volatility outside their control; (3) reducing the chance of breaching a loan covenant due to unexpected earnings swings; (4) building investor confidence in the business's stability.",
+  "diagram": [
+    { "label": "Input price/exchange-rate/interest-rate volatility", "arrow": true },
+    { "label": "Use derivatives to hedge", "arrow": true },
+    { "label": "More stable cash flow and profit margin" }
+  ],
+  "realWorldExample": {
+    "company": "Vietnam Airlines",
+    "description": "Vietnam Airlines uses fuel-price hedging tools to stabilize operating costs - even though it sometimes ends up paying more than the spot market price, in exchange for more accurate profit forecasting for shareholders."
+  },
+  "quiz": [
+    {
+      "question": "A company hedges the price of oil at 70 USD/barrel, but the price of oil then falls to 50 USD. Has the company 'lost money' on this hedge?",
+      "options": [
+        "Yes, they lost money because of a poorly timed hedging decision on the oil market",
+        "The company should cancel the hedging contract immediately to cut its losses",
+        "This situation cannot happen because a forward automatically adjusts to the price",
+        "In accounting terms they pay more than the market price, but the goal was certainty"
+      ],
+      "explanation": "This is the most common misunderstanding about hedging: the goal isn't to 'beat the market' but to eliminate uncertainty. If price falls after having hedged at a higher level, that is the price of certainty."
+    },
+    {
+      "question": "A CFO decides NOT to hedge input material price risk, reasoning that 'we trust our ability to predict the market better than our competitors.' Does this view align with the hedging philosophy learned so far?",
+      "options": [
+        "No - that is speculation in disguise, contrary to the philosophy of reducing uncertainty",
+        "Completely aligned - this is exactly the point of hedging and exactly what good risk management looks like",
+        "The CFO is always right because they have more experience than junior staff",
+        "There is no difference between hedging and speculation here"
+      ],
+      "explanation": "This is a common thinking trap at the management level: using the excuse of 'predicting the market better' to avoid hedging is in fact speculation, not risk management."
+    },
+    {
+      "question": "Why is stable cash flow valuable to a business?",
+      "options": [
+        "Because planning and investing are more accurate when cost is predictable",
+        "Because tax authorities give preferential treatment to businesses with stable cash flow",
+        "Because banks only lend to businesses with unchanging cash flow",
+        "Because stable cash flow always comes with much higher profit"
+      ],
+      "explanation": "Not knowing next year's material cost means you can't set a sale price, can't commit to a long-term contract, can't approve an investment project. Hedging buys back the ability to plan."
+    },
+    {
+      "question": "A covenant requires Debt/EBITDA under 3.5x. Debt is VND 350 billion, EBITDA falls from 100 to 85 billion. What happens?",
+      "options": [
+        "The ratio becomes 2.9x - still safely under the threshold",
+        "The ratio becomes 4.1x - breaching the covenant, giving the lender the right to call the debt",
+        "No impact since the covenant only counts debt, not EBITDA",
+        "The company is automatically granted an extra year to fix it"
+      ],
+      "explanation": "350/85 = 4.1x. The business doesn't go bankrupt from the loss itself but from a clause triggered exactly when cash flow is weakest - and hedging the input material is essentially buying insurance for that exact clause."
+    },
+    {
+      "question": "Why is hedging by policy better than hedging by prediction?",
+      "options": [
+        "Because hedging by policy always gives a lower cost than predicting",
+        "Because the policy is approved by a regulator before being applied to every single transaction",
+        "Because deciding in advance, in writing, removes guessing the direction of price",
+        "Because auditors only accept hedging transactions with a policy"
+      ],
+      "explanation": "Hedging when you think price will rise and skipping it when you think price will fall is speculation dressed up as risk management. A written-in-advance policy gives boring, repetitive results - and that is exactly the sign it's running correctly."
+    }
+  ],
+  "keyTakeaways": [
+    "The goal of hedging: reduce uncertainty, not maximize profit",
+    "Stable cash flow helps financial planning and protects loan covenants",
+    "'Losing' relative to the market price after a hedge doesn't mean the hedge failed"
+  ],
+  "practicePrompt": {
+    "question": "A company hedges input material price with a futures contract. The material's market price then falls sharply, forcing the company to buy at the higher locked-in price rather than the current market price. Is this a failed hedge?",
+    "options": [
+      "Yes, this is a failed hedge because the company bought material at a price higher than the current market price",
+      "No - the goal of hedging is to reduce uncertainty, not maximize profit",
+      "This is always a sign the company chose the wrong derivative instrument and must change strategy immediately",
+      "Hedging only succeeds when the market price moves in the company's favor"
+    ],
+    "explanation": "The goal of hedging: reduce uncertainty, not maximize profit. 'Losing' relative to the market price after a hedge doesn't mean the hedge failed - the company achieved its real goal of stabilizing cash flow and protecting its financial plan, regardless of how the market price later moved."
+  },
+  "summary": {
+    "keyIdea": "The goal of hedging: reduce uncertainty, not maximize profit",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to real decisions.",
+    "action": "Stable cash flow helps financial planning and protects loan covenants"
+  },
+  "application": {
+    "title": "List reasons a business you know uses derivatives",
+    "message": "Think of a business you're familiar with (where you work or one you follow) and list whether they have any material, exchange-rate, or interest-rate risk that might need hedging.",
+    "secondary": "Not every business needs hedging - identifying the real need correctly is the first step."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Businesses use derivatives for hedging not to earn extra profit, but for four practical reasons: stabilizing cash flow, protecting profit margin, avoiding loan covenant breaches, and building investor confidence."
+    },
+    { "type": "heading", "text": "'Losing' to the market isn't failure" },
+    {
+      "type": "paragraph",
+      "text": "Suppose a company hedges the price of oil at 70 USD/barrel, but the price then falls to 50 USD. In accounting terms, they pay more than the current market price - but the hedging goal has been met: cost was predicted and fixed in advance. This isn't failure, it's the price of certainty. This is the most common misunderstanding about hedging: the goal isn't to 'beat the market' but to eliminate uncertainty."
+    },
+    { "type": "heading", "text": "The thinking trap: 'not hedging because I trust my own prediction'" },
+    {
+      "type": "paragraph",
+      "text": "A CFO who decides NOT to hedge input material price risk, reasoning 'we trust our ability to predict the market better than our competitors,' is in fact making a speculative decision disguised as risk management. This runs contrary to the core philosophy of hedging - reducing uncertainty, not betting on a prediction - a confusion that has caused significant real financial damage in practice."
+    },
+    {
+      "type": "comparison",
+      "left": { "label": "Hedge by policy", "text": "Decided in advance, in writing: how much % to hedge, what term, when to review. Doesn't depend on what the CFO thinks about oil prices next quarter. Boring, repetitive results - that's a good sign." },
+      "right": { "label": "Hedge by prediction", "text": "Hedge when you think price will rise, skip it when you think price will fall. This is speculation dressed up as risk management, and it goes wrong at exactly the most expensive moment: when the whole market thinks the same as you." }
+    },
+    {
+      "type": "callout",
+      "label": "Covenants: where volatility kills a business fastest",
+      "text": "Loan contracts often require Debt/EBITDA under a threshold, e.g. 3.5 times. A business with VND 350 billion in debt and VND 100 billion EBITDA is right at 3.5. If material cost rises and EBITDA falls to VND 85 billion, the ratio becomes 4.1 - breaching the covenant, giving the bank the right to call the debt early. The business doesn't go bankrupt from a loss, but from a clause triggering exactly when cash flow is weakest. Hedging the material input is buying insurance for exactly that clause."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Stable cash flow helps budgeting and investment planning be more accurate",
+        "Protects profit margin from input/exchange-rate/interest-rate volatility outside your control",
+        "Reduces the chance of breaching a loan covenant due to unexpected earnings swings",
+        "Builds investor confidence in the business's stability"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The goal of hedging: reduce uncertainty, not maximize profit."
+      ]
+    }
+  ]
+}

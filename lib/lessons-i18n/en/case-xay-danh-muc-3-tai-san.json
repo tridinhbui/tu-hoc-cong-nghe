@@ -1,0 +1,129 @@
+{
+  "slug": "case-xay-danh-muc-3-tai-san",
+  "title": "Small Case - Building a 3-Asset Portfolio",
+  "subtitle": "Applying theory in practice: combining stocks, bonds, and gold based on correlation",
+  "openingQuestion": "You have 3 assets: stocks (expected return 12%, volatility 20%), bonds (return 5%, volatility 6%), gold (return 6%, volatility 15%, slightly negative correlation with stocks). What principle should guide the allocation?",
+  "openingOptions": [
+    "An even 33/33/33 split is always the optimal choice",
+    "Combine all three at weights matching your risk tolerance - exploiting the low/negative correlation between gold and stocks to reduce overall risk without giving up too much expected return",
+    "Put 100% into stocks because it has the highest expected return",
+    "Only pick the asset with the lowest volatility"
+  ],
+  "explanation": "Building a 3-asset portfolio is a practical exercise applying everything learned so far: (1) determine each asset's expected return and volatility; (2) assess the correlation between each pair of assets; (3) find allocation weights that put the portfolio as close as possible to the Efficient Frontier, matching personal risk tolerance. Gold, with its slight negative correlation to stocks, acts as a 'shock absorber' during periods of high market volatility.",
+  "diagram": [
+    { "label": "Determine each asset's return and volatility", "arrow": true },
+    { "label": "Assess correlation between each pair", "arrow": true },
+    { "label": "Find the optimal stock-bond-gold weights" }
+  ],
+  "realWorldExample": {
+    "company": "Ray Dalio's All Weather portfolio",
+    "description": "Ray Dalio, founder of Bridgewater Associates, developed the 'All Weather' portfolio combining stocks, long/short-term bonds, and commodities (including gold) at weights calculated to balance risk across every economic scenario."
+  },
+  "quiz": [
+    {
+      "question": "If the correlation between gold and stocks flips from negative to strongly positive during an unusual crisis, what happens to gold's protective effect in the portfolio?",
+      "options": [
+        "The protective effect increases because both assets now move together",
+        "Gold still protects the portfolio because its price always rises during a crisis",
+        "The portfolio is unaffected because gold's weight is usually very small",
+        "Gold loses most of its protective effect right when it is needed most"
+      ],
+      "explanation": "This is an important lesson about the limits of portfolio theory: correlation between assets is not fixed forever - during an extreme liquidity crisis (such as March 2020), correlation across most assets can spike as everyone sells simultaneously to raise cash, temporarily undermining diversification's benefit exactly when it is needed most."
+    },
+    {
+      "question": "If you add a fourth asset (say, real estate) to an existing 3-asset portfolio (stocks, bonds, gold), is the marginal diversification benefit from this fourth asset usually larger or smaller than the benefit from the second asset (when the portfolio initially held only 1 asset)?",
+      "options": [
+        "Smaller, because the diversification benefit diminishes with the number of assets",
+        "Larger, because real estate is an entirely new asset class uncorrelated with anything already held",
+        "Equal, because every asset contributes the same to the portfolio",
+        "Cannot be compared without knowing real estate's correlation"
+      ],
+      "explanation": "This is the \"diminishing marginal benefit of diversification\" principle already hinted at by the Statman research (30-40 stocks capture most of the benefit) - the same principle applies when diversifying across different asset CLASSES, not just within one asset class like stocks."
+    },
+    {
+      "question": "A portfolio is 60% stocks, 30% bonds, 10% gold. Stocks fall 20%, bonds rise 5%, gold rises 10%. How much does the portfolio change?",
+      "options": [
+        "Falls 20%, matching the stock decline exactly",
+        "Falls 9.5% (= −12% + 1.5% + 1%, weighted)",
+        "Falls 5%, the simple average of the three changes",
+        "Rises 1.5%, because two rising assets offset the falling one"
+      ],
+      "explanation": "Weighted sum: 0.6×(−20%) + 0.3×5% + 0.1×10% = −9.5%. The two defensive assets are only 40% of the portfolio, so they offset less than half the loss - diversification softens the pain, it doesn't erase it."
+    },
+    {
+      "question": "Why does periodic portfolio rebalancing matter?",
+      "options": [
+        "Because a rising asset always reverses into a decline after a while",
+        "Because regulation requires investors to review their portfolio every twelve months",
+        "Because weights drift toward whatever has risen most, raising risk accordingly",
+        "Because transaction costs fall when multiple orders are placed at once"
+      ],
+      "explanation": "A 60/40 portfolio can become 75/25 after three years of a strong stock rally, without its owner deciding anything. Rebalancing brings risk back to the chosen level, and mechanically forces selling high and buying low."
+    },
+    {
+      "question": "What is the biggest lesson about the limits of portfolio theory?",
+      "options": [
+        "Every model gives the same result if the data is long enough",
+        "Diversification only works once a portfolio holds well over ten different assets",
+        "Expected return is always estimated more accurately than risk",
+        "Correlation is not fixed and often worsens exactly when it's needed most"
+      ],
+      "explanation": "A model uses historical correlation, but a crisis makes everything fall together. Diversification is still worth doing - just don't expect it to fully protect you on the worst day."
+    }
+  ],
+  "keyTakeaways": [
+    "Building a real portfolio requires combining expected return, volatility, and the correlation of every asset pair",
+    "An asset with low/negative correlation to the rest has high protective value for the portfolio",
+    "Correlation is not fixed - it can shift unfavorably right during a crisis, a real limitation worth remembering"
+  ],
+  "practicePrompt": {
+    "question": "You want to build a portfolio of stocks, bonds, and gold. If you rely only on each asset's expected return (ignoring volatility and correlation), can you actually build a portfolio that is truly optimal on a risk-return basis?",
+    "options": [
+      "Yes, just pick the asset with the highest expected return and put all your capital into it",
+      "No - you need to combine expected return, volatility, and the correlation of each pair",
+      "Correlation and volatility only matter once a portfolio has more than 10 different assets",
+      "No formula can combine all three factors to build a real-world portfolio"
+    ],
+    "explanation": "Building a real portfolio requires combining expected return, volatility, and the correlation of each asset pair - these are the three core inputs of Modern Portfolio Theory; missing any one leads to a portfolio that isn't actually optimal."
+  },
+  "summary": {
+    "keyIdea": "Building a real portfolio requires combining expected return, volatility, and the correlation of each asset pair",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to real decisions.",
+    "action": "An asset with low/negative correlation to the rest has high protective value for the portfolio"
+  },
+  "application": {
+    "title": "Try building a 3-asset portfolio",
+    "message": "Pick 3 assets you could invest in (e.g. stocks, bonds, gold), estimate the correlation between each pair by feel, then try allocating weights so the negatively correlated asset acts as a shock absorber.",
+    "secondary": "This is a practical exercise combining everything you've just learned about portfolio theory."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Building a 3-asset portfolio is a practical exercise applying everything learned so far: determining each asset's expected return and volatility, assessing correlation between each pair, then finding allocation weights that put the portfolio as close as possible to the Efficient Frontier, matching personal risk tolerance."
+    },
+    { "type": "heading", "text": "Gold as a \"shock absorber\"" },
+    {
+      "type": "paragraph",
+      "text": "In a stock-bond-gold portfolio, gold usually has a slight negative correlation with stocks, acting as a shock absorber during periods of high market volatility. Ray Dalio, founder of Bridgewater Associates, developed the \"All Weather\" portfolio combining stocks, long/short-term bonds, and commodities (including gold) at weights calculated to balance risk across every economic scenario - high inflation, deflation, growth, recession."
+    },
+    { "type": "heading", "text": "Correlation can collapse exactly when it's needed most" },
+    {
+      "type": "paragraph",
+      "text": "If the correlation between gold and stocks flips from negative to strongly positive during an unusual crisis, gold's protective effect weakens significantly. This is a real risk that has occurred in some liquidity crises (such as March 2020), when investors were forced to sell EVERY asset - including gold - to raise cash. Correlation is not fixed forever, and this is an important limitation of portfolio theory."
+    },
+    { "type": "heading", "text": "Diminishing marginal diversification benefit" },
+    {
+      "type": "paragraph",
+      "text": "If a fourth asset (say, real estate) is added to an existing 3-asset portfolio, the marginal diversification benefit from this asset is usually SMALLER than the benefit from adding a second asset to a portfolio that held only 1 asset. This is the diminishing marginal benefit principle: the first asset added brings the biggest benefit, and each subsequent asset brings a smaller marginal benefit - similar to the principle already seen when diversifying within stocks (around 30-40 stocks capture most of the benefit)."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Building a real portfolio requires combining expected return, volatility, and the correlation of each asset pair",
+        "An asset with low/negative correlation has high protective value for the portfolio",
+        "Correlation is not fixed - it can spike right during a crisis, reducing its protective effect",
+        "The marginal diversification benefit diminishes as more asset classes are added"
+      ]
+    }
+  ]
+}

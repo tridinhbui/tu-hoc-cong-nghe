@@ -1,0 +1,143 @@
+{
+  "slug": "active-vs-passive-investing",
+  "title": "Active vs Passive Investing",
+  "subtitle": "Trying to beat the market, or simply owning the whole market?",
+  "openingQuestion": "Fund A hires a team of analysts to pick stocks and try to beat the market index, charging a 2%/year management fee. Fund B simply buys the VN-Index in its exact weights, charging 0.2%/year. What are these two approaches called?",
+  "openingOptions": [
+    "Both are passive investing",
+    "Fund A is active investing - trying to beat the market through stock selection; Fund B is passive investing - simply tracking the index, two opposing investment philosophies",
+    "There is no specific name distinguishing the two",
+    "Both are active investing"
+  ],
+  "explanation": "Active investing tries to outperform the market through stock selection, market timing, and in-depth analysis - costs are higher because it needs a team of experts. Passive investing simply buys and holds a portfolio that mirrors an index, without trying to beat the market - costs are far lower because no selective research is needed.",
+  "diagram": [
+    { "label": "Active: selects stocks, tries to beat the market", "arrow": true },
+    { "label": "Passive: buys and holds the whole market", "arrow": true },
+    { "label": "Passive is usually cheaper, suits most investors" }
+  ],
+  "realWorldExample": {
+    "company": "John Bogle and Vanguard",
+    "description": "John Bogle, the founder of Vanguard, pioneered the first passive index fund in 1976, believing most investors would do better with low cost and simplicity than by trying to beat the market."
+  },
+  "quiz": [
+    {
+      "question": "What does the SPIVA (S&P Indices Versus Active) research typically show over the long run?",
+      "options": [
+        "Active funds win in rising markets, lose in falling ones",
+        "Most active funds beat their index over the long run",
+        "Results split about evenly, roughly half of funds beat the index",
+        "Most active funds lose to their index after fees"
+      ],
+      "explanation": "The SPIVA report, published annually, shows that a very large share of active funds fail to beat their benchmark after fees over long periods (10-15 years) - this is the main reason passive investing has grown so popular in recent decades, especially with individual investors."
+    },
+    {
+      "question": "In a market with many less-informed investors or large information asymmetry (such as some developing-country stock markets), does active investing have a better chance of generating Alpha than in a developed market like the US?",
+      "options": [
+        "Yes, an inefficient market leaves more room for Alpha",
+        "No, this rule holds equally in every market worldwide",
+        "No, because emerging markets have transaction costs that are too high",
+        "Yes, but only for large foreign funds"
+      ],
+      "explanation": "This is why the 'active vs passive' argument isn't absolute across every market - in less efficient markets (small-cap, emerging markets), there is more evidence that active management has a better chance of generating Alpha than in a large, efficient, highly competitive market like the US."
+    },
+    {
+      "question": "Why is cost the decisive factor in the active-passive debate?",
+      "options": [
+        "Because active fund fees are usually ten times higher than index fund fees",
+        "Because it is certain to happen while Alpha is not",
+        "Because fees are deducted before returns are reported",
+        "Because regulators cap the maximum fee an index fund can charge"
+      ],
+      "explanation": "A 1.5 percentage point fee gap every year is a certain deduction from returns, while beating the index is only a possibility. Over thirty years, that certain deduction eats away roughly a third of the final value."
+    },
+    {
+      "question": "Mathematically, why can't active investing win on aggregate?",
+      "options": [
+        "Because the market is efficient so all information is already in the price",
+        "Because active funds always trade more so they pay higher taxes",
+        "Because the sum of all investors is the market itself, before fees",
+        "Because index funds always get order priority over active funds"
+      ],
+      "explanation": "William Sharpe's argument: every share belongs to someone, so the average return of all active investors combined equals the market before fees. After fees, on aggregate they must lose."
+    },
+    {
+      "question": "When does active investing have its clearest justification?",
+      "options": [
+        "When an investor has a horizon under one year",
+        "In the market with the highest liquidity and the most investors already competing away any edge",
+        "During a period of strong, stable market growth",
+        "In a market that is under-analyzed with large information asymmetry"
+      ],
+      "explanation": "Alpha comes from knowing what others don't yet know. In large-cap US stocks followed by hundreds of analysts, that edge is razor-thin; in small stocks few people cover, it is far wider."
+    }
+  ],
+  "keyTakeaways": [
+    "Active investing: tries to outperform the market, higher cost",
+    "Passive investing: mirrors an index, much lower cost",
+    "Long-term data shows most active funds struggle to beat their benchmark after fees"
+  ],
+  "practicePrompt": {
+    "question": "Fund X hires a team of analysts to pick individual stocks, aiming to generate returns that beat the VN-Index, and charges a 2%/year management fee. Fund Y simply mirrors the VN-Index with a 0.2%/year management fee. What is Fund X's approach called, and what is its biggest trade-off?",
+    "options": [
+      "This is called Passive investing, since the fund is trying to track the market's general movement",
+      "Active investing: tries to beat the market, in exchange for a much higher cost",
+      "There is no meaningful difference between the two funds besides the management fee",
+      "This is called Hedge fund investing, an entirely different form of investing from an ordinary fund"
+    ],
+    "explanation": "Active investing: tries to outperform the market, higher cost. The high management fee (such as the popular '2 and 20' structure at some funds) is the biggest trade-off, while long-term research shows most active funds fail to outperform their benchmark after fees."
+  },
+  "summary": {
+    "keyIdea": "Active investing: tries to outperform the market, higher cost",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to real decisions.",
+    "action": "Passive investing: mirrors an index, much lower cost"
+  },
+  "application": {
+    "title": "Compare active vs passive fees",
+    "message": "The lesson already gave a real comparison of E1VFVN30 (ETF) and VESAF (active fund) fees - see the 'Real-world example' section above. Now find the management fee of another active fund and ETF trading in Vietnam to compare.",
+    "secondary": "A small annual fee gap can compound into a very large amount of money over time."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Active investing tries to outperform the market through stock selection, market timing, and in-depth analysis - costs are higher because it needs a team of experts. Passive investing simply buys and holds a portfolio matching an index, without trying to beat the market - costs are far lower because no selective research is needed."
+    },
+    {
+      "type": "comparison",
+      "left": { "label": "Active Investing", "text": "Tries to beat the market through selection and timing. High management cost (analyst team, frequent trading). Can generate Alpha but most fail to beat their benchmark after fees." },
+      "right": { "label": "Passive Investing", "text": "Mirrors an index, does not try to beat the market. Extremely low cost. Guarantees the market's return minus a small fee, with no risk of 'being managed worse than the market'." }
+    },
+    { "type": "heading", "text": "SPIVA: long-term evidence" },
+    {
+      "type": "paragraph",
+      "text": "The SPIVA (S&P Indices Versus Active) report, published annually, shows that most active funds - usually 80-90% after 10-15 years - do NOT beat their corresponding benchmark after management fees. This is the main reason passive investing has grown steadily more popular, especially among individual investors. John Bogle, founder of Vanguard, pioneered the first passive index fund in 1976 based on exactly this belief."
+    },
+    { "type": "heading", "text": "Not absolute for every market" },
+    {
+      "type": "paragraph",
+      "text": "In less efficient markets (small-cap, emerging markets, large information asymmetry), there is a lot of evidence that active management has a better chance of generating Alpha than in a large, efficient, highly competitive market like the US - because fewer professional institutional investors participate, leaving more mispricings to exploit."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Active: high cost, aims to beat the market, most fail after fees",
+        "Passive: low cost, aims to track the market, more consistent results",
+        "SPIVA: 80-90% of active funds lose to their benchmark after 10-15 years",
+        "Active has better odds in less efficient markets (small-cap, emerging)"
+      ]
+    },
+    { "type": "heading", "text": "Real-world example: comparing E1VFVN30 (ETF) fees against an active fund" },
+    {
+      "type": "list",
+      "items": [
+        "E1VFVN30 (a passive ETF tracking VN30): management fee about 0.65%/year, total expense ratio around 0.9%/year",
+        "VESAF (VinaCapital's actively managed open-end fund): active fund management fees in Vietnam commonly run 1.5-2%/year - 2-3 times higher than the ETF",
+        "VESAF achieved an average return of 22.9%/year over the 5 years to 30 June 2025, higher than the VN-Index (10.8%/year over the same period) - but this is one of a few active funds that genuinely outperformed long-term, not the typical outcome"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "How to calculate the fee gap over 20 years yourself",
+      "text": "With VND 100 million invested at an 8%/year gross return over 20 years: with no fee, it becomes about VND 466 million. Deduct a 1%/year fee (net 7%/year), and it becomes only about VND 387 million - a loss of about VND 79 million just from a 1%/year fee gap, as compounding erodes it over time."
+    }
+  ]
+}

@@ -1,0 +1,143 @@
+{
+  "slug": "speculation-la-gi",
+  "title": "What Is Speculation?",
+  "subtitle": "Using derivatives to bet on price direction for profit - with no underlying risk to protect",
+  "openingQuestion": "A trader who owns no shares buys a call option on stock Z, believing the price will rise sharply. Is this hedging or speculation?",
+  "openingOptions": [
+    "Neither",
+    "Hedging, because they're using an option",
+    "Speculation - the trader has no underlying risk to protect, they are simply betting on price direction to profit",
+    "There isn't enough information to determine this"
+  ],
+  "explanation": "Speculation is using a financial instrument (including derivatives) to deliberately bet on price movement for profit, not to protect an existing business risk. Speculation isn't inherently bad - it supplies liquidity to the market - but the high leverage of derivatives amplifies the risk of loss just as much.",
+  "diagram": [
+    { "label": "No underlying risk to protect", "arrow": true },
+    { "label": "Use a derivative to bet on price direction", "arrow": true },
+    { "label": "= Speculation (different from Hedging)" }
+  ],
+  "realWorldExample": {
+    "company": "Barings Bank (1995)",
+    "description": "Trader Nick Leeson used futures to speculate (not hedge) on the Nikkei market, losing USD 1.3 billion and collapsing Barings Bank - Britain's oldest bank - within just a few weeks."
+  },
+  "quiz": [
+    {
+      "question": "Why is speculating with derivatives riskier than speculating with ordinary stocks?",
+      "options": [
+        "Because a derivative's price moves more sharply than the underlying stock's price",
+        "Because derivatives aren't closely supervised by regulators",
+        "Because margin is only 5-15%, giving leverage of seven to twenty times",
+        "Because derivatives must be held until the maturity date"
+      ],
+      "explanation": "Margin on futures/options is usually only 5-15% of contract value - leverage of 7-20 times. A small price move on the underlying asset creates a much larger move on the capital put down, and it's possible to lose everything or even owe more if risk isn't tightly managed."
+    },
+    {
+      "question": "Why are hedge funds sometimes criticized for adding to market instability, even though speculation is theoretically also useful in providing liquidity to the market?",
+      "options": [
+        "Because hedge funds are exempt from all disclosure obligations",
+        "Because hedge funds don't provide liquidity to the market",
+        "Because hedge funds only trade with each other, not with the market",
+        "Because high leverage and concentrated positions amplify volatility"
+      ],
+      "explanation": "This is a complex balance: speculation both provides liquidity the market needs (someone has to be willing to take on the risk that the hedging side wants to transfer), and can amplify instability when high leverage and concentrated positions lead to mass liquidations causing extreme volatility."
+    },
+    {
+      "question": "With 10% margin, the underlying asset's price falls 10%. How does the speculator's capital change?",
+      "options": [
+        "They lose their entire capital (= 10% × 10x leverage)",
+        "They lose 10% of capital, exactly matching the asset's decline",
+        "They lose 1% of capital (= 10% × 10%, multiplying the two rates)",
+        "They lose nothing if they hold the position until price recovers"
+      ],
+      "explanation": "Leverage of 1/0.10 = 10 times, so a 10% price move wipes out the entire capital. In practice it's worse: a margin call arrives before hitting 100%, forcing more capital in or closing the position right at the bottom."
+    },
+    {
+      "question": "What is the single defining difference between hedging and speculation?",
+      "options": [
+        "The type of derivative used in the transaction",
+        "Whether or not there is an underlying risk being protected",
+        "The size of capital and leverage applied to the position",
+        "Whether trading is on a centralized exchange or bilateral"
+      ],
+      "explanation": "The same oil futures contract: an airline buying it is a hedge, a fund buying it is speculation. The instrument is identical, the difference is whether there is an existing exposure to cancel out or not."
+    },
+    {
+      "question": "Why does speculation still play a necessary role for the market?",
+      "options": [
+        "Because regulators require a minimum ratio of speculators on the exchange",
+        "Because it helps derivative prices stay above the underlying asset's price",
+        "Because someone must be willing to take on the risk the hedging side is transferring away",
+        "Because it lowers transaction costs for hedging businesses"
+      ],
+      "explanation": "Hedging transfers risk, it doesn't erase it - that risk has to go somewhere. Without a party willing to take it on, an airline wouldn't find anyone to sell it futures at a reasonable price."
+    }
+  ],
+  "keyTakeaways": [
+    "Speculation: betting on price direction for profit, with no underlying risk to protect",
+    "Not inherently bad - provides liquidity to the derivatives market",
+    "High leverage makes speculating with derivatives much riskier than trading the underlying asset directly"
+  ],
+  "practicePrompt": {
+    "question": "An investor with no ownership of any oil-related asset buys a crude oil futures contract, believing the price will rise sharply next quarter, aiming to profit from the price difference. How does this action differ from an oil exporter's hedging?",
+    "options": [
+      "There is no difference at all, both are using the same derivative instrument for the same purpose",
+      "Speculation: betting on price direction, with no underlying risk to protect",
+      "This is still considered hedging because both are related to a crude oil futures contract",
+      "Speculation is always an illegal act and is not allowed on financial markets"
+    ],
+    "explanation": "Speculation: betting on price direction for profit, with no underlying risk to protect. A derivative's value depends on how it's used: hedging (like the exporter) creates real value by reducing an existing risk, while undisciplined speculation can be disastrous because it creates an entirely new, unnecessary risk."
+  },
+  "summary": {
+    "keyIdea": "Speculation: betting on price direction for profit, with no underlying risk to protect",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to real decisions.",
+    "action": "Not inherently bad - provides liquidity to the derivatives market"
+  },
+  "application": {
+    "title": "Distinguish hedging from speculation in your own investing",
+    "message": "Review a derivative or leveraged transaction you once considered, and ask yourself whether you were protecting an existing risk (hedging) or simply betting on price direction (speculation).",
+    "secondary": "Being honest with yourself on this question helps you avoid a dangerous confusion."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Speculation is using a financial instrument - including derivatives - to deliberately bet on price movement for profit, not to protect an existing business risk. This is the direct opposite of hedging."
+    },
+    { "type": "heading", "text": "Leverage: a double-edged sword" },
+    {
+      "type": "paragraph",
+      "text": "Margin on futures/options is usually only 5-15% of contract value - equivalent to leverage of 7-20 times. A small price move on the underlying asset creates a much larger move on the capital put down. Trader Nick Leeson used futures to speculate (not hedge) on the Nikkei market in 1995, losing USD 1.3 billion and collapsing Barings Bank - Britain's oldest bank - within just a few weeks."
+    },
+    { "type": "heading", "text": "Speculation isn't inherently bad" },
+    {
+      "type": "paragraph",
+      "text": "Speculation provides liquidity the market needs - someone has to be willing to take on the risk the hedging side wants to transfer away. Problems arise when leverage is too high and positions too concentrated (many funds betting the same direction at once): it can amplify price swings in both directions, creating more extreme rallies/crashes than the underlying real economy's volatility, especially during a mass forced liquidation."
+    },
+    {
+      "type": "comparison",
+      "left": { "label": "Hedging", "text": "There is an existing risk in a real operation, and a derivative is used to cancel it out. Success = a stable, predictable result. The derivative position is always opposite in direction to the exposure." },
+      "right": { "label": "Speculation", "text": "There is no underlying risk at all - the derivative position IS the risk, created deliberately. Success = profit. Same futures contract, the difference is whether there's an underlying exposure or not." }
+    },
+    {
+      "type": "formula",
+      "title": "Why leverage kills so quickly",
+      "equation": "% change in capital = % change in asset price × (1 ÷ margin ratio)",
+      "variables": [
+        { "symbol": "Margin ratio", "name": "Margin", "description": "The fraction of contract value that must be posted, usually 5-15%" }
+      ],
+      "example": {
+        "title": "10% margin, the underlying asset's price falls 10%",
+        "calculation": "Leverage = 1 ÷ 0.10 = 10 times · Loss on capital = 10% × 10 = 100%",
+        "result": "The account is wiped out when price moves just 10%",
+        "explanation": "And in practice it's even worse: a margin call arrives before hitting 100%, forcing more money in or closing the position right at the bottom. This is how Barings' USD 1.3 billion evaporated within a few weeks."
+      }
+    },
+    {
+      "type": "list",
+      "items": [
+        "Speculation: betting on price direction for profit, with no underlying exposure",
+        "7-20x leverage in futures/options amplifies both gains and losses",
+        "Provides useful liquidity to the derivatives market",
+        "Can amplify market instability when concentrated and over-leveraged"
+      ]
+    }
+  ]
+}

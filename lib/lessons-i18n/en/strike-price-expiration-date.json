@@ -1,0 +1,139 @@
+{
+  "slug": "strike-price-expiration-date",
+  "title": "Strike Price and Expiration Date",
+  "subtitle": "The two factors that determine the value and life span of every option contract",
+  "openingQuestion": "Two call options on the same stock, same expiration date but different strike prices (VND 50,000 and VND 60,000). Which usually has a higher premium?",
+  "openingOptions": [
+    "Both are equal",
+    "The VND 50,000 strike (lower) usually has a higher premium because it is closer to the market price, with a higher probability of being profitable",
+    "It's impossible to compare without more information",
+    "The VND 60,000 strike is always higher"
+  ],
+  "explanation": "The closer or more favorable a strike price is relative to the current market price (for a call option), the higher the probability the option finishes profitable (in-the-money) → the more expensive the premium. The expiration date is the last day the option remains valid - the further away, the higher the premium, since there is more time for price to move favorably (time value).",
+  "diagram": [
+    { "label": "Strike price close to the market price", "arrow": true },
+    { "label": "Higher probability of being in-the-money", "arrow": true },
+    { "label": "A more expensive premium" }
+  ],
+  "realWorldExample": {
+    "company": "The option chain",
+    "description": "Every listed stock has dozens of strike prices and many different expiration dates for investors to choose from, depending on their strategy and confidence in the direction of price."
+  },
+  "quiz": [
+    {
+      "question": "What does an 'in-the-money' option mean?",
+      "options": [
+        "An option nobody trades so it has completely lost liquidity",
+        "An option that has expired but still has intrinsic value to exercise",
+        "An option not yet listed so it only trades on the decentralized OTC market",
+        "It has value if exercised right now: for a call, price > strike; for a put, the reverse"
+      ],
+      "explanation": "In-the-money (ITM): exercising right now would be profitable. Out-of-the-money (OTM): exercising right now would be a loss, so nobody does it. At-the-money (ATM): the market price equals the strike."
+    },
+    {
+      "question": "Two options on the same stock, same strike price, but one expires in 1 week and the other in 1 year. If both are currently out-of-the-money (not yet profitable if exercised), which one has higher Time Value?",
+      "options": [
+        "Both have equal Time Value since they share the same strike price and stock",
+        "The one expiring in 1 week always has higher Time Value since it's more urgent",
+        "Time Value has nothing to do with the time remaining until expiration",
+        "The 1-year option - more time remaining means more chances for price to move"
+      ],
+      "explanation": "Time Value directly reflects the 'opportunity' remaining for price to move favorably before expiration - the longer the time left, the higher the probability price moves far enough."
+    },
+    {
+      "question": "What characterizes an at-the-money option?",
+      "options": [
+        "The market price equals the strike, intrinsic value equals 0",
+        "The market price is higher than the strike, profitable if exercised",
+        "The market price is lower than the strike, a loss if exercised",
+        "It cannot be determined without knowing the time remaining to expiration"
+      ],
+      "explanation": "Intrinsic value is 0 but the premium is still positive, and all of it is time value. This is also where time value peaks, since uncertainty about whether the right will be exercised is greatest here."
+    },
+    {
+      "question": "Two calls on the same stock, strikes of VND 50,000 and VND 60,000, same expiration. Which has the higher premium?",
+      "options": [
+        "The two are equal since they share the same stock and expiration",
+        "The VND 60,000 strike, because of the much larger profit potential",
+        "The VND 50,000 strike, because it's easier to be profitable when exercised",
+        "Cannot be compared without knowing the current stock price"
+      ],
+      "explanation": "A lower strike gives a cheaper right to buy, so it's worth more for a call. This is why a premium chain at a given expiration date decreases as the strike rises."
+    },
+    {
+      "question": "Why does an option lose value faster the closer it gets to expiration?",
+      "options": [
+        "Because intrinsic value gets discounted more heavily over time",
+        "Because an option's liquidity drops sharply in its final week",
+        "Because the exchange raises fees on soon-to-expire options",
+        "Because time value decays faster and faster to zero as expiration nears"
+      ],
+      "explanation": "Time decay isn't linear - it accelerates in the final stretch. An option with thirty days left loses value much more slowly than that same option with only three days left."
+    }
+  ],
+  "keyTakeaways": [
+    "Strike price closer to the market price → a higher premium (for a favorable option)",
+    "A further expiration date → a higher premium (more time for price to move)",
+    "In-the-money, at-the-money, out-of-the-money describe an option's position relative to the market price"
+  ],
+  "practicePrompt": {
+    "question": "A stock is trading at VND 100,000. You compare the premium of two call options: one with a strike price of VND 105,000 (close to the current price), one with a strike price of VND 150,000 (far from the current price). Which option will have a higher premium, and why?",
+    "options": [
+      "The VND 150,000 strike option has a higher premium because it has greater profit potential if the price surges",
+      "A strike closer to the market price has a higher probability of being profitable, so it has a higher premium",
+      "Both options have equal premiums since they are based on the same underlying stock",
+      "An option's premium depends only on time to expiration, not on the strike price"
+    ],
+    "explanation": "Strike price closer to the market price → a higher premium (for a favorable option). An option with a strike near the current price has a higher probability of finishing in-the-money, so the seller demands a higher premium to compensate for the risk of having to perform their obligation."
+  },
+  "summary": {
+    "keyIdea": "Strike price closer to the market price → a higher premium (for a favorable option)",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to real decisions.",
+    "action": "A further expiration date → a higher premium (more time for price to move)"
+  },
+  "application": {
+    "title": "Compare two options with different strikes/expirations",
+    "message": "If you can look up a real option price board, compare the premium of two options on the same stock but different strike prices or different expiration dates, and explain why they differ.",
+    "secondary": "Explaining the price gap yourself is a good test of whether you understood correctly."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The two factors determining the value (premium) and life span of every option are the strike price and the expiration date. The strike price positions the option relative to the market price; the expiration date determines how much 'life' the option has left for price to move favorably."
+    },
+    { "type": "heading", "text": "In-the-money, at-the-money, out-of-the-money" },
+    {
+      "type": "paragraph",
+      "text": "A call option is called in-the-money (ITM) when the market price is higher than the strike - exercising the right right now would be profitable. For a put option, it's the reverse: ITM when the market price is lower than the strike. Out-of-the-money (OTM) is a state where exercising right now would be a loss - nobody does that. At-the-money (ATM) is when the market price exactly equals the strike. The closer or more favorable the strike is relative to the market price, the more expensive the premium, since the probability of finishing profitable is higher."
+    },
+    { "type": "heading", "text": "The longer the time remaining, the higher the premium" },
+    {
+      "type": "paragraph",
+      "text": "Compare two options on the same stock, same strike, both currently out-of-the-money: one expiring in 1 week, one in 1 year. The 1-year option has much higher Time Value - simply because there is much more time for price to move far enough in a favorable direction before expiration. The longer the time remaining, the more 'opportunity' there is, so the premium rises with time to expiration."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Three states of an option",
+      "subtitle": "Same stock at VND 50,000, three different strike levels",
+      "concepts": [
+        { "vi": "Trong tiền", "en": "In-the-money (ITM)", "def": "A call with a strike of VND 45,000: exercising right now gains VND 5,000. A put at strike VND 55,000 is also ITM. Has Intrinsic Value > 0, the most expensive premium." },
+        { "vi": "Ngang tiền", "en": "At-the-money (ATM)", "def": "Strike exactly VND 50,000. Intrinsic Value = 0, but Time Value is highest, since this is the point of greatest uncertainty about whether the right will be exercised." },
+        { "vi": "Ngoài tiền", "en": "Out-of-the-money (OTM)", "def": "A call with a strike of VND 55,000: exercising right now would be a loss, so nobody does it. The premium is entirely Time Value, the cheapest - and it goes to 0 if it's still OTM at expiration." }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Why an OTM option is tempting and then swallows your money",
+      "text": "OTM options are cheap, which looks like great leverage: spend 500 and it could become 5,000 if price moves far enough. But most OTM options expire worthless - the entire premium is Time Value, and Time Value always reaches exactly 0 at expiration. Buying OTM is betting price moves far enough AND fast enough; getting either wrong loses the whole stake, even if you guessed the direction correctly."
+    },
+    {
+      "type": "list",
+      "items": [
+        "ITM: exercising the right right now would be profitable",
+        "OTM: exercising the right right now would be a loss",
+        "ATM: the market price exactly equals the strike price",
+        "Every listed stock has dozens of strike prices and many expiration dates to choose from (the option chain)"
+      ]
+    }
+  ]
+}

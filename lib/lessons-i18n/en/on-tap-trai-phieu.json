@@ -1,0 +1,134 @@
+{
+  "slug": "on-tap-trai-phieu",
+  "title": "Review: Bonds & Interest Rates",
+  "subtitle": "Bond pricing, YTM, credit risk, yield curve - connecting the Bonds, Interest Rates and Credit track",
+  "duration": "7 min",
+  "openingQuestion": "Why do central banks use interest rates as their tool for steering the economy?",
+  "openingOptions": [
+    "Interest rates affect the entire economy: borrowing costs, exchange rates, asset prices, consumption, investment - the strongest macro lever",
+    "Because there's no other tool available",
+    "By tradition",
+    "Because it's simple"
+  ],
+  "explanation": "Interest rates are the 'price of money' - affecting every economic decision. Raising rates: saving becomes more attractive, borrowing less attractive → consumption falls, investment falls, inflation cools. Lowering rates: stimulates borrowing, investment, growth. The effect passes through many channels: credit, exchange rates, assets, expectations.",
+  "diagram": [
+    { "label": "Interest rates are the price of money", "arrow": true },
+    { "label": "They move opposite to bond prices", "arrow": true },
+    { "label": "The yield curve summarises expectations by maturity", "arrow": true },
+    { "label": "Credit spreads show how worried the market is about default" }
+  ],
+  "interactiveType": "bond",
+  "realWorldExample": {
+    "company": "Professional bond funds",
+    "description": "Large bond funds around the world manage their portfolios by simultaneously balancing credit risk (credit rating, spread) and interest rate risk (duration, yield curve position) - exactly the two core axes the whole Bonds, Interest Rates and Credit track has built up."
+  },
+  "quiz": [
+    {
+      "question": "How are Duration and Convexity related to bond risk management?",
+      "options": [
+        "They're unrelated to risk, only used to calculate yield to maturity",
+        "Convexity is always negative so it only increases damage when rates change",
+        "Both are only for institutional investors, retail investors don't need to know them",
+        "Duration measures linear sensitivity; Convexity corrects for the non-linear part"
+      ],
+      "explanation": "Modified Duration ≈ %ΔPrice / %ΔYield. Convexity: when yield changes are large, duration isn't accurate enough - convexity supplements it. Positive convexity (the usual case): the price falls less than predicted."
+    },
+    {
+      "question": "After studying the Bonds, Interest Rates and Credit track, why does understanding bonds matter even for an investor who only focuses on stocks and never buys bonds directly?",
+      "options": [
+        "Bonds and stocks are two completely separate, unrelated markets",
+        "Because interest rates and the yield curve affect a stock's WACC and CAPM",
+        "It doesn't matter - bond knowledge is only for specialists",
+        "Only financial statements matter, no need to understand the debt market"
+      ],
+      "explanation": "This is a link that runs through the entire curriculum: the risk-free rate (from government bonds) is the foundation of CAPM and WACC - the two most important stock valuation tools."
+    },
+    {
+      "question": "What are the two axes that determine a bond's price?",
+      "options": [
+        "Credit rating and remaining term",
+        "Liquidity and the volume issued in the market",
+        "Interest rate risk and the issuer's credit risk",
+        "Expected inflation and the exchange rate"
+      ],
+      "explanation": "A government bond is subject almost entirely to the first axis; a corporate bond is subject to both. Every tool in this track - duration, spread, rating - is a way of measuring one of these two axes."
+    },
+    {
+      "question": "Why should an unusually high yield make an investor cautious?",
+      "options": [
+        "Because regulators will closely monitor those issuances",
+        "Because a high yield usually comes with an unpredictable long term",
+        "Because high-yield bonds are usually less liquid",
+        "Because the market has already priced risk into that exact number"
+      ],
+      "explanation": "In a normally functioning market, no one pays a higher yield without a reason. Yield is the price of risk, so an unusually attractive level is a warning written in numbers."
+    },
+    {
+      "question": "What risk does a 10-year government bond carry, even though it's almost immune to default?",
+      "options": [
+        "Interest rate risk, causing its market price to fall when rates rise",
+        "The risk the issuer stops paying interest partway through",
+        "The risk of being downgraded below investment grade",
+        "The risk of not finding a buyer when it needs to be sold"
+      ],
+      "explanation": "Holding to maturity gets the full principal and interest. But selling partway through after rates have risen means taking a real capital loss - credit safety doesn't mean price safety."
+    }
+  ],
+  "keyTakeaways": [
+    "Interest rates: the strongest tool for steering an economy",
+    "Duration: measures interest rate risk; Convexity: corrects for the non-linear part",
+    "Yield curve: a barometer of macroeconomic expectations"
+  ],
+  "practicePrompt": {
+    "question": "After reviewing the entire Bonds track, you realise every topic (bond price, YTM, credit rating, yield curve, monetary policy) revolves around a single central variable that the central bank controls directly. What is that variable?",
+    "options": [
+      "It's the exchange rate, because every bond investment decision depends on currency fluctuations",
+      "Interest rates: the strongest tool for steering an economy - interest rates directly drive bond prices (an inverse relationship), corporate/government borrowing costs, and the entire economy through monetary policy",
+      "It's inflation, because this is the only factor affecting the decision to buy a bond",
+      "It's the credit rating, because every type of bond is priced entirely based on its credit rating"
+    ],
+    "explanation": "Interest rates: the strongest tool for steering an economy. From bond prices, to corporate borrowing costs, to the entire macroeconomy - the interest rate set by the central bank is the central variable connecting every topic studied in the bonds track."
+  },
+  "summary": {
+    "keyIdea": "Interest rates: the strongest tool for steering an economy",
+    "commonMistake": "Reading the concept as a definition to recite rather than a principle to apply to a real decision.",
+    "action": "Duration: measures interest rate risk; Convexity: corrects for the non-linear part"
+  },
+  "application": {
+    "title": "Apply it now",
+    "message": "Look back at your own portfolio (savings, bonds, stocks if any), and try listing: which holding is most sensitive to interest rate changes, and how would you react if rates rise sharply over the next 6 months.",
+    "secondary": "This is a synthesis exercise to help you connect everything you've learned about interest rates."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "After going through the entire Bonds, Interest Rates and Credit track, it can be summed up in one idea: interest rates are the 'price of money' - and they affect nearly every economic decision, from whether a household buys a house to whether a corporation expands its factory."
+    },
+    { "type": "heading", "text": "The transmission mechanism of interest rates" },
+    {
+      "type": "paragraph",
+      "text": "When rates rise, saving becomes more attractive (deposits earn more) while borrowing becomes more expensive - the result is falling consumption, falling business investment, and eventually cooling inflation. When rates fall, the process runs in reverse: cheaper borrowing stimulates consumption and investment, boosting growth. This transmission mechanism runs through several channels at once: the credit channel (borrowing cost), the exchange rate channel (international capital flows), the asset price channel (stock and real estate valuation through discounted cash flow), and the expectations channel (market sentiment)."
+    },
+    { "type": "heading", "text": "Duration and Convexity: measuring interest rate risk more precisely" },
+    {
+      "type": "paragraph",
+      "text": "Duration measures the linear sensitivity of a bond's price to interest rates: Modified Duration ≈ %ΔPrice / %ΔYield. But the real price-rate relationship isn't perfectly linear - it's slightly curved (convex). Convexity is the correction factor for this curvature, becoming important when rates move by a large amount. With positive convexity (the common case for ordinary bonds), a bond's price falls less than duration predicts when rates rise, but rises more than predicted when rates fall - a characteristic that benefits bondholders."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Interest rates are the central bank's strongest, most direct tool for steering the economy",
+        "The risk-free rate (from government bonds) is the foundation of CAPM and WACC - the two core stock valuation tools",
+        "Duration: measures price sensitivity to interest rates; Convexity: corrects for the non-linear part",
+        "Yield curve: a composite map of the market's expectations for growth and inflation"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Even an investor focused purely on stocks needs to understand bonds - because the risk-free rate works its way into every stock valuation model.",
+        "The two core axes of the Bonds, Interest Rates and Credit track: time (duration, yield curve) and trust (credit rating, spread)."
+      ]
+    }
+  ]
+}

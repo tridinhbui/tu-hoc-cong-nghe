@@ -1,0 +1,133 @@
+{
+  "slug": "lam-phat-va-dau-tu",
+  "title": "Inflation and its effect on investing",
+  "subtitle": "Which assets protect purchasing power best?",
+  "duration": "6 min",
+  "openingQuestion": "How does 10% inflation affect a bank deposit earning 6% interest?",
+  "openingOptions": [
+    "Purchasing power falls 4% - a real rate of -4% = a genuine loss of money",
+    "The money grows 6%",
+    "The bank makes up the shortfall",
+    "No effect"
+  ],
+  "explanation": "High inflation erodes purchasing power: 1 million today buys less than 1 million did last year. Assets that hedge inflation well: real estate (prices track inflation), stocks (businesses adjust prices), gold, TIPS, commodities. Cash and long-term bonds are the weakest.",
+  "diagram": [
+    { "label": "Inflation makes every unit of currency buy less", "arrow": true },
+    { "label": "Deposits and long-term bonds suffer the most", "arrow": true },
+    { "label": "Businesses with pricing power raise their prices accordingly", "arrow": true },
+    { "label": "So stocks and real estate hold up better long-term" }
+  ],
+  "interactiveType": "inflation-calculator",
+  "realWorldExample": {
+    "company": "Real estate as an inflation hedge in Vietnam",
+    "description": "Many Vietnamese investors view real estate as a traditional inflation shelter - property prices tend to rise with or above the inflation rate over the long term, unlike savings deposits, which can have their purchasing power eroded by inflation over time."
+  },
+  "quiz": [
+    {
+      "question": "Why does hyperinflation destroy an economy?",
+      "options": [
+        "Money loses its exchange function → the economy reverts to bartering → the economy collapses",
+        "Rising prices benefit sellers, so aggregate demand is strongly stimulated",
+        "Exports rise because the domestic currency becomes cheaper against trading partners' currencies",
+        "Banks earn more because lending rates rise along with prices"
+      ],
+      "explanation": "Zimbabwe (2008): inflation of 79.6 billion %/month - printing 100-trillion Zimbabwean dollar notes. Venezuela (2018): 1,000,000%+/year. When money loses its function as a store of value and a medium of exchange, the economy reverts to bartering goods."
+    },
+    {
+      "question": "Why is a long-term, fixed-coupon bond often considered the 'worst' asset to hold during a period of high, rapidly rising inflation?",
+      "options": [
+        "Inflation has no effect on bonds at all since the coupon is already fixed",
+        "The fixed coupon doesn't track inflation, and the price also falls as rates rise",
+        "Because long-term bonds always start with a very low coupon rate",
+        "Long-term bonds always rise in price when inflation rises, thanks to a built-in premium"
+      ],
+      "explanation": "A long-term, fixed-coupon bond suffers double damage in a high-inflation environment: (1) the real purchasing power of the fixed coupon stream falls, and (2) the bond's price falls because market interest rates rise."
+    },
+    {
+      "question": "Which type of asset usually suffers the most when inflation rises unexpectedly?",
+      "options": [
+        "Stocks of businesses with strong pricing power",
+        "Rental real estate in central locations",
+        "Long-term fixed-rate bonds",
+        "Basic commodities like oil and industrial metals"
+      ],
+      "explanation": "The fixed coupon received is in a currency that's steadily losing value, and market yields rising with inflation also pull the bond's price down. Both forces hit the same asset from the same direction."
+    },
+    {
+      "question": "Why do businesses with pricing power hedge inflation better?",
+      "options": [
+        "Because they usually carry a lower debt ratio than other businesses",
+        "Because they're exempted from tax during periods of high inflation",
+        "Because their raw material costs don't rise with the market",
+        "Because they can pass rising input costs on to their selling price"
+      ],
+      "explanation": "Inflation pushes costs up for everyone; whoever can raise their selling price accordingly keeps their margin intact. This is why a strong brand or a dominant market position carries extra value during periods of escalating prices."
+    },
+    {
+      "question": "Why isn't cash a safe haven when inflation is high?",
+      "options": [
+        "Because its purchasing power falls steadily with nothing to offset it",
+        "Because a bank can freeze an account when inflation is high",
+        "Because cash is taxed at a rate matching annual inflation",
+        "Because exchange rates always fluctuate sharply during high inflation"
+      ],
+      "explanation": "Cash doesn't lose nominal value, but it loses real value every day. Inflation of 7% a year erodes nearly half of purchasing power after ten years - being safe on the statement doesn't mean being safe in value."
+    }
+  ],
+  "keyTakeaways": [
+    "A negative real interest rate = accumulating cash that loses purchasing power",
+    "Stocks and real estate hedge long-term inflation better than deposits",
+    "Hyperinflation: money loses its function → the economy collapses"
+  ],
+  "practicePrompt": {
+    "question": "During a period of high inflation (e.g. 12%/year) while the bank savings rate is only 6%/year, a person decides to keep all their idle money as cash/savings without investing. What happens to their real wealth over time?",
+    "options": [
+      "Their real wealth still grows steadily at 6%/year, exactly matching the published savings rate",
+      "The real rate = 6% - 12% = -6%/year, so the balance grows but purchasing power still falls",
+      "Inflation only affects the price of goods, not the real value of savings at all",
+      "Their real wealth will grow faster the higher inflation gets, because the bank rate will automatically adjust upward too"
+    ],
+    "explanation": "A negative real interest rate = accumulating cash that loses purchasing power. When inflation (12%) far exceeds the nominal rate (6%), the real rate is -6%/year - this is why holding too much cash/savings during high inflation gradually erodes real wealth over time, even as the nominal balance keeps rising."
+  },
+  "summary": {
+    "keyIdea": "A negative real interest rate = accumulating cash that loses purchasing power",
+    "commonMistake": "Reading the concept as a definition to recite rather than a principle to apply to a real decision.",
+    "action": "Stocks and real estate hedge long-term inflation better than deposits"
+  },
+  "application": {
+    "title": "Apply it now",
+    "message": "Look back at your own asset mix (cash, savings, stocks, real estate if any), and assess which portion is hedging inflation well and which portion is having its purchasing power eroded.",
+    "secondary": "No need to change anything right away - just get a clear picture first."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "1 million VND today doesn't buy as much as 1 million VND did ten years ago - that is the direct result of inflation eroding purchasing power over time. The key question for every investor: which assets actually protect purchasing power when inflation rises high?"
+    },
+    { "type": "heading", "text": "Ranking asset classes by inflation resistance" },
+    {
+      "type": "paragraph",
+      "text": "Real estate is usually seen as a good shelter because property prices tend to rise with or above the inflation rate over the long term - this is also why many Vietnamese investors view real estate as a traditional inflation hedge. Stocks also hedge inflation fairly well because businesses can adjust their selling prices with inflation, preserving their margins. Gold and commodities also tend to rise in price along with inflation. At the opposite extreme, cash and long-term fixed-coupon bonds are the two weakest assets against inflation."
+    },
+    { "type": "heading", "text": "Why long-term bonds suffer double damage" },
+    {
+      "type": "paragraph",
+      "text": "A long-term, fixed-coupon bond gets hurt twice when inflation rises unexpectedly high: first, the real purchasing power of the fixed coupon falls sharply because the coupon doesn't rise with inflation; second, the bond's market price also falls because market interest rates usually rise to combat inflation (following the inverse price-rate relationship you've already learned). This is why investors often proactively reduce their long-term bond holdings when they forecast rising inflation ahead."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Real estate, stocks, gold, commodities, TIPS: assets that hedge inflation relatively well",
+        "Cash: directly loses purchasing power each year by exactly the inflation rate",
+        "Long-term fixed-coupon bonds: double damage (the coupon's real value falls + the bond's price falls)",
+        "Hyperinflation: when money completely loses its function as a medium of exchange, an economy can collapse - for example Zimbabwe 2008 (79.6 billion %/month) and Venezuela 2018 (over 1,000,000%/year)"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Trust in a currency is the foundation of the entire financial system - when that trust collapses, no asset denominated in that currency remains safe."
+      ]
+    }
+  ]
+}

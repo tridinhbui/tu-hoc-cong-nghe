@@ -111,6 +111,26 @@ than by reading:
    the second one names something. Two words against six; by character count
    they are 15 and 27, and no character threshold separates them.
 
+   A THIRD detector was built, measured, and also not wired in - and this one
+   found a real bug, so read the numbers before rebuilding it. A translator
+   noticed that `on-tap-trai-phieu`'s `practicePrompt` keyed `correct: 2`
+   ("Đó là lạm phát") while its own explanation opened with "Lãi suất", the
+   option at index 1. A learner who understood the material was marked wrong and
+   then shown an explanation naming the answer they had just given. Nothing
+   caught it: the option-letter check looks for letters, and the numeric check
+   looks for figures. It is fixed at source in `lib/lessons.ts`.
+
+   The check that finds it: flag a question whose explanation STARTS with the
+   verbatim first 40 characters of a NON-keyed option while the keyed option's
+   first 40 characters appear nowhere in the explanation. Across 4,372 questions
+   that flagged exactly two - the real one above, and `derivatives-la-gi`'s
+   "Bốn nhóm phái sinh cơ bản là gì?", where the explanation legitimately opens
+   by refuting a distractor ("Hàng hóa, tiền tệ... **chứ không phải** loại hợp
+   đồng"). Excluding that shape needs a Vietnamese negation marker, which is
+   exactly the sort of thing that stops working on the English corpus. One real
+   finding against one false positive is not a ratio to gate a build on, so this
+   is recorded rather than enforced. If a second real case turns up, that changes.
+
    Two other detectors were built and thrown away, which is worth recording so
    nobody rebuilds them. Ranking answers by word overlap with the explanation
    produced 235 suspects and zero real errors — explanations name the

@@ -1,0 +1,131 @@
+{
+  "slug": "comparable-company-analysis-la-gi",
+  "title": "What is Comparable Company Analysis?",
+  "subtitle": "Valuing a company by how the market is pricing similar ones",
+  "duration": "9 min",
+  "openingQuestion": "What core principle does Comparable Company Analysis (Comps) rely on?",
+  "openingOptions": [
+    "It relies only on the company's book value",
+    "Similar companies (same industry, size, growth) should trade at similar multiples (P/E, EV/EBITDA) - so you use the peer group's average multiple to estimate the target company's value",
+    "It only applies to unlisted companies",
+    "It forecasts the target company's own future cash flows"
+  ],
+  "explanation": "Comparable Company Analysis (Comps): pick a group of similar listed companies (same industry, size, growth, and risk profile), calculate their valuation multiples (P/E, EV/EBITDA, P/B...), take the average or median, then apply that multiple to the target company's corresponding metric to estimate its value. It is fast and grounded in real market data.",
+  "diagram": [
+    { "label": "Pick a group of similar companies", "arrow": true },
+    { "label": "Calculate their valuation multiples (P/E, EV/EBITDA)", "arrow": true },
+    { "label": "Apply the average to the target company" }
+  ],
+  "realWorldExample": {
+    "company": "Pricing a pre-IPO company",
+    "description": "Before a company IPOs, investment banks typically use Comps from already-listed peers in the same industry to estimate a reasonable offering price range for the new shares."
+  },
+  "quiz": [
+    {
+      "question": "What is the biggest limitation of Comparable Company Analysis?",
+      "options": [
+        "The method is too complex, so it is rarely used in real-world valuation",
+        "Comps always give a more accurate result than DCF, so it gets overused",
+        "It cannot be applied to listed companies because their price is already public",
+        "If the whole industry is being mispriced, Comps inherits that same distortion"
+      ],
+      "explanation": "Comps is a RELATIVE valuation method - it answers 'how much cheaper or more expensive is this company than similar ones', not 'what is this company genuinely worth'."
+    },
+    {
+      "question": "When choosing a group of comparable companies to value a target, which criterion matters more: similar revenue size, or similar risk and growth characteristics?",
+      "options": [
+        "Similar risk and growth matter more than similar revenue size",
+        "Similar revenue size is always the single most important criterion when choosing",
+        "Being in the same industry is enough on its own, nothing else needs checking",
+        "No criterion matters more than another - the number of companies chosen is what counts"
+      ],
+      "explanation": "The core assumption behind Comps is that \"similar companies get valued similarly\" - and that similarity should rest on the factors that ACTUALLY drive valuation (growth, risk, margins, business model)."
+    },
+    {
+      "question": "What is the single most important criterion when choosing a peer group?",
+      "options": [
+        "Being listed on the same stock exchange",
+        "Having a similar business model, size and growth outlook",
+        "Having a market cap above ten trillion VND",
+        "Being covered by at least five securities firms"
+      ],
+      "explanation": "Comps only works when the businesses are genuinely comparable. Pairing a retail chain growing 30%/year with one growing 3% and averaging their multiples produces a number that describes neither business."
+    },
+    {
+      "question": "What is the core limitation of Comparable Company Analysis?",
+      "options": [
+        "It can only be used for manufacturing companies that report EBITDA",
+        "It requires a detailed ten-year cash flow forecast before starting",
+        "It inherits any mispricing if the whole industry is being valued wrong",
+        "It does not account for the size of the company being valued"
+      ],
+      "explanation": "Comps answers what the market is currently paying for similar businesses, not what a business is genuinely worth. At the height of the dot-com bubble, every Comps analysis came back high, and all of them were wrong."
+    },
+    {
+      "question": "Why is it standard practice to run both Comps and DCF?",
+      "options": [
+        "Because Comps only works once a business is already profitable",
+        "Because regulations require a minimum of two methods in a valuation report",
+        "Because DCF always gives the more accurate figure, so it's used to correct Comps",
+        "Because one measures what the market is currently paying, the other measures intrinsic value"
+      ],
+      "explanation": "The two methods answer two different questions, so it is normal - and informative - for them to diverge. If DCF comes in well above Comps, either the market is being too pessimistic, or your own assumptions are too optimistic."
+    }
+  ],
+  "keyTakeaways": [
+    "Comps: valuing a company using the multiples of similar listed peers",
+    "A relative valuation method - fast and grounded in real market data",
+    "Limitation: it inherits any systematic mispricing if the whole industry or market is off"
+  ],
+  "practicePrompt": {
+    "question": "To value an unlisted retail company, an analyst selects 8 listed retail companies of similar size and business model, averages their P/E and EV/EBITDA, then applies that average to the target company. What is this valuation method called?",
+    "options": [
+      "This is the DCF method, since it discounts the target company's future cash flows back to today",
+      "Comps: valuing a company using the multiples of similar listed peers",
+      "This is the Precedent Transaction method, since it uses past M&A deal prices",
+      "This is not a recognised valuation method at all, just a rough guess"
+    ],
+    "explanation": "Comps: valuing a company using the multiples of similar listed peers. This is one of the three main valuation methods (alongside DCF and Precedent Transaction) - its strength is reflecting current market sentiment, its weakness is heavy dependence on choosing the right peer group."
+  },
+  "summary": {
+    "keyIdea": "Comps: valuing a company using the multiples of similar listed peers",
+    "commonMistake": "Reading the concept as a definition to recite rather than a principle to apply to a real decision.",
+    "action": "A relative valuation method - fast and grounded in real market data"
+  },
+  "application": {
+    "title": "Build a simple Comps table yourself",
+    "message": "Pick 3 companies in an industry you follow, look up each one's P/E or EV/EBITDA, average them, then try applying that average to a 4th company to estimate its value.",
+    "secondary": "This is exactly how analysts run Comps every day, just simplified."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The fastest way to answer 'what is this company worth' is to ask what the market is currently paying for similar companies. That is the logic behind Comparable Company Analysis."
+    },
+    { "type": "heading", "text": "How Comps works" },
+    {
+      "type": "paragraph",
+      "text": "Comparable Company Analysis (Comps): pick a group of similar listed companies (same industry, size, growth, similar risk), calculate their valuation multiples (P/E, EV/EBITDA, P/B...), take the average or median, then apply that multiple to the target company's corresponding metric to estimate its value. Ahead of an IPO, investment banks typically use Comps from already-listed peers in the same industry to estimate a reasonable offering price range."
+    },
+    { "type": "heading", "text": "The biggest limitation: inheriting the market's mispricing" },
+    {
+      "type": "paragraph",
+      "text": "Comps is a RELATIVE valuation method - it answers 'how much cheaper or more expensive is this company than similar ones', not 'what is this company genuinely worth on an intrinsic basis'. If the whole industry is overpriced (or underpriced) due to crowd psychology, Comps will inherit that distortion intact. This is why Comps should be paired with DCF (an absolute valuation method) for a complete picture."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Choose the peer group based on similar growth and risk, which matters more than matching revenue size alone",
+        "Comps is fast and grounded in real market data - a good starting point",
+        "It inherits systematic mispricing if the whole industry or market is off",
+        "It should be run alongside at least one absolute valuation method (DCF)"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Comps tells you how this company compares to its 'neighbours' - but not whether the whole neighbourhood is overpriced."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,137 @@
+{
+  "slug": "diversification-da-dang-hoa",
+  "title": "Diversification",
+  "subtitle": "Don't put all your eggs in one basket - the oldest rule in investing",
+  "duration": "6 min",
+  "openingQuestion": "Investor A puts 100% of their capital into one stock. Investor B splits it evenly across 20 stocks in different industries. Who bears more risk if one company suddenly hits a scandal?",
+  "openingOptions": [
+    "Cannot be compared without more information",
+    "A - if that single company hits a scandal, A's entire capital is affected; B only feels the impact on 1/20 of the portfolio",
+    "B, because more stocks means more complexity",
+    "Both bear equal risk"
+  ],
+  "explanation": "Diversification is a strategy of spreading capital across many different assets to reduce unsystematic risk - the risk specific to a single company or industry. When one holding runs into trouble, the others aren't affected the same way, protecting the portfolio's total value.",
+  "diagram": [
+    { "label": "Capital concentrated in a single asset", "arrow": true },
+    { "label": "That asset hits its own specific risk", "arrow": true },
+    { "label": "Spread capital across many different assets", "arrow": true },
+    { "label": "Unsystematic risk falls" }
+  ],
+  "realWorldExample": {
+    "company": "Enron (2001)",
+    "description": "Enron employees put most of their retirement savings into their own company's stock - when Enron collapsed from accounting fraud, thousands of employees lost nearly all of their retirement savings at once, a painful lesson in the cost of not diversifying."
+  },
+  "quiz": [
+    {
+      "question": "Can diversification completely eliminate every kind of investment risk?",
+      "options": [
+        "No, because trading costs always eat up that entire benefit",
+        "Yes, if you hold thirty stocks across different industries",
+        "Yes, as long as the assets are negatively correlated with each other",
+        "No, the market's systematic risk remains intact"
+      ],
+      "explanation": "Total risk = systematic risk (which cannot be diversified away) + unsystematic risk (which diversification can reduce). When global stock markets collapse (like 2008, 2020), nearly every risky asset drops in price at once - this is systematic risk, unavoidable through diversification."
+    },
+    {
+      "question": "What distinct benefit does INTERNATIONAL diversification (investing in stocks across many countries, not just diversifying by industry within one country) provide compared to purely domestic diversification?",
+      "options": [
+        "It further reduces macro risk specific to each individual country",
+        "It fully and permanently eliminates every currency risk the investor is exposed to",
+        "It guarantees a higher return than investing domestically alone",
+        "It lowers trading costs by accessing more exchanges"
+      ],
+      "explanation": "International diversification adds a layer of risk reduction beyond industry diversification: country-specific macro risk (monetary policy, the economic cycle, political stability) - though during a global crisis, correlation across international markets can also rise temporarily."
+    },
+    {
+      "question": "How do systematic risk and unsystematic risk differ?",
+      "options": [
+        "Systematic risk only affects stocks, while unsystematic risk only ever affects bonds and fixed-income instruments",
+        "Unsystematic risk can be reduced through diversification, systematic risk cannot",
+        "Systematic risk is measured by standard deviation, unsystematic risk by beta",
+        "Unsystematic risk only exists at unlisted companies"
+      ],
+      "explanation": "A factory fire is one company's own risk and vanishes once you hold thirty tickers. A recession hits everyone at once - no number of stocks avoids it, and that is exactly the portion of risk the market pays you to bear."
+    },
+    {
+      "question": "Why does adding the fiftieth stock to a portfolio barely reduce risk any further?",
+      "options": [
+        "Because the trading cost of the fiftieth ticker exceeds the benefit it brings",
+        "Because every stock listed in the same domestic market always carries a correlation of exactly one with every other",
+        "Because the individual-asset-specific risk has already been mostly diversified away",
+        "Because funds are legally capped on the number of tickers they may hold"
+      ],
+      "explanation": "The diversification benefit fades very quickly: most of the individual-asset risk disappears somewhere between twenty and thirty tickers. After that, only market risk remains, and adding tickers doesn't reduce that."
+    },
+    {
+      "question": "You hold thirty stocks, but all of them are in banking. What's the problem?",
+      "options": [
+        "The portfolio's expected return will be lower than average",
+        "There's no problem at all, since thirty different tickers is already more than enough for genuine diversification",
+        "Tracking thirty tickers in the same industry is too costly",
+        "Industry risk remains intact because all the tickers take the same shock together"
+      ],
+      "explanation": "Diversification is counted by source of risk, not by number of tickers. One interest-rate decision or one wave of bad loans hits all thirty tickers at once, so in terms of risk they're nearly a single investment."
+    }
+  ],
+  "keyTakeaways": [
+    "Diversification: spreading capital across many assets to reduce unsystematic risk",
+    "It cannot eliminate systematic risk (the broad market, macro conditions)",
+    "The most basic and oldest investment principle, applying at any portfolio size"
+  ],
+  "practicePrompt": {
+    "question": "An investor buys only one real-estate stock, believing that industry will boom. If real estate hits a crisis, their entire portfolio suffers heavily. What strategy could reduce this kind of risk (the risk specific to one company/industry)?",
+    "options": [
+      "They should put all their capital into a different, higher-potential stock to offset the real-estate stock's risk",
+      "Diversification is spreading capital across many assets to reduce unsystematic risk",
+      "They should pull all money out of the stock market and hold only cash to avoid every risk",
+      "Diversification has no effect at all on the risk specific to one company or industry"
+    ],
+    "explanation": "Diversification: spreading capital across many assets to reduce unsystematic risk (the risk specific to one company/industry). Genuine diversification rests on low correlation between assets, not simply buying many tickers in the same industry."
+  },
+  "summary": {
+    "keyIdea": "Diversification: spreading capital across many assets to reduce unsystematic risk",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to a real decision.",
+    "action": "It cannot eliminate systematic risk (the broad market, macro conditions)"
+  },
+  "application": {
+    "title": "Check your own level of diversification",
+    "message": "Look back at your current portfolio - if over 50% of its value sits in a single stock or a single industry, that's a sign you're carrying more unsystematic risk than necessary.",
+    "secondary": "You don't need perfect diversification right away, just an awareness of where your risk is concentrated."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Diversification is the oldest and simplest rule in investing: don't put all your eggs in one basket. Technically, it's a strategy of spreading capital across many different assets to reduce unsystematic risk - risk specific to one company or one industry, not risk affecting the whole economy."
+    },
+    { "type": "heading", "text": "Diversification does not erase every risk" },
+    {
+      "type": "paragraph",
+      "text": "An asset's total risk has two parts: systematic risk (interest rates, recessions, global crises - affecting almost every asset at once) and unsystematic risk (a company-specific problem like accounting fraud, a defective product, weak leadership). Diversification only eliminates the second kind. When global markets collapse, as in 2008 or 2020, nearly every risky asset falls in price together - that is systematic risk, and no amount of diversification avoids it."
+    },
+    { "type": "heading", "text": "A costly lesson from Enron" },
+    {
+      "type": "paragraph",
+      "text": "In 2001, many Enron employees put most of their retirement savings into their own company's stock - both their employer and their only investment. When Enron collapsed from accounting fraud, thousands of people lost nearly all their retirement savings at the same moment they lost their jobs. A painful demonstration of bundling income risk and investment risk into a single source."
+    },
+    { "type": "heading", "text": "International diversification - another layer of protection" },
+    {
+      "type": "paragraph",
+      "text": "Diversifying by industry within one country isn't enough. Investing in stocks across many countries further reduces risk tied to each COUNTRY's own economic cycle, monetary policy, and political instability - markets don't always move in lockstep. That said, during a global crisis, correlation across international markets tends to rise temporarily too."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Diversification reduces unsystematic risk (company/industry-specific)",
+        "It cannot eliminate systematic risk (the broad market, macro conditions, interest rates)",
+        "Don't bundle your income and your investments into the same source (the Enron lesson)",
+        "International diversification adds a layer of protection against each country's own macro risk"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Diversification doesn't make you risk-free - it just ensures you don't lose everything to a single mistake."
+      ]
+    }
+  ]
+}

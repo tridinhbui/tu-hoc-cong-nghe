@@ -1,0 +1,134 @@
+{
+  "slug": "yield-curve",
+  "title": "The Yield Curve",
+  "subtitle": "The yield curve - a macroeconomic barometer",
+  "duration": "7 min",
+  "openingQuestion": "What does an inverted yield curve signal?",
+  "openingOptions": [
+    "A strong economy",
+    "High inflation",
+    "Nothing meaningful",
+    "A high likelihood of an upcoming recession - the market expects the Fed to cut interest rates in the future"
+  ],
+  "explanation": "The yield curve connects government bond yields across different maturities, and its shape summarises the market's expectations of future interest rates. Sloping upward is the normal state. Inverted - short-term rates higher than long-term - means the market is betting that rates will have to fall, implying the economy will weaken. This is one of the few indicators with a long enough recession-forecasting track record to be worth watching, even though the lag varies a lot between episodes.",
+  "diagram": [
+    { "label": "Plot government bond yields by maturity", "arrow": true },
+    { "label": "Normal: longer maturities pay more", "arrow": true },
+    { "label": "Inverted: short-term yields exceed long-term", "arrow": true },
+    { "label": "The market expects rates to fall as the economy weakens" }
+  ],
+  "interactiveType": "bond",
+  "realWorldExample": {
+    "company": "The US yield curve, 2022-2023",
+    "description": "The US government bond yield curve inverted at its deepest and longest stretch in over 40 years during 2022-2023, as the Fed raised rates sharply to fight inflation - many economists used this signal to forecast the likelihood of a US recession."
+  },
+  "quiz": [
+    {
+      "question": "What does a steep upward-sloping yield curve indicate?",
+      "options": [
+        "A recession is imminent, because a steep curve signals instability",
+        "The market expects higher growth and inflation ahead",
+        "Short-term rates are much higher than long-term rates",
+        "The Fed is raising rates so the whole curve shifts up"
+      ],
+      "explanation": "A steep curve: a large spread between 10-year and 2-year yields → the market is optimistic about long-term growth. This happens after a recession, when the Fed has cut short-term rates but long-term rates remain elevated."
+    },
+    {
+      "question": "Why do large institutional investors watch the Yield Curve far more closely than a single interest rate level (like the 10-year rate)?",
+      "options": [
+        "Because the Yield Curve is much easier to read than a single rate figure",
+        "Only central banks need to care about the Yield Curve, not private investors",
+        "Because the shape of the whole curve reflects expectations across many maturities at once",
+        "The Yield Curve provides no more useful information than a single rate level"
+      ],
+      "explanation": "The Yield Curve is a 'map' of market expectations spanning many maturities - the slope, and whether the whole curve is inverted or normal, tells you much more than a single point."
+    },
+    {
+      "question": "What does an upward-sloping yield curve reflect?",
+      "options": [
+        "Expected inflation is gradually declining across long maturities",
+        "The market is forecasting a recession in the near term",
+        "The central bank is tightening monetary policy",
+        "Longer maturities demand a higher premium, a normally functioning economy"
+      ],
+      "explanation": "Lending for longer carries more uncertainty, so a higher yield is demanded. This is the default shape of the curve, and it reflects a normally functioning economy."
+    },
+    {
+      "question": "What is an inverted yield curve considered a signal of?",
+      "options": [
+        "A recession warning, though the lag can be as long as a year",
+        "Confirmation that the economy is overheating",
+        "A sign that inflation is about to spike in the near term",
+        "A signal the central bank is about to raise rates further"
+      ],
+      "explanation": "Short-term yields exceeding long-term yields means the market is betting that rates will have to fall sharply - something that usually only happens when the economy is heading down. This indicator has been right ahead of most US recessions, but the lag is long and uneven."
+    },
+    {
+      "question": "A nearly flat yield curve usually appears at which stage?",
+      "options": [
+        "The middle stage of strong, stable growth",
+        "A transitional stage, when the market hasn't settled on a direction",
+        "Right after the central bank makes a deep rate cut",
+        "A stage of high inflation persisting for several consecutive years"
+      ],
+      "explanation": "Flat is the state between upward-sloping and inverted - the market is balancing two opposing scenarios. It often appears when a tightening cycle is nearing its end but what comes next isn't yet clear."
+    }
+  ],
+  "keyTakeaways": [
+    "Yield curve: bond yields plotted by maturity",
+    "Inverted curve: signals a recession (~80% accuracy historically)",
+    "Steep curve: expectations of higher growth and inflation"
+  ],
+  "practicePrompt": {
+    "question": "You plot a chart with government bond maturities (1 year, 5 years, 10 years, 30 years) on the horizontal axis and each maturity's corresponding yield on the vertical axis, then connect the points. What is this chart called, and what shape does it normally take?",
+    "options": [
+      "This is called a Credit Spread Curve, reflecting the credit risk of each maturity",
+      "Yield curve: yields plotted by maturity; an inverted shape usually signals a recession",
+      "This is called the Efficient Frontier, showing the relationship between risk and expected return for a portfolio",
+      "This chart has no specific technical name in bond analysis"
+    ],
+    "explanation": "Yield curve: bond yields plotted by maturity. This is a summary 'map' of the market's expectations about future interest rates and economic growth - an inverted curve (short maturities yielding more than long ones) is one of the most closely watched recession indicators."
+  },
+  "summary": {
+    "keyIdea": "Yield curve: bond yields plotted by maturity",
+    "commonMistake": "Reading the concept as a definition to recite rather than a principle to apply to a real decision.",
+    "action": "Inverted curve: signals a recession (~80% accuracy historically)"
+  },
+  "application": {
+    "title": "Apply it now",
+    "message": "Look up the current short-term (e.g. 2-year) and long-term (e.g. 10-year) government bond yields, and compare whether the curve is currently normal or inverted.",
+    "secondary": "This is one of the most closely watched macroeconomic indicators in the world."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The yield curve is a chart connecting government bond yields across maturities - from a few months to 30 years. It's not just a technical chart: it's a barometer reflecting the entire market's collective expectations of future growth, inflation, and interest rate policy."
+    },
+    { "type": "heading", "text": "Steep curve: an optimistic market" },
+    {
+      "type": "paragraph",
+      "text": "When the curve slopes up steeply - meaning the gap between the 10-year and 2-year yield is large - the market is expecting higher growth and inflation ahead, demanding a large premium for locking up capital long-term. This usually happens after a recession, when the central bank has cut short-term rates low but long-term rates remain high because the market believes in a recovery."
+    },
+    { "type": "heading", "text": "Inverted curve: the most reliable recession signal" },
+    {
+      "type": "paragraph",
+      "text": "Conversely, when short-term rates exceed long-term rates (inverted), the market is betting that the central bank will soon have to cut rates to rescue a weakening economy. From 1955 to today, almost every time the US yield curve has inverted, it has preceded an actual recession by 12 to 18 months - one of the macroeconomic indicators with the highest historical accuracy. During 2022-2023, as the Fed raised rates sharply to fight 9% inflation, the US yield curve inverted at its deepest and longest stretch in over 40 years, prompting close attention from economists forecasting recession risk."
+    },
+    {
+      "type": "list",
+      "items": [
+        "The yield curve is a composite picture across many maturities at once - richer in information than a single rate level",
+        "Normal curve (upward sloping): normal to high expected growth and inflation",
+        "Flat curve: market uncertainty, usually at a cycle transition point",
+        "Inverted curve: a recession warning, ~80% historical accuracy"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Don't look at just one rate level - the shape of the whole curve tells the full story.",
+        "The yield curve is a macro tool watched closely by both the Fed and institutional investors."
+      ]
+    }
+  ]
+}

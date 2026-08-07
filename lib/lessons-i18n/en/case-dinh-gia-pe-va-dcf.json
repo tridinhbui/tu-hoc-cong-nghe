@@ -1,0 +1,134 @@
+{
+  "slug": "case-dinh-gia-pe-va-dcf",
+  "title": "Mini case - Valuing a company with P/E and a simple DCF",
+  "subtitle": "Practical application: combining relative and absolute methods to make a decision",
+  "duration": "9 min",
+  "openingQuestion": "A company has EPS of 5,000 VND, and the industry average P/E is 12x. Valuing by P/E gives 60,000 VND/share. The same company's DCF model gives 45,000 VND/share. How should you handle this gap?",
+  "openingOptions": [
+    "Treat both results as complementary perspectives: P/E reflects how the market is currently pricing the industry (which may be influenced by sentiment), DCF reflects intrinsic value based on cash flow - a large gap is a signal to investigate the cause, not something to resolve by picking randomly",
+    "Always trust P/E completely because it's simpler and faster",
+    "Always trust DCF completely because it's more complex, hence more accurate",
+    "Just take the simple average of the two numbers with no further analysis"
+  ],
+  "explanation": "Professional valuation practice always combines MULTIPLE methods (P/E, EV/EBITDA, DCF...) for a complete picture, called a 'valuation football field'. If the methods produce similar results, confidence rises. If the gap is large (as in this case: 60,000 VND vs 45,000 VND), it's worth investigating why: is the whole industry being priced above its intrinsic value by the market (an inflated P/E), or are the DCF assumptions too conservative (growth and WACC not properly reflecting real prospects)?",
+  "diagram": [
+    { "label": "Value using P/E", "arrow": true },
+    { "label": "Value using DCF", "arrow": true },
+    { "label": "Compare the two results", "arrow": true },
+    { "label": "Conclude with a reasonable value range" }
+  ],
+  "interactiveType": "multiples",
+  "realWorldExample": {
+    "company": "The valuation football field",
+    "description": "When advising on an IPO or M&A deal, investment banks always present a 'football field' chart - a range of values from different valuation methods (Comps, Precedent Transaction, DCF) stacked on top of each other, helping the client see the full picture instead of a single number."
+  },
+  "quiz": [
+    {
+      "question": "If a P/E valuation (market-based) is significantly higher than a DCF valuation (intrinsic-based), which of the following is the most reasonable possibility to consider?",
+      "options": [
+        "P/E is always more accurate than DCF, so just take the P/E result as the standard",
+        "DCF is always wrong because it's based on forecasts, so it should be discarded entirely",
+        "There's no possible explanation for the gap between the two numbers",
+        "The whole industry may be being priced by the market above its intrinsic value"
+      ],
+      "explanation": "When a market-based method (P/E, relative) gives a significantly higher result than an intrinsic-based method (DCF, absolute), this is usually a sign of industry-wide overvaluation."
+    },
+    {
+      "question": "In this valuation case, if you had to give a final investment recommendation based only on two diverging results (P/E: 60,000 VND, DCF: 45,000 VND), which approach shows the most mature financial analysis thinking?",
+      "options": [
+        "Completely ignore the DCF result because P/E is easier for clients to understand",
+        "Present both as a value range and clearly explain the assumptions",
+        "Always pick the higher number to have an immediate reason to buy",
+        "Take the simple average of the two numbers with no further explanation"
+      ],
+      "explanation": "This is the single most important takeaway from both the Stocks track and valuation as a whole: financial valuation is never an exact science - mature thinking shows up in honestly presenting a value range."
+    },
+    {
+      "question": "A P/E valuation gives 60,000 VND while DCF gives 40,000 VND. What should the next step be?",
+      "options": [
+        "Choose the lower result to be safe when investing",
+        "Take the average of the two numbers as the final result",
+        "Investigate which assumption is creating that gap",
+        "Drop the DCF method because it depends too heavily on assumptions"
+      ],
+      "explanation": "The gap is information, not a nuisance. It says the market is more optimistic than the cash flow you forecast - and the job is to find out who is right, not to average away the question."
+    },
+    {
+      "question": "Why should an investment recommendation come with a value range instead of a single number?",
+      "options": [
+        "Because different investors have different risk appetites",
+        "Because regulations require securities firms to disclose a value range",
+        "Because share prices move every session, so one number would go stale",
+        "Because every model rests on assumptions that could be wrong"
+      ],
+      "explanation": "A single number creates a false sense of certainty the model never actually had. A value range is more honest, and it shows at what price the investment thesis still holds up."
+    },
+    {
+      "question": "A valuation gives 55,000 VND, the market price is 54,000 VND. What is the most reasonable conclusion?",
+      "options": [
+        "Almost no margin of safety - not attractive enough to buy",
+        "The stock is undervalued, so buy immediately",
+        "The model is wrong because the result is too close to the market price",
+        "You should buy because any positive gap is a buying opportunity"
+      ],
+      "explanation": "A 2% gap sits comfortably within the margin of error of any model. Value investing requires a cushion thick enough to survive being wrong, not a slightly higher number."
+    }
+  ],
+  "keyTakeaways": [
+    "Professional valuation practice always combines multiple methods, not just one number",
+    "A large gap between methods is a signal for deeper analysis, not something to ignore",
+    "The 'valuation football field' - a range from multiple methods - is a standard tool in professional valuation practice"
+  ],
+  "practicePrompt": {
+    "question": "An M&A analyst values a target company using all three methods: DCF gives 8,000 billion, Comps gives 9,500 billion, Precedent Transaction gives 10,200 billion. How should the final result be presented to leadership, and why shouldn't just one number be chosen?",
+    "options": [
+      "Only the highest number (10,200 billion) should be chosen to have the most leverage in negotiations",
+      "Multiple methods should be combined and presented as a value range of 8,000-10,200 billion",
+      "Only the lowest number (8,000 billion) should be chosen because DCF is always the most accurate method in every case",
+      "The simple average of the three numbers should be calculated with no further explanation of the gap"
+    ],
+    "explanation": "Professional valuation practice always combines multiple methods, not just one number. Each method (DCF, Comps, Precedent Transaction) has different strengths/weaknesses - presenting the result as a value range (football field) helps leadership understand the level of uncertainty and the basis for each figure."
+  },
+  "summary": {
+    "keyIdea": "Professional valuation practice always combines multiple methods, not just one number",
+    "commonMistake": "Reading the concept as a definition to recite rather than a principle to apply to a real decision.",
+    "action": "A large gap between methods is a signal for deeper analysis, not something to ignore"
+  },
+  "application": {
+    "title": "Apply it now",
+    "message": "Pick a stock you're interested in, look up its current P/E, and try roughly calculating a simple DCF valuation (using an estimated FCF and assumed WACC) - see how far apart the two numbers are and why.",
+    "secondary": "If the gap is large, don't jump to a conclusion - investigate which assumption is driving the difference."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "No professional analyst relies on just one valuation method. This mini case illustrates how to combine P/E (relative valuation) and DCF (absolute valuation) to make a well-grounded investment decision, instead of clinging to a single number."
+    },
+    { "type": "heading", "text": "When two methods give two different results" },
+    {
+      "type": "paragraph",
+      "text": "Suppose a P/E valuation gives 60,000 VND/share, while DCF gives 45,000 VND/share - a significant gap. When a market-based method (P/E, relative) is significantly higher than an intrinsic-based method (DCF, absolute), this is usually a sign that the whole industry is being priced by the market above its true intrinsic value - due to excessive optimism or speculative capital flowing into the sector. This is exactly the kind of warning signal a value investor should stay alert to."
+    },
+    { "type": "heading", "text": "The valuation football field" },
+    {
+      "type": "paragraph",
+      "text": "Professional valuation practice always combines MULTIPLE methods (P/E, EV/EBITDA, DCF, Comps, Precedent Transaction...) for a complete picture, called a 'valuation football field'. When advising on an IPO or M&A deal, investment banks always present a football field chart - a range of values from multiple methods stacked on top of each other, helping the client see the full picture instead of a single number. The most mature approach in this case isn't choosing the higher number or taking a simple average, but presenting both results as a reasonable value range (45,000-60,000 VND), clearly explaining the assumptions behind each method, and making a recommendation based on where the current market price sits within that range."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Combining multiple methods increases confidence when the results are close together",
+        "A large gap between methods is a signal for deeper analysis, not something to ignore",
+        "The football field: a standard tool for presenting a value range from multiple methods in professional practice",
+        "No valuation method produces an absolutely 'correct' number"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Valuation is not an exact science - it is the art of narrowing a zone of uncertainty into a grounded, honest recommendation.",
+        "Having completed 20 lessons on stock valuation - from basic concepts to a complete DCF - you now have the toolkit to assess any stock yourself."
+      ]
+    }
+  ]
+}

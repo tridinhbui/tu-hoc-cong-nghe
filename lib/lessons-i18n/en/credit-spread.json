@@ -1,0 +1,127 @@
+{
+  "slug": "credit-spread",
+  "title": "Credit Spread",
+  "subtitle": "The credit risk premium over the risk-free rate",
+  "duration": "6 min",
+  "openingQuestion": "A BB corporate bond yields 8%, a T-bond yields 4%. What is the credit spread?",
+  "openingOptions": [
+    "2%",
+    "4%",
+    "8%",
+    "4% - the premium investors demand for taking on higher credit risk than a T-bond"
+  ],
+  "explanation": "Credit spread = Yield (corporate) - Yield (risk-free). A wide spread = the market is more worried about credit risk. When the economy sours, spreads widen (flight to quality). When the economy is doing well, spreads narrow. The OAS (option-adjusted) spread strips out the value of embedded options.",
+  "diagram": [
+    { "label": "A corporate bond's yield", "arrow": true },
+    { "label": "Subtract the government bond yield of the same term", "arrow": true },
+    { "label": "The difference is the credit spread", "arrow": true },
+    { "label": "A rapid widening signals the market fears default" }
+  ],
+  "interactiveType": "bond",
+  "realWorldExample": {
+    "company": "Credit spreads during the COVID-19 crisis (2020)",
+    "description": "When the COVID-19 pandemic broke out in March 2020, US corporate bond credit spreads jumped from normal levels to a peak within just a few weeks, reflecting fears that a wave of businesses could default due to the sudden economic lockdown - then narrowed rapidly once the Fed intervened aggressively."
+  },
+  "quiz": [
+    {
+      "question": "What does a sharp widening of high-yield spreads signal?",
+      "options": [
+        "The economy is doing well, because a wide spread means a higher bond yield",
+        "The policy rate is about to rise so bonds are being sold off in advance",
+        "Nothing meaningful - spreads changing daily is normal",
+        "The market fears rising default risk - usually a recession signal"
+      ],
+      "explanation": "An HY spread above 800-1000 bps usually accompanies or precedes a recession. In 2008: the HY spread jumped to 2000 bps. Spreads are an early indicator of the economy's credit health."
+    },
+    {
+      "question": "If the credit spread across the entire corporate bond market suddenly widens sharply over a short period (not just for one specific company), what does this usually reflect about overall market sentiment?",
+      "options": [
+        "It only reflects the problems of a few specific issuing companies",
+        "This is always a sign of a technical error in calculating the market spread",
+        "Fear of systemic risk - every bond is being charged a higher premium",
+        "Credit spreads never move together across the whole market at once"
+      ],
+      "explanation": "A broad, market-wide widening of credit spreads (not company-specific) is an important macro indicator of the level of systemic 'fear'."
+    },
+    {
+      "question": "How is credit spread calculated?",
+      "options": [
+        "The yield gap between the long and short end of the same issuer's curve",
+        "Corporate bond yield divided by the policy rate",
+        "The gap between the bid and ask price of a bond in the market",
+        "Risky bond yield minus the risk-free yield of the same term"
+      ],
+      "explanation": "Matching terms is a required condition, otherwise you're mixing credit risk with interest rate risk. The gap between long and short terms is the curve's slope, and the gap between bid and ask price is the bid-ask spread - two entirely different concepts."
+    },
+    {
+      "question": "A company's spread jumps from 200 to 700 basis points. What does that mean?",
+      "options": [
+        "The market has just significantly re-assessed their default risk",
+        "The company was just upgraded to a higher credit rating",
+        "Government bond rates just fell sharply during the period",
+        "Their bond just had additional collateral added"
+      ],
+      "explanation": "Going from a 2% premium to a 7% premium means the market now demands three and a half times more to bear the same risk. A widening of this size usually precedes officially announced bad news."
+    },
+    {
+      "question": "Why is an unusually narrow spread cause for concern, not celebration?",
+      "options": [
+        "Because the company will find it harder to issue new bonds",
+        "Because the market may be pricing risk irrationally low",
+        "Because bond investors will face a higher tax rate",
+        "Because the central bank will be forced to intervene in the market"
+      ],
+      "explanation": "A spread narrower than historical norms means the compensation for default risk is very thin - investors are receiving very little to bear real risk. The period right before 2008 is a classic example of this state."
+    }
+  ],
+  "keyTakeaways": [
+    "Credit spread = corporate yield - risk-free yield",
+    "A wide spread: the market is worried about credit risk",
+    "HY spreads: an early recession indicator"
+  ],
+  "practicePrompt": {
+    "question": "A 5-year government bond yields 4%. A corporate bond of the same term yields 9%. What is this 5% gap between the two bonds called, and what does it reflect?",
+    "options": [
+      "Credit spread = 9% - 4% = 5%, the risk premium the market demands for default risk",
+      "This is called Yield to Maturity, reflecting the real yield if the bond is held to maturity",
+      "This gap has no analytical meaning, it's just a random difference between two bond types",
+      "This is called the Coupon Rate, reflecting the nominal interest rate of the corporate bond"
+    ],
+    "explanation": "Credit spread = corporate yield - risk-free yield = 5%. The larger the spread, the higher the market's assessment of the company's default risk - this is a highly sensitive risk-sentiment gauge, usually widening rapidly when the market becomes worried about the health of the economy or a specific industry."
+  },
+  "summary": {
+    "keyIdea": "Credit spread = corporate yield - risk-free yield",
+    "commonMistake": "Reading the concept as a definition to recite rather than a principle to apply to a real decision.",
+    "action": "A wide spread: the market is worried about credit risk"
+  },
+  "application": {
+    "title": "Apply it now",
+    "message": "Compare the yield of a corporate bond against a government bond of the same term, and calculate the credit spread yourself to see how the market is pricing that company's credit risk.",
+    "secondary": "The wider the spread, the more worried the market is about the issuer's ability to repay."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Credit spread is a direct measure of the market's credit-risk 'fear': the gap between a corporate bond's yield and the yield of a government (risk-free) bond of the same term. Tracking credit spreads daily is how professional investors gauge the entire economy's 'temperature'."
+    },
+    { "type": "heading", "text": "The formula and what it means" },
+    {
+      "type": "paragraph",
+      "text": "Credit spread = Yield (corporate bond) - Yield (government bond of the same term). When the spread widens, the market is pricing credit risk higher - a phenomenon that usually happens during crises, when investors rush out of risky assets and into safe government bonds (flight to quality). When the spread tightens, that's a sign the economy is stabilising or optimistic, and investors are willing to accept corporate risk for a lower premium. A more refined variant called OAS (option-adjusted spread) strips out the value of options embedded in the bond (such as an early call option) to get a pure spread figure that reflects credit risk alone."
+    },
+    { "type": "heading", "text": "A market-wide spread widening: a systemic signal" },
+    {
+      "type": "paragraph",
+      "text": "When credit spreads widen not just for one specific company but across the entire corporate bond market, that's a sign of spreading fear about systemic risk - like an approaching recession or a liquidity crisis - rather than an isolated problem at one business. In March 2020, when COVID-19 broke out, US corporate bond credit spreads jumped to a peak within just a few weeks, reflecting fears that a wave of businesses could default due to a sudden economic lockdown - then narrowed rapidly once the Fed intervened aggressively by buying corporate bonds."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Wide spread: the market is worried about credit risk, usually alongside a recession or crisis",
+        "Narrow spread: a stable or optimistic economy, but can also signal risk being priced too low",
+        "A high-yield spread above 800-1000 bps usually signals serious economic stress",
+        "OAS: a version of the spread with the effect of embedded bond options stripped out"
+      ]
+    }
+  ]
+}

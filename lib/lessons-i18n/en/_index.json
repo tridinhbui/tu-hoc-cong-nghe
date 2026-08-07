@@ -4,6 +4,15 @@
     "subtitle": "Recognised by economic obligation, not by cash flow",
     "duration": "6 min"
   },
+  "active-vs-passive-investing": {
+    "title": "Active vs Passive Investing",
+    "subtitle": "Trying to beat the market, or simply owning the whole market?"
+  },
+  "alpha-la-gi": {
+    "title": "What is alpha?",
+    "subtitle": "The excess return a fund manager generates over the market",
+    "duration": "6 min"
+  },
   "annuity": {
     "title": "Annuity: level cash flows",
     "subtitle": "A series of equal payments over a fixed period",
@@ -27,6 +36,11 @@
   "beta-la-gi": {
     "title": "What is Beta in finance?",
     "subtitle": "Measuring a stock's sensitivity to the broader market",
+    "duration": "6 min"
+  },
+  "beta-trong-danh-muc": {
+    "title": "Beta in a portfolio",
+    "subtitle": "Measuring how sensitive a portfolio is to the broad market's swings",
     "duration": "6 min"
   },
   "bo-3-bao-cao": {
@@ -54,6 +68,10 @@
     "subtitle": "Three financial actors, three different goals, three different toolkits.",
     "duration": "7 min"
   },
+  "call-option-la-gi": {
+    "title": "What Is a Call Option?",
+    "subtitle": "The right to buy an asset at a fixed price - expecting the price to rise"
+  },
   "capex-vs-opex": {
     "title": "CapEx vs OpEx",
     "subtitle": "Capital spending vs operating expense - different effects on the financials",
@@ -68,6 +86,24 @@
     "title": "What is CAPM?",
     "subtitle": "Capital Asset Pricing Model",
     "duration": "7 min"
+  },
+  "case-dinh-gia-pe-va-dcf": {
+    "title": "Mini case - Valuing a company with P/E and a simple DCF",
+    "subtitle": "Practical application: combining relative and absolute methods to make a decision",
+    "duration": "9 min"
+  },
+  "case-doc-duong-cong-loi-suat": {
+    "title": "Mini case - reading the yield curve",
+    "subtitle": "A practical application: reading the yield curve to guess the economic cycle",
+    "duration": "7 min"
+  },
+  "case-hang-hang-khong-phong-ho-gia-dau": {
+    "title": "Small Case - An Airline Hedges Oil Prices",
+    "subtitle": "Applying theory in practice: building a hedging strategy for fuel cost"
+  },
+  "case-xay-danh-muc-3-tai-san": {
+    "title": "Small Case - Building a 3-Asset Portfolio",
+    "subtitle": "Applying theory in practice: combining stocks, bonds, and gold based on correlation"
   },
   "cash-accounting": {
     "title": "What is cash accounting?",
@@ -94,6 +130,11 @@
     "subtitle": "Why buying a 1-billion machine doesn't cut profit by 1 billion right away",
     "duration": "6 min"
   },
+  "chinh-sach-tien-te": {
+    "title": "Monetary policy and interest rates",
+    "subtitle": "How do the Fed and the State Bank steer the economy through interest rates?",
+    "duration": "7 min"
+  },
   "co-phieu-la-gi-day121": {
     "title": "What is a stock?",
     "subtitle": "A certificate of ownership in part of a business",
@@ -103,6 +144,11 @@
     "title": "Dividend Policy",
     "subtitle": "Pay a dividend or retain earnings for reinvestment?",
     "duration": "6 min"
+  },
+  "comparable-company-analysis-la-gi": {
+    "title": "What is Comparable Company Analysis?",
+    "subtitle": "Valuing a company by how the market is pricing similar ones",
+    "duration": "9 min"
   },
   "compounding-dau-tu": {
     "title": "Compounding in Investing",
@@ -124,10 +170,20 @@
     "subtitle": "The depreciation shield and the timing gap between P&L and cash",
     "duration": "5 min"
   },
+  "corporate-bond-la-gi": {
+    "title": "What is a corporate bond?",
+    "subtitle": "A company borrowing directly from investors, bypassing banks",
+    "duration": "6 min"
+  },
   "corporate-finance-la-gi": {
     "title": "What is Corporate Finance?",
     "subtitle": "The three core financial decisions of every business",
     "duration": "6 min"
+  },
+  "correlation-tuong-quan-tai-san": {
+    "title": "Correlation between assets",
+    "subtitle": "A measure of how much two assets move together or apart",
+    "duration": "7 min"
   },
   "cost-of-capital": {
     "title": "Cost of Capital",
@@ -144,6 +200,20 @@
     "subtitle": "The return shareholders expect - no interest paid, but not free",
     "duration": "7 min"
   },
+  "credit-rating": {
+    "title": "Credit Rating",
+    "subtitle": "How do Moody's, S&P, and Fitch assess default risk?",
+    "duration": "6 min"
+  },
+  "credit-spread": {
+    "title": "Credit Spread",
+    "subtitle": "The credit risk premium over the risk-free rate",
+    "duration": "6 min"
+  },
+  "currency-swap-chuyen-sau": {
+    "title": "Currency Swap",
+    "subtitle": "Swapping cash flows between two different currencies"
+  },
   "current-long-term-liabilities": {
     "title": "Current and Long-term Liabilities",
     "subtitle": "Classifying debt by maturity",
@@ -159,10 +229,29 @@
     "subtitle": "Does the business have enough cash to pay its debts in the next 12 months?",
     "duration": "5 min"
   },
+  "dcf-la-gi-day133": {
+    "title": "What is DCF?",
+    "subtitle": "Valuing a company as the present value of all its future cash flows",
+    "duration": "11 min"
+  },
   "debt-to-equity": {
     "title": "Debt-to-Equity",
     "subtitle": "Financial leverage and capital-structure risk",
     "duration": "6 min"
+  },
+  "default-la-gi": {
+    "title": "What is a default?",
+    "subtitle": "When a borrower fails to pay debt on time",
+    "duration": "6 min"
+  },
+  "default-risk": {
+    "title": "Default risk and the default rate",
+    "subtitle": "The probability of not repaying debt, and the recovery rate",
+    "duration": "6 min"
+  },
+  "derivatives-la-gi": {
+    "title": "What Are Derivatives?",
+    "subtitle": "Instruments whose value depends on another underlying asset"
   },
   "discount-rate": {
     "title": "Discount Rate",
@@ -172,6 +261,11 @@
   "discounting": {
     "title": "Discounting: Pulling Future Money Back to the Present",
     "subtitle": "The reverse of compounding - the basis of every valuation",
+    "duration": "6 min"
+  },
+  "diversification-da-dang-hoa": {
+    "title": "Diversification",
+    "subtitle": "Don't put all your eggs in one basket - the oldest rule in investing",
     "duration": "6 min"
   },
   "doanh-thu-ghi-nhan": {
@@ -209,6 +303,11 @@
     "subtitle": "Earnings before interest and tax - measuring pure operating efficiency",
     "duration": "6 min"
   },
+  "efficient-frontier-la-gi": {
+    "title": "What is the Efficient Frontier?",
+    "subtitle": "The efficient frontier - the set of every possible optimal portfolio",
+    "duration": "7 min"
+  },
   "enterprise-value-la-gi-day125": {
     "title": "What is Enterprise Value?",
     "subtitle": "The value of the whole business - including debt, minus cash",
@@ -224,6 +323,10 @@
     "subtitle": "The value that belongs to shareholders differs from the value of the whole operating business",
     "duration": "6 min"
   },
+  "etf-la-gi-day176": {
+    "title": "What is an ETF?",
+    "subtitle": "Exchange-traded fund - trades like a stock, diversifies like a fund"
+  },
   "ev-ebitda-dung-khi-nao": {
     "title": "When should EV/EBITDA be used?",
     "subtitle": "The preferred ratio when comparing companies with different capital structures",
@@ -233,6 +336,26 @@
     "title": "What is EV/EBITDA?",
     "subtitle": "The most common multiple in M&A and business comparisons",
     "duration": "6 min"
+  },
+  "exit-multiple-method": {
+    "title": "Exit Multiple Method",
+    "subtitle": "An alternative approach to calculating Terminal Value based on market multiples",
+    "duration": "6 min"
+  },
+  "expected-return-danh-muc": {
+    "title": "A portfolio's expected return",
+    "subtitle": "A portfolio's expected return is the weighted average of its components",
+    "duration": "6 min"
+  },
+  "fcfe-la-gi": {
+    "title": "What is FCFE?",
+    "subtitle": "Free cash flow reserved for shareholders alone, after debt obligations are paid",
+    "duration": "7 min"
+  },
+  "fcff-la-gi": {
+    "title": "What is FCFF?",
+    "subtitle": "Free cash flow available to all investors - both shareholders and creditors",
+    "duration": "7 min"
   },
   "financial-model-la-gi": {
     "title": "What is a Financial Model?",
@@ -249,6 +372,10 @@
     "subtitle": "Cash flow from borrowing, issuing shares, and paying dividends",
     "duration": "5 min"
   },
+  "forward-contract-la-gi": {
+    "title": "What Is a Forward Contract?",
+    "subtitle": "A commitment to buy/sell an asset at a price agreed today, settled in the future"
+  },
   "free-cash-flow-co-ban": {
     "title": "What is Free Cash Flow?",
     "subtitle": "OCF − CapEx = the cash a business is genuinely free to use",
@@ -259,15 +386,29 @@
     "subtitle": "What will 1 million today become after 10 years?",
     "duration": "5 min"
   },
+  "futures-contract-la-gi": {
+    "title": "What Is a Futures Contract?",
+    "subtitle": "Like a forward but standardized, exchange-traded, and safer"
+  },
   "gia-co-phieu-vs-gia-tri-doanh-nghiep": {
     "title": "How do stock price and business value differ?",
     "subtitle": "Price is what the market is paying right now; value is what the business is really worth",
     "duration": "7 min"
   },
+  "gia-trai-phieu-va-lai-suat": {
+    "title": "Bond price and interest rates",
+    "subtitle": "The foundational inverse relationship of the debt market",
+    "duration": "6 min"
+  },
   "gia-tri-thoi-gian-cua-tien": {
     "title": "The time value of money: 1 million today is not 1 million a year from now.",
     "subtitle": "Present Value and Future Value are the foundation of every quantitative financial decision.",
     "duration": "8 min"
+  },
+  "gordon-growth-method": {
+    "title": "Gordon Growth Method",
+    "subtitle": "The most common formula for calculating Terminal Value based on perpetual growth",
+    "duration": "7 min"
   },
   "gross-margin": {
     "title": "Gross Margin",
@@ -284,6 +425,14 @@
     "subtitle": "The financial system is the network connecting people with spare money to people who need it.",
     "duration": "7 min"
   },
+  "hedge-fund-la-gi": {
+    "title": "What is a Hedge Fund?",
+    "subtitle": "A flexible fund for institutions and wealthy individuals, with lighter regulation"
+  },
+  "hedging-la-gi": {
+    "title": "What Is Hedging?",
+    "subtitle": "Using derivatives to reduce risk, not to earn extra profit"
+  },
   "income-statement-la-gi": {
     "title": "Income Statement: the profit-and-loss report",
     "subtitle": "From revenue down to net income - the story of efficiency",
@@ -294,10 +443,18 @@
     "subtitle": "How many times over can profit cover interest?",
     "duration": "5 min"
   },
+  "interest-rate-swap-chuyen-sau": {
+    "title": "Interest Rate Swap",
+    "subtitle": "Swapping between a fixed interest rate and a floating interest rate"
+  },
   "interest-tax-expense": {
     "title": "Interest Expense and Tax Expense",
     "subtitle": "The last two items before Net Income - the effect of debt and tax",
     "duration": "5 min"
+  },
+  "intrinsic-value-time-value": {
+    "title": "Intrinsic Value and Time Value",
+    "subtitle": "The two components that make up every option's price"
   },
   "inventory-turnover-co-ban": {
     "title": "Inventory Turnover: how fast stock moves",
@@ -354,10 +511,20 @@
     "subtitle": "An interest rate is the price of money. When it changes, everything changes with it.",
     "duration": "7 min"
   },
+  "lai-suat-thuc-vs-danh-nghia": {
+    "title": "Real interest rate vs. nominal interest rate",
+    "subtitle": "The Fisher Equation and the real purchasing power of an interest rate",
+    "duration": "6 min"
+  },
   "lam-phat-la-gi": {
     "title": "What is inflation? Why money loses value.",
     "subtitle": "Inflation isn't an accident. It is a built-in feature of every modern economy.",
     "duration": "7 min"
+  },
+  "lam-phat-va-dau-tu": {
+    "title": "Inflation and its effect on investing",
+    "subtitle": "Which assets protect purchasing power best?",
+    "duration": "6 min"
   },
   "lbo-la-gi": {
     "title": "What is an LBO?",
@@ -384,10 +551,24 @@
     "subtitle": "The total market value of all a company's shares outstanding",
     "duration": "5 min"
   },
+  "modern-portfolio-theory-la-gi": {
+    "title": "What is Modern Portfolio Theory?",
+    "subtitle": "Harry Markowitz and turning optimal portfolio construction into math",
+    "duration": "7 min"
+  },
   "modigliani-miller": {
     "title": "The Modigliani-Miller Theorem",
     "subtitle": "Does capital structure matter? - a controversial answer",
     "duration": "10 min"
+  },
+  "municipal-bond-la-gi": {
+    "title": "What is a municipal bond?",
+    "subtitle": "Local-government bonds that fund public infrastructure",
+    "duration": "6 min"
+  },
+  "mutual-fund-la-gi": {
+    "title": "What is a Mutual Fund?",
+    "subtitle": "A pooled fund - professionally managed, priced once a day"
   },
   "net-income-y-nghia": {
     "title": "Net Income: meaning and limits",
@@ -459,6 +640,11 @@
     "subtitle": "Corporate Finance, Capital Structure, M&A, PE/VC - tying the Corporate Finance track together",
     "duration": "7 min"
   },
+  "on-tap-trai-phieu": {
+    "title": "Review: Bonds & Interest Rates",
+    "subtitle": "Bond pricing, YTM, credit risk, yield curve - connecting the Bonds, Interest Rates and Credit track",
+    "duration": "7 min"
+  },
   "on-tap-wacc": {
     "title": "Deep-dive case: WACC review",
     "subtitle": "5 quiz questions on the cost of capital - understand it, don't memorise it",
@@ -478,6 +664,10 @@
     "title": "Operating Margin",
     "subtitle": "Measuring operating efficiency after indirect costs too",
     "duration": "5 min"
+  },
+  "option-la-gi": {
+    "title": "What Is an Option?",
+    "subtitle": "A right - not an obligation - to buy or sell an asset"
   },
   "payback-period": {
     "title": "Payback Period",
@@ -509,6 +699,16 @@
     "subtitle": "A level cash flow that continues indefinitely",
     "duration": "5 min"
   },
+  "portfolio-la-gi": {
+    "title": "What is a portfolio?",
+    "subtitle": "A collection of investments managed as a single whole",
+    "duration": "5 min"
+  },
+  "precedent-transaction-la-gi": {
+    "title": "What is Precedent Transaction analysis?",
+    "subtitle": "Valuing a company based on prices actually paid in similar past M&A deals",
+    "duration": "9 min"
+  },
   "present-value": {
     "title": "Present Value",
     "subtitle": "How much is a dong received in the future worth today?",
@@ -518,6 +718,10 @@
     "title": "What is Private Equity?",
     "subtitle": "Investing in unlisted companies to create value",
     "duration": "6 min"
+  },
+  "put-option-la-gi": {
+    "title": "What Is a Put Option?",
+    "subtitle": "The right to sell an asset at a fixed price - expecting a price drop or wanting to insure a portfolio"
   },
   "quick-ratio": {
     "title": "Quick Ratio: Acid-Test Liquidity",
@@ -542,6 +746,11 @@
   "risk-free-rate": {
     "title": "Risk-Free Rate and Market Risk Premium",
     "subtitle": "The foundation of every risk pricing model",
+    "duration": "6 min"
+  },
+  "risk-return-tradeoff": {
+    "title": "The Risk-Return Tradeoff",
+    "subtitle": "To get a higher expected return, you have to accept correspondingly higher risk",
     "duration": "6 min"
   },
   "roa-chi-so": {
@@ -569,15 +778,47 @@
     "subtitle": "Risk isn't something to avoid; it's something to understand and price correctly.",
     "duration": "7 min"
   },
+  "sensitivity-analysis-la-gi": {
+    "title": "What is Sensitivity Analysis?",
+    "subtitle": "Testing how a valuation result changes when key assumptions change",
+    "duration": "9 min"
+  },
   "shareholders-equity": {
     "title": "What makes up Shareholders' Equity?",
     "subtitle": "The components of equity - from paid-in capital to retained earnings",
     "duration": "6 min"
   },
+  "sharpe-ratio-la-gi": {
+    "title": "What is the Sharpe Ratio?",
+    "subtitle": "Measuring return earned per unit of risk taken on",
+    "duration": "6 min"
+  },
+  "speculation-la-gi": {
+    "title": "What Is Speculation?",
+    "subtitle": "Using derivatives to bet on price direction for profit - with no underlying risk to protect"
+  },
+  "spread-la-gi": {
+    "title": "What is a spread?",
+    "subtitle": "The yield gap that reflects perceived risk",
+    "duration": "6 min"
+  },
+  "standard-deviation-dau-tu": {
+    "title": "Standard deviation in investing",
+    "subtitle": "The mathematical tool that precisely measures volatility",
+    "duration": "7 min"
+  },
+  "strike-price-expiration-date": {
+    "title": "Strike Price and Expiration Date",
+    "subtitle": "The two factors that determine the value and life span of every option contract"
+  },
   "suc-manh-thoi-gian": {
     "title": "The power of time in finance.",
     "subtitle": "Time is the most valuable asset in investing. And it doesn't wait.",
     "duration": "6 min"
+  },
+  "swap-la-gi": {
+    "title": "What Is a Swap?",
+    "subtitle": "Two parties exchange future cash flows according to an agreed formula"
   },
   "synergy-trong-ma": {
     "title": "Synergy in M&A",
@@ -598,6 +839,11 @@
     "title": "What is an asset in accounting?",
     "subtitle": "Current assets, non-current assets, and how they create value",
     "duration": "6 min"
+  },
+  "terminal-value-la-gi": {
+    "title": "What is Terminal Value?",
+    "subtitle": "The single largest share of value in most DCF models",
+    "duration": "10 min"
   },
   "thanh-khoan-la-gi": {
     "title": "What is liquidity? Assets that sell easily, and assets that don't.",
@@ -629,6 +875,35 @@
     "subtitle": "A practical application: opening a new branch - is it worth it?",
     "duration": "7 min"
   },
+  "tong-on-chang-8-trai-phieu": {
+    "title": "Review: Bonds, Interest Rates and Credit - Bonds are a world of interest rates and trust",
+    "subtitle": "Connecting coupon, yield, credit risk and the yield curve into one complete picture",
+    "duration": "8 min"
+  },
+  "tong-on-chang-9-danh-muc": {
+    "title": "Review - Portfolio and Risk Management Track: Investing Is Managing Risk, Not Just Hunting Returns",
+    "subtitle": "Connecting diversification, correlation, MPT, the Sharpe Ratio, and fund types"
+  },
+  "tracking-error-la-gi": {
+    "title": "What is tracking error?",
+    "subtitle": "Measuring how far a fund strays from the benchmark it tracks",
+    "duration": "6 min"
+  },
+  "trai-phieu-doanh-nghiep": {
+    "title": "Vietnamese corporate bonds",
+    "subtitle": "Characteristics, risks, and lessons from Vietnam's bond market",
+    "duration": "6 min"
+  },
+  "trai-phieu-la-gi": {
+    "title": "What is a bond?",
+    "subtitle": "A basic debt instrument - you lend, they pay interest",
+    "duration": "5 min"
+  },
+  "treasury-bond-la-gi": {
+    "title": "What is a Treasury bond?",
+    "subtitle": "Government bonds - the market's safest reference point",
+    "duration": "6 min"
+  },
   "unit-economics": {
     "title": "Unit Economics",
     "subtitle": "Profit per unit - the foundation of every business model",
@@ -642,6 +917,24 @@
   "venture-capital-la-gi": {
     "title": "What is Venture Capital?",
     "subtitle": "Risk capital for early-stage startups",
+    "duration": "6 min"
+  },
+  "vi-sao-doanh-nghiep-dung-phai-sinh-phong-ho": {
+    "title": "Why Do Businesses Use Derivatives to Hedge?",
+    "subtitle": "Stabilizing cash flow and protecting profit margin from market volatility"
+  },
+  "vi-sao-khong-nen-nhin-tung-khoan-dau-tu": {
+    "title": "Why shouldn't you look at each investment in isolation?",
+    "subtitle": "An asset's risk can vanish once placed in the context of a portfolio",
+    "duration": "6 min"
+  },
+  "vi-sao-phai-sinh-nguy-hiem": {
+    "title": "Why Can Derivatives Be So Dangerous?",
+    "subtitle": "High leverage, complexity, and systemic risk"
+  },
+  "volatility-bien-dong": {
+    "title": "Volatility",
+    "subtitle": "A measure of how much an asset's price swings over time",
     "duration": "6 min"
   },
   "von-chu-so-huu": {
@@ -667,6 +960,21 @@
   "working-capital-van-hanh": {
     "title": "Working Capital in running a business",
     "subtitle": "The Cash Conversion Cycle and how to optimise operating cash flow",
+    "duration": "7 min"
+  },
+  "yield-curve-la-gi": {
+    "title": "What is the yield curve?",
+    "subtitle": "A curve connecting yields across different maturities",
+    "duration": "7 min"
+  },
+  "yield-curve": {
+    "title": "The Yield Curve",
+    "subtitle": "The yield curve - a macroeconomic barometer",
+    "duration": "7 min"
+  },
+  "yield-to-maturity": {
+    "title": "Yield to Maturity (YTM)",
+    "subtitle": "The real return if you hold a bond until maturity",
     "duration": "7 min"
   }
 }

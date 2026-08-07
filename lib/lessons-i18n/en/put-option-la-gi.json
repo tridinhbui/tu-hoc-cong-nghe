@@ -1,0 +1,129 @@
+{
+  "slug": "put-option-la-gi",
+  "title": "What Is a Put Option?",
+  "subtitle": "The right to sell an asset at a fixed price - expecting a price drop or wanting to insure a portfolio",
+  "openingQuestion": "You hold stock Y at a price of VND 100,000, worried it might fall. How does buying a put option with a strike of VND 95,000 help?",
+  "openingOptions": [
+    "It only helps if the price rises",
+    "It doesn't help at all",
+    "If the price falls below VND 95,000, you still have the right to sell at 95,000 - capping your maximum loss, like buying insurance for your portfolio",
+    "You are forced to sell the stock immediately"
+  ],
+  "explanation": "A put option gives the right to sell an asset at a predetermined price, so its value rises when the market falls. Its most common application isn't speculation but insurance: someone holding a stock buys a put option to lock in a floor price for their position. The right way to think about the fee is also like an insurance premium - you pay a certain amount to eliminate an uncertain, but potentially very large, loss.",
+  "diagram": [
+    { "label": "Buy a Put Option at the strike price", "arrow": true },
+    { "label": "Market price falls below the strike", "arrow": true },
+    { "label": "Still sell at the higher strike price" }
+  ],
+  "realWorldExample": {
+    "company": "Institutional investment funds",
+    "description": "Large pension funds often buy put options on the S&P 500 index to protect their portfolio from sudden sharp declines, accepting the premium paid as a recurring insurance-like cost."
+  },
+  "quiz": [
+    {
+      "question": "What position is the seller (writer) of a put option in?",
+      "options": [
+        "An obligation to buy at the strike if the buyer exercises - receiving the premium",
+        "A right to choose whether to exercise or not, exactly like the put buyer",
+        "No risk at all, since they already received the premium upfront",
+        "Always required to sell the asset before the option expires"
+      ],
+      "explanation": "This is the asymmetry of rights in every option: the BUYER has a right (no obligation), the SELLER (writer) always has an OBLIGATION if the buyer exercises. In exchange, the writer receives the premium."
+    },
+    {
+      "question": "An investor holding a stock sells (writes) a covered call on that same stock (committing to sell at the strike if the buyer exercises). What does this strategy cap, and where does its income come from?",
+      "options": [
+        "A covered call is always riskier than simply holding the stock ordinarily",
+        "This strategy only benefits when the stock price falls sharply and quickly",
+        "It caps nothing and generates no additional income at all",
+        "It caps upside gain in exchange for premium income"
+      ],
+      "explanation": "A covered call is a popular \"income generation\" strategy: the investor accepts capping their upside gain in exchange for certain premium income."
+    },
+    {
+      "question": "Why does an investor holding a stock buy a put option?",
+      "options": [
+        "To set a floor on the sale price, capping the possible loss",
+        "To increase profit if the stock continues to rise sharply",
+        "To receive additional premium income from a put seller",
+        "To remove the obligation to hold the stock until expiration"
+      ],
+      "explanation": "This is a protective put - true portfolio insurance. However far the stock falls, it can still be sold at the strike, in exchange for the premium forfeited if the price doesn't fall."
+    },
+    {
+      "question": "Buying a put at a strike of VND 40,000, premium VND 2,000. Price at expiration is VND 33,000. What is the net gain?",
+      "options": [
+        "VND 7,000 (= 40,000 − 33,000, forgetting to subtract the premium)",
+        "VND 5,000 (= 40,000 − 33,000 − 2,000 premium)",
+        "VND 2,000 (exactly equal to the premium spent upfront)",
+        "VND 9,000 (= 40,000 − 33,000 + 2,000, adding the premium)"
+      ],
+      "explanation": "The intrinsic value at expiration is VND 7,000, minus the VND 2,000 premium leaves a net gain of VND 5,000. A put's break-even point is the strike minus the premium, here VND 38,000."
+    },
+    {
+      "question": "What risk does a put seller take on?",
+      "options": [
+        "Being forced to sell stock at the strike even though the market price has risen",
+        "Being forced to buy stock at the strike even though the market price has fallen sharply",
+        "Losing the entire premium received if the stock price stays flat",
+        "No risk at all, since the premium was already received"
+      ],
+      "explanation": "Selling a put is a commitment to buy in at the strike no matter how far the price falls. The risk is bounded - the lowest price is zero - but the maximum loss can still be nearly the entire strike value."
+    }
+  ],
+  "keyTakeaways": [
+    "Put option: the right to sell at the strike price, profitable when price falls",
+    "Protective put: the most common portfolio insurance strategy",
+    "The seller of an option has an obligation, the buyer only has a right - an asymmetric risk"
+  ],
+  "practicePrompt": {
+    "question": "You are holding VNM stock and worried the price could fall sharply soon, so you buy an option that lets you sell this stock at a fixed price of VND 90,000, no matter how far the market price falls. Which type of option lets you 'insure' your investment this way?",
+    "options": [
+      "Put option: the right to sell at the strike price, profitable when price falls",
+      "Call option: the right to buy at the strike price, profitable when price rises",
+      "A Forward, because this is a binding contract to sell the stock at a fixed price",
+      "There is no derivative instrument that can protect an investment from downside price risk"
+    ],
+    "explanation": "Put option: the right to sell at the strike price, profitable when price falls. This is a common hedging tool (protective put) - an investor holding a stock buys a put option to cap downside risk, like buying insurance for a portfolio."
+  },
+  "summary": {
+    "keyIdea": "Put option: the right to sell at the strike price, profitable when price falls",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to real decisions.",
+    "action": "Protective put: the most common portfolio insurance strategy"
+  },
+  "application": {
+    "title": "Design a hypothetical protective put",
+    "message": "Suppose you're holding a stock and worried about a price drop, describe in words how you would use a put option to cap your maximum loss - no need to execute it, just think through the scenario.",
+    "secondary": "This is the most common portfolio insurance strategy professional investors use."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A put option gives the right to SELL an asset at a predetermined strike price - a tool for someone who expects the price to fall, or who simply wants to insure a held asset against downside risk."
+    },
+    { "type": "heading", "text": "Protective put: portfolio insurance" },
+    {
+      "type": "paragraph",
+      "text": "The most common strategy with a put option is the protective put: an investor holding an asset buys an additional put option to cap downside risk. If the price falls sharply, they still have the right to sell at the chosen strike, instead of suffering an uncapped loss following the market's decline. Large pension funds often buy put options on the S&P 500 index to protect their portfolio from sudden sharp declines, accepting the premium paid as a recurring insurance-like cost."
+    },
+    { "type": "heading", "text": "The put seller: an obligation, not a right" },
+    {
+      "type": "paragraph",
+      "text": "The seller (writer) of a put option has an obligation to BUY the asset at the strike price if the put buyer decides to exercise their right - in exchange, they receive the premium upfront as income, regardless of whether the right is later exercised. This is the core asymmetry of every option: the buyer has a choice, the seller always has an obligation."
+    },
+    { "type": "heading", "text": "Covered call: turning a held stock into an income source" },
+    {
+      "type": "paragraph",
+      "text": "A related strategy is the covered call: an investor holding a stock sells (writes) a call option on that same stock, committing to sell at the strike if the right is exercised. In exchange for immediate premium income, they accept a cap on maximum gain - if price rises above the strike, they must still sell at the strike, missing out on the extra upside. Suits an investor expecting the price to move sideways or rise only slightly."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Put option: the right to SELL at the strike price, profitable when price falls",
+        "Protective put: buying a put to insure a held asset",
+        "Covered call: selling a call on a held stock to generate income, in exchange for a cap on upside",
+        "The option seller always has an obligation if the buyer exercises the right"
+      ]
+    }
+  ]
+}

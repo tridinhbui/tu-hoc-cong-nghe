@@ -1,0 +1,129 @@
+{
+  "slug": "case-hang-hang-khong-phong-ho-gia-dau",
+  "title": "Small Case - An Airline Hedges Oil Prices",
+  "subtitle": "Applying theory in practice: building a hedging strategy for fuel cost",
+  "openingQuestion": "An airline expects to consume 10 million barrels of oil next year, at a current price of 70 USD/barrel. The CFO worries the price could rise to 90 USD. Which hedging strategy makes sense?",
+  "openingOptions": [
+    "Buy futures or call options on oil to lock in part of the fuel cost near the current price, reducing risk if price rises sharply while keeping some flexibility",
+    "Do nothing, accept the risk fully",
+    "Raise airfares immediately to offset the risk in advance",
+    "Short-sell shares of oil companies"
+  ],
+  "explanation": "A practical strategy: an airline usually hedges a certain percentage (e.g. 50-70%) of its expected fuel need with oil futures or call options, not hedging 100% so it can still benefit somewhat if the price falls. This is a balancing act between cost certainty and keeping some flexibility.",
+  "diagram": [
+    { "label": "Airline forecasts fuel demand", "arrow": true },
+    { "label": "Hedge 50-70% with oil futures/options", "arrow": true },
+    { "label": "Still benefit partly if price falls" }
+  ],
+  "realWorldExample": {
+    "company": "Delta Air Lines",
+    "description": "Delta Air Lines once experimented with buying an entire oil refinery (Trainer Refinery) in 2012 to directly control its fuel cost - an extreme form of 'natural hedging' instead of only using financial derivatives."
+  },
+  "quiz": [
+    {
+      "question": "Why do airlines usually not hedge 100% of their fuel need?",
+      "options": [
+        "Because hedging everything at a high price becomes a disadvantage if the price of oil falls",
+        "Because aviation regulation caps the maximum hedge ratio",
+        "Because the cost of hedging everything exceeds the airline's profit",
+        "Because there aren't enough futures contracts available to cover the full need"
+      ],
+      "explanation": "Hedging is a double-edged sword: if you hedge everything at a high price and the market price then falls sharply, an unhedged competitor gains a much bigger cost advantage. So airlines usually only hedge part of their need, balancing protection from rising prices against not being at a competitive disadvantage if prices fall."
+    },
+    {
+      "question": "If the airline in this case hedged 60% of its fuel need at 70 USD/barrel, but the oil price then surges to 120 USD/barrel, what competitive advantage do they have over an unhedged rival?",
+      "options": [
+        "They can resell the hedging contract for a financial profit",
+        "The regulator lets them raise fares earlier than competitors",
+        "They don't have to pay fuel tax during the high-price period",
+        "Much lower fuel cost, letting them keep airfares competitive"
+      ],
+      "explanation": "This is exactly the scenario where hedging proves its value most clearly: when material prices surge just as feared, the hedged portion helps the business avoid the full cost shock, giving a real competitive advantage over a rival with no hedging strategy."
+    },
+    {
+      "question": "Hedging 60% at 70 USD, market price rises to 120 USD. What is the average cost per barrel?",
+      "options": [
+        "120 USD (= the market price at the time of purchase)",
+        "70 USD (= the price locked in for the hedged portion)",
+        "90 USD (= 0.6 × 70 + 0.4 × 120)",
+        "95 USD (= the simple average of 70 and 120)"
+      ],
+      "explanation": "Weighted average: 42 + 48 = 90 USD. An unhedged competitor pays the full 120, so the 30 USD per barrel difference is a real cost advantage during the high-price period."
+    },
+    {
+      "question": "Why is Southwest Airlines famous for its oil-price hedging strategy?",
+      "options": [
+        "Because they hold equity stakes in oil-drilling companies",
+        "Because they accurately predicted when the price of oil would surge",
+        "Because they are the only airline allowed to buy crude oil futures",
+        "Because they maintained disciplined hedging across many price cycles"
+      ],
+      "explanation": "The key is discipline, not fortune-telling: they hedge consistently according to policy, even in years when it caused a loss. That's why when the price surged, the cost advantage was already there, not down to luck."
+    },
+    {
+      "question": "What risk remains for an airline after hedging oil prices?",
+      "options": [
+        "Jet fuel and crude oil don't move exactly in step",
+        "The hedging contract can be cancelled by the exchange during extreme moves",
+        "Airfares get capped by the regulator during high-price periods",
+        "The hedging cost is added to cost of goods sold, reducing profit margin"
+      ],
+      "explanation": "This is basis risk: the hedging instrument uses crude oil, while what the airline actually buys is refined jet fuel. The two prices move together but the gap between them still fluctuates."
+    }
+  ],
+  "keyTakeaways": [
+    "Real-world hedging usually applies to only a percentage of the need, not 100%",
+    "Need to balance cost certainty against a competitive advantage if prices move favorably",
+    "A good hedging strategy is part of an overall competitive strategy, not just a pure financial decision"
+  ],
+  "practicePrompt": {
+    "question": "An airline expects to consume 100 million liters of fuel next year, but only signs a hedging contract for 60 million liters, leaving 40 million liters exposed to market price movement. Why doesn't the airline hedge the full 100%?",
+    "options": [
+      "This is a risk-management mistake, the airline should always hedge 100% of fuel needs to fully eliminate risk",
+      "Real-world hedging usually applies to only part of the need, not the full 100%",
+      "The airline doesn't hedge fully because hedging oil derivatives is illegal in some countries",
+      "The hedge ratio doesn't matter, having any hedging at all is enough to fully protect against price movement"
+    ],
+    "explanation": "Real-world hedging usually applies to only a percentage of the need, not 100%. There's a balance to strike between cost certainty and a competitive advantage if prices move favorably - a good hedging strategy is part of an overall competitive strategy, not just a pure financial decision."
+  },
+  "summary": {
+    "keyIdea": "Real-world hedging usually applies to only a percentage of the need, not 100%",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to real decisions.",
+    "action": "Need to balance cost certainty against a competitive advantage if prices move favorably"
+  },
+  "application": {
+    "title": "Design your own hedge ratio",
+    "message": "Suppose you are an airline's CFO, decide what percentage of next year's fuel need you'll hedge (e.g. 50% or 70%) and explain why you didn't choose to hedge 100%.",
+    "secondary": "There is no single correct answer - the goal is to practice thinking about risk trade-offs."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Picture an airline planning next year's budget, knowing it will need a huge amount of fuel but not knowing where the price of oil will go. The practical strategy: hedge a certain percentage of expected need, not the entire amount."
+    },
+    { "type": "heading", "text": "Why not hedge 100%" },
+    {
+      "type": "paragraph",
+      "text": "If a business hedges its entire need at a fixed price and the price of oil then falls sharply, the company will completely lose its cost advantage compared with a rival that didn't hedge, or hedged less. So airlines usually only hedge 50-70% of their need using oil futures or call options, keeping the rest exposed so they can still benefit if the price falls - a balancing act between cost certainty and keeping competitive flexibility."
+    },
+    { "type": "heading", "text": "The rising-price scenario: hedging proves its value" },
+    {
+      "type": "paragraph",
+      "text": "Suppose the airline has hedged 60% of its fuel need at 70 USD/barrel, but the oil price then surges to 120 USD/barrel. Their average fuel cost will be much lower than a fully unhedged rival - especially important in an industry with thin profit margins like aviation, helping them keep either competitive fares or better profit during a period of high oil prices."
+    },
+    { "type": "heading", "text": "Natural hedging: a different approach" },
+    {
+      "type": "paragraph",
+      "text": "Delta Air Lines once experimented with buying an entire oil refinery (Trainer Refinery) in 2012 to directly control its fuel cost - an extreme form of 'natural hedging' instead of only using financial derivatives, showing hedging isn't limited to futures and options."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Real-world hedging usually applies to only a percentage of need (e.g. 50-70%), not the full 100%",
+        "Hedging everything at a high price can create a competitive disadvantage if price later falls sharply",
+        "When price rises exactly as feared, the hedged portion creates a clear cost advantage",
+        "A hedging strategy is part of an overall competitive strategy, not just a pure financial decision"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,138 @@
+{
+  "slug": "tong-on-chang-8-trai-phieu",
+  "title": "Review: Bonds, Interest Rates and Credit - Bonds are a world of interest rates and trust",
+  "subtitle": "Connecting coupon, yield, credit risk and the yield curve into one complete picture",
+  "duration": "8 min",
+  "openingQuestion": "After 20 days studying bonds, what is the single most important thing to remember?",
+  "openingOptions": [
+    "Bonds run on two axes: interest rates (the time value of money) and trust (the borrower's ability to repay) - these two axes determine every price and every yield",
+    "Bonds are always safer than stocks in every case",
+    "Only government bonds are worth paying attention to",
+    "Knowing the coupon formula is enough to understand a bond"
+  ],
+  "explanation": "The Bonds, Interest Rates and Credit track: from the basic concepts (coupon, face value) → the mechanics of price and rate moving in opposite directions → measuring risk (duration, convexity) → assessing credit (rating, default, spread) → types of bonds (treasury, corporate, municipal) → the yield curve as a map of economic expectations. It all revolves around two axes: time and trust.",
+  "diagram": [
+    { "label": "A bond is a promise to pay money on a schedule", "arrow": true },
+    { "label": "The value of that promise depends on interest rates - price moves opposite", "arrow": true },
+    { "label": "And on trust that it will be repaid - measured by rating and credit spread", "arrow": true },
+    { "label": "The yield curve combines both into a map of expectations" }
+  ],
+  "realWorldExample": {
+    "company": "A real bond portfolio",
+    "description": "A professional bond fund always weighs three things at once: maturity (duration risk), credit rating (credit risk), and position on the yield curve - never just the headline yield."
+  },
+  "quiz": [
+    {
+      "question": "Why should an unusually high yield on a corporate bond make an investor cautious rather than excited?",
+      "options": [
+        "Because a high yield is exactly how the market prices high risk",
+        "Because high-yield bonds usually have excessively long maturities",
+        "Because a high yield means the bond has poor liquidity",
+        "Because regulators will scrutinize that issuance more closely"
+      ],
+      "explanation": "An efficient bond market: yield reflects perceived risk. A 'high yield' bond (junk bond) offers an attractive yield precisely because its default probability is much higher than an investment-grade bond. This is the core lesson: there is no free return anywhere, not even in the bond world."
+    },
+    {
+      "question": "Looking back across the whole Bonds, Interest Rates and Credit track, what single principle captures the relationship between \"trust\" (credit risk) and \"time\" (interest rate risk) in bond pricing?",
+      "options": [
+        "Credit risk is always more important than interest rate risk over the long run",
+        "Every bond is priced on two axes: time and trust",
+        "Government bonds carry none of the risks described above",
+        "These two kinds of risk cancel each other out if held to maturity"
+      ],
+      "explanation": "This is exactly the synthesis of the Bonds, Interest Rates and Credit track: every bond, from government to corporate, is priced on a combination of two independent yet always-interacting axes - time (how long before you get your money back, the longer the more interest-rate risk) and trust (how likely you actually get it back, the lower the more credit risk)."
+    },
+    {
+      "question": "Government bonds and corporate bonds differ mainly along which axis?",
+      "options": [
+        "The credit-trust axis, while both bear the interest-rate axis equally",
+        "The interest-rate axis, while credit risk is the same for both",
+        "Both axes, because the two bond types can't be compared at all",
+        "Neither axis, because the state guarantees payment for both"
+      ],
+      "explanation": "When rates rise, both prices fall. But only a corporate bond carries the extra question of whether it will be repaid at all - and the credit spread is precisely the price of that question."
+    },
+    {
+      "question": "A bond portfolio loses 12% in a year with no issuer defaulting at all. What's the most plausible explanation?",
+      "options": [
+        "Rising inflation eroded the bond's nominal value",
+        "Every issuer in the portfolio was downgraded across the board that year",
+        "Investors sold off in a panic, draining liquidity",
+        "Market interest rates rose sharply that year"
+      ],
+      "explanation": "This is close to what actually happened in 2022: no wave of defaults, just the fastest rate increase in four decades. Interest-rate risk alone was enough to produce a double-digit loss."
+    },
+    {
+      "question": "What is the practical principle to take away from the whole bonds track?",
+      "options": [
+        "A higher yield always has a reason, and that reason is risk",
+        "Bonds are always safer than stocks under every circumstance",
+        "Holding to maturity eliminates every kind of risk",
+        "Government bonds are always the optimal choice for a portfolio"
+      ],
+      "explanation": "The bond market prices risk fairly efficiently, so an unusually attractive yield is almost always a warning written in numbers, not a missed opportunity."
+    }
+  ],
+  "keyTakeaways": [
+    "Bonds run on two axes: the time value of money and credit trust",
+    "An unusually high yield always comes with correspondingly high risk, no exceptions",
+    "The yield curve is the market's combined map of expectations for the economic future"
+  ],
+  "practicePrompt": {
+    "question": "After reviewing the whole bonds track (price-rate mechanics, YTM, credit rating, spread, yield curve, bond types), you sum it up: what two core axes does all of this really revolve around?",
+    "options": [
+      "There is only one axis that matters: each bond's specific coupon rate",
+      "Bonds run on two axes: the time value of money and credit trust",
+      "The only two axes are short maturity and long maturity, nothing else matters",
+      "Bonds run on a single axis alone: supply and demand in the secondary market"
+    ],
+    "explanation": "Bonds run on two axes: the time value of money (governing the price-rate relationship and YTM) and credit trust (governing rating, spread, default risk) - this is the general framework that connects every topic covered in the bonds track."
+  },
+  "summary": {
+    "keyIdea": "Bonds run on two axes: the time value of money and credit trust",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to a real decision.",
+    "action": "An unusually high yield always comes with correspondingly high risk, no exceptions"
+  },
+  "application": {
+    "title": "Summarize the Bonds, Interest Rates and Credit track in your own words",
+    "message": "Write 3 sentences explaining the relationship between coupon, yield, credit rating, and yield curve as if explaining it to a friend who has never studied finance.",
+    "secondary": "If you can explain it smoothly, you have genuinely mastered the whole track."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The Bonds, Interest Rates and Credit track has taken us from the most basic bond concepts to a full macro picture of how the debt market works. Looking back over the whole journey, everything can be captured in just two axes: time and trust."
+    },
+    { "type": "heading", "text": "The journey from coupon to yield curve" },
+    {
+      "type": "paragraph",
+      "text": "We started with the most fundamental concepts - coupon, face value, maturity - then moved to the mechanics of price and interest rates moving in opposite directions. From there, we learned to measure interest-rate risk through duration and convexity, and to assess credit risk through credit rating, default probability, recovery rate, and credit spread. Finally, we classified the main bond types - treasury (the risk-free benchmark), corporate (carrying a credit spread), municipal (carrying a tax benefit) - and closed with the yield curve, the map that combines all of the market's expectations for the economic future."
+    },
+    { "type": "heading", "text": "No yield comes for free" },
+    {
+      "type": "paragraph",
+      "text": "The core lesson running through the whole track: an unusually high yield on a corporate bond should not excite an investor - it should make them more cautious. An efficient bond market consistently prices yield to match perceived risk - a 'high yield' bond (junk bond) offers an attractive yield precisely because its default probability is much higher than an investment-grade bond, not because it's a bargain the market overlooked. 'Free yield' does not exist, not even in the bond world, which is generally considered safer than stocks."
+    },
+    { "type": "heading", "text": "Two axes that determine every bond's price" },
+    {
+      "type": "paragraph",
+      "text": "The price of any bond - from a government bond to a junk corporate bond - is a function of two independent but always-interacting factors: (1) trust (credit risk) - the confidence that the borrower will repay on time, reflected in rating and credit spread; and (2) time (interest rate risk) - the time value of money over the maturity, reflected in its position on the yield curve and its duration. The longer before you get your money back, the greater the interest-rate risk. The less confidence in the ability to repay, the greater the credit risk."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Coupon, face value, maturity: the three foundational numbers of every bond",
+        "Price and interest rates always move in opposite directions - duration measures that sensitivity",
+        "Credit rating, default probability, recovery rate, credit spread: the toolkit for assessing credit risk",
+        "Yield curve: the market's combined map of expectations for both future growth and inflation"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Bonds run on two axes: the time value of money and credit trust.",
+        "An unusually high yield always comes with correspondingly high risk, no exceptions."
+      ]
+    }
+  ]
+}

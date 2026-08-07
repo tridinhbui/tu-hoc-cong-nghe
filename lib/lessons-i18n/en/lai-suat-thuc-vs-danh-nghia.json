@@ -1,0 +1,132 @@
+{
+  "slug": "lai-suat-thuc-vs-danh-nghia",
+  "title": "Real interest rate vs. nominal interest rate",
+  "subtitle": "The Fisher Equation and the real purchasing power of an interest rate",
+  "duration": "6 min",
+  "openingQuestion": "The bank rate is 8%, inflation is 6%. What is the real interest rate?",
+  "openingOptions": [
+    "14%",
+    "8%",
+    "About 2% (8% - 6%) - you're only genuinely 2% richer",
+    "6%"
+  ],
+  "explanation": "The nominal interest rate is the number the bank publishes; the real interest rate is what's left after subtracting inflation, i.e. the actual increase in purchasing power. Distinguishing the two matters because every economic decision reacts to the real rate: depositing savings at 8% when inflation is 6% only makes you about 2% richer. When the real rate turns negative, holding cash is a guaranteed loss of purchasing power, and that's when capital flows heavily into assets instead.",
+  "diagram": [
+    { "label": "The bank's published interest rate", "arrow": true },
+    { "label": "Subtract the inflation rate for the same period", "arrow": true },
+    { "label": "What remains is the real interest rate", "arrow": true },
+    { "label": "If negative, the deposit balance grows but buys fewer goods" }
+  ],
+  "interactiveType": "inflation-calculator",
+  "realWorldExample": {
+    "company": "Vietnamese inflation and savings rates",
+    "description": "When inflation in Vietnam rises during certain periods, bank savings rates that appear attractive in nominal terms (7-8%/year) actually deliver a very low or even negative real interest rate after subtracting inflation - causing savers to lose purchasing power even as their account balance keeps growing in numbers."
+  },
+  "quiz": [
+    {
+      "question": "How do TIPS (Treasury Inflation-Protected Securities) protect investors?",
+      "options": [
+        "The nominal rate is always higher than a regular Treasury bond",
+        "The coupon rate adjusts with CPI, the face value stays the same",
+        "The original principal is adjusted upward with CPI",
+        "The interest income is exempt from federal income tax"
+      ],
+      "explanation": "TIPS: principal rises with CPI. If CPI rises 5%, the principal rises 5% → coupon (%) × principal is larger → real income is preserved. Investors worried about inflation often choose TIPS despite a lower nominal yield."
+    },
+    {
+      "question": "If the State Bank announces the nominal savings rate rising from 6% to 8%, but inflation also rises from 3% to 7% at the same time, is the saver actually better off?",
+      "options": [
+        "No change - both rose together so the real rate stays at 3%",
+        "Yes - the real rate rises by 2 points, exactly matching the nominal increase",
+        "Yes - the real rate rises from 3% to 8% because inflation isn't subtracted",
+        "No - the real rate falls from 3% (6%-3%) down to 1%"
+      ],
+      "explanation": "This is the core lesson of the Fisher Equation: looking only at the nominal rate while ignoring inflation can lead to a completely wrong conclusion about whether you're actually 'better off' - the real rate (adjusted for inflation) is the accurate measure of the actual increase in purchasing power."
+    },
+    {
+      "question": "The nominal rate is 9%, inflation is 4%. What is the approximate real interest rate?",
+      "options": [
+        "About 5% (= 9% - 4%, a quick estimate)",
+        "About 13% (= 9% + 4%, adding inflation on top)",
+        "About 2.25% (= 9% ÷ 4%, dividing the two figures)",
+        "About 36% (= 9% × 4%, multiplying the two figures)"
+      ],
+      "explanation": "The quick estimate is the difference: 9% - 4% = 5%. The exact Fisher formula gives 4.81%, so subtraction is good enough when inflation is moderate."
+    },
+    {
+      "question": "What does a negative real interest rate mean for a saver?",
+      "options": [
+        "The bank charges a fee instead of paying interest on deposits",
+        "The balance grows, but it buys fewer goods than last year",
+        "The account balance gradually shrinks month by month",
+        "The deposit is taxed more heavily than the interest received"
+      ],
+      "explanation": "Depositing 100 million at 4% becomes 104 million, but 7% inflation means the same old basket of goods now costs 107 million. The account looks prettier while purchasing power gets poorer - this is why you must always look at the real rate."
+    },
+    {
+      "question": "Why do borrowers benefit when inflation unexpectedly rises?",
+      "options": [
+        "Because inflation reduces the total balance recorded on the books",
+        "Because the loan's interest rate automatically falls as inflation rises",
+        "Because they repay a fixed debt with money that has lost value",
+        "Because banks are forced to restructure debt once inflation exceeds a threshold"
+      ],
+      "explanation": "The obligation to repay 1 billion in five years is fixed, but 1 billion then buys less than it does today. Unexpected inflation transfers value from creditor to debtor - which is why creditors demand an inflation premium upfront."
+    }
+  ],
+  "keyTakeaways": [
+    "Real rate ≈ Nominal rate - Inflation",
+    "Fisher Equation: (1+r) = (1+n)/(1+π)",
+    "Negative real rate: money in the bank loses purchasing power"
+  ],
+  "practicePrompt": {
+    "question": "You deposit savings at a nominal rate of 7%/year, while that year's inflation is 5%. Does the real purchasing power of your money grow by exactly 7%, or actually less?",
+    "options": [
+      "Yes, purchasing power grows by exactly 7% because the bank rate already reflects every economic factor",
+      "No - the real rate = 7% - 5% = 2%, and this is the true increase in purchasing power",
+      "Purchasing power grows by more than 7% because compounding amplifies the cumulative effect further",
+      "Inflation has no effect on the purchasing power of a fixed-rate savings deposit"
+    ],
+    "explanation": "Real rate ≈ Nominal rate - Inflation = 7% - 5% = 2%. The nominal rate is the number the bank publishes, but the real rate is what accurately reflects the increase in purchasing power after subtracting what inflation 'erodes' - an important consideration when evaluating long-term investment performance."
+  },
+  "summary": {
+    "keyIdea": "Real rate ≈ Nominal rate - Inflation",
+    "commonMistake": "Reading the concept as a definition to recite rather than a principle to apply to a real decision.",
+    "action": "Fisher Equation: (1+r) = (1+n)/(1+π)"
+  },
+  "application": {
+    "title": "Calculate your own real interest rate",
+    "message": "Take the bank savings rate you currently have, subtract the current inflation rate to get the real rate - see whether your deposit is actually growing your purchasing power.",
+    "secondary": "Many people are surprised to find their real rate is close to zero or negative."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "An 8% savings rate sounds attractive - but if that year's inflation is also 6%, the real increase in your purchasing power is only about 2%. This is exactly the gap between the nominal rate - the number the bank publishes - and the real rate - the actual increase in purchasing power after subtracting inflation."
+    },
+    { "type": "heading", "text": "The Fisher Equation: the formula linking the two rates" },
+    {
+      "type": "paragraph",
+      "text": "The exact formula is (1 + r_real) = (1 + r_nominal) / (1 + inflation), but with moderate inflation, people usually use the approximation: r_real ≈ r_nominal - inflation. For example, a nominal rate of 8% and inflation of 6% → real rate ≈ 2%. If inflation spikes up to exactly match the nominal rate, the real rate falls to zero - your bank deposit generates no real return at all, even though the account balance keeps rising steadily."
+    },
+    { "type": "heading", "text": "TIPS: bonds anchored to inflation" },
+    {
+      "type": "paragraph",
+      "text": "To protect investors from unexpected inflation risk, the US government issues TIPS (Treasury Inflation-Protected Securities): the face value of TIPS is adjusted upward with CPI. If CPI rises 5% in a year, the TIPS face value also rises 5%, causing the coupon payment (calculated as a % of the new face value) to rise along with it, preserving real income for the investor - even though TIPS' nominal yield is usually lower than a regular bond of the same term."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Nominal rate: the number published in the contract, before subtracting inflation",
+        "Real rate: the actual growth in purchasing power, more important for evaluating an investment",
+        "A negative real rate (inflation > nominal rate): saving money = losing purchasing power over time",
+        "TIPS and other CPI-anchored instruments: a direct way to protect against inflation risk"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "The Vietnam lesson",
+      "text": "When inflation in Vietnam rises high, a 7-8%/year savings rate sounds attractive but may only deliver a very low or negative real rate - always check the gap against inflation before concluding that a rate is 'good'."
+    }
+  ]
+}

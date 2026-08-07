@@ -1,0 +1,137 @@
+{
+  "slug": "portfolio-la-gi",
+  "title": "What is a portfolio?",
+  "subtitle": "A collection of investments managed as a single whole",
+  "duration": "5 min",
+  "openingQuestion": "You have 100 million VND, split equally across 5 stocks in different industries. What is this collection of 5 stocks called?",
+  "openingOptions": [
+    "Just 5 unrelated separate trades",
+    "An investment fund",
+    "It has no specific name",
+    "A portfolio - a set of assets held and managed together as a single unit"
+  ],
+  "explanation": "A portfolio is the collection of every investment (stocks, bonds, cash, real estate...) an investor holds, viewed and managed as ONE unified whole - not as separate individual positions. Portfolio thinking is the foundation of all of modern investment theory.",
+  "diagram": [
+    { "label": "Many separate individual investments", "arrow": true },
+    { "label": "Combined and managed as a single whole", "arrow": true },
+    { "label": "= a Portfolio" }
+  ],
+  "realWorldExample": {
+    "company": "A national pension fund",
+    "description": "Large pension funds around the world manage portfolios worth hundreds of billions of dollars, spread across stocks, bonds, real estate, and alternative assets - never concentrated in a single asset type."
+  },
+  "quiz": [
+    {
+      "question": "Why should an investor think in terms of a portfolio rather than each investment individually?",
+      "options": [
+        "Because a portfolio always returns more than any single stock",
+        "Because grouping them into one portfolio reduces the tax owed when taking profits",
+        "There's no special reason, it's just a tidier way to present holdings",
+        "Because the risk and return that matter belong to the portfolio as a whole"
+      ],
+      "explanation": "This is the foundation of Modern Portfolio Theory: an asset can be highly risky standing alone but actually REDUCE the portfolio's overall risk if it moves opposite to the other assets."
+    },
+    {
+      "question": "Is a portfolio holding only 2 stocks, both in banking, truly considered \"diversified\" just because it has 2 different assets?",
+      "options": [
+        "Yes, having more than one asset already counts as diversified",
+        "Diversification only starts to matter from 10 assets and up",
+        "No - diversification needs low correlation, and two banks move together",
+        "Two or more assets is already enough to meet the diversification bar"
+      ],
+      "explanation": "The number of assets is not the sole factor determining real diversification - what matters more is the correlation between those assets."
+    },
+    {
+      "question": "How does a portfolio differ from a random basket of assets?",
+      "options": [
+        "A portfolio is managed on the investor's behalf by a financial institution",
+        "A portfolio must contain at least ten different asset types",
+        "A portfolio only contains assets listed on a stock exchange",
+        "A portfolio has a purpose and weights chosen deliberately"
+      ],
+      "explanation": "Buying ten stocks because each ticker sounded good is ten individual investments, not a portfolio. A portfolio begins when weights are chosen to serve a predetermined goal and risk level."
+    },
+    {
+      "question": "Why does the weighting matter more than picking exactly the right assets?",
+      "options": [
+        "Because the allocation across asset classes drives most of the variation",
+        "Because picking the right assets is something nobody can actually do",
+        "Because the weighting determines the annual trading fees owed",
+        "Because assets within the same class always deliver identical returns"
+      ],
+      "explanation": "Classic research shows the split between stocks, bonds, and cash explains most of a portfolio's variation over time. Picking a great ticker in 5% of the portfolio rarely offsets a bad allocation in the other 95%."
+    },
+    {
+      "question": "When should a portfolio be reassessed?",
+      "options": [
+        "Every time the market drops more than five percent in a week",
+        "When the investor's goals or circumstances change",
+        "Daily, to stay on top of every single holding's movement",
+        "Only when a holding in the portfolio gets delisted"
+      ],
+      "explanation": "A portfolio serves a goal, not the news cycle. Having a child, changing jobs, or approaching retirement are legitimate reasons to rebalance; a single red week in the market is not."
+    }
+  ],
+  "keyTakeaways": [
+    "Portfolio: a collection of assets managed as a single whole",
+    "Risk and return need to be assessed at the portfolio level, not for each individual asset",
+    "Portfolio thinking is the foundation of all of modern investment theory"
+  ],
+  "practicePrompt": {
+    "question": "You hold 5 stocks, 2 bond funds, and a savings deposit. When assessing investment performance, should you look at each holding individually or at the whole picture? What concept describes this 'whole picture' approach?",
+    "options": [
+      "You should only look at each investment individually, since each asset type has entirely independent risk-return characteristics",
+      "A portfolio is a collection of assets managed as a single whole, not the sum of separate holdings",
+      "This concept has no specific name in finance, it's just an ordinary perspective",
+      "You should sell off most assets to keep only one type, which is easier to track and assess"
+    ],
+    "explanation": "Portfolio: a collection of assets managed as a single whole. Risk and return need to be assessed at the portfolio level, not for each individual asset - because how the assets correlate with each other has a major effect on overall risk."
+  },
+  "summary": {
+    "keyIdea": "Portfolio: a collection of assets managed as a single whole",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to a real decision.",
+    "action": "Risk and return need to be assessed at the portfolio level, not for each individual asset"
+  },
+  "application": {
+    "title": "List out your own portfolio",
+    "message": "Write down everything you currently hold that has financial value - savings, stocks, gold, a life insurance policy with cash value - and look at them as a single unified portfolio instead of separate holdings.",
+    "secondary": "Plenty of people have a portfolio they've never actually looked at as a whole."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A portfolio is everything you hold - stocks, bonds, cash, gold, real estate - viewed as ONE unified block, not a pile of separate assets sitting next to each other. This is the single most important shift in thinking when an amateur investor becomes a serious capital manager: the question is no longer \"is this stock good\" but \"what does this stock do for my portfolio\"."
+    },
+    { "type": "heading", "text": "Why look at the portfolio level?" },
+    {
+      "type": "paragraph",
+      "text": "A single asset can carry high risk standing alone, but when placed alongside other assets that move in the opposite direction, it can actually REDUCE the overall risk. This is exactly the foundation of Modern Portfolio Theory: the risk and return that genuinely matter belong to the whole portfolio, not to each individual investment. Judging each stock in isolation from the portfolio's context is the most common mistake new investors make."
+    },
+    { "type": "heading", "text": "Diversification is not just \"holding many assets\"" },
+    {
+      "type": "paragraph",
+      "text": "A portfolio holding only 2 bank stocks isn't necessarily truly diversified - both are exposed to almost the same forces from interest rates and industry regulation, so they tend to move together. The number of assets isn't what decides this; the correlation between them is what matters. A portfolio of 10 tech stocks can still be riskier than a portfolio of 3 assets from 3 completely different industries."
+    },
+    {
+      "type": "list",
+      "items": [
+        "A portfolio covers every asset type you own, not just stocks",
+        "Assess risk/return at the whole-portfolio level, not for each individual holding",
+        "The number of assets isn't the same as quality of diversification - correlation is the key",
+        "This mindset is the foundation for every concept coming up in the Portfolio and Risk Management track: correlation, volatility, the Sharpe Ratio, MPT..."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "A real-world example",
+      "text": "National pension funds manage hundreds of billions of dollars spread across stocks, bonds, real estate, and alternative assets - never dumping it all into a single asset type, however attractive that type might look."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Before asking \"should I buy this stock\", ask \"what will it do for my portfolio\".",
+        "The portfolio is the correct unit of analysis - not each individual asset."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,140 @@
+{
+  "slug": "spread-la-gi",
+  "title": "What is a spread?",
+  "subtitle": "The yield gap that reflects perceived risk",
+  "duration": "6 min",
+  "openingQuestion": "A corporate bond yields 8%, a government bond of the same maturity yields 5%. What is the credit spread?",
+  "openingOptions": [
+    "8%",
+    "13%",
+    "3% (300 basis points)",
+    "Cannot be calculated without more information"
+  ],
+  "explanation": "A yield spread is the extra amount a riskier bond pays above a government bond of the same maturity, measured in basis points. It is the market's own price on credit risk, so it reacts far faster than a credit rating - which only changes after the rating agency meets. That is why a spread widening across the whole market at once is one of the most reliable early warning signals.",
+  "diagram": [
+    { "label": "Take the yield on the risky asset", "arrow": true },
+    { "label": "Subtract the government bond yield at the same maturity", "arrow": true },
+    { "label": "The gap is measured in basis points", "arrow": true },
+    { "label": "It reflects risk sentiment faster than most other indicators" }
+  ],
+  "realWorldExample": {
+    "company": "The 2008 crisis",
+    "description": "US corporate credit spreads jumped from around 150 basis points to over 600 basis points during the 2008 financial crisis, reflecting the market's fear of a wave of defaults."
+  },
+  "quiz": [
+    {
+      "question": "When the economy heads into recession, how does the credit spread usually move?",
+      "options": [
+        "It narrows because investors shift into high-yield bonds",
+        "It narrows because the central bank cuts its policy rate",
+        "It widens because the probability of corporate default rises",
+        "It stays fixed because the spread is locked in at issuance"
+      ],
+      "explanation": "A recession raises the probability of corporate default → investors demand a higher yield to compensate for holding risky bonds → the spread widens. This is a common early indicator of the market's risk appetite."
+    },
+    {
+      "question": "If the credit spread between Investment Grade and High-Yield bonds narrows sharply (nearly equal), what might this signal about market sentiment?",
+      "options": [
+        "Government bond yields are rising faster than corporate yields",
+        "Investors are worried about risk and pulling money into government bonds",
+        "High-Yield companies have all just been upgraded to Investment Grade at once",
+        "The market is \"reaching for yield\" and pricing risk too cheaply"
+      ],
+      "explanation": "An unusually narrow credit spread (below its historical average) can sometimes signal that the market is irrationally underpricing risk during a period of excessive optimism - cautious investors typically treat this as a warning sign calling for more caution, not a sign of safety."
+    },
+    {
+      "question": "A corporate bond yields 9.5%, a government bond of the same maturity yields 4.5%. What is the spread?",
+      "options": [
+        "5 percentage points (= 9.5% − 4.5% government yield)",
+        "2.1 times (= 9.5% ÷ 4.5%, taking the ratio instead)",
+        "14 percentage points (= 9.5% + 4.5%, adding them together instead)",
+        "4.5 percentage points (mistaking it for the government yield itself)"
+      ],
+      "explanation": "Spread = risky yield − risk-free yield at the same maturity = 5 percentage points, or 500 basis points. Matching maturities is mandatory - otherwise interest-rate risk gets mixed into the number."
+    },
+    {
+      "question": "Why is the spread considered a more sensitive risk-sentiment indicator than the stock market?",
+      "options": [
+        "Because the bond market has a larger trading volume",
+        "Because it directly reflects an assessment of default risk",
+        "Because the spread is published minute by minute in real time",
+        "Because bonds are less affected by rumors than stocks"
+      ],
+      "explanation": "Stocks react to both growth expectations and risk at once, blending two signals together. A spread asks only one question - will the debt get repaid - so it stays cleaner as the market starts to worry."
+    },
+    {
+      "question": "The spread between Investment Grade and High Yield narrows until they are nearly equal. What does that signal?",
+      "options": [
+        "Government bonds are gradually losing their risk-free status",
+        "High Yield companies have genuinely improved their credit quality",
+        "The market is irrationally pricing risk too low",
+        "Expected inflation is about to fall sharply"
+      ],
+      "explanation": "When two groups carry default risk that differs by an order of magnitude, but the market demands almost the same compensation for both, that compensation no longer reflects risk. This state tends to show up near the end of a long, overly optimistic cycle."
+    }
+  ],
+  "keyTakeaways": [
+    "Spread = risky yield − risk-free yield at the same maturity",
+    "A widening spread = the market fears rising default risk",
+    "Spread is a much faster and more sensitive gauge of risk sentiment than most indicators"
+  ],
+  "practicePrompt": {
+    "question": "A 10-year corporate bond yields 8.5%; a 10-year government bond yields 4%. What is the 'spread' between these two bonds, and how does it move when the market grows more worried about risk?",
+    "options": [
+      "Spread = 8.5% - 4% = 4.5%, widening when the market grows more worried about risk",
+      "The spread is always fixed at 4.5% no matter how the economy or market sentiment changes",
+      "Spread = 8.5% + 4% = 12.5%, adding the two yields together",
+      "The spread has no real analytical meaning - it is just a plain statistic"
+    ],
+    "explanation": "Spread = risky yield − risk-free yield at the same maturity = 4.5%. Spread is a fast, sensitive gauge of risk sentiment - it widens when the market worries (war, recession, a credit crunch) and narrows again when optimism returns."
+  },
+  "summary": {
+    "keyIdea": "Spread = risky yield − risk-free yield at the same maturity",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to a real decision.",
+    "action": "A widening spread = the market fears rising default risk"
+  },
+  "application": {
+    "title": "Calculate a spread yourself",
+    "message": "The lesson already worked a real example from a 10-year government bond yield (4.11%/year) - see the 'Real example' section above. Now find a corporate bond and calculate its spread yourself.",
+    "secondary": "This number gives you a feel for how the market is pricing default risk right now."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Spread is the common language the bond market uses to price risk: the yield gap between a risky bond and a risk-free asset of the same maturity. It is a number you will run into again and again in financial news."
+    },
+    { "type": "heading", "text": "Formula and unit of measure (basis points)" },
+    {
+      "type": "paragraph",
+      "text": "Spread = yield on the riskier bond − yield on the risk-free asset of the same maturity (usually a government bond). **Example:** a corporate bond yields 8%, a government bond of the same maturity yields 5% → spread = 3%, equivalent to 300 basis points (1 basis point = 0.01%). During the 2008 financial crisis, US corporate credit spreads jumped from around 150 basis points to over 600 basis points - reflecting a fear of widespread default spreading across the market."
+    },
+    { "type": "heading", "text": "Excessively narrow spreads: when the market turns complacent" },
+    {
+      "type": "paragraph",
+      "text": "In a recession, spreads widen because investors demand more compensation for rising default risk. But the reverse is worth watching too: if the spread between Investment Grade and High-Yield narrows sharply, down to nearly the same level, that can signal the market is in an overly optimistic 'search for yield' phase - investors accepting higher credit risk without demanding adequate compensation for it. Cautious investors typically treat a spread that is unusually narrow relative to its historical average as a warning sign calling for more caution, not a sign that the market is safe."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Wide spread: a weakening economy, investors demanding more compensation for risk",
+        "Unusually narrow spread: can signal the market is underpricing risk",
+        "1 basis point (bps) = 0.01% - the standard unit for measuring spreads and small rate changes",
+        "Spread is a faster, more sensitive gauge of risk sentiment than most macroeconomic indicators"
+      ]
+    },
+    { "type": "heading", "text": "Real example: calculating a spread from the 10-year government bond yield" },
+    {
+      "type": "list",
+      "items": [
+        "Vietnam's 10-year government bond yield: about 4.11%/year (2026) - this is the risk-free reference point",
+        "Corporate bonds of the same maturity typically trade at a yield 300-700 basis points (3-7 percentage points) higher depending on credit quality - for example, a corporate bond yielding 9%/year would carry a spread of about 489 basis points over the 4.11% reference",
+        "The larger the spread, the more credit risk the market is pricing into that issuer"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "A formula to apply yourself",
+      "text": "Spread (basis points) = (corporate bond yield - government bond yield at the same maturity) × 10,000. Try it yourself with any corporate bond whose trading yield you can look up."
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "slug": "efficient-frontier-la-gi",
+  "title": "What is the Efficient Frontier?",
+  "subtitle": "The efficient frontier - the set of every possible optimal portfolio",
+  "duration": "7 min",
+  "openingQuestion": "If you plot a chart with risk (volatility) on the X axis and expected return on the Y axis, what is the Efficient Frontier on that chart?",
+  "openingOptions": [
+    "A straight line connecting the lowest-risk point and the highest-return point",
+    "A single optimal point",
+    "A curve connecting every portfolio that delivers the highest expected return for each level of risk - any portfolio BELOW this curve is less optimal",
+    "It has no specific geometric meaning"
+  ],
+  "explanation": "The Efficient Frontier is the set of all 'Pareto-optimal' portfolios - for each given level of risk, it's the portfolio with the highest possible expected return (or for each level of return, it's the portfolio with the lowest risk). A portfolio below this frontier can always be improved - more return without more risk, or less risk without less return.",
+  "diagram": [
+    { "label": "For each given level of risk", "arrow": true },
+    { "label": "Find the portfolio with the highest expected return", "arrow": true },
+    { "label": "The set of those points → the Efficient Frontier" }
+  ],
+  "realWorldExample": {
+    "company": "A multi-asset international fund",
+    "description": "Professional multi-asset funds regularly recompute the efficient frontier with updated data to adjust allocation, keeping the portfolio as close to the efficient frontier as possible."
+  },
+  "quiz": [
+    {
+      "question": "If your current portfolio sits BELOW the Efficient Frontier, what does that mean?",
+      "options": [
+        "The portfolio is violating asset-allocation regulations",
+        "The portfolio is bearing lower risk than the optimal level requires",
+        "There always exists a different allocation that is better on risk-return",
+        "The portfolio needs to be liquidated and rebuilt from scratch"
+      ],
+      "explanation": "A portfolio below the efficient frontier is 'wasting' potential - a different allocation always exists that is better on risk-return terms. In practice, this gap usually comes from high trading costs, insufficient diversification, or behavioral bias preventing the investor from properly optimizing."
+    },
+    {
+      "question": "If you add a new asset to a portfolio and it shifts the Efficient Frontier to the left (upward), what does that signify?",
+      "options": [
+        "The frontier was calculated incorrectly and needs rebuilding from new data",
+        "The new asset has the highest expected return in the portfolio",
+        "The portfolio has reached the lowest possible risk level",
+        "The new asset improves the portfolio's opportunity set"
+      ],
+      "explanation": "The Efficient Frontier isn't a fixed line - it changes when the available set of assets changes; adding an asset with good diversification benefits or an attractive return can \"push out\" the optimal frontier, giving the investor better choices."
+    },
+    {
+      "question": "Two portfolios share the same risk level, one sits on the frontier, one below it. Which should you choose?",
+      "options": [
+        "The one below the frontier, since it draws less market attention",
+        "The one on the frontier, because its expected return is higher",
+        "Both are equal since the risk level is the same",
+        "Cannot choose without knowing each one's management fee"
+      ],
+      "explanation": "The efficient frontier is the set of portfolios that deliver the highest return at each level of risk. Being below it means bearing exactly that much risk while receiving less than you should."
+    },
+    {
+      "question": "Why does each investor pick a different point on the efficient frontier?",
+      "options": [
+        "Because each person can access different asset types",
+        "Because each person's risk tolerance and time horizon differ",
+        "Because trading fees differ depending on each person's capital size",
+        "Because the efficient frontier is recalculated separately for each person"
+      ],
+      "explanation": "The frontier tells you which choices are efficient, not which choice is right for you. Someone near retirement and someone twenty-five years old should both sit on the frontier, but at points far apart from each other."
+    },
+    {
+      "question": "Is the efficient frontier a fixed line?",
+      "options": [
+        "Yes, because it only depends on the prevailing risk-free rate",
+        "Yes, it's determined once from historical market data",
+        "No, it shifts when the available set of assets changes",
+        "No, but it only ever changes when the central bank's policy rate changes"
+      ],
+      "explanation": "Adding a genuinely different asset class - real estate, commodities, an emerging market - pushes the whole frontier upward. This is also why diversifying into a new asset class has real value, not just being a slogan."
+    }
+  ],
+  "keyTakeaways": [
+    "Efficient Frontier: the set of optimal portfolios for each level of risk",
+    "A portfolio below this frontier can always be improved on risk-return",
+    "The core visualization tool of Modern Portfolio Theory"
+  ],
+  "practicePrompt": {
+    "question": "In risk-return space, there are countless ways to combine assets into a portfolio, but only a small subset are truly 'optimal' - achieving the highest expected return for each acceptable level of risk. What is the curve representing this set of optimal portfolios called?",
+    "options": [
+      "This is called the Yield Curve, representing the relationship between yield and bond maturity",
+      "Efficient Frontier: the set of optimal portfolios for each level of risk",
+      "This is called the Yield to Maturity Curve, representing actual yield if a bond is held to maturity",
+      "There is no specific curve that represents the optimal risk-return relationship of a portfolio"
+    ],
+    "explanation": "Efficient Frontier: the set of optimal portfolios for each level of risk. This is a central concept of MPT - a portfolio below this line is not yet optimal (it can be improved), a portfolio above this line is not achievable with the available assets."
+  },
+  "summary": {
+    "keyIdea": "Efficient Frontier: the set of optimal portfolios for each level of risk",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to a real decision.",
+    "action": "A portfolio below this frontier can always be improved on risk-return"
+  },
+  "application": {
+    "title": "Sketch your own efficient frontier",
+    "message": "Draw a set of axes by hand with risk on the horizontal and expected return on the vertical, then try plotting 2-3 different asset-allocation portfolios you're considering.",
+    "secondary": "It doesn't need to be perfectly precise, just enough to visualize the risk-return trade-off."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The Efficient Frontier is the set of all \"Pareto-optimal\" portfolios: for each given level of risk, it's the portfolio with the highest possible expected return; or for each level of return, it's the portfolio with the lowest risk. A portfolio below this frontier can always be improved."
+    },
+    { "type": "heading", "text": "What does it mean to sit below the frontier?" },
+    {
+      "type": "paragraph",
+      "text": "If your current portfolio sits below the Efficient Frontier, in theory there always exists a different allocation that gets you a higher expected return at the SAME level of risk, or lowers risk WITHOUT lowering expected return. A portfolio below the frontier is 'wasting' potential. In practice, this gap usually comes from high trading costs, insufficient diversification, or behavioral bias that keeps an investor from properly optimizing."
+    },
+    { "type": "heading", "text": "The frontier isn't fixed" },
+    {
+      "type": "paragraph",
+      "text": "The Efficient Frontier isn't a line drawn once and left alone - it changes when the available set of assets changes. If adding a new asset shifts the frontier to the left (upward), that means the asset improves the optimal opportunity set: at the same level of risk, a higher expected return is now achievable, thanks to the new asset's diversification benefit or its attractive return. Professional multi-asset funds regularly recompute the efficient frontier with updated data to adjust their allocation."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Efficient Frontier: the set of optimal portfolios for each level of risk",
+        "A portfolio below the frontier can always be improved on risk-return",
+        "The frontier shifts when the available set of assets changes",
+        "The core visualization tool of Modern Portfolio Theory"
+      ]
+    }
+  ]
+}

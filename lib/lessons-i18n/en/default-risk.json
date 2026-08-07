@@ -1,0 +1,128 @@
+{
+  "slug": "default-risk",
+  "title": "Default risk and the default rate",
+  "subtitle": "The probability of not repaying debt, and the recovery rate",
+  "duration": "6 min",
+  "openingQuestion": "If a HY bond has a 5%/year default rate and a 40% recovery rate, what is the expected loss?",
+  "openingOptions": [
+    "5%",
+    "3% = 5% × (1-40%) - the portion of capital actually lost if default happens",
+    "8%",
+    "40%"
+  ],
+  "explanation": "Default risk breaks down into two independent questions: how likely is the borrower to fail to repay, and if that happens, how much can be recovered? Multiplying the two gives the expected loss. The recovery rate depends heavily on payment priority and collateral, so two bonds from the same company can carry very different risk levels. The required yield must compensate for the expected loss plus a premium for the uncertainty of that estimate itself.",
+  "diagram": [
+    { "label": "Estimate the probability of default", "arrow": true },
+    { "label": "Estimate the recovery rate if default happens", "arrow": true },
+    { "label": "Multiply probability by the loss: gives expected loss", "arrow": true },
+    { "label": "The required yield must cover that loss plus an uncertainty premium" }
+  ],
+  "interactiveType": "bond",
+  "realWorldExample": {
+    "company": "The Evergrande bond default",
+    "description": "When the Chinese real estate group Evergrande defaulted on its international bonds in 2021, bondholders recovered only a very small fraction of the original value - a real-world example of a low recovery rate in highly leveraged real estate corporate defaults."
+  },
+  "quiz": [
+    {
+      "question": "Why do senior secured bonds have a higher recovery rate than unsecured bonds?",
+      "options": [
+        "A higher coupon means bondholders had already recovered most of their capital before default",
+        "A lower interest rate means the company's total debt obligation is much lighter",
+        "A shorter term means they mature before the company loses the ability to pay",
+        "They have specific collateral - paid before other creditors"
+      ],
+      "explanation": "Bankruptcy priority order: secured creditors → senior unsecured → subordinated → preferred equity → common equity. Senior secured recovers 60-80% on average. Subordinated can recover <20%. Common equity usually goes to zero."
+    },
+    {
+      "question": "Why is the recovery rate of secured bonds usually significantly higher than unsecured bonds, even when the same company defaults?",
+      "options": [
+        "Unsecured bonds always have a higher recovery rate than secured ones",
+        "Recovery rate only depends on company size, not the type of debt",
+        "There's no difference in recovery rate between the two types in the same case",
+        "Secured bondholders have priority to recover from that specific collateral"
+      ],
+      "explanation": "The 'secured' structure creates a clear legal priority claim over a specific company asset - this is why secured bonds always have a higher recovery rate than unsecured ones in the same bankruptcy, and also why they usually carry a lower interest rate (lower risk)."
+    },
+    {
+      "question": "What does the default rate of a group of bonds measure?",
+      "options": [
+        "The proportion of money bondholders recover after a default",
+        "The proportion of issuers that fail to repay debt during a period",
+        "The proportion of bonds downgraded in credit rating during the year",
+        "The proportion of bonds repaid early each year"
+      ],
+      "explanation": "The default rate counts how many borrowers default; the recovery rate measures how much is recovered afterward. Multiplying the two together gives a portfolio's true expected loss."
+    },
+    {
+      "question": "Why does the default rate of the High Yield group spike during a recession?",
+      "options": [
+        "Because investor sell-offs cause businesses to lose their ability to repay",
+        "Because regulators tighten bond issuance conditions during a recession",
+        "Because this group inherently has the thinnest cash flow buffer when revenue falls",
+        "Because rising policy rates raise their interest costs accordingly"
+      ],
+      "explanation": "A low rating reflects a thin safety margin from the start. A revenue drop that an Investment Grade business could absorb might be enough to push a High Yield business past the point of being unable to pay interest."
+    },
+    {
+      "question": "How is the expected loss of a bond portfolio estimated?",
+      "options": [
+        "The number of defaulted bonds divided by total bonds held",
+        "The probability of default plus the average recovery rate",
+        "Total face value multiplied by the portfolio's average yield",
+        "The probability of default multiplied by the unrecovered portion"
+      ],
+      "explanation": "Default rarely means a total loss: a 4% probability with a 40% recovery gives an expected loss of 4% × 60% = 2.4%. Ignoring the recovered portion overstates risk considerably."
+    }
+  ],
+  "keyTakeaways": [
+    "Expected Loss = PD × LGD",
+    "Recovery rate: secured ~50-60%, unsecured ~30-40%",
+    "Bankruptcy payment priority matters for risk/return"
+  ],
+  "practicePrompt": {
+    "question": "A loan has a probability of default (PD) = 5%, and if default occurs, the bank only recovers 40% of the loan's value (meaning Loss Given Default = 60%). If the loan is worth 1,000 billion, what is the Expected Loss?",
+    "options": [
+      "Expected Loss = PD × LGD × loan value = 0.05 × 0.6 × 1,000 billion = 30 billion - this is the average expected loss the bank needs to provision for this loan",
+      "Expected Loss = PD × loan value = 0.05 × 1,000 billion = 50 billion, without needing to account for LGD at all since the loan is fully collateralised",
+      "Expected Loss = 1,000 billion, because this is the total value of the loan carrying default risk",
+      "Expected Loss cannot be calculated without information about the borrower's credit rating"
+    ],
+    "explanation": "Expected Loss = PD × LGD = 0.05 × 0.6 × 1,000 billion = 30 billion. This formula combines both the probability of default (PD) and the extent of loss if default occurs (LGD - Loss Given Default) to estimate expected loss, used for pricing credit risk and setting aside provisions."
+  },
+  "summary": {
+    "keyIdea": "Expected Loss = PD × LGD",
+    "commonMistake": "Reading the concept as a definition to recite rather than a principle to apply to a real decision.",
+    "action": "Recovery rate: secured ~50-60%, unsecured ~30-40%"
+  },
+  "application": {
+    "title": "Calculate a simple Expected Loss yourself",
+    "message": "Assume a loan or bond has a 5% probability of default and a 40% recovery rate, calculate Expected Loss = 5% × (1-40%) yourself to see the real risk you're bearing for that high interest rate.",
+    "secondary": "This calculation helps you weigh whether a high interest rate truly compensates for the risk."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "When assessing a risky bond, the question isn't just 'will this company default' but also 'if it defaults, how much do I lose?'. These two factors combine into the Expected Loss framework - the standard tool for quantifying credit risk in finance."
+    },
+    { "type": "heading", "text": "Expected Loss = PD × LGD" },
+    {
+      "type": "paragraph",
+      "text": "Expected Loss (EL) is calculated as Probability of Default (PD) multiplied by Loss Given Default (LGD - the loss rate if default occurs). LGD = 1 - Recovery Rate. **Example:** a bond with a 5% probability of default in a year, and if default happens the recovery rate is 40% (LGD = 60%) → Expected Loss = 5% × 60% = 3%. This is the minimum risk premium that bond's credit spread needs to cover, plus a premium for poor liquidity and uncertainty."
+    },
+    { "type": "heading", "text": "Recovery rate depends on bankruptcy payment priority" },
+    {
+      "type": "paragraph",
+      "text": "The recovery rate isn't fixed - it depends mainly on whether the bond is secured. A secured bond gives bondholders priority to recover value directly from specific collateral when the company goes bankrupt, so it usually has a high recovery rate (50-60% or more, sometimes 60-80%). An unsecured bond has to wait in line for what's left after secured creditors are paid first, so its recovery rate is much lower (30-40%, sometimes below 20% for subordinated debt). The full bankruptcy priority order is: secured creditors → senior unsecured creditors → subordinated creditors → preferred shareholders → common shareholders (usually zero). Evergrande's 2021 international bond default is a real-world example: bondholders recovered only a very small fraction of the original value, demonstrating the low recovery rate in highly leveraged real estate corporate defaults."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Expected Loss = Probability of Default × Loss Given Default",
+        "LGD = 1 - Recovery Rate",
+        "Secured bonds: higher recovery rate thanks to priority claim over a specific asset",
+        "Unsecured bonds: lower recovery rate, must wait to share what's left",
+        "The credit spread must be enough to cover both the Expected Loss and liquidity risk"
+      ]
+    }
+  ]
+}

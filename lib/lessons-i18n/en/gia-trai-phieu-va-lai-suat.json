@@ -1,0 +1,132 @@
+{
+  "slug": "gia-trai-phieu-va-lai-suat",
+  "title": "Bond price and interest rates",
+  "subtitle": "The foundational inverse relationship of the debt market",
+  "duration": "6 min",
+  "openingQuestion": "Market interest rates rise from 5% to 7%. How does the price of outstanding bonds change?",
+  "openingOptions": [
+    "Unchanged",
+    "Rises along with it",
+    "Falls - a fixed 5% coupon is less attractive when the market rate is 7%, so the price must fall to give an equivalent yield",
+    "Depends on the term"
+  ],
+  "explanation": "Bond prices and market interest rates always move in opposite directions, and the reason lies in the coupon being fixed at issuance. When rates rise, new bonds pay more, so old bonds can only be sold if their price falls enough for the buyer to earn the same yield. How much the price moves depends on the remaining term: the further out the cash flows sit, the more sensitive they are - which is exactly what the concept of duration measures.",
+  "diagram": [
+    { "label": "Market interest rates rise", "arrow": true },
+    { "label": "Newly issued bonds pay a higher coupon", "arrow": true },
+    { "label": "Old bonds with a lower coupon become less attractive", "arrow": true },
+    { "label": "Their price must fall until yields become equal" }
+  ],
+  "interactiveType": "bond",
+  "realWorldExample": {
+    "company": "The 2022 US bond market",
+    "description": "When the Fed raised rates sharply in 2022 to fight inflation, the value of long-term US bond funds fell by tens of percent - one of the worst years in history for bond investors, and a clear demonstration of the inverse relationship between rates and bond prices."
+  },
+  "quiz": [
+    {
+      "question": "Is a 10-year bond or a 1-year bond more sensitive to interest rates?",
+      "options": [
+        "1-year - the shorter term makes its price react faster and more strongly",
+        "The same, since interest rates affect every bond equally",
+        "10-year - the longer duration makes its price move more strongly",
+        "It depends on the coupon rate - term has nothing to do with sensitivity"
+      ],
+      "explanation": "Duration measures how sensitive a bond's price is to interest rates. A 10-year duration: a 1% rate rise → price falls ~10%. A 1-year duration: price falls ~1%. Longer-term bonds carry higher interest rate risk."
+    },
+    {
+      "question": "A 30-year bond and a 2-year bond both have a 5% coupon. When market rates rise 1%, which falls in price more sharply?",
+      "options": [
+        "The 2-year bond falls more sharply because it must reinvest sooner",
+        "Both fall equally since they share the same 5% coupon",
+        "There's no relationship between term and interest rate sensitivity",
+        "The 30-year bond falls more sharply - much longer duration"
+      ],
+      "explanation": "This is the Duration concept, covered in detail later: the longer a bond's term, the more sensitive its price is to interest rate changes, because there are more future cash flows that must be discounted at the new rate."
+    },
+    {
+      "question": "Why do bond prices and market interest rates always move in opposite directions?",
+      "options": [
+        "Because the fixed coupon must compete with new, higher yields",
+        "Because the issuer actively lowers the price when rates rise",
+        "Because investors sell off every time the central bank meets",
+        "Because a bond's face value is adjusted with the policy rate"
+      ],
+      "explanation": "An old bond paying 4% while new issues pay 7% means no one will buy it at the original price. The price must fall until the yield on the purchase price equals 7% - that is the entire mechanism."
+    },
+    {
+      "question": "A bond with a 4% coupon is trading above face value. What does that say about market interest rates right now?",
+      "options": [
+        "Above 4%, so investors are willing to pay a higher price",
+        "Below 4%, making the old bond more attractive",
+        "Exactly 4%, since price always matches the coupon rate",
+        "Cannot be inferred without knowing the credit rating"
+      ],
+      "explanation": "A price above face value means the market is competing to buy a 4% coupon stream, and that only happens when new issues pay less than 4%. Price and interest rates always move opposite each other, so reading the price tells you the rate."
+    },
+    {
+      "question": "An investor believes interest rates are about to fall sharply. What is a sensible bond strategy?",
+      "options": [
+        "Sell all bonds and switch to holding cash while waiting",
+        "Buy short-term bonds to minimise exposure to volatility",
+        "Buy long-term bonds to capture the largest price increase",
+        "Buy floating-rate bonds to benefit from a higher yield"
+      ],
+      "explanation": "Falling rates push bond prices up, and long duration amplifies that gain. In exchange, if the direction is guessed wrong, the loss is amplified just as much."
+    }
+  ],
+  "keyTakeaways": [
+    "Rates rise → bond prices fall (and vice versa)",
+    "Long-term bonds: more sensitive to interest rates",
+    "Duration: measures a bond's price sensitivity to interest rates"
+  ],
+  "practicePrompt": {
+    "question": "You hold a bond with a fixed 6%/year coupon. Market interest rates then rise to 9%/year for newly issued bonds of the same term. What happens to the price of your bond on the secondary market if you want to sell it?",
+    "options": [
+      "Your bond's price will rise because higher market rates make it more attractive",
+      "Rates rise → bond price falls: a 6% bond is less attractive than a new 9% one",
+      "Your bond's price won't change because the coupon was fixed from the start and doesn't depend on market rates",
+      "Your bond's price only changes if the issuer's credit rating changes, unrelated to market interest rates"
+    ],
+    "explanation": "Rates rise → bond price falls (and vice versa). Because the coupon on an already-issued bond doesn't change, when market rates rise, the bond's price must fall so its real yield (YTM) matches the new rate environment - this is the most fundamental inverse relationship in bond investing."
+  },
+  "summary": {
+    "keyIdea": "Rates rise → bond price falls (and vice versa)",
+    "commonMistake": "Reading the concept as a definition to recite rather than a principle to apply to a real decision.",
+    "action": "Long-term bonds: more sensitive to interest rates"
+  },
+  "application": {
+    "title": "Apply it now",
+    "message": "Follow the most recent policy rate news (a rise or cut), try predicting in advance: will the price of currently outstanding bonds rise or fall, then check back after a few days.",
+    "secondary": "Predicting first and then checking against reality helps this inverse rule stick in your memory."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "This is an iron rule of the debt market: bond prices and market interest rates always move in opposite directions. Understanding this mechanism is key to reading any news about the Fed, the State Bank of Vietnam, or bond funds rising or falling in value."
+    },
+    { "type": "heading", "text": "Why price and interest rates move oppositely" },
+    {
+      "type": "paragraph",
+      "text": "Suppose you're holding an old bond with a 5%/year coupon. If market interest rates rise to 7%, newly issued bonds will pay 7% - far more attractive than your old bond. To sell your old bond, you have to cut the sale price below face value, enough for the buyer's real yield to match the market's 7%. Conversely, if market interest rates fall to 3%, your old 5% coupon bond suddenly becomes much more attractive - investors are willing to pay above face value to own it. That is the inverse relationship: rates rise → bond price falls; rates fall → bond price rises."
+    },
+    { "type": "heading", "text": "Duration: longer term, larger swings" },
+    {
+      "type": "paragraph",
+      "text": "Not every bond reacts to interest rates the same way. The longer a bond's term, the more distant future coupon cash flows there are that must be discounted at the new rate - so the more sensitive its price. Roughly speaking: for a 10-year bond, a 1% rate rise means the price falls about 10%; for a 1-year bond, a 1% rate rise means the price falls only about 1%. The number that precisely measures this sensitivity is called duration, which will be studied in detail later. This is why in 2022, when the Fed raised rates sharply to fight inflation, long-term bond funds in the US lost tens of percent in value - one of the worst years in history for bond investors."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Market rates rise → old (lower-coupon) bonds become less attractive → price falls",
+        "Market rates fall → old bonds (with a coupon higher than new issues) become more attractive → price rises",
+        "The longer the term → the larger the duration → the more sensitive the price to rate moves",
+        "Short-term bonds (T-bills, under 1 year) are almost immune to interest rate risk"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Quick reminder",
+      "text": "If you believe rates are about to rise, avoid long-term bonds. If you believe rates are about to fall, long-term bonds offer a much larger capital gain opportunity."
+    }
+  ]
+}

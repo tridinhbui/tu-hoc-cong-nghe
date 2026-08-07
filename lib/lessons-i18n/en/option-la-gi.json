@@ -1,0 +1,144 @@
+{
+  "slug": "option-la-gi",
+  "title": "What Is an Option?",
+  "subtitle": "A right - not an obligation - to buy or sell an asset",
+  "openingQuestion": "What is the core difference between an option and futures/forward?",
+  "openingOptions": [
+    "An option gives the buyer a RIGHT (not an obligation) to transact; futures/forward are a binding COMMITMENT that must be performed",
+    "An option is only used for stocks",
+    "An option is always cheaper than futures",
+    "There is no difference, just different names"
+  ],
+  "explanation": "An option grants the buyer a right - but not an obligation - to buy (a call) or sell (a put) an asset at a set price (the strike price) on or before an expiration date. The option buyer pays a fee called the premium for this right; if it isn't favorable, they can simply choose not to exercise it.",
+  "diagram": [
+    { "label": "Pay a premium to buy an Option", "arrow": true },
+    { "label": "Have the RIGHT - not the obligation", "arrow": true },
+    { "label": "Buy (Call) or sell (Put) at the strike price" }
+  ],
+  "realWorldExample": {
+    "company": "The Chicago Board Options Exchange (CBOE)",
+    "description": "CBOE is the world's largest options exchange, where investors buy and sell options on thousands of stocks and indices every day."
+  },
+  "quiz": [
+    {
+      "question": "Why is an option compared to a kind of financial 'insurance'?",
+      "options": [
+        "The buyer pays a fixed fee for protection, with the maximum loss capped at that fee",
+        "Because insurance companies themselves are the issuers of options",
+        "Because an option always turns a profit, making it a safe instrument like insurance",
+        "An option has nothing to do with insurance, it's purely a speculative tool"
+      ],
+      "explanation": "Like an insurance policy: you pay a premium (fee) for the right to be protected if an unfavorable event occurs. If that event doesn't happen, you only lose the premium."
+    },
+    {
+      "question": "An investor buys both a call option and a put option at the same strike price and same expiration on the same stock (a \"straddle\" strategy). What are they betting on?",
+      "options": [
+        "Betting the stock price will remain completely unchanged until expiration",
+        "A sharp move in either direction - standing still means losing on both",
+        "Betting on a sharp rise, since a call is always worth more than a put",
+        "Betting on a sharp fall, since a put fully protects the portfolio"
+      ],
+      "explanation": "A straddle is a strategy betting on VOLATILITY rather than a specific direction of price movement - suited to when an investor expects a major upcoming event to create sharp price swings."
+    },
+    {
+      "question": "How is an option buyer similar to an insurance buyer?",
+      "options": [
+        "Both pay a fee upfront for protection against a bad scenario",
+        "Both get the fee refunded in full if the risk doesn't ever materialize",
+        "Both are obligated to perform the contract at maturity",
+        "Both are only compensated after a loss has already occurred"
+      ],
+      "explanation": "A premium is like an insurance fee: forfeited if not needed, but in exchange it caps potential loss. The difference is that an option also allows profiting if price runs in the right direction, while insurance does not."
+    },
+    {
+      "question": "Buying a call and a put at the same time, same strike, same expiration, is what strategy?",
+      "options": [
+        "Doubling the profit if price moves the right direction",
+        "Fully hedging away all price-movement risk",
+        "Betting price will stay flat around the chosen strike",
+        "Betting on a sharp move, regardless of direction"
+      ],
+      "explanation": "This is a straddle. A sharp move in either direction produces a leg profitable enough to cover both premiums. Its enemy is a flat, sideways market - which loses both fees."
+    },
+    {
+      "question": "What is the maximum risk to an option buyer?",
+      "options": [
+        "Exactly the premium paid, no more",
+        "The value of the entire option contract",
+        "Unlimited if the price moves against the bet",
+        "The gap between the strike and the market price"
+      ],
+      "explanation": "This asymmetry is what makes options attractive: loss is capped, gain is not. But most options expire worthless, so that cap gets hit fairly often."
+    }
+  ],
+  "keyTakeaways": [
+    "Option: a right (not an obligation) to buy/sell at the strike price",
+    "Premium: the fee paid for the right, and the buyer's maximum risk",
+    "An option behaves like a form of priceable financial insurance"
+  ],
+  "practicePrompt": {
+    "question": "You buy a contract that lets you (but doesn't require you to) buy VNM stock at VND 80,000 within the next 3 months. If the market price falls to VND 70,000, you can simply choose not to exercise the contract and only lose the fee already paid. This 'can choose not to perform' feature is the core distinguishing characteristic of which derivative type?",
+    "options": [
+      "This is a feature of a Forward, since both parties are obligated to perform the contract at maturity",
+      "Option: a right - not an obligation - to buy/sell at the strike, with maximum risk equal to the premium",
+      "This is a feature of Futures, since the contract is standardized and exchange-traded",
+      "Every derivative contract type has this feature, there's nothing special about an Option"
+    ],
+    "explanation": "Option: a right (not an obligation) to buy/sell at the strike price. This is the core difference from a Forward and Futures (where both sides must perform) - an option buyer only loses at most the premium paid if they choose not to exercise."
+  },
+  "summary": {
+    "keyIdea": "Option: a right (not an obligation) to buy/sell at the strike price",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to real decisions.",
+    "action": "Premium: the fee paid for the right, and the buyer's maximum risk"
+  },
+  "application": {
+    "title": "Find the price of a real option",
+    "message": "The lesson already gave a real example of how to read the VN30F1M price board - see the 'Real-world example' section above. Now open a real derivatives price board and identify the elements you've learned.",
+    "secondary": "Looking at a real price board makes the option concept much less abstract."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "An option differs fundamentally from a forward and futures in one key way: it gives the buyer a RIGHT, not an OBLIGATION, to buy (call) or sell (put) an asset at a set price (the strike price) on or before an expiration date. If unfavorable, the buyer simply doesn't exercise that right."
+    },
+    { "type": "heading", "text": "Premium: the price of choice" },
+    {
+      "type": "paragraph",
+      "text": "This right isn't free. The option buyer must pay a fee called the premium at the moment of purchase - regardless of whether they later exercise the right. This is exactly what makes an option comparable to financial insurance: you pay a fixed fee for the right to be protected against an unfavorable price move, and your maximum risk is limited to that premium paid - you never lose more."
+    },
+    { "type": "heading", "text": "Betting on volatility, not direction" },
+    {
+      "type": "paragraph",
+      "text": "An interesting strategy is a straddle: buying both a call option and a put option at the same strike price, same expiration date, on the same stock. The investor isn't betting price will rise or fall, but that it will move SHARPLY in either direction - often used ahead of a major event such as an earnings report. If price stays near the strike, both options lose value and the investor loses both premiums paid."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Call option: the right to BUY at the strike price",
+        "Put option: the right to SELL at the strike price",
+        "Premium: the upfront fee for the right, and also the buyer's maximum risk",
+        "CBOE (Chicago Board Options Exchange): the world's largest options exchange"
+      ]
+    },
+    { "type": "heading", "text": "Real-world example: reading the VN30F1M derivatives price board" },
+    {
+      "type": "list",
+      "items": [
+        "Although Vietnam doesn't yet have a public stock options market like the US, the VN30F1M futures contract uses the same price-board-reading logic: contract price, required margin, open interest",
+        "For actual options (common in the US market), the two numbers to identify on the price board are the strike price (the price to exercise the right) and the premium (the price to buy the option) - the premium is the amount paid upfront, the strike is the price you're entitled to buy/sell at in the future",
+        "The initial margin for the VN30F1M futures contract is about 20% of contract value, giving a maximum leverage of about 1:5"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "How to look it up yourself",
+      "text": "Open the \"Derivatives\" section of a Vietnamese securities company's app to see the VN30F1M; to see a real stock's option chain, look it up on international sites like Yahoo Finance with a US stock ticker (e.g. AAPL)."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "An option gives you favorable asymmetry: capped risk, uncapped potential gain - but the price of that asymmetry is exactly the premium."
+      ]
+    }
+  ]
+}

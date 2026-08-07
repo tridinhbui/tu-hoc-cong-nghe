@@ -1,0 +1,140 @@
+{
+  "slug": "corporate-bond-la-gi",
+  "title": "What is a corporate bond?",
+  "subtitle": "A company borrowing directly from investors, bypassing banks",
+  "duration": "6 min",
+  "openingQuestion": "Why might a large company choose to issue bonds instead of borrowing from a bank?",
+  "openingOptions": [
+    "Issuing bonds reaches many investors at once, raising a large amount of capital with more flexible terms",
+    "Because bonds don't require paying interest",
+    "Because bonds are always cheaper than a bank loan in every case",
+    "Because banks won't lend to large companies"
+  ],
+  "explanation": "A corporate bond is a debt instrument a company issues directly to investors (no bank as intermediary). It allows raising capital at scale, diversifying funding sources, and sometimes costs less than a bank loan if the company has a strong credit rating.",
+  "diagram": [
+    { "label": "The company needs long-term capital", "arrow": true },
+    { "label": "It issues bonds and sells them directly to investors", "arrow": true },
+    { "label": "No bank intermediary, and a larger scale is possible", "arrow": true },
+    { "label": "Its yield is always higher than a government bond of the same maturity" }
+  ],
+  "realWorldExample": {
+    "company": "Apple Inc.",
+    "description": "Apple regularly issues corporate bonds despite holding hundreds of billions of dollars in cash - taking advantage of low rates to fund share buybacks rather than repatriating overseas cash and paying tax on it."
+  },
+  "quiz": [
+    {
+      "question": "Why does a corporate bond always yield more than a government bond of the same maturity?",
+      "options": [
+        "Because any company carries higher default risk than the government",
+        "Because companies must pay tax on their coupon interest",
+        "Because corporate bonds always have longer maturities than usual",
+        "Because regulators set a floor interest rate for this group of bonds"
+      ],
+      "explanation": "Any company (with vanishingly rare exceptions) carries higher default risk than a government → it must always pay a positive credit spread over the risk-free rate. How large that spread is depends on that company's own credit rating."
+    },
+    {
+      "question": "Why can the interest rate on bonds from the same company differ significantly by maturity (5-year, 10-year, 30-year), even when the company's credit risk hasn't changed?",
+      "options": [
+        "Because the credit rating is reassessed separately for each maturity",
+        "Because each maturity sits at a different point on the yield curve",
+        "Because long-maturity bonds must be backed by collateral",
+        "Because issuance costs scale with the number of years, making longer maturities pricier"
+      ],
+      "explanation": "Corporate bond yield = risk-free rate (at the matching point on the yield curve) + credit spread (reflecting the company's own credit risk) - both components can shift with maturity, which is why the overall rate can differ noticeably across a company's own maturities."
+    },
+    {
+      "question": "What two parts make up a corporate bond's yield?",
+      "options": [
+        "The inflation rate plus the company's growth rate",
+        "The policy rate plus the issuer's profit margin",
+        "The risk-free rate at the same maturity plus a credit spread",
+        "The deposit rate plus an underwriting fee"
+      ],
+      "explanation": "Separating these two parts is genuinely useful when you read the news: a rising yield can come from rates in general rising, or from the company's own credit deteriorating - two different causes leading to two very different investment conclusions."
+    },
+    {
+      "question": "Why would a company issue bonds instead of simply borrowing from a bank?",
+      "options": [
+        "To avoid being bound by any restrictive covenants at all",
+        "To avoid periodic disclosure requirements",
+        "To get a lower rate than a bank loan in every case",
+        "To raise a larger amount of capital and diversify its funding sources"
+      ],
+      "explanation": "A bank has a lending limit for each client; the bond market pools capital from thousands of investors, so the scale is far larger. In exchange, the company takes on tighter disclosure obligations and more market discipline."
+    },
+    {
+      "question": "For the same company, a 30-year bond yields more than a 5-year bond. Why?",
+      "options": [
+        "Because both the base rate and credit uncertainty widen with time",
+        "Because the company's credit rating steadily declines over the years",
+        "Because long-maturity bonds are far more liquid",
+        "Because the company must pay far more coupon periods over thirty years"
+      ],
+      "explanation": "Two forces point the same way: the yield curve usually slopes upward, and predicting a company will still be healthy in thirty years is much harder than in five. Both the base rate and the risk premium widen."
+    }
+  ],
+  "keyTakeaways": [
+    "Corporate bond: a company borrowing directly from investors",
+    "Advantage: raises large amounts of capital and diversifies funding beyond banks",
+    "Always carries a positive credit spread over a government bond of the same maturity"
+  ],
+  "practicePrompt": {
+    "question": "A company needs to raise 500 billion VND to expand a factory. Instead of a bank loan, it issues bonds and sells them directly to investors in the market. What is this form of fundraising called, and how does it differ from a traditional bank loan?",
+    "options": [
+      "This is called an IPO, since the company is raising capital from the public to expand its operations",
+      "Corporate bond: borrowing directly from many investors, with no bank as intermediary",
+      "This is called a buyback, since the company is repurchasing part of its capital from investors",
+      "A corporate bond and a bank loan are entirely identical, just different names for the same thing"
+    ],
+    "explanation": "Corporate bond: a company borrowing directly from investors (no bank intermediary as in a traditional loan). The interest rate depends on the company's credit rating - a riskier company must pay a higher rate to attract investors."
+  },
+  "summary": {
+    "keyIdea": "Corporate bond: a company borrowing directly from investors",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to a real decision.",
+    "action": "Advantage: raises large amounts of capital and diversifies funding beyond banks"
+  },
+  "application": {
+    "title": "Compare a corporate bond with a Treasury",
+    "message": "The lesson already worked a real example using the 10-year government bond yield (4.11%/year) as the anchor - see the 'Real example' section above. Now find a corporate bond of the same maturity to compare against it.",
+    "secondary": "The wider the gap, the more the market doubts that company's ability to repay its debt."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "When a company needs a large amount of capital, it has two main choices: borrow from a bank, or issue a corporate bond - borrowing directly from thousands of investors in the market, with no bank as intermediary."
+    },
+    { "type": "heading", "text": "Why a company issues bonds instead of just borrowing from a bank" },
+    {
+      "type": "paragraph",
+      "text": "Issuing bonds allows raising a large amount of capital at once, diversifies funding sources beyond banks, and for a company with a strong credit rating, can sometimes even cost less than a traditional bank loan. An interesting example: Apple regularly issues corporate bonds despite holding hundreds of billions of dollars in cash - the reason being to take advantage of low rates to fund its share buyback program, rather than repatriating cash held overseas and paying tax on it."
+    },
+    { "type": "heading", "text": "Corporate bond yield = risk-free rate + credit spread" },
+    {
+      "type": "paragraph",
+      "text": "Any company - however strong - carries higher default risk than a government, so a corporate bond must always pay a positive credit spread over a government bond of the same maturity. But a corporate bond's yield does not depend only on the credit spread - it also depends on where that maturity sits on the yield curve. That is why, for the same company, 5-year, 10-year, and 30-year bonds can carry meaningfully different rates even when the company's credit risk hasn't changed: total yield = risk-free rate (at the matching maturity) + credit spread (based on the company's rating)."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Corporate bond: a company borrowing directly from investors, with no bank as intermediary",
+        "Advantage: raises large amounts of capital, diversifies funding, sometimes costs less than a bank loan",
+        "Always carries a positive credit spread over a government bond of the same maturity",
+        "Rates differ by maturity, even for bonds issued by the same company"
+      ]
+    },
+    { "type": "heading", "text": "Real example: using the government bond yield as an anchor" },
+    {
+      "type": "list",
+      "items": [
+        "The 10-year Vietnam government bond: a winning auction yield of about 4.11%/year (2026 data) - close to risk-free",
+        "A corporate bond of the same maturity typically requires a yield 3-7 percentage points (300-700 basis points) higher, depending on the issuer's credit risk",
+        "That gap (the spread) is exactly the \"reward\" investors demand to compensate for the risk the company fails to repay its debt"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "How to compare against a real corporate bond yourself",
+      "text": "Look up the government bond yield at the matching maturity on VBMA (vbma.org.vn, Government Bond Auction Results section) or HNX, then set it beside the issuance/trading yield of a corporate bond at the same maturity to calculate a real spread yourself."
+    }
+  ]
+}

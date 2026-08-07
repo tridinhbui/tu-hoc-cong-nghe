@@ -1,0 +1,144 @@
+{
+  "slug": "risk-return-tradeoff",
+  "title": "The Risk-Return Tradeoff",
+  "subtitle": "To get a higher expected return, you have to accept correspondingly higher risk",
+  "duration": "6 min",
+  "openingQuestion": "An investment ad promises 'a 30%/year return, completely risk-free'. How should you react?",
+  "openingOptions": [
+    "With extreme suspicion - the risk-return tradeoff principle shows a high expected return always comes with correspondingly high risk; a promise of 'high return, no risk' is a textbook fraud signal",
+    "Invest immediately, since this is a rare opportunity",
+    "Invest a small amount to test it out",
+    "There's no principle governing this kind of relationship"
+  ],
+  "explanation": "The risk-return tradeoff is finance's most foundational principle: an efficient market doesn't allow high return without corresponding risk - if it did, every investor would rush in, driving the price up and erasing that edge. 'High return, zero risk' is always a red flag for fraud (like Bernard Madoff's Ponzi scheme).",
+  "diagram": [
+    { "label": "Wanting a higher expected return", "arrow": true },
+    { "label": "Requires accepting correspondingly higher risk", "arrow": true },
+    { "label": "An efficient market doesn't hand out a 'free lunch'" }
+  ],
+  "realWorldExample": {
+    "company": "The Bernard Madoff Ponzi Scheme",
+    "description": "Bernard Madoff promised a steady 10-12%/year return 'risk-free' for many years, attracting tens of billions of dollars before being exposed as the largest Ponzi scheme in US financial history in 2008."
+  },
+  "quiz": [
+    {
+      "question": "Why do government bonds yield much less than stocks over the long run?",
+      "options": [
+        "Because investors demand compensation for stocks' higher risk",
+        "Because government bonds have a much shorter maturity than stocks",
+        "Because stock dividends are tax-exempt while bond interest isn't",
+        "Because the supply of government bonds issued is always limited"
+      ],
+      "explanation": "This is the risk-return tradeoff showing up in reality: the safer asset (government bonds) carries a lower yield; the riskier asset (stocks, especially growth stocks) carries a higher expected return to compensate for greater volatility and a higher chance of loss."
+    },
+    {
+      "question": "If two assets have the SAME level of risk (volatility) but different expected returns, what does the risk-return tradeoff suggest about choosing between them?",
+      "options": [
+        "Choose the lower-return asset to be safer",
+        "Choose the higher expected-return asset, since risk is equal",
+        "Split capital evenly between the two to balance risk and return",
+        "Choose neither until their risk levels differ"
+      ],
+      "explanation": "This is the \"dominance\" principle in portfolio theory: when two assets carry the same risk, the one with the higher expected return is always preferred - no rational investor picks the less efficient asset when no extra risk trade-off is required."
+    },
+    {
+      "question": "A product promises 20%/year and guarantees no risk. What's the correct response?",
+      "options": [
+        "Check whether the product is officially distributed through a licensed bank branch",
+        "Invest a small amount to test its reliability",
+        "Be suspicious immediately, since this contradicts a foundational principle",
+        "Compare it against the deposit rate then decide on a weight"
+      ],
+      "explanation": "If a risk-free 20% yield genuinely existed, every pool of capital in the world would pour in until it stopped being 20%. This promise is a textbook fraud signature, not a missed opportunity."
+    },
+    {
+      "question": "Why doesn't the risk premium guarantee a higher return in every period?",
+      "options": [
+        "Because the risk premium gets formally reset by regulators once every quarter",
+        "Because the risk premium only applies to institutional investors",
+        "Because taxes erase the gap between the two asset types",
+        "Because it's a long-run expectation, not a year-by-year commitment"
+      ],
+      "explanation": "Stocks beat bonds over the long run precisely because they go through periods where they lose badly. If the premium were guaranteed every single year, it would no longer be a premium for risk."
+    },
+    {
+      "question": "Which portfolio sits outside the risk-return trade-off?",
+      "options": [
+        "None - every level of higher expected return comes with higher risk",
+        "A portfolio actively managed day to day by a team of professional investment funds",
+        "A portfolio diversified broadly enough across many asset types",
+        "A portfolio consisting only of developed-market government bonds"
+      ],
+      "explanation": "Diversification improves the return-per-unit-of-risk ratio but doesn't erase the trade-off. Wanting a higher expected return still requires accepting higher volatility - just with less waste along the way."
+    }
+  ],
+  "keyTakeaways": [
+    "Risk-return tradeoff: a higher expected return always comes with higher risk",
+    "A promise of 'high return, no risk' is a textbook fraud warning sign",
+    "This is the foundational principle governing every asset-allocation decision"
+  ],
+  "practicePrompt": {
+    "question": "An investment ad promises 'a 40%/year return, completely risk-free'. Based on the most basic principle of investment finance, how should you react to this promise?",
+    "options": [
+      "You should trust it, since this might be a rare special opportunity the market hasn't discovered yet",
+      "You should be highly wary: a high expected return always comes with high risk, no exceptions",
+      "You should invest a small portion to test it before deciding on a larger amount",
+      "This promise is entirely reasonable if the investment company has a long-standing reputation in the market"
+    ],
+    "explanation": "Risk-return tradeoff: a higher expected return always comes with higher risk, no exceptions. This is a foundational finance principle - any promise that violates it (high return + no risk) is the clearest fraud warning sign to stay away from."
+  },
+  "summary": {
+    "keyIdea": "Risk-return tradeoff: a higher expected return always comes with higher risk",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to a real decision.",
+    "action": "A promise of 'high return, no risk' is a textbook fraud warning sign"
+  },
+  "application": {
+    "title": "Hunt down an unreasonable high-return promise",
+    "message": "The lesson already gave a real example with 2 reference points (the risk-free rate ~4.11% and the best-performing fund ~22.9%) - see the 'Real example' section above. Now go find an actual investment ad and compare it against those two benchmarks.",
+    "secondary": "This is the single most important defensive skill you'll take from this lesson."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The risk-return tradeoff is finance's most foundational principle: the market doesn't allow high return without corresponding risk attached - if such an opportunity existed, every investor would rush in, driving the price up and erasing that edge immediately."
+    },
+    { "type": "heading", "text": "Why government bonds yield less than stocks" },
+    {
+      "type": "paragraph",
+      "text": "Government bonds carry much lower risk (nearly risk-free) than stocks, so under the risk-return tradeoff, their expected return is correspondingly lower too. Stocks, especially growth stocks, carry a higher expected return to compensate for sharper volatility and a higher chance of losing capital. This isn't unfair - it's simply how the market prices risk."
+    },
+    { "type": "heading", "text": "The dominance principle" },
+    {
+      "type": "paragraph",
+      "text": "If two assets carry the SAME level of risk but different expected returns, always prefer the one with the HIGHER expected return - since the risk is equal, a higher return means that asset dominates on risk-adjusted efficiency. No rational investor picks the less efficient asset when no additional risk is being traded for it."
+    },
+    { "type": "heading", "text": "A red flag: high return, zero risk" },
+    {
+      "type": "paragraph",
+      "text": "Any promise of \"high return, completely risk-free\" is a textbook fraud warning sign. Bernard Madoff promised a steady 10-12%/year return \"risk-free\" for many years, attracting tens of billions of dollars before being exposed as the largest Ponzi scheme in US financial history in 2008. No legitimate asset ever breaks the durable law of the risk-return tradeoff."
+    },
+    {
+      "type": "list",
+      "items": [
+        "A higher expected return always comes with correspondingly higher risk",
+        "At the same risk level, always prefer the asset with the higher expected return (dominance)",
+        "\"High return, no risk\" is a fraud signal, not an investment opportunity",
+        "This principle governs every asset-allocation decision in the Portfolio and Risk Management track"
+      ]
+    },
+    { "type": "heading", "text": "Real example: comparing a promised rate against two real benchmarks" },
+    {
+      "type": "list",
+      "items": [
+        "The 10-year Vietnam government bond yield currently sits around 4.11%/year - close to the highest \"risk-free\" return you can expect to almost certainly receive",
+        "The best-performing active fund in the market (VESAF, 5 years) averaged 22.9%/year - but that comes with NAV volatility tracking the stock market, with no guarantee",
+        "If a product promises \"15-20%/year, risk-free\", that rate is close to or higher than the riskiest stock fund's return, yet claims to be \"risk-free\" - exactly the suspicious pattern the risk-return tradeoff flags"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "How to apply this yourself",
+      "text": "Whenever you see an investment ad promising a specific rate, compare it against the two real benchmarks above (about 4% risk-free, about 20%+ being a rare figure that comes with high risk) to judge how plausible it is."
+    }
+  ]
+}

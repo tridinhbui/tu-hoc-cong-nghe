@@ -1,0 +1,145 @@
+{
+  "slug": "sharpe-ratio-la-gi",
+  "title": "What is the Sharpe Ratio?",
+  "subtitle": "Measuring return earned per unit of risk taken on",
+  "duration": "6 min",
+  "openingQuestion": "Fund A returns 20%/year with 25% volatility. Fund B returns 12%/year with 10% volatility. The risk-free rate is 3%. Which fund has the higher Sharpe Ratio?",
+  "openingOptions": [
+    "Fund A, because its absolute return is higher",
+    "Fund B - Sharpe A = (20-3)/25 = 0.68; Sharpe B = (12-3)/10 = 0.9 - B is more efficient per unit of risk despite a lower absolute return",
+    "Cannot be calculated without more information",
+    "Both are equal"
+  ],
+  "explanation": "Sharpe Ratio = (portfolio return − risk-free rate) / portfolio standard deviation. This is a measure of the excess return (over a risk-free asset) earned for EACH unit of risk taken on. A higher Sharpe Ratio means more efficient risk management, not simply a higher absolute return.",
+  "diagram": [
+    { "label": "Portfolio return − risk-free rate", "arrow": true },
+    { "label": "Divided by portfolio standard deviation", "arrow": true },
+    { "label": "= Sharpe Ratio (return per unit of risk)" }
+  ],
+  "realWorldExample": {
+    "company": "Comparing professional investment funds",
+    "description": "Fund analysts always compare Sharpe Ratios instead of just looking at absolute return - a fund earning 30%/year with extreme volatility can be less attractive than a fund steadily earning 15%/year, once you account for the risk taken on."
+  },
+  "quiz": [
+    {
+      "question": "Why can comparing only absolute return between two funds be misleading?",
+      "options": [
+        "Because absolute return hasn't had the investor's income tax deducted",
+        "Because absolute return doesn't account for the fund's management fee",
+        "Because the two funds may use different measurement periods within the year",
+        "Because the same level of return can be achieved with very different risk"
+      ],
+      "explanation": "This is exactly the value of risk-adjusted return metrics like the Sharpe Ratio: they force you to consider BOTH return AND risk at once. A hedge fund earning 40%/year through extreme leverage isn't necessarily 'better' than an index fund steadily earning 12%/year - the Sharpe Ratio allows a fairer comparison."
+    },
+    {
+      "question": "A fund has a negative Sharpe Ratio (its return is lower than even the risk-free rate). What does this say about that fund's performance?",
+      "options": [
+        "The investor took on risk yet received less than a risk-free deposit",
+        "The fund lost principal throughout the entire measured period",
+        "The fund has below-average market volatility",
+        "The ratio was calculated wrong, since a Sharpe Ratio can never be negative"
+      ],
+      "explanation": "A negative Sharpe Ratio is a serious warning sign: it means the investor accepted volatility but received a return LOWER than taking no risk at all (the risk-free rate) - essentially \"paying\" for a worse outcome than the safest option."
+    },
+    {
+      "question": "A fund returns 14%, the risk-free rate is 4%, standard deviation is 20%. What is the Sharpe Ratio?",
+      "options": [
+        "0.7 (= 14% ÷ 20%, forgetting to subtract the risk-free rate)",
+        "0.5 (= (14% − 4%) ÷ 20% standard deviation)",
+        "2.0 (= (14% − 4%) ÷ 5%, the wrong standard deviation)",
+        "10 (= 14% − 4%, without dividing by standard deviation)"
+      ],
+      "explanation": "Sharpe = (return − risk-free rate) / standard deviation = 10/20 = 0.5. Each unit of volatility endured buys back half a unit of excess return - a modest figure, generally considered acceptable from around 1.0 up."
+    },
+    {
+      "question": "Fund A: returns 18%, volatility 30%. Fund B: returns 12%, volatility 10%. Risk-free rate 3%. Which is more efficient?",
+      "options": [
+        "Both are equivalent once risk is fully accounted for",
+        "A, because its absolute return is far higher than B's",
+        "B, since its Sharpe of 0.9 beats A's 0.5",
+        "Cannot be compared since the two funds hold different asset types"
+      ],
+      "explanation": "A gives a Sharpe of (18−3)/30 = 0.5; B gives (12−3)/10 = 0.9. B earns less but gets back nearly twice as much per unit of risk - and with leverage, B could be scaled up to beat A at the same risk level."
+    },
+    {
+      "question": "What is a limitation of the Sharpe Ratio?",
+      "options": [
+        "It needs at least ten years of data to be calculated",
+        "It only applies to all-stock portfolios",
+        "It completely ignores the risk-free rate in its formula",
+        "It penalizes upside volatility just as much as downside volatility"
+      ],
+      "explanation": "Standard deviation treats a month that's up 10% exactly the same as a month that's down 10%, even though the investor only fears the latter. This is why the Sortino Ratio was created - it only counts downside volatility."
+    }
+  ],
+  "keyTakeaways": [
+    "Sharpe Ratio = (return − risk-free rate) / standard deviation",
+    "Measures return efficiency per unit of risk, not just absolute return",
+    "The standard metric for comparing performance across different investment funds"
+  ],
+  "practicePrompt": {
+    "question": "Fund A returns 15%/year with 20% volatility (standard deviation); Fund B returns 10%/year with only 8% volatility. The risk-free rate is 4%. Which fund has better risk-adjusted performance (a higher Sharpe Ratio)?",
+    "options": [
+      "Fund A is better because its absolute return is higher, without needing to consider standard deviation",
+      "Sharpe: A = (15-4)/20 = 0.55; B = (10-4)/8 = 0.75, so B is better",
+      "Both funds have equal risk-adjusted performance since both beat the risk-free rate",
+      "Fund B is worse since its absolute return is lower than Fund A's"
+    ],
+    "explanation": "Sharpe Ratio = (return − risk-free rate) / standard deviation. B has a higher Sharpe Ratio (0.75) than A (0.55) despite a lower absolute return - this is why the Sharpe Ratio matters more than absolute return when comparing fund performance, since it accounts for the risk taken on to achieve that return."
+  },
+  "summary": {
+    "keyIdea": "Sharpe Ratio = (return − risk-free rate) / standard deviation",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to a real decision.",
+    "action": "Measures return efficiency per unit of risk, not just absolute return"
+  },
+  "application": {
+    "title": "Calculate a fund's Sharpe Ratio",
+    "message": "The lesson already worked a real example calculating VESAF's Sharpe Ratio numerator (excess return ~18.8 percentage points) - see the 'Real example' section above. Now look up that fund's standard deviation yourself to complete the calculation.",
+    "secondary": "Comparing it against another fund of the same type will show you which one manages risk more effectively."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The Sharpe Ratio answers the question: \"at what cost of risk was this return achieved?\" **Formula:** Sharpe Ratio = (portfolio return − risk-free rate) / portfolio standard deviation. The higher the ratio, the more efficiently the portfolio earns per unit of risk taken on - not simply a higher absolute return."
+    },
+    { "type": "heading", "text": "Why absolute return alone isn't enough" },
+    {
+      "type": "paragraph",
+      "text": "Comparing absolute return between two funds can be misleading because it ignores the level of risk taken on. A hedge fund earning 40%/year through extreme leverage isn't necessarily \"better\" than an index fund steadily earning 12%/year. **Example:** if Fund A returns 15% with a 10% standard deviation and the risk-free rate is 3%, Sharpe = (15-3)/10 = 1.2. Fund B returns 30% but with a 35% standard deviation, Sharpe = (30-3)/35 ≈ 0.77. Despite the lower absolute return, Fund A is more efficient once risk is accounted for."
+    },
+    { "type": "heading", "text": "A negative Sharpe Ratio is a serious signal" },
+    {
+      "type": "paragraph",
+      "text": "When the Sharpe Ratio is negative (return lower than even the risk-free rate), it means the fund performed worse than simply holding a risk-free asset - the investor accepted volatility but got back an outcome even worse than the safest option, effectively \"paying\" for a worse result."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Sharpe Ratio = (return − risk-free rate) / standard deviation",
+        "Compares risk-adjusted return, not just absolute return",
+        "The higher the Sharpe, the better the return efficiency per unit of risk",
+        "A negative Sharpe: the fund performed worse than a risk-free asset - a strong warning sign"
+      ]
+    },
+    { "type": "heading", "text": "Real example: estimating VESAF's Sharpe Ratio" },
+    {
+      "type": "list",
+      "items": [
+        "VESAF: averaged 22.9%/year (5 years through June 30, 2025)",
+        "Reference risk-free yield: the 10-year government bond at about 4.11%/year",
+        "Excess return = 22.9% - 4.11% ≈ 18.8 percentage points - this is the Sharpe Ratio's numerator; the denominator is the fund's standard deviation (its volatility level), which you need to look up yourself on the fund's factsheet since it changes over time"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "The full formula to complete yourself",
+      "text": "Sharpe Ratio = (fund return - risk-free yield) / fund standard deviation. Look up the \"Standard Deviation\" figure on the fund's factsheet (usually published annually) to complete the calculation with the actual figures for the fund you're interested in."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A high return alone tells you nothing - you have to divide it by the risk taken on to know who is genuinely managing well."
+      ]
+    }
+  ]
+}

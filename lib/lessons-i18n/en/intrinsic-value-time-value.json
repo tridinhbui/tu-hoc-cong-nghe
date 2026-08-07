@@ -1,0 +1,157 @@
+{
+  "slug": "intrinsic-value-time-value",
+  "title": "Intrinsic Value and Time Value",
+  "subtitle": "The two components that make up every option's price",
+  "openingQuestion": "A call option with a strike of VND 50,000 is trading at a premium of VND 5,000, while the stock is at VND 52,000. What is the time value?",
+  "openingOptions": [
+    "VND 3,000 (Premium 5,000 − Intrinsic Value 2,000)",
+    "VND 0",
+    "VND 5,000",
+    "VND 2,000"
+  ],
+  "explanation": "Option Price = Intrinsic Value + Time Value. Intrinsic Value = the value if the right were exercised right now = 52,000 − 50,000 = VND 2,000. Time Value = the remaining part of the premium reflecting the chance price still moves favorably before expiration = 5,000 − 2,000 = VND 3,000.",
+  "diagram": [
+    { "label": "The value if the right is exercised right now", "arrow": true },
+    { "label": "= Intrinsic Value", "arrow": true },
+    { "label": "The remaining part of the premium", "arrow": true },
+    { "label": "= Time Value" }
+  ],
+  "realWorldExample": {
+    "company": "An option near expiration",
+    "description": "Every option's time value gradually falls to 0 as expiration approaches (time decay) - which is why professional traders closely track the 'theta' metric, measuring an option's rate of value decay over time."
+  },
+  "quiz": [
+    {
+      "question": "Right on the expiration date, what will an option's Time Value equal?",
+      "options": [
+        "The initial premium minus the current intrinsic value",
+        "Exactly the difference between the market price and the strike",
+        "Zero, because there is no longer time for price to move further",
+        "It cannot be determined without knowing the stock's volatility"
+      ],
+      "explanation": "Time decay (theta): Time Value falls steadily over time and hits exactly 0 right at expiration. This is why option writers (sellers) usually have a time advantage - every day that passes, the Time Value they must give up shrinks, favoring the short position."
+    },
+    {
+      "question": "A call option is deep in-the-money (the stock price is much higher than the strike) and close to its expiration date. What will the split between Intrinsic Value and Time Value in the option's total price look like?",
+      "options": [
+        "Intrinsic value makes up almost all of it, time value is close to zero",
+        "Time value makes up the majority since volatility is still high",
+        "The two components are roughly split evenly within the total premium",
+        "It cannot be determined without knowing implied volatility"
+      ],
+      "explanation": "When an option is deep ITM and near expiration, it will almost certainly be exercised - this sharply reduces the \"value of uncertainty\" (Time Value), leaving the option price to reflect almost entirely the Intrinsic Value, a phenomenon called accelerating \"time decay\" near expiration."
+    },
+    {
+      "question": "A put has strike VND 60,000, the stock is at VND 55,000, premium VND 7,000. What is the Time Value?",
+      "options": [
+        "VND 7,000 (the entire premium is time value)",
+        "VND 5,000 (= 60,000 − 55,000, exactly the intrinsic value)",
+        "VND 2,000 (= 7,000 − intrinsic value of 5,000)",
+        "VND 12,000 (= 7,000 + 5,000, adding both parts)"
+      ],
+      "explanation": "A put's intrinsic value = max(strike − price, 0) = VND 5,000. Time Value is the remainder of the premium: 7,000 − 5,000 = VND 2,000, and this exact VND 2,000 will fully evaporate by expiration."
+    },
+    {
+      "question": "Why is an option seller often said to have a time advantage?",
+      "options": [
+        "Because a stock's price tends to stay flat most of the time",
+        "Because they receive additional premium for each day they hold the position",
+        "Because they can close the position at any time at no cost",
+        "Because the time value they carry shrinks a little every day that passes"
+      ],
+      "explanation": "Time decay runs mechanically in the seller's favor: no need to guess the direction correctly, just let time pass. In exchange, they take on large risk when price moves sharply."
+    },
+    {
+      "question": "What characterizes time value for an at-the-money option?",
+      "options": [
+        "Time value is highest compared with other strikes",
+        "Time value equals zero because intrinsic value is also zero",
+        "Time value is lowest since there is no gain from exercising",
+        "Time value equals exactly half of the total premium"
+      ],
+      "explanation": "At-the-money is the point of greatest uncertainty - just a small price move flips it from profitable to not. That uncertainty is exactly what time value prices, so it peaks here."
+    }
+  ],
+  "keyTakeaways": [
+    "Option Price = Intrinsic Value + Time Value",
+    "Intrinsic Value: the value if the right is exercised right now (minimum of 0)",
+    "Time Value gradually falls to 0 as the expiration date approaches (time decay)"
+  ],
+  "practicePrompt": {
+    "question": "A call option with a strike of VND 100,000 is trading at VND 8,000, while the underlying stock is currently at VND 105,000 (meaning if exercised right now, you'd gain VND 5,000). Why does the option trade at VND 8,000, higher than the 'immediate exercise value' of VND 5,000?",
+    "options": [
+      "This is a market pricing error, an option's price must always equal exactly the gap between the stock price and the strike price",
+      "Intrinsic Value = 105,000 − 100,000 = VND 5,000; the remaining VND 3,000 is Time Value",
+      "The VND 3,000 difference is a transaction fee the exchange charges extra when trading the option",
+      "The option's price has nothing to do with the underlying stock's price, it's just a coincidence"
+    ],
+    "explanation": "Option Price = Intrinsic Value + Time Value. Intrinsic Value (VND 5,000) is the value if the option were exercised right now; Time Value (VND 3,000) reflects the chance price still moves favorably before expiration - Time Value gradually falls to 0 as the expiration date approaches (time decay)."
+  },
+  "summary": {
+    "keyIdea": "Option Price = Intrinsic Value + Time Value",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to real decisions.",
+    "action": "Intrinsic Value: the value if the right is exercised right now (minimum of 0)"
+  },
+  "application": {
+    "title": "Split Intrinsic Value and Time Value yourself",
+    "message": "For an option with a market price of VND 55,000, a strike of VND 50,000, and a premium of VND 7,000, calculate the Intrinsic Value and Time Value yourself using the formula Option Price = Intrinsic Value + Time Value.",
+    "secondary": "Being able to split these two parts helps explain why an option near expiration usually gets cheap fast."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Every option's premium is made up of exactly two parts: Option Price = Intrinsic Value + Time Value. Understanding these two components explains why a premium changes even when the stock price stands still."
+    },
+    { "type": "heading", "text": "Intrinsic Value: the value of exercising the right now" },
+    {
+      "type": "paragraph",
+      "text": "Intrinsic Value is the value if the right were exercised right now - at minimum 0, never negative. For example, with a call option strike of VND 50,000, and a current market price of VND 52,000: Intrinsic Value = 52,000 − 50,000 = VND 2,000. If the premium is currently VND 5,000, the remainder - 5,000 − 2,000 = VND 3,000 - is exactly the Time Value."
+    },
+    { "type": "heading", "text": "Time Value and the time decay phenomenon" },
+    {
+      "type": "paragraph",
+      "text": "Time Value reflects the chance price still moves further favorably before expiration. It falls steadily over time and hits exactly 0 at expiration - a phenomenon called time decay, measured by the 'theta' metric professional traders track closely. When a call option is already deep ITM and near expiration, it will almost certainly be exercised - this makes Time Value nearly disappear, and the option price then almost entirely reflects the Intrinsic Value."
+    },
+    {
+      "type": "formula",
+      "title": "Splitting a premium into two parts",
+      "equation": "Time Value = Premium − Intrinsic Value",
+      "variables": [
+        { "symbol": "Premium", "name": "The option's market price", "description": "The actual amount you pay to buy the option" },
+        { "symbol": "Intrinsic Value", "name": "Intrinsic value", "description": "Call: max(S − K, 0). Put: max(K − S, 0). Never negative" },
+        { "symbol": "Time Value", "name": "Time value", "description": "The remainder - the money you pay for the chance price keeps moving" }
+      ],
+      "example": {
+        "title": "A call at strike VND 50,000, stock at VND 52,000, premium VND 5,000",
+        "calculation": "Intrinsic Value = max(52,000 − 50,000, 0) = VND 2,000 · Time Value = 5,000 − 2,000 = VND 3,000",
+        "result": "60% of the premium is Time Value",
+        "explanation": "You pay VND 5,000 for something that, exercised right now, is only worth VND 2,000. The VND 3,000 gap is money paying for time, and it will fully evaporate by expiration even if the stock price doesn't change."
+      }
+    },
+    {
+      "type": "comparison",
+      "left": { "label": "Call option", "text": "Intrinsic Value = max(S − K, 0). Has intrinsic value when the market price is HIGHER than the strike. Stock at 52,000, strike 50,000 → VND 2,000." },
+      "right": { "label": "Put option", "text": "Intrinsic Value = max(K − S, 0). Has intrinsic value when the market price is LOWER than the strike. Stock at 48,000, strike 50,000 → VND 2,000." }
+    },
+    {
+      "type": "callout",
+      "label": "A common mistake",
+      "text": "Taking S − K and leaving a negative result. If the stock is at VND 48,000 while the call's strike is VND 50,000, the Intrinsic Value is 0, not −VND 2,000 - you have a right, not an obligation, so you simply don't exercise it. In that case, the entire premium is Time Value, and all of it can go to 0."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Option Price = Intrinsic Value + Time Value",
+        "Intrinsic Value has a minimum of 0, never negative",
+        "Time Value always equals 0 exactly on the expiration date",
+        "Theta: the metric measuring the rate of Time Value decay over time"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "An option seller usually has a time advantage: every day that passes, the Time Value they must 'carry' shrinks."
+      ]
+    }
+  ]
+}

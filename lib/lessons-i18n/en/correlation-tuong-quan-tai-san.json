@@ -1,0 +1,137 @@
+{
+  "slug": "correlation-tuong-quan-tai-san",
+  "title": "Correlation between assets",
+  "subtitle": "A measure of how much two assets move together or apart",
+  "duration": "7 min",
+  "openingQuestion": "Two stocks have a correlation coefficient of -0.8. What does this mean?",
+  "openingOptions": [
+    "The two stocks tend to move in OPPOSITE directions fairly strongly - when one rises, the other tends to fall",
+    "The two stocks always trade at the same price",
+    "One of the two stocks is currently falling",
+    "The two stocks have no relationship at all"
+  ],
+  "explanation": "Correlation measures how much two assets move in the same direction (a value from -1 to +1). +1: they move perfectly together. -1: they move perfectly opposite. 0: no linear relationship. The closer correlation is to -1 between assets in a portfolio, the stronger diversification's risk-reducing effect becomes.",
+  "diagram": [
+    { "label": "Two assets rise/fall together", "arrow": true },
+    { "label": "Correlation close to +1", "arrow": true },
+    { "label": "Two assets move opposite each other", "arrow": true },
+    { "label": "Correlation close to -1" }
+  ],
+  "realWorldExample": {
+    "company": "Oil and gas stocks versus airline stocks",
+    "description": "Oil and gas company stocks and airline stocks usually carry a moderate negative correlation: a rising oil price benefits the oil company but raises the airline's fuel costs, sending their profits in opposite directions."
+  },
+  "quiz": [
+    {
+      "question": "What effect does adding an asset with a correlation close to +1 with the entire current portfolio have?",
+      "options": [
+        "It barely reduces the portfolio's risk at all",
+        "It reduces risk the most among the possible choices",
+        "It raises expected return without changing risk",
+        "It only has an effect if its weight stays under twenty percent"
+      ],
+      "explanation": "The diversification benefit comes from combining assets with LOW or NEGATIVE correlation. Adding an asset that nearly always moves with the existing portfolio (correlation close to +1) is essentially just adding more of the same risk under a different name, not reducing overall risk."
+    },
+    {
+      "question": "Two asset types have a correlation close to 0 (not negative, just close to zero). Does combining them still provide a diversification benefit?",
+      "options": [
+        "No, only negative correlation can reduce portfolio risk",
+        "Yes, any correlation below +1 provides some benefit",
+        "No, a correlation of zero means the two assets are unrelated",
+        "Yes, but only if the two assets have the same expected return"
+      ],
+      "explanation": "A diversification benefit exists at ANY correlation below +1 - the lower the correlation (even close to zero, no need to be negative), the larger the risk-reduction benefit; perfect negative correlation is only the rare ideal case."
+    },
+    {
+      "question": "What does a correlation of −0.6 between two assets mean?",
+      "options": [
+        "One asset falls by 0.6% every time the other rises by 1%",
+        "They move opposite each other in every single trading session",
+        "They tend to move opposite each other, but not absolutely",
+        "They have no statistical relationship at all"
+      ],
+      "explanation": "Correlation measures a tendency, not a magnitude. Negative 0.6 means they diverge most of the time, enough to offset each other well in a portfolio - but there are still sessions where both fall together."
+    },
+    {
+      "question": "Why does correlation between assets often spike sharply during a crisis?",
+      "options": [
+        "Because historical correlation gets recalculated with the latest data",
+        "Because risky assets are simultaneously forced to halt trading",
+        "Because the central bank intervenes in every market at once",
+        "Because investors sell off everything at the same time to raise cash"
+      ],
+      "explanation": "This is diversification's bitterest paradox: right when you need it most, it weakens. In 2008 and March 2020, assets that were normally poorly correlated fell together because everyone needed cash at the same time."
+    },
+    {
+      "question": "A two-asset portfolio has a correlation of +1. What is the diversification benefit?",
+      "options": [
+        "Zero - risk is just a weighted average",
+        "Still present, since two different assets always reduce risk",
+        "Maximum, because the two assets move perfectly in sync",
+        "Cannot be determined without knowing each asset's own volatility"
+      ],
+      "explanation": "A correlation of +1 means the two assets are essentially one investment split into two. No offsetting happens at all, so portfolio risk equals exactly the weighted average - this is the one case with no diversification benefit."
+    }
+  ],
+  "keyTakeaways": [
+    "Correlation measures how much two assets move together or apart (from -1 to +1)",
+    "The lower or more negative the correlation, the stronger the diversification effect",
+    "This is the single most important variable in building a portfolio, more so than any asset's own expected return"
+  ],
+  "practicePrompt": {
+    "question": "Stock A and stock B have a correlation of +0.9 (nearly always moving together). Stock A and asset C have a correlation of -0.3 (usually moving slightly opposite). To reduce portfolio risk most effectively, should you combine A with B, or A with C?",
+    "options": [
+      "Combine A with B, since the higher correlation (+0.9) provides better stability for the portfolio",
+      "Combine A with C, since the negative correlation (-0.3) reduces portfolio risk more effectively",
+      "There's no difference between combining A with B versus A with C in terms of reducing portfolio risk",
+      "Positive correlation is always better than negative correlation when building a diversified portfolio"
+    ],
+    "explanation": "Correlation measures how much two assets move together or apart (from -1 to +1). Combining assets with low or negative correlation (like A and C) produces a much stronger diversification effect than combining highly correlated assets (like A and B, which barely reduces risk since they move together)."
+  },
+  "summary": {
+    "keyIdea": "Correlation measures how much two assets move together or apart (from -1 to +1)",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to a real decision.",
+    "action": "The lower or more negative the correlation, the stronger the diversification effect"
+  },
+  "application": {
+    "title": "Estimate correlation by eye",
+    "message": "Pull up the 1-year price chart of two assets you're interested in (say, the VN-Index and gold) side by side, and observe whether they tend to rise and fall at the same time or in opposite directions.",
+    "secondary": "This is only a rough visual estimate, but it's enough to build a feel for the concept of correlation."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Correlation is a measure of how much two assets move together or in opposite directions, expressed as a number from -1 to +1. This is the single most important variable in building a portfolio - more important than any asset's own expected return, because it determines diversification's real benefit."
+    },
+    { "type": "heading", "text": "Reading the correlation number" },
+    {
+      "type": "paragraph",
+      "text": "A correlation of +1 means the two assets always move perfectly together. A correlation of -1 means they always move perfectly opposite. A correlation of 0 means there's no linear relationship between them. The closer correlation is to -1, the stronger the risk-reduction effect of combining those two assets - when one falls, the other tends to rise, offsetting the loss."
+    },
+    { "type": "heading", "text": "Correlation near +1: nearly pointless for diversification" },
+    {
+      "type": "paragraph",
+      "text": "Adding an asset with a correlation close to +1 to the current portfolio barely reduces any risk, because it moves almost the same way as what's already there - essentially adding the same kind of risk under a different name. A classic counterexample is oil and gas stocks versus airline stocks: a rising oil price benefits the oil company but raises the airline's fuel costs, sending their profits in opposite directions."
+    },
+    { "type": "heading", "text": "A correlation near 0 still has value" },
+    {
+      "type": "paragraph",
+      "text": "A common misconception is that only NEGATIVE correlation produces a diversification benefit. In fact, a benefit exists at ANY correlation below +1 - even a correlation near zero, since two assets moving unrelated to each other still lower the portfolio's overall volatility, though not as strongly as the case of perfect negative correlation (which is extremely rare in practice)."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Correlation +1: moving perfectly together - no diversification benefit",
+        "Correlation 0: unrelated - still a moderate diversification benefit",
+        "Correlation -1: moving perfectly opposite - maximum diversification benefit (rare)",
+        "Always check correlation before assuming a new asset will \"diversify\" a portfolio"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Real diversification isn't about adding more assets - it's about adding assets that DON'T move the same way."
+      ]
+    }
+  ]
+}

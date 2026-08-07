@@ -1,0 +1,136 @@
+{
+  "slug": "vi-sao-khong-nen-nhin-tung-khoan-dau-tu",
+  "title": "Why shouldn't you look at each investment in isolation?",
+  "subtitle": "An asset's risk can vanish once placed in the context of a portfolio",
+  "duration": "6 min",
+  "openingQuestion": "A catastrophe-insurance stock swings wildly every time a big storm hits. Standing alone, is this a 'high risk' investment?",
+  "openingOptions": [
+    "The risk of each individual stock always adds up linearly into the portfolio",
+    "No, insurance stocks are always safe",
+    "Standing alone, yes it's high risk, but placed in a portfolio with low or negative correlation to the rest, it can actually REDUCE the portfolio's overall risk",
+    "Yes, and it should always be avoided because it swings so much"
+  ],
+  "explanation": "This is the core paradox of portfolio theory: the risk of ONE asset (measured by its own standard deviation) does not accurately reflect how much it contributes to the portfolio's OVERALL risk. What decides that is its correlation with the other assets - a wildly swinging asset that moves opposite to the rest can be the 'antidote' to portfolio risk.",
+  "diagram": [
+    { "label": "Look at the risk of EACH asset individually", "arrow": true },
+    { "label": "Ignore its correlation with the other assets", "arrow": true },
+    { "label": "Misjudge the portfolio's true level of risk" }
+  ],
+  "realWorldExample": {
+    "company": "Gold in a stock portfolio",
+    "description": "Gold typically rises when the stock market panics (crises, wars) - even though gold's own price swings, adding a small slice of gold to a stock portfolio usually lowers the portfolio's overall volatility."
+  },
+  "quiz": [
+    {
+      "question": "What determines how much a 'risky' asset contributes to the overall portfolio?",
+      "options": [
+        "That asset's weight in the total portfolio value",
+        "That asset's own volatility, measured over twelve months",
+        "Its correlation with the rest, not just its own volatility",
+        "The credit rating of the entity that issued that asset"
+      ],
+      "explanation": "Risk contributed to the portfolio = f(own volatility, correlation with the rest). An asset with very strong volatility but negative correlation with most of the portfolio can REDUCE overall risk, while a mildly volatile asset with high correlation can INCREASE concentrated risk."
+    },
+    {
+      "question": "If a single stock makes up 80% of your portfolio's value and swings wildly, what strategy reduces overall risk fastest without selling that stock?",
+      "options": [
+        "Move the rest of the portfolio entirely into cash",
+        "Gradually sell that stock down below fifty percent",
+        "Buy more stocks in the same industry to spread the risk out",
+        "Add assets that have low correlation with that stock"
+      ],
+      "explanation": "This is a practical application of portfolio thinking: even without changing the weight of the large holding, skillfully adding low/negatively correlated assets can still meaningfully improve the overall risk profile - a more realistic strategy than selling off the core holding."
+    },
+    {
+      "question": "An asset swings very sharply but has negative correlation with the portfolio. What happens if you add it?",
+      "options": [
+        "It can lower overall risk even though it's very risky on its own",
+        "It's guaranteed to raise risk because its own volatility is too high",
+        "No effect at all, since the two effects cancel each other out",
+        "It only lowers risk if its weight stays under ten percent"
+      ],
+      "explanation": "This is the central counterintuitive point of portfolio thinking: an asset's standalone risk is very different from the share of risk it contributes to the whole. An asset moving the opposite way offsets losses right when the rest of the portfolio is losing."
+    },
+    {
+      "question": "Why does evaluating each investment in isolation lead to bad decisions?",
+      "options": [
+        "Because you can't compute each asset's expected return that way",
+        "Because it ignores how the assets interact with each other",
+        "Because it raises the portfolio's total trading costs",
+        "Because it leads investors to hold too few different assets"
+      ],
+      "explanation": "A portfolio is not the sum of its investments. Two assets that are both highly risky but move opposite to each other can create a portfolio steadier than either one alone - something invisible if you only assess each one separately."
+    },
+    {
+      "question": "An investor strips every highly volatile asset out of the portfolio. What could the consequence be?",
+      "options": [
+        "Expected return stays the same but risk drops sharply",
+        "The portfolio becomes absolutely safe against every market swing",
+        "The portfolio becomes less efficient because it lost a risk-reduction tool",
+        "Management costs rise because of the need to rebalance"
+      ],
+      "explanation": "Gold and commodities both swing hard on their own, but they're often exactly what keeps a portfolio steady when stocks fall. Cutting them for their volatility number alone throws away the diversification benefit."
+    }
+  ],
+  "keyTakeaways": [
+    "An individual asset's risk doesn't accurately reflect its contribution to portfolio risk",
+    "Correlation with other assets matters more than standalone volatility",
+    "A 'risky' asset standing alone can reduce risk when placed correctly in a portfolio"
+  ],
+  "practicePrompt": {
+    "question": "A tech stock swings wildly on its own (high volatility), but when added to a portfolio that already holds consumer-sector stocks and bonds (low-correlation assets), the portfolio's OVERALL risk barely rises. Why does this difference happen?",
+    "options": [
+      "This is a calculation error, since adding a highly volatile asset must always raise portfolio risk proportionally",
+      "An individual asset's risk doesn't accurately reflect its contribution to portfolio risk",
+      "Portfolio risk depends only on the lowest-volatility asset, and highly volatile assets have no effect at all",
+      "This phenomenon only happens with tech stocks and doesn't apply to other asset types"
+    ],
+    "explanation": "An individual asset's risk doesn't accurately reflect its contribution to portfolio risk. This is a foundation of modern portfolio theory (MPT): the correlation between assets determines overall risk far more than any single asset's own volatility."
+  },
+  "summary": {
+    "keyIdea": "An individual asset's risk doesn't accurately reflect its contribution to portfolio risk",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to a real decision.",
+    "action": "Correlation with other assets matters more than standalone volatility"
+  },
+  "application": {
+    "title": "Find a 'risky but useful' asset",
+    "message": "Think of an asset in your portfolio that swings a lot on its own, then ask whether it moves opposite to the rest of your portfolio - if it does, it's lowering overall risk, not raising it.",
+    "secondary": "This is the paradox that leaves many new investors with the wrong idea about risk."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "This is one of investing's most fascinating paradoxes: an asset's own standard deviation (volatility) doesn't accurately reflect how much it contributes to the whole portfolio's risk. What genuinely decides that is the correlation between that asset and the rest - an asset that swings violently but moves opposite to the portfolio can be exactly the \"antidote\" for overall risk."
+    },
+    { "type": "heading", "text": "Contributed risk = own volatility × correlation" },
+    {
+      "type": "paragraph",
+      "text": "How much a 'risky' asset contributes to a portfolio is a combination of two factors: its own volatility AND its correlation with the rest of the assets. An asset that swings very hard but has negative correlation with most of the portfolio can REDUCE overall risk; conversely, a mildly volatile asset with high correlation to everything else can quietly INCREASE concentrated risk you don't notice."
+    },
+    { "type": "heading", "text": "Example: gold in a stock portfolio" },
+    {
+      "type": "paragraph",
+      "text": "Gold typically rises when the stock market panics (crises, wars, high inflation). Gold's own price does swing, but because it tends to move opposite to stocks during the most stressful periods, adding a small weight of gold to a stock portfolio usually lowers the portfolio's OVERALL volatility - even though gold on its own is anything but \"safe\"."
+    },
+    { "type": "heading", "text": "Applying this when you can't sell the large holding" },
+    {
+      "type": "paragraph",
+      "text": "Suppose a single stock makes up 80% of a portfolio's value and swings hard - maybe for tax reasons, transfer restrictions, or conviction in that company. Without selling any of it, you can still reduce overall risk by using the remaining 20% to add assets with low or negative correlation to that main stock. The weight doesn't change, but the portfolio's overall volatility can drop significantly."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Risk contributed to the portfolio = f(own volatility, correlation with the rest)",
+        "A highly volatile asset with negative correlation can be an effective risk-reduction tool",
+        "A mildly volatile asset with high correlation can quietly increase concentrated risk",
+        "You don't need to sell the large holding to reduce risk - you can offset it with the right supplementary assets"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The right question isn't \"how risky is this asset\" but \"how risky is it RELATIVE TO the rest of my portfolio\"."
+      ]
+    }
+  ]
+}

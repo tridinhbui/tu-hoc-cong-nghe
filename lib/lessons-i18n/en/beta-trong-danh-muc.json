@@ -1,0 +1,172 @@
+{
+  "slug": "beta-trong-danh-muc",
+  "title": "Beta in a portfolio",
+  "subtitle": "Measuring how sensitive a portfolio is to the broad market's swings",
+  "duration": "6 min",
+  "openingQuestion": "A portfolio has a Beta of 1.5. If the broad market rises 10%, how is this portfolio expected to move?",
+  "openingOptions": [
+    "Rise by exactly 10%, matching the market",
+    "Fall by 15%",
+    "It has no relationship to market movement at all",
+    "Rise by about 15% (1.5 × 10%) - Beta measures sensitivity to the market, and a Beta above 1 means it swings more than the market in the same direction"
+  ],
+  "explanation": "Beta measures how sensitive a portfolio/stock is to the movement of the whole market. Beta = 1: moves exactly with the market. Beta > 1: swings more than the market (amplifying both gains and losses). Beta < 1: swings less than the market (more defensive). Negative beta (rare): moves opposite to the market.",
+  "diagram": [
+    { "label": "The market swings ±1%", "arrow": true },
+    { "label": "Beta measures the portfolio's sensitivity", "arrow": true },
+    { "label": "Beta > 1: amplifies both gains and losses" }
+  ],
+  "realWorldExample": {
+    "company": "Growth tech stocks vs. utilities",
+    "description": "High-growth tech stocks usually have a Beta of 1.3-1.8 (swinging more than the market), while public utility stocks usually have a Beta of 0.3-0.6 (far more stable than the broad market)."
+  },
+  "quiz": [
+    {
+      "question": "An investor near retirement, prioritizing capital preservation, should look for a portfolio with what kind of Beta?",
+      "options": [
+        "A Beta above 1 to make up for past losses",
+        "A Beta below 1 so the portfolio is steadier than the market",
+        "A Beta of exactly 1 to track the market's overall movement closely",
+        "A negative Beta so the portfolio rises when the market falls"
+      ],
+      "explanation": "An investor near retirement has a short time horizon and needs to withdraw money regularly for spending - they're especially vulnerable to a sharp drop right before they need to withdraw capital (sequence of returns risk). A low-Beta portfolio narrows the swings, better protecting accumulated capital."
+    },
+    {
+      "question": "How is a portfolio's Beta calculated when it holds many stocks with different individual Betas?",
+      "options": [
+        "A simple arithmetic average of every held stock's beta",
+        "The beta of the stock with the largest weight in the portfolio",
+        "A weighted average of each component stock's beta",
+        "The square root of the sum of each stock's beta squared"
+      ],
+      "explanation": "Beta adds up linearly by weight - just like expected return, portfolio Beta = the sum of (each stock's weight × that stock's beta); this is why an investor can actively adjust the portfolio's overall Beta by changing the weight of high/low-beta stocks."
+    },
+    {
+      "question": "A portfolio is 50% beta 1.4 and 50% beta 0.6. What is the portfolio's beta?",
+      "options": [
+        "1.4 (taking only the beta of the more volatile part)",
+        "2.0 (= 1.4 + 0.6, adding the two betas directly)",
+        "0.84 (= 1.4 × 0.6, multiplying the two betas)",
+        "1.0 (= 0.5 × 1.4 + 0.5 × 0.6, weighted)"
+      ],
+      "explanation": "Beta adds up linearly by weight, just like expected return, unlike overall risk. Combining a defensive ticker with an aggressive one produces a portfolio that swings roughly in line with the market."
+    },
+    {
+      "question": "A portfolio has a beta of 1.3, and the market falls 10%. What should you expect for the portfolio?",
+      "options": [
+        "A fall of about 13%, since beta amplifies both directions",
+        "A fall of about 7.7%, since beta softens the decline",
+        "A fall of exactly 10%, since beta only applies when the market rises",
+        "It's unpredictable, since beta only measures individual risk"
+      ],
+      "explanation": "A beta above 1 means the portfolio amplifies the market's movement in both directions. This is an average expectation, not a guarantee for any one specific session."
+    },
+    {
+      "question": "What kind of portfolio risk does beta fail to measure?",
+      "options": [
+        "A widespread recession risk affecting every industry",
+        "The individual risk specific to each company in the portfolio",
+        "A rising interest rate risk across the entire financial market",
+        "A multi-year sustained market decline risk"
+      ],
+      "explanation": "Beta only measures the part of movement that moves in step with the market. Individual risk is assumed to have already been diversified away, so for a portfolio concentrated in a few tickers, beta misses the largest source of risk."
+    }
+  ],
+  "keyTakeaways": [
+    "Beta measures how sensitive a portfolio is to the broad market's swings",
+    "Beta > 1: swings more than the market; Beta < 1: steadier than the market",
+    "Choosing the right Beta should be based on each investor's time horizon and risk tolerance"
+  ],
+  "practicePrompt": {
+    "question": "Your portfolio holds many stocks, and when you calculate the overall Beta of the whole portfolio (a weighted average of each stock's Beta), the result is 1.3. If the broad market falls 10% during a correction, how should your portfolio tend to move?",
+    "options": [
+      "The portfolio should fall less than the market, about 7-8%, since a high Beta usually comes with better resilience",
+      "A Beta of 1.3 means the portfolio tends to fall about 13% when the market falls 10%",
+      "The portfolio won't be affected at all, since Beta only applies to individual stocks, not at the portfolio level",
+      "The portfolio will fall exactly 10%, the same as the market, regardless of its Beta"
+    ],
+    "explanation": "Beta measures how sensitive a portfolio is to the broad market's swings. A Beta above 1 (like 1.3) means the portfolio swings more than the market in both directions - higher risk when the market falls, but also higher potential return when the market rises."
+  },
+  "summary": {
+    "keyIdea": "Beta measures how sensitive a portfolio is to the broad market's swings",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to a real decision.",
+    "action": "Beta > 1: swings more than the market; Beta < 1: steadier than the market"
+  },
+  "application": {
+    "title": "Look up a stock's Beta",
+    "message": "The lesson already worked a real example calculating a portfolio's beta using PNJ (beta 0.60) - see the 'Real example' section above. Now look up the Beta of a stock you hold yourself and apply that same formula.",
+    "secondary": "A high Beta isn't bad, as long as you know what you're accepting."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Beta measures how sensitive a portfolio or stock is to the movement of the whole market. Beta = 1 means it moves exactly with the market; Beta > 1 means it swings more (amplifying both gains and losses); Beta < 1 means it swings less (more defensive); negative beta - rare - means it moves opposite to the market."
+    },
+    { "type": "heading", "text": "Beta in practice" },
+    {
+      "type": "paragraph",
+      "text": "High-growth tech stocks usually have a Beta of 1.3-1.8 - swinging noticeably more than the market. Public utility stocks usually have a Beta of 0.3-0.6 - far more stable than the broad market. An investor near retirement, prioritizing capital preservation, should look for a low-Beta portfolio (<1) to reduce the risk of a sharp drop in value right before or during a period of needing to withdraw money for spending - this is called \"sequence of returns risk\"."
+    },
+    { "type": "heading", "text": "Calculating the Beta of a whole portfolio" },
+    {
+      "type": "paragraph",
+      "text": "Beta adds up linearly by weight, exactly the same way expected return does: portfolio Beta = Σ (each stock's weight × that stock's Beta). For example, a portfolio that's 50% a Beta-1.5 stock and 50% a Beta-0.5 stock has a portfolio Beta of 0.5×1.5 + 0.5×0.5 = 1.0. Because of this property, an investor can actively adjust the portfolio's overall Beta by changing the weight of high/low-beta stocks."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Beta measures how sensitive a portfolio is to the broad market's swings",
+        "Beta > 1: amplifies market movement; Beta < 1: dampens it slightly",
+        "Portfolio Beta = a weighted average of each asset's Beta",
+        "Choosing the right Beta should be based on each investor's own time horizon and risk tolerance"
+      ]
+    },
+    { "type": "heading", "text": "Real example: how PNJ's 0.60 beta affects a portfolio" },
+    {
+      "type": "list",
+      "items": [
+        "If your portfolio is 50% PNJ (beta 0.60) and 50% a stock with beta 1.4, the portfolio's weighted-average beta is (0.5×0.60)+(0.5×1.4) = 1.0 - exactly matching the broad market",
+        "To make the portfolio less risky than the market, raise the weight of low-beta stocks like PNJ",
+        "To amplify return (and risk) when you expect the market to rise, raise the weight of high-beta stocks"
+      ]
+    },
+    {
+      "type": "formula",
+      "title": "Where beta comes from, and why the denominator is market variance",
+      "equation": "βᵢ = Cov(Rᵢ, Rₘ) / σ²ₘ",
+      "variables": [
+        {
+          "symbol": "Cov(Rᵢ, Rₘ)",
+          "name": "Covariance between the stock and the market",
+          "description": "Measures how much the two move together, expressed in squared units, so it can't be read on its own."
+        },
+        {
+          "symbol": "σ²ₘ",
+          "name": "Variance of the market",
+          "description": "Dividing by it normalizes the result to be 'relative to the market', and it makes the market's own beta come out to exactly 1."
+        }
+      ],
+      "example": {
+        "title": "A bank stock",
+        "calculation": "Cov = 0.0288; the market has σ = 16%, so σ² = 0.0256. β = 0.0288 / 0.0256",
+        "result": "β = 1.125",
+        "explanation": "If the market rises 10%, the stock is expected to rise about 11.25% - and if it falls 10%, it's expected to fall 11.25%. Beta doesn't distinguish direction: it's an amplification factor in both directions, so 'high beta' doesn't mean 'good stock'."
+      }
+    },
+    { "type": "heading", "text": "Beta doesn't tell you how risky a stock is overall" },
+    {
+      "type": "paragraph",
+      "text": "Beta only measures the portion of movement that tracks the market - systematic risk. The remainder, a company's own specific risk, doesn't show up in that number at all. A pharma company awaiting clinical trial results might have a beta of 0.4 and still lose half its value in a single session on bad news - that swing is large, it just has nothing to do with the market. The figure that tells you how much of a stock's movement beta actually explains is R², usually printed right next to beta in analyst reports: R² = 0.25 means three-quarters of that stock's movement lies outside what beta explains."
+    },
+    {
+      "type": "callout",
+      "label": "Past beta isn't future beta",
+      "text": "Beta is measured from historical data, usually 2-5 years, so it describes the business as it was during that period. A company that just took on heavy debt to expand will have a higher future beta than its historical beta, because financial leverage amplifies the swing in profit that flows to shareholders. This is also why, when valuing an unlisted company, analysts take the beta of comparable listed companies, strip out their leverage, then apply their own company's leverage back in, rather than borrowing the raw number directly."
+    },
+    {
+      "type": "callout",
+      "label": "How to apply this to your own portfolio",
+      "text": "Look up the beta of each stock you hold, multiply it by that stock's weight in your portfolio, then add them up to get the weighted-average beta - compare that number against your own risk tolerance."
+    }
+  ]
+}

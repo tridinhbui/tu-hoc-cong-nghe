@@ -1,0 +1,125 @@
+{
+  "slug": "alpha-la-gi",
+  "title": "What is alpha?",
+  "subtitle": "The excess return a fund manager generates over the market",
+  "duration": "6 min",
+  "openingQuestion": "An investment fund returns 15%/year while its matching benchmark index only rises 10%/year at the same level of risk. What is this 5% gap called?",
+  "openingOptions": [
+    "Alpha - the excess return over the benchmark after adjusting for risk, reflecting the fund manager's genuine 'skill'",
+    "Beta",
+    "Sharpe Ratio",
+    "Risk premium"
+  ],
+  "explanation": "Alpha measures the return a portfolio/fund generates ABOVE what the market (a benchmark carrying the same risk level) delivers. Positive alpha means the manager is creating real value through asset selection or timing skill; negative alpha means the fund underperforms its benchmark even after accounting for risk.",
+  "diagram": [
+    { "label": "The fund's actual return", "arrow": true },
+    { "label": "Minus the benchmark's return at the same risk level", "arrow": true },
+    { "label": "= Alpha (positive = genuine value created)" }
+  ],
+  "realWorldExample": {
+    "company": "Warren Buffett and Berkshire Hathaway",
+    "description": "Warren Buffett is regarded as one of the few managers to generate sustained positive alpha across decades - outperforming the S&P 500 after adjusting for risk, an extreme rarity in fund management."
+  },
+  "quiz": [
+    {
+      "question": "Why do most actively managed funds tend to have alpha close to 0 or negative over the long run?",
+      "options": [
+        "Because markets are fairly efficient, and management fees eat up the excess",
+        "Because fund managers as a group generally lack the analytical skill needed to compete",
+        "Because active funds commonly falsify their published results",
+        "Because alpha is a concept that cannot be accurately measured in practice"
+      ],
+      "explanation": "The Efficient Market Hypothesis holds that asset prices already reflect nearly all public information, making sustained positive alpha extremely hard to find."
+    },
+    {
+      "question": "A fund has posted positive alpha for 3 straight years, but relying on a single strategy (say, only buying value stocks). What should you consider before concluding this is genuine, durable \"skill\"?",
+      "options": [
+        "Nothing further to consider - 3 straight years of positive alpha is sufficient proof",
+        "It could just be favorable factor exposure, not stock-picking skill",
+        "Three years is always a long enough period to prove durable skill",
+        "Alpha has nothing to do with the investment strategy a fund uses"
+      ],
+      "explanation": "This is the important distinction between \"factor exposure\" (benefiting from a market factor currently in favor) and \"true alpha\" (genuine, superior selection skill)."
+    },
+    {
+      "question": "What does alpha measure?",
+      "options": [
+        "The gap between a fund's return and the risk-free rate over the period",
+        "The total return a fund earns in one financial year",
+        "The return above the benchmark after adjusting for risk",
+        "How sensitive a fund is to the broad market's swings"
+      ],
+      "explanation": "Adjusting for risk is the crucial part. A fund that beats an index by 3% by holding entirely high-beta stocks isn't generating alpha - it's simply being paid for bearing more market risk."
+    },
+    {
+      "question": "A fund returns 14%, the benchmark returns 11%, the fund's beta is 1.3, and the risk-free rate is 3%. What is the alpha?",
+      "options": [
+        "About 11% (= 14% − 3%, subtracting the risk-free rate)",
+        "Exactly 3% (= 14% − 11%, just the raw unadjusted gap)",
+        "About 1.3% (= 14% − 11% × 1.3, multiplying by beta)",
+        "About −0.4% (= 14% − (3% + 1.3 × 8%))"
+      ],
+      "explanation": "The return that should have been expected with a beta of 1.3 is 3% + 1.3 × 8% = 13.4%. The fund earned 14%, so alpha is only about 0.6%, not 3% - and after fees, the excess nearly disappears."
+    },
+    {
+      "question": "Why doesn't positive alpha over three years prove skill?",
+      "options": [
+        "Because luck alone can also produce a similar short-term winning streak",
+        "Because alpha is only formally recognized by regulators when measured over ten years or more",
+        "Because regulators don't audit the published alpha figure",
+        "Because alpha always reverses to negative after the first three years"
+      ],
+      "explanation": "Among thousands of funds, some will post three straight winning years purely by chance. Telling skill apart from luck requires a much longer track record, and checking whether the alpha came from a single bet."
+    }
+  ],
+  "keyTakeaways": [
+    "Alpha: the excess return over the benchmark after adjusting for risk",
+    "Positive alpha reflects a manager's genuine skill, not short-term luck",
+    "Sustained positive alpha is extremely hard to generate in an efficient market - why passive index funds keep gaining ground"
+  ],
+  "practicePrompt": {
+    "question": "An investment fund earns an 18%/year return while a reference benchmark carrying the same risk level only reaches 13%/year. What is this 5% excess gap called in investing?",
+    "options": [
+      "This is called Beta, a measure of how sensitive a fund is to the broad market's swings",
+      "Alpha: the excess return over the benchmark after adjusting for risk",
+      "This is called Tracking Error, measuring the deviation between a fund's return and its benchmark",
+      "This gap has no special meaning, it's just random variation within a single year"
+    ],
+    "explanation": "Alpha: the excess return over the benchmark after adjusting for risk. This is the 'holy grail' active funds chase - but genuinely hard to sustain in an efficient market, which is why passive index investing keeps gaining ground."
+  },
+  "summary": {
+    "keyIdea": "Alpha: the excess return over the benchmark after adjusting for risk",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to a real decision.",
+    "action": "Positive alpha reflects a manager's genuine skill, not short-term luck"
+  },
+  "application": {
+    "title": "Find a fund with positive alpha",
+    "message": "Look up the 3-5 year performance of an active fund and compare it against its matching asset-class benchmark - if the fund outperforms after fees, that's a sign of genuine positive alpha.",
+    "secondary": "You'll find sustained positive alpha is far rarer than what most ads promise."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Alpha measures the return a portfolio or fund generates ABOVE what a benchmark carrying the same risk level delivers. Positive alpha means the manager is creating real value through asset selection or trade-timing skill; negative alpha means the fund underperforms its benchmark even after accounting for risk."
+    },
+    { "type": "heading", "text": "Why sustained positive alpha is so rare" },
+    {
+      "type": "paragraph",
+      "text": "Under the Efficient Market Hypothesis, asset prices already reflect nearly all public information, making it extremely hard to consistently \"beat the market\" after fees. The annual SPIVA report shows that most active funds fail to beat their benchmark after fees over a 10-15 year span. Warren Buffett is one of the few managers to generate sustained positive alpha across decades - precisely because it's so rare that he became legendary."
+    },
+    { "type": "heading", "text": "Genuine alpha, or just a well-timed factor bet?" },
+    {
+      "type": "paragraph",
+      "text": "A fund with positive alpha for 3 straight years based on a single strategy (say, only buying value stocks) doesn't necessarily have durable \"skill\". You need to distinguish between \"factor exposure\" (benefiting from betting correctly on a factor that happens to be in favor during that cycle) and \"true alpha\" (genuinely superior stock-picking skill). This difference only becomes clear once that factor cycle reverses - many funds that look like they're generating alpha are simply riding the right wave."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Alpha: the excess return over the benchmark after adjusting for risk",
+        "Positive alpha reflects genuine skill, not short-term luck",
+        "Distinguish factor exposure (a correctly timed trend bet) from true alpha (genuine skill)",
+        "Sustained positive alpha is extremely rare - why passive investing keeps gaining ground"
+      ]
+    }
+  ]
+}

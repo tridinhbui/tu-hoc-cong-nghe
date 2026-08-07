@@ -1,0 +1,133 @@
+{
+  "slug": "chinh-sach-tien-te",
+  "title": "Monetary policy and interest rates",
+  "subtitle": "How do the Fed and the State Bank steer the economy through interest rates?",
+  "duration": "7 min",
+  "openingQuestion": "When the Fed raises interest rates, what happens to the economy?",
+  "openingOptions": [
+    "No effect",
+    "Borrowing costs rise → consumption and investment fall → inflation cools → growth slows",
+    "Exports rise",
+    "The economy grows faster"
+  ],
+  "explanation": "Monetary policy is how a central bank influences the quantity and price of money in the economy, mainly through the policy rate, open market operations, and the reserve requirement ratio. The transmission mechanism passes through several stages - the interbank rate, lending rates, business investment decisions - so the full effect usually isn't visible until several quarters later. That very lag is what makes policymaking hard: decisions must be made based on forecasts, not on today's data.",
+  "diagram": [
+    { "label": "The central bank watches inflation and growth", "arrow": true },
+    { "label": "Adjusts the policy interest rate", "arrow": true },
+    { "label": "Interbank and lending rates shift accordingly", "arrow": true },
+    { "label": "Credit, consumption and investment react after several quarters" }
+  ],
+  "interactiveType": "interest-rate",
+  "realWorldExample": {
+    "company": "The Fed",
+    "description": "2022-2023: the Fed raised rates from 0% to 5.25% - the fastest pace in 40 years to rein in 9% inflation. The result: bond prices fell sharply, tech stocks sold off, and Silicon Valley Bank collapsed due to the falling value of the bonds it held."
+  },
+  "quiz": [
+    {
+      "question": "What is QE (Quantitative Easing)?",
+      "options": [
+        "Raising the policy rate to pull money out of the banking system",
+        "Raising the reserve requirement ratio to reduce banks' ability to lend",
+        "Devaluing the domestic currency to support exports and raise aggregate demand",
+        "The Fed buys bonds to inject money and lower long-term rates"
+      ],
+      "explanation": "QE: once rates have hit zero (the zero lower bound), the Fed buys Treasuries and MBS → injecting money, lowering long-term rates. Used after the 2008 crisis and during COVID-2020. QT (Quantitative Tightening) is the reverse."
+    },
+    {
+      "question": "Why is monetary policy usually described as having a significant 'lag' - meaning the effect of raising/lowering rates doesn't show up immediately but takes many months to work through the economy?",
+      "options": [
+        "Because real borrowing and investment decisions take time to implement",
+        "Monetary policy has an instant effect, with no lag at all",
+        "The lag only happens in developing countries, not in the US",
+        "Because commercial banks deliberately delay implementation"
+      ],
+      "explanation": "The monetary policy lag (usually 6-18 months) is why central banks must make decisions based on FORECASTS of the future rather than just current data - a major challenge because they must act before seeing the clear result."
+    },
+    {
+      "question": "What is the main goal when a central bank raises its policy rate?",
+      "options": [
+        "Increasing liquidity for the commercial banking system",
+        "Cooling inflation by making capital more expensive",
+        "Supporting businesses in borrowing to expand production",
+        "Devaluing the domestic currency to support exports"
+      ],
+      "explanation": "More expensive borrowing slows consumption and investment, demand falls, and price pressure eases along with it. The cost is slower growth and possibly rising unemployment - that is the central trade-off of monetary policy."
+    },
+    {
+      "question": "Why is monetary policy said to have a long lag?",
+      "options": [
+        "Because commercial banks are allowed to delay implementation by a year",
+        "Because the central bank only meets twice per fiscal year",
+        "Because the effect on the real economy takes many quarters to show up clearly",
+        "Because inflation data is only published once per quarter"
+      ],
+      "explanation": "Today's decision flows through lending rates, then to investment decisions, then to jobs and prices. This lag is why central banks must act on forecasts, and also why they're often criticised for acting too late or too aggressively."
+    },
+    {
+      "question": "How does quantitative easing (QE) differ from cutting the policy rate?",
+      "options": [
+        "QE is a fiscal measure, not a monetary one",
+        "QE only applies to large commercial banks",
+        "QE raises short-term rates to pull money back in",
+        "QE buys assets to pull down long-term yields"
+      ],
+      "explanation": "The policy rate acts on the short end of the curve. Once rates have hit the floor, the central bank buys long-term bonds to push up their price and pull down long-term yields - a tool for when the usual toolkit has run out of room."
+    }
+  ],
+  "keyTakeaways": [
+    "Interest rates = the main monetary policy tool",
+    "Raising rates: tightening; lowering rates: easing",
+    "QE: injecting money once rates have hit zero"
+  ],
+  "practicePrompt": {
+    "question": "When the economy is overheating and inflation exceeds target, the State Bank usually raises the policy rate to 'cool down' the economy. What tool is being used here, and what is its transmission mechanism?",
+    "options": [
+      "This is fiscal policy, since it involves adjusting government spending",
+      "Interest rates = the main monetary policy tool - when the central bank raises rates, borrowing costs rise, reducing demand for loans to spend and invest, which helps cool inflation",
+      "This is exchange rate policy, since interest rates only affect the domestic currency's value against foreign currencies and trade flows",
+      "Interest rates are not a policy tool, just a natural outcome of supply and demand in the capital market"
+    ],
+    "explanation": "Interest rates = the main monetary policy tool. The central bank uses the policy rate to affect the entire economy: raising rates makes borrowing more expensive (reducing spending, investment, cooling inflation), lowering rates makes borrowing cheaper (stimulating growth when the economy is weak)."
+  },
+  "summary": {
+    "keyIdea": "Interest rates = the main monetary policy tool",
+    "commonMistake": "Reading the concept as a definition to recite rather than a principle to apply to a real decision.",
+    "action": "Raising rates: tightening; lowering rates: easing"
+  },
+  "application": {
+    "title": "Apply it now",
+    "message": "Follow the State Bank's or the Fed's most recent interest rate decision, and try explaining in your own words: are they tightening or easing, and what is the goal?",
+    "secondary": "Being able to explain it to someone else is how you check whether you've truly understood it."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Interest rates don't arise on their own - they are largely shaped by the monetary policy decisions of central banks like the Fed (US) or the State Bank of Vietnam. This is the most powerful tool for steering an entire economy."
+    },
+    { "type": "heading", "text": "Three main monetary policy tools" },
+    {
+      "type": "paragraph",
+      "text": "A central bank has three main tools: (1) the policy rate (the Fed Funds Rate in the US, the State Bank's policy rate in Vietnam) - the anchor rate for the entire banking system; (2) open market operations (OMO) - buying/selling government bonds to regulate the money supply in the system; (3) the reserve requirement ratio - what percentage of deposits banks must hold back, not lend out. Raising rates is tightening (reducing inflation by slowing borrowing and spending); lowering rates is easing (stimulating growth)."
+    },
+    { "type": "heading", "text": "QE: a special tool once rates have hit zero" },
+    {
+      "type": "paragraph",
+      "text": "When short-term rates have already hit zero (the zero lower bound) but the economy still needs more stimulus, the central bank uses Quantitative Easing (QE): directly buying a large volume of government bonds and other assets to inject money into the system, pulling down long-term rates. The Fed used QE after the 2008 crisis and during the COVID-19 pandemic in 2020. The reverse is Quantitative Tightening (QT) - selling off assets, pulling money out of the system. During 2022-2023, the Fed raised rates from 0% to 5.25% - the fastest pace in 40 years - to rein in 9% inflation, causing bond prices to fall sharply and contributing to the collapse of Silicon Valley Bank, which held a large amount of long-term bonds that had lost value."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Policy rate: the anchor tool for the entire interest rate curve in the economy",
+        "OMO: buying/selling bonds to regulate daily banking system liquidity",
+        "QE: injecting money through asset purchases once rates have hit zero",
+        "Monetary policy has a 6-18 month lag - the effect doesn't arrive immediately"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A central bank must always act on forecasts, because the real effect of policy only becomes clear after many months."
+      ]
+    }
+  ]
+}

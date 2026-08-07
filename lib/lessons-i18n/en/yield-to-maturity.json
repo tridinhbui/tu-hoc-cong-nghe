@@ -1,0 +1,148 @@
+{
+  "slug": "yield-to-maturity",
+  "title": "Yield to Maturity (YTM)",
+  "subtitle": "The real return if you hold a bond until maturity",
+  "duration": "7 min",
+  "openingQuestion": "How does YTM differ from the coupon rate?",
+  "openingOptions": [
+    "No difference",
+    "YTM accounts for both the gap between purchase price/face value and the coupon, reflecting the real return on the bond investment",
+    "YTM only counts interest",
+    "The coupon rate is always higher than YTM"
+  ],
+  "explanation": "Yield to Maturity is the true return for someone who buys the bond at today's market price and holds it to the end of its term - it combines both the coupon received and the gain or loss relative to face value. This is therefore the correct number to compare between bonds, not the coupon rate. Buying below face value gives a yield higher than the coupon, buying above face value gives a lower yield, and buying at exactly face value makes the two numbers match.",
+  "diagram": [
+    { "label": "Today's market purchase price", "arrow": true },
+    { "label": "Add all the coupons to be received", "arrow": true },
+    { "label": "Add the gain or loss versus face value at maturity", "arrow": true },
+    { "label": "Reduce everything to one single rate: that is YTM" }
+  ],
+  "interactiveType": "bond",
+  "realWorldExample": {
+    "company": "Comparing bonds bought above/below face value",
+    "description": "An investor who buys a corporate bond at a discount (below face value) on the secondary market usually gets a YTM higher than the listed coupon rate - because they receive the periodic coupon AND benefit from the price gap when the bond matures at exactly face value."
+  },
+  "quiz": [
+    {
+      "question": "A bond has a face value of 1 million, a 6% coupon, and is trading at 950,000 VND. How does YTM compare to 6%?",
+      "options": [
+        "YTM = 6% - the purchase price has no effect, YTM always equals the coupon rate exactly",
+        "YTM < 6% - paying less than face value means receiving correspondingly less interest",
+        "YTM = 0 - since it hasn't matured yet, the yield can't be determined",
+        "YTM > 6% - buying below face value adds a capital gain on top of the coupon"
+      ],
+      "explanation": "Buying at 950,000 VND → at maturity you receive 1,000,000 VND = a capital gain of 50,000 VND + the annual coupon. YTM includes both → higher than the 6% coupon rate. YTM is the most important number when comparing bonds."
+    },
+    {
+      "question": "A bond has a 6% coupon rate but is trading above face value (at a premium). How will its YTM compare to 6%?",
+      "options": [
+        "Lower than 6% - paying above face value means a capital loss at maturity",
+        "Higher than 6% - the high price shows the market rates it well",
+        "Still exactly 6% - YTM always equals the coupon rate regardless of purchase price",
+        "Cannot be determined without knowing the bond's remaining term"
+      ],
+      "explanation": "This is the symmetric relationship to buying at a discount: buying a bond at a premium (above face value) gives a YTM lower than the coupon rate, because the price loss at maturity pulls the real yield below the nominal coupon rate."
+    },
+    {
+      "question": "What is the core difference between YTM and the coupon rate?",
+      "options": [
+        "YTM is annual while the coupon rate is per payment period",
+        "YTM is calculated on the actual purchase price, the coupon on face value",
+        "YTM is set by the market while the coupon is negotiated by the investor",
+        "YTM only applies to government bonds, the coupon to corporate bonds"
+      ],
+      "explanation": "The coupon rate is fixed at issuance and never changes. YTM is the real yield you get if you buy at the current price and hold to maturity - it changes every time the market price changes."
+    },
+    {
+      "question": "A bond is bought at a price above face value. How does YTM compare to the coupon rate?",
+      "options": [
+        "Exactly equal to the coupon rate, since the repaid face value doesn't change",
+        "Higher than the coupon rate, because the bond is in high demand",
+        "Lower than the coupon rate, because extra was paid to buy it",
+        "Cannot be determined without knowing the credit rating"
+      ],
+      "explanation": "Paying 105 to get back 100 at maturity means absorbing a capital loss spread out until then. That loss subtracts from the coupon, pulling the real yield below the coupon rate."
+    },
+    {
+      "question": "Which implicit assumption of YTM often doesn't hold true in reality?",
+      "options": [
+        "Market interest rates stay unchanged for the life of the bond",
+        "The issuer is certain never to default",
+        "The investor will sell the bond before maturity",
+        "Every coupon received gets reinvested at exactly the YTM rate"
+      ],
+      "explanation": "YTM is an internal rate of return, so it carries the same reinvestment assumption as IRR. Coupons received are usually reinvested at a different rate, causing the real yield actually earned to diverge from the quoted YTM."
+    }
+  ],
+  "keyTakeaways": [
+    "YTM = the real yield if held to maturity",
+    "Bought at a discount: YTM > coupon; bought at a premium: YTM < coupon",
+    "YTM is the criterion for comparing bonds, not the coupon rate"
+  ],
+  "practicePrompt": {
+    "question": "A bond is trading below face value (bought cheaper than the 100 million principal) with a 6%/year coupon. The seller advertises a '6% yield' but in reality the Yield to Maturity (YTM) of this bond is higher than 6%. Why does YTM differ from the coupon rate, and what does it represent?",
+    "options": [
+      "YTM always equals the coupon rate exactly; the discrepancy in this example is a calculation error by the seller",
+      "YTM is the real yield if held to maturity, including both the coupon and the capital gain at maturity",
+      "YTM only applies to government bonds, not to corporate bonds bought below face value",
+      "YTM is the yield the issuing company commits to pay, different from the coupon which is what the investor actually receives"
+    ],
+    "explanation": "YTM = the real yield if held to maturity. This is a combined figure that includes both the coupon and the gap between the purchase price and face value - buying below face value makes YTM higher than the coupon rate, buying above face value makes YTM lower than the coupon rate."
+  },
+  "summary": {
+    "keyIdea": "YTM = the real yield if held to maturity",
+    "commonMistake": "Reading the concept as a definition to recite rather than a principle to apply to a real decision.",
+    "action": "Bought at a discount: YTM > coupon; bought at a premium: YTM < coupon"
+  },
+  "application": {
+    "title": "Apply it now",
+    "message": "The lesson already has a real example applying YTM to a 10-year government bond (~4.11%/year) - see the 'Real example' section above. Now find a bond trading below face value yourself and check its YTM.",
+    "secondary": "When comparing bonds to buy, always use YTM, don't just look at the coupon rate."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The coupon rate is the fixed number printed on a bond, but it doesn't reflect the real yield you get if you buy the bond at a price different from face value. Yield to Maturity (YTM) is the number that actually matters: it combines both the coupon interest and any capital gain/loss if you hold the bond to maturity."
+    },
+    { "type": "heading", "text": "Buying below face value: YTM higher than the coupon rate" },
+    {
+      "type": "paragraph",
+      "text": "**Example:** a bond with a face value of 1,000,000 VND and a 6%/year coupon, but trading on the secondary market at a discounted price of 950,000 VND. If you buy at this price and hold to maturity, you still receive the full 1,000,000 VND principal - that's an extra 50,000 VND capital gain, plus a 60,000 VND coupon each year throughout the term. The total real yield (YTM) is therefore well above the listed 6% coupon rate. This is why YTM is always the correct criterion for comparing two bonds, not the coupon rate - because two bonds with the same 6% coupon but different purchase prices deliver very different real yields."
+    },
+    { "type": "heading", "text": "Buying above face value: YTM lower than the coupon rate" },
+    {
+      "type": "paragraph",
+      "text": "Conversely, if a 6% coupon bond is trading at a premium (above face value), the investor has to pay more than 1,000,000 VND to buy it, but at maturity receives back only exactly the face value - a capital loss. This loss pulls the real yield below 6%. This relationship is perfectly symmetric to the discount case: the higher the purchase price is above face value, the lower YTM is below the coupon rate."
+    },
+    {
+      "type": "list",
+      "items": [
+        "YTM is the internal rate of return (IRR) of the entire bond cash flow: purchase price, coupons, and principal at maturity",
+        "Bought at a discount (below face value) → YTM > coupon rate",
+        "Bought at a premium (above face value) → YTM < coupon rate",
+        "Bought at exactly face value (par) → YTM = coupon rate"
+      ]
+    },
+    { "type": "heading", "text": "Real example: applying YTM to a 10-year government bond" },
+    {
+      "type": "list",
+      "items": [
+        "Vietnam's 10-year government bond currently has an auction yield (approximately YTM when bought new at face value) of around 4.11%/year",
+        "If this bond then trades on the secondary market at a price BELOW face value (for example, the price falls because market rates rose), the real YTM for a buyer at that lower price will be HIGHER than 4.11% - because they get both the fixed coupon and the gain from the price gap at maturity",
+        "Conversely, buying above face value gives a YTM lower than the coupon rate"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Check your understanding",
+      "text": "Find a bond currently trading below face value (priced under 100% of face value) on the HNX or from a securities firm's bond data, and compare its published YTM against its coupon rate - if the price is below face value, YTM must be higher than the coupon; if not, the formula you're applying is wrong."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Never compare two bonds by coupon rate alone - always look at YTM.",
+        "YTM is the real rate you actually lock in if you hold the bond for its full term."
+      ]
+    }
+  ]
+}
