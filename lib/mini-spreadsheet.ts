@@ -543,6 +543,7 @@ function evalCall(ctx: Ctx, n: Extract<Node, { k: "call" }>): Val {
   switch (name) {
     case "SUM":
     case "AVERAGE":
+    case "MEDIAN":
     case "MIN":
     case "MAX":
     case "PRODUCT": {
@@ -556,6 +557,14 @@ function evalCall(ctx: Ctx, n: Extract<Node, { k: "call" }>): Val {
       if (name === "PRODUCT") return nums.reduce((s, x) => s * x, 1);
       if (nums.length === 0) return new ExcelError("#DIV/0!", "Không có số nào");
       if (name === "AVERAGE") return nums.reduce((s, x) => s + x, 0) / nums.length;
+      if (name === "MEDIAN") {
+        // Trung vị, không phải trung bình - và đây là lý do nó tồn tại ở đây:
+        // định giá so sánh dùng trung vị bội số của nhóm ngang hàng, vì một
+        // công ty bị định giá lệch sẽ kéo trung bình đi mà không kéo trung vị.
+        const sorted = [...nums].sort((x, y) => x - y);
+        const mid = sorted.length >> 1;
+        return sorted.length % 2 === 1 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
+      }
       return name === "MIN" ? Math.min(...nums) : Math.max(...nums);
     }
     case "COUNT": {

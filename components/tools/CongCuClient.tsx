@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import dynamic from "next/dynamic";
-import { Wallet, PiggyBank, ShieldAlert, TrendingUp, Sparkles, Building2 } from "lucide-react";
+import { Wallet, PiggyBank, ShieldAlert, TrendingUp, Sparkles, Building2, Table2 } from "lucide-react";
 import { useAuthGate } from "@/lib/use-auth-gate";
 import { useI18n } from "@/lib/i18n/context";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
@@ -26,7 +26,15 @@ const EmergencyFundCalculator = dynamic(() => import("@/components/tools/Emergen
 const CompoundInterestSimulator = dynamic(() => import("@/components/tools/CompoundInterestSimulator"), { loading: Loading });
 const FirePlanner = dynamic(() => import("@/components/tools/FirePlanner"), { loading: Loading });
 const ValuationDCFCalculator = dynamic(() => import("@/components/tools/ValuationDCFCalculator"), { loading: Loading });
-type Tab = "net-worth" | "budget" | "emergency-fund" | "compound-interest" | "fire-planner" | "valuation-dcf";
+const ValuationModelSim = dynamic(() => import("@/components/tools/ValuationModelSim"), { loading: Loading });
+type Tab =
+  | "net-worth"
+  | "budget"
+  | "emergency-fund"
+  | "compound-interest"
+  | "fire-planner"
+  | "valuation-dcf"
+  | "valuation-model";
 
 // Structural shape of the tab list: id and icon. Labels come from
 // `t.dataTables.toolsIndex.tabs`; see `tabsOf`.
@@ -37,6 +45,7 @@ const TAB_ICONS: { id: Tab; icon: typeof Wallet }[] = [
   { id: "compound-interest", icon: TrendingUp },
   { id: "fire-planner", icon: Sparkles },
   { id: "valuation-dcf", icon: Building2 },
+  { id: "valuation-model", icon: Table2 },
 ];
 
 function tabsOf(t: Dictionary): { id: Tab; label: string; icon: typeof Wallet }[] {
@@ -48,6 +57,7 @@ function tabsOf(t: Dictionary): { id: Tab; label: string; icon: typeof Wallet }[
     { ...TAB_ICONS[3], label: copy.compoundInterest },
     { ...TAB_ICONS[4], label: copy.firePlanner },
     { ...TAB_ICONS[5], label: copy.valuationDcf },
+    { ...TAB_ICONS[6], label: copy.valuationModel },
   ];
 }
 
@@ -105,6 +115,7 @@ export default function CongCuClient() {
         {tab === "compound-interest" && <CompoundInterestSimulator />}
         {tab === "fire-planner" && <FirePlanner />}
         {tab === "valuation-dcf" && <ValuationDCFCalculator />}
+        {tab === "valuation-model" && <ValuationModelSim />}
       </div>
     </div>
   );

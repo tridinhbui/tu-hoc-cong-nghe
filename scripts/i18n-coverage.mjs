@@ -103,6 +103,19 @@ const NON_COPY_FIELDS = new Set([
   "unit",
   "storageKey",
   "assetKey",
+  // Spreadsheet-model plumbing: a cell address, the key a label is looked up
+  // by, and the axis a sensitivity table pivots on. lib/valuation-model-sim.ts
+  // holds ~100 of these and every one of them was reported as prose.
+  "labelKey",
+  // A spreadsheet formula is not prose in any language: "=MEDIAN(B4:B7)" reads
+  // the same to every reader, and translating a function name would break it.
+  "formula",
+  "ref",
+  "refs",
+  "outputRef",
+  "rowRef",
+  "colRef",
+  "columns",
   "correct",
   "answer",
 ]);

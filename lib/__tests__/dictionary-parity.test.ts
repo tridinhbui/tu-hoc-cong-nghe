@@ -170,6 +170,9 @@ const INTENTIONALLY_UNTRANSLATED = new Set([
   "finalOne.dcfGame.industries.tech-titan",
   "finalOne.dcfGame.industries.fintech-disruptor",
   "finalOne.guildsRoute.fallbackNames.guild-pe",
+  // The comps table's column header: three multiple names and separators. They
+  // are the multiples' own names in both languages.
+  "valuationSim.rows.peerColumns",
   // Formulas: a DuPont decomposition and the compound-interest options, which
   // are algebra in both languages. Translating "FV" or "PV" would stop them
   // matching the lesson that teaches them.
