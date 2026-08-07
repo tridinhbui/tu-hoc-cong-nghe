@@ -15,6 +15,7 @@ import {
   deleteQuizQuestionAction,
 } from "./actions";
 import { useI18n } from "@/lib/i18n/context";
+import { findCorrectAnswerLengthTell } from "@/lib/option-length-tell";
 import { format } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
@@ -262,6 +263,24 @@ function ModuleEditor({
         explanation: q.explanation,
       });
       toast.success(format(tc.saveQuestionSuccess, { questionNo: q.questionNo }));
+
+      // Cảnh báo SAU khi lưu, không chặn trước khi lưu. Đáp án đúng nên là
+      // phương án dài nhất ở khoảng một phần ba số câu ba phương án - đó là
+      // mức may rủi - nên chặn sẽ ép người soạn viết lệch sang chiều ngược
+      // lại, đúng cách kho bài học từng trôi tới z = −4,6. Việc của nó là làm
+      // mách nước hiện ra lúc còn sửa được.
+      //
+      // Đây là cổng DUY NHẤT với tới được kho câu hỏi này: quiz module CFA nằm
+      // trong bảng ModuleQuizQuestion trên Supabase chứ không trong repo, nên
+      // không script hay test nào đọc được nó - trong khi nó vẫn ghi
+      // quiz_score và vẫn nuôi cfa_readiness.
+      const tell = findCorrectAnswerLengthTell(
+        [q.optionA, q.optionB, q.optionC],
+        ["A", "B", "C"].indexOf(q.correct)
+      );
+      if (tell) {
+        toast.warning(format(tc.lengthTellWarning, { length: tell.length, mean: tell.mean }));
+      }
     } catch (err) {
       toast.error(err instanceof Error ? err.message : tc.saveQuestionError);
     } finally {
