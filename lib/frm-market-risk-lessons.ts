@@ -282,7 +282,7 @@ export const FRM_MARKET_RISK_LESSONS: Lesson[] = [
         "Mô hình VaR 99% có 3 lần vượt trong 250 ngày, nhưng cả 3 rơi vào cùng một tuần. Kết luận gì?",
       options: [
         "Mô hình đạt yêu cầu, vì 3 lần nằm trong khoảng kỳ vọng",
-        "Tần suất đạt nhưng phân bố không đạt: cụm vi phạm cho thấy mô hình không bắt kịp khi biến động tăng",
+        "Tần suất đạt nhưng phân bố không đạt: vi phạm bị cụm",
         "Mô hình quá thận trọng",
         "Cần tăng cửa sổ dữ liệu lên 500 ngày",
       ],
@@ -460,7 +460,7 @@ export const FRM_MARKET_RISK_LESSONS: Lesson[] = [
         "Hai danh mục cùng VaR 99% là 10 tỷ. Danh mục A khi vượt ngưỡng thì lỗ trung bình 12 tỷ, danh mục B lỗ trung bình 40 tỷ. Thước đo nào phân biệt được?",
       options: [
         "VaR, vì nó đã tính ở mức 99%",
-        "Expected Shortfall, vì nó lấy trung bình toàn bộ phần đuôi thay vì dừng ở ngưỡng",
+        "Expected Shortfall, tính cả đuôi",
         "Cả hai đều phân biệt được",
         "Không thước đo nào phân biệt được",
       ],
@@ -630,7 +630,7 @@ export const FRM_MARKET_RISK_LESSONS: Lesson[] = [
         "Thị trường vừa trải qua một tuần biến động rất mạnh. Mô hình nào cho ước lượng biến động phản ứng nhanh nhất?",
       options: [
         "Độ lệch chuẩn cửa sổ 250 ngày",
-        "EWMA với lambda thấp, vì trọng số dồn nhiều vào các quan sát gần nhất",
+        "EWMA với lambda thấp",
         "EWMA với lambda cao",
         "Ba cách phản ứng như nhau",
       ],
@@ -790,7 +790,7 @@ export const FRM_MARKET_RISK_LESSONS: Lesson[] = [
         "Danh mục gồm 10 cổ phiếu ngành khác nhau, tương quan cặp trung bình 0,25. Rủi ro lớn nhất bị bỏ sót là gì?",
       options: [
         "Danh mục chưa đủ số lượng cổ phiếu để đa dạng hoá",
-        "Tương quan 0,25 là mức trung bình các ngày bình thường; trong cú sốc chung nó có thể tiến gần 1 và lợi ích đa dạng hoá biến mất",
+        "Tương quan 0,25 có thể tiến gần 1 khi sốc chung",
         "Các cổ phiếu cùng sàn niêm yết",
         "Chưa tính đến chi phí giao dịch khi tái cân bằng",
       ],
@@ -975,7 +975,7 @@ export const FRM_MARKET_RISK_LESSONS: Lesson[] = [
         "Ban lãnh đạo xem kết quả stress test cho thấy lỗ 800 tỷ trong kịch bản xấu, rồi kết luận kịch bản đó khó xảy ra nên không cần làm gì. Vấn đề ở đâu?",
       options: [
         "Không có vấn đề gì nếu xác suất thực sự thấp",
-        "Stress test không đưa ra xác suất, nên bác bỏ nó bằng lập luận khó xảy ra là dùng một thông tin mà bài kiểm tra không hề cung cấp",
+        "Stress test không đưa ra xác suất",
         "Cần chạy thêm nhiều kịch bản hơn",
         "Nên dùng VaR thay thế",
       ],

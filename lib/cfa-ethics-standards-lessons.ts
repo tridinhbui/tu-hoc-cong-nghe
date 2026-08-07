@@ -177,7 +177,7 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
         "Bạn phát hiện một đồng nghiệp thường xuyên làm tròn số liệu hiệu suất lên trong tài liệu gửi khách. Áp dụng khung, bước tiếp theo là gì?",
       options: [
         "Báo ngay cho cơ quan quản lý bên ngoài công ty",
-        "Xác định mức độ: sai lệch bao nhiêu, ai đọc tài liệu đó, có phải chủ ý không - rồi mới chọn cách xử lý",
+        "Xác định mức độ sai lệch rồi mới xử lý",
         "Bỏ qua vì đó là việc của bộ phận tuân thủ",
         "Nói thẳng với khách hàng của đồng nghiệp đó",
       ],
@@ -733,7 +733,7 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
         "Sếp bộ phận bảo lãnh phát hành nhắc bạn rằng khuyến nghị 'Bán' của bạn có thể làm mất một hợp đồng lớn cho công ty. Đây là tình huống gì?",
       options: [
         "Trao đổi nội bộ bình thường giữa hai bộ phận",
-        "Áp lực từ bên trong công ty lên tính độc lập - đúng thứ Standard I(B) và bức tường thông tin tồn tại để chặn",
+        "Áp lực nội bộ lên tính độc lập - đúng thứ Standard I(B) chặn",
         "Vi phạm Standard III vì liên quan tới nghĩa vụ với khách hàng",
         "Chỉ là vấn đề nếu bạn thực sự đổi khuyến nghị sau đó",
       ],
@@ -938,7 +938,7 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
         "Bạn trích một đoạn phân tích của tổ chức khác vào báo cáo, có ghi nguồn đầy đủ, nhưng bỏ đi phần cảnh báo rủi ro đi kèm trong nguyên bản. Đánh giá thế nào?",
       options: [
         "Hợp lệ vì đã ghi nguồn đầy đủ theo yêu cầu",
-        "Vẫn là trình bày sai lệch: trích có chọn lọc làm đổi ý nghĩa của nguyên bản dù từng chữ đều đúng",
+        "Vẫn là trình bày sai lệch: trích chọn lọc làm đổi ý nghĩa",
         "Chỉ có vấn đề nếu tổ chức kia phản đối việc trích dẫn",
         "Hợp lệ nếu bạn tự thêm phần cảnh báo rủi ro của riêng mình",
       ],
@@ -1313,7 +1313,7 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
         "Cuối quý, một nhà quản lý quỹ mua thêm mạnh vào chính các mã đang chiếm tỷ trọng lớn trong danh mục, trong phiên cuối cùng. Đánh giá?",
       options: [
         "Hợp lệ vì mua vào tài sản mình đã tin tưởng là chiến lược nhất quán",
-        "Đáng ngờ là thao túng để đẩy giá trị danh mục cuối kỳ - hành vi có tên riêng trong ngành và bị Standard II(B) cấm",
+        "Đáng ngờ là thao túng để đẩy giá trị danh mục cuối kỳ",
         "Chỉ vi phạm nếu quỹ đó tính phí hiệu suất trên NAV cuối kỳ",
         "Hợp lệ vì giao dịch diễn ra công khai trên sàn tập trung",
       ],
@@ -1692,7 +1692,7 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
         "Tài liệu chào bán ghi: 'Chiến lược đạt 22%/năm giai đoạn 2015-2024', trong đó 2015-2019 là mô phỏng và 2020-2024 là vận hành thật, vẽ thành một đường liền. Đánh giá?",
       options: [
         "Hợp lệ vì cả hai giai đoạn đều được tính đúng phương pháp",
-        "Trình bày sai lệch: gộp mô phỏng với vận hành thật thành một đường khiến người đọc tưởng toàn bộ là tiền thật",
+        "Trình bày sai lệch: gộp mô phỏng với vận hành thật thành một đường",
         "Chỉ có vấn đề nếu giai đoạn mô phỏng cho kết quả cao hơn giai đoạn thật",
         "Hợp lệ nếu có ghi chú nhỏ ở cuối tài liệu về giai đoạn mô phỏng",
       ],
@@ -1878,7 +1878,7 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
         "Bạn được mời dạy một khóa cuối tuần về phân tích tài chính, có thù lao, không liên quan tới khách hàng nào của công ty. Có cần báo không?",
       options: [
         "Không, vì hoàn toàn không liên quan tới khách hàng của công ty",
-        "Có: đây vẫn là thù lao ngoài lương và chiếm thời gian, năng lực chuyên môn mà nhà tuyển dụng có quyền biết để tự đánh giá",
+        "Có: vẫn là thù lao ngoài lương mà công ty có quyền biết",
         "Không, vì diễn ra ngoài giờ làm việc chính thức",
         "Chỉ cần báo nếu thù lao vượt một tháng lương của bạn",
       ],
@@ -2040,7 +2040,7 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
         "Bạn dùng một mô hình định giá cho kết quả rất nhạy với giả định tăng trưởng dài hạn. Nên trình bày thế nào với khách?",
       options: [
         "Chỉ đưa kết quả cuối cùng để tránh làm khách rối",
-        "Nêu rõ kết quả phụ thuộc mạnh vào giả định nào, và khoảng giá trị thay đổi ra sao khi giả định đó đổi",
+        "Nêu rõ kết quả phụ thuộc mạnh vào giả định nào",
         "Đưa toàn bộ bảng tính để khách tự kiểm tra",
         "Chọn giả định thận trọng nhất rồi chỉ báo con số đó",
       ],
@@ -2245,7 +2245,7 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
         "Trên trang mạng nghề nghiệp, bạn ghi tên mình kèm hậu tố 'CFA Level II Candidate' ngay sau họ tên. Đánh giá?",
       options: [
         "Hợp lệ vì đã ghi rõ chữ Candidate nên không gây hiểu nhầm",
-        "Không nên: hướng dẫn của CFA Institute yêu cầu mô tả trạng thái candidate trong phần nội dung, không đặt như hậu tố sau tên",
+        "Không nên: candidate mô tả trong nội dung, không sau tên",
         "Hợp lệ nếu bạn thực sự đã đăng ký kỳ thi Level II",
         "Vi phạm vì không tồn tại khái niệm CFA Level II Candidate",
       ],

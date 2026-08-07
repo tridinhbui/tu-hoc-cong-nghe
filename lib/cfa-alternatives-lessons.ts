@@ -340,7 +340,7 @@ export const CFA_ALTERNATIVES_LESSONS: Lesson[] = [
         "Bạn so sánh một quỹ bất động sản (độ lệch chuẩn báo cáo 6%) với một quỹ cổ phiếu (18%) để chọn tỷ trọng danh mục. Nên làm gì trước?",
       options: [
         "Chọn quỹ bất động sản vì rủi ro thấp hơn ba lần",
-        "Hiệu chỉnh phần làm mượt trước khi so sánh - con số 6% mô tả nhịp thẩm định chứ không mô tả biến động giá trị thật",
+        "Hiệu chỉnh phần làm mượt trước khi so sánh",
         "Bỏ qua độ lệch chuẩn và chỉ so sánh lợi nhuận trung bình",
         "Yêu cầu quỹ bất động sản công bố lại số liệu theo tháng",
       ],
@@ -536,7 +536,7 @@ export const CFA_ALTERNATIVES_LESSONS: Lesson[] = [
         "Một quỹ cho vay trực tiếp quảng cáo lợi suất 11%/năm với lãi suất thả nổi. Rủi ro chính cần hỏi là gì?",
       options: [
         "Rủi ro lãi suất, vì lãi thả nổi biến động theo thị trường",
-        "Chất lượng tín dụng người vay và khả năng thu hồi khi vỡ nợ - lãi thả nổi đã xử lý phần lớn rủi ro lãi suất rồi",
+        "Chất lượng tín dụng người vay và khả năng thu hồi khi vỡ nợ",
         "Rủi ro tỷ giá nếu khoản vay bằng ngoại tệ",
         "Rủi ro thanh khoản của chính chứng chỉ quỹ trên thị trường thứ cấp",
       ],
@@ -701,7 +701,7 @@ export const CFA_ALTERNATIVES_LESSONS: Lesson[] = [
         "Một quỹ chào dự án điện mặt trời chưa khởi công, lợi suất mục tiêu 14% so với 8% của một nhà máy đang vận hành. Nên đọc chênh lệch này thế nào?",
       options: [
         "Dự án mới hiệu quả hơn nên đáng đầu tư hơn",
-        "6 điểm chênh lệch là phần bù cho rủi ro xây dựng, cấp phép và chưa có doanh thu - phải đánh giá xem nó có đủ bù không",
+        "6 điểm chênh là phần bù rủi ro xây dựng và cấp phép",
         "Chênh lệch phản ánh việc dự án mới dùng công nghệ tốt hơn",
         "Nên chọn dự án đang vận hành vì rủi ro thấp hơn trong mọi trường hợp",
       ],
@@ -903,7 +903,7 @@ export const CFA_ALTERNATIVES_LESSONS: Lesson[] = [
         "Một quỹ rừng trồng báo cáo lợi nhuận dương suốt mười năm, kể cả năm thị trường chứng khoán giảm 30%. Đọc thế nào?",
       options: [
         "Rừng trồng là tài sản không rủi ro trong dài hạn",
-        "Phần sinh khối thật sự không phụ thuộc thị trường, nhưng cần kiểm tra xem giá trị báo cáo có bị làm mượt bởi nhịp thẩm định không",
+        "Cần kiểm tra giá trị báo cáo có bị làm mượt bởi thẩm định không",
         "Quỹ đó chắc chắn đã điều chỉnh số liệu báo cáo",
         "Kết quả này chứng minh rừng nên chiếm tỷ trọng lớn trong danh mục",
       ],
@@ -1065,7 +1065,7 @@ export const CFA_ALTERNATIVES_LESSONS: Lesson[] = [
         "Một quỹ giá trị tương đối có Sharpe ratio 2,8 trong bốn năm, chưa tháng nào lỗ quá 1%. Nên đọc thế nào?",
       options: [
         "Đây là quỹ quản lý rủi ro xuất sắc, nên phân bổ tỷ trọng lớn",
-        "Hồ sơ này đặc trưng cho chiến lược có nhiều lãi nhỏ và rủi ro đuôi lớn - Sharpe cao đang đo sai loại rủi ro đang gánh",
+        "Nhiều lãi nhỏ và rủi ro đuôi lớn: Sharpe đo sai loại rủi ro",
         "Sharpe trên 2 là bằng chứng kết quả đã bị điều chỉnh",
         "Bốn năm là đủ dài để kết luận về chất lượng quản lý quỹ",
       ],
@@ -1389,7 +1389,7 @@ export const CFA_ALTERNATIVES_LESSONS: Lesson[] = [
         "Một quỹ hiến tặng đại học có nghĩa vụ chi 5% tài sản mỗi năm. Mô hình đề xuất phân bổ 45% vào tài sản thay thế. Nên phản ứng thế nào?",
       options: [
         "Chấp nhận vì mô hình đã tối ưu hóa trên dữ liệu lịch sử đầy đủ",
-        "Kiểm tra ngân sách thanh khoản trước: 5% chi hằng năm cộng cam kết chưa gọi phải trả được kể cả khi thị trường giảm và không thoái vốn được",
+        "Kiểm tra ngân sách thanh khoản trước khi tăng phân bổ",
         "Giảm xuống 10% vì đó là mức phân bổ thông thường của ngành",
         "Từ chối hoàn toàn vì tài sản thay thế quá rủi ro cho quỹ hiến tặng",
       ],

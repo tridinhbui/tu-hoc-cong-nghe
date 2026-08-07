@@ -815,7 +815,7 @@ export const DATA_TOOLS_LESSONS: Lesson[] = [
         "Giám đốc kinh doanh yêu cầu một dashboard hiển thị tất cả chỉ số bán hàng công ty đang có. Phản hồi phù hợp nhất là gì?",
       options: [
         "Làm đúng yêu cầu, vì đó là người sẽ dùng dashboard",
-        "Hỏi lại: mỗi tuần anh phải ra những quyết định nào, rồi chọn chỉ số phục vụ đúng các quyết định đó",
+        "Hỏi lại: mỗi tuần anh cần ra quyết định nào",
         "Từ chối vì yêu cầu không rõ ràng",
         "Làm hai phiên bản để người dùng tự chọn",
       ],

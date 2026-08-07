@@ -103,7 +103,7 @@ export const FINANCIAL_MODELING_LESSONS: Lesson[] = [
         "Bạn nhận bàn giao một mô hình, thấy công thức doanh thu là `=B12*1,08`. Vấn đề lớn nhất ở đây là gì?",
       options: [
         "Công thức quá đơn giản, cần thêm biến số",
-        "Tỷ lệ tăng trưởng 8% bị chôn trong công thức - không ai thấy, không kiểm tra được, và phải sửa từng ô nếu muốn đổi giả định",
+        "Tỷ lệ 8% bị chôn trong công thức",
         "Không có vấn đề gì nếu 8% là con số đúng",
         "Nên dùng hàm SUM thay vì phép nhân",
       ],
@@ -455,7 +455,7 @@ export const FINANCIAL_MODELING_LESSONS: Lesson[] = [
       question:
         "Mô hình của bạn cho bảng cân đối lệch đúng 200 tỷ ở mọi năm dự phóng, con số lệch không đổi qua các kỳ. Nguyên nhân khả dĩ nhất là gì?",
       options: [
-        "Một khoản mục bị bỏ sót hoặc nối sai ngay từ kỳ đầu tiên và được mang sang các kỳ sau",
+        "Một khoản mục bị nối sai từ kỳ đầu tiên",
         "Thuế suất bị nhập sai",
         "Doanh thu dự phóng quá cao",
         "Cần thêm một dòng điều chỉnh 200 tỷ để cân lại",
@@ -789,7 +789,7 @@ export const FINANCIAL_MODELING_LESSONS: Lesson[] = [
         "Mô hình của bạn báo lỗi circular reference sau khi thêm dòng lãi vay. Bạn đang trình bày với ban lãnh đạo trong 30 phút nữa. Hướng xử lý hợp lý nhất là gì?",
       options: [
         "Bật iterative calculation và hy vọng mô hình hội tụ kịp",
-        "Chuyển sang tính lãi vay trên số dư nợ đầu kỳ - loại bỏ vòng lặp ngay lập tức, sai số nhỏ và có thể ghi chú rõ trong phần giả định",
+        "Tính lãi vay trên số dư nợ đầu kỳ để bỏ vòng lặp",
         "Xóa dòng lãi vay để mô hình chạy được",
         "Nhập tay số lãi vay ước lượng cho từng năm",
       ],
@@ -1145,7 +1145,7 @@ export const FINANCIAL_MODELING_LESSONS: Lesson[] = [
         "Bạn xây kịch bản downside cho một doanh nghiệp bán lẻ. Bộ giả định nào nhất quán nhất?",
       options: [
         "Doanh thu −20%, biên lợi nhuận giữ nguyên, DSO giữ nguyên, WACC giữ nguyên",
-        "Doanh thu −20%, biên lợi nhuận giảm do chi phí cố định không co được, DSO dài hơn do khách khó khăn, WACC cao hơn do rủi ro tăng",
+        "Doanh thu −20%, biên lợi nhuận giảm, DSO dài hơn, WACC cao hơn",
         "Doanh thu −20%, biên lợi nhuận tăng do cắt giảm chi phí, mọi thứ khác tốt hơn",
         "Chỉ giảm giá trị cuối, giữ nguyên toàn bộ dự phóng 5 năm",
       ],
@@ -1653,7 +1653,7 @@ export const FINANCIAL_MODELING_LESSONS: Lesson[] = [
         "Bạn được giao dựng mô hình định giá cho một doanh nghiệp niêm yết trong 2 ngày. Nên phân bổ thời gian thế nào?",
       options: [
         "Dành cả 2 ngày viết công thức cho thật chi tiết",
-        "Ngày 1: thu thập và làm sạch dữ liệu lịch sử, đặt cấu trúc và giả định. Ngày 2: dựng mô hình, kiểm tra, chạy kịch bản và độ nhạy",
+        "Ngày 1: dữ liệu và giả định. Ngày 2: dựng và kiểm tra",
         "Ngày 1: dựng xong toàn bộ. Ngày 2: định dạng cho đẹp",
         "Dành phần lớn thời gian cho phần DCF vì đó là kết quả cuối",
       ],

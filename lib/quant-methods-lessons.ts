@@ -118,7 +118,7 @@ export const QUANT_METHODS_LESSONS: Lesson[] = [
         "Một quỹ khoe rằng trong 5 năm chỉ có 3 tháng lỗ và độ lệch chuẩn rất thấp. Bạn nên hỏi thêm điều gì?",
       options: [
         "Quỹ có bao nhiêu nhân sự",
-        "Phân phối lợi suất có bị lệch âm và đuôi dày không - chiến lược nào tạo ra chuỗi lợi nhuận đều đặn rồi thỉnh thoảng lỗ rất lớn",
+        "Lợi suất có lệch âm và đuôi dày không",
         "Quỹ có đăng ký hoạt động hợp pháp không",
         "Phí quản lý là bao nhiêu",
       ],
@@ -295,7 +295,7 @@ export const QUANT_METHODS_LESSONS: Lesson[] = [
         "Một chiến lược cho lợi suất vượt trội trung bình 4%/năm, độ lệch chuẩn 20%/năm, dựa trên 10 năm dữ liệu. Kết luận nào đúng?",
       options: [
         "Chiến lược chắc chắn tạo alpha vì trung bình dương",
-        "Sai số chuẩn là 20% chia căn bậc hai của 10, khoảng 6,3% - lớn hơn cả mức 4% quan sát được, nên chưa thể kết luận chiến lược có giá trị",
+        "Sai số chuẩn 6,3% lớn hơn mức 4% quan sát được",
         "Cần thêm dữ liệu tần suất ngày là đủ để kết luận",
         "Chiến lược thất bại vì độ lệch chuẩn quá cao",
       ],
@@ -810,7 +810,7 @@ export const QUANT_METHODS_LESSONS: Lesson[] = [
         "Một mô hình dự báo lợi nhuận doanh nghiệp có 15 biến giải thích, R bình phương 0,92, xây trên 40 quan sát quý. Vấn đề lớn nhất là gì?",
       options: [
         "R bình phương chưa đủ cao",
-        "Số biến quá lớn so với số quan sát: mô hình gần như chắc chắn đã học nhiễu, và R bình phương 0,92 là ảo",
+        "Số biến quá lớn so với số quan sát, R² là ảo",
         "Nên chuyển sang dữ liệu tháng để có thêm quan sát",
         "Không có vấn đề gì nếu mọi hệ số đều có ý nghĩa",
       ],
