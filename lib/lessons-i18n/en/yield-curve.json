@@ -12,10 +12,21 @@
   ],
   "explanation": "The yield curve connects government bond yields across different maturities, and its shape summarises the market's expectations of future interest rates. Sloping upward is the normal state. Inverted - short-term rates higher than long-term - means the market is betting that rates will have to fall, implying the economy will weaken. This is one of the few indicators with a long enough recession-forecasting track record to be worth watching, even though the lag varies a lot between episodes.",
   "diagram": [
-    { "label": "Plot government bond yields by maturity", "arrow": true },
-    { "label": "Normal: longer maturities pay more", "arrow": true },
-    { "label": "Inverted: short-term yields exceed long-term", "arrow": true },
-    { "label": "The market expects rates to fall as the economy weakens" }
+    {
+      "label": "Plot government bond yields by maturity",
+      "arrow": true
+    },
+    {
+      "label": "Normal: longer maturities pay more",
+      "arrow": true
+    },
+    {
+      "label": "Inverted: short-term yields exceed long-term",
+      "arrow": true
+    },
+    {
+      "label": "The market expects rates to fall as the economy weakens"
+    }
   ],
   "interactiveType": "bond",
   "realWorldExample": {
@@ -37,16 +48,16 @@
       "question": "Why do large institutional investors watch the Yield Curve far more closely than a single interest rate level (like the 10-year rate)?",
       "options": [
         "Because the Yield Curve is much easier to read than a single rate figure",
-        "Only central banks need to care about the Yield Curve, not private investors",
+        "Only central banks need to care about the Yield Curve, since private investors cannot act on it",
         "Because the shape of the whole curve reflects expectations across many maturities at once",
-        "The Yield Curve provides no more useful information than a single rate level"
+        "The Yield Curve tells you nothing a single policy rate does not already say"
       ],
       "explanation": "The Yield Curve is a 'map' of market expectations spanning many maturities - the slope, and whether the whole curve is inverted or normal, tells you much more than a single point."
     },
     {
       "question": "What does an upward-sloping yield curve reflect?",
       "options": [
-        "Expected inflation is gradually declining across long maturities",
+        "Expected inflation is gradually declining across every long maturity on the curve",
         "The market is forecasting a recession in the near term",
         "The central bank is tightening monetary policy",
         "Longer maturities demand a higher premium, a normally functioning economy"
@@ -59,7 +70,7 @@
         "A recession warning, though the lag can be as long as a year",
         "Confirmation that the economy is overheating",
         "A sign that inflation is about to spike in the near term",
-        "A signal the central bank is about to raise rates further"
+        "A signal the central bank is about to raise rates further at its next meeting"
       ],
       "explanation": "Short-term yields exceeding long-term yields means the market is betting that rates will have to fall sharply - something that usually only happens when the economy is heading down. This indicator has been right ahead of most US recessions, but the lag is long and uneven."
     },
@@ -69,7 +80,7 @@
         "The middle stage of strong, stable growth",
         "A transitional stage, when the market hasn't settled on a direction",
         "Right after the central bank makes a deep rate cut",
-        "A stage of high inflation persisting for several consecutive years"
+        "A stage of high inflation persisting for several consecutive years without relief"
       ],
       "explanation": "Flat is the state between upward-sloping and inverted - the market is balancing two opposing scenarios. It often appears when a tightening cycle is nearing its end but what comes next isn't yet clear."
     }
@@ -104,12 +115,18 @@
       "type": "lead",
       "text": "The yield curve is a chart connecting government bond yields across maturities - from a few months to 30 years. It's not just a technical chart: it's a barometer reflecting the entire market's collective expectations of future growth, inflation, and interest rate policy."
     },
-    { "type": "heading", "text": "Steep curve: an optimistic market" },
+    {
+      "type": "heading",
+      "text": "Steep curve: an optimistic market"
+    },
     {
       "type": "paragraph",
       "text": "When the curve slopes up steeply - meaning the gap between the 10-year and 2-year yield is large - the market is expecting higher growth and inflation ahead, demanding a large premium for locking up capital long-term. This usually happens after a recession, when the central bank has cut short-term rates low but long-term rates remain high because the market believes in a recovery."
     },
-    { "type": "heading", "text": "Inverted curve: the most reliable recession signal" },
+    {
+      "type": "heading",
+      "text": "Inverted curve: the most reliable recession signal"
+    },
     {
       "type": "paragraph",
       "text": "Conversely, when short-term rates exceed long-term rates (inverted), the market is betting that the central bank will soon have to cut rates to rescue a weakening economy. From 1955 to today, almost every time the US yield curve has inverted, it has preceded an actual recession by 12 to 18 months - one of the macroeconomic indicators with the highest historical accuracy. During 2022-2023, as the Fed raised rates sharply to fight 9% inflation, the US yield curve inverted at its deepest and longest stretch in over 40 years, prompting close attention from economists forecasting recession risk."
