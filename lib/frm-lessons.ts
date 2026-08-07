@@ -31,7 +31,7 @@ export const FRM_LESSONS: Lesson[] = [
       "Phần lớn thảm hoạ tài chính lớn không phải vì không ai nhìn thấy rủi ro, mà vì cấu trúc quản trị không có cơ chế nào bắt buộc phải hành động khi thấy nó. ERM là khung trả lời câu hỏi: ai chịu trách nhiệm gì, và giới hạn nào không được vượt qua dù đang có lãi.",
     openingQuestion: "Trong mô hình ba tuyến phòng thủ (three lines of defense), ai là tuyến đầu tiên chịu trách nhiệm quản lý rủi ro?",
     openingOptions: [
-      "Phòng Quản trị Rủi ro độc lập",
+      "Phòng Quản trị Rủi ro độc lập của doanh nghiệp",
       "Bộ phận kinh doanh trực tiếp tạo ra rủi ro đó",
       "Kiểm toán nội bộ",
       "Hội đồng quản trị",

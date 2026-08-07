@@ -336,7 +336,7 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
     openingQuestion:
       "Trong mô hình ba báo cáo, ô kiểm tra quan trọng nhất là ô nào?",
     openingOptions: [
-      "Ô doanh thu năm cuối dự phóng",
+      "Ô doanh thu của năm cuối cùng trong toàn bộ giai đoạn dự phóng chi tiết",
       "Ô chênh lệch giữa tổng tài sản và tổng nguồn vốn - phải luôn bằng 0",
       "Ô lợi nhuận sau thuế",
       "Ô tỷ lệ tăng trưởng",
