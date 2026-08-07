@@ -1,5 +1,7 @@
 import { describe, it, expect } from "vitest";
-import type { SkillDomainId } from "@/lib/career-competency";
+import { SKILL_DOMAINS, type SkillDomainId } from "@/lib/career-competency";
+import { vi as viDict } from "@/lib/i18n/dictionaries/vi";
+import { en as enDict } from "@/lib/i18n/dictionaries/en";
 import {
   CERTIFICATION_TARGETS,
   computeSkillGap,
@@ -20,10 +22,6 @@ function coverageOf(entries: Partial<Record<SkillDomainId, { done: number; total
   });
 }
 
-const meta = new Proxy({} as Record<SkillDomainId, { label: string; gapHint: string }>, {
-  get: (_t, prop: string) => ({ label: `label:${prop}`, gapHint: `hint:${prop}` }),
-});
-
 const must = (domain: SkillDomainId, target: number): SkillRequirement => ({ domain, target, priority: "must" });
 const should = (domain: SkillDomainId, target: number): SkillRequirement => ({ domain, target, priority: "should" });
 
@@ -31,8 +29,7 @@ describe("computeSkillGap", () => {
   it("reports a met requirement with no gap and nothing left to study", () => {
     const gap = computeSkillGap(
       [must("valuation", 60)],
-      coverageOf({ valuation: { done: 8, total: 10, percent: 80 } }),
-      meta
+      coverageOf({ valuation: { done: 8, total: 10, percent: 80 } })
     );
     const item = gap.items[0];
     expect(item.met).toBe(true);
@@ -44,8 +41,7 @@ describe("computeSkillGap", () => {
   it("floors the gap at zero when coverage overshoots the target", () => {
     const gap = computeSkillGap(
       [must("accounting", 50)],
-      coverageOf({ accounting: { done: 10, total: 10, percent: 100 } }),
-      meta
+      coverageOf({ accounting: { done: 10, total: 10, percent: 100 } })
     );
     expect(gap.items[0].gap).toBe(0);
     // Overshooting must not push readiness above 100.
@@ -56,8 +52,7 @@ describe("computeSkillGap", () => {
     // 70% of 10 lessons = 7 needed, 3 done => 4 to go.
     const gap = computeSkillGap(
       [must("ma", 70)],
-      coverageOf({ ma: { done: 3, total: 10, percent: 30 } }),
-      meta
+      coverageOf({ ma: { done: 3, total: 10, percent: 30 } })
     );
     expect(gap.items[0].lessonsToGo).toBe(4);
     expect(gap.items[0].gap).toBe(40);
@@ -74,8 +69,7 @@ describe("computeSkillGap", () => {
       coverageOf({
         valuation: { done: 7, total: 10, percent: 70 },
         accounting: { done: 3, total: 10, percent: 30 },
-      }),
-      meta
+      })
     );
     expect(gap.items.map((i) => i.domain)).toEqual(["ma", "accounting", "ethics", "valuation"]);
   });
@@ -84,21 +78,20 @@ describe("computeSkillGap", () => {
     // One `must` fully met, one `should` at zero: 2/(2+1) = 67%.
     const gap = computeSkillGap(
       [must("valuation", 50), should("ethics", 50)],
-      coverageOf({ valuation: { done: 5, total: 10, percent: 50 } }),
-      meta
+      coverageOf({ valuation: { done: 5, total: 10, percent: 50 } })
     );
     expect(gap.readiness).toBe(67);
   });
 
   it("returns zero readiness with no requirements rather than dividing by zero", () => {
-    const gap = computeSkillGap([], coverageOf({}), meta);
+    const gap = computeSkillGap([], coverageOf({}));
     expect(gap.items).toEqual([]);
     expect(gap.readiness).toBe(0);
     expect(Number.isFinite(gap.readiness)).toBe(true);
   });
 
   it("treats a zero-target requirement as already satisfied, not NaN", () => {
-    const gap = computeSkillGap([must("quant", 0)], coverageOf({}), meta);
+    const gap = computeSkillGap([must("quant", 0)], coverageOf({}));
     expect(gap.items[0].met).toBe(true);
     expect(gap.readiness).toBe(100);
   });
@@ -106,17 +99,48 @@ describe("computeSkillGap", () => {
   it("handles a domain with no lessons without producing NaN", () => {
     const gap = computeSkillGap(
       [must("derivatives_risk", 60)],
-      coverageOf({ derivatives_risk: { done: 0, total: 0, percent: 0 } }),
-      meta
+      coverageOf({ derivatives_risk: { done: 0, total: 0, percent: 0 } })
     );
     expect(gap.items[0].lessonsToGo).toBe(0);
     expect(Number.isFinite(gap.readiness)).toBe(true);
   });
 
-  it("carries the domain label and hint through for the panel", () => {
-    const gap = computeSkillGap([must("ethics", 90)], coverageOf({}), meta);
-    expect(gap.items[0].label).toBe("label:ethics");
-    expect(gap.items[0].gapHint).toBe("hint:ethics");
+  it("carries the domain ID through, not its copy", () => {
+    // Bản trước khẳng định item mang sẵn label và gapHint. Nó không còn mang:
+    // item này đi qua app/api/career-profile tới một client component, nên câu
+    // chữ do người đọc chọn ngôn ngữ chứ không do server chọn. Panel tra
+    // t.skillDomains[domain].
+    const gap = computeSkillGap([must("ethics", 90)], coverageOf({}));
+    expect(gap.items[0].domain).toBe("ethics");
+    expect(gap.items[0]).not.toHaveProperty("label");
+    expect(gap.items[0]).not.toHaveProperty("gapHint");
+  });
+});
+
+describe("mảng kiến thức đi qua từ điển", () => {
+  it("mọi SkillDomainId đều có label và gapHint ở cả hai từ điển", () => {
+    // Cùng guard như bảng chủ đề: bỏ câu chữ ra khỏi tầng dữ liệu chỉ an toàn
+    // khi có gì bắt được một id thiếu bản dịch. tsc chỉ chứng minh section tồn
+    // tại, không chứng minh nó phủ hết 14 mảng.
+    for (const domain of SKILL_DOMAINS) {
+      expect(viDict.skillDomains[domain.id]?.label, `vi thiếu ${domain.id}.label`).toBeTruthy();
+      expect(viDict.skillDomains[domain.id]?.gapHint, `vi thiếu ${domain.id}.gapHint`).toBeTruthy();
+      expect(enDict.skillDomains[domain.id]?.label, `en thiếu ${domain.id}.label`).toBeTruthy();
+      expect(enDict.skillDomains[domain.id]?.gapHint, `en thiếu ${domain.id}.gapHint`).toBeTruthy();
+    }
+  });
+
+  it("không có mục nào trỏ tới mảng không còn tồn tại", () => {
+    const ids = new Set(SKILL_DOMAINS.map((d) => d.id as string));
+    const stale = Object.keys(viDict.skillDomains).filter((k) => !ids.has(k));
+    expect(stale, "mục trong từ điển không khớp mảng nào").toEqual([]);
+  });
+
+  it("cả ba mức mastery đều có câu chữ ở hai từ điển", () => {
+    for (const tone of ["high", "mid", "low"] as const) {
+      expect(viDict.masteryBands[tone], `vi thiếu ${tone}`).toBeTruthy();
+      expect(enDict.masteryBands[tone], `en thiếu ${tone}`).toBeTruthy();
+    }
   });
 });
 

@@ -167,9 +167,10 @@ export function getRequirementsForTarget(target: CareerLike | null, targetId?: s
 }
 
 export interface SkillGapItem {
+  /** Id, KHÔNG phải câu chữ. Tên mảng và câu "còn thiếu gì" ở
+   *  t.skillDomains[domain] - item này đi qua một API route tới client, nên
+   *  câu chữ phải do người đọc chọn ngôn ngữ, không phải server. */
   domain: SkillDomainId;
-  label: string;
-  gapHint: string;
   priority: RequirementPriority;
   /** Current coverage %, 0-100. */
   current: number;
@@ -191,8 +192,7 @@ export interface SkillGapResult {
 
 export function computeSkillGap(
   requirements: SkillRequirement[],
-  coverage: Record<SkillDomainId, { done: number; total: number; percent: number }>,
-  domainMeta: Record<SkillDomainId, { label: string; gapHint: string }>
+  coverage: Record<SkillDomainId, { done: number; total: number; percent: number }>
 ): SkillGapResult {
   const items: SkillGapItem[] = requirements.map((req) => {
     const stat = coverage[req.domain] ?? { done: 0, total: 0, percent: 0 };
@@ -200,8 +200,6 @@ export function computeSkillGap(
     const lessonsNeeded = Math.ceil((req.target / 100) * stat.total);
     return {
       domain: req.domain,
-      label: domainMeta[req.domain]?.label ?? req.domain,
-      gapHint: domainMeta[req.domain]?.gapHint ?? "",
       priority: req.priority,
       current: stat.percent,
       target: req.target,

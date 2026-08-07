@@ -1360,6 +1360,38 @@ export const en: Dictionary = {
     recallTitle: "Review",
   },
 
+  // Tên và "còn thiếu gì" của 14 mảng kiến thức, tra bằng SkillDomainId.
+  //
+  // SKILL_DOMAINS trong lib/career-competency.ts giờ chỉ giữ id và lessonIds.
+  // Câu chữ ra đây vì nó đi qua một API route (app/api/career-profile) tới một
+  // client component: route trả id, client tra từ điển. Trả câu chữ từ route thì
+  // ngôn ngữ do server chọn chứ không do người đọc chọn.
+  skillDomains: {
+    personal_finance: { label: "Personal finance", gapHint: "budgeting, an emergency fund, a personal financial plan" },
+    accounting: { label: "Accounting & financial reporting", gapHint: "accounting, reading the three statements, financial ratios" },
+    valuation: { label: "Valuation", gapHint: "DCF, comps, precedent transactions, terminal value" },
+    corporate_finance: { label: "Corporate finance", gapHint: "capital structure, WACC, dividend policy, investment decisions" },
+    modeling_excel: { label: "Excel & financial modeling", gapHint: "three-statement models, LBOs, sensitivity tables, Excel dashboards" },
+    ma: { label: "M&A", gapHint: "M&A, synergies, deal structure, due diligence, LBOs" },
+    fixed_income: { label: "Fixed income & credit", gapHint: "bonds, YTM, duration, credit spreads, credit ratings" },
+    equity_portfolio: { label: "Equities & portfolios", gapHint: "equity analysis, portfolio construction, risk-return measurement" },
+    derivatives_risk: { label: "Derivatives & risk management", gapHint: "derivatives, hedging, VaR, stress testing, Basel" },
+    fpa_budgeting: { label: "FP&A & budgeting", gapHint: "budgeting, rolling forecasts, variance analysis, KPIs" },
+    ethics: { label: "Professional ethics", gapHint: "the Code of Ethics, Standards of Conduct, GIPS, AML/KYC, data ethics" },
+    economics: { label: "Economics", gapHint: "business cycles, monetary and fiscal policy, exchange rates" },
+    quant: { label: "Quantitative methods", gapHint: "the time value of money, NPV/IRR, probability and statistics, inference from data" },
+    ai_tools: { label: "AI in finance", gapHint: "delegating work to AI, reading reports and writing memos you can verify" },
+  },
+
+  // Ba mức đọc ra chữ của TopicMasteryWidget. Trước nằm trong hàm band() nên
+  // không script nào thấy: chúng là literal trong THÂN HÀM, không phải trong
+  // data ở module scope, cũng không ở vị trí hiển thị.
+  masteryBands: {
+    high: "Solid",
+    mid: "Under way",
+    low: "Just started",
+  },
+
   topics: {
     "money-foundations": "Money foundations & risk",
     "tax-payroll": "Tax & take-home pay",

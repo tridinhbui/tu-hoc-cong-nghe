@@ -22,10 +22,6 @@ export const dynamic = "force-dynamic";
 const CFA_LESSON_IDS = Array.from(new Set(CFA_LEVEL_1_SUBJECTS.flatMap((s) => s.lessonIds)));
 const FRM_LESSON_IDS = Array.from(new Set(FRM_SUBJECTS.flatMap((s) => s.lessonIds)));
 
-const DOMAIN_META = Object.fromEntries(
-  SKILL_DOMAINS.map((d) => [d.id, { label: d.label, gapHint: d.gapHint }])
-) as Record<(typeof SKILL_DOMAINS)[number]["id"], { label: string; gapHint: string }>;
-
 // Same treatment as lib/supabase-quiz-sessions.ts' isMissingTableError: a
 // table that hasn't been migrated in this environment yet (user_cv_bullets,
 // user_career_mission_claims and the CFA "Module" table are all optional
@@ -128,7 +124,7 @@ export async function GET(request: NextRequest) {
 
   const skillGap =
     targetCareer || certification
-      ? computeSkillGap(getRequirementsForTarget(targetCareer, targetId ?? undefined), coverage, DOMAIN_META)
+      ? computeSkillGap(getRequirementsForTarget(targetCareer, targetId ?? undefined), coverage)
       : null;
 
   // Weekly mission counters, all derived from the same rows fetched above.

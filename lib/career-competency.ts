@@ -37,11 +37,17 @@ export type SkillDomainId =
 
 export interface SkillDomain {
   id: SkillDomainId;
-  label: string;
-  /** Short "what you're missing" phrasing used by the Job Skill Gap panel. */
-  gapHint: string;
   lessonIds: number[];
 }
+
+// `label` và `gapHint` TỪNG nằm ở đây. Chúng là câu chữ, nên giờ ở
+// t.skillDomains[id] trong từ điển, và tầng dữ liệu này chỉ còn id + lessonIds.
+//
+// Không chỉ vì i18n. Hai trường đó đi từ module data, qua
+// app/api/career-profile/route.ts, tới một client component - nên một API route
+// đang trả câu chữ, và ngôn ngữ của nó do server chọn chứ không do người đọc
+// chọn. Đúng loại việc AGENTS.md ghi về app/api/world-boss: hoặc route đọc
+// locale, hoặc route trả id. Ở đây id là lối đúng, vì id còn là khoá tra.
 
 // A lesson may legitimately belong to several domains (an LBO lesson is both
 // modeling and M&A) - domains are overlapping views on the catalog, not a
@@ -49,16 +55,12 @@ export interface SkillDomain {
 export const SKILL_DOMAINS: SkillDomain[] = [
   {
     id: "personal_finance",
-    label: "Tài chính cá nhân",
-    gapHint: "ngân sách, quỹ khẩn cấp, kế hoạch tài chính cá nhân",
     // 1301-1308 là chặng thuế TNCN; 1249/1284/1285 là quy trình hoạch định
     // tài chính cá nhân - đều thuộc đây chứ không phải kế toán doanh nghiệp.
     lessonIds: [...range(1, 20), ...range(241, 298), 1249, 1255, 1284, 1285, ...range(1301, 1308), ...range(1351, 1353)],
   },
   {
     id: "accounting",
-    label: "Kế toán & Báo cáo tài chính",
-    gapHint: "kế toán, đọc 3 báo cáo tài chính, chỉ số tài chính",
     lessonIds: [
       ...range(21, 80),
       271,
@@ -83,8 +85,6 @@ export const SKILL_DOMAINS: SkillDomain[] = [
   },
   {
     id: "valuation",
-    label: "Định giá (Valuation)",
-    gapHint: "DCF, comps, precedent transactions, terminal value",
     lessonIds: [
       77, 78, 79,
       ...range(121, 140),
@@ -97,8 +97,6 @@ export const SKILL_DOMAINS: SkillDomain[] = [
   },
   {
     id: "corporate_finance",
-    label: "Tài chính doanh nghiệp",
-    gapHint: "cấu trúc vốn, WACC, chính sách cổ tức, quyết định đầu tư",
     // Chặng 39 (FinTech) là kinh tế học của một sản phẩm: doanh thu đến từ
     // đâu, biên đóng góp, điểm hoà vốn - cùng bộ câu hỏi của tài chính doanh
     // nghiệp, chỉ đặt trên một mô hình kinh doanh khác.
@@ -106,8 +104,6 @@ export const SKILL_DOMAINS: SkillDomain[] = [
   },
   {
     id: "modeling_excel",
-    label: "Excel & Mô hình tài chính",
-    gapHint: "dựng mô hình 3 báo cáo, LBO, bảng độ nhạy, dashboard Excel",
     // Chặng 23 (Excel) và Chặng 29 (công cụ dữ liệu) đều là dựng và dò lỗi
     // trên một file thật; 1483 là bài kiểm tra dựng mô hình trong tuyển dụng.
     lessonIds: [
@@ -117,20 +113,14 @@ export const SKILL_DOMAINS: SkillDomain[] = [
   },
   {
     id: "ma",
-    label: "M&A",
-    gapHint: "M&A, synergy, deal structure, due diligence, LBO",
     lessonIds: [108, 109, 110, 117, 118, 119, 1021, 1103, 1106, 1107, 1108, 1109, 1110, 1247, 1260, 1318, 1337, 1338, 1339, ...range(1521, 1526)],
   },
   {
     id: "fixed_income",
-    label: "Trái phiếu & Tín dụng",
-    gapHint: "trái phiếu, YTM, duration, credit spread, xếp hạng tín nhiệm",
     lessonIds: [...range(141, 160), ...range(221, 240), 802, 1104, 1222, 1289, 1453],
   },
   {
     id: "equity_portfolio",
-    label: "Cổ phiếu & Danh mục",
-    gapHint: "phân tích cổ phiếu, xây danh mục, đo lường rủi ro - lợi nhuận",
     // Gồm cả tâm lý nhà đầu tư (Chặng 12) và ESG investing: cả hai đổi cách
     // chọn và giữ danh mục chứ không phải một chủ đề tách rời. Chặng 25 (thị
     // trường VN) và Chặng 27 (private markets) cũng là nơi danh mục được xây.
@@ -145,8 +135,6 @@ export const SKILL_DOMAINS: SkillDomain[] = [
   },
   {
     id: "derivatives_risk",
-    label: "Phái sinh & Quản trị rủi ro",
-    gapHint: "phái sinh, phòng hộ, VaR, stress testing, Basel",
     // Chặng 19 định giá quyền chọn là phái sinh đúng nghĩa; bảo hiểm và
     // Solvency II là quản trị rủi ro có vốn pháp định; 1328 xử lý rủi ro khí
     // hậu như một rủi ro tài chính, nên thuộc đây chứ không phải nhóm ESG.
@@ -157,16 +145,12 @@ export const SKILL_DOMAINS: SkillDomain[] = [
   },
   {
     id: "fpa_budgeting",
-    label: "FP&A & Ngân sách",
-    gapHint: "lập ngân sách, rolling forecast, phân tích variance, KPI",
     // Chặng 31 là phần lập kế hoạch đứng trước các sản phẩm đầu ra ở Chặng 11.
     // 1513 (dòng tiền 13 tuần) cũng thuộc treasury nên nằm ở cả đây.
     lessonIds: [...range(111, 115), 1202, 1203, 1204, 1205, 1206, 1210, 1213, 1214, 1257, ...range(1511, 1516), 1702, 1706],
   },
   {
     id: "ethics",
-    label: "Đạo đức nghề nghiệp",
-    gapHint: "Code of Ethics, Standards of Conduct, GIPS, AML/KYC, đạo đức dữ liệu",
     // AML/KYC, quản trị doanh nghiệp, dùng AI có trách nhiệm và đạo đức dữ
     // liệu đều là cùng một câu hỏi: cái gì được phép làm với thông tin và
     // tiền của người khác.
@@ -189,8 +173,6 @@ export const SKILL_DOMAINS: SkillDomain[] = [
   },
   {
     id: "economics",
-    label: "Kinh tế học",
-    gapHint: "chu kỳ kinh tế, chính sách tiền tệ - tài khóa, tỷ giá",
     // Chặng 26 là kinh tế học quốc tế (ngang giá lãi suất, PPP, rủi ro tỷ giá)
     // - 1463 định giá xuyên biên giới nằm ở nhóm định giá vì nó là phép định
     // giá, còn ba bài còn lại là cơ chế tỷ giá nên thuộc đây.
@@ -198,8 +180,6 @@ export const SKILL_DOMAINS: SkillDomain[] = [
   },
   {
     id: "quant",
-    label: "Phương pháp định lượng",
-    gapHint: "giá trị thời gian của tiền, NPV/IRR, xác suất - thống kê, suy diễn từ dữ liệu",
     // Chặng 22 (thống kê, hồi quy, chuỗi thời gian) và Chặng 30 (chọn chỉ số,
     // cohort, A/B test, nhân quả) là cùng một bộ kỹ năng suy diễn, chỉ khác
     // ngữ cảnh áp dụng. Đây cũng là nhóm mà ba nghề dữ liệu đặt yêu cầu vào,
@@ -213,8 +193,6 @@ export const SKILL_DOMAINS: SkillDomain[] = [
     // cũng không phải Excel. Domain riêng là cách trung thực hơn là ép nó
     // vào một nhóm gần đúng.
     id: "ai_tools",
-    label: "AI trong tài chính",
-    gapHint: "giao việc cho AI, đọc báo cáo và viết memo có kiểm chứng",
     lessonIds: [...range(1261, 1280), 1034],
   },
 ];

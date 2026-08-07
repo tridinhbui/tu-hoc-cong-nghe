@@ -45,6 +45,11 @@ const INTENTIONALLY_UNTRANSLATED = new Set([
   "studyGroups.taitaiFailed",
   "chat.admin",
   "chat.taitaiFailed",
+  // "DCF, comps, precedent transactions, terminal value" - bốn thuật ngữ định
+  // giá mà bản tiếng Việt cũng đã viết bằng tiếng Anh, vì đó là tên chúng được
+  // gọi trong nghề và là cái người học phải nhận ra trong một buổi phỏng vấn.
+  // Cùng lý do với interview.drillTitle và tracks.cfa.stages.
+  "skillDomains.valuation.gapHint",
   "adminChat.title",
   "groupChat.byAdmin",
   "groupChat.pinnedByAdmin",

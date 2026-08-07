@@ -1449,6 +1449,38 @@ export const vi = {
   // id chứ không trả câu chữ, vì id còn là khóa cộng dồn topicCounts và khóa
   // chọn câu khuyên - một khóa đổi theo ngôn ngữ thì hai người học cùng một
   // điểm yếu sẽ cộng vào hai ô khác nhau.
+  // Tên và "còn thiếu gì" của 14 mảng kiến thức, tra bằng SkillDomainId.
+  //
+  // SKILL_DOMAINS trong lib/career-competency.ts giờ chỉ giữ id và lessonIds.
+  // Câu chữ ra đây vì nó đi qua một API route (app/api/career-profile) tới một
+  // client component: route trả id, client tra từ điển. Trả câu chữ từ route thì
+  // ngôn ngữ do server chọn chứ không do người đọc chọn.
+  skillDomains: {
+    personal_finance: { label: "Tài chính cá nhân", gapHint: "ngân sách, quỹ khẩn cấp, kế hoạch tài chính cá nhân" },
+    accounting: { label: "Kế toán & Báo cáo tài chính", gapHint: "kế toán, đọc 3 báo cáo tài chính, chỉ số tài chính" },
+    valuation: { label: "Định giá (Valuation)", gapHint: "DCF, comps, precedent transactions, terminal value" },
+    corporate_finance: { label: "Tài chính doanh nghiệp", gapHint: "cấu trúc vốn, WACC, chính sách cổ tức, quyết định đầu tư" },
+    modeling_excel: { label: "Excel & Mô hình tài chính", gapHint: "dựng mô hình 3 báo cáo, LBO, bảng độ nhạy, dashboard Excel" },
+    ma: { label: "M&A", gapHint: "M&A, synergy, deal structure, due diligence, LBO" },
+    fixed_income: { label: "Trái phiếu & Tín dụng", gapHint: "trái phiếu, YTM, duration, credit spread, xếp hạng tín nhiệm" },
+    equity_portfolio: { label: "Cổ phiếu & Danh mục", gapHint: "phân tích cổ phiếu, xây danh mục, đo lường rủi ro - lợi nhuận" },
+    derivatives_risk: { label: "Phái sinh & Quản trị rủi ro", gapHint: "phái sinh, phòng hộ, VaR, stress testing, Basel" },
+    fpa_budgeting: { label: "FP&A & Ngân sách", gapHint: "lập ngân sách, rolling forecast, phân tích variance, KPI" },
+    ethics: { label: "Đạo đức nghề nghiệp", gapHint: "Code of Ethics, Standards of Conduct, GIPS, AML/KYC, đạo đức dữ liệu" },
+    economics: { label: "Kinh tế học", gapHint: "chu kỳ kinh tế, chính sách tiền tệ - tài khóa, tỷ giá" },
+    quant: { label: "Phương pháp định lượng", gapHint: "giá trị thời gian của tiền, NPV/IRR, xác suất - thống kê, suy diễn từ dữ liệu" },
+    ai_tools: { label: "AI trong tài chính", gapHint: "giao việc cho AI, đọc báo cáo và viết memo có kiểm chứng" },
+  },
+
+  // Ba mức đọc ra chữ của TopicMasteryWidget. Trước nằm trong hàm band() nên
+  // không script nào thấy: chúng là literal trong THÂN HÀM, không phải trong
+  // data ở module scope, cũng không ở vị trí hiển thị.
+  masteryBands: {
+    high: "Vững",
+    mid: "Đang đi",
+    low: "Mới bắt đầu",
+  },
+
   topics: {
     "money-foundations": "Nền tảng tiền bạc & rủi ro",
     "tax-payroll": "Thuế & lương thực nhận",
