@@ -1,0 +1,132 @@
+{
+  "slug": "discount-rate",
+  "title": "Discount Rate",
+  "subtitle": "The discount rate reflects risk and opportunity cost",
+  "duration": "6 min",
+  "openingQuestion": "When evaluating a high-risk project, do you use a high or low discount rate?",
+  "openingOptions": [
+    "Zero",
+    "High - reflecting higher risk requires a higher expected return",
+    "Low - to make the value higher",
+    "Equal to the bank savings rate"
+  ],
+  "explanation": "The discount rate is the minimum return you require to accept the risk of an investment - it is an opportunity cost, not a technical parameter. The higher the risk, the higher that requirement, the stronger the discount, and the lower the present value. Because it sits in the denominator and is raised to a power over time, a small change in this rate shifts a valuation enormously - that's why every DCF model must come with a sensitivity table.",
+  "diagram": [
+    { "label": "Identify the cash flow's risk", "arrow": true },
+    { "label": "Start from the risk-free rate as a base", "arrow": true },
+    { "label": "Add a matching risk premium", "arrow": true },
+    { "label": "Get the discount rate - placed in the denominator, raised to a power by year" }
+  ],
+  "realWorldExample": {
+    "company": "Valuing a renewable-energy project vs a tech startup",
+    "description": "A solar power project with stable, predictable cash flow usually uses a lower discount rate (8-10%) than a tech startup with uncertain cash flow (discount rate 20-30%) - reflecting the different risk levels of the expected cash flows."
+  },
+  "quiz": [
+    {
+      "question": "What is the discount rate in DCF valuation usually?",
+      "options": [
+        "The average revenue growth rate of the last three years",
+        "The 12-month bank deposit interest rate",
+        "The central bank's target inflation rate",
+        "WACC, the business's weighted average cost of capital"
+      ],
+      "explanation": "In DCF, WACC is used as the discount rate because it reflects the real cost of capital (both equity and debt). A small change in WACC can produce a large change in valuation."
+    },
+    {
+      "question": "Two projects have the same expected future cash flow, but one is assessed as much riskier. What happens when the appropriate discount rate is applied to each?",
+      "options": [
+        "The riskier project gets a higher discount rate so its NPV is lower",
+        "The two projects give equal NPV since expected cash flow is the same",
+        "The riskier project has higher NPV to compensate for that risk",
+        "They can't be compared since risk only affects cash flow, not r"
+      ],
+      "explanation": "This is how the discount rate 'penalizes' risk quantitatively: with the same expected cash flow, a riskier project must bear a higher discount rate, leading to a lower NPV - consistent with the intuition that an uncertain cash flow is worth less than a certain one."
+    },
+    {
+      "question": "What is the discount rate made up of?",
+      "options": [
+        "The bank lending rate plus the corporate tax rate",
+        "The risk-free opportunity cost plus a risk premium",
+        "The inflation rate plus the business's growth rate",
+        "The cost of equity minus the tax shield from debt"
+      ],
+      "explanation": "The base is the return achievable while bearing almost no risk; the additional part is the price of uncertainty. The harder a cash flow is to predict, the larger the premium, and the smaller the present value."
+    },
+    {
+      "question": "Raising the discount rate from 10% to 12% affects which part of a DCF model the most?",
+      "options": [
+        "The initial capital expenditure already spent at the present time",
+        "The cash flow of the first two years in the forecast period",
+        "The cash flow of the farthest years and the Terminal Value",
+        "The forecast revenue for the entire modeled period"
+      ],
+      "explanation": "The denominator (1+r)^n grows exponentially, so the farther out a cash flow is, the deeper the cut. Terminal Value usually makes up 60-80% of a model's value and sits at exactly the farthest point - that's why a few percentage points of r are enough to flip a conclusion."
+    },
+    {
+      "question": "Why is using the same discount rate for every project in a company wrong?",
+      "options": [
+        "Because projects have completely different payback periods",
+        "Because WACC changes every quarter with market fluctuations",
+        "Because a larger project needs a higher discount rate than a small one",
+        "Because each project carries its own level of risk, not an average one"
+      ],
+      "explanation": "Using a company-wide WACC for everything unfairly penalizes safe projects and favors risky ones - over the years, the company ends up funneling capital into exactly the projects it should have rejected."
+    }
+  ],
+  "keyTakeaways": [
+    "Discount rate = opportunity cost + risk premium",
+    "Higher risk → higher discount rate → lower PV",
+    "In DCF: WACC is usually used as the discount rate"
+  ],
+  "practicePrompt": {
+    "question": "When valuing a high-risk startup, an investor uses a discount rate of 25%/year; when valuing an almost risk-free government bond, they use a discount rate of only 5%/year. Why is the gap between these two discount rates so large?",
+    "options": [
+      "Discount rate = opportunity cost + risk premium - a high-risk startup demands a much larger risk premium than an almost perfectly safe government bond, so its discount rate is higher to correctly reflect the greater uncertainty",
+      "The discount rate must always be identical across every asset type to ensure a fair comparison",
+      "The discount rate only depends on the central bank's interest rate, having nothing to do with any specific asset's risk",
+      "A startup always uses a lower discount rate because its growth potential compensates for its risk"
+    ],
+    "explanation": "Discount rate = opportunity cost + risk premium. A riskier asset (like a startup) needs a larger risk premium to compensate for the possibility of losing capital, so its discount rate is much higher than an almost-safe asset (a government bond) - a higher discount rate also makes the present value (PV) of future cash flow lower."
+  },
+  "summary": {
+    "keyIdea": "Discount rate = opportunity cost + risk premium",
+    "commonMistake": "Reading a concept as a phrase to memorise rather than a principle to apply to real decisions.",
+    "action": "Higher risk → higher discount rate → lower PV"
+  },
+  "application": {
+    "title": "Choose your own discount rate",
+    "message": "Think of 2 investments you know - one safe (a savings deposit), one riskier (a stock) - and set a reasonable discount rate for each, explaining why they differ.",
+    "secondary": "There's no fixed formula for the discount rate - this is an exercise in building intuition about risk."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The discount rate isn't an arbitrary number - it's the minimum return an investor requires to accept the risk of a specific cash flow. The discount rate is exactly the bridge connecting risk to valuation: the higher the risk, the higher the discount rate, and the lower the PV of the same cash flow."
+    },
+    { "type": "heading", "text": "Where does the discount rate come from?" },
+    {
+      "type": "paragraph",
+      "text": "In essence, discount rate = opportunity cost (what an investor could earn from another investment of the same risk level) plus a matching risk premium. In business valuation via DCF, the standard discount rate is WACC - because it accurately reflects the true cost of both the debt and equity capital a business uses."
+    },
+    { "type": "heading", "text": "Example: renewable energy and a tech startup" },
+    {
+      "type": "paragraph",
+      "text": "A solar power project with a long-term electricity purchase contract has very predictable cash flow - the discount rate is usually just 8-10%. A tech startup without stable revenue yet has extremely uncertain cash flow - the discount rate can reach 20-30%. Suppose both expect to receive 100 million dong after 5 years: the energy project's PV = 100/(1.09)^5 ≈ 65 million dong; the startup's PV = 100/(1.25)^5 ≈ 33 million dong - the same future amount, but present values almost twice apart, purely because of different risk levels."
+    },
+    {
+      "type": "list",
+      "items": [
+        "A high discount rate 'penalizes' uncertain cash flow - correctly reflecting our intuition about risk",
+        "In corporate DCF: use WACC; for an individual project with risk different from the company's, a separate adjustment may be needed",
+        "Being off by even a few percentage points in the discount rate can throw off a valuation significantly, especially with distant cash flows (terminal value)",
+        "The discount rate isn't fixed - it changes with market interest rates, risk appetite, and industry characteristics"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The discount rate is where risk gets turned into a number - learning to choose it correctly matters just as much as learning to calculate PV."
+      ]
+    }
+  ]
+}

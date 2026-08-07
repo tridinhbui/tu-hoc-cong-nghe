@@ -1,0 +1,137 @@
+{
+  "slug": "on-tap-tai-chinh-doanh-nghiep",
+  "title": "Review: Corporate Finance",
+  "subtitle": "Corporate Finance, Capital Structure, M&A, PE/VC - tying the Corporate Finance track together",
+  "duration": "7 min",
+  "openingQuestion": "Which financial decision matters most to a CEO?",
+  "openingOptions": [
+    "Three core decisions: investing (NPV), financing (capital structure), distributing (dividends/buybacks)",
+    "The marketing decision",
+    "The hiring decision",
+    "The accounting decision"
+  ],
+  "explanation": "This whole track comes down to three decisions that repeat throughout a company's life: where to invest, where to source capital from, and whether to keep the surplus or return it to shareholders. The thread running through all three is cost of capital: it's the threshold for accepting a project, the figure to minimize when choosing a capital structure, and the benchmark for knowing whether holding onto cash creates any extra value.",
+  "diagram": [
+    { "label": "Where to invest? → NPV > 0" },
+    { "label": "How to finance it? → optimal capital structure" },
+    { "label": "How much to return to shareholders? → dividends/buybacks" }
+  ],
+  "realWorldExample": {
+    "company": "A practical summary of Corporate Finance",
+    "description": "From a small project's investment decision to structuring a multi-billion-dollar LBO, every corporate finance activity - whether at a startup or a listed conglomerate - revolves around the same three core questions the Corporate Finance track has built up: where to invest, how to finance it, and how much to redistribute to shareholders."
+  },
+  "quiz": [
+    {
+      "question": "Why does WACC matter to every financial decision?",
+      "options": [
+        "WACC is the hurdle rate - a project must earn more than WACC to create value",
+        "Because WACC is easy to calculate so it's used as a common standard across industries and projects",
+        "Because accountants need WACC to prepare year-end financial statements",
+        "Because banks require disclosing WACC when reviewing a credit line"
+      ],
+      "explanation": "WACC is the average cost of capital - the 'minimum price' of every unit of capital raised. Investing below WACC destroys value even if it's profitable. WACC changes with capital structure, market interest rates, and business risk."
+    },
+    {
+      "question": "After studying the Corporate Finance track, why does understanding M&A, LBO, and VC/PE matter even to an individual investor who only buys listed shares and never directly participates in these deals?",
+      "options": [
+        "Corporate Finance knowledge has nothing to do with individual stock investing",
+        "Because M&A, buybacks, and PE takeover news directly move stock prices",
+        "Just reading financial statements is enough, no need to understand M&A or LBO",
+        "It doesn't matter, this knowledge is only for professionals"
+      ],
+      "explanation": "An equity investor constantly has to react to news about M&A, buybacks, or capital structure changes at companies they hold - understanding the real financial substance behind these events helps assess rather than react emotionally."
+    },
+    {
+      "question": "What are the three core decisions of corporate finance?",
+      "options": [
+        "Hiring, market expansion, and risk control",
+        "Revenue, cost, and profit of each reporting period",
+        "Where to invest, how to finance it, how to distribute",
+        "Budgeting, internal audit, and disclosure"
+      ],
+      "explanation": "Every tool in this track serves those questions: NPV for the investment decision, WACC and capital structure for the financing decision, dividends and buybacks for the distribution decision."
+    },
+    {
+      "question": "Why is WACC called a company's hurdle rate?",
+      "options": [
+        "Because it's the industry's average annual return",
+        "Because it's the maximum interest rate a bank accepts for lending",
+        "Because regulators require disclosing this threshold every year",
+        "Because a project must earn more than that level to create additional value"
+      ],
+      "explanation": "WACC is the price paid to have capital. A project earning below that level can still show an accounting profit but is destroying value - exactly the gap between ROIC and WACC."
+    },
+    {
+      "question": "A mature company has run out of NPV-positive investment opportunities. What should it do with its surplus cash?",
+      "options": [
+        "Return it to shareholders via dividends or share buybacks",
+        "Hold all the cash on the balance sheet as a risk buffer",
+        "Invest in NPV-negative projects to keep growing",
+        "Buy another company regardless of the price paid"
+      ],
+      "explanation": "Both hoarding non-earning cash and buying carelessly destroy value. Returning it to shareholders is the correct distribution decision - and also the psychologically hardest one for management."
+    }
+  ],
+  "keyTakeaways": [
+    "Three decisions: Investing, Financing, Distributing",
+    "WACC = the hurdle rate for every investment",
+    "Goal: maximizing long-term value for shareholders"
+  ],
+  "practicePrompt": {
+    "question": "After reviewing the entire Corporate Finance track (WACC, capital structure, dividends/buybacks, M&A, IPO, LBO, VC/PE), you summarize: every topic studied revolves around which three core types of company decisions?",
+    "options": [
+      "There is only one important decision - maximizing short-term quarterly profit",
+      "Three decisions: Investing (NPV/IRR), Financing (debt or equity), Distributing (dividends)",
+      "There are only two decisions - mergers/acquisitions and raising capital, no third decision exists",
+      "Corporate Finance revolves around a single topic - calculating financial ratios"
+    ],
+    "explanation": "Three decisions: Investing, Financing, Distributing - this is the general framework tying every topic in the track together: Investing (NPV, IRR, WACC), Financing (capital structure, IPO, LBO, VC/PE), Distributing (dividends, buybacks) - every major decision a CFO makes comes down to one of these three groups."
+  },
+  "summary": {
+    "keyIdea": "Three decisions: Investing, Financing, Distributing",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to a real decision.",
+    "action": "WACC = the hurdle rate for every investment"
+  },
+  "application": {
+    "title": "Apply it now",
+    "message": "Pick a listed company you're interested in, and try answering 3 questions: where are they investing, are they financing with debt or equity, and are they returning cash to shareholders via dividends or buybacks?",
+    "secondary": "These three questions are the core thinking framework for every corporate finance decision."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The Corporate Finance track has covered the whole Corporate Finance picture - from the three core decisions of every business to complex growth and financing tools like M&A, LBO, VC/PE. Now it's time to tie it all together into one unified framework."
+    },
+    { "type": "heading", "text": "The three questions running through every corporate finance decision" },
+    {
+      "type": "paragraph",
+      "text": "Corporate Finance always revolves around three questions: (1) Where to invest? - using the NPV > 0 criterion; (2) How to finance it? - balancing between debt (tax shield but bankruptcy risk) and equity (safer but more expensive) to find the optimal capital structure; (3) How much to return to shareholders? - choosing between dividends and buybacks depending on whether ROIC is still higher than the cost of capital. From a small investment project to a multi-billion-dollar LBO deal, every corporate finance activity revolves around these same three questions."
+    },
+    { "type": "heading", "text": "WACC: the hurdle rate for every decision" },
+    {
+      "type": "paragraph",
+      "text": "WACC (Weighted Average Cost of Capital) is the weighted average cost of capital - the 'minimum price' of every unit of capital a company raises, whether from debt or equity. WACC matters because it's the hurdle rate: every project must earn a return higher than WACC to truly create value; investing below WACC destroys value even though that project still shows a positive profit. WACC is also the standard discount rate used in most DCF valuation models, changing with capital structure, market interest rates, and the degree of business risk."
+    },
+    { "type": "heading", "text": "Why this knowledge matters even to individual investors" },
+    {
+      "type": "paragraph",
+      "text": "An individual investor who only buys shares on the exchange, without directly participating in M&A or LBO deals, still needs to understand these concepts because they directly affect listed share prices - a company announcing an M&A deal, a buyback program, or PE takeover rumors can all strongly move the stock price. Understanding the real financial substance behind these events helps an investor assess their meaning properly rather than reacting emotionally to news headlines - this is the skill that separates an investor with solid foundational knowledge from one who just follows the crowd."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Three core decisions: Investing (NPV), Financing (capital structure), Distributing (dividend/buyback)",
+        "WACC is the common hurdle rate for every project assessment and business valuation",
+        "M&A, LBO, VC/PE are extended tools of the same three core principles, applied at different scales and contexts",
+        "Understanding Corporate Finance helps you read business news with an analytical eye, not an emotional one"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Corporate Finance isn't knowledge reserved for CFOs or bankers - it's the common language for understanding why businesses behave the way they do.",
+        "Three questions: where to invest, how to finance it, how much to return - apply from a 5-person startup to a trillion-dong conglomerate."
+      ]
+    }
+  ]
+}

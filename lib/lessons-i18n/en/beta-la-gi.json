@@ -1,0 +1,140 @@
+{
+  "slug": "beta-la-gi",
+  "title": "What is Beta in finance?",
+  "subtitle": "Measuring a stock's sensitivity to the broader market",
+  "duration": "6 min",
+  "openingQuestion": "Beta = 1.5. When the market falls 10%, how much does this stock typically fall?",
+  "openingOptions": ["15%", "1.5%", "5%", "10%"],
+  "explanation": "Beta measures how much a stock moves in step with the broader market: above one means moving more sharply than the market, below one means calmer. It only measures the portion of risk that can't be removed through diversification, and that's exactly why CAPM only rewards this portion. Two things to remember when using it: beta is a statistical estimate with meaningful error, and it's calculated from the past while valuation looks toward the future.",
+  "diagram": [
+    { "label": "The market moves ±1%", "arrow": true },
+    { "label": "Beta measures the stock's sensitivity", "arrow": true },
+    { "label": "Beta > 1: moves more sharply than the market" }
+  ],
+  "realWorldExample": {
+    "company": "Unilever and Vinamilk (consumer staples)",
+    "description": "Consumer staples stocks like Unilever or Vinamilk usually have a low beta (below 1) because demand for milk, soap, and shampoo barely changes whether the economy is booming or in recession - making their share prices far less volatile than the broader market."
+  },
+  "quiz": [
+    {
+      "question": "Which sector typically has the lowest beta?",
+      "options": [
+        "Utilities and consumer staples - stable demand",
+        "Financials - because banks are state-protected in a crisis anyway",
+        "Travel - flights are now essential for all",
+        "Technology - because high growth makes stocks less volatile"
+      ],
+      "explanation": "Utilities and staples (Unilever, P&G) have low beta (~0.3-0.7) because demand for electricity/water/food is stable through every economic cycle. Tech and banks usually have beta > 1."
+    },
+    {
+      "question": "Why can a stock with Beta = 0.5 still lose heavily in a severe market crash, even though in theory it should only move by half the market's magnitude?",
+      "options": [
+        "A low-beta stock is always absolutely safe in every market scenario",
+        "Beta is a statistical estimate from the past; a crisis makes correlations spike",
+        "Beta = 0.5 guarantees the stock won't fall more than half the market's decline",
+        "Beta has no practical meaning in investing so it can be ignored"
+      ],
+      "explanation": "Beta is a statistical model built on historical data, not an absolute guarantee for the future - in a severe liquidity crisis (like March 2020), investors tend to sell off EVERYTHING."
+    },
+    {
+      "question": "Beta = 1.5, market falls 10%. How is the stock expected to move?",
+      "options": [
+        "Falls about 11.5% (= 10% + 1.5 percentage points)",
+        "Falls about 6.7% (= 10% ÷ 1.5, dividing instead of multiplying)",
+        "Falls about 15% (= 10% × beta 1.5, amplified in both directions)",
+        "Falls exactly 10% because beta only applies when the market rises"
+      ],
+      "explanation": "Beta amplifies in both directions: if the market falls 10%, the stock is expected to fall 15%. This is an average expectation, not a guaranteed outcome for any single session."
+    },
+    {
+      "question": "Why do utility stocks tend to have low beta while tech stocks have high beta?",
+      "options": [
+        "Because utilities are protected by the state from competition",
+        "Because utility stocks have much lower liquidity",
+        "Because tech companies borrow more debt than utilities",
+        "Because demand for electricity and water barely changes with the cycle"
+      ],
+      "explanation": "Beta measures sensitivity to the economic cycle. People keep using electricity in a recession, but delay buying new software and cut ad budgets - so tech earnings fluctuate far more."
+    },
+    {
+      "question": "What type of risk does beta fail to capture?",
+      "options": [
+        "A firm's idiosyncratic risk, like a factory fire",
+        "The risk of rising interest rates across the entire financial market",
+        "The risk of a broad economic recession spreading across every sector",
+        "The risk of a multi-year stock market downturn"
+      ],
+      "explanation": "Beta only measures systematic risk - the portion that moves in step with the market. Idiosyncratic risk is assumed to be diversifiable away, so the model pays no extra premium for it."
+    }
+  ],
+  "keyTakeaways": [
+    "Beta = relative volatility compared to the market",
+    "Beta > 1: higher risk; Beta < 1: more stable",
+    "Utilities: low beta; Tech/Crypto: high beta"
+  ],
+  "practicePrompt": {
+    "question": "Stock A has Beta = 1.5, stock B has Beta = 0.6. If the broad market (VN-Index) rises 10% over a period, which stock tends to move more sharply, and what does that say about their risk?",
+    "options": [
+      "Stock A (Beta 1.5) moves more sharply than the market, while B (Beta 0.6) moves more gently",
+      "Stock B moves more sharply because a lower Beta means the company is larger and more stable",
+      "Both stocks move identically to the market (rising exactly 10%) because Beta doesn't affect actual volatility",
+      "Beta only applies to bonds, not to analyzing stock price volatility"
+    ],
+    "explanation": "Beta = relative volatility compared to the market. Beta > 1 (like A = 1.5) means the stock is more volatile than the market (higher systematic risk); Beta < 1 (like B = 0.6) means it's less volatile (lower risk) - this is a key input for calculating Cost of Equity through the CAPM model."
+  },
+  "summary": {
+    "keyIdea": "Beta = relative volatility compared to the market",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to real decisions.",
+    "action": "Beta > 1: higher risk; Beta < 1: more stable"
+  },
+  "application": {
+    "title": "Look up and interpret a beta",
+    "message": "The lesson already has a real example with PNJ's beta of 0.60 - review the 'Real example' section above. Now look up the beta of 2-3 stocks in other industries to compare.",
+    "secondary": "Beta only measures relative volatility, not business quality."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Beta measures how much a stock moves relative to the broader market - it's the most commonly used measure of systematic risk in modern finance, and a core component of the CAPM formula."
+    },
+    { "type": "heading", "text": "How beta works" },
+    {
+      "type": "paragraph",
+      "text": "Beta = 1 means the stock moves exactly with the market. Beta = 1.5 means that when the market rises/falls 1%, the stock tends to rise/fall 1.5% - more volatile, higher risk. Beta = 0.5 means the stock moves only half as much as the market - more stable. Real-world example: consumer staples like Vinamilk typically have a beta below 1, because demand for milk barely changes whether the economy is growing or shrinking."
+    },
+    { "type": "heading", "text": "Beta by industry" },
+    {
+      "type": "paragraph",
+      "text": "Utilities (power, water) and consumer staples typically have low beta (around 0.3-0.7) because demand is stable across every economic cycle. In contrast, technology and financial sectors typically have beta above 1, because their profits and valuations are far more sensitive to the economic cycle and market sentiment."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Beta > 1: moves more sharply than the market, higher risk, higher Cost of Equity",
+        "Beta < 1: more stable than the market, typically seen in defensive sectors (utilities, consumer staples)",
+        "Beta is a statistical estimate based on historical data, not an absolute guarantee for the future",
+        "In a severe liquidity crisis, correlations between assets can spike suddenly, temporarily making historical beta inaccurate"
+      ]
+    },
+    { "type": "heading", "text": "Real example: PNJ's beta" },
+    {
+      "type": "list",
+      "items": [
+        "PNJ (Phu Nhuan Jewelry): beta around 0.60 - less volatile than the broader market, typical of the jewelry retail sector, which is less sensitive to the economic cycle",
+        "Technology, securities, and real estate stocks typically have beta greater than 1 - amplifying market moves in both directions",
+        "Electricity, water, and public utility stocks typically have beta below 1 similar to PNJ - stable cash flow, less dependent on the economic cycle"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "How to look up a stock's beta yourself",
+      "text": "Go to a financial data site (Vietstock, TCBS, SSI iBoard...), find the 'Beta' or 'Risk coefficient' field in the stock statistics section - usually calculated from the last 1-3 years of price movement relative to the VN-Index."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Beta is a useful tool for quantifying relative risk, but don't mistake it for a promise of absolute safety in every market condition."
+      ]
+    }
+  ]
+}

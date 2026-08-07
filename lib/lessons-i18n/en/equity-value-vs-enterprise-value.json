@@ -1,0 +1,131 @@
+{
+  "slug": "equity-value-vs-enterprise-value",
+  "title": "Equity Value vs Enterprise Value",
+  "subtitle": "The value that belongs to shareholders differs from the value of the whole operating business",
+  "duration": "6 min",
+  "openingQuestion": "Equity Value and Enterprise Value - which one is bigger for a company with positive net debt (more debt than cash)?",
+  "openingOptions": [
+    "Equity Value is always bigger in every case",
+    "Can't be compared without profit data",
+    "Enterprise Value is bigger than Equity Value when the company has positive net debt - because EV adds on the debt that shareholders don't carry directly but which still affects overall value",
+    "The two are always equal"
+  ],
+  "explanation": "Equity Value (= Market Cap for a listed company) is the value that belongs specifically to SHAREHOLDERS. Enterprise Value is the value of the WHOLE operating business, belonging to both shareholders AND creditors. The conversion formula: EV = Equity Value + Net Debt (Debt − Cash). For a company with positive net debt, EV > Equity Value.",
+  "diagram": [
+    { "label": "Equity Value: belongs to shareholders" },
+    { "label": "Enterprise Value: belongs to shareholders + creditors" },
+    { "label": "EV = Equity Value + Debt − Cash" }
+  ],
+  "realWorldExample": {
+    "company": "Comparing a tech company and a manufacturing company",
+    "description": "A tech company typically has lots of cash, little debt → EV can be LOWER than Equity Value. A capital-intensive manufacturing company that typically borrows heavily → EV is usually significantly HIGHER than Equity Value."
+  },
+  "quiz": [
+    {
+      "question": "When calculating valuation multiples like EV/EBITDA instead of P/E, why must you use EV rather than Equity Value?",
+      "options": [
+        "Because EV always gives a prettier valuation result than P/E does",
+        "Because accounting standards require using EV for every valuation ratio",
+        "Because EBITDA belongs to every investor so it must match EV",
+        "EV/EBITDA and P/E are interchangeable freely, with no rule at all"
+      ],
+      "explanation": "An important valuation principle: the numerator and denominator of a multiple must belong to the same 'scope' of beneficiary. P/E uses Equity Value (share price) against Earnings (profit after interest expense - belonging only to shareholders). EV/EBITDA uses EV (the whole business) against EBITDA (before interest expense)."
+    },
+    {
+      "question": "An analyst mistakenly uses Enterprise Value instead of Equity Value when calculating a P/E ratio (which should properly be P/E = Equity Value / Net Income). How does this mistake affect the result, especially for a company with large debt?",
+      "options": [
+        "This mistake only affects a company that carries absolutely no debt at all",
+        "It has no effect at all, since EV and Equity Value are always exactly equal",
+        "P/E becomes more accurate when using EV since EV is more comprehensive",
+        "P/E is inflated - EV is higher than Equity Value when debt is large"
+      ],
+      "explanation": "This is a classic \"mixed scope\" mistake in valuation - P/E must use Equity Value (belonging to shareholders) divided by Net Income (profit after creditors have already been paid, also belonging to shareholders); mistakenly using EV (which includes the part belonging to creditors as well) inflates the ratio."
+    },
+    {
+      "question": "EV is 3,000 billion, debt is 800 billion, cash is 200 billion. What is Equity Value?",
+      "options": [
+        "2,400 billion (= 3,000 − 800 debt + 200 cash)",
+        "3,600 billion (= 3,000 + 800 − 200, both signs wrong)",
+        "2,200 billion (= 3,000 − 800, forgetting the cash)",
+        "4,000 billion (= 3,000 + 800 + 200, adding everything)"
+      ],
+      "explanation": "Equity Value = EV − Debt + Cash = 3,000 − 800 + 200 = 2,400 billion. Going from EV back to Equity, you reverse the exact two signs used to go the other direction."
+    },
+    {
+      "question": "Why must EBITDA be paired with EV rather than with Market Cap?",
+      "options": [
+        "Because EBITDA is always larger than net profit so it needs a large denominator",
+        "Because EBITDA is cash flow before paying interest to creditors",
+        "Because Market Cap can only ever be calculated for a listed business",
+        "Because EBITDA is calculated annually while Market Cap is a point-in-time figure"
+      ],
+      "explanation": "The rule is that the numerator and denominator must belong to the same group. EBITDA hasn't had interest expense deducted yet so it belongs to both creditors and shareholders - pairing it with Market Cap is comparing a whole cake to just one slice of it."
+    },
+    {
+      "question": "Which metric correctly pairs with Equity Value?",
+      "options": [
+        "Revenue, because it reflects the scale of the business",
+        "EBITDA, because it's the most commonly used measure",
+        "Net profit, because it has already had interest expense deducted",
+        "EBIT, because it measures core operating efficiency"
+      ],
+      "explanation": "P/E pairs the share price with net profit - both are what remains for shareholders after creditors have been paid. Revenue, EBITDA, and EBIT all sit above the interest-expense line, so they must be paired with EV."
+    }
+  ],
+  "keyTakeaways": [
+    "Equity Value: the value belonging to shareholders; Enterprise Value: the value of the whole business",
+    "EV = Equity Value + Net Debt (Debt − Cash)",
+    "Choose the right type of value (Equity or Enterprise) to match the profit metric used for comparison"
+  ],
+  "practicePrompt": {
+    "question": "When comparing P/E (using Equity Value/Net Income) against EV/EBITDA (using Enterprise Value/EBITDA) between two companies with very different levels of debt, which ratio is fairer, and why?",
+    "options": [
+      "P/E is fairer because Net Income already fully reflects every aspect of the company's operations",
+      "EV/EBITDA is fairer, because Enterprise Value is neutral to capital structure",
+      "Both ratios are equally fair since both use the same type of business value",
+      "Two companies with different debt levels can't be compared by any valuation ratio at all"
+    ],
+    "explanation": "Equity Value: the value belonging to shareholders (after debt is subtracted); Enterprise Value: the value of the whole business (both debt and equity). EV/EBITDA is neutral to capital structure so it's fairer than P/E when comparing companies with significantly different debt levels."
+  },
+  "summary": {
+    "keyIdea": "Equity Value: the value belonging to shareholders; Enterprise Value: the value of the whole business",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to a real decision.",
+    "action": "EV = Equity Value + Net Debt (Debt − Cash)"
+  },
+  "application": {
+    "title": "Apply it now",
+    "message": "Take the Equity Value and Enterprise Value you just calculated in the two previous lessons, confirm whether the formula EV = Equity Value + Net Debt holds, and whether this company has positive or negative net debt.",
+    "secondary": "Verifying the formula yourself makes the number feel a lot less abstract."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Equity Value and Enterprise Value are two of the most commonly confused numbers in valuation - but they answer two completely different questions: one belongs to shareholders, the other belongs to EVERYONE who has put capital into the company."
+    },
+    { "type": "heading", "text": "Two different beneficiary scopes" },
+    {
+      "type": "paragraph",
+      "text": "Equity Value (equal to Market Cap for a listed company) is the value belonging specifically to SHAREHOLDERS. Enterprise Value is the value of the WHOLE operating business, belonging to both shareholders AND creditors. The conversion formula: EV = Equity Value + Net Debt (Debt − Cash). A cash-rich, low-debt tech company usually has an EV lower than its Equity Value; a capital-intensive manufacturing company that borrows heavily usually has an EV significantly higher than its Equity Value."
+    },
+    { "type": "heading", "text": "Why you must choose the right type of value when calculating a multiple" },
+    {
+      "type": "paragraph",
+      "text": "The most important valuation principle: the numerator and denominator of a multiple must belong to the same 'scope' of beneficiary. P/E = Equity Value / Net Income - both belong to shareholders (Net Income is profit after interest has already been paid to creditors). EV/EBITDA = EV / EBITDA - both belong to all investors as a whole (EBITDA is profit before interest, not yet split between creditors and shareholders). If you mistakenly use EV to calculate P/E, the result will be badly distorted - especially severe for a heavily indebted company, since its EV is much higher than its Equity Value."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Equity Value → pair with profit metrics belonging to shareholders: Net Income, EPS (→ P/E, P/B)",
+        "Enterprise Value → pair with profit metrics belonging to all investors: EBITDA, Revenue (→ EV/EBITDA, EV/Revenue)",
+        "Mixing up the two scopes is a classic valuation mistake, especially dangerous for a highly leveraged company",
+        "Negative net debt (net cash) makes EV lower than Equity Value"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Before calculating any multiple, ask yourself: who does this numerator belong to, and does the denominator belong to that same group?"
+      ]
+    }
+  ]
+}

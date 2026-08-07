@@ -19,6 +19,7 @@ import { trackFeatureClick } from "@/lib/feature-events";
 import { getMistakeFlashcardCandidates } from "@/app/actions/flashcard-actions";
 import FlashcardAlbumsGallery from "@/components/flashcard/FlashcardAlbumsGallery";
 import { useI18n } from "@/lib/i18n/context";
+import { copyToClipboard } from "@/lib/copy-to-clipboard";
 import { format } from "@/lib/i18n";
 
 interface FlashcardClientProps {
@@ -269,15 +270,19 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
     }
   };
 
-  function handleExport() {
+  async function handleExport() {
     if (cards.length === 0) {
       toast.info(t.flashcards.nothingToExport);
       return;
     }
     const text = cards.map((c) => `${c.term} | ${c.definition}`).join("\n");
-    navigator.clipboard.writeText(text).then(() => {
-      toast.success(format(t.flashcards.copiedToClipboard, { count: cards.length }));
-    });
+    // Đây là đường duy nhất để lấy bộ thẻ ra khỏi app, nên một lần hỏng im
+    // lặng là người dùng tưởng đã xuất xong rồi đóng trang.
+    if (!(await copyToClipboard(text))) {
+      toast.error(t.flashcards.copyToClipboardFailed);
+      return;
+    }
+    toast.success(format(t.flashcards.copiedToClipboard, { count: cards.length }));
   }
 
   const handleDeleteCard = async (term: string) => {

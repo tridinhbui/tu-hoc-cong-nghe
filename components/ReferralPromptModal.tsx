@@ -8,6 +8,7 @@ import { Gift, Copy, Check, X } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import { REFERRER_BONUS_XP, REFERRED_BONUS_XP } from "@/lib/referrals";
 import { useI18n } from "@/lib/i18n/context";
+import { copyToClipboard } from "@/lib/copy-to-clipboard";
 import { format } from "@/lib/i18n";
 
 // Referral is fully wired end-to-end (lib/referrals.ts). It's a permanent
@@ -49,12 +50,16 @@ export default function ReferralPromptModal() {
 
   const link = `${window.location.origin}/login?ref=${userId}`;
 
-  function handleCopy() {
-    navigator.clipboard.writeText(link).then(() => {
-      setCopied(true);
-      toast.success(t.referralPrompt.copyToast);
-      setTimeout(() => setCopied(false), 2000);
-    });
+  async function handleCopy() {
+    // `.then()` không kèm `.catch()` là im lặng: link mời không vào clipboard
+    // và người dùng cũng không biết, chỉ thấy nút không phản ứng gì.
+    if (!(await copyToClipboard(link))) {
+      toast.error(t.referralPrompt.copyFailedToast);
+      return;
+    }
+    setCopied(true);
+    toast.success(t.referralPrompt.copyToast);
+    setTimeout(() => setCopied(false), 2000);
   }
 
   return (

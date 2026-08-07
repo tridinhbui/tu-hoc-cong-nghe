@@ -1,0 +1,132 @@
+{
+  "slug": "burn-rate-runway",
+  "title": "Burn Rate and Runway",
+  "subtitle": "How fast is a startup burning cash, and how long can it survive?",
+  "duration": "6 min",
+  "openingQuestion": "A startup has 12 billion, burn rate 1 billion/month. What's the runway?",
+  "openingOptions": [
+    "1 year",
+    "12 months (12 billion ÷ 1 billion/month)",
+    "6 months",
+    "24 months"
+  ],
+  "explanation": "Burn rate is the net cash a business spends every month, and runway is how many months it can keep living if nothing changes. The 18-month mark gets mentioned often because raising a round usually takes six months, and you don't want to be negotiating when you only have a few weeks of cash left - because at that point the other side knows exactly where you stand. It's worth distinguishing total spend from net spend: rising revenue lengthens the runway without any cost cutting at all.",
+  "diagram": [
+    { "label": "Total monthly spend minus revenue" },
+    { "label": "Gives the net monthly burn rate" },
+    { "label": "Divide available cash by that figure" },
+    { "label": "Gives the number of months left - below 18 months is when fundraising should start" }
+  ],
+  "realWorldExample": {
+    "company": "The 2022-2023 tech layoff wave",
+    "description": "Many large tech startups were forced into mass layoffs in 2022-2023 as their runway shortened when rising interest rates made new fundraising harder - a clear demonstration that managing burn rate and runway isn't just a theoretical finance exercise but directly affects thousands of real jobs."
+  },
+  "quiz": [
+    {
+      "question": "Should you prioritize cutting burn rate or growing revenue when runway is short?",
+      "options": [
+        "Cutting burn rate is always better because saving is the surest option",
+        "Growing revenue is always better because revenue solves every problem",
+        "It doesn't matter, as long as you raise the next round on time",
+        "It depends: if revenue growth is clearly strong, push revenue - if not, cut burn"
+      ],
+      "explanation": "Default alive or default dead? If, at the current rate, revenue will overtake burn rate before cash runs out → default alive, growth can continue. If not → costs must be cut."
+    },
+    {
+      "question": "Why is a rising interest rate environment (like 2022-2023) especially dangerous for startups with high burn rates and no profits yet?",
+      "options": [
+        "High interest rates lower growth-company valuations and tighten the VC funding tap",
+        "Interest rates don't affect startups at all since they don't take bank loans",
+        "Runway has nothing to do with the economy's interest rate environment",
+        "High interest rates always benefit startups because their cash deposits earn more"
+      ],
+      "explanation": "This is an indirect but powerful transmission channel: high interest rates lower growth valuations and tighten global venture capital funding - a short-runway startup may not raise its next round in time."
+    },
+    {
+      "question": "24 billion in cash, spending 3 billion/month, revenue 1 billion/month. What is the runway?",
+      "options": [
+        "8 months (= 24 ÷ 3, using gross burn)",
+        "12 months (= 24 ÷ net burn of 2 billion per month)",
+        "24 months (= 24 ÷ 1, dividing by revenue)",
+        "6 months (= 24 ÷ 4, mistakenly adding revenue to spend)"
+      ],
+      "explanation": "Net burn = 3 − 1 = 2 billion/month, so runway = 24/2 = 12 months. Using gross burn gives 8 months - more pessimistic than reality because it ignores the revenue offsetting it."
+    },
+    {
+      "question": "Why does the 18-month runway mark come up so often?",
+      "options": [
+        "Because that's the average time for a startup to become profitable",
+        "Because investment funds only disburse on an 18-month cycle",
+        "Because raising the next round usually takes six months to prepare",
+        "Because startup employment contracts are typically signed for that term"
+      ],
+      "explanation": "Raising a round takes time, and raising it when you're about to run out of cash is negotiating from the weakest position. Eighteen months leaves enough buffer to negotiate rather than accept whatever terms are offered."
+    },
+    {
+      "question": "How does a sharp rise in interest rates affect a startup without profits yet?",
+      "options": [
+        "Valuation rises because investors seek out high-growth assets",
+        "Interest expense rises, pushing burn rate up correspondingly",
+        "Revenue falls because customers cut spending right away",
+        "Capital becomes harder to raise, so runway becomes a matter of survival"
+      ],
+      "explanation": "Most startups don't carry debt, so interest rates don't hit cost directly. They hit the capital source: when safe deposits also pay well, risk appetite shrinks and the next funding round disappears."
+    }
+  ],
+  "keyTakeaways": [
+    "Runway = Cash ÷ Net Burn Rate",
+    "Net burn = Spend − Revenue",
+    "Goal: runway ≥ 18 months before raising the next round"
+  ],
+  "practicePrompt": {
+    "question": "A startup has 2,400 million dong in cash, and each month spends 200 million dong more than it takes in (Net Burn Rate). What is this startup's runway (the number of months it can keep operating before running out of cash)?",
+    "options": [
+      "Runway = Cash ÷ Net Burn Rate = 2,400 / 200 = 12 months - this is how long the startup can keep operating before running out of cash if it doesn't raise more capital or improve its cash flow",
+      "Runway = 200 / 2,400 = 0.08 months, calculated as the burn rate over total cash",
+      "Runway = Cash × Net Burn Rate = 2,400 × 200 = 480,000 months, multiplying the two figures directly",
+      "Runway can't be calculated without knowing the startup's revenue"
+    ],
+    "explanation": "Runway = Cash ÷ Net Burn Rate = 2,400/200 = 12 months. This is a make-or-break metric for a startup: it shows how much time is left before running out of cash if the current burn rate doesn't change - the startup needs to raise more capital or reach breakeven before runway hits zero."
+  },
+  "summary": {
+    "keyIdea": "Runway = Cash ÷ Net Burn Rate",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to a real decision.",
+    "action": "Net burn = Spend − Revenue"
+  },
+  "application": {
+    "title": "Calculate your own runway",
+    "message": "Take your total savings and divide by your average monthly spending - that's your personal 'runway', similar to how a startup calculates how many months it can survive before running out of cash.",
+    "secondary": "If the number is only a few months, that's a signal to revisit your emergency fund."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "For a startup without profits yet, two numbers matter more than revenue: Burn Rate (the speed of spending cash) and Runway (how long it can keep living) - they decide how much time the startup has to prove its business model before running out of capital."
+    },
+    { "type": "heading", "text": "How to calculate Runway, and Gross Burn vs Net Burn" },
+    {
+      "type": "paragraph",
+      "text": "Runway = Cash / Monthly Burn Rate. **Example:** having 12 billion dong in cash, burning 1 billion dong a month → Runway = 12 months. Gross burn is total monthly spending; Net burn = spending − revenue, which more accurately reflects how fast cash is actually declining. Most startups want to maintain a runway of at least 18 months to have enough time to prove growth and raise the next round before running out of cash."
+    },
+    { "type": "heading", "text": "Default alive or default dead - and the lesson from 2022-2023" },
+    {
+      "type": "paragraph",
+      "text": "When runway gets shorter, the key question becomes: at the current rate, will revenue overtake burn rate before cash runs out (default alive), or will the company definitely run out of cash without a change (default dead)? The high interest rate environment of 2022-2023 was especially dangerous for high-burn startups: high rates lowered growth-company valuations (due to a higher discount rate) and made venture investors more cautious about deploying new capital. Many large tech startups were forced into mass layoffs during this period to extend runway when they couldn't raise capital in time."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Runway = Available cash ÷ Monthly Net Burn Rate",
+        "Net burn = Monthly spending − Monthly revenue",
+        "Common target: a minimum 18-month runway before being forced to raise the next round",
+        "When runway is short: choose between growing revenue (if growth is clear) or cutting costs (if it isn't)"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Burn rate isn't inherently bad - the problem is when the speed of burning cash outpaces the speed of proving value."
+      ]
+    }
+  ]
+}

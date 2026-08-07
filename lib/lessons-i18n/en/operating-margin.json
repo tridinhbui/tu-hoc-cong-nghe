@@ -1,0 +1,133 @@
+{
+  "slug": "operating-margin",
+  "title": "Operating Margin",
+  "subtitle": "Measuring operating efficiency after indirect costs too",
+  "duration": "5 min",
+  "openingQuestion": "What does Operating Margin = 15% mean?",
+  "openingOptions": [
+    "The company has 15% market share",
+    "For every 100 dong of revenue, 15 dong remains as operating profit before interest and tax",
+    "The company earns 15% net profit after tax",
+    "Revenue grew 15%"
+  ],
+  "explanation": "Operating margin divides EBIT by revenue, measuring what remains after both cost of goods sold and operating costs like selling, admin, and R&D. Because it subtracts more, it is always lower than gross margin. The gap between the two margins is the most valuable piece of information: it shows how much of every dong of gross profit the operating machine is consuming, and that gap widening over time is a sign costs are getting out of control.",
+  "diagram": [
+    { "label": "Gross Margin", "arrow": true },
+    { "label": "Subtract selling, admin, and R&D costs", "arrow": true },
+    { "label": "What remains is Operating Margin", "arrow": true },
+    { "label": "The gap between the two margins shows how costly operations are" }
+  ],
+  "realWorldExample": {
+    "company": "Microsoft (Software)",
+    "description": "Microsoft's Operating Margin usually exceeds 40% thanks to software economics: once development is done, producing one more copy costs almost nothing (extremely low marginal cost), letting operating profit scale much faster than revenue as the company grows."
+  },
+  "quiz": [
+    {
+      "question": "Which type of business usually has the highest Operating Margin?",
+      "options": [
+        "Airlines - because ticket prices are high and the marginal cost per passenger is very low",
+        "Supermarkets - because fast inventory turnover accumulates high profit",
+        "Construction - because large contracts mean high profit per project",
+        "Software/SaaS - marginal cost near zero as it scales"
+      ],
+      "explanation": "Software/SaaS has very high operating margin (often 20-40%+) because the cost of serving one more customer is close to zero. Transportation, retail, and construction, by contrast, run on thin margins."
+    },
+    {
+      "question": "Why is the gap between a company's Gross Margin and Operating Margin valuable information worth tracking?",
+      "options": [
+        "A large gap = operating costs are consuming a lot of gross profit",
+        "This gap carries no meaningful analytical signal at all",
+        "You only need to look at Operating Margin, Gross Margin doesn't matter",
+        "The gap is fixed for every company, so there's no need to track it"
+      ],
+      "explanation": "Tracking both margins together gives a fuller picture: Gross Margin shows production/purchasing efficiency, while the gap to Operating Margin shows whether the company is controlling selling and admin costs effectively."
+    },
+    {
+      "question": "Revenue is 1,500 billion, EBIT is 180 billion. What is the Operating Margin?",
+      "options": [
+        "8.3x (= 1,500 ÷ 180, numerator and denominator swapped)",
+        "12% (= 180 ÷ 1,500, EBIT over revenue)",
+        "18% (= 180 ÷ 1,000, revenue rounded down)",
+        "1,320 billion (= 1,500 − 180, taking the difference instead of the ratio)"
+      ],
+      "explanation": "Operating Margin = EBIT / Revenue = 180/1,500 = 12%. This is what remains after both cost of goods sold and operating costs, but before interest and tax - so it measures core business efficiency."
+    },
+    {
+      "question": "Gross Margin stays stable but Operating Margin keeps falling over three years. Where does the problem lie?",
+      "options": [
+        "In raw-material input prices rising faster than selling prices",
+        "In selling and administrative costs, not cost of goods sold",
+        "In rising interest expense as the business takes on new debt",
+        "In an increase to the corporate tax rate during the period"
+      ],
+      "explanation": "These two margins differ only in the block of operating costs. If cost of goods stays proportionally the same while operating margin keeps falling, that means SG&A is growing faster than revenue."
+    },
+    {
+      "question": "Operating Margin is negative but Gross Margin is still a positive 40%. What does that mean?",
+      "options": [
+        "The business recorded a large foreign-exchange loss at year end",
+        "The business is selling below its own cost of goods sold just to grab market share from rivals",
+        "Interest expense has exceeded gross profit during the period",
+        "Sales are profitable at the gross level but operating costs swallow it all"
+      ],
+      "explanation": "Interest expense doesn't yet sit inside Operating Margin, so the culprit can only be SG&A. This is the familiar picture of a cash-burning startup: the product has decent margins, but the headcount and marketing machine outgrew today's revenue base."
+    }
+  ],
+  "keyTakeaways": [
+    "Operating Margin = EBIT / Revenue",
+    "Measures operating efficiency after SG&A and R&D",
+    "Software/SaaS has the highest operating margin thanks to scalability"
+  ],
+  "practicePrompt": {
+    "question": "A company has Revenue = 1,000 billion, Gross Profit = 400 billion, and after subtracting SG&A + R&D, EBIT = 150 billion remains. What is this company's Operating Margin?",
+    "options": [
+      "Operating Margin = EBIT / Revenue = 150/1,000 = 15% - meaning the company keeps 15 dong of operating profit from every 100 dong of revenue",
+      "Operating Margin = Gross Profit / Revenue = 400/1,000 = 40%, since this is exactly the formula for Operating Margin",
+      "Operating Margin = EBIT / Gross Profit = 150/400 = 37.5%, since EBIT must be compared against gross profit rather than revenue",
+      "Operating Margin has no meaning once a company already has Gross Margin to assess business efficiency"
+    ],
+    "explanation": "Operating Margin = EBIT / Revenue = 150/1,000 = 15%. This measures whole-business operating efficiency (after subtracting both production cost and selling/admin costs), unlike Gross Margin which only measures production efficiency."
+  },
+  "summary": {
+    "keyIdea": "Operating Margin = EBIT / Revenue",
+    "commonMistake": "Reading a concept as a phrase to memorise rather than a principle to apply to real decisions.",
+    "action": "Measures operating efficiency after SG&A and R&D"
+  },
+  "application": {
+    "title": "Calculate Operating Margin",
+    "message": "From an income statement you already have Gross Profit; subtract SG&A and R&D to get EBIT, then divide by Revenue for Operating Margin - compare it against the Gross Margin you just calculated in the previous lesson.",
+    "secondary": "The gap between these two margins tells you how much the company spends on running operations."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Gross Margin only subtracts direct production costs. Operating Margin goes one step further: it also subtracts selling and general administrative costs (SG&A) and research and development (R&D) - showing how efficiently a business actually operates, not just how well it produces."
+    },
+    { "type": "callout", "label": "The formula", "text": "Operating Margin = EBIT / Revenue (EBIT = earnings before interest and tax)" },
+    { "type": "heading", "text": "Operating Margin is always lower than Gross Margin" },
+    {
+      "type": "paragraph",
+      "text": "This is a mathematical rule, not an anomaly: since EBIT = Gross Profit − SG&A − R&D, Operating Margin can never exceed Gross Margin. What matters is how large that gap is, and whether it is widening or narrowing over the years."
+    },
+    { "type": "heading", "text": "Why Microsoft has an Operating Margin above 40%" },
+    {
+      "type": "paragraph",
+      "text": "Software has very particular economics: once the initial development cost is spent, producing one more copy costs almost nothing extra (near-zero marginal cost). As revenue rises, most of that increase falls straight through to operating profit instead of being 'eaten' by proportionally rising production costs - this is why SaaS/software companies have Operating Margins far above manufacturing, retail, or airlines."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Software/SaaS: Operating Margin usually 20-40%+ thanks to near-zero marginal cost",
+        "Retail, construction, airlines: Operating Margin often just a few percent due to heavy operating costs",
+        "A widening Gross Margin − Operating Margin gap = SG&A/R&D is growing faster than revenue",
+        "A narrowing gap over time = the company is controlling operating costs better as it scales"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Tracking Gross Margin and Operating Margin side by side gives a much fuller picture than looking at either one alone."
+      ]
+    }
+  ]
+}

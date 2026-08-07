@@ -1,0 +1,132 @@
+{
+  "slug": "venture-capital-la-gi",
+  "title": "What is Venture Capital?",
+  "subtitle": "Risk capital for early-stage startups",
+  "duration": "6 min",
+  "openingQuestion": "Why do VCs accept losing money on 90% of their portfolio?",
+  "openingOptions": [
+    "Because they have no other choice",
+    "Because startups fail easily",
+    "The 10% that succeeds (unicorns) generates enough return to cover the entire portfolio - power law distribution",
+    "Because they don't analyze carefully"
+  ],
+  "explanation": "Venture capital funds early-stage businesses, where most investments will be lost entirely. That isn't the model failing - it's the model itself: returns follow a power law, where one or two big wins produce nearly the entire fund's result. The consequence for decision-making is very different from ordinary investing - the question isn't whether this bet is safe, but if it's right, how big can it get.",
+  "diagram": [
+    { "label": "Invest in hundreds of startups" },
+    { "label": "Most fail or just break even" },
+    { "label": "1-2 unicorns win big" },
+    { "label": "Generate 90%+ of the entire portfolio's return" }
+  ],
+  "realWorldExample": {
+    "company": "Sequoia Capital's investments in Airbnb, WhatsApp",
+    "description": "Sequoia Capital invests in hundreds of startups a year, most of which fail or merely break even - but a few outstanding successes like Airbnb or WhatsApp generated returns large enough to cover all the other failed investments and deliver enormous profit for the fund."
+  },
+  "quiz": [
+    {
+      "question": "Pre-money valuation $10M, VC invests $2M. What is the post-money valuation and the VC's ownership %?",
+      "options": [
+        "$12M and 20%, taking 2/10 against the pre-money figure",
+        "$10M and 20%, because valuation doesn't change after the funding",
+        "Post-money = $12M; VC owns 2/12 = 16.7%",
+        "$8M and 25%, subtracting the investment from the valuation"
+      ],
+      "explanation": "Post-money = Pre-money + Investment = 10 + 2 = $12M. VC% = Investment / Post-money = 2/12 = 16.7%. Dilution happens to all existing shareholders."
+    },
+    {
+      "question": "Why does the \"power law\" model in venture capital lead VC funds to accept a very high failure rate (70-90%) in their portfolio?",
+      "options": [
+        "The failure rate has no effect on VC strategy at all",
+        "Because VCs can't select good startups so they spread investments thin",
+        "Because VCs always lose money so accepting high risk is required",
+        "Because a few wins that pay off a hundredfold cover all the losses"
+      ],
+      "explanation": "This is the fundamental difference between VC thinking and traditional investing: instead of minimizing risk on each individual investment, VCs optimize for the chance of catching extreme outliers."
+    },
+    {
+      "question": "Pre-money $10 million, VC invests $2 million. What percentage does the VC own?",
+      "options": [
+        "16.7% (= 2 ÷ $12M post-money)",
+        "20% (= 2 ÷ $10M pre-money, dividing by the wrong base)",
+        "12% (= 2 ÷ 10, then adding 2 percentage points)",
+        "83.3% (= 10 ÷ 12, taking the founder's share)"
+      ],
+      "explanation": "Post-money = 10 + 2 = $12 million, and the VC's stake = 2/12 = 16.7%. Dividing by pre-money is the most common mistake when reading a term sheet, and it inflates the ownership stake."
+    },
+    {
+      "question": "Why does a VC fund accept losing money entirely on most of its investments?",
+      "options": [
+        "Because losses are tax-deductible for the fund's investors",
+        "Because one big win can cover the entire portfolio",
+        "Because the fund still collects management fees regardless of investment results",
+        "Because failed startups usually return the remaining leftover capital"
+      ],
+      "explanation": "Returns follow a power law: the maximum loss is 1x the capital, while a win could be 100x. It is exactly that asymmetry that makes the optimal strategy hunting for huge opportunities rather than avoiding risk."
+    },
+    {
+      "question": "A founder owns 100%, raises three rounds each selling 20%. How much is left?",
+      "options": [
+        "60% (= 100% − 20% − 20%, mistakenly counting only two of the three rounds)",
+        "40% (= 100% − 60%, directly subtracting three lots of 20%)",
+        "About 51% (= 0.8 × 0.8 × 0.8, cumulative dilution)",
+        "80% (= 100% − 20%, wrongly assuming only the last round dilutes the founder)"
+      ],
+      "explanation": "Each round takes 20% of what remains, not of the original total: 100% → 80% → 64% → 51.2%. Dilution multiplies rather than subtracts, and this is exactly why a founder needs to think ahead to the final round, not just the one being negotiated."
+    }
+  ],
+  "keyTakeaways": [
+    "VC: risk capital, high risk accepted",
+    "Power law: 1-2 unicorns cover the whole portfolio",
+    "Pre/post-money valuation and dilution"
+  ],
+  "practicePrompt": {
+    "question": "A fund invests in 20 early-stage tech startups, knowing that most of them (perhaps 15-17 companies) will fail entirely, but expecting 1-2 outstanding successes to make up for everything and generate a large return for the whole fund. Which type of fund does this investment model characterize?",
+    "options": [
+      "VC (Venture Capital): risk capital, high risk accepted - this 'power law' model is characteristic of VC, where most investments fail but a few outstanding successes cover the whole portfolio",
+      "This is characteristic of a government bond fund, which prioritizes absolute safety",
+      "This is characteristic of Private Equity, which only invests in mature, stable companies",
+      "This is a flawed investment model because such a high failure rate can't be acceptable in finance"
+    ],
+    "explanation": "VC: risk capital, high risk accepted. The VC model rests on the 'power law' principle - investing in many early-stage startups knowing most will fail, but a few outstanding successes (like becoming a unicorn) generate enough return to cover the whole portfolio and turn a profit."
+  },
+  "summary": {
+    "keyIdea": "VC: risk capital, high risk accepted",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to a real decision.",
+    "action": "Power law: 1-2 unicorns cover the whole portfolio"
+  },
+  "application": {
+    "title": "Apply it now",
+    "message": "Think about your own venture-style portfolio (if you hold growth stocks, startup equity, or crypto) - is there any position carrying the whole portfolio in a power-law kind of way?",
+    "secondary": "Recognizing the power law helps you expect less that every single investment has to win."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Venture Capital (VC) is risk capital invested in early-stage startups, running on a logic quite different from traditional investing: accepting that most investments will fail, betting on a few extreme 'outliers' to make up for the entire portfolio."
+    },
+    { "type": "heading", "text": "Power law - the heart of the VC model" },
+    {
+      "type": "paragraph",
+      "text": "VC operates on a power law: just 1-2 outstanding successes (unicorns, decacorns) out of an entire portfolio of hundreds of startups can generate over 90% of the fund's total return. Sequoia Capital invests in hundreds of startups a year, most of which fail or merely break even - but a few outstanding successes like Airbnb or WhatsApp generated returns large enough to cover all the other failed investments and deliver enormous profit for the fund. This is why VC funds are willing to accept a very high failure rate (70-90%) - the optimal strategy is investing broadly enough not to miss a potential unicorn, rather than trying to avoid every failure."
+    },
+    { "type": "heading", "text": "Pre-money, post-money, and dilution" },
+    {
+      "type": "paragraph",
+      "text": "**Example:** a startup has a pre-money valuation of $10 million, and a VC invests an additional $2 million. Post-money valuation = Pre-money + Investment = 10 + 2 = $12 million. The VC's ownership stake = Investment / Post-money = 2/12 ≈ 16.7%. Dilution happens to all existing shareholders - a founder who once owned 100% now holds only about 83.3% after this funding round."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Power law: a small number of extremely successful investments cover most of the failed ones",
+        "VCs optimize for catching outliers, not for minimizing risk on each individual investment",
+        "Post-money valuation = Pre-money valuation + amount of new investment",
+        "Every new funding round dilutes the ownership stake of existing shareholders, including the founder"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "VC thinking runs entirely opposite to traditional investment thinking: accept losing many times to win once, truly big."
+      ]
+    }
+  ]
+}

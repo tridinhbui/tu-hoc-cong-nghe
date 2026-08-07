@@ -1,0 +1,137 @@
+{
+  "slug": "corporate-finance-la-gi",
+  "title": "What is Corporate Finance?",
+  "subtitle": "The three core financial decisions of every business",
+  "duration": "6 min",
+  "openingQuestion": "What does Corporate Finance focus on?",
+  "openingOptions": [
+    "Human resource management",
+    "Corporate tax",
+    "Day-to-day accounting",
+    "Three decisions: where to invest, how to fund it, and how much to return to shareholders"
+  ],
+  "explanation": "Corporate finance boils down to three recurring questions: where to invest, where to get the money from, and what to do with what's left over. The first question is answered with NPV - only accept projects that earn more than the cost of capital. The second is a balancing act between the tax shield of debt and the risk of insolvency. The third depends on whether the business still has reinvestment opportunities earning more than the cost of capital.",
+  "diagram": [
+    { "label": "Investment: where to invest?", "arrow": true },
+    { "label": "Financing: use debt or equity?", "arrow": true },
+    { "label": "Dividend: how much to return to shareholders?" }
+  ],
+  "realWorldExample": {
+    "company": "CFOs of listed corporations",
+    "description": "Every professional CFO, whether at Vingroup or Apple, operates around exactly these three core Corporate Finance questions every day: should we invest in this project, should we raise capital with debt or issue shares, and how much should we return to shareholders."
+  },
+  "quiz": [
+    {
+      "question": "What is the ultimate goal of Corporate Finance?",
+      "options": [
+        "Maximizing this period's accounting profit",
+        "Maximizing long-term value for shareholders",
+        "Maximizing revenue to capture the largest market share",
+        "Minimizing the cost of capital as much as possible"
+      ],
+      "explanation": "The goal is shareholder value maximization - not short-term profit. This sometimes conflicts with short-term interests like cutting R&D spending to boost EPS."
+    },
+    {
+      "question": "Why can't the three Corporate Finance decisions (investment, financing, distribution) be made independently, since they always affect each other?",
+      "options": [
+        "Because accounting standards require presenting them in one report",
+        "Because all three must be approved by the shareholders' meeting at the same time",
+        "Because money used for one decision is money lost to another",
+        "Because all three are calculated using the same discounting formula"
+      ],
+      "explanation": "A good CFO always sees the three decisions as one linked system: borrowing more (financing) increases financial risk but frees up equity for more investment, while also reducing the ability to pay large dividends because debt repayment takes priority."
+    },
+    {
+      "question": "Cutting the R&D budget to make this quarter's EPS look better is an example of what?",
+      "options": [
+        "A required step when profit misses plan",
+        "An optimal financing decision during a difficult period",
+        "A valid way to reduce a company's weighted average cost of capital",
+        "Trading long-term value for a short-term number"
+      ],
+      "explanation": "EPS genuinely rises, but what gets cut is the source of future years' cash flow. This is why the stated goal is long-term value, not this quarter's profit."
+    },
+    {
+      "question": "A company has a positive-NPV investment opportunity but lacks capital. How do the three decisions interact?",
+      "options": [
+        "It must raise more capital or cut dividends to fund it",
+        "It must abandon the project because the capital structure can't change",
+        "It must wait until retained earnings are sufficient to proceed",
+        "It must lower prices to boost revenue and self-fund the project"
+      ],
+      "explanation": "The investment decision drives the financing decision, and the financing decision drives the distribution decision. Abandoning a positive-NPV project just to preserve the current dividend level is a choice - and often the wrong one."
+    },
+    {
+      "question": "Why aren't maximizing profit and maximizing value the same thing?",
+      "options": [
+        "Because profit is calculated after tax while value is before tax",
+        "Because profit ignores risk and the timing of the cash flow",
+        "Because value can only be measured for a listed company",
+        "Because profit is set by accountants while value is set by the market"
+      ],
+      "explanation": "Two projects with the same profit but one certain and one highly uncertain, or one paid next year and one paid in ten years - their value is very different. Discounting is how both risk and timing get built into the number."
+    }
+  ],
+  "keyTakeaways": [
+    "Three decisions: Investment, Financing, Dividend",
+    "Goal: maximize the value of the business",
+    "NPV > 0 is the core investment criterion"
+  ],
+  "practicePrompt": {
+    "question": "A CFO is weighing: (1) should we build a new plant, (2) should we raise capital through debt or by issuing shares, (3) how much profit should be paid out as dividends to shareholders. Which group of Corporate Finance decisions do these three questions belong to?",
+    "options": [
+      "All three belong to a single decision: day-to-day cash flow management",
+      "Three decisions: Investment (building the plant), Financing (debt or issuing shares), Dividend (how much to pay shareholders) - these are the three core pillars of Corporate Finance",
+      "Only the second decision (debt or issuing shares) belongs to Corporate Finance, the other two belong to a different field",
+      "These three decisions are unrelated and should be handled entirely independently by different departments"
+    ],
+    "explanation": "Three decisions: Investment (which projects are worth doing), Financing (where to get the capital), Dividend (retain or distribute to shareholders) are the three pillars of Corporate Finance, and they're tightly linked in every major business decision."
+  },
+  "summary": {
+    "keyIdea": "Three decisions: Investment, Financing, Dividend",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to real decisions.",
+    "action": "Goal: maximize the value of the business"
+  },
+  "application": {
+    "title": "Classify your own three financial decisions",
+    "message": "Think about a business or your own personal financial situation, and classify your recent decisions into the three groups: investment, financing, dividend (or spending/saving).",
+    "secondary": "This exercise helps you see that corporate finance isn't only for large corporations."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Corporate Finance isn't a subject reserved for investment bankers - it's the framework any CFO, from a 5-person startup to a listed conglomerate, uses to answer three life-or-death questions: where should money go, where does the money come from, and what should be done with the profit?"
+    },
+    { "type": "heading", "text": "The three pillars of every corporate financial decision" },
+    {
+      "type": "paragraph",
+      "text": "The investment decision answers: which project/asset is worth investing in? The classic criterion is NPV > 0 - meaning the present value of the future cash flow the project generates must exceed the initial outlay. The financing decision answers: where should the money to fund that project come from - debt (cheaper thanks to the tax shield but carries bankruptcy risk) or issuing shares (no fixed obligation but dilutes ownership)? The dividend decision answers: now that profit has been made, should it be returned to shareholders or retained for reinvestment?"
+    },
+    { "type": "heading", "text": "Why the goal is business value, not profit" },
+    {
+      "type": "paragraph",
+      "text": "A common mistake is thinking a CFO only needs to maximize profit or revenue. In fact, the ultimate goal of Corporate Finance is to maximize long-term business value (shareholder value). These two goals can conflict: a company can boost short-term profit by cutting R&D or marketing, but doing so destroys its competitive ability and long-term value - which is exactly why smart investors always look beyond this quarter's EPS."
+    },
+    { "type": "heading", "text": "The three decisions always interact" },
+    {
+      "type": "paragraph",
+      "text": "These three decisions can't be separated. **Example:** a company that borrows heavily to finance itself will have more money to invest in a new project, but must simultaneously prioritize paying interest and principal, reducing its ability to pay a large dividend. A good CFO always balances all three as a linked system, rather than optimizing each piece separately."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Investment decision: appraise projects using NPV, IRR, payback period",
+        "Financing decision: balance debt (tax shield, bankruptcy risk) against equity (dilution, no fixed obligation)",
+        "Dividend decision: retain and reinvest if ROIC > cost of capital, pay dividends/buy back shares if investment opportunities have dried up",
+        "Every decision must serve the goal of maximizing long-term business value"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "These three seemingly simple questions govern almost every major decision in a company's life.",
+        "Understanding Corporate Finance correctly helps you read business news without relying on gut feeling."
+      ]
+    }
+  ]
+}

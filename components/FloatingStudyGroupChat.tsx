@@ -10,6 +10,7 @@ import { createClient } from "@/lib/supabase";
 import { trackFeatureClick } from "@/lib/feature-events";
 import { uploadChatImage, isAllowedChatImage, uploadChatFile, isAllowedChatFile } from "@/lib/supabase-chat";
 import { announceWidgetOpened, onOtherWidgetOpened } from "@/lib/floating-widget-coordinator";
+import { toDownloadUrl } from "@/lib/storage-download";
 import EmojiPicker from "@/components/EmojiPicker";
 import { motion } from "framer-motion";
 import { useDraggablePosition } from "@/lib/hooks/useDraggablePosition";
@@ -588,10 +589,14 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                           {msg.file_name && (
                             msg.file_url ? (
                               <a
-                                href={msg.file_url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                download={msg.file_name}
+                                // `download` trên thẻ <a> bị bỏ qua với link
+                                // khác origin, mà file_url là Supabase Storage.
+                                // Tên tệp và Content-Disposition phải do máy chủ
+                                // nói - xem toDownloadUrl. Không đặt
+                                // target="_blank": phản hồi là attachment nên
+                                // không có trang nào để mở, chỉ là một tab trắng
+                                // bật lên rồi tự đóng.
+                                href={toDownloadUrl(msg.file_url, msg.file_name)}
                                 className={`mb-2 flex items-center gap-2 rounded-lg px-2.5 py-2 text-[11px] font-medium transition-colors ${
                                   isMine
                                     ? "bg-white/15 hover:bg-white/25"

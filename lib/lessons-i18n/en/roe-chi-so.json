@@ -1,0 +1,143 @@
+{
+  "slug": "roe-chi-so",
+  "title": "ROE: Return on Equity",
+  "subtitle": "How much do shareholders get per dong of capital invested?",
+  "duration": "6 min",
+  "openingQuestion": "What does ROE = 20% mean?",
+  "openingOptions": [
+    "A 20% dividend",
+    "20% capital growth",
+    "For every 100 dong of shareholders' equity, 20 dong of net profit is created",
+    "The company earns 20% of revenue as profit"
+  ],
+  "explanation": "ROE measures how many dong of profit each dong of shareholders' capital generates, making it the metric closest to shareholders' own interests. But it is also the easiest to distort, since it can be lifted just by borrowing more: a smaller equity denominator makes the ratio look prettier without operations improving at all. That's why ROE must always be decomposed via DuPont into margin, asset turnover, and leverage - to see where the number actually comes from.",
+  "diagram": [
+    { "label": "Net income", "arrow": true },
+    { "label": "Divide by shareholders' equity", "arrow": true },
+    { "label": "Decompose via DuPont: margin, turnover, leverage", "arrow": true },
+    { "label": "Check whether a high ROE comes from real efficiency or just heavy borrowing" }
+  ],
+  "realWorldExample": {
+    "company": "Vinamilk (VNM)",
+    "description": "Vinamilk has maintained an ROE above 20% for many consecutive years thanks to a combination of strong margins, high asset-use efficiency, and a conservative capital structure (low debt) - a case where high ROE comes from genuine business quality, not risky financial leverage."
+  },
+  "quiz": [
+    {
+      "question": "What does DuPont decomposition break ROE into?",
+      "options": [
+        "Net Margin × Inventory Turnover × Leverage",
+        "Gross Margin × Asset Turnover × the effective corporate Tax Rate",
+        "Net Margin × Asset Turnover × Financial Leverage",
+        "Revenue × Equity × Current Ratio"
+      ],
+      "explanation": "ROE = Net Margin × Asset Turnover × Equity Multiplier. A company can achieve a high ROE through: (1) high margin, (2) fast asset turnover, or (3) high financial leverage. You need to know which source is driving it."
+    },
+    {
+      "question": "Two companies both have ROE = 25%, but Company A achieves this through strong Net Margin and Asset Turnover, while Company B achieves it mainly through very heavy borrowing (high Financial Leverage). Which company is riskier over the long run?",
+      "options": [
+        "Company B - but only if the industry is slowing down",
+        "Company A - a high profit margin usually carries pricing risk",
+        "Equal - the same ROE means the same risk",
+        "Company B - an ROE built on leverage can collapse quickly when interest rates rise"
+      ],
+      "explanation": "This is exactly why you must always 'unpack' ROE with DuPont before drawing a conclusion. An ROE driven by financial leverage is a 'fragile structure' - just a rise in interest rates or a slight dip in operating profit can collapse it quickly, carrying a much higher risk of default."
+    },
+    {
+      "question": "Net income is 90 billion, shareholders' equity is 500 billion, total assets are 1,500 billion. What is the ROE?",
+      "options": [
+        "18% (= 90 ÷ 500, net income over equity)",
+        "6% (= 90 ÷ 1,500, mistakenly using total assets)",
+        "33% (= 500 ÷ 1,500, equity's share of total assets)",
+        "3.6% (= 90 ÷ 2,000, wrongly adding the two denominators together)"
+      ],
+      "explanation": "ROE = Net Income / Shareholders' Equity = 90/500 = 18%. The figure 6% is actually ROA - mistakenly using total assets as the denominator is the most common error with this metric."
+    },
+    {
+      "question": "A business's ROE jumps from 15% to 60% while profit barely changes. What is the most likely cause?",
+      "options": [
+        "Revenue spiked sharply during this period",
+        "Shareholders' equity shrank sharply, making the denominator smaller",
+        "Total assets grew quickly thanks to more long-term borrowing",
+        "Gross margin improved thanks to cheaper raw materials"
+      ],
+      "explanation": "If the numerator is standing still, only the denominator can explain the jump. Equity shrinking due to a large-scale buyback or accumulated losses eating into it - a 60% ROE of this kind is a warning sign, not an achievement."
+    },
+    {
+      "question": "Why is an ROE sustained above 15% for many years considered a sign of competitive advantage?",
+      "options": [
+        "Because that level guarantees a business always pays steady dividends",
+        "Because ROE above 15% is a mandatory threshold to be listed",
+        "Because competition tends to pull returns on capital back toward the average",
+        "Because investment funds only invest once ROE crosses 15%"
+      ],
+      "explanation": "High returns attract competitors, and competitors pull those returns back down. Sustaining a high ROE across many years means something is blocking that process - a brand, switching costs, scale - in other words, a real economic moat."
+    }
+  ],
+  "keyTakeaways": [
+    "ROE = Net Income / Equity - the metric that matters most to shareholders",
+    "A high ROE driven by debt (leverage) differs from a high ROE driven by genuine efficiency",
+    "DuPont decomposition: Margin × Turnover × Leverage"
+  ],
+  "practicePrompt": {
+    "question": "Company A has Net Income = 200 billion, Equity = 1,000 billion (ROA is also high because it carries little debt). Company B has Net Income = 200 billion, Equity of only 400 billion (because it uses heavy debt leverage). Which company's shareholders receive a higher ROE, and why is this the metric they care about most?",
+    "options": [
+      "Company A's shareholders receive a higher ROE because the company has a larger equity base",
+      "Company B's shareholders receive a higher ROE: 200/400 = 50% versus A's 200/1,000 = 20%",
+      "The two companies' ROE is equal since Net Income is equal; Equity doesn't affect ROE",
+      "Shareholders shouldn't care about ROE at all and should only look at the company's absolute Net Income"
+    ],
+    "explanation": "ROE = Net Income / Equity - the metric that matters most to shareholders because it directly measures the return generated on the very capital they invested. B has the higher ROE (50% vs 20%) but note: a high ROE can come from genuine business efficiency OR from high financial leverage (small equity) - check the D/E ratio too for a fuller picture."
+  },
+  "summary": {
+    "keyIdea": "ROE = Net Income / Equity - the metric that matters most to shareholders",
+    "commonMistake": "Reading a concept as a phrase to memorise rather than a principle to apply to real decisions.",
+    "action": "A high ROE driven by debt (leverage) differs from a high ROE driven by genuine efficiency"
+  },
+  "application": {
+    "title": "Calculate ROE and check leverage",
+    "message": "Calculate a company's ROE (Net Income / Equity), then check that company's Debt-to-Equity to see whether the high ROE comes from real efficiency or from heavy borrowing.",
+    "secondary": "A high ROE driven by leverage deserves more caution than a high ROE driven by good business performance."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "If you could only pick one metric to assess 'are shareholders being treated well,' most investors would choose ROE (Return on Equity) - the profit generated per dong of shareholders' equity actually invested in the business."
+    },
+    { "type": "callout", "label": "The formula", "text": "ROE = Net Income / Shareholders' Equity" },
+    { "type": "heading", "text": "Buffett and the 15% ROE threshold" },
+    {
+      "type": "paragraph",
+      "text": "Warren Buffett is famous for seeking businesses that sustainably maintain an ROE above 15% for many years - a sign of a genuine competitive advantage (economic moat), not a lucky streak. Vinamilk is a classic example in Vietnam: an ROE stable above 20% for many consecutive years, driven by a combination of good margins, high asset-use efficiency, and a conservative capital structure - not heavy borrowing."
+    },
+    { "type": "heading", "text": "But not every high ROE deserves your trust" },
+    {
+      "type": "paragraph",
+      "text": "This is the most common trap when reading ROE: two companies both have ROE = 25%, but Company A achieves it through good margin and asset efficiency, while Company B achieves it mainly through very heavy borrowing (high financial leverage pushing up the equity multiplier). Company B is far riskier over the long run - an ROE built on leverage can collapse quickly when interest rates rise or revenue dips slightly, while A's ROE comes from core business efficiency, which is far more durable."
+    },
+    {
+      "type": "conceptTable",
+      "title": "DuPont Decomposition",
+      "subtitle": "Breaking ROE down into 3 sources",
+      "concepts": [
+        { "vi": "Biên lợi nhuận ròng", "en": "Net Margin", "def": "Net Income / Revenue - is the business turning a good profit?" },
+        { "vi": "Vòng quay tài sản", "en": "Asset Turnover", "def": "Revenue / Total Assets - is it using assets efficiently?" },
+        { "vi": "Đòn bẩy tài chính", "en": "Financial Leverage (Equity Multiplier)", "def": "Total Assets / Equity - how much debt is being used to amplify profit?" }
+      ]
+    },
+    {
+      "type": "list",
+      "items": [
+        "ROE = Net Margin × Asset Turnover × Financial Leverage (DuPont)",
+        "Always ask: where does this high ROE come from - business efficiency or leverage?",
+        "High ROE + high D/E + ordinary margin = warrants caution, may be a 'fragile structure'",
+        "Comparing ROE should always come with a comparison of D/E for the same company to understand its true nature"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "ROE is a good starting point, but it always needs to be unpacked with DuPont before concluding a business is 'good.'"
+      ]
+    }
+  ]
+}

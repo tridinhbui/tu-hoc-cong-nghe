@@ -1,0 +1,151 @@
+{
+  "slug": "compounding-dau-tu",
+  "title": "Compounding in Investing",
+  "subtitle": "The power of time and continuous reinvestment",
+  "duration": "6 min",
+  "openingQuestion": "Person A invests 10 million at age 25. Person B invests 10 million at age 35. Both earn 10%/year until age 65. What is the gap?",
+  "openingOptions": [
+    "Person A has 2.6 times as much as Person B",
+    "Person A has 1.5 times as much",
+    "They are equal",
+    "The difference is negligible"
+  ],
+  "explanation": "Compounding is interest being added to principal and then continuing to earn interest, and the key point is that it grows exponentially rather than in a straight line. So most of the result comes from the final years rather than the early ones: ten million at 10% after thirty years becomes 174 million, but with ten more years it becomes 452 million. The consequence for an investor is that when you start matters more than how much you start with, and withdrawing partway through costs far more than it appears to.",
+  "diagram": [
+    { "label": "Put in capital and leave it alone", "arrow": true },
+    { "label": "At the end of each year, interest gets added to principal", "arrow": true },
+    { "label": "The following year earns interest on a larger base", "arrow": true },
+    { "label": "The more years, the steeper the growth curve" }
+  ],
+  "realWorldExample": {
+    "company": "Warren Buffett and Berkshire Hathaway",
+    "description": "Most of Warren Buffett's enormous fortune didn't come from spectacular one-off investments, but from starting to invest very early (in his teens) and letting compounding run continuously for over 70 years - the clearest demonstration of compounding's power over a very long time."
+  },
+  "quiz": [
+    {
+      "question": "What destroys the power of compounding the most?",
+      "options": [
+        "Withdrawing money frequently, breaking the chain of compound interest",
+        "Interest rates dipping slightly for a few years mid-investment",
+        "Adding new capital in the middle of a growing cycle",
+        "Shifting the portfolio into a lower-volatility asset class"
+      ],
+      "explanation": "Compounding needs continuity. Withdrawing money (for whatever legitimate reason) forces a sale and breaks the compound chain. 'Lose 50% → need to gain 100% to break even.' Protecting capital and avoiding interruption is the number-one rule."
+    },
+    {
+      "question": "Withdrawing a large portion of interest to spend each year instead of reinvesting it affects the long-term power of compounding how?",
+      "options": [
+        "No effect, since the original principal is still preserved",
+        "It gradually shrinks the base from which every subsequent year has to multiply",
+        "Only affects the withdrawal year itself, later years remain unchanged",
+        "Increases portfolio risk but doesn't change the growth rate"
+      ],
+      "explanation": "Compounding only reaches maximum power when interest is REINVESTED continuously - every withdrawal shrinks the 'base' used to calculate compound interest for the future, significantly slowing the pace of wealth growth later, especially damaging if withdrawn early on."
+    },
+    {
+      "question": "A portfolio loses 40%. How much of a gain is needed to get back to the original capital?",
+      "options": [
+        "About 60% (= 100% − 40%, taking what remains)",
+        "Exactly 40% (= the amount lost, regained by that same amount)",
+        "About 67% (= 1 ÷ 0.6 − 1, based on remaining capital)",
+        "About 140% (= 100% + 40%, adding back what was lost)"
+      ],
+      "explanation": "Losing 40% leaves 60% of capital, and 60 must grow by 67% to return to 100. The path back is always steeper than the path down, and that steepness grows nonlinearly the deeper the loss."
+    },
+    {
+      "question": "Person A invests starting at age 25, Person B starting at age 35, with the same amount and interest rate, both stopping at age 65. Who ends up ahead?",
+      "options": [
+        "A is ahead by about a quarter, corresponding to the ten-year gap",
+        "B is ahead because A's first ten years barely earn any interest",
+        "The two are roughly equal since capital and interest rate are the same",
+        "A is ahead by several times over, thanks to ten extra years at the steepest part"
+      ],
+      "explanation": "At 10%/year, A reaches about 452 million while B reaches about 174 million on the same 10 million of capital - a gap of 2.6 times. The final ten years of a compounding chain always create the most value, and that's exactly the ten years B doesn't have."
+    },
+    {
+      "question": "Why does a 1%/year management fee matter so much for a long-term investment?",
+      "options": [
+        "Because compounding amplifies fees exactly the way it amplifies gains",
+        "Because the fee is charged on interest earned, not on total capital",
+        "Because management fees typically increase with portfolio size",
+        "Because the fee must be paid before interest is calculated, reducing principal"
+      ],
+      "explanation": "A 7%/year portfolio multiplies capital 7.61 times after 30 years; at 6% it only reaches 5.74 times. One percentage point takes away 24.5% of the final wealth - by exactly the same mechanism that created the gains, only running in reverse."
+    }
+  ],
+  "keyTakeaways": [
+    "Compounding: interest on interest on interest - exponential",
+    "Starting early > starting with more money",
+    "Don't interrupt it - continuity is the key to compounding"
+  ],
+  "practicePrompt": {
+    "question": "Two people each invest 100 million dong at a return of 10%/year. Person A withdraws the interest to spend every year, keeping only the original 100 million. Person B lets the interest reinvest continuously (compounding). After 20 years, who has more assets, and where does the gap come from?",
+    "options": [
+      "Person B has far more assets - because compounding is interest on interest on interest, an exponential effect where each year's interest is calculated on both the principal and previously accumulated interest, producing ever-faster growth over time",
+      "Both have equal assets since they started with the same original capital of 100 million",
+      "Person A has more assets because withdrawing interest to use immediately captures the value of money right away",
+      "The gap between the two only becomes significant if the investment period runs beyond 50 years"
+    ],
+    "explanation": "Compounding: interest on interest on interest - exponential. Person A only ever has the accumulated simple interest on 100 million × 1.1^20 without reinvesting, so assets don't grow exponentially, while Person B, letting compound interest accumulate, reaches nearly 673 million after 20 years - the gap comes from interest continuously earning interest."
+  },
+  "summary": {
+    "keyIdea": "Compounding: interest on interest on interest - exponential",
+    "commonMistake": "Reading a concept as a phrase to memorise rather than a principle to apply to real decisions.",
+    "action": "Starting early > starting with more money"
+  },
+  "application": {
+    "title": "Compare starting early vs late",
+    "message": "Calculate for yourself the FV of the same amount of money if invested starting this year versus delaying 10 years, using the same expected interest rate.",
+    "secondary": "The result is often surprising - that's exactly why compounding is called the 8th wonder."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Compounding is the engine behind the FV formula - but its real value only becomes clear over very long stretches of time, where a few decades of difference produces a multiple-fold gap in final wealth."
+    },
+    { "type": "heading", "text": "Example: how a 10-year head start makes a difference" },
+    {
+      "type": "paragraph",
+      "text": "Person A invests 10 million dong at age 25, leaving it alone until age 65 (40 years), at a compound interest rate of 10%/year: FV = 10 × (1.1)^40 ≈ 10 × 45.26 ≈ 452 million dong. Person B invests the exact same 10 million dong but starts at age 35, having only 30 years to compound: FV = 10 × (1.1)^30 ≈ 10 × 17.45 ≈ 174 million dong. With the same principal, only differing by a 10-year earlier start, Person A ends up with about 278 million dong more - nearly 2.6 times as much."
+    },
+    { "type": "heading", "text": "Why interruption destroys compounding" },
+    {
+      "type": "paragraph",
+      "text": "Compounding only reaches its full power when interest is continuously reinvested, not withdrawn along the way. Every withdrawal shrinks the 'base' used to calculate compound interest for subsequent periods, significantly slowing future growth - especially damaging if withdrawn early, since most of compounding's value accumulates in the final years."
+    },
+    {
+      "type": "formula",
+      "title": "Why losing 50% requires a 100% gain to break even",
+      "equation": "Required gain = 1 ÷ (1 − Loss rate) − 1",
+      "variables": [
+        { "symbol": "Loss rate", "name": "Fraction of capital lost", "description": "0.5 means losing half" }
+      ],
+      "example": {
+        "title": "Three levels of loss, three levels needed to recover",
+        "calculation": "Lose 30% → 1 ÷ 0.7 − 1 = 42.9% · Lose 50% → 1 ÷ 0.5 − 1 = 100% · Lose 70% → 1 ÷ 0.3 − 1 = 233%",
+        "result": "The deeper the loss, the more nonlinearly steep the path back",
+        "explanation": "Compounding runs on the capital that remains. Every deep loss shrinks the base from which every future year has to multiply - so preserving capital isn't timidity, it's the condition for the formula to keep working at all."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "How small a 1%/year fee looks",
+      "text": "Over the same 30 years, a portfolio compounding at 7%/year multiplies capital 7.61 times. Subtract a 1% annual management fee, leaving 6%, and it only reaches 5.74 times. The gap is 24.5% of final wealth - vanishing because of a figure that looks like a rounding error. Compounding amplifies fees exactly the way it amplifies gains."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Time is the most important variable in the FV = PV×(1+r)^n formula, because n sits in the exponent",
+        "'Lose 50%, need 100% to break even' - the reason preserving capital matters more than maximizing short-term returns",
+        "Reinvesting dividends and interest instead of withdrawing to spend is how to sustain compounding",
+        "Starting early with a small amount usually beats starting late with a larger one"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Compounding doesn't reward the smartest person - it rewards the most patient one who starts the earliest."
+      ]
+    }
+  ]
+}

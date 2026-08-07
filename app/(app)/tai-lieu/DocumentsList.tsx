@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { FileText, Download, FileSpreadsheet, FileImage, Archive, Plus } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import { trackFeatureClick } from "@/lib/feature-events";
+import { toDownloadUrl } from "@/lib/storage-download";
 import { documentCategoriesOf, documentCategoryLabel } from "@/lib/document-categories";
 import EmptyState from "@/components/admin/EmptyState";
 import Modal from "@/components/admin/Modal";
@@ -280,9 +281,10 @@ export default function DocumentsList({ documents, currentUserId }: { documents:
             {/* Explicit download button - downloading is a deliberate click
                 inside the post detail, not a side effect of opening the card. */}
             <a
-              href={openDoc.file_url}
-              target="_blank"
-              rel="noopener noreferrer"
+              // Tải về thật, không phải mở trong tab mới: `download` trên thẻ
+              // <a> vô hiệu với link khác origin, nên Content-Disposition và
+              // tên tệp phải do Supabase Storage đặt. Xem toDownloadUrl.
+              href={toDownloadUrl(openDoc.file_url, openDoc.file_name)}
               onClick={() => handleDownload(openDoc)}
               className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 text-sm font-bold hover:bg-stone-800 dark:hover:bg-white transition-colors"
             >

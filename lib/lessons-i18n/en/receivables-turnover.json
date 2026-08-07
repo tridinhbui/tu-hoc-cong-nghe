@@ -1,0 +1,133 @@
+{
+  "slug": "receivables-turnover",
+  "title": "Receivables Turnover",
+  "subtitle": "Collecting cash from customers fast or slow?",
+  "duration": "5 min",
+  "openingQuestion": "DSO (Days Sales Outstanding) = 120 days. What does this mean for a B2B business?",
+  "openingOptions": [
+    "High profit margin",
+    "Good, customers trust the company",
+    "Customers pay slowly, capital is tied up for 120 days - needs comparing against industry and contract terms",
+    "It doesn't matter"
+  ],
+  "explanation": "Receivables turnover, usually converted into an average days-to-collect figure, shows how long it typically takes for sales revenue to actually land in the bank. What's reasonable depends entirely on the industry: retail collects immediately so it's a matter of days, while selling to large corporations or the government can normally take months. What's worth watching is the direction of change, because the number stretching out always means cash is arriving slower than revenue is being recorded.",
+  "diagram": [
+    { "label": "AR (accounts receivable)", "arrow": true },
+    { "label": "Divide by (Revenue / 365)", "arrow": true },
+    { "label": "= DSO (days to collect)", "arrow": true },
+    { "label": "A sudden spike → collection risk" }
+  ],
+  "realWorldExample": {
+    "company": "B2B construction contractors",
+    "description": "Large construction contractors often have a DSO of 90-150 days because their customers (project owners) typically pay according to construction-milestone acceptance - a long collection cycle but considered normal in the industry, as long as it isn't abnormally stretching further over the years."
+  },
+  "quiz": [
+    {
+      "question": "What can help a business reduce its DSO?",
+      "options": [
+        "Loosen credit terms so customers buy more",
+        "Raise selling prices to compensate for capital tied up by customers",
+        "Early-payment discounts, deposits, or factoring",
+        "Increase inventory reserves to deliver even faster"
+      ],
+      "explanation": "To reduce DSO: (1) offer a 1-2% discount for payment within 10 days; (2) require deposits; (3) factoring - selling receivables to a third party for immediate cash (giving up part of the value). Reducing DSO directly improves OCF."
+    },
+    {
+      "question": "A company's DSO gradually rises from 45 days to 90 days over 3 years, while the industry holds steady around 45-50 days. Is this a signal worth worrying about?",
+      "options": [
+        "Worrying, but only if revenue for the same period is also falling",
+        "No, because a rising DSO shows sales are growing quickly",
+        "No, comparing only against the company's own prior year is enough",
+        "Worrying - the company might be loosening credit to push revenue"
+      ],
+      "explanation": "Comparing a company's DSO trend over TIME and against the INDUSTRY AVERAGE at the same time is the correct approach - a DSO rising out of step with the industry trend is an early warning about revenue quality."
+    },
+    {
+      "question": "Annual revenue is 3,650 billion, average accounts receivable is 600 billion. What is the DSO?",
+      "options": [
+        "60 days (= 600 ÷ 3,650 × 365 days)",
+        "6 days (= 3,650 ÷ 600, numerator and denominator reversed)",
+        "36.5 days (= 3,650 ÷ 100, dividing by the wrong benchmark)",
+        "120 days (= 600 ÷ 1,825, using half a year's revenue)"
+      ],
+      "explanation": "DSO = Accounts Receivable / Revenue × 365 = 600/3,650 × 365 = 60 days. On average, 600 billion of the company's cash is sitting in customers' pockets at any given moment."
+    },
+    {
+      "question": "Revenue and profit are both rising, but operating cash flow is negative and DSO has spiked. What does this suggest?",
+      "options": [
+        "The company is investing heavily in facilities and equipment",
+        "Revenue has been recorded but cash hasn't actually arrived yet",
+        "Interest expense has grown much faster than gross profit during the period",
+        "Inventory is being sold off faster than expected"
+      ],
+      "explanation": "Profit is recorded on an accrual basis, cash flow is not. Revenue rising while cash doesn't arrive, and DSO ballooning - this is a classic early warning about revenue quality, sometimes a sign of channel-stuffing to distributors."
+    },
+    {
+      "question": "Why can a DSO of 120 days be normal for a construction contractor but abnormal for a coffee chain?",
+      "options": [
+        "Because a coffee chain records no receivables at all",
+        "Because construction contractors have a much higher profit margin",
+        "Because a coffee chain collects cash immediately while B2B pays in installments",
+        "Because construction contracts are always fully bank-guaranteed for payment on time"
+      ],
+      "explanation": "Retail collects cash at the counter so DSO is near zero; construction is accepted and paid in stages, so a few months is standard for the industry. The metric only means something when set against the business model."
+    }
+  ],
+  "keyTakeaways": [
+    "Receivables Turnover = Revenue / AR; DSO = 365 / Turnover",
+    "High DSO = cash is tied up for a long time in receivables",
+    "A sudden spike in DSO = worth investigating revenue quality"
+  ],
+  "practicePrompt": {
+    "question": "A company has Revenue = 3,650 billion/year, accounts receivable (AR) = 500 billion. What is this company's Receivables Turnover and DSO (Days Sales Outstanding)?",
+    "options": [
+      "Receivables Turnover = 3,650/500 = 7.3x; DSO = 365/7.3 = 50 days - on average, the company takes 50 days to collect cash from customers after a sale",
+      "Receivables Turnover = 500/3,650 = 0.14x; DSO = 365 × 0.14 = 51 days, using an inverted formula",
+      "DSO is always exactly 30 days for every company under standard accounting rules, no calculation needed",
+      "Receivables Turnover and DSO have nothing to do with accounts receivable, only with inventory"
+    ],
+    "explanation": "Receivables Turnover = Revenue / AR = 3,650/500 = 7.3x; DSO = 365 / Turnover = 365/7.3 = 50 days. DSO shows how long, on average, it takes to collect cash from customers - a gradually rising DSO across periods is a signal worth investigating (customers paying slower, or credit policy loosening)."
+  },
+  "summary": {
+    "keyIdea": "Receivables Turnover = Revenue / AR; DSO = 365 / Turnover",
+    "commonMistake": "Reading a concept as a phrase to memorise rather than a principle to apply to real decisions.",
+    "action": "High DSO = cash is tied up for a long time in receivables"
+  },
+  "application": {
+    "title": "Calculate DSO",
+    "message": "Divide AR by (Revenue/365) for a company to get DSO, then ask yourself whether that number is reasonable given the company's business model (B2B or retail).",
+    "secondary": "A DSO rising sharply versus last year is a signal to look closely at revenue quality."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Receivables Turnover and DSO (Days Sales Outstanding) measure how fast a business actually collects cash from customers after recognizing revenue - a crucial gap that the P&L alone can't show."
+    },
+    { "type": "callout", "label": "The formula", "text": "Receivables Turnover = Revenue / AR   |   DSO = AR / (Revenue/365) = 365 / Receivables Turnover" },
+    { "type": "heading", "text": "A high DSO isn't always bad" },
+    {
+      "type": "paragraph",
+      "text": "A DSO of 120 days means it takes an average of 4 months to collect cash from customers after a sale. For industrial B2B, this can be completely normal - large construction contractors often have a DSO of 90-150 days because project owners pay according to construction-milestone acceptance. The issue isn't the absolute number, but whether that number is rising out of step with the industry norm."
+    },
+    { "type": "heading", "text": "When DSO rises faster than the industry - a signal to investigate" },
+    {
+      "type": "paragraph",
+      "text": "A company whose DSO gradually rises from 45 to 90 days over 3 years, while the industry holds steady around 45-50 days, is a genuinely worrying signal: perhaps the company is loosening credit terms excessively to retain customers (a sign of competitive pressure), or struggling to collect from its own customers. Both erode cash-flow quality even as revenue on paper keeps rising steadily."
+    },
+    {
+      "type": "list",
+      "items": [
+        "An early-payment discount (1-2% if paid within 10 days) helps reduce DSO",
+        "Requiring a deposit before delivering goods/services also shortens the collection time",
+        "Factoring: selling receivables to a third party for immediate cash, accepting a loss of some value",
+        "Comparing DSO both over time (the company's own trend) and against the industry (peer benchmark) together is what leads to the correct conclusion"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A sudden spike in DSO is one of the earliest signs of poor-quality revenue - worth checking before the problem shows up clearly in cash flow."
+      ]
+    }
+  ]
+}

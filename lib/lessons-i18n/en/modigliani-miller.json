@@ -1,0 +1,146 @@
+{
+  "slug": "modigliani-miller",
+  "title": "The Modigliani-Miller Theorem",
+  "subtitle": "Does capital structure matter? - a controversial answer",
+  "duration": "10 min",
+  "openingQuestion": "What does the MM Theorem (no tax) say about capital structure?",
+  "openingOptions": [
+    "It must be 50/50",
+    "More debt is always better",
+    "Equity is always better",
+    "In a perfect market with no taxes, capital structure does not affect firm value"
+  ],
+  "explanation": "Modigliani and Miller proved that in a perfect market with no taxes and no bankruptcy costs, capital structure doesn't change a firm's value - slicing the pie differently doesn't make it bigger. The value of this result isn't in the conclusion but in the method: it's only true when its assumptions hold, so it points directly to the fact that capital structure matters only through taxes, distress costs, and information asymmetry.",
+  "diagram": [
+    { "label": "A perfect market, no taxes", "arrow": true },
+    { "label": "Firm value doesn't depend on capital structure", "arrow": true },
+    { "label": "Reality has taxes + distress costs", "arrow": true },
+    { "label": "→ Capital structure genuinely matters" }
+  ],
+  "realWorldExample": {
+    "company": "The 1985 and 1990 Nobel Prizes in Economics",
+    "description": "Franco Modigliani and Merton Miller won the Nobel Prize in Economics for their theoretical work on capital structure - even though the initial conclusion (that capital structure doesn't matter in a perfect market) seems counterintuitive, it laid the foundation for the entirety of modern corporate finance theory by pinpointing exactly WHICH REAL-WORLD FACTORS make capital structure matter."
+  },
+  "quiz": [
+    {
+      "question": "Why doesn't MM hold fully in practice?",
+      "options": [
+        "MM only applies to US companies so it doesn't work in other markets",
+        "Reality has taxes, bankruptcy costs, asymmetric information, agency costs",
+        "MM is too complex, so real-world CFOs don't actually use it",
+        "MM has been entirely rejected by academics for decades"
+      ],
+      "explanation": "MM assumes: no taxes, no bankruptcy costs, a perfect market, no agency costs. Reality violates all of these. Trade-off theory and Pecking order theory arose to fill the gap."
+    },
+    {
+      "question": "If MM theory (no tax) says capital structure doesn't affect firm value, why do CFOs in practice still spend so much effort optimizing their capital structure?",
+      "options": [
+        "Because MM theory has been proven completely wrong in every case",
+        "CFOs actually don't need to worry about their company's capital structure at all",
+        "Because MM only holds under ideal conditions; reality has taxes and bankruptcy",
+        "MM only applies to small companies, not to large corporations"
+      ],
+      "explanation": "The real value of the MM Theorem isn't in its conclusion (capital structure doesn't matter in a perfect market), but in the fact that it identifies EXACTLY which factors make capital structure matter."
+    },
+    {
+      "question": "In the MM world without taxes, what does firm value depend on?",
+      "options": [
+        "The level of dividend the firm commits to paying each year",
+        "The proportion of debt in that firm's capital structure",
+        "The cost of equity that shareholders are currently demanding",
+        "Only the earning power of the assets, not how they're financed"
+      ],
+      "explanation": "MM compares a firm to a pie: slicing it into debt and equity in any proportion doesn't make the pie bigger. Only the underlying assets generating cash flow determine the size."
+    },
+    {
+      "question": "What does MM with taxes add compared to MM without taxes?",
+      "options": [
+        "Debt increases firm value thanks to the tax shield",
+        "Debt decreases value because bankruptcy risk rises",
+        "Capital structure still has absolutely no effect on value",
+        "Only listed companies benefit from taking on debt"
+      ],
+      "explanation": "Adding taxes back in, the pie can actually get bigger, because a portion that would otherwise go to the government is kept instead. But this version's extreme conclusion - the more debt the better - doesn't hold up in the real world."
+    },
+    {
+      "question": "Where does the real value of MM theory lie?",
+      "options": [
+        "In giving a formula for calculating the optimal capital structure",
+        "In precisely identifying which assumption needs to be broken",
+        "In proving that businesses should avoid taking on debt",
+        "In predicting long-term stock prices"
+      ],
+      "explanation": "Modigliani and Miller won the Nobel Prize not because their conclusion held up in the real world, but because they built an idealized world that revealed exactly how capital structure only matters through taxes, bankruptcy costs, and information asymmetry."
+    }
+  ],
+  "keyTakeaways": [
+    "MM (no tax): capital structure doesn't matter in a perfect market",
+    "MM (with tax): debt has value because of the tax shield",
+    "Reality: a Trade-off between the tax shield and financial distress"
+  ],
+  "practicePrompt": {
+    "question": "The Modigliani-Miller theorem (no tax) states: in a perfect market (no taxes, no bankruptcy costs, symmetric information), firm value does NOT depend on whether it is financed with debt or equity. Why does this theoretical conclusion matter, even though real markets aren't perfect?",
+    "options": [
+      "MM (no tax): in a perfect market, capital structure doesn't affect firm value",
+      "This theorem proves that a company should always use 100% debt to maximize value in every real-world case",
+      "This theorem has no value at all because real markets are never as perfect as the assumptions require",
+      "MM proves that dividend policy always matters more than capital structure in determining firm value"
+    ],
+    "explanation": "MM (no tax): in a perfect market, capital structure doesn't affect firm value. This is a foundational theoretical conclusion - by showing that capital structure 'doesn't matter' under ideal conditions, it helps economists precisely identify the real-world factors (taxes, bankruptcy costs...) that actually make capital structure meaningful."
+  },
+  "summary": {
+    "keyIdea": "MM (no tax): in a perfect market, capital structure doesn't affect firm value",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to real decisions.",
+    "action": "MM (with tax): debt has value because of the tax shield"
+  },
+  "application": {
+    "title": "Find a real example of MM",
+    "message": "The lesson already contrasts FPT (low debt) with a real estate corporation (high debt) - review the 'Real example' section above. Now try to find 2 companies in the same industry with different capital structures.",
+    "secondary": "MM is a theoretical model - reality always has taxes and financial distress costs mixed in."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The Modigliani-Miller (MM) theorem reached a controversial conclusion when published in 1958: in a perfect capital market, capital structure has no effect at all on firm value. It sounds unrealistic - but that's exactly the theory's greatest strength."
+    },
+    { "type": "heading", "text": "MM Proposition I: firm value is independent of capital structure" },
+    {
+      "type": "paragraph",
+      "text": "In MM's assumed world (no taxes, no bankruptcy costs, a perfect market, no information asymmetry), the value of a levered firm (V_levered) exactly equals the value of an unlevered firm (V_unlevered). The reason: investors can create their own leverage (borrowing personally to buy more shares), so a company's capital structure doesn't add any value the investor couldn't already create themselves."
+    },
+    { "type": "heading", "text": "Why this 'wrong' theory was important enough to win a Nobel Prize" },
+    {
+      "type": "paragraph",
+      "text": "Franco Modigliani and Merton Miller won the Nobel Prize in Economics (1985 and 1990) not because their conclusion held true in reality, but because they pinpointed EXACTLY WHICH FACTORS make capital structure matter once the idealized assumptions break down: taxes (the tax shield has real value), bankruptcy costs, agency costs, and information asymmetry. This is the theoretical foundation for Trade-off theory (balancing the tax shield against the cost of financial distress) and Pecking order theory (a preference order of funding sources: retained earnings > debt > equity) - two more realistic theories modern CFOs still use."
+    },
+    {
+      "type": "list",
+      "items": [
+        "MM (no tax): capital structure doesn't affect firm value in a perfect market",
+        "MM (with tax): debt has real value because the tax shield increases firm value",
+        "Reality: a CFO must balance the tax benefit of debt against the cost of financial distress when debt gets too high",
+        "MM's value lies in identifying the 'assumption-breaking factors', not in the original conclusion"
+      ]
+    },
+    { "type": "heading", "text": "Real example: two companies in the same industry, different capital structures" },
+    {
+      "type": "list",
+      "items": [
+        "FPT: a tech company almost entirely independent of long-term debt to fund its core operations, with abundant free cash flow from its IT segment",
+        "A real estate corporation: typically borrows heavily to fund projects - leverage is a core part of the industry's strategy",
+        "Under MM (in a perfect market, no taxes, no bankruptcy costs), capital structure doesn't affect firm value - but Vietnam has real taxes (the interest tax shield) and bankruptcy costs, so reasonable leverage can genuinely increase value"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "How to find another MM example yourself",
+      "text": "Look up the Debt/Equity (D/E) ratio of 2 companies in the same industry on Vietstock, compare their valuations (P/E or P/B) - MM would predict that a difference in capital structure shouldn't create a difference in value if taxes and bankruptcy costs are ignored."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "MM isn't a formula to apply directly - it's a framework for understanding WHY capital structure matters in the real world."
+      ]
+    }
+  ]
+}

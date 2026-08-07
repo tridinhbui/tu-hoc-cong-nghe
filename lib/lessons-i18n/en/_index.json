@@ -4,6 +4,16 @@
     "subtitle": "Recognised by economic obligation, not by cash flow",
     "duration": "6 min"
   },
+  "annuity": {
+    "title": "Annuity: level cash flows",
+    "subtitle": "A series of equal payments over a fixed period",
+    "duration": "6 min"
+  },
+  "asset-turnover": {
+    "title": "Asset Turnover",
+    "subtitle": "How much revenue does each dong of assets generate?",
+    "duration": "5 min"
+  },
   "balance-sheet-doc": {
     "title": "Reading a Balance Sheet from start to finish",
     "subtitle": "How to read a balance sheet in 5 minutes",
@@ -14,19 +24,49 @@
     "subtitle": "Double-entry bookkeeping and the logic behind every number",
     "duration": "5 min"
   },
+  "beta-la-gi": {
+    "title": "What is Beta in finance?",
+    "subtitle": "Measuring a stock's sensitivity to the broader market",
+    "duration": "6 min"
+  },
   "bo-3-bao-cao": {
     "title": "What makes up the three financial statements?",
     "subtitle": "Income Statement, Balance Sheet, Cash Flow Statement - three views of one business",
     "duration": "5 min"
+  },
+  "burn-rate-runway": {
+    "title": "Burn Rate and Runway",
+    "subtitle": "How fast is a startup burning cash, and how long can it survive?",
+    "duration": "6 min"
   },
   "but-toan-ghi-so-kep-hai-ve": {
     "title": "Bookkeeping, Lesson 1: Double entry - why every transaction has two sides",
     "subtitle": "What debit and credit actually mean, the increase/decrease rule for each account type, and why the totals always balance",
     "duration": "11 min"
   },
+  "buyback-co-phieu": {
+    "title": "Share Buyback",
+    "subtitle": "A way to pay shareholders that isn't a dividend",
+    "duration": "6 min"
+  },
   "ca-nhan-doanh-nghiep-chinh-phu": {
     "title": "How individuals, businesses and governments manage money differently.",
     "subtitle": "Three financial actors, three different goals, three different toolkits.",
+    "duration": "7 min"
+  },
+  "capex-vs-opex": {
+    "title": "CapEx vs OpEx",
+    "subtitle": "Capital spending vs operating expense - different effects on the financials",
+    "duration": "6 min"
+  },
+  "capital-structure": {
+    "title": "Capital Structure",
+    "subtitle": "Finding the optimal mix of debt and equity",
+    "duration": "9 min"
+  },
+  "capm-la-gi": {
+    "title": "What is CAPM?",
+    "subtitle": "Capital Asset Pricing Model",
     "duration": "7 min"
   },
   "cash-accounting": {
@@ -39,6 +79,11 @@
     "subtitle": "How long from putting money out to getting money back?",
     "duration": "6 min"
   },
+  "cash-conversion-cycle": {
+    "title": "Cash Conversion Cycle",
+    "subtitle": "From cash → inventory → sale → cash collected",
+    "duration": "6 min"
+  },
   "cash-flow-statement-la-gi": {
     "title": "What is the Cash Flow Statement?",
     "subtitle": "The three sections of the cash flow statement",
@@ -47,6 +92,21 @@
   "chi-phi-vs-dong-tien-ra": {
     "title": "How does an expense differ from cash going out?",
     "subtitle": "Why buying a 1-billion machine doesn't cut profit by 1 billion right away",
+    "duration": "6 min"
+  },
+  "co-phieu-la-gi-day121": {
+    "title": "What is a stock?",
+    "subtitle": "A certificate of ownership in part of a business",
+    "duration": "6 min"
+  },
+  "co-tuc-chinh-sach": {
+    "title": "Dividend Policy",
+    "subtitle": "Pay a dividend or retain earnings for reinvestment?",
+    "duration": "6 min"
+  },
+  "compounding-dau-tu": {
+    "title": "Compounding in Investing",
+    "subtitle": "The power of time and continuous reinvestment",
     "duration": "6 min"
   },
   "cong-thuc-ke-toan": {
@@ -64,6 +124,26 @@
     "subtitle": "The depreciation shield and the timing gap between P&L and cash",
     "duration": "5 min"
   },
+  "corporate-finance-la-gi": {
+    "title": "What is Corporate Finance?",
+    "subtitle": "The three core financial decisions of every business",
+    "duration": "6 min"
+  },
+  "cost-of-capital": {
+    "title": "Cost of Capital",
+    "subtitle": "Whose money are you using? How expensive is it?",
+    "duration": "6 min"
+  },
+  "cost-of-debt": {
+    "title": "Cost of Debt",
+    "subtitle": "The real after-tax interest rate on a loan",
+    "duration": "5 min"
+  },
+  "cost-of-equity": {
+    "title": "Cost of Equity",
+    "subtitle": "The return shareholders expect - no interest paid, but not free",
+    "duration": "7 min"
+  },
   "current-long-term-liabilities": {
     "title": "Current and Long-term Liabilities",
     "subtitle": "Classifying debt by maturity",
@@ -74,6 +154,26 @@
     "subtitle": "Classifying assets by liquidity",
     "duration": "5 min"
   },
+  "current-ratio": {
+    "title": "Current Ratio: Short-Term Solvency",
+    "subtitle": "Does the business have enough cash to pay its debts in the next 12 months?",
+    "duration": "5 min"
+  },
+  "debt-to-equity": {
+    "title": "Debt-to-Equity",
+    "subtitle": "Financial leverage and capital-structure risk",
+    "duration": "6 min"
+  },
+  "discount-rate": {
+    "title": "Discount Rate",
+    "subtitle": "The discount rate reflects risk and opportunity cost",
+    "duration": "6 min"
+  },
+  "discounting": {
+    "title": "Discounting: Pulling Future Money Back to the Present",
+    "subtitle": "The reverse of compounding - the basis of every valuation",
+    "duration": "6 min"
+  },
   "doanh-thu-ghi-nhan": {
     "title": "Revenue: when is it recognised?",
     "subtitle": "Accrual vs cash - two different views of the same transaction",
@@ -82,6 +182,11 @@
   "doc-bctc-apple": {
     "title": "Case study: reading Apple's / Vinamilk's financial statements",
     "subtitle": "Applying the three statements to a real example",
+    "duration": "7 min"
+  },
+  "don-bay-tai-chinh-2": {
+    "title": "Financial Leverage",
+    "subtitle": "Amplifying profit - and risk",
     "duration": "7 min"
   },
   "don-bay-tai-chinh": {
@@ -104,6 +209,36 @@
     "subtitle": "Earnings before interest and tax - measuring pure operating efficiency",
     "duration": "6 min"
   },
+  "enterprise-value-la-gi-day125": {
+    "title": "What is Enterprise Value?",
+    "subtitle": "The value of the whole business - including debt, minus cash",
+    "duration": "7 min"
+  },
+  "eps-chi-so": {
+    "title": "EPS: Earnings Per Share",
+    "subtitle": "How much profit does each share held earn a shareholder?",
+    "duration": "5 min"
+  },
+  "equity-value-vs-enterprise-value": {
+    "title": "Equity Value vs Enterprise Value",
+    "subtitle": "The value that belongs to shareholders differs from the value of the whole operating business",
+    "duration": "6 min"
+  },
+  "ev-ebitda-dung-khi-nao": {
+    "title": "When should EV/EBITDA be used?",
+    "subtitle": "The preferred ratio when comparing companies with different capital structures",
+    "duration": "7 min"
+  },
+  "ev-ebitda-la-gi": {
+    "title": "What is EV/EBITDA?",
+    "subtitle": "The most common multiple in M&A and business comparisons",
+    "duration": "6 min"
+  },
+  "financial-model-la-gi": {
+    "title": "What is a Financial Model?",
+    "subtitle": "The analyst's financial forecasting tool",
+    "duration": "7 min"
+  },
   "financial-ratios-la-gi": {
     "title": "What are Financial Ratios?",
     "subtitle": "Why you need ratios to compare businesses",
@@ -118,6 +253,16 @@
     "title": "What is Free Cash Flow?",
     "subtitle": "OCF − CapEx = the cash a business is genuinely free to use",
     "duration": "6 min"
+  },
+  "future-value": {
+    "title": "Future Value",
+    "subtitle": "What will 1 million today become after 10 years?",
+    "duration": "5 min"
+  },
+  "gia-co-phieu-vs-gia-tri-doanh-nghiep": {
+    "title": "How do stock price and business value differ?",
+    "subtitle": "Price is what the market is paying right now; value is what the business is really worth",
+    "duration": "7 min"
   },
   "gia-tri-thoi-gian-cua-tien": {
     "title": "The time value of money: 1 million today is not 1 million a year from now.",
@@ -144,6 +289,11 @@
     "subtitle": "From revenue down to net income - the story of efficiency",
     "duration": "6 min"
   },
+  "interest-coverage-chi-so": {
+    "title": "Interest Coverage",
+    "subtitle": "How many times over can profit cover interest?",
+    "duration": "5 min"
+  },
   "interest-tax-expense": {
     "title": "Interest Expense and Tax Expense",
     "subtitle": "The last two items before Net Income - the effect of debt and tax",
@@ -159,6 +309,16 @@
     "subtitle": "Cash spent on buying assets and long-term investments",
     "duration": "5 min"
   },
+  "ipo-la-gi": {
+    "title": "What is an IPO?",
+    "subtitle": "The first time a company sells shares to the public",
+    "duration": "6 min"
+  },
+  "irr-co-ban": {
+    "title": "IRR: Internal Rate of Return",
+    "subtitle": "The discount rate that makes NPV = 0 - measuring a project's true return",
+    "duration": "7 min"
+  },
   "ke-toan-la-gi": {
     "title": "Accounting is the language of business",
     "subtitle": "Why every financial decision needs accounting",
@@ -167,6 +327,11 @@
   "khau-hao-co-ban": {
     "title": "What is depreciation?",
     "subtitle": "Why buying a 1-billion machine doesn't cut profit by 1 billion right away",
+    "duration": "6 min"
+  },
+  "khi-mua-co-phieu-so-huu-gi": {
+    "title": "When you buy a stock, what do you actually own?",
+    "subtitle": "Not just a line of numbers on a screen - but a real economic right",
     "duration": "6 min"
   },
   "khoan-phai-thu-la-gi": {
@@ -194,6 +359,11 @@
     "subtitle": "Inflation isn't an accident. It is a built-in feature of every modern economy.",
     "duration": "7 min"
   },
+  "lbo-la-gi": {
+    "title": "What is an LBO?",
+    "subtitle": "Leveraged Buyout - buying a company using debt leverage",
+    "duration": "11 min"
+  },
   "loi-nhuan-cac-cap-do": {
     "title": "Gross, operating, and net profit",
     "subtitle": "Three tiers of profit - each tells a different story",
@@ -204,9 +374,34 @@
     "subtitle": "Expected Return is a probability-weighted average across every possible scenario.",
     "duration": "7 min"
   },
+  "ma-la-gi": {
+    "title": "What is M&A?",
+    "subtitle": "Buying and merging companies",
+    "duration": "7 min"
+  },
+  "market-cap-la-gi": {
+    "title": "What is Market Cap?",
+    "subtitle": "The total market value of all a company's shares outstanding",
+    "duration": "5 min"
+  },
+  "modigliani-miller": {
+    "title": "The Modigliani-Miller Theorem",
+    "subtitle": "Does capital structure matter? - a controversial answer",
+    "duration": "10 min"
+  },
   "net-income-y-nghia": {
     "title": "Net Income: meaning and limits",
     "subtitle": "The final line of the P&L - it doesn't always tell the whole truth",
+    "duration": "6 min"
+  },
+  "net-profit-margin": {
+    "title": "Net Profit Margin",
+    "subtitle": "After everything - costs, interest, and tax - how much is left?",
+    "duration": "5 min"
+  },
+  "no-co-loi-ich-gi": {
+    "title": "What benefit does debt provide a business?",
+    "subtitle": "The tax shield and financial leverage",
     "duration": "6 min"
   },
   "no-ngan-han-dai-han": {
@@ -224,6 +419,16 @@
     "subtitle": "Not every debt is bad. What matters is what the debt creates.",
     "duration": "6 min"
   },
+  "npv-co-ban": {
+    "title": "NPV: Net Present Value",
+    "subtitle": "Does the project create value? NPV gives the answer",
+    "duration": "7 min"
+  },
+  "npv-vs-payback": {
+    "title": "Why is NPV better than Payback?",
+    "subtitle": "Comparing project appraisal methods",
+    "duration": "6 min"
+  },
   "on-tap-3-bao-cao": {
     "title": "Review: the three financial statements",
     "subtitle": "Connecting the P&L, Balance Sheet, and Cash Flow Statement",
@@ -234,9 +439,24 @@
     "subtitle": "The first 20 days built the foundation. This is the map of the core concepts.",
     "duration": "8 min"
   },
+  "on-tap-chi-so-tai-chinh": {
+    "title": "Review: Using Ratios to Compare Businesses",
+    "subtitle": "Combining ratios for a comprehensive view",
+    "duration": "7 min"
+  },
+  "on-tap-gia-tri-thoi-gian": {
+    "title": "Review: The Time Value of Money",
+    "subtitle": "PV, FV, NPV, IRR, WACC - connecting the whole Time Value of Money track",
+    "duration": "7 min"
+  },
   "on-tap-ke-toan-co-ban": {
     "title": "Review: reading the language of accounting",
     "subtitle": "Connecting assets, liabilities, equity and cash flow together",
+    "duration": "7 min"
+  },
+  "on-tap-tai-chinh-doanh-nghiep": {
+    "title": "Review: Corporate Finance",
+    "subtitle": "Corporate Finance, Capital Structure, M&A, PE/VC - tying the Corporate Finance track together",
     "duration": "7 min"
   },
   "on-tap-wacc": {
@@ -254,10 +474,90 @@
     "subtitle": "Operating costs - sitting between Gross Profit and Operating Income",
     "duration": "6 min"
   },
+  "operating-margin": {
+    "title": "Operating Margin",
+    "subtitle": "Measuring operating efficiency after indirect costs too",
+    "duration": "5 min"
+  },
+  "payback-period": {
+    "title": "Payback Period",
+    "subtitle": "How long does it take to recover the initial investment?",
+    "duration": "5 min"
+  },
+  "pb-dung-khi-nao": {
+    "title": "When should P/B be used?",
+    "subtitle": "Most useful for asset-heavy or financial businesses",
+    "duration": "6 min"
+  },
+  "pb-la-gi": {
+    "title": "What is the P/B Ratio?",
+    "subtitle": "Market value versus book value - when should you use it?",
+    "duration": "5 min"
+  },
+  "pe-dung-khi-nao": {
+    "title": "When should P/E be used?",
+    "subtitle": "The most popular ratio, but you need to understand its limits to use it right",
+    "duration": "7 min"
+  },
+  "pe-la-gi": {
+    "title": "What is the P/E Ratio?",
+    "subtitle": "How many times profit does an investor pay to buy a share",
+    "duration": "6 min"
+  },
+  "perpetuity": {
+    "title": "Perpetuity: cash flows forever",
+    "subtitle": "A level cash flow that continues indefinitely",
+    "duration": "5 min"
+  },
+  "present-value": {
+    "title": "Present Value",
+    "subtitle": "How much is a dong received in the future worth today?",
+    "duration": "6 min"
+  },
+  "private-equity-la-gi": {
+    "title": "What is Private Equity?",
+    "subtitle": "Investing in unlisted companies to create value",
+    "duration": "6 min"
+  },
+  "quick-ratio": {
+    "title": "Quick Ratio: Acid-Test Liquidity",
+    "subtitle": "Excludes inventory - stricter than the Current Ratio",
+    "duration": "5 min"
+  },
+  "receivables-turnover": {
+    "title": "Receivables Turnover",
+    "subtitle": "Collecting cash from customers fast or slow?",
+    "duration": "5 min"
+  },
   "revenue-cogs-gross-profit": {
     "title": "Revenue, COGS, and Gross Profit",
     "subtitle": "The first three lines of the P&L - the foundation of every analysis",
     "duration": "6 min"
+  },
+  "revenue-multiple-dung-khi-nao": {
+    "title": "When should Revenue Multiple be used?",
+    "subtitle": "The last resort when a company has no profit yet to value it by",
+    "duration": "6 min"
+  },
+  "risk-free-rate": {
+    "title": "Risk-Free Rate and Market Risk Premium",
+    "subtitle": "The foundation of every risk pricing model",
+    "duration": "6 min"
+  },
+  "roa-chi-so": {
+    "title": "ROA: Return on Assets",
+    "subtitle": "Measuring how efficiently assets generate profit",
+    "duration": "5 min"
+  },
+  "roe-chi-so": {
+    "title": "ROE: Return on Equity",
+    "subtitle": "How much do shareholders get per dong of capital invested?",
+    "duration": "6 min"
+  },
+  "roic-chi-so": {
+    "title": "ROIC: Return on Invested Capital",
+    "subtitle": "The best metric for judging the quality of a business",
+    "duration": "7 min"
   },
   "roic": {
     "title": "Deep-dive case: ROIC",
@@ -278,6 +578,11 @@
     "title": "The power of time in finance.",
     "subtitle": "Time is the most valuable asset in investing. And it doesn't wait.",
     "duration": "6 min"
+  },
+  "synergy-trong-ma": {
+    "title": "Synergy in M&A",
+    "subtitle": "1+1=3 - or just an illusion?",
+    "duration": "9 min"
   },
   "tai-chinh-la-gi": {
     "title": "What is finance? Why finance is not just about money.",
@@ -319,10 +624,25 @@
     "subtitle": "Cash & equivalents - the safest slice of assets",
     "duration": "5 min"
   },
+  "tinh-npv-du-an": {
+    "title": "Case study: Calculating the NPV of a simple project",
+    "subtitle": "A practical application: opening a new branch - is it worth it?",
+    "duration": "7 min"
+  },
+  "unit-economics": {
+    "title": "Unit Economics",
+    "subtitle": "Profit per unit - the foundation of every business model",
+    "duration": "7 min"
+  },
   "vay-tien-giau-hay-pha-san": {
     "title": "Why borrowing can make you rich, or bankrupt you.",
     "subtitle": "The outcome depends on whether the return on borrowed capital beats the loan's interest rate.",
     "duration": "7 min"
+  },
+  "venture-capital-la-gi": {
+    "title": "What is Venture Capital?",
+    "subtitle": "Risk capital for early-stage startups",
+    "duration": "6 min"
   },
   "von-chu-so-huu": {
     "title": "What is equity?",
@@ -332,6 +652,16 @@
   "von-luu-dong-la-gi": {
     "title": "What is working capital?",
     "subtitle": "Working Capital - the daily fuel that runs a business",
+    "duration": "6 min"
+  },
+  "wacc-co-ban": {
+    "title": "What is WACC?",
+    "subtitle": "Weighted average cost of capital - the discount rate in DCF",
+    "duration": "10 min"
+  },
+  "working-capital-management": {
+    "title": "Working Capital Management",
+    "subtitle": "Cash, inventory, receivables - the turnover cycle",
     "duration": "6 min"
   },
   "working-capital-van-hanh": {

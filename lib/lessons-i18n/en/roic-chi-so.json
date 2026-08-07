@@ -1,0 +1,133 @@
+{
+  "slug": "roic-chi-so",
+  "title": "ROIC: Return on Invested Capital",
+  "subtitle": "The best metric for judging the quality of a business",
+  "duration": "7 min",
+  "openingQuestion": "Why do many long-term investors value ROIC more than ROE?",
+  "openingOptions": [
+    "ROIC is easier to calculate",
+    "ROIC isn't distorted by financial leverage - it measures the true efficiency of invested capital",
+    "ROIC is always higher than ROE",
+    "ROIC is only used for banks"
+  ],
+  "explanation": "ROIC divides after-tax operating profit by invested capital, and its strength is that it doesn't depend on whether the company is financed with debt or equity. Set beside WACC, it answers the most important question in corporate finance: does every dong of capital invested generate more than the cost of raising that dong? An ROIC below WACC means the company is destroying value - even while its reports still show a profit and dividends are still being paid.",
+  "diagram": [
+    { "label": "After-tax operating profit", "arrow": true },
+    { "label": "Divide by invested capital: debt plus equity", "arrow": true },
+    { "label": "Set beside WACC - the average cost of capital", "arrow": true },
+    { "label": "Higher creates value, lower destroys value the more it grows" }
+  ],
+  "realWorldExample": {
+    "company": "Amazon AWS vs Amazon Retail",
+    "description": "Amazon's AWS cloud computing division has far superior ROIC compared to Amazon's own traditional retail segment - illustrating why investors value different business segments within the same conglomerate separately (sum-of-the-parts), based on each segment's own ROIC."
+  },
+  "quiz": [
+    {
+      "question": "A company has ROIC = 8% and WACC = 10%. What does this mean?",
+      "options": [
+        "The company is breaking even economically, neither profit nor loss",
+        "The company is creating value, but at a slow pace",
+        "The company needs to borrow more debt to lower its cost of capital",
+        "The company is destroying value even though it still reports a profit"
+      ],
+      "explanation": "When ROIC < WACC, every dong invested generates less than the cost of raising that capital. The business is destroying shareholder value even while its P&L shows a profit."
+    },
+    {
+      "question": "Why do many long-term funds see ROIC as a more 'honest' metric than ROE for judging a business's true quality?",
+      "options": [
+        "Because the denominator includes debt, so borrowing more doesn't inflate the metric",
+        "Because ROIC uses after-tax profit, reflecting reality more closely than ROE",
+        "Because ROIC excludes intangible assets, which tend to be overvalued",
+        "Because ROIC figures are always audited separately by external auditors while ROE is only self-reported by the company"
+      ],
+      "explanation": "ROE can be distorted easily: borrowing more debt to fund a buyback will automatically push ROE up even though core business efficiency hasn't changed. ROIC is immune to this trick because its denominator is TOTAL invested capital (Debt + Equity), reflecting the business's true value-creating ability more accurately."
+    },
+    {
+      "question": "A business has ROIC of 6%, WACC of 9%, and is planning to double its scale. What should an investor think?",
+      "options": [
+        "Expansion spreads fixed costs, so ROIC will rise",
+        "Expansion will destroy value twice as fast",
+        "A larger scale usually pulls WACC below the ROIC level",
+        "Wait for next year's results before drawing any conclusion"
+      ],
+      "explanation": "Growth is only good when ROIC > WACC. Below that threshold, every new dong of capital loses another 3 cents - expanding makes the problem bigger, not smaller. This is why many high-profile expansion deals still send the stock down."
+    },
+    {
+      "question": "A business has NOPAT of 120 billion, invested capital of 1,000 billion (400 debt, 600 equity). What is the ROIC?",
+      "options": [
+        "30% (= 120 ÷ 400, dividing by the debt portion only)",
+        "20% (= 120 ÷ 600, dividing by equity only - that's ROE)",
+        "12% (= 120 ÷ 1,000, dividing by total invested capital)",
+        "8.6% (= 120 ÷ 1,400, mistakenly adding debt and equity twice)"
+      ],
+      "explanation": "ROIC = NOPAT / Invested Capital = 120/1,000 = 12%. The figure 20% is actually ROE - using equity as the denominator by mistake is an easy way to make a heavily indebted company look more efficient than it really is."
+    },
+    {
+      "question": "Two divisions of the same conglomerate have ROIC of 25% and 7%. Why does the market usually value them at two very different multiples?",
+      "options": [
+        "Because the low-ROIC division usually carries higher legal risk",
+        "Because the high-ROIC division always has higher revenue than the other",
+        "Because accounting rules require separate multiples for each division",
+        "Because the high-ROIC division turns every reinvested dong into more value"
+      ],
+      "explanation": "The value of growth depends on the return generated on reinvested capital. The 25% division turns every dong kept back into far more value than the 7% division, deserving a higher multiple - this is the reasoning behind spin-offs."
+    }
+  ],
+  "keyTakeaways": [
+    "ROIC = NOPAT / Invested Capital",
+    "ROIC > WACC = creating value; ROIC < WACC = destroying value",
+    "The best metric for judging a business's long-term quality"
+  ],
+  "practicePrompt": {
+    "question": "A company has NOPAT (after-tax operating profit) = 120 billion, total invested capital (Invested Capital = Debt + Equity used for operations) = 800 billion. What is this company's ROIC, and why is this metric considered more comprehensive than ROE?",
+    "options": [
+      "ROIC = NOPAT / Invested Capital = 120/800 = 15% - this metric is more comprehensive than ROE because it measures return on ALL invested capital (both debt and equity), not just the shareholders' portion as ROE does",
+      "ROIC = NOPAT / Equity, giving the same result and the same meaning as ROE, so there's no need to distinguish between the two metrics",
+      "ROIC is always higher than ROE at every company because Invested Capital is always smaller than Equity",
+      "ROIC cannot be calculated if a company uses any debt leverage in its capital structure"
+    ],
+    "explanation": "ROIC = NOPAT / Invested Capital = 120/800 = 15%. Unlike ROE (which only counts shareholders' equity), ROIC measures the return earned on all capital invested in the business (both debt and equity) - helping assess a company's true value creation without being 'inflated' by financial leverage the way ROE can be."
+  },
+  "summary": {
+    "keyIdea": "ROIC = NOPAT / Invested Capital",
+    "commonMistake": "Reading a concept as a phrase to memorise rather than a principle to apply to real decisions.",
+    "action": "ROIC > WACC = creating value; ROIC < WACC = destroying value"
+  },
+  "application": {
+    "title": "Compare ROIC against WACC",
+    "message": "Look up a company's ROIC (many analysis sites publish it), then estimate the industry's WACC to see whether the company is creating or destroying value.",
+    "secondary": "A profitable company can still be destroying value if its ROIC is below WACC."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "ROIC (Return on Invested Capital) is often seen as the most 'honest' metric for judging a business's quality - because unlike ROE, it can't be dressed up simply by borrowing more debt."
+    },
+    { "type": "callout", "label": "The formula", "text": "ROIC = NOPAT / Invested Capital (NOPAT = after-tax operating profit; Invested Capital = Debt + Equity)" },
+    { "type": "heading", "text": "Why ROIC is immune to the leverage trick" },
+    {
+      "type": "paragraph",
+      "text": "ROE can be distorted easily: a company borrowing more debt to fund a buyback will automatically push ROE up even though core business efficiency hasn't changed at all - because the denominator (Equity) shrinks while the numerator stays roughly the same. ROIC isn't affected by this trick, because its denominator is TOTAL invested capital (both debt and equity) - a company cannot 'dress up' its ROIC just by changing its capital structure."
+    },
+    { "type": "heading", "text": "Versus WACC - creating value or destroying it" },
+    {
+      "type": "paragraph",
+      "text": "**Example:** a company has ROIC = 8% while WACC (average cost of capital) = 10%. Even though the company still reports a profit on its P&L, in substance every dong of new investment generates only 8 dong of profit while the cost of raising that capital is 10 dong - the company is destroying shareholder value even as accounting still records a positive profit. Conversely, when ROIC > WACC, every additional dong of invested capital genuinely increases the value of the business."
+    },
+    {
+      "type": "list",
+      "items": [
+        "ROIC > WACC: the business creates value - the more it grows, the better for shareholders",
+        "ROIC < WACC: the business destroys value - growing further only makes it worse despite still being profitable",
+        "ROIC is neutral to capital structure - a fairer comparison than ROE between companies with different leverage",
+        "Business segments within the same conglomerate (like AWS vs Amazon Retail) are often valued separately based on each segment's own ROIC"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "ROIC versus WACC is the most important question in corporate finance: is this business worth pouring more capital into?"
+      ]
+    }
+  ]
+}

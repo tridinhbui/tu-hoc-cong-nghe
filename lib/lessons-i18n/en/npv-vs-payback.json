@@ -1,0 +1,127 @@
+{
+  "slug": "npv-vs-payback",
+  "title": "Why is NPV better than Payback?",
+  "subtitle": "Comparing project appraisal methods",
+  "duration": "6 min",
+  "openingQuestion": "Project A: Payback 2 years, NPV −50 million. Project B: Payback 4 years, NPV +200 million. Which project should you choose?",
+  "openingOptions": ["Equal", "B - a larger positive NPV creates more value", "A - it pays back faster", "Need more information"],
+  "explanation": "The two criteria answer two different questions, and only one of them is tied to the goal of maximizing value. NPV measures total value created after accounting for the cost of capital; the payback period only measures how fast money comes back and knows nothing about what happens afterward. As a result, a project with a fast payback can still have a negative NPV. The sensible approach is to decide by NPV, and treat the payback period only as a liquidity constraint.",
+  "diagram": [
+    { "label": "The same project, scored two different ways", "arrow": true },
+    { "label": "Payback only asks how long to get the money back", "arrow": true },
+    { "label": "NPV asks total value created after the cost of capital", "arrow": true },
+    { "label": "A project with fast payback can still have a negative NPV" }
+  ],
+  "realWorldExample": {
+    "company": "Venture capital investment decisions",
+    "description": "Venture capital funds typically prioritize NPV / long-term growth potential over short-term Payback Period when funding a startup - accepting a very long payback (sometimes years without recovering capital) in exchange for enormous potential NPV if the startup succeeds spectacularly."
+  },
+  "quiz": [
+    {
+      "question": "When does Payback Period have real practical value?",
+      "options": [
+        "For long-term projects, because Payback also measures value created after payback",
+        "Always use it instead of NPV because Payback is simpler and more intuitive",
+        "Never - Payback has no real practical value at all",
+        "When assessing liquidity risk - money needs to come back before it runs out"
+      ],
+      "explanation": "Payback is useful for assessing: (1) liquidity risk - a company that needs cash back soon; (2) certainty - a fast project has less uncertainty. But it shouldn't be used as a substitute for NPV in investment decisions."
+    },
+    {
+      "question": "If a company relies ONLY on Payback Period to make investment decisions, which type of project is most likely to be overlooked?",
+      "options": [
+        "Short-term projects with stable profit and a fast payback",
+        "Only high-risk projects are affected by this criterion",
+        "Long-term, high-value projects that are slow to become profitable: R&D, infrastructure",
+        "No type of project is overlooked because Payback is already comprehensive enough"
+      ],
+      "explanation": "This is why companies relying only on Payback Period tend to miss strategic long-term investments (breakthrough R&D, brand building, technology infrastructure) - these projects often have a long Payback Period but a genuinely very large NPV."
+    },
+    {
+      "question": "Why does Payback Period miss the value of a long-term project?",
+      "options": [
+        "Because it discounts the later years' cash flow too heavily",
+        "Because it stops counting the moment capital is just recovered",
+        "Because it only counts the first three years of the project's cash flow",
+        "Because it adds depreciation expense into the annual cash flow"
+      ],
+      "explanation": "Every dollar generated after the payback point is not counted at all. A plant that pays back in year 5 and then keeps earning for 15 more years looks identical to a plant that pays back in year 5 and then shuts down."
+    },
+    {
+      "question": "Which kind of business has legitimate reason to weight Payback Period heavily?",
+      "options": [
+        "An infrastructure business with a lifespan over 20 years",
+        "A business with a low cost of capital and abundant cash flow",
+        "A cash-constrained business that needs capital to turn over quickly",
+        "A listed company that needs to maximize shareholder value"
+      ],
+      "explanation": "Payback measures liquidity risk, not value. For a business where running out of cash is fatal, knowing how quickly cash comes back can sometimes matter more than knowing how much value a project creates."
+    },
+    {
+      "question": "What bias develops in a business that only uses Payback to choose projects?",
+      "options": [
+        "It favors projects with cash flow that increases toward the final years",
+        "It ends up choosing too many high-risk projects with very long lifespans",
+        "It overvalues projects requiring a large initial capital outlay",
+        "It misses out on long-term projects that create much more value"
+      ],
+      "explanation": "This criterion is biased toward short, fast-payback projects. Applied over time, a business gradually ends up with only small, safe investments, while competitors using NPV take on the slower, larger projects."
+    }
+  ],
+  "keyTakeaways": [
+    "NPV > IRR > Payback in terms of financial theory",
+    "NPV measures overall value, accounting for time",
+    "Payback: simple, measures liquidity - use as a secondary metric"
+  ],
+  "practicePrompt": {
+    "question": "Two investment projects: Project A has a short Payback (2 years) but a low NPV; Project B has a longer Payback (4 years) but a much higher NPV. If the company must choose one to maximize long-term value, which criterion should it prioritize?",
+    "options": [
+      "Always prioritize the shortest Payback because recovering capital fast is always the most important criterion in every investment decision",
+      "Should prioritize the higher NPV (project B): NPV accounts for both the cash flow and the time value of money",
+      "Both criteria matter equally, so no clear decision can be made between the two projects",
+      "Should choose the project with the longer Payback because it always means higher profit in every case"
+    ],
+    "explanation": "NPV > IRR > Payback in terms of financial theory: NPV is the most comprehensive measure because it accounts for the entire cash flow and the time value of money, so when there's a trade-off, a higher NPV is usually the choice that creates more value for the company even with a longer Payback."
+  },
+  "summary": {
+    "keyIdea": "NPV > IRR > Payback in terms of financial theory",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to real decisions.",
+    "action": "NPV measures overall value, accounting for time"
+  },
+  "application": {
+    "title": "Compare NPV and Payback on the same project",
+    "message": "Using the data from the previous two lessons' project, write 2-3 lines explaining why a project with a short Payback can still have a negative NPV.",
+    "secondary": "Understanding this difference helps you avoid investing purely because 'capital comes back fast'."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "When choosing between multiple investment projects, appraisal criteria don't always agree. Payback Period prioritizes speed of capital recovery, while NPV prioritizes total value created - and these two priorities sometimes point to opposite decisions."
+    },
+    { "type": "heading", "text": "Why NPV is theoretically superior" },
+    {
+      "type": "paragraph",
+      "text": "NPV accounts for the entire cash flow across the project's whole life (not just up to the payback point), and discounts correctly for the time value of money. Project A might pay back quickly in 2 years but then see declining cash flow and end up with a negative NPV; while project B pays back more slowly (5 years) but then keeps generating strong cash flow for 15 more years, resulting in a very large positive NPV. If you only look at Payback, the business would wrongly pick project A."
+    },
+    { "type": "heading", "text": "When Payback is still useful" },
+    {
+      "type": "paragraph",
+      "text": "Payback Period isn't useless - it's a good supplementary indicator of liquidity risk, especially important when a business needs cash to turn over quickly or operates in an uncertain environment. Venture capital funds are the opposite example: they're willing to accept very long payback periods (sometimes years without recovering capital) in exchange for enormous potential NPV if the startup succeeds spectacularly."
+    },
+    {
+      "type": "list",
+      "items": [
+        "NPV: measures total value created, fully accounts for the time value of money - the primary decision criterion",
+        "IRR: measures the percentage return, easy to communicate but has weaknesses around reinvestment and multiple roots",
+        "Payback: simple, measures payback speed/liquidity - use as a secondary metric, don't replace NPV with it",
+        "Long-term projects (R&D, brand building, tech infrastructure) are easily undervalued if only Payback is used"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The three metrics don't contradict each other - they answer three different questions. The problem only arises when a business uses the wrong metric for the question that needs answering."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,132 @@
+{
+  "slug": "capex-vs-opex",
+  "title": "CapEx vs OpEx",
+  "subtitle": "Capital spending vs operating expense - different effects on the financials",
+  "duration": "6 min",
+  "openingQuestion": "Buying 10 billion of machinery: expense it all this year, or depreciate it over time?",
+  "openingOptions": [
+    "Expense it all this year",
+    "Depends on the accountant's preference",
+    "Depreciate it over its useful life - this is CapEx, not OpEx",
+    "Record it as a bank loan"
+  ],
+  "explanation": "The line between capital spending and operating spending sits on whether the spend serves many years or is used up within the period. Capital spending goes onto the balance sheet and is spread out as depreciation; operating spending goes straight onto the income statement. The consequence worth remembering: both reduce cash the same way, but only one reduces profit immediately - which is why capitalizing aggressively is a familiar way to make profit look prettier than reality.",
+  "diagram": [
+    { "label": "Does this spend serve many years, or get used up within the period?" },
+    { "label": "Many years: record as an asset, depreciate gradually" },
+    { "label": "Within the period: expense it straight away" },
+    { "label": "Both reduce free cash flow, but only one reduces profit right away" }
+  ],
+  "realWorldExample": {
+    "company": "Netflix: shifting from content CapEx to operating expense",
+    "description": "Netflix spends tens of billions of dollars a year producing original content - part of which is capitalized as an asset (content assets) and depreciated over time, significantly affecting how investors read and compare Netflix's free cash flow (FCF) against traditional media companies."
+  },
+  "quiz": [
+    {
+      "question": "Why does FCF usually differ from Net Income?",
+      "options": [
+        "Due to accounting errors when preparing statements, so the two never match",
+        "Due to tax being calculated in a fundamentally different way between the two metrics entirely",
+        "CapEx and changes in working capital don't pass through the P&L but affect real cash",
+        "Because dividends paid to shareholders are deducted from FCF but not from profit"
+      ],
+      "explanation": "FCF = Net Income + D&A − CapEx − ΔWC. D&A isn't real cash (added back). CapEx is real cash but doesn't pass through the P&L immediately (subtracted out). Changes in working capital affect cash but don't pass through the income statement. That's why FCF ≠ Net Income."
+    },
+    {
+      "question": "Why does correctly distinguishing CapEx from OpEx matter when comparing Free Cash Flow between two companies in the same industry?",
+      "options": [
+        "It doesn't matter - looking at Net Income alone is enough to compare the two",
+        "Only tech companies need to distinguish CapEx from OpEx in their reporting",
+        "CapEx and OpEx have exactly identical financial effects, so there's no need to separate them at all",
+        "Because different capitalization policies mean heavier capitalizing makes Net Income look prettier"
+      ],
+      "explanation": "A capitalization policy (like Netflix capitalizing content production costs) can make Net Income look 'prettier' than reality in the short run, but the cash has actually already gone out the moment CapEx occurs - which is why sharp investors always track FCF alongside Net Income for a fuller picture."
+    },
+    {
+      "question": "Buying 10 billion in machinery, depreciated over 5 years. How does the first year affect profit and cash?",
+      "options": [
+        "Profit falls by 10 billion but cash only falls by 2 billion",
+        "Both profit and cash fall by exactly 10 billion",
+        "Both fall by 2 billion, with the rest counted in following years",
+        "Profit falls by 2 billion but cash falls by the full 10 billion"
+      ],
+      "explanation": "CapEx pays out cash once but enters expense gradually through depreciation. This is exactly why a business investing heavily can report a pretty profit while its cash flow is negative."
+    },
+    {
+      "question": "Why does switching from buying servers to renting cloud computing improve the ROA metric?",
+      "options": [
+        "Because net profit rises thanks to cost savings",
+        "Because assets on the balance sheet shrink significantly",
+        "Because rental costs are tax-deductible while depreciation is not",
+        "Because revenue rises thanks to more stable operating infrastructure"
+      ],
+      "explanation": "Turning CapEx into OpEx shrinks the denominator of ROA. The ratio looks prettier while the actual business capability hasn't changed - this is why you have to read carefully when comparing ROA between two companies with different infrastructure models."
+    },
+    {
+      "question": "Why is FCF usually lower than net profit at an expanding company?",
+      "options": [
+        "Because interest expense is deducted twice in the FCF formula",
+        "Because depreciation is added back into cash flow, making FCF smaller than reported profit",
+        "Because CapEx is deducted directly from FCF but hasn't hit profit yet",
+        "Because tax is calculated on FCF instead of on net profit"
+      ],
+      "explanation": "FCF = Profit + Depreciation − CapEx − ΔWorking Capital. An expanding company has CapEx far larger than depreciation, so FCF drops below profit - and that is real cash that has actually gone out."
+    }
+  ],
+  "keyTakeaways": [
+    "CapEx: long-term assets, depreciated gradually",
+    "OpEx: day-to-day expense, recognized immediately",
+    "FCF = NI + D&A − CapEx − ΔWC"
+  ],
+  "practicePrompt": {
+    "question": "A company spends 300 million buying a new server (to be used for 5 years), and 50 million paying monthly electricity and internet bills for its office. Are these two spends classified as CapEx or OpEx, and how do they affect the P&L differently?",
+    "options": [
+      "The server purchase is CapEx: a long-term asset, depreciated gradually (60 million/year over 5 years) rather than expensed in full to the P&L right away; the electricity/internet bill is OpEx, expensed in full during the period it's incurred",
+      "Both spends are CapEx because both are costs necessary for the company to operate day to day",
+      "Both spends are OpEx because both are paid in cash immediately",
+      "Classifying something as CapEx or OpEx has no effect at all on how it's recorded in the financial statements"
+    ],
+    "explanation": "CapEx: a long-term asset, depreciated gradually over many years (like a 300-million server split over 5 years). OpEx: day-to-day operating expense, expensed in full to the P&L immediately in the period it's incurred (like electricity, internet) - distinguishing between the two directly affects the profit reported each period."
+  },
+  "summary": {
+    "keyIdea": "CapEx: long-term assets, depreciated gradually",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to a real decision.",
+    "action": "OpEx: day-to-day expense, recognized immediately"
+  },
+  "application": {
+    "title": "Classify this month's spending",
+    "message": "Open up last month's spending and split it into: personal CapEx (buying a laptop, investing in a long-term course) and OpEx (food, utilities, daily entertainment).",
+    "secondary": "This way of looking helps you assess which spending creates lasting value and which merely sustains daily life."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "CapEx and OpEx are two completely different ways of spending financially, even though they can sometimes look similar on the surface - telling the two apart correctly is the key to understanding why Free Cash Flow is often so different from Net Income."
+    },
+    { "type": "heading", "text": "The basic difference between CapEx and OpEx" },
+    {
+      "type": "paragraph",
+      "text": "CapEx (Capital Expenditure) is spending to buy long-term assets - machinery, real estate, large-scale software - recorded on the Balance Sheet and depreciated gradually over many years, not immediately affecting profit. OpEx (Operating Expense) is day-to-day operating expense - salaries, electricity, marketing - recorded straight onto the P&L in the period it's incurred. CapEx affects free cash flow (FCF) far more strongly than it affects Net Income."
+    },
+    { "type": "heading", "text": "Why FCF often looks very different from Net Income" },
+    {
+      "type": "paragraph",
+      "text": "FCF = Net Income + D&A − CapEx − ΔWorking Capital. D&A (depreciation) isn't real cash, so it's added back. CapEx is real cash spent but doesn't pass through the P&L right away, so it's subtracted out. Changes in working capital affect cash but don't pass through the income statement. Different capitalization policies between companies - for example Netflix capitalizing a large portion of its original content production costs into assets (content assets) and depreciating them gradually - can make Net Income 'look prettier' than reality in the short run, but the cash has really already been spent the moment CapEx occurs."
+    },
+    {
+      "type": "list",
+      "items": [
+        "CapEx: long-term assets, depreciated gradually, hits FCF immediately but hits Net Income only slowly over many years",
+        "OpEx: day-to-day expense, recognized straight onto the P&L in the period it's incurred",
+        "Comparing FCF between companies in the same industry is more accurate than comparing Net Income, because capitalization policies can differ",
+        "Sharp investors always track FCF alongside Net Income for a fuller picture"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Net Income can be made 'pretty' by accounting - FCF shows where the actual cash went."
+      ]
+    }
+  ]
+}

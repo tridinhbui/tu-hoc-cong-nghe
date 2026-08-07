@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Copy, Check, Calculator, Sparkles, HelpCircle } from "lucide-react";
 import { toast } from "sonner";
 import { useI18n } from "@/lib/i18n/context";
+import { copyToClipboard } from "@/lib/copy-to-clipboard";
 import { format } from "@/lib/i18n";
 
 export interface FormulaVariable {
@@ -46,7 +47,7 @@ export default function FormulaBlock({
   const [copied, setCopied] = useState(false);
   const resolvedLabel = label ?? t.formulaBlock.defaultLabel;
 
-  const copyFormulaText = () => {
+  const copyFormulaText = async () => {
     let textToCopy = "";
     if (numerator && denominator) {
       textToCopy = `${title ? title + ": " : ""}(${numerator}) / (${denominator})${multiplier ? " × " + multiplier : ""}`;
@@ -54,12 +55,16 @@ export default function FormulaBlock({
       textToCopy = `${title ? title + ": " : ""}${equation}`;
     }
 
-    if (textToCopy) {
-      navigator.clipboard.writeText(textToCopy);
-      setCopied(true);
-      toast.success(t.formulaBlock.copiedToast);
-      setTimeout(() => setCopied(false), 2000);
+    if (!textToCopy) return;
+    // Bản cũ bỏ qua Promise của `writeText` và báo thành công vô điều kiện,
+    // nên người dùng thấy "Đã sao chép công thức" rồi dán ra thứ khác.
+    if (!(await copyToClipboard(textToCopy))) {
+      toast.error(t.formulaBlock.copyFailedToast);
+      return;
     }
+    setCopied(true);
+    toast.success(t.formulaBlock.copiedToast);
+    setTimeout(() => setCopied(false), 2000);
   };
 
   return (

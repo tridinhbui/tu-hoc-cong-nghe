@@ -6,6 +6,7 @@ import { Gift, Copy, Check } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import { getMyReferralStats, REFERRER_BONUS_XP, REFERRED_BONUS_XP, type MyReferralStats } from "@/lib/referrals";
 import { useI18n } from "@/lib/i18n/context";
+import { copyToClipboard } from "@/lib/copy-to-clipboard";
 import { format } from "@/lib/i18n";
 
 // "Mời bạn học cùng" - both sides get a one-time XP bonus once the invited
@@ -32,12 +33,14 @@ export default function ReferralCard() {
 
   const link = `${window.location.origin}/login?ref=${userId}`;
 
-  function handleCopy() {
-    navigator.clipboard.writeText(link).then(() => {
-      setCopied(true);
-      toast.success(t.referralCard.copyToast);
-      setTimeout(() => setCopied(false), 2000);
-    });
+  async function handleCopy() {
+    if (!(await copyToClipboard(link))) {
+      toast.error(t.referralCard.copyFailedToast);
+      return;
+    }
+    setCopied(true);
+    toast.success(t.referralCard.copyToast);
+    setTimeout(() => setCopied(false), 2000);
   }
 
   function handleShareFacebook() {

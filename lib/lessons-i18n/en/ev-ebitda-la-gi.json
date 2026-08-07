@@ -1,0 +1,133 @@
+{
+  "slug": "ev-ebitda-la-gi",
+  "title": "What is EV/EBITDA?",
+  "subtitle": "The most common multiple in M&A and business comparisons",
+  "duration": "6 min",
+  "openingQuestion": "Why is EV/EBITDA better than P/E when comparing businesses with different capital structures?",
+  "openingOptions": [
+    "P/E can't be applied",
+    "EV/EBITDA is neutral to debt and depreciation - it compares at the enterprise level before debt and tax",
+    "EV is always lower than Market Cap",
+    "EV/EBITDA is easier to calculate"
+  ],
+  "explanation": "EV/EBITDA compares total enterprise value - market cap plus debt minus cash - against profit before interest, tax, and depreciation. Because both the numerator and denominator sit above both creditors and shareholders, this metric isn't skewed by capital structure the way P/E is, which is why it's the default multiple in mergers and acquisitions. One limitation to remember: EBITDA ignores capital spending, so it inflates the apparent cash-generating power of capital-intensive industries.",
+  "diagram": [
+    { "label": "Market capitalization", "arrow": true },
+    { "label": "Add debt, subtract cash: get enterprise value", "arrow": true },
+    { "label": "Divide by EBITDA", "arrow": true },
+    { "label": "Because it ignores capital structure, two differently-leveraged companies can be compared" }
+  ],
+  "realWorldExample": {
+    "company": "Telecom M&A deals",
+    "description": "In telecom M&A deals, EV/EBITDA is the most commonly used valuation metric because it allows a fair comparison between target companies with very different capital structures (debt ratios for infrastructure investment)."
+  },
+  "quiz": [
+    {
+      "question": "Why is EV/EBITDA usually higher for the tech industry than for retail?",
+      "options": [
+        "Tech companies' Enterprise Value is lower, so the multiple rises",
+        "Tech companies use more fixed capital than retail",
+        "Retail almost never generates a stable positive EBITDA",
+        "The market expects higher growth and margin expansion"
+      ],
+      "explanation": "A high-growth business with margins that can expand → the market pays a premium (high EV/EBITDA). Retail grows slowly with thin margins → lower EV/EBITDA. Growth expectations are what gets priced into the multiple."
+    },
+    {
+      "question": "Why do investment bankers in M&A deals almost always prefer EV/EBITDA over P/E to value a target company?",
+      "options": [
+        "Because the buyer also takes on existing debt, so an all-in price is needed",
+        "Because P/E cannot legally be applied to any unlisted target company in a deal",
+        "Because EV/EBITDA usually produces a lower valuation than P/E",
+        "Because EBITDA is audited while net profit is not"
+      ],
+      "explanation": "In an M&A deal, the buyer acquires the entire business, including its existing debt obligations - EV correctly reflects this 'all-in package' price, while P/E only looks at it from the shareholder's perspective (Equity Value), ignoring the debt the buyer also has to carry."
+    },
+    {
+      "question": "Market cap is 800 billion, debt is 300 billion, cash is 100 billion, EBITDA is 200 billion. What is the EV/EBITDA?",
+      "options": [
+        "4.0x (EV = 800; forgetting debt and cash)",
+        "5.0x (EV = 800 + 300 − 100 = 1,000; divided by 200)",
+        "6.0x (EV = 800 + 300 + 100; mistakenly adding cash)",
+        "5.5x (EV = 800 + 300 − 100 + 100; counting cash twice)"
+      ],
+      "explanation": "EV = Market Cap + Debt − Cash = 800 + 300 − 100 = 1,000 billion. EV/EBITDA = 1,000/200 = 5.0x. Cash is subtracted because the buyer could use that very cash to offset part of the purchase price."
+    },
+    {
+      "question": "Two companies have identical EBITDA, but one borrows far more than the other. Which metric is correct for comparing them?",
+      "options": [
+        "P/B, since book value doesn't depend on debt",
+        "P/E, since it already reflects real interest expense",
+        "EV/EBITDA, since this metric is neutral to capital structure",
+        "Net profit margin, since it normalizes by revenue"
+      ],
+      "explanation": "The more heavily-indebted company pays more interest, has lower Net Income, and looks like it has a higher P/E - despite having an identical core business. EV/EBITDA sits above both debt and equity, so it's unaffected by how a business raises capital."
+    },
+    {
+      "question": "What weakness of EBITDA should users of EV/EBITDA keep in mind?",
+      "options": [
+        "It changes with capital structure exactly like net profit does",
+        "It's affected by differing tax rates between countries",
+        "It can only be calculated for a business with large fixed assets",
+        "It ignores the capital spending needed to sustain operations"
+      ],
+      "explanation": "EBITDA adds depreciation back, so a business that constantly must replace equipment looks identical to one that needs no investment at all. This is why EBITDA has been called profit before everything bad."
+    }
+  ],
+  "keyTakeaways": [
+    "EV/EBITDA is neutral to capital structure and depreciation",
+    "The most common multiple in M&A",
+    "High-growth industries have a higher EV/EBITDA"
+  ],
+  "practicePrompt": {
+    "question": "Company A borrows heavily (large interest expense, large depreciation from debt-funded assets), Company B carries almost no debt. Why do M&A analysts usually prefer EV/EBITDA over P/E when comparing two companies with such different capital structures?",
+    "options": [
+      "Because EV/EBITDA is neutral to capital structure: EBITDA is calculated before interest and depreciation",
+      "Because EV/EBITDA always gives the exact same result as P/E, so it doesn't matter which one you use",
+      "Because EV/EBITDA only applies to a debt-free company, and can't be used to compare a highly leveraged one",
+      "Because P/E is more accurate than EV/EBITDA in every case when comparing companies"
+    ],
+    "explanation": "EV/EBITDA is neutral to capital structure and depreciation because EBITDA is calculated before subtracting interest, tax, and depreciation - removing the difference caused by how a company finances itself (borrowing heavily or not). This is why EV/EBITDA is widely preferred for M&A valuation and cross-industry/cross-capital-structure comparisons."
+  },
+  "summary": {
+    "keyIdea": "EV/EBITDA is neutral to capital structure and depreciation",
+    "commonMistake": "Reading a concept as a phrase to memorise rather than a principle to apply to real decisions.",
+    "action": "The most common multiple in M&A"
+  },
+  "application": {
+    "title": "Calculate EV/EBITDA",
+    "message": "Estimate a company's Enterprise Value (market cap + debt − cash), then divide by EBITDA, and compare against the same company's P/E to see how far apart the two metrics land.",
+    "secondary": "EV/EBITDA is useful when comparing companies with different capital structures."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "EV/EBITDA is the most common valuation multiple in M&A and cross-capital-structure business comparisons - because it looks at the whole enterprise level, before accounting for debt and tax."
+    },
+    { "type": "callout", "label": "The formula", "text": "EV/EBITDA = Enterprise Value / EBITDA  (EV = Market Capitalization + Debt − Cash)" },
+    { "type": "heading", "text": "Why EV/EBITDA is fairer than P/E across different capital structures" },
+    {
+      "type": "paragraph",
+      "text": "Two companies with identical EBITDA but different debt levels will have noticeably different Net Income (and P/E) - the more heavily-indebted company pays more interest, has lower Net Income, and looks like it has a higher P/E even though its core business is equivalent. EV/EBITDA completely removes this effect because it's calculated at the EBITDA level (before interest, tax, depreciation) and uses Enterprise Value (which already adds back debt) as the numerator - those two companies will have a much closer EV/EBITDA, better reflecting the true value of their operations."
+    },
+    { "type": "heading", "text": "Why investment banks prefer EV/EBITDA in M&A" },
+    {
+      "type": "paragraph",
+      "text": "In an M&A deal, the buyer isn't just buying shareholders' equity - they're taking on the entire business, including its existing debt obligations. EV/EBITDA correctly reflects this 'all-in' price the buyer actually has to pay, while P/E only looks at it from the shareholder's perspective (Equity Value), ignoring the debt the buyer still has to carry. This is why in telecom M&A deals - where target companies have very different capital structures (infrastructure debt ratios) - EV/EBITDA is almost always the preferred metric."
+    },
+    {
+      "type": "list",
+      "items": [
+        "EV/EBITDA is neutral to capital structure (debt/equity) and different depreciation policies between companies",
+        "High-growth industries with expanding margins (tech): EV/EBITDA is usually higher as the market pays a premium for growth",
+        "Slow-growth industries with stable margins (traditional retail): EV/EBITDA is usually lower",
+        "EV/EBITDA can be used even when a company's Net Income is negative, as long as EBITDA is still positive - an advantage P/E doesn't have"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "When comparing two companies with substantially different capital structures, EV/EBITDA is almost always the fairer choice over P/E."
+      ]
+    }
+  ]
+}

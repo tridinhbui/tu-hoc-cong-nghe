@@ -1,0 +1,132 @@
+{
+  "slug": "pe-dung-khi-nao",
+  "title": "When should P/E be used?",
+  "subtitle": "The most popular ratio, but you need to understand its limits to use it right",
+  "duration": "7 min",
+  "openingQuestion": "P/E ratio is best suited for valuing what kind of company?",
+  "openingOptions": [
+    "Only financial companies, banks",
+    "A company with positive, stable profit that can be compared against companies with a similar structure in the same industry",
+    "Any company at all, with no limit on where it applies",
+    "A company that is losing money or newly founded without stable profit yet"
+  ],
+  "explanation": "P/E (Price-to-Earnings) = share price / earnings per share (EPS). Best suited when a company has positive and stable profit. For a loss-making company, P/E is negative or meaningless; for a company with sharply cyclical profit, a single year's P/E can be seriously misleading.",
+  "diagram": [
+    { "label": "Share price" },
+    { "label": "Divided by EPS (profit per share)" },
+    { "label": "= P/E" },
+    { "label": "Suited when profit is positive and stable" }
+  ],
+  "realWorldExample": {
+    "company": "Comparing the banking and tech sectors",
+    "description": "The average P/E of Vietnam's banking sector is usually 8-12x, while high-growth tech companies can reach a P/E of 30-50x - reflecting different growth expectations, and cannot be compared directly across two very different sectors."
+  },
+  "quiz": [
+    {
+      "question": "Why shouldn't you directly compare P/E between a retail company and a high-growth tech company?",
+      "options": [
+        "Because the two sectors use different accounting standards when calculating EPS",
+        "Because P/E doesn't apply to the fast-moving consumer retail sector",
+        "Because tech must always have a lower P/E than retail by theory",
+        "Because a fair P/E depends on growth, risk, and industry characteristics"
+      ],
+      "explanation": "A higher P/E usually reflects a higher expected future profit growth rate - a fast-growing tech sector rightly deserves a higher P/E than a slow-growing retail sector."
+    },
+    {
+      "question": "Two companies in the same industry have P/Es of 15x and 8x respectively. The 8x company just booked a large one-time gain from selling an asset this year. Is that company's 8x P/E reliable for comparison?",
+      "options": [
+        "No - the one-time gain inflates Net Income, so it needs to be normalized",
+        "Completely reliable, you can compare the two P/E numbers directly",
+        "The 8x company must be better since it's cheaper than the 15x company",
+        "A one-time gain has no effect at all on how P/E is calculated"
+      ],
+      "explanation": "This is exactly why analysts always \"normalize\" earnings before calculating valuation multiples - stripping out one-time, non-recurring items so P/E reflects true core earning power."
+    },
+    {
+      "question": "P/E works best with which type of business?",
+      "options": [
+        "A business that's losing money but growing revenue fast",
+        "A business with positive and relatively stable profit",
+        "A business where fixed assets make up most of the balance sheet",
+        "A business that just went through a large one-time gain"
+      ],
+      "explanation": "The denominator has to be positive and mean something recurring for the ratio to be readable. Negative profit makes P/E meaningless, and profit distorted by a one-time item makes P/E deceptive."
+    },
+    {
+      "question": "Why does a heavily leveraged company's P/E often look higher?",
+      "options": [
+        "Because a heavily leveraged company usually has a higher share price",
+        "Because investors demand a higher risk premium for debt",
+        "Because interest expense eats into net profit, shrinking the denominator",
+        "Because interest expense is added back when calculating P/E"
+      ],
+      "explanation": "Two businesses that operate identically but have different capital structures will show two different P/E levels. This is exactly why M&A comparisons use EV/EBITDA - it stands above both debt and equity."
+    },
+    {
+      "question": "P/E is 8x right after a company reported a record profit from selling a factory. How should this be read?",
+      "options": [
+        "The market hasn't yet reflected the gain into the price",
+        "The stock is cheap because P/E is much lower than the peer average",
+        "The business is about to enter a new profit growth cycle",
+        "The denominator is inflated by a one-time item so P/E is being flattered"
+      ],
+      "explanation": "Selling an asset doesn't repeat next year. Once profit returns to a normal level, the same price gives a much higher P/E - which is exactly why you have to strip out one-time items before reading any multiple."
+    }
+  ],
+  "keyTakeaways": [
+    "P/E = Share price / EPS, best suited for companies with positive and stable profit",
+    "Don't compare P/E across industries with different growth and risk characteristics",
+    "A higher P/E usually reflects higher growth expectations, not necessarily being 'expensive' in an absolute sense"
+  ],
+  "practicePrompt": {
+    "question": "A tech startup is losing money (negative Net Income), while a mature consumer company has had stable profit for many years. If you had to pick one of the two to value using P/E, which is more suitable, and why is the other company unsuitable for P/E?",
+    "options": [
+      "The consumer company is more suitable - P/E = Share price / EPS, best suited for companies with positive and stable profit; the loss-making startup has negative EPS, making P/E meaningless or impossible to calculate",
+      "The tech startup is more suitable because P/E is specifically designed to value fast-growing companies that are losing money",
+      "Both companies are equally suitable for P/E since it's the most popular valuation ratio, applying to every type of company",
+      "P/E isn't suitable for any company at all - EV/EBITDA should always be used instead"
+    ],
+    "explanation": "P/E = Share price / EPS, best suited for companies with positive and stable profit. For a loss-making startup, negative EPS makes P/E meaningless - in that case other metrics like EV/Revenue should be used instead."
+  },
+  "summary": {
+    "keyIdea": "P/E = Share price / EPS, best suited for companies with positive and stable profit",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to a real decision.",
+    "action": "Don't compare P/E across industries with different growth and risk characteristics"
+  },
+  "application": {
+    "title": "Check a stock's P/E",
+    "message": "Look up the P/E of a stock you're interested in and compare it against the industry average P/E - if the company is losing money or has profit that swings heavily with the cycle, note that this P/E number can be misleading.",
+    "secondary": "Getting into the habit of checking context before trusting a single P/E number is well worth it."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "P/E is the valuation ratio mentioned most often in every finance news bulletin - but precisely because it's so popular, it's also the ratio most often misused when investors don't understand its limits."
+    },
+    { "type": "heading", "text": "The formula and conditions for use" },
+    {
+      "type": "paragraph",
+      "text": "P/E (Price-to-Earnings) = Share price / Earnings per share (EPS). This ratio works best when a company has positive and relatively stable profit. For a loss-making company, P/E is negative or meaningless (can't be interpreted). For a company with profit that swings sharply with the cycle, P/E calculated from a single year can be seriously misleading - because the denominator (EPS) might be sitting at the trough or peak of the cycle."
+    },
+    { "type": "heading", "text": "A high P/E doesn't mean expensive" },
+    {
+      "type": "paragraph",
+      "text": "Vietnam's banking sector P/E is usually 8-12x, while high-growth tech can reach 30-50x. This difference isn't a mispricing - it reflects different growth expectations, since the Gordon Growth formula implicitly assumes a higher P/E when expected profit growth is higher. So comparing P/E only makes sense within the same industry, at the same stage of development. In addition, a one-time gain (e.g. from selling an asset) can spike Net Income, artificially making P/E look 'flatteringly low' - which is exactly why analysts always 'normalize' earnings before comparing."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Don't compare P/E across industries with different growth rates and risk characteristics",
+        "Be careful with a company whose profit swings with the cycle (cyclical)",
+        "Strip out non-recurring, one-time items before comparing P/E",
+        "P/E is meaningless or misleading for a loss-making company"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "P/E is a good starting point, not a final conclusion - always ask why P/E sits at that level before deciding it's expensive or cheap."
+      ]
+    }
+  ]
+}

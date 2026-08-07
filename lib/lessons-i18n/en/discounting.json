@@ -1,0 +1,153 @@
+{
+  "slug": "discounting",
+  "title": "Discounting: Pulling Future Money Back to the Present",
+  "subtitle": "The reverse of compounding - the basis of every valuation",
+  "duration": "6 min",
+  "openingQuestion": "Receiving 1 million after 5 years with a discount rate of 8%. What is the present value?",
+  "openingOptions": [
+    "1 million",
+    "500,000 dong",
+    "1.08^5 × 1 million",
+    "1 million / (1.08)^5 = ~680,000 dong"
+  ],
+  "explanation": "Discounting is the reverse calculation of compounding: instead of asking what an amount today will become, we ask how much a future amount is worth right now. Because the denominator carries an exponent, the farther out a cash flow is, the more heavily it gets compressed - at a 10% discount rate, an amount received twenty years out retains only about fifteen percent of its value. This is why the distant-future portion of a valuation model contributes far less than it feels like it should.",
+  "diagram": [
+    { "label": "Expected cash flow for each future year", "arrow": true },
+    { "label": "Divide each flow by (1+r) raised to its year", "arrow": true },
+    { "label": "The farther out a flow is, the smaller its present value", "arrow": true },
+    { "label": "Add them all up for today's value" }
+  ],
+  "realWorldExample": {
+    "company": "Lottery winnings: lump sum or installments?",
+    "description": "When winning a large lottery, the winner is often given the choice of receiving everything at once (an already discounted lump sum) or receiving annual installments over 20-30 years (a larger nominal total) - a real-world application of discounting to compare the true value of the two options."
+  },
+  "quiz": [
+    {
+      "question": "How does a cash flow further in the future (year 20 instead of year 5) compare in PV?",
+      "options": [
+        "Higher, because it has more time to earn compound interest",
+        "Much lower, because it's divided by a far larger denominator",
+        "Equal, because the nominal amount hasn't changed at all",
+        "Exactly three times lower, matching the year gap"
+      ],
+      "explanation": "A year-20 cash flow is discounted 20 times: PV = FV / (1+r)^20. With r=10%, 1 million in year 20 is worth only 149,000 dong in PV today. This is why Terminal Value depends so heavily on the discount rate."
+    },
+    {
+      "question": "Why do two cash flows with the same total nominal amount (say, both 1 billion dong) but received at different times end up with different present values (PV)?",
+      "options": [
+        "Because the risk of not receiving the money grows the longer you wait",
+        "Because inflation is different each year, so the amount loses value differently",
+        "Because each cash flow must be discounted separately, matched to its own timing",
+        "Because banks apply different fees for different receipt periods"
+      ],
+      "explanation": "This is why you can't directly compare cash flows at different times using their nominal totals - they must be converted to the same point in time (usually the present) via discounting before comparison, which is exactly what NPV and DCF do."
+    },
+    {
+      "question": "Receiving 500 million after 10 years, discount rate 8%. What is the approximate PV?",
+      "options": [
+        "≈ 250 million (= 500 ÷ 2, halved for ten years)",
+        "≈ 460 million (= 500 ÷ 1.08, discounting only one year)",
+        "≈ 1,079 million (= 500 × 1.08 to the 10th power, multiplying up)",
+        "≈ 232 million (= 500 ÷ 1.08 to the 10th power)"
+      ],
+      "explanation": "PV = 500 / 1.08^10 = 500 / 2.1589 ≈ 232 million. After ten years at an 8% discount rate, an amount retains less than half its value when converted back to today."
+    },
+    {
+      "question": "Why does Terminal Value in a DCF get scrutinized more closely than any other part of the model?",
+      "options": [
+        "Because it makes up 60-80% of the value while being the hardest to forecast",
+        "Because it's the only part that doesn't need discounting to the present",
+        "Because valuation standards require it to be disclosed separately",
+        "Because it's always calculated using a multiple instead of cash flow"
+      ],
+      "explanation": "Most of the conclusion sits in the farthest-out cash flow, exactly where forecasting is weakest and the discount rate has the strongest effect. When reading a valuation, check Terminal Value's weight before debating anything else."
+    },
+    {
+      "question": "How are discounting and compounding related?",
+      "options": [
+        "Two entirely different formulas mathematically",
+        "The same formula, running in opposite directions",
+        "Discounting uses simple interest, compounding uses compound interest",
+        "Compounding is for businesses, discounting is for individuals"
+      ],
+      "explanation": "Multiplying by (1+r)^n moves toward the future, dividing by (1+r)^n moves back to the present. Understanding one direction means understanding the other, and every DCF model is just that second direction repeated many times."
+    }
+  ],
+  "keyTakeaways": [
+    "Discounting = compounding in reverse",
+    "PV = FV / (1+r)^n",
+    "The farther out a cash flow → the smaller its PV → the more it depends on the discount rate"
+  ],
+  "practicePrompt": {
+    "question": "Compounding calculates the future value of an amount of money today (FV = PV × (1+r)^n). What does discounting do in reverse, and why are these two calculations fundamentally a pair of inverses?",
+    "options": [
+      "Discounting is compounding run backward: the same formula, moving from FV to PV",
+      "Discounting and compounding are two completely unrelated concepts in finance",
+      "Discounting only applies to bonds, while compounding only applies to savings deposits",
+      "Discounting always gives a larger result than compounding for the same amount and interest rate"
+    ],
+    "explanation": "Discounting = compounding in reverse: PV = FV / (1+r)^n is exactly the reverse of FV = PV × (1+r)^n. Compounding answers 'how large will money today grow in the future', discounting answers 'how much is future money worth today' - the same relationship, viewed from two different directions in time."
+  },
+  "summary": {
+    "keyIdea": "Discounting = compounding in reverse",
+    "commonMistake": "Reading a concept as a phrase to memorise rather than a principle to apply to real decisions.",
+    "action": "PV = FV / (1+r)^n"
+  },
+  "application": {
+    "title": "Try discounting in reverse",
+    "message": "Take a future financial goal (e.g. 1 billion in 15 years), use PV = FV/(1+r)^n to calculate how much you need to have today or invest each year.",
+    "secondary": "This is exactly how funds and banks value every financial asset."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "If compounding is the calculation that carries money from the present into the future, discounting is the reverse calculation: pulling a future amount back to its equivalent value today. This is exactly the foundational technique behind every discounted cash flow (DCF) valuation."
+    },
+    { "type": "heading", "text": "How discounting works" },
+    {
+      "type": "paragraph",
+      "text": "Compounding multiplies by (1+r)^n to move toward the future; discounting divides by (1+r)^n to move back to the present - the same formula, just used in the opposite direction. **Example:** 1,000,000 dong received after 20 years, discount rate 10%: PV = 1,000,000 / (1.1)^20 = 1,000,000 / 6.7275 ≈ 148,644 dong. Less than 15% of the original nominal value remains, since it's been discounted 20 times in a row."
+    },
+    { "type": "heading", "text": "Comparing cash flows at different points in time" },
+    {
+      "type": "paragraph",
+      "text": "You cannot directly compare two amounts received at two different times using their nominal figures. **Example:** 1 billion dong received today is clearly worth more than 1 billion dong received after 15 years, even though on paper it's the same amount. This is why a lump-sum lottery payment is always much smaller than the sum of all the annual installments combined - because the lump sum has already been discounted to its equivalent present value."
+    },
+    {
+      "type": "formula",
+      "title": "The same cash flow, three discount rates",
+      "equation": "PV = FV ÷ (1 + r)^n",
+      "variables": [
+        { "symbol": "FV", "name": "Amount to be received in the future", "description": "The nominal figure written in the contract" },
+        { "symbol": "r", "name": "Discount rate", "description": "Required return rate - reflects this cash flow's risk" },
+        { "symbol": "n", "name": "Number of periods to wait", "description": "The farther out, the more the denominator grows exponentially" }
+      ],
+      "example": {
+        "title": "1,000,000 dong received after 20 years",
+        "calculation": "r = 8% → 1M ÷ 4.661 = 214,500 dong · r = 10% → 1M ÷ 6.727 = 148,600 dong · r = 12% → 1M ÷ 9.646 = 103,700 dong",
+        "result": "Change r by 4 percentage points, PV drops by more than half",
+        "explanation": "None of these three figures is wrong. They just answer three different questions about how risky this cash flow really is - and that's why debate within a DCF model is almost always a debate about r."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Why Terminal Value gets scrutinized most",
+      "text": "In a 5-year DCF model, Terminal Value typically makes up 60-80% of total value - meaning most of the conclusion sits in the farthest-out cash flow, exactly where forecasting is weakest and r has the strongest effect. When reading a valuation, check Terminal Value's weight before debating anything else."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Discounting is the reverse operation of compounding, using the shared formula (1+r)^n",
+        "The further into the future a cash flow is, the more times it's discounted → the smaller its PV",
+        "Terminal Value in a DCF (very distant future cash flow) is extremely sensitive to the discount rate",
+        "To compare two cash flows at different points in time, you must always convert them to the same point in time first"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Every DCF model, from equity valuation to project appraisal, is just a chain of discounting calculations repeated many times."
+      ]
+    }
+  ]
+}

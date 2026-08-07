@@ -1,0 +1,143 @@
+{
+  "slug": "on-tap-chi-so-tai-chinh",
+  "title": "Review: Using Ratios to Compare Businesses",
+  "subtitle": "Combining ratios for a comprehensive view",
+  "duration": "7 min",
+  "openingQuestion": "To assess a business's overall health, what minimum set of ratios do you need?",
+  "openingOptions": [
+    "Profitability (margins, ROE), Liquidity (current ratio), Leverage (D/E), Valuation (P/E, EV/EBITDA)",
+    "Just EV/EBITDA",
+    "Just P/E",
+    "Just ROE"
+  ],
+  "explanation": "No single metric says anything on its own; the power lies in reading them as four groups and cross-checking them against each other. Profitability asks whether the business makes money, liquidity asks whether it will survive the next twelve months, leverage asks what shocks it can absorb, and valuation asks whether the current price already reflects all of that. And every comparison only means something within the same industry and stage of development.",
+  "diagram": [
+    { "label": "Profitability: is it profitable?", "arrow": true },
+    { "label": "Liquidity: enough short-term cash?", "arrow": true },
+    { "label": "Leverage: is debt excessive?", "arrow": true },
+    { "label": "Valuation: is the price reasonable?" }
+  ],
+  "realWorldExample": {
+    "company": "Comprehensive business analysis",
+    "description": "A professional analyst, when assessing any business - from a bank to a manufacturer - always runs through all 4 groups of metrics (Profitability, Liquidity, Leverage, Valuation) before drawing an investment conclusion, rather than relying on a single metric no matter how impressive that metric looks."
+  },
+  "quiz": [
+    {
+      "question": "What is the most important thing when using ratios?",
+      "options": [
+        "Compare within the same industry, the same period, and by trend",
+        "Calculate the formula correctly before interpreting it",
+        "Use as many metrics as possible for a more certain conclusion",
+        "Prioritize the most recent period's data since it reflects the present"
+      ],
+      "explanation": "Ratios only mean something in context: versus the industry, versus history, versus competitors. A P/E of 20x says nothing if you don't know the industry benchmark."
+    },
+    {
+      "question": "A stock has a very high ROE (30%) but also a very high D/E (4.0) and a Current Ratio below 1. What is the most reasonable conclusion looking at all 3 metrics together?",
+      "options": [
+        "A good opportunity since ROE far exceeds the industry average",
+        "A high ROE built on leverage, paired with fragile liquidity",
+        "D/E and Current Ratio have no connection to the quality of that ROE",
+        "You need more dividend data before you can conclude anything"
+      ],
+      "explanation": "This is exactly the core lesson of this whole track: no single metric ever tells the whole story. A high ROE combined with high leverage and weak liquidity is a classic warning combination."
+    },
+    {
+      "question": "What are the four groups of metrics you need to run through before concluding on a business?",
+      "options": [
+        "Growth, Market Share, Brand, Key Personnel",
+        "Revenue, Cost, Profit, Cash Flow",
+        "Profitability, Liquidity, Leverage, Valuation",
+        "Balance Sheet, Income Statement, Cash Flow Statement, Notes"
+      ],
+      "explanation": "The four groups answer four different questions: how much is earned, can short-term debt be paid, how much is borrowed, and how is it currently priced. Skipping any group leaves a blind spot."
+    },
+    {
+      "question": "Company A: ROE 18%, D/E 0.4. Company B: ROE 18%, D/E 2.5. Same industry. Which statement is correct?",
+      "options": [
+        "They can't be compared without knowing the P/E of each",
+        "B is more efficient because it makes good use of financial leverage",
+        "The two companies are equivalent because ROE is exactly equal",
+        "A generates the same return at much lower risk"
+      ],
+      "explanation": "The same result, but B had to borrow six times as much as A to achieve it. When interest rates rise or operating profit slows, B's ROE will fall much faster - the same number, not the same quality."
+    },
+    {
+      "question": "Why isn't a single metric alone enough to make an investment decision?",
+      "options": [
+        "Because each metric only looks at one facet and each can be distorted in its own way",
+        "Because financial metrics are published at different times for different companies",
+        "Because accounting standards keep changing",
+        "Because individual investors don't have access to enough data to calculate them"
+      ],
+      "explanation": "P/E is skewed by leverage, ROE is inflated by borrowing, P/B misses intangible assets, and the Current Ratio hides inventory quality. Each metric has a blind spot, and they only cover for each other when read together."
+    }
+  ],
+  "keyTakeaways": [
+    "4 groups of ratios: Profitability, Liquidity, Leverage, Valuation",
+    "Always compare within the industry and by trend",
+    "Combine multiple ratios - one alone isn't enough to decide"
+  ],
+  "practicePrompt": {
+    "question": "Having finished the financial-ratios track, you want to comprehensively assess a company: profitability, short-term solvency, debt level, and whether the share price is reasonable. Which groups of metrics do you need?",
+    "options": [
+      "Just a single metric like P/E is enough to comprehensively assess every aspect of the company",
+      "4 groups of ratios: Profitability, Liquidity, Leverage, Valuation - all four need to be combined",
+      "Just the Leverage group, since debt level decides all of the company's risk and potential",
+      "Every group of ratios gives the same result, so calculating just one group is enough"
+    ],
+    "explanation": "4 groups of ratios: Profitability (earning power), Liquidity (short-term solvency), Leverage (debt), Valuation (price) - each group answers a different question about company health. Investors need to combine all four for a comprehensive view rather than relying on a single metric."
+  },
+  "summary": {
+    "keyIdea": "4 groups of ratios: Profitability, Liquidity, Leverage, Valuation",
+    "commonMistake": "Reading a concept as a phrase to memorise rather than a principle to apply to real decisions.",
+    "action": "Always compare within the industry and by trend"
+  },
+  "application": {
+    "title": "Build a 4-group ratio table",
+    "message": "Pick a company, build a table for yourself with 4 columns - Profitability, Liquidity, Leverage, Valuation - fill in at least one metric you've learned per column, and form an overall assessment.",
+    "secondary": "A single metric alone can mislead - looking at the whole picture reveals the true story."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "After going through each ratio individually, this review lesson pulls them together into a complete analytical framework: any business can be assessed through 4 major groups of questions - is it profitable, does it have enough short-term cash, is its debt excessive, and is its price reasonable?"
+    },
+    {
+      "type": "conceptTable",
+      "title": "The 4 core groups of metrics",
+      "concepts": [
+        { "vi": "Khả năng sinh lời", "en": "Profitability", "def": "Gross/Operating/Net Margin, ROA, ROE, ROIC - is the business profitable, and profitable efficiently?" },
+        { "vi": "Thanh khoản", "en": "Liquidity", "def": "Current Ratio, Quick Ratio - is there enough cash to pay short-term debt?" },
+        { "vi": "Đòn bẩy tài chính", "en": "Leverage", "def": "D/E, Interest Coverage - is debt at a safe level?" },
+        { "vi": "Định giá", "en": "Valuation", "def": "P/E, P/B, EV/EBITDA - is the share price reasonable relative to fundamentals?" }
+      ]
+    },
+    { "type": "heading", "text": "Why no single metric ever tells the whole story" },
+    {
+      "type": "paragraph",
+      "text": "Picture a stock with a very high ROE (30%) - a figure that sounds attractive immediately. But if D/E is also very high (4.0) and the Current Ratio is below 1, the picture changes entirely: that high ROE may largely come from risky financial leverage, combined with genuine short-term liquidity pressure. This is a classic warning combination in financial analysis - profitability may be being 'bought' with high financial risk, a trade-off investors need to recognize before being drawn in by an impressive ROE figure."
+    },
+    { "type": "heading", "text": "The process for analyzing any business" },
+    {
+      "type": "paragraph",
+      "text": "A professional analyst, whether assessing a bank or a manufacturer, always runs through all 4 groups of metrics before concluding: starting with Profitability to understand whether the business earns well, moving to Liquidity and Leverage to understand financial risk, and only then to Valuation to see whether the current price accurately reflects the quality of business just analyzed. Skipping any group can lead to a seriously mistaken conclusion."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Always compare ratios within the same industry, the same period, and by multi-year trend - not a single number at one point in time",
+        "A high ROE/ROA needs cross-checking against D/E and Interest Coverage to see if it comes from risky leverage",
+        "Good liquidity (Current/Quick Ratio) is a necessary condition for a business to 'survive' long enough to realize its profit potential",
+        "Valuation (P/E, P/B, EV/EBITDA) should only be read after understanding intrinsic quality through the other 3 groups"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "No single 'magic' ratio alone answers the question 'should I invest' - the power lies in combining all 4 groups of metrics to see a complete picture.",
+        "This is the foundational skill of every professional financial analyst - and now you have the tools to start applying it yourself."
+      ]
+    }
+  ]
+}
