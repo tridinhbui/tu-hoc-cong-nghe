@@ -80,6 +80,9 @@ export const TRACK_PERSONAL = {
       label: "Chặng 3",
       name: "Tư duy tiền bạc và tài chính cơ bản",
       days: [1, 20] as [number, number],
+      // 1048 (tu-duy-tai-chinh) là trang viết tay được kéo về corpus. Nội dung
+      // của nó đúng là chủ đề chặng này, nhưng id nằm ngoài dải 1-20.
+      extraLessonIds: [1048],
       available: true,
       parts: [
         { name: "Tiền, thời gian và lãi kép", days: [1, 10] as [number, number] },
