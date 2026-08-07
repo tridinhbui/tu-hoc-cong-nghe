@@ -80,6 +80,8 @@ interface GroupQuizQuestion {
 const REACTION_EMOJIS = ["👍", "❤️", "🔥", "🚀", "💡", "😂"];
 
 function Avatar({ name, avatarUrl, size = 36 }: { name?: string | null; avatarUrl?: string | null; size?: number }) {
+  // Sub-component, nên có useI18n() riêng thay vì luồn `t` qua prop.
+  const { t } = useI18n();
   const initials = (name || "U")
     .split(" ")
     .map((part) => part[0])
@@ -90,7 +92,7 @@ function Avatar({ name, avatarUrl, size = 36 }: { name?: string | null; avatarUr
   return isValidAvatar(avatarUrl) ? (
     <Image
       src={avatarUrl}
-      alt={name || "User"}
+      alt={name || t.studyGroups.memberRole}
       width={size}
       height={size}
       className="rounded-full object-cover border border-stone-200 dark:border-stone-700"

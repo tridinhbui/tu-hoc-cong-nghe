@@ -173,6 +173,22 @@ function isNotCopy(text) {
     "lowercase",
     "capitalize",
   ]);
+  // CSS values built with a template literal. These only became reachable once
+  // the jsx-expr rule started reporting template literals: a transform string
+  // like `translate(-50%, -50%) rotateY(${angle}deg)` is assigned to a const
+  // inside a map callback, which sits inside a JSX expression container.
+  //
+  // Named rather than inferred, same reason as BARE_UTILITIES below: a shape
+  // test loose enough to catch "any CSS-looking value" is loose enough to
+  // swallow a sentence. A function name followed by "(" cannot be UI copy.
+  if (
+    /\b(translate[XYZ]?|translate3d|rotate[XYZ]?|scale[XY]?|skew[XY]?|perspective|matrix3?d?|calc|var|url|blur|brightness|saturate|drop-shadow|(linear|radial|conic)-gradient|rgba?|hsla?|cubic-bezier)\s*\(/.test(
+      t
+    )
+  ) {
+    return true;
+  }
+
   const tokens = t.split(/\s+/);
   if (
     tokens.length > 1 &&
@@ -207,6 +223,54 @@ function ignoredRanges(src) {
   const re = /\/\*\s*i18n-ignore-start:[\s\S]*?i18n-ignore-end\s*\*\//g;
   for (const m of src.matchAll(re)) ranges.push([m.index, m.index + m[0].length]);
   return ranges;
+}
+
+/**
+ * Copy reachable from `node` through wrappers that don't change whether the
+ * string is displayed.
+ *
+ * The three rules below all used to match only when the copy was the DIRECT
+ * child node - a bare string literal. Wrapping it in a ternary was enough to
+ * make it invisible, and that is not an exotic shape: it is how every
+ * two-state label in this repo is written. components/StudyGroupsClient.tsx
+ * reported 0 while holding 33 hard-coded strings, 15 of them
+ * `toast.error(error instanceof Error ? error.message : "...")`.
+ *
+ * Recurses through CONDITIONALS and `||`/`??` only - never into a nested call.
+ * `format(t.x, { name: "abc" })` passed to a toast should not report "abc":
+ * that is an interpolated value, and the copy it goes into is already in the
+ * dictionary. Narrow on purpose; a noisy gate is a gate people learn to ignore.
+ */
+function collectDisplayStrings(node, out) {
+  if (!node) return;
+  if (ts.isParenthesizedExpression(node)) return collectDisplayStrings(node.expression, out);
+  if (ts.isStringLiteral(node) || ts.isNoSubstitutionTemplateLiteral(node)) {
+    out.push({ text: node.text, pos: node.getStart() });
+    return;
+  }
+  if (ts.isTemplateExpression(node)) {
+    // The literal chunks around the ${...} holes; the holes are values.
+    const chunks = [node.head.text, ...node.templateSpans.map((sp) => sp.literal.text)];
+    const text = chunks.join(" ").trim();
+    if (text) out.push({ text, pos: node.getStart() });
+    return;
+  }
+  if (ts.isConditionalExpression(node)) {
+    collectDisplayStrings(node.whenTrue, out);
+    collectDisplayStrings(node.whenFalse, out);
+    return;
+  }
+  if (ts.isBinaryExpression(node)) {
+    const op = node.operatorToken.kind;
+    if (
+      op === ts.SyntaxKind.BarBarToken ||
+      op === ts.SyntaxKind.QuestionQuestionToken ||
+      op === ts.SyntaxKind.AmpersandAmpersandToken
+    ) {
+      collectDisplayStrings(node.left, out);
+      collectDisplayStrings(node.right, out);
+    }
+  }
 }
 
 function calleeName(expr) {
@@ -258,12 +322,13 @@ function findingsIn(src, fileName) {
       if (DISPLAY_ATTRS.has(attr) && node.initializer) {
         const init = node.initializer;
         if (ts.isStringLiteral(init)) push(`attr:${attr}`, init.text, init.getStart(source));
-        else if (
-          ts.isJsxExpression(init) &&
-          init.expression &&
-          ts.isStringLiteral(init.expression)
-        ) {
-          push(`attr:${attr}`, init.expression.text, init.expression.getStart(source));
+        else if (ts.isJsxExpression(init) && init.expression) {
+          // Was string-literal-only, so `title={cond ? "A" : "B"}` and
+          // aria-label={`... ${n} ...`} both read as zero findings. Scoped to
+          // DISPLAY_ATTRS, so a className computed by a ternary stays out.
+          const hits = [];
+          collectDisplayStrings(init.expression, hits);
+          for (const hit of hits) push(`attr:${attr}`, hit.text, hit.pos);
         }
       }
     }
@@ -278,16 +343,13 @@ function findingsIn(src, fileName) {
     // - which is most of the interesting ones - would slip through.
     if (ts.isCallExpression(node) && DISPLAY_CALLS.has(calleeName(node.expression))) {
       for (const arg of node.arguments) {
-        if (ts.isStringLiteral(arg)) push("call", arg.text, arg.getStart(source));
-        else if (ts.isNoSubstitutionTemplateLiteral(arg)) {
-          push("call", arg.text, arg.getStart(source));
-        } else if (ts.isTemplateExpression(arg)) {
-          // Report the literal chunks around the ${...} holes; the holes
-          // themselves are values, not copy.
-          const chunks = [arg.head.text, ...arg.templateSpans.map((sp) => sp.literal.text)];
-          const text = chunks.join(" ").trim();
-          if (text) push("call", text, arg.getStart(source));
-        }
+        // Literals AND the ternaries they hide in. The single commonest shape
+        // in this repo is toast.error(error instanceof Error ? error.message :
+        // "câu dự phòng") - the fallback only shows when the thrown thing is
+        // not an Error, so nobody ever sees it and nothing ever reported it.
+        const hits = [];
+        collectDisplayStrings(arg, hits);
+        for (const hit of hits) push("call", hit.text, hit.pos);
       }
     }
 
@@ -377,6 +439,18 @@ function findingsIn(src, fileName) {
         if (ts.isStringLiteral(n) && !seen.has(n) && !isComparisonOperand(n)) {
           seen.add(n);
           push("jsx-expr", n.text, n.getStart(source));
+        }
+        // Template literals rendered as a child. This walker already descended
+        // INTO ternaries - it just never pushed anything but a plain string
+        // literal, so {cond ? t.x : `${n}/3 tuần streak`} reported nothing while
+        // the sibling branch was already translated. That badge is what started
+        // this whole thread.
+        if ((ts.isTemplateExpression(n) || ts.isNoSubstitutionTemplateLiteral(n)) && !seen.has(n)) {
+          seen.add(n);
+          const text = ts.isNoSubstitutionTemplateLiteral(n)
+            ? n.text
+            : [n.head.text, ...n.templateSpans.map((sp) => sp.literal.text)].join(" ").trim();
+          if (text) push("jsx-expr", text, n.getStart(source));
         }
         // Do not descend into nested JSX: its own text and attributes are
         // reported by the rules above, and recursing would double-count.

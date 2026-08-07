@@ -328,7 +328,7 @@ export default function UserStats({
             <span className="text-[8px] sm:text-[9px] font-black text-stone-500 dark:text-stone-400 uppercase tracking-wider block">{t.userStats.levelUp}</span>
             <div className="flex items-center gap-1 mt-1 truncate">
               <TrendingUp className="w-3.5 h-3.5 text-indigo-500 dark:text-indigo-400 shrink-0" />
-              <span className={`font-black text-indigo-600 dark:text-indigo-400 ${sidebar ? "text-xs" : "text-sm sm:text-base"}`}>{xpToNext > 0 ? `+${xpToNext} XP` : t.userStats.maxLevel}</span>
+              <span className={`font-black text-indigo-600 dark:text-indigo-400 ${sidebar ? "text-xs" : "text-sm sm:text-base"}`}>{xpToNext > 0 ? format(t.userStats.xpToNext, { count: xpToNext }) : t.userStats.maxLevel}</span>
             </div>
           </div>
         </div>
