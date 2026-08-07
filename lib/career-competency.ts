@@ -81,6 +81,8 @@ export const SKILL_DOMAINS: SkillDomain[] = [
       // Ba bài đọc-sâu bổ sung cho chặng "Đọc 3 báo cáo tài chính": thuyết
       // minh, phân tích theo tỷ trọng, và ý kiến kiểm toán.
       ...range(1690, 1692),
+      // 1050 (credit-debit-phan-2): bút toán thực chiến, đi sau bài Ghi sổ kép.
+      1050,
     ],
   },
   {

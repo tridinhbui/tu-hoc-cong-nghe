@@ -858,6 +858,10 @@ export const TRACK_PROFESSIONAL = {
       label: "Chặng 41",
       name: "Bút toán và sổ sách kế toán",
       days: [1721, 1725] as [number, number],
+      // 1050 (credit-debit-phan-2) là trang viết tay được kéo về corpus. Nó là
+      // phần ÁP DỤNG của bài 1721 (Ghi sổ kép) chứ không dạy lại quy tắc, nên
+      // thuộc đúng chặng này dù id nằm ngoài dải 1721-1725.
+      extraLessonIds: [1050],
       available: true,
       isNew: true,
       parts: [
