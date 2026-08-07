@@ -996,7 +996,7 @@ console.log(
 // Khi con số này về 0, biến nó thành cổng cứng như MIN_QUIZ_COUNT.
 console.log(`\n=== SUMMARY / APPLICATION / PRACTICE ===`);
 if (missingSummary.length === 0 && missingApplication.length === 0 && missingPractice.length === 0) {
-  console.log(`  Mọi bài đều có cả ba. Giờ hãy biến việc này thành cổng cứng.`);
+  console.log(`  Mọi bài đều có cả ba, và practicePrompt đã là cổng cứng ở 0.`);
 } else {
   console.log(
     `  ${missingSummary.length} thiếu summary · ${missingApplication.length} thiếu application · ` +

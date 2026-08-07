@@ -416,11 +416,18 @@ measuring by hand rather than by the audit.
 ```
 npm run audit:lessons                                  # lesson quizzes
 npm run audit:lessons:en                               # translated lessons
-node scripts/audit-ib-option-length.mjs                # IB question bank
+node scripts/audit-ib-option-length.mjs                # IB question bank, per category
 node scripts/audit-ib-option-length.mjs --ids <cat>    # per-question lengths
 node scripts/i18n-coverage.mjs                         # untranslated UI strings
 node scripts/i18n-coverage.mjs <file>                  # per-file, with line numbers
 ```
+
+`audit-ib-option-length.mjs` chỉ IN và luôn thoát 0 - nó là bảng đọc theo nhóm
+lúc đang viết lại một lô, không phải cổng. Cổng của ngân hàng IB nằm ở
+`lib/__tests__/ib-question-bank.test.ts` và chạy cùng `npx vitest run`. Chú thích
+đầu file bộ kiểm từng nói cổng đã nằm ở đó trong khi chưa có gì, nên đọc con số
+nó in ra với cỡ mẫu trong đầu: một nhóm 8 câu hiện 50% là bốn câu, cách 25% đúng
+một lần tung đồng xu.
 
 **Quiz cũng nằm trong `app/bai-hoc/<slug>/page.tsx`.** Một số bài có trang
 viết tay riêng, và mảng `quiz` của chúng là literal trong chính file đó - không
@@ -434,6 +441,49 @@ số bộ kiểm in ra đều xanh, vì nó chỉ đọc `lib/lessons-data`.
 thước đo (`handAuthored` là một track riêng trong bảng). Ba cổng nội dung còn
 lại không áp được: nội dung dạy của những bài này nằm trong JSX chứ không phải
 mảng `sections`.
+
+### Câu hỏi có chấm điểm mà KHÔNG nằm trong repo
+
+Mọi cổng ở trên là script hoặc test đọc file trong repo, nên chúng phủ được đúng
+những gì repo chứa. Có ít nhất một kho quiz có chấm điểm nằm ngoài phạm vi đó,
+và điểm mù này khác điểm mù trên về bản chất: bài viết tay chỉ cần một trình đọc
+mới là đo được, còn kho dưới đây thì không có file nào để đọc, kể cả khi đã biết
+nó tồn tại.
+
+| kho | ở đâu | cổng |
+| --- | --- | --- |
+| quiz bài học | `lib/lessons-data/*.json` | `npm run audit:lessons` |
+| quiz bài viết tay | `app/bai-hoc/<slug>/page.tsx` | cùng bộ kiểm, qua `hand-authored-quizzes.mjs` |
+| ngân hàng IB | `lib/ib-question-bank.ts` + overrides | `lib/__tests__/ib-question-bank.test.ts` |
+| item set CFA | `lib/cfa-item-sets.ts` | `cfa-advanced-practice.test.ts` (cấu trúc; 20 câu, quá nhỏ để gác phân bố) |
+| **quiz module CFA** | **bảng `ModuleQuizQuestion` trên Supabase** | **chỉ đường ghi** |
+
+Quiz module CFA được gõ qua `/admin/cfa-library` và ghi `quiz_score` vào
+`cfa_module_progress` qua `lib/supabase-cfa-progress.ts`. Không script tĩnh nào
+với tới được nó.
+
+Điểm đó **không** chảy vào `avg_quiz_score` - `recalculateUserStats` chỉ đọc
+`user_progress` - và cũng **không** vào `cfa_readiness`, vốn đếm số module đã
+hoàn thành chứ không đọc điểm. Mà hoàn thành thì `handleQuizFinish` ghi ngay khi
+làm xong quiz, không có điểm sàn. Nên kho này là loại *hình thành*, giống
+`practicePrompt`: một câu đoán được không làm sai con số nào, nó chỉ lấy mất của
+người học phép thử duy nhất họ có để biết mình đã hiểu hay chưa, và trả lại một
+câu trả lời sai về chính điều đó.
+
+Đây là mức thiệt hại nhẹ hơn quiz bài học, và đáng ghi đúng như vậy: bản đầu của
+đoạn này viết rằng điểm đó nuôi `cfa_readiness`, và phải lần theo
+`career-profile/route.ts` tới `computeCompetencyScores` mới thấy là không.
+
+Nội dung sống trong cơ sở dữ liệu thì chỗ duy nhất chặn được là **đường ghi**.
+`lib/option-length-tell.ts` chạy ở đúng chỗ đó, lúc lưu một câu hỏi trong trang
+quản trị, và nó **cảnh báo chứ không chặn**: đáp án đúng *nên* là phương án dài
+nhất ở khoảng một phần ba số câu ba phương án, nên chặn lưu sẽ ép người soạn
+viết lệch sang chiều ngược lại - đúng cách kho bài học từng trôi tới z = −4,6.
+
+Nếu sau này có thêm nội dung học nào chuyển vào cơ sở dữ liệu, đây là hình dạng
+cần lặp lại: kiểm ở đường ghi, cảnh báo chứ không chặn, và ngưỡng hẹp. Đừng dựng
+một bộ kiểm đọc Supabase - nó cần thông tin đăng nhập, không chạy được trong CI,
+và một cổng chỉ chạy khi có người nhớ chạy tay thì không phải cổng.
 
 The lesson audit gates CI on three things:
 

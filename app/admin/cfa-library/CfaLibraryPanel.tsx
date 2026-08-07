@@ -272,8 +272,10 @@ function ModuleEditor({
       //
       // Đây là cổng DUY NHẤT với tới được kho câu hỏi này: quiz module CFA nằm
       // trong bảng ModuleQuizQuestion trên Supabase chứ không trong repo, nên
-      // không script hay test nào đọc được nó - trong khi nó vẫn ghi
-      // quiz_score và vẫn nuôi cfa_readiness.
+      // không script hay test nào đọc được nó. Điểm của nó không vào
+      // avg_quiz_score cũng không vào cfa_readiness, nên đây là kho hình
+      // thành - một câu đoán được lấy mất của người học phép thử duy nhất họ
+      // có để biết mình đã hiểu hay chưa.
       const tell = findCorrectAnswerLengthTell(
         [q.optionA, q.optionB, q.optionC],
         ["A", "B", "C"].indexOf(q.correct)
