@@ -4,7 +4,11 @@ import { useState } from "react";
 import LessonPageLayout, { QuizQuestion, LessonMeta } from "@/components/LessonPageLayout";
 
 const meta: LessonMeta = {
-  id: 15, day: 15, accent: "emerald",
+  // Id tổng hợp, KHÔNG phải id trong corpus. Trang này chưa có bài tương ứng
+  // trong lib/lessons.ts nên không có id thật để ghi vào, còn id cũ (15) là id
+  // của một bài Chặng 3 CÓ THẬT - nên tiến độ, XP, ghi chú và highlight của
+  // trang này đều đổ sang bài đó. Xem lib/__tests__/bespoke-lesson-ids.test.ts.
+  id: 9014, slug: "source-cash-ma", day: 15, accent: "emerald",
   title: "Source of Cash trong M&A",
   subtitle: "Tiền mua lại doanh nghiệp đến từ đâu?",
   duration: "8 phút", difficulty: "Khó", emoji: "💼",

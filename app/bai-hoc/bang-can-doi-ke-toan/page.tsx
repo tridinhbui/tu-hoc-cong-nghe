@@ -3,7 +3,11 @@
 import LessonPageLayout, { QuizQuestion, LessonMeta } from "@/components/LessonPageLayout";
 
 const LESSON: LessonMeta = {
-  id: 3, day: 3, accent: "violet",
+  // Id tổng hợp, KHÔNG phải id trong corpus. Trang này chưa có bài tương ứng
+  // trong lib/lessons.ts nên không có id thật để ghi vào, còn id cũ (3) là id
+  // của một bài Chặng 3 CÓ THẬT - nên tiến độ, XP, ghi chú và highlight của
+  // trang này đều đổ sang bài đó. Xem lib/__tests__/bespoke-lesson-ids.test.ts.
+  id: 9002, slug: "bang-can-doi-ke-toan", day: 3, accent: "violet",
   title: "Đọc Bảng Cân Đối Kế Toán",
   subtitle: "Doanh nghiệp đang có gì và tiền đến từ đâu?",
   duration: "8 phút", difficulty: "Dễ", emoji: "⚖️",

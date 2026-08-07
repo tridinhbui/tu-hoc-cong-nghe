@@ -4,7 +4,11 @@ import { useState } from "react";
 import LessonPageLayout, { QuizQuestion, LessonMeta } from "@/components/LessonPageLayout";
 
 const LESSON: LessonMeta = {
-  id: 5, day: 5, accent: "teal",
+  // Id tổng hợp, KHÔNG phải id trong corpus. Trang này chưa có bài tương ứng
+  // trong lib/lessons.ts nên không có id thật để ghi vào, còn id cũ (5) là id
+  // của một bài Chặng 3 CÓ THẬT - nên tiến độ, XP, ghi chú và highlight của
+  // trang này đều đổ sang bài đó. Xem lib/__tests__/bespoke-lesson-ids.test.ts.
+  id: 9004, slug: "cac-loai-debt", day: 5, accent: "teal",
   title: "Các Loại Debt Cần Biết",
   subtitle: "9 loại nợ, capital structure và thứ tự ưu tiên thanh toán",
   duration: "8 phút", difficulty: "Trung bình", emoji: "",

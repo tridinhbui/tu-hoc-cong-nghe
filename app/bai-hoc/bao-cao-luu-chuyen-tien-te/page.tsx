@@ -3,7 +3,11 @@
 import LessonPageLayout, { QuizQuestion, LessonMeta } from "@/components/LessonPageLayout";
 
 const LESSON: LessonMeta = {
-  id: 6, day: 6, accent: "cyan",
+  // Id tổng hợp, KHÔNG phải id trong corpus. Trang này chưa có bài tương ứng
+  // trong lib/lessons.ts nên không có id thật để ghi vào, còn id cũ (6) là id
+  // của một bài Chặng 3 CÓ THẬT - nên tiến độ, XP, ghi chú và highlight của
+  // trang này đều đổ sang bài đó. Xem lib/__tests__/bespoke-lesson-ids.test.ts.
+  id: 9003, slug: "bao-cao-luu-chuyen-tien-te", day: 6, accent: "cyan",
   title: "Báo Cáo Lưu Chuyển Tiền Tệ",
   subtitle: "Lợi nhuận có thể là ước tính, tiền mặt mới là thứ doanh nghiệp thật sự có",
   duration: "8 phút", difficulty: "Trung bình", emoji: "💧",

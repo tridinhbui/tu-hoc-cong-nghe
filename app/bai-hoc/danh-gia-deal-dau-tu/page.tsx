@@ -3,7 +3,11 @@
 import LessonPageLayout, { QuizQuestion, LessonMeta } from "@/components/LessonPageLayout";
 
 const meta: LessonMeta = {
-  id: 12, day: 12, accent: "orange",
+  // Id tổng hợp, KHÔNG phải id trong corpus. Trang này chưa có bài tương ứng
+  // trong lib/lessons.ts nên không có id thật để ghi vào, còn id cũ (12) là id
+  // của một bài Chặng 3 CÓ THẬT - nên tiến độ, XP, ghi chú và highlight của
+  // trang này đều đổ sang bài đó. Xem lib/__tests__/bespoke-lesson-ids.test.ts.
+  id: 9008, slug: "danh-gia-deal-dau-tu", day: 12, accent: "orange",
   title: "Đánh Giá Thương Vụ Đầu Tư",
   subtitle: "Cách đọc một thương vụ mua lại doanh nghiệp như nhà đầu tư chuyên nghiệp",
   duration: "9 phút", difficulty: "Khó", emoji: "🤝",

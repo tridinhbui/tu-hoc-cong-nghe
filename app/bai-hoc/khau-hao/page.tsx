@@ -4,7 +4,11 @@ import { useState } from "react";
 import LessonPageLayout, { QuizQuestion, LessonMeta } from "@/components/LessonPageLayout";
 
 const meta: LessonMeta = {
-  id: 17, day: 17, accent: "stone",
+  // Id tổng hợp, KHÔNG phải id trong corpus. Trang này chưa có bài tương ứng
+  // trong lib/lessons.ts nên không có id thật để ghi vào, còn id cũ (17) là id
+  // của một bài Chặng 3 CÓ THẬT - nên tiến độ, XP, ghi chú và highlight của
+  // trang này đều đổ sang bài đó. Xem lib/__tests__/bespoke-lesson-ids.test.ts.
+  id: 9012, slug: "khau-hao", day: 17, accent: "stone",
   title: "Khấu Hao",
   subtitle: "Tài sản mòn dần - kế toán ghi lại thế nào?",
   duration: "7 phút", difficulty: "Trung bình", emoji: "🏗️",

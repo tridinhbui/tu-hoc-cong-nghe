@@ -3,7 +3,11 @@
 import LessonPageLayout, { QuizQuestion, LessonMeta } from "@/components/LessonPageLayout";
 
 const meta: LessonMeta = {
-  id: 10, day: 10, accent: "amber",
+  // Id tổng hợp, KHÔNG phải id trong corpus. Trang này chưa có bài tương ứng
+  // trong lib/lessons.ts nên không có id thật để ghi vào, còn id cũ (10) là id
+  // của một bài Chặng 3 CÓ THẬT - nên tiến độ, XP, ghi chú và highlight của
+  // trang này đều đổ sang bài đó. Xem lib/__tests__/bespoke-lesson-ids.test.ts.
+  id: 9017, slug: "tu-duy-tai-chinh", day: 10, accent: "amber",
   title: "Tư Duy Tài Chính",
   subtitle: "Mindset của người hiểu tiền thực sự",
   duration: "6 phút", difficulty: "Dễ", emoji: "🧠",

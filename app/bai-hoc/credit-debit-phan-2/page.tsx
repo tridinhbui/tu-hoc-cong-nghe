@@ -3,7 +3,11 @@
 import LessonPageLayout, { QuizQuestion, LessonMeta } from "@/components/LessonPageLayout";
 
 const meta: LessonMeta = {
-  id: 9, day: 9, accent: "violet",
+  // Id tổng hợp, KHÔNG phải id trong corpus. Trang này chưa có bài tương ứng
+  // trong lib/lessons.ts nên không có id thật để ghi vào, còn id cũ (9) là id
+  // của một bài Chặng 3 CÓ THẬT - nên tiến độ, XP, ghi chú và highlight của
+  // trang này đều đổ sang bài đó. Xem lib/__tests__/bespoke-lesson-ids.test.ts.
+  id: 9007, slug: "credit-debit-phan-2", day: 9, accent: "violet",
   title: "Debit và Credit - Phần 2",
   subtitle: "Ứng dụng thực tế vào các bút toán phổ biến",
   duration: "7 phút", difficulty: "Khó", emoji: "📗",

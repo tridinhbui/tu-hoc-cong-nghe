@@ -4,7 +4,11 @@ import { useState } from "react";
 import LessonPageLayout, { QuizQuestion, LessonMeta } from "@/components/LessonPageLayout";
 
 const meta: LessonMeta = {
-  id: 20, day: 20, accent: "violet",
+  // Id tổng hợp, KHÔNG phải id trong corpus. Trang này chưa có bài tương ứng
+  // trong lib/lessons.ts nên không có id thật để ghi vào, còn id cũ (20) là id
+  // của một bài Chặng 3 CÓ THẬT - nên tiến độ, XP, ghi chú và highlight của
+  // trang này đều đổ sang bài đó. Xem lib/__tests__/bespoke-lesson-ids.test.ts.
+  id: 9005, slug: "chon-phuong-phap-dinh-gia", day: 20, accent: "violet",
   title: "Chọn Phương Pháp Định Giá",
   subtitle: "\"How do you choose the valuation method?\"- câu phỏng vấn có bẫy",
   duration: "7 phút", difficulty: "Khó", emoji: "",

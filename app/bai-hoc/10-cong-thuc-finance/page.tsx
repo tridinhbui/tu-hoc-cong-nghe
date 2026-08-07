@@ -3,7 +3,11 @@
 import LessonPageLayout, { QuizQuestion, LessonMeta } from "@/components/LessonPageLayout";
 
 const LESSON: LessonMeta = {
-  id: 4, day: 4, accent: "orange",
+  // Id tổng hợp, KHÔNG phải id trong corpus. Trang này chưa có bài tương ứng
+  // trong lib/lessons.ts nên không có id thật để ghi vào, còn id cũ (4) là id
+  // của một bài Chặng 3 CÓ THẬT - nên tiến độ, XP, ghi chú và highlight của
+  // trang này đều đổ sang bài đó. Xem lib/__tests__/bespoke-lesson-ids.test.ts.
+  id: 9001, slug: "10-cong-thuc-finance", day: 4, accent: "orange",
   title: "10 Công Thức Finance Interview",
   subtitle: "Revenue → FCF → EV → Giá cổ phiếu - một dòng chảy liên thông",
   duration: "10 phút", difficulty: "Trung bình", emoji: "",

@@ -4,7 +4,11 @@ import { useState } from "react";
 import LessonPageLayout, { QuizQuestion, LessonMeta } from "@/components/LessonPageLayout";
 
 const meta: LessonMeta = {
-  id: 7, day: 7, accent: "rose",
+  // Id tổng hợp, KHÔNG phải id trong corpus. Trang này chưa có bài tương ứng
+  // trong lib/lessons.ts nên không có id thật để ghi vào, còn id cũ (7) là id
+  // của một bài Chặng 3 CÓ THẬT - nên tiến độ, XP, ghi chú và highlight của
+  // trang này đều đổ sang bài đó. Xem lib/__tests__/bespoke-lesson-ids.test.ts.
+  id: 9016, slug: "time-value-of-money", day: 7, accent: "rose",
   title: "Time Value of Money",
   subtitle: "1 tỷ hôm nay > 1 tỷ năm sau - tại sao?",
   duration: "7 phút", difficulty: "Trung bình", emoji: "⏳",

@@ -4,7 +4,11 @@ import { useState } from "react";
 import LessonPageLayout, { QuizQuestion, LessonMeta } from "@/components/LessonPageLayout";
 
 const meta: LessonMeta = {
-  id: 11, day: 11, accent: "cyan",
+  // Id tổng hợp, KHÔNG phải id trong corpus. Trang này chưa có bài tương ứng
+  // trong lib/lessons.ts nên không có id thật để ghi vào, còn id cũ (11) là id
+  // của một bài Chặng 3 CÓ THẬT - nên tiến độ, XP, ghi chú và highlight của
+  // trang này đều đổ sang bài đó. Xem lib/__tests__/bespoke-lesson-ids.test.ts.
+  id: 9009, slug: "fair-value", day: 11, accent: "cyan",
   title: "Fair Value là gì?",
   subtitle: "3 cách tiếp cận để định giá bất kỳ tài sản nào",
   duration: "8 phút", difficulty: "Khó", emoji: "⚖️",
