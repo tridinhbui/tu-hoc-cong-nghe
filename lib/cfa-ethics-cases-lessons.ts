@@ -1518,7 +1518,7 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
         "Một khách hàng cũ chủ động gọi cho bạn hai tuần sau khi bạn nghỉ, đề nghị chuyển tài sản sang chỗ mới. Bạn nhận được không?",
       options: [
         "Không, vì hai tuần là quá sớm sau khi nghỉ việc",
-        "Được, nếu bạn không chủ động liên hệ trước",
+        "Được, nếu bạn không phải người chủ động liên hệ trước",
         "Được, nhưng phải thông báo cho công ty cũ trước",
         "Không, vì khách hàng vẫn thuộc về công ty cũ",
       ],

@@ -177,7 +177,7 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
         "Bạn phát hiện một đồng nghiệp thường xuyên làm tròn số liệu hiệu suất lên trong tài liệu gửi khách. Áp dụng khung, bước tiếp theo là gì?",
       options: [
         "Báo ngay cho cơ quan quản lý bên ngoài công ty",
-        "Xác định mức độ sai lệch rồi mới xử lý",
+        "Xác định mức độ sai lệch đến đâu rồi mới chọn cách xử lý",
         "Bỏ qua vì đó là việc của bộ phận tuân thủ",
         "Nói thẳng với khách hàng của đồng nghiệp đó",
       ],

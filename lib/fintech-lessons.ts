@@ -123,7 +123,7 @@ export const FINTECH_LESSONS: Lesson[] = [
       question:
         "Nền tảng có TPV 40.000 tỷ với take rate gộp 1,2%, trong đó phần phải trả cho ngân hàng và tổ chức thẻ là 0,85%. Doanh thu ròng bằng bao nhiêu?",
       options: [
-        "140 tỷ (= 40.000 × 0,35%)",
+        "140 tỷ đồng (= 40.000 tỷ × 0,35%)",
         "480 tỷ (= 40.000 × 1,2% gộp)",
         "340 tỷ (= 40.000 × 0,85% đã trả)",
         "620 tỷ (= cộng cả hai take rate)",
@@ -303,7 +303,7 @@ export const FINTECH_LESSONS: Lesson[] = [
       question:
         "CAC là 900.000 đồng, mỗi khách mang về 60.000 đồng lợi nhuận gộp mỗi tháng, tỷ lệ rời bỏ 4% một tháng. Con số nào đáng lo nhất?",
       options: [
-        "Hoàn vốn 15 tháng, dài hơn mức lành mạnh",
+        "Hoàn vốn 15 tháng, dài hơn mức được coi là lành mạnh",
         "LTV trên CAC bằng 1,67 nên mô hình đã ổn",
         "Tỷ lệ rời bỏ 4% là mức rất tốt cho fintech",
         "LTV 1,5 triệu cho thấy khách có giá trị cao",
@@ -659,7 +659,7 @@ export const FINTECH_LESSONS: Lesson[] = [
       question:
         "Danh mục cho vay tăng 12% mỗi tháng, tỷ lệ nợ xấu trên tổng dư nợ là 2,1% và đã giảm đều suốt sáu tháng. Kết luận đúng là gì?",
       options: [
-        "Chưa kết luận được: mẫu số chạy nhanh hơn tử số",
+        "Chưa kết luận được, vì mẫu số đang chạy nhanh hơn tử số",
         "Chất lượng tín dụng đang cải thiện rõ rệt theo tháng",
         "Nợ xấu 2,1% là mức an toàn cho vay tiêu dùng số",
         "Cần tăng trưởng nhanh hơn nữa để pha loãng nợ xấu",
@@ -831,7 +831,7 @@ export const FINTECH_LESSONS: Lesson[] = [
       question:
         "Sau khi siết ngưỡng chặn, thiệt hại gian lận giảm từ 12 tỷ xuống 5 tỷ một năm, nhưng đơn hàng bị chặn nhầm khiến mất 19 tỷ doanh thu. Kết luận là gì?",
       options: [
-        "Siết quá tay: cứu 7 tỷ nhưng mất 19 tỷ",
+        "Siết quá tay: cứu được 7 tỷ nhưng mất tới 19 tỷ",
         "Đúng hướng vì gian lận đã giảm hơn một nửa",
         "Cần siết tiếp cho tới khi gian lận về gần 0",
         "Không so được vì hai khoản khác bản chất",

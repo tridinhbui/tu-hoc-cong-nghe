@@ -1372,7 +1372,7 @@ export const VN_TAX_LESSONS: Lesson[] = [
         "Anh Tuấn lương gross 40 triệu, có 1 người phụ thuộc đã đăng ký. Thuế TNCN mỗi tháng của anh là bao nhiêu?",
       options: [
         "Khoảng 2,4 triệu đồng",
-        "Khoảng 910.000 đồng",
+        "Khoảng 910.000 đồng tiền thuế",
         "Khoảng 1,8 triệu đồng",
         "Khoảng 4 triệu đồng",
       ],

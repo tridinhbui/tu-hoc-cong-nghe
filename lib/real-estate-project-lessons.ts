@@ -114,7 +114,7 @@ export const REAL_ESTATE_PROJECT_LESSONS: Lesson[] = [
       question:
         "Chủ đầu tư đã bỏ ra 800 tỷ, chi phí vốn 12% một năm. Mốc đủ điều kiện huy động vốn bị chậm 9 tháng so với kế hoạch. Riêng việc chậm đó tốn bao nhiêu?",
       options: [
-        "72 tỷ (= 800 × 12% × 9/12 năm)",
+        "72 tỷ đồng (= 800 tỷ × 12% × 9/12 năm)",
         "96 tỷ (= 800 × 12%, trọn một năm)",
         "0 đồng, vì chưa xây nên chưa tốn thêm",
         "9 tỷ (= 800 × 12% chia cho 9 tháng)",

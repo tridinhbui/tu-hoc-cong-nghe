@@ -279,7 +279,7 @@ export const PRIVATE_MARKETS_LESSONS: Lesson[] = [
       options: [
         "Không nhận gì vì lợi suất chưa vượt xa mức ngưỡng tối thiểu đã thỏa thuận",
         "Nhận 20% của phần 0,5% vượt ngưỡng, tức một khoản rất nhỏ so với quy mô quỹ",
-        "Tùy cơ chế bắt kịp: nếu có, phần lớn của 0,5% đó thuộc về nhà quản lý",
+        "Tùy cơ chế bắt kịp: nếu có, phần lớn của 0,5% đó sẽ thuộc về nhà quản lý quỹ",
         "Nhận 20% của toàn bộ 8,5% lợi suất vì quỹ đã vượt qua ngưỡng tối thiểu",
       ],
       correct: 2,

@@ -133,7 +133,7 @@ export const BOOKKEEPING_LESSONS: Lesson[] = [
       question:
         "Đầu tháng tổng tài sản 800 triệu. Trong tháng: mua máy 120 triệu trả tiền ngay, vay ngân hàng 200 triệu, trả lương 30 triệu. Tổng tài sản cuối tháng là bao nhiêu?",
       options: [
-        "970 triệu (= 800 + 200 − 30 lương)",
+        "970 triệu (= 800 + 200 − 30 tiền lương)",
         "1.090 triệu (= cộng thêm cả máy 120)",
         "850 triệu (= trừ tiền mua máy 120)",
         "1.000 triệu (= lương trừ vào vốn chủ)",
@@ -502,7 +502,7 @@ export const BOOKKEEPING_LESSONS: Lesson[] = [
       question:
         "Ngày 1/10 doanh nghiệp trả trước 120 triệu tiền thuê văn phòng cho trọn 12 tháng. Bút toán điều chỉnh ngày 31/12 ghi vào chi phí bao nhiêu?",
       options: [
-        "30 triệu (= 120 × 3 tháng / 12)",
+        "30 triệu (= 120 triệu × 3 tháng / 12)",
         "120 triệu (= ghi hết khi trả tiền)",
         "10 triệu (= 120/12, chỉ một tháng)",
         "90 triệu (= phần chưa dùng tới)",
@@ -662,7 +662,7 @@ export const BOOKKEEPING_LESSONS: Lesson[] = [
       question:
         "Sổ quỹ ghi số dư 45.360.000, sao kê ngân hàng ghi 45.630.000, chênh đúng 270.000 đồng. Nghi ngờ đầu tiên nên hướng vào đâu?",
       options: [
-        "Lỗi đảo chữ số, vì chênh lệch chia hết cho 9",
+        "Lỗi đảo chữ số, vì phần chênh lệch chia hết cho 9",
         "Phí dịch vụ ngân hàng chưa được ghi vào sổ quỹ",
         "Một séc đã phát hành nhưng người nhận chưa rút",
         "Tiền về cuối ngày ngân hàng chưa kịp hạch toán",

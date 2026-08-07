@@ -103,7 +103,7 @@ export const FINANCIAL_MODELING_LESSONS: Lesson[] = [
         "Bạn nhận bàn giao một mô hình, thấy công thức doanh thu là `=B12*1,08`. Vấn đề lớn nhất ở đây là gì?",
       options: [
         "Công thức quá đơn giản, cần thêm biến số",
-        "Tỷ lệ 8% bị chôn trong công thức",
+        "Tỷ lệ tăng trưởng 8% bị chôn trong công thức",
         "Không có vấn đề gì nếu 8% là con số đúng",
         "Nên dùng hàm SUM thay vì phép nhân",
       ],

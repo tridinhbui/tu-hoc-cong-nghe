@@ -636,7 +636,7 @@ export const QUANT_METHODS_LESSONS: Lesson[] = [
         "Hồi quy cho beta = 1,4 với sai số chuẩn 0,6 và R bình phương 0,18. Nên kết luận thế nào?",
       options: [
         "Cổ phiếu rõ ràng biến động mạnh hơn thị trường 40%",
-        "Beta thiếu chính xác: khoảng tin cậy quá rộng",
+        "Beta ước lượng thiếu chính xác: khoảng tin cậy quá rộng",
         "R bình phương thấp chứng tỏ hồi quy sai phương pháp",
         "Cần thay biến phụ thuộc bằng giá thay vì lợi suất",
       ],

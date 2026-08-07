@@ -531,9 +531,25 @@ const missingPractice = [];
  *  cổng này được dựng theo hình dạng cũ. Nên nó thành z-score hai chiều, so
  *  với kỳ vọng có tính hoà, giống `MAX_LENGTH_BIAS_Z`.
  *
- *  Cách sửa một câu KHÔNG phải là cắt cho ngắn nhất có thể: đích là đáp án
- *  đúng nằm giữa nhóm - không dài nhất, cũng không ngắn nhất. */
-const MAX_PRACTICE_BIAS_Z = 9.2;
+ *  Cách sửa một câu KHÔNG phải là cắt cho ngắn nhất có thể. Chữa chiều "dài"
+ *  bằng cách đẩy tất cả xuống đáy chỉ tạo ra chiều "ngắn", và điều đó đã xảy
+ *  ra hai lần trong cùng một ngày - một lần ở kho tiếng Việt, một lần nữa ở
+ *  kho tiếng Anh ngay sau đó, z(dài) tụt xuống −8,19 vì 111 câu đều được viết
+ *  về giữa nhóm cùng lúc.
+ *
+ *  Cái đích là PHÂN BỐ, không phải một hướng: khoảng một phần tư số câu đáp án
+ *  đúng là dài nhất, một phần tư là ngắn nhất, đúng như rule 2 của AGENTS.md.
+ *  Sau khi viết lại 100 câu theo cả hai hướng - 25 câu nới lên thành dài nhất,
+ *  75 câu nới lên giữa nhóm - hai kho về đúng mức may rủi:
+ *
+ *      tiếng Việt: dài z = +0,25   ngắn z = −0,13   (654 câu)
+ *      tiếng Anh : dài z = +0,04   ngắn z = −1,59   (200 câu)
+ *
+ *  Ngưỡng hạ từ 9,2 xuống 3. Không hạ tiếp xuống sát 0,25: z là đại lượng có
+ *  nhiễu, và một kho vài trăm câu sẽ dao động vài phần mười chỉ vì thêm dăm bài
+ *  mới. 3 độ lệch chuẩn là mức phân biệt được trôi thật với dao động thường,
+ *  cùng bậc với MAX_LENGTH_BIAS_Z bên corpus quiz. */
+const MAX_PRACTICE_BIAS_Z = 3;
 const practiceStats = {
   questions: 0,
   longestScore: 0,
