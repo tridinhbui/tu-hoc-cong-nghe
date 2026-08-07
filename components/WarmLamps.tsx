@@ -3,6 +3,7 @@
 import { useCallback, useRef, useState, useSyncExternalStore } from "react";
 import { Lightbulb, Plus, X } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 import {
   DEFAULT_LAMP_STATE,
   LAMPS_STORAGE_KEY,
@@ -212,8 +213,8 @@ export default function WarmLamps() {
                     else return;
                     event.preventDefault();
                   }}
-                  title={`${LAMP_SIZE_LABELS[lamp.size]} · kéo để soi chỗ khác, bấm để đổi cỡ`}
-                  aria-label={`${LAMP_SIZE_LABELS[lamp.size]}. Phím mũi tên để di chuyển, Enter để đổi cỡ.`}
+                  title={format(t.warmLamps.lampTitle, { size: LAMP_SIZE_LABELS[lamp.size] })}
+                  aria-label={format(t.warmLamps.lampAria, { size: LAMP_SIZE_LABELS[lamp.size] })}
                   className="group grid h-7 w-7 cursor-grab touch-none place-items-center rounded-full transition active:cursor-grabbing"
                   style={{
                     background:
@@ -296,8 +297,8 @@ export default function WarmLamps() {
             setPanelOpen(true);
           }}
           aria-pressed={lit}
-          aria-label={lit ? "Tắt đèn ấm" : "Bật đèn ấm"}
-          title={lit ? "Tắt đèn ấm" : "Bật đèn ấm"}
+          aria-label={lit ? t.warmLamps.turnOff : t.warmLamps.turnOn}
+          title={lit ? t.warmLamps.turnOff : t.warmLamps.turnOn}
           className={`grid h-11 w-11 place-items-center rounded-full border shadow-lg transition ${
             lit
               ? "border-amber-400/40 bg-amber-500/20 text-amber-200 shadow-[0_0_20px_rgba(255,180,90,0.35)]"

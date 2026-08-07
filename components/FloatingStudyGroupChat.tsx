@@ -250,9 +250,9 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
     try {
       const updated = await setRoomMessagePinned(msg.id, !msg.is_pinned);
       setMessages((prev) => prev.map((m) => (m.id === updated.id ? updated : m)));
-      toast.success(updated.is_pinned ? "Đã ghim tin nhắn" : "Đã bỏ ghim tin nhắn");
+      toast.success(updated.is_pinned ? t.chat.pinned : t.chat.unpinned);
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Không cập nhật được ghim");
+      toast.error(error instanceof Error ? error.message : t.chat.pinFailed);
     }
   }
 
@@ -291,7 +291,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
         setEditingMessage(null);
         toast.success(t.chat.edited);
       } catch (error) {
-        toast.error(error instanceof Error ? error.message : "Không sửa được tin nhắn");
+        toast.error(error instanceof Error ? error.message : t.chat.editFailed);
       } finally {
         setSending(false);
       }
@@ -311,7 +311,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
         const botMessage = await requestStudyRoomBot(room.room_id, rawContent);
         setMessages((prev) => (prev.some((m) => m.id === botMessage.id) ? prev : [...prev, botMessage]));
       } catch (error) {
-        toast.error(error instanceof Error ? error.message : "Không gọi được Tài Tài");
+        toast.error(error instanceof Error ? error.message : t.chat.taitaiFailed);
       } finally {
         setSending(false);
       }
@@ -364,7 +364,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
     } catch (error) {
       setMessages((prev) => prev.filter((m) => m.id !== optimisticId));
       setInput(rawContent);
-      toast.error(error instanceof Error ? error.message : "Không gửi được tin nhắn");
+      toast.error(error instanceof Error ? error.message : t.chat.sendFailed);
     } finally {
       if (localPreview) URL.revokeObjectURL(localPreview);
       setSending(false);
@@ -567,7 +567,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                                     {!repliedTo.content && repliedTo.image_url
                                       ? t.chat.imagePlaceholder
                                       : !repliedTo.content && repliedTo.file_name
-                                        ? `[Tệp: ${repliedTo.file_name}]`
+                                        ? format(t.chat.filePlaceholder, { name: repliedTo.file_name })
                                         : repliedTo.content}
                                   </span>
                                 </>
@@ -641,7 +641,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                                       setActiveMenuMsgId(null);
                                     }}
                                     className="hover:scale-130 transition-transform p-0.5 text-[11px]"
-                                    title={`Thả ${emoji}`}
+                                    title={format(t.chat.reactionTitle, { emoji })}
                                   >
                                     {emoji}
                                   </button>
@@ -873,7 +873,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                   }
                 }}
                 onPaste={handlePaste}
-                placeholder={editingMessage ? "Chỉnh lại nội dung tin nhắn..." : "Nhắn gì đó cho nhóm... hoặc /taitai"}
+                placeholder={editingMessage ? t.chat.editPlaceholder : t.groupChat.inputPlaceholder}
                 maxLength={2000}
                 className="flex-1 min-w-0 px-3 py-2 border border-stone-100 dark:border-stone-800/40 bg-stone-50/50 dark:bg-stone-950/60 text-stone-900 dark:text-stone-100 rounded-xl text-xs focus:outline-none focus:border-emerald-400 dark:focus:border-emerald-700 focus:bg-white dark:focus:bg-stone-950 transition-all placeholder:text-stone-400"
               />

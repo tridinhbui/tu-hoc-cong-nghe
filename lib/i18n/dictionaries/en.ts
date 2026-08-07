@@ -340,6 +340,8 @@ export const en: Dictionary = {
   },
 
   lessonLayout: {
+    reviewQuestion: "Review this question",
+    retryQuestion: "Try this question again",
     saveFailed: "Couldn't save your lesson progress. Reload the page and try again.",
     quizDoneMidpointLeft: "Quiz done. Answer the mid-lesson question to complete it.",
     saved: "Lesson progress saved.",
@@ -455,6 +457,16 @@ export const en: Dictionary = {
   friends: {
     nowFriends: "You're now friends",
     requestSent: "Friend request sent",
+    listLoadFailed: "Couldn't load your friends list",
+    searchFailed: "Couldn't find that account",
+    messagesLoadFailed: "Couldn't load the messages",
+    requestSendFailed: "Couldn't send the request",
+    requestAccepted: "Request accepted",
+    requestDeclined: "Request declined",
+    requestUpdateFailed: "Couldn't update the request",
+    messageSendFailed: "Couldn't send the message",
+    viewProfileAria: "View {name}'s profile",
+    unnamedUser: "this user",
     loading: "Loading...",
     back: "Back",
     title: "Friends & chat",
@@ -1180,6 +1192,16 @@ export const en: Dictionary = {
   },
 
   feed: {
+    sentimentBullish: "🐂 Your Blue Sea bullish call has been recorded!",
+    sentimentBearish: "🐻 Your Red Sea bearish call has been recorded!",
+    postFailed: "Couldn't publish the post. Please try again.",
+    postEditFailed: "Couldn't edit the post",
+    commentFailed: "Couldn't send the comment.",
+    commentEditFailed: "Couldn't edit the comment",
+    composerPlaceholder: "{name}, what's on your mind?",
+    pollOptionPlaceholder: "Option {index}",
+    editedAt: "Edited {when}",
+
     topics: {
       all: { label: "All", short: "All" },
       "meo-tai-chinh": { label: "Money tips", short: "Tips" },
@@ -1549,6 +1571,11 @@ export const en: Dictionary = {
 
   careerProfile: {
     claimed: "Claimed +{xp} XP · +{coins} coins",
+    claimFailed: "Couldn't claim the reward",
+    bulletSaveFailed: "Couldn't save the bullet",
+    bulletDeleteFailed: "Couldn't delete the bullet",
+    requirementMet: "You've met the {hint} requirement.",
+    requirementGap: "Still short on {hint} · about {count} more lessons.",
     bulletSaved: "CV bullet saved",
 
     signInPrompt: "Sign in to see your career competency profile.",
@@ -1625,11 +1652,25 @@ export const en: Dictionary = {
     you: "You",
     member: "Member",
     admin: "Tài Tài",
+
+    pinned: "Message pinned",
+    unpinned: "Message unpinned",
+    pinFailed: "Couldn't update the pin",
+    editFailed: "Couldn't edit the message",
+    sendFailed: "Couldn't send the message",
+    sendFailedRetry: "Couldn't send the message. Please try again.",
+    taitaiFailed: "Couldn't reach Tài Tài",
+    reactionTitle: "React with {emoji}",
+    editPlaceholder: "Edit your message...",
+    userAlt: "Member",
   },
 
   adminChat: {
     openAria: "Admin chatbot",
     dragTitle: "Admin chatbot (drag to move)",
+    collapseChat: "Collapse chat",
+    expandChat: "Expand chat",
+    inputPlaceholder: "Type a message, paste an image...",
     title: "Tài Tài chatbot",
     status: "Online • replies fast",
     closeAria: "Close the chat",
@@ -1644,6 +1685,7 @@ export const en: Dictionary = {
 
   groupChat: {
     openAria: "Study group chat",
+    inputPlaceholder: "Say something to the group... or /taitai",
     roomTitle: "{topic} group",
     dragTitle: "{topic} group (drag to move)",
     joinTitle: "Join a study group",
@@ -1848,6 +1890,8 @@ export const en: Dictionary = {
   },
 
   jobs: {
+    careerAlt: "Career",
+    examWeightTitle: "Exam weight: {weight}",
     cfaRelated: "CFA relevance:",
 
     goalSet: "Goal set",
@@ -2013,6 +2057,8 @@ export const en: Dictionary = {
   },
 
   dashboard: {
+    markedRead: "Marked {count} lessons as done.",
+    unmarkedRead: "Unmarked {count} lessons.",
     offlineSynced: "Your offline progress has been synced. 🌟",
     lessonLocked: "This lesson is locked. Complete the earlier lessons to unlock it.",
     defaultUserName: "Learner",
@@ -2501,6 +2547,10 @@ export const en: Dictionary = {
     lamp: "Lamp",
     hint:
       "Drag a glow to light somewhere else, or tap it to change its size. The brighter the lamp, the deeper everything around it falls into shadow.",
+    lampTitle: "{size} · drag to light elsewhere, tap to resize",
+    lampAria: "{size}. Arrow keys to move, Enter to resize.",
+    turnOff: "Turn off the warm lamps",
+    turnOn: "Turn on the warm lamps",
   },
 
   // components/ReadingProgress.tsx
@@ -2555,6 +2605,9 @@ export const en: Dictionary = {
 
   // components/ManualLessonFlagButton.tsx - marking a lesson done yourself.
   manualLessonFlag: {
+    alreadyCountedTitle: "The system already counts this lesson towards your progress",
+    unflagTitle: "Remove your self-confirmation",
+    flagTitle: "Mark as done yourself",
     alreadyCounted: "The system already counts this lesson on the leaderboard.",
     alreadyCountedNote: "You finished the quiz or read enough, so there is nothing to mark.",
     needLogin: "Sign in to mark a lesson as done yourself.",

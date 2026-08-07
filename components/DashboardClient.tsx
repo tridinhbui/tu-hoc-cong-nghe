@@ -881,8 +881,8 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
         toRemove.length > 0 && toAdd.length > 0
           ? t.dashboard.markLearned.updated
           : toAdd.length > 0
-            ? `Đã đánh dấu ${toAdd.length} bài là bạn đã học.`
-            : `Đã bỏ đánh dấu ${toRemove.length} bài.`
+            ? format(t.dashboard.markedRead, { count: toAdd.length })
+            : format(t.dashboard.unmarkedRead, { count: toRemove.length })
       );
       clearFlagSelection();
     } catch (error) {

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Bookmark, BookmarkCheck } from "lucide-react";
 import { toggleBookmark, isLessonBookmarked } from "@/lib/supabase-bookmarks";
 import { createClient } from "@/lib/supabase";
+import { useI18n } from "@/lib/i18n/context";
 
 interface BookmarkButtonProps {
   lessonId: number;
@@ -12,6 +13,7 @@ interface BookmarkButtonProps {
 }
 
 export default function BookmarkButton({ lessonId, lessonSlug, lessonTitle }: BookmarkButtonProps) {
+  const { t } = useI18n();
   const [bookmarked, setBookmarked] = useState(false);
   const [loading, setLoading] = useState(true);
   const [toggling, setToggling] = useState(false);
@@ -68,7 +70,7 @@ export default function BookmarkButton({ lessonId, lessonSlug, lessonTitle }: Bo
           ? "bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400"
           : "bg-stone-100 dark:bg-stone-800 text-stone-500 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-700"
       } ${toggling ? "opacity-50 cursor-not-allowed" : "hover:scale-110"}`}
-      title={bookmarked ? "Bỏ đánh dấu" : "Đánh dấu bài học"}
+      title={bookmarked ? t.miscUi.bookmarkButton.remove : t.miscUi.bookmarkButton.add}
     >
       {bookmarked ? (
         <BookmarkCheck className="w-5 h-5" />

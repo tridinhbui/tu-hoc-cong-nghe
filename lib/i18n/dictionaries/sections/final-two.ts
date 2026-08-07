@@ -11,6 +11,8 @@
 export const finalTwoVi = {
   finalTwo: {
     cfaItemSetPractice: {
+      optionsAria: "Các lựa chọn cho câu {index}",
+      readingModeAria: "Chế độ đọc: {mode}",
       scenarioLabel: "Tình huống · {topic}",
       title: "Luyện item set - dạng đề Level II",
       subtitle:
@@ -153,6 +155,8 @@ export const finalTwoVi = {
 export const finalTwoEn: typeof finalTwoVi = {
   finalTwo: {
     cfaItemSetPractice: {
+      optionsAria: "Options for question {index}",
+      readingModeAria: "Reading mode: {mode}",
       scenarioLabel: "Scenario · {topic}",
       title: "Item set practice - Level II style",
       subtitle:

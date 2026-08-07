@@ -44,6 +44,7 @@ const INTENTIONALLY_UNTRANSLATED = new Set([
   "studyGroups.pinnedByAdmin",
   "studyGroups.taitaiFailed",
   "chat.admin",
+  "chat.taitaiFailed",
   "adminChat.title",
   "groupChat.byAdmin",
   "groupChat.pinnedByAdmin",

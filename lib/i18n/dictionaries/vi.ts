@@ -377,6 +377,8 @@ export const vi = {
 
   // components/LessonPageLayout.tsx - the shared frame for every lesson page.
   lessonLayout: {
+    reviewQuestion: "Xem lại câu này",
+    retryQuestion: "Thử lại câu này",
     saveFailed: "Không thể lưu tiến độ bài học. Vui lòng tải lại trang để thử lại.",
     quizDoneMidpointLeft: "Đã làm xong quiz! Còn trả lời câu hỏi giữa bài để hoàn thành nhé.",
     saved: "Đã lưu tiến độ bài học!",
@@ -497,6 +499,16 @@ export const vi = {
   friends: {
     nowFriends: "Đã trở thành bạn bè",
     requestSent: "Đã gửi lời mời kết bạn",
+    listLoadFailed: "Không tải được danh sách bạn bè",
+    searchFailed: "Không tìm được tài khoản",
+    messagesLoadFailed: "Không tải được tin nhắn",
+    requestSendFailed: "Không gửi được lời mời",
+    requestAccepted: "Đã chấp nhận lời mời",
+    requestDeclined: "Đã từ chối lời mời",
+    requestUpdateFailed: "Không cập nhật được lời mời",
+    messageSendFailed: "Không gửi được tin nhắn",
+    viewProfileAria: "Xem hồ sơ của {name}",
+    unnamedUser: "người dùng",
     loading: "Đang tải...",
     back: "Quay lại",
     title: "Bạn bè & chat",
@@ -1248,6 +1260,16 @@ export const vi = {
 
   // components/CommunityFeedClient.tsx - the FinSocial feed (/finsocial).
   feed: {
+    sentimentBullish: "🐂 Đã ghi nhận nhận định Biển Xanh Bullish của bạn!",
+    sentimentBearish: "🐻 Đã ghi nhận nhận định Biển Đỏ Bearish của bạn!",
+    postFailed: "Không đăng được bài. Vui lòng thử lại.",
+    postEditFailed: "Không sửa được bài viết",
+    commentFailed: "Không gửi được bình luận.",
+    commentEditFailed: "Không sửa được bình luận",
+    composerPlaceholder: "{name} ơi, bạn đang nghĩ gì thế?",
+    pollOptionPlaceholder: "Lựa chọn {index}",
+    editedAt: "Chỉnh sửa {when}",
+
     // MarketSentimentWidget
     // TOPICS labels. `id`, `tag`, `icon` and `tone` stay in the component: the
     // hashtag is functional - getPostCategory classifies a post by looking for
@@ -1649,6 +1671,11 @@ export const vi = {
   // components/CareerProfilePanel.tsx
   careerProfile: {
     claimed: "Đã nhận +{xp} XP · +{coins} xu",
+    claimFailed: "Không nhận được thưởng",
+    bulletSaveFailed: "Không lưu được bullet",
+    bulletDeleteFailed: "Không xoá được bullet",
+    requirementMet: "Đã đạt yêu cầu về {hint}.",
+    requirementGap: "Còn thiếu {hint} · học thêm ~{count} bài.",
     bulletSaved: "Đã lưu CV bullet",
 
     signInPrompt: "Đăng nhập để xem hồ sơ năng lực nghề nghiệp của bạn.",
@@ -1731,12 +1758,31 @@ export const vi = {
     you: "Bạn",
     member: "Thành viên",
     admin: "Tài Tài",
+
+    // Bốn màn hình chat trong repo này - ChatWithAdminWidget,
+    // FloatingStudyGroupChat, CommunityFeedClient và StudyGroupsClient - viết
+    // lại cùng một nhúm câu. Để ở đây một lần thay vì bốn lần trong bốn section.
+    pinned: "Đã ghim tin nhắn",
+    unpinned: "Đã bỏ ghim tin nhắn",
+    pinFailed: "Không cập nhật được ghim",
+    editFailed: "Không sửa được tin nhắn",
+    sendFailed: "Không gửi được tin nhắn",
+    sendFailedRetry: "Không gửi được tin nhắn. Vui lòng thử lại.",
+    taitaiFailed: "Không gọi được Tài Tài",
+    reactionTitle: "Thả {emoji}",
+    editPlaceholder: "Chỉnh lại nội dung tin nhắn...",
+    // alt của ảnh đại diện khi người dùng chưa có tên. Trước là "User" viết
+    // cứng ở ba file - tiếng Anh, nên i18n-scan không bao giờ thấy.
+    userAlt: "Thành viên",
   },
 
   // components/ChatWithAdminWidget.tsx
   adminChat: {
     openAria: "Admin Chatbot",
     dragTitle: "Admin Chatbot (Kéo thả để di chuyển)",
+    collapseChat: "Thu nhỏ chat",
+    expandChat: "Phóng to chat",
+    inputPlaceholder: "Nhập tin nhắn, dán ảnh...",
     title: "Tài Tài Chatbot",
     status: "Đang hoạt động • Phản hồi siêu tốc",
     closeAria: "Đóng chat",
@@ -1752,6 +1798,7 @@ export const vi = {
   // components/FloatingStudyGroupChat.tsx
   groupChat: {
     openAria: "Chat nhóm học",
+    inputPlaceholder: "Nhắn gì đó cho nhóm... hoặc /taitai",
     roomTitle: "Nhóm {topic}",
     dragTitle: "Nhóm {topic} (Kéo thả để di chuyển)",
     joinTitle: "Tham gia Nhóm Học",
@@ -1976,6 +2023,8 @@ export const vi = {
   // Renders twice, desktop and mobile, so several labels appear in two places
   // with different styling; they share one key.
   jobs: {
+    careerAlt: "Nghề nghiệp",
+    examWeightTitle: "Tỷ trọng đề thi: {weight}",
     cfaRelated: "Liên quan CFA:",
 
     // Career-path step copy. Four seniority bands, in a full and a compact
@@ -2148,6 +2197,8 @@ export const vi = {
 
   // components/DashboardClient.tsx
   dashboard: {
+    markedRead: "Đã đánh dấu {count} bài là bạn đã học.",
+    unmarkedRead: "Đã bỏ đánh dấu {count} bài.",
     offlineSynced: "Tiến độ học tập offline đã được đồng bộ thành công! 🌟",
     lessonLocked: "Bài học này đang bị khoá. Hoàn thành các bài trước để mở khoá.",
     defaultUserName: "Người học",
@@ -2668,6 +2719,10 @@ export const vi = {
     lamp: "Đèn",
     hint:
       "Kéo chấm sáng để soi chỗ khác, bấm vào nó để đổi cỡ. Đèn càng đậm thì xung quanh càng chìm vào bóng tối.",
+    lampTitle: "{size} · kéo để soi chỗ khác, bấm để đổi cỡ",
+    lampAria: "{size}. Phím mũi tên để di chuyển, Enter để đổi cỡ.",
+    turnOff: "Tắt đèn ấm",
+    turnOn: "Bật đèn ấm",
   },
 
   // components/ReadingProgress.tsx
@@ -2721,6 +2776,9 @@ export const vi = {
 
   // components/ManualLessonFlagButton.tsx - tự đánh dấu đã học.
   manualLessonFlag: {
+    alreadyCountedTitle: "Bài này đã được hệ thống tính tiến độ",
+    unflagTitle: "Bỏ đánh dấu tự xác nhận",
+    flagTitle: "Tự đánh dấu đã học",
     alreadyCounted: "Bài này đã được hệ thống tính rồi trên bảng xếp hạng.",
     alreadyCountedNote: "Bạn đã hoàn thành quiz hoặc đọc đủ, nên không cần tự đánh dấu nữa.",
     needLogin: "Bạn cần đăng nhập để tự đánh dấu bài đã học.",

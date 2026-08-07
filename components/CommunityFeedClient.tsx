@@ -120,6 +120,8 @@ function FeedSkeleton() {
 }
 
 function Avatar({ name, avatarUrl }: { name?: string | null; avatarUrl?: string | null }) {
+  // Sub-component, nên có useI18n() riêng thay vì luồn `t` qua prop.
+  const { t } = useI18n();
   const initials = (name || "U")
     .split(" ")
     .map((part) => part[0])
@@ -130,7 +132,7 @@ function Avatar({ name, avatarUrl }: { name?: string | null; avatarUrl?: string 
   return isValidAvatar(avatarUrl) ? (
     <Image
       src={avatarUrl}
-      alt={name || "User"}
+      alt={name || t.chat.userAlt}
       width={40}
       height={40}
       className="rounded-full object-cover ring-2 ring-white shadow-[0_8px_18px_-16px_rgba(15,23,42,0.35)] flex-shrink-0"
@@ -303,8 +305,8 @@ function MarketSentimentWidget({ onShareSentiment }: { onShareSentiment?: (text:
 
     toast.success(
       option === "bullish"
-        ? "🐂 Đã ghi nhận nhận định Biển Xanh Bullish của bạn!"
-        : "🐻 Đã ghi nhận nhận định Biển Đỏ Bearish của bạn!"
+        ? t.feed.sentimentBullish
+        : t.feed.sentimentBearish
     );
   };
 
@@ -645,7 +647,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
       toast.success(t.feed.posted);
       toast.success(t.feed.postedShare);
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Không đăng được bài. Vui lòng thử lại.");
+      toast.error(error instanceof Error ? error.message : t.feed.postFailed);
     } finally {
       setPosting(false);
     }
@@ -749,7 +751,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
     } catch (error) {
       // updateOwnPost turns an RLS refusal into a thrown error, so this also
       // covers "the database said no" - not just network failures.
-      toast.error(error instanceof Error ? error.message : "Không sửa được bài viết");
+      toast.error(error instanceof Error ? error.message : t.feed.postEditFailed);
     } finally {
       setSavingEdit(false);
     }
@@ -785,7 +787,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
       await refreshFeed();
       setOpenComments((prev) => ({ ...prev, [postId]: true }));
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Không gửi được bình luận.");
+      toast.error(error instanceof Error ? error.message : t.feed.commentFailed);
     } finally {
       setPostingComment((prev) => ({ ...prev, [postId]: false }));
     }
@@ -837,7 +839,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
       }));
       cancelEditComment();
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Không sửa được bình luận");
+      toast.error(error instanceof Error ? error.message : t.feed.commentEditFailed);
     } finally {
       setSavingCommentEdit(false);
     }
@@ -1226,7 +1228,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                       <textarea
                         value={content}
                         onChange={(e) => setContent(e.target.value)}
-                        placeholder={`${(user?.user_metadata?.full_name || "Bạn").split(" ").pop()} ơi, bạn đang nghĩ gì thế?`}
+                        placeholder={format(t.feed.composerPlaceholder, { name: (user?.user_metadata?.full_name || t.feed.composerFallbackName).split(" ").pop() ?? "" })}
                         rows={6}
                         autoFocus
                         className="w-full resize-none border-0 text-base sm:text-lg text-stone-900 dark:text-stone-100 placeholder:text-stone-400 dark:placeholder:text-stone-500 focus:outline-none bg-transparent"
@@ -1281,7 +1283,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                                     const val = e.target.value;
                                     setPollOptions((prev) => prev.map((o, i) => (i === idx ? val : o)));
                                   }}
-                                  placeholder={`Lựa chọn ${idx + 1}`}
+                                  placeholder={format(t.feed.pollOptionPlaceholder, { index: idx + 1 })}
                                   className="flex-1 px-3 py-1.5 rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-xs text-stone-900 dark:text-stone-100 focus:outline-none"
                                 />
                                 {pollOptions.length > 2 && (
@@ -1414,7 +1416,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                         // moved after they did.
                         <span
                           className="text-xs text-stone-400 dark:text-stone-500"
-                          title={`Chỉnh sửa ${timeAgo(post.edited_at)}`}
+                          title={format(t.feed.editedAt, { when: timeAgo(post.edited_at) })}
                         >
                           {t.feed.edited}
                         </span>
@@ -1700,7 +1702,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                                     <span className="text-sm font-black text-stone-900 dark:text-stone-100">{comment.user_name}</span>
                                     <span className="text-xs text-stone-400">{timeAgo(comment.created_at)}</span>
                                     {comment.edited_at && (
-                                      <span className="text-xs text-stone-400" title={`Chỉnh sửa ${timeAgo(comment.edited_at)}`}>
+                                      <span className="text-xs text-stone-400" title={format(t.feed.editedAt, { when: timeAgo(comment.edited_at) })}>
                                         {t.feed.edited}
                                       </span>
                                     )}

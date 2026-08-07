@@ -427,6 +427,19 @@ function findingsIn(src, fileName) {
     // Scoped to expression containers that are CHILDREN of a JSX element, so a
     // className computed by a ternary (an attribute) does not flood the report.
     if (ts.isJsxExpression(node) && node.parent && !ts.isJsxAttribute(node.parent)) {
+      // <style>{`@keyframes shimmer { … }`}</style>. A stylesheet is never copy,
+      // and it only became reachable once this rule started reporting template
+      // literals. Excluded by the TAG it sits in rather than by looking like
+      // CSS: a shape test for "looks like a stylesheet" is guesswork, while
+      // "child of <style>" is exact.
+      const parentTag =
+        ts.isJsxElement(node.parent) && ts.isIdentifier(node.parent.openingElement.tagName)
+          ? node.parent.openingElement.tagName.text
+          : "";
+      if (parentTag === "style" || parentTag === "script") {
+        ts.forEachChild(node, visit);
+        return;
+      }
       const seen = new Set();
       // A literal being COMPARED is a data value, not copy: `x === "OVERVALUED"`
       // renders nothing. Detected by syntactic position rather than by shape,

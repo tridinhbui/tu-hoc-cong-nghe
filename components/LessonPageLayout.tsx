@@ -1038,7 +1038,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                   <button
                     key={i}
                     onClick={() => viewQuestion(i)}
-                    title={submitted[i] ? "Xem lại câu này" : undefined}
+                    title={submitted[i] ? t.lessonLayout.reviewQuestion : undefined}
                     className={`flex-1 h-3 rounded-full transition-all cursor-pointer ${
                       submitted[i]
                         ? results[i] ? "bg-emerald-500" : "bg-rose-500"
@@ -1192,7 +1192,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                     <button
                       key={i}
                       onClick={() => (ok ? viewQuestion(i) : retry(i))}
-                      title={ok ? "Xem lại câu này" : "Thử lại câu này"}
+                      title={ok ? t.lessonLayout.reviewQuestion : t.lessonLayout.retryQuestion}
                       className={`w-9 h-9 rounded-full text-sm flex items-center justify-center text-white font-bold cursor-pointer ${ok ? "bg-emerald-500 hover:bg-emerald-600" : "bg-rose-400 hover:bg-rose-500"}`}
                     >
                       {ok ? "✓" : "✗"}

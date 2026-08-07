@@ -111,7 +111,7 @@ export default function CareerProfilePanel({ userId, careerId }: CareerProfilePa
       }
       await load();
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Không nhận được thưởng");
+      toast.error(error instanceof Error ? error.message : t.careerProfile.claimFailed);
     }
     setClaimingId(null);
   }
@@ -125,7 +125,7 @@ export default function CareerProfilePanel({ userId, careerId }: CareerProfilePa
       toast.success(t.careerProfile.bulletSaved);
       await load();
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Không lưu được bullet");
+      toast.error(error instanceof Error ? error.message : t.careerProfile.bulletSaveFailed);
     }
     setSavingBullet(false);
   }
@@ -135,7 +135,7 @@ export default function CareerProfilePanel({ userId, careerId }: CareerProfilePa
       await deleteCvBullet(id);
       await load();
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Không xoá được bullet");
+      toast.error(error instanceof Error ? error.message : t.careerProfile.bulletDeleteFailed);
     }
   }
 
@@ -318,8 +318,8 @@ export default function CareerProfilePanel({ userId, careerId }: CareerProfilePa
                   </div>
                   <p className="mt-2 text-[11px] text-stone-500 dark:text-stone-400 leading-relaxed">
                     {item.met
-                      ? `Đã đạt yêu cầu về ${item.gapHint}.`
-                      : `Còn thiếu ${item.gapHint} · học thêm ~${item.lessonsToGo} bài.`}
+                      ? format(t.careerProfile.requirementMet, { hint: item.gapHint })
+                      : format(t.careerProfile.requirementGap, { hint: item.gapHint, count: item.lessonsToGo })}
                   </p>
                 </div>
               ))}

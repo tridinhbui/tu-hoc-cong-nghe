@@ -3,7 +3,7 @@
 import { Sun, BookOpen, Moon } from "lucide-react";
 import { setTheme } from "@/lib/theme";
 import { useI18n } from "@/lib/i18n/context";
-import type { Dictionary } from "@/lib/i18n";
+import { format, type Dictionary } from "@/lib/i18n";
 
 export type ReadingMode = "light" | "sepia" | "dark";
 
@@ -55,7 +55,7 @@ export default function ReadingModeControl({ mode, onChange }: Props) {
         <button
           key={id}
           onClick={() => select(id)}
-          aria-label={`Chế độ đọc: ${label}`}
+          aria-label={format(t.finalTwo.cfaItemSetPractice.readingModeAria, { mode: label })}
           title={label}
           className={`w-7 h-7 rounded-full flex items-center justify-center transition-colors cursor-pointer ${
             mode === id

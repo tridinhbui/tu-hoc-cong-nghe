@@ -3,6 +3,19 @@ export const miscUiVi = {
     announcementBanner: {
       closeLabel: "Đóng thông báo",
     },
+    // "+{count} XP" trong cả hai ngôn ngữ - XP là từ mượn dùng nguyên.
+    xpGain: "+{count} XP",
+    bookmarkButton: {
+      remove: "Bỏ đánh dấu",
+      add: "Đánh dấu bài học",
+    },
+    themeToggle: {
+      toLight: "Chuyển sang chế độ sáng",
+      toDark: "Chuyển sang chế độ tối",
+    },
+    scrollytelling: {
+      goToTab: "Chuyển tới Tab {index}",
+    },
     combinedRewardsWidget: {
       xpUnit: "XP",
     },
@@ -140,6 +153,19 @@ export const miscUiEn: typeof miscUiVi = {
   miscUi: {
     announcementBanner: {
       closeLabel: "Close notification",
+    },
+    // "+{count} XP" trong cả hai ngôn ngữ - XP là từ mượn dùng nguyên.
+    xpGain: "+{count} XP",
+    bookmarkButton: {
+      remove: "Remove bookmark",
+      add: "Bookmark this lesson",
+    },
+    themeToggle: {
+      toLight: "Switch to light mode",
+      toDark: "Switch to dark mode",
+    },
+    scrollytelling: {
+      goToTab: "Go to tab {index}",
     },
     combinedRewardsWidget: {
       xpUnit: "XP",
