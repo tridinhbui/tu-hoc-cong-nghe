@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { createClient } from "@/lib/supabase";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
@@ -13,6 +15,7 @@ const LAST_SUBMIT_KEY = "thtcdn_contact_last_submit";
 const SUBMIT_COOLDOWN_MS = 30_000;
 
 export default function FloatingContact() {
+  const { t } = useI18n();
   const supabase = createClient();
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
@@ -43,7 +46,9 @@ export default function FloatingContact() {
     const lastSubmit = Number(window.localStorage.getItem(LAST_SUBMIT_KEY) || 0);
     const msSinceLast = Date.now() - lastSubmit;
     if (lastSubmit && msSinceLast < SUBMIT_COOLDOWN_MS) {
-      setCooldownError(`Vui lòng đợi ${Math.ceil((SUBMIT_COOLDOWN_MS - msSinceLast) / 1000)} giây rồi gửi tiếp.`);
+      setCooldownError(
+        format(t.chatbot.cooldownError, { seconds: Math.ceil((SUBMIT_COOLDOWN_MS - msSinceLast) / 1000) })
+      );
       return;
     }
 
@@ -83,8 +88,8 @@ export default function FloatingContact() {
       {/* Floating button */}
       <button
         onClick={() => setOpen((v) => !v)}
-        aria-label="Liên hệ admin"
-        title="Góp ý & đóng góp"
+        aria-label={t.chatbot.fabAriaLabel}
+        title={t.chatbot.fabTitle}
         className={`fixed bottom-5 right-4 sm:bottom-6 sm:right-6 z-50 w-14 h-14 sm:w-16 sm:h-16 rounded-full shadow-xl flex items-center justify-center transition-all duration-300 cursor-pointer select-none ${
           open
             ? "bg-stone-600 scale-95"
@@ -128,8 +133,8 @@ export default function FloatingContact() {
               </svg>
             </div>
             <div className="flex-1">
-              <p className="text-white font-bold text-base">Góp ý & Đóng góp</p>
-              <p className="text-stone-500 text-sm mt-0.5">Giúp chúng mình phát triển sản phẩm tốt hơn</p>
+              <p className="text-white font-bold text-base">{t.chatbot.headerTitle}</p>
+              <p className="text-stone-500 text-sm mt-0.5">{t.chatbot.headerSubtitle}</p>
             </div>
           </div>
 
@@ -140,15 +145,15 @@ export default function FloatingContact() {
                 <div className="w-14 h-14 rounded-full bg-stone-100 flex items-center justify-center mx-auto text-2xl">
                   ✓
                 </div>
-                <p className="font-bold text-stone-900 text-lg">Đã nhận được!</p>
+                <p className="font-bold text-stone-900 text-lg">{t.chatbot.sentTitle}</p>
                 <p className="text-stone-500 text-base leading-relaxed">
-                  Cảm ơn bạn đã góp ý. Chúng mình sẽ đọc và phản hồi sớm nhất có thể.
+                  {t.chatbot.sentBody}
                 </p>
                 <button
                   onClick={() => setStatus("idle")}
                   className="mt-2 px-5 py-2.5 rounded-xl border border-stone-200 text-stone-600 text-sm font-semibold hover:bg-stone-50 transition-colors cursor-pointer"
                 >
-                  Gửi thêm góp ý
+                  {t.chatbot.sentAnother}
                 </button>
               </div>
             ) : (
@@ -166,30 +171,30 @@ export default function FloatingContact() {
                 />
 
                 <div className="space-y-1.5">
-                  <label className="text-sm font-semibold text-stone-700">Tên của bạn</label>
+                  <label className="text-sm font-semibold text-stone-700">{t.chatbot.nameLabel}</label>
                   <input
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    placeholder="Nguyễn Văn A"
+                    placeholder={t.chatbot.namePlaceholder}
                     className="w-full px-4 py-3 rounded-xl border border-stone-200 text-base text-stone-900 placeholder:text-stone-500 focus:outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-100 transition-all"
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-sm font-semibold text-stone-700">Email (để admin phản hồi)</label>
+                  <label className="text-sm font-semibold text-stone-700">{t.chatbot.emailLabel}</label>
                   <input
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="ban@email.com"
+                    placeholder={t.chatbot.emailPlaceholder}
                     className="w-full px-4 py-3 rounded-xl border border-stone-200 text-base text-stone-900 placeholder:text-stone-500 focus:outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-100 transition-all"
                   />
                 </div>
 
                 {status === "error" && (
                   <p className="text-sm text-red-600 font-semibold">
-                    Không gửi được, vui lòng thử lại sau.
+                    {t.chatbot.errorSend}
                   </p>
                 )}
 
@@ -199,14 +204,14 @@ export default function FloatingContact() {
 
                 <div className="space-y-1.5">
                   <label className="text-sm font-semibold text-stone-700">
-                    Góp ý / Đóng góp <span className="text-stone-500 font-normal">(bắt buộc)</span>
+                    {t.chatbot.messageLabel} <span className="text-stone-500 font-normal">{t.chatbot.messageLabelRequired}</span>
                   </label>
                   <textarea
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     required
                     rows={4}
-                    placeholder="Ví dụ: Bài học X còn thiếu phần giải thích về Y, hoặc mình muốn đóng góp nội dung về Z..."
+                    placeholder={t.chatbot.messagePlaceholder}
                     className="w-full px-4 py-3 rounded-xl border border-stone-200 text-base text-stone-900 placeholder:text-stone-500 focus:outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-100 transition-all resize-none"
                   />
                 </div>
@@ -221,11 +226,11 @@ export default function FloatingContact() {
                         : "bg-stone-200 text-stone-500 cursor-not-allowed"
                     }`}
                   >
-                    {status === "sending" ? "Đang gửi..." : "Gửi góp ý"}
+                    {status === "sending" ? t.chatbot.submitSending : t.chatbot.submitIdle}
                   </button>
 
                   <p className="text-xs text-stone-500 text-center leading-relaxed">
-                    Hoặc liên hệ qua email:{" "}
+                    {t.chatbot.contactViaEmail}{" "}
                     <a
                       href="mailto:tribd.tec@gmail.com"
                       className="text-stone-600 underline underline-offset-2 hover:text-stone-900"

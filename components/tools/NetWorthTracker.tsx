@@ -18,35 +18,79 @@ import {
   type NetWorthSnapshot,
   type NetWorthCommunityStats,
 } from "@/lib/financial-tools";
+import { useI18n } from "@/lib/i18n/context";
+import { format, intlLocale } from "@/lib/i18n";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
-const ASSET_FIELDS = [
-  "Tiền mặt/tiết kiệm",
-  "Đầu tư (cổ phiếu/quỹ)",
-  "Bất động sản",
-  "Xe cộ",
-  "Khác",
-] as const;
+// Storage keys are kept as the original Vietnamese strings on purpose: they
+// are already persisted in `assets_breakdown` / `liabilities_breakdown` JSON
+// for existing users, and swapping them for English ids would silently
+// orphan every snapshot saved before this change (the old keys would no
+// longer match, so saved amounts would render as blank). Only the on-screen
+// label is translated, via a stable id that maps to both a Vietnamese
+// storage key and a dictionary entry.
+const ASSET_FIELD_IDS = ["cash", "investment", "realEstate", "vehicle", "other"] as const;
+const LIABILITY_FIELD_IDS = ["bankLoan", "creditCard", "installment", "familyLoan", "other"] as const;
 
-const LIABILITY_FIELDS = [
-  "Vay ngân hàng",
-  "Nợ thẻ tín dụng",
-  "Trả góp",
-  "Vay người thân",
-  "Khác",
-] as const;
+type AssetField = (typeof ASSET_FIELD_IDS)[number];
+type LiabilityField = (typeof LIABILITY_FIELD_IDS)[number];
 
-type AssetField = (typeof ASSET_FIELDS)[number];
-type LiabilityField = (typeof LIABILITY_FIELDS)[number];
+/* i18n-ignore-start: these are the KEYS inside each user's saved
+   assets_breakdown / liabilities_breakdown JSON, not labels. Translating one
+   renames the key and orphans every snapshot already stored - a net worth that
+   silently reads zero. The displayed labels come from t.netWorth.* instead. */
+const ASSET_STORAGE_KEYS: Record<AssetField, string> = {
+  cash: "Tiền mặt/tiết kiệm",
+  investment: "Đầu tư (cổ phiếu/quỹ)",
+  realEstate: "Bất động sản",
+  vehicle: "Xe cộ",
+  other: "Khác",
+};
+
+const LIABILITY_STORAGE_KEYS: Record<LiabilityField, string> = {
+  bankLoan: "Vay ngân hàng",
+  creditCard: "Nợ thẻ tín dụng",
+  installment: "Trả góp",
+  familyLoan: "Vay người thân",
+  other: "Khác",
+};
+/* i18n-ignore-end */
+
+function assetFieldLabel(t: Dictionary, field: AssetField): string {
+  const labels: Record<AssetField, string> = {
+    cash: t.netWorth.assetCash,
+    investment: t.netWorth.assetInvestment,
+    realEstate: t.netWorth.assetRealEstate,
+    vehicle: t.netWorth.assetVehicle,
+    other: t.netWorth.assetOther,
+  };
+  return labels[field];
+}
+
+function liabilityFieldLabel(t: Dictionary, field: LiabilityField): string {
+  const labels: Record<LiabilityField, string> = {
+    bankLoan: t.netWorth.liabilityBankLoan,
+    creditCard: t.netWorth.liabilityCreditCard,
+    installment: t.netWorth.liabilityInstallment,
+    familyLoan: t.netWorth.liabilityFamilyLoan,
+    other: t.netWorth.liabilityOther,
+  };
+  return labels[field];
+}
 
 function emptyBreakdown(fields: readonly string[]): Record<string, string> {
   return Object.fromEntries(fields.map((f) => [f, ""]));
 }
 
-function toNumberMap(values: Record<string, string>): Record<string, number> {
+/** Converts the id-keyed UI state to the Vietnamese storage keys the backend expects. */
+function toStorageNumberMap<F extends string>(
+  values: Record<string, string>,
+  storageKeys: Record<F, string>
+): Record<string, number> {
   const result: Record<string, number> = {};
-  for (const [key, raw] of Object.entries(values)) {
+  for (const [id, raw] of Object.entries(values)) {
     const num = Number(raw);
-    result[key] = Number.isFinite(num) ? num : 0;
+    result[storageKeys[id as F]] = Number.isFinite(num) ? num : 0;
   }
   return result;
 }
@@ -58,27 +102,24 @@ function sumValues(values: Record<string, string>): number {
   }, 0);
 }
 
-function formatVND(value: number): string {
-  return `${Math.round(value).toLocaleString("vi-VN")} ₫`;
-}
-
-function formatVNDCompact(value: number): string {
-  return value.toLocaleString("vi-VN");
-}
-
 const inputClass =
   "w-full px-4 py-3 rounded-xl border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 focus:border-stone-400 dark:focus:border-stone-500 focus:ring-1 focus:ring-stone-900/5 focus:outline-none text-stone-900 dark:text-stone-100";
 
 export default function NetWorthTracker({ userId }: { userId: string }) {
+  const { t, locale } = useI18n();
+  const formatVND = (value: number): string =>
+    `${Math.round(value).toLocaleString(intlLocale(locale))} ${t.netWorth.currencySuffix}`;
+  const formatVNDCompact = (value: number): string => value.toLocaleString(intlLocale(locale));
+
   const [history, setHistory] = useState<NetWorthSnapshot[]>([]);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [saved, setSaved] = useState(false);
 
-  const [assets, setAssets] = useState<Record<string, string>>(emptyBreakdown(ASSET_FIELDS));
+  const [assets, setAssets] = useState<Record<string, string>>(emptyBreakdown(ASSET_FIELD_IDS));
   const [liabilities, setLiabilities] = useState<Record<string, string>>(
-    emptyBreakdown(LIABILITY_FIELDS)
+    emptyBreakdown(LIABILITY_FIELD_IDS)
   );
   const [communityStats, setCommunityStats] = useState<NetWorthCommunityStats | null>(null);
   // Guards against a double-click/2-tab race inserting two snapshots before
@@ -100,16 +141,16 @@ export default function NetWorthTracker({ userId }: { userId: string }) {
           const latest = data[data.length - 1];
           setAssets((prev) => {
             const next = { ...prev };
-            for (const field of ASSET_FIELDS) {
-              const value = latest.assetsBreakdown[field];
+            for (const field of ASSET_FIELD_IDS) {
+              const value = latest.assetsBreakdown[ASSET_STORAGE_KEYS[field]];
               if (value !== undefined) next[field] = String(value);
             }
             return next;
           });
           setLiabilities((prev) => {
             const next = { ...prev };
-            for (const field of LIABILITY_FIELDS) {
-              const value = latest.liabilitiesBreakdown[field];
+            for (const field of LIABILITY_FIELD_IDS) {
+              const value = latest.liabilitiesBreakdown[LIABILITY_STORAGE_KEYS[field]];
               if (value !== undefined) next[field] = String(value);
             }
             return next;
@@ -117,7 +158,7 @@ export default function NetWorthTracker({ userId }: { userId: string }) {
         }
       } catch (err) {
         console.error("Error loading net worth history:", err);
-        if (!cancelled) setError("Không thể tải lịch sử tài sản ròng.");
+        if (!cancelled) setError(t.netWorth.loadError);
       } finally {
         if (!cancelled) setLoading(false);
       }
@@ -127,7 +168,7 @@ export default function NetWorthTracker({ userId }: { userId: string }) {
     return () => {
       cancelled = true;
     };
-  }, [userId]);
+  }, [userId, t.netWorth.loadError]);
 
   useEffect(() => {
     if (history.length === 0) {
@@ -147,16 +188,16 @@ export default function NetWorthTracker({ userId }: { userId: string }) {
   const chartData = useMemo(
     () =>
       history.map((snapshot) => ({
-        date: new Date(snapshot.createdAt).toLocaleDateString("vi-VN"),
+        date: new Date(snapshot.createdAt).toLocaleDateString(intlLocale(locale)),
         netWorth: snapshot.netWorth,
       })),
-    [history]
+    [history, locale]
   );
 
   async function handleSave() {
     if (savingRef.current) return;
     if (totalAssets === 0 && totalLiabilities === 0) {
-      setError("Nhập ít nhất một khoản tài sản hoặc nợ trước khi lưu.");
+      setError(t.netWorth.saveEmptyError);
       return;
     }
     savingRef.current = true;
@@ -164,14 +205,18 @@ export default function NetWorthTracker({ userId }: { userId: string }) {
     setError(null);
     setSaved(false);
     try {
-      await saveNetWorthSnapshot(userId, toNumberMap(assets), toNumberMap(liabilities));
+      await saveNetWorthSnapshot(
+        userId,
+        toStorageNumberMap(assets, ASSET_STORAGE_KEYS),
+        toStorageNumberMap(liabilities, LIABILITY_STORAGE_KEYS)
+      );
       const data = await getNetWorthHistory(userId);
       setHistory(data);
       setSaved(true);
       setTimeout(() => setSaved(false), 3000);
     } catch (err) {
       console.error("Error saving net worth snapshot:", err);
-      setError("Không thể lưu snapshot. Vui lòng thử lại.");
+      setError(t.netWorth.saveError);
     } finally {
       savingRef.current = false;
       setSaving(false);
@@ -182,7 +227,7 @@ export default function NetWorthTracker({ userId }: { userId: string }) {
     return (
       <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-2xl p-8 flex items-center justify-center gap-3 text-stone-500 dark:text-stone-400">
         <Loader2 className="h-5 w-5 animate-spin" />
-        Đang tải dữ liệu tài sản ròng...
+        {t.netWorth.loading}
       </div>
     );
   }
@@ -192,7 +237,7 @@ export default function NetWorthTracker({ userId }: { userId: string }) {
       {chartData.length > 0 && (
         <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-2xl p-5">
           <h3 className="text-lg font-black text-stone-950 dark:text-stone-50 mb-4">
-            Xu hướng tài sản ròng theo thời gian
+            {t.netWorth.trendTitle}
           </h3>
           <div className="h-[280px]">
             <ResponsiveContainer width="100%" height="100%">
@@ -219,8 +264,8 @@ export default function NetWorthTracker({ userId }: { userId: string }) {
                     background: "rgba(255,255,255,0.96)",
                     boxShadow: "0 20px 40px -24px rgba(28,25,23,0.35)",
                   }}
-                  formatter={(value) => [formatVND(Number(value)), "Tài sản ròng"]}
-                  labelFormatter={(label) => `Ngày ${label}`}
+                  formatter={(value) => [formatVND(Number(value)), t.netWorth.tooltipNetWorth]}
+                  labelFormatter={(label) => format(t.netWorth.tooltipDatePrefix, { date: String(label) })}
                 />
                 <Area
                   type="monotone"
@@ -237,12 +282,12 @@ export default function NetWorthTracker({ userId }: { userId: string }) {
 
       <div className="grid gap-6 lg:grid-cols-2">
         <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-2xl p-5">
-          <h3 className="text-lg font-black text-stone-950 dark:text-stone-50 mb-4">Tài sản</h3>
+          <h3 className="text-lg font-black text-stone-950 dark:text-stone-50 mb-4">{t.netWorth.assetsTitle}</h3>
           <div className="space-y-4">
-            {ASSET_FIELDS.map((field: AssetField) => (
+            {ASSET_FIELD_IDS.map((field: AssetField) => (
               <div key={field}>
                 <label className="block text-sm font-semibold text-stone-700 dark:text-stone-300 mb-1.5">
-                  {field}
+                  {assetFieldLabel(t, field)}
                 </label>
                 <input
                   type="number"
@@ -259,12 +304,12 @@ export default function NetWorthTracker({ userId }: { userId: string }) {
         </div>
 
         <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-2xl p-5">
-          <h3 className="text-lg font-black text-stone-950 dark:text-stone-50 mb-4">Nợ</h3>
+          <h3 className="text-lg font-black text-stone-950 dark:text-stone-50 mb-4">{t.netWorth.liabilitiesTitle}</h3>
           <div className="space-y-4">
-            {LIABILITY_FIELDS.map((field: LiabilityField) => (
+            {LIABILITY_FIELD_IDS.map((field: LiabilityField) => (
               <div key={field}>
                 <label className="block text-sm font-semibold text-stone-700 dark:text-stone-300 mb-1.5">
-                  {field}
+                  {liabilityFieldLabel(t, field)}
                 </label>
                 <input
                   type="number"
@@ -285,7 +330,7 @@ export default function NetWorthTracker({ userId }: { userId: string }) {
         <div className="grid gap-4 sm:grid-cols-3">
           <div className="rounded-xl bg-stone-50 dark:bg-stone-800/50 p-4">
             <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-stone-500 dark:text-stone-400">
-              Tổng tài sản
+              {t.netWorth.totalAssets}
             </p>
             <p className="mt-2 text-2xl font-black text-stone-950 dark:text-stone-50">
               {formatVND(totalAssets)}
@@ -293,7 +338,7 @@ export default function NetWorthTracker({ userId }: { userId: string }) {
           </div>
           <div className="rounded-xl bg-stone-50 dark:bg-stone-800/50 p-4">
             <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-stone-500 dark:text-stone-400">
-              Tổng nợ
+              {t.netWorth.totalLiabilities}
             </p>
             <p className="mt-2 text-2xl font-black text-stone-950 dark:text-stone-50">
               {formatVND(totalLiabilities)}
@@ -308,7 +353,7 @@ export default function NetWorthTracker({ userId }: { userId: string }) {
           >
             <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-stone-500 dark:text-stone-400 flex items-center gap-1.5">
               <Wallet className="h-3.5 w-3.5" />
-              Tài sản ròng
+              {t.netWorth.netWorthLabel}
             </p>
             <p
               className={`mt-2 text-2xl font-black flex items-center gap-2 ${
@@ -329,7 +374,7 @@ export default function NetWorthTracker({ userId }: { userId: string }) {
 
         {netWorth < 0 && (
           <p className="mt-4 text-sm text-rose-700 dark:text-rose-400">
-            Tài sản ròng đang âm - đây là điểm bắt đầu, không phải điều đáng lo, hãy theo dõi xu hướng.
+            {t.netWorth.negativeNetWorthHint}
           </p>
         )}
 
@@ -337,19 +382,24 @@ export default function NetWorthTracker({ userId }: { userId: string }) {
           <div className="mt-4 rounded-xl border border-sky-200 dark:border-sky-900 bg-sky-50 dark:bg-sky-950/20 p-4">
             <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-sky-700 dark:text-sky-400 flex items-center gap-1.5 mb-2">
               <Users className="h-3.5 w-3.5" />
-              So với cộng đồng
+              {t.netWorth.communityCompareTitle}
             </p>
             <p className="text-sm text-stone-700 dark:text-stone-300">
               {communityStats.percentile !== null ? (
                 <>
-                  Tài sản ròng của bạn cao hơn <strong className="text-sky-700 dark:text-sky-400">{communityStats.percentile}%</strong> người dùng đã ghi nhận trên nền tảng.
+                  {t.netWorth.communityPercentilePart1}{" "}
+                  <strong className="text-sky-700 dark:text-sky-400">{communityStats.percentile}</strong>
+                  {t.netWorth.communityPercentilePart2}
                 </>
               ) : (
-                "Chưa đủ dữ liệu để xếp hạng."
+                t.netWorth.communityNotEnoughData
               )}
             </p>
             <p className="text-xs text-stone-500 dark:text-stone-400 mt-1">
-              Trung bình cộng đồng: {formatVND(communityStats.averageNetWorth)} · dựa trên {communityStats.sampleSize} người dùng đã lưu snapshot
+              {format(t.netWorth.communityAverage, {
+                average: formatVND(communityStats.averageNetWorth),
+                sampleSize: communityStats.sampleSize,
+              })}
             </p>
           </div>
         )}
@@ -357,7 +407,7 @@ export default function NetWorthTracker({ userId }: { userId: string }) {
         {error && <p className="mt-4 text-sm text-rose-700 dark:text-rose-400">{error}</p>}
         {saved && (
           <p className="mt-4 text-sm text-emerald-700 dark:text-emerald-400">
-            Đã lưu snapshot thành công.
+            {t.netWorth.saveSuccess}
           </p>
         )}
 
@@ -368,7 +418,7 @@ export default function NetWorthTracker({ userId }: { userId: string }) {
           className="mt-5 inline-flex items-center justify-center gap-2 bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 font-bold rounded-xl px-6 py-3 disabled:opacity-60 disabled:cursor-not-allowed transition-colors"
         >
           {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />}
-          {saving ? "Đang lưu..." : "Lưu snapshot"}
+          {saving ? t.netWorth.savingButton : t.netWorth.saveButton}
         </button>
       </div>
     </div>

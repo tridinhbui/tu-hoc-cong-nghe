@@ -6,14 +6,29 @@ export const LOCALES = ["vi", "en"] as const;
 export type Locale = (typeof LOCALES)[number];
 
 // Vietnamese is the source language: every string in the app was authored in
-// it, and lesson content stays Vietnamese-only for now, so an unrecognized or
-// missing cookie should land the reader on the complete experience.
+// it, so an unrecognized or missing cookie should land the reader on the
+// complete experience.
+//
+// Lesson content is now translated too, one lesson at a time, under
+// lib/lessons-i18n/<locale>/ - see lib/lesson-translations.js. It is a patch
+// merged onto the Vietnamese lesson rather than a replacement, so a lesson with
+// no translation yet still renders, in Vietnamese, with a "Vietnamese only"
+// badge (components/LessonTranslationBadge.tsx). That fallback is deliberate:
+// hiding untranslated lessons from an English reader would punch holes in the
+// day-numbered path and break both the lesson-unlock gate and the /su-nghiep
+// competency percentages, which count lessons.
 export const DEFAULT_LOCALE: Locale = "vi";
 
 // Not the `NEXT_LOCALE` name Next.js uses for its own built-in i18n routing -
-// this app deliberately does cookie-based switching without a [lang] route
-// segment, and reusing that name would imply routing behaviour that isn't
-// there.
+// this app does cookie-based switching without a [lang] route segment, and
+// reusing that name would imply routing behaviour that isn't there.
+//
+// Note the cost this choice already imposes, since it is easy to miss: reading
+// the cookie in app/layout.tsx to seed the i18n provider makes every route in
+// the app server-rendered on demand. app/bai-hoc/[slug] still carries a
+// generateStaticParams and used to be CDN-served; `next build` now reports it as
+// dynamic. Restoring static rendering means getting the locale to the provider
+// without `cookies()`, not adding routes around it.
 export const LOCALE_COOKIE = "thtcdn_locale";
 
 // One year. The switch is an explicit user choice, so it should outlive a

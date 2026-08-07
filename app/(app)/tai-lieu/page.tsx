@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ChevronLeft, Gift } from "lucide-react";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
+import { getServerDictionary } from "@/lib/i18n/server";
 import DocumentsList from "./DocumentsList";
 
 export const dynamic = "force-dynamic";
@@ -22,9 +23,12 @@ export interface PublicDocument {
   uploaded_by: string | null;
 }
 
+/* i18n-ignore-start: Supabase select() column list, not display copy */
 const BASE_COLUMNS = "id, title, description, category, file_url, file_name, file_size, download_count, created_at";
+/* i18n-ignore-end */
 
 export default async function DocumentsGiveawayPage() {
+  const t = await getServerDictionary();
 // Generate placeholder image URL based on category
 function getPlaceholderImageUrl(category: string): string {
   const categoryEmojis: Record<string, string> = {
@@ -117,24 +121,23 @@ function getPlaceholderImageUrl(category: string): string {
             className="inline-flex items-center gap-1 text-sm font-medium text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 mb-4 transition-colors"
           >
             <ChevronLeft className="w-4 h-4" />
-            Về trang chủ
+            {t.finalOne.taiLieuPage.backHome}
           </Link>
           <div className="flex items-center gap-3 flex-wrap">
-            <h1 className="text-2xl font-black text-stone-900 dark:text-stone-100">Kho Tài liệu Miễn phí</h1>
+            <h1 className="text-2xl font-black text-stone-900 dark:text-stone-100">{t.finalOne.taiLieuPage.title}</h1>
             <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-black uppercase bg-gradient-to-r from-rose-500 to-red-600 text-white shadow-lg shadow-rose-500/20 animate-bounce">
-              Miễn phí 100% 🎁
+              {t.finalOne.taiLieuPage.freeBadge}
             </span>
           </div>
           <p className="text-sm text-stone-500 dark:text-stone-400 mt-2">
-            Mẫu biểu, ebook, checklist và công cụ hỗ trợ hành trình học tài chính của bạn - tải về hoàn toàn miễn phí không giới hạn.
-            Đóng góp tài liệu của riêng bạn để chia sẻ cho cộng đồng nhé!
+            {t.finalOne.taiLieuPage.subtitle}
           </p>
           <div className="mt-4 p-4 rounded-xl border border-rose-200 dark:border-rose-900/60 bg-rose-50/50 dark:bg-rose-950/20 flex items-start gap-3 shadow-[0_0_12px_rgba(244,63,94,0.05)]">
             <Gift className="w-5 h-5 text-rose-500 shrink-0 mt-0.5 animate-bounce" />
             <div>
-              <p className="text-xs font-black text-rose-700 dark:text-rose-400 uppercase tracking-wider">Món quà tri thức từ cộng đồng</p>
+              <p className="text-xs font-black text-rose-700 dark:text-rose-400 uppercase tracking-wider">{t.finalOne.taiLieuPage.giftTitle}</p>
               <p className="text-xs text-rose-600/90 dark:text-rose-300 mt-1 leading-relaxed">
-                Tất cả tài liệu, ebook, biểu mẫu Excel và checklist tại đây đều được chia sẻ hoàn toàn miễn phí để phục vụ mục đích học tập cá nhân.
+                {t.finalOne.taiLieuPage.giftBody}
               </p>
             </div>
           </div>

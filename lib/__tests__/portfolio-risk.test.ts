@@ -1,12 +1,16 @@
 import { describe, expect, it } from "vitest";
 import {
   BONDS,
-  RHO_CASES,
   STOCKS,
   minVarianceWeight,
   mix,
+  rhoCasesOf,
   verdictFor,
 } from "@/lib/portfolio-risk";
+import { vi } from "@/lib/i18n/dictionaries/vi";
+
+const FAKE_T = vi;
+const RHO_CASES = rhoCasesOf(FAKE_T);
 
 /** Mọi con số phòng rủi ro nói ra đều bị kiểm ở đây.
  *
@@ -95,8 +99,8 @@ describe("bốn mức tương quan bày ra", () => {
   });
 
   it("câu chốt đổi giọng đúng ở ρ = 1", () => {
-    expect(verdictFor(1)).toContain("không cho gì");
-    expect(verdictFor(0.99)).toContain("DƯỚI");
+    expect(verdictFor(1, FAKE_T)).toContain("không cho gì");
+    expect(verdictFor(0.99, FAKE_T)).toContain("DƯỚI");
   });
 
   it("mức nào cũng hỏi trước khi trả lời, và giải thích đủ dài", () => {

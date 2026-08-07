@@ -25,13 +25,13 @@ const quiz: QuizQuestion[] = [
   },
   {
     question: "Tài sản (Assets) tăng được ghi vào bên nào?",
-    options: ["Credit (bên phải)", "Debit (bên trái)", "Cả hai", "Không cần ghi"],
+    options: ["Credit (bên phải)", "Debit (bên trái)", "Cả hai", "Ghi cả hai bên cho cân"],
     correct: 1,
     explanation: "Assets tăng → Debit. Assets giảm → Credit. Đây là quy tắc cơ bản - ngược lại với Liabilities và Equity.",
   },
   {
     question: "Doanh nghiệp nhận tiền mặt từ khách hàng. Bút toán Cash (tài sản) là?",
-    options: ["Credit Cash (giảm)", "Debit Cash (tăng)", "Không ghi Cash", "Debit và Credit Cash bằng nhau"],
+    options: ["Credit Cash (giảm)", "Debit Cash (tăng)", "Ghi Cash ở cả hai bên", "Debit và Credit Cash bằng nhau"],
     correct: 1,
     explanation: "Cash là tài sản. Tiền vào → Cash tăng → Debit Cash. Đồng thời Credit Revenue (hoặc Credit Liability nếu là tiền đặt cọc).",
   },
@@ -48,7 +48,7 @@ const quiz: QuizQuestion[] = [
   },
   {
     question: "Doanh thu (Revenue) tăng được ghi bên nào?",
-    options: ["Debit", "Credit", "Cả hai tùy trường hợp", "Không ghi vào T-account"],
+    options: ["Debit", "Credit", "Cả hai tùy trường hợp", "Ghi ngoài T-account, ở sổ phụ riêng"],
     correct: 1,
     explanation: "Revenue thuộc nhóm Equity (retained earnings) → tăng thì Credit. Để giảm Revenue (như hoàn hàng) → Debit.",
   },

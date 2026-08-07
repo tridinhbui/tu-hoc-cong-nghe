@@ -1,0 +1,134 @@
+{
+  "slug": "trai-phieu-la-gi",
+  "title": "What is a bond?",
+  "subtitle": "A basic debt instrument - you lend, they pay interest",
+  "duration": "5 min",
+  "openingQuestion": "How does buying a bond differ from buying a stock?",
+  "openingOptions": [
+    "Stocks are safer",
+    "No difference",
+    "Bonds are more expensive",
+    "Buying a bond = lending money, receiving fixed interest; Buying a stock = ownership, no fixed interest"
+  ],
+  "explanation": "A bond is a loan that has been divided into tradable units: the issuer receives the money and commits to paying periodic interest and returning the face value at maturity. The buyer is a creditor, not an owner, so they get paid before shareholders if the business goes bankrupt, but they don't share in any growth upside. Three elements shape every bond - face value, coupon rate, and maturity - and every concept that follows revolves around these three.",
+  "diagram": [
+    { "label": "The issuer needs capital, sells a bond", "arrow": true },
+    { "label": "The investor pays for it, becomes a creditor", "arrow": true },
+    { "label": "Receives periodic coupons throughout the term", "arrow": true },
+    { "label": "Maturity: gets back the face value - and is paid before shareholders in bankruptcy" }
+  ],
+  "interactiveType": "bond",
+  "realWorldExample": {
+    "company": "Vietnam Government Bonds",
+    "description": "When the Vietnam State Treasury issues a government bond, it is essentially the state borrowing money from investors (including banks, investment funds, and individuals) with a commitment to pay periodic interest and return the principal at maturity - one of the government's largest capital-raising tools."
+  },
+  "quiz": [
+    {
+      "question": "Coupon rate is 5%, face value is 1 million. How much interest is received each year?",
+      "options": [
+        "25,000 VND (= 5% × 1,000,000 VND ÷ 2, that's the semi-annual coupon)",
+        "50,000 VND (= 5% × 1,000,000 VND face value, each year)",
+        "500,000 VND (= 50% × 1,000,000 VND, off by a decimal point)",
+        "5,000 VND (= 5% × 100,000 VND, wrong face value used)"
+      ],
+      "explanation": "Coupon = Coupon Rate × Face Value = 5% × 1,000,000 = 50,000 VND/year. If paid semi-annually, each 6-month period receives 25,000 VND. The coupon rate stays fixed for the whole term - it doesn't change even if market interest rates move."
+    },
+    {
+      "question": "Why is a bondholder considered safer than a stockholder when a company runs into financial trouble?",
+      "options": [
+        "Bonds always pay a higher rate than the dividend shareholders receive",
+        "Shareholders only have voting rights, not a claim on the company's assets",
+        "A bondholder is a creditor, paid before shareholders if the company goes bankrupt",
+        "Bonds are listed, so they're easier to sell than stocks when cash is urgently needed"
+      ],
+      "explanation": "The order of payment priority in bankruptcy always places creditors (including bondholders) ahead of shareholders - this is the fundamental reason bonds are considered safer investments than stocks, even though the potential return is usually lower in exchange."
+    },
+    {
+      "question": "What three elements of a bond are fixed from the moment it's issued?",
+      "options": [
+        "Yield, holding period, and the tax rate owed",
+        "Market price, yield, and trading volume",
+        "Credit rating, collateral, and the guarantor",
+        "Face value, coupon rate, and maturity date"
+      ],
+      "explanation": "These three figures are written into the contract and never change for the life of the bond. Everything else - price, yield, rating - moves around them, and that's why distinguishing coupon rate from YTM is the first step in reading any bond."
+    },
+    {
+      "question": "A bond with a 6% coupon is trading below face value. What does the real yield look like?",
+      "options": [
+        "Higher than 6%, since you pay less money but still get the full coupon",
+        "Still exactly 6%, since the coupon rate is fixed",
+        "Lower than 6%, since the falling price reflects rising risk",
+        "Cannot be determined without knowing the remaining term"
+      ],
+      "explanation": "The coupon is calculated on face value so it doesn't change, but you pay less to receive it. A price below face value always pushes the yield above the coupon rate, and the reverse when buying above face value."
+    },
+    {
+      "question": "Why do bonds still carry risk despite being safer than stocks?",
+      "options": [
+        "Because the coupon can be cut when the business runs into trouble",
+        "Because its price falls when market interest rates rise",
+        "Because bondholders lose the right to claim repayment after five years of holding",
+        "Because the repaid face value is adjusted downward for inflation"
+      ],
+      "explanation": "The coupon is a contractual obligation, so it isn't cut like a dividend can be. But holding a 4% bond when the market has risen to 7% means selling it at a loss - interest rate risk exists even when credit risk is zero."
+    }
+  ],
+  "keyTakeaways": [
+    "Bond = lending money, receiving a coupon + principal at maturity",
+    "Coupon = Coupon Rate × Face Value",
+    "Bondholders rank ahead of stockholders in bankruptcy"
+  ],
+  "practicePrompt": {
+    "question": "You buy a corporate bond with a face value of 100 million, a 5-year term, and an 8%/year coupon. What is the nature of this transaction, and what will you receive over the 5 years?",
+    "options": [
+      "You're buying a share of ownership in the business, like buying stock, and will receive annual dividends",
+      "A bond is a loan: you receive an 8 million/year coupon and get your principal back at maturity",
+      "You're making a savings deposit with the business and can withdraw the money anytime without losing interest",
+      "You're buying an insurance contract, and the 8%/year is a premium you pay to the business"
+    ],
+    "explanation": "Bond = lending money, receiving a coupon + principal at maturity. A bond buyer is a creditor (not an owner like with stocks), receiving periodic fixed interest (the coupon) and getting back the principal when the bond matures."
+  },
+  "summary": {
+    "keyIdea": "Bond = lending money, receiving a coupon + principal at maturity",
+    "commonMistake": "Reading the concept as a definition to recite rather than a principle to apply to a real decision.",
+    "action": "Coupon = Coupon Rate × Face Value"
+  },
+  "application": {
+    "title": "Apply it now",
+    "message": "Look up a corporate bond or government bond currently being offered, and identify: what is the coupon rate, what is the face value, and what do you get back at maturity.",
+    "secondary": "Reading a real offering document carefully makes the concept of a bond much less abstract."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A bond is a standardised debt contract: the issuer - which could be a government or a business - borrows a fixed amount of money from investors, committing to pay periodic interest (the coupon) and repay the full principal (face value) on a set date (maturity). Unlike a stock - where you buy a share of company ownership - buying a bond is lending money, and the buyer becomes a creditor, not an owner."
+    },
+    { "type": "heading", "text": "The three core numbers of a bond" },
+    {
+      "type": "paragraph",
+      "text": "Every bond is defined by three elements: face value (the amount received back at maturity, typically 1 million or 100 million VND per lot), coupon rate (the fixed nominal interest rate calculated on face value), and maturity (the time until it comes due). **Example:** a bond with a face value of 1,000,000 VND, a coupon rate of 5%, and a 5-year term. Each year the investor receives 5% × 1,000,000 VND = 50,000 VND in interest, and after 5 years gets back exactly 1,000,000 VND in principal. If interest is paid semi-annually (common in the US), each 6-month period receives 25,000 VND."
+    },
+    { "type": "heading", "text": "Why bondholders rank ahead of shareholders" },
+    {
+      "type": "paragraph",
+      "text": "When a company goes bankrupt, remaining assets are distributed in a strict legal order: secured creditors first, then unsecured creditors (including most bondholders), then preferred shareholders, and finally common shareholders. A bondholder is a creditor - with a legal right to claim repayment first. A shareholder is a residual claimant - only receiving what's left after all debt obligations are settled, and in many bankruptcies, that residual amount is zero. This is exactly why bonds are considered a safer investment channel than stocks, even though the potential return in exchange is usually much lower."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Coupon = Coupon Rate × Face Value, fixed for the life of the bond regardless of market rate moves",
+        "Face value is the amount received back at maturity, not the bond's market purchase price",
+        "Bondholders = creditors; Stockholders = residual owners",
+        "Government bonds (like Vietnam Treasury bonds) and corporate bonds both follow this same coupon - face value - maturity mechanism"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Understanding the three numbers - face value, coupon, maturity - is the first step to reading any bond.",
+        "Bankruptcy payment priority is the root reason bonds are safer than stocks."
+      ]
+    }
+  ]
+}

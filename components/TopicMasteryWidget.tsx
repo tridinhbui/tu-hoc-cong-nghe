@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { BrainCircuit, ArrowRight } from "lucide-react";
 import { SKILL_DOMAINS, type SkillDomainId } from "@/lib/career-competency";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 /**
  * Đi được bao xa ở từng mảng kiến thức.
@@ -46,6 +48,7 @@ export default function TopicMasteryWidget({
   coverage: Record<SkillDomainId, DomainCoverage>;
   compact?: boolean;
 }) {
+  const { t } = useI18n();
   // Mảng đi được xa nhất lên trước.
   //
   // Bản đầu tôi xếp ngược lại - yếu nhất lên trước - với lý do "trả lời học gì
@@ -78,10 +81,10 @@ export default function TopicMasteryWidget({
           </span>
           <div>
             <h3 className="text-xs sm:text-sm font-black text-stone-900 dark:text-stone-100 leading-snug">
-              Độ phủ theo mảng kiến thức
+              {t.topicMastery.title}
             </h3>
             <p className="text-[10px] font-bold text-stone-400">
-              Tính trên số bài đã hoàn thành · mảng đi xa nhất xếp trước
+              {t.topicMastery.subtitle}
             </p>
           </div>
         </div>
@@ -90,7 +93,7 @@ export default function TopicMasteryWidget({
           href="/su-nghiep"
           className="text-[11px] font-black text-emerald-600 dark:text-emerald-400 hover:underline flex items-center gap-1 shrink-0"
         >
-          Theo nghề <ArrowRight className="w-3 h-3" />
+          {t.topicMastery.byCareer} <ArrowRight className="w-3 h-3" />
         </Link>
       </div>
 
@@ -130,7 +133,7 @@ export default function TopicMasteryWidget({
               </div>
 
               <div className="text-[9px] text-stone-400 font-bold">
-                Đã học {row.done} / {row.total} bài
+                {format(t.topicMastery.done, { done: row.done, total: row.total })}
               </div>
             </div>
           );

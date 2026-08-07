@@ -5,12 +5,20 @@ import { getCompletedLessons, getTotalTimeSpentMinutes } from "@/lib/supabase-pr
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 import { getLessonsMeta, getLessonById } from "@/lib/lessons-loader";
 import { isLessonIdInTrack, isLessonInRange, TRACK_PERSONAL, TRACK_PROFESSIONAL } from "@/lib/track-stages";
+import { stageTopicFor, TOPIC_ADVICE, type StageTopicId, type TopicAdviceId } from "@/lib/stage-topics";
 import { getLessonRecallDay } from "@/lib/lesson-labels";
 import { RECALL_SCHEDULE, type RecallItem } from "@/lib/recall-schedule";
 import type { LessonMeta } from "@/lib/lesson-types";
 
+// Server action, nên KHÔNG trả câu chữ - trả id để client tra trong từ điển.
+//
+// AGENTS.md ghi hai lối cho chuyện này: route đọc locale, hoặc route trả id
+// cho client tự tra. Ở đây id là lối đúng vì chủ đề không chỉ để hiện lên:
+// topicCounts dùng nó làm KHÓA cộng dồn, và TOPIC_ADVICE dùng nó để chọn câu
+// khuyên. Một khóa mà đổi theo ngôn ngữ thì hai người học cùng một điểm yếu sẽ
+// cộng vào hai ô khác nhau.
 interface TopicGapSummary {
-  topic: string;
+  topicId: StageTopicId;
   count: number;
 }
 
@@ -18,10 +26,11 @@ interface CriticalMistakeInsight {
   lessonId: number;
   lessonSlug: string;
   lessonTitle: string;
-  topic: string;
+  topicId: StageTopicId;
   wrongCount: number;
-  explanation: string;
-  recommendedAction: string;
+  // null khi câu quiz không có explanation; client hiện câu dự phòng của mình.
+  explanation: string | null;
+  adviceId: TopicAdviceId;
 }
 
 interface StageReviewInsight {
@@ -29,41 +38,6 @@ interface StageReviewInsight {
   lessonSlug: string;
   lessonTitle: string;
   stageLabel: string;
-  message: string;
-}
-
-function inferLearningTopic(lesson: LessonMeta, track: "personal" | "professional"): string {
-  const personalStages = TRACK_PERSONAL.stages;
-  const professionalStages = TRACK_PROFESSIONAL.stages;
-  const stages = track === "personal" ? personalStages : professionalStages;
-  const stage = stages.find((item) => isLessonInRange(lesson.id, item));
-
-  if (!stage) {
-    return track === "personal" ? "Tài chính cá nhân" : "Tài chính chuyên ngành";
-  }
-
-  if (track === "personal") {
-    if (stage.label === "Chặng 0" || stage.label === "Chặng 1") return "Nền tảng tiền bạc & rủi ro";
-    if (stage.label === "Chặng 2" || stage.label === "Chặng 5") return "Đầu tư cá nhân";
-    if (stage.label === "Chặng 3") return "Trái phiếu & lãi suất";
-    if (stage.label === "Chặng 4" || stage.label === "Chặng 6") return "Danh mục & hưu trí";
-    return "Nhà ở & bảo vệ tài sản";
-  }
-
-  if (stage.label === "Chặng 1" || stage.label === "Chặng 2" || stage.label === "Chặng 3") return "Kế toán & báo cáo tài chính";
-  if (stage.label === "Chặng 4" || stage.label === "Chặng 5" || stage.label === "Chặng 6") return "Định giá & tài chính doanh nghiệp";
-  if (stage.label === "Chặng 7") return "Trái phiếu & tín dụng";
-  if (stage.label === "Chặng 8" || stage.label === "Chặng 9") return "Rủi ro, danh mục & phái sinh";
-  return "Ứng dụng nghề nghiệp";
-}
-
-function recommendedActionForTopic(topic: string): string {
-  if (topic.includes("Kế toán")) return "Ôn lại cách đọc báo cáo và làm lại 1-2 câu quiz ngay khi vừa đọc xong.";
-  if (topic.includes("Định giá")) return "Xem lại giả định chính và thử tự giải thích công thức bằng lời của bạn.";
-  if (topic.includes("Rủi ro")) return "Ôn lại ví dụ thực tế trong bài rồi tự trả lời lại câu hỏi sai không nhìn đáp án.";
-  if (topic.includes("Trái phiếu")) return "Tự viết lại mối quan hệ giữa lãi suất, giá trái phiếu và rủi ro tín dụng.";
-  if (topic.includes("Đầu tư")) return "Đọc lại bài và so sánh ngay với một tình huống đầu tư cá nhân thực tế của bạn.";
-  return "Học lại bài gốc rồi làm lại ngay câu quiz sai để khóa kiến thức.";
 }
 
 function isStageReviewLesson(lesson: LessonMeta): boolean {
@@ -99,7 +73,6 @@ function getStageReviewInsight(
       lessonSlug: reviewLesson.slug,
       lessonTitle: reviewLesson.title,
       stageLabel: stage.label,
-      message: `Bạn đã đi gần hết ${stage.label}. Đây là lúc làm bài tổng ôn để khóa lại các ý chính trước khi học tiếp.`,
     };
   }
 
@@ -199,14 +172,14 @@ export async function getDashboardGreetingAction(userId: string, track: "persona
     : [];
 
   const visibleTrackLessons = allLessons.filter((lesson) => lesson.isVisible !== false && isLessonIdInTrack(lesson.id, track));
-  const topicCounts = new Map<string, number>();
+  const topicCounts = new Map<StageTopicId, number>();
   let criticalMistake: CriticalMistakeInsight | null = null;
 
   for (const row of mistakeRows.data ?? []) {
     const lesson = visibleTrackLessons.find((item) => item.id === row.lesson_id);
     if (!lesson) continue;
-    const topic = inferLearningTopic(lesson, track);
-    topicCounts.set(topic, (topicCounts.get(topic) ?? 0) + Number(row.wrong_count));
+    const topicId = stageTopicFor(lesson.id, track);
+    topicCounts.set(topicId, (topicCounts.get(topicId) ?? 0) + Number(row.wrong_count));
 
     if (!criticalMistake) {
       const lessonDetail = await getLessonById(lesson.id);
@@ -215,10 +188,10 @@ export async function getDashboardGreetingAction(userId: string, track: "persona
         lessonId: lesson.id,
         lessonSlug: lesson.slug,
         lessonTitle: lesson.title,
-        topic,
+        topicId,
         wrongCount: Number(row.wrong_count),
-        explanation: question?.explanation ?? "Bạn đang vấp lại đúng một ý cốt lõi của bài này.",
-        recommendedAction: recommendedActionForTopic(topic),
+        explanation: question?.explanation ?? null,
+        adviceId: TOPIC_ADVICE[topicId],
       };
     }
   }
@@ -226,7 +199,7 @@ export async function getDashboardGreetingAction(userId: string, track: "persona
   const topicGapSummary: TopicGapSummary[] = Array.from(topicCounts.entries())
     .sort((a, b) => b[1] - a[1])
     .slice(0, 4)
-    .map(([topic, count]) => ({ topic, count }));
+    .map(([topicId, count]) => ({ topicId, count }));
 
   const stageReviewInsight = getStageReviewInsight(allLessons, completedLessons, track);
 

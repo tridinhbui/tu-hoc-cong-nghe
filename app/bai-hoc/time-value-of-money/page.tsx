@@ -36,7 +36,7 @@ const quiz: QuizQuestion[] = [
   },
   {
     question: "Nếu lãi suất chiết khấu tăng từ 8% lên 12%, giá trị hiện tại (PV) sẽ:",
-    options: ["Tăng lên", "Giảm xuống", "Không đổi", "Tăng gấp đôi"],
+    options: ["Tăng lên", "Giảm xuống", "Giữ nguyên vì dòng tiền không đổi", "Tăng gấp đôi"],
     correct: 1,
     explanation: "Lãi suất chiết khấu cao hơn → mẫu số (1+r)^n lớn hơn → PV giảm. Đây là lý do khi Fed tăng lãi suất, định giá cổ phiếu giảm.",
   },
@@ -53,7 +53,7 @@ const quiz: QuizQuestion[] = [
   },
   {
     question: "Công ty A tạo ra dòng tiền 50 tỷ/năm mãi mãi (perpetuity). Với discount rate 10%, giá trị doanh nghiệp là?",
-    options: ["50 tỷ", "500 tỷ", "5.000 tỷ", "Không thể tính"],
+    options: ["50 tỷ", "500 tỷ", "5.000 tỷ", "Không xác định vì dòng tiền kéo dài vô hạn"],
     correct: 1,
     explanation: "Perpetuity value = CF / r = 50 tỷ / 10% = 500 tỷ. Đây là công thức Gordon Growth Model khi growth = 0.",
   },

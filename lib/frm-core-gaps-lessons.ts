@@ -240,10 +240,10 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       {
         question: "Khi một hạn mức bị vượt, phản ứng đúng theo khung quản trị rủi ro là gì?",
         options: [
-          "Kích hoạt quy trình leo thang đã định sẵn",
-          "Tự động nâng hạn mức lên bằng mức vị thế hiện tại để không còn vi phạm",
-          "Bỏ qua nếu khoản lỗ chưa thực sự phát sinh trên báo cáo tài chính",
-          "Chờ tới kỳ rà soát hằng năm"
+          "Kích hoạt đúng quy trình leo thang đã định sẵn",
+          "Tự nâng hạn mức lên bằng vị thế hiện tại",
+          "Bỏ qua nếu khoản lỗ chưa phát sinh trên báo cáo",
+          "Chờ tới kỳ rà soát hạn mức hằng năm"
         ],
         correct: 0,
         explanation: "Điều làm hệ thống hạn mức có giá trị không phải bản thân con số mà là quy trình xử lý khi vượt. Nâng hạn mức cho khớp vị thế là cách phổ biến nhất để một hệ thống hạn mức trở nên vô nghĩa mà trên giấy tờ vẫn đầy đủ."
@@ -566,9 +566,9 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       {
         question: "Phê phán Roll về kiểm định CAPM chỉ ra vấn đề gì?",
         options: [
-          "Danh mục thị trường thực sự không quan sát được",
-          "CAPM không thể áp dụng cho tài sản có beta âm trong bất kỳ trường hợp nào",
-          "Lãi suất phi rủi ro thay đổi theo thời gian nên công thức CAPM không xác định",
+          "Danh mục thị trường thật thì không quan sát được",
+          "CAPM không áp dụng được cho tài sản beta âm",
+          "Lãi suất phi rủi ro đổi theo thời gian nên CAPM vô nghĩa",
           "Beta không ước lượng được từ dữ liệu"
         ],
         correct: 0,
@@ -1054,10 +1054,10 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       {
         question: "Vì sao mỗi sự kiện tổn thất cần được gán đồng thời cả nhóm sự kiện lẫn mảng kinh doanh?",
         options: [
-          "Vì vốn được tính theo ma trận hai chiều",
-          "Vì chỉ chấp nhận hai trường",
-          "Vì gán hai chiều giúp giảm tổng số sự kiện phải ghi nhận xuống một nửa",
-          "Vì mảng kinh doanh quyết định sự kiện đó có phải rủi ro hoạt động hay không"
+          "Vì vốn được tính theo ma trận hai chiều nhóm × mảng",
+          "Vì hệ thống chỉ chấp nhận đúng hai trường",
+          "Vì gán hai chiều giúp giảm nửa số sự kiện phải ghi",
+          "Vì mảng kinh doanh quyết định đó có phải rủi ro hoạt động không"
         ],
         correct: 0,
         explanation: "Gian lận nội bộ ở mảng giao dịch tự doanh có mức thiệt hại tiềm tàng khác hẳn gian lận nội bộ ở mảng bán lẻ. Ma trận hai chiều giữ lại thông tin đó thay vì gộp tất cả vào một con số duy nhất."
@@ -1065,10 +1065,10 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       {
         question: "Ngưỡng ghi nhận tổn thất đặt quá cao gây hệ quả gì cho mô hình?",
         options: [
-          "Phần thân của phân phối bị cắt mất",
+          "Phần thân của phân phối tổn thất bị cắt mất",
           "Mô hình sẽ tự động cho ra mức vốn yêu cầu cao hơn thực tế",
-          "Sự kiện lớn bị bỏ sót",
-          "Ngân hàng không còn phải phân loại sự kiện theo nhóm Basel nữa"
+          "Sự kiện lớn bị bỏ sót khỏi dữ liệu",
+          "Ngân hàng không phải phân loại theo nhóm Basel nữa"
         ],
         correct: 0,
         explanation: "Ngưỡng cao loại bỏ các sự kiện nhỏ và vừa - phần đông đảo nhất của dữ liệu. Ước lượng tần suất tính trên phần còn lại sẽ thấp hơn thực tế, và việc khớp phân phối trên dữ liệu bị cắt cụt cần kỹ thuật hiệu chỉnh riêng nếu không muốn tham số bị lệch."
@@ -2075,10 +2075,10 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       {
         question: "Vì sao một tổ chức có tỷ lệ vốn tốt vẫn có thể đổ vỡ vì thanh khoản?",
         options: [
-          "Vì vốn đo khả năng hấp thụ lỗ trong dài hạn",
-          "Vì tỷ lệ vốn không được cơ quan quản lý công nhận trong tình huống khủng hoảng",
+          "Vì vốn đo khả năng hấp thụ lỗ, không đo tiền sẵn có",
+          "Vì tỷ lệ vốn không được công nhận khi khủng hoảng",
           "Vì vốn chủ sở hữu tự động thành nợ",
-          "Vì tổ chức có vốn cao luôn bị rút tiền nhiều hơn tổ chức có vốn thấp"
+          "Vì tổ chức vốn cao luôn bị rút tiền nhiều hơn"
         ],
         correct: 0,
         explanation: "Vốn và thanh khoản trả lời hai câu hỏi khác nhau: có đủ tài sản hơn nợ không, và có đủ tiền để trả khoản đến hạn sáng mai không. Một bảng cân đối lành mạnh gồm toàn tài sản dài hạn vẫn không trả được khoản tiền gửi bị rút hôm nay."
@@ -2270,10 +2270,10 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       {
         question: "Khe hở dồn tích khác khe hở của từng dải ở chỗ nào?",
         options: [
-          "Khe hở dồn tích cộng dần qua các dải",
-          "Chỉ tính dòng tiền vào",
-          "Khe hở dồn tích được tính theo giá trị hiện tại đã chiết khấu",
-          "Khe hở dồn tích chỉ áp dụng cho các dải kỳ hạn trên một năm"
+          "Khe hở dồn tích cộng dần qua từng dải kỳ hạn",
+          "Chỉ tính phần dòng tiền vào",
+          "Khe hở dồn tích tính theo giá trị đã chiết khấu",
+          "Khe hở dồn tích chỉ áp dụng cho dải trên một năm"
         ],
         correct: 0,
         explanation: "Một dải riêng lẻ có thể âm nhưng được bù bởi thặng dư từ dải trước đó. Chỉ con số dồn tích mới trả lời được câu hỏi thực sự quan trọng: tới thời điểm nào thì tổ chức không còn tiền."
@@ -2598,10 +2598,10 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       {
         question: "Vì sao giả định về hành vi rút tiền gửi là tham số nhạy cảm nhất trong kiểm định thanh khoản?",
         options: [
-          "Vì tiền gửi thường là nguồn vốn lớn nhất",
-          "Vì tiền gửi là khoản mục duy nhất không xuất hiện trên bảng cân đối kế toán",
-          "Vì cấm dùng dữ liệu lịch sử",
-          "Vì tỷ lệ rút tiền gửi luôn cố định ở mức quy định cho mọi ngân hàng"
+          "Vì tiền gửi thường là nguồn vốn lớn nhất của ngân hàng",
+          "Vì tiền gửi không xuất hiện trên bảng cân đối",
+          "Vì bị cấm dùng dữ liệu lịch sử",
+          "Vì tỷ lệ rút tiền gửi luôn cố định theo quy định"
         ],
         correct: 0,
         explanation: "Với một ngân hàng bán lẻ, tiền gửi chiếm phần lớn nguồn vốn. Chênh lệch giữa giả định rút 5% và rút 15% trong ba mươi ngày có thể là khác biệt giữa dư dả và mất khả năng thanh toán - trong khi cả hai con số đều có thể biện minh được."
@@ -3287,9 +3287,9 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       {
         question: "Vì sao ước lượng tham số đuôi đặc biệt khó và nhạy cảm?",
         options: [
-          "Vì rất ít quan sát rơi vào vùng đuôi",
-          "Vì các phân phối lý thuyết không có tham số nào mô tả phần đuôi",
-          "Vì dữ liệu đuôi luôn bị cơ quan quản lý yêu cầu loại bỏ khỏi mẫu",
+          "Vì rất ít quan sát rơi được vào vùng đuôi",
+          "Vì phân phối lý thuyết không có tham số cho đuôi",
+          "Vì cơ quan quản lý bắt loại dữ liệu đuôi khỏi mẫu",
           "Vì phần đuôi không ảnh hưởng tới con số rủi ro cuối cùng"
         ],
         correct: 0,
@@ -3298,10 +3298,10 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       {
         question: "Sau khi ước lượng tham số, bước kiểm định độ khớp cần chú ý điều gì nhất trong ứng dụng rủi ro?",
         options: [
-          "Độ khớp riêng ở vùng đuôi phân phối",
-          "Độ khớp ở vùng trung tâm, vì đó là nơi tập trung phần lớn quan sát",
-          "Số lượng tham số của mô hình, càng nhiều tham số càng đáng tin cậy",
-          "Thời gian chạy của thuật toán"
+          "Độ khớp riêng ở vùng đuôi của phân phối",
+          "Độ khớp ở vùng trung tâm, nơi tập trung quan sát",
+          "Số tham số của mô hình, càng nhiều càng đáng tin",
+          "Thời gian chạy của thuật toán ước lượng"
         ],
         correct: 0,
         explanation: "Các kiểm định độ khớp thông dụng bị chi phối bởi phần thân nơi có nhiều quan sát. Một mô hình qua được kiểm định tổng thể vẫn có thể đánh giá thấp nghiêm trọng xác suất ở đuôi - đúng vùng mà VaR và ES được tính."
@@ -3771,10 +3771,10 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       {
         question: "Tham số hình dạng trong phân phối Pareto tổng quát cho biết điều gì?",
         options: [
-          "Mức độ dày của đuôi phân phối",
+          "Mức độ dày của đuôi phân phối tổn thất",
           "Giá trị trung bình của toàn bộ phân phối gốc",
           "Số lượng quan sát vượt ngưỡng có trong mẫu",
-          "Độ dài của chuỗi thời gian được sử dụng để ước lượng"
+          "Độ dài chuỗi thời gian dùng để ước lượng"
         ],
         correct: 0,
         explanation: "Tham số hình dạng là con số quan trọng nhất của mô hình. Nó phân loại đuôi thành ba dạng, và với dữ liệu tài chính thì kết quả ước lượng gần như luôn rơi vào nhóm đuôi dày - xác nhận rằng giả định chuẩn không phù hợp."

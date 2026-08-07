@@ -1,6 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 // Biểu đồ so sánh lãi đơn với lãi kép, widget cho các bài khai
 // `interactiveType: "chart"`.
@@ -14,6 +16,7 @@ const WIDTH = 320;
 const HEIGHT = 150;
 
 export default function InteractiveChart() {
+  const { t } = useI18n();
   const [rate, setRate] = useState(10);
   const [years, setYears] = useState(20);
 
@@ -47,10 +50,10 @@ export default function InteractiveChart() {
     <div className="bg-white rounded-3xl border border-stone-100 p-6 space-y-6 dark:bg-stone-900 dark:border-stone-800">
       <div>
         <h3 className="font-bold text-stone-800 text-lg mb-1 dark:text-stone-100">
-          📊 Lãi kép tách khỏi lãi đơn từ lúc nào
+          {t.chartDemo.title}
         </h3>
         <p className="text-stone-500 text-sm dark:text-stone-400">
-          100 triệu ban đầu. Kéo lãi suất và số năm để xem hai đường rời nhau.
+          {t.chartDemo.subtitle}
         </p>
       </div>
 
@@ -58,7 +61,12 @@ export default function InteractiveChart() {
         viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
         className="w-full"
         role="img"
-        aria-label={`Sau ${years} năm ở mức ${rate}%, lãi kép cho ${(compoundEnd * 100).toFixed(0)} triệu, lãi đơn cho ${(simpleEnd * 100).toFixed(0)} triệu`}
+        aria-label={format(t.chartDemo.chartAriaLabel, {
+          years,
+          rate,
+          compound: (compoundEnd * 100).toFixed(0),
+          simple: (simpleEnd * 100).toFixed(0),
+        })}
       >
         <line x1={0} y1={HEIGHT} x2={WIDTH} y2={HEIGHT} className="stroke-stone-200 dark:stroke-stone-700" strokeWidth={1} />
         <path d={simplePath} fill="none" className="stroke-stone-400" strokeWidth={2} strokeDasharray="4 3" />
@@ -67,17 +75,17 @@ export default function InteractiveChart() {
 
       <div className="flex flex-wrap gap-x-5 gap-y-1 text-[11px]">
         <span className="flex items-center gap-1.5 text-stone-600 dark:text-stone-300">
-          <span className="inline-block h-0.5 w-4 bg-emerald-500" /> Lãi kép
+          <span className="inline-block h-0.5 w-4 bg-emerald-500" /> {t.chartDemo.compoundLegend}
         </span>
         <span className="flex items-center gap-1.5 text-stone-600 dark:text-stone-300">
-          <span className="inline-block h-0.5 w-4 border-t-2 border-dashed border-stone-400" /> Lãi đơn
+          <span className="inline-block h-0.5 w-4 border-t-2 border-dashed border-stone-400" /> {t.chartDemo.simpleLegend}
         </span>
       </div>
 
       <div className="space-y-4">
         <div>
           <div className="flex justify-between text-sm mb-2">
-            <span className="font-medium text-stone-700 dark:text-stone-300">Lãi suất mỗi năm</span>
+            <span className="font-medium text-stone-700 dark:text-stone-300">{t.chartDemo.rateLabel}</span>
             <span className="font-bold text-emerald-600 dark:text-emerald-400">{rate}%</span>
           </div>
           <input
@@ -87,13 +95,13 @@ export default function InteractiveChart() {
             value={rate}
             onChange={(e) => setRate(+e.target.value)}
             className="w-full"
-            aria-label="Lãi suất mỗi năm"
+            aria-label={t.chartDemo.rateAriaLabel}
           />
         </div>
         <div>
           <div className="flex justify-between text-sm mb-2">
-            <span className="font-medium text-stone-700 dark:text-stone-300">Số năm</span>
-            <span className="font-bold text-stone-800 dark:text-stone-100">{years} năm</span>
+            <span className="font-medium text-stone-700 dark:text-stone-300">{t.chartDemo.yearsLabel}</span>
+            <span className="font-bold text-stone-800 dark:text-stone-100">{format(t.chartDemo.yearsValueSuffix, { years })}</span>
           </div>
           <input
             type="range"
@@ -102,21 +110,23 @@ export default function InteractiveChart() {
             value={years}
             onChange={(e) => setYears(+e.target.value)}
             className="w-full"
-            aria-label="Số năm"
+            aria-label={t.chartDemo.yearsAriaLabel}
           />
         </div>
       </div>
 
       <div className="rounded-2xl bg-emerald-50 p-4 dark:bg-emerald-950/30">
         <p className="text-sm text-stone-700 dark:text-stone-200">
-          Sau {years} năm: lãi kép <b>{(compoundEnd * 100).toFixed(0)} triệu</b>, lãi đơn{" "}
-          <b>{(simpleEnd * 100).toFixed(0)} triệu</b>. Chênh lệch <b>{(gap * 100).toFixed(0)} triệu</b> là
-          phần lãi sinh ra từ chính lãi.
+          {format(t.chartDemo.summaryPart1, { years })}{" "}
+          <b>{format(t.chartDemo.summaryCompound, { compound: (compoundEnd * 100).toFixed(0) })}</b>
+          {t.chartDemo.summaryPart2}{" "}
+          <b>{format(t.chartDemo.summarySimple, { simple: (simpleEnd * 100).toFixed(0) })}</b>
+          {t.chartDemo.summaryPart3}{" "}
+          <b>{format(t.chartDemo.summaryGap, { gap: (gap * 100).toFixed(0) })}</b>{" "}
+          {t.chartDemo.summaryPart4}
         </p>
         <p className="mt-1.5 text-[11px] leading-relaxed text-stone-500 dark:text-stone-400">
-          Hạ số năm xuống dưới năm rồi kéo lại: mấy năm đầu hai đường gần như dính nhau. Phần lớn
-          khoảng cách được tạo ra ở đoạn cuối - đó là lý do rút tiền ra giữa chừng đắt hơn nhiều so
-          với cảm giác.
+          {t.chartDemo.summaryHint}
         </p>
       </div>
     </div>

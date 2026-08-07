@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { isValidAvatar } from "@/lib/avatar-utils";
 import CharacterCustomizerModal from "@/components/CharacterCustomizerModal";
+import { useI18n } from "@/lib/i18n/context";
 
 interface Profile {
   id: string;
@@ -18,6 +19,7 @@ interface Profile {
 }
 
 export default function UserProfile() {
+  const { t } = useI18n();
   const [profile, setProfile] = useState<Profile | null>(null);
   const [loading, setLoading] = useState(true);
   const [showDropdown, setShowDropdown] = useState(false);
@@ -87,7 +89,7 @@ export default function UserProfile() {
         {isValidAvatar(profile.avatar_url) ? (
           <Image
             src={profile.avatar_url}
-            alt={profile.full_name || "User"}
+            alt={profile.full_name || t.userProfile.fallbackName}
             width={40}
             height={40}
             className="w-10 h-10 rounded-full object-cover"
@@ -105,7 +107,7 @@ export default function UserProfile() {
             {isValidAvatar(profile.avatar_url) ? (
               <Image
                 src={profile.avatar_url}
-                alt={profile.full_name || "User"}
+                alt={profile.full_name || t.userProfile.fallbackName}
                 width={48}
                 height={48}
                 className="w-12 h-12 rounded-full object-cover"
@@ -116,7 +118,7 @@ export default function UserProfile() {
               </div>
             )}
             <div className="flex-1">
-              <p className="font-bold text-stone-900 dark:text-stone-100">{profile.full_name || "User"}</p>
+              <p className="font-bold text-stone-900 dark:text-stone-100">{profile.full_name || t.userProfile.fallbackName}</p>
               <p className="text-xs text-stone-500 dark:text-stone-400">{profile.email}</p>
             </div>
           </div>
@@ -124,15 +126,15 @@ export default function UserProfile() {
           <div className="grid grid-cols-3 gap-3 mb-4 pb-4 border-b border-stone-100 dark:border-stone-800 text-center">
             <div>
               <p className="text-lg font-bold text-indigo-600 dark:text-indigo-400">{profile.current_level}</p>
-              <p className="text-xs text-stone-500 dark:text-stone-400">Cấp độ</p>
+              <p className="text-xs text-stone-500 dark:text-stone-400">{t.userProfile.level}</p>
             </div>
             <div>
               <p className="text-lg font-bold text-emerald-600 dark:text-emerald-400">{profile.total_xp}</p>
-              <p className="text-xs text-stone-500 dark:text-stone-400">XP</p>
+              <p className="text-xs text-stone-500 dark:text-stone-400">{t.userProfile.xp}</p>
             </div>
             <div>
               <p className="text-lg font-bold text-stone-900 dark:text-stone-100">{profile.lessons_completed}</p>
-              <p className="text-xs text-stone-500 dark:text-stone-400">Bài học</p>
+              <p className="text-xs text-stone-500 dark:text-stone-400">{t.userProfile.lessons}</p>
             </div>
           </div>
 
@@ -144,35 +146,35 @@ export default function UserProfile() {
               }}
               className="w-full text-left px-3 py-2 text-sm font-black text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/40 hover:bg-amber-100/80 rounded-lg transition border border-amber-200 dark:border-amber-900/60 flex items-center gap-1.5"
             >
-              🎨 Tùy Chỉnh Avatar 2.5D
+              {t.userProfile.customizeAvatar}
             </button>
             <Link
               href="/analytics"
               onClick={() => setShowDropdown(false)}
               className="block px-3 py-2 text-sm font-semibold text-stone-900 dark:text-stone-100 hover:bg-stone-50 dark:hover:bg-stone-800 rounded-lg transition"
             >
-              Thống kê học tập
+              {t.userProfile.analytics}
             </Link>
             <Link
               href="/tai-lieu"
               onClick={() => setShowDropdown(false)}
               className="block px-3 py-2 text-sm font-semibold text-stone-900 dark:text-stone-100 hover:bg-stone-50 dark:hover:bg-stone-800 rounded-lg transition"
             >
-              Tài liệu miễn phí
+              {t.userProfile.documents}
             </Link>
             <Link
               href="/profile"
               onClick={() => setShowDropdown(false)}
               className="block px-3 py-2 text-sm font-semibold text-stone-900 dark:text-stone-100 hover:bg-stone-50 dark:hover:bg-stone-800 rounded-lg transition"
             >
-              Hồ sơ
+              {t.userProfile.profile}
             </Link>
             <Link
               href="/settings"
               onClick={() => setShowDropdown(false)}
               className="block px-3 py-2 text-sm font-semibold text-stone-900 dark:text-stone-100 hover:bg-stone-50 dark:hover:bg-stone-800 rounded-lg transition"
             >
-              Cài đặt
+              {t.userProfile.settings}
             </Link>
           </div>
 
@@ -181,7 +183,7 @@ export default function UserProfile() {
             disabled={signingOut}
             className="w-full px-4 py-2 text-sm font-bold text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/50 rounded-lg transition disabled:opacity-50"
           >
-            {signingOut ? "Đang đăng xuất..." : "Đăng xuất"}
+            {signingOut ? t.userProfile.signingOut : t.userProfile.signOut}
           </button>
         </div>
       )}

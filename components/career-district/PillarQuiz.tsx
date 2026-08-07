@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { processRecallAttempt } from "@/lib/supabase-recalls";
+import { useI18n } from "@/lib/i18n/context";
 
 /** Trả lời một câu ôn ngay tại cột, không rời hành lang.
  *
@@ -44,6 +45,7 @@ type Phase =
   | { kind: "done"; q: Question; picked: number; correct: boolean };
 
 export default function PillarQuiz({ lessonId, accent, due = false, userId, onClose, onCorrect }: Props) {
+  const { t } = useI18n();
   const [phase, setPhase] = useState<Phase>({ kind: "loading" });
 
   // Đổi sang bài khác thì quay về "đang tải" NGAY lúc render, không đợi effect.
@@ -102,37 +104,37 @@ export default function PillarQuiz({ lessonId, accent, due = false, userId, onCl
       } catch {
         // Chấm điểm hỏng thì không được coi là sai: người học vẫn cần đọc lời
         // giải, và một câu bị tính sai vì mạng rớt là điều tệ nhất ở đây.
-        setPhase({ kind: "error", message: "Không gửi được câu trả lời" });
+        setPhase({ kind: "error", message: t.careerDistrict.pillarQuiz.submitFailed });
       }
     },
-    [onCorrect]
+    [onCorrect, t]
   );
 
   return (
     <section
-      aria-label="Ôn nhanh tại chỗ"
+      aria-label={t.careerDistrict.pillarQuiz.sectionLabel}
       className="pointer-events-auto absolute inset-x-3 bottom-36 z-20 mx-auto max-w-md rounded-2xl border border-stone-700 bg-stone-900/95 p-4 shadow-2xl backdrop-blur sm:inset-x-auto sm:bottom-3 sm:left-4 sm:w-96"
     >
       <div className="mb-2 flex items-start justify-between gap-2">
         <p className="text-[10px] font-black uppercase tracking-widest" style={{ color: accent }}>
-          {due ? "⏰ Đến hạn ôn lại bài này" : "❓ Ôn nhanh tại chỗ"}
+          {due ? `⏰ ${t.careerDistrict.pillarQuiz.dueTitle}` : `❓ ${t.careerDistrict.pillarQuiz.quickTitle}`}
         </p>
         <button
           type="button"
           onClick={onClose}
-          aria-label="Đóng ô ôn nhanh"
+          aria-label={t.careerDistrict.pillarQuiz.closeLabel}
           className="cursor-pointer text-[10px] font-bold text-stone-500 hover:text-stone-300"
         >
-          đóng
+          {t.careerDistrict.pillarQuiz.close}
         </button>
       </div>
 
-      {phase.kind === "loading" && <p className="text-[11px] text-stone-400">Đang lấy câu hỏi…</p>}
+      {phase.kind === "loading" && <p className="text-[11px] text-stone-400">{t.careerDistrict.pillarQuiz.loading}</p>}
       {phase.kind === "empty" && (
-        <p className="text-[11px] text-stone-400">Bài này chưa có câu hỏi ôn.</p>
+        <p className="text-[11px] text-stone-400">{t.careerDistrict.pillarQuiz.noQuestions}</p>
       )}
       {phase.kind === "error" && (
-        <p className="text-[11px] text-rose-300">Không lấy được câu hỏi. Thử lại sau nhé.</p>
+        <p className="text-[11px] text-rose-300">{t.careerDistrict.pillarQuiz.fetchFailed}</p>
       )}
 
       {(phase.kind === "asking" || phase.kind === "grading" || phase.kind === "done") && (
@@ -140,7 +142,7 @@ export default function PillarQuiz({ lessonId, accent, due = false, userId, onCl
           <p className="text-[13px] font-bold leading-snug text-white">{phase.q.question}</p>
           {/* Nhóm lại và đặt tên: bốn nút không nhãn cạnh nhau chỉ đọc ra bốn
               đoạn văn bản, không đọc ra "đây là các lựa chọn của một câu hỏi". */}
-          <div className="mt-2 space-y-1" role="group" aria-label="Các lựa chọn trả lời">
+          <div className="mt-2 space-y-1" role="group" aria-label={t.careerDistrict.pillarQuiz.optionsGroupLabel}>
             {phase.q.options.map((opt, i) => {
               const chosen = phase.kind !== "asking" && phase.picked === i;
               const revealed = phase.kind === "done";
@@ -169,12 +171,12 @@ export default function PillarQuiz({ lessonId, accent, due = false, userId, onCl
           </div>
 
           {phase.kind === "grading" && (
-            <p role="status" className="mt-2 text-[11px] text-stone-400">Đang chấm…</p>
+            <p role="status" className="mt-2 text-[11px] text-stone-400">{t.careerDistrict.pillarQuiz.grading}</p>
           )}
           {phase.kind === "done" && (
             <div className="mt-2.5 rounded-xl bg-stone-950/70 p-2.5">
               <p className={`text-[11px] font-black ${phase.correct ? "text-emerald-300" : "text-rose-300"}`}>
-                {phase.correct ? "✓ Đúng rồi" : "✗ Chưa đúng"}
+                {phase.correct ? `✓ ${t.careerDistrict.pillarQuiz.correct}` : `✗ ${t.careerDistrict.pillarQuiz.incorrect}`}
               </p>
               <p className="mt-1 text-[11px] leading-snug text-stone-300">{phase.q.explanation}</p>
             </div>

@@ -24,5 +24,30 @@ export function format(template: string, vars: Record<string, string | number>):
   );
 }
 
+/**
+ * BCP 47 tag for `Intl` / `toLocaleDateString` / `toLocaleString`.
+ *
+ * There are 53 hard-coded `"vi-VN"` arguments across 40 files, which is why this
+ * exists as one table rather than a find-and-replace per call site: they all
+ * have to move together, or an English reader gets Vietnamese month names in
+ * some places and not others.
+ *
+ * English maps to en-GB, not en-US, and that is deliberate. Vietnamese formats
+ * dates day-first (25/12/2026) and so does en-GB; en-US would silently reorder
+ * to 12/25/2026. Since these dates sit in the same layouts and often next to
+ * each other in a list, changing language should not change what position the
+ * day is in - "03/04" meaning two different dates depending on the UI language
+ * is the kind of bug nobody reports and everyone misreads.
+ */
+export const INTL_LOCALE: Record<Locale, string> = {
+  vi: "vi-VN",
+  en: "en-GB",
+};
+
+/** `Intl` tag for the given UI locale, falling back rather than throwing. */
+export function intlLocale(locale: Locale): string {
+  return INTL_LOCALE[locale] ?? INTL_LOCALE[DEFAULT_LOCALE];
+}
+
 export type { Dictionary };
 export * from "./locales";

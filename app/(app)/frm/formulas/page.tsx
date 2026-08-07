@@ -1,14 +1,19 @@
 import Link from "next/link";
+import { getServerLocale } from "@/lib/i18n/server";
+import { getDictionary } from "@/lib/i18n";
 import { ChevronLeft } from "lucide-react";
 import FrmFormulaCheatSheet from "@/components/FrmFormulaCheatSheet";
 
-export const metadata = {
-  title: "Sổ Tay Công Thức FRM Part I & II | TuHocTaiChinh.org",
-  description:
-    "Công thức thi FRM theo mười môn của GARP: VaR, Expected Shortfall, EL, LCR, NSFR, DV01, Greeks - kèm giải thích ký hiệu và ví dụ tính bằng số.",
-};
+export async function generateMetadata() {
+  const t = getDictionary(await getServerLocale());
+  return {
+    title: t.certPages.frmFormulasMetaTitle,
+    description: t.certPages.frmFormulasMetaDesc,
+  };
+}
 
-export default function FrmFormulasPage() {
+export default async function FrmFormulasPage() {
+  const t = getDictionary(await getServerLocale());
   return (
     <div className="min-h-screen bg-white dark:bg-stone-950">
       <div className="border-b border-stone-200 bg-white dark:border-stone-800 dark:bg-stone-950">
@@ -16,16 +21,16 @@ export default function FrmFormulasPage() {
           <Link
             href="/frm"
             className="flex h-9 w-9 items-center justify-center rounded-full text-stone-400 transition-colors hover:bg-stone-100 hover:text-stone-700 dark:text-stone-500 dark:hover:bg-stone-800 dark:hover:text-stone-200"
-            aria-label="Về lộ trình FRM"
+            aria-label={t.certPages.backToFrmTrack}
           >
             <ChevronLeft className="h-5 w-5" />
           </Link>
           <div>
             <h1 className="text-xl font-bold text-stone-900 dark:text-stone-100">
-              Sổ Tay Công Thức FRM
+              {t.certPages.frmFormulasTitle}
             </h1>
             <p className="mt-0.5 text-xs text-stone-500 dark:text-stone-400">
-              Part I &amp; II - kèm ví dụ tính bằng số
+              {t.certPages.frmFormulasSubtitle}
             </p>
           </div>
         </div>

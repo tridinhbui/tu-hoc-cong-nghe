@@ -425,9 +425,9 @@ export const DERIVATIVES_PRICING_LESSONS: Lesson[] = [
       {
         question: "Delta của một quyền chọn mua có giá trị trong khoảng nào?",
         options: [
-          "Từ −1 đến 0",
-          "Từ 0 đến 1",
-          "Từ −1 đến 1",
+          "Từ −1 đến 0, như quyền chọn bán",
+          "Từ 0 đến 1, cùng chiều với giá tài sản",
+          "Từ −1 đến 1, gộp cả hai loại quyền chọn",
           "Không bị giới hạn",
         ],
         correct: 1,
@@ -704,7 +704,7 @@ export const DERIVATIVES_PRICING_LESSONS: Lesson[] = [
         "Trước ngày công bố báo cáo lợi nhuận, biến động hàm ý của quyền chọn một cổ phiếu tăng vọt rồi sụt mạnh ngay sau khi tin ra, dù giá cổ phiếu gần như không đổi. Vì sao?",
       options: [
         "Do lỗi hệ thống của sở giao dịch",
-        "Vì trước tin, thị trường định giá khả năng có cú nhảy giá; sau khi tin đã ra, sự bất định biến mất nên phần giá trị đó bị xóa - hiện tượng gọi là volatility crush",
+        "Volatility crush: tin ra thì sự bất định biến mất",
         "Vì lãi suất phi rủi ro thay đổi trong ngày",
         "Vì theta bào mòn toàn bộ giá trị chỉ trong một ngày",
       ],

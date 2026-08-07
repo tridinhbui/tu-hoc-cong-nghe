@@ -1,0 +1,131 @@
+{
+  "slug": "market-cap-la-gi",
+  "title": "What is Market Cap?",
+  "subtitle": "The total market value of all a company's shares outstanding",
+  "duration": "5 min",
+  "openingQuestion": "A company has 1 billion shares outstanding, priced at 50,000 dong per share. What is the company's Market Cap?",
+  "openingOptions": [
+    "50,000 billion dong (1 billion shares × 50,000 dong)",
+    "1 billion dong",
+    "Can't be calculated without profit information",
+    "50,000 dong"
+  ],
+  "explanation": "Market Capitalization (market cap) = current share price × total shares outstanding. This is the fastest way to estimate a listed company's size from the market's point of view, commonly used to classify companies: large-cap, mid-cap, small-cap. It only measures the value of the equity slice, though - it says nothing yet about the debt or cash sitting inside the business.",
+  "diagram": [
+    { "label": "Current share price" },
+    { "label": "× total shares outstanding" },
+    { "label": "= Market Cap (market capitalization)" }
+  ],
+  "realWorldExample": {
+    "company": "Apple Inc.",
+    "description": "Apple is frequently the company with the largest Market Cap in the world, at one point exceeding $3,000 billion - larger than the GDP of many countries, illustrating the sheer scale of the top technology conglomerates."
+  },
+  "quiz": [
+    {
+      "question": "If a company's stock price doubles while shares outstanding stay the same, how does Market Cap change?",
+      "options": [
+        "It doubles, because it's directly proportional to the share price",
+        "It doesn't change, because shares outstanding stay the same",
+        "It rises but by less than double due to a dilution effect",
+        "It only rises if the company also issues additional shares"
+      ],
+      "explanation": "Market Cap = Price × number of shares. With shares outstanding fixed, Market Cap moves entirely proportionally with the share price. This is why issuing new shares (dilution) or buying back shares (buyback) both directly affect Market Cap even when the price per share doesn't change."
+    },
+    {
+      "question": "Two companies both have a Market Cap of 10,000 billion dong, but company A has 100 million shares outstanding while company B has 1 billion shares outstanding. Which company has a higher price per share, and what does this say about the stock's \"expensiveness\"?",
+      "options": [
+        "A has the higher price, proving stock A is more expensive than stock B",
+        "A has the higher price, but that says nothing about relative expensiveness",
+        "B has the higher price because it has far more shares outstanding",
+        "Both companies have the same price per share since they share the same market cap"
+      ],
+      "explanation": "This is a common mistake for new investors: the absolute price per share doesn't tell you whether a company is \"expensive\" or \"cheap\" - Market Cap is the real measure of scale, while price per share depends only on how many shares the company chose to split its Market Cap into (an arbitrary decision via a stock split)."
+    },
+    {
+      "question": "Price 40,000 dong, 250 million shares outstanding. What is the Market Cap?",
+      "options": [
+        "1,000 billion dong (= 40,000 × 25 million, wrong share count)",
+        "6,250 billion dong (= 250 million ÷ 40,000, dividing instead of multiplying)",
+        "10,000 billion dong (= 40,000 dong × 250 million shares)",
+        "290 million dong (= 40,000 + 250 million, added instead of multiplied)"
+      ],
+      "explanation": "Market Cap = Price × shares outstanding = 40,000 × 250,000,000 = 10,000 billion dong. This is the market value of just the equity slice, not counting any debt."
+    },
+    {
+      "question": "How does Market Cap differ from Enterprise Value?",
+      "options": [
+        "EV is calculated after tax while Market Cap is pre-tax",
+        "EV only applies to companies not yet listed on an exchange",
+        "EV takes book value instead of the stock's market price",
+        "EV adds debt and subtracts cash from the business"
+      ],
+      "explanation": "Market Cap is the price of the equity slice; EV is the price of the entire business that a buyer must pay to acquire it outright, including taking on debt and receiving whatever cash is on hand."
+    },
+    {
+      "question": "Why does issuing new shares raise Market Cap but not necessarily benefit existing shareholders?",
+      "options": [
+        "Because their ownership stake gets diluted correspondingly",
+        "Because the share price always falls right after new issuance",
+        "Because the company must pay dividends on more shares than before",
+        "Because higher Market Cap makes the company owe more corporate tax"
+      ],
+      "explanation": "The pie grows bigger thanks to the new money coming in, but each existing owner's slice shrinks. Existing shareholders only benefit if the new capital is used to create more value than the dilution costs."
+    }
+  ],
+  "keyTakeaways": [
+    "Market Cap = Share price × total shares outstanding",
+    "A quick measure to estimate a listed company's size",
+    "Common classification: large-cap, mid-cap, small-cap based on Market Cap"
+  ],
+  "practicePrompt": {
+    "question": "Company A's stock trades at 200,000 dong, with 50 million shares outstanding. Company B's stock trades at 20,000 dong, with 800 million shares outstanding. Which company has a larger market capitalization (Market Cap)?",
+    "options": [
+      "Company A is larger because it has a much higher share price - share price directly determines company scale",
+      "Company B is larger: Market Cap = Share price × shares outstanding, A = 200,000 × 50 million = 10,000 billion; B = 20,000 × 800 million = 16,000 billion - B has the larger market cap despite a much lower price per share",
+      "The two companies can't be compared if we only know share price and shares outstanding",
+      "Both companies are the same size because price × count always gives an equivalent result"
+    ],
+    "explanation": "Market Cap = Share price × shares outstanding. A = 200,000 × 50 million = 10,000 billion; B = 20,000 × 800 million = 16,000 billion. A single stock's price does NOT reflect a company's scale - it must be multiplied by shares outstanding to get the real market capitalization."
+  },
+  "summary": {
+    "keyIdea": "Market Cap = Share price × total shares outstanding",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to a real decision.",
+    "action": "A quick measure to estimate a listed company's size"
+  },
+  "application": {
+    "title": "Calculate a Market Cap yourself",
+    "message": "Look up the current share price and shares outstanding of a listed company you're interested in, multiply them out yourself to get the Market Cap, then classify it as large-cap, mid-cap, or small-cap.",
+    "secondary": "It only takes a few minutes but gives you a real feel for the company's scale."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "If you could only ask one question to quickly estimate a listed company's size, the answer is almost always: what is its Market Cap?"
+    },
+    { "type": "heading", "text": "The formula and its meaning" },
+    {
+      "type": "paragraph",
+      "text": "Market Capitalization (market cap) = current share price × total shares outstanding. This is the fastest way to measure a company's size from the market's perspective, and the basis for classification: large-cap, mid-cap, small-cap. Apple once had a Market Cap exceeding $3,000 billion - larger than the GDP of most countries in the world."
+    },
+    { "type": "heading", "text": "Price per share doesn't tell you 'expensiveness'" },
+    {
+      "type": "paragraph",
+      "text": "If the share price doubles while shares outstanding stay the same, Market Cap also doubles - directly proportional. But this is where many new investors get confused: two companies with the same Market Cap of 10,000 billion dong, company A with 100 million shares outstanding (100,000 dong/share), company B with 1 billion shares (10,000 dong/share). A's price per share is 10 times higher, but that does NOT mean stock A is 'more expensive' - price per share depends only on how the company chose to divide its Market Cap, a completely arbitrary decision via a stock split."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Issuing new shares (dilution) or buying back shares (buyback) both directly affect Market Cap even when the price per share doesn't change",
+        "Large-cap: usually more stable, less volatile; small-cap: faster growth but higher risk",
+        "Market Cap only measures value for shareholders - it doesn't yet account for the company's debt or cash",
+        "Don't compare 'expensive/cheap' based on the absolute price of a single share"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Market Cap is the fastest measure of scale - but to know what it's really worth to buy outright, you need to go one step further, to Enterprise Value."
+      ]
+    }
+  ]
+}

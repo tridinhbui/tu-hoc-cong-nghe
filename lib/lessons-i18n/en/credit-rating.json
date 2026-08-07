@@ -1,0 +1,127 @@
+{
+  "slug": "credit-rating",
+  "title": "Credit Rating",
+  "subtitle": "How do Moody's, S&P, and Fitch assess default risk?",
+  "duration": "6 min",
+  "openingQuestion": "What is the interest rate difference between an AAA bond and a BB bond?",
+  "openingOptions": [
+    "BB has to pay a higher rate than AAA - higher default risk → investors demand a higher risk premium",
+    "AAA pays a higher rate because of its reputation",
+    "The rates are the same",
+    "BB pays a lower rate because fewer people buy it"
+  ],
+  "explanation": "A credit rating is a third party's assessment of an issuer's ability to repay debt on time, split into two broad groups: investment grade and speculative grade. The boundary between the two groups matters more than the gaps between notches within a group, because many funds' charters forbid holding the lower group - so a company pushed across that line loses a large pool of buyers all at once, and the bond price falls further than the actual change in risk would justify.",
+  "diagram": [
+    { "label": "The rating agency assesses repayment ability", "arrow": true },
+    { "label": "Assigns a grade from AAA down to D", "arrow": true },
+    { "label": "The lower the grade, the higher the yield investors demand", "arrow": true },
+    { "label": "Downgraded: bond price falls and new borrowing costs rise" }
+  ],
+  "interactiveType": "bond",
+  "realWorldExample": {
+    "company": "Sovereign and corporate credit downgrades",
+    "description": "When agencies like S&P or Moody's downgrade the credit rating of a country or a large company, their future borrowing costs rise immediately - an event closely watched because of its direct impact on the entire economy or industry involved."
+  },
+  "quiz": [
+    {
+      "question": "What is a Fallen Angel?",
+      "options": [
+        "A bond downgraded from Investment Grade to High-Yield",
+        "A government bond issued at a below-market interest rate",
+        "A bond that has already defaulted and is being restructured",
+        "A high-coupon bond issued by a newly established company"
+      ],
+      "explanation": "A Fallen Angel: was once investment grade, and got downgraded to junk (BB or lower). Many funds have a mandate to hold only IG → forced to sell → price drops sharply even though the business may still be viable. This can be a buying opportunity if the downgrade is overdone."
+    },
+    {
+      "question": "Why does a bond downgraded from Investment Grade to High-Yield (junk) usually trigger a sharp sell-off, far beyond the newly added actual risk?",
+      "options": [
+        "A credit downgrade has no effect on institutional fund behaviour at all, since ratings are only advisory",
+        "Because many funds are only permitted to hold Investment Grade, so they must sell",
+        "Because it's purely an emotional reaction with no real basis",
+        "Because junk bonds always have zero recovery value in default"
+      ],
+      "explanation": "This is the 'fallen angel' phenomenon - when an Investment Grade bond is downgraded to High-Yield, the mandatory investment rules of many large institutional funds trigger a wave of forced selling, creating downward price pressure far larger than the actual change in risk."
+    },
+    {
+      "question": "Where does the boundary between Investment Grade and High Yield sit?",
+      "options": [
+        "Between A− and BBB+ by international convention",
+        "Between AA− and A+ on Moody's scale",
+        "Between BBB− and BB+ on the S&P rating scale",
+        "Between B− and CCC+ under regulatory rules"
+      ],
+      "explanation": "BBB− is the lowest grade still within Investment Grade; falling to BB+ crosses into High Yield. This boundary matters because many pension and insurance funds are prohibited from holding bonds below that level."
+    },
+    {
+      "question": "A company is downgraded from BBB− to BB+. What is the most serious consequence?",
+      "options": [
+        "Regulators suspend the company's ability to raise capital",
+        "The company must repay all its debt immediately",
+        "The bond gets delisted from the exchange",
+        "Many funds are forced to sell even though they don't want to"
+      ],
+      "explanation": "The fallen angel phenomenon: fund charters forbid holding below Investment Grade, so selling is mandatory, not optional. The forced-selling wave pushes the price down further than the real credit risk justifies."
+    },
+    {
+      "question": "Why were credit rating agencies criticised after the 2008 crisis?",
+      "options": [
+        "Because the issuer pays the very agency that rates it",
+        "Because rating agencies weren't allowed access to financial statements",
+        "Because rating scales differ between countries, making comparison hard",
+        "Because ratings are only updated once per fiscal year"
+      ],
+      "explanation": "The issuer-pays model creates a conflict of interest: rating agencies compete for contracts from the very entities they're assessing. Many AAA-rated securitised products defaulted within months."
+    }
+  ],
+  "keyTakeaways": [
+    "AAA→BBB: Investment Grade; BB and below: High-Yield/Junk",
+    "Lower rating → higher interest rate (credit spread)",
+    "Fallen Angel: an IG bond downgraded to HY → price drops sharply"
+  ],
+  "practicePrompt": {
+    "question": "A corporate bond is rated BB by S&P. Which group does this rating belong to, and how does that affect the interest rate the company has to pay to raise capital?",
+    "options": [
+      "BB belongs to Investment Grade (safe investment), so the company can raise capital at a rate close to a government bond",
+      "AAA→BBB is Investment Grade; BB and below is High-Yield, so it has to pay a higher rate",
+      "A BB rating has no real practical meaning for determining a bond's interest rate",
+      "BB is the highest possible rating, showing the company has almost no default risk"
+    ],
+    "explanation": "AAA→BBB: Investment Grade; BB and below: High-Yield/Junk. A lower rating (like BB) comes with higher default risk, so the market demands a larger credit spread (the rate difference versus a risk-free bond) to compensate for that risk."
+  },
+  "summary": {
+    "keyIdea": "AAA→BBB: Investment Grade; BB and below: High-Yield/Junk",
+    "commonMistake": "Reading the concept as a definition to recite rather than a principle to apply to a real decision.",
+    "action": "Lower rating → higher interest rate (credit spread)"
+  },
+  "application": {
+    "title": "Apply it now",
+    "message": "Look up the credit rating of a Vietnamese or international corporate bond you've heard of, determine whether it's Investment Grade or High-Yield, and check whether the interest rate it pays matches that rating.",
+    "secondary": "If you can't find a published rating, that itself is a risk signal."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Before lending anyone money, you want to know the odds they'll repay it on time. For bonds, that assessment is done professionally by rating agencies like Moody's, S&P, and Fitch, packaged into an easy-to-read letter grade."
+    },
+    { "type": "heading", "text": "The rating scale: from AAA to D" },
+    {
+      "type": "paragraph",
+      "text": "The common S&P/Fitch scale runs from AAA (safest) down to D (already in default): AAA, AA, A, BBB sit within the Investment Grade (IG) group - considered safe enough for pension and insurance funds. From BB downward (BB, B, CCC, CC, C) is High-Yield, also called Junk bonds - much higher default risk, in exchange for a higher yield to compensate. Moody's uses an equivalent scale: Aaa, Aa, A, Baa (Investment Grade) and Ba, B, Caa and below (High-Yield). The lower the rating, the wider the credit spread - the extra rate charged over a government bond of the same term."
+    },
+    { "type": "heading", "text": "Fallen Angel: when a bond 'falls in grade'" },
+    {
+      "type": "paragraph",
+      "text": "A notable phenomenon is the Fallen Angel: a bond once in the Investment Grade group gets downgraded to High-Yield (for example, from BBB to BB). The problem isn't just the added risk - many large institutional funds (pension, insurance) are bound by regulations to hold only Investment Grade bonds. Once downgraded, these funds must sell immediately regardless of price, creating a sell-off that goes far beyond the newly increased real credit risk. For an investor who understands this mechanism, this can sometimes be a buying opportunity if the downgrade is overdone relative to the company's actual financial health."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Investment Grade (AAA-BBB): safe, low interest rate, suitable for pension/insurance funds",
+        "High-Yield/Junk (BB and below): high risk, high interest rate, highly volatile",
+        "A downgrade → bond price falls immediately even if the company hasn't defaulted",
+        "The three largest agencies: Moody's, S&P Global Ratings, Fitch Ratings - always check ratings from more than one source"
+      ]
+    }
+  ]
+}

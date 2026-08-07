@@ -10,6 +10,7 @@ import GlobalChatWrapper from "@/components/GlobalChatWrapper";
 import { getLessonsMeta } from "@/lib/lessons-loader";
 import { getServerLocale } from "@/lib/i18n/server";
 import { I18nProvider } from "@/lib/i18n/context";
+import { getDictionary } from "@/lib/i18n";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["vietnamese", "latin"],
@@ -23,12 +24,14 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 // for local dev but means link previews (Facebook/Zalo/Messenger) will
 // show no image at all when the site is actually deployed and shared.
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
-const title = "Tự học Tài chính Mỗi Ngày";
 
 // Reads the same generated lesson index the dashboard/homepage counter use,
 // so the SEO description's lesson count always matches the real catalog
 // size - no manual copy update needed when lessons are added or removed.
 export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getServerLocale();
+  const t = getDictionary(locale);
+  const title = t.finalTwo.rootLayout.siteTitle;
   const lessons = await getLessonsMeta();
   // Round down to the nearest 10 so this doesn't need editing every time a
   // single lesson is added - "360+" stays accurate until the count crosses

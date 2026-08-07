@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Users } from "lucide-react";
 import { observeLobbyCount } from "@/lib/supabase-lobby";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 /**
  * Số người đang ở trong thư viện 3D, đọc từ presence THẬT.
@@ -26,6 +28,7 @@ import { observeLobbyCount } from "@/lib/supabase-lobby";
  * dùng sẽ không tìm thấy ai trong đó khi họ bấm vào.
  */
 export default function OnlineUsersWidget() {
+  const { t } = useI18n();
   const [count, setCount] = useState<number | null>(null);
 
   useEffect(() => observeLobbyCount(setCount), []);
@@ -56,12 +59,12 @@ export default function OnlineUsersWidget() {
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
               </span>
             )}
-            Thư viện cộng đồng
+            {t.miscUi.onlineUsersWidget.communityLibrary}
           </h3>
           <p className="truncate text-[10px] font-bold text-stone-500 dark:text-stone-400">
             {empty
-              ? "Chưa có ai trong sảnh — vào trước đi →"
-              : `${count} người đang ở trong sảnh →`}
+              ? t.miscUi.onlineUsersWidget.emptyLobby
+              : format(t.miscUi.onlineUsersWidget.peopleInLobby, { count })}
           </p>
         </div>
       </div>

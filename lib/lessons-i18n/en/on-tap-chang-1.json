@@ -1,0 +1,138 @@
+{
+  "slug": "on-tap-chang-1",
+  "title": "Stage 3 review: money, time, risk, cash flow.",
+  "subtitle": "The first 20 days built the foundation. This is the map of the core concepts.",
+  "duration": "8 min",
+  "openingQuestion": "Connect the concepts: if inflation is high, interest rates rise. How does a rate rise affect the present value (PV) of a future cash flow?",
+  "openingOptions": [
+    "PV rises, because the interest rate is higher",
+    "PV rises, because inflation makes the nominal future money larger",
+    "PV doesn't change, because the future cash flow itself is unchanged",
+    "PV falls, because a higher discount rate reduces the value of a future cash flow"
+  ],
+  "explanation": "This stage rests on a single idea: money has a price across time, so one dong today is worth more than one dong a year from now. From that comes the formula PV = FV / (1+r)^n, and everything else follows - compounding, NPV, valuation. The most important consequence is the direction r moves things: a higher interest rate makes the denominator larger, so present value falls, which is why stock valuations drop the moment rates rise, even when the underlying business hasn't changed a thing.",
+  "diagram": [
+    { "label": "Money loses value over time because of inflation" },
+    { "label": "So money today is worth more than money next year" },
+    { "label": "Convert it to the present using PV = FV / (1+r)^n" },
+    { "label": "r reflects risk: as r rises, every valuation falls" }
+  ],
+  "realWorldExample": {
+    "company": "A macro chain of cause and effect",
+    "description": "High inflation -> the Fed raises rates -> the discount rate rises -> the PV of future cash flows falls -> stock valuations fall -> investors sell -> the market falls. This is exactly the mechanism behind 2022."
+  },
+  "quiz": [
+    {
+      "question": "Which concept connects all 20 lessons of stage 3?",
+      "options": [
+        "The time value of money",
+        "Monthly cash coming in and going out",
+        "The interest rate announced by the bank",
+        "Maximising immediate profit"
+      ],
+      "explanation": "The time value of money is the common thread: compounding, PV/FV, inflation, risk, and leverage are all different expressions of the same principle: money at different points in time has different value."
+    },
+    {
+      "question": "If you had to remember just one thing from stage 3, what would it be?",
+      "options": [
+        "Avoid debt at all costs, in every situation",
+        "Invest early, understand risk, manage cash flow",
+        "Always keep money in a bank savings deposit for safety",
+        "Stocks are always better than a bank deposit over the long run"
+      ],
+      "explanation": "The four pillars of personal finance: start early to take advantage of compounding, understand and correctly price risk, manage cash flow ahead of profit, and use leverage with careful calculation."
+    },
+    {
+      "question": "Scenario: You're 25, earning 20 million a month, spending 15 million a month. You have 100 million in cash. The bank rate is 6% a year, inflation is 4% a year. You want to buy a 2-billion-VND house in 10 years. You have 3 strategies: A) Deposit the 100 million and save 5 million a month. B) Invest in stocks expecting 12% a year, with a risk of -20% in a bad year. C) A mix: 50 million in a safe deposit, 50 million in stocks, saving 5 million a month. Based on stage 3's concepts (compounding, risk, cash flow, time), which strategy fits best for a 10-year goal?",
+      "options": [
+        "Strategy B, because its return is highest, reaching the goal fastest",
+        "Strategy A, because it's absolutely safe for this goal",
+        "Strategy C, because it balances safety and growth",
+        "You shouldn't buy the house at all, since its price is too high relative to income"
+      ],
+      "explanation": "With a 10-year goal, time is an ally. Strategy C balances things: 50 million kept safe for emergencies, 50 million invested to capture long-run compounding, and 5 million a month saved steadily. Compounding at 12% over 10 years can roughly triple the money, while still keeping a safe portion to absorb risk. This applies risk management, the time value of money, and cash flow all at once."
+    },
+    {
+      "question": "Which concept runs through compounding, discounting, and pricing risk alike?",
+      "options": [
+        "How to tell fixed costs apart from variable costs",
+        "The ratio of savings to total monthly income",
+        "The difference between an asset and a liability",
+        "The time value of money and opportunity cost"
+      ],
+      "explanation": "Compounding is the time value of money looked at forward, discounting is the same thing looked at backward, and a risk premium is the extra price paid when the future is uncertain. Three tools, one idea: one dong today is not equal to one dong tomorrow."
+    },
+    {
+      "question": "Scenario: You're 25, with 5 million left over each month and 100 million saved, but no emergency fund yet. What is the most sensible first step?",
+      "options": [
+        "Build an emergency fund first, then invest steadily",
+        "Put the whole 100 million into stocks, since you're still young",
+        "Wait until you've saved 500 million before starting to invest",
+        "Borrow more to invest early and capture compounding sooner"
+      ],
+      "explanation": "Being young is an advantage in time, not a licence to skip the safety cushion. Investing without an emergency fund means the first shock will force you to sell right when the market is down - losing both money and the most valuable thing you currently have: time."
+    }
+  ],
+  "keyTakeaways": [
+    "Money: a medium of exchange, losing value to inflation",
+    "Time: compounding, starting early, PV/FV",
+    "**Risk:** never free, needs to be priced, diversification removes specific risk",
+    "Cash flow: the real state of financial health, more important than accounting profit"
+  ],
+  "practicePrompt": {
+    "question": "A friend says: 'I just borrowed 200 million from the bank at 10% a year to invest in a project promising 25% a year - sounded so good I put in the whole amount, keeping nothing back for safety.' Based on stage 3's concepts (leverage, risk, liquidity), what advice makes the most sense?",
+    "options": [
+      "Keep some liquidity in reserve, and weigh the risk that the project might not actually reach the promised 25%, since leverage amplifies both gains and losses",
+      "Completely reasonable, since the 15%-a-year gap between the loan rate and the expected return is certain to be profitable",
+      "Never take on any loan under any circumstances, since borrowing is always a risky decision",
+      "It doesn't matter, since a 10%-a-year loan rate is low enough not to warrant weighing extra risk"
+    ],
+    "explanation": "This connects three of stage 3's concepts: leverage amplifies both gains and losses, a 25% expected return is not a certainty, and putting in every last dong with no liquidity held back raises the risk of being unable to pay if the project falls short of expectations."
+  },
+  "summary": {
+    "keyIdea": "Money: a medium of exchange, losing value to inflation",
+    "commonMistake": "Reading the concept as a phrase to memorise rather than a principle to apply to a real decision.",
+    "action": "Time: compounding, starting early, PV/FV"
+  },
+  "application": {
+    "title": "Test yourself on the four foundational concepts",
+    "message": "Without looking anything up, spend 5 minutes writing out: the definitions of PV/FV, risk premium, liquidity, and why cash flow matters more than accounting profit - then check against the lessons to see the gaps.",
+    "secondary": "Whatever you forgot or got wrong is exactly what needs another pass."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Over the past 20 days, you've gone from 'what is finance' to deeper concepts like leverage, the time value of money, and the financial system. Now is the moment to connect it all into one unified picture."
+    },
+    { "type": "heading", "text": "The four pillars of Stage 3" },
+    {
+      "type": "paragraph",
+      "text": "All 20 lessons so far turn around four tightly linked pillars: Money (a medium of exchange, losing value to inflation), Time (compounding, the time value of money, PV/FV), Risk (never free, needs to be priced, diversification reduces specific risk), and Cash flow (the real state of financial health, more important than profit on paper)."
+    },
+    { "type": "heading", "text": "An example that connects all four pillars" },
+    {
+      "type": "paragraph",
+      "text": "When inflation runs high, a central bank usually raises interest rates to contain it (connecting Money and monetary policy). A higher rate raises the discount rate (r) in the formula PV = FV/(1+r)^n, which lowers the present value of every future cash flow (connecting Time). This is exactly why, when the US Federal Reserve raises rates, stock valuations across the whole market tend to fall - even when the underlying businesses have changed nothing about their operations."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Money: a medium of exchange, losing value to inflation if held as idle, non-earning cash",
+        "Time: compounding turns small, early investments into large wealth; PV/FV lets you compare money at different points in time",
+        "**Risk:** never free - a higher return always comes with higher risk; diversification reduces the risk specific to each asset",
+        "Cash flow: reflects real, immediate financial health, more important than profit recorded on paper"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Why learn it in this order",
+      "text": "These four pillars aren't independent - they're pieces of the same picture. Understanding each concept in isolation isn't enough; real financial capability lies in being able to SEE THE CONNECTIONS between them when analysing a real situation."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Stage 3 has finished building the foundation. From the next stage on, you'll learn to read a company's financial statements - applying these very principles directly to analysing real businesses."
+      ]
+    }
+  ]
+}

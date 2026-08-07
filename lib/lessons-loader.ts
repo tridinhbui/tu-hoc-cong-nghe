@@ -1,10 +1,21 @@
 import "server-only";
 import { readFile } from "fs/promises";
 import path from "path";
-import type { Lesson, Difficulty, QuizQuestion, LessonSectionBlock, LessonMeta, NextLessonMeta } from "./lesson-types";
+import type {
+  Lesson,
+  Difficulty,
+  QuizQuestion,
+  LessonSectionBlock,
+  LessonMeta,
+  NextLessonMeta,
+  LessonTranslation,
+  LocalizedLesson,
+} from "./lesson-types";
 import { applyLessonOverrides } from "./lesson-quiz-overrides.js";
 import { balanceLessonQuizzes } from "./lesson-quiz-balance.js";
 import { lessonBelongsToTrack } from "./track-stages";
+import { DEFAULT_LOCALE, type Locale } from "./i18n/locales";
+import { mergeLessonTranslation } from "./lesson-translations.js";
 
 /**
  * Dynamic lesson loader for code splitting.
@@ -35,6 +46,82 @@ let lessonsCache: Lesson[] | null = null;
 let indexCache: LessonMeta[] | null = null;
 
 const lessonsDataDir = path.join(process.cwd(), "lib", "lessons-data");
+
+// Translations live outside lib/lessons-data because the generator wipes that
+// directory on every run (see the unlinkSync loop in
+// scripts/generate-lesson-data.mjs). Hand-authored English content in there
+// would be deleted by the next `npm run build`.
+const translationsDir = path.join(process.cwd(), "lib", "lessons-i18n");
+
+/** Per-locale translation cache. A miss is cached as `null` too: for the 705
+ *  untranslated lessons the fallback path is the common one, and without
+ *  negative caching every request re-attempts a read that is known to ENOENT. */
+const translationCache = new Map<string, LessonTranslation | null>();
+
+async function loadTranslation(
+  slug: string,
+  locale: Locale
+): Promise<LessonTranslation | null> {
+  if (locale === DEFAULT_LOCALE) return null;
+  const key = `${locale}/${slug}`;
+  const cached = translationCache.get(key);
+  if (cached !== undefined) return cached;
+
+  let translation: LessonTranslation | null = null;
+  try {
+    const raw = await readFile(path.join(translationsDir, locale, `${slug}.json`), "utf8");
+    translation = JSON.parse(raw) as LessonTranslation;
+  } catch {
+    translation = null; // not translated yet - the reader gets Vietnamese
+  }
+  translationCache.set(key, translation);
+  return translation;
+}
+
+/**
+ * Translated titles/subtitles for the listing pages, keyed by slug.
+ *
+ * The dashboard renders hundreds of cards from `_index.json` alone and never
+ * opens a lesson body, so it cannot pay 715 per-file reads to find out which
+ * titles have English versions. scripts/build-translation-index.mjs walks the
+ * translation files once at build time and writes a slim per-locale index in
+ * the same shape, holding only the fields a card actually shows.
+ */
+type TranslationIndexEntry = { title?: string; subtitle?: string; duration?: string };
+const translationIndexCache = new Map<Locale, Map<string, TranslationIndexEntry>>();
+
+async function loadTranslationIndex(
+  locale: Locale
+): Promise<Map<string, TranslationIndexEntry>> {
+  if (locale === DEFAULT_LOCALE) return new Map();
+  const cached = translationIndexCache.get(locale);
+  if (cached) return cached;
+
+  let entries: Map<string, TranslationIndexEntry>;
+  try {
+    const raw = await readFile(path.join(translationsDir, locale, "_index.json"), "utf8");
+    entries = new Map(Object.entries(JSON.parse(raw) as Record<string, TranslationIndexEntry>));
+  } catch {
+    // No translations built for this locale yet. An empty map means every
+    // listing falls back to Vietnamese, which is the intended behaviour, not
+    // an error worth failing a render over.
+    entries = new Map();
+  }
+  translationIndexCache.set(locale, entries);
+  return entries;
+}
+
+/** Overlay translated card text onto a slim metadata row. */
+function localizeMeta(meta: LessonMeta, index: Map<string, TranslationIndexEntry>): LessonMeta {
+  const patch = index.get(meta.slug);
+  if (!patch) return meta;
+  return {
+    ...meta,
+    title: patch.title?.trim() ? patch.title : meta.title,
+    subtitle: patch.subtitle?.trim() ? patch.subtitle : meta.subtitle,
+    duration: patch.duration?.trim() ? patch.duration : meta.duration,
+  };
+}
 
 /**
  * Load all lessons (cached after first load)
@@ -86,7 +173,20 @@ async function loadIndex(): Promise<LessonMeta[] | null> {
  * Get a single lesson by slug with minimal bundle impact
  * Only loads the lessons module when called
  */
-export async function getLessonBySlug(slug: string): Promise<Lesson | undefined> {
+export async function getLessonBySlug(
+  slug: string,
+  // Defaults to Vietnamese so every existing caller keeps its current
+  // behaviour; only callers that have actually resolved the reader's locale
+  // (via getServerLocale) opt into a translation.
+  locale: Locale = DEFAULT_LOCALE
+): Promise<LocalizedLesson | undefined> {
+  const source = await getSourceLessonBySlug(slug);
+  if (!source) return undefined;
+  return mergeLessonTranslation(source, await loadTranslation(slug, locale), locale);
+}
+
+/** The Vietnamese lesson exactly as generated - no translation applied. */
+async function getSourceLessonBySlug(slug: string): Promise<Lesson | undefined> {
   try {
     const raw = await readFile(path.join(lessonsDataDir, `${slug}.json`), "utf8");
     // Served as-is. scripts/generate-lesson-data.mjs already ran
@@ -108,24 +208,36 @@ export async function getLessonBySlug(slug: string): Promise<Lesson | undefined>
  * Get lesson by ID with minimal bundle impact - resolves id -> slug via the
  * cheap generated index, then reuses getLessonBySlug's fast per-file read.
  */
-export async function getLessonById(id: number): Promise<Lesson | undefined> {
+export async function getLessonById(
+  id: number,
+  locale: Locale = DEFAULT_LOCALE
+): Promise<LocalizedLesson | undefined> {
   const index = await loadIndex();
   const slug = index?.find((l) => l.id === id)?.slug;
   if (slug) {
-    const lesson = await getLessonBySlug(slug);
+    const lesson = await getLessonBySlug(slug, locale);
     if (lesson) return lesson;
   }
   const lessons = await loadLessons();
-  return lessons.find((l) => l.id === id);
+  const source = lessons.find((l) => l.id === id);
+  if (!source) return undefined;
+  return mergeLessonTranslation(source, await loadTranslation(source.slug, locale), locale);
 }
 
 /**
  * Get lesson metadata only (stripped down version for dashboard)
  * This is the most efficient way to load lesson data for listings
  */
-export async function getLessonsMeta(): Promise<LessonMeta[]> {
+export async function getLessonsMeta(locale: Locale = DEFAULT_LOCALE): Promise<LessonMeta[]> {
   const index = await loadIndex();
-  if (index) return index;
+  if (index) {
+    if (locale === DEFAULT_LOCALE) return index;
+    const translations = await loadTranslationIndex(locale);
+    // No translations for this locale: return the cached array by reference
+    // rather than mapping 715 rows into a fresh one on every request.
+    if (translations.size === 0) return index;
+    return index.map((meta) => localizeMeta(meta, translations));
+  }
 
   const lessons = await loadLessons();
   return lessons.map((l) => ({
@@ -144,8 +256,12 @@ export async function getLessonsMeta(): Promise<LessonMeta[]> {
 /**
  * Get lessons by track with metadata only
  */
-export async function getLessonsByTrack(track: "personal" | "professional" | "bonus"): Promise<LessonMeta[]> {
+export async function getLessonsByTrack(
+  track: "personal" | "professional" | "bonus",
+  locale: Locale = DEFAULT_LOCALE
+): Promise<LessonMeta[]> {
   const index = (await loadIndex()) ?? (await loadLessons());
+  const translations = await loadTranslationIndex(locale);
 
   // "bonus" is the one track that only ever exists as an explicit field -
   // case-study lessons sit outside the day-numbered curriculum by
@@ -156,26 +272,42 @@ export async function getLessonsByTrack(track: "personal" | "professional" | "bo
   const belongs = (lesson: { id: number; track?: "personal" | "professional" | "bonus" }) =>
     track === "bonus" ? lesson.track === "bonus" : lessonBelongsToTrack(lesson, track);
 
-  return index.filter(belongs).map((l) => ({
-    id: l.id,
-    slug: l.slug,
-    title: l.title,
-    subtitle: l.subtitle,
-    duration: l.duration,
-    totalMinutes: l.totalMinutes,
-    difficulty: l.difficulty,
-    track: l.track,
-  }));
+  return index.filter(belongs).map((l) =>
+    localizeMeta(
+      {
+        id: l.id,
+        slug: l.slug,
+        title: l.title,
+        subtitle: l.subtitle,
+        duration: l.duration,
+        totalMinutes: l.totalMinutes,
+        difficulty: l.difficulty,
+        track: l.track,
+      },
+      translations
+    )
+  );
 }
 
 /**
  * Get next lesson by ID
  */
-export async function getNextLesson(currentId: number): Promise<NextLessonMeta | undefined> {
+export async function getNextLesson(
+  currentId: number,
+  locale: Locale = DEFAULT_LOCALE
+): Promise<NextLessonMeta | undefined> {
   const index = await loadIndex();
+  const translations = await loadTranslationIndex(locale);
+  const titleOf = (slug: string, title: string) => {
+    const patch = translations.get(slug);
+    return patch?.title?.trim() ? patch.title : title;
+  };
+
   if (index) {
     const next = index.find((l) => l.id === currentId + 1);
-    return next ? { id: next.id, slug: next.slug, title: next.title } : undefined;
+    return next
+      ? { id: next.id, slug: next.slug, title: titleOf(next.slug, next.title) }
+      : undefined;
   }
 
   const lessons = await loadLessons();
@@ -185,18 +317,29 @@ export async function getNextLesson(currentId: number): Promise<NextLessonMeta |
   return {
     id: next.id,
     slug: next.slug,
-    title: next.title,
+    title: titleOf(next.slug, next.title),
   };
 }
 
 /**
  * Get previous lesson by ID
  */
-export async function getPreviousLesson(currentId: number): Promise<NextLessonMeta | undefined> {
+export async function getPreviousLesson(
+  currentId: number,
+  locale: Locale = DEFAULT_LOCALE
+): Promise<NextLessonMeta | undefined> {
   const index = await loadIndex();
+  const translations = await loadTranslationIndex(locale);
+  const titleOf = (slug: string, title: string) => {
+    const patch = translations.get(slug);
+    return patch?.title?.trim() ? patch.title : title;
+  };
+
   if (index) {
     const prev = index.find((l) => l.id === currentId - 1);
-    return prev ? { id: prev.id, slug: prev.slug, title: prev.title } : undefined;
+    return prev
+      ? { id: prev.id, slug: prev.slug, title: titleOf(prev.slug, prev.title) }
+      : undefined;
   }
 
   const lessons = await loadLessons();
@@ -206,7 +349,7 @@ export async function getPreviousLesson(currentId: number): Promise<NextLessonMe
   return {
     id: prev.id,
     slug: prev.slug,
-    title: prev.title,
+    title: titleOf(prev.slug, prev.title),
   };
 }
 
@@ -214,3 +357,4 @@ export async function getPreviousLesson(currentId: number): Promise<NextLessonMe
 // that already do `import type { LessonMeta } from "@/lib/lessons-loader"`)
 // - the canonical declarations now live in lib/lesson-types.ts.
 export type { LessonMeta, NextLessonMeta };
+export type { LocalizedLesson };

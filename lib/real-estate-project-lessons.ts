@@ -385,8 +385,8 @@ export const REAL_ESTATE_PROJECT_LESSONS: Lesson[] = [
       {
         question: "Ai chịu rủi ro lớn nhất khi một dự án chậm tiến độ?",
         options: [
-          "Người mua nhà",
-          "Ngân hàng cho vay",
+          "Người mua nhà đã đóng tiền theo tiến độ",
+          "Ngân hàng cho vay dự án",
           "Nhà thầu thi công đang triển khai công trình",
           "Nhà đầu tư góp vốn cùng chủ đầu tư vào dự án",
         ],
@@ -520,9 +520,9 @@ export const REAL_ESTATE_PROJECT_LESSONS: Lesson[] = [
       {
         question: "Cap rate tăng từ 8% lên 9% với NOI không đổi thì giá trị thay đổi ra sao?",
         options: [
-          "Giảm khoảng 11%",
+          "Giảm khoảng 11%, vì giá trị tỉ lệ nghịch với cap rate",
           "Tăng khoảng 12,5% do tỷ suất sinh lời cao hơn",
-          "Giảm đúng 1%",
+          "Giảm đúng 1%, bằng mức cap rate vừa tăng thêm",
           "Không đổi vì NOI mới là yếu tố quyết định giá trị tài sản",
         ],
         correct: 0,

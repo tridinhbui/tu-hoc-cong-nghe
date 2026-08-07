@@ -7,6 +7,8 @@ import { X, CheckCircle2 } from "lucide-react";
 import type { ChallengeQuestion } from "@/app/api/knowledge-challenge/route";
 import { submitGateChallenge, type QuizAnswerSubmission } from "@/lib/supabase-challenges";
 import { useIsClient } from "@/lib/use-is-client";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 interface KnowledgeChallengeModalProps {
   onClose: () => void;
@@ -24,6 +26,7 @@ const PASS_RATIO = 0.6;
 
 export default function KnowledgeChallengeModal({ onClose, gate, onPassed }: KnowledgeChallengeModalProps) {
   const mounted = useIsClient();
+  const { t } = useI18n();
   const [state, setState] = useState<LoadState>("loading");
   const [questions, setQuestions] = useState<ChallengeQuestion[]>([]);
   const [activeQ, setActiveQ] = useState(0);
@@ -126,33 +129,37 @@ export default function KnowledgeChallengeModal({ onClose, gate, onPassed }: Kno
         <div className="flex items-center justify-between px-6 py-4 border-b border-stone-200">
           <div>
             <h2 className="font-extrabold text-stone-900">
-              {gate ? "🔒 Vượt qua thử thách để mở khoá" : "🎯 Thử thách kiến thức"}
+              {gate ? t.knowledgeChallenge.gateTitle : t.knowledgeChallenge.freeTitle}
             </h2>
             {gate && (
               <p className="text-xs text-stone-500 mt-0.5">
-                Cần đúng tối thiểu {Math.ceil((questions.length || 5) * PASS_RATIO)}/{questions.length || 5} câu để mở "{gate.lessonTitle}"
+                {format(t.knowledgeChallenge.gateSubtitle, {
+                  required: Math.ceil((questions.length || 5) * PASS_RATIO),
+                  total: questions.length || 5,
+                  lessonTitle: gate.lessonTitle,
+                })}
               </p>
             )}
           </div>
-          <button onClick={onClose} className="text-stone-400 hover:text-stone-700 cursor-pointer" title="Đóng">
+          <button onClick={onClose} className="text-stone-400 hover:text-stone-700 cursor-pointer" title={t.knowledgeChallenge.close}>
             <X className="w-5 h-5" />
           </button>
         </div>
 
         <div className="p-6">
           {state === "loading" && (
-            <p className="text-center text-stone-500 py-8">Đang chuẩn bị câu hỏi...</p>
+            <p className="text-center text-stone-500 py-8">{t.knowledgeChallenge.preparingQuestions}</p>
           )}
 
           {state === "error" && (
             <p className="text-center text-stone-500 py-8">
-              Không thể tải thử thách lúc này. Vui lòng thử lại sau.
+              {t.knowledgeChallenge.loadError}
             </p>
           )}
 
           {state === "empty" && (
             <p className="text-center text-stone-500 py-8">
-              Hãy hoàn thành thêm vài bài học để mở khoá thử thách ôn tập kiến thức nhé!
+              {t.knowledgeChallenge.emptyState}
             </p>
           )}
 
@@ -160,7 +167,7 @@ export default function KnowledgeChallengeModal({ onClose, gate, onPassed }: Kno
             <div className="space-y-5">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-extrabold text-stone-500 uppercase tracking-wide">
-                  Câu {activeQ + 1} / {questions.length}
+                  {format(t.knowledgeChallenge.questionCounter, { current: activeQ + 1, total: questions.length })}
                 </span>
                 <span className="text-xs text-stone-400 truncate max-w-[60%]">
                   {q.lessonTitle}
@@ -196,7 +203,7 @@ export default function KnowledgeChallengeModal({ onClose, gate, onPassed }: Kno
 
               {submitted && (
                 <div className={`rounded-xl p-4 text-sm leading-relaxed border ${results[activeQ] ? "bg-emerald-50 border-emerald-100 text-emerald-800" : "bg-rose-50 border-rose-100 text-rose-800"}`}>
-                  <p className="font-bold mb-1">{results[activeQ] ? "Chính xác!" : "Giải thích:"}</p>
+                  <p className="font-bold mb-1">{results[activeQ] ? t.knowledgeChallenge.correctFeedback : t.knowledgeChallenge.explanationLabel}</p>
                   <p>{q.explanation}</p>
                 </div>
               )}
@@ -208,15 +215,15 @@ export default function KnowledgeChallengeModal({ onClose, gate, onPassed }: Kno
                   className={`w-full py-4 rounded-xl font-extrabold text-base uppercase tracking-wide text-white cursor-pointer flex items-center justify-center gap-2 ${selected !== null ? "bg-stone-900 hover:opacity-90" : "bg-stone-200 text-stone-500 cursor-not-allowed"}`}
                 >
                   <CheckCircle2 className="w-5 h-5" />
-                  Kiểm tra đáp án
+                  {t.knowledgeChallenge.checkAnswer}
                 </button>
               ) : activeQ < questions.length - 1 ? (
                 <button onClick={next} className="w-full py-3 rounded-xl font-bold text-sm uppercase tracking-wider text-white bg-stone-900 hover:opacity-90 cursor-pointer">
-                  Câu tiếp theo →
+                  {t.knowledgeChallenge.nextQuestion}
                 </button>
               ) : (
                 <button onClick={next} className="w-full py-3 rounded-xl font-bold text-sm uppercase tracking-wider text-white bg-stone-900 hover:opacity-90 cursor-pointer">
-                  Xem kết quả →
+                  {t.knowledgeChallenge.seeResults}
                 </button>
               )}
             </div>
@@ -224,7 +231,7 @@ export default function KnowledgeChallengeModal({ onClose, gate, onPassed }: Kno
 
           {state === "ready" && allDone && gate && serverPassed === null && (
             <div className="text-center py-8">
-              <p className="text-stone-500 text-sm">Đang xác nhận kết quả...</p>
+              <p className="text-stone-500 text-sm">{t.knowledgeChallenge.confirming}</p>
             </div>
           )}
 
@@ -233,9 +240,9 @@ export default function KnowledgeChallengeModal({ onClose, gate, onPassed }: Kno
               <div className="text-5xl">{gate ? (serverPassed ? "🔓" : "🔒") : score === questions.length ? "🏆" : score >= questions.length * 0.7 ? "🎉" : "💪"}</div>
               <div>
                 <h3 className="font-bold text-stone-900 text-xl">
-                  {gate ? (serverPassed ? "Đã mở khoá!" : "Chưa đạt yêu cầu") : "Hoàn thành thử thách!"}
+                  {gate ? (serverPassed ? t.knowledgeChallenge.unlockedTitle : t.knowledgeChallenge.notPassedTitle) : t.knowledgeChallenge.completedTitle}
                 </h3>
-                <p className="text-stone-500 text-sm mt-1">{score}/{questions.length} câu đúng</p>
+                <p className="text-stone-500 text-sm mt-1">{format(t.knowledgeChallenge.scoreLabel, { score, total: questions.length })}</p>
               </div>
               <div className="flex flex-wrap gap-2 justify-center">
                 {results.map((ok, i) => (
@@ -246,7 +253,7 @@ export default function KnowledgeChallengeModal({ onClose, gate, onPassed }: Kno
               </div>
               {questions.some((_, i) => !results[i]) && (
                 <div className="text-left bg-stone-50 rounded-xl p-4 space-y-1.5">
-                  <p className="text-xs font-bold text-stone-500 uppercase tracking-wide mb-2">Ôn lại các bài có câu sai</p>
+                  <p className="text-xs font-bold text-stone-500 uppercase tracking-wide mb-2">{t.knowledgeChallenge.reviewMissedTitle}</p>
                   {Array.from(new Set(questions.filter((_, i) => !results[i]).map((qq) => qq.lessonId))).map((lessonId) => {
                     const lq = questions.find((qq) => qq.lessonId === lessonId)!;
                     return (
@@ -260,28 +267,28 @@ export default function KnowledgeChallengeModal({ onClose, gate, onPassed }: Kno
               {gate && serverPassed ? (
                 <div className="grid grid-cols-2 gap-3 pt-2">
                   <button onClick={onClose} className="py-3 rounded-xl border border-stone-200 text-stone-600 text-sm font-bold hover:bg-stone-50 cursor-pointer">
-                    Để sau
+                    {t.knowledgeChallenge.later}
                   </button>
                   <button onClick={onPassed} className="py-3 rounded-xl text-white text-sm font-bold bg-emerald-600 hover:bg-emerald-700 cursor-pointer">
-                    Vào bài học →
+                    {t.knowledgeChallenge.goToLesson}
                   </button>
                 </div>
               ) : gate && serverPassed === false ? (
                 <div className="grid grid-cols-2 gap-3 pt-2">
                   <button onClick={onClose} className="py-3 rounded-xl border border-stone-200 text-stone-600 text-sm font-bold hover:bg-stone-50 cursor-pointer">
-                    Đóng
+                    {t.knowledgeChallenge.close}
                   </button>
                   <button onClick={loadChallenge} className="py-3 rounded-xl text-white text-sm font-bold bg-stone-900 hover:opacity-90 cursor-pointer">
-                    Thử lại
+                    {t.knowledgeChallenge.tryAgain}
                   </button>
                 </div>
               ) : (
                 <div className="grid grid-cols-2 gap-3 pt-2">
                   <button onClick={onClose} className="py-3 rounded-xl border border-stone-200 text-stone-600 text-sm font-bold hover:bg-stone-50 cursor-pointer">
-                    Đóng
+                    {t.knowledgeChallenge.close}
                   </button>
                   <button onClick={loadChallenge} className="py-3 rounded-xl text-white text-sm font-bold bg-stone-900 hover:opacity-90 cursor-pointer">
-                    Thử thách mới
+                    {t.knowledgeChallenge.newChallenge}
                   </button>
                 </div>
               )}

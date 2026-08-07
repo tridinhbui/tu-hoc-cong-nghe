@@ -6,8 +6,9 @@ import { motion } from "framer-motion";
 import {
   BREATH_CYCLES,
   BREATH_CYCLE_SECONDS,
-  BREATH_PHASES,
+  breathPhasesOf,
 } from "@/lib/quiet-corner";
+import { useI18n } from "@/lib/i18n/context";
 
 // Thở hộp 4-4-4-4, bốn chu kỳ. Cố ý không có nút bỏ qua, không có điểm, không
 // ghi lại gì - chạy xong thì nó chỉ nói "xong rồi", vậy thôi.
@@ -22,6 +23,8 @@ function subscribeToReducedMotion(onChange: () => void) {
 }
 
 export default function BreathingCircle() {
+  const { t } = useI18n();
+  const BREATH_PHASES = breathPhasesOf(t);
   const [running, setRunning] = useState(false);
   const [elapsed, setElapsed] = useState(0);
   const startedAt = useRef<number | null>(null);
@@ -108,12 +111,12 @@ export default function BreathingCircle() {
                 {secondsLeftInPhase}
               </p>
               <p className="mt-1 text-[11px] font-bold text-stone-500 dark:text-stone-400">
-                Vòng {cycleNumber}/{BREATH_CYCLES}
+                {t.breathing.round} {cycleNumber}/{BREATH_CYCLES}
               </p>
             </>
           ) : (
             <p className="px-6 text-sm font-semibold leading-relaxed text-stone-600 dark:text-stone-300">
-              {done ? "Xong rồi. Không có điểm nào cả — chỉ là một phút của bạn." : "Bốn nhịp thở, khoảng một phút"}
+              {done ? t.breathing.doneTitle : t.breathing.idleBlurb}
             </p>
           )}
         </div>
@@ -128,7 +131,7 @@ export default function BreathingCircle() {
           }}
           className="rounded-full bg-gradient-to-br from-amber-500 to-orange-600 px-6 py-2.5 text-sm font-bold text-white shadow-md transition-transform hover:scale-105"
         >
-          {done ? "Thở thêm một phút" : "Bắt đầu thở"}
+          {done ? t.breathing.again : t.breathing.start}
         </button>
       )}
 
@@ -141,7 +144,7 @@ export default function BreathingCircle() {
           }}
           className="text-xs font-bold text-stone-500 underline dark:text-stone-400"
         >
-          Dừng lại
+          {t.breathing.stop}
         </button>
       )}
     </div>

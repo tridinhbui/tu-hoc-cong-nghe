@@ -1,8 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 export default function InteractiveInterestRate() {
+  const { t } = useI18n();
   const [rate, setRate] = useState(6);
   const loan = 1000; // 1 tỷ
   const savings = 500; // 500 triệu
@@ -19,22 +22,22 @@ export default function InteractiveInterestRate() {
   };
 
   const getRateLabel = () => {
-    if (rate <= 4) return "Rất thấp - nền kinh tế cần kích thích";
-    if (rate <= 7) return "Bình thường - cân bằng tốt";
-    if (rate <= 10) return "Cao - đang kiểm soát lạm phát";
-    return "Rất cao - vay vốn rất khó khăn";
+    if (rate <= 4) return t.interestRateCalc.rateVeryLow;
+    if (rate <= 7) return t.interestRateCalc.rateNormal;
+    if (rate <= 10) return t.interestRateCalc.rateHigh;
+    return t.interestRateCalc.rateVeryHigh;
   };
 
   return (
     <div className="bg-white rounded-3xl border border-stone-100 p-6 space-y-6">
       <div>
-        <h3 className="font-bold text-stone-800 text-lg mb-1">📊 Lãi suất thay đổi → mọi thứ thay đổi</h3>
-        <p className="text-stone-500 text-sm">Kéo thanh lãi suất để xem tác động thực tế</p>
+        <h3 className="font-bold text-stone-800 text-lg mb-1">{t.interestRateCalc.title}</h3>
+        <p className="text-stone-500 text-sm">{t.interestRateCalc.subtitle}</p>
       </div>
 
       <div>
         <div className="flex justify-between items-center mb-3">
-          <span className="font-medium text-stone-700">Lãi suất ngân hàng</span>
+          <span className="font-medium text-stone-700">{t.interestRateCalc.rateLabel}</span>
           <span className={`text-3xl font-bold ${getRateColor()}`}>{rate}%</span>
         </div>
         <input
@@ -58,36 +61,36 @@ export default function InteractiveInterestRate() {
         <div className="bg-blue-50 rounded-2xl p-4 flex items-center gap-4">
           <div className="text-3xl">🏦</div>
           <div className="flex-1">
-            <div className="font-semibold text-stone-800">Gửi tiết kiệm 500 triệu</div>
-            <div className="text-stone-500 text-sm">Mỗi năm bạn nhận được</div>
+            <div className="font-semibold text-stone-800">{t.interestRateCalc.savingsTitle}</div>
+            <div className="text-stone-500 text-sm">{t.interestRateCalc.savingsSubtitle}</div>
           </div>
           <div className="text-right">
-            <div className="text-xl font-bold text-blue-600">+{savingsReturn} triệu</div>
-            <div className="text-xs text-stone-500">/năm</div>
+            <div className="text-xl font-bold text-blue-600">+{format(t.interestRateCalc.millionUnit, { value: savingsReturn })}</div>
+            <div className="text-xs text-stone-500">{t.interestRateCalc.perYearSuffix}</div>
           </div>
         </div>
 
         <div className="bg-rose-50 rounded-2xl p-4 flex items-center gap-4">
           <div className="text-3xl">🏠</div>
           <div className="flex-1">
-            <div className="font-semibold text-stone-800">Vay mua nhà 1 tỷ</div>
-            <div className="text-stone-500 text-sm">Tiền lãi mỗi tháng phải trả thêm</div>
+            <div className="font-semibold text-stone-800">{t.interestRateCalc.loanTitle}</div>
+            <div className="text-stone-500 text-sm">{t.interestRateCalc.loanSubtitle}</div>
           </div>
           <div className="text-right">
-            <div className="text-xl font-bold text-rose-600">+{monthlyCost} triệu</div>
-            <div className="text-xs text-stone-500">/tháng</div>
+            <div className="text-xl font-bold text-rose-600">+{format(t.interestRateCalc.millionUnit, { value: monthlyCost })}</div>
+            <div className="text-xs text-stone-500">{t.interestRateCalc.perMonthSuffix}</div>
           </div>
         </div>
 
         <div className="bg-amber-50 rounded-2xl p-4 flex items-center gap-4">
           <div className="text-3xl">🏭</div>
           <div className="flex-1">
-            <div className="font-semibold text-stone-800">Doanh nghiệp vay vốn</div>
-            <div className="text-stone-500 text-sm">Lãi suất cao → chi phí vốn tăng</div>
+            <div className="font-semibold text-stone-800">{t.interestRateCalc.businessTitle}</div>
+            <div className="text-stone-500 text-sm">{t.interestRateCalc.businessSubtitle}</div>
           </div>
           <div className="text-right">
             <div className={`text-sm font-bold ${rate > 8 ? "text-rose-600" : "text-emerald-600"}`}>
-              {rate > 10 ? "Rất khó vay ❌" : rate > 7 ? "Khó vay hơn ⚠️" : "Thuận lợi ✅"}
+              {rate > 10 ? t.interestRateCalc.businessVeryHard : rate > 7 ? t.interestRateCalc.businessHarder : t.interestRateCalc.businessFavorable}
             </div>
           </div>
         </div>
@@ -95,13 +98,13 @@ export default function InteractiveInterestRate() {
 
       {rate >= 10 && (
         <div className="bg-rose-50 border border-rose-200 rounded-2xl p-4 text-rose-800 text-sm">
-          <strong>Lãi suất {rate}% - rất cao!</strong> Doanh nghiệp khó vay, thị trường bất động sản đóng băng, nhưng người gửi tiết kiệm rất hài lòng.
+          <strong>{format(t.interestRateCalc.highRateTitle, { rate })}</strong> {t.interestRateCalc.highRateBody}
         </div>
       )}
 
       {rate <= 3 && (
         <div className="bg-blue-50 border border-blue-200 rounded-2xl p-4 text-blue-800 text-sm">
-          <strong>Lãi suất {rate}% - rất thấp!</strong> Vay tiền rẻ, doanh nghiệp đầu tư nhiều hơn, nhưng người gửi tiết kiệm nhận được rất ít.
+          <strong>{format(t.interestRateCalc.lowRateTitle, { rate })}</strong> {t.interestRateCalc.lowRateBody}
         </div>
       )}
     </div>

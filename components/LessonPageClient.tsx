@@ -3,8 +3,9 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import type { Lesson } from "@/lib/lesson-types";
+import type { Lesson, LocalizedLesson } from "@/lib/lesson-types";
 import LessonPageLayout from "@/components/LessonPageLayout";
+import LessonTranslationBadge from "@/components/LessonTranslationBadge";
 import OpeningQuestionBlock from "@/components/OpeningQuestionBlock";
 import InteractiveWidget, { hasInteractiveWidget } from "@/components/InteractiveWidget";
 import MidpointInteractive from "@/components/MidpointInteractive";
@@ -17,9 +18,15 @@ import { getLessonDisplayLabel, getLessonRecallDay } from "@/lib/lesson-labels";
 import TypingText from "@/components/TypingText";
 import LessonRoomCard from "@/components/LessonRoomCard";
 import { trackFeatureClick } from "@/lib/feature-events";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 interface Props {
-  lesson: Lesson;
+  // LocalizedLesson when it came through the locale-aware loader, plain Lesson
+  // from the hand-authored static pages that build their object inline. The
+  // badge treats a missing `translated` the same as untranslated, which is
+  // right: those pages have no translation layer at all.
+  lesson: Lesson | LocalizedLesson;
   nextLesson?: { id: number; slug: string; title: string };
 }
 
@@ -37,6 +44,7 @@ function getMetaphorForLesson(title: string): string {
 }
 
 export default function LessonPageClient({ lesson, nextLesson }: Props) {
+  const { t } = useI18n();
   const [feynmanMode, setFeynmanMode] = useState(false);
   // Staged reveal for the "Tài Tài giải thích" card, like a chatbot response:
   // the metaphor line types itself out first, then the takeaways/mistake
@@ -110,6 +118,8 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
   return (
     <div className="relative">
       <LessonPageLayout lesson={meta} quiz={sidebarQuiz}>
+      <LessonTranslationBadge translated={"translated" in lesson ? lesson.translated : undefined} />
+
       {/* 0. Why this lesson matters - one or two sentences up front on what
           problem it solves and what the learner can do after, so the value
           is obvious before they invest time reading. Only lessons written
@@ -119,7 +129,7 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
       {lesson.whyItMatters && (
         <div className="rounded-xl border-2 border-amber-200 dark:border-amber-900 bg-amber-50 dark:bg-amber-950/30 p-5 sm:p-6">
           <p className="text-xs font-extrabold uppercase tracking-widest text-amber-700 dark:text-amber-500 mb-2">
-            Vì sao bài này quan trọng
+            {t.lessonPage.whyItMattersTitle}
           </p>
           <p className="text-stone-800 dark:text-stone-200 text-base sm:text-lg leading-relaxed font-medium">
             {lesson.whyItMatters}
@@ -131,10 +141,10 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
       <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50/60 dark:bg-stone-900/80 p-4.5 flex items-center justify-between gap-4">
         <div className="min-w-0 flex-1">
           <h4 className="text-xs font-bold text-stone-900 dark:text-stone-100 flex items-center gap-1.5">
-            💡 Chế độ Feynman (Giải thích siêu đơn giản)
+            {t.lessonPage.feynmanTitle}
           </h4>
           <p className="text-[10px] text-stone-600 dark:text-stone-300 mt-1 leading-relaxed">
-            Tài Tài giải thích bài học này theo cách dễ nhớ nhất cho học sinh lớp 5!
+            {t.lessonPage.feynmanSubtitle}
           </p>
         </div>
         <button
@@ -148,7 +158,7 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
               : "bg-white dark:bg-stone-800 text-stone-700 dark:text-stone-200 border border-stone-200 dark:border-stone-700"
           }`}
         >
-          {feynmanMode ? "Đang bật 💡" : "Dùng ELI5 ⚡"}
+          {feynmanMode ? t.lessonPage.feynmanOn : t.lessonPage.feynmanOff}
         </button>
       </div>
 
@@ -161,21 +171,21 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
           <div className="flex items-center gap-2.5">
             <span className="text-2xl animate-bounce">🦖</span>
             <div>
-              <h5 className="text-xs font-extrabold text-amber-700 dark:text-amber-300">Tài Tài giải thích (dành cho học sinh lớp 5)</h5>
-              <p className="text-[10px] text-stone-500 dark:text-stone-400 font-bold uppercase tracking-wider">Học theo phép so sánh ẩn dụ</p>
+              <h5 className="text-xs font-extrabold text-amber-700 dark:text-amber-300">{t.lessonPage.feynmanCardTitle}</h5>
+              <p className="text-[10px] text-stone-500 dark:text-stone-400 font-bold uppercase tracking-wider">{t.lessonPage.feynmanCardSubtitle}</p>
             </div>
           </div>
           <div className="text-xs leading-relaxed text-stone-700 dark:text-stone-300 space-y-3 font-medium">
             <p>
-              Chào bạn! Để giúp bạn ghi nhớ bài <strong>&quot;{lesson.title}&quot;</strong> nhanh nhất, Tài Tài xin đưa ra một phép so sánh siêu bình dân:
+              {t.lessonPage.feynmanIntroPart1} <strong>&quot;{lesson.title}&quot;</strong> {t.lessonPage.feynmanIntroPart2}
             </p>
             <div className="bg-amber-100/60 dark:bg-amber-950/50 p-3.5 rounded-xl border border-amber-200 dark:border-amber-900/60 text-amber-950 dark:text-amber-200 font-bold">
-              💡 Hãy tưởng tượng khái niệm này giống như{" "}
+              {t.lessonPage.feynmanMetaphorLeadIn}{" "}
               <TypingText text={`${getMetaphorForLesson(lesson.title)}.`} onDone={() => setMetaphorTyped(true)} />
             </div>
             {metaphorTyped && (
               <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} className="space-y-3">
-                <p className="font-semibold text-stone-900 dark:text-stone-100">3 điểm mấu chốt dễ nhớ nhất:</p>
+                <p className="font-semibold text-stone-900 dark:text-stone-100">{t.lessonPage.feynmanTakeawaysTitle}</p>
                 <ul className="list-disc pl-4 space-y-1.5 text-stone-700 dark:text-stone-300">
                   {(lesson.keyTakeaways ?? []).slice(0, 3).map((takeaway: string, idx: number) => (
                     <li key={idx}>
@@ -185,7 +195,7 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
                 </ul>
                 {lesson.summary?.commonMistake && (
                   <p className="text-[11px] text-red-600 dark:text-red-300 bg-red-50/60 dark:bg-red-950/40 p-2.5 rounded-lg border border-red-200/60 dark:border-red-900/40 font-bold">
-                    ⚠️ Sai lầm hay gặp: {lesson.summary.commonMistake}
+                    {t.lessonPage.feynmanMistakePrefix} {lesson.summary.commonMistake}
                   </p>
                 )}
               </motion.div>
@@ -220,7 +230,7 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
         lesson.explanation && (
           <div className="space-y-3">
             <div className="text-[10px] font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wider">
-              Giải thích chi tiết
+              {t.lessonPage.explanationTitle}
             </div>
             <p className="text-stone-700 dark:text-stone-300 leading-relaxed text-base">
               {highlightGlossaryTerms(lesson.explanation, new Set())}
@@ -239,7 +249,7 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
       {lesson.diagram && lesson.diagram.length > 0 && (
         <div className="space-y-4">
           <div className="text-[10px] font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wider">
-            Sơ đồ trực quan
+            {t.lessonPage.diagramTitle}
           </div>
           <div className="flex flex-col items-center py-4 bg-stone-50/50 dark:bg-stone-900/50 rounded-2xl border border-stone-100 dark:border-stone-800">
             {lesson.diagram.map((node: { label: string; arrow?: boolean }, i: number) => (
@@ -265,7 +275,7 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
       {hasInteractiveWidget(lesson.interactiveType) && (
         <div className="space-y-3">
           <div className="text-[10px] font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wider">
-            Thử nghiệm tương tác
+            {t.lessonPage.interactiveTitle}
           </div>
           <InteractiveWidget type={lesson.interactiveType} />
         </div>
@@ -275,12 +285,12 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
       {lesson.summaryImage && (
         <div className="space-y-3">
           <div className="text-[10px] font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wider">
-            Tóm tắt trực quan
+            {t.lessonPage.summaryImageTitle}
           </div>
           <div className="rounded-2xl overflow-hidden border border-stone-200 dark:border-stone-800 shadow-lg">
             <Image
               src={lesson.summaryImage}
-              alt={`Tóm tắt trực quan ${lesson.title}`}
+              alt={format(t.lessonPage.summaryImageAlt, { title: lesson.title })}
               width={1024}
               height={1536}
               className="w-full h-auto"
@@ -293,7 +303,7 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
       {lesson.realWorldExample && lesson.realWorldExample.company && (
         <div className="border border-stone-200 dark:border-stone-800 rounded-2xl p-6 bg-stone-50 dark:bg-stone-900/50 space-y-3">
           <p className="text-xs font-bold text-stone-500 dark:text-stone-400 uppercase tracking-widest">
-            Ví dụ thực tế · {lesson.realWorldExample.company}
+            {format(t.lessonPage.realWorldExampleTitle, { company: lesson.realWorldExample.company })}
           </p>
           <p className="text-stone-700 dark:text-stone-300 text-base leading-relaxed">
             {lesson.realWorldExample.description}
@@ -313,7 +323,7 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
           không phải chuyện làm sai các con số. Vẫn phải gỡ. */}
       {lesson.practicePrompt && (
         <LessonQuestionCard
-          title="Luyện tập ngay"
+          title={t.lessonPage.practicePromptTitle}
           question={lesson.practicePrompt.question}
           options={lesson.practicePrompt.options}
           correct={lesson.practicePrompt.correct}
@@ -358,8 +368,8 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
 
       {lesson.summary?.keyIdea && (
         <ReviewLoopCard
-          prompt={`Nếu bạn chỉ nhớ 1 điều từ bài này, hãy nhớ rằng: ${lesson.summary.keyIdea}.`}
-          cta="Ôn lại trong 1 phút trước khi chuyển bài"
+          prompt={`${t.lessonPage.reviewLoopPromptPart1} ${lesson.summary.keyIdea}.`}
+          cta={t.lessonPage.reviewLoopCta}
         />
       )}
 
@@ -367,7 +377,7 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
       {lesson.keyTakeaways && lesson.keyTakeaways.length > 0 && (
         <div className="rounded-2xl overflow-hidden shadow-xl">
           <div className="bg-stone-900 dark:bg-stone-950 px-6 py-5">
-            <p className="text-white font-extrabold text-xl tracking-wide">Ghi nhớ nhanh</p>
+            <p className="text-white font-extrabold text-xl tracking-wide">{t.lessonPage.keyTakeawaysTitle}</p>
           </div>
           <div className="bg-stone-800 divide-y divide-stone-700">
             {lesson.keyTakeaways.map((t: string, i: number) => (

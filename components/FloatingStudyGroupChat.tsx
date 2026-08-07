@@ -10,9 +10,12 @@ import { createClient } from "@/lib/supabase";
 import { trackFeatureClick } from "@/lib/feature-events";
 import { uploadChatImage, isAllowedChatImage, uploadChatFile, isAllowedChatFile } from "@/lib/supabase-chat";
 import { announceWidgetOpened, onOtherWidgetOpened } from "@/lib/floating-widget-coordinator";
+import { toDownloadUrl } from "@/lib/storage-download";
 import EmojiPicker from "@/components/EmojiPicker";
 import { motion } from "framer-motion";
 import { useDraggablePosition } from "@/lib/hooks/useDraggablePosition";
+import { useI18n } from "@/lib/i18n/context";
+import { format, type Dictionary } from "@/lib/i18n";
 import {
   STUDY_ROOM_TOPICS,
   getMyStudyRoom,
@@ -32,8 +35,14 @@ import {
 
 const REACTION_EMOJIS = ["👍", "❤️", "🔥", "🚀", "💡", "😂"];
 
-function topicLabel(topic: string) {
-  return STUDY_ROOM_TOPICS.find((t) => t.id === topic)?.label ?? topic;
+// Takes the dictionary because it is a plain function. STUDY_ROOM_TOPICS uses the
+// same ids as t.tracks ("personal" | "professional" | "cfa"), so the track names
+// are reused rather than duplicated as a second set of keys.
+function topicLabel(topic: string, t: Dictionary) {
+  if (topic === "personal" || topic === "professional" || topic === "cfa") {
+    return t.tracks[topic].tab;
+  }
+  return STUDY_ROOM_TOPICS.find((entry) => entry.id === topic)?.label ?? topic;
 }
 
 function initials(name: string | null | undefined) {
@@ -69,6 +78,7 @@ interface FloatingStudyGroupChatProps {
 // app/api/cron/daily-study-group-update/route.ts) is visible without
 // leaving the dashboard. Renders nothing if the caller has no active room.
 export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpenChange, hideTrigger }: FloatingStudyGroupChatProps = {}) {
+  const { t } = useI18n();
   const [userId, setUserId] = useState<string | null>(null);
   const [room, setRoom] = useState<StudyRoomSummary | null>(null);
   const [members, setMembers] = useState<Map<string, StudyRoomMember>>(new Map());
@@ -126,7 +136,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
         setMessages(msgs);
 
         if (isNewRoom) {
-          toast.success(`Bạn vừa được ghép vào nhóm học mới: ${topicLabel(myRoom.topic)}! Chào mọi người trong nhóm nhé.`);
+          toast.success(format(t.groupChat.matchedToast, { topic: topicLabel(myRoom.topic, t) }));
           setOpen(true);
         } else {
           const lastReadAt = window.localStorage.getItem(LAST_READ_AT_KEY_PREFIX + myRoom.room_id);
@@ -230,9 +240,9 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
     if (!text) return;
     try {
       await navigator.clipboard.writeText(text);
-      toast.success("Đã sao chép tin nhắn");
+      toast.success(t.chat.copied);
     } catch {
-      toast.error("Không sao chép được tin nhắn");
+      toast.error(t.chat.copyFailed);
     }
   }
 
@@ -279,7 +289,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
         setMessages((prev) => prev.map((m) => (m.id === updated.id ? updated : m)));
         setInput("");
         setEditingMessage(null);
-        toast.success("Đã chỉnh sửa tin nhắn");
+        toast.success(t.chat.edited);
       } catch (error) {
         toast.error(error instanceof Error ? error.message : "Không sửa được tin nhắn");
       } finally {
@@ -394,8 +404,8 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
             setOpen((v) => !v);
             trackFeatureClick("floating_study_chat_toggle", { label: open ? "close" : "open" });
           }}
-          aria-label="Chat nhóm học"
-          title={room ? `Nhóm ${topicLabel(room.topic)} (Kéo thả để di chuyển)` : "Tham gia Nhóm Học"}
+          aria-label={t.groupChat.openAria}
+          title={room ? format(t.groupChat.dragTitle, { topic: topicLabel(room.topic, t) }) : t.groupChat.joinTitle}
           className="fixed bottom-21 right-4 sm:bottom-23 sm:right-6 z-50 w-14 h-14 rounded-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white shadow-xl hover:scale-108 transition-all duration-200 flex items-center justify-center border-2 border-white dark:border-stone-800 cursor-grab active:cursor-grabbing select-none touch-none group"
         >
           <Users className="w-6 h-6 text-white transition-transform group-hover:scale-110 pointer-events-none" />
@@ -427,12 +437,12 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
               <Users className="w-4.5 h-4.5 text-white" />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-white font-bold text-[13px] tracking-tight truncate">Nhóm {room ? topicLabel(room.topic) : "Học tập"}</p>
-              <p className="text-emerald-100/90 text-[10px] font-medium mt-0.5">{room?.member_count ?? 1}/{room?.max_members ?? 5} thành viên hoạt động</p>
+              <p className="text-white font-bold text-[13px] tracking-tight truncate">{format(t.groupChat.roomTitle, { topic: room ? topicLabel(room.topic, t) : t.groupChat.roomFallback })}</p>
+              <p className="text-emerald-100/90 text-[10px] font-medium mt-0.5">{format(t.groupChat.memberCount, { count: room?.member_count ?? 1, max: room?.max_members ?? 5 })}</p>
             </div>
             <button
               onClick={() => setOpen(false)}
-              aria-label="Đóng"
+              aria-label={t.groupChat.closeAria}
               className="w-7 h-7 rounded-xl flex items-center justify-center text-white/80 hover:text-white hover:bg-white/10 transition-all cursor-pointer active:scale-90"
             >
               <X className="w-4 h-4" />
@@ -444,7 +454,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
             <div className="shrink-0 px-3.5 py-2.5 bg-amber-50/80 dark:bg-amber-950/20 border-b border-amber-100 dark:border-amber-900/30">
               <div className="flex items-center gap-1.5 mb-1">
                 <TaiTaiAvatar size={16} />
-                <span className="text-[10px] font-extrabold text-amber-700 dark:text-amber-400">Tài Tài • Quản lý nhóm • Đã ghim</span>
+                <span className="text-[10px] font-extrabold text-amber-700 dark:text-amber-400">{t.groupChat.pinnedByAdmin}</span>
               </div>
               <p className="text-[11px] text-stone-800 dark:text-stone-200 leading-relaxed font-medium">{pinnedMessage.content}</p>
             </div>
@@ -467,7 +477,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
             }`}
           >
             {isDraggingImage && (
-              <p className="text-xs font-bold text-emerald-600 dark:text-emerald-400 text-center animate-pulse">Thả ảnh vào đây để đính kèm 📂</p>
+              <p className="text-xs font-bold text-emerald-600 dark:text-emerald-400 text-center animate-pulse">{t.groupChat.dropImage}</p>
             )}
             {scrollMessages.length === 0 ? (
               <div className="text-center py-12 px-4">
@@ -475,7 +485,9 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                   <Users className="w-5 h-5 opacity-60" />
                 </div>
                 <p className="text-xs text-stone-400 dark:text-stone-500 font-medium">
-                  Chưa có tin nhắn nào.<br/>Nhắn gì đó chào các bạn trong nhóm nhé!
+                  {t.groupChat.emptyPart1}
+              <br />
+              {t.groupChat.emptyPart2}
                 </p>
               </div>
             ) : (
@@ -486,7 +498,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                       <div className="max-w-[85%] rounded-2xl px-3.5 py-2.5 bg-amber-50/80 dark:bg-amber-950/20 shadow-xs">
                         <div className="flex items-center gap-1.5 mb-1.5">
                           <TaiTaiAvatar size={16} />
-                          <span className="text-[10px] font-extrabold text-amber-700 dark:text-amber-400">Tài Tài • Quản lý nhóm</span>
+                          <span className="text-[10px] font-extrabold text-amber-700 dark:text-amber-400">{t.groupChat.byAdmin}</span>
                         </div>
                         <p className="text-[12px] text-stone-800 dark:text-stone-200 leading-relaxed whitespace-pre-wrap">{msg.content}</p>
                       </div>
@@ -496,7 +508,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                 const isMine = msg.sender_id === userId;
                 const isPending = isPendingMessage(msg);
                 const member = msg.sender_id ? members.get(msg.sender_id) : null;
-                const senderName = member?.full_name || "Thành viên";
+                const senderName = member?.full_name || t.chat.member;
                 const msgReactions = reactions[msg.id] || {};
 
                 // Quote resolved live from the original rather than copied
@@ -504,9 +516,9 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                 // original propagate. null = original gone or out of window.
                 const repliedTo = msg.reply_to_id ? messageById.get(msg.reply_to_id) ?? null : null;
                 const repliedToName = repliedTo?.is_bot
-                  ? "Tài Tài"
+                  ? t.chat.admin
                   : repliedTo?.sender_id
-                  ? members.get(repliedTo.sender_id)?.full_name || "Thành viên"
+                  ? members.get(repliedTo.sender_id)?.full_name || t.chat.member
                   : null;
                 const mainText = msg.content || "";
 
@@ -553,14 +565,14 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                                   <span className="block font-bold opacity-90">↩️ {repliedToName}</span>
                                   <span className="block truncate opacity-75">
                                     {!repliedTo.content && repliedTo.image_url
-                                      ? "[Hình ảnh]"
+                                      ? t.chat.imagePlaceholder
                                       : !repliedTo.content && repliedTo.file_name
                                         ? `[Tệp: ${repliedTo.file_name}]`
                                         : repliedTo.content}
                                   </span>
                                 </>
                               ) : (
-                                <span className="block italic opacity-60">↩️ Tin nhắn đã bị xoá</span>
+                                <span className="block italic opacity-60">{t.chat.deleted}</span>
                               )}
                             </div>
                           )}
@@ -569,7 +581,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                             // eslint-disable-next-line @next/next/no-img-element
                             <img
                               src={msg.image_url}
-                              alt="Đính kèm"
+                              alt={t.chat.attachmentAlt}
                               className="max-w-full max-h-40 rounded-lg mb-2 object-contain cursor-pointer hover:opacity-95 transition-opacity"
                               onClick={() => window.open(msg.image_url!, "_blank")}
                             />
@@ -577,10 +589,14 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                           {msg.file_name && (
                             msg.file_url ? (
                               <a
-                                href={msg.file_url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                download={msg.file_name}
+                                // `download` trên thẻ <a> bị bỏ qua với link
+                                // khác origin, mà file_url là Supabase Storage.
+                                // Tên tệp và Content-Disposition phải do máy chủ
+                                // nói - xem toDownloadUrl. Không đặt
+                                // target="_blank": phản hồi là attachment nên
+                                // không có trang nào để mở, chỉ là một tab trắng
+                                // bật lên rồi tự đóng.
+                                href={toDownloadUrl(msg.file_url, msg.file_name)}
                                 className={`mb-2 flex items-center gap-2 rounded-lg px-2.5 py-2 text-[11px] font-medium transition-colors ${
                                   isMine
                                     ? "bg-white/15 hover:bg-white/25"
@@ -594,7 +610,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                             ) : (
                               <div className="mb-2 flex items-center gap-2 rounded-lg px-2.5 py-2 text-[11px] font-medium opacity-70 bg-black/10 dark:bg-white/10">
                                 <FileText className="w-4 h-4 flex-shrink-0 animate-pulse" />
-                                <span className="truncate flex-1">{msg.file_name} · Đang tải lên...</span>
+                                <span className="truncate flex-1">{format(t.groupChat.uploading, { name: msg.file_name })}</span>
                               </div>
                             )
                           )}
@@ -607,7 +623,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                           <button
                             onClick={() => setActiveMenuMsgId(activeMenuMsgId === msg.id ? null : msg.id)}
                             className={`${isMine ? "opacity-70" : "opacity-0 mt-1"} group-hover:opacity-100 transition-all duration-200 p-1 rounded-full hover:bg-stone-200 dark:hover:bg-stone-700 text-stone-500 dark:text-stone-400 cursor-pointer shadow-xs bg-white/90 dark:bg-stone-800/90 border border-stone-200/80 dark:border-stone-700 hover:scale-105`}
-                            title="Tùy chọn tin nhắn"
+                            title={t.chat.optionsTitle}
                           >
                             <MoreVertical className="w-3 h-3" />
                           </button>
@@ -640,7 +656,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                                 className="w-full flex items-center gap-2 px-2 py-1.5 rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-950/40 text-stone-800 dark:text-stone-200 font-bold transition-colors text-left text-[11px]"
                               >
                                 <CornerUpLeft className="w-3 h-3 text-emerald-600 dark:text-emerald-400" />
-                                <span>Trả lời tin nhắn</span>
+                                <span>{t.chat.reply}</span>
                               </button>
 
                               <button
@@ -651,7 +667,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                                 className="w-full flex items-center gap-2 px-2 py-1.5 rounded-xl hover:bg-amber-50 dark:hover:bg-amber-950/40 text-stone-800 dark:text-stone-200 font-bold transition-colors text-left text-[11px]"
                               >
                                 {msg.is_pinned ? <PinOff className="w-3 h-3 text-amber-600 dark:text-amber-400" /> : <Pin className="w-3 h-3 text-amber-600 dark:text-amber-400" />}
-                                <span>{msg.is_pinned ? "Bỏ ghim tin nhắn" : "Ghim tin nhắn"}</span>
+                                <span>{msg.is_pinned ? t.chat.unpin : t.chat.pin}</span>
                               </button>
 
                               <button
@@ -662,7 +678,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                                 className="w-full flex items-center gap-2 px-2 py-1.5 rounded-xl hover:bg-sky-50 dark:hover:bg-sky-950/40 text-stone-800 dark:text-stone-200 font-bold transition-colors text-left text-[11px]"
                               >
                                 <Copy className="w-3 h-3 text-sky-600 dark:text-sky-400" />
-                                <span>Sao chép</span>
+                                <span>{t.chat.copy}</span>
                               </button>
 
                               {isMine && (
@@ -677,7 +693,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                                   className="w-full flex items-center gap-2 px-2 py-1.5 rounded-xl hover:bg-sky-50 dark:hover:bg-sky-950/40 text-stone-800 dark:text-stone-200 font-bold transition-colors text-left text-[11px]"
                                 >
                                   <Pencil className="w-3 h-3 text-sky-600 dark:text-sky-400" />
-                                  <span>Sửa tin nhắn</span>
+                                  <span>{t.chat.edit}</span>
                                 </button>
 
                                 <button
@@ -686,15 +702,15 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                                     try {
                                       await deleteRoomMessage(msg.id);
                                       setMessages((prev) => prev.filter((m) => m.id !== msg.id));
-                                      toast.success("Đã thu hồi tin nhắn thành công!");
+                                      toast.success(t.chat.recalled);
                                     } catch (err) {
-                                      toast.error("Không thể thu hồi tin nhắn này");
+                                      toast.error(t.chat.recallFailed);
                                     }
                                   }}
                                   className="w-full flex items-center gap-2 px-2 py-1.5 rounded-xl hover:bg-rose-50 dark:hover:bg-rose-950/40 text-rose-600 dark:text-rose-400 font-bold transition-colors text-left text-[11px]"
                                 >
                                   <Trash2 className="w-3 h-3 text-rose-500" />
-                                  <span>Thu hồi tin nhắn</span>
+                                  <span>{t.chat.recall}</span>
                                 </button>
                                 </>
                               )}
@@ -732,12 +748,12 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                             {isPending ? (
                               <>
                                 <Clock className="h-3 w-3 text-stone-400 shrink-0 animate-pulse" />
-                                <span className="whitespace-nowrap">Đang gửi...</span>
+                                <span className="whitespace-nowrap">{t.chat.sending}</span>
                               </>
                             ) : (
                               <>
                                 <CheckCheck className="h-3 w-3 text-emerald-500 shrink-0" />
-                                <span className="whitespace-nowrap">{members.size > 1 ? "Đã xem" : "Đã gửi"}</span>
+                                <span className="whitespace-nowrap">{members.size > 1 ? t.chat.seen : t.chat.sent}</span>
                               </>
                             )}
                           </div>
@@ -758,13 +774,13 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
             {replyingTo && (
               <div className="flex items-center justify-between gap-2 px-3 py-1.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-xs text-stone-800 dark:text-stone-200 mb-2">
                 <div className="min-w-0 flex-1">
-                  <span className="font-bold text-emerald-600 dark:text-emerald-400">💬 Đang trả lời {replyingTo.senderName}:</span>
+                  <span className="font-bold text-emerald-600 dark:text-emerald-400">{format(t.chat.replyingTo, { name: replyingTo.senderName })}</span>
                   <p className="truncate text-[10px] text-stone-600 dark:text-stone-400 mt-0.2">{replyingTo.content}</p>
                 </div>
                 <button
                   onClick={() => setReplyingTo(null)}
                   className="text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 p-0.5 rounded-full cursor-pointer"
-                  title="Hủy trả lời"
+                  title={t.chat.cancelReply}
                 >
                   <X className="w-3.5 h-3.5" />
                 </button>
@@ -773,7 +789,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
             {editingMessage && (
               <div className="flex items-center justify-between gap-2 px-3 py-1.5 rounded-xl bg-sky-50 dark:bg-sky-950/40 border border-sky-200 dark:border-sky-800 text-xs text-stone-800 dark:text-stone-200 mb-2">
                 <div className="min-w-0 flex-1">
-                  <span className="font-bold text-sky-600 dark:text-sky-400">Đang sửa tin nhắn:</span>
+                  <span className="font-bold text-sky-600 dark:text-sky-400">{t.chat.editing}</span>
                   <p className="truncate text-[10px] text-stone-600 dark:text-stone-400 mt-0.2">{editingMessage.content}</p>
                 </div>
                 <button
@@ -782,7 +798,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                     setInput("");
                   }}
                   className="text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 p-0.5 rounded-full cursor-pointer"
-                  title="Hủy sửa"
+                  title={t.chat.cancelEdit}
                 >
                   <X className="w-3.5 h-3.5" />
                 </button>
@@ -791,7 +807,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
             {pendingImagePreview && (
               <div className="relative inline-block mb-2 group">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={pendingImagePreview} alt="Preview" className="w-14 h-14 rounded-lg border border-stone-300 dark:border-stone-700 object-cover shadow-md" />
+                <img src={pendingImagePreview} alt={t.chat.previewAlt} className="w-14 h-14 rounded-lg border border-stone-300 dark:border-stone-700 object-cover shadow-md" />
                 <button
                   onClick={() => clearPendingImage()}
                   className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center shadow transition-all border border-white dark:border-stone-950 active:scale-90"
@@ -830,7 +846,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
 
               <button
                 onClick={() => fileInputRef.current?.click()}
-                title="Đính kèm ảnh"
+                title={t.chat.attachImage}
                 className="p-2 border border-stone-100 dark:border-stone-800/50 text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200 hover:bg-stone-50 dark:hover:bg-stone-800 rounded-xl transition flex-shrink-0 active:scale-95"
               >
                 <ImagePlus className="w-4.5 h-4.5" />
@@ -838,7 +854,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
 
               <button
                 onClick={() => docInputRef.current?.click()}
-                title="Đính kèm tệp"
+                title={t.chat.attachFile}
                 className="p-2 border border-stone-100 dark:border-stone-800/50 text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200 hover:bg-stone-50 dark:hover:bg-stone-800 rounded-xl transition flex-shrink-0 active:scale-95"
               >
                 <Paperclip className="w-4.5 h-4.5" />
@@ -866,7 +882,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                 onClick={() => void handleSend()}
                 disabled={sending || (!input.trim() && !pendingImage && !pendingFile)}
                 className="p-2 bg-gradient-to-br from-emerald-700 to-teal-600 hover:from-emerald-600 hover:to-teal-500 text-white rounded-xl hover:shadow disabled:opacity-30 disabled:pointer-events-none transition flex-shrink-0 active:scale-95"
-                aria-label="Gửi tin nhắn"
+                aria-label={t.chat.sendAria}
               >
                 <Send className="w-4.5 h-4.5" />
               </button>

@@ -159,6 +159,117 @@ export interface Lesson {
   videoUrl?: string; // optional YouTube video URL or embedded video URL for this lesson
 }
 
+/**
+ * Translated lesson content, merged onto the canonical Vietnamese lesson by
+ * lib/lesson-translations.js.
+ *
+ * WHY A PATCH RATHER THAN A FULL LESSON COPY. A translation file holds only
+ * human-readable strings. Everything structural - `id`, `day`, `slug`,
+ * `resolvedTrack`, `checkpointIndex`, `isFundamental`, `interactiveType`, and
+ * above all every `correct`/`correctOption` index - is read from the
+ * Vietnamese lesson and is not overridable. A full mirror would let those
+ * drift silently: an English copy carrying its own `correct: 2` would keep
+ * grading against a stale answer position for as long as nobody diffed 715
+ * pairs of files by hand.
+ *
+ * That matters more here than it looks. scripts/generate-lesson-data.mjs runs
+ * `balanceLessonQuizzes` over the corpus, which REORDERS each question's
+ * options to strip the positional tell documented in AGENTS.md. So the option
+ * order in lib/lessons-data/<slug>.json is not the order authored in
+ * lib/lessons.ts. Translations are therefore made from the *generated*
+ * Vietnamese file, and `options` is positional: element i of the English array
+ * must translate element i of the Vietnamese one. Get that wrong and the
+ * lesson marks a correct answer wrong.
+ *
+ * `difficulty` is deliberately absent. It is a Vietnamese string union used as
+ * a *value* throughout the app - as a lookup key, in comparisons, and in the
+ * generated index - so translating it would break those call sites. The UI
+ * renders it through the i18n dictionary instead.
+ */
+export interface LessonTranslation {
+  /** Must equal the slug of the lesson being translated, and the translation
+   *  file's own name. The loader refuses a patch that disagrees. */
+  slug: string;
+  title?: string;
+  subtitle?: string;
+  /** Free text like "6 phút" -> "6 min". Not parsed anywhere; `totalMinutes`
+   *  is the numeric field and stays canonical. */
+  duration?: string;
+  whyItMatters?: string;
+  openingQuestion?: string;
+  openingOptions?: string[];
+  explanation?: string;
+  diagram?: { label?: string }[];
+  realWorldExample?: { company?: string; description?: string };
+  quiz?: { question?: string; options?: string[]; explanation?: string }[];
+  keyTakeaways?: string[];
+  practicePrompt?: { question?: string; options?: string[]; explanation?: string };
+  summary?: { keyIdea?: string; formula?: string; commonMistake?: string; action?: string };
+  application?: { title?: string; message?: string; secondary?: string };
+  sections?: TranslatedSectionBlock[];
+}
+
+/**
+ * A section block's translatable fields, positional against the Vietnamese
+ * `sections` array. `type` is repeated as a checksum: a translation whose
+ * block types no longer line up has gone stale, and the merge drops it rather
+ * than rendering an English heading where a formula should be.
+ *
+ * A `conceptTable`'s `vi`/`en` term pair is deliberately not translatable: it
+ * is already bilingual by design - the Vietnamese term is the thing being
+ * taught, so it stays visible in the English lesson - which leaves only `def`.
+ *
+ * A `formula`'s `equation`, `numerator`, `denominator`, `multiplier` and its
+ * example's `calculation`/`result` ARE translatable, and every one of them is
+ * optional. The first cut of this type left them out on the reasoning that a
+ * formula is notation rather than prose. That is true of some
+ * ("FV = PV × (1 + r)^n") and false of a great many others - the corpus is
+ * full of equations written as words, like "NOI = potential rental revenue −
+ * vacancy and bad debt − operating expenses". Excluding them stranded
+ * Vietnamese sentences in the middle of an English lesson. Being optional is
+ * what keeps both cases right: omit the field and real notation passes through
+ * untouched, supply it and a worded equation gets translated.
+ */
+export type TranslatedSectionBlock =
+  | { type: "lead"; text?: string }
+  | { type: "heading"; text?: string }
+  | { type: "paragraph"; text?: string }
+  | { type: "list"; items?: string[] }
+  | { type: "callout"; label?: string; text?: string }
+  | {
+      type: "comparison";
+      left?: { label?: string; text?: string };
+      right?: { label?: string; text?: string };
+    }
+  | { type: "conceptTable"; title?: string; subtitle?: string; concepts?: { def?: string }[] }
+  | {
+      type: "formula";
+      title?: string;
+      label?: string;
+      equation?: string;
+      numerator?: string;
+      denominator?: string;
+      multiplier?: string;
+      // `symbol` is translatable because it is what the equation refers to: a
+      // worded equation has worded symbols, and translating one without the
+      // other leaves the variable list keyed to terms no longer in the formula.
+      variables?: { symbol?: string; name?: string; description?: string }[];
+      example?: { title?: string; calculation?: string; result?: string; explanation?: string };
+    }
+  | { type: "closing"; lines?: string[] };
+
+/** A lesson plus the provenance of the text it carries. */
+export interface LocalizedLesson extends Lesson {
+  /** The locale the reader asked for. */
+  locale: string;
+  /** False when `locale` is not the source language and no usable translation
+   *  exists, so the reader is seeing Vietnamese. Drives the "Vietnamese only"
+   *  badge - the alternative, hiding untranslated lessons, would punch holes
+   *  in the day-numbered path and break the unlock gate and the /su-nghiep
+   *  competency percentages. */
+  translated: boolean;
+}
+
 // Slim projection of Lesson - just enough to render dashboard/lock-check
 // listings, so the full lesson bodies (sections/quiz/etc) never need to
 // reach a client bundle.

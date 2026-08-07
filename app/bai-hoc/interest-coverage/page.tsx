@@ -14,7 +14,7 @@ const meta: LessonMeta = {
 const quiz: QuizQuestion[] = [
   {
     question: "Công ty A có EBIT = 300 tỷ, Interest Expense = 100 tỷ. ICR là?",
-    options: ["2x - khá an toàn", "3x - an toàn", "0.33x - nguy hiểm", "30x - rất an toàn"],
+    options: ["2x (= 200/100, trừ nhầm lãi vay vào EBIT)", "3x (= 300 / 100)", "0,33x (= 100/300, đảo tử số với mẫu số)", "30x (= 3.000/100, nhầm đơn vị của EBIT)"],
     correct: 1,
     explanation: "ICR = EBIT / Interest = 300 / 100 = 3x. Lợi nhuận gấp 3 lần lãi vay - đủ an toàn. Lender thường yêu cầu tối thiểu 2-3x.",
   },
@@ -22,9 +22,9 @@ const quiz: QuizQuestion[] = [
     question: "Trong covenant của khoản vay, 'minimum ICR = 2.5x' có nghĩa là?",
     options: [
       "Công ty không được vay thêm nếu ICR > 2.5x",
-      "Nếu ICR xuống dưới 2.5x, lender có quyền recall loan hoặc yêu cầu thêm collateral",
+      "Xuống dưới 2,5x là vi phạm điều khoản vay",
       "Lãi suất sẽ tăng khi ICR < 2.5x",
-      "Không có ý nghĩa thực tế",
+      "Chỉ là con số tham khảo, không ràng buộc gì",
     ],
     correct: 1,
     explanation: "Financial covenants là điều kiện ràng buộc trong hợp đồng vay. Vi phạm covenant (ICR < minimum) = technical default → lender có quyền accelerate loan (đòi trả ngay).",
@@ -33,9 +33,9 @@ const quiz: QuizQuestion[] = [
     question: "Tại sao EBITDA thay vì EBIT đôi khi được dùng trong ICR?",
     options: [
       "EBITDA luôn cao hơn EBIT",
-      "D&A là non-cash expense - EBITDA phản ánh cash tốt hơn để trả lãi",
+      "Khấu hao không phải khoản chi tiền",
       "Lender thích EBITDA hơn",
-      "Không có sự khác biệt đáng kể",
+      "Hai chỉ số cho cùng kết quả nên dùng cái nào cũng được",
     ],
     correct: 1,
     explanation: "EBITDA coverage = EBITDA / Interest. Vì D&A là phi tiền mặt, EBITDA gần với cash flow thực hơn → phản ánh khả năng trả lãi tiền mặt chính xác hơn.",
@@ -43,10 +43,10 @@ const quiz: QuizQuestion[] = [
   {
     question: "Doanh nghiệp có ICR = 1.2x. Điều gì có thể xảy ra nếu doanh thu giảm 20%?",
     options: [
-      "Không sao - vẫn còn ICR dương",
-      "ICR có thể xuống dưới 1x - không đủ lợi nhuận trả lãi → risk of default",
+      "Vẫn an toàn vì ICR còn trên 1x",
+      "ICR có thể xuống dưới 1x, tức không đủ lãi để trả",
       "Lãi suất sẽ giảm để bù đắp",
-      "Doanh nghiệp sẽ tự động renegotiate với lender",
+      "Doanh nghiệp sẽ tự động đàm phán lại được với bên cho vay",
     ],
     correct: 1,
     explanation: "ICR 1.2x nghĩa là margin rất mỏng. Doanh thu giảm 20% → EBIT giảm → ICR có thể xuống dưới 1x → doanh nghiệp không đủ tiền trả lãi từ hoạt động kinh doanh → technical default.",
@@ -54,10 +54,10 @@ const quiz: QuizQuestion[] = [
   {
     question: "Trong phân tích credit, ICR được dùng kết hợp với chỉ số nào khác?",
     options: [
-      "Chỉ ICR là đủ",
+      "Chỉ cần ICR là đủ để chấm rủi ro tín dụng",
       "Debt/EBITDA (leverage), DSCR (debt service coverage), FCF/Debt",
-      "P/E và EV/EBITDA",
-      "ROE và ROA",
+      "P/E và EV/EBITDA của công ty cùng ngành",
+      "ROE và ROA để xem hiệu quả sinh lời",
     ],
     correct: 1,
     explanation: "Credit analysis dùng bộ chỉ số: ICR (khả năng trả lãi), Debt/EBITDA (đòn bẩy), DSCR (khả năng trả cả gốc lẫn lãi), FCF/Total Debt (thời gian trả hết nợ từ FCF).",

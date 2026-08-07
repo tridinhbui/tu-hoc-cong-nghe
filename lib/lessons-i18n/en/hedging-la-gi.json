@@ -1,0 +1,144 @@
+{
+  "slug": "hedging-la-gi",
+  "title": "What Is Hedging?",
+  "subtitle": "Using derivatives to reduce risk, not to earn extra profit",
+  "openingQuestion": "An airline buys oil futures to lock in fuel prices for the next 12 months. Is this speculation?",
+  "openingOptions": [
+    "Yes, because every derivative transaction is speculation",
+    "Yes, because they are predicting the price of oil",
+    "It's only speculation if it turns a profit",
+    "No - this is hedging: they already had a risk from their real business (they must buy real fuel), the derivative just reduces that existing risk, it doesn't create a new one"
+  ],
+  "explanation": "Hedging is using derivatives to reduce or eliminate a risk that already exists in a real business operation. The airline is CERTAIN to buy fuel - they just don't know the price. Futures help fix that cost in advance, reducing uncertainty, not creating new risk to chase profit.",
+  "diagram": [
+    { "label": "An existing business risk (fuel price...)", "arrow": true },
+    { "label": "Use a derivative to offset that risk", "arrow": true },
+    { "label": "Goal: stability, not extra profit" }
+  ],
+  "realWorldExample": {
+    "company": "Southwest Airlines",
+    "description": "Southwest Airlines was famous for its aggressive oil-price hedging strategy in the 2000s, helping the airline maintain a significant cost advantage over rivals when oil prices surged."
+  },
+  "quiz": [
+    {
+      "question": "What is the condition for a derivative transaction to be considered pure hedging?",
+      "options": [
+        "It must be approved in writing and formally signed off by the board of directors",
+        "There must be a real exposure and a position taken opposite to it",
+        "The derivative contract must show a positive net gain",
+        "It must use an instrument listed on an exchange"
+      ],
+      "explanation": "The core of hedging is having an existing exposure (risk), and taking a derivative position going in the OPPOSITE direction to that exposure to cancel it out. Trading a derivative to profit from price movement without an underlying exposure is speculation, not hedging."
+    },
+    {
+      "question": "A Vietnamese exporter signs a sales contract in USD, to be paid in 3 months. Should they hedge 100% of the contract's value with a forward, or leave part of it unhedged?",
+      "options": [
+        "They shouldn't hedge at all since the VND exchange rate has been fairly stable lately",
+        "They should only hedge when they forecast the rate will move against them",
+        "The hedge ratio is a strategic choice, there is no single correct number",
+        "They must hedge exactly 100% of the export contract's value"
+      ],
+      "explanation": "Deciding the hedge ratio is a strategic choice, not a fixed formula - it depends on risk tolerance, how important accurate cash-flow prediction is, and management's view on the future direction of the exchange rate."
+    },
+    {
+      "question": "An airline locks in oil at 80 USD/barrel, then the price falls to 60. What is the actual economic outcome?",
+      "options": [
+        "The real cost is 70 USD, the average of the two prices",
+        "The real cost is 60 USD because they buy at market price",
+        "The real cost is 100 USD because the contract's loss is added on top",
+        "The real cost is still exactly 80 USD, exactly as the hedge intended"
+      ],
+      "explanation": "The physical purchase costs 60, the contract loses 20, the total is still 80 - exactly the locked-in level. But the report only clearly shows the 20 loss, while the certainty gained doesn't appear on any line."
+    },
+    {
+      "question": "Why doesn't a loss on a hedge contract mean the hedge was wrong?",
+      "options": [
+        "Because hedging is trading the upside for eliminating the downside",
+        "Because a hedging loss is booked as a financial expense",
+        "Because a hedge only works over many years long-term",
+        "Because derivatives transaction fees are usually quite high for smaller firms to absorb"
+      ],
+      "explanation": "A true hedge means giving up the favorable side to eliminate the unfavorable one. Management ending a hedging program after one loss-making year is often exactly the moment the risk returns at the worst time."
+    },
+    {
+      "question": "What is basis risk in hedging?",
+      "options": [
+        "The risk that the base price swings more than initially expected",
+        "The risk that the hedging asset doesn't exactly match the real risk",
+        "The risk of insufficient margin when the market moves unfavorably",
+        "The risk the counterparty fails to fulfill the contract"
+      ],
+      "explanation": "An airline uses crude oil futures to hedge jet fuel - the two prices move together but not perfectly in step. The remaining gap is the risk left over after hedging."
+    }
+  ],
+  "keyTakeaways": [
+    "Hedging: reduces an existing risk, doesn't create a new one",
+    "Condition: there must be a real underlying exposure to protect",
+    "The goal is stability and predictability, not maximizing profit"
+  ],
+  "practicePrompt": {
+    "question": "A Vietnamese exporter has a receivable of 1 million USD due in 3 months, worried about an unfavorable USD/VND move, so signs a forward contract to lock in the exchange rate in advance. What is the purpose of this derivative transaction?",
+    "options": [
+      "The purpose is speculation to earn extra profit from exchange-rate movement over the next 3 months",
+      "Hedging reduces an existing risk from the receivable, it doesn't create a new one",
+      "The purpose is to increase financial leverage to amplify the company's potential return",
+      "This forward contract has no clear purpose, it is just an ordinary administrative procedure"
+    ],
+    "explanation": "Hedging: reduces an existing risk, doesn't create a new one. Unlike speculation (betting to profit), hedging only aims to eliminate the uncertainty from a risk already existing in the business - the company retains that same risk if it doesn't hedge, hedging doesn't add to it."
+  },
+  "summary": {
+    "keyIdea": "Hedging: reduces an existing risk, doesn't create a new one",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to real decisions.",
+    "action": "Condition: there must be a real underlying exposure to protect"
+  },
+  "application": {
+    "title": "Find a real hedging situation",
+    "message": "Think of a financial risk you or your family actually bear (e.g. a floating-rate loan, or income in foreign currency) and describe an instrument that could help fix that uncertainty.",
+    "secondary": "Hedging only makes sense when there is a genuine underlying risk to protect."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Hedging is using derivatives to reduce or eliminate a risk that already exists in a real business operation - not to earn extra profit. The core condition: there must be an underlying exposure (an existing risk) that the derivative position takes an opposite direction to, to cancel it out."
+    },
+    { "type": "heading", "text": "Airlines: certain to buy oil, just not sure at what price" },
+    {
+      "type": "paragraph",
+      "text": "An airline is CERTAIN it must buy fuel to fly - it just doesn't know the price at the actual time of purchase. Futures help fix that cost in advance, reducing uncertainty. Southwest Airlines was famous for its aggressive oil-price hedging strategy in the 2000s, helping the airline maintain a significant cost advantage over rivals when oil prices surged. This is pure hedging: an existing exposure (the need to buy oil), and a futures position that offsets exactly that risk."
+    },
+    { "type": "heading", "text": "How much percent to hedge?" },
+    {
+      "type": "paragraph",
+      "text": "A Vietnamese exporter receiving USD payment in 3 months isn't required to hedge 100% of the contract's value with a forward. Hedging 100% removes all uncertainty but also completely gives up any chance to benefit from a favorable rate move. Many companies choose to hedge only part - for example 50-70% - to balance safety and flexibility. This is a strategic choice, not a fixed formula."
+    },
+    {
+      "type": "formula",
+      "title": "Why a successful hedge often looks like a loss",
+      "equation": "Actual cost = Market purchase price ± Gain/loss on the derivative contract",
+      "variables": [
+        { "symbol": "Market price", "name": "The price that must be paid at the time of actual purchase", "description": "Fluctuates, not controllable" },
+        { "symbol": "Derivative gain/loss", "name": "The result of the hedge position", "description": "Always opposite in direction to the market price's movement" }
+      ],
+      "example": {
+        "title": "An airline locks in the price of oil at 80 USD/barrel via futures for 1 million barrels",
+        "calculation": "Oil price falls to 60 USD → actual purchase costs USD 60 million, but the futures lose USD 20 million · Total: 60 + 20 = USD 80 million",
+        "result": "USD 80 million - exactly the level locked in",
+        "explanation": "If oil rises to 100, the result is still 80 million. That is the entire point. But the report will show a very visible USD 20 million futures loss, while the USD 20 million saved doesn't appear on any line."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "The most dangerous misunderstanding",
+      "text": "Treating a loss on a hedge contract as proof the hedge was wrong. A true hedge means giving up the favorable side to eliminate the unfavorable one - it will lose money in roughly half the years, and that is a sign it is running correctly. Management ending a hedging program after one loss-making year is often exactly the moment the risk returns at the worst time."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Condition for pure hedging: there must be a real underlying exposure to protect",
+        "Goal: stability and predictability, not maximizing profit",
+        "The hedge ratio (0-100%) is a strategic decision based on risk tolerance",
+        "Trading a derivative to profit from price movement with no underlying exposure - that is speculation, not hedging"
+      ]
+    }
+  ]
+}

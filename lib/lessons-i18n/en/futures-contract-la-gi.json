@@ -1,0 +1,129 @@
+{
+  "slug": "futures-contract-la-gi",
+  "title": "What Is a Futures Contract?",
+  "subtitle": "Like a forward but standardized, exchange-traded, and safer",
+  "openingQuestion": "Why is a futures contract considered safer than a forward contract despite having a similar nature?",
+  "openingOptions": [
+    "Because futures are only for governments",
+    "Because futures trade on a standardized exchange, with a margin mechanism and daily settlement (mark-to-market), sharply reducing counterparty risk",
+    "Because futures carry no price risk",
+    "Because futures require no deposit"
+  ],
+  "explanation": "Futures are the standardized version of a forward: traded on an exchange (like CME, commodity exchanges), fixed contract size, with a clearing house standing between the parties guaranteeing both sides perform their obligations. Mark-to-market: gains/losses are calculated and settled every day, not held until maturity.",
+  "diagram": [
+    { "label": "Like a Forward but standardized", "arrow": true },
+    { "label": "Traded on an exchange (CME...)", "arrow": true },
+    { "label": "A clearing house guarantees both parties" }
+  ],
+  "realWorldExample": {
+    "company": "International airlines",
+    "description": "Large airlines often buy crude oil futures on the NYMEX exchange to lock in fuel costs - which account for 20-30% of operating costs - avoiding sudden oil price swings."
+  },
+  "quiz": [
+    {
+      "question": "What does mark-to-market mean in futures?",
+      "options": [
+        "The exchange publishes a reference price for the next session",
+        "The contract price is fixed at the close of each trading session",
+        "An investor must always accept physical delivery once the contract reaches maturity",
+        "The exchange recalculates gain/loss and posts it to the account every day"
+      ],
+      "explanation": "Every day, the exchange recalculates the contract's value at the current market price (mark-to-market), immediately crediting/debiting gain/loss to the investor's margin account. If the account falls below the minimum margin requirement, the investor must post more money (a margin call) or have the position closed."
+    },
+    {
+      "question": "A speculator buys crude oil futures with no real need for oil, purely to profit from price movement. As the contract nears maturity, what must they do to avoid taking physical delivery of 1,000 barrels of oil?",
+      "options": [
+        "Sell a similar contract to close the position before maturity",
+        "Register with the exchange to be exempted from physical delivery",
+        "Transfer the contract to a refinery that has actual demand",
+        "Pay a cancellation fee according to the exchange's fee schedule"
+      ],
+      "explanation": "The high liquidity of futures lets an investor close a position at any time before maturity through an offsetting trade - this is why the vast majority of commodity futures contracts (estimated over 97%) never lead to actual physical delivery, holding purely financial meaning for most participants."
+    },
+    {
+      "question": "What is the core difference between futures and a forward?",
+      "options": [
+        "Futures are only for commodities while forwards are for currencies",
+        "Futures are standardized and have a clearing house",
+        "Futures have no fixed maturity date while forwards always do",
+        "Futures are issued by businesses, forwards by banks"
+      ],
+      "explanation": "Standardization enables liquidity, and clearing enables counterparty safety. In exchange, you lose the ability to customize quantity and delivery date - this is exactly the trade-off separating the two instruments."
+    },
+    {
+      "question": "When does a margin call happen in futures?",
+      "options": [
+        "When the underlying asset's price moves more than five percent",
+        "When a contract has under thirty days left to maturity",
+        "When the margin balance falls below the maintenance level",
+        "When an investor wants to increase the size of a held position"
+      ],
+      "explanation": "Daily mark-to-market realizes gains and losses continuously. A run of unfavorable sessions drains the margin, and once it hits the maintenance threshold, more must be posted immediately - or the position gets closed at the worst possible moment."
+    },
+    {
+      "question": "Why does daily mark-to-market reduce counterparty risk?",
+      "options": [
+        "Because the contract price is adjusted to match the market price",
+        "Because the exchange itself guarantees the entire value of the contract outright",
+        "Because investors cannot hold a position for more than a month",
+        "Because the loss is settled immediately instead of building up until maturity"
+      ],
+      "explanation": "With a forward, a loss accumulates silently until maturity, only then revealing that the other side can't pay. Futures force daily settlement, so the debt never has time to grow to a dangerous size."
+    }
+  ],
+  "keyTakeaways": [
+    "Futures: standardized, exchange-traded, with a clearing house guarantee",
+    "Mark-to-market: daily gain/loss settlement, reducing counterparty risk",
+    "Futures suit investors who need high liquidity and price transparency"
+  ],
+  "practicePrompt": {
+    "question": "Unlike a Forward (a private agreement between two parties), an investor buys a crude oil futures contract with standardized terms already fixed (volume, fixed maturity date), trading through the CME exchange, with an intermediary guaranteeing that both parties perform their obligations. What is this type of contract called?",
+    "options": [
+      "This is still a Forward, differing only in where it is traded, with no other essential difference",
+      "Futures: standardized, exchange-traded, with a clearing house guarantee",
+      "This is called an Option, because the investor has the right to choose whether to perform the contract or not",
+      "This is called a corporate bond, because it is traded through an official stock exchange"
+    ],
+    "explanation": "Futures: standardized, exchange-traded, with a clearing house guarantee. Standardization and a clearing house make Futures more liquid and carry less counterparty risk than Forwards, but they are less flexible in exchange because the terms are already fixed."
+  },
+  "summary": {
+    "keyIdea": "Futures: standardized, exchange-traded, with a clearing house guarantee",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to real decisions.",
+    "action": "Mark-to-market: daily gain/loss settlement, reducing counterparty risk"
+  },
+  "application": {
+    "title": "Compare futures with a forward",
+    "message": "Write down 3 differences between futures and a forward that you remember, especially the role of the clearing house and the mark-to-market mechanism.",
+    "secondary": "Knowing these 3 points well is enough to tell these two easily confused instruments apart."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Futures are the financial market's answer to a forward's counterparty risk problem: the same idea - a commitment to buy/sell at a fixed price in the future - but standardized and moved onto an exchange, where a clearing house stands between the parties guaranteeing both sides perform their obligations."
+    },
+    { "type": "heading", "text": "Mark-to-market: settled every day, not held until maturity" },
+    {
+      "type": "paragraph",
+      "text": "Unlike a forward, which settles only once at maturity, futures calculate gain/loss and post it to the investor's margin account every day based on the market closing price - called mark-to-market. If the account falls below the minimum margin, the investor gets a margin call, needing to post more money or have the position closed. This mechanism keeps risk from ever building up to a dangerous size before it's revealed at maturity."
+    },
+    { "type": "heading", "text": "How airlines use oil futures" },
+    {
+      "type": "paragraph",
+      "text": "Large airlines buy crude oil futures on the NYMEX exchange to lock in fuel costs - a line item making up 20-30% of operating costs. Interestingly: most commodity futures traders (estimated over 97%) never actually take or make physical delivery. They close out their position through an offsetting trade before maturity - futures hold purely financial meaning for them."
+    },
+    {
+      "type": "comparison",
+      "left": { "label": "Forward", "text": "OTC, customized to both parties' needs, settled once at maturity, carries counterparty risk since there is no clearing house." },
+      "right": { "label": "Futures", "text": "Exchange-traded, standardized contract size, mark-to-market settlement every day, a clearing house guarantees both parties' obligations." }
+    },
+    {
+      "type": "list",
+      "items": [
+        "Clearing house: the intermediary guaranteeing both parties perform their obligations",
+        "Margin call: a demand to post more margin when the account falls below the minimum",
+        "Close out: closing a position through an offsetting trade before maturity, avoiding physical delivery",
+        "High liquidity makes futures suitable for both hedging and speculation"
+      ]
+    }
+  ]
+}

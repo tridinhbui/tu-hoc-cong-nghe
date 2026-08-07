@@ -4,6 +4,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { X, ShieldQuestion } from "lucide-react";
 import { submitLessonAppeal } from "@/lib/lesson-appeals";
+import { useI18n } from "@/lib/i18n/context";
 
 interface LessonAppealModalProps {
   userId: string;
@@ -16,6 +17,7 @@ interface LessonAppealModalProps {
 // checklist still shows "Tự đánh dấu" can ask an admin to manually convert
 // it, instead of being stuck re-doing an already-finished lesson.
 export default function LessonAppealModal({ userId, lesson, onClose }: LessonAppealModalProps) {
+  const { t } = useI18n();
   const [note, setNote] = useState("");
   const [sending, setSending] = useState(false);
 
@@ -23,11 +25,11 @@ export default function LessonAppealModal({ userId, lesson, onClose }: LessonApp
     setSending(true);
     try {
       await submitLessonAppeal(userId, lesson.id, lesson.slug, note);
-      toast.success("Đã gửi khiếu nại - admin sẽ kiểm tra và duyệt sớm nhất có thể.");
+      toast.success(t.lessonAppeal.sent);
       onClose();
     } catch (error) {
       console.error("Error submitting lesson appeal:", error);
-      toast.error(error instanceof Error ? error.message : "Không thể gửi khiếu nại. Vui lòng thử lại.");
+      toast.error(error instanceof Error ? error.message : t.lessonAppeal.sendFailed);
     } finally {
       setSending(false);
     }
@@ -45,7 +47,7 @@ export default function LessonAppealModal({ userId, lesson, onClose }: LessonApp
               <ShieldQuestion className="w-4.5 h-4.5" />
             </span>
             <div>
-              <h3 className="font-bold text-stone-900 dark:text-stone-100 text-sm">Khiếu nại hoàn thành</h3>
+              <h3 className="font-bold text-stone-900 dark:text-stone-100 text-sm">{t.lessonAppeal.title}</h3>
               <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5 line-clamp-1">{lesson.title}</p>
             </div>
           </div>
@@ -55,14 +57,13 @@ export default function LessonAppealModal({ userId, lesson, onClose }: LessonApp
         </div>
 
         <p className="text-sm text-stone-600 dark:text-stone-400 leading-relaxed">
-          Nếu bạn đã thực sự đọc hết, làm xong quiz và câu hỏi giữa bài (nếu có) nhưng bài vẫn hiện &quot;Tự đánh dấu&quot;
-          thay vì &quot;Xong&quot;, gửi khiếu nại để admin kiểm tra và duyệt thủ công.
+          {t.lessonAppeal.blurb}
         </p>
 
         <textarea
           value={note}
           onChange={(e) => setNote(e.target.value)}
-          placeholder="Mô tả thêm (tuỳ chọn) - VD: đã làm xong 4/4 câu quiz và câu hỏi giữa bài lúc 20h..."
+          placeholder={t.lessonAppeal.notePlaceholder}
           rows={3}
           maxLength={500}
           className="w-full px-3 py-2.5 rounded-lg border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 text-sm text-stone-900 dark:text-stone-100 placeholder:text-stone-400 focus:outline-none focus:border-stone-400 resize-none"
@@ -73,7 +74,7 @@ export default function LessonAppealModal({ userId, lesson, onClose }: LessonApp
           disabled={sending}
           className="w-full py-3 rounded-xl font-bold text-sm bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 disabled:opacity-60 transition-colors"
         >
-          {sending ? "Đang gửi..." : "Gửi khiếu nại"}
+          {sending ? t.lessonAppeal.sending : t.lessonAppeal.submit}
         </button>
       </div>
     </div>

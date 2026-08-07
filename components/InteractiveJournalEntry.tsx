@@ -1,6 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
 // Định khoản một nghiệp vụ, widget cho các bài khai `interactiveType:
 // "journal-entry"`.
@@ -26,17 +29,19 @@ interface Account {
   kind: "asset" | "liability" | "equity" | "revenue" | "expense";
 }
 
-const ACCOUNTS: Account[] = [
-  { id: "cash", label: "Tiền mặt / tiền gửi", kind: "asset" },
-  { id: "fixedAsset", label: "Tài sản cố định", kind: "asset" },
-  { id: "inventory", label: "Hàng tồn kho", kind: "asset" },
-  { id: "receivable", label: "Phải thu khách hàng", kind: "asset" },
-  { id: "loan", label: "Vay ngân hàng", kind: "liability" },
-  { id: "payable", label: "Phải trả người bán", kind: "liability" },
-  { id: "equity", label: "Vốn chủ sở hữu", kind: "equity" },
-  { id: "revenue", label: "Doanh thu", kind: "revenue" },
-  { id: "expense", label: "Chi phí", kind: "expense" },
-];
+function getAccounts(t: Dictionary): Account[] {
+  return [
+    { id: "cash", label: t.journalEntry.accountCash, kind: "asset" },
+    { id: "fixedAsset", label: t.journalEntry.accountFixedAsset, kind: "asset" },
+    { id: "inventory", label: t.journalEntry.accountInventory, kind: "asset" },
+    { id: "receivable", label: t.journalEntry.accountReceivable, kind: "asset" },
+    { id: "loan", label: t.journalEntry.accountLoan, kind: "liability" },
+    { id: "payable", label: t.journalEntry.accountPayable, kind: "liability" },
+    { id: "equity", label: t.journalEntry.accountEquity, kind: "equity" },
+    { id: "revenue", label: t.journalEntry.accountRevenue, kind: "revenue" },
+    { id: "expense", label: t.journalEntry.accountExpense, kind: "expense" },
+  ];
+}
 
 interface Transaction {
   id: string;
@@ -47,74 +52,80 @@ interface Transaction {
   why: string;
 }
 
-const TRANSACTIONS: Transaction[] = [
-  {
-    id: "loan",
-    text: "Vay ngân hàng 500 triệu, tiền về tài khoản công ty.",
-    amount: 500,
-    debit: "cash",
-    credit: "loan",
-    why: "Tiền là tài sản và nó tăng, nên ghi bên Nợ. Nghĩa vụ trả nợ cũng tăng, nên ghi bên Có. Cả hai bên bảng cân đối cùng phình ra 500 - tiền vay không phải doanh thu, vì nó phải trả lại.",
-  },
-  {
-    id: "buy-asset",
-    text: "Mua một máy in 20 triệu, trả ngay bằng tiền mặt.",
-    amount: 20,
-    debit: "fixedAsset",
-    credit: "cash",
-    why: "Đây là chỗ người mới sai nhiều nhất: chi tiền không đồng nghĩa phát sinh chi phí. Cái máy vẫn còn đó nên chưa có của cải nào tiêu hao - chỉ là đổi từ tiền sang một tài sản khác. Tổng tài sản không đổi. Nó sẽ tiêu hao dần qua khấu hao.",
-  },
-  {
-    id: "salary",
-    text: "Trả lương nhân viên 80 triệu bằng chuyển khoản.",
-    amount: 80,
-    debit: "expense",
-    credit: "cash",
-    why: "Công sức đã tiêu hao và không để lại tài sản nào, nên đây là chi phí thật - chi phí tăng ghi bên Nợ. Tiền giảm ghi bên Có. Đây là dạng nghiệp vụ duy nhất làm lợi nhuận giảm.",
-  },
-  {
-    id: "sale-credit",
-    text: "Bán hàng 150 triệu, khách nhận nợ chưa trả tiền.",
-    amount: 150,
-    debit: "receivable",
-    credit: "revenue",
-    why: "Doanh thu ghi nhận khi bán, không đợi thu tiền - đó là nguyên tắc dồn tích. Chưa có đồng tiền nào về nhưng lợi nhuận đã tăng, và đây chính là lý do một công ty có thể lãi mà vẫn không đủ tiền trả lương.",
-  },
-  {
-    id: "pay-supplier",
-    text: "Trả 60 triệu tiền nợ cho nhà cung cấp.",
-    amount: 60,
-    debit: "payable",
-    credit: "cash",
-    why: "Nghĩa vụ giảm nên ghi bên Nợ; tiền giảm nên ghi bên Có. Cả hai bên bảng cân đối cùng co lại. Không có chi phí nào phát sinh ở đây - chi phí đã được ghi từ lúc nhận hàng.",
-  },
-];
+function getTransactions(t: Dictionary): Transaction[] {
+  return [
+    {
+      id: "loan",
+      text: t.journalEntry.txnLoanText,
+      amount: 500,
+      debit: "cash",
+      credit: "loan",
+      why: t.journalEntry.txnLoanWhy,
+    },
+    {
+      id: "buy-asset",
+      text: t.journalEntry.txnBuyAssetText,
+      amount: 20,
+      debit: "fixedAsset",
+      credit: "cash",
+      why: t.journalEntry.txnBuyAssetWhy,
+    },
+    {
+      id: "salary",
+      text: t.journalEntry.txnSalaryText,
+      amount: 80,
+      debit: "expense",
+      credit: "cash",
+      why: t.journalEntry.txnSalaryWhy,
+    },
+    {
+      id: "sale-credit",
+      text: t.journalEntry.txnSaleCreditText,
+      amount: 150,
+      debit: "receivable",
+      credit: "revenue",
+      why: t.journalEntry.txnSaleCreditWhy,
+    },
+    {
+      id: "pay-supplier",
+      text: t.journalEntry.txnPaySupplierText,
+      amount: 60,
+      debit: "payable",
+      credit: "cash",
+      why: t.journalEntry.txnPaySupplierWhy,
+    },
+  ];
+}
 
 /** Phương trình kế toán sau nghiệp vụ, tính theo nhóm tài khoản. */
-function equationDelta(t: Transaction) {
-  const kind = (id: AccountId) => ACCOUNTS.find((a) => a.id === id)!.kind;
-  const d = kind(t.debit);
-  const c = kind(t.credit);
+function equationDelta(accounts: Account[], txn: Transaction) {
+  const kind = (id: AccountId) => accounts.find((a) => a.id === id)!.kind;
+  const d = kind(txn.debit);
+  const c = kind(txn.credit);
   // Ghi Nợ làm tài sản/chi phí tăng, nợ phải trả/vốn chủ/doanh thu giảm.
   let assets = 0;
   let claims = 0; // nợ phải trả + vốn chủ (chi phí và doanh thu chảy vào vốn chủ)
-  if (d === "asset") assets += t.amount;
-  else claims -= t.amount;
-  if (c === "asset") assets -= t.amount;
-  else claims += t.amount;
+  if (d === "asset") assets += txn.amount;
+  else claims -= txn.amount;
+  if (c === "asset") assets -= txn.amount;
+  else claims += txn.amount;
   return { assets, claims };
 }
 
 export default function InteractiveJournalEntry() {
+  const { t: dict } = useI18n();
+  const accounts = useMemo(() => getAccounts(dict), [dict]);
+  const transactions = useMemo(() => getTransactions(dict), [dict]);
+
   const [index, setIndex] = useState(0);
   const [debit, setDebit] = useState<AccountId | "">("");
   const [credit, setCredit] = useState<AccountId | "">("");
   const [checked, setChecked] = useState(false);
 
-  const t = TRANSACTIONS[index];
-  const debitOk = debit === t.debit;
-  const creditOk = credit === t.credit;
-  const delta = equationDelta(t);
+  const txn = transactions[index];
+  const debitOk = debit === txn.debit;
+  const creditOk = credit === txn.credit;
+  const delta = equationDelta(accounts, txn);
 
   function goTo(i: number) {
     setIndex(i);
@@ -127,15 +138,15 @@ export default function InteractiveJournalEntry() {
     <div className="rounded-3xl border border-stone-200 bg-white p-6 dark:border-stone-800 dark:bg-stone-900">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <h3 className="text-sm font-extrabold text-stone-900 dark:text-stone-100">
-          Nghiệp vụ {index + 1}/{TRANSACTIONS.length}
+          {format(dict.journalEntry.transactionCounter, { current: index + 1, total: transactions.length })}
         </h3>
         <div className="flex gap-1">
-          {TRANSACTIONS.map((x, i) => (
+          {transactions.map((x, i) => (
             <button
               key={x.id}
               type="button"
               onClick={() => goTo(i)}
-              aria-label={`Nghiệp vụ ${i + 1}`}
+              aria-label={format(dict.journalEntry.transactionAriaLabel, { n: i + 1 })}
               aria-current={i === index}
               className={`h-2 w-6 cursor-pointer rounded-full ${
                 i === index ? "bg-stone-900 dark:bg-stone-100" : "bg-stone-200 dark:bg-stone-700"
@@ -146,27 +157,29 @@ export default function InteractiveJournalEntry() {
       </div>
 
       <p className="mt-3 rounded-2xl bg-stone-50 px-3 py-2.5 text-sm font-semibold leading-snug text-stone-800 dark:bg-stone-800/60 dark:text-stone-100">
-        {t.text}
+        {txn.text}
       </p>
 
       <div className="mt-4 grid gap-3 sm:grid-cols-2">
         <Side
-          side="Nợ"
-          hint="cái gì tăng lên"
+          side={dict.journalEntry.debitSide}
+          hint={dict.journalEntry.debitHint}
+          accounts={accounts}
           value={debit}
           onChange={(v) => { setDebit(v); setChecked(false); }}
           checked={checked}
           ok={debitOk}
-          answer={t.debit}
+          answer={txn.debit}
         />
         <Side
-          side="Có"
-          hint="cái gì đi ra, hoặc nghĩa vụ nào tăng"
+          side={dict.journalEntry.creditSide}
+          hint={dict.journalEntry.creditHint}
+          accounts={accounts}
           value={credit}
           onChange={(v) => { setCredit(v); setChecked(false); }}
           checked={checked}
           ok={creditOk}
-          answer={t.credit}
+          answer={txn.credit}
         />
       </div>
 
@@ -176,7 +189,7 @@ export default function InteractiveJournalEntry() {
         onClick={() => setChecked(true)}
         className="mt-3 cursor-pointer rounded-full bg-stone-900 px-4 py-2 text-[11px] font-bold text-white hover:bg-stone-700 disabled:cursor-default disabled:opacity-40 dark:bg-stone-100 dark:text-stone-900"
       >
-        Kiểm tra định khoản
+        {dict.journalEntry.checkButton}
       </button>
 
       {checked && (
@@ -189,39 +202,42 @@ export default function InteractiveJournalEntry() {
             }`}
           >
             {debitOk && creditOk
-              ? "Đúng cả hai vế."
+              ? dict.journalEntry.bothCorrect
               : !debitOk && !creditOk
-                ? "Cả hai vế chưa đúng — thử đặt lại hai câu hỏi: cái gì tăng, cái gì giảm."
+                ? dict.journalEntry.bothWrong
                 : !debitOk
-                  ? "Vế Có đúng, vế Nợ chưa. Hỏi lại: nghiệp vụ này làm cái gì TĂNG lên?"
-                  : "Vế Nợ đúng, vế Có chưa. Hỏi lại: cái gì đi ra khỏi doanh nghiệp, hoặc nghĩa vụ nào tăng?"}
+                  ? dict.journalEntry.debitWrong
+                  : dict.journalEntry.creditWrong}
           </p>
 
           <div className="rounded-2xl border border-stone-200 p-3 dark:border-stone-800">
             <p className="text-[10px] font-black uppercase tracking-widest text-stone-500 dark:text-stone-400">
-              Phương trình kế toán sau nghiệp vụ
+              {dict.journalEntry.equationTitle}
             </p>
             <p className="mt-1 font-mono text-[12px] text-stone-700 dark:text-stone-200">
-              Tài sản {sign(delta.assets)} = Nợ phải trả + Vốn chủ {sign(delta.claims)}
+              {format(dict.journalEntry.equationFormula, {
+                assetsSign: sign(dict, delta.assets),
+                claimsSign: sign(dict, delta.claims),
+              })}
             </p>
             <p className="mt-1 text-[11px] text-stone-500 dark:text-stone-400">
               {delta.assets === 0 && delta.claims === 0
-                ? "Hai bên không đổi — nghiệp vụ chỉ đổi hình thái trong cùng một bên."
-                : "Hai vế đổi cùng một lượng, nên phương trình vẫn cân. Đó là ý nghĩa của ghi sổ kép."}
+                ? dict.journalEntry.equationUnchangedHint
+                : dict.journalEntry.equationBalancedHint}
             </p>
           </div>
 
           <p className="rounded-2xl bg-stone-50 px-3 py-2.5 text-xs leading-relaxed text-stone-600 dark:bg-stone-800/60 dark:text-stone-300">
-            {t.why}
+            {txn.why}
           </p>
 
-          {index < TRANSACTIONS.length - 1 && (
+          {index < transactions.length - 1 && (
             <button
               type="button"
               onClick={() => goTo(index + 1)}
               className="cursor-pointer rounded-full border border-stone-300 px-4 py-2 text-[11px] font-bold text-stone-700 hover:border-stone-500 dark:border-stone-700 dark:text-stone-200"
             >
-              Nghiệp vụ tiếp theo →
+              {dict.journalEntry.nextTransaction}
             </button>
           )}
         </div>
@@ -230,14 +246,15 @@ export default function InteractiveJournalEntry() {
   );
 }
 
-function sign(v: number): string {
-  if (v === 0) return "không đổi";
+function sign(t: Dictionary, v: number): string {
+  if (v === 0) return t.journalEntry.signUnchanged;
   return v > 0 ? `+${v}` : `${v}`;
 }
 
 function Side({
   side,
   hint,
+  accounts,
   value,
   onChange,
   checked,
@@ -246,22 +263,24 @@ function Side({
 }: {
   side: string;
   hint: string;
+  accounts: Account[];
   value: AccountId | "";
   onChange: (v: AccountId) => void;
   checked: boolean;
   ok: boolean;
   answer: AccountId;
 }) {
+  const { t } = useI18n();
   return (
     <label className="block">
       <span className="text-xs font-bold text-stone-700 dark:text-stone-200">
-        Ghi {side}{" "}
+        {t.journalEntry.recordSidePrefix} {side}{" "}
         <span className="font-normal text-stone-400 dark:text-stone-500">— {hint}</span>
       </span>
       <select
         value={value}
         onChange={(e) => onChange(e.target.value as AccountId)}
-        aria-label={`Tài khoản ghi ${side}`}
+        aria-label={format(t.journalEntry.selectAccountAriaLabel, { side })}
         className={`mt-1.5 w-full cursor-pointer rounded-xl border bg-white px-3 py-2 text-xs text-stone-800 dark:bg-stone-900 dark:text-stone-100 ${
           !checked
             ? "border-stone-300 dark:border-stone-700"
@@ -270,8 +289,8 @@ function Side({
               : "border-rose-400 dark:border-rose-700"
         }`}
       >
-        <option value="">— chọn tài khoản —</option>
-        {ACCOUNTS.map((a) => (
+        <option value="">{t.journalEntry.selectAccountPlaceholder}</option>
+        {accounts.map((a) => (
           <option key={a.id} value={a.id}>
             {a.label}
           </option>
@@ -279,7 +298,7 @@ function Side({
       </select>
       {checked && !ok && (
         <span className="mt-1 block text-[11px] text-stone-500 dark:text-stone-400">
-          Đáp án: {ACCOUNTS.find((a) => a.id === answer)!.label}
+          {format(t.journalEntry.answerPrefix, { label: accounts.find((a) => a.id === answer)!.label })}
         </span>
       )}
     </label>

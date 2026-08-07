@@ -1,6 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useI18n } from "@/lib/i18n/context";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
 // Biểu đồ lãi lỗ tại đáo hạn, widget cho các bài khai `interactiveType:
 // "payoff"`.
@@ -11,15 +13,17 @@ import { useMemo, useState } from "react";
 // tại NGÀY ĐÁO HẠN - trước đó còn giá trị thời gian, và đó là chuyện của bài
 // về Greeks chứ không phải của biểu đồ này.
 
-const POSITIONS = [
-  { key: "long-call", label: "Mua quyền chọn mua" },
-  { key: "short-call", label: "Bán quyền chọn mua" },
-  { key: "long-put", label: "Mua quyền chọn bán" },
-  { key: "short-put", label: "Bán quyền chọn bán" },
-  { key: "forward", label: "Hợp đồng kỳ hạn (mua)" },
-] as const;
+function getPositions(t: Dictionary) {
+  return [
+    { key: "long-call", label: t.payoffCalc.positionLongCallLabel },
+    { key: "short-call", label: t.payoffCalc.positionShortCallLabel },
+    { key: "long-put", label: t.payoffCalc.positionLongPutLabel },
+    { key: "short-put", label: t.payoffCalc.positionShortPutLabel },
+    { key: "forward", label: t.payoffCalc.positionForwardLabel },
+  ] as const;
+}
 
-type PositionKey = (typeof POSITIONS)[number]["key"];
+type PositionKey = "long-call" | "short-call" | "long-put" | "short-put" | "forward";
 
 /** Lãi lỗ tại đáo hạn cho một mức giá cơ sở. Thuần và tách riêng để đọc được
  *  công thức mà không phải đọc phần vẽ. */
@@ -43,9 +47,11 @@ const HEIGHT = 160;
 const MAX_SPOT = 200;
 
 export default function InteractivePayoff() {
+  const { t } = useI18n();
   const [position, setPosition] = useState<PositionKey>("long-call");
   const [strike, setStrike] = useState(100);
   const [premium, setPremium] = useState(8);
+  const positions = useMemo(() => getPositions(t), [t]);
 
   const { path, zeroY, worst, breakeven } = useMemo(() => {
     const points: Array<[number, number]> = [];
@@ -79,16 +85,15 @@ export default function InteractivePayoff() {
     <div className="bg-white rounded-3xl border border-stone-100 p-6 space-y-5 dark:bg-stone-900 dark:border-stone-800">
       <div>
         <h3 className="font-bold text-stone-800 text-lg mb-1 dark:text-stone-100">
-          📐 Lãi lỗ tại ngày đáo hạn
+          {t.payoffCalc.title}
         </h3>
         <p className="text-stone-500 text-sm dark:text-stone-400">
-          Trục ngang là giá tài sản cơ sở lúc đáo hạn. Đường nằm ngang nghĩa là giá đổi mà lãi lỗ
-          không đổi.
+          {t.payoffCalc.subtitle}
         </p>
       </div>
 
       <div className="flex flex-wrap gap-2">
-        {POSITIONS.map((p) => (
+        {positions.map((p) => (
           <button
             key={p.key}
             type="button"
@@ -105,7 +110,7 @@ export default function InteractivePayoff() {
         ))}
       </div>
 
-      <svg viewBox={`0 0 ${WIDTH} ${HEIGHT}`} className="w-full" role="img" aria-label="Biểu đồ lãi lỗ tại đáo hạn">
+      <svg viewBox={`0 0 ${WIDTH} ${HEIGHT}`} className="w-full" role="img" aria-label={t.payoffCalc.chartAriaLabel}>
         <line x1={0} y1={zeroY} x2={WIDTH} y2={zeroY} className="stroke-stone-300 dark:stroke-stone-600" strokeWidth={1} />
         <line
           x1={(strike / MAX_SPOT) * WIDTH}
@@ -122,41 +127,38 @@ export default function InteractivePayoff() {
       <div className="space-y-4">
         <div>
           <div className="flex justify-between text-sm mb-2">
-            <span className="font-medium text-stone-700 dark:text-stone-300">Giá thực hiện</span>
+            <span className="font-medium text-stone-700 dark:text-stone-300">{t.payoffCalc.strikeLabel}</span>
             <span className="font-bold text-stone-800 dark:text-stone-100">{strike}</span>
           </div>
-          <input type="range" min={40} max={160} value={strike} onChange={(e) => setStrike(+e.target.value)} className="w-full" aria-label="Giá thực hiện" />
+          <input type="range" min={40} max={160} value={strike} onChange={(e) => setStrike(+e.target.value)} className="w-full" aria-label={t.payoffCalc.strikeAriaLabel} />
         </div>
         {isOption && (
           <div>
             <div className="flex justify-between text-sm mb-2">
-              <span className="font-medium text-stone-700 dark:text-stone-300">Phí quyền chọn</span>
+              <span className="font-medium text-stone-700 dark:text-stone-300">{t.payoffCalc.premiumLabel}</span>
               <span className="font-bold text-stone-800 dark:text-stone-100">{premium}</span>
             </div>
-            <input type="range" min={1} max={30} value={premium} onChange={(e) => setPremium(+e.target.value)} className="w-full" aria-label="Phí quyền chọn" />
+            <input type="range" min={1} max={30} value={premium} onChange={(e) => setPremium(+e.target.value)} className="w-full" aria-label={t.payoffCalc.premiumAriaLabel} />
           </div>
         )}
       </div>
 
       <div className="rounded-2xl bg-stone-50 p-4 dark:bg-stone-800/60">
         <p className="text-sm text-stone-700 dark:text-stone-200">
-          Hoà vốn ở mức <b>{breakeven.toFixed(0)}</b>.{" "}
+          {t.payoffCalc.breakevenPart1} <b>{breakeven.toFixed(0)}</b>
+          {t.payoffCalc.breakevenPart2}{" "}
           {lossCapped ? (
             <>
-              Lỗ tối đa <b>{Math.abs(worst).toFixed(0)}</b> - đúng bằng phí đã trả, dù giá đi xa tới đâu.
+              {t.payoffCalc.lossCappedPart1} <b>{Math.abs(worst).toFixed(0)}</b> {t.payoffCalc.lossCappedPart2}
             </>
           ) : isOption ? (
-            <>
-              Lãi tối đa chỉ bằng phí thu được, còn phần lỗ thì không có trần trong vùng vẽ được.
-            </>
+            <>{t.payoffCalc.optionMaxLossText}</>
           ) : (
-            <>Không có phí, cũng không có trần ở cả hai phía - lãi lỗ đi thẳng theo giá.</>
+            <>{t.payoffCalc.forwardText}</>
           )}
         </p>
         <p className="mt-1.5 text-[11px] leading-relaxed text-stone-500 dark:text-stone-400">
-          Đổi qua lại giữa mua và bán cùng một quyền chọn: hai đường là ảnh gương của nhau qua trục
-          ngang. Đó là lý do người bán quyền chọn thu tiền đều đặn và thỉnh thoảng lỗ rất sâu - hình
-          dạng đó làm mọi thước đo dựa trên độ lệch chuẩn đánh giá sai rủi ro.
+          {t.payoffCalc.footerHint}
         </p>
       </div>
     </div>

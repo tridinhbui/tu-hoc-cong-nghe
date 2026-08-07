@@ -1,0 +1,129 @@
+{
+  "slug": "vi-sao-phai-sinh-nguy-hiem",
+  "title": "Why Can Derivatives Be So Dangerous?",
+  "subtitle": "High leverage, complexity, and systemic risk",
+  "openingQuestion": "What makes derivatives far more dangerous than an ordinary investment in stocks or bonds?",
+  "openingOptions": [
+    "Derivatives are only for large institutions so risk is concentrated",
+    "Extremely high leverage means a small move on the underlying asset creates a much larger move on the capital put down, plus complexity that makes risk easy to misjudge and spread through the financial system",
+    "Derivatives are not regulated by law",
+    "Derivatives have higher transaction fees"
+  ],
+  "explanation": "Three factors make derivatives dangerous: (1) Leverage - a small margin controls a large position, amplifying losses quickly; (2) Complexity - many derivatives have layered structures (like CDOs) that are hard to price and risk-assess accurately; (3) Systemic risk - because large financial institutions are tightly linked through derivatives, one collapse can spread in a chain (contagion) through the whole system, as in the 2008 crisis.",
+  "diagram": [
+    { "label": "A small margin controls a large position", "arrow": true },
+    { "label": "Leverage amplifies losses", "arrow": true },
+    { "label": "Complex structures are hard to price and risk-assess" }
+  ],
+  "realWorldExample": {
+    "company": "Long-Term Capital Management (LTCM), 1998",
+    "description": "The hedge fund LTCM, with a team including 2 Nobel laureate economists, collapsed in 1998 from using extremely high leverage on derivative positions, nearly triggering a global financial system crisis and forcing the Fed to step in and rescue it."
+  },
+  "quiz": [
+    {
+      "question": "Why is derivatives risk called capable of 'spreading systemically' (systemic risk)?",
+      "options": [
+        "Because individual investors participate too heavily in this market",
+        "Because derivatives are always traded with very high leverage attached",
+        "Because a derivative's price moves much more sharply than the underlying asset it's based on",
+        "Because a tangled counterparty network means one side's collapse pulls down many others"
+      ],
+      "explanation": "The counterparty network in the OTC derivatives market is very tangled - bank A has a contract with B, B has a contract with C. If A collapses and can't perform its obligations, B suffers, which can pull down C - this is exactly the 'too interconnected to fail' mechanism that occurred in 2008 with AIG and its enormous CDS contracts."
+    },
+    {
+      "question": "After the 2008 financial crisis, regulations like the Dodd-Frank Act in the US required many OTC derivatives to trade through a central clearing house instead of directly bilaterally. What problem that caused the 2008 crisis was this change meant to solve?",
+      "options": [
+        "Scattered, opaque counterparty risk, with nobody knowing who owed whom",
+        "OTC derivatives transaction costs being too high for small businesses",
+        "Individual investors not being able to access the derivatives market",
+        "Banks using derivatives to evade corporate income tax"
+      ],
+      "explanation": "Central clearing addresses exactly the core problem that caused the 2008 crisis: making counterparty risk transparent and centralized through a supervised clearing house, instead of a tangled, opaque web of bilateral contracts among large financial institutions."
+    },
+    {
+      "question": "Why does leverage make a derivatives loss far exceed the original capital?",
+      "options": [
+        "Because the transaction fee is calculated on the entire notional value",
+        "Because margin is only a small fraction of the real contract value",
+        "Because derivatives must be held until the maturity date",
+        "Because the margin loan's interest rate rises when the market gets volatile"
+      ],
+      "explanation": "Putting down 5% margin to control a position twenty times the size of the capital means a 5% price move wipes out the entire account. Nick Leeson brought down Barings with exactly this mechanism, in just a few weeks."
+    },
+    {
+      "question": "What problem does central clearing solve in the OTC market?",
+      "options": [
+        "It completely bans the use of leverage in derivatives trading",
+        "It reduces transaction costs for small and medium businesses",
+        "It places an intermediary in the middle and makes risk positions visible",
+        "It requires every derivative contract to have collateral"
+      ],
+      "explanation": "Before 2008, nobody knew how large AIG's total position was because the contracts were scattered bilaterally. A central clearing house both cuts the chain of contagion and makes the scale of risk visible."
+    },
+    {
+      "question": "What is the common lesson from historical derivatives disasters?",
+      "options": [
+        "The disasters were all caused by technical glitches in the trading system",
+        "Derivatives should be banned for every large financial institution",
+        "Only central banks should be allowed to trade derivatives",
+        "The risk comes from leverage and a lack of oversight, not from the instrument itself"
+      ],
+      "explanation": "Barings, LTCM, and AIG all shared three factors in common: very high leverage, concentrated positions, and no outsider being able to see the true scale. The same instrument, used by an airline to stabilize costs, produces no disaster at all."
+    }
+  ],
+  "keyTakeaways": [
+    "High leverage amplifies both gains and losses on capital put down",
+    "The complexity of some derivatives makes risk hard to price and assess accurately",
+    "A tangled counterparty network creates systemic risk (contagion)"
+  ],
+  "practicePrompt": {
+    "question": "The collapse of Barings Bank (1995) involved a derivatives trader using very high leverage, betting the wrong way on the market, causing damage far exceeding the bank's own capital. Why can high-leverage derivatives be dangerous enough to bankrupt an entire large financial institution?",
+    "options": [
+      "Because derivatives are always a fraudulent instrument with no real economic value in every case",
+      "High leverage amplifies both gains and losses relative to the actual capital put down",
+      "Because derivatives are only dangerous when traded by small banks, not applicable to large financial institutions",
+      "Leverage in derivatives only amplifies profit, it has no effect on downside risk"
+    ],
+    "explanation": "High leverage amplifies both gains and losses on capital put down. This is one reason derivatives are dangerous: complexity makes risk hard to price accurately, and a tangled counterparty network can create systemic risk when a large institution collapses."
+  },
+  "summary": {
+    "keyIdea": "High leverage amplifies both gains and losses on capital put down",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to real decisions.",
+    "action": "The complexity of some derivatives makes risk hard to price and assess accurately"
+  },
+  "application": {
+    "title": "Look into a derivatives-related collapse",
+    "message": "Quickly look up a real case (like the 2008 crisis or a hedge fund collapse) and identify which of the three factors - leverage, complexity, systemic risk - played the main role.",
+    "secondary": "Learning from a real example helps you remember derivatives risk longer than dry theory."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The same instrument that helps an airline stabilize its fuel cost can also bring down a bank hundreds of years old within just a few weeks. Three factors make derivatives dangerous: leverage, complexity, and systemic contagion risk."
+    },
+    { "type": "heading", "text": "Leverage amplifies losses faster than you'd imagine" },
+    {
+      "type": "paragraph",
+      "text": "The hedge fund LTCM (Long-Term Capital Management), with a team including 2 Nobel laureate economists, collapsed in 1998 from using extremely high leverage on derivative positions, nearly triggering a global financial system crisis and forcing the Fed to step in and rescue it. Even the sharpest financial minds can collapse when excessive leverage meets an unexpected market shock."
+    },
+    { "type": "heading", "text": "'Too interconnected to fail'" },
+    {
+      "type": "paragraph",
+      "text": "Large financial institutions are often counterparties to each other across a chain of derivative contracts - bank A has a contract with B, B has a contract with C. If A collapses and can't perform its obligations, B suffers, which can pull down C. This is exactly the mechanism that occurred in 2008 with AIG and its enormous CDS contracts - before that, many CDS traded bilaterally off-exchange, so nobody knew exactly who was carrying what risk."
+    },
+    { "type": "heading", "text": "Central clearing: the post-crisis solution" },
+    {
+      "type": "paragraph",
+      "text": "After 2008, regulations like the Dodd-Frank Act in the US required many OTC derivatives to trade through a central clearing house instead of directly bilaterally. This change made counterparty risk transparent and centralized through a supervising clearing house, instead of a tangled, opaque web of bilateral contracts among large financial institutions."
+    },
+    {
+      "type": "list",
+      "items": [
+        "High leverage amplifies both gains and losses on capital put down",
+        "Some derivatives have layered structures (like CDOs) hard to price accurately",
+        "A tangled counterparty network creates systemic contagion risk",
+        "Central clearing after 2008 aims to make counterparty risk in the OTC market transparent"
+      ]
+    }
+  ]
+}

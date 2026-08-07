@@ -18,6 +18,9 @@ import { getUnresolvedMistakeRows } from "@/lib/quiz-mistakes";
 import { trackFeatureClick } from "@/lib/feature-events";
 import { getMistakeFlashcardCandidates } from "@/app/actions/flashcard-actions";
 import FlashcardAlbumsGallery from "@/components/flashcard/FlashcardAlbumsGallery";
+import { useI18n } from "@/lib/i18n/context";
+import { copyToClipboard } from "@/lib/copy-to-clipboard";
+import { format } from "@/lib/i18n";
 
 interface FlashcardClientProps {
   userId?: string;
@@ -26,6 +29,7 @@ interface FlashcardClientProps {
 }
 
 export default function FlashcardClient({ userId: propUserId, initialCards, embedded = false }: FlashcardClientProps = {}) {
+  const { t } = useI18n();
   const authGate = useAuthGate();
   const userId = propUserId || authGate.userId;
   const checking = propUserId ? false : authGate.checking;
@@ -59,7 +63,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
       const mistakeRows = await getUnresolvedMistakeRows(userId);
       const candidates = await getMistakeFlashcardCandidates(mistakeRows);
       if (candidates.length === 0) {
-        toast.info("Không tìm thấy câu trắc nghiệm làm sai chưa giải quyết nào! 🌟 Hãy tiếp tục học bài nhé.");
+        toast.info(t.flashcards.noMistakesFound);
         return;
       }
       let count = 0;
@@ -79,14 +83,14 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
         if (ok) count++;
       }
       if (count > 0) {
-        toast.success(`Đã tự động tạo thành công ${count} thẻ ôn tập từ các câu làm sai! ⚡🗂️`);
+        toast.success(format(t.flashcards.generatedFromMistakes, { count }));
         const list = await getFlashcards(userId);
         setCards(list);
       } else {
-        toast.info("Tất cả câu lỗi sai đã được tạo thẻ trước đó.");
+        toast.info(t.flashcards.mistakesAlreadyMade);
       }
     } catch {
-      toast.error("Có lỗi xảy ra khi quét lịch sử lỗi sai.");
+      toast.error(t.flashcards.mistakesScanFailed);
     } finally {
       setGeneratingFromMistakes(false);
     }
@@ -150,12 +154,12 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
     const ok = await saveFlashcard(userId, updatedCard);
     if (ok) {
       if (quality >= 3) {
-        toast.success(`Đã nhớ! Lần ôn tiếp theo: ${interval} ngày tới.`);
+        toast.success(format(t.flashcards.nextReview, { days: interval }));
       } else {
-        toast.info("Đã đánh dấu cần học lại sớm!");
+        toast.info(t.flashcards.markedForReview);
       }
     } else {
-      toast.error("Không thể lưu trạng thái ôn tập.");
+      toast.error(t.flashcards.reviewSaveFailed);
     }
   };
 
@@ -206,13 +210,13 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
     const ok = await saveFlashcard(userId, newCard);
     setSaving(false);
     if (ok) {
-      toast.success("Đã thêm thẻ mới!");
+      toast.success(t.flashcards.cardAdded);
       setCards((prev) => [...prev, newCard]);
       setNewTerm("");
       setNewDef("");
       setShowAddForm(false);
     } else {
-      toast.error("Không thể lưu thẻ mới.");
+      toast.error(t.flashcards.cardSaveFailed);
     }
   };
 
@@ -241,47 +245,54 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
   const handleBulkImport = async () => {
     const parsed = parseBulkLines(bulkText);
     if (parsed.length === 0) {
-      toast.error('Không đọc được dòng nào hợp lệ - mỗi dòng cần dạng "thuật ngữ | định nghĩa".');
+      toast.error(t.flashcards.bulkParseFailed);
       return;
     }
     setBulkImporting(true);
     try {
       const { added, skipped } = await saveFlashcardsBulk(userId, parsed);
       if (added > 0) {
-        toast.success(`Đã thêm ${added} thẻ mới!${skipped > 0 ? ` (bỏ qua ${skipped} thẻ đã có sẵn)` : ""}`);
+        toast.success(
+          format(t.flashcards.bulkAdded, { added }) +
+            (skipped > 0 ? format(t.flashcards.bulkSkippedSuffix, { skipped }) : "")
+        );
         const list = await getFlashcards(userId);
         setCards(list);
         setBulkText("");
         setShowBulkPanel(false);
       } else if (skipped > 0) {
-        toast.info(`Cả ${skipped} thẻ đều đã có sẵn trong hộp thẻ của bạn.`);
+        toast.info(format(t.flashcards.bulkAllExisted, { skipped }));
       } else {
-        toast.error("Không thể lưu các thẻ này.");
+        toast.error(t.flashcards.bulkSaveFailed);
       }
     } finally {
       setBulkImporting(false);
     }
   };
 
-  function handleExport() {
+  async function handleExport() {
     if (cards.length === 0) {
-      toast.info("Chưa có thẻ nào để xuất.");
+      toast.info(t.flashcards.nothingToExport);
       return;
     }
     const text = cards.map((c) => `${c.term} | ${c.definition}`).join("\n");
-    navigator.clipboard.writeText(text).then(() => {
-      toast.success(`Đã sao chép ${cards.length} thẻ vào clipboard.`);
-    });
+    // Đây là đường duy nhất để lấy bộ thẻ ra khỏi app, nên một lần hỏng im
+    // lặng là người dùng tưởng đã xuất xong rồi đóng trang.
+    if (!(await copyToClipboard(text))) {
+      toast.error(t.flashcards.copyToClipboardFailed);
+      return;
+    }
+    toast.success(format(t.flashcards.copiedToClipboard, { count: cards.length }));
   }
 
   const handleDeleteCard = async (term: string) => {
-    if (!confirm(`Bạn có chắc chắn muốn xoá thẻ "${term}"?`)) return;
+    if (!confirm(format(t.flashcards.confirmDelete, { term }))) return;
     const ok = await deleteFlashcard(userId, term);
     if (ok) {
-      toast.success("Đã xoá thẻ thành công.");
+      toast.success(t.flashcards.cardDeleted);
       setCards((prev) => prev.filter((c) => c.term !== term));
     } else {
-      toast.error("Không thể xoá thẻ.");
+      toast.error(t.flashcards.cardDeleteFailed);
     }
   };
 
@@ -301,11 +312,11 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
         const ok = await saveFlashcard(userId, card);
         if (ok) count++;
       }
-      toast.success(`Đã nhập thành công ${count} thẻ từ vựng mẫu! 🎉`);
+      toast.success(format(t.flashcards.sampleImported, { count }));
       const list = await getFlashcards(userId);
       setCards(list);
     } catch {
-      toast.error("Lỗi khi nhập thẻ mẫu.");
+      toast.error(t.flashcards.sampleImportFailed);
     } finally {
       setLoading(false);
     }
@@ -321,7 +332,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
             href="/dashboard"
             className="inline-flex items-center gap-1.5 text-sm font-bold text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-xl px-3 py-2 -ml-3 mb-3 transition-all"
           >
-            <ArrowLeft className="w-4 h-4" /> Quay lại
+            <ArrowLeft className="w-4 h-4" /> {t.flashcards.back}
           </Link>
         )}
 
@@ -336,11 +347,11 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
             </div>
             <div className="min-w-0">
               {embedded ? (
-                <h2 className="text-lg sm:text-xl font-extrabold text-white leading-tight">Thẻ ghi nhớ</h2>
+                <h2 className="text-lg sm:text-xl font-extrabold text-white leading-tight">{t.flashcards.title}</h2>
               ) : (
-                <h1 className="text-lg sm:text-xl font-extrabold text-white leading-tight">Thẻ ghi nhớ</h1>
+                <h1 className="text-lg sm:text-xl font-extrabold text-white leading-tight">{t.flashcards.title}</h1>
               )}
-              <p className="text-[11px] sm:text-xs text-emerald-100/90 font-semibold">Spaced Repetition · Thuật toán SM2</p>
+              <p className="text-[11px] sm:text-xs text-emerald-100/90 font-semibold">{t.flashcards.algorithm}</p>
             </div>
           </div>
 
@@ -351,21 +362,21 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
                 <Target className="w-3.5 h-3.5" />
                 <span className="text-lg sm:text-xl font-extrabold text-white">{dueCards.length}</span>
               </div>
-              <p className="text-[9px] sm:text-[10px] font-bold text-emerald-100/80 uppercase tracking-wider">Đến hạn</p>
+              <p className="text-[9px] sm:text-[10px] font-bold text-emerald-100/80 uppercase tracking-wider">{t.flashcards.statDue}</p>
             </div>
             <div className="rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10 px-3 py-2.5 text-center">
               <div className="flex items-center justify-center gap-1 text-white mb-0.5">
                 <Layers className="w-3.5 h-3.5" />
                 <span className="text-lg sm:text-xl font-extrabold text-white">{cards.length}</span>
               </div>
-              <p className="text-[9px] sm:text-[10px] font-bold text-emerald-100/80 uppercase tracking-wider">Tổng số thẻ</p>
+              <p className="text-[9px] sm:text-[10px] font-bold text-emerald-100/80 uppercase tracking-wider">{t.flashcards.statTotal}</p>
             </div>
             <div className="rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10 px-3 py-2.5 text-center">
               <div className="flex items-center justify-center gap-1 text-emerald-200 mb-0.5">
                 <Trophy className="w-3.5 h-3.5" />
                 <span className="text-lg sm:text-xl font-extrabold text-white">{masteredCount}</span>
               </div>
-              <p className="text-[9px] sm:text-[10px] font-bold text-emerald-100/80 uppercase tracking-wider">Đã thành thạo</p>
+              <p className="text-[9px] sm:text-[10px] font-bold text-emerald-100/80 uppercase tracking-wider">{t.flashcards.statMastered}</p>
             </div>
           </div>
 
@@ -376,25 +387,25 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
               disabled={generatingFromMistakes}
               className="inline-flex items-center gap-1.5 text-xs font-bold bg-amber-500 hover:bg-amber-400 text-white px-3.5 py-2.5 rounded-xl hover:scale-[1.03] active:scale-95 transition-all shadow-sm cursor-pointer disabled:opacity-50"
             >
-              <Sparkles className="w-3.5 h-3.5" /> {generatingFromMistakes ? "Đang tạo..." : "Tạo từ lỗi sai"}
+              <Sparkles className="w-3.5 h-3.5" /> {generatingFromMistakes ? t.flashcards.generating : t.flashcards.generateFromMistakes}
             </button>
             <button
               onClick={() => setShowAddForm(!showAddForm)}
               className="inline-flex items-center gap-1.5 text-xs font-bold bg-white text-emerald-700 px-3.5 py-2.5 rounded-xl hover:scale-[1.03] active:scale-95 transition-all shadow-sm cursor-pointer"
             >
-              <Plus className="w-3.5 h-3.5" /> Thêm thẻ mới
+              <Plus className="w-3.5 h-3.5" /> {t.flashcards.addCard}
             </button>
             <button
               onClick={() => setShowBulkPanel(!showBulkPanel)}
               className="inline-flex items-center gap-1.5 text-xs font-bold bg-white/10 border border-white/20 text-white px-3.5 py-2.5 rounded-xl hover:bg-white/20 transition-all cursor-pointer"
             >
-              <Upload className="w-3.5 h-3.5" /> Nhập/Xuất
+              <Upload className="w-3.5 h-3.5" /> {t.flashcards.importExport}
             </button>
             <button
               onClick={() => setShowAlbums(!showAlbums)}
               className="inline-flex items-center gap-1.5 text-xs font-bold bg-gradient-to-r from-rose-500 to-orange-500 text-white px-3.5 py-2.5 rounded-xl hover:scale-[1.03] active:scale-95 transition-all shadow-sm cursor-pointer"
             >
-              <Flame className="w-3.5 h-3.5" /> Bộ thẻ hot
+              <Flame className="w-3.5 h-3.5" /> {t.flashcards.hotDecks}
             </button>
           </div>
         </div>
@@ -411,28 +422,28 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
         {showBulkPanel && (
           <div className="mb-6 p-5 rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 shadow-sm space-y-4 animate-[fadeIn_0.2s_ease-out]">
             <div className="flex items-center justify-between gap-3">
-              <h3 className="text-sm font-extrabold text-stone-900 dark:text-stone-100">Nhập/Xuất hàng loạt</h3>
+              <h3 className="text-sm font-extrabold text-stone-900 dark:text-stone-100">{t.flashcards.bulkTitle}</h3>
               <button
                 onClick={handleExport}
                 className="inline-flex items-center gap-1.5 text-[11px] font-bold text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200 transition-colors"
               >
-                <Download className="w-3.5 h-3.5" /> Xuất {cards.length} thẻ hiện có
+                <Download className="w-3.5 h-3.5" /> {format(t.flashcards.bulkExport, { count: cards.length })}
               </button>
             </div>
             <div>
               <label className="block text-[10px] font-extrabold text-stone-400 dark:text-stone-500 uppercase tracking-widest mb-1.5">
-                Dán danh sách - mỗi dòng: thuật ngữ | định nghĩa
+                {t.flashcards.bulkLabel}
               </label>
               <textarea
                 rows={6}
-                placeholder={"Lãi kép | Lãi tính trên cả gốc lẫn lãi tích luỹ trước đó\nWACC | Chi phí vốn bình quân gia quyền"}
+                placeholder={t.flashcards.bulkPlaceholder}
                 value={bulkText}
                 onChange={(e) => setBulkText(e.target.value)}
                 className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50/40 dark:bg-stone-950/30 text-stone-900 dark:text-stone-100 focus:outline-none focus:border-emerald-500 font-mono"
               />
               {bulkText.trim() && (
                 <p className="text-[11px] text-stone-400 dark:text-stone-500 mt-1.5">
-                  Đọc được {parseBulkLines(bulkText).length} thẻ hợp lệ.
+                  {format(t.flashcards.bulkParsed, { count: parseBulkLines(bulkText).length })}
                 </p>
               )}
             </div>
@@ -442,14 +453,14 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
                 onClick={handleExport}
                 className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold rounded-xl border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors sm:hidden"
               >
-                <Copy className="w-3.5 h-3.5" /> Xuất
+                <Copy className="w-3.5 h-3.5" /> {t.flashcards.exportShort}
               </button>
               <button
                 type="button"
                 onClick={() => setShowBulkPanel(false)}
                 className="px-4 py-2 text-xs font-bold rounded-xl border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
               >
-                Hủy
+                {t.flashcards.cancel}
               </button>
               <button
                 type="button"
@@ -457,7 +468,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
                 disabled={bulkImporting || !bulkText.trim()}
                 className="px-4 py-2 text-xs font-bold rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white disabled:opacity-50 transition-colors"
               >
-                {bulkImporting ? "Đang nhập..." : "Nhập thẻ"}
+                {bulkImporting ? t.flashcards.bulkImporting : t.flashcards.bulkImport}
               </button>
             </div>
           </div>
@@ -465,25 +476,25 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
 
         {showAddForm && (
           <form onSubmit={handleAddCard} className="mb-6 p-5 rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 shadow-sm space-y-4 animate-[fadeIn_0.2s_ease-out]">
-            <h3 className="text-sm font-extrabold text-stone-900 dark:text-stone-100">Tạo thẻ ghi nhớ mới</h3>
+            <h3 className="text-sm font-extrabold text-stone-900 dark:text-stone-100">{t.flashcards.newCardTitle}</h3>
             <div className="space-y-3">
               <div>
-                <label className="block text-[10px] font-extrabold text-stone-400 dark:text-stone-500 uppercase tracking-widest mb-1.5">Thuật ngữ / Từ vựng</label>
+                <label className="block text-[10px] font-extrabold text-stone-400 dark:text-stone-500 uppercase tracking-widest mb-1.5">{t.flashcards.termLabel}</label>
                 <input
                   type="text"
                   required
-                  placeholder="Ví dụ: Lãi đơn"
+                  placeholder={t.flashcards.termPlaceholder}
                   value={newTerm}
                   onChange={(e) => setNewTerm(e.target.value)}
                   className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50/40 dark:bg-stone-950/30 text-stone-900 dark:text-stone-100 focus:outline-none focus:border-emerald-500"
                 />
               </div>
               <div>
-                <label className="block text-[10px] font-extrabold text-stone-400 dark:text-stone-500 uppercase tracking-widest mb-1.5">Định nghĩa / Giải nghĩa</label>
+                <label className="block text-[10px] font-extrabold text-stone-400 dark:text-stone-500 uppercase tracking-widest mb-1.5">{t.flashcards.definitionLabel}</label>
                 <textarea
                   required
                   rows={3}
-                  placeholder="Giải thích ngắn gọn để bạn dễ ôn tập và ghi nhớ..."
+                  placeholder={t.flashcards.definitionPlaceholder}
                   value={newDef}
                   onChange={(e) => setNewDef(e.target.value)}
                   className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50/40 dark:bg-stone-950/30 text-stone-900 dark:text-stone-100 focus:outline-none focus:border-emerald-500"
@@ -496,14 +507,14 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
                 onClick={() => setShowAddForm(false)}
                 className="px-4 py-2 text-xs font-bold rounded-xl border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
               >
-                Hủy
+                {t.flashcards.cancel}
               </button>
               <button
                 type="submit"
                 disabled={saving}
                 className="px-4 py-2 text-xs font-bold rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white disabled:opacity-50 transition-colors"
               >
-                {saving ? "Đang lưu..." : "Lưu thẻ"}
+                {saving ? t.flashcards.saving : t.flashcards.saveCard}
               </button>
             </div>
           </form>
@@ -512,28 +523,28 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
         {loading ? (
           <div className="text-center py-20">
             <div className="w-8 h-8 border-2 border-stone-300 border-t-emerald-500 rounded-full animate-spin mx-auto mb-3" />
-            <p className="text-xs text-stone-500">Đang tải hộp thẻ của bạn...</p>
+            <p className="text-xs text-stone-500">{t.flashcards.loading}</p>
           </div>
         ) : cards.length === 0 ? (
           <div className="text-center py-16 px-6 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-3xl shadow-sm max-w-md mx-auto">
             <span className="text-4xl mb-4 block animate-pulse">🗂️</span>
-            <h2 className="text-lg font-extrabold text-stone-900 dark:text-stone-50">Hộp thẻ trống</h2>
+            <h2 className="text-lg font-extrabold text-stone-900 dark:text-stone-50">{t.flashcards.emptyTitle}</h2>
             <p className="text-xs text-stone-500 dark:text-stone-400 mt-2 leading-relaxed">
-              Bạn chưa có thẻ ghi nhớ nào trong hệ thống. Hãy tự tạo một số thẻ từ vựng mới hoặc nhập danh sách mẫu bên dưới để học ngay!
+              {t.flashcards.emptyBody}
             </p>
             <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center items-center">
               <button
                 onClick={bootstrapDefaultGlossary}
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 text-xs font-extrabold bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-4 py-2.5 rounded-xl hover:scale-105 active:scale-95 transition-all shadow-md cursor-pointer"
               >
-                <GraduationCap className="w-4 h-4" /> Nhập 8 thẻ mẫu
+                <GraduationCap className="w-4 h-4" /> {t.flashcards.importSamples}
               </button>
               <button
                 onClick={handleGenerateFromMistakes}
                 disabled={generatingFromMistakes}
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 text-xs font-extrabold bg-gradient-to-r from-amber-500 to-orange-500 text-white px-4 py-2.5 rounded-xl hover:scale-105 active:scale-95 transition-all shadow-md cursor-pointer disabled:opacity-50"
               >
-                <Sparkles className="w-4 h-4" /> Tạo nhanh từ lỗi sai ⚡
+                <Sparkles className="w-4 h-4" /> {t.flashcards.quickFromMistakes}
               </button>
             </div>
           </div>
@@ -544,8 +555,8 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
               {currentCard && (
                 <div className="w-full max-w-sm mb-3">
                   <div className="flex items-center justify-between text-[10px] font-extrabold text-stone-400 dark:text-stone-500 uppercase tracking-wider mb-1.5 px-0.5">
-                    <span>Đang ôn tập</span>
-                    <span>Còn {dueCards.length} thẻ</span>
+                    <span>{t.flashcards.reviewing}</span>
+                    <span>{format(t.flashcards.cardsLeft, { count: dueCards.length })}</span>
                   </div>
                   <div className="h-1.5 rounded-full bg-stone-100 dark:bg-stone-800 overflow-hidden">
                     <div
@@ -594,12 +605,12 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
                     {/* Swipe Overlay Hints */}
                     {swipeOffset > 60 && (
                       <div className="absolute top-4 right-4 bg-emerald-500 text-white text-[10px] font-extrabold px-2.5 py-1 rounded-full uppercase tracking-wider shadow">
-                        Nhớ 👍
+                        {t.flashcards.rememberedShort}
                       </div>
                     )}
                     {swipeOffset < -60 && (
                       <div className="absolute top-4 left-4 bg-red-500 text-white text-[10px] font-extrabold px-2.5 py-1 rounded-full uppercase tracking-wider shadow">
-                        Quên ❌
+                        {t.flashcards.forgotShort}
                       </div>
                     )}
 
@@ -610,7 +621,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
                           : "text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/40"
                       }`}
                     >
-                      {isFlipped ? "Định nghĩa" : "Thuật ngữ"}
+                      {isFlipped ? t.flashcards.faceDefinition : t.flashcards.faceTerm}
                     </span>
 
                     {/* Card Content with 3D Flip feel */}
@@ -627,7 +638,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
                     </div>
 
                     <span className="text-[10px] font-bold text-stone-400 dark:text-stone-500 absolute bottom-6 hover:text-emerald-500 transition-colors flex items-center gap-1">
-                      {isFlipped ? "↩ Chạm để xem thuật ngữ" : "↪ Chạm để lật mặt sau"}
+                      {isFlipped ? t.flashcards.flipToTerm : t.flashcards.flipToDefinition}
                     </span>
                   </div>
 
@@ -637,28 +648,28 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
                       onClick={() => handleSM2Action(1)}
                       className="flex flex-col items-center gap-1 py-3 text-xs font-bold rounded-2xl border border-red-200 dark:border-red-900 bg-red-50/40 dark:bg-red-950/20 text-red-600 dark:text-red-400 hover:scale-[1.04] hover:shadow-md active:scale-95 transition-all cursor-pointer"
                     >
-                      <span className="text-lg leading-none">❌</span> Quên
+                      <span className="text-lg leading-none">❌</span> {t.flashcards.gradeForgot}
                     </button>
                     <button
                       onClick={() => handleSM2Action(3)}
                       className="flex flex-col items-center gap-1 py-3 text-xs font-bold rounded-2xl border border-stone-200 dark:border-stone-800 bg-white/95 dark:bg-stone-900 text-stone-700 dark:text-stone-300 hover:scale-[1.04] hover:shadow-md active:scale-95 transition-all cursor-pointer"
                     >
-                      <span className="text-lg leading-none">👍</span> Vừa phải
+                      <span className="text-lg leading-none">👍</span> {t.flashcards.gradeMedium}
                     </button>
                     <button
                       onClick={() => handleSM2Action(5)}
                       className="flex flex-col items-center gap-1 py-3 text-xs font-bold rounded-2xl border border-emerald-200 dark:border-emerald-900 bg-emerald-50/40 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 hover:scale-[1.04] hover:shadow-md active:scale-95 transition-all cursor-pointer"
                     >
-                      <span className="text-lg leading-none">⭐️</span> Dễ nhớ
+                      <span className="text-lg leading-none">⭐️</span> {t.flashcards.gradeEasy}
                     </button>
                   </div>
                 </div>
               ) : (
                 <div className="w-full text-center py-10 px-6 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-3xl shadow-sm">
                   <span className="text-3xl mb-2.5 block animate-bounce">🎉</span>
-                  <p className="text-base font-extrabold text-stone-900 dark:text-stone-50">Tuyệt vời! Đã hoàn thành ôn tập hôm nay!</p>
+                  <p className="text-base font-extrabold text-stone-900 dark:text-stone-50">{t.flashcards.doneTitle}</p>
                   <p className="text-xs text-stone-500 dark:text-stone-400 mt-1 max-w-sm mx-auto">
-                    Các thuật ngữ đã được giãn cách khoa học. Hãy quay lại vào ngày mai để tiếp tục ghi nhớ kiến thức nhé!
+                    {t.flashcards.doneBody}
                   </p>
                 </div>
               )}
@@ -667,8 +678,8 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
             {/* Manage Cards Zone */}
             <div className="border-t border-stone-100 dark:border-stone-800/80 pt-6">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-xs font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-widest">Danh sách từ vựng hiện tại</h3>
-                <span className="text-[10px] font-bold text-stone-400 dark:text-stone-500">{cards.length} thẻ</span>
+                <h3 className="text-xs font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-widest">{t.flashcards.listTitle}</h3>
+                <span className="text-[10px] font-bold text-stone-400 dark:text-stone-500">{format(t.flashcards.cardCount, { count: cards.length })}</span>
               </div>
               <div className="grid gap-3 sm:grid-cols-2">
                 {cards.map((c) => {
@@ -684,13 +695,13 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
                           <div className="flex items-center gap-1.5 flex-wrap">
                             <p className="font-extrabold text-xs sm:text-sm text-stone-900 dark:text-stone-100">{c.term}</p>
                             {isDue ? (
-                              <span className="text-[9px] font-extrabold px-1.5 py-0.5 rounded-full bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-400 border border-amber-200/50">Đến hạn</span>
+                              <span className="text-[9px] font-extrabold px-1.5 py-0.5 rounded-full bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-400 border border-amber-200/50">{t.flashcards.badgeDue}</span>
                             ) : (
-                              <span className="text-[9px] font-extrabold px-1.5 py-0.5 rounded-full bg-stone-50 dark:bg-stone-950/40 text-stone-500 border border-stone-100">Đã ôn</span>
+                              <span className="text-[9px] font-extrabold px-1.5 py-0.5 rounded-full bg-stone-50 dark:bg-stone-950/40 text-stone-500 border border-stone-100">{t.flashcards.badgeReviewed}</span>
                             )}
                             {c.repetitions >= 5 && (
                               <span className="text-[9px] font-extrabold px-1.5 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 border border-emerald-200/50 flex items-center gap-0.5">
-                                <Trophy className="w-2.5 h-2.5" /> Thành thạo
+                                <Trophy className="w-2.5 h-2.5" /> {t.flashcards.badgeMastered}
                               </span>
                             )}
                           </div>
@@ -699,7 +710,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
                         <button
                           onClick={() => handleDeleteCard(c.term)}
                           className="text-stone-400 hover:text-red-500 p-1.5 hover:bg-stone-50 dark:hover:bg-stone-800 rounded-lg transition-colors shrink-0 opacity-0 group-hover:opacity-100 sm:opacity-100"
-                          title="Xoá thẻ"
+                          title={t.flashcards.deleteCardTitle}
                         >
                           <Trash2 className="w-3.5 h-3.5" />
                         </button>

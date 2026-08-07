@@ -1,0 +1,153 @@
+{
+  "slug": "risk-free-rate",
+  "title": "Risk-Free Rate and Market Risk Premium",
+  "subtitle": "The foundation of every risk pricing model",
+  "duration": "6 min",
+  "openingQuestion": "Why is a US Treasury bill (T-bill) considered 'risk-free'?",
+  "openingOptions": [
+    "Because the rate is low",
+    "Because it's short-term",
+    "Because the US government can print money to pay its debt - default risk is nearly zero",
+    "Because its price doesn't fluctuate"
+  ],
+  "explanation": "The risk-free rate is the return available with essentially no default risk, usually taken from a government bond with the same maturity as the cash flow being valued. The market risk premium is the excess return investors demand to hold stocks rather than government bonds. These two figures are the foundation of every valuation, so picking the wrong maturity or the wrong currency for the risk-free rate throws the entire model off.",
+  "diagram": [
+    { "label": "Take the government bond yield as the base", "arrow": true },
+    { "label": "Measure the expected return of the entire stock market", "arrow": true },
+    { "label": "The difference between the two is the market risk premium", "arrow": true },
+    { "label": "Every risky asset is priced on top of this base" }
+  ],
+  "realWorldExample": {
+    "company": "Vietnamese government bonds and the VN-Index stock market",
+    "description": "The yield on 10-year Vietnamese government bonds is commonly used as the reference risk-free rate when valuing stocks listed in Vietnam - every CAPM or DCF model for a Vietnamese company starts from this number."
+  },
+  "quiz": [
+    {
+      "question": "What is the US's historical Market Risk Premium typically?",
+      "options": [
+        "1-2% - because stocks barely beat government bonds",
+        "10-15% - exactly the average return of the S&P 500",
+        "5-7% - the long-run historical figure commonly used",
+        "Above 20% - the risk premium must be large to compensate for stock volatility"
+      ],
+      "explanation": "The US's historical Equity Risk Premium has been around 5-7%/year since the early 20th century. Damodaran updates it annually. This figure changes over different periods and is often debated in finance."
+    },
+    {
+      "question": "If a country's risk-free rate rises sharply (say, because high inflation forces the central bank to raise rates), what typically happens to stock valuations in that market, all else equal?",
+      "options": [
+        "No effect on stock valuations, only bonds are affected",
+        "Valuations rise because higher rates make the market more attractive to capital",
+        "Only bank stocks are affected, other sectors barely change",
+        "Valuations fall - Cost of Equity rises, raising the discount rate in DCF models"
+      ],
+      "explanation": "This is the most important transmission channel between monetary policy and the stock market: the risk-free rate is the foundation of both CAPM and WACC - when it rises, the cost of capital for EVERY business rises with it, pulling DCF valuations down broadly, which is why the stock market often reacts negatively when a central bank raises rates sharply."
+    },
+    {
+      "question": "Rf = 3.5%, MRP = 7%, beta = 1.2. What is the Cost of Equity under CAPM?",
+      "options": [
+        "11.9% (= 3.5% + 1.2 × 7%, Rf plus beta times MRP)",
+        "10.5% (= 3.5% + 7%, forgetting the beta factor)",
+        "8.4% (= 1.2 × 7%, forgetting the Rf base)",
+        "12.6% (= (3.5% + 7%) × 1.2, multiplying in the Rf too)"
+      ],
+      "explanation": "Ke = Rf + β × MRP = 3.5% + 8.4% = 11.9%. Beta only multiplies the risk premium, not the risk-free rate - Rf is the base every investor receives regardless of any risk taken."
+    },
+    {
+      "question": "Why shouldn't the yield on US Treasury bonds be used as Rf when valuing VND cash flows?",
+      "options": [
+        "Because US bonds have a shorter maturity than Vietnamese bonds",
+        "Because the two currencies have different inflation expectations",
+        "Because Vietnamese accounting rules don't allow foreign data",
+        "Because US bond yields are more volatile and less reliable"
+      ],
+      "explanation": "Cash flow and the discount rate must be in the same currency. Mixing a USD Rf with VND cash flow implicitly assumes the two currencies have the same inflation expectations - which they don't, and that error flows straight into the valuation."
+    },
+    {
+      "question": "The central bank raises its policy rate. How does that flow through to stock valuations?",
+      "options": [
+        "Rf rises but MRP falls correspondingly so the valuation is unchanged",
+        "Rf rises, beta rises with it, only high-risk stocks are affected",
+        "Rf rises, Ke rises, WACC rises, DCF value falls",
+        "Rf rising reduces a company's cash flow, pulling the valuation down"
+      ],
+      "explanation": "Rf is the foundation of every risk pricing model, so when it edges up, the entire baseline moves with it. No business is actually performing worse, but the denominator of every DCF model just got larger at the same time."
+    }
+  ],
+  "keyTakeaways": [
+    "Risk-free rate = US T-bill or a long-term government bond",
+    "Market Risk Premium = Rm − Rf ≈ 5-7% historically",
+    "The ERP shifts with the economic cycle and market sentiment"
+  ],
+  "practicePrompt": {
+    "question": "When calculating CAPM or valuing any asset, financial analysts commonly use the yield on 10-year US Treasury bonds as the 'risk-free rate' instead of a commercial bank's savings rate. Why is it chosen this way?",
+    "options": [
+      "Risk-free rate = US T-bill or a long-term government bond - because this is considered to carry almost no default risk (the government can print money and levy taxes to pay its debt), whereas a commercial bank still carries some risk of failure",
+      "Because a commercial bank's savings rate is always higher than a government bond so it's unsuitable as the lowest reference benchmark",
+      "Because US government bonds always have the highest yield of any financial asset in the world",
+      "The risk-free rate is purely a theoretical concept, with no real asset used as a reference benchmark"
+    ],
+    "explanation": "Risk-free rate = US T-bill or a long-term government bond, because this is regarded as the asset with the lowest default risk on the market (the government can print money and levy taxes) - it's the standard base for comparison, on top of which a risk premium is added when valuing riskier assets."
+  },
+  "summary": {
+    "keyIdea": "Risk-free rate = US T-bill or a long-term government bond",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to real decisions.",
+    "action": "Market Risk Premium = Rm − Rf ≈ 5-7% historically"
+  },
+  "application": {
+    "title": "Find the current risk-free rate",
+    "message": "Look up the yield on a long-term government bond currently trading, and use it as the risk-free rate for your own CAPM or WACC calculation.",
+    "secondary": "The risk-free rate changes over time, so valuation models need to be updated regularly."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The risk-free rate is the foundation of every risk pricing model in finance - it's the return on an asset with essentially no default risk, and every other risk premium (for stocks, corporate bonds, investment projects) is added on top of this base."
+    },
+    { "type": "heading", "text": "Where the risk-free rate comes from" },
+    {
+      "type": "paragraph",
+      "text": "In the US, the risk-free rate is typically taken from the yield on US Treasury bills/bonds (T-bill, T-bond) - because default risk is nearly zero. In Vietnam, the yield on 10-year Vietnamese government bonds is typically used as the reference risk-free rate - every CAPM or DCF model for a Vietnamese company starts from this number."
+    },
+    { "type": "heading", "text": "Market Risk Premium" },
+    {
+      "type": "paragraph",
+      "text": "Market Risk Premium = Rm − Rf, the extra return investors demand to accept the risk of the broad stock market rather than investing in a risk-free asset. The US's historical figure has typically been around 5-7%/year since the early 20th century. This is a much-debated number, because it varies by period and calculation method."
+    },
+    {
+      "type": "formula",
+      "title": "How the risk-free rate flows into a valuation",
+      "equation": "Ke = Rf + β × (Rm − Rf)",
+      "variables": [
+        { "symbol": "Rf", "name": "Risk-free rate", "description": "The yield on a government bond, matched to the maturity of the cash flow" },
+        { "symbol": "β", "name": "Beta", "description": "The stock's sensitivity to the general movement of the market" },
+        { "symbol": "Rm − Rf", "name": "Market Risk Premium", "description": "The premium for bearing stock-market risk" }
+      ],
+      "example": {
+        "title": "Suppose Rf 3.5%, MRP 7%, β = 1.2 - then Rf rises 1 point",
+        "calculation": "Ke = 3.5% + 1.2 × 7% = 11.9% · Rf rises to 4.5% → Ke = 4.5% + 8.4% = 12.9%",
+        "result": "Rf up 1 point, Ke up 1 point - then it feeds further into WACC",
+        "explanation": "And as we saw in the WACC lesson, a 1-point WACC change cut 14% off the valuation. That's the entire mechanism turning a central bank's rate decision into a down day on the exchange - no business needs to perform worse at all."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Don't mix currencies",
+      "text": "Valuing a business with VND cash flow while taking Rf from a US Treasury bond is a quiet mistake: the two figures sit in currencies with different inflation expectations, so the result has no real economic meaning. Whatever currency the cash flow is in, Rf must be in that same currency - or the cash flow must be converted to USD first, no shortcuts."
+    },
+    {
+      "type": "list",
+      "items": [
+        "A rising risk-free rate → Cost of Equity (via CAPM) rises → WACC rises → DCF valuations fall broadly",
+        "This is the main transmission channel between monetary policy (interest rates) and the stock market",
+        "The risk-free rate should match the maturity of the cash flow being valued (use a long-term rate for long-term cash flow)",
+        "The Market Risk Premium shifts with the economic cycle and market sentiment, it isn't a fixed constant"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "When the central bank raises rates, the risk-free rate rises with it - and that's why the entire stock market often reacts negatively almost immediately."
+      ]
+    }
+  ]
+}

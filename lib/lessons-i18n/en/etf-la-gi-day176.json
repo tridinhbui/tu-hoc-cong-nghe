@@ -1,0 +1,124 @@
+{
+  "slug": "etf-la-gi-day176",
+  "title": "What is an ETF?",
+  "subtitle": "Exchange-traded fund - trades like a stock, diversifies like a fund",
+  "openingQuestion": "How does an ETF (Exchange-Traded Fund) differ from buying individual stocks one by one?",
+  "openingOptions": [
+    "An ETF is a 'basket' holding many different stocks/assets, traded as a single unit on the exchange - giving instant diversification with just one buy order",
+    "ETFs are only for institutional investors",
+    "An ETF only ever holds a single type of asset",
+    "There is no meaningful difference"
+  ],
+  "explanation": "An ETF (Exchange-Traded Fund) is a fund holding a basket of assets (stocks, bonds, commodities...) but traded on the exchange exactly like a single stock - it can be bought or sold at any time during the trading session. An ETF combines the diversification benefit of a fund with the liquidity and flexibility of a stock.",
+  "diagram": [
+    { "label": "A basket of assets (stocks, bonds...)", "arrow": true },
+    { "label": "Packaged into an ETF fund", "arrow": true },
+    { "label": "Traded on the exchange like a stock" }
+  ],
+  "realWorldExample": {
+    "company": "SPY - the ETF tracking the S&P 500",
+    "description": "SPY is the oldest and largest ETF tracking the S&P 500 index, letting an investor indirectly own the 500 largest US companies with a single buy order, at an extremely low management cost."
+  },
+  "quiz": [
+    {
+      "question": "Why do ETFs usually have a much lower expense ratio than traditional mutual funds?",
+      "options": [
+        "Because most ETFs track an index so they don't need a research team",
+        "Because ETFs are subsidized by the state specifically to encourage long-term passive investing",
+        "Because ETFs don't have to pay custody fees on the underlying assets",
+        "Because ETFs only hold a small number of stocks so they are easier to manage"
+      ],
+      "explanation": "Most ETFs passively track an existing index (S&P 500, VN30...), so they don't need a research team picking stocks the way active funds do - this sharply cuts operating costs. The creation/redemption mechanism through market makers also makes ETFs more tax- and cost-efficient than traditional mutual funds."
+    },
+    {
+      "question": "What problem can an ETF tracking a low-liquidity index run into, compared with one tracking the S&P 500?",
+      "options": [
+        "A wide bid-ask spread and a price that drifts away from net asset value",
+        "It is not allowed to list on a stock exchange",
+        "Its management fee gets pushed higher than a traditional mutual fund's, since fewer market makers compete",
+        "It cannot be traded intraday and must wait until end of day"
+      ],
+      "explanation": "An ETF's liquidity depends heavily on market maker activity and the liquidity of the underlying assets - an ETF tracking a less popular index can have a wide bid-ask spread and a larger premium/discount to NAV, a real risk investors need to weigh beyond the expense ratio."
+    },
+    {
+      "question": "Where does an ETF differ from a mutual fund in how it trades?",
+      "options": [
+        "An ETF requires a minimum one-year holding period before it can be sold",
+        "An ETF can only be bought from the fund management company, not through an exchange",
+        "An ETF trades intraday, while a mutual fund is priced once at the end of the day",
+        "An ETF does not allow individual investors to trade it"
+      ],
+      "explanation": "A mutual fund matches at a single price once a day based on net asset value. An ETF trades like a stock, so it can be bought or sold at any moment - convenient, but also easy to overtrade."
+    },
+    {
+      "question": "What mechanism keeps an ETF's price close to its net asset value?",
+      "options": [
+        "Investors get refunded if the price deviates by more than five percent",
+        "The fund management company must publish a mandatory price each session",
+        "The exchange caps the ETF's daily trading band",
+        "Market makers trade to capture the spread"
+      ],
+      "explanation": "When an ETF trades above its true value, a market maker creates additional fund units and sells them to capture the spread, pushing the price back down. This mechanism only works well when the underlying assets are liquid enough."
+    },
+    {
+      "question": "Why did corporate bond ETFs run into trouble during liquidity crises?",
+      "options": [
+        "Because the underlying bonds stopped trading, so the reference price lost its footing",
+        "Because investors were not allowed to sell the ETF during the crisis",
+        "Because the ETF's management fee spiked sharply once the market got volatile and illiquid",
+        "Because bond ETFs are forced to convert to cash when the market falls"
+      ],
+      "explanation": "In March 2020, many bond ETFs traded well below their published net asset value - because that value was based on bonds that had stopped trading. An ETF being more liquid than the assets it holds is a contradiction that only shows up when markets get stressed."
+    }
+  ],
+  "keyTakeaways": [
+    "ETF: a fund holding a basket of assets but trading as flexibly as a single stock",
+    "Combines a fund's diversification benefit with a stock's liquidity",
+    "Usually has a much lower management fee than a traditional mutual fund"
+  ],
+  "practicePrompt": {
+    "question": "You want to invest in a basket of 30 blue-chip stocks at once, but instead of buying each stock individually, you buy a fund certificate that can be bought or sold at any moment during the trading session, exactly like a single stock, with a price that changes continuously with supply and demand. What is this type of fund called?",
+    "options": [
+      "This is called a Mutual Fund, priced and traded only once a day based on NAV",
+      "ETF: a fund holding a basket of assets but trading continuously intraday like a stock",
+      "This is called a Hedge Fund, a private fund type that is flexible and lightly regulated",
+      "This form of investing does not actually exist on real stock markets"
+    ],
+    "explanation": "ETF: a fund holding a basket of assets but trading as flexibly as a single stock. This is a major advantage of ETFs over traditional mutual funds - combining diversification (many stocks in one fund) with high liquidity (continuous intraday trading like a stock)."
+  },
+  "summary": {
+    "keyIdea": "ETF: a fund holding a basket of assets but trading as flexibly as a single stock",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to real decisions.",
+    "action": "Combines a fund's diversification benefit with a stock's liquidity"
+  },
+  "application": {
+    "title": "Find an ETF that fits you",
+    "message": "Look up an ETF trading on an exchange (domestic or foreign) in a theme you care about, and see what basket of assets it holds and how much its management fee is.",
+    "secondary": "Looking it up yourself keeps the ETF concept from staying abstract."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "An ETF (Exchange-Traded Fund) is a fund holding a basket of assets - stocks, bonds, commodities - but traded on the stock exchange exactly like a single stock, buyable or sellable at any moment during the session. An ETF combines a fund's diversification benefit with a stock's liquidity and flexibility."
+    },
+    { "type": "heading", "text": "Why ETFs are usually cheaper than mutual funds" },
+    {
+      "type": "paragraph",
+      "text": "Most ETFs are passive funds tracking an index, so they don't need an expensive research team picking stocks the way active funds do. Add the creation/redemption mechanism through market makers, and ETFs are usually more tax- and cost-efficient than traditional mutual funds. SPY, the ETF tracking the S&P 500, lets an investor indirectly own the 500 largest US companies with a single buy order at an extremely low management cost."
+    },
+    { "type": "heading", "text": "The liquidity risk of small ETFs" },
+    {
+      "type": "paragraph",
+      "text": "An ETF tracking a less liquid index can have a wider bid-ask spread, and its exchange-traded price can drift meaningfully from the fund's actual net asset value (NAV), due to a lack of active market maker participation. This is a real risk to weigh alongside the expense ratio when choosing an ETF."
+    },
+    {
+      "type": "list",
+      "items": [
+        "ETF: a diversified basket of assets, traded as flexibly as a single stock",
+        "Most ETFs are passive, with a much lower management fee than active funds",
+        "Low-liquidity ETFs: wider bid-ask spread, price can drift from NAV",
+        "Check trading volume and expense ratio before choosing an ETF"
+      ]
+    }
+  ]
+}

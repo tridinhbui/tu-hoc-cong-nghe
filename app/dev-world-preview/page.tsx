@@ -1,12 +1,17 @@
 import { notFound } from "next/navigation";
 import WorldPreview from "@/components/career-district/WorldPreview";
 import QuietForestScene from "@/components/QuietForestScene";
+import LobbyDirectory from "@/components/lobby/LobbyDirectory";
 import TopicMasteryWidget from "@/components/TopicMasteryWidget";
 import InteractiveBond from "@/components/InteractiveBond";
 import MotivationShareCard from "@/components/MotivationShareCard";
 import { computeDomainCoverage } from "@/lib/career-competency";
 
+/* i18n-ignore-start: dev-only preview route, hard-blocked in production
+   below via notFound() when NODE_ENV === "production" - never reachable by
+   an end user, so its metadata title is not real copy. */
 export const metadata = { title: "Xem cảnh 3D (dev)" };
+/* i18n-ignore-end */
 
 /** Trang xem cảnh 3D không cần đăng nhập, chỉ chạy khi dev.
  *
@@ -67,6 +72,19 @@ export default async function WorldPreviewPage({
       <div className="min-h-screen bg-stone-100 p-6 dark:bg-stone-950">
         <div className="mx-auto max-w-3xl">
           <TopicMasteryWidget coverage={computeDomainCoverage(fake)} />
+        </div>
+      </div>
+    );
+  }
+  if (scene === "lobby-directory") {
+    // Bảng chỉ đường của sảnh thư viện. Bản thân nó không cần đăng nhập, nhưng
+    // /cong-dong thì có, nên không có lối này thì không nhìn được nó bằng ảnh
+    // chụp - đúng lý do file này tồn tại. Nền tối và bố cục cột giống hệt chỗ
+    // nó thật sự nằm trong LobbyClient.
+    return (
+      <div className="min-h-screen bg-stone-900 p-4">
+        <div className="flex flex-col items-center gap-2">
+          <LobbyDirectory />
         </div>
       </div>
     );

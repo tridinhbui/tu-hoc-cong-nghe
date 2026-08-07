@@ -9,6 +9,8 @@ import { getLessonDetailsForRecall } from "@/app/actions/flashcard-actions";
 import { recalculateUserStats } from "@/lib/supabase-user";
 import { earnChest } from "@/lib/chests";
 import { useIsClient } from "@/lib/use-is-client";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 interface StageMilestoneExamModalProps {
   userId: string;
@@ -39,6 +41,7 @@ export default function StageMilestoneExamModal({
   onSuccess,
 }: StageMilestoneExamModalProps) {
   const mounted = useIsClient();
+  const { t } = useI18n();
   const [questions, setQuestions] = useState<MilestoneQuestion[]>([]);
   const [loading, setLoading] = useState(true);
   const [currentQIndex, setCurrentQIndex] = useState(0);
@@ -64,7 +67,7 @@ export default function StageMilestoneExamModal({
         }
         
         if (pool.length === 0) {
-          toast.error("Không tìm thấy câu hỏi trắc nghiệm nào cho chặng này.");
+          toast.error(t.stageExam.noQuestionsFound);
           onClose();
           return;
         }
@@ -80,7 +83,7 @@ export default function StageMilestoneExamModal({
     };
 
     void buildQuestionPool();
-  }, [lessonIds, onClose]);
+  }, [lessonIds, onClose, t]);
 
   const handleOptionSelect = (index: number) => {
     if (answersChecked) return;
@@ -114,19 +117,19 @@ export default function StageMilestoneExamModal({
       const { ok, errorMessage } = await savePassedMilestone(userId, trackId, stageLabel, finalScoreRatio);
       if (ok) {
         if (typeof window !== "undefined") {
-          window.dispatchEvent(new CustomEvent("thtcdn:xp-gained", { detail: { xp: 50, label: "Vượt ải xuất sắc!" } }));
+          window.dispatchEvent(new CustomEvent("thtcdn:xp-gained", { detail: { xp: 50, label: t.stageExam.xpGainedLabel } }));
         }
-        toast.success(`Chúc mừng! Bạn đã vượt ải ${stageLabel} thành công và nhận +50 XP! 🏆🌟`);
+        toast.success(format(t.stageExam.passToast, { stageLabel }));
         await earnChest(userId, "milestone_exam");
-        toast.info("Đặc quyền vượt ải: Nhận thêm 1 Rương Quà Tài Chính! 🎁");
+        toast.info(t.stageExam.chestToast);
         window.dispatchEvent(new Event("thtcdn_chests_updated"));
         void recalculateUserStats(userId).catch(() => {});
         onSuccess();
       } else {
-        toast.error(`Không thể ghi nhận kết quả vượt ải.${errorMessage ? ` (${errorMessage})` : ""}`);
+        toast.error(format(t.stageExam.saveFailedToast, { errorSuffix: errorMessage ? ` (${errorMessage})` : "" }));
       }
     } else {
-      toast.error(`Chưa đạt yêu cầu vượt ải (Đạt ${correctCount}/${questions.length} câu - Yêu cầu >= 80%). Hãy ôn tập và thử lại nhé!`);
+      toast.error(format(t.stageExam.failToast, { correct: correctCount, total: questions.length }));
     }
     setExamFinished(true);
   };
@@ -141,7 +144,7 @@ export default function StageMilestoneExamModal({
         <div className="flex items-center justify-between px-6 py-4.5 border-b border-stone-100 dark:border-stone-800/80">
           <div>
             <span className="text-[10px] font-extrabold px-2.5 py-1 rounded-full bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-400 uppercase tracking-wider">
-              Kỳ thi vượt ải {stageLabel}
+              {format(t.stageExam.badgeLabel, { stageLabel })}
             </span>
             <h3 className="text-sm font-extrabold text-stone-900 dark:text-stone-100 mt-1">{stageName}</h3>
           </div>
@@ -155,7 +158,7 @@ export default function StageMilestoneExamModal({
           {loading ? (
             <div className="text-center py-20">
               <div className="w-8 h-8 border-2 border-stone-300 border-t-amber-500 rounded-full animate-spin mx-auto mb-3" />
-              <p className="text-xs text-stone-500">Đang khởi tạo đề thi vượt ải...</p>
+              <p className="text-xs text-stone-500">{t.stageExam.preparing}</p>
             </div>
           ) : examFinished ? (
             <div className="text-center py-8 space-y-6">
@@ -164,9 +167,9 @@ export default function StageMilestoneExamModal({
                   <div className="w-20 h-20 bg-amber-50 dark:bg-amber-950/40 rounded-3xl text-amber-500 flex items-center justify-center mx-auto shadow-inner animate-[bounce_1s_infinite]">
                     <Trophy className="w-10 h-10" />
                   </div>
-                  <h4 className="text-lg font-extrabold text-stone-900 dark:text-stone-50">VƯỢT ẢI THÀNH CÔNG!</h4>
+                  <h4 className="text-lg font-extrabold text-stone-900 dark:text-stone-50">{t.stageExam.passedTitle}</h4>
                   <p className="text-xs text-stone-500 dark:text-stone-400 leading-relaxed max-w-sm mx-auto">
-                    Chúc mừng bạn đã trả lời đúng <strong>{correctCount}/{questions.length}</strong> câu hỏi. Chặng tiếp theo đã được mở khóa và bạn nhận được <strong>+50 XP</strong> học thuật! 🏆🎉
+                    {t.stageExam.passedBodyPart1} <strong>{correctCount}/{questions.length}</strong> {t.stageExam.passedBodyPart2} <strong>{t.stageExam.xpAmountLabel}</strong> {t.stageExam.passedBodyPart3}
                   </p>
                 </div>
               ) : (
@@ -174,9 +177,9 @@ export default function StageMilestoneExamModal({
                   <div className="w-20 h-20 bg-stone-50 dark:bg-stone-950 rounded-3xl text-stone-400 flex items-center justify-center mx-auto shadow-inner">
                     <XCircle className="w-10 h-10" />
                   </div>
-                  <h4 className="text-lg font-extrabold text-stone-900 dark:text-stone-50">CHƯA ĐẠT YÊU CẦU</h4>
+                  <h4 className="text-lg font-extrabold text-stone-900 dark:text-stone-50">{t.stageExam.failedTitle}</h4>
                   <p className="text-xs text-stone-500 dark:text-stone-400 leading-relaxed max-w-sm mx-auto">
-                    Bạn trả lời đúng <strong>{correctCount}/{questions.length}</strong> câu hỏi (đạt {Math.round((correctCount / questions.length) * 100)}%). Cần đạt tối thiểu <strong>80% (12/{questions.length} câu)</strong> để vượt ải. Hãy ôn tập lại các bài học nhé!
+                    {t.stageExam.failedBodyPart1} <strong>{correctCount}/{questions.length}</strong> {format(t.stageExam.failedBodyPart2, { percent: Math.round((correctCount / questions.length) * 100) })} <strong>{format(t.stageExam.minPercentLabel, { total: questions.length })}</strong> {t.stageExam.failedBodyPart3}
                   </p>
                 </div>
               )}
@@ -185,18 +188,18 @@ export default function StageMilestoneExamModal({
                 onClick={onClose}
                 className="w-full bg-stone-900 dark:bg-stone-100 hover:bg-stone-800 dark:hover:bg-white text-white dark:text-stone-900 py-3 rounded-2xl font-bold text-xs uppercase tracking-widest cursor-pointer active:scale-95 transition-all shadow-md"
               >
-                Đóng cửa sổ
+                {t.stageExam.closeWindow}
               </button>
             </div>
           ) : (
             <div className="space-y-5">
               <div className="flex justify-between items-center text-[10px] font-extrabold text-stone-400 dark:text-stone-500 uppercase tracking-widest bg-stone-50 dark:bg-stone-950 px-3 py-1.5 rounded-lg border border-stone-100 dark:border-stone-800">
-                <span>CÂU {currentQIndex + 1} / {questions.length}</span>
-                <span>Đúng tối thiểu: 12/15 câu</span>
+                <span>{format(t.stageExam.questionCounter, { current: currentQIndex + 1, total: questions.length })}</span>
+                <span>{t.stageExam.minCorrectRequired}</span>
               </div>
 
               <div className="space-y-1">
-                <p className="text-[9px] font-bold text-amber-600 dark:text-amber-500 uppercase tracking-wider">Từ bài học: {questions[currentQIndex].lessonTitle}</p>
+                <p className="text-[9px] font-bold text-amber-600 dark:text-amber-500 uppercase tracking-wider">{format(t.stageExam.fromLesson, { lessonTitle: questions[currentQIndex].lessonTitle })}</p>
                 <p className="text-sm font-bold text-stone-800 dark:text-stone-200 leading-relaxed">
                   {questions[currentQIndex].question}
                 </p>
@@ -239,7 +242,7 @@ export default function StageMilestoneExamModal({
                   disabled={selectedOpt === null}
                   className="w-full bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 py-3 rounded-2xl font-bold text-xs uppercase tracking-widest transition-all disabled:opacity-50 cursor-pointer shadow-md"
                 >
-                  Xác nhận câu trả lời
+                  {t.stageExam.confirmAnswer}
                 </button>
               ) : (
                 <div className="space-y-4">
@@ -249,7 +252,7 @@ export default function StageMilestoneExamModal({
                       : "bg-rose-50/20 border-rose-100 dark:border-rose-900/30 text-rose-800 dark:text-rose-400"
                   }`}>
                     <p className="font-bold mb-1">
-                      {selectedOpt === questions[currentQIndex].correct ? "Đúng rồi! 🎉" : "Chưa chính xác!"}
+                      {selectedOpt === questions[currentQIndex].correct ? t.stageExam.correctFeedback : t.stageExam.incorrectFeedback}
                     </p>
                     <p>{questions[currentQIndex].explanation}</p>
                   </div>
@@ -258,7 +261,7 @@ export default function StageMilestoneExamModal({
                     onClick={nextQuestion}
                     className="w-full bg-emerald-500 hover:bg-emerald-600 text-white py-3 rounded-2xl font-bold text-xs uppercase tracking-widest transition-all cursor-pointer flex items-center justify-center gap-1 shadow-md hover:scale-[1.01] active:scale-[0.99]"
                   >
-                    {currentQIndex + 1 === questions.length ? "Hoàn thành kỳ thi 🏁" : "Câu tiếp theo"} <ChevronRight className="w-4 h-4" />
+                    {currentQIndex + 1 === questions.length ? t.stageExam.finishExam : t.stageExam.nextQuestion} <ChevronRight className="w-4 h-4" />
                   </button>
                 </div>
               )}

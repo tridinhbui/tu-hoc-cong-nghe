@@ -1,0 +1,133 @@
+{
+  "slug": "gross-margin",
+  "title": "Gross Margin",
+  "subtitle": "Measuring production efficiency and pricing power",
+  "duration": "5 min",
+  "openingQuestion": "Apple's Gross Margin is ~45%, Walmart's is ~24%. Is Apple better than Walmart?",
+  "openingOptions": [
+    "Apple is better - higher margin",
+    "Walmart is better",
+    "They can't be compared - different industries have different cost structures",
+    "They're equal"
+  ],
+  "explanation": "Gross margin shows how much is left after subtracting the direct cost of making the product - in other words, the room available to pay for everything else. What counts as good depends entirely on the industry: 45% is healthy for electronics, while 24% is already very good for a supermarket, because it makes up for it with an extremely fast inventory turnover. A low margin isn't bad by itself; a low margin combined with slow turnover is what's bad. That's why comparing across industries almost always leads to the wrong conclusion.",
+  "diagram": [
+    { "label": "Revenue", "arrow": true },
+    { "label": "Subtract the direct cost of production", "arrow": true },
+    { "label": "Divide what's left by revenue", "arrow": true },
+    { "label": "Only meaningful against a peer in the same industry" }
+  ],
+  "realWorldExample": {
+    "company": "Apple vs Walmart",
+    "description": "Apple holds a Gross Margin around 45% thanks to premium pricing and a strong brand in consumer technology, while Walmart runs at about 24% because grocery retail is fiercely price-competitive - both are successful business models in their own way."
+  },
+  "quiz": [
+    {
+      "question": "Gross margin falls from 40% to 35% over 2 years - what does that suggest?",
+      "options": [
+        "Rising tax, since tax is subtracted directly within cost of goods sold",
+        "Falling revenue, since Gross Margin is calculated on absolute revenue",
+        "Pricing pressure, rising input costs, or a shift in product mix",
+        "Nothing to worry about, a 5-point swing is normal every year"
+      ],
+      "explanation": "A declining gross margin is a warning signal worth investigating: (1) falling pricing power; (2) rising input costs not yet passed on to selling price; (3) higher-margin products being displaced by lower-margin ones."
+    },
+    {
+      "question": "A retailer has a much lower Gross Margin than a tech company. Does that mean the retailer is running a worse business?",
+      "options": [
+        "Yes, a lower Gross Margin always means a distinctly worse business",
+        "The retailer should always switch to a tech model to improve its margin",
+        "Gross Margin has no meaning at all when judging the retail industry",
+        "No - retail runs a low-margin, high-turnover model and can still deliver a good ROE"
+      ],
+      "explanation": "This is exactly why you can't compare Gross Margin across industries: retail's 'low margin, high turnover' model can produce an ROE equal to or better than the tech industry."
+    },
+    {
+      "question": "Revenue is 2,000 billion, cost of goods sold is 1,300 billion. What is the Gross Margin?",
+      "options": [
+        "35% (= (2,000 − 1,300) ÷ 2,000, gross profit over revenue)",
+        "65% (= 1,300 ÷ 2,000, taking the cost share)",
+        "700 billion (= 2,000 − 1,300, gross profit not yet divided by revenue)",
+        "53.8% (= 700 ÷ 1,300, dividing by cost by mistake)"
+      ],
+      "explanation": "Gross Margin = (Revenue − COGS) / Revenue = 700/2,000 = 35%. Every 100 dong of revenue leaves 35 dong to cover selling, admin, interest, and tax."
+    },
+    {
+      "question": "Gross Margin stays stable but Operating Margin keeps falling over three years. Where does the problem lie?",
+      "options": [
+        "In raw-material input prices rising faster than selling prices",
+        "In selling and administrative costs, not cost of goods sold",
+        "In rising interest expense from the business taking on new debt",
+        "In an increase to the corporate tax rate during the period"
+      ],
+      "explanation": "These two margins differ only in the block of operating costs. If cost of goods stays proportionally the same while the operating margin keeps falling, that means SG&A is growing faster than revenue."
+    },
+    {
+      "question": "Why is a software company's Gross Margin usually over 70% while a supermarket's is only around 20-25%?",
+      "options": [
+        "Because software companies enjoy larger tax incentives than supermarkets",
+        "Because supermarkets have to spend much more on advertising and promotions",
+        "Because selling one more copy of software costs almost nothing in production",
+        "Because supermarkets turn over inventory many times faster"
+      ],
+      "explanation": "The marginal cost of the millionth software copy is close to zero, while a supermarket has to buy each item before reselling it. Gross margin reflects the cost structure of the model, which is why comparing it across industries is meaningless."
+    }
+  ],
+  "keyTakeaways": [
+    "Gross Margin = Gross Profit / Revenue",
+    "Reflects pricing power and production efficiency",
+    "Compare within the same industry - each has its own benchmark"
+  ],
+  "practicePrompt": {
+    "question": "A company has Revenue = 800 billion, COGS = 480 billion. What is this company's Gross Margin, and what does that number tell you?",
+    "options": [
+      "Gross Margin = Gross Profit / Revenue = (800-480)/800 = 40% - meaning the company keeps 40 dong of gross profit from every 100 dong of revenue, before subtracting operating costs",
+      "Gross Margin = 480/800 = 60%, showing the ratio of production cost to the company's revenue",
+      "Gross Margin cannot be calculated without knowing the company's operating costs (SG&A)",
+      "Gross Margin = 800-480 = 320 billion, an absolute figure rather than a percentage"
+    ],
+    "explanation": "Gross Margin = Gross Profit / Revenue = (800-480)/800 = 40%. This measures core production/business efficiency - for every 100 dong of revenue, the company keeps 40 dong after subtracting the direct cost of making the product."
+  },
+  "summary": {
+    "keyIdea": "Gross Margin = Gross Profit / Revenue",
+    "commonMistake": "Reading a concept as a phrase to memorise rather than a principle to apply to real decisions.",
+    "action": "Reflects pricing power and production efficiency"
+  },
+  "application": {
+    "title": "Calculate a real Gross Margin",
+    "message": "Open a company's income statement, divide Gross Profit by Revenue, then compare it with a peer in the same industry to see who has stronger pricing power.",
+    "secondary": "Don't compare gross margin across different industries - each industry has its own benchmark."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Gross Margin is the first and simplest metric for assessing a business: after subtracting the direct cost of production/purchasing (COGS), what percentage of revenue is left? It reflects two things at once - production efficiency and the business's pricing power."
+    },
+    { "type": "callout", "label": "The formula", "text": "Gross Margin = Gross Profit / Revenue = (Revenue − COGS) / Revenue" },
+    { "type": "heading", "text": "Why Apple and Walmart are both 'right' despite a 2x difference in margin" },
+    {
+      "type": "paragraph",
+      "text": "Apple holds a Gross Margin around 45% thanks to a strong brand and premium pricing on consumer technology products - customers are willing to pay more for an iPhone rather than buy a cheaper phone with similar features. Walmart only reaches about 24% because grocery retail is a fiercely price-competitive industry with a low margin on each item. Both are successful business models - Walmart makes up for it with an extremely fast inventory turnover, selling through its stock many times a year."
+    },
+    { "type": "heading", "text": "Reading the Gross Margin trend" },
+    {
+      "type": "paragraph",
+      "text": "A company whose Gross Margin falls from 40% to 35% over 2 years is a signal worth investigating right away, even if revenue is still rising. The three most common causes: (1) competitive pressure forcing a lower selling price; (2) rising raw-material cost not yet passed on to selling price; (3) a shifting product mix - higher-margin products selling more slowly, lower-margin products selling more."
+    },
+    {
+      "type": "list",
+      "items": [
+        "A high Gross Margin is usually tied to a strong brand, differentiated products, and few direct competitors",
+        "A low Gross Margin doesn't mean a worse business - you also need to look at inventory turnover",
+        "A margin declining for 2-3 periods in a row is a more important warning signal than one single down quarter",
+        "Only compare Gross Margin within the same industry - comparing across industries is nearly meaningless"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Gross Margin answers the question of whether a business prices and produces efficiently - but says nothing yet about the operating costs sitting behind it."
+      ]
+    }
+  ]
+}

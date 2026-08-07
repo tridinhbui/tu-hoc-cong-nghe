@@ -1,0 +1,150 @@
+{
+  "slug": "derivatives-la-gi",
+  "title": "What Are Derivatives?",
+  "subtitle": "Instruments whose value depends on another underlying asset",
+  "openingQuestion": "Why did Warren Buffett call derivatives 'financial weapons of mass destruction'?",
+  "openingOptions": [
+    "Because only central banks are allowed to use them",
+    "Because they are expensive",
+    "Because they are illegal in many countries",
+    "Because of extremely high leverage, complexity, and risk that can spread through a chain across the financial system - as CDOs/CDS did in the 2008 crisis"
+  ],
+  "explanation": "Derivatives are financial instruments whose value depends on an underlying asset: a stock, bond, commodity, exchange rate, or interest rate. Four main types: Forward, Futures, Options, Swaps. Used for hedging (reducing risk) or speculation (betting on price movements) - high leverage means risk multiplies quickly.",
+  "diagram": [
+    { "label": "Underlying asset", "arrow": true },
+    { "label": "A derivative attaches its value to that asset", "arrow": true },
+    { "label": "Forward, Futures, Options, Swaps" }
+  ],
+  "realWorldExample": {
+    "company": "The 2008 financial crisis",
+    "description": "CDOs (Collateralized Debt Obligations) and CDS (Credit Default Swaps) - two complex derivatives built on subprime loans - amplified credit risk across the entire global banking system in 2008."
+  },
+  "quiz": [
+    {
+      "question": "Who uses derivatives legitimately and productively for the real economy?",
+      "options": [
+        "A speculator using high leverage to amplify expected returns",
+        "A real business hedging the price of its inputs and outputs",
+        "A bank using them to boost profit from its proprietary trading desk",
+        "An individual investor using them instead of buying stocks directly"
+      ],
+      "explanation": "The original purpose of derivatives is hedging - helping a real (non-financial) business reduce price, exchange-rate, or interest-rate risk in its core operations. Problems only arise when derivatives are used to speculate with excessive leverage."
+    },
+    {
+      "question": "If a farmer uses a forward contract to lock in the sale price of crops before harvest, is this a form of derivative even though it has nothing to do with a complex financial market?",
+      "options": [
+        "No, because a derivative must have a financial institution standing between the parties",
+        "No, because the farmer isn't trading on a financial exchange",
+        "Yes, because the contract's value derives from the price of the crop",
+        "Yes, but only if the contract is registered with a regulator"
+      ],
+      "explanation": "The definition of a derivative does not depend on complexity or who uses it - any contract whose value derives from another underlying asset is a derivative, from a simple crop contract to a complex Wall Street CDS."
+    },
+    {
+      "question": "What makes an instrument a derivative?",
+      "options": [
+        "It has a fixed expiration date written into the contract",
+        "It trades on an exchange with clearing",
+        "It lets an investor use financial leverage",
+        "Its value derives from another asset"
+      ],
+      "explanation": "The definition lies in the word 'derivative': the value is derived from something else. Leverage, an exchange, and an expiration date are common features, not defining conditions."
+    },
+    {
+      "question": "What are the four basic groups of derivatives?",
+      "options": [
+        "Forward, futures, option, and swap are the four groups",
+        "Stocks, bonds, funds, and deposits",
+        "Hedging, speculation, arbitrage, and insurance",
+        "Commodities, currencies, interest rates, and credit are the four groups instead"
+      ],
+      "explanation": "Commodities, currencies, interest rates, and credit are underlying asset types, not contract types; hedging, speculation, and arbitrage are usage purposes. Four basic contract structures combined with every underlying asset type create the entire derivatives market."
+    },
+    {
+      "question": "Why are derivatives viewed as both useful and dangerous?",
+      "options": [
+        "Because only large financial institutions can understand how they work",
+        "Because the same contract can be used to reduce or to create risk",
+        "Because derivatives regulation differs between countries",
+        "Because derivative prices often diverge far from the underlying asset's price"
+      ],
+      "explanation": "An oil futures contract helps an airline stabilize its cost, and that exact same contract lets a fund place a twenty-times-leveraged bet on the price of oil. The instrument doesn't decide the outcome - the purpose it's used for does."
+    }
+  ],
+  "keyTakeaways": [
+    "Derivatives: value depends on another underlying asset",
+    "Four main types: Forward, Futures, Options, Swaps",
+    "Used for the right purpose (hedging), very useful; used wrongly (high-leverage speculation), very dangerous"
+  ],
+  "practicePrompt": {
+    "question": "A financial contract has value entirely dependent on future movements in the price of crude oil - if oil rises, the contract gains value; if it falls, the contract loses value - even though the contract itself is not physical crude oil. What is this type of financial instrument called?",
+    "options": [
+      "This is called a stock, because its value fluctuates with the market like an oil-and-gas stock",
+      "Derivatives: value depends on another underlying asset, here crude oil",
+      "This is called a bond, because the contract has a fixed value that does not change over time",
+      "This is called a term deposit, tied to a bank interest rate"
+    ],
+    "explanation": "Derivatives: value depends on another underlying asset. The four main derivative types (forward, futures, option, swap) all revolve around transferring structured risk based on the movement of an underlying asset, without directly owning that asset."
+  },
+  "summary": {
+    "keyIdea": "Derivatives: value depends on another underlying asset",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to real decisions.",
+    "action": "Four main types: Forward, Futures, Options, Swaps"
+  },
+  "application": {
+    "title": "Find a derivatives example around you",
+    "message": "The lesson already gave a real example of the VN30F1M futures contract - see the 'Real-world example' section above. Now open a securities company's app to see a real derivatives price board.",
+    "secondary": "Identifying the underlying asset is the first step to understanding any derivative."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Derivatives sound complicated, but the core idea is simple: it's a contract whose value doesn't stand on its own but 'clings' to the price of another asset - a stock, bond, commodity, exchange rate, or interest rate. The contract itself has no intrinsic value; it only reflects what is happening to that underlying asset."
+    },
+    { "type": "heading", "text": "Four basic shapes" },
+    {
+      "type": "paragraph",
+      "text": "Although the derivatives market looks massive and complex, almost every product is a variant of four basic forms: Forward (a private commitment to buy/sell in the future), Futures (like a forward but standardized, traded on an exchange), Options (a right, not an obligation, to buy/sell at a given price), and Swaps (exchanging cash flows according to a fixed formula). The CDOs and CDS the press mentioned so often during the 2008 crisis are just more complex variants built on these four forms."
+    },
+    { "type": "heading", "text": "Two purposes, one instrument" },
+    {
+      "type": "paragraph",
+      "text": "The same derivative contract can be used for two opposite purposes. Hedging is using it to reduce an existing business risk - a farmer locks in a sale price before harvest, an airline locks in fuel prices. Speculation is using it to bet on price movement to profit, with no underlying risk to protect. The high leverage of derivatives amplifies both purposes - good hedging helps stabilize, but a wrong speculative bet with heavy leverage can collapse quickly."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Underlying asset: the asset whose value the derivative depends on",
+        "Forward/Futures: a binding commitment to buy/sell in the future",
+        "Options: a right, not an obligation",
+        "Swaps: periodic exchange of cash flows according to a formula"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "The lesson from 2008",
+      "text": "CDS and CDO - two complex derivatives built on subprime debt - amplified credit risk across the entire global banking system. The problem was not the instrument itself, but using it to speculate with leverage beyond control."
+    },
+    { "type": "heading", "text": "Real-world example: the VN30F1M futures contract" },
+    {
+      "type": "list",
+      "items": [
+        "VN30F1M is a futures contract whose underlying asset is the VN30 index - a derivative because its value depends entirely on another asset, with no value of its own",
+        "The typical initial margin is about 20% of contract value - maximum leverage of about 1:5, meaning a 1% move in the VN30 can create a gain/loss equal to 5% of the margin posted",
+        "Investors use VN30F1M to speculate on the index trend, or to hedge (protect) an existing stock portfolio"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "How to find derivatives around you yourself",
+      "text": "Open the \"Derivatives\" section of a securities company's app to see the VN30F1M price board in real time, identify the underlying asset (the VN30 index) and the required margin level."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Derivatives are neither good nor bad - they are a tool for transferring risk.",
+        "Who uses them, what for, and how much leverage is applied - those are what decide the outcome."
+      ]
+    }
+  ]
+}

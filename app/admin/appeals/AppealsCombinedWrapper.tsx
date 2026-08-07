@@ -7,6 +7,8 @@ import AppealsAllClient from "./AppealsAllClient";
 import AiReportsClient from "../ai-reports/AiReportsClient";
 import type { AdminLessonAppeal } from "@/lib/admin/appeals";
 import type { AdminAiReportRow } from "@/lib/admin/ai-reports";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 interface Props {
   appeals: AdminLessonAppeal[];
@@ -21,6 +23,8 @@ export default function AppealsCombinedWrapper({
   initialView = "pending",
   initialSection = "appeals",
 }: Props) {
+  const { t } = useI18n();
+  const ta = t.adminThree.appealsCombinedWrapper;
   const [section, setSection] = useState<"appeals" | "ai-reports">(
     initialSection === "ai-reports" ? "ai-reports" : "appeals"
   );
@@ -42,7 +46,7 @@ export default function AppealsCombinedWrapper({
           }`}
         >
           <ShieldQuestion className="w-4 h-4 text-emerald-500" />
-          Khiếu nại Bài học ({appeals.length})
+          {format(ta.lessonAppealsTab, { count: appeals.length })}
         </button>
 
         <button
@@ -55,7 +59,7 @@ export default function AppealsCombinedWrapper({
           }`}
         >
           <AlertTriangle className="w-4 h-4 text-rose-500" />
-          Báo lỗi nội dung AI ({aiReports.length})
+          {format(ta.aiReportsTab, { count: aiReports.length })}
         </button>
       </div>
 
@@ -72,7 +76,7 @@ export default function AppealsCombinedWrapper({
                   : "bg-stone-200 dark:bg-stone-800 text-stone-700 dark:text-stone-300 hover:bg-stone-300 dark:hover:bg-stone-700"
               }`}
             >
-              Chờ duyệt ({pendingAppealsCount})
+              {format(ta.pendingTab, { count: pendingAppealsCount })}
             </button>
             <button
               type="button"
@@ -83,7 +87,7 @@ export default function AppealsCombinedWrapper({
                   : "bg-stone-200 dark:bg-stone-800 text-stone-700 dark:text-stone-300 hover:bg-stone-300 dark:hover:bg-stone-700"
               }`}
             >
-              Toàn bộ ({appeals.length})
+              {format(ta.allTab, { count: appeals.length })}
             </button>
           </div>
 

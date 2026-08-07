@@ -1,6 +1,7 @@
 import { describe, it, expect, vi } from "vitest";
 import { renderToStaticMarkup } from "react-dom/server";
 import { highlightGlossaryTerms } from "@/components/GlossaryTerm";
+import { I18nProvider } from "@/lib/i18n/context";
 
 // Component chỉ chạm tới những thứ này khi người dùng bấm Lưu; bài test dừng
 // ở lớp đánh dấu nên không cái nào được gọi tới.
@@ -27,7 +28,12 @@ vi.mock("sonner", () => ({ toast: { error: vi.fn(), success: vi.fn() } }));
 function markup() {
   // `seen` theo dõi các thuật ngữ đã được gạch chân ở đoạn trước, để mỗi bài
   // chỉ chèn popover ở lần xuất hiện đầu tiên. Ở đây luôn truyền Set rỗng.
-  return renderToStaticMarkup(<>{highlightGlossaryTerms("Lãi suất là gì?", new Set<string>())}</>);
+  //
+  // Bọc trong I18nProvider vì GlossaryTermSpan gọi useI18n() để lấy nhãn nút
+  // Lưu Flashcard - không có provider thì hook ném lỗi ngay khi render.
+  return renderToStaticMarkup(
+    <I18nProvider initialLocale="vi">{highlightGlossaryTerms("Lãi suất là gì?", new Set<string>())}</I18nProvider>
+  );
 }
 
 /** Thẻ mở của phần tử được định vị phía trên từ gạch chân. */

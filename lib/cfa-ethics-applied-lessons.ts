@@ -359,7 +359,7 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
         "Khách hàng 62 tuổi, IPS ghi mục tiêu bảo toàn vốn, yêu cầu dồn 30% danh mục vào một cổ phiếu đang tăng nóng. Xử lý thế nào?",
       options: [
         "Từ chối thẳng vì đi ngược mục tiêu bảo toàn vốn đã ghi",
-        "Giải thích tác động lên rủi ro danh mục và khả năng đạt mục tiêu, ghi nhận đây là lệnh khách tự quyết, và nếu khách vẫn giữ ý định thì rà lại IPS xem mục tiêu đã đổi chưa",
+        "Giải thích tác động, ghi nhận khách tự quyết, rà lại IPS",
         "Thực hiện vì khách hàng có toàn quyền với tiền của họ",
         "Thực hiện 30% nhưng tự giảm rủi ro các phần còn lại để bù",
       ],

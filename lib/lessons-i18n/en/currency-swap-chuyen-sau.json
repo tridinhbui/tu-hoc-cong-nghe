@@ -1,0 +1,143 @@
+{
+  "slug": "currency-swap-chuyen-sau",
+  "title": "Currency Swap",
+  "subtitle": "Swapping cash flows between two different currencies",
+  "openingQuestion": "A Vietnamese company borrows USD to expand a factory but earns most of its revenue in VND. How does a currency swap help?",
+  "openingOptions": [
+    "A currency swap is only used to speculate on exchange rates",
+    "It doesn't help since different currencies can't be swapped",
+    "Only central banks are allowed to do a currency swap",
+    "The company can sign a currency swap to convert its USD debt obligation into VND at an agreed fixed rate, removing exchange-rate risk when repaying"
+  ],
+  "explanation": "A currency swap: two parties swap both principal and interest in two different currencies at a rate agreed in advance, usually long-term. A business with VND revenue but USD debt can use a currency swap to 'lock in' the conversion rate, avoiding the risk that VND depreciation increases the burden of repaying USD debt.",
+  "diagram": [
+    { "label": "VND revenue, USD debt", "arrow": true },
+    { "label": "Sign a Currency Swap", "arrow": true },
+    { "label": "Swap principal and interest in two currencies" }
+  ],
+  "realWorldExample": {
+    "company": "FDI businesses in Vietnam",
+    "description": "Many foreign-invested (FDI) businesses in Vietnam borrow USD from their parent company but earn revenue in VND, often using currency swaps or long-term forward contracts to manage exchange-rate risk throughout the life of the loan."
+  },
+  "quiz": [
+    {
+      "question": "Where does a currency swap differ from an Interest Rate Swap at its core?",
+      "options": [
+        "A currency swap only applies to businesses with foreign capital",
+        "A currency swap usually really exchanges the principal at the start and end",
+        "A currency swap's maximum term is always shorter than an Interest Rate Swap",
+        "A currency swap doesn't calculate interest, only swaps the conversion rate"
+      ],
+      "explanation": "Because the two parties use two different currencies, a currency swap usually really does exchange the notional principal at the start of the period (at the spot rate) and exchange it back at the end of the period (at a pre-agreed or the original rate) - unlike an Interest Rate Swap, where the notional is in one currency so it doesn't need to change hands."
+    },
+    {
+      "question": "A multinational corporation with revenue in multiple currencies (USD, EUR, JPY) but a consolidated financial statement in USD - why might they need a currency swap instead of simply converting currency instantly whenever needed?",
+      "options": [
+        "Because the spot exchange rate is always less favorable than the rate in a swap contract",
+        "Because instant currency conversion is restricted by regulators",
+        "Because cash flow repeats many periods, locking in once is cheaper than converting piecemeal",
+        "Because a consolidated statement must by law use an exchange-rate derivative"
+      ],
+      "explanation": "A currency swap is especially useful when a business has periodic, repeating cash flows in foreign currency over the long term (like annual interest payments on a foreign-currency bond) - locking in the rate once for the whole future cash-flow stream is much more efficient than having to trade the exchange rate separately every time it comes up."
+    },
+    {
+      "question": "Borrowing 10 million USD, locking in the rate at 25,000. VND slides to 27,000. How much does the business benefit?",
+      "options": [
+        "No benefit at all since the rate was already locked in earlier",
+        "VND 270 billion (= the entire obligation at the new rate)",
+        "VND 2 billion (= 10m × 200, off by a zero somewhere)",
+        "VND 20 billion (= 10m × 2,000 rate difference)"
+      ],
+      "explanation": "Without the swap they'd pay VND 270 billion; with the swap they pay VND 250 billion. The VND 20 billion difference isn't profit - it's a loss that didn't happen, and it runs exactly the opposite way if VND appreciates instead."
+    },
+    {
+      "question": "Why does a currency swap carry more counterparty risk than an interest rate swap?",
+      "options": [
+        "Because the entire notional changes hands, not just the difference",
+        "Because a currency swap's term is always much longer than an IRS",
+        "Because exchange rates move more sharply than interest rates in every period",
+        "Because a currency swap has no clearing house"
+      ],
+      "explanation": "An IRS only settles net a few percent of notional each period. A currency swap exchanges the full principal in two currencies, so if the counterparty collapses midway, the exposure is the entire principal, not a small slice."
+    },
+    {
+      "question": "An FDI business borrows USD from its parent company, with revenue in VND. What is the main risk?",
+      "options": [
+        "Rising USD interest rates increase the loan's interest cost",
+        "VND depreciation increases the burden of repaying the debt in VND terms",
+        "The parent company can demand early repayment at any time",
+        "VND revenue isn't allowed to be used to repay foreign-currency debt"
+      ],
+      "explanation": "Owing debt in one currency while earning in another is a classic form of mismatch. A business can be doing better operationally and still find it harder to repay debt, simply because the exchange rate shifted."
+    }
+  ],
+  "keyTakeaways": [
+    "Currency swap: swapping cash flows and possibly notional principal in two different currencies",
+    "An important tool for businesses with debt and revenue in different currencies",
+    "Helps lock in the conversion rate long-term, reducing exchange-rate risk"
+  ],
+  "practicePrompt": {
+    "question": "A Vietnamese company has a USD loan, with revenue mostly in VND. The company wants to swap its entire repayment obligation (both principal and interest) from USD to VND to match its revenue cash flow, avoiding long-term exchange-rate risk. Which derivative instrument fits, and how does it differ from an Interest Rate Swap?",
+    "options": [
+      "They should use an Interest Rate Swap, since this instrument can also handle exchange-rate risk between two different currencies",
+      "Currency swap: swapping cash flows in two currencies, locking in the rate long-term",
+      "The company should buy gold to hedge exchange-rate risk instead of using any derivative instrument",
+      "There is no derivative instrument that can solve the currency mismatch between debt and revenue"
+    ],
+    "explanation": "Currency swap: swapping cash flows and possibly notional principal in two different currencies. This is an important tool for businesses with debt and revenue in different currencies, helping lock in the conversion rate long-term, reducing exchange-rate risk."
+  },
+  "summary": {
+    "keyIdea": "Currency swap: swapping cash flows and possibly notional principal in two different currencies",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to real decisions.",
+    "action": "An important tool for businesses with debt and revenue in different currencies"
+  },
+  "application": {
+    "title": "Find a situation that needs a currency swap",
+    "message": "Think of a Vietnamese business with VND revenue but USD debt, and describe how a currency swap could help them lock in the conversion rate long-term.",
+    "secondary": "This situation is very common for import-export businesses in Vietnam."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A currency swap is a contract in which two parties swap both principal and interest in two different currencies at a rate agreed in advance, usually long-term - a key tool for businesses with debt and revenue in different currencies."
+    },
+    { "type": "heading", "text": "The core difference from an Interest Rate Swap" },
+    {
+      "type": "paragraph",
+      "text": "Because the two parties use two different currencies, a currency swap usually really does exchange the notional principal at the start of the period (at the spot rate) and exchange it back at the end (at a pre-agreed or the original rate) - quite unlike an Interest Rate Swap, where the notional is in one currency so it doesn't need to change hands, only the interest difference is settled."
+    },
+    { "type": "heading", "text": "FDI businesses: USD debt, VND revenue" },
+    {
+      "type": "paragraph",
+      "text": "Many FDI businesses in Vietnam borrow USD from their parent company but earn revenue in VND. If VND depreciates against USD, the burden of repaying USD debt (converted into VND) rises. A currency swap helps them 'lock in' the conversion rate from the start, avoiding this risk throughout the life of the loan - instead of converting currency at a fluctuating market rate every time a transaction arises, a single swap contract locks in the rate for the whole future cash-flow stream, such as annual foreign-currency bond interest payments."
+    },
+    {
+      "type": "comparison",
+      "left": { "label": "Interest Rate Swap", "text": "Notional is in the same currency on both legs, so nobody exchanges principal - only the interest difference is settled. Counterparty risk is therefore much smaller." },
+      "right": { "label": "Currency Swap", "text": "Two different currencies mean principal usually really does change hands at the start and end. The entire notional sits within the counterparty risk zone, not just the difference." }
+    },
+    {
+      "type": "formula",
+      "title": "Locking in the rate for a USD loan repaid with VND revenue",
+      "equation": "VND obligation = USD debt × Rate locked in the swap contract",
+      "variables": [
+        { "symbol": "Locked-in rate", "name": "The pre-agreed rate", "description": "Fixed for the life of the contract, independent of the market" }
+      ],
+      "example": {
+        "title": "Borrowing 10 million USD, locked at VND 25,000/USD, then VND depreciates to 27,000",
+        "calculation": "Without a swap: 10m × 27,000 = VND 270 billion · With a swap: 10m × 25,000 = VND 250 billion",
+        "result": "A VND 20 billion difference",
+        "explanation": "This VND 20 billion isn't profit - it's a loss that didn't happen. If VND had appreciated to 23,000 instead, the swap contract would have made the business pay VND 20 billion more than doing nothing. It's a trade for certainty, in both directions."
+      }
+    },
+    {
+      "type": "list",
+      "items": [
+        "Currency swap: swapping cash flows and usually notional principal in two different currencies",
+        "Notional exchanged at the start and end of the period - unlike an Interest Rate Swap",
+        "Especially useful for periodic, repeating foreign-currency cash flows over the long term",
+        "An important tool for FDI businesses and multinational corporations with multi-currency revenue"
+      ]
+    }
+  ]
+}

@@ -6,6 +6,8 @@ import { getCompletedLessons } from "@/lib/supabase-progress";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 import CfaTrackView from "@/components/CfaTrackView";
 import CfaNextLevels from "@/components/CfaNextLevels";
+import { getServerLocale } from "@/lib/i18n/server";
+import { getDictionary } from "@/lib/i18n";
 
 export const dynamic = "force-dynamic";
 
@@ -23,6 +25,8 @@ export const dynamic = "force-dynamic";
 // so a client-side fetch of user_progress silently returns zero rows and
 // the page would look like nothing was ever completed.
 export default async function CfaPage() {
+  const locale = await getServerLocale();
+  const t = getDictionary(locale);
   const supabase = await createServerSupabaseClient();
   const {
     data: { user },
@@ -55,13 +59,13 @@ export default async function CfaPage() {
           <Link
             href="/dashboard"
             className="flex items-center justify-center w-9 h-9 rounded-full text-stone-400 dark:text-stone-500 hover:bg-stone-100 dark:hover:bg-stone-800 hover:text-stone-700 dark:hover:text-stone-200 transition-colors"
-            aria-label="Về Dashboard"
+            aria-label={t.finalTwo.cfaPage.backToDashboardAria}
           >
             <ChevronLeft className="w-5 h-5" />
           </Link>
           <div>
-            <h1 className="text-xl font-bold text-stone-900 dark:text-stone-100">Tài chính chứng chỉ</h1>
-            <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">CFA Level I - 10 môn thi chính thức</p>
+            <h1 className="text-xl font-bold text-stone-900 dark:text-stone-100">{t.finalTwo.cfaPage.title}</h1>
+            <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">{t.finalTwo.cfaPage.subtitle}</p>
           </div>
         </div>
       </div>

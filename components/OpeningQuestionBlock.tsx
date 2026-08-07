@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useI18n } from "@/lib/i18n/context";
 
 interface OpeningQuestionBlockProps {
   question: React.ReactNode;
@@ -20,13 +21,14 @@ export default function OpeningQuestionBlock({
   correct,
   explanation,
 }: OpeningQuestionBlockProps) {
+  const { t } = useI18n();
   const [selected, setSelected] = useState<number | null>(null);
   const [submitted, setSubmitted] = useState(false);
 
   return (
     <div className="space-y-4">
       <div className="text-[10px] font-extrabold text-stone-500 dark:text-stone-300 uppercase tracking-widest">
-        Bắt đầu bằng một câu hỏi
+        {t.finalTwo.openingQuestionBlock.header}
       </div>
       <p className="text-stone-800 dark:text-stone-100 font-bold leading-relaxed text-base sm:text-lg">
         {question}
@@ -66,7 +68,7 @@ export default function OpeningQuestionBlock({
           onClick={() => setSubmitted(true)}
           className="w-full bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 py-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-all cursor-pointer shadow-sm active:scale-[0.98]"
         >
-          Xác nhận câu trả lời
+          {t.finalTwo.openingQuestionBlock.confirmButton}
         </button>
       )}
 
@@ -79,7 +81,7 @@ export default function OpeningQuestionBlock({
           }`}
         >
           <p className="font-semibold mb-1">
-            {selected === correct ? "Đúng rồi!" : "Chưa đúng - nhưng không sao!"}
+            {selected === correct ? t.finalTwo.openingQuestionBlock.correctFeedback : t.finalTwo.openingQuestionBlock.incorrectFeedback}
           </p>
           <p>{explanation}</p>
         </motion.div>

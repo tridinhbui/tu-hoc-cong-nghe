@@ -1,0 +1,131 @@
+{
+  "slug": "modern-portfolio-theory-la-gi",
+  "title": "What is Modern Portfolio Theory?",
+  "subtitle": "Harry Markowitz and turning optimal portfolio construction into math",
+  "duration": "7 min",
+  "openingQuestion": "What does Harry Markowitz's MPT (Modern Portfolio Theory, 1952) say about building an optimal portfolio?",
+  "openingOptions": [
+    "Only invest in absolutely safe assets",
+    "Just pick the asset with the highest expected return",
+    "Diversify into as many assets as possible, without limit",
+    "For every acceptable level of risk, there exists a portfolio combining assets (based on the correlation between them) that delivers the highest possible expected return - this is called the optimal portfolio"
+  ],
+  "explanation": "Modern Portfolio Theory (Markowitz, 1952) is the mathematical foundation of modern portfolio management: using each asset's expected return, volatility, and correlation to compute the optimal portfolio - the highest expected return for a given level of risk, or the lowest risk for a given level of expected return.",
+  "diagram": [
+    { "label": "Each asset's expected return", "arrow": true },
+    { "label": "Volatility and correlation between the assets", "arrow": true },
+    { "label": "Compute the optimal portfolio (Markowitz)" }
+  ],
+  "realWorldExample": {
+    "company": "The 1990 Nobel Prize in Economics",
+    "description": "Harry Markowitz won the 1990 Nobel Prize in Economics for his work on Modern Portfolio Theory - a theory that completely changed how investment funds and pension funds around the world build their portfolios."
+  },
+  "quiz": [
+    {
+      "question": "What is MPT's core contribution compared to the traditional investing approach before it?",
+      "options": [
+        "It provided a formula that accurately forecasts each stock's return",
+        "It mathematically proved that combining assets can reduce risk",
+        "It showed that markets always price assets efficiently",
+        "It identified the best time to buy and sell an asset"
+      ],
+      "explanation": "Before Markowitz, investors typically looked at each asset individually. MPT was the first theory to mathematically prove that combining low-correlation assets can produce a portfolio with overall risk LOWER than the average risk of its individual components added up - the one genuine 'free lunch' in finance."
+    },
+    {
+      "question": "MPT assumes an investor can freely borrow and lend at the risk-free rate to optimize a portfolio. Does this assumption hold fully true for an ordinary individual investor in reality?",
+      "options": [
+        "Yes, but only for investors with full collateral",
+        "Yes, every investor can access the risk-free rate",
+        "No, an individual's borrowing cost is much higher than the risk-free rate",
+        "No, because the risk-free rate itself changes continuously from one trading day to the next"
+      ],
+      "explanation": "This is one of MPT's idealized assumptions often criticized in practice - the gap between borrowing and lending rates means the model's purely theoretical conclusions about the optimal portfolio need adjusting to fit each investor type's real constraints."
+    },
+    {
+      "question": "What are the three inputs MPT needs to optimize a portfolio?",
+      "options": [
+        "P/E ratio, dividend yield, and growth rate",
+        "Current price, trading volume, and market cap",
+        "Each bond's credit rating, its maturity, and its stated coupon rate",
+        "Expected return, volatility, and correlation"
+      ],
+      "explanation": "All three are estimates, and the optimal result is highly sensitive to them - especially expected return. This is why MPT is often criticized for false precision: rigorous math run on numbers nobody actually knows for certain."
+    },
+    {
+      "question": "What is the biggest practical weakness of applying MPT?",
+      "options": [
+        "The result is highly sensitive to inputs that are only estimates",
+        "The calculation is far too computationally complex for an ordinary personal computer to run",
+        "The theory only works for portfolios under ten assets",
+        "It entirely ignores the correlation between assets"
+      ],
+      "explanation": "Changing an asset's expected return by just one percentage point can completely flip the optimal weights. Many fund managers therefore impose additional weight constraints rather than letting the algorithm run free."
+    },
+    {
+      "question": "What contribution earned Markowitz the 1990 Nobel Prize?",
+      "options": [
+        "Discovering that the stock market is always efficient",
+        "Bringing risk and correlation into one unified mathematical framework",
+        "Building the very first options pricing model ever developed for financial markets",
+        "Proving stocks always outperform bonds over the long run"
+      ],
+      "explanation": "Before Markowitz, choosing a portfolio meant picking good individual stocks. After him, the question became how these assets work together - a shift in the question itself, not just in the tools."
+    }
+  ],
+  "keyTakeaways": [
+    "MPT: the mathematical foundation for building an optimal portfolio from return, risk, and correlation",
+    "Core contribution: proving proper diversification can reduce risk without a corresponding drop in expected return",
+    "The theoretical foundation for most modern portfolio-management models"
+  ],
+  "practicePrompt": {
+    "question": "A fund manager uses mathematical tools to calculate the optimal weights between stocks, bonds, and other assets - combining expected return, volatility, and the correlation of every asset pair - to maximize return for each acceptable level of risk. What theoretical framework underlies this approach?",
+    "options": [
+      "This is an application of CAPM, the only formula for calculating optimal asset weights in a portfolio",
+      "MPT: the mathematical foundation for building an optimal portfolio from return, risk, and correlation",
+      "This is an application of DCF, the discounted cash flow valuation method applied to the whole portfolio",
+      "There is no specific theoretical framework for a portfolio-construction approach combining so many factors"
+    ],
+    "explanation": "MPT: the mathematical foundation for building an optimal portfolio from return, risk, and correlation. This is the foundational theory of modern investing, developed by Harry Markowitz, showing how to combine assets to achieve optimal efficiency (the Efficient Frontier) instead of just looking at each asset individually."
+  },
+  "summary": {
+    "keyIdea": "MPT: the mathematical foundation for building an optimal portfolio from return, risk, and correlation",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to a real decision.",
+    "action": "Core contribution: proving proper diversification can reduce risk without a corresponding drop in expected return"
+  },
+  "application": {
+    "title": "Learn about Harry Markowitz",
+    "message": "Skim Harry Markowitz's 1952 paper and write one sentence summarizing his core contribution in your own words.",
+    "secondary": "Understanding the original idea lets you use modern tools with more intention, not just mechanically."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Modern Portfolio Theory (MPT), proposed by Harry Markowitz in 1952, is the mathematical foundation of modern portfolio management: using each asset's expected return, volatility, and correlation to compute the optimal portfolio - the highest expected return for a given level of risk, or the lowest risk for a given level of expected return."
+    },
+    { "type": "heading", "text": "The core contribution: finance's one genuine \"free lunch\"" },
+    {
+      "type": "paragraph",
+      "text": "Before Markowitz, investors typically assessed each asset individually. MPT was the first theory to mathematically prove that combining low-correlation assets can produce a portfolio with overall risk LOWER than the average risk of its individual components added up. This is why diversification is called the one genuine \"free lunch\" in finance - reducing risk without necessarily reducing expected return in kind."
+    },
+    { "type": "heading", "text": "Idealized assumptions and real-world limits" },
+    {
+      "type": "paragraph",
+      "text": "MPT assumes an investor can freely borrow and lend at the risk-free rate to optimize a portfolio. In reality, individual investors usually have to borrow at rates far higher than the risk-free rate (margin loans, credit cards), which means MPT's purely theoretical conclusions need adjusting when applied to individual investing. This is one of the model's idealized assumptions that is often criticized."
+    },
+    {
+      "type": "list",
+      "items": [
+        "MPT: the mathematical foundation for building an optimal portfolio from return, risk, and correlation",
+        "It proves proper diversification pushes portfolio risk below the average risk of its individual assets",
+        "The assumption of borrowing/lending at the risk-free rate doesn't fully hold for individual investors",
+        "Markowitz received the 1990 Nobel Prize in Economics for this work"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "MPT doesn't promise to beat the market - it shows how to combine assets more intelligently to get the same return with less risk."
+      ]
+    }
+  ]
+}

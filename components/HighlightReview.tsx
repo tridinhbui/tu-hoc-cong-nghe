@@ -5,6 +5,8 @@ import Link from "next/link";
 import { ArrowRight, Check, Eye, RotateCcw, X } from "lucide-react";
 import type { LessonHighlight } from "@/lib/lesson-highlights";
 import { resolveStage } from "@/lib/highlight-stage-grouping";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 interface LessonInfo {
   slug: string;
@@ -33,6 +35,7 @@ interface HighlightReviewProps {
 // which React may do at will. The caller shuffles inside the click handler
 // that starts the review instead.
 export default function HighlightReview({ deck, lessonsById, onRestart, onExit }: HighlightReviewProps) {
+  const { t } = useI18n();
   const [index, setIndex] = useState(0);
   const [revealed, setRevealed] = useState(false);
   const [recalled, setRecalled] = useState(0);
@@ -60,7 +63,7 @@ export default function HighlightReview({ deck, lessonsById, onRestart, onExit }
         <p className="text-2xl font-black text-stone-900 dark:text-stone-100">
           {recalled}/{deck.length}
         </p>
-        <p className="text-xs text-stone-500 dark:text-stone-400 mt-1">đoạn bạn nhớ được nguồn</p>
+        <p className="text-xs text-stone-500 dark:text-stone-400 mt-1">{t.highlightReview.recalledSuffix}</p>
         <div className="flex items-center justify-center gap-2 mt-4">
           <button
             type="button"
@@ -68,14 +71,14 @@ export default function HighlightReview({ deck, lessonsById, onRestart, onExit }
             className="inline-flex items-center gap-1.5 rounded-xl border border-stone-200 dark:border-stone-700 px-3 py-2 text-xs font-bold text-stone-700 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors cursor-pointer"
           >
             <RotateCcw className="w-3.5 h-3.5" />
-            Ôn lại
+            {t.highlightReview.restart}
           </button>
           <button
             type="button"
             onClick={onExit}
             className="rounded-xl bg-stone-900 dark:bg-stone-100 px-3 py-2 text-xs font-bold text-white dark:text-stone-900 hover:opacity-90 transition-opacity cursor-pointer"
           >
-            Xong
+            {t.highlightReview.done}
           </button>
         </div>
       </div>
@@ -83,18 +86,18 @@ export default function HighlightReview({ deck, lessonsById, onRestart, onExit }
   }
 
   const lesson = lessonsById[current.lesson_id];
-  const stage = resolveStage(current.lesson_id);
+  const stage = resolveStage(current.lesson_id, t);
 
   return (
     <div className="space-y-3">
       <div className="flex items-center justify-between gap-3">
         <p className="text-xs font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-widest">
-          Ôn tập · {index + 1}/{deck.length}
+          {format(t.highlightReview.reviewProgress, { current: index + 1, total: deck.length })}
         </p>
         <button
           type="button"
           onClick={onExit}
-          aria-label="Thoát ôn tập"
+          aria-label={t.highlightReview.exitAria}
           className="p-1.5 rounded-lg text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors cursor-pointer"
         >
           <X className="w-4 h-4" />
@@ -134,7 +137,7 @@ export default function HighlightReview({ deck, lessonsById, onRestart, onExit }
               className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-xl border border-stone-200 dark:border-stone-700 px-3 py-2 text-xs font-bold text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors cursor-pointer"
             >
               <X className="w-3.5 h-3.5" />
-              Chưa nhớ
+              {t.highlightReview.notRecalled}
             </button>
             <button
               type="button"
@@ -142,7 +145,7 @@ export default function HighlightReview({ deck, lessonsById, onRestart, onExit }
               className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-xl bg-emerald-600 px-3 py-2 text-xs font-black text-white hover:bg-emerald-500 transition-colors cursor-pointer"
             >
               <Check className="w-3.5 h-3.5" />
-              {isLast ? "Nhớ · Kết thúc" : "Nhớ rồi"}
+              {isLast ? t.highlightReview.recalledLast : t.highlightReview.recalledNext}
             </button>
           </div>
         </div>
@@ -153,7 +156,7 @@ export default function HighlightReview({ deck, lessonsById, onRestart, onExit }
           className="w-full inline-flex items-center justify-center gap-1.5 rounded-xl border border-stone-200 dark:border-stone-700 px-3 py-2.5 text-xs font-bold text-stone-700 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors cursor-pointer"
         >
           <Eye className="w-3.5 h-3.5" />
-          Đoạn này ở bài nào?
+          {t.highlightReview.revealPrompt}
         </button>
       )}
     </div>

@@ -6,12 +6,16 @@ import { CheckCircle2, XCircle, Check } from "lucide-react";
 import ConfirmDialog from "@/components/admin/ConfirmDialog";
 import { approveAppealAction, rejectAppealAction, approveMultipleAppealsAction } from "./actions";
 import type { AdminLessonAppeal } from "@/lib/admin/appeals";
+import { useI18n } from "@/lib/i18n/context";
+import { format, intlLocale, type Locale } from "@/lib/i18n";
 
-function formatDate(iso: string): string {
-  return new Date(iso).toLocaleString("vi-VN", { dateStyle: "short", timeStyle: "short" });
+function formatDate(iso: string, locale: Locale): string {
+  return new Date(iso).toLocaleString(intlLocale(locale), { dateStyle: "short", timeStyle: "short" });
 }
 
 export default function AppealsClient({ initialAppeals }: { initialAppeals: AdminLessonAppeal[] }) {
+  const { t, locale } = useI18n();
+  const ta = t.adminThree.appealsClient;
   const [appeals, setAppeals] = useState(initialAppeals);
   const [approveTarget, setApproveTarget] = useState<number | null>(null);
   const [rejectTarget, setRejectTarget] = useState<number | null>(null);
@@ -25,10 +29,10 @@ export default function AppealsClient({ initialAppeals }: { initialAppeals: Admi
       try {
         await approveAppealAction(id);
         setAppeals((prev) => prev.filter((a) => a.id !== id));
-        toast.success("Đã duyệt - bài học được tính hoàn thành và cộng XP cho học viên.");
+        toast.success(ta.approveSuccess);
       } catch (error) {
         console.error("Error approving appeal:", error);
-        toast.error(error instanceof Error ? error.message : "Không thể duyệt khiếu nại.");
+        toast.error(error instanceof Error ? error.message : ta.approveFailed);
       } finally {
         setApproveTarget(null);
       }
@@ -40,10 +44,10 @@ export default function AppealsClient({ initialAppeals }: { initialAppeals: Admi
       try {
         await rejectAppealAction(id, rejectNote);
         setAppeals((prev) => prev.filter((a) => a.id !== id));
-        toast.success("Đã từ chối khiếu nại.");
+        toast.success(ta.rejectSuccess);
       } catch (error) {
         console.error("Error rejecting appeal:", error);
-        toast.error(error instanceof Error ? error.message : "Không thể từ chối khiếu nại.");
+        toast.error(error instanceof Error ? error.message : ta.rejectFailed);
       } finally {
         setRejectTarget(null);
         setRejectNote("");
@@ -58,10 +62,10 @@ export default function AppealsClient({ initialAppeals }: { initialAppeals: Admi
         await approveMultipleAppealsAction(ids);
         setAppeals((prev) => prev.filter((a) => !selectedIds.has(a.id)));
         setSelectedIds(new Set());
-        toast.success(`Đã duyệt ${ids.length} khiếu nại.`);
+        toast.success(format(ta.bulkApproveSuccess, { count: ids.length }));
       } catch (error) {
         console.error("Error approving appeals:", error);
-        toast.error(error instanceof Error ? error.message : "Không thể duyệt khiếu nại.");
+        toast.error(error instanceof Error ? error.message : ta.approveFailed);
       } finally {
         setShowBulkApproveConfirm(false);
       }
@@ -87,7 +91,7 @@ export default function AppealsClient({ initialAppeals }: { initialAppeals: Admi
   }
 
   if (appeals.length === 0) {
-    return <p className="text-sm text-stone-500 dark:text-stone-400">Không có khiếu nại nào đang chờ duyệt.</p>;
+    return <p className="text-sm text-stone-500 dark:text-stone-400">{ta.noAppeals}</p>;
   }
 
   return (
@@ -95,7 +99,7 @@ export default function AppealsClient({ initialAppeals }: { initialAppeals: Admi
       {selectedIds.size > 0 && (
         <div className="bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800 rounded-lg p-4 flex items-center justify-between">
           <p className="text-sm font-semibold text-emerald-900 dark:text-emerald-100">
-            Đã chọn {selectedIds.size} khiếu nại
+            {format(ta.selectedCount, { count: selectedIds.size })}
           </p>
           <button
             onClick={() => setShowBulkApproveConfirm(true)}
@@ -103,7 +107,7 @@ export default function AppealsClient({ initialAppeals }: { initialAppeals: Admi
             className="inline-flex items-center gap-1.5 text-sm font-bold px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white disabled:opacity-50 transition-colors"
           >
             <Check className="w-4 h-4" />
-            Duyệt tất cả ({selectedIds.size})
+            {format(ta.approveAllSelected, { count: selectedIds.size })}
           </button>
         </div>
       )}
@@ -115,10 +119,12 @@ export default function AppealsClient({ initialAppeals }: { initialAppeals: Admi
           onChange={toggleSelectAll}
           disabled={isPending}
           className="w-4 h-4 rounded border-stone-300 dark:border-stone-700 cursor-pointer"
-          title="Chọn/bỏ chọn tất cả"
+          title={ta.selectAllTitle}
         />
         <span className="text-xs text-stone-500 dark:text-stone-400">
-          {selectedIds.size > 0 ? `${selectedIds.size}/${appeals.length} được chọn` : "Chọn để duyệt hàng loạt"}
+          {selectedIds.size > 0
+            ? format(ta.selectedOf, { selected: selectedIds.size, total: appeals.length })
+            : ta.selectToBulkApprove}
         </span>
       </div>
 
@@ -136,10 +142,10 @@ export default function AppealsClient({ initialAppeals }: { initialAppeals: Admi
                 />
                 <div className="min-w-0">
                   <p className="font-bold text-stone-900 dark:text-stone-100">
-                    {a.user_name || a.user_email || "Học viên"}
+                    {a.user_name || a.user_email || ta.unknownLearner}
                   </p>
                   <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">
-                    Bài <span className="font-mono">{a.lesson_slug}</span> (id {a.lesson_id}) · {formatDate(a.created_at)}
+                    {format(ta.lessonMeta, { slug: a.lesson_slug ?? "", id: a.lesson_id, date: formatDate(a.created_at, locale) })}
                   </p>
                   {a.note && (
                     <p className="text-sm text-stone-700 dark:text-stone-300 mt-2 italic">&quot;{a.note}&quot;</p>
@@ -153,7 +159,7 @@ export default function AppealsClient({ initialAppeals }: { initialAppeals: Admi
                   className="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white disabled:opacity-50 transition-colors"
                 >
                   <CheckCircle2 className="w-3.5 h-3.5" />
-                  Duyệt
+                  {ta.approve}
                 </button>
                 <button
                   onClick={() => setRejectTarget(a.id)}
@@ -161,7 +167,7 @@ export default function AppealsClient({ initialAppeals }: { initialAppeals: Admi
                   className="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-2 rounded-lg border border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-800 disabled:opacity-50 transition-colors"
                 >
                   <XCircle className="w-3.5 h-3.5" />
-                  Từ chối
+                  {ta.reject}
                 </button>
               </div>
             </div>
@@ -171,9 +177,9 @@ export default function AppealsClient({ initialAppeals }: { initialAppeals: Admi
 
       <ConfirmDialog
         open={approveTarget !== null}
-        title="Duyệt khiếu nại?"
-        message="Bài học sẽ được đánh dấu hoàn thành thật cho học viên này và XP sẽ được cộng ngay."
-        confirmLabel="Duyệt"
+        title={ta.approveTitle}
+        message={ta.approveMessage}
+        confirmLabel={ta.approve}
         onConfirm={() => approveTarget !== null && handleApprove(approveTarget)}
         onCancel={() => setApproveTarget(null)}
         loading={isPending}
@@ -181,9 +187,9 @@ export default function AppealsClient({ initialAppeals }: { initialAppeals: Admi
 
       <ConfirmDialog
         open={showBulkApproveConfirm}
-        title="Duyệt tất cả khiếu nại được chọn?"
-        message={`Sẽ duyệt ${selectedIds.size} khiếu nại - bài học sẽ được đánh dấu hoàn thành thật và XP sẽ được cộng cho tất cả học viên.`}
-        confirmLabel="Duyệt tất cả"
+        title={ta.bulkApproveTitle}
+        message={format(ta.bulkApproveMessage, { count: selectedIds.size })}
+        confirmLabel={ta.approveAll}
         onConfirm={handleBulkApprove}
         onCancel={() => setShowBulkApproveConfirm(false)}
         loading={isPending}
@@ -192,11 +198,11 @@ export default function AppealsClient({ initialAppeals }: { initialAppeals: Admi
       {rejectTarget !== null && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/50">
           <div className="bg-white dark:bg-stone-900 rounded-2xl border border-stone-200 dark:border-stone-800 w-full max-w-sm p-5 space-y-3">
-            <h3 className="font-bold text-stone-900 dark:text-stone-100">Từ chối khiếu nại</h3>
+            <h3 className="font-bold text-stone-900 dark:text-stone-100">{ta.rejectDialogTitle}</h3>
             <textarea
               value={rejectNote}
               onChange={(e) => setRejectNote(e.target.value)}
-              placeholder="Lý do từ chối (tuỳ chọn)..."
+              placeholder={ta.rejectReasonPlaceholder}
               rows={3}
               className="w-full px-3 py-2 rounded-lg border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 text-sm text-stone-900 dark:text-stone-100 focus:outline-none focus:border-stone-400 resize-none"
             />
@@ -208,14 +214,14 @@ export default function AppealsClient({ initialAppeals }: { initialAppeals: Admi
                 }}
                 className="px-4 py-2 text-sm font-semibold rounded-lg border border-stone-300 dark:border-stone-700 text-stone-700 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-800"
               >
-                Huỷ
+                {ta.cancel}
               </button>
               <button
                 onClick={() => rejectTarget !== null && handleReject(rejectTarget)}
                 disabled={isPending}
                 className="px-4 py-2 text-sm font-bold rounded-lg bg-rose-600 hover:bg-rose-700 text-white disabled:opacity-50"
               >
-                Từ chối
+                {ta.reject}
               </button>
             </div>
           </div>

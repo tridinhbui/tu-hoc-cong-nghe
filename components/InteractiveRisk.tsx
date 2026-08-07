@@ -1,6 +1,9 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
 // Đánh đổi rủi ro - lợi nhuận, widget cho các bài khai `interactiveType:
 // "risk"`.
@@ -11,18 +14,22 @@ import { useMemo, useState } from "react";
 // sau n năm - và người kéo thanh trượt thấy dải đó loe ra nhanh hơn nhiều so
 // với phần giữa dịch lên.
 
-const PROFILES = [
-  { key: "safe", label: "Gửi tiết kiệm", ret: 5, vol: 1 },
-  { key: "bond", label: "Trái phiếu", ret: 7, vol: 6 },
-  { key: "mixed", label: "Danh mục hỗn hợp", ret: 9, vol: 12 },
-  { key: "stock", label: "Cổ phiếu", ret: 11, vol: 20 },
-  { key: "single", label: "Một cổ phiếu đơn lẻ", ret: 12, vol: 38 },
-] as const;
+function getProfiles(t: Dictionary) {
+  return [
+    { key: "safe", label: t.riskCalc.profileSafeLabel, ret: 5, vol: 1 },
+    { key: "bond", label: t.riskCalc.profileBondLabel, ret: 7, vol: 6 },
+    { key: "mixed", label: t.riskCalc.profileMixedLabel, ret: 9, vol: 12 },
+    { key: "stock", label: t.riskCalc.profileStockLabel, ret: 11, vol: 20 },
+    { key: "single", label: t.riskCalc.profileSingleLabel, ret: 12, vol: 38 },
+  ] as const;
+}
 
 export default function InteractiveRisk() {
+  const { t } = useI18n();
   const [index, setIndex] = useState(2);
   const [years, setYears] = useState(10);
-  const profile = PROFILES[index];
+  const profiles = useMemo(() => getProfiles(t), [t]);
+  const profile = profiles[index];
 
   // Dải kết quả xấp xỉ bằng ±1 độ lệch chuẩn của lợi suất cộng dồn. Độ lệch
   // chuẩn nhiều năm co lại theo căn bậc hai của thời gian, còn phần giữa thì
@@ -37,42 +44,42 @@ export default function InteractiveRisk() {
     };
   }, [profile, years]);
 
-  const money = (multiple: number) => `${(100 * multiple).toFixed(0)} triệu`;
+  const money = (multiple: number) => format(t.riskCalc.moneyAmount, { amount: (100 * multiple).toFixed(0) });
 
   return (
     <div className="bg-white rounded-3xl border border-stone-100 p-6 space-y-6 dark:bg-stone-900 dark:border-stone-800">
       <div>
         <h3 className="font-bold text-stone-800 text-lg mb-1 dark:text-stone-100">
-          ⚖️ Rủi ro cao hơn đổi lại được gì
+          {t.riskCalc.title}
         </h3>
         <p className="text-stone-500 text-sm dark:text-stone-400">
-          100 triệu ban đầu. Kéo để đổi mức rủi ro và số năm nắm giữ.
+          {t.riskCalc.subtitle}
         </p>
       </div>
 
       <div>
         <div className="flex justify-between text-sm mb-2">
-          <span className="font-medium text-stone-700 dark:text-stone-300">Mức rủi ro</span>
+          <span className="font-medium text-stone-700 dark:text-stone-300">{t.riskCalc.riskLevelLabel}</span>
           <span className="font-bold text-stone-800 dark:text-stone-100">{profile.label}</span>
         </div>
         <input
           type="range"
           min={0}
-          max={PROFILES.length - 1}
+          max={profiles.length - 1}
           value={index}
           onChange={(e) => setIndex(+e.target.value)}
           className="w-full"
-          aria-label="Mức rủi ro"
+          aria-label={t.riskCalc.riskLevelAriaLabel}
         />
         <p className="mt-1 text-[11px] text-stone-400 dark:text-stone-500">
-          Lợi nhuận kỳ vọng {profile.ret}%/năm · biến động {profile.vol}%
+          {format(t.riskCalc.expectedReturnLine, { ret: profile.ret, vol: profile.vol })}
         </p>
       </div>
 
       <div>
         <div className="flex justify-between text-sm mb-2">
-          <span className="font-medium text-stone-700 dark:text-stone-300">Số năm nắm giữ</span>
-          <span className="font-bold text-stone-800 dark:text-stone-100">{years} năm</span>
+          <span className="font-medium text-stone-700 dark:text-stone-300">{t.riskCalc.holdingYearsLabel}</span>
+          <span className="font-bold text-stone-800 dark:text-stone-100">{format(t.riskCalc.holdingYearsValue, { years })}</span>
         </div>
         <input
           type="range"
@@ -81,25 +88,25 @@ export default function InteractiveRisk() {
           value={years}
           onChange={(e) => setYears(+e.target.value)}
           className="w-full"
-          aria-label="Số năm nắm giữ"
+          aria-label={t.riskCalc.holdingYearsAriaLabel}
         />
       </div>
 
       <div className="rounded-2xl bg-stone-50 p-4 dark:bg-stone-800/60">
         <p className="text-xs font-bold uppercase tracking-wider text-stone-500 dark:text-stone-400">
-          Dải kết quả có thể xảy ra
+          {t.riskCalc.rangeTitle}
         </p>
         <div className="mt-3 flex items-end justify-between gap-2 text-center">
           <div className="flex-1">
-            <p className="text-[11px] text-stone-500 dark:text-stone-400">Kịch bản xấu</p>
+            <p className="text-[11px] text-stone-500 dark:text-stone-400">{t.riskCalc.worstCaseLabel}</p>
             <p className="text-base font-extrabold text-rose-600 dark:text-rose-400">{money(band.low)}</p>
           </div>
           <div className="flex-1">
-            <p className="text-[11px] text-stone-500 dark:text-stone-400">Phần giữa</p>
+            <p className="text-[11px] text-stone-500 dark:text-stone-400">{t.riskCalc.midCaseLabel}</p>
             <p className="text-lg font-extrabold text-stone-900 dark:text-stone-100">{money(band.mid)}</p>
           </div>
           <div className="flex-1">
-            <p className="text-[11px] text-stone-500 dark:text-stone-400">Kịch bản tốt</p>
+            <p className="text-[11px] text-stone-500 dark:text-stone-400">{t.riskCalc.bestCaseLabel}</p>
             <p className="text-base font-extrabold text-emerald-600 dark:text-emerald-400">
               {money(band.high)}
             </p>
@@ -119,10 +126,7 @@ export default function InteractiveRisk() {
       </div>
 
       <p className="text-[11px] leading-relaxed text-stone-500 dark:text-stone-400">
-        Kéo mức rủi ro lên: phần giữa nhích lên từng chút, còn dải kết quả loe ra nhanh hơn hẳn.
-        Đó chính là thứ bạn mua khi chấp nhận rủi ro cao hơn - không phải một kết quả tốt hơn, mà
-        một dải rộng hơn về cả hai phía. Kéo số năm lên thì dải hẹp lại tương đối, vì thời gian là
-        thứ duy nhất làm biến động bớt chi phối kết quả.
+        {t.riskCalc.footerText}
       </p>
     </div>
   );

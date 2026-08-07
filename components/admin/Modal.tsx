@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { X } from "lucide-react";
+import { useI18n } from "@/lib/i18n/context";
 
 interface ModalProps {
   open: boolean;
@@ -13,6 +14,8 @@ interface ModalProps {
 }
 
 export default function Modal({ open, onClose, title, children, footer, maxWidth = "max-w-md" }: ModalProps) {
+  const { t } = useI18n();
+  const tm = t.adminThree.modal;
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
@@ -38,7 +41,7 @@ export default function Modal({ open, onClose, title, children, footer, maxWidth
           <button
             onClick={onClose}
             className="p-1.5 rounded-lg hover:bg-stone-100 dark:hover:bg-stone-800 text-stone-500 dark:text-stone-400"
-            aria-label="Đóng"
+            aria-label={tm.close}
           >
             <X className="w-4 h-4" />
           </button>

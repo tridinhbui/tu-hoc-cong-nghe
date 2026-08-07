@@ -1,0 +1,172 @@
+{
+  "slug": "cash-accounting",
+  "title": "What is cash accounting?",
+  "subtitle": "Recognised by actual cash flow - simple but limited",
+  "duration": "5 min",
+  "openingQuestion": "Cash accounting suits which type of user best?",
+  "openingOptions": [
+    "Commercial banks",
+    "Small businesses with few credit transactions, wanting simplicity",
+    "Multinational conglomerates",
+    "Listed companies"
+  ],
+  "explanation": "Cash accounting only records when cash actually moves in or out, so it's very simple and suits small household businesses. The weakness shows immediately once there's buying or selling on credit: a month collecting a lot of old debt looks like a boom month, while a month prepaying a full year's rent looks like a loss-making month. Because profit jumps around based on the timing of cash flows rather than actual activity, any business past a small scale must move to accrual.",
+  "diagram": [
+    { "label": "Only track cash in and out", "arrow": true },
+    { "label": "Record right when cash moves", "arrow": true },
+    { "label": "Simple, suits small household businesses", "arrow": true },
+    { "label": "But profit jumps with the timing of receipts and payments, not the actual period" }
+  ],
+  "realWorldExample": {
+    "company": "Small grocery stores, household businesses",
+    "description": "Small household businesses in Vietnam usually apply simple cash accounting - only recording actual receipts and payments - because their small scale doesn't require the added precision of accrual accounting."
+  },
+  "quiz": [
+    {
+      "question": "Cash Accounting records:",
+      "options": [
+        "When an invoice is issued to the customer",
+        "When the obligation to deliver arises",
+        "When the contract takes effect",
+        "When cash actually moves in or out"
+      ],
+      "explanation": "Cash basis: cash in = revenue, cash out = expense."
+    },
+    {
+      "question": "Who uses Cash Accounting?",
+      "options": [
+        "Household businesses and very small companies",
+        "Companies listed on the stock exchange",
+        "Companies that have taken on foreign investment capital",
+        "Banks and credit institutions"
+      ],
+      "explanation": "Small and simple → cash basis is enough. Large and complex → accrual is required."
+    },
+    {
+      "question": "The advantage of Cash Accounting is:",
+      "options": [
+        "It reflects the true substance of the business",
+        "Simple, easy to understand, easy to verify",
+        "It's trusted by institutional investors",
+        "It's comparable across companies"
+      ],
+      "explanation": "Cash in/out = a clear fact. No need to understand complex accounting."
+    },
+    {
+      "question": "A problem with Cash Accounting is:",
+      "options": [
+        "The actual cash balance is recorded incorrectly",
+        "It cannot calculate the tax due for the period",
+        "Credit sales aren't recognised as revenue",
+        "Depreciation expense gets double-counted"
+      ],
+      "explanation": "Example: selling 1,000 on credit, no cash → cash basis = 0 revenue (wrong!)."
+    },
+    {
+      "question": "A small company on cash basis shows 10 million profit. In reality:",
+      "options": [
+        "Exactly 10 million, no discrepancy",
+        "Always lower than 10 million after adjustment",
+        "Always higher than 10 million due to depreciation",
+        "Could differ, depending on AR, AP and CapEx"
+      ],
+      "explanation": "If AR rises → cash < accrual. If CapEx is large → cash < accrual."
+    },
+    {
+      "question": "Why doesn't everyone use accrual?",
+      "options": [
+        "Accrual is much more complex and costly",
+        "Accrual has a restricted scope of application",
+        "Accrual raises the corporate tax owed",
+        "Accrual is only for foreign companies"
+      ],
+      "explanation": "Cost > benefit. For a 100m-revenue company: cash basis is enough."
+    },
+    {
+      "question": "A small company borrowing from a bank should prepare:",
+      "options": [
+        "Accrual, because the bank needs standardised figures",
+        "Cash basis, because it's simpler and more honest",
+        "Both books at once so the bank can cross-check itself",
+        "No preparation needed, the bank only checks bank statements"
+      ],
+      "explanation": "A bank won't trust cash basis → accrual is required to get the loan."
+    }
+  ],
+  "keyTakeaways": [
+    "Cash accounting: recognised when cash actually moves in/out",
+    "Advantage: simple, suits SMEs",
+    "Disadvantage: no matching, easily distorts profit"
+  ],
+  "practicePrompt": {
+    "question": "A small household business sells 50 million of goods to a customer in June, but the customer agrees to pay in August. If this business uses cash accounting, how much revenue will the June report recognise from this transaction?",
+    "options": [
+      "Recognise the full 50 million in June, exactly as accrual accounting would",
+      "0 dong - because cash accounting only recognises revenue when the cash actually lands in the account, so it must wait until August",
+      "25 million - recognising half right away and the remaining half in August",
+      "It cannot be determined without information about the corresponding cost of goods sold"
+    ],
+    "explanation": "Cash accounting recognises when cash actually moves in/out, regardless of when the transaction occurred - so June will record 0 dong of revenue from this transaction, with the full 50 million only recognised in August, when the cash actually reaches the account."
+  },
+  "summary": {
+    "keyIdea": "Cash accounting: recognised when cash actually moves in/out",
+    "commonMistake": "Reading a concept as a phrase to memorise rather than a principle to apply to real decisions.",
+    "action": "Advantage: simple, suits SMEs"
+  },
+  "application": {
+    "title": "Try keeping cash-accounting books for a week",
+    "message": "Over the next 7 days, only record the amounts of cash that actually move into/out of your wallet or account (not amounts promised or not yet paid) to experience how cash accounting works.",
+    "secondary": "You'll find it simple but it misses obligations not yet due."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Cash Accounting is the opposite of accrual accounting: it only recognises revenue and expenses when cash actually moves into or out of the business. Simple, intuitive, but clearly limited as a business grows in scale."
+    },
+    { "type": "heading", "text": "The advantage of cash accounting" },
+    {
+      "type": "paragraph",
+      "text": "For a small household business, a grocery store, or a freelancer, cash accounting fits well because there are few credit transactions and a simple business cycle - sell and collect cash right away, buy and pay cash right away. No need to track complex receivables and payables, and the books are easy to understand and easy to reconcile against the actual bank balance."
+    },
+    { "type": "heading", "text": "The limits as a business grows" },
+    {
+      "type": "paragraph",
+      "text": "The problem with cash accounting is that it allows - whether accidentally or deliberately - profit to be distorted between periods. A business can delay paying an expense into the next month to make this month's profit look better, or ask customers to pay early to pull revenue into the current period. Without a matching principle, two adjacent reporting periods may not accurately reflect true operating performance, making it hard for investors to compare."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Cash accounting fits: sole proprietorships, SMEs with few credit transactions, simple service industries",
+        "Cash accounting doesn't fit: businesses with credit sales/purchases, depreciable assets, long-term contracts",
+        "IFRS/VAS standards require accrual for public listed companies - cash accounting is only for internal use or very small businesses"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "A real-world example",
+      "text": "A small household grocery store in Vietnam keeps simple books: today it sold this much cash, today it paid this much cash for new stock - that's exactly cash accounting. But if that store grows into a mini-supermarket chain with hundreds of suppliers on credit, cash accounting will no longer be enough to reflect the true financial picture."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Cash accounting terminology",
+      "concepts": [
+        { "vi": "Kế toán tiền mặt", "en": "Cash Accounting", "def": "Recognises revenue/expenses only when cash actually moves in or out" },
+        { "vi": "Hộ kinh doanh cá thể", "en": "Sole proprietorship", "def": "A small business form that usually applies simple cash accounting" },
+        { "vi": "Bóp méo lợi nhuận theo kỳ", "en": "Earnings timing distortion", "def": "Profit shifting between periods because it's recognised by when cash moves" }
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": { "label": "Cash accounting", "text": "Simple, easy to understand, suits small businesses with few credit transactions - but easily distorts profit by period" },
+      "right": { "label": "Accrual accounting", "text": "More complex but reflects true operating performance, mandatory for listed businesses" }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Cash accounting is a good starting point for understanding cash flow, but not enough for in-depth financial analysis.",
+        "The larger a business gets and the more credit transactions it has, the more it needs to switch to accrual accounting.",
+        "Understanding the difference between the two methods helps you correctly read the meaning behind every accounting number."
+      ]
+    }
+  ]
+}

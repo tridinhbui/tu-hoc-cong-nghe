@@ -22,6 +22,8 @@ import {
   type SocialConnection,
 } from "@/lib/supabase-social";
 import { isValidAvatar } from "@/lib/avatar-utils";
+import { useI18n } from "@/lib/i18n/context";
+import { format, intlLocale } from "@/lib/i18n";
 
 interface SessionUser {
   id: string;
@@ -67,6 +69,7 @@ function Avatar({
 }
 
 export default function FriendsClient() {
+  const { locale, t } = useI18n();
   const router = useRouter();
   const searchParams = useSearchParams();
   const supabase = createClient();
@@ -238,9 +241,9 @@ export default function FriendsClient() {
     try {
       const result = await sendFriendRequest(user.id, targetUserId);
       if (result.status === "accepted") {
-        toast.success("Đã trở thành bạn bè");
+        toast.success(t.friends.nowFriends);
       } else {
-        toast.success("Đã gửi lời mời kết bạn");
+        toast.success(t.friends.requestSent);
       }
       await loadConnections();
     } catch (error) {
@@ -280,7 +283,7 @@ export default function FriendsClient() {
   if (loading) {
     return (
       <div className="min-h-screen bg-white dark:bg-stone-950 flex items-center justify-center">
-        <p className="text-stone-500 dark:text-stone-400">Đang tải...</p>
+        <p className="text-stone-500 dark:text-stone-400">{t.friends.loading}</p>
       </div>
     );
   }
@@ -291,9 +294,9 @@ export default function FriendsClient() {
         <div className="max-w-6xl mx-auto px-6 py-4">
           <Link href="/dashboard" className="inline-flex items-center gap-1.5 text-sm font-bold text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg px-3 py-2 -ml-3 transition-colors">
             <ArrowLeft className="w-4 h-4" />
-            Quay lại
+            {t.friends.back}
           </Link>
-          <h1 className="text-xl font-bold text-stone-900 dark:text-stone-100 mt-2">Bạn bè & chat</h1>
+          <h1 className="text-xl font-bold text-stone-900 dark:text-stone-100 mt-2">{t.friends.title}</h1>
         </div>
       </div>
 
@@ -305,19 +308,19 @@ export default function FriendsClient() {
             <div className="flex items-center gap-2 mb-4">
               <Search className="w-4 h-4 text-stone-400" />
               <h2 className="text-sm font-extrabold text-stone-900 dark:text-stone-100 uppercase tracking-widest">
-                Tìm account
+                {t.friends.findAccount}
               </h2>
             </div>
             <input
               value={searchTerm}
               onChange={(event) => setSearchTerm(event.target.value)}
-              placeholder="Nhập tên hoặc email..."
+              placeholder={t.friends.searchPlaceholder}
               className="w-full px-4 py-3 rounded-xl border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 text-sm text-stone-900 dark:text-stone-100 focus:outline-none focus:border-stone-500"
             />
 
             <div className="mt-4 space-y-3">
               {searching ? (
-                <p className="text-xs text-stone-400">Đang tìm...</p>
+                <p className="text-xs text-stone-400">{t.friends.searching}</p>
               ) : searchResults.length > 0 ? (
                 searchResults.map((account) => {
                   const relation = connectionByUserId.get(account.id);
@@ -329,15 +332,15 @@ export default function FriendsClient() {
                       <Link
                         href={`/nguoi-hoc/${account.id}`}
                         className="flex flex-1 min-w-0 items-center gap-3 group"
-                        title="Xem hồ sơ"
+                        title={t.friends.viewProfileTitle}
                       >
-                        <Avatar name={account.full_name || "Người dùng"} avatarUrl={account.avatar_url} />
+                        <Avatar name={account.full_name || t.friends.fallbackName} avatarUrl={account.avatar_url} />
                         <div className="flex-1 min-w-0">
                           <p className="text-sm font-bold text-stone-900 dark:text-stone-100 truncate group-hover:underline">
-                            {account.full_name || "Người dùng"}
+                            {account.full_name || t.friends.fallbackName}
                           </p>
                           <p className="text-[11px] text-stone-400 dark:text-stone-500 mt-0.5">
-                            Level {account.current_level} · {account.total_xp} XP
+                            {format(t.friends.levelXp, { level: account.current_level, xp: account.total_xp })}
                           </p>
                         </div>
                       </Link>
@@ -349,7 +352,7 @@ export default function FriendsClient() {
                           }}
                           className="px-3 py-2 rounded-lg bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 text-xs font-bold"
                         >
-                          Nhắn tin
+                          {t.friends.message}
                         </button>
                       ) : relation?.direction === "incoming" ? (
                         <button
@@ -357,11 +360,11 @@ export default function FriendsClient() {
                           disabled={busyUserId === String(relation.friendship_id)}
                           className="px-3 py-2 rounded-lg bg-emerald-600 text-white text-xs font-bold disabled:opacity-60"
                         >
-                          Chấp nhận
+                          {t.friends.accept}
                         </button>
                       ) : relation?.direction === "outgoing" ? (
                         <div className="text-[11px] font-bold text-amber-600 dark:text-amber-400 whitespace-nowrap">
-                          Đã gửi
+                          {t.friends.sent}
                         </div>
                       ) : (
                         <button
@@ -370,41 +373,41 @@ export default function FriendsClient() {
                           className="px-3 py-2 rounded-lg bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 text-xs font-bold disabled:opacity-60 flex items-center gap-1.5"
                         >
                           <UserPlus className="w-3.5 h-3.5" />
-                          Kết bạn
+                          {t.friends.addFriend}
                         </button>
                       )}
                     </div>
                   );
                 })
               ) : normalizedSearchTerm.length >= 2 ? (
-                <p className="text-xs text-stone-400">Không tìm thấy tài khoản phù hợp.</p>
+                <p className="text-xs text-stone-400">{t.friends.noResults}</p>
               ) : (
-                <p className="text-xs text-stone-400">Nhập ít nhất 2 ký tự để tìm bạn.</p>
+                <p className="text-xs text-stone-400">{t.friends.searchHint}</p>
               )}
             </div>
           </div>
 
           <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl p-5">
             <h2 className="text-sm font-extrabold text-stone-900 dark:text-stone-100 uppercase tracking-widest mb-4">
-              Lời mời đến ({incomingRequests.length})
+              {format(t.friends.incoming, { count: incomingRequests.length })}
             </h2>
             <div className="space-y-3">
               {incomingRequests.length === 0 ? (
-                <p className="text-xs text-stone-400">Chưa có lời mời nào.</p>
+                <p className="text-xs text-stone-400">{t.friends.noIncoming}</p>
               ) : (
                 incomingRequests.map((connection) => (
                   <div key={connection.friendship_id} className="rounded-xl border border-stone-200 dark:border-stone-800 p-3">
                     <Link
                       href={`/nguoi-hoc/${connection.user_id}`}
                       className="flex items-center gap-3 group"
-                      title="Xem hồ sơ trước khi quyết định"
+                      title={t.friends.reviewProfileTitle}
                     >
-                      <Avatar name={connection.full_name || "Người dùng"} avatarUrl={connection.avatar_url} />
+                      <Avatar name={connection.full_name || t.friends.fallbackName} avatarUrl={connection.avatar_url} />
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-bold text-stone-900 dark:text-stone-100 truncate group-hover:underline">
-                          {connection.full_name || "Người dùng"}
+                          {connection.full_name || t.friends.fallbackName}
                         </p>
-                        <p className="text-[11px] text-stone-400 dark:text-stone-500 mt-0.5">Xem hồ sơ</p>
+                        <p className="text-[11px] text-stone-400 dark:text-stone-500 mt-0.5">{t.friends.viewProfile}</p>
                       </div>
                     </Link>
                     <div className="mt-3 flex gap-2">
@@ -414,7 +417,7 @@ export default function FriendsClient() {
                         className="flex-1 py-2 rounded-lg bg-emerald-600 text-white text-xs font-bold disabled:opacity-60 flex items-center justify-center gap-1.5"
                       >
                         <Check className="w-3.5 h-3.5" />
-                        Chấp nhận
+                        {t.friends.accept}
                       </button>
                       <button
                         onClick={() => void handleRespond(connection.friendship_id, "rejected")}
@@ -422,7 +425,7 @@ export default function FriendsClient() {
                         className="flex-1 py-2 rounded-lg bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 text-xs font-bold disabled:opacity-60 flex items-center justify-center gap-1.5"
                       >
                         <X className="w-3.5 h-3.5" />
-                        Từ chối
+                        {t.friends.decline}
                       </button>
                     </div>
                   </div>
@@ -433,13 +436,13 @@ export default function FriendsClient() {
 
           <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl p-5">
             <h2 className="text-sm font-extrabold text-stone-900 dark:text-stone-100 uppercase tracking-widest mb-4">
-              Bạn bè ({acceptedFriends.length})
+              {format(t.friends.friendsList, { count: acceptedFriends.length })}
             </h2>
             <div className="space-y-2">
               {loadingConnections && acceptedFriends.length === 0 ? (
-                <p className="text-xs text-stone-400">Đang tải...</p>
+                <p className="text-xs text-stone-400">{t.friends.loading}</p>
               ) : acceptedFriends.length === 0 ? (
-                <p className="text-xs text-stone-400">Chưa có bạn bè nào. Tìm và kết bạn để bắt đầu chat.</p>
+                <p className="text-xs text-stone-400">{t.friends.noFriends}</p>
               ) : (
                 acceptedFriends.map((connection) => (
                   <div
@@ -456,22 +459,22 @@ export default function FriendsClient() {
                         setActiveFriendshipId(connection.friendship_id);
                       }}
                       className="flex flex-1 min-w-0 items-center gap-3 text-left cursor-pointer"
-                      title="Mở cuộc trò chuyện"
+                      title={t.friends.openChatTitle}
                     >
-                      <Avatar name={connection.full_name || "Người dùng"} avatarUrl={connection.avatar_url} />
+                      <Avatar name={connection.full_name || t.friends.fallbackName} avatarUrl={connection.avatar_url} />
                       <div className="min-w-0">
                         <p className="text-sm font-bold text-stone-900 dark:text-stone-100 truncate">
-                          {connection.full_name || "Người dùng"}
+                          {connection.full_name || t.friends.fallbackName}
                         </p>
                         <p className="text-xs text-stone-500 dark:text-stone-400 truncate">
-                          Level {connection.current_level} · {connection.total_xp} XP
+                          {format(t.friends.levelXp, { level: connection.current_level, xp: connection.total_xp })}
                         </p>
                       </div>
                     </button>
                     <Link
                       href={`/nguoi-hoc/${connection.user_id}`}
                       className="shrink-0 p-2 rounded-lg text-stone-500 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-700 hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
-                      title="Xem hồ sơ"
+                      title={t.friends.viewProfileTitle}
                       aria-label={`Xem hồ sơ của ${connection.full_name || "người dùng"}`}
                     >
                       <UserRound className="w-4 h-4" />
@@ -485,13 +488,13 @@ export default function FriendsClient() {
           {outgoingRequests.length > 0 && (
             <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl p-5">
               <h2 className="text-sm font-extrabold text-stone-900 dark:text-stone-100 uppercase tracking-widest mb-4">
-                Đang chờ ({outgoingRequests.length})
+                {format(t.friends.pending, { count: outgoingRequests.length })}
               </h2>
               <div className="space-y-2">
                 {outgoingRequests.map((connection) => (
                   <div key={connection.friendship_id} className="rounded-xl border border-stone-200 dark:border-stone-800 p-3">
                     <p className="text-sm font-bold text-stone-900 dark:text-stone-100 truncate">
-                      {connection.full_name || "Người dùng"}
+                      {connection.full_name || t.friends.fallbackName}
                     </p>
                   </div>
                 ))}
@@ -504,8 +507,8 @@ export default function FriendsClient() {
           {!activeConnection ? (
             <div className="flex-1 flex flex-col items-center justify-center text-center px-6">
               <MessageCircle className="w-10 h-10 text-stone-300 dark:text-stone-700 mb-3" />
-              <p className="text-sm font-bold text-stone-700 dark:text-stone-300">Chọn một người bạn để bắt đầu chat</p>
-              <p className="text-xs text-stone-400 mt-1">Sau khi hai bên trở thành bạn bè, bạn có thể nhắn tin trực tiếp tại đây.</p>
+              <p className="text-sm font-bold text-stone-700 dark:text-stone-300">{t.friends.pickFriend}</p>
+              <p className="text-xs text-stone-400 mt-1">{t.friends.pickFriendHint}</p>
             </div>
           ) : (
             <>
@@ -513,15 +516,15 @@ export default function FriendsClient() {
                 <Link
                   href={`/nguoi-hoc/${activeConnection.user_id}`}
                   className="flex flex-1 min-w-0 items-center gap-3 group"
-                  title="Xem hồ sơ"
+                  title={t.friends.viewProfileTitle}
                 >
-                  <Avatar name={activeConnection.full_name || "Người dùng"} avatarUrl={activeConnection.avatar_url} size={44} />
+                  <Avatar name={activeConnection.full_name || t.friends.fallbackName} avatarUrl={activeConnection.avatar_url} size={44} />
                   <div className="min-w-0">
                     <p className="text-sm font-bold text-stone-900 dark:text-stone-100 truncate group-hover:underline">
-                      {activeConnection.full_name || "Người dùng"}
+                      {activeConnection.full_name || t.friends.fallbackName}
                     </p>
                     <p className="text-xs text-stone-500 dark:text-stone-400 truncate">
-                      Level {activeConnection.current_level} · {activeConnection.total_xp} XP
+                      {format(t.friends.levelXp, { level: activeConnection.current_level, xp: activeConnection.total_xp })}
                     </p>
                   </div>
                 </Link>
@@ -530,15 +533,15 @@ export default function FriendsClient() {
                   className="shrink-0 inline-flex items-center gap-1.5 px-3 py-2 rounded-lg border border-stone-200 dark:border-stone-700 text-xs font-bold text-stone-700 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors"
                 >
                   <UserRound className="w-3.5 h-3.5" />
-                  Hồ sơ
+                  {t.friends.profile}
                 </Link>
               </div>
 
               <div className="flex-1 overflow-y-auto px-5 py-4 space-y-3 bg-stone-50/70 dark:bg-stone-950/40">
                 {loadingMessages ? (
-                  <p className="text-xs text-stone-400">Đang tải tin nhắn...</p>
+                  <p className="text-xs text-stone-400">{t.friends.loadingMessages}</p>
                 ) : messages.length === 0 ? (
-                  <p className="text-xs text-stone-400">Chưa có tin nhắn nào. Nhắn lời chào trước đi.</p>
+                  <p className="text-xs text-stone-400">{t.friends.noMessages}</p>
                 ) : (
                   messages.map((message) => {
                     const isMine = message.sender_id === user?.id;
@@ -553,7 +556,7 @@ export default function FriendsClient() {
                         >
                           <p className="leading-relaxed whitespace-pre-wrap">{message.content}</p>
                           <p className={`text-[10px] mt-1 ${isMine ? "text-stone-300 dark:text-stone-600" : "text-stone-400 dark:text-stone-500"}`}>
-                            {new Date(message.created_at).toLocaleTimeString("vi-VN", {
+                            {new Date(message.created_at).toLocaleTimeString(intlLocale(locale), {
                               hour: "2-digit",
                               minute: "2-digit",
                             })}
@@ -577,7 +580,7 @@ export default function FriendsClient() {
                         void handleSendMessage();
                       }
                     }}
-                    placeholder="Nhập tin nhắn cho bạn bè..."
+                    placeholder={t.friends.messagePlaceholder}
                     className="flex-1 px-4 py-3 rounded-xl border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 text-sm text-stone-900 dark:text-stone-100 focus:outline-none focus:border-stone-500"
                   />
                   <button

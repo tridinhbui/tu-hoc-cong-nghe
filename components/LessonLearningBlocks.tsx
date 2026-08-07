@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useI18n } from "@/lib/i18n/context";
 
 interface LessonQuestionCardProps {
   title?: string;
@@ -12,20 +13,22 @@ interface LessonQuestionCardProps {
 }
 
 export function LessonQuestionCard({
-  title = "Bắt đầu bằng một câu hỏi",
+  title,
   question,
   options,
   correct,
   explanation,
 }: LessonQuestionCardProps) {
+  const { t } = useI18n();
   const [selected, setSelected] = useState<number | null>(null);
   const [submitted, setSubmitted] = useState(false);
+  const resolvedTitle = title ?? t.learningBlocks.defaultQuestionTitle;
 
   return (
     <div className="space-y-4 rounded-[24px] border border-stone-200/90 bg-gradient-to-br from-white via-stone-50 to-white p-5 shadow-[0_10px_40px_rgba(15,23,42,0.06)] dark:border-stone-800 dark:from-stone-900 dark:via-stone-900 dark:to-stone-950">
       <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.28em] text-stone-500 dark:text-stone-400">
         <span className="inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" />
-        {title}
+        {resolvedTitle}
       </div>
       <p className="text-base font-semibold leading-relaxed text-stone-800 dark:text-stone-300">
         {question}
@@ -73,7 +76,7 @@ export function LessonQuestionCard({
           onClick={() => setSubmitted(true)}
           className="w-full rounded-xl bg-stone-900 px-4 py-3 text-xs font-bold uppercase tracking-wider text-white transition-all hover:bg-stone-800 active:scale-[0.98] dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-white"
         >
-          Xác nhận câu trả lời
+          {t.learningBlocks.confirmAnswer}
         </button>
       )}
 
@@ -88,7 +91,7 @@ export function LessonQuestionCard({
           }`}
         >
           <p className="mb-1 font-semibold">
-            {selected === correct ? "Đúng rồi!" : "Chưa đúng - nhưng không sao!"}
+            {selected === correct ? t.learningBlocks.correctFeedbackTitle : t.learningBlocks.incorrectFeedbackTitle}
           </p>
           <p>{explanation}</p>
         </motion.div>
@@ -109,31 +112,32 @@ interface LessonSummaryCardProps {
 }
 
 export function LessonSummaryCard({ summary }: LessonSummaryCardProps) {
+  const { t } = useI18n();
   return (
     <div className="rounded-[24px] border border-stone-200/80 bg-stone-900 p-5 text-stone-100 shadow-[0_10px_40px_rgba(15,23,42,0.14)] dark:border-stone-800">
       <div className="mb-4 text-[10px] font-bold uppercase tracking-[0.25em] text-stone-400">
-        Ghi nhớ nhanh
+        {t.learningBlocks.summaryTitle}
       </div>
       <div className="space-y-3 text-sm leading-relaxed">
         <div>
-          <p className="mb-1 text-[11px] font-semibold uppercase tracking-wider text-stone-400">Ý chính</p>
+          <p className="mb-1 text-[11px] font-semibold uppercase tracking-wider text-stone-400">{t.learningBlocks.keyIdeaLabel}</p>
           <p className="font-semibold text-white">{summary.keyIdea}</p>
         </div>
         {summary.formula && (
           <div>
-            <p className="mb-1 text-[11px] font-semibold uppercase tracking-wider text-stone-400">Công thức / nguyên lý</p>
+            <p className="mb-1 text-[11px] font-semibold uppercase tracking-wider text-stone-400">{t.learningBlocks.formulaLabel}</p>
             <p className="font-medium text-stone-200">{summary.formula}</p>
           </div>
         )}
         {summary.commonMistake && (
           <div>
-            <p className="mb-1 text-[11px] font-semibold uppercase tracking-wider text-stone-400">Lỗi thường gặp</p>
+            <p className="mb-1 text-[11px] font-semibold uppercase tracking-wider text-stone-400">{t.learningBlocks.mistakeLabel}</p>
             <p className="font-medium text-stone-200">{summary.commonMistake}</p>
           </div>
         )}
         {summary.action && (
           <div>
-            <p className="mb-1 text-[11px] font-semibold uppercase tracking-wider text-stone-400">Áp dụng ngay</p>
+            <p className="mb-1 text-[11px] font-semibold uppercase tracking-wider text-stone-400">{t.learningBlocks.actionLabel}</p>
             <p className="font-medium text-stone-200">{summary.action}</p>
           </div>
         )}
@@ -148,12 +152,14 @@ interface LessonApplicationCardProps {
   secondary?: string;
 }
 
-export function LessonApplicationCard({ title = "Áp dụng ngay", message, secondary }: LessonApplicationCardProps) {
+export function LessonApplicationCard({ title, message, secondary }: LessonApplicationCardProps) {
+  const { t } = useI18n();
+  const resolvedTitle = title ?? t.learningBlocks.defaultApplicationTitle;
   return (
     <div className="rounded-[24px] border border-emerald-200 bg-gradient-to-br from-emerald-50 via-white to-emerald-50 p-5 shadow-[0_10px_40px_rgba(16,185,129,0.1)] dark:border-emerald-900/70 dark:from-emerald-950/30 dark:via-stone-950 dark:to-emerald-950/30">
       <div className="mb-2 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.25em] text-emerald-700 dark:text-emerald-400">
         <span className="inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" />
-        {title}
+        {resolvedTitle}
       </div>
       <p className="text-sm font-semibold leading-relaxed text-emerald-900 dark:text-emerald-200">{message}</p>
       {secondary && <p className="mt-2 text-sm leading-relaxed text-emerald-800/80 dark:text-emerald-300/80">{secondary}</p>}
@@ -167,16 +173,19 @@ interface ReviewLoopCardProps {
   cta?: string;
 }
 
-export function ReviewLoopCard({ title = "Ôn lại nhanh", prompt, cta = "Ghi nhớ lại bài này" }: ReviewLoopCardProps) {
+export function ReviewLoopCard({ title, prompt, cta }: ReviewLoopCardProps) {
+  const { t } = useI18n();
+  const resolvedTitle = title ?? t.learningBlocks.defaultReviewTitle;
+  const resolvedCta = cta ?? t.learningBlocks.defaultReviewCta;
   return (
     <div className="rounded-[24px] border border-amber-200 bg-gradient-to-br from-amber-50 via-white to-amber-50 p-5 shadow-[0_10px_40px_rgba(245,158,11,0.12)] dark:border-amber-900/70 dark:from-amber-950/30 dark:via-stone-950 dark:to-amber-950/30">
       <div className="mb-2 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.25em] text-amber-700 dark:text-amber-400">
         <span className="inline-flex h-2.5 w-2.5 rounded-full bg-amber-500" />
-        {title}
+        {resolvedTitle}
       </div>
       <p className="text-sm font-semibold leading-relaxed text-amber-900 dark:text-amber-200">{prompt}</p>
       <div className="mt-3 inline-flex rounded-full border border-amber-300/70 bg-white/70 px-3 py-1 text-[11px] font-semibold text-amber-800 dark:border-amber-800/70 dark:bg-stone-900/70 dark:text-amber-300">
-        {cta}
+        {resolvedCta}
       </div>
     </div>
   );

@@ -1,6 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import { useI18n } from "@/lib/i18n/context";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
 // Cặp lựa chọn của Prospect Theory, widget cho các bài khai `interactiveType:
 // "prospect"`.
@@ -15,28 +17,34 @@ import { useState } from "react";
 // Kahneman và Tversky mô tả. Widget không nói trước điều đó; nó để người học
 // chọn xong rồi mới đối chiếu.
 
-const QUESTIONS = [
-  {
-    id: "gain",
-    frame: "Bạn vừa được cho 100 triệu. Chọn một trong hai:",
-    safe: "Nhận thêm chắc chắn 50 triệu",
-    risky: "Tung đồng xu: 50% được thêm 100 triệu, 50% không được gì thêm",
-    safeResult: 150,
-    riskyResult: 150,
-  },
-  {
-    id: "loss",
-    frame: "Bạn vừa được cho 200 triệu. Chọn một trong hai:",
-    safe: "Trả lại chắc chắn 50 triệu",
-    risky: "Tung đồng xu: 50% phải trả lại 100 triệu, 50% không phải trả gì",
-    safeResult: 150,
-    riskyResult: 150,
-  },
-] as const;
+function getQuestions(t: Dictionary) {
+  const tr = t.interactiveRest.prospect;
+  return [
+    {
+      id: "gain",
+      frame: tr.gainFrame,
+      safe: tr.gainSafe,
+      risky: tr.gainRisky,
+      safeResult: 150,
+      riskyResult: 150,
+    },
+    {
+      id: "loss",
+      frame: tr.lossFrame,
+      safe: tr.lossSafe,
+      risky: tr.lossRisky,
+      safeResult: 150,
+      riskyResult: 150,
+    },
+  ] as const;
+}
 
 type Choice = "safe" | "risky";
 
 export default function InteractiveProspect() {
+  const { t } = useI18n();
+  const tr = t.interactiveRest.prospect;
+  const QUESTIONS = useMemo(() => getQuestions(t), [t]);
   const [answers, setAnswers] = useState<Record<string, Choice | undefined>>({});
   const done = QUESTIONS.every((q) => answers[q.id]);
   const flipped = done && answers.gain === "safe" && answers.loss === "risky";
@@ -46,10 +54,10 @@ export default function InteractiveProspect() {
     <div className="bg-white rounded-3xl border border-stone-100 p-6 space-y-5 dark:bg-stone-900 dark:border-stone-800">
       <div>
         <h3 className="font-bold text-stone-800 text-lg mb-1 dark:text-stone-100">
-          🎲 Hai câu hỏi, cùng một kết quả
+          {tr.title}
         </h3>
         <p className="text-stone-500 text-sm dark:text-stone-400">
-          Chọn theo cảm giác đầu tiên, đừng tính toán. Đối chiếu ở cuối.
+          {tr.subtitle}
         </p>
       </div>
 
@@ -83,25 +91,19 @@ export default function InteractiveProspect() {
           }`}
         >
           <p className="text-sm text-stone-700 dark:text-stone-200">
-            Cả bốn lựa chọn đều dẫn tới <b>150 triệu</b> tính theo giá trị kỳ vọng. Hai câu hỏi mô tả
-            đúng một bài toán, chỉ khác chỗ đặt mốc: câu đầu nói về phần được thêm, câu sau nói về
-            phần phải trả lại.
+            {tr.resultIntroPart1} <b>{tr.resultIntroAmount}</b> {tr.resultIntroPart2}
           </p>
           {flipped ? (
             <p className="mt-2 text-sm font-semibold text-amber-800 dark:text-amber-200">
-              Bạn chọn chắc chắn khi nói về phần được, và chọn cược khi nói về phần mất. Đó là hiệu
-              ứng phản chiếu - phần lớn người chọn đúng như vậy, và nó là lý do người ta cắt lãi sớm
-              nhưng giữ mãi khoản đang lỗ.
+              {tr.flippedText}
             </p>
           ) : consistent ? (
             <p className="mt-2 text-sm font-semibold text-emerald-800 dark:text-emerald-200">
-              Bạn giữ nguyên khẩu vị rủi ro ở cả hai khung. Điều đáng chú ý: phần lớn người không
-              làm vậy - và họ cũng không nhận ra mình vừa đổi.
+              {tr.consistentText}
             </p>
           ) : (
             <p className="mt-2 text-sm font-semibold text-emerald-800 dark:text-emerald-200">
-              Bạn đổi khẩu vị theo hướng ngược với đa số. Dù theo hướng nào, điểm cần nhớ vẫn là:
-              cách đặt câu hỏi đã đủ làm bạn đổi quyết định trên một bài toán không đổi.
+              {tr.otherText}
             </p>
           )}
           <button
@@ -109,7 +111,7 @@ export default function InteractiveProspect() {
             onClick={() => setAnswers({})}
             className="mt-3 rounded-full bg-white px-3.5 py-1.5 text-[11px] font-bold text-stone-700 shadow-2xs dark:bg-stone-800 dark:text-stone-200"
           >
-            Làm lại
+            {tr.resetButton}
           </button>
         </div>
       )}

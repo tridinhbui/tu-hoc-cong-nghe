@@ -5,31 +5,33 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Sparkles, Lightbulb } from "lucide-react";
 import { getWisdomCardForScore, selectWisdomTone } from "@/lib/wisdom-cards";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
-/** Nhãn và màu mặt úp đổi theo giọng, để người học biết mình sắp lật ra gì. */
-const TONE_STYLE = {
+/** Màu mặt úp đổi theo giọng, để người học biết mình sắp lật ra gì. Nhãn và
+ *  lời mời chạm đổi theo ngôn ngữ nên lấy từ dictionary bằng toneStyle(t). */
+const TONE_VISUAL = {
   celebrate: {
-    label: "Thẻ ghi nhận",
-    prompt: "Chạm để nhận lời chúc mừng",
     face: "from-amber-400 to-orange-500 border-amber-300/50",
     revealBorder: "border-amber-200 dark:border-amber-900",
     icon: "text-amber-500",
   },
   encourage: {
-    label: "Thẻ tiếp sức",
-    prompt: "Chạm để xem một lời nhắn",
     face: "from-orange-500 to-rose-600 border-orange-400/50",
     revealBorder: "border-orange-200 dark:border-orange-900",
     icon: "text-orange-500",
   },
   steady: {
-    label: "Thẻ kinh nghiệm tài chính",
-    prompt: "Chạm để xem một câu kinh nghiệm tài chính",
     face: "from-emerald-500 to-teal-600 border-emerald-400/50",
     revealBorder: "border-emerald-200 dark:border-emerald-900",
     icon: "text-emerald-500",
   },
 } as const;
+
+function toneStyle(t: Dictionary, tone: keyof typeof TONE_VISUAL) {
+  return { ...TONE_VISUAL[tone], ...t.miscUi.wisdomCardFlip.tones[tone] };
+}
 
 export default function WisdomCardFlip({
   score = 0,
@@ -39,9 +41,10 @@ export default function WisdomCardFlip({
   score?: number;
   total?: number;
 }) {
+  const { t } = useI18n();
   const [card] = useState(() => getWisdomCardForScore(score, total));
   const [flipped, setFlipped] = useState(false);
-  const style = TONE_STYLE[selectWisdomTone(score, total)];
+  const style = toneStyle(t, selectWisdomTone(score, total));
 
   return (
     <div className="py-2">
@@ -55,7 +58,7 @@ export default function WisdomCardFlip({
           disabled={flipped}
           className={`relative w-full h-40 ${flipped ? "cursor-default" : "cursor-pointer"}`}
           style={{ transformStyle: "preserve-3d" }}
-          aria-label={flipped ? undefined : `Chạm để lật ${style.label.toLowerCase()}`}
+          aria-label={flipped ? undefined : format(t.miscUi.wisdomCardFlip.flipAriaLabel, { label: style.label.toLowerCase() })}
         >
           <motion.div
             className="absolute inset-0 w-full h-full"
@@ -96,7 +99,7 @@ export default function WisdomCardFlip({
             href="/loi-nhan"
             className="text-[11px] font-bold text-orange-600 hover:underline dark:text-orange-400"
           >
-            Ghé góc yên tĩnh một phút ›
+            {t.miscUi.wisdomCardFlip.visitQuietCorner}
           </Link>
         </p>
       )}

@@ -24,22 +24,28 @@ import {
   Target,
   BookOpen,
 } from "lucide-react";
+import { useI18n } from "@/lib/i18n/context";
+import { format, type Dictionary } from "@/lib/i18n";
 
 type TabId = "roadmap" | "study-group" | "finsocial";
 
-// Sample Posts for FinSocial Preview (Light Mode Theme)
-const FINSOCIAL_POSTS = [
+// Sample posts for the FinSocial preview. A function of the dictionary rather
+// than a module constant: it is module scope, so there is no useI18n() to call
+// here - the same reason getUserBadge in CommunityFeedClient takes `t` as an
+// argument. Author names, avatars, levels, roles and hashtags stay as they are.
+function finsocialPosts(t: Dictionary) {
+  return [
   {
     id: "p1",
     author: "Hà Tường Vy",
     avatar: "/avatars/avatar-1.png",
     level: 5,
     role: "CFA Level 1 Candidate",
-    time: "2 giờ trước",
-    topic: "Phân tích BCTC",
-    title: "💡 Bí quyết đọc nhanh Báo cáo lưu chuyển tiền tệ (Cash Flow) trong 5 phút",
+    time: t.ecosystem.post1Time,
+    topic: t.ecosystem.post1Topic,
+    title: t.ecosystem.post1Title,
     content:
-      "Nhiều bạn mới học tài chính thường bỏ qua báo cáo lưu chuyển tiền tệ mà chỉ nhìn lợi nhuận trên Báo cáo KQKD. Nhớ quy tắc: Lợi nhuận có thể là sổ sách, nhưng Dòng tiền từ HĐKD (CFO) mới là dòng máu thực sự của doanh nghiệp!",
+      t.ecosystem.post1Content,
     likes: 42,
     comments: 12,
     shares: 8,
@@ -51,19 +57,21 @@ const FINSOCIAL_POSTS = [
     avatar: "/avatars/avatar-2.png",
     level: 7,
     role: "Financial Planner",
-    time: "4 giờ trước",
-    topic: "Tài chính cá nhân",
-    title: "📊 Quy tắc 50/30/20 có còn phù hợp với bối cảnh lạm phát hiện tại?",
+    time: t.ecosystem.post2Time,
+    topic: t.ecosystem.post2Topic,
+    title: t.ecosystem.post2Title,
     content:
-      "50% Nhu cầu thiết yếu - 30% Sở thích - 20% Tiết kiệm & Đầu tư. Nếu chi phí sinh hoạt tăng cao, hãy ưu tiên cố định 20% Tiết kiệm trước (Pay Yourself First) rồi mới phân bổ 80% còn lại!",
+      t.ecosystem.post2Content,
     likes: 89,
     comments: 24,
     shares: 19,
     tags: ["#PersonalFinance", "#QuyTac503020", "#TietKiem"],
-  },
-];
+    },
+  ];
+}
 
 export default function InteractiveEcosystemShowcase() {
+  const { t } = useI18n();
   const [activeTab, setActiveTab] = useState<TabId>("roadmap");
 
   // Active Recall Quiz Sampler State for Roadmap Tab
@@ -130,7 +138,7 @@ export default function InteractiveEcosystemShowcase() {
             <div className="flex items-center justify-between mb-2.5">
               <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-0.5 text-[10px] font-black uppercase text-emerald-700">
                 <Target className="w-3 h-3 text-emerald-600" />
-                Lộ Trình Ôn Cấp
+                {t.ecosystem.roadmapTab}
               </span>
               {activeTab === "roadmap" && (
                 <span className="relative flex h-2 w-2">
@@ -140,16 +148,16 @@ export default function InteractiveEcosystemShowcase() {
               )}
             </div>
             <h3 className="text-sm sm:text-base font-black text-stone-900 leading-snug">
-              Học tài chính theo lộ trình chặng chuẩn hóa
+              {t.ecosystem.roadmapTitle}
             </h3>
             <p className="mt-1.5 text-xs text-stone-600 leading-relaxed font-medium">
-              Tích hợp Active Recall chủ động, theo dõi tiến độ từng chặng từ vỡ lòng đến chuyên sâu.
+              {t.ecosystem.roadmapBody}
             </p>
           </div>
 
           <div className="mt-3 pt-2.5 border-t border-stone-100 flex items-center justify-between text-[11px] font-bold">
             <span className={activeTab === "roadmap" ? "text-emerald-700 font-extrabold" : "text-stone-400"}>
-              {activeTab === "roadmap" ? "● Đang xem Live Preview" : "Bấm để xem thử"}
+              {activeTab === "roadmap" ? t.ecosystem.livePreview : t.ecosystem.tapToTry}
             </span>
             <ArrowRight className={`w-3.5 h-3.5 transition-transform ${activeTab === "roadmap" ? "translate-x-1 text-emerald-600" : "text-stone-400 group-hover:translate-x-1"}`} />
           </div>
@@ -168,7 +176,7 @@ export default function InteractiveEcosystemShowcase() {
             <div className="flex items-center justify-between mb-2.5">
               <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-0.5 text-[10px] font-black uppercase text-emerald-700">
                 <Users className="w-3 h-3 text-emerald-600" />
-                Học Nhóm (3D)
+                {t.ecosystem.groupTab}
               </span>
               {activeTab === "study-group" && (
                 <span className="relative flex h-2 w-2">
@@ -178,16 +186,16 @@ export default function InteractiveEcosystemShowcase() {
               )}
             </div>
             <h3 className="text-sm sm:text-base font-black text-stone-900 leading-snug">
-              Phòng học chung không để bạn tự học 1 mình
+              {t.ecosystem.groupTitle}
             </h3>
             <p className="mt-1.5 text-xs text-stone-600 leading-relaxed font-medium">
-              Bàn tròn 3D ảo, ghép nhóm theo chủ đề, check-in nhận XP và khung chat nhóm tương tác.
+              {t.ecosystem.groupBody}
             </p>
           </div>
 
           <div className="mt-3 pt-2.5 border-t border-stone-100 flex items-center justify-between text-[11px] font-bold">
             <span className={activeTab === "study-group" ? "text-emerald-700 font-extrabold" : "text-stone-400"}>
-              {activeTab === "study-group" ? "● Đang xem Live Preview" : "Bấm để xem thử"}
+              {activeTab === "study-group" ? t.ecosystem.livePreview : t.ecosystem.tapToTry}
             </span>
             <ArrowRight className={`w-3.5 h-3.5 transition-transform ${activeTab === "study-group" ? "translate-x-1 text-emerald-600" : "text-stone-400 group-hover:translate-x-1"}`} />
           </div>
@@ -206,7 +214,7 @@ export default function InteractiveEcosystemShowcase() {
             <div className="flex items-center justify-between mb-2.5">
               <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-0.5 text-[10px] font-black uppercase text-emerald-700">
                 <MessageSquareMore className="w-3 h-3 text-emerald-600" />
-                FinSocial
+                {t.ecosystem.finsocialTab}
               </span>
               {activeTab === "finsocial" && (
                 <span className="relative flex h-2 w-2">
@@ -216,16 +224,16 @@ export default function InteractiveEcosystemShowcase() {
               )}
             </div>
             <h3 className="text-sm sm:text-base font-black text-stone-900 leading-snug">
-              Mạng xã hội học tài chính chia sẻ bài học
+              {t.ecosystem.finsocialTitle}
             </h3>
             <p className="mt-1.5 text-xs text-stone-600 leading-relaxed font-medium">
-              Feed tin tức bài viết ngắn, hỏi đáp thực tế, thảo luận phân tích BCTC và thả cảm xúc.
+              {t.ecosystem.finsocialBody}
             </p>
           </div>
 
           <div className="mt-3 pt-2.5 border-t border-stone-100 flex items-center justify-between text-[11px] font-bold">
             <span className={activeTab === "finsocial" ? "text-emerald-700 font-extrabold" : "text-stone-400"}>
-              {activeTab === "finsocial" ? "● Đang xem Live Preview" : "Bấm để xem thử"}
+              {activeTab === "finsocial" ? t.ecosystem.livePreview : t.ecosystem.tapToTry}
             </span>
             <ArrowRight className={`w-3.5 h-3.5 transition-transform ${activeTab === "finsocial" ? "translate-x-1 text-emerald-600" : "text-stone-400 group-hover:translate-x-1"}`} />
           </div>
@@ -248,12 +256,12 @@ export default function InteractiveEcosystemShowcase() {
               <div className="flex items-center gap-2">
                 <span className="p-1.5 rounded-lg bg-emerald-50 text-emerald-700 font-black text-sm">🎯</span>
                 <div>
-                  <h4 className="text-xs sm:text-sm font-black text-stone-900">Lộ Trình Học Tài Chính Cá Nhân & CFA</h4>
-                  <p className="text-[11px] text-stone-500 font-medium">Thực hành Active Recall đố nhanh ngay tại chỗ</p>
+                  <h4 className="text-xs sm:text-sm font-black text-stone-900">{t.ecosystem.roadmapPanelTitle}</h4>
+                  <p className="text-[11px] text-stone-500 font-medium">{t.ecosystem.roadmapPanelSub}</p>
                 </div>
               </div>
               <div className="px-2.5 py-0.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 font-black text-[11px]">
-                Điểm tích lũy: +{quizScore} XP
+                {format(t.ecosystem.xpEarned, { xp: quizScore })}
               </div>
             </div>
 
@@ -261,9 +269,9 @@ export default function InteractiveEcosystemShowcase() {
               {/* Left Column: Progress Roadmap Steps */}
               <div className="lg:col-span-6 space-y-2">
                 {[
-                  { step: "Chặng 1", title: "Vỡ lòng Tài chính & Quản lý Tiền mặt", status: "Đã hoàn thành 100%", active: false },
-                  { step: "Chặng 2", title: "Báo cáo Tài chính & Phân tích Chỉ số ROE/PE", status: "Đang học (80%)", active: true },
-                  { step: "Chặng 3", title: "Định giá Cổ phiếu & Mô hình DCF", status: "Khóa (Cần đỗ Chặng 2)", active: false },
+                  { step: t.ecosystem.stage1, title: t.ecosystem.stage1Title, status: t.ecosystem.stage1Status, active: false },
+                  { step: t.ecosystem.stage2, title: t.ecosystem.stage2Title, status: t.ecosystem.stage2Status, active: true },
+                  { step: t.ecosystem.stage3, title: t.ecosystem.stage3Title, status: t.ecosystem.stage3Status, active: false },
                 ].map((item) => (
                   <div
                     key={item.step}
@@ -288,20 +296,20 @@ export default function InteractiveEcosystemShowcase() {
               <div className="lg:col-span-6 p-3.5 rounded-xl border border-emerald-200/90 bg-gradient-to-br from-emerald-50/40 to-teal-50/20 space-y-2.5">
                 <div className="flex items-center justify-between">
                   <span className="text-[9px] font-black uppercase text-emerald-800 bg-emerald-100/90 px-2 py-0.5 rounded-full">
-                    ⚡ ACTIVE RECALL SAMPLER
+                    {t.ecosystem.samplerLabel}
                   </span>
-                  <span className="text-[11px] font-bold text-stone-500">Câu 1/1</span>
+                  <span className="text-[11px] font-bold text-stone-500">{t.ecosystem.samplerCounter}</span>
                 </div>
 
                 <p className="text-xs font-black text-stone-900 leading-snug">
-                  ❓ Khi một doanh nghiệp có dòng tiền CFO âm liên tục 3 năm nhưng lợi nhuận ròng vẫn dương, đâu là nguyên nhân chính?
+                  {t.ecosystem.samplerQuestion}
                 </p>
 
                 <div className="space-y-1.5">
                   {[
-                    "Doanh nghiệp bán hàng ghi nhận doanh thu nhưng chưa thu được tiền (Phải thu tăng)",
-                    "Doanh nghiệp vừa nhận khoản đầu tư lớn từ cổ đông",
-                    "Doanh nghiệp chi trả cổ tức quá mức",
+                    t.ecosystem.samplerOptionA,
+                    t.ecosystem.samplerOptionB,
+                    t.ecosystem.samplerOptionC,
                   ].map((opt, oIdx) => {
                     const isCorrect = oIdx === 0;
                     const isSelected = selectedAnswer === oIdx;
@@ -330,9 +338,9 @@ export default function InteractiveEcosystemShowcase() {
                 {selectedAnswer !== null && (
                   <div className="p-2 rounded-lg bg-white border border-emerald-300 text-[11px] font-medium text-stone-800 animate-in fade-in">
                     {selectedAnswer === 0 ? (
-                      <span className="text-emerald-700 font-bold">🎉 Chính xác! +45 XP. Dòng tiền CFO phản ánh tiền thực về két.</span>
+                      <span className="text-emerald-700 font-bold">{t.ecosystem.samplerCorrect}</span>
                     ) : (
-                      <span className="text-rose-600 font-bold">❌ Chưa chính xác. Đáp án đúng là Phải thu gia tăng mạnh!</span>
+                      <span className="text-rose-600 font-bold">{t.ecosystem.samplerWrong}</span>
                     )}
                   </div>
                 )}
@@ -356,10 +364,10 @@ export default function InteractiveEcosystemShowcase() {
               <div className="lg:col-span-7 flex flex-col justify-between rounded-3xl border-2 border-emerald-300 bg-gradient-to-b from-emerald-50/80 via-teal-50/40 to-stone-50 p-5 shadow-sm relative overflow-hidden text-stone-900 min-h-[420px]">
                 <div className="flex items-center justify-between shrink-0 mb-2">
                   <span className="text-[10px] font-black uppercase tracking-widest text-emerald-800 bg-emerald-100 px-3 py-1 rounded-full border border-emerald-300">
-                    🛋️ BÀN HỌC 3D · TÀI CHÍNH CÁ NHÂN
+                    {t.ecosystem.deskLabel}
                   </span>
                   <div className="flex items-center gap-1 bg-white px-2 py-1 rounded-2xl border border-stone-200 shadow-xs">
-                    <span className="text-[9px] font-bold text-stone-500 mr-1">Cổ Vũ:</span>
+                    <span className="text-[9px] font-bold text-stone-500 mr-1">{t.ecosystem.cheerLabel}</span>
                     {["👋", "❤️", "🔔", "🔥"].map((emoji) => (
                       <button
                         key={emoji}
@@ -377,23 +385,29 @@ export default function InteractiveEcosystemShowcase() {
                   <div className="relative w-40 h-40 sm:w-48 sm:h-48 rounded-full bg-gradient-to-b from-amber-100 via-amber-50 to-emerald-50 border-4 border-amber-400 shadow-xl flex flex-col items-center justify-center text-center p-3 z-10 shrink-0">
                     <span className="text-3xl mb-0.5 animate-bounce inline-block">🔮</span>
                     <p className="text-[10px] font-black text-amber-800 uppercase tracking-widest">
-                      BÀN HỌC PHÒNG #102
+                      {t.ecosystem.roomLabel}
                     </p>
                     <p className="text-xs sm:text-sm font-black text-stone-900 mt-0.5">
-                      480 / 500 XP
+                      {t.ecosystem.roomXp}
                     </p>
                     <span className="mt-1 inline-block text-[9px] font-extrabold text-emerald-800 bg-emerald-200/80 px-2 py-0.5 rounded-full border border-emerald-400">
-                      ⚡ +15% XP BONUS
+                      {t.ecosystem.xpBonus}
                     </span>
                   </div>
 
                   {/* Seated Pods (Light Theme) */}
+                  {/* i18n-ignore-start: illustrative learner names for the
+                      logged-out preview. Personal names are proper nouns and
+                      stay as they are in any language; the "(you)" marker on the
+                      viewer's own seat is the only part that is translated, via
+                      t.ecosystem.youSuffix below. */}
                   {[
                     { name: "Hà Tường Vy", level: 5, lessons: 42, top: true, pos: "absolute -top-1 left-1/2 -translate-x-1/2" },
                     { name: "Hà Hồng", level: 2, lessons: 6, pos: "absolute top-6 left-2 sm:left-4" },
                     { name: "Hoa Le", level: 1, lessons: 0, pos: "absolute top-6 right-2 sm:right-4" },
-                    { name: "Đình Trí Bùi (Bạn)", level: 1, lessons: 8, me: true, pos: "absolute bottom-1 left-3 sm:left-6" },
+                    { name: `Đình Trí Bùi ${t.ecosystem.youSuffix}`, level: 1, lessons: 8, me: true, pos: "absolute bottom-1 left-3 sm:left-6" },
                     { name: "Nguyễn Thị Thu", level: 1, lessons: 3, pos: "absolute bottom-1 right-3 sm:right-6" },
+                  /* i18n-ignore-end */
                   ].map((m) => (
                     <div
                       key={m.name}
@@ -408,13 +422,13 @@ export default function InteractiveEcosystemShowcase() {
                         {m.name.slice(0, 2).toUpperCase()}
                       </div>
                       <p className="text-[9px] font-black text-stone-900 truncate max-w-[80px]">{m.name}</p>
-                      <span className="text-[8px] font-extrabold text-emerald-700 mt-0.5">🔥 {m.lessons} bài</span>
+                      <span className="text-[8px] font-extrabold text-emerald-700 mt-0.5">{format(t.ecosystem.memberLessons, { count: m.lessons })}</span>
                     </div>
                   ))}
                 </div>
 
                 <div className="relative z-10 text-center text-[10px] text-stone-500 font-semibold pt-1">
-                  💡 Bấm thử các nút cổ vũ phía trên để gửi tin nhắn tương tác trực tiếp!
+                  {t.ecosystem.cheerHint}
                 </div>
               </div>
 
@@ -422,18 +436,18 @@ export default function InteractiveEcosystemShowcase() {
               <div className="lg:col-span-5 flex flex-col justify-between rounded-3xl border-2 border-stone-200 bg-stone-50 p-4 shadow-sm text-stone-900 min-h-[420px]">
                 <div className="flex items-center justify-between border-b border-stone-200 pb-3 mb-3">
                   <h4 className="text-xs font-black uppercase text-stone-800 tracking-wider flex items-center gap-2">
-                    <span>💬 Trò chuyện nhóm Live</span>
+                    <span>{t.ecosystem.chatLive}</span>
                   </h4>
                   <span className="text-[10px] font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-full border border-emerald-300">
-                    Online
+                    {t.ecosystem.online}
                   </span>
                 </div>
 
                 {/* Message Log */}
                 <div className="flex-1 overflow-y-auto space-y-2.5 max-h-[280px] pr-1">
                   <div className="p-2.5 rounded-2xl bg-amber-50 border border-amber-200 text-xs">
-                    <p className="text-[9px] font-black text-amber-800">Tài Tài · Quản lý nhóm</p>
-                    <p className="text-[11px] text-stone-700 mt-0.5">Cập nhật hôm nay: Hà Tường Vy, Hà Hồng đã học bài. Cùng cố gắng nhé!</p>
+                    <p className="text-[9px] font-black text-amber-800">{t.ecosystem.adminByline}</p>
+                    <p className="text-[11px] text-stone-700 mt-0.5">{t.ecosystem.adminMessage}</p>
                   </div>
 
                   {cheerLog.map((log) => (
@@ -460,7 +474,7 @@ export default function InteractiveEcosystemShowcase() {
                     value={cheerInput}
                     onChange={(e) => setCheerInput(e.target.value)}
                     onKeyDown={(e) => e.key === "Enter" && handleSendGroupMsg()}
-                    placeholder="Gửi lời chúc, hỏi bài..."
+                    placeholder={t.ecosystem.chatPlaceholder}
                     className="flex-1 px-3 py-2 text-xs bg-white border border-stone-200 rounded-xl text-stone-900 placeholder:text-stone-400 outline-none focus:border-emerald-400"
                   />
                   <button
@@ -489,8 +503,8 @@ export default function InteractiveEcosystemShowcase() {
               <div className="flex items-center gap-2">
                 <span className="p-2 rounded-xl bg-sky-100 text-sky-700 font-black">💬</span>
                 <div>
-                  <h4 className="text-base font-black text-stone-900">FinSocial Feed Trực Tuyến</h4>
-                  <p className="text-xs text-stone-500 font-medium">Bấm thử nút Thả tim ❤️ tương tác với bài viết thực tế</p>
+                  <h4 className="text-base font-black text-stone-900">{t.ecosystem.feedPanelTitle}</h4>
+                  <p className="text-xs text-stone-500 font-medium">{t.ecosystem.feedPanelSub}</p>
                 </div>
               </div>
 
@@ -498,14 +512,14 @@ export default function InteractiveEcosystemShowcase() {
                 href="/finsocial"
                 className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-sky-500 hover:bg-sky-400 text-stone-950 font-black text-xs transition-colors cursor-pointer"
               >
-                <span>Vào FinSocial Feed</span>
+                <span>{t.ecosystem.feedCta}</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
 
             {/* Post Feed List (Light Theme) */}
             <div className="grid gap-4 sm:grid-cols-2">
-              {FINSOCIAL_POSTS.map((post) => {
+              {finsocialPosts(t).map((post) => {
                 const likeData = postLikes[post.id] || { count: post.likes, liked: false };
                 return (
                   <div
@@ -554,7 +568,7 @@ export default function InteractiveEcosystemShowcase() {
                       </button>
 
                       <span className="text-[10px] font-bold text-stone-500">
-                        {post.comments} bình luận · {post.shares} chia sẻ
+                        {format(t.ecosystem.postStats, { comments: post.comments, shares: post.shares })}
                       </span>
                     </div>
                   </div>

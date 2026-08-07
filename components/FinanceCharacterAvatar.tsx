@@ -4,6 +4,7 @@ import Avatar2DCanvas from "@/components/Avatar2DCanvas";
 import { type AvatarConfig } from "@/lib/avatar-customizer-types";
 import { getLocalAvatarConfig } from "@/lib/supabase-avatar";
 import { ITEM_DESCRIPTIONS, type CharacterEquipments } from "@/lib/rpg-items";
+import { useI18n } from "@/lib/i18n/context";
 
 // Kiểu và bảng vật phẩm đã chuyển sang lib/rpg-items.ts để thế giới 3D dùng
 // chung; xuất lại ở đây để mọi nơi đang import từ file này không phải đổi.
@@ -28,6 +29,7 @@ export default function FinanceCharacterAvatar({
   avatarConfig,
   size = "md",
 }: FinanceCharacterAvatarProps) {
+  const { t } = useI18n();
   const [activeConfig, setActiveConfig] = useState<AvatarConfig | undefined>(avatarConfig);
 
   useEffect(() => {
@@ -165,7 +167,7 @@ export default function FinanceCharacterAvatar({
 
       {/* Level Tag */}
       <div className="absolute bottom-2 left-1/2 -translate-x-1/2 bg-white/90 dark:bg-stone-900/90 text-stone-800 dark:text-amber-300 border border-amber-300/80 text-[9px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full shadow-sm flex items-center gap-1">
-        <Sparkles className="w-3 h-3 text-amber-500" /> Lv. {level}
+        <Sparkles className="w-3 h-3 text-amber-500" /> {t.finalTwo.financeCharacterAvatar.levelPrefix} {level}
       </div>
     </div>
   );

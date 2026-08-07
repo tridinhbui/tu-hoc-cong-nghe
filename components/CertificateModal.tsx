@@ -4,6 +4,8 @@ import { useState, useRef } from "react";
 import { X, Award, Download, Check, Share2 } from "lucide-react";
 import { toast } from "sonner";
 import { svgToPngBlob, shareOrDownloadImage } from "@/lib/share-image";
+import { useI18n } from "@/lib/i18n/context";
+import { format, intlLocale } from "@/lib/i18n";
 
 interface CertificateModalProps {
   stageLabel: string;
@@ -13,6 +15,7 @@ interface CertificateModalProps {
 }
 
 export default function CertificateModal({ stageLabel, stageName, userName, onClose }: CertificateModalProps) {
+  const { t, locale } = useI18n();
   const [downloading, setDownloading] = useState(false);
   const [downloaded, setDownloaded] = useState(false);
   const [sharing, setSharing] = useState(false);
@@ -23,7 +26,7 @@ export default function CertificateModal({ stageLabel, stageName, userName, onCl
     userName.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0)
   ).toString(16).toUpperCase()}-${new Date().getFullYear()}`;
 
-  const todayStr = new Date().toLocaleDateString("vi-VN", {
+  const todayStr = new Date().toLocaleDateString(intlLocale(locale), {
     day: "numeric",
     month: "numeric",
     year: "numeric",
@@ -48,7 +51,7 @@ export default function CertificateModal({ stageLabel, stageName, userName, onCl
       const outcome = await shareOrDownloadImage(
         blob,
         certFilename,
-        "Chứng chỉ hoàn thành chặng học của mình tại Tự Học Tài Chính 🏆"
+        t.certificate.shareCaption
       );
       // Người dùng đóng khay chia sẻ mà không chọn gì thì KHÔNG có tệp nào cả.
       // Bản cũ báo thành công vô điều kiện, nên sau lần sửa trước người học
@@ -58,12 +61,12 @@ export default function CertificateModal({ stageLabel, stageName, userName, onCl
       setDownloaded(true);
       toast.success(
         outcome === "shared"
-          ? "Đã lưu/chia sẻ chứng chỉ! 🏆"
-          : "Tải xuống chứng chỉ thành công! Hãy chia sẻ lên Facebook/LinkedIn nhé 🏆🚀"
+          ? t.certificate.toastSharedOrSaved
+          : t.certificate.toastDownloaded
       );
     } catch (error) {
       console.error("Error creating certificate download:", error);
-      toast.error("Không thể tải chứng chỉ lúc này.");
+      toast.error(t.certificate.toastDownloadError);
     } finally {
       setDownloading(false);
     }
@@ -77,13 +80,13 @@ export default function CertificateModal({ stageLabel, stageName, userName, onCl
       const outcome = await shareOrDownloadImage(
         blob,
         certFilename,
-        `Mình vừa hoàn thành chặng ${stageName} (${stageLabel}) trên Tự học Tài chính! 🏆`
+        format(t.certificate.shareCaptionWithStage, { stageName, stageLabel })
       );
-      if (outcome === "shared") toast.success("Đã chia sẻ chứng chỉ!");
-      else if (outcome === "downloaded") toast.success("Đã tải ảnh chứng chỉ - đăng lên Facebook/LinkedIn và đính kèm ảnh này nhé!");
+      if (outcome === "shared") toast.success(t.certificate.toastShared);
+      else if (outcome === "downloaded") toast.success(t.certificate.toastSharedDownloaded);
     } catch (error) {
       console.error("Error sharing certificate:", error);
-      toast.error("Không thể chia sẻ chứng chỉ lúc này.");
+      toast.error(t.certificate.toastShareError);
     } finally {
       setSharing(false);
     }
@@ -105,13 +108,13 @@ export default function CertificateModal({ stageLabel, stageName, userName, onCl
         <div className="text-center space-y-1 mb-6">
           <span className="text-[10px] font-extrabold uppercase tracking-widest text-amber-500 flex items-center justify-center gap-1.5">
             <Award className="w-4.5 h-4.5" />
-            Học Học Nữa Học Mãi
+            {t.certificate.academyBadge}
           </span>
           <h3 className="text-xl md:text-2xl font-black text-stone-100">
-            Chứng Chỉ Hoàn Thành Cột Mốc
+            {t.certificate.modalTitle}
           </h3>
           <p className="text-xs text-stone-400 max-w-md mx-auto">
-            Học viên hoàn thành xuất sắc toàn bộ bài học và bài kiểm tra sát hạch thuộc chặng học tập.
+            {t.certificate.modalSubtitle}
           </p>
         </div>
 
@@ -161,17 +164,17 @@ export default function CertificateModal({ stageLabel, stageName, userName, onCl
 
             {/* Header Logos & Typography */}
             <text x="400" y="110" textAnchor="middle" fill="#d97706" fontSize="10" fontWeight="900" letterSpacing="4">
-              TỰ HỌC TÀI CHÍNH MỖI NGÀY
+              {t.certificate.svgHeaderName}
             </text>
             <text x="400" y="160" textAnchor="middle" fill="#ffffff" fontSize="24" fontWeight="800" letterSpacing="3">
-              CHỨNG NHẬN HOÀN THÀNH
+              {t.certificate.svgTitle}
             </text>
 
             <line x1="300" y1="180" x2="500" y2="180" stroke="url(#goldGrad)" strokeWidth="1.5" />
 
             {/* Presentation details */}
             <text x="400" y="220" textAnchor="middle" fill="#94a3b8" fontSize="12" fontStyle="italic">
-              Học viện Tự học Tài chính trân trọng vinh danh
+              {t.certificate.svgPresentedBy}
             </text>
 
             {/* User Name */}
@@ -181,7 +184,7 @@ export default function CertificateModal({ stageLabel, stageName, userName, onCl
 
             {/* Milestone Info */}
             <text x="400" y="335" textAnchor="middle" fill="#94a3b8" fontSize="12" fontStyle="italic">
-              Đã vượt qua xuất sắc các bài học vĩ mô và bài thi sát hạch chặng học tập:
+              {t.certificate.svgMilestoneIntro}
             </text>
 
             {/* Stage Title */}
@@ -194,7 +197,7 @@ export default function CertificateModal({ stageLabel, stageName, userName, onCl
             {/* Bottom metadata - Signatures / Date / ID */}
             {/* Left side: Date */}
             <text x="180" y="460" textAnchor="start" fill="#64748b" fontSize="10" fontWeight="700" letterSpacing="1">
-              NGÀY CẤP:
+              {t.certificate.svgIssueDateLabel}
             </text>
             <text x="180" y="485" textAnchor="start" fill="#e2e8f0" fontSize="12" fontWeight="800">
               {todayStr}
@@ -209,15 +212,15 @@ export default function CertificateModal({ stageLabel, stageName, userName, onCl
 
             {/* Right side: Signature */}
             <text x="620" y="460" textAnchor="end" fill="#64748b" fontSize="10" fontWeight="700" letterSpacing="1">
-              ĐẠI DIỆN HỘI ĐỒNG:
+              {t.certificate.svgCouncilRepLabel}
             </text>
             <text x="620" y="485" textAnchor="end" fill="#fbbf24" fontSize="16" fontWeight="bold" fontStyle="italic" letterSpacing="1">
-              Tri Dinh Bui
+              {t.certificate.svgCouncilRepName}
             </text>
 
             {/* Bottom Verification Hash */}
             <text x="400" y="555" textAnchor="middle" fill="#475569" fontSize="9" fontWeight="700" letterSpacing="1">
-              MÃ XÁC MINH: {certId} · KIỂM CHỨNG TẠI TUHOCTAICHINH.COM
+              {format(t.certificate.svgVerificationLabel, { certId })}
             </text>
           </svg>
         </div>
@@ -232,17 +235,17 @@ export default function CertificateModal({ stageLabel, stageName, userName, onCl
             {downloading ? (
               <>
                 <span className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin" />
-                Đang kết xuất...
+                {t.certificate.rendering}
               </>
             ) : downloaded ? (
               <>
                 <Check className="w-4.5 h-4.5" />
-                Tải lại Chứng Chỉ
+                {t.certificate.downloadAgain}
               </>
             ) : (
               <>
                 <Download className="w-4.5 h-4.5" />
-                Tải Xuống Chứng Chỉ (PNG)
+                {t.certificate.downloadCert}
               </>
             )}
           </button>
@@ -256,7 +259,7 @@ export default function CertificateModal({ stageLabel, stageName, userName, onCl
             ) : (
               <Share2 className="w-4.5 h-4.5" />
             )}
-            Chia sẻ
+            {t.certificate.share}
           </button>
         </div>
       </div>

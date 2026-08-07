@@ -15,6 +15,8 @@ import { CFA_GLOSSARY_TERMS } from "@/lib/cfa-glossary-terms";
 import { CFA_FORMULAS_DATA } from "@/lib/cfa-formulas-data";
 import { toTitleCase } from "@/lib/cfa-format";
 import { useRoutePrefetch } from "@/lib/use-route-prefetch";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 interface Book {
   id: string;
@@ -59,6 +61,7 @@ type ViewMode = "library" | "subjects";
 let cachedBooks: Book[] | null = null;
 
 export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
+  const { t } = useI18n();
   const [viewMode, setViewMode] = useState<ViewMode>("library");
   const [openSubjects, setOpenSubjects] = useState<Set<string>>(new Set());
   const completedSet = new Set(completedLessonIds);
@@ -219,17 +222,17 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
           <div className="space-y-1.5">
             <div className="flex flex-wrap items-center gap-1.5">
               <span className="text-[9px] font-black uppercase tracking-wider bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 px-2 py-0.5 rounded-md border border-emerald-200/60 dark:border-emerald-800/60">
-                🎯 TIẾN ĐỘ CFA LEVEL I
+                {t.cfaTrack.progressBadge}
               </span>
               <span className="text-[9px] font-extrabold text-stone-500 dark:text-stone-400 bg-stone-100 dark:bg-stone-800 px-2 py-0.5 rounded-md">
-                {totalCompletedCfa}/{totalCfaLessons} ({overallPct}%)
+                {format(t.cfaTrack.progressCount, { done: totalCompletedCfa, total: totalCfaLessons, pct: overallPct })}
               </span>
             </div>
             <h2 className="text-xs sm:text-sm font-extrabold text-stone-900 dark:text-stone-100 leading-snug line-clamp-1">
-              {nextGlobalLesson ? `Bài tiếp: ${nextGlobalLesson.title}` : "🎉 Đã hoàn thành lộ trình CFA!"}
+              {nextGlobalLesson ? format(t.cfaTrack.nextLessonTitle, { title: nextGlobalLesson.title }) : t.cfaTrack.allDoneTitle}
             </h2>
             <p className="text-[10px] text-stone-500 dark:text-stone-400 line-clamp-1">
-              {nextGlobalLesson ? `Môn: ${nextGlobalLesson.subjectName}` : "Hoàn thành tất cả bài học CFA Level I."}
+              {nextGlobalLesson ? format(t.cfaTrack.nextLessonSubject, { subject: nextGlobalLesson.subjectName }) : t.cfaTrack.allDoneSubtitle}
             </p>
 
             <div className="w-full h-1.5 bg-stone-100 dark:bg-stone-800 rounded-full overflow-hidden mt-1.5">
@@ -246,7 +249,7 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
               className="mt-3 px-3 py-2 bg-emerald-600 hover:bg-emerald-700 font-bold text-xs text-white rounded-xl transition-all shadow-2xs shrink-0 cursor-pointer flex items-center justify-center gap-1.5 w-full text-center active:scale-95"
             >
               <PlayCircle className="w-3.5 h-3.5 text-white" />
-              <span>Học tiếp bài tiếp theo →</span>
+              <span>{t.cfaTrack.continueNextLesson}</span>
             </Link>
           )}
         </div>
@@ -257,18 +260,18 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
             <div className="flex items-center gap-1.5">
               <span className="text-lg">📇</span>
               <span className="text-[9px] font-black uppercase text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-950/50 px-2 py-0.5 rounded-md border border-amber-200/60 dark:border-amber-800/60">
-                FLASHCARD 3D
+                {t.cfaTrack.flashcardBadge}
               </span>
             </div>
             <h3 className="text-xs sm:text-sm font-extrabold text-stone-900 dark:text-stone-100 leading-snug">
-              Bộ Thẻ Thuật Ngữ CFA Song Ngữ
+              {t.cfaTrack.flashcardTitle}
             </h3>
             <p className="text-[10px] text-stone-500 dark:text-stone-400 line-clamp-2 leading-normal">
               {/* Một biểu thức duy nhất thay vì `{số} chữ`: JSX cắt khoảng
                   trắng quanh biểu thức theo luật riêng của nó, và ở đây kết
                   quả render ra "118thuật ngữ" - dính liền. Ghép sẵn trong
                   chuỗi thì không còn khoảng trắng nào để ai cắt. */}
-              {`${CFA_GLOSSARY_TERMS.length} thuật ngữ En-Vi kèm định nghĩa, công thức & phát âm En-US.`}
+              {format(t.cfaTrack.flashcardDesc, { count: CFA_GLOSSARY_TERMS.length })}
             </p>
           </div>
 
@@ -276,7 +279,7 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
             href="/cfa/flashcards"
             className="mt-3 px-3 py-2 bg-amber-500 hover:bg-amber-600 font-bold text-xs text-white rounded-xl transition-all shadow-2xs shrink-0 cursor-pointer flex items-center justify-center gap-1.5 w-full text-center active:scale-95"
           >
-            <span>Mở Flashcard 3D →</span>
+            <span>{t.cfaTrack.flashcardCta}</span>
           </Link>
         </div>
 
@@ -286,14 +289,14 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
             <div className="flex items-center gap-1.5">
               <span className="text-lg">📐</span>
               <span className="text-[9px] font-black uppercase text-indigo-700 dark:text-indigo-300 bg-indigo-50 dark:bg-indigo-950/50 px-2 py-0.5 rounded-md border border-indigo-200/60 dark:border-indigo-800/60">
-                CHEAT SHEET
+                {t.cfaTrack.formulaBadge}
               </span>
             </div>
             <h3 className="text-xs sm:text-sm font-extrabold text-stone-900 dark:text-stone-100 leading-snug">
-              Sổ Tay Công Thức CFA Level 1
+              {t.cfaTrack.formulaTitle}
             </h3>
             <p className="text-[10px] text-stone-500 dark:text-stone-400 line-clamp-2 leading-normal">
-              {`${CFA_FORMULAS_DATA.length} công thức trọng yếu (TVM, WACC, DuPont, Duration, CAPM...).`}
+              {format(t.cfaTrack.formulaDesc, { count: CFA_FORMULAS_DATA.length })}
             </p>
           </div>
 
@@ -301,7 +304,7 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
             href="/cfa/formulas"
             className="mt-3 px-3 py-2 bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 font-bold text-xs rounded-xl transition-all shadow-2xs shrink-0 cursor-pointer flex items-center justify-center gap-1.5 w-full text-center active:scale-95"
           >
-            <span>Xem Sổ Tay Công Thức →</span>
+            <span>{t.cfaTrack.formulaCta}</span>
           </Link>
         </div>
 
@@ -313,14 +316,14 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
             <div className="flex items-center gap-1.5">
               <span className="text-lg">📝</span>
               <span className="text-[9px] font-black uppercase text-rose-700 dark:text-rose-300 bg-rose-50 dark:bg-rose-950/50 px-2 py-0.5 rounded-md border border-rose-200/60 dark:border-rose-800/60">
-                THI THỬ
+                {t.cfaTrack.mockExamBadge}
               </span>
             </div>
             <h3 className="text-xs sm:text-sm font-extrabold text-stone-900 dark:text-stone-100 leading-snug">
-              Đề Thi Thử CFA Level I Đầy Đủ
+              {t.cfaTrack.mockExamTitle}
             </h3>
             <p className="text-[10px] text-stone-500 dark:text-stone-400 line-clamp-2 leading-normal">
-              180 câu · 2 ca × 135 phút · 3 lựa chọn · chấm tách theo từng môn.
+              {t.cfaTrack.mockExamDesc}
             </p>
           </div>
 
@@ -328,7 +331,7 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
             href="/cfa/thi-thu"
             className="mt-3 px-3 py-2 bg-rose-600 hover:bg-rose-700 font-bold text-xs text-white rounded-xl transition-all shadow-2xs shrink-0 cursor-pointer flex items-center justify-center gap-1.5 w-full text-center active:scale-95"
           >
-            <span>Vào thi thử →</span>
+            <span>{t.cfaTrack.mockExamCta}</span>
           </Link>
         </div>
       </div>
@@ -336,8 +339,8 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
       {/* ─── MODE SWITCHER TAB BAR ─── */}
       <div className="flex gap-1 mb-6 bg-stone-100 dark:bg-stone-900 rounded-xl p-1 max-w-md">
         {[
-          { id: "library" as const, label: "Thư viện giáo trình", icon: Library },
-          { id: "subjects" as const, label: "Ôn theo môn thi CFA", icon: ListChecks },
+          { id: "library" as const, label: t.cfaTrack.tabLibrary, icon: Library },
+          { id: "subjects" as const, label: t.cfaTrack.tabSubjects, icon: ListChecks },
         ].map(({ id, label, icon: Icon }) => (
           <button
             key={id}
@@ -372,11 +375,11 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
                 >
                   <div className="min-w-0 flex-1">
                     <p className="text-base font-extrabold text-stone-900 dark:text-stone-100 leading-snug">{subject.name}</p>
-                    <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">Tỷ trọng đề thi: {subject.weight}</p>
+                    <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">{format(t.cfaTrack.weightLabel, { weight: subject.weight })}</p>
                   </div>
                   {isEmpty ? (
                     <span className="text-xs font-bold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/30 px-2.5 py-1 rounded-lg shrink-0">
-                      Sẽ xây trong tương lai
+                      {t.cfaTrack.comingSoon}
                     </span>
                   ) : (
                     <>
@@ -387,7 +390,7 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
                             : "text-stone-800 dark:text-stone-200 bg-stone-100 dark:bg-stone-800"
                         }`}
                       >
-                        {isSubjectDone ? "✓ Hoàn thành" : `${completedCount}/${lessons.length} bài`}
+                        {isSubjectDone ? t.cfaTrack.subjectDone : format(t.cfaTrack.subjectProgress, { done: completedCount, total: lessons.length })}
                       </span>
                       <ChevronRight className={`w-4 h-4 text-stone-400 shrink-0 transition-transform ${isOpen ? "rotate-90" : ""}`} />
                     </>
@@ -402,7 +405,7 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
                       className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/30 hover:bg-emerald-100 dark:hover:bg-emerald-950/50 px-3 py-1.5 rounded-lg transition-colors"
                     >
                       <PlayCircle className="w-3.5 h-3.5" />
-                      {completedCount === 0 ? "Bắt đầu môn này" : "Học tiếp"}
+                      {completedCount === 0 ? t.cfaTrack.startSubject : t.cfaTrack.continueSubject}
                     </Link>
                   </div>
                 )}
@@ -443,7 +446,7 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
                                   <span>{lesson.title}</span>
                                   {isNext && (
                                     <span className="text-[10px] font-black uppercase tracking-wider text-emerald-800 dark:text-emerald-300 bg-emerald-200/80 dark:bg-emerald-900 px-2 py-0.5 rounded-full shrink-0">
-                                      👉 BÀI TIẾP THEO
+                                      {t.cfaTrack.nextLessonBadge}
                                     </span>
                                   )}
                                 </span>
@@ -468,7 +471,7 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
             className="inline-flex items-center gap-1.5 text-sm font-bold text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 mb-6 transition-colors cursor-pointer"
           >
             <ArrowLeft className="w-4 h-4" />
-            Quay lại danh sách giáo trình
+            {t.cfaTrack.backToLibrary}
           </button>
 
           <div className="flex items-start gap-5 mb-8">
@@ -498,7 +501,7 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
           {loadingReadings ? (
             <div className="flex flex-col justify-center items-center gap-2 py-16">
               <Loader2 className="w-6 h-6 animate-spin text-stone-500 dark:text-stone-400" />
-              <span className="text-sm text-stone-500 dark:text-stone-400">Đang tải bài đọc...</span>
+              <span className="text-sm text-stone-500 dark:text-stone-400">{t.cfaTrack.loadingReadings}</span>
             </div>
           ) : readings.length > 0 ? (
             <div className="space-y-4">
@@ -517,7 +520,7 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
                         {toTitleCase(reading.title)}
                       </span>
                       <span className="text-sm font-bold px-3 py-1 rounded-lg text-stone-800 dark:text-stone-200 bg-stone-100 dark:bg-stone-800 shrink-0">
-                        {reading.modules?.length ?? 0} bài
+                        {format(t.cfaTrack.readingModuleCount, { count: reading.modules?.length ?? 0 })}
                       </span>
                       <ChevronRight className={`w-4 h-4 text-stone-400 shrink-0 transition-transform ${isOpen ? "rotate-90" : ""}`} />
                     </button>
@@ -557,7 +560,7 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
             </div>
           ) : (
             <div className="text-center py-10 text-sm text-stone-400 dark:text-stone-500 border border-dashed border-stone-200 dark:border-stone-800 rounded-xl bg-stone-50/50 dark:bg-stone-900/20">
-              Chưa có Reading nào trong cuốn sách này.
+              {t.cfaTrack.noReadings}
             </div>
           )}
         </div>
@@ -619,7 +622,7 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
             </div>
           ) : (
             <div className="text-center py-10 text-xs text-stone-400 dark:text-stone-500 border border-dashed border-stone-200 dark:border-stone-800 rounded-xl bg-stone-50/50 dark:bg-stone-900/20">
-              Chưa có giáo trình nào được lưu.
+              {t.cfaTrack.noBooks}
             </div>
           )}
         </div>

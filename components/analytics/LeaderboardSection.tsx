@@ -1,10 +1,13 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { trackFeatureClick } from "@/lib/feature-events";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 import {
   getLeaderboardByMetric,
   getMyLeaderboardRank,
@@ -78,20 +81,25 @@ interface TabDef {
   format: (v: number) => string;
 }
 
-const TABS: TabDef[] = [
-  { id: "xp", label: "XP", format: (v) => `${v} XP` },
-  { id: "lessons", label: "Số bài", format: (v) => `${v} bài` },
-  { id: "avg_score", label: "Điểm TB", format: (v) => `${Math.round(v)}%` },
-  { id: "streak", label: "Chuỗi ngày", format: (v) => `${v} ngày` },
-  { id: "badges", label: "Huy hiệu", format: (v) => `${v} huy hiệu` },
-  { id: "track_personal", label: "Cá nhân", format: (v) => `${v} bài` },
-  { id: "track_professional", label: "Chuyên ngành", format: (v) => `${v} bài` },
-  { id: "weekly", label: "Tuần này", format: (v) => `${v} XP` },
-  { id: "monthly", label: "Tháng này", format: (v) => `${v} XP` },
-  { id: "friends", label: "Bạn bè", format: (v) => `${v} XP` },
-  { id: "game", label: "Game thủ", format: (v) => `${v} XP` },
-  ...COMPETENCY_LEADERBOARD_TABS.map((c) => ({ id: c.id as TabId, label: c.label, format: (v: number) => `${v} bài` })),
-];
+// Labels are display text only - `id` is what drives tab selection, data
+// loading (loadTab) and the lookup in COMPETENCY_LESSON_IDS_BY_TAB, so
+// translating `label` here changes nothing structural.
+function buildTabs(t: Dictionary): TabDef[] {
+  return [
+    { id: "xp", label: t.leaderboardSection.tabXp, format: (v) => format(t.leaderboardSection.valueXp, { v }) },
+    { id: "lessons", label: t.leaderboardSection.tabLessons, format: (v) => format(t.leaderboardSection.valueLessons, { v }) },
+    { id: "avg_score", label: t.leaderboardSection.tabAvgScore, format: (v) => format(t.leaderboardSection.valueAvgScore, { v: Math.round(v) }) },
+    { id: "streak", label: t.leaderboardSection.tabStreak, format: (v) => format(t.leaderboardSection.valueStreakDays, { v }) },
+    { id: "badges", label: t.leaderboardSection.tabBadges, format: (v) => format(t.leaderboardSection.valueBadges, { v }) },
+    { id: "track_personal", label: t.leaderboardSection.tabTrackPersonal, format: (v) => format(t.leaderboardSection.valueLessons, { v }) },
+    { id: "track_professional", label: t.leaderboardSection.tabTrackProfessional, format: (v) => format(t.leaderboardSection.valueLessons, { v }) },
+    { id: "weekly", label: t.leaderboardSection.tabWeekly, format: (v) => format(t.leaderboardSection.valueXp, { v }) },
+    { id: "monthly", label: t.leaderboardSection.tabMonthly, format: (v) => format(t.leaderboardSection.valueXp, { v }) },
+    { id: "friends", label: t.leaderboardSection.tabFriends, format: (v) => format(t.leaderboardSection.valueXp, { v }) },
+    { id: "game", label: t.leaderboardSection.tabGame, format: (v) => format(t.leaderboardSection.valueXp, { v }) },
+    ...COMPETENCY_LEADERBOARD_TABS.map((c) => ({ id: c.id as TabId, label: c.label, format: (v: number) => format(t.leaderboardSection.valueLessons, { v }) })),
+  ];
+}
 
 const COMPETENCY_LESSON_IDS_BY_TAB = new Map(COMPETENCY_LEADERBOARD_TABS.map((c) => [c.id as TabId, c.lessonIds]));
 
@@ -158,6 +166,8 @@ async function loadTab(tabId: TabId, userId?: string): Promise<{ top: Leaderboar
 }
 
 export default function LeaderboardSection({ userId }: LeaderboardSectionProps) {
+  const { t } = useI18n();
+  const TABS = useMemo(() => buildTabs(t), [t]);
   const [activeTab, setActiveTab] = useState<TabId>("xp");
   const [entries, setEntries] = useState<LeaderboardRow[]>([]);
   const [myRank, setMyRank] = useState<{ rank: number; value: number } | null>(null);
@@ -170,7 +180,7 @@ export default function LeaderboardSection({ userId }: LeaderboardSectionProps) 
   const switching = loadedTab !== activeTab;
   const tabsRef = useRef<HTMLDivElement>(null);
 
-  const tab = TABS.find((t) => t.id === activeTab)!;
+  const tab = TABS.find((tabItem) => tabItem.id === activeTab)!;
 
   useEffect(() => {
     let cancelled = false;
@@ -203,41 +213,41 @@ export default function LeaderboardSection({ userId }: LeaderboardSectionProps) 
   return (
     <div className="rounded-2xl border border-stone-200/90 dark:border-stone-800 bg-white/95 dark:bg-stone-900 p-5 sm:p-6">
       <div className="mb-4">
-        <p className="text-xs font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-widest">Bảng xếp hạng</p>
-        <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">Chọn một loại bảng xếp hạng để xem chi tiết.</p>
+        <p className="text-xs font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-widest">{t.leaderboardSection.title}</p>
+        <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">{t.leaderboardSection.subtitle}</p>
       </div>
 
       <div className="relative mb-4">
         <button
           type="button"
           onClick={() => tabsRef.current?.scrollBy({ left: -160, behavior: "smooth" })}
-          aria-label="Cuộn sang trái"
+          aria-label={t.leaderboardSection.scrollLeft}
           className="absolute -left-1 top-1/2 -translate-y-1/2 z-10 w-6 h-6 rounded-full bg-white/95 dark:bg-stone-900 border border-stone-200 dark:border-stone-700 shadow-sm flex items-center justify-center text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 cursor-pointer"
         >
           <ChevronLeft className="w-3.5 h-3.5" />
         </button>
         <div ref={tabsRef} className="flex gap-2 overflow-x-auto pb-1.5 scrollbar-none px-7">
-          {TABS.map((t) => (
+          {TABS.map((tabItem) => (
             <button
-              key={t.id}
+              key={tabItem.id}
               onClick={() => {
-                setActiveTab(t.id);
-                trackFeatureClick("leaderboard_tab_click", { label: t.id });
+                setActiveTab(tabItem.id);
+                trackFeatureClick("leaderboard_tab_click", { label: tabItem.id });
               }}
               className={`shrink-0 px-3.5 py-1.5 rounded-full text-xs font-black transition-all cursor-pointer select-none ${
-                activeTab === t.id
+                activeTab === tabItem.id
                   ? "bg-emerald-600 dark:bg-emerald-500 text-white shadow-sm"
                   : "bg-white/95 dark:bg-stone-900 text-stone-600 dark:text-stone-400 border border-stone-200 dark:border-stone-800/80 hover:bg-stone-50 dark:hover:bg-stone-800"
               }`}
             >
-              {t.label}
+              {tabItem.label}
             </button>
           ))}
         </div>
         <button
           type="button"
           onClick={() => tabsRef.current?.scrollBy({ left: 160, behavior: "smooth" })}
-          aria-label="Cuộn sang phải"
+          aria-label={t.leaderboardSection.scrollRight}
           className="absolute -right-1 top-1/2 -translate-y-1/2 z-10 w-6 h-6 rounded-full bg-white/95 dark:bg-stone-900 border border-stone-200 dark:border-stone-700 shadow-sm flex items-center justify-center text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 cursor-pointer"
         >
           <ChevronRight className="w-3.5 h-3.5" />
@@ -245,9 +255,9 @@ export default function LeaderboardSection({ userId }: LeaderboardSectionProps) 
       </div>
 
       {loading ? (
-        <p className="text-sm text-stone-400 dark:text-stone-500">Đang tải...</p>
+        <p className="text-sm text-stone-400 dark:text-stone-500">{t.leaderboardSection.loading}</p>
       ) : entries.length === 0 ? (
-        <p className="text-sm text-stone-500 dark:text-stone-400">Chưa có đủ dữ liệu xếp hạng cho mục này.</p>
+        <p className="text-sm text-stone-500 dark:text-stone-400">{t.leaderboardSection.noData}</p>
       ) : (
         <div className={`transition-opacity duration-150 ${switching ? "opacity-40" : "opacity-100"}`}>
           <div className="space-y-1.5">
@@ -301,7 +311,7 @@ export default function LeaderboardSection({ userId }: LeaderboardSectionProps) 
                   #{myRank.rank}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="font-bold text-stone-900 dark:text-stone-100">Hạng của bạn</div>
+                  <div className="font-bold text-stone-900 dark:text-stone-100">{t.leaderboardSection.myRankLabel}</div>
                   <div className="text-stone-500 dark:text-stone-400">{tab.format(myRank.value)}</div>
                 </div>
               </div>

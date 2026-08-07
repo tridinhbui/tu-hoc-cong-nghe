@@ -2,8 +2,11 @@
 
 import { useState } from "react";
 import { Sparkles, Info } from "lucide-react";
+import { useI18n } from "@/lib/i18n/context";
+import { format, intlLocale } from "@/lib/i18n";
 
 export default function FirePlanner() {
+  const { t, locale } = useI18n();
   const [currentAge, setCurrentAge] = useState<number>(25);
   const [targetAge, setTargetAge] = useState<number>(50);
   const [monthlyExpense, setMonthlyExpense] = useState<number>(15000000); // 15 Million VND
@@ -38,7 +41,7 @@ export default function FirePlanner() {
 
   // Format currency
   const formatVND = (num: number) => {
-    return new Intl.NumberFormat("vi-VN", { style: "currency", currency: "VND" }).format(Math.round(num));
+    return new Intl.NumberFormat(intlLocale(locale), { style: "currency", currency: "VND" }).format(Math.round(num));
   };
 
   // Timeline representation
@@ -58,8 +61,8 @@ export default function FirePlanner() {
           <Sparkles className="w-5 h-5 text-amber-500 animate-pulse" />
         </div>
         <div>
-          <h2 className="text-base font-extrabold text-stone-900 dark:text-stone-100">Kế Hoạch Tự Do Tài Chính (FIRE)</h2>
-          <p className="text-xs text-stone-500 dark:text-stone-400">Xác định con số đích đến để nghỉ hưu sớm</p>
+          <h2 className="text-base font-extrabold text-stone-900 dark:text-stone-100">{t.firePlanner.title}</h2>
+          <p className="text-xs text-stone-500 dark:text-stone-400">{t.firePlanner.subtitle}</p>
         </div>
       </div>
 
@@ -69,7 +72,7 @@ export default function FirePlanner() {
           <div className="grid grid-cols-2 gap-4">
             <div>
               <label className="block text-xs font-bold text-stone-700 dark:text-stone-300 mb-1.5">
-                Tuổi hiện tại
+                {t.firePlanner.currentAgeLabel}
               </label>
               <input
                 type="number"
@@ -80,7 +83,7 @@ export default function FirePlanner() {
             </div>
             <div>
               <label className="block text-xs font-bold text-stone-700 dark:text-stone-300 mb-1.5">
-                Tuổi mục tiêu nghỉ hưu
+                {t.firePlanner.targetAgeLabel}
               </label>
               <input
                 type="number"
@@ -93,7 +96,7 @@ export default function FirePlanner() {
 
           <div>
             <label className="block text-xs font-bold text-stone-700 dark:text-stone-300 mb-1.5">
-              Chi tiêu hàng tháng hiện tại (VND)
+              {t.firePlanner.monthlyExpenseLabel}
             </label>
             <input
               type="number"
@@ -102,14 +105,14 @@ export default function FirePlanner() {
               className="w-full px-3 py-2 text-sm rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950 text-stone-900 dark:text-stone-100 focus:outline-none focus:border-amber-500"
             />
             <span className="text-[11px] text-stone-400 mt-1 block">
-              {formatVND(monthlyExpense)} / tháng
+              {format(t.firePlanner.perMonthSuffix, { amount: formatVND(monthlyExpense) })}
             </span>
           </div>
 
           <div className="grid grid-cols-3 gap-2">
             <div>
               <label className="block text-[10px] font-bold text-stone-600 dark:text-stone-400 mb-1 leading-tight">
-                Lãi suất đầu tư (%/năm)
+                {t.firePlanner.investmentReturnLabel}
               </label>
               <input
                 type="number"
@@ -121,7 +124,7 @@ export default function FirePlanner() {
             </div>
             <div>
               <label className="block text-[10px] font-bold text-stone-600 dark:text-stone-400 mb-1 leading-tight">
-                Tỷ lệ lạm phát (%/năm)
+                {t.firePlanner.inflationRateLabel}
               </label>
               <input
                 type="number"
@@ -133,7 +136,7 @@ export default function FirePlanner() {
             </div>
             <div>
               <label className="block text-[10px] font-bold text-stone-600 dark:text-stone-400 mb-1 leading-tight">
-                Tỷ lệ rút an toàn (%)
+                {t.firePlanner.swrLabel}
               </label>
               <input
                 type="number"
@@ -151,7 +154,7 @@ export default function FirePlanner() {
           <div className="space-y-4">
             <div className="space-y-0.5">
               <span className="text-[10px] font-bold text-stone-500 dark:text-stone-400 block uppercase">
-                Chi tiêu tháng lúc nghỉ hưu (Đã bù lạm phát)
+                {t.firePlanner.futureExpenseLabel}
               </span>
               <span className="text-sm font-extrabold text-stone-900 dark:text-stone-100">
                 {formatVND(futureMonthlyExpense)}
@@ -159,24 +162,24 @@ export default function FirePlanner() {
             </div>
             <div className="space-y-0.5">
               <span className="text-[10px] font-bold text-stone-500 dark:text-stone-400 block uppercase">
-                Mục tiêu quỹ tài sản FIRE cần tích lũy
+                {t.firePlanner.fireTargetLabel}
               </span>
               <span className="text-xl font-black text-amber-600 dark:text-amber-400">
                 {formatVND(fireTarget)}
               </span>
               <span className="text-[10px] text-stone-400 block">
-                (Đủ để rút {safeWithdrawalRate}% chi tiêu trọn đời không lo hết tiền)
+                {format(t.firePlanner.fireTargetNote, { rate: safeWithdrawalRate })}
               </span>
             </div>
             <div className="pt-3 border-t border-stone-200/60 dark:border-stone-800/80 space-y-0.5">
               <span className="text-[10px] font-bold text-stone-500 dark:text-stone-400 block uppercase">
-                Số tiền cần đầu tư/tiết kiệm thêm mỗi tháng
+                {t.firePlanner.monthlySavingsLabel}
               </span>
               <span className="text-base font-extrabold text-stone-900 dark:text-stone-100">
                 {formatVND(monthlySavingsNeeded)}
               </span>
               <span className="text-[10px] text-stone-400 block">
-                (Tích lũy liên tục trong {yearsToRetire} năm tới với hiệu suất {investmentReturn}%/năm)
+                {format(t.firePlanner.monthlySavingsNote, { years: yearsToRetire, rate: investmentReturn })}
               </span>
             </div>
           </div>
@@ -184,7 +187,7 @@ export default function FirePlanner() {
           {/* Timeline visualization */}
           <div className="pt-2">
             <span className="text-[10px] font-extrabold text-stone-400 uppercase tracking-wider block mb-2 text-center">
-              Lộ trình quỹ tài sản mục tiêu theo tuổi
+              {t.firePlanner.timelineTitle}
             </span>
             <div className="relative flex justify-between items-center px-2">
               <div className="absolute left-0 right-0 h-0.5 bg-stone-200 dark:bg-stone-800 top-1/2 -translate-y-1/2 -z-10" />
@@ -194,9 +197,9 @@ export default function FirePlanner() {
                     {pt.age}
                   </div>
                   <span className="text-[8px] text-stone-400 dark:text-stone-500 font-bold mt-1">
-                    Tuổi
+                    {t.firePlanner.ageBadgeLabel}
                   </span>
-                  <title>{`Tại tuổi ${pt.age}: Quỹ mục tiêu tương đương ${formatVND(pt.expense)}`}</title>
+                  <title>{format(t.firePlanner.timelineTooltip, { age: pt.age, amount: formatVND(pt.expense) })}</title>
                 </div>
               ))}
             </div>
@@ -207,7 +210,7 @@ export default function FirePlanner() {
       <div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-950/20 border border-amber-200/40 text-xs text-amber-800 dark:text-amber-400 flex items-start gap-2.5">
         <Info className="w-4 h-4 mt-0.5 shrink-0" />
         <p className="leading-relaxed">
-          <strong>Lưu ý quan trọng:</strong> Tỷ lệ lạm phát ở Việt Nam (trung bình 3-4% hàng năm) sẽ làm giảm sức mua của đồng tiền đáng kể. Do đó, con số FIRE được tính toán trên đã được phóng to để bù đắp lạm phát, đảm bảo mức sống lúc nghỉ hưu vẫn tương đương với chi tiêu {formatVND(monthlyExpense)} ở thời điểm hiện tại.
+          <strong>{t.firePlanner.noteTitle}</strong> {format(t.firePlanner.noteBody, { amount: formatVND(monthlyExpense) })}
         </p>
       </div>
     </div>

@@ -6,11 +6,10 @@ import { outdoorBrightnessAt } from "@/components/lobby/daylight";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import {
-  CIVIC_ROOMS,
-  DISTRICT_ROOMS,
+  districtRoomsOf,
   STAGE_FLOOR_ID,
   STREET_SPAWN,
-  TOWER_STOPS,
+  towerStopsOf,
   buildPathRoom,
   getRoom,
   type CareerDesk,
@@ -32,19 +31,25 @@ import Minimap, { type MinimapPeer } from "./Minimap";
 import RoomDirectory from "./RoomDirectory";
 import CivicPanel from "./CivicPanel";
 import type { CharacterEquipments } from "@/lib/rpg-items";
-import { CAREER_CATEGORY_ORDER, CAREER_CATEGORY_LABELS, isCareerCategory } from "@/lib/career-categories";
+import { CAREER_CATEGORY_ORDER, isCareerCategory } from "@/lib/career-categories";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 const DistrictScene = dynamic(() => import("./DistrictScene"), {
   ssr: false,
-  loading: () => <Fallback label="Đang dựng phố nghề…" />,
+  // dynamic() calls loading() as a standalone render with no parent tree, so
+  // there is no useI18n() available here - Fallback falls back to its own
+  // default label (via useI18n internally) when none is passed.
+  loading: () => <Fallback />,
 });
 
-function Fallback({ label }: { label: string }) {
+function Fallback({ label }: { label?: string }) {
+  const { t } = useI18n();
   return (
     <div className="flex h-full w-full items-center justify-center bg-stone-950">
       <div className="text-center">
         <div className="mb-3 text-4xl">🏙️</div>
-        <p className="text-sm font-medium text-stone-400">{label}</p>
+        <p className="text-sm font-medium text-stone-400">{label ?? t.careerDistrict.world.buildingDistrict}</p>
       </div>
     </div>
   );
@@ -102,6 +107,7 @@ export default function DistrictWorld({
   dueLessonIds,
   startRoom,
 }: DistrictWorldProps) {
+  const { t } = useI18n();
   const [roomId, setRoomId] = useState<DistrictRoomId>(startRoom ?? "street");
   // Chỗ đứng khi vào thẳng một phòng LẤY LẠI từ cửa của chính phòng đó trên
   // phố, không nghĩ ra một pose thứ hai: hai chỗ đứng cho cùng một cánh cửa
@@ -111,7 +117,7 @@ export default function DistrictWorld({
   const [entry, setEntry] = useState<Pose>(
     () =>
       (startRoom &&
-        DISTRICT_ROOMS.street?.doorways.find((d) => d.to === startRoom)?.arriveAt) ||
+        districtRoomsOf(t).street?.doorways.find((d) => d.to === startRoom)?.arriveAt) ||
       STREET_SPAWN
   );
   const [desk, setDesk] = useState<CareerDesk | null>(null);
@@ -160,7 +166,8 @@ export default function DistrictWorld({
   }, [sound]);
   const seatTaken = useMemo(() => new Set(seated === null ? [] : [seated]), [seated]);
 
-  const room = getRoom(roomId);
+  const room = getRoom(t, roomId);
+  const towerStops = useMemo(() => towerStopsOf(t), [t]);
 
   // Đọc đồng hồ sau khi mount, không lúc render: giờ máy chủ khác giờ người
   // học, và một bầu trời khác nhau giữa hai lần render đầu là lỗi hydrate.
@@ -312,7 +319,7 @@ export default function DistrictWorld({
   return (
     <div className="relative h-[100dvh] w-full overflow-hidden bg-stone-950">
       {daylight === null ? (
-        <Fallback label="Đang mở phố…" />
+        <Fallback label={t.careerDistrict.world.openingDistrict} />
       ) : (
         <DistrictScene
           roomId={roomId}
@@ -359,7 +366,7 @@ export default function DistrictWorld({
         className={`pointer-events-auto absolute right-4 top-32 z-20 cursor-pointer rounded-2xl border border-stone-700 bg-stone-900/85 px-3 py-2 text-[11px] font-black text-stone-200 shadow-xl backdrop-blur ${
           room.kind === "street" ? "sm:hidden" : ""
         }`}
-        aria-label="Mục lục khu phố"
+        aria-label={t.careerDistrict.world.directoryLabel}
       >
         {travelOpen ? "✕" : "🧭"}
       </button>
@@ -375,25 +382,28 @@ export default function DistrictWorld({
               đang đứng đó. */}
           <p className="text-[11px] text-stone-400">
             {room.kind === "street"
-              ? "Năm căn nhà và một toà tháp"
+              ? t.careerDistrict.world.streetSubtitle
               : room.desks.length > 0
-              ? `${room.desks.length} nghề · ${roomLessons.length} bài học trên kệ`
+              ? format(t.careerDistrict.world.desksSubtitle, { desks: room.desks.length, lessons: roomLessons.length })
               : room.portals.length > 1
-              ? `${room.portals.length} địa điểm · đi tới từng bục để mở`
+              ? format(t.careerDistrict.world.portalsSubtitle, { n: room.portals.length })
               : room.portals.length === 1
               ? room.portals[0].blurb
               : room.seats
-              ? `${room.seats.length} chỗ ngồi · ngồi xuống là bắt đầu tính giờ`
+              ? format(t.careerDistrict.world.seatsSubtitle, { n: room.seats.length })
               : room.stops
-              ? `${room.stops.length} bài trên hành lang · ${room.stops.filter((st) => doneSlugs.has(st.slug)).length} đã học`
-              : "Thang máy ở cuối sảnh · mỗi tầng một phòng chức năng"}
+              ? format(t.careerDistrict.world.stopsSubtitle, {
+                  total: room.stops.length,
+                  done: room.stops.filter((st) => doneSlugs.has(st.slug)).length,
+                })
+              : t.careerDistrict.world.liftFloorSubtitle}
           </p>
           {/* Số người THẬT đang ở cùng phòng, đếm từ presence. Một hành lang có
               hai người khác đang đi là thông tin khác hẳn một hành lang trống,
               và là lý do để ở lại. */}
           {peerCount > 1 && (
             <p className="mt-0.5 text-[11px] font-bold text-emerald-300">
-              👥 {peerCount} người đang ở đây
+              👥 {format(t.careerDistrict.world.peopleHere, { n: peerCount })}
             </p>
           )}
         </div>
@@ -403,7 +413,7 @@ export default function DistrictWorld({
           <button
             type="button"
             onClick={sound.toggle}
-            aria-label={sound.enabled ? "Tắt âm thanh" : "Bật âm thanh"}
+            aria-label={sound.enabled ? t.careerDistrict.world.muteSound : t.careerDistrict.world.unmuteSound}
             className="pointer-events-auto cursor-pointer rounded-2xl bg-stone-900/75 px-3 py-2 text-[13px] shadow-lg backdrop-blur transition hover:bg-stone-800"
           >
             {sound.enabled ? "🔊" : "🔈"}
@@ -412,7 +422,7 @@ export default function DistrictWorld({
             href="/su-nghiep"
             className="pointer-events-auto rounded-2xl bg-stone-900/75 px-3 py-2 text-[11px] font-bold text-stone-300 shadow-lg backdrop-blur transition hover:bg-stone-800"
           >
-            Thoát ra ↗
+            {t.careerDistrict.world.exit}
           </Link>
         </div>
       </div>
@@ -423,7 +433,7 @@ export default function DistrictWorld({
       {!hintSeen && (
         <div className="pointer-events-none absolute inset-x-0 top-24 z-10 flex justify-center px-4">
           <div className="rounded-2xl bg-emerald-600/90 px-5 py-2.5 text-center text-xs font-bold text-white shadow-xl backdrop-blur">
-            Chạm vào chỗ bạn muốn tới — hoặc kéo cần điều khiển, hoặc bấm W A S D
+            {t.careerDistrict.world.moveHint}
           </div>
         </div>
       )}
@@ -439,8 +449,13 @@ export default function DistrictWorld({
           >
             {/* Cửa quay lại đã mang sẵn nhãn của nó ("Ra phố", "Về sảnh
                 chặng"); thêm "Bước vào ·" vào trước là đọc thành một câu vô
-                nghĩa. Chỉ cửa ĐI TỚI mới cần chữ mời. */}
-            {/^(Ra|Về)\b/.test(door.label) ? door.label : `Bước vào · ${door.label}`}
+                nghĩa. Chỉ cửa ĐI TỚI mới cần chữ mời.
+                Từng là một regex chỉ khớp tiếng Việt (/^(Ra|Về)\b/) trên
+                door.label - đúng lúc nhãn cửa còn cố định bằng tiếng Việt,
+                nhưng dịch được thì bản tiếng Anh ("Back to the street") không
+                còn khớp nữa. Cờ `isExit` (đặt tại nơi tạo cửa trong
+                district-space.ts) thay cho việc suy luận từ chữ. */}
+            {door.isExit ? door.label : format(t.careerDistrict.world.enterDoor, { label: door.label })}
           </button>
         </div>
       )}
@@ -458,7 +473,7 @@ export default function DistrictWorld({
           {deskLessons.length > 0 && (
             <>
               <p className="mt-2.5 text-[10px] font-bold uppercase tracking-wider text-stone-400">
-                Lộ trình học của nghề này
+                {t.careerDistrict.world.careerPath}
               </p>
               <ul className="mt-1 space-y-1">
                 {deskLessons.map((l) => (
@@ -482,22 +497,22 @@ export default function DistrictWorld({
             onClick={() =>
               enterPath(
                 `nghe-${desk.careerId}`,
-                `Lộ trình · ${desk.title}`,
+                format(t.careerDistrict.world.pathLabel, { title: desk.title }),
                 room.accent,
                 lessonSlugsForCareer(desk.careerId, 24),
-                { to: roomId, label: "Về phòng ngành", arriveAt: { x: 0, z: desk.z + 2.2, ry: 0 } }
+                { to: roomId, label: t.careerDistrict.world.backToCareerRoom, arriveAt: { x: 0, z: desk.z + 2.2, ry: 0 } }
               )
             }
             className="mt-2.5 block w-full cursor-pointer rounded-xl px-3 py-2 text-center text-[11px] font-black text-stone-950 transition hover:brightness-110"
             style={{ backgroundColor: room.accent }}
           >
-            Bước vào lộ trình học nghề này
+            {t.careerDistrict.world.enterCareerPath}
           </button>
           <Link
             href="/su-nghiep"
             className="mt-1.5 block rounded-xl bg-stone-800 px-3 py-1.5 text-center text-[11px] font-bold text-stone-200 transition hover:bg-stone-700"
           >
-            Xem chân dung nghề đầy đủ
+            {t.careerDistrict.world.viewFullCareerProfile}
           </Link>
         </div>
       )}
@@ -506,7 +521,7 @@ export default function DistrictWorld({
       {portal && (
         <div className="pointer-events-auto absolute inset-x-3 bottom-36 z-10 rounded-2xl border border-stone-700 bg-stone-900/92 p-4 shadow-2xl backdrop-blur sm:inset-x-auto sm:bottom-4 sm:left-4 sm:w-80">
           <p className="text-[10px] font-black uppercase tracking-widest" style={{ color: portal.accent }}>
-            Phòng chức năng
+            {t.careerDistrict.world.functionRoom}
           </p>
           <p className="mt-0.5 text-sm font-black text-white">{portal.label}</p>
           <p className="mt-1 text-[11px] leading-snug text-stone-400">{portal.blurb}</p>
@@ -523,7 +538,7 @@ export default function DistrictWorld({
             className="mt-2.5 block rounded-xl px-3 py-2 text-center text-[11px] font-black text-stone-950 transition hover:brightness-110"
             style={{ backgroundColor: portal.accent }}
           >
-            Mở {portal.label} ↗
+            {format(t.careerDistrict.world.openPortal, { label: portal.label })}
           </Link>
         </div>
       )}
@@ -538,7 +553,7 @@ export default function DistrictWorld({
           onClick={() => setLiftPanel(true)}
           className="pointer-events-auto absolute right-4 top-20 z-10 cursor-pointer rounded-2xl border border-amber-500/40 bg-stone-900/85 px-3 py-2 text-[11px] font-black text-amber-200 shadow-xl backdrop-blur transition hover:bg-stone-800"
         >
-          🛗 Lên tầng
+          🛗 {t.careerDistrict.world.goUpFloor}
         </button>
       )}
 
@@ -546,10 +561,10 @@ export default function DistrictWorld({
       {roomId === STAGE_FLOOR_ID && (
         <div className="pointer-events-auto absolute inset-x-3 bottom-36 z-10 rounded-2xl border border-emerald-500/40 bg-stone-900/92 p-3 shadow-2xl backdrop-blur sm:inset-x-auto sm:bottom-4 sm:left-4 sm:w-80">
           <p className="text-[10px] font-black uppercase tracking-widest text-emerald-300">
-            🧭 Chặng học tài chính
+            🧭 {t.careerDistrict.world.financeStages}
           </p>
           <p className="mt-0.5 text-[11px] text-stone-400">
-            Mỗi chặng là một hành lang; đi hết hành lang là hết chặng.
+            {t.careerDistrict.world.stagesHint}
           </p>
           <div className="mt-2 max-h-64 space-y-0.5 overflow-y-auto">
             {stages.map((st) => {
@@ -567,7 +582,7 @@ export default function DistrictWorld({
                   onClick={() =>
                     enterPath(st.key, `${st.label} · ${st.trackTitle}`, "#a7f3d0", st.slugs, {
                       to: STAGE_FLOOR_ID,
-                      label: "Về sảnh chặng",
+                      label: t.careerDistrict.world.backToStageLobby,
                       arriveAt: { x: 0, z: 5.4, ry: 0 },
                     })
                   }
@@ -599,17 +614,17 @@ export default function DistrictWorld({
       {stop && (
         <div className="pointer-events-auto absolute inset-x-3 bottom-36 z-10 rounded-2xl border border-stone-700 bg-stone-900/92 p-4 shadow-2xl backdrop-blur sm:inset-x-auto sm:bottom-4 sm:left-4 sm:w-80">
           <p className="text-[10px] font-black uppercase tracking-widest" style={{ color: room.accent }}>
-            Bài {stop.index + 1} / {room.stops?.length ?? 0}
+            {format(t.careerDistrict.world.stopIndex, { index: stop.index + 1, total: room.stops?.length ?? 0 })}
           </p>
           <p className="mt-0.5 text-sm font-black text-white">
             {lessons[stop.slug]?.title ?? stop.slug}
           </p>
           <p className="mt-1 text-[11px] text-stone-400">
             {dueSlugs.has(stop.slug)
-              ? "⏰ Đến hạn ôn lại - trả lời đúng để giãn lịch ra"
+              ? `⏰ ${t.careerDistrict.world.dueForReview}`
               : doneSlugs.has(stop.slug)
-              ? "✓ Bạn đã học bài này"
-              : "Chưa học"}
+              ? `✓ ${t.careerDistrict.world.alreadyLearned}`
+              : t.careerDistrict.world.notLearnedYet}
           </p>
           <div className="mt-2.5 flex gap-1.5">
             <Link
@@ -617,7 +632,7 @@ export default function DistrictWorld({
               className="flex-1 rounded-xl px-3 py-2 text-center text-[11px] font-black text-stone-950 transition hover:brightness-110"
               style={{ backgroundColor: room.accent }}
             >
-              Mở bài học ↗
+              {t.careerDistrict.world.openLesson}
             </Link>
             {lessons[stop.slug] && (
               <button
@@ -625,7 +640,7 @@ export default function DistrictWorld({
                 onClick={() => setQuizLessonId(lessons[stop.slug].id)}
                 className="cursor-pointer rounded-xl bg-stone-800 px-3 py-2 text-[11px] font-black text-stone-200 transition hover:bg-stone-700"
               >
-                {dueSlugs.has(stop.slug) ? "⏰ Ôn lại ngay" : "❓ Ôn tại chỗ"}
+                {dueSlugs.has(stop.slug) ? `⏰ ${t.careerDistrict.world.reviewNow}` : `❓ ${t.careerDistrict.world.reviewHere}`}
               </button>
             )}
           </div>
@@ -650,19 +665,19 @@ export default function DistrictWorld({
       {(atLift || liftPanel) && (
         <div className="pointer-events-auto absolute right-4 top-20 z-20 w-52 max-w-[calc(100vw-2rem)] rounded-2xl border border-amber-500/40 bg-stone-900/92 p-2.5 shadow-2xl backdrop-blur">
           <div className="mb-1.5 flex items-center justify-between">
-            <p className="text-[10px] font-black uppercase tracking-widest text-amber-300">🛗 Thang máy</p>
+            <p className="text-[10px] font-black uppercase tracking-widest text-amber-300">🛗 {t.careerDistrict.world.elevator}</p>
             {!atLift && (
               <button
                 type="button"
                 onClick={() => setLiftPanel(false)}
                 className="cursor-pointer text-[10px] font-bold text-stone-500 hover:text-stone-300"
               >
-                đóng
+                {t.careerDistrict.world.closeLower}
               </button>
             )}
           </div>
           <div className="max-h-72 space-y-0.5 overflow-y-auto">
-            {TOWER_STOPS.map((stop, i) => (
+            {towerStops.map((stop, i) => (
               <button
                 key={stop.id}
                 type="button"
@@ -683,7 +698,7 @@ export default function DistrictWorld({
       {roomFormulas.length > 0 && !desk && !portal && !stop && (
         <div className="pointer-events-none absolute bottom-4 left-4 z-10 hidden w-72 rounded-2xl border border-stone-700 bg-stone-900/85 p-3 shadow-xl backdrop-blur sm:block">
           <p className="text-[10px] font-black uppercase tracking-widest text-stone-400">
-            📐 Công thức treo trong phòng
+            📐 {t.careerDistrict.world.roomFormulas}
           </p>
           <ul className="mt-1.5 space-y-1">
             {roomFormulas.map((f) => (
@@ -732,7 +747,7 @@ export default function DistrictWorld({
             value={draft}
             onChange={(e) => setDraft(e.target.value)}
             maxLength={CHAT_MAX_LENGTH}
-            placeholder="Nói với người trong phòng…"
+            placeholder={t.careerDistrict.world.chatPlaceholder}
             className="min-w-0 flex-1 rounded-2xl border border-stone-700 bg-stone-900/85 px-3 py-2 text-xs text-stone-100 placeholder:text-stone-500 shadow-lg backdrop-blur outline-none focus:border-emerald-500"
           />
           <button
@@ -740,7 +755,7 @@ export default function DistrictWorld({
             disabled={!draft.trim()}
             className="shrink-0 cursor-pointer rounded-2xl bg-emerald-500 px-3 py-2 text-xs font-bold text-white shadow-lg transition hover:bg-emerald-400 disabled:opacity-40"
           >
-            Nói
+            {t.careerDistrict.world.say}
           </button>
         </form>
       )}
@@ -764,7 +779,7 @@ export default function DistrictWorld({
               }}
               className="pointer-events-auto cursor-pointer rounded-2xl bg-amber-400 px-5 py-2.5 text-xs font-black text-stone-950 shadow-xl transition hover:brightness-110"
             >
-              ☕ Ngồi xuống học · bắt đầu tính giờ
+              ☕ {t.careerDistrict.world.sitAndStudy}
             </button>
           ) : (
             <button
@@ -777,7 +792,7 @@ export default function DistrictWorld({
               }}
               className="pointer-events-auto cursor-pointer rounded-2xl bg-stone-800 px-5 py-2.5 text-xs font-bold text-stone-100 shadow-xl transition hover:bg-stone-700"
             >
-              Đứng dậy
+              {t.careerDistrict.world.standUp}
             </button>
           )}
         </div>
@@ -792,7 +807,7 @@ export default function DistrictWorld({
             className="pointer-events-auto cursor-pointer rounded-2xl px-5 py-2.5 text-xs font-black text-stone-950 shadow-xl transition hover:brightness-110"
             style={{ backgroundColor: room.accent }}
           >
-            Mở · {room.label}
+            {format(t.careerDistrict.world.openRoom, { label: room.label })}
           </button>
         </div>
       )}

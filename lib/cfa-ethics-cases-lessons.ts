@@ -1120,7 +1120,7 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
         "Bạn nêu vấn đề với bộ phận tuân thủ nhưng họ không xử lý gì trong hai tuần, và hạn phát hành báo cáo đã tới. Bước tiếp theo?",
       options: [
         "Phát hành khuyến nghị Mua theo yêu cầu vì đã báo cáo rồi",
-        "Phát hành đúng kết luận có cơ sở của bạn, và tiếp tục leo thang lên cấp cao hơn - đã báo cáo không chuyển được trách nhiệm về nội dung bạn ký tên",
+        "Phát hành đúng kết luận của bạn, tiếp tục leo thang",
         "Không phát hành báo cáo nào và để hạn trôi qua",
         "Phát hành bản Trung lập nhưng không ký tên mình",
       ],
@@ -1885,7 +1885,7 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
         "Bộ phận kinh doanh muốn ghi 'mục tiêu lợi nhuận 15%/năm' lên trang bìa tài liệu. Bạn phản hồi thế nào?",
       options: [
         "Đồng ý vì đó là mục tiêu chứ không phải cam kết",
-        "Yêu cầu nêu rõ đây là mục tiêu kèm giả định và điều kiện thị trường để đạt được, và không đặt nó ở vị trí tạo ấn tượng là kết quả kỳ vọng chắc chắn",
+        "Nêu rõ đây là mục tiêu kèm giả định, không cam kết",
         "Từ chối vì mọi con số hướng tới tương lai đều bị cấm",
         "Đồng ý nếu thêm dòng miễn trừ trách nhiệm ở chân trang",
       ],

@@ -5,8 +5,12 @@ import { motion } from "framer-motion";
 import { Cpu, PieChart, Trophy, RefreshCw, ChevronLeft } from "lucide-react";
 import { toast } from "sonner";
 import GoldCoinIcon from "@/components/GoldCoinIcon";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 export default function AlgoTraderGame({ onBack }: { onBack?: () => void }) {
+  const { t } = useI18n();
+  const at = t.games.algoTrader;
   const [stocks, setStocks] = useState(50);
   const [bonds, setBonds] = useState(30);
   const [gold, setGold] = useState(20);
@@ -17,7 +21,7 @@ export default function AlgoTraderGame({ onBack }: { onBack?: () => void }) {
 
   const handleSimulate = () => {
     if (totalAlloc !== 100) {
-      toast.error(`⚠️ Tổng tỷ trọng phân bổ phải bằng đúng 100%! Hiện tại là ${totalAlloc}%.`);
+      toast.error(format(at.toastAllocError, { total: totalAlloc }));
       return;
     }
 
@@ -25,7 +29,7 @@ export default function AlgoTraderGame({ onBack }: { onBack?: () => void }) {
     const expectedReturn = (stocks * 0.15 + bonds * 0.06 + gold * 0.08).toFixed(1);
     setPortfolioReturn(Number(expectedReturn));
     setIsCalculated(true);
-    toast.success(`🤖 Thuật toán Algo đã tối ưu danh mục! Lợi nhuận dự kiến: +${expectedReturn}%/năm`);
+    toast.success(format(at.toastSuccess, { pct: expectedReturn }));
   };
 
   return (
@@ -36,15 +40,15 @@ export default function AlgoTraderGame({ onBack }: { onBack?: () => void }) {
             onClick={onBack}
             className="flex items-center gap-1 text-xs font-black text-stone-600 hover:text-purple-600 cursor-pointer"
           >
-            <ChevronLeft className="w-4 h-4" /> Bản Đồ
+            <ChevronLeft className="w-4 h-4" /> {at.backButton}
           </button>
         )}
         <div className="text-center flex-1">
           <span className="text-[10px] font-black uppercase tracking-widest text-purple-600 bg-purple-50 px-3 py-1 rounded-full border border-purple-200">
-            🚀 Silicon Valley Fintech
+            {at.subtitleBadge}
           </span>
           <h2 className="text-xl font-black text-stone-900 mt-1">
-            Thuật Toán Algo Trader
+            {at.title}
           </h2>
         </div>
       </div>
@@ -53,7 +57,7 @@ export default function AlgoTraderGame({ onBack }: { onBack?: () => void }) {
         <div className="bg-stone-50 p-6 rounded-3xl border border-stone-200 space-y-4">
           <div className="flex items-center justify-between">
             <span className="text-sm font-black text-stone-900 flex items-center gap-2">
-              📈 Cổ Phiếu VN30 (Stocks)
+              {at.stocksLabel}
             </span>
             <span className="text-sm font-black text-emerald-600">{stocks}%</span>
           </div>
@@ -68,7 +72,7 @@ export default function AlgoTraderGame({ onBack }: { onBack?: () => void }) {
 
           <div className="flex items-center justify-between">
             <span className="text-sm font-black text-stone-900 flex items-center gap-2">
-              📜 Trái Phiếu Chính Phủ (Bonds)
+              {at.bondsLabel}
             </span>
             <span className="text-sm font-black text-blue-600">{bonds}%</span>
           </div>
@@ -83,7 +87,7 @@ export default function AlgoTraderGame({ onBack }: { onBack?: () => void }) {
 
           <div className="flex items-center justify-between">
             <span className="text-sm font-black text-stone-900 flex items-center gap-2">
-              🪙 Vàng & Hàng Hóa (Gold)
+              {at.goldLabel}
             </span>
             <span className="text-sm font-black text-amber-600">{gold}%</span>
           </div>
@@ -97,9 +101,9 @@ export default function AlgoTraderGame({ onBack }: { onBack?: () => void }) {
           />
 
           <div className="flex items-center justify-between pt-2 border-t border-stone-200">
-            <span className="text-xs font-black text-stone-500">Tổng Phân Bổ Danh Mục:</span>
+            <span className="text-xs font-black text-stone-500">{at.totalAllocLabel}</span>
             <span className={`text-base font-black ${totalAlloc === 100 ? "text-emerald-500" : "text-rose-500"}`}>
-              {totalAlloc}% / 100%
+              {format(at.totalAllocValue, { total: totalAlloc })}
             </span>
           </div>
         </div>
@@ -111,12 +115,12 @@ export default function AlgoTraderGame({ onBack }: { onBack?: () => void }) {
             className="bg-gradient-to-r from-purple-500/10 via-indigo-500/10 to-purple-500/10 border-2 border-purple-300 rounded-2xl p-4 text-center"
           >
             <p className="text-xs font-black text-purple-600 uppercase">
-              🤖 KẾT QUẢ MÔ PHỎNG ALGO TRADING
+              {at.resultBadge}
             </p>
             <p className="text-2xl font-black text-stone-900 mt-1">
-              Lợi Nhuận Dự Kiến: <span className="text-emerald-600">+{portfolioReturn}%/năm</span>
+              {at.resultLabel} <span className="text-emerald-600">{format(at.resultValue, { pct: portfolioReturn })}</span>
             </p>
-            <p className="text-xs text-stone-500 mt-1">Thưởng thám hiểm Algo: +80 XP & Coins!</p>
+            <p className="text-xs text-stone-500 mt-1">{at.rewardNote}</p>
           </motion.div>
         )}
 
@@ -124,7 +128,7 @@ export default function AlgoTraderGame({ onBack }: { onBack?: () => void }) {
           onClick={handleSimulate}
           className="w-full py-4 rounded-2xl bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-600 text-white font-black text-sm hover:scale-105 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-purple-500/25"
         >
-          <Cpu className="w-5 h-5" /> KÍCH HOẠT THUẬT TOÁN ALGO TRADING
+          <Cpu className="w-5 h-5" /> {at.simulateButton}
         </button>
       </div>
     </div>

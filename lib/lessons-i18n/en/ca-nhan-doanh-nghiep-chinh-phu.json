@@ -1,0 +1,141 @@
+{
+  "slug": "ca-nhan-doanh-nghiep-chinh-phu",
+  "title": "How individuals, businesses and governments manage money differently.",
+  "subtitle": "Three financial actors, three different goals, three different toolkits.",
+  "duration": "7 min",
+  "openingQuestion": "The government spends more than it collects this year. How is this different from an individual spending more than they earn?",
+  "openingOptions": [
+    "The government never needs to worry, because it can always tax more",
+    "A government spending more than it collects is a good thing for the economy",
+    "There's no difference at all; both are just a financial problem",
+    "The government can print money or issue bonds; an individual has no such power"
+  ],
+  "explanation": "An individual running a deficit has to borrow from someone else or sell an asset. A government has extra options: issuing bonds (borrowing from the market) or, in some cases, expanding the money supply within its own country. A government's two main tools for managing the economy are fiscal policy - taxing and spending state funds, decided directly by the government - and monetary policy - regulating the money supply and interest rates, carried out by the central bank. Both tools carry long-run consequences if overused.",
+  "diagram": [
+    { "label": "A deficit: the shortfall needs covering" },
+    { "label": "An individual: borrows, or sells an asset" },
+    { "label": "A business: takes on debt, or issues shares" },
+    { "label": "A government: issues bonds, taxes, or uses monetary policy" }
+  ],
+  "realWorldExample": {
+    "company": "The US budget deficit",
+    "description": "The US has run a continuous budget deficit since 2001. Total public debt exceeded 33 trillion USD in 2023. The government funds this by issuing Treasury bonds that the world buys because the USD is the global reserve currency."
+  },
+  "quiz": [
+    {
+      "question": "What is the same about personal finance and corporate finance?",
+      "options": [
+        "Both must weigh cost of capital, expected return, and risk when making a decision",
+        "Both use exactly the same standardised set of financial statements to compare performance across years",
+        "Both have the right to issue public shares to raise capital whenever they need to expand",
+        "Both pay income tax according to exactly the same fixed tax schedule set by the state"
+      ],
+      "explanation": "Different as their scale is, both individuals and businesses face the same basic problem: allocating finite resources across choices, weighing risk against return, and managing cash flow."
+    },
+    {
+      "question": "How does fiscal policy differ from monetary policy?",
+      "options": [
+        "Fiscal policy is only used during an economic crisis",
+        "Fiscal policy is run by the central bank, monetary policy by the government, exactly swapped from reality",
+        "Fiscal is the state's tax and spending; monetary is the money supply and interest rates",
+        "Fiscal policy affects the short run, monetary policy the long run"
+      ],
+      "explanation": "Fiscal policy: the government adjusts things through tax and public spending. Monetary policy: the central bank adjusts things through interest rates and the money supply. Two different tools, often used together."
+    },
+    {
+      "question": "Scenario: The economy is in recession, businesses are closing, and people are losing their jobs. The government wants to stimulate demand. Option A: cut tax by 20% so people have more to spend. Option B: raise public spending by 500 trillion to build roads and create jobs. Option C: the central bank cuts interest rates by 2% so businesses can borrow more cheaply. Which options are fiscal policy, and why?",
+      "options": [
+        "Only A is fiscal policy, because only A relates to tax",
+        "A and B are fiscal policy, C is monetary policy",
+        "All three are fiscal policy, since they share the same stimulus goal",
+        "Only C is fiscal policy, because it works through interest rates"
+      ],
+      "explanation": "Fiscal policy covers government tax and spending. Cutting tax and raising public spending are both fiscal policy. Cutting interest rates is monetary policy, carried out by the central bank."
+    },
+    {
+      "question": "What does a government fighting a recession with fiscal policy actually do?",
+      "options": [
+        "Raise public spending or cut taxes to stimulate demand",
+        "Lower the policy interest rate so borrowing gets cheaper for businesses",
+        "Inject money through open-market operations",
+        "Ease credit limits for banks"
+      ],
+      "explanation": "Fiscal is the government's tool and runs through the budget: collecting tax and spending it. The other three options are all monetary policy, belonging to the central bank - the two toolkits are often used together but sit with two different institutions."
+    },
+    {
+      "question": "What is the core thing personal finance and corporate finance have in common?",
+      "options": [
+        "Both aim to maximise shareholder value",
+        "Both allocate a scarce resource across time",
+        "Both must prepare financial statements to a set standard",
+        "Both set annual revenue-growth targets"
+      ],
+      "explanation": "The goals differ - an individual optimises their life across a lifetime, a business optimises value for its owners - but the underlying problem is the same shape: finite resources, multiple choices, an outcome that sits in the future and is uncertain."
+    }
+  ],
+  "keyTakeaways": [
+    "An individual optimises consumption and accumulation across a lifetime",
+    "A business optimises profit and value for its shareholders",
+    "A government balances growth, stability and fair distribution"
+  ],
+  "practicePrompt": {
+    "question": "A startup is weighing whether to pay its profit out as a dividend to investors now, or retain it to reinvest and expand into new markets. If the reinvestment opportunity earns more than the cost of capital, what should the company prioritise?",
+    "options": [
+      "Retain the profit to reinvest, because that growth creates more long-run value for shareholders than an immediate dividend",
+      "Pay the dividend right away, because shareholders always prefer cash in hand over a promise of future growth",
+      "Do nothing at all, holding the cash in reserve against any risk that might arise",
+      "Use the entire profit to pay off a bank loan first, regardless of the cost of capital or the reinvestment opportunity"
+    ],
+    "explanation": "When the expected return on reinvestment exceeds the cost of capital, retaining the profit creates more value for shareholders than an immediate dividend would - this is the core logic behind corporate financial decisions."
+  },
+  "summary": {
+    "keyIdea": "An individual optimises consumption and accumulation across a lifetime",
+    "commonMistake": "Reading the concept as a phrase to memorise rather than a principle to apply to a real decision.",
+    "action": "A business optimises profit and value for its shareholders"
+  },
+  "application": {
+    "title": "Compare how the three actors respond when short of money",
+    "message": "Write down: if you (an individual), a company, and the government were all short of funds this month, what options does each one have to cover the gap - list at least 2 options for each actor.",
+    "secondary": "This exercise helps show clearly why monetary policy can't be applied to a personal wallet."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The government spends more than it collects this year - it sounds exactly like an individual spending beyond their income. But a government has tools an individual never has."
+    },
+    { "type": "heading", "text": "Three actors, three different toolkits" },
+    {
+      "type": "paragraph",
+      "text": "Individuals, businesses and governments all manage money, but toward entirely different goals and with entirely different tools. An individual optimises consumption and asset accumulation across their whole lifetime. A business optimises profit and value for its shareholders. A government balances economic growth, price stability, and fair distribution across society as a whole - goals that sometimes pull against each other."
+    },
+    { "type": "heading", "text": "Running a deficit: where individuals and governments differ" },
+    {
+      "type": "paragraph",
+      "text": "An individual in deficit (spending more than they earn) has only two options: borrow from someone else, or sell an asset. A government has options an individual doesn't: issuing government bonds to borrow from domestic and international markets, or - under certain conditions - expanding the money supply through the central bank (though this risks inflation if overused)."
+    },
+    { "type": "heading", "text": "A government's two main tools: fiscal and monetary" },
+    {
+      "type": "paragraph",
+      "text": "Fiscal policy is the government adjusting state revenue and spending through taxation and public spending, decided directly by the government. Monetary policy is regulating the money supply and interest rates in the economy, carried out by the central bank, which in many countries operates independently of the government. Both tools are powerful, but both carry long-run consequences (inflation, public debt) if overused."
+    },
+    {
+      "type": "list",
+      "items": [
+        "An individual: optimises consumption and accumulation across a lifetime, with tools limited to personal income-savings-borrowing",
+        "A business: optimises profit and shareholder value, with tools including equity, debt, and issuing shares",
+        "A government: balances growth-stability-fairness, with tools including fiscal policy and monetary policy"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Why the distinction matters",
+      "text": "Understanding this difference helps you read economic news more accurately: when you see 'the government runs a budget deficit' or 'the central bank raises interest rates', you'll know these are two different tools, serving different goals, with different effects on the economy."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "These three financial actors don't operate independently - a government's decisions (interest rates, tax) feed directly into the decisions of businesses and individuals, forming one tightly linked system."
+      ]
+    }
+  ]
+}

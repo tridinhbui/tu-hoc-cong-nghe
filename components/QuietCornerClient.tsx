@@ -32,6 +32,7 @@ import {
   WORRY_THEME_PROMPT,
   orderWorriesByTheme,
 } from "@/lib/quiet-corner-themes";
+import { useI18n } from "@/lib/i18n/context";
 
 // "Góc yên tĩnh" - trang riêng đằng sau thẻ lời nhắn.
 //
@@ -41,6 +42,7 @@ import {
 // nghỉ thành một nhiệm vụ nữa phải hoàn thành.
 
 export default function QuietCornerClient({ userId }: { userId: string }) {
+  const { t } = useI18n();
   const [motivation, setMotivation] = useState<DailyMotivation | null>(null);
   const [openWorry, setOpenWorry] = useState<string | null>(null);
   // Nỗi lo đã "đặt xuống" trong phiên này. Cố ý không lưu đi đâu: sang mai
@@ -214,7 +216,7 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
         className="inline-flex items-center gap-1.5 text-xs font-bold text-stone-500 transition-colors hover:text-stone-800 dark:text-stone-400 dark:hover:text-stone-200"
       >
         <ArrowLeft className="h-3.5 w-3.5" />
-        Về trang chủ
+        {t.quietCorner.home}
       </Link>
 
       {/* --- Lời nhắn hôm nay --------------------------------------------- */}
@@ -313,11 +315,10 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
       {/* --- Một phút thở -------------------------------------------------- */}
       <section className="rounded-[28px] border border-stone-200 bg-stone-50 px-6 py-7 dark:border-stone-800 dark:bg-stone-900/50">
         <h2 className="text-center text-base font-extrabold text-stone-800 dark:text-stone-100">
-          Một phút thở
+          {t.quietCorner.breatheTitle}
         </h2>
         <p className="mx-auto mt-1.5 max-w-md text-center text-xs leading-relaxed text-stone-500 dark:text-stone-400">
-          Nhịp 4-4-4-4, bốn vòng. Không tính điểm, không lưu lại, không ai biết
-          bạn có làm hay không.
+          {t.quietCorner.breatheBlurb}
         </p>
         <BreathingCircle />
       </section>
@@ -326,11 +327,10 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
       <section className="rounded-[28px] border border-stone-200 bg-white px-5 py-7 dark:border-stone-800 dark:bg-stone-900">
         <div className="px-1 text-center">
           <h2 className="text-base font-extrabold text-stone-800 dark:text-stone-100">
-            Đặt xuống một gánh nặng
+            {t.quietCorner.burdenTitle}
           </h2>
           <p className="mx-auto mt-1.5 max-w-md text-xs leading-relaxed text-stone-500 dark:text-stone-400">
-            Chọn nỗi lo đang nằm trong đầu bạn để xem một góc nhìn khác. Đây là
-            cách nghĩ, không phải lời khuyên nên mua gì hay tiêu bao nhiêu.
+            {t.quietCorner.burdenBlurb}
           </p>
         </div>
 
@@ -454,7 +454,7 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
 
       <p className="flex items-center justify-center gap-1.5 pb-6 text-[11px] font-semibold text-stone-400">
         <Heart className="h-3 w-3" />
-        Không có XP nào ở trang này. Đó là chủ ý.
+        {t.quietCorner.noXp}
       </p>
     </div>
   );

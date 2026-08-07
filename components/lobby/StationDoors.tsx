@@ -4,8 +4,9 @@ import { useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { MEZZ_Y, type Floor } from "./world";
-import { STATIONS, STATION_X, nearestStation, type Station } from "./stations";
+import { stationsOf, STATION_X, nearestStation, type Station } from "./stations";
 import { formulaPlaqueTexture } from "./room-textures";
+import { useI18n } from "@/lib/i18n/context";
 
 /** Hành lang cửa phòng học trên ban công tầng hai.
  *
@@ -92,11 +93,13 @@ export default function StationDoors({
   playerRef: React.MutableRefObject<{ x: number; z: number; floor: Floor }>;
   onNearChange: (station: Station | null) => void;
 }) {
+  const { t } = useI18n();
+  const stations = useMemo(() => stationsOf(t), [t]);
   const activeRef = useRef<string | null>(null);
 
   useFrame(() => {
     const p = playerRef.current;
-    const found = nearestStation(p.x, p.z, p.floor);
+    const found = nearestStation(stations, p.x, p.z, p.floor);
     const id = found?.id ?? null;
     // Chỉ báo ra ngoài khi ĐỔI cửa. Gọi mỗi khung hình thì HUD re-render 60
     // lần/giây để hiển thị đúng một tấm thẻ không đổi.
@@ -108,7 +111,7 @@ export default function StationDoors({
 
   return (
     <group>
-      {STATIONS.map((s) => (
+      {stations.map((s) => (
         <StationDoor key={s.id} station={s} activeRef={activeRef} />
       ))}
     </group>

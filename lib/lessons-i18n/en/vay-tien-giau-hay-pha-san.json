@@ -1,0 +1,136 @@
+{
+  "slug": "vay-tien-giau-hay-pha-san",
+  "title": "Why borrowing can make you rich, or bankrupt you.",
+  "subtitle": "The outcome depends on whether the return on borrowed capital beats the loan's interest rate.",
+  "duration": "7 min",
+  "openingQuestion": "Two people each borrow 1 billion at 10% a year. Person A invests it to earn 20% a year. Person B invests it to earn 5% a year. After 5 years, who is richer, and who is at risk of going bankrupt?",
+  "openingOptions": [
+    "Person B is far safer, since they chose a cautious investment with a much lower expected return",
+    "Both carry the same level of risk, since they borrowed the same principal of 1 billion VND",
+    "Both face the same risk of bankruptcy, since both are carrying an equally large loan",
+    "Person A grows richer; Person B risks default because their return is below the interest rate"
+  ],
+  "explanation": "Borrowing doesn't make you rich or poor by itself - the sign of the gap between the investment's return and the loan's interest rate does. Someone who borrows at 10% to earn 20% grows richer every year; someone who borrows at 10% to earn 5% grows poorer every year, even though both are 'using leverage'. And leverage magnifies both scenarios, so the real question isn't 'should I borrow', but 'how confident am I in that return'.",
+  "diagram": [
+    { "label": "Borrow at a fixed interest rate" },
+    { "label": "Invest that money, earning some return" },
+    { "label": "Compare the return against the loan's interest rate" },
+    { "label": "A positive gap means growing richer, a negative gap means growing poorer - and leverage magnifies both" }
+  ],
+  "realWorldExample": {
+    "company": "Vietnamese real estate, 2019-2022 versus 2023",
+    "description": "Investors who used leverage to buy land in 2019-2022, when prices rose 30-50% a year against 8-10% loan interest, had a positive spread and many grew rich fast. In 2023 land prices froze while interest still had to be paid: many were forced to sell at a loss."
+  },
+  "quiz": [
+    {
+      "question": "What does a positive spread mean in leveraged investing?",
+      "options": [
+        "The return on borrowed capital exceeds the interest owed; leverage increases net worth",
+        "A person's or a business's leverage ratio is declining year after year",
+        "The financial market as a whole is entering a stable, sustained period of growth",
+        "The current borrowing rate is below the 5%-a-year threshold set by bank regulation"
+      ],
+      "explanation": "When investment ROI > the loan's interest rate, every extra dong borrowed generates surplus profit. When ROI < the interest rate, every extra dong borrowed destroys value. The spread decides which direction it goes."
+    },
+    {
+      "question": "What is a margin call in leveraged stock investing?",
+      "options": [
+        "An order to buy more stock automatically executed by the trading system when the price drops sharply",
+        "A demand to deposit more money or sell assets when an account's value falls below the required minimum",
+        "A phone call from a broker inviting a client to open a new trading account",
+        "An extra transaction fee an investor must pay when placing a margin trade"
+      ],
+      "explanation": "When using margin, if the asset's price falls enough that the ratio of your own capital to the total position drops below the required threshold, the broker demands more money be deposited or automatically sells your position at a loss to recover the loan."
+    },
+    {
+      "question": "Scenario: You borrow 500 million at 10% a year to invest in a business project. Project A: a grocery store, expected to earn a steady 8% a year. Project B: a coffee shop, expected to earn 18% a year but with high risk, possibly as low as 5% in a bad year. Project C: suburban land, expected to appreciate 25% a year but with very low liquidity. If you need monthly cash flow to pay the interest, which project fits best?",
+      "options": [
+        "Project B, because it has the highest positive spread of the three",
+        "Project A, because it's stable, and its cash flow covers the interest despite a negative spread",
+        "None of them should be funded by this loan, since the risk is too high in every case",
+        "Project C, because it has the highest expected return"
+      ],
+      "explanation": "Project A: ROI 8% < the 10% loan rate, and the project's profit (40 million a year) doesn't cover the 50 million a year of interest owed - a negative spread means the project itself already loses against the cost of borrowing, not a safe choice. Project C: has the highest positive spread, but land appreciation generates no monthly cash, and its low liquidity means there's nowhere to find cash for regular interest payments. Project B: has a positive spread (18% > 10%) but high risk, and a 5% return in a bad year might not cover the interest - still uncertain. None of the three meets the requirement of 'steady monthly cash flow to pay interest', so none of them should be funded by this loan."
+    },
+    {
+      "question": "Scenario: You borrow 800 million at 12% a year to fund a project with a 9% a year ROI. What is the spread, and how much is lost each year?",
+      "options": [
+        "It can't be calculated without knowing the loan's term",
+        "Positive 3 points, a net gain of 24 million a year",
+        "Negative 3 points, but still profitable because ROI is positive",
+        "Negative 3 points, a loss of 24 million of interest a year"
+      ],
+      "explanation": "Spread = ROI − the loan's interest rate = 9 − 12 = negative 3 points, meaning 800 × 3% = 24 million flows out every year. The project still earns 9%, but that entire amount and more already belongs to the lender before it ever reaches you."
+    },
+    {
+      "question": "Why does a margin call almost always arrive at the worst possible moment?",
+      "options": [
+        "Because a price fall both creates the loss and triggers the demand for more money at once",
+        "Because the brokerage deliberately chooses a bad moment to call",
+        "Because margin calls are only issued during a limit-down trading session",
+        "Because the margin interest rate rises every time the market falls"
+      ],
+      "explanation": "The very same price drop erodes the value of your collateral and pushes the margin ratio below the threshold at the same time, so the demand for cash arrives exactly when you have the least of it. Fail to top up in time, and your position gets force-sold right at the bottom - a loss that was only on paper becomes a real one."
+    }
+  ],
+  "keyTakeaways": [
+    "Borrowing builds wealth when investment ROI exceeds the loan's interest rate (positive spread)",
+    "Borrowing causes bankruptcy when ROI falls below the interest rate (negative spread), or the asset loses value sharply",
+    "Market conditions can shift, turning a positive spread into a negative one"
+  ],
+  "practicePrompt": {
+    "question": "You borrow 400 million at 9% a year to invest in stocks on margin. In the first year, your portfolio loses 15% while the loan interest still has to be paid regularly. What is happening to your net worth compared to not using leverage?",
+    "options": [
+      "Net worth falls far more sharply than without borrowing, because leverage amplifies both the loss and the interest cost that still has to be paid",
+      "Net worth is unchanged, because the 15% loss only applies to your own capital, not the borrowed portion",
+      "Net worth rises slightly, because the 9%-a-year interest rate is much lower than the portfolio's 15% loss",
+      "Net worth falls by exactly 15%, the same as without leverage, since the percentage loss is identical"
+    ],
+    "explanation": "Leverage amplifies both directions: the 15% loss is calculated on the entire asset (including the borrowed portion), plus the 9%-a-year interest still has to be paid despite the loss - making net worth fall far more sharply than without borrowing."
+  },
+  "summary": {
+    "keyIdea": "Borrowing builds wealth when investment ROI exceeds the loan's interest rate (positive spread)",
+    "commonMistake": "Reading the concept as a phrase to memorise rather than a principle to apply to a real decision.",
+    "action": "Borrowing causes bankruptcy when ROI falls below the interest rate (negative spread), or the asset loses value sharply"
+  },
+  "application": {
+    "title": "Work out the spread on a loan you know of",
+    "message": "If you or someone you know has ever borrowed to invest or run a business, try estimating that investment's real ROI and comparing it against the loan's interest rate - that gap is exactly what decides between wealth and bankruptcy.",
+    "secondary": "If you've never borrowed, try it with a hypothetical scenario to get used to the calculation."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Two people each borrow 1 billion VND at 10% a year. Person A invests it to earn 20% a year, person B only earns 5% a year. After 5 years, who has grown richer, and who is facing bankruptcy?"
+    },
+    { "type": "heading", "text": "The spread - the gap that decides everything" },
+    {
+      "type": "paragraph",
+      "text": "In the context of borrowing to invest, the 'spread' is the gap between the investment's rate of return (ROI) and the interest rate owed on the loan. Person A has a positive spread: 20% − 10% = 10% a year - every year their net worth grows thanks to this gap. Person B has a negative spread: 5% − 10% = −5% a year - every year they grow poorer, because the investment's return isn't enough to cover the loan's interest."
+    },
+    { "type": "heading", "text": "The core principle: investment ROI must exceed the cost of capital" },
+    {
+      "type": "paragraph",
+      "text": "This is the principle that decides whether borrowing money makes you rich or leads to bankruptcy: only borrow when you have a reasonable basis (not bare hope) for believing the investment's return will sustainably exceed the loan's interest rate. Without that certainty, borrowing to invest is a high-risk gamble."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Borrowing builds wealth when: investment ROI > the loan's interest rate (positive spread), sustained over time",
+        "Borrowing leads to bankruptcy when: ROI < the loan's interest rate (negative spread), or the invested asset loses value sharply",
+        "Market conditions can shift unexpectedly, turning a positive spread negative midway through"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "A risk often overlooked",
+      "text": "A positive spread at the moment you borrow doesn't guarantee it stays positive for the whole loan term. Interest rates can rise, investment returns can drop unexpectedly - which is why you need a safety margin, rather than borrowing right up to the maximum you can bear."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Borrowing to invest is neither good nor bad by itself - it's good when the spread is positive and sustainable, bad when it's the reverse. Always scrutinise the assumptions before placing the bet."
+      ]
+    }
+  ]
+}

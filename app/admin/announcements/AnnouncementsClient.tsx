@@ -6,12 +6,18 @@ import { AlertTriangle, Info, Megaphone, ShieldAlert } from "lucide-react";
 import ConfirmDialog from "@/components/admin/ConfirmDialog";
 import { createAnnouncementAction, deactivateAnnouncementAction } from "./actions";
 import type { AdminAnnouncement } from "@/lib/admin/announcements";
+import { useI18n } from "@/lib/i18n/context";
+import { format, intlLocale, type Locale } from "@/lib/i18n";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
-const SEVERITIES: { id: AdminAnnouncement["severity"]; label: string }[] = [
-  { id: "info", label: "Thông tin" },
-  { id: "warning", label: "Cảnh báo" },
-  { id: "critical", label: "Khẩn cấp" },
-];
+function getSeverities(t: Dictionary): { id: AdminAnnouncement["severity"]; label: string }[] {
+  const ta = t.adminThree.announcementsClient;
+  return [
+    { id: "info", label: ta.severityInfo },
+    { id: "warning", label: ta.severityWarning },
+    { id: "critical", label: ta.severityCritical },
+  ];
+}
 
 const SEVERITY_STYLE: Record<AdminAnnouncement["severity"], { badge: string; icon: typeof Info }> = {
   info: { badge: "bg-sky-50 text-sky-700 border-sky-200 dark:bg-sky-950/40 dark:text-sky-400 dark:border-sky-900", icon: Info },
@@ -19,8 +25,8 @@ const SEVERITY_STYLE: Record<AdminAnnouncement["severity"], { badge: string; ico
   critical: { badge: "bg-rose-50 text-rose-700 border-rose-200 dark:bg-rose-950/40 dark:text-rose-400 dark:border-rose-900", icon: ShieldAlert },
 };
 
-function formatDate(iso: string): string {
-  return new Date(iso).toLocaleString("vi-VN", { dateStyle: "short", timeStyle: "short" });
+function formatDate(iso: string, locale: Locale): string {
+  return new Date(iso).toLocaleString(intlLocale(locale), { dateStyle: "short", timeStyle: "short" });
 }
 
 export default function AnnouncementsClient({
@@ -28,6 +34,9 @@ export default function AnnouncementsClient({
 }: {
   initialAnnouncements: AdminAnnouncement[];
 }) {
+  const { t, locale } = useI18n();
+  const ta = t.adminThree.announcementsClient;
+  const SEVERITIES = getSeverities(t);
   const [announcements, setAnnouncements] = useState(initialAnnouncements);
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
@@ -50,7 +59,7 @@ export default function AnnouncementsClient({
           : null;
 
       await createAnnouncementAction({ title: title.trim(), body: body.trim(), severity, expiresAt });
-      toast.success("Đã gửi thông báo tới toàn bộ tài khoản");
+      toast.success(ta.sendSuccess);
       setTitle("");
       setBody("");
       setSeverity("info");
@@ -60,7 +69,7 @@ export default function AnnouncementsClient({
       });
     } catch (error) {
       console.error("Error creating announcement:", error);
-      toast.error("Không thể gửi thông báo. Vui lòng thử lại.");
+      toast.error(ta.sendFailed);
     } finally {
       setSending(false);
     }
@@ -71,10 +80,10 @@ export default function AnnouncementsClient({
       try {
         await deactivateAnnouncementAction(id);
         setAnnouncements((prev) => prev.map((a) => (a.id === id ? { ...a, active: false } : a)));
-        toast.success("Đã thu hồi thông báo");
+        toast.success(ta.deactivateSuccess);
       } catch (error) {
         console.error("Error deactivating announcement:", error);
-        toast.error("Không thể thu hồi thông báo.");
+        toast.error(ta.deactivateFailed);
       } finally {
         setDeactivateTarget(null);
       }
@@ -86,33 +95,33 @@ export default function AnnouncementsClient({
       <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl p-5 space-y-4">
         <div className="flex items-center gap-2">
           <Megaphone className="w-4 h-4 text-stone-500 dark:text-stone-400" />
-          <h2 className="text-sm font-bold text-stone-900 dark:text-stone-100">Gửi thông báo mới</h2>
+          <h2 className="text-sm font-bold text-stone-900 dark:text-stone-100">{ta.newAnnouncementHeading}</h2>
         </div>
 
         <div>
           <label className="block text-xs font-bold text-stone-600 dark:text-stone-400 uppercase tracking-wider mb-1.5">
-            Tiêu đề
+            {ta.titleLabel}
           </label>
           <input
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             maxLength={200}
-            placeholder="VD: Bảo trì hệ thống tối nay 22h-23h"
+            placeholder={ta.titlePlaceholder}
             className="w-full px-4 py-2.5 rounded-lg border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 focus:border-stone-400 dark:focus:border-stone-500 focus:ring-1 focus:ring-stone-900/5 focus:outline-none text-stone-900 dark:text-stone-100 text-sm"
           />
         </div>
 
         <div>
           <label className="block text-xs font-bold text-stone-600 dark:text-stone-400 uppercase tracking-wider mb-1.5">
-            Nội dung
+            {ta.bodyLabel}
           </label>
           <textarea
             value={body}
             onChange={(e) => setBody(e.target.value)}
             maxLength={2000}
             rows={4}
-            placeholder="Nội dung chi tiết hiển thị cho người dùng..."
+            placeholder={ta.bodyPlaceholder}
             className="w-full px-4 py-2.5 rounded-lg border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 focus:border-stone-400 dark:focus:border-stone-500 focus:ring-1 focus:ring-stone-900/5 focus:outline-none text-stone-900 dark:text-stone-100 text-sm resize-none"
           />
         </div>
@@ -120,7 +129,7 @@ export default function AnnouncementsClient({
         <div className="grid grid-cols-2 gap-4">
           <div>
             <label className="block text-xs font-bold text-stone-600 dark:text-stone-400 uppercase tracking-wider mb-1.5">
-              Mức độ
+              {ta.severityLabel}
             </label>
             <div className="flex gap-1.5">
               {SEVERITIES.map((s) => (
@@ -141,14 +150,14 @@ export default function AnnouncementsClient({
           </div>
           <div>
             <label className="block text-xs font-bold text-stone-600 dark:text-stone-400 uppercase tracking-wider mb-1.5">
-              Tự hết hạn sau (ngày, để trống = không hết hạn)
+              {ta.expiresLabel}
             </label>
             <input
               type="number"
               min={1}
               value={expiresInDays}
               onChange={(e) => setExpiresInDays(e.target.value)}
-              placeholder="VD: 7"
+              placeholder={ta.expiresPlaceholder}
               className="w-full px-4 py-2.5 rounded-lg border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 focus:border-stone-400 dark:focus:border-stone-500 focus:ring-1 focus:ring-stone-900/5 focus:outline-none text-stone-900 dark:text-stone-100 text-sm"
             />
           </div>
@@ -160,14 +169,14 @@ export default function AnnouncementsClient({
           onClick={() => setConfirmSendOpen(true)}
           className="w-full py-3 rounded-lg font-bold text-sm bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
         >
-          {sending ? "Đang gửi..." : "Gửi tới toàn bộ tài khoản"}
+          {sending ? ta.sending : ta.sendToAll}
         </button>
       </div>
 
       <div>
-        <h2 className="text-sm font-bold text-stone-900 dark:text-stone-100 mb-3">Lịch sử thông báo</h2>
+        <h2 className="text-sm font-bold text-stone-900 dark:text-stone-100 mb-3">{ta.historyHeading}</h2>
         {announcements.length === 0 ? (
-          <p className="text-sm text-stone-500 dark:text-stone-400">Chưa gửi thông báo nào.</p>
+          <p className="text-sm text-stone-500 dark:text-stone-400">{ta.noHistory}</p>
         ) : (
           <div className="space-y-3">
             {announcements.map((a) => {
@@ -187,15 +196,15 @@ export default function AnnouncementsClient({
                         </span>
                         {!a.active && (
                           <span className="text-[10px] font-bold uppercase tracking-wide px-2 py-0.5 rounded-full border border-stone-200 dark:border-stone-700 text-stone-400 dark:text-stone-500">
-                            Đã thu hồi
+                            {ta.deactivatedBadge}
                           </span>
                         )}
                       </div>
                       <p className="font-bold text-stone-900 dark:text-stone-100 mt-1.5">{a.title}</p>
                       <p className="text-sm text-stone-600 dark:text-stone-400 mt-1 whitespace-pre-wrap">{a.body}</p>
                       <p className="text-xs text-stone-400 dark:text-stone-500 mt-2">
-                        {formatDate(a.createdAt)} · {a.createdByEmail ?? "admin"} · {a.readCount} người đã đọc
-                        {a.expiresAt ? ` · hết hạn ${formatDate(a.expiresAt)}` : ""}
+                        {formatDate(a.createdAt, locale)} · {a.createdByEmail ?? "admin"} · {a.readCount} {ta.readCountSuffix}
+                        {a.expiresAt ? ` ${format(ta.expiresSuffix, { date: formatDate(a.expiresAt, locale) })}` : ""}
                       </p>
                     </div>
                     {a.active && (
@@ -204,7 +213,7 @@ export default function AnnouncementsClient({
                         disabled={isPending}
                         className="flex-shrink-0 text-xs font-bold text-rose-600 dark:text-rose-400 hover:underline disabled:opacity-50"
                       >
-                        Thu hồi
+                        {ta.deactivateAction}
                       </button>
                     )}
                   </div>
@@ -217,9 +226,9 @@ export default function AnnouncementsClient({
 
       <ConfirmDialog
         open={confirmSendOpen}
-        title="Gửi thông báo?"
-        message="Thông báo sẽ hiển thị ngay cho mọi tài khoản khi họ vào dashboard, cho tới khi họ tự đóng hoặc bạn thu hồi."
-        confirmLabel="Gửi ngay"
+        title={ta.sendTitle}
+        message={ta.sendMessage}
+        confirmLabel={ta.sendNow}
         onConfirm={handleSend}
         onCancel={() => setConfirmSendOpen(false)}
         loading={sending}
@@ -227,9 +236,9 @@ export default function AnnouncementsClient({
 
       <ConfirmDialog
         open={deactivateTarget !== null}
-        title="Thu hồi thông báo?"
-        message="Thông báo sẽ ngừng hiển thị cho những ai chưa đọc. Không ảnh hưởng tới người đã thấy trước đó."
-        confirmLabel="Thu hồi"
+        title={ta.deactivateTitle}
+        message={ta.deactivateMessage}
+        confirmLabel={ta.deactivateAction}
         danger
         onConfirm={() => deactivateTarget !== null && handleDeactivate(deactivateTarget)}
         onCancel={() => setDeactivateTarget(null)}

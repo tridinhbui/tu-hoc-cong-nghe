@@ -1,10 +1,15 @@
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   BASE_DRIVERS,
-  IMPACTS,
   buildStatements,
   driversAfter,
+  impactsOf,
 } from "@/lib/three-statement-model";
+import { vi } from "@/lib/i18n/dictionaries/vi";
+
+const IMPACTS = impactsOf(vi);
 
 /** Mô hình ba báo cáo của Phòng Ba Báo Cáo.
  *
@@ -24,6 +29,37 @@ describe("bảng cân đối", () => {
       expect(s.balanceCheck, `${impact.id}: hai vế lệch nhau`).toBe(0);
     }
   });
+});
+
+/** Mô hình đúng mà tấm thẻ giấu bớt dòng thì người học vẫn thấy một bảng sai.
+ *
+ *  Đúng như thế đã xảy ra: bảng cân đối trên tường bày Tiền mặt 600, Phải thu
+ *  200, TSCĐ 700 rồi TỔNG TÀI SẢN 1.650 - vì hàng tồn kho 150 không có dòng
+ *  nào. Vế nguồn vốn cũng vậy, thiếu phải trả người bán 120. Bên kết quả kinh
+ *  doanh, EBIT 300 rồi Thuế 50 rồi LNST 200, vì lãi vay 50 bị bỏ. Ba chỗ cộng
+ *  không ra, và ngay bên dưới tấm thẻ vẫn in "Hai vế lệch nhau: 0 ✓" - căn
+ *  phòng tự chứng minh mình nói dối, đúng thứ nó sinh ra để chống lại.
+ *
+ *  Bài kiểm này đọc MÃ NGUỒN của tấm thẻ chứ không dựng React: thứ cần giữ là
+ *  "mọi dòng của mô hình đều có mặt trên tường", và đó là một câu hỏi về mã
+ *  nguồn. Dựng cảnh 3D để hỏi nó thì đắt hơn nhiều mà không chắc hơn tí nào. */
+describe("tấm thẻ bày đủ mọi dòng của mô hình", () => {
+  const source = readFileSync(
+    join(process.cwd(), "components/career-district/ThreeStatementPanel.tsx"),
+    "utf8"
+  );
+  const statements = buildStatements(BASE_DRIVERS);
+
+  for (const wall of ["incomeStatement", "cashFlow", "balanceSheet"] as const) {
+    it(`${wall}: không bỏ sót dòng nào`, () => {
+      for (const key of Object.keys(statements[wall])) {
+        // grossProfit là ngoại lệ có chủ ý: doanh thu trừ giá vốn là phép trừ
+        // người học tự nhẩm được, và bỏ nó không làm cột số cộng sai.
+        if (wall === "incomeStatement" && key === "grossProfit") continue;
+        expect(source, `thiếu dòng ${wall}.${key} trên tường`).toContain(`${wall}.${key}`);
+      }
+    });
+  }
 });
 
 describe("bốn mối nối kinh điển", () => {

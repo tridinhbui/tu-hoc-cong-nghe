@@ -7,8 +7,9 @@ import { getUserStreak } from "@/lib/supabase-streak";
 import { getEquippedGear } from "@/lib/supabase-equipment";
 import { getLessonRecalls } from "@/lib/supabase-recalls";
 import DistrictWorld, { type DistrictLesson } from "@/components/career-district/DistrictWorld";
-import { DISTRICT_ROOMS, type DistrictRoomId } from "@/components/career-district/district-space";
+import { districtRoomsOf, type DistrictRoomId } from "@/components/career-district/district-space";
 import { allDistrictLessonSlugs, buildStageIndex } from "@/components/career-district/district-content";
+import { getServerDictionary } from "@/lib/i18n/server";
 
 export const dynamic = "force-dynamic";
 
@@ -34,8 +35,9 @@ export default async function PhoNghePage({
   // đưa hàm khởi tạo của Object vào chỗ đáng ra là một căn phòng. Cùng họ với
   // `?phong=toString` và `?phong=__proto__`.
   const { phong } = await searchParams;
+  const dictionary = await getServerDictionary();
   const startRoom =
-    phong && Object.hasOwn(DISTRICT_ROOMS, phong) ? (phong as DistrictRoomId) : undefined;
+    phong && Object.hasOwn(districtRoomsOf(dictionary), phong) ? (phong as DistrictRoomId) : undefined;
 
   const supabase = await createServerSupabaseClient();
   const {

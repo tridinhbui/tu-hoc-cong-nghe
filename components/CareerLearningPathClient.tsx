@@ -6,6 +6,9 @@ import Image from "next/image";
 import { ArrowLeft, Circle, CheckCircle2 } from "lucide-react";
 import { FINANCE_CAREERS, type FinanceCareer } from "@/lib/finance-careers";
 import { CFA_LEVEL_1_SUBJECTS } from "@/lib/cfa-track";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
 interface LessonRef {
   id: number;
@@ -22,26 +25,33 @@ interface CareerLearningPathClientProps {
   embedded?: boolean;
 }
 
-const CATEGORY_LABEL: Record<FinanceCareer["category"], string> = {
-  investment: "Đầu tư",
-  accounting: "Kế toán",
-  banking: "Ngân hàng",
-  advisory: "Tư vấn",
-  data: "Dữ liệu",
-};
+function categoryLabel(t: Dictionary, category: FinanceCareer["category"]): string {
+  const map: Record<FinanceCareer["category"], string> = {
+    investment: t.careerPath.categoryInvestment,
+    accounting: t.careerPath.categoryAccounting,
+    banking: t.careerPath.categoryBanking,
+    advisory: t.careerPath.categoryAdvisory,
+    data: t.careerPath.categoryData,
+  };
+  return map[category];
+}
 
 // One extra filter layer before the (still 7-12 item) career grid, so
 // landing on this page is "pick a broad direction" then "pick a career"
 // instead of scanning 36 cards at once.
-const CATEGORY_META: Record<FinanceCareer["category"], { label: string; description: string; emoji: string; image: string; from: string; to: string }> = {
-  investment: { label: "Đầu tư & Phân tích", description: "Phân tích thị trường, định giá doanh nghiệp, quản lý danh mục", emoji: "📈", image: "/careers/cat_investment_3d.jpg", from: "#34d399", to: "#0d9488" },
-  accounting: { label: "Kế toán & Kiểm toán", description: "Ghi nhận, kiểm tra và đảm bảo tuân thủ sổ sách tài chính", emoji: "📒", image: "/careers/cat_accounting_3d.jpg", from: "#60a5fa", to: "#2563eb" },
-  banking: { label: "Ngân hàng & Rủi ro", description: "Tín dụng, quản lý rủi ro, nguồn vốn, giao dịch", emoji: "🏦", image: "/careers/cat_banking_3d.jpg", from: "#f59e0b", to: "#d97706" },
-  advisory: { label: "Tư vấn & Khách hàng cá nhân", description: "Môi giới, hoạch định tài chính cá nhân, quan hệ nhà đầu tư", emoji: "🤝", image: "/careers/cat_advisory_3d.jpg", from: "#f472b6", to: "#db2777" },
-  // Chưa có ảnh riêng cho danh mục này - đang mượn tạm ảnh của nhóm đầu tư.
-  // Thay bằng /careers/cat_data_3d.jpg khi có ảnh.
-  data: { label: "Dữ liệu & Công nghệ", description: "Phân tích dữ liệu, báo cáo tự phục vụ, hạ tầng và chất lượng dữ liệu", emoji: "🧮", image: "/careers/cat_investment_3d.jpg", from: "#38bdf8", to: "#0369a1" },
-};
+function categoryMeta(
+  t: Dictionary
+): Record<FinanceCareer["category"], { label: string; description: string; emoji: string; image: string; from: string; to: string }> {
+  return {
+    investment: { label: t.careerPath.catInvestmentLabel, description: t.careerPath.catInvestmentDesc, emoji: "📈", image: "/careers/cat_investment_3d.jpg", from: "#34d399", to: "#0d9488" },
+    accounting: { label: t.careerPath.catAccountingLabel, description: t.careerPath.catAccountingDesc, emoji: "📒", image: "/careers/cat_accounting_3d.jpg", from: "#60a5fa", to: "#2563eb" },
+    banking: { label: t.careerPath.catBankingLabel, description: t.careerPath.catBankingDesc, emoji: "🏦", image: "/careers/cat_banking_3d.jpg", from: "#f59e0b", to: "#d97706" },
+    advisory: { label: t.careerPath.catAdvisoryLabel, description: t.careerPath.catAdvisoryDesc, emoji: "🤝", image: "/careers/cat_advisory_3d.jpg", from: "#f472b6", to: "#db2777" },
+    // Chưa có ảnh riêng cho danh mục này - đang mượn tạm ảnh của nhóm đầu tư.
+    // Thay bằng /careers/cat_data_3d.jpg khi có ảnh.
+    data: { label: t.careerPath.catDataLabel, description: t.careerPath.catDataDesc, emoji: "🧮", image: "/careers/cat_investment_3d.jpg", from: "#38bdf8", to: "#0369a1" },
+  };
+}
 const CATEGORY_ORDER: FinanceCareer["category"][] = ["investment", "accounting", "banking", "advisory", "data"];
 
 // Entry-level and mixed ("Junior đến Senior") careers still have a way in;
@@ -55,6 +65,8 @@ export default function CareerLearningPathClient({
   completedLessonIds,
   embedded = false,
 }: CareerLearningPathClientProps) {
+  const { t } = useI18n();
+  const CATEGORY_META = useMemo(() => categoryMeta(t), [t]);
   const [selectedCategory, setSelectedCategory] = useState<FinanceCareer["category"] | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const completedSet = useMemo(() => new Set(completedLessonIds), [completedLessonIds]);
@@ -103,18 +115,19 @@ export default function CareerLearningPathClient({
             className="inline-flex items-center gap-1.5 text-sm font-bold text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 mb-4"
           >
             <ArrowLeft className="w-4 h-4" />
-            Quay lại
+            {t.careerPath.backLabel}
           </Link>
         )}
-        <h1 className="text-xl font-bold text-stone-900 dark:text-stone-100 mb-1">Tài chính theo nghề nghiệp</h1>
+        <h1 className="text-xl font-bold text-stone-900 dark:text-stone-100 mb-1">{t.careerPath.pageTitle}</h1>
         <p className="text-sm text-stone-500 dark:text-stone-400 mb-6">
-          Chọn một nhóm nghề nghiệp để bắt đầu.
+          {t.careerPath.pageSubtitle}
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {CATEGORY_ORDER.map((cat) => {
             const meta = CATEGORY_META[cat];
             const count = entryLevelCareers.filter((c) => c.category === cat).length;
+            const countLabel = format(t.careerPath.careerCount, { count });
             return (
               <button
                 key={cat}
@@ -133,7 +146,7 @@ export default function CareerLearningPathClient({
                   </div>
                   <div className="min-w-0">
                     <p className="font-extrabold text-stone-900 dark:text-stone-100 text-sm group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">{meta.label}</p>
-                    <p className="text-[10px] font-black uppercase tracking-wider text-stone-400 dark:text-stone-500">{count} nghề</p>
+                    <p className="text-[10px] font-black uppercase tracking-wider text-stone-400 dark:text-stone-500">{countLabel}</p>
                   </div>
                 </div>
                 <p className="text-xs text-stone-500 dark:text-stone-400 leading-relaxed">{meta.description}</p>
@@ -155,11 +168,11 @@ export default function CareerLearningPathClient({
           className="inline-flex items-center gap-1.5 text-sm font-bold text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 mb-4"
         >
           <ArrowLeft className="w-4 h-4" />
-          Nhóm khác
+          {t.careerPath.otherGroup}
         </button>
         <h1 className="text-xl font-bold text-stone-900 dark:text-stone-100 mb-1">{meta.label}</h1>
         <p className="text-sm text-stone-500 dark:text-stone-400 mb-6">
-          Chọn một định hướng nghề nghiệp để xem lộ trình bài học tương ứng.
+          {t.careerPath.pickCareerSubtitle}
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -188,7 +201,7 @@ export default function CareerLearningPathClient({
                 </div>
                 <div className="min-w-0">
                   <p className="font-bold text-stone-900 dark:text-stone-100 text-sm truncate">{career.title}</p>
-                  <p className="text-[10px] font-semibold uppercase tracking-wider text-stone-400">{CATEGORY_LABEL[career.category]}</p>
+                  <p className="text-[10px] font-semibold uppercase tracking-wider text-stone-400">{categoryLabel(t, career.category)}</p>
                 </div>
               </div>
               <p className="text-xs text-stone-500 dark:text-stone-400 line-clamp-2">{career.summary}</p>
@@ -206,7 +219,7 @@ export default function CareerLearningPathClient({
         className="inline-flex items-center gap-1.5 text-sm font-bold text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 mb-4"
       >
         <ArrowLeft className="w-4 h-4" />
-        Chọn nghề khác
+        {t.careerPath.otherCareer}
       </button>
 
       {/* Career header - same visual role as a stage header on the
@@ -242,7 +255,7 @@ export default function CareerLearningPathClient({
               <div className="h-full bg-white" style={{ width: `${percent}%` }} />
             </div>
             <span className="text-xs font-bold bg-white/20 px-2.5 py-1 rounded-lg shrink-0">
-              {doneCount}/{roadmap.length} bài
+              {format(t.careerPath.lessonCount, { done: doneCount, total: roadmap.length })}
             </span>
           </div>
         )}
@@ -253,7 +266,7 @@ export default function CareerLearningPathClient({
           career roadmap isn't gated the way a track's stages are. */}
       {roadmap.length === 0 ? (
         <p className="text-sm text-stone-500 dark:text-stone-400 text-center py-8">
-          Nghề này chưa có bài học liên kết sẵn - xem hồ sơ đầy đủ bên dưới để tìm hiểu thêm.
+          {t.careerPath.noRoadmapLessons}
         </p>
       ) : (
         <div className="space-y-2 mb-6">
@@ -292,7 +305,7 @@ export default function CareerLearningPathClient({
           href="/su-nghiep"
           className="block text-center text-xs font-bold text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200 py-2"
         >
-          Xem hồ sơ nghề nghiệp đầy đủ (lộ trình sự nghiệp, kỹ năng, mức lương...) →
+          {t.careerPath.fullProfileCta}
         </Link>
       )}
     </div>

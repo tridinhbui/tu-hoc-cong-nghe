@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 // Kéo hai đòn bẩy chính sách và xem AD/AS dịch chuyển, widget cho các bài khai
 // `interactiveType: "macro-policy"`.
@@ -25,6 +27,8 @@ function priceShare(slack: number): number {
 }
 
 export default function InteractiveMacroPolicy() {
+  const { t } = useI18n();
+  const tr = t.interactiveRest.macroPolicy;
   const [fiscal, setFiscal] = useState(0); // -3..+3, tiêu dùng công / thuế
   const [monetary, setMonetary] = useState(0); // -3..+3, hạ/nâng lãi suất
   const [slack, setSlack] = useState(60); // % công suất còn nhàn rỗi
@@ -42,13 +46,13 @@ export default function InteractiveMacroPolicy() {
   return (
     <div className="rounded-3xl border border-stone-200 bg-white p-6 dark:border-stone-800 dark:bg-stone-900">
       <h3 className="text-sm font-extrabold text-stone-900 dark:text-stone-100">
-        Kéo chính sách, xem giá và sản lượng chia nhau cú kích
+        {tr.title}
       </h3>
 
       <div className="mt-4 space-y-4">
         <Slider
-          label="Chính sách tài khoá"
-          hint={fiscal === 0 ? "trung tính" : fiscal > 0 ? "tăng chi / giảm thuế" : "cắt chi / tăng thuế"}
+          label={tr.fiscalLabel}
+          hint={fiscal === 0 ? tr.fiscalHintNeutral : fiscal > 0 ? tr.fiscalHintExpand : tr.fiscalHintContract}
           value={fiscal}
           min={-3}
           max={3}
@@ -56,8 +60,8 @@ export default function InteractiveMacroPolicy() {
           onChange={setFiscal}
         />
         <Slider
-          label="Chính sách tiền tệ"
-          hint={monetary === 0 ? "trung tính" : monetary > 0 ? "hạ lãi suất" : "nâng lãi suất"}
+          label={tr.monetaryLabel}
+          hint={monetary === 0 ? tr.monetaryHintNeutral : monetary > 0 ? tr.monetaryHintExpand : tr.monetaryHintContract}
           value={monetary}
           min={-3}
           max={3}
@@ -65,8 +69,11 @@ export default function InteractiveMacroPolicy() {
           onChange={setMonetary}
         />
         <Slider
-          label="Công suất nhàn rỗi của nền kinh tế"
-          hint={`${slack}% — ${slack > 60 ? "còn nhiều chỗ để tăng sản lượng" : slack > 30 ? "đang thu hẹp" : "gần chạm trần"}`}
+          label={tr.slackLabel}
+          hint={format(tr.slackHint, {
+            slack,
+            desc: slack > 60 ? tr.slackDescHigh : slack > 30 ? tr.slackDescMid : tr.slackDescLow,
+          })}
           value={slack}
           min={0}
           max={100}
@@ -76,18 +83,22 @@ export default function InteractiveMacroPolicy() {
       </div>
 
       <div className="mt-5 grid gap-3 sm:grid-cols-2">
-        <Readout label="Sản lượng (GDP thực)" value={outputChange} unit="%" />
-        <Readout label="Mặt bằng giá" value={priceChange} unit="%" />
+        <Readout label={tr.outputLabel} value={outputChange} unit="%" />
+        <Readout label={tr.priceLabel} value={priceChange} unit="%" />
       </div>
 
       <p className="mt-4 rounded-2xl bg-stone-50 p-4 text-xs leading-relaxed text-stone-600 dark:bg-stone-800/60 dark:text-stone-300">
         {overheating
-          ? "Nền kinh tế gần hết công suất mà vẫn bơm thêm cầu: gần như toàn bộ cú kích chảy vào giá chứ không ra thêm hàng. Đây là hình dạng của một chu kỳ quá nóng, và là lúc ngân hàng trung ương thường đảo chiều."
+          ? tr.noteOverheating
           : stagnant
-            ? "Thắt chặt khi công suất còn thừa nhiều: sản lượng giảm mạnh mà giá gần như không xuống theo. Chi phí của việc siết quá tay rơi vào việc làm trước khi rơi vào lạm phát."
+            ? tr.noteStagnant
             : adShift === 0
-              ? "Cả hai đòn bẩy đang trung tính. Kéo một cái, rồi kéo thanh công suất và để ý: cùng một cú kích cho ra hai kết quả rất khác nhau tuỳ nền kinh tế đang đứng ở đâu."
-              : `Cú dịch tổng cầu ${adShift > 0 ? "sang phải" : "sang trái"} này chia ra ${Math.round(toPrice * 100)}% vào giá và ${Math.round((1 - toPrice) * 100)}% vào sản lượng — tỷ lệ đó do độ nhàn rỗi quyết định, không do loại chính sách.`}
+              ? tr.noteNeutral
+              : format(tr.noteShiftBody, {
+                  direction: adShift > 0 ? tr.noteShiftRight : tr.noteShiftLeft,
+                  priceShare: Math.round(toPrice * 100),
+                  outputShare: Math.round((1 - toPrice) * 100),
+                })}
       </p>
     </div>
   );

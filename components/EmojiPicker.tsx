@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Smile } from "lucide-react";
+import { useI18n } from "@/lib/i18n/context";
 
 const EMOJIS = [
   "😀", "😂", "😊", "😍", "🥰", "😎", "🤔", "😅",
@@ -11,6 +12,7 @@ const EMOJIS = [
 ];
 
 export default function EmojiPicker({ onSelect }: { onSelect: (emoji: string) => void }) {
+  const { t } = useI18n();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -28,7 +30,7 @@ export default function EmojiPicker({ onSelect }: { onSelect: (emoji: string) =>
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        title="Chọn emoji"
+        title={t.miscUi.emojiPicker.selectEmoji}
         className="p-2 border border-stone-100 dark:border-stone-800/50 text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 rounded-xl transition flex-shrink-0 active:scale-95"
       >
         <Smile className="w-4.5 h-4.5" />

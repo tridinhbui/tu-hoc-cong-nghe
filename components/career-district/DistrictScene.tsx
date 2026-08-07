@@ -49,6 +49,7 @@ import {
   type StudyWorldPeer,
 } from "@/lib/supabase-study-world";
 import { CHAT_BUBBLE_MS, type LobbyChatMessage } from "@/lib/supabase-lobby";
+import { useI18n } from "@/lib/i18n/context";
 
 const WALK_SPEED = 4.4;
 
@@ -367,7 +368,8 @@ export default function DistrictScene({
   const baseQuality = useRenderQuality();
   const { quality, onLevel } = useGovernedQuality(baseQuality);
   const pageVisible = usePageVisible();
-  const room = getRoom(roomId);
+  const { t } = useI18n();
+  const room = getRoom(t, roomId);
   const poseRef = useRef<AvatarPose>({ ...entry });
   const [peers, setPeers] = useState<StudyWorldPeer[]>([]);
   const [speeches, setSpeeches] = useState<Record<string, { text: string; at: number }>>({});

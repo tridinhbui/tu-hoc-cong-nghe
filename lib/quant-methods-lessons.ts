@@ -466,7 +466,7 @@ export const QUANT_METHODS_LESSONS: Lesson[] = [
         "Một nhà cung cấp tín hiệu trình bày backtest với p nhỏ hơn 0,01 và nói kết quả rất khó xảy ra do ngẫu nhiên. Câu hỏi sắc bén nhất bạn nên đặt là gì?",
       options: [
         "Phần mềm nào được dùng để chạy backtest",
-        "Đã thử bao nhiêu tổ hợp tham số và chiến lược trước khi chọn ra cái này, và có kết quả trên dữ liệu chưa từng dùng để tối ưu không",
+        "Đã thử bao nhiêu tổ hợp trước khi chọn",
         "Dữ liệu lấy từ nguồn nào",
         "Chi phí đăng ký dịch vụ là bao nhiêu",
       ],
@@ -636,7 +636,7 @@ export const QUANT_METHODS_LESSONS: Lesson[] = [
         "Hồi quy cho beta = 1,4 với sai số chuẩn 0,6 và R bình phương 0,18. Nên kết luận thế nào?",
       options: [
         "Cổ phiếu rõ ràng biến động mạnh hơn thị trường 40%",
-        "Beta ước lượng thiếu chính xác: khoảng tin cậy 95% trải từ khoảng 0,2 đến 2,6, tức chưa phân biệt được cổ phiếu phòng thủ với cổ phiếu rủi ro cao",
+        "Beta thiếu chính xác: khoảng tin cậy quá rộng",
         "R bình phương thấp chứng tỏ hồi quy sai phương pháp",
         "Cần thay biến phụ thuộc bằng giá thay vì lợi suất",
       ],
@@ -975,7 +975,7 @@ export const QUANT_METHODS_LESSONS: Lesson[] = [
         "Bạn nhận một backtest có Sharpe 2,0 trên giai đoạn 2015 đến 2024. Ba câu hỏi kiểm tra nào cần đặt trước tiên?",
       options: [
         "Dùng phần mềm gì, máy tính cấu hình ra sao, và ai viết mã",
-        "Dữ liệu có bao gồm công ty đã hủy niêm yết không; tín hiệu tại mỗi ngày chỉ dùng thông tin đã công bố trước ngày đó chứ; và chi phí giao dịch cùng tác động giá đã được trừ chưa",
+        "Hủy niêm yết, nhìn trước, và chi phí giao dịch",
         "Chiến lược có tên gọi hấp dẫn không và đã được ai đầu tư chưa",
         "Kết quả năm gần nhất có tốt không",
       ],

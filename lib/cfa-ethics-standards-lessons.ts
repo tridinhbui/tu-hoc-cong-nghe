@@ -1124,7 +1124,7 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
         "Một nhân viên hãng bay nói với bạn rằng sân bay đang vắng bất thường tháng này. Bạn ghép với dữ liệu giá vé công khai và bán cổ phiếu ngành hàng không. Đánh giá?",
       options: [
         "Vi phạm vì bạn có thông tin từ người trong ngành",
-        "Hợp lệ theo mosaic: quan sát về lưu lượng không phải thông tin nội bộ trọng yếu của một doanh nghiệp cụ thể, và nguồn không vi phạm nghĩa vụ nào",
+        "Hợp lệ theo mosaic: lưu lượng không phải tin nội bộ",
         "Vi phạm vì bạn giao dịch trước khi công bố phân tích",
         "Hợp lệ chỉ khi bạn công bố nguồn tin trong báo cáo",
       ],

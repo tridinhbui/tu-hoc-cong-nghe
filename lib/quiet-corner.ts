@@ -18,16 +18,33 @@ export interface BreathPhase {
   scale: number;
 }
 
-export const BREATH_PHASES: BreathPhase[] = [
-  { label: "Hít vào", seconds: 4, scale: 1 },
-  { label: "Giữ", seconds: 4, scale: 1 },
-  { label: "Thở ra", seconds: 4, scale: 0.6 },
-  { label: "Giữ", seconds: 4, scale: 0.6 },
+/** Nhịp thở hộp 4-4-4-4. Chỉ có CẤU TRÚC ở đây - số giây và độ phình - vì đó
+ *  là dữ liệu; nhãn là câu chữ nên nó đi qua từ điển (breathPhasesOf).
+ *
+ *  Tách ra vì `BREATH_CYCLE_SECONDS` được suy từ mảng này và không được phụ
+ *  thuộc vào ngôn ngữ đang chọn: một thiết lập đếm thời gian mà đổi theo ngôn
+ *  ngữ là một cái bẫy chờ sẵn. */
+export const BREATH_STEPS: Array<{ key: "inhale" | "hold" | "exhale"; seconds: number; scale: number }> = [
+  { key: "inhale", seconds: 4, scale: 1 },
+  { key: "hold", seconds: 4, scale: 1 },
+  { key: "exhale", seconds: 4, scale: 0.6 },
+  { key: "hold", seconds: 4, scale: 0.6 },
 ];
+
+/** Nhịp thở kèm nhãn đã dịch. */
+export function breathPhasesOf(t: {
+  breathing: { inhale: string; hold: string; exhale: string };
+}): BreathPhase[] {
+  return BREATH_STEPS.map((s) => ({
+    label: t.breathing[s.key],
+    seconds: s.seconds,
+    scale: s.scale,
+  }));
+}
 
 export const BREATH_CYCLES = 4;
 
-export const BREATH_CYCLE_SECONDS = BREATH_PHASES.reduce((sum, p) => sum + p.seconds, 0);
+export const BREATH_CYCLE_SECONDS = BREATH_STEPS.reduce((sum, p) => sum + p.seconds, 0);
 
 /**
  * Lo lắng về tiền là chỗ giao nhau thật sự giữa một app tài chính và sức khoẻ

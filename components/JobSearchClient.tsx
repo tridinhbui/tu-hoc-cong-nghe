@@ -1,6 +1,9 @@
 "use client";
 
 import { useState, useMemo, useEffect, useRef } from "react";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
@@ -39,7 +42,7 @@ import Image from "next/image";
 import CareerRoadmapMap from "@/components/CareerRoadmapMap";
 import CareerProfilePanel from "@/components/CareerProfilePanel";
 import { SUGGESTED_JOB_KEYWORDS } from "@/lib/job-search-links";
-import { CAREER_CATEGORY_LABELS, CAREER_CATEGORY_ORDER } from "@/lib/career-categories";
+import { careerCategoryLabelsOf, CAREER_CATEGORY_ORDER } from "@/lib/career-categories";
 import { notifyLocalStorageChanged, useLocalStorageValue } from "@/lib/use-local-storage-value";
 import { CAREER_GOAL_EVENT, CAREER_GOAL_KEY, CAREER_GOAL_STORAGE_EVENT, CAREER_ITEMS_KEY } from "@/lib/career-goal-storage";
 
@@ -98,6 +101,7 @@ function CareerAvatar({ career, size = 110, className = "" }: { career?: Finance
 // already done. Renders nothing for a logged-out visitor or a career with
 // no linked lessons yet.
 function RelatedLessonsPanel({ career }: { career: FinanceCareer }) {
+  const { t } = useI18n();
   const [progress, setProgress] = useState<CareerLessonProgress | null>(null);
   // Suy ra từ nghề nào đã tải xong. Nghề không có bài liên quan thì không có
   // gì để tải, nên cũng không bao giờ ở trạng thái đang tải - bản cũ phải tắt
@@ -134,7 +138,7 @@ function RelatedLessonsPanel({ career }: { career: FinanceCareer }) {
       {cfaSubjects.length > 0 && (
         <div className="flex flex-wrap items-center gap-1.5 mb-4 pb-4 border-b border-dashed border-emerald-500/20">
           <span className="text-[10px] font-black uppercase text-stone-400 dark:text-stone-500 tracking-wider mr-1">
-            Liên quan CFA:
+            {t.jobs.cfaRelated}
           </span>
           {cfaSubjects.map((s) => (
             <span
@@ -152,7 +156,7 @@ function RelatedLessonsPanel({ career }: { career: FinanceCareer }) {
         <div className="flex items-center gap-2">
           <BookOpen className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
           <h4 className="text-xs font-black uppercase text-emerald-600 dark:text-emerald-400 tracking-wider">
-            Học các bài này để chuẩn bị cho nghề này
+            {t.jobs.studyTheseLessons}
           </h4>
         </div>
         {progress && (
@@ -163,7 +167,7 @@ function RelatedLessonsPanel({ career }: { career: FinanceCareer }) {
       </div>
       )}
       {career.relatedLessonSlugs.length === 0 ? null : loading ? (
-        <p className="text-[11px] text-stone-400">Đang tải...</p>
+        <p className="text-[11px] text-stone-400">{t.jobs.loading}</p>
       ) : progress && progress.lessons.length > 0 ? (
         <div className="space-y-1.5">
           {progress.lessons.map((l) => (
@@ -189,7 +193,7 @@ function RelatedLessonsPanel({ career }: { career: FinanceCareer }) {
           ))}
         </div>
       ) : (
-        <p className="text-[11px] text-stone-400">Đăng nhập để xem tiến độ học các bài liên quan.</p>
+        <p className="text-[11px] text-stone-400">{t.jobs.signInForProgress}</p>
       )}
       {/* /nghe-nghiep-hoc had no inbound link anywhere in the app - a full
           page answering "which lessons should I study for this career",
@@ -201,7 +205,7 @@ function RelatedLessonsPanel({ career }: { career: FinanceCareer }) {
           href="/nghe-nghiep-hoc"
           className="mt-2.5 flex items-center justify-center gap-1.5 rounded-lg border border-emerald-200 dark:border-emerald-900/60 bg-emerald-50/60 dark:bg-emerald-950/30 px-3 py-2 text-[11px] font-extrabold text-emerald-700 dark:text-emerald-400 hover:bg-emerald-100/70 dark:hover:bg-emerald-950/50 transition-colors"
         >
-          Xem lộ trình học đầy đủ theo nghề
+          {t.jobs.fullTrackLink}
           <ChevronRight className="w-3.5 h-3.5" />
         </Link>
       )}
@@ -248,64 +252,31 @@ function MetricBar({
   );
 }
 
-const QUIZ_QUESTIONS = [
-  {
-    question: "Phong cách xử lý thông tin ưa thích của bạn là gì?",
-    options: [
-      { text: "Phân tích số liệu, lập mô hình dự báo tương lai", type: "Analytical" },
-      { text: "Kiểm tra tính chính xác, rà soát tính tuân thủ quy trình", type: "Compliance" },
-      { text: "Giao tiếp, tư vấn, xây dựng và kết nối mối quan hệ khách hàng", type: "Client-facing" },
-      { text: "Phân tích thống kê định lượng, tính toán xác suất rủi ro", type: "Quantitative" }
-    ]
-  },
-  {
-    question: "Môi trường làm việc lý tưởng trong mơ của bạn là:",
-    options: [
-      { text: "Các quỹ đầu tư lớn, công ty chứng khoán năng động", type: "Analytical" },
-      { text: "Phòng kế toán tập đoàn lớn, hoặc công ty kiểm toán Big4 chuyên nghiệp", type: "Compliance" },
-      { text: "Các chi nhánh ngân hàng thương mại, sàn giao dịch nhộn nhịp", type: "Client-facing" },
-      { text: "Phòng nguồn vốn, ban quản trị rủi ro ở hội sở ngân hàng lớn", type: "Quantitative" }
-    ]
-  },
-  {
-    question: "Bạn đối diện thế nào với áp lực và cân bằng cuộc sống (WLB)?",
-    options: [
-      { text: "Sẵn sàng OT khuya, chịu áp lực tiến độ để đạt thu nhập vượt trội", type: "Analytical" },
-      { text: "Muốn giờ giấc hành chính rõ ràng, công việc ổn định ít đột xuất", type: "Compliance" },
-      { text: "Chấp nhận áp lực chạy doanh số (KPI) để nhận hoa hồng không giới hạn", type: "Client-facing" },
-      { text: "Muốn công việc thiên về kỹ thuật chuyên sâu, ít áp lực doanh số", type: "Quantitative" }
-    ]
-  },
-  {
-    question: "Điểm mạnh nhất mà bạn tự tin muốn phát huy là gì?",
-    options: [
-      { text: "Lập mô hình Excel, phân tích chi phí - lợi ích chiến lược", type: "Analytical" },
-      { text: "Sự cẩn thận, chi tiết tỉ mỉ, tuân thủ nguyên tắc tuyệt đối", type: "Compliance" },
-      { text: "Khả năng ăn nói thuyết phục, đồng cảm và mở rộng quan hệ", type: "Client-facing" },
-      { text: "Tư duy toán học logic, lập trình mô phỏng định lượng (SQL/Python)", type: "Quantitative" }
-    ]
-  },
-  {
-    question: "Nhóm chứng chỉ nghề nghiệp nào thu hút bạn nhất?",
-    options: [
-      { text: "CFA (Phân tích đầu tư) / CMA (Quản trị tài chính)", type: "Analytical" },
-      { text: "ACCA (Kế toán công chứng) / CPA (Kiểm toán viên)", type: "Compliance" },
-      { text: "Chứng chỉ hành nghề Môi giới chứng khoán hoặc Tín dụng ngân hàng", type: "Client-facing" },
-      { text: "FRM (Quản lý rủi ro) / Chứng chỉ nguồn vốn ACI", type: "Quantitative" }
-    ]
-  }
-];
+// Each question's four options map 1:1 (by index) onto this fixed type
+// order - the type drives quiz scoring and is structural, so it stays here
+// rather than in the dictionary. Copy in t.dataRest.jobSearchClient.quizQuestions.
+const QUIZ_OPTION_TYPES = ["Analytical", "Compliance", "Client-facing", "Quantitative"] as const;
+
+function quizQuestionsOf(t: Dictionary) {
+  return t.dataRest.jobSearchClient.quizQuestions.map((q) => ({
+    question: q.question,
+    options: q.options.map((text, i) => ({ text, type: QUIZ_OPTION_TYPES[i] })),
+  }));
+}
 
 // Tên nhóm ngành suy ra từ lib/career-categories.ts thay vì khai lại ở đây:
 // một nhóm mới thêm vào FinanceCareer["category"] sẽ tự có nút lọc, thay vì
 // lặng lẽ không lọc ra được ở màn hình này.
-const CATEGORIES = [
-  { id: "all" as const, label: "Tất cả" },
-  ...CAREER_CATEGORY_ORDER.map((id) => ({ id, label: CAREER_CATEGORY_LABELS[id] })),
-];
+function categoriesOf(t: Dictionary) {
+  return [
+    { id: "all" as const, label: t.dataRest.jobSearchClient.allCategoriesLabel },
+    ...CAREER_CATEGORY_ORDER.map((id) => ({ id, label: careerCategoryLabelsOf(t)[id] })),
+  ];
+}
 
 // SVG Radar Chart for role traits visualization
 function CareerRadarChart({ traits, color = "#0d9488" }: { traits?: { analytical?: number; compliance?: number; clientFacing?: number; quantitative?: number } | null; color?: string }) {
+  const { t } = useI18n();
   const safeTraits = {
     analytical: traits?.analytical ?? 3,
     compliance: traits?.compliance ?? 3,
@@ -325,7 +296,7 @@ function CareerRadarChart({ traits, color = "#0d9488" }: { traits?: { analytical
   
   return (
     <div className="flex flex-col items-center justify-center bg-stone-50 dark:bg-stone-900/40 p-5 rounded-2xl border border-stone-200/60 dark:border-stone-800/50 shadow-sm relative overflow-hidden shrink-0">
-      <span className="text-[9px] font-black uppercase tracking-wider text-stone-400 dark:text-stone-500 mb-4 block text-center">Biểu đồ Phẩm chất</span>
+      <span className="text-[9px] font-black uppercase tracking-wider text-stone-400 dark:text-stone-500 mb-4 block text-center">{t.jobs.radarTitle}</span>
       <svg className="w-36 h-36 overflow-visible" viewBox="0 0 200 200">
         {[1, 2, 3, 4, 5].map((lvl) => {
           const r = R * (lvl / 5);
@@ -344,10 +315,10 @@ function CareerRadarChart({ traits, color = "#0d9488" }: { traits?: { analytical
         <line x1={cx - R} y1={cy} x2={cx + R} y2={cy} stroke="currentColor" className="text-stone-200 dark:text-stone-800" strokeWidth="1" />
         <line x1={cx} y1={cy - R} x2={cx} y2={cy + R} stroke="currentColor" className="text-stone-200 dark:text-stone-800" strokeWidth="1" />
         
-        <text x={cx} y={cy - R - 6} textAnchor="middle" className="text-[8px] font-black fill-stone-500 dark:fill-stone-400">PHÂN TÍCH</text>
-        <text x={cx + R + 6} y={cy + 3} textAnchor="start" className="text-[8px] font-black fill-stone-500 dark:fill-stone-400">Đ.LƯỢNG</text>
-        <text x={cx} y={cy + R + 12} textAnchor="middle" className="text-[8px] font-black fill-stone-500 dark:fill-stone-400">GIAO TIẾP</text>
-        <text x={cx - R - 6} y={cy + 3} textAnchor="end" className="text-[8px] font-black fill-stone-500 dark:fill-stone-400">TUÂN THỦ</text>
+        <text x={cx} y={cy - R - 6} textAnchor="middle" className="text-[8px] font-black fill-stone-500 dark:fill-stone-400">{t.jobs.axisAnalysis}</text>
+        <text x={cx + R + 6} y={cy + 3} textAnchor="start" className="text-[8px] font-black fill-stone-500 dark:fill-stone-400">{t.jobs.axisQuantShort}</text>
+        <text x={cx} y={cy + R + 12} textAnchor="middle" className="text-[8px] font-black fill-stone-500 dark:fill-stone-400">{t.jobs.axisCommunication}</text>
+        <text x={cx - R - 6} y={cy + 3} textAnchor="end" className="text-[8px] font-black fill-stone-500 dark:fill-stone-400">{t.jobs.axisCompliance}</text>
         
         <polygon
           points={pointsString}
@@ -373,8 +344,9 @@ function ComparisonModal({
 }: { 
   open: boolean; 
   onClose: () => void; 
-  careerA: FinanceCareer 
+  careerA: FinanceCareer
 }) {
+  const { t } = useI18n();
   const [careerBId, setCareerBId] = useState<string>("");
   const careerB = FINANCE_CAREERS.find((c) => c.id === careerBId);
 
@@ -398,7 +370,7 @@ function ComparisonModal({
         </button>
 
         <h2 className="text-lg font-black text-stone-900 dark:text-stone-50 mb-6 flex items-center gap-2">
-          ⚖️ So sánh vị trí công việc
+          {t.jobs.compareTitle}
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
@@ -414,7 +386,7 @@ function ComparisonModal({
                 />
               </div>
               <div>
-                <span className="text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400">Hiện tại</span>
+                <span className="text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400">{t.jobs.current}</span>
                 <h3 className="text-base font-black text-stone-900 dark:text-stone-50 leading-tight mt-0.5">{careerA.title}</h3>
                 <p className="text-xs text-stone-400 dark:text-stone-500 font-bold">{careerA.englishTitle}</p>
               </div>
@@ -424,26 +396,26 @@ function ComparisonModal({
               
               <div className="grid grid-cols-3 gap-2 py-2 border-y border-stone-200/50 dark:border-stone-800/50">
                 <div className="text-center">
-                  <span className="text-[10px] text-stone-400 block font-bold">Độ khó</span>
+                  <span className="text-[10px] text-stone-400 block font-bold">{t.jobs.difficulty}</span>
                   <span className="text-sm font-black text-stone-800 dark:text-stone-200">{careerA.entryDifficulty}/5</span>
                 </div>
                 <div className="text-center">
-                  <span className="text-[10px] text-stone-400 block font-bold">Áp lực</span>
+                  <span className="text-[10px] text-stone-400 block font-bold">{t.jobs.pressure}</span>
                   <span className="text-sm font-black text-stone-800 dark:text-stone-200">{careerA.stressLevel}/5</span>
                 </div>
                 <div className="text-center">
-                  <span className="text-[10px] text-stone-400 block font-bold">Cân bằng</span>
+                  <span className="text-[10px] text-stone-400 block font-bold">{t.jobs.balance}</span>
                   <span className="text-sm font-black text-stone-800 dark:text-stone-200">{careerA.wlb}/5</span>
                 </div>
               </div>
 
               <div className="space-y-2 pt-1">
                 <div>
-                  <span className="font-extrabold text-stone-400 block text-[9px] uppercase tracking-wider">Mức lương dự kiến</span>
+                  <span className="font-extrabold text-stone-400 block text-[9px] uppercase tracking-wider">{t.jobs.expectedSalary}</span>
                   <span className="font-black text-stone-800 dark:text-stone-200">{careerA.salaryHint}</span>
                 </div>
                 <div>
-                  <span className="font-extrabold text-stone-400 block text-[9px] uppercase tracking-wider">Chứng chỉ chính</span>
+                  <span className="font-extrabold text-stone-400 block text-[9px] uppercase tracking-wider">{t.jobs.mainCertificates}</span>
                   <div className="flex flex-wrap gap-1 mt-1">
                     {careerA.certifications.map(c => (
                       <span key={c} className="px-1.5 py-0.5 rounded bg-stone-100 dark:bg-stone-800 text-[10px] font-bold text-stone-600 dark:text-stone-400">{c}</span>
@@ -451,7 +423,7 @@ function ComparisonModal({
                   </div>
                 </div>
                 <div>
-                  <span className="font-extrabold text-stone-400 block text-[9px] uppercase tracking-wider">Công cụ chính</span>
+                  <span className="font-extrabold text-stone-400 block text-[9px] uppercase tracking-wider">{t.jobs.mainTools}</span>
                   <div className="flex flex-wrap gap-1 mt-1">
                     {careerA.requiredTools.map(t => (
                       <span key={t} className="px-1.5 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/20 text-[10px] font-bold text-emerald-700 dark:text-emerald-400">{t}</span>
@@ -464,13 +436,13 @@ function ComparisonModal({
 
           <div className="p-5 rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-950/30">
             <div className="mb-4">
-              <label className="text-[9px] font-black uppercase tracking-wider text-stone-400 block mb-1.5">Chọn vị trí để so sánh</label>
+              <label className="text-[9px] font-black uppercase tracking-wider text-stone-400 block mb-1.5">{t.jobs.pickToCompare}</label>
               <select
                 value={careerBId}
                 onChange={(e) => setCareerBId(e.target.value)}
                 className="w-full p-2.5 rounded-xl bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 text-xs font-bold text-stone-800 dark:text-stone-200 focus:outline-none focus:border-indigo-500"
               >
-                <option value="">-- Chọn một vị trí --</option>
+                <option value="">{t.jobs.pickPlaceholder}</option>
                 {FINANCE_CAREERS.filter(c => c.id !== careerA.id).map(c => (
                   <option key={c.id} value={c.id}>{c.title}</option>
                 ))}
@@ -498,26 +470,26 @@ function ComparisonModal({
                 
                 <div className="grid grid-cols-3 gap-2 py-2 border-y border-stone-200/50 dark:border-stone-800/50">
                   <div className="text-center">
-                    <span className="text-[10px] text-stone-400 block font-bold">Độ khó</span>
+                    <span className="text-[10px] text-stone-400 block font-bold">{t.jobs.difficulty}</span>
                     <span className="text-sm font-black text-stone-800 dark:text-stone-200">{careerB.entryDifficulty}/5</span>
                   </div>
                   <div className="text-center">
-                    <span className="text-[10px] text-stone-400 block font-bold">Áp lực</span>
+                    <span className="text-[10px] text-stone-400 block font-bold">{t.jobs.pressure}</span>
                     <span className="text-sm font-black text-stone-800 dark:text-stone-200">{careerB.stressLevel}/5</span>
                   </div>
                   <div className="text-center">
-                    <span className="text-[10px] text-stone-400 block font-bold">Cân bằng</span>
+                    <span className="text-[10px] text-stone-400 block font-bold">{t.jobs.balance}</span>
                     <span className="text-sm font-black text-stone-800 dark:text-stone-200">{careerB.wlb}/5</span>
                   </div>
                 </div>
 
                 <div className="space-y-2 pt-1">
                   <div>
-                    <span className="font-extrabold text-stone-400 block text-[9px] uppercase tracking-wider">Mức lương dự kiến</span>
+                    <span className="font-extrabold text-stone-400 block text-[9px] uppercase tracking-wider">{t.jobs.expectedSalary}</span>
                     <span className="font-black text-stone-800 dark:text-stone-200">{careerB.salaryHint}</span>
                   </div>
                   <div>
-                    <span className="font-extrabold text-stone-400 block text-[9px] uppercase tracking-wider">Chứng chỉ chính</span>
+                    <span className="font-extrabold text-stone-400 block text-[9px] uppercase tracking-wider">{t.jobs.mainCertificates}</span>
                     <div className="flex flex-wrap gap-1 mt-1">
                       {careerB.certifications.map(c => (
                         <span key={c} className="px-1.5 py-0.5 rounded bg-stone-100 dark:bg-stone-800 text-[10px] font-bold text-stone-600 dark:text-stone-400">{c}</span>
@@ -525,7 +497,7 @@ function ComparisonModal({
                     </div>
                   </div>
                   <div>
-                    <span className="font-extrabold text-stone-400 block text-[9px] uppercase tracking-wider">Công cụ chính</span>
+                    <span className="font-extrabold text-stone-400 block text-[9px] uppercase tracking-wider">{t.jobs.mainTools}</span>
                     <div className="flex flex-wrap gap-1 mt-1">
                       {careerB.requiredTools.map(t => (
                         <span key={t} className="px-1.5 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/20 text-[10px] font-bold text-emerald-700 dark:text-emerald-400">{t}</span>
@@ -536,7 +508,7 @@ function ComparisonModal({
               </div>
             ) : (
               <div className="py-16 text-center text-stone-400 dark:text-stone-600 text-xs font-semibold border-2 border-dashed border-stone-200 dark:border-stone-800 rounded-2xl bg-white dark:bg-stone-900/30">
-                Chọn vị trí thứ hai để đối chiếu
+                {t.jobs.pickSecond}
               </div>
             )}
           </div>
@@ -545,7 +517,7 @@ function ComparisonModal({
         {careerB && (
           <div className="mt-8 pt-6 border-t border-stone-200 dark:border-stone-800 flex flex-col items-center">
             <span className="text-xs font-black uppercase tracking-wider text-stone-500 dark:text-stone-400 mb-4 block text-center">
-              So sánh Phẩm chất năng lực (Overlay Radar)
+              {t.jobs.radarOverlayTitle}
             </span>
             <div className="flex flex-col sm:flex-row items-center gap-6">
               <svg className="w-48 h-48 overflow-visible" viewBox="0 0 200 200">
@@ -566,10 +538,10 @@ function ComparisonModal({
                 <line x1={30} y1={100} x2={170} y2={100} stroke="currentColor" className="text-stone-200 dark:text-stone-800" strokeWidth="1" />
                 <line x1={100} y1={30} x2={100} y2={170} stroke="currentColor" className="text-stone-200 dark:text-stone-800" strokeWidth="1" />
 
-                <text x={100} y={22} textAnchor="middle" className="text-[8px] font-black fill-stone-500 dark:fill-stone-400">PHÂN TÍCH</text>
-                <text x={178} y={103} textAnchor="start" className="text-[8px] font-black fill-stone-500 dark:fill-stone-400">ĐỊNH LƯỢNG</text>
-                <text x={100} y={184} textAnchor="middle" className="text-[8px] font-black fill-stone-500 dark:fill-stone-400">GIAO TIẾP</text>
-                <text x={22} y={103} textAnchor="end" className="text-[8px] font-black fill-stone-500 dark:fill-stone-400">TUÂN THỦ</text>
+                <text x={100} y={22} textAnchor="middle" className="text-[8px] font-black fill-stone-500 dark:fill-stone-400">{t.jobs.axisAnalysis}</text>
+                <text x={178} y={103} textAnchor="start" className="text-[8px] font-black fill-stone-500 dark:fill-stone-400">{t.jobs.axisQuant}</text>
+                <text x={100} y={184} textAnchor="middle" className="text-[8px] font-black fill-stone-500 dark:fill-stone-400">{t.jobs.axisCommunication}</text>
+                <text x={22} y={103} textAnchor="end" className="text-[8px] font-black fill-stone-500 dark:fill-stone-400">{t.jobs.axisCompliance}</text>
 
                 <polygon
                   points={`100,${100 - 70 * (careerA.traits.analytical / 5)} ${100 + 70 * (careerA.traits.quantitative / 5)},100 ${100},${100 + 70 * (careerA.traits.clientFacing / 5)} ${100 - 70 * (careerA.traits.compliance / 5)},100`}
@@ -609,6 +581,9 @@ function ComparisonModal({
 type JobTab = "daily" | "insights" | "path" | "skills" | "profile" | "search";
 
 export default function JobSearchClient() {
+  const { t } = useI18n();
+  const quizQuestions = useMemo(() => quizQuestionsOf(t), [t]);
+  const categories = useMemo(() => categoriesOf(t), [t]);
   const [selected, setSelected] = useState<FinanceCareer>(FINANCE_CAREERS[0]);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -706,12 +681,12 @@ export default function JobSearchClient() {
       localStorage.removeItem("thtcdn_career_goal");
       localStorage.removeItem(CAREER_ITEMS_KEY);
       notifyLocalStorageChanged(CAREER_GOAL_STORAGE_EVENT);
-      toast.info("Đã hủy theo dõi mục tiêu sự nghiệp.");
+      toast.info(t.jobs.goalCleared);
       window.dispatchEvent(new CustomEvent(CAREER_GOAL_EVENT, { detail: { careerId: null } }));
       if (userId) {
         void clearCareerGoal(userId).catch((error) => {
           console.error("Error clearing career goal:", error);
-          toast.error("Đã hủy trên máy này, nhưng chưa lưu được lên server - thử lại sau.");
+          toast.error(t.jobs.goalClearedLocalOnly);
         });
       }
     } else {
@@ -719,7 +694,7 @@ export default function JobSearchClient() {
       localStorage.setItem("thtcdn_career_goal", careerId);
       localStorage.setItem(CAREER_ITEMS_KEY, JSON.stringify([]));
       notifyLocalStorageChanged(CAREER_GOAL_STORAGE_EVENT);
-      toast.success(`🎯 Đã đặt làm Mục tiêu Sự nghiệp mới!`);
+      toast.success(t.miscUi.jobSearchClient.goalSetSuccess);
       window.dispatchEvent(new CustomEvent(CAREER_GOAL_EVENT, { detail: { careerId } }));
       // A failed write used to be logged and forgotten while the success
       // toast above stood - so a goal that never left the browser looked
@@ -727,7 +702,7 @@ export default function JobSearchClient() {
       if (userId) {
         void setCareerGoal(userId, careerId).catch((error) => {
           console.error("Error saving career goal:", error);
-          toast.error("Chưa lưu được mục tiêu lên server - hiện chỉ áp dụng trên máy này.");
+          toast.error(t.jobs.goalSaveFailed);
         });
       }
     }
@@ -751,7 +726,7 @@ export default function JobSearchClient() {
     const nextAnswers = [...quizAnswers, optionType];
     setQuizAnswers(nextAnswers);
 
-    if (quizStep < QUIZ_QUESTIONS.length - 1) {
+    if (quizStep < quizQuestions.length - 1) {
       setQuizStep(quizStep + 1);
     } else {
       // Calculate top personality type
@@ -831,7 +806,7 @@ export default function JobSearchClient() {
         claimQuestReward(userId, "career_assessment", "once")
           .then(({ claimed, xpEarned }) => {
             if (claimed && xpEarned > 0) {
-              toast.success(`Chúc mừng! Bạn đã nhận được +${xpEarned} XP cho Trắc nghiệm Hướng nghiệp! 🧭`);
+              toast.success(format(t.miscUi.jobSearchClient.quizRewardSuccess, { xp: xpEarned }));
               void recalculateUserStats(userId).catch(() => {});
             }
           })
@@ -892,11 +867,11 @@ export default function JobSearchClient() {
           <div>
             <Link href="/dashboard" className="inline-flex items-center gap-1.5 text-xs font-extrabold uppercase tracking-wider text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors">
               <ArrowLeft className="w-3.5 h-3.5" />
-              Quay lại Dashboard
+              {t.jobs.backToDashboard}
             </Link>
             <h1 className="text-2xl font-black text-stone-900 dark:text-stone-100 mt-1.5 flex items-center gap-2.5">
               <Briefcase className="w-6 h-6 text-emerald-500 dark:text-emerald-400" />
-              Bản Đồ Việc Làm Tài Chính
+              {t.jobs.pageTitle}
             </h1>
           </div>
           <div className="flex flex-col items-start gap-2 sm:items-end">
@@ -907,10 +882,10 @@ export default function JobSearchClient() {
               href="/pho-nghe"
               className="inline-flex items-center gap-1.5 rounded-full bg-stone-900 px-3.5 py-1.5 text-xs font-extrabold text-amber-200 shadow-md transition-colors hover:bg-stone-800 dark:bg-stone-800 dark:hover:bg-stone-700"
             >
-              🏙️ Đi dạo Phố nghề 3D
+              {t.jobs.walk3d}
             </Link>
             <div className="max-w-sm text-xs text-stone-500 dark:text-stone-400">
-              Khám phá chi tiết công việc (JD), lộ trình thăng tiến sự nghiệp, yêu cầu kỹ năng và kết nối tuyển dụng trực tuyến.
+              {t.jobs.pageSubtitle}
             </div>
           </div>
         </div>
@@ -934,11 +909,11 @@ export default function JobSearchClient() {
                     <div>
                       <div className="flex items-center gap-2 flex-wrap">
                         <span className="text-[10px] font-black uppercase text-emerald-400 tracking-widest bg-emerald-950/80 px-3 py-1 rounded-full border border-emerald-500/40">
-                          🎯 Mục tiêu sự nghiệp bạn đã chọn
+                          {t.jobs.goalChosen}
                         </span>
                         {goalCareer.id === "non-finance-learner" && (
                           <span className="text-[10px] font-black uppercase text-amber-300 tracking-widest bg-amber-950/80 px-2.5 py-1 rounded-full border border-amber-500/40">
-                            🌱 Học viên ngoài ngành
+                            {t.jobs.goalOutsider}
                           </span>
                         )}
                       </div>
@@ -956,13 +931,13 @@ export default function JobSearchClient() {
                       onClick={() => handleSelectCareer(goalCareer)}
                       className="px-4 py-2.5 bg-emerald-500 hover:bg-emerald-400 font-bold text-xs rounded-xl transition-all shadow-md text-stone-950 cursor-pointer"
                     >
-                      Xem lộ trình chi tiết →
+                      {t.jobs.goalDetailLink}
                     </button>
                     <button
                       onClick={() => handleTrackGoal(goalCareer.id)}
                       className="px-3.5 py-2.5 bg-stone-800 hover:bg-stone-700 text-stone-300 font-bold text-xs rounded-xl border border-stone-700 transition-colors cursor-pointer"
                     >
-                      Bỏ chọn mục tiêu
+                      {t.jobs.goalClear}
                     </button>
                   </div>
                 </div>
@@ -975,10 +950,12 @@ export default function JobSearchClient() {
               <span className="text-3xl p-2.5 bg-amber-500/20 rounded-2xl shrink-0">🎯</span>
               <div>
                 <h3 className="text-sm font-black text-amber-900 dark:text-amber-200">
-                  Bạn chưa chọn Mục tiêu Sự nghiệp!
+                  {t.jobs.noGoalTitle}
                 </h3>
                 <p className="text-xs text-amber-800/80 dark:text-amber-300 mt-0.5 leading-relaxed">
-                  Hãy bấm chọn 1 vị trí bên dưới (hoặc chọn <strong>"Học viên / Người ngoài ngành 🌱"</strong> nếu bạn học để quản lý tài chính cá nhân) để hệ thống theo dõi tiến độ dành riêng cho bạn.
+                  {t.jobs.noGoalPart1}
+                <strong>{t.jobs.noGoalOptionName}</strong>
+                {t.jobs.noGoalPart2}
                 </p>
               </div>
             </div>
@@ -997,7 +974,7 @@ export default function JobSearchClient() {
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-400 dark:text-stone-600" />
               <input
                 type="text"
-                placeholder="Tìm kiếm vị trí tài chính..."
+                placeholder={t.jobs.searchPlaceholder}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full pl-11 pr-4 py-3 rounded-2xl bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 text-sm font-semibold placeholder-stone-400 dark:placeholder-stone-600 focus:outline-none focus:border-emerald-500 dark:focus:border-emerald-400 shadow-sm transition-all"
@@ -1018,29 +995,33 @@ export default function JobSearchClient() {
                 <div>
                   <div className="flex items-center gap-2 text-stone-900 dark:text-stone-500">
                     <Sparkles className="w-4 h-4 text-amber-500 animate-pulse animate-duration-1000" />
-                    <h4 className="text-xs font-black uppercase tracking-wider">Trắc nghiệm Hướng nghiệp</h4>
+                    <h4 className="text-xs font-black uppercase tracking-wider">{t.jobs.quizTitle}</h4>
                   </div>
                   <p className="hidden sm:block text-xs text-stone-500 dark:text-stone-400 mt-1.5 leading-relaxed">
-                    Trả lời 5 câu hỏi để định hướng xem bạn phù hợp nhất với vị trí tài chính nào và nhận ngay <strong className="text-emerald-600 dark:text-emerald-400 font-black">+50 XP</strong>.
+                    {t.jobs.quizBlurbPart1}
+                    <strong className="text-emerald-600 dark:text-emerald-400 font-black">{t.jobs.quizXpReward}</strong>
+                    {t.jobs.quizBlurbPart2}
                   </p>
                   <p className="sm:hidden text-[10px] text-stone-500 dark:text-stone-400 mt-1 leading-relaxed">
-                    Trả lời nhanh 5 câu hỏi nhận ngay <strong className="text-emerald-600 dark:text-emerald-400 font-black">+50 XP</strong>.
+                    {t.jobs.quizBlurbShortPart1}
+                    <strong className="text-emerald-600 dark:text-emerald-400 font-black">{t.jobs.quizXpReward}</strong>
+                    {t.jobs.quizBlurbPart2}
                   </p>
                   <button
                     onClick={startQuiz}
                     className="w-full mt-2.5 sm:mt-3 py-1.5 sm:py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 dark:bg-emerald-50 dark:hover:bg-emerald-400 text-white text-xs font-black shadow-sm transition-all cursor-pointer text-center"
                   >
-                    Bắt đầu trắc nghiệm (+50 XP)
+                    {t.jobs.quizStart}
                   </button>
                 </div>
               ) : (
                 <div>
                   <div className="flex items-center gap-2 text-stone-900 dark:text-stone-500">
                     <SearchCode className="w-4 h-4 text-emerald-500" />
-                    <h4 className="text-xs font-black uppercase tracking-wider">Hướng nghiệp của bạn</h4>
+                    <h4 className="text-xs font-black uppercase tracking-wider">{t.jobs.quizResultTitle}</h4>
                   </div>
                   <div className="mt-2 p-2.5 rounded-xl bg-stone-50 dark:bg-stone-950/30 border border-stone-200/40 dark:border-stone-800 text-xs">
-                    <span className="text-[9px] font-black uppercase text-stone-400 dark:text-stone-500 block mb-0.5">Phù hợp nhất:</span>
+                    <span className="text-[9px] font-black uppercase text-stone-400 dark:text-stone-500 block mb-0.5">{t.jobs.quizBestMatch}</span>
                     <span className="font-extrabold text-stone-800 dark:text-stone-200 block leading-tight">{quizResult?.split(" - ")[0]}</span>
                   </div>
 
@@ -1069,7 +1050,7 @@ export default function JobSearchClient() {
                     onClick={startQuiz}
                     className="w-full mt-2.5 py-1.5 rounded-xl border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 text-[10px] font-bold hover:bg-stone-50 dark:hover:bg-stone-950 transition-all cursor-pointer text-center"
                   >
-                    Làm lại trắc nghiệm
+                    {t.jobs.quizRetake}
                   </button>
                 </div>
               )}
@@ -1085,7 +1066,7 @@ export default function JobSearchClient() {
               <button
                 type="button"
                 onClick={() => categoryTabsRef.current?.scrollBy({ left: -160, behavior: "smooth" })}
-                aria-label="Cuộn sang trái"
+                aria-label={t.jobs.scrollLeft}
                 className="absolute -left-1 top-1/2 -translate-y-1/2 z-10 w-6 h-6 rounded-full bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-700 shadow-sm flex items-center justify-center text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 cursor-pointer"
               >
                 <ChevronLeft className="w-3.5 h-3.5" />
@@ -1094,7 +1075,7 @@ export default function JobSearchClient() {
                 ref={categoryTabsRef}
                 className="flex gap-2 overflow-x-auto pb-1.5 scrollbar-none px-7"
               >
-                {CATEGORIES.map((cat) => {
+                {categories.map((cat) => {
                   const isCatSelected = selectedCategory === cat.id;
                   return (
                     <button
@@ -1114,7 +1095,7 @@ export default function JobSearchClient() {
               <button
                 type="button"
                 onClick={() => categoryTabsRef.current?.scrollBy({ left: 160, behavior: "smooth" })}
-                aria-label="Cuộn sang phải"
+                aria-label={t.jobs.scrollRight}
                 className="absolute -right-1 top-1/2 -translate-y-1/2 z-10 w-6 h-6 rounded-full bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-700 shadow-sm flex items-center justify-center text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 cursor-pointer"
               >
                 <ChevronRight className="w-3.5 h-3.5" />
@@ -1184,8 +1165,8 @@ export default function JobSearchClient() {
               ) : (
                 <div className="text-center py-12 bg-white dark:bg-stone-900/60 rounded-3xl border border-dashed border-stone-200 dark:border-stone-800 px-6">
                   <SearchCode className="w-10 h-10 mx-auto text-stone-300 dark:text-stone-700 mb-3" />
-                  <p className="text-sm font-bold text-stone-500 dark:text-stone-400">Không tìm thấy vị trí phù hợp</p>
-                  <p className="text-xs text-stone-400 dark:text-stone-600 mt-1">Hãy thử tìm kiếm với từ khóa khác.</p>
+                  <p className="text-sm font-bold text-stone-500 dark:text-stone-400">{t.jobs.noResults}</p>
+                  <p className="text-xs text-stone-400 dark:text-stone-600 mt-1">{t.jobs.noResultsHint}</p>
                 </div>
               )}
             </div>
@@ -1215,10 +1196,10 @@ export default function JobSearchClient() {
                     >
                       {selected.entryLevel.split(" - ")[0]}
                     </span>
-                    <span className="text-xs text-stone-400 dark:text-stone-500 font-extrabold">• Dải lương: {selected.salaryHint}</span>
+                    <span className="text-xs text-stone-400 dark:text-stone-500 font-extrabold">{format(t.jobs.salaryRange, { range: selected.salaryHint })}</span>
                   </div>
                   <p className="text-[10px] text-stone-300 dark:text-stone-600 font-semibold mt-1">
-                    * Mức lương chỉ mang tính ước tính tham khảo, thay đổi theo công ty, khu vực và kinh nghiệm thực tế - không phải số liệu khảo sát chính thức.
+                    {t.jobs.salaryDisclaimer}
                   </p>
                   <h2 className="text-2xl font-black text-stone-900 dark:text-stone-50 mt-2 leading-tight">
                     {selected.title}
@@ -1236,19 +1217,19 @@ export default function JobSearchClient() {
                 <div className="lg:col-span-7 flex flex-col justify-between space-y-4">
                   <div className="grid grid-cols-3 gap-3">
                     <MetricBar 
-                      label="Độ khó đầu vào" 
+                      label={t.jobs.difficultyFull} 
                       value={selected.entryDifficulty} 
                       color={getDifficultyColor(selected.entryDifficulty)} 
                       icon={GraduationCap} 
                     />
                     <MetricBar 
-                      label="Mức độ áp lực" 
+                      label={t.jobs.pressureFull} 
                       value={selected.stressLevel} 
                       color={getStressColor(selected.stressLevel)} 
                       icon={Activity} 
                     />
                     <MetricBar 
-                      label="Cân bằng (WLB)" 
+                      label={t.jobs.balanceFull} 
                       value={selected.wlb} 
                       color={getWlbColor(selected.wlb)} 
                       icon={Heart} 
@@ -1265,7 +1246,7 @@ export default function JobSearchClient() {
                           : "bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 shadow-sm hover:opacity-90 active:scale-[0.98]"
                       }`}
                     >
-                      🎯 {trackedGoal === selected.id ? "Đã đặt làm Mục tiêu" : "Đặt làm Mục tiêu sự nghiệp"}
+                      🎯 {trackedGoal === selected.id ? t.jobs.goalSet : t.jobs.goalSetAction}
                     </button>
                     <button
                       onClick={() => {
@@ -1273,7 +1254,7 @@ export default function JobSearchClient() {
                       }}
                       className="py-2.5 px-4 rounded-xl border border-stone-200 dark:border-stone-800 text-stone-700 dark:text-stone-300 text-xs font-black hover:bg-stone-50 dark:hover:bg-stone-950 transition-all cursor-pointer flex items-center justify-center gap-1.5 active:scale-[0.98]"
                     >
-                      ⚖️ So sánh vị trí
+                      {t.jobs.compareShort}
                     </button>
                   </div>
                 </div>
@@ -1290,7 +1271,7 @@ export default function JobSearchClient() {
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center gap-2">
                       <span className="text-base">🏆</span>
-                      <h4 className="text-xs font-black uppercase text-amber-600 dark:text-amber-400 tracking-wider">Tiến độ chuẩn bị sự nghiệp</h4>
+                      <h4 className="text-xs font-black uppercase text-amber-600 dark:text-amber-400 tracking-wider">{t.jobs.prepProgress}</h4>
                     </div>
                     <span className="text-xs font-black text-amber-600 dark:text-amber-400">
                       {Math.round(((completedItems.filter(i => [...(selected.skills || []), ...(selected.certifications || [])].includes(i)).length) / ((selected.skills?.length || 0) + (selected.certifications?.length || 0) || 1)) * 100)}%
@@ -1307,7 +1288,7 @@ export default function JobSearchClient() {
                   </div>
                   
                   <p className="text-[11px] text-stone-500 dark:text-stone-400 leading-normal mb-3 font-semibold">
-                    Đánh dấu các kỹ năng và chứng chỉ bạn đã tích lũy được để theo sát lộ trình sự nghiệp này:
+                    {t.jobs.prepProgressHint}
                   </p>
                   
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-36 overflow-y-auto pr-1">
@@ -1344,12 +1325,12 @@ export default function JobSearchClient() {
               {/* Detail Navigation Tabs */}
               <div className="flex border-b border-stone-200 dark:border-stone-800 mt-8 gap-2 overflow-x-auto scrollbar-none">
                 {[
-                  { id: "daily", label: "Nhiệm vụ & Một ngày", icon: Clock },
-                  { id: "insights", label: "Lời khuyên & Ưu/Nhược", icon: Lightbulb },
-                  { id: "path", label: "Lộ trình & Chứng chỉ", icon: Award },
-                  { id: "skills", label: "Kỹ năng & Công cụ", icon: Terminal },
-                  { id: "profile", label: "Hồ sơ năng lực", icon: TrendingUp },
-                  { id: "search", label: "Tìm việc ngay", icon: Search }
+                  { id: "daily", label: t.jobs.tabDuties, icon: Clock },
+                  { id: "insights", label: t.jobs.tabAdvice, icon: Lightbulb },
+                  { id: "path", label: t.jobs.tabPath, icon: Award },
+                  { id: "skills", label: t.jobs.tabSkills, icon: Terminal },
+                  { id: "profile", label: t.jobs.tabProfile, icon: TrendingUp },
+                  { id: "search", label: t.jobs.tabFindJobs, icon: Search }
                 ].map((tab) => {
                   const isActive = activeTab === tab.id;
                   return (
@@ -1389,7 +1370,7 @@ export default function JobSearchClient() {
                         <div className="bg-emerald-50/40 dark:bg-emerald-950/10 p-5 rounded-2xl border border-emerald-500/10 flex gap-4">
                           <Lightbulb className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" />
                           <div className="text-sm leading-relaxed text-stone-700 dark:text-stone-300">
-                            <span className="font-extrabold text-stone-900 dark:text-stone-100 block mb-1">Một ngày làm việc điển hình:</span>
+                            <span className="font-extrabold text-stone-900 dark:text-stone-100 block mb-1">{t.jobs.typicalDay}</span>
                             <span className="italic">"{selected.dayInLife}"</span>
                           </div>
                         </div>
@@ -1398,7 +1379,7 @@ export default function JobSearchClient() {
                         <div>
                           <h3 className="text-xs font-extrabold uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-3 flex items-center gap-1.5">
                             <Sparkles className="w-4 h-4 text-amber-500" />
-                            Nhiệm vụ chính (Job Description)
+                            {t.jobs.jobDescription}
                           </h3>
                           <ul className="space-y-3">
                             {selected.responsibilities.map((resp, idx) => (
@@ -1419,7 +1400,7 @@ export default function JobSearchClient() {
                           <div className="bg-emerald-50/20 dark:bg-emerald-950/10 p-5 rounded-2xl border border-emerald-500/10 shadow-sm">
                             <h4 className="text-xs font-black uppercase text-emerald-600 dark:text-emerald-400 tracking-wider mb-2 flex items-center gap-1.5">
                               <ThumbsUp className="w-4 h-4" />
-                              Ưu điểm chính
+                              {t.jobs.pros}
                             </h4>
                             <p className="text-sm text-stone-700 dark:text-stone-300 leading-relaxed">
                               {selected.pros}
@@ -1429,7 +1410,7 @@ export default function JobSearchClient() {
                           <div className="bg-rose-50/20 dark:bg-rose-950/10 p-5 rounded-2xl border border-rose-500/10 shadow-sm">
                             <h4 className="text-xs font-black uppercase text-rose-600 dark:text-rose-400 tracking-wider mb-2 flex items-center gap-1.5">
                               <ThumbsDown className="w-4 h-4" />
-                              Nhược điểm & Thách thức
+                              {t.jobs.cons}
                             </h4>
                             <p className="text-sm text-stone-700 dark:text-stone-300 leading-relaxed">
                               {selected.cons}
@@ -1441,7 +1422,7 @@ export default function JobSearchClient() {
                         <div className="bg-amber-50/30 dark:bg-amber-950/10 p-5 rounded-2xl border border-amber-500/10 flex gap-4 shadow-sm">
                           <Lightbulb className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
                           <div className="text-sm leading-relaxed text-stone-700 dark:text-stone-300">
-                            <span className="font-extrabold text-stone-900 dark:text-stone-100 block mb-1">Bí quyết ứng tuyển & Lời khuyên sự nghiệp:</span>
+                            <span className="font-extrabold text-stone-900 dark:text-stone-100 block mb-1">{t.jobs.applyTips}</span>
                             <span>{selected.applicationTips}</span>
                           </div>
                         </div>
@@ -1453,10 +1434,10 @@ export default function JobSearchClient() {
                         {/* Career progression timeline */}
                         <div>
                           <h3 className="text-xs font-extrabold uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-4">
-                            Lộ trình thăng tiến (Career Path)
+                            {t.jobs.careerPath}
                           </h3>
                           <p className="text-[10px] text-stone-400 dark:text-stone-500 font-bold mb-3 italic">
-                            (Nhấp vào từng cấp độ để xem bí quyết thăng tiến)
+                            {t.jobs.careerPathHint}
                           </p>
                           <div className="relative border-l-2 border-stone-200 dark:border-stone-800 ml-4 pl-6 space-y-4 py-2">
                             {selected.careerPath.map((step, idx) => {
@@ -1483,7 +1464,7 @@ export default function JobSearchClient() {
                                   </div>
                                   <h4 className={`text-sm font-black transition-colors ${isStepActive ? "text-indigo-600 dark:text-indigo-400" : "text-stone-900 dark:text-stone-100"}`}>{step}</h4>
                                   <p className="text-[9px] uppercase font-black tracking-wider text-stone-400 dark:text-stone-500 mt-0.5">
-                                    {idx === 0 ? "Khởi đầu" : idx === selected.careerPath.length - 1 ? "Mục tiêu dài hạn" : "Nấc thang phát triển"}
+                                    {idx === 0 ? t.jobs.ladderStart : idx === selected.careerPath.length - 1 ? t.jobs.ladderEnd : t.jobs.ladderMiddle}
                                   </p>
                                 </button>
                               );
@@ -1499,33 +1480,33 @@ export default function JobSearchClient() {
                             >
                               <div className="flex items-center justify-between mb-2 pb-1.5 border-b border-indigo-500/10">
                                 <span className="font-extrabold text-indigo-700 dark:text-indigo-300 uppercase tracking-wide">
-                                  Bậc {selectedPathStep + 1}: {selected.careerPath[selectedPathStep]}
+                                  {format(t.jobs.pathStep, { step: selectedPathStep + 1, name: selected.careerPath[selectedPathStep] })}
                                 </span>
                                 <span className="font-black text-stone-400 uppercase tracking-widest text-[9px]">
-                                  {selectedPathStep === 0 ? "0 - 2 năm" : selectedPathStep === 1 ? "2 - 5 năm" : selectedPathStep === 2 ? "5 - 8 năm" : "8+ năm"}
+                                  {selectedPathStep === 0 ? t.jobs.years0 : selectedPathStep === 1 ? t.jobs.years1 : selectedPathStep === 2 ? t.jobs.years2 : t.jobs.years3}
                                 </span>
                               </div>
                               <p className="text-stone-600 dark:text-stone-300 leading-relaxed mb-2 font-semibold">
-                                <strong className="text-stone-800 dark:text-stone-200">Trọng tâm: </strong>
+                                <strong className="text-stone-800 dark:text-stone-200">{t.jobs.pathFocus}</strong>
                                 {selectedPathStep === 0 
-                                  ? "Học hỏi quy trình, xử lý số liệu thô, thực thi các nghiệp vụ cơ bản dưới sự kèm cặp sát sao." 
+                                  ? t.jobs.focus0 
                                   : selectedPathStep === 1 
-                                    ? "Làm chủ nghiệp vụ, quản lý dự án độc lập, bắt đầu tư vấn trực tiếp và hướng dẫn thực tập sinh."
+                                    ? t.jobs.focus1
                                     : selectedPathStep === 2
-                                      ? "Lập kế hoạch, quản lý nhóm hoặc phòng ban, chịu trách nhiệm chính về hiệu quả hoạt động tài chính."
-                                      : "Quyết định tối cao, làm việc trực tiếp với HĐQT/Cổ đông ngoại, định đoạt cấu trúc dòng vốn toàn tập đoàn."}
+                                      ? t.jobs.focus2
+                                      : t.jobs.focus3}
                               </p>
                               <div className="flex items-start gap-1.5 text-stone-500 dark:text-stone-400 italic">
                                 <Lightbulb className="w-3.5 h-3.5 text-indigo-500 shrink-0 mt-0.5" />
                                 <span>
-                                  <strong>Bí quyết: </strong>
+                                  <strong>{t.jobs.pathTip}</strong>
                                   {selectedPathStep === 0 
-                                    ? "Cẩn thận tuyệt đối trong tính toán, không ngại việc nhỏ, nâng cao tối đa Excel và hoàn thành CFA/ACCA Level 1."
+                                    ? t.jobs.tip0
                                     : selectedPathStep === 1
-                                      ? "Chủ động đề xuất giải pháp thay vì chỉ báo cáo vấn đề, rèn luyện kỹ năng thuyết trình & đàm phán với khách hàng."
+                                      ? t.jobs.tip1
                                       : selectedPathStep === 2
-                                        ? "Học cách ủy quyền hiệu quả, rèn luyện kỹ năng quản trị cảm xúc và thấu hiểu chính trị nội bộ doanh nghiệp."
-                                        : "Tầm nhìn vĩ mô toàn cầu, giữ vững uy tín tối thượng và duy trì mối quan hệ cấp cao với các tổ chức tài chính lớn."}
+                                        ? t.jobs.tip2
+                                        : t.jobs.tip3}
                                 </span>
                               </div>
                             </motion.div>
@@ -1535,7 +1516,7 @@ export default function JobSearchClient() {
                         {/* Key Certifications recommended */}
                         <div>
                           <h3 className="text-xs font-extrabold uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-4">
-                            Chứng chỉ khuyên học (Certifications)
+                            {t.jobs.certifications}
                           </h3>
                           <div className="space-y-3">
                             {selected.certifications.map((cert, idx) => (
@@ -1554,7 +1535,7 @@ export default function JobSearchClient() {
                         {/* Skills Required */}
                         <div>
                           <h3 className="text-xs font-extrabold uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-4">
-                            Kỹ năng chuyên môn & Mềm
+                            {t.jobs.skills}
                           </h3>
                           <div className="flex flex-wrap gap-2">
                             {selected.skills.map((skill) => (
@@ -1571,7 +1552,7 @@ export default function JobSearchClient() {
                         {/* Software & Systems Tools */}
                         <div>
                           <h3 className="text-xs font-extrabold uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-4">
-                            Hệ thống & Công cụ chuyên ngành
+                            {t.jobs.tools}
                           </h3>
                           <div className="flex flex-wrap gap-2">
                             {selected.requiredTools.map((tool) => (
@@ -1595,14 +1576,14 @@ export default function JobSearchClient() {
                     {activeTab === "search" && (
                       <div className="space-y-6">
                         <div className="bg-stone-50 dark:bg-stone-950/40 p-5 rounded-2xl border border-stone-200/40 dark:border-stone-800">
-                          <h4 className="text-xs font-black uppercase text-stone-400 dark:text-stone-500">Từ khóa tìm kiếm gợi ý:</h4>
+                          <h4 className="text-xs font-black uppercase text-stone-400 dark:text-stone-500">{t.jobs.keywordsTitle}</h4>
                           <p className="text-lg font-black text-stone-800 dark:text-stone-200 mt-1">"{selected.searchKeyword}"</p>
-                          <p className="text-xs text-stone-400 mt-1">Hệ thống sẽ tự động tìm kiếm trực tiếp trên các nền tảng tuyển dụng lớn theo từ khóa này.</p>
+                          <p className="text-xs text-stone-400 mt-1">{t.jobs.keywordsHint}</p>
                         </div>
 
                         <div>
                           <h3 className="text-xs font-extrabold uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-3.5">
-                            Tìm việc trên các nền tảng lớn
+                            {t.jobs.findJobs}
                           </h3>
                           <div className="grid grid-cols-3 gap-3">
                             {JOB_SEARCH_SITES.map((site) => (
@@ -1620,7 +1601,7 @@ export default function JobSearchClient() {
 
                         <div>
                           <h3 className="text-xs font-extrabold uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-3.5">
-                            Hoặc tìm nhanh vị trí khác
+                            {t.jobs.otherPositions}
                           </h3>
                           <div className="flex flex-wrap gap-2">
                             {SUGGESTED_JOB_KEYWORDS.map((keyword) => (
@@ -1636,7 +1617,7 @@ export default function JobSearchClient() {
                         </div>
 
                         <p className="text-[10px] text-stone-400 dark:text-stone-500 italic mt-4 text-center">
-                          * Lưu ý: Hãy cập nhật đầy đủ các kỹ năng & chứng chỉ trên CV trước khi bắt đầu ứng tuyển.
+                          {t.jobs.cvReminder}
                         </p>
                       </div>
                     )}
@@ -1706,15 +1687,15 @@ export default function JobSearchClient() {
               {/* Mobile stats */}
               <div className="grid grid-cols-3 gap-3 mt-4">
                 <div className="bg-stone-50 dark:bg-stone-900/40 p-3 rounded-xl border border-stone-200/50 dark:border-stone-800 text-center">
-                  <p className="text-[9px] uppercase font-bold text-stone-400">Độ khó</p>
+                  <p className="text-[9px] uppercase font-bold text-stone-400">{t.jobs.difficulty}</p>
                   <p className="text-sm font-black text-stone-800 dark:text-stone-200 mt-1">{selected.entryDifficulty}/5</p>
                 </div>
                 <div className="bg-stone-50 dark:bg-stone-900/40 p-3 rounded-xl border border-stone-200/50 dark:border-stone-800 text-center">
-                  <p className="text-[9px] uppercase font-bold text-stone-400">Áp lực</p>
+                  <p className="text-[9px] uppercase font-bold text-stone-400">{t.jobs.pressure}</p>
                   <p className="text-sm font-black text-stone-800 dark:text-stone-200 mt-1">{selected.stressLevel}/5</p>
                 </div>
                 <div className="bg-stone-50 dark:bg-stone-900/40 p-3 rounded-xl border border-stone-200/50 dark:border-stone-800 text-center">
-                  <p className="text-[9px] uppercase font-bold text-stone-400">Cân bằng</p>
+                  <p className="text-[9px] uppercase font-bold text-stone-400">{t.jobs.balance}</p>
                   <p className="text-sm font-black text-stone-800 dark:text-stone-200 mt-1">{selected.wlb}/5</p>
                 </div>
               </div>
@@ -1729,7 +1710,7 @@ export default function JobSearchClient() {
                       : "bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 shadow-sm hover:opacity-90 active:scale-[0.98]"
                   }`}
                 >
-                  🎯 {trackedGoal === selected.id ? "Đã đặt Mục tiêu" : "Đặt Mục tiêu sự nghiệp"}
+                  🎯 {trackedGoal === selected.id ? t.jobs.goalSetShort : t.jobs.goalSetActionShort}
                 </button>
                 <button
                   onClick={() => {
@@ -1737,7 +1718,7 @@ export default function JobSearchClient() {
                   }}
                   className="py-2 px-3 rounded-xl border border-stone-200 dark:border-stone-800 text-stone-700 dark:text-stone-300 text-[10px] font-black hover:bg-stone-50 dark:hover:bg-stone-950 transition-all cursor-pointer flex items-center justify-center gap-1.5 active:scale-[0.98]"
                 >
-                  ⚖️ So sánh
+                  {t.jobs.compareShortest}
                 </button>
               </div>
 
@@ -1747,7 +1728,7 @@ export default function JobSearchClient() {
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-1.5">
                       <span className="text-xs">🏆</span>
-                      <h4 className="text-[10px] font-black uppercase text-amber-600 dark:text-amber-400 tracking-wider">Tiến độ chuẩn bị sự nghiệp</h4>
+                      <h4 className="text-[10px] font-black uppercase text-amber-600 dark:text-amber-400 tracking-wider">{t.jobs.prepProgress}</h4>
                     </div>
                     <span className="text-[10px] font-black text-amber-600 dark:text-amber-400">
                       {Math.round(((completedItems.filter(i => [...(selected.skills || []), ...(selected.certifications || [])].includes(i)).length) / ((selected.skills?.length || 0) + (selected.certifications?.length || 0) || 1)) * 100)}%
@@ -1795,12 +1776,12 @@ export default function JobSearchClient() {
               {/* Mobile tabs container */}
               <div className="flex border-b border-stone-200 dark:border-stone-800 mt-5 gap-1 overflow-x-auto scrollbar-none">
                 {[
-                  { id: "daily", label: "Nhiệm vụ", icon: Clock },
-                  { id: "insights", label: "Lời khuyên", icon: Lightbulb },
-                  { id: "path", label: "Lộ trình", icon: Award },
-                  { id: "skills", label: "Kỹ năng", icon: Terminal },
-                  { id: "profile", label: "Hồ sơ", icon: TrendingUp },
-                  { id: "search", label: "Tìm việc", icon: Search }
+                  { id: "daily", label: t.jobs.tabDutiesShort, icon: Clock },
+                  { id: "insights", label: t.jobs.tabAdviceShort, icon: Lightbulb },
+                  { id: "path", label: t.jobs.tabPathShort, icon: Award },
+                  { id: "skills", label: t.jobs.tabSkillsShort, icon: Terminal },
+                  { id: "profile", label: t.jobs.tabProfileShort, icon: TrendingUp },
+                  { id: "search", label: t.jobs.tabFindJobsShort, icon: Search }
                 ].map((tab) => {
                   const isActive = activeTab === tab.id;
                   return (
@@ -1837,13 +1818,13 @@ export default function JobSearchClient() {
                     {activeTab === "daily" && (
                       <div className="space-y-4">
                         <div className="bg-emerald-50/40 dark:bg-emerald-950/10 p-4 rounded-xl border border-emerald-500/10 text-xs italic leading-relaxed text-stone-700 dark:text-stone-300">
-                          <span className="font-extrabold text-stone-900 dark:text-stone-100 block mb-1">Một ngày điển hình:</span>
+                          <span className="font-extrabold text-stone-900 dark:text-stone-100 block mb-1">{t.jobs.typicalDayShort}</span>
                           "{selected.dayInLife}"
                         </div>
                         <div>
                           <h4 className="text-[10px] font-extrabold uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-2 flex items-center gap-1.5">
                             <Sparkles className="w-3.5 h-3.5 text-amber-500" />
-                            Nhiệm vụ chính
+                            {t.jobs.jobDescriptionShort}
                           </h4>
                           <ul className="space-y-2">
                             {selected.responsibilities.map((resp, idx) => (
@@ -1863,14 +1844,14 @@ export default function JobSearchClient() {
                           <div className="p-4 bg-emerald-50/20 dark:bg-emerald-950/10 rounded-2xl border border-emerald-500/10">
                             <span className="text-[9px] font-black text-emerald-600 dark:text-emerald-400 block mb-1 flex items-center gap-1">
                               <ThumbsUp className="w-3.5 h-3.5" />
-                              ƯU ĐIỂM
+                              {t.jobs.prosShort}
                             </span>
                             <p className="text-xs text-stone-700 dark:text-stone-300 leading-relaxed">{selected.pros}</p>
                           </div>
                           <div className="p-4 bg-rose-50/20 dark:bg-rose-950/10 rounded-2xl border border-rose-500/10">
                             <span className="text-[9px] font-black text-rose-600 dark:text-rose-400 block mb-1 flex items-center gap-1">
                               <ThumbsDown className="w-3.5 h-3.5" />
-                              NHƯỢC ĐIỂM
+                              {t.jobs.consShort}
                             </span>
                             <p className="text-xs text-stone-700 dark:text-stone-300 leading-relaxed">{selected.cons}</p>
                           </div>
@@ -1878,7 +1859,7 @@ export default function JobSearchClient() {
                         <div className="p-4 bg-amber-50/20 dark:bg-amber-950/10 rounded-2xl border border-amber-500/10 text-xs flex gap-2">
                           <Lightbulb className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
                           <div className="text-stone-700 dark:text-stone-300 leading-relaxed">
-                            <span className="font-extrabold text-stone-900 dark:text-stone-100 block mb-0.5">Lời khuyên tuyển dụng:</span>
+                            <span className="font-extrabold text-stone-900 dark:text-stone-100 block mb-0.5">{t.jobs.applyTipsShort}</span>
                             {selected.applicationTips}
                           </div>
                         </div>
@@ -1888,9 +1869,9 @@ export default function JobSearchClient() {
                     {activeTab === "path" && (
                       <div className="space-y-4">
                         <div>
-                          <h4 className="text-[10px] font-extrabold uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-1">Lộ trình thăng tiến</h4>
+                          <h4 className="text-[10px] font-extrabold uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-1">{t.jobs.careerPathShort}</h4>
                           <p className="text-[9px] text-stone-400 dark:text-stone-500 font-bold mb-3 italic">
-                            (Nhấp vào từng cấp độ để xem bí quyết)
+                            {t.jobs.careerPathHintShort}
                           </p>
                           <div className="relative border-l border-stone-200 dark:border-stone-800 ml-3 pl-5 space-y-3 py-1">
                             {selected.careerPath.map((step, idx) => {
@@ -1931,39 +1912,39 @@ export default function JobSearchClient() {
                           >
                             <div className="flex items-center justify-between mb-1.5 pb-1 border-b border-indigo-500/10">
                               <span className="font-extrabold text-indigo-700 dark:text-indigo-300 uppercase tracking-wide">
-                                Bậc {selectedPathStep + 1}: {selected.careerPath[selectedPathStep]}
+                                {format(t.jobs.pathStep, { step: selectedPathStep + 1, name: selected.careerPath[selectedPathStep] })}
                               </span>
                               <span className="font-black text-stone-400 uppercase tracking-widest text-[8px]">
-                                {selectedPathStep === 0 ? "0-2 năm" : selectedPathStep === 1 ? "2-5 năm" : selectedPathStep === 2 ? "5-8 năm" : "8+ năm"}
+                                {selectedPathStep === 0 ? t.jobs.years0Short : selectedPathStep === 1 ? t.jobs.years1Short : selectedPathStep === 2 ? t.jobs.years2Short : t.jobs.years3}
                               </span>
                             </div>
                             <p className="text-stone-600 dark:text-stone-300 leading-normal mb-1.5 font-semibold">
-                              <strong>Trọng tâm: </strong>
+                              <strong>{t.jobs.pathFocus}</strong>
                               {selectedPathStep === 0 
-                                ? "Học hỏi quy trình, xử lý số liệu thô, thực thi các nghiệp vụ cơ bản." 
+                                ? t.jobs.focus0Short 
                                 : selectedPathStep === 1 
-                                  ? "Làm chủ nghiệp vụ, quản lý độc lập, hướng dẫn thực tập sinh."
+                                  ? t.jobs.focus1Short
                                   : selectedPathStep === 2
-                                    ? "Lập kế hoạch, quản lý nhóm/phòng ban, chịu trách nhiệm tài chính chính."
-                                    : "Quyết định tối cao, làm việc với HĐQT/Cổ đông, định đoạt cấu trúc vốn."}
+                                    ? t.jobs.focus2Short
+                                    : t.jobs.focus3Short}
                             </p>
                             <div className="flex items-start gap-1 text-stone-500 dark:text-stone-400 italic">
                               <Lightbulb className="w-3 h-3 text-indigo-500 shrink-0 mt-0.5" />
                               <span>
-                                <strong>Bí quyết: </strong>
+                                <strong>{t.jobs.pathTip}</strong>
                                 {selectedPathStep === 0 
-                                  ? "Cẩn thận tuyệt đối, không ngại việc nhỏ, nâng cao Excel, học CFA/ACCA Level 1."
+                                  ? t.jobs.tip0Short
                                   : selectedPathStep === 1
-                                    ? "Chủ động đề xuất giải pháp thay vì báo cáo vấn đề, rèn kỹ năng slide & đàm phán."
+                                    ? t.jobs.tip1Short
                                     : selectedPathStep === 2
-                                      ? "Học cách ủy quyền, rèn quản trị cảm xúc & chính trị nội bộ doanh nghiệp."
-                                      : "Tầm nhìn vĩ mô toàn cầu, giữ vững chữ tín tối thượng, quan hệ cấp cao."}
+                                      ? t.jobs.tip2Short
+                                      : t.jobs.tip3Short}
                               </span>
                             </div>
                           </motion.div>
                         )}
                         <div className="pt-3 border-t border-stone-100 dark:border-stone-800">
-                          <h4 className="text-[10px] font-extrabold uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-2">Chứng chỉ khuyên học</h4>
+                          <h4 className="text-[10px] font-extrabold uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-2">{t.jobs.certificationsShort}</h4>
                           <div className="flex flex-wrap gap-1.5">
                             {selected.certifications.map((cert) => (
                               <span key={cert} className="text-[10px] font-bold px-2.5 py-1 rounded bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 flex items-center gap-1">
@@ -1979,7 +1960,7 @@ export default function JobSearchClient() {
                     {activeTab === "skills" && (
                       <div className="space-y-4">
                         <div>
-                          <h4 className="text-[10px] font-extrabold uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-2">Kỹ năng chuyên môn & Mềm</h4>
+                          <h4 className="text-[10px] font-extrabold uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-2">{t.jobs.skills}</h4>
                           <div className="flex flex-wrap gap-1.5">
                             {selected.skills.map((skill) => (
                               <span key={skill} className="text-[10px] font-semibold px-2 py-1 rounded bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300">
@@ -1989,7 +1970,7 @@ export default function JobSearchClient() {
                           </div>
                         </div>
                         <div>
-                          <h4 className="text-[10px] font-extrabold uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-2">Hệ thống & Công cụ</h4>
+                          <h4 className="text-[10px] font-extrabold uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-2">{t.jobs.toolsShort}</h4>
                           <div className="flex flex-wrap gap-1.5">
                             {selected.requiredTools.map((tool) => (
                               <span key={tool} className="text-[10px] font-semibold px-2 py-1 rounded bg-emerald-50 dark:bg-emerald-950/20 text-emerald-700 dark:text-emerald-400 border border-emerald-100/50 dark:border-emerald-900/30 flex items-center gap-1">
@@ -2009,11 +1990,11 @@ export default function JobSearchClient() {
                     {activeTab === "search" && (
                       <div className="space-y-4">
                         <div className="bg-stone-50 dark:bg-stone-900/40 p-4 rounded-xl border border-stone-200/50 dark:border-stone-800">
-                          <span className="text-[9px] font-bold text-stone-400 uppercase">Từ khóa tìm kiếm gợi ý:</span>
+                          <span className="text-[9px] font-bold text-stone-400 uppercase">{t.jobs.keywordsTitle}</span>
                           <p className="text-sm font-black text-stone-800 dark:text-stone-200 mt-0.5">"{selected.searchKeyword}"</p>
                         </div>
                         <div>
-                          <h4 className="text-[10px] font-extrabold uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-2">Tìm kiếm trực tiếp trên các nền tảng:</h4>
+                          <h4 className="text-[10px] font-extrabold uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-2">{t.jobs.findJobsShort}</h4>
                           <div className="grid grid-cols-3 gap-2">
                             {JOB_SEARCH_SITES.map((site) => (
                               <button
@@ -2029,7 +2010,7 @@ export default function JobSearchClient() {
                         </div>
 
                         <div>
-                          <h4 className="text-[10px] font-extrabold uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-2">Hoặc tìm nhanh vị trí khác:</h4>
+                          <h4 className="text-[10px] font-extrabold uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-2">{t.jobs.otherPositionsShort}</h4>
                           <div className="flex flex-wrap gap-1.5">
                             {SUGGESTED_JOB_KEYWORDS.map((keyword) => (
                               <button
@@ -2077,15 +2058,15 @@ export default function JobSearchClient() {
               
               <div className="mb-6">
                 <span className="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400">
-                  Câu hỏi {quizStep + 1}/{QUIZ_QUESTIONS.length}
+                  {format(t.jobs.quizQuestionCounter, { current: quizStep + 1, total: quizQuestions.length })}
                 </span>
                 <h3 className="text-base font-black text-stone-900 dark:text-stone-50 mt-3 leading-snug">
-                  {QUIZ_QUESTIONS[quizStep].question}
+                  {quizQuestions[quizStep].question}
                 </h3>
               </div>
               
               <div className="space-y-2.5">
-                {QUIZ_QUESTIONS[quizStep].options.map((opt, i) => (
+                {quizQuestions[quizStep].options.map((opt, i) => (
                   <button
                     key={i}
                     onClick={() => handleAnswerSelect(opt.type)}

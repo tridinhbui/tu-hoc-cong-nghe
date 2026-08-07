@@ -1,0 +1,146 @@
+{
+  "slug": "revenue-multiple-dung-khi-nao",
+  "title": "When should Revenue Multiple be used?",
+  "subtitle": "The last resort when a company has no profit yet to value it by",
+  "duration": "6 min",
+  "openingQuestion": "A tech startup is growing revenue 100%/year but is still losing money (no positive EBITDA or profit). Which valuation metric can still be applied?",
+  "openingOptions": [
+    "P/E, because it always applies to every company",
+    "No metric at all can be applied to a loss-making company",
+    "EV/Revenue (Revenue Multiple) - because revenue is always positive even when the company has no profit yet, allowing a rough comparison, though less accurate than profit-based metrics",
+    "P/B is the only viable option"
+  ],
+  "explanation": "EV/Revenue (or Price/Sales) = Enterprise Value / Revenue. When a company has no positive profit yet (common at growth-stage tech startups), profit-based metrics (P/E, EV/EBITDA) become meaningless. Revenue Multiple is a usable option because revenue is rarely negative - but it's the least accurate metric of all since it completely ignores profitability and cost.",
+  "diagram": [
+    { "label": "The company has no profit yet" },
+    { "label": "P/E and EV/EBITDA become meaningless" },
+    { "label": "Use EV/Revenue instead" }
+  ],
+  "realWorldExample": {
+    "company": "Valuing SaaS startups",
+    "description": "SaaS (Software-as-a-Service) companies at an early stage are usually valued using EV/Revenue (e.g. 5-10 times annual recurring revenue - ARR) because most have no positive profit yet, despite very fast revenue growth."
+  },
+  "quiz": [
+    {
+      "question": "Why is Revenue Multiple considered the least reliable valuation metric compared to P/E or EV/EBITDA?",
+      "options": [
+        "Because revenue is harder to forecast than profit so the multiple is less stable",
+        "Because revenue is always inflated in published financial statements",
+        "Because revenue says nothing about margin or cost efficiency",
+        "Revenue Multiple is actually more accurate than other valuation metrics"
+      ],
+      "explanation": "Revenue is just the 'top line', not reflecting cost, margin, or operating efficiency. Two companies with 1,000 billion in revenue, one hugely profitable and one deeply loss-making, would carry the same multiple."
+    },
+    {
+      "question": "Two SaaS startups both have EV/Revenue = 8x, but startup A has an 80% gross margin while startup B only has 30%. Does this equal multiple correctly reflect the two companies' relative value?",
+      "options": [
+        "Yes, since an equal Revenue multiple means the two companies are equally valuable",
+        "B is always better than A because a lower margin shows more competitive pricing",
+        "Gross margin has nothing at all to do with reading a Revenue Multiple",
+        "No - an equal multiple means A is being relatively undervalued"
+      ],
+      "explanation": "This is exactly the biggest limitation of Revenue Multiple: it completely ignores margin - two companies with the same Revenue multiple but very different margins have very different real economic value."
+    },
+    {
+      "question": "When are you forced to use EV/Revenue instead of other multiples?",
+      "options": [
+        "When the business has no profit or positive EBITDA yet",
+        "When the business carries too much long-term debt",
+        "When the business operates in multiple different countries",
+        "When the business just completed a large merger"
+      ],
+      "explanation": "A negative denominator makes every profit-based multiple meaningless. Revenue is the only line still positive at an early-stage startup, so it gets used - even though it says nothing about whether the business will ever be profitable."
+    },
+    {
+      "question": "Why is EV/Revenue the least reliable of the multiples?",
+      "options": [
+        "Because revenue is the figure most easily adjusted by accounting",
+        "Because it completely ignores the business's ability to turn a profit",
+        "Because it only applies to businesses in the tech industry",
+        "Because revenue changes with the season so it can't be compared"
+      ],
+      "explanation": "Two businesses with the same 100 billion in revenue, one with an 80% margin, one with 5%, give the same EV/Revenue but very different real value, differing by dozens of times. This multiple only measures scale, not quality."
+    },
+    {
+      "question": "Two SaaS startups both have EV/Revenue of 8x, with gross margins of 80% and 40%. Which one is more valuable?",
+      "options": [
+        "The two are equivalent since they share the same revenue multiple",
+        "The 40%-margin one, since it still has more room to improve margin",
+        "The 80%-margin one, because it keeps more of every dong earned",
+        "Can't be determined without knowing the growth rate"
+      ],
+      "explanation": "At the same price relative to revenue, one side turns 80 dong into potential profit, the other only 40. This is exactly the flaw in a revenue-based multiple - it treats the two businesses as identical."
+    }
+  ],
+  "keyTakeaways": [
+    "EV/Revenue: used when a company has no positive profit yet to apply other metrics",
+    "The least accurate metric because it completely ignores profitability",
+    "Common in valuing growth-stage tech startups"
+  ],
+  "practicePrompt": {
+    "question": "A tech startup is growing revenue 100%/year but is still losing money (negative EBITDA, negative Net Income) because it's burning cash to expand its market. An analyst can't use P/E or EV/EBITDA to value this company. Which metric should they use instead, and why?",
+    "options": [
+      "EV/Revenue: used when a company has no positive profit yet, because revenue is rarely negative",
+      "P/B should be used instead, as it's the only metric applicable to a loss-making company",
+      "No metric at all is suitable for valuing a loss-making company, so valuation should be skipped",
+      "Wait until the company turns a profit before starting to value it at all - don't value a company still in a loss-making stage"
+    ],
+    "explanation": "EV/Revenue: used when a company has no positive profit yet, to substitute for metrics like P/E or EV/EBITDA. Revenue is rarely negative, so it can still be calculated and compared across industries, even though this metric reflects real profitability far less than EV/EBITDA."
+  },
+  "summary": {
+    "keyIdea": "EV/Revenue: used when a company has no positive profit yet, to substitute for other metrics",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to a real decision.",
+    "action": "The least accurate metric because it completely ignores profitability"
+  },
+  "application": {
+    "title": "Apply it now",
+    "message": "The lesson already has a real example comparing revenue-based valuation (startup) against P/E-based valuation (FPT) - see the 'Real example' section above. Now find a tech startup yourself and estimate its revenue multiple.",
+    "secondary": "Remember this is the least accurate metric - use it only when no better option is available."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "When a company hasn't earned a single dong of profit yet, P/E and EV/EBITDA become meaningless. This is when analysts are forced to reach for the last resort: Revenue Multiple."
+    },
+    { "type": "heading", "text": "Why Revenue Multiple is needed" },
+    {
+      "type": "paragraph",
+      "text": "EV/Revenue (or Price/Sales) = Enterprise Value / Revenue. When a company has no positive profit yet - common at growth-stage tech startups - profit-based metrics become meaningless or negative. Revenue is rarely negative, so Revenue Multiple becomes the usable option. Early-stage SaaS companies are usually valued this way at 5-10 times annual recurring revenue (ARR)."
+    },
+    { "type": "heading", "text": "The price of simplicity: ignoring margin entirely" },
+    {
+      "type": "paragraph",
+      "text": "Revenue is just the 'top line', not reflecting cost, margin, or operating efficiency. Two companies both with 1,000 billion in revenue but one with a 30% gross margin and the other with 80% - if both trade at the same EV/Revenue = 8x, the 80%-margin startup is actually being priced 'cheap' relative to its real profit potential, while the 30%-margin startup may be priced above its true value. This is the biggest limitation of Revenue Multiple: it completely ignores the ability to turn revenue into profit."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Only use it when P/E and EV/EBITDA aren't available (a company without profit yet)",
+        "Always pair Revenue Multiple with gross margin when comparing companies",
+        "The least accurate of the commonly used valuation multiples",
+        "Common in valuing tech startups, especially the SaaS model"
+      ]
+    },
+    {
+      "type": "heading", "text": "A real example: why a startup without profit yet still gets valued by revenue" },
+    {
+      "type": "list",
+      "items": [
+        "A growth-stage tech startup is usually losing money or has near-zero profit - P/E can't be used (since E is near zero or negative), so investors turn to Revenue Multiple (company value / revenue) instead",
+        "A contrasting example: FPT (an already profitable company) is valued using P/E of about 10.5x rather than a revenue multiple, because FPT's profit is stable and predictable enough",
+        "A high or low revenue multiple depends on expected growth rate and future potential margin, not current revenue"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "How to apply this yourself",
+      "text": "Find recent fundraising news for a Vietnamese startup (which usually discloses a company valuation), and cross-reference it with the publicly disclosed revenue (if available) to calculate the revenue multiple yourself (Revenue Multiple = Valuation / Revenue)."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Revenue Multiple is a tool born of insufficient information - use it when you must, but don't forget it leaves out the most important part: profit."
+      ]
+    }
+  ]
+}

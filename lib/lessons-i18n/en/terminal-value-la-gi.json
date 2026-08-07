@@ -1,0 +1,133 @@
+{
+  "slug": "terminal-value-la-gi",
+  "title": "What is Terminal Value?",
+  "subtitle": "The single largest share of value in most DCF models",
+  "duration": "10 min",
+  "openingQuestion": "A DCF model forecasts detailed cash flow for 5 years. So how is the company's value from year 6 onward (forever) handled?",
+  "openingOptions": [
+    "It is estimated using Terminal Value - a value representing all cash flow from year 6 to infinity, discounted back to present value at the end of the forecast period and added to the total DCF value",
+    "It is calculated using only the book value of current assets",
+    "Terminal Value is always zero because the distant future is uncertain",
+    "It is ignored entirely because it's too far out to forecast accurately"
+  ],
+  "explanation": "Since it's impossible to forecast cash flow in detail forever, a DCF model typically forecasts in detail for 5-10 years, then calculates a Terminal Value representing all remaining value after that. Terminal Value usually accounts for 60-80% of the total DCF value - it is the most SENSITIVE and important part of the entire model, even though it sits in the 'most distant future'.",
+  "diagram": [
+    { "label": "Forecast in detail through the final year", "arrow": true },
+    { "label": "Everything after is bundled into terminal value", "arrow": true },
+    { "label": "Calculated with perpetual growth or an exit multiple", "arrow": true },
+    { "label": "Discount to today - usually 60-80% of total value" }
+  ],
+  "interactiveType": "interest-rate",
+  "realWorldExample": {
+    "company": "The sensitivity of a DCF model",
+    "description": "A small change in the long-term growth assumption (from 2% to 3%) can shift Terminal Value - and therefore the total DCF value - by tens of percent, illustrating how extremely sensitive this part of the model is."
+  },
+  "quiz": [
+    {
+      "question": "Why do analysts always recommend running a particularly careful sensitivity analysis on Terminal Value?",
+      "options": [
+        "Because it accounts for most of the value while resting on the most distant assumptions",
+        "Because it's the only part of the model not discounted back to today's value",
+        "Because valuation standards require sensitivity disclosure for this part specifically",
+        "Because it's calculated with a different formula than the detailed forecast part"
+      ],
+      "explanation": "Because Terminal Value accounts for most of the total DCF value, and is calculated using long-term assumptions that are hard to forecast accurately (perpetual growth, future cost of capital), small errors in these assumptions get amplified into large errors in the final result - this is why sensitivity analysis is mandatory, not optional, when presenting DCF results."
+    },
+    {
+      "question": "If an analyst deliberately shortens the explicit forecast period to just 2 years instead of the usual 5-10 years before calculating Terminal Value, what could happen to the reliability of the valuation result?",
+      "options": [
+        "The result becomes more reliable because fewer forecast years mean less error",
+        "Terminal Value takes up a larger share, making the result less reliable",
+        "No effect at all, because the total value stays the same",
+        "The model simply cannot run if the forecast is under three years"
+      ],
+      "explanation": "Shortening the explicit forecast period doesn't solve the uncertainty of the future - it just shifts the forecasting burden onto Terminal Value SOONER, making the final result depend more heavily on the least certain long-term assumptions. This is why analysts usually choose a forecast period long enough for the company to reach a stable growth state before applying Terminal Value."
+    },
+    {
+      "question": "Final-year cash flow is 100 billion, WACC is 10%, perpetual growth is 3%. What is the Terminal Value?",
+      "options": [
+        "3,333 billion (= 100 ÷ 0.03, mistakenly dividing by g)",
+        "1,000 billion (= 100 ÷ 0.10, forgetting growth)",
+        "1,429 billion (= 100 × 1.03 ÷ (0.10 - 0.03))",
+        "769 billion (= 100 ÷ (0.10 + 0.03), adding instead of subtracting)"
+      ],
+      "explanation": "TV = next year's CF / (r - g) = 103 / 0.07 ≈ 1,429 billion. The denominator is only 7%, so it's highly sensitive: raising g to 4% pushes the result to 1,717 billion, a 20% increase from one assumption alone."
+    },
+    {
+      "question": "What are the two common methods for calculating Terminal Value?",
+      "options": [
+        "Industry average and the company's own historical average",
+        "Discounted cash flow and comparable company analysis",
+        "Book value and asset liquidation value",
+        "Gordon Growth and Exit Multiple, run both"
+      ],
+      "explanation": "One is based on pure theoretical perpetual growth, the other anchors to a real market multiple. Running both and comparing is the standard cross-check in the industry."
+    },
+    {
+      "question": "Terminal Value accounts for 85% of the model's value. How should one respond?",
+      "options": [
+        "Review the long-term assumptions and extend the forecast period",
+        "Accept it, since that share falls within a normal range",
+        "Drop Terminal Value and use only the detailed forecast part",
+        "Raise the discount rate to pull that share down to a reasonable level"
+      ],
+      "explanation": "Going far beyond the usual 60-80% range means almost the entire conclusion rests on guesswork. The fix is to forecast in detail for longer, shifting more value into the better-grounded portion of the model."
+    }
+  ],
+  "keyTakeaways": [
+    "Terminal Value: the value representing cash flow from after the explicit forecast period to infinity",
+    "Usually accounts for 60-80% of total DCF value - the most sensitive part of the model",
+    "Requires careful sensitivity analysis because of its enormous impact on the final result"
+  ],
+  "practicePrompt": {
+    "question": "A DCF model forecasts the company's cash flow in detail for the next 5 years, but the company keeps operating indefinitely after that. How does the DCF model account for the value of all cash flow after year 5 without forecasting in detail to infinity?",
+    "options": [
+      "The DCF model simply ignores all value after year 5 because it can't be forecast accurately that far out",
+      "Terminal Value: the value of cash flow from after the explicit forecast period to infinity",
+      "The DCF model assumes the company will fully cease operations right after year 5",
+      "Terminal Value is only a theoretical concept, not actually calculated in real DCF models"
+    ],
+    "explanation": "Terminal Value: the value representing cash flow from after the explicit forecast period to infinity. Since detailed forecasting forever is impossible, a DCF model uses a formula (Gordon Growth or Exit Multiple) to condense all distant future value into a single number - Terminal Value usually accounts for 60-80% of total DCF value."
+  },
+  "summary": {
+    "keyIdea": "Terminal Value: the value representing cash flow from after the explicit forecast period to infinity",
+    "commonMistake": "Reading the concept as a definition to recite rather than a principle to apply to a real decision.",
+    "action": "Usually accounts for 60-80% of total DCF value - the most sensitive part of the model"
+  },
+  "application": {
+    "title": "Apply it now",
+    "message": "Think about one of your own long-term decisions (buying a home, choosing a career) - does the 'value' lie in the next 5 years, or in the rest of your life after that? That's the intuition behind Terminal Value.",
+    "secondary": "Terminal Value dominates DCF value the same way the rest of your life dominates your total lifespan beyond the next 5 years."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A surprising fact for many new to DCF: the largest share of the entire valuation usually doesn't come from the 5-10 years of detailed forecast, but from a single number representing 'everything after that' - Terminal Value."
+    },
+    { "type": "heading", "text": "Why Terminal Value is needed" },
+    {
+      "type": "paragraph",
+      "text": "It's impossible to forecast a company's cash flow in detail forever, so a DCF model typically forecasts in detail for 5-10 years, then calculates a Terminal Value representing all remaining value after that - from the final forecast year to infinity. Notably: Terminal Value usually accounts for 60-80% of total DCF value, despite sitting in the 'most distant future' and hardest-to-forecast part of the model."
+    },
+    { "type": "heading", "text": "Extreme sensitivity and its consequences" },
+    {
+      "type": "paragraph",
+      "text": "A small change in the long-term growth assumption - say from 2% to 3% - can shift Terminal Value, and therefore total DCF value, by tens of percent. This is why sensitivity analysis on Terminal Value is mandatory, not optional. A common mistake is shortening the explicit forecast period (for example, just 2 years instead of 5-10) to 'simplify' the model - but this doesn't solve the uncertainty of the future, it just shifts the forecasting burden onto Terminal Value SOONER, making the result depend more heavily on the least certain long-term assumptions."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Terminal Value represents cash flow from after the explicit forecast period to infinity",
+        "Usually accounts for 60-80% of total DCF value - the most important part, not a 'side' part",
+        "Choose a forecast period long enough for the company to reach a stable growth state before calculating Terminal Value",
+        "Two common calculation methods: the Gordon Growth Method and the Exit Multiple Method"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "If Terminal Value accounts for most of the DCF value, then scrutinising the assumptions behind it matters more than any other line in the model."
+      ]
+    }
+  ]
+}

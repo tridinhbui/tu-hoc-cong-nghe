@@ -1,0 +1,172 @@
+{
+  "slug": "on-tap-3-bao-cao",
+  "title": "Review: the three financial statements",
+  "subtitle": "Connecting the P&L, Balance Sheet, and Cash Flow Statement",
+  "duration": "7 min",
+  "openingQuestion": "This year's net profit connects into the Balance Sheet through which item?",
+  "openingOptions": [
+    "Retained Earnings within shareholders' equity",
+    "Current assets",
+    "Long-term debt",
+    "Revenue"
+  ],
+  "explanation": "The three statements are three cross-sections of the same entity, so they lock together through fixed links: net profit adds into retained earnings on the balance sheet, and is also the first line of the cash flow statement; the cash flow statement's ending cash must equal the cash balance on the balance sheet. Because they're locked together so tightly, a number distorted in one place leaves a trace in the other two.",
+  "diagram": [
+    { "label": "Net profit on the income statement", "arrow": true },
+    { "label": "Adds into retained earnings on the balance sheet", "arrow": true },
+    { "label": "Is also the first line of the cash flow statement", "arrow": true },
+    { "label": "Ending cash loops back to match the balance sheet" }
+  ],
+  "realWorldExample": {
+    "company": "Independent audit",
+    "description": "This is exactly why auditors always check the consistency (articulation) between the three financial statements first - if Net Income doesn't tie into Retained Earnings, or the cash balance doesn't match between the Cash Flow Statement and the Balance Sheet, that's the first sign of an error worth investigating."
+  },
+  "quiz": [
+    {
+      "question": "Which statement about the link between the three statements is TRUE?",
+      "options": [
+        "Net Income flows into Retained Earnings and opens the Cash Flow Statement",
+        "Cash Flow flows into Retained Earnings and opens the balance sheet",
+        "The balance sheet determines the revenue recorded on that period's P&L",
+        "The three statements are prepared independently, with no linked figures"
+      ],
+      "explanation": "The three statements connect: NI → RE (BS); NI is the starting point of the CFS under the indirect method; ending cash on the CFS = cash on the BS; depreciation flowing through the P&L → lowers asset value on the BS."
+    },
+    {
+      "question": "If a company's ending Balance Sheet doesn't balance (Assets ≠ Liabilities + Equity) after fully updating Net Income and other financing transactions, what is the most likely cause?",
+      "options": [
+        "The business is loss-making, so the two sides can't balance",
+        "There's an error linking data across the three statements",
+        "An end-of-period FX difference hasn't been revalued yet",
+        "It's normal if the gap is smaller than the materiality threshold"
+      ],
+      "explanation": "The three financial statements form a closed system: Net Income from the P&L must tie into Retained Earnings on the Balance Sheet; ending cash on the Cash Flow Statement must match the cash balance on the Balance Sheet. If they don't match, there's definitely a data-linking error to track down, not a normal occurrence."
+    },
+    {
+      "question": "Through what path does Net Income connect the Income Statement to the Balance Sheet?",
+      "options": [
+        "Through receivables, since uncollected revenue sits in that line",
+        "Through the Cash item within current assets on the balance sheet",
+        "Through Retained Earnings within shareholders' equity on the balance sheet",
+        "There's no direct connection, the two statements are prepared entirely independently"
+      ],
+      "explanation": "Profit after subtracting dividends is added into retained earnings. That's why a company that has been profitable for years without paying dividends will show an ever-thicker equity section on its balance sheet."
+    },
+    {
+      "question": "If you could only see two of the three statements, which pair gives the fullest picture?",
+      "options": [
+        "Cash Flow and the ending Balance Sheet, since cash is the most important thing",
+        "The Income Statement and Cash Flow, since both reflect changes during the period",
+        "The Income Statement and the ending Balance Sheet, since those are the two mandatory statements",
+        "The opening and closing Balance Sheet, since from them you can rebuild the other two statements"
+      ],
+      "explanation": "Two balance sheets bookending a period contain every change that happened between them - from that, you can derive how much retained earnings grew and where the cash went. This is a classic exercise in finance interviews."
+    },
+    {
+      "question": "How does a 100-billion cash purchase of equipment affect the three statements in the first year?",
+      "options": [
+        "The P&L only records depreciation, cash falls by 100 billion under investing, the asset mix shifts",
+        "The P&L drops by 100 billion immediately, cash falls by 100 billion, total assets fall by 100 billion",
+        "The P&L doesn't change, cash doesn't change, only the balance sheet changes",
+        "The P&L drops by 100 billion, cash doesn't change because the equipment was bought with borrowed capital"
+      ],
+      "explanation": "This is the classic question testing understanding of the three statements: cash is spent once but the cost is spread over many years. Total assets don't change on the day of purchase - cash just turns into machinery."
+    },
+    {
+      "question": "Why can't a business be judged using just one statement alone?",
+      "options": [
+        "Because accounting law requires disclosing all three statements together",
+        "Because each statement answers a different question and has its own blind spot",
+        "Because the three statements can contradict each other, requiring cross-checking to find errors",
+        "Because each statement is prepared by a different department within the company"
+      ],
+      "explanation": "The P&L says whether the company is profitable but not where the cash is. The balance sheet says what the company owns but only as of one date. Cash flow says where the cash went but not why. Three answers to three different questions."
+    }
+  ],
+  "keyTakeaways": [
+    "The 3 statements connect through NI and cash",
+    "You can't fully understand one statement while ignoring the other two",
+    "Read all 3: the P&L measures performance, the BS measures position, the CFS measures real cash"
+  ],
+  "practicePrompt": {
+    "question": "After reviewing all three financial statements, you notice Net Income from the P&L reappears on the Balance Sheet (through Retained Earnings) and is also the starting point for calculating OCF on the Cash Flow Statement. What important principle does this illustrate?",
+    "options": [
+      "These three statements are really just three copies of the same data, presented in three different formats",
+      "The 3 statements connect through Net Income and cash - you can't fully understand one statement while ignoring the other two, since each is a complementary slice of the overall financial picture",
+      "Reading just the P&L is enough, since Net Income is the most important number and it runs through all three statements",
+      "The three statements are entirely independent of each other, and Net Income appearing in multiple places is just a coincidence"
+    ],
+    "explanation": "The 3 statements connect through Net Income and cash: the P&L measures business performance during the period, the Balance Sheet measures financial position at one point in time (Net Income accumulates into Retained Earnings), the Cash Flow Statement measures real cash (starting from Net Income and adjusting toward actual cash)."
+  },
+  "summary": {
+    "keyIdea": "The 3 statements connect through NI and cash",
+    "commonMistake": "Reading a concept as a phrase to memorise rather than a principle to apply to real decisions.",
+    "action": "You can't fully understand one statement while ignoring the other two"
+  },
+  "application": {
+    "title": "Connect the three statements together",
+    "message": "With the financial statements you just reviewed, find the Net Income figure on the P&L, then find where it appears on the Cash Flow Statement (the first line) and how it affects Retained Earnings on the Balance Sheet.",
+    "secondary": "Once you can connect all three statements yourself, that means you understand how they work together."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The last 20 lessons walked through the three core financial statements - each answering a different question, but none existing in isolation. This review lesson pulls together this whole track on the three financial statements and shows the thread connecting them."
+    },
+    { "type": "heading", "text": "Group 1: The Balance Sheet - what a company owns and owes" },
+    {
+      "type": "paragraph",
+      "text": "The Balance Sheet answers 'at one point in time, what does the company have and who does it owe'. The core equation Assets = Liabilities + Shareholders' Equity underlies every analysis. You've learned to distinguish current/non-current assets, current/long-term liabilities, and liquidity ratios (current ratio, quick ratio) to assess the ability to pay short-term debt."
+    },
+    { "type": "heading", "text": "Group 2: Shareholders' Equity - equity in detail" },
+    {
+      "type": "paragraph",
+      "text": "Shareholders' equity isn't one uniform block but consists of Common Stock, APIC, Retained Earnings, and Treasury Stock. Negative Retained Earnings (an accumulated deficit) and large Treasury Stock (from buybacks) are two common reasons Equity can be low or even negative at some mature companies."
+    },
+    { "type": "heading", "text": "Group 3: The Cash Flow Statement - three cash flows" },
+    {
+      "type": "paragraph",
+      "text": "The Cash Flow Statement splits cash flow into Operating (from core business), Investing (buying/selling long-term assets), and Financing (borrowing, issuing/buying back shares, dividends). OCF = Net Income + D&A − ΔNWC is the central formula for understanding why accounting profit differs from real cash."
+    },
+    { "type": "heading", "text": "Group 4: Why profit/loss doesn't mean the same thing as cash" },
+    {
+      "type": "paragraph",
+      "text": "Two important paradoxes: a company can be profitable yet short of cash (from AR, Inventory rising fast, large CapEx), or loss-making yet still have cash (thanks to large D&A and deferred revenue). Free Cash Flow (FCF = OCF − CapEx) is the combined metric showing how much real free cash a business generates after sustaining its operations - the foundation of DCF valuation and Buffett's concept of 'owner earnings'."
+    },
+    { "type": "heading", "text": "The thread connecting the three statements" },
+    {
+      "type": "paragraph",
+      "text": "Net Income from the P&L flows into Retained Earnings on the Balance Sheet, and is also the starting point of the Cash Flow Statement under the indirect method. Ending cash on the Cash Flow Statement must match the Cash and Cash Equivalents item on the Balance Sheet. Depreciation (D&A) on the P&L lowers fixed-asset value on the Balance Sheet, while being added back on the Cash Flow Statement since it's a non-cash cost. Changing a number on one statement always forces a change on the other two - which is why you can never read one statement while ignoring the other two."
+    },
+    {
+      "type": "list",
+      "items": [
+        "P&L: measures business performance during a period - revenue, cost, profit",
+        "Balance Sheet: measures financial position at one point in time - assets, liabilities, equity",
+        "Cash Flow Statement: measures real cash flow - Operating, Investing, Financing",
+        "The track's final case study: applying all three to Apple and Vinamilk for the full picture"
+      ]
+    },
+    {
+      "type": "conceptTable",
+      "title": "The three core financial statements",
+      "concepts": [
+        { "vi": "Báo cáo kết quả kinh doanh", "en": "Income Statement (P&L)", "def": "Measures revenue, cost, and profit over an accounting period." },
+        { "vi": "Bảng cân đối kế toán", "en": "Balance Sheet", "def": "Measures assets, liabilities, and equity at one point in time." },
+        { "vi": "Báo cáo lưu chuyển tiền tệ", "en": "Cash Flow Statement", "def": "Measures real cash flow across three activities: operating, investing, financing." }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "No statement is 'the most important'",
+      "text": "New investors often only look at Net Income on the P&L. Experienced investors always read all three: the P&L tells you whether the company is profitable, the Balance Sheet tells you whether it's financially solid, and the Cash Flow Statement tells you whether it's really generating cash. Only when all three agree is the picture trustworthy."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "This track on the three financial statements has equipped you to read and connect them - a foundational skill for every professional investor and finance manager.",
+        "The next track goes deeper into financial-ratio analysis and business valuation, building on the foundation you've just built."
+      ]
+    }
+  ]
+}

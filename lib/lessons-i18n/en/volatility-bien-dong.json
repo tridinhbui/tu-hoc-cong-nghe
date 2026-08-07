@@ -1,0 +1,131 @@
+{
+  "slug": "volatility-bien-dong",
+  "title": "Volatility",
+  "subtitle": "A measure of how much an asset's price swings over time",
+  "duration": "6 min",
+  "openingQuestion": "Stock A swings 2-3% per day, stock B swings 0.3-0.5% per day. Which stock has higher volatility?",
+  "openingOptions": [
+    "Cannot be determined without knowing the observation period",
+    "Both are equal if their ending price is the same",
+    "Stock B",
+    "Stock A - volatility measures the magnitude of price swings, and A swings far more, so its volatility is higher"
+  ],
+  "explanation": "Volatility measures how much an asset's price swings over time, usually calculated as the standard deviation of returns. High volatility isn't necessarily bad - it simply reflects a degree of uncertainty, and it usually comes with higher potential return as compensation for that uncertainty.",
+  "diagram": [
+    { "label": "An asset's price swings over time", "arrow": true },
+    { "label": "Measured by the standard deviation of returns", "arrow": true },
+    { "label": "= Volatility" }
+  ],
+  "realWorldExample": {
+    "company": "Tech stocks vs. utility stocks",
+    "description": "High-growth tech stocks (like newly listed startups) usually have very high volatility, while public utility stocks (electricity, water) tend to be stable, with much lower volatility."
+  },
+  "quiz": [
+    {
+      "question": "Does high volatility always mean 'bad risk' that should be avoided?",
+      "options": [
+        "Yes, high volatility always lowers long-term returns",
+        "No, it amplifies both gains and losses",
+        "Yes, because institutional investors always avoid volatile assets",
+        "No, because volatility has no effect on expected return"
+      ],
+      "explanation": "Volatility is a double-edged sword: it amplifies both large gains and large losses. A young investor with a long time horizon may accept high volatility in exchange for a higher expected return; an investor near retirement usually prefers low volatility to preserve accumulated capital."
+    },
+    {
+      "question": "A stock's volatility measured over the past 3 months is very low. Does that guarantee the next 3 months will also stay low?",
+      "options": [
+        "Yes, as long as the company discloses nothing unusual",
+        "Yes, volatility is a fixed, stable trait of each asset",
+        "No, volatility can spike suddenly when an unexpected event hits",
+        "No, because volatility always reverses every three months"
+      ],
+      "explanation": "This is an important limit of every measure based on historical data: volatility can spike suddenly (volatility clustering) when an unexpected event hits - a long calm stretch is sometimes actually a warning sign of a sharp move ahead, not a guarantee of long-term stability."
+    },
+    {
+      "question": "What does volatility clustering mean?",
+      "options": [
+        "A portfolio's volatility equals the sum of each asset's own volatility",
+        "Assets in the same industry always end up with identical volatility",
+        "Volatility concentrates at the start and end of each trading session",
+        "A period of strong volatility tends to be followed by more volatility"
+      ],
+      "explanation": "Markets don't move randomly from calm to chaotic and back to calm - shocks arrive in clusters. This is why low volatility over the past three months is no guarantee the next three will be low too."
+    },
+    {
+      "question": "Why can a young investor accept higher volatility than someone close to retirement?",
+      "options": [
+        "Because they have time to wait for the market to recover",
+        "Because their higher income makes them tolerate losses better",
+        "Because highly volatile assets always deliver higher returns",
+        "Because they get a tax break for investing longer-term"
+      ],
+      "explanation": "Volatility only becomes a permanent loss when you're forced to sell while the market is down. A long time horizon allows you to wait; someone withdrawing money within the next three years doesn't have that option."
+    },
+    {
+      "question": "Two funds both average 10%/year, one with 8% volatility and one with 25%. What's the real-world difference?",
+      "options": [
+        "The two funds deliver identical outcomes since their average return is equal",
+        "The higher-volatility fund's actual realized outcome is far less steady",
+        "The higher-volatility fund is guaranteed to deliver a higher final outcome",
+        "The lower-volatility fund has a correspondingly higher management fee"
+      ],
+      "explanation": "Same average, very different paths: the 25%-volatility fund has years where it loses a third of its value. For someone who must withdraw money in exactly that year, the two funds are anything but the same."
+    }
+  ],
+  "keyTakeaways": [
+    "Volatility: a measure of how much an asset's price swings",
+    "High volatility isn't inherently bad - weigh it against expected return and risk tolerance",
+    "One of the most important inputs into every portfolio risk-management model"
+  ],
+  "practicePrompt": {
+    "question": "Stock A swings between 90,000 VND and 110,000 VND within a month. Stock B swings between 98,000 VND and 102,000 VND over the same period, even though both end the month at a similar price (around 100,000 VND). What concept describes the difference in how much these two stocks 'dance' in price?",
+    "options": [
+      "This is a difference in Expected Return, since the two stocks have different expected returns",
+      "Volatility is a measure of price-swing magnitude; A has a wider range than B",
+      "This is a difference in Correlation between the two stocks and the broad market",
+      "No financial concept describes this difference between the two stocks"
+    ],
+    "explanation": "Volatility: a measure of how much an asset's price swings. Stock A has higher volatility (a wider range: 90,000-110,000) than B (98,000-102,000) - high volatility usually comes with higher risk even when the final return can look the same."
+  },
+  "summary": {
+    "keyIdea": "Volatility: a measure of how much an asset's price swings",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to a real decision.",
+    "action": "High volatility isn't inherently bad - weigh it against expected return and risk tolerance"
+  },
+  "application": {
+    "title": "Compare the volatility of two assets",
+    "message": "Look at the 6-month price chart of a stock and a bond fund, and judge for yourself which line looks 'rougher' - that's the volatility you're sensing visually.",
+    "secondary": "High volatility doesn't mean bad, just that you need to prepare yourself mentally for it."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Volatility measures how much an asset's price swings over time, usually calculated as the standard deviation of returns. High volatility isn't automatically a bad thing - it simply reflects a degree of uncertainty, and it usually comes with a higher potential return as compensation for that instability."
+    },
+    { "type": "heading", "text": "High volatility: a double-edged sword" },
+    {
+      "type": "paragraph",
+      "text": "Volatility amplifies both the potential for large gains and large losses. High-growth tech stocks (like newly listed startups) usually carry very high volatility, while public utility stocks (electricity, water) are far more stable. A young investor with a long time horizon can accept high volatility in exchange for a higher expected return; someone near retirement usually prioritizes low volatility to preserve the capital they've already accumulated."
+    },
+    { "type": "heading", "text": "Past volatility doesn't guarantee the future" },
+    {
+      "type": "paragraph",
+      "text": "A stock with very low volatility over the past 3 months isn't guaranteed to stay calm for the next 3. Volatility can spike suddenly when an unexpected event hits - bad news, a crisis, a fundamental shift in the business. This is called \"volatility clustering\": a long calm stretch is sometimes actually a warning sign of a sharp move ahead, not a guarantee of lasting stability."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Volatility measures the magnitude of price swings, not their direction (up or down)",
+        "High volatility needs a correspondingly higher expected return to be worthwhile",
+        "The longer your time horizon, the more high volatility you can reasonably accept",
+        "Historical volatility data is only a reference estimate, not a promise about the future"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Volatility isn't an investor's enemy - not understanding it is the real enemy."
+      ]
+    }
+  ]
+}

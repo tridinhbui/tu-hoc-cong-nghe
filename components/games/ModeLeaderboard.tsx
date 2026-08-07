@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Trophy } from "lucide-react";
 import { getGameLeaderboard, type AnyGameType, type GameLeaderboardRow } from "@/lib/games";
+import { useI18n } from "@/lib/i18n/context";
 
 interface ModeLeaderboardProps {
   gameType: AnyGameType;
@@ -14,9 +15,11 @@ interface ModeLeaderboardProps {
 export default function ModeLeaderboard({
   gameType,
   title,
-  emptyLabel = "Chưa có dữ liệu xếp hạng.",
+  emptyLabel,
   formatter,
 }: ModeLeaderboardProps) {
+  const { t } = useI18n();
+  const resolvedEmptyLabel = emptyLabel ?? t.games.modeLeaderboard.emptyDefault;
   const [rows, setRows] = useState<GameLeaderboardRow[]>([]);
   const [loadedKey, setLoadedKey] = useState<string | null>(null);
   // `loading` suy ra từ chỗ dữ liệu đã tải xong cho khoá nào, không phải một
@@ -53,9 +56,9 @@ export default function ModeLeaderboard({
       </div>
 
       {loading ? (
-        <p className="text-xs font-semibold text-stone-400">Đang tải BXH...</p>
+        <p className="text-xs font-semibold text-stone-400">{t.games.modeLeaderboard.loading}</p>
       ) : rows.length === 0 ? (
-        <p className="text-xs font-semibold text-stone-400">{emptyLabel}</p>
+        <p className="text-xs font-semibold text-stone-400">{resolvedEmptyLabel}</p>
       ) : (
         <div className="space-y-2">
           {rows.map((row, idx) => (

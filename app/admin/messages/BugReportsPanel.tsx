@@ -11,21 +11,32 @@ import {
   getBugReportMessagesAction,
   updateBugReportStatusAction,
 } from "./actions";
+import { useI18n } from "@/lib/i18n/context";
+import { format, intlLocale } from "@/lib/i18n";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
-const STATUS_OPTIONS: { value: BugStatus; label: string }[] = [
-  { value: "open", label: "Mới" },
-  { value: "investigating", label: "Đang xử lý" },
-  { value: "fixed", label: "Đã sửa" },
-];
+function statusOptions(t: Dictionary): { value: BugStatus; label: string }[] {
+  return [
+    { value: "open", label: t.adminThree.bugReportsPanel.statusOpen },
+    { value: "investigating", label: t.adminThree.bugReportsPanel.statusInvestigating },
+    { value: "fixed", label: t.adminThree.bugReportsPanel.statusFixed },
+  ];
+}
 
-const SEVERITY_LABELS = {
-  low: "Thấp",
-  medium: "Vừa",
-  high: "Cao",
-} as const;
+function severityLabels(t: Dictionary) {
+  return {
+    low: t.adminThree.bugReportsPanel.severityLow,
+    medium: t.adminThree.bugReportsPanel.severityMedium,
+    high: t.adminThree.bugReportsPanel.severityHigh,
+  } as const;
+}
 
 export default function BugReportsPanel({ bugReports }: { bugReports: BugReport[] }) {
   const router = useRouter();
+  const { t, locale } = useI18n();
+  const tb = t.adminThree.bugReportsPanel;
+  const STATUS_OPTIONS = statusOptions(t);
+  const SEVERITY_LABELS = severityLabels(t);
   const [isPending, startTransition] = useTransition();
   const [activeReportId, setActiveReportId] = useState<number | null>(null);
   const [messages, setMessages] = useState<BugReportMessage[]>([]);
@@ -41,7 +52,7 @@ export default function BugReportsPanel({ bugReports }: { bugReports: BugReport[
       const nextMessages = await getBugReportMessagesAction(reportId);
       setMessages(nextMessages);
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Không tải được nội dung lỗi");
+      toast.error(error instanceof Error ? error.message : tb.loadThreadFailed);
     } finally {
       setLoadingThread(false);
     }
@@ -52,10 +63,10 @@ export default function BugReportsPanel({ bugReports }: { bugReports: BugReport[
     setUpdatingStatus(true);
     try {
       await updateBugReportStatusAction(activeReportId, status);
-      toast.success("Đã cập nhật trạng thái lỗi");
+      toast.success(tb.statusUpdated);
       startTransition(() => router.refresh());
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Không cập nhật được trạng thái");
+      toast.error(error instanceof Error ? error.message : tb.statusUpdateFailed);
     } finally {
       setUpdatingStatus(false);
     }
@@ -69,10 +80,10 @@ export default function BugReportsPanel({ bugReports }: { bugReports: BugReport[
       const nextMessages = await getBugReportMessagesAction(activeReportId);
       setMessages(nextMessages);
       setReply("");
-      toast.success("Đã gửi phản hồi");
+      toast.success(tb.replySent);
       startTransition(() => router.refresh());
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Không gửi được phản hồi");
+      toast.error(error instanceof Error ? error.message : tb.replySendFailed);
     } finally {
       setSending(false);
     }
@@ -82,8 +93,8 @@ export default function BugReportsPanel({ bugReports }: { bugReports: BugReport[
     return (
       <EmptyState
         icon={Bug}
-        title="Chưa có lỗi nào được gửi"
-        description="Các báo lỗi và trao đổi sửa lỗi từ người dùng sẽ hiện ở đây."
+        title={tb.emptyTitle}
+        description={tb.emptyDescription}
       />
     );
   }
@@ -105,7 +116,7 @@ export default function BugReportsPanel({ bugReports }: { bugReports: BugReport[
               <div className="min-w-0">
                 <p className="font-bold text-sm text-stone-900 dark:text-stone-100 truncate">{report.title}</p>
                 <p className="text-xs text-stone-500 dark:text-stone-400 truncate mt-0.5">
-                  {report.user_name || report.user_email || "Người dùng"}
+                  {report.user_name || report.user_email || tb.unknownUser}
                 </p>
               </div>
               {report.unread_user_messages ? (
@@ -128,7 +139,7 @@ export default function BugReportsPanel({ bugReports }: { bugReports: BugReport[
               <p className="text-xs text-stone-500 dark:text-stone-400 truncate mt-2">{report.latest_message}</p>
             ) : null}
             <p className="text-[10px] text-stone-400 dark:text-stone-500 mt-1">
-              {new Date(report.updated_at).toLocaleString("vi-VN")}
+              {new Date(report.updated_at).toLocaleString(intlLocale(locale))}
             </p>
           </button>
         ))}
@@ -137,7 +148,7 @@ export default function BugReportsPanel({ bugReports }: { bugReports: BugReport[
       <div className="flex flex-col">
         {!activeReport ? (
           <div className="flex-1 flex items-center justify-center text-sm text-stone-400 dark:text-stone-500">
-            Chọn một lỗi để xem chi tiết
+            {tb.selectReportPrompt}
           </div>
         ) : (
           <>
@@ -146,10 +157,12 @@ export default function BugReportsPanel({ bugReports }: { bugReports: BugReport[
                 <div className="min-w-0">
                   <p className="font-bold text-sm text-stone-900 dark:text-stone-100">{activeReport.title}</p>
                   <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">
-                    {activeReport.user_name || activeReport.user_email || "Người dùng"}
+                    {activeReport.user_name || activeReport.user_email || tb.unknownUser}
                   </p>
                   {activeReport.page_path ? (
-                    <p className="text-xs text-stone-400 dark:text-stone-500 mt-1">Trang: {activeReport.page_path}</p>
+                    <p className="text-xs text-stone-400 dark:text-stone-500 mt-1">
+                      {format(tb.pagePathLabel, { path: activeReport.page_path })}
+                    </p>
                   ) : null}
                 </div>
                 <select
@@ -172,7 +185,7 @@ export default function BugReportsPanel({ bugReports }: { bugReports: BugReport[
 
             <div className="flex-1 overflow-y-auto p-4 space-y-3 max-h-[380px]">
               {loadingThread ? (
-                <p className="text-xs text-stone-400">Đang tải...</p>
+                <p className="text-xs text-stone-400">{tb.loading}</p>
               ) : (
                 messages.map((message) => (
                   <div key={message.id} className={`flex ${message.sender === "admin" ? "justify-end" : "justify-start"}`}>
@@ -185,7 +198,7 @@ export default function BugReportsPanel({ bugReports }: { bugReports: BugReport[
                     >
                       <p>{message.content}</p>
                       <p className="text-[10px] opacity-60 mt-1">
-                        {new Date(message.created_at).toLocaleTimeString("vi-VN", {
+                        {new Date(message.created_at).toLocaleTimeString(intlLocale(locale), {
                           hour: "2-digit",
                           minute: "2-digit",
                         })}
@@ -201,7 +214,7 @@ export default function BugReportsPanel({ bugReports }: { bugReports: BugReport[
                 value={reply}
                 onChange={(event) => setReply(event.target.value)}
                 onKeyDown={(event) => event.key === "Enter" && void handleSendReply()}
-                placeholder="Phản hồi cách sửa hoặc hỏi thêm thông tin..."
+                placeholder={tb.replyPlaceholder}
                 className="flex-1 px-3 py-2 text-sm rounded-lg border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-100 focus:outline-none focus:border-stone-500"
               />
               <button

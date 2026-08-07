@@ -1,0 +1,134 @@
+{
+  "slug": "interest-coverage-chi-so",
+  "title": "Interest Coverage",
+  "subtitle": "How many times over can profit cover interest?",
+  "duration": "5 min",
+  "openingQuestion": "Interest Coverage = 1.5. Is that safe?",
+  "openingOptions": [
+    "Very safe",
+    "Warning - profit only covers interest 1.5 times, a thin safety margin",
+    "Completely fine",
+    "Not enough to pay interest"
+  ],
+  "explanation": "The interest coverage ratio shows how many times operating profit covers interest expense. Its value doesn't lie in the current number but in stress-testing it against a bad scenario: a ratio of 2.0 sounds safe until you cut EBIT by thirty percent and watch it drop to 1.4. Since interest must be paid on schedule regardless of how business is going, this is the metric creditors look at before they even check the debt-to-equity ratio.",
+  "diagram": [
+    { "label": "EBIT for the period", "arrow": true },
+    { "label": "Divide by interest expense due", "arrow": true },
+    { "label": "Get how many times profit covers interest", "arrow": true },
+    { "label": "Stress-test by lowering EBIT under a bad scenario to see how much margin remains" }
+  ],
+  "realWorldExample": {
+    "company": "Novaland during its difficult period",
+    "description": "During the difficult 2022-2023 real-estate market, Interest Coverage at many real-estate businesses like Novaland fell sharply as operating profit dropped while bond interest expense stayed fixed - pushing many companies close to the point of being unable to pay their interest."
+  },
+  "quiz": [
+    {
+      "question": "Interest Coverage falls from 5x to 1.8x over 2 years. What should you worry about?",
+      "options": [
+        "Revenue growing quickly, diluting the impact of interest expense",
+        "The business is paying down debt, so interest expense is falling",
+        "The D/E ratio has fallen below the industry average",
+        "The safety margin is shrinking fast, risking the ability to pay interest"
+      ],
+      "explanation": "A rapidly declining trend is a more important warning sign than the level at any single point in time. EBIT is falling or interest expense is rising - the cause needs investigating along with an assessment of sustainability."
+    },
+    {
+      "question": "Why is Interest Coverage especially important to track for businesses with a high share of bond financing?",
+      "options": [
+        "Because missing a bond interest payment triggers default immediately",
+        "Because bond interest rates are always much higher than bank loan rates",
+        "Because bonds have no collateral, so the risk is greater",
+        "Because bonds require both principal and interest to be paid every period"
+      ],
+      "explanation": "Interest Coverage is a leading indicator of default risk - it shows how much 'buffer' a company has left before operating profit can no longer cover interest. With bonds, failing to pay interest on time triggers default immediately, unlike a bank loan where an extension can be negotiated."
+    },
+    {
+      "question": "EBIT is 240 billion, interest expense is 80 billion. What is the Interest Coverage?",
+      "options": [
+        "0.33x (= 80 ÷ 240, numerator and denominator reversed)",
+        "3.0x (= 240 ÷ 80, EBIT over interest expense)",
+        "2.0x (= (240 − 80) ÷ 80, subtracting interest before dividing)",
+        "4.0x (= 240 ÷ 60, using the wrong interest-expense figure)"
+      ],
+      "explanation": "Interest Coverage = EBIT / Interest Expense = 240/80 = 3.0x. This sits in the 2-3x zone: acceptable but worth watching closely, since EBIT only needs to fall by a third to hit the danger threshold."
+    },
+    {
+      "question": "Company X holds Interest Coverage steady at 2.5x for five years. Company Y falls from 6x to 2.8x over 2 years. Which is more worrying?",
+      "options": [
+        "Equal, since both sit within the 2-3x zone",
+        "X, because its absolute figure is lower than Y's",
+        "Y, because the speed of deterioration matters more than the absolute level",
+        "X, because holding steady for years is a sign of stagnation"
+      ],
+      "explanation": "Y is still higher in absolute terms, but it has lost more than half its safety buffer in two years. If that trend continues for one more year, Y falls below 1.5x - while X has proven it can hold its level across multiple cycles."
+    },
+    {
+      "question": "What does an Interest Coverage of 1.0x mean?",
+      "options": [
+        "The business is breaking even, revenue just covering all costs",
+        "The business has fully paid off all of this year's interest",
+        "Debt exactly equals operating profit for the period",
+        "Operating profit is just enough to pay interest, with nothing left over"
+      ],
+      "explanation": "EBIT exactly matches interest expense, meaning nothing is left for tax, shareholders, or reinvestment. Just one weak quarter of revenue forces the company to borrow more or sell assets just to pay interest - this state rarely lasts long."
+    }
+  ],
+  "keyTakeaways": [
+    "Interest Coverage = EBIT / Interest Expense",
+    "< 1.5: dangerous; 2-3x: acceptable; > 5x: safe",
+    "Trend matters more than the number at a single point in time"
+  ],
+  "practicePrompt": {
+    "question": "A company has EBIT = 200 billion, annual interest expense = 40 billion. What is this company's Interest Coverage Ratio, and what does it mean for its creditors?",
+    "options": [
+      "Interest Coverage = EBIT / Interest Expense = 200/40 = 5 times - the company generates operating profit five times the interest it must pay, showing a fairly safe ability to service its debt",
+      "Interest Coverage = 40/200 = 0.2, a figure showing the company can barely pay its interest at all",
+      "Interest Coverage = 200-40 = 160 billion, the amount left over after the company pays off the year's interest",
+      "Interest Coverage has no relevance to a bank when it reviews an application for the company's loan"
+    ],
+    "explanation": "Interest Coverage = EBIT / Interest Expense = 200/40 = 5 times. The higher this ratio, the more easily a company can pay interest from operating profit - banks and bondholders use it to assess default risk before lending or buying corporate bonds."
+  },
+  "summary": {
+    "keyIdea": "Interest Coverage = EBIT / Interest Expense",
+    "commonMistake": "Reading a concept as a phrase to memorise rather than a principle to apply to real decisions.",
+    "action": "< 1.5: dangerous; 2-3x: acceptable; > 5x: safe"
+  },
+  "application": {
+    "title": "Calculate Interest Coverage",
+    "message": "Divide EBIT by interest expense for a company that carries debt, and see where the number falls on the scale you just learned: dangerous, acceptable, or safe.",
+    "secondary": "Also look at the trend over the last 2-3 years, not just a single year."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Interest Coverage answers a life-or-death question for any business carrying debt: how many times over does operating profit cover interest expense? This is one of the most important leading indicators of default risk."
+    },
+    { "type": "callout", "label": "The formula", "text": "Interest Coverage = EBIT / Interest Expense" },
+    { "type": "heading", "text": "The danger threshold and the Novaland lesson" },
+    {
+      "type": "paragraph",
+      "text": "Interest Coverage below 1.5 is considered dangerous - the safety margin is too thin, so just a slight dip in revenue leaves EBIT unable to cover interest. During the difficult 2022-2023 real-estate market, Interest Coverage at many businesses like Novaland fell sharply: operating profit declined while bond interest expense stayed fixed - pushing the company close to the point of being unable to pay."
+    },
+    { "type": "heading", "text": "Why trend matters more than the number at a single point in time" },
+    {
+      "type": "paragraph",
+      "text": "A company whose Interest Coverage falls from 5x to 1.8x over 2 years is far more worrying than one holding steady at 2.5x for years - even though the second company's absolute figure is still lower. A rapidly declining trend shows the safety margin is shrinking at a dangerous pace, and if it continues, the company may soon be unable to pay interest at all in the near future."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Below 1.5x: dangerous - the safety margin is far too thin",
+        "2-3x: acceptable but worth watching closely",
+        "Above 5x: safe, a comfortable buffer against revenue swings",
+        "With bonds, failing to pay interest on time triggers default immediately - unlike a bank loan, which can be renegotiated",
+        "A rapidly falling Interest Coverage is a far more reliable leading indicator than just looking at D/E"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "When Interest Coverage falls rapidly and continuously, that's a signal to act before the bond market panics, not after."
+      ]
+    }
+  ]
+}

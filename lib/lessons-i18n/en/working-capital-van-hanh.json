@@ -1,0 +1,168 @@
+{
+  "slug": "working-capital-van-hanh",
+  "title": "Working Capital in running a business",
+  "subtitle": "The Cash Conversion Cycle and how to optimise operating cash flow",
+  "duration": "7 min",
+  "openingQuestion": "What does a negative Cash Conversion Cycle (CCC) mean?",
+  "openingOptions": [
+    "A calculation error",
+    "The business has no inventory",
+    "The business is losing money",
+    "The business collects cash before it has to pay out - a big advantage"
+  ],
+  "explanation": "Working capital is cash tied up in daily operations: goods sitting in the warehouse, cash sitting with customers who haven't paid yet, offset by what the business still owes its suppliers. The cash cycle CCC = DIO + DSO − DPO measures the number of days cash stays tied up that way. A negative CCC - like Amazon or Costco - means the company collects from customers before it has to pay suppliers, essentially getting free financing from its supply chain, and the more it grows, the more cash it has left over.",
+  "diagram": [
+    { "label": "Pay for goods, they sit in the warehouse (DIO)", "arrow": true },
+    { "label": "Sell on credit, wait for customer payment (DSO)", "arrow": true },
+    { "label": "Subtract the days it's allowed to owe suppliers (DPO)", "arrow": true },
+    { "label": "What's left is the number of days cash is tied up - the cash cycle" }
+  ],
+  "realWorldExample": {
+    "company": "Highlands Coffee chain",
+    "description": "Highlands Coffee needs working capital to buy raw materials and pay monthly staff salaries before it collects enough revenue from customers - a short working-capital cycle helps an F&B chain cycle cash quickly to open new stores."
+  },
+  "quiz": [
+    {
+      "question": "CCC = DIO + DSO - DPO. It measures:",
+      "options": [
+        "The average time to sell off all inventory",
+        "The time from paying out cash to buy, to collecting cash from a sale",
+        "The average time for customers to pay",
+        "The number of working-capital turns in a year"
+      ],
+      "explanation": "A short CCC = the company doesn't have to wait long = good cash flow."
+    },
+    {
+      "question": "CCC = 10 days:",
+      "options": [
+        "Cannot conclude without knowing revenue",
+        "Normal, this is the industry average level",
+        "Good, a very short cycle means healthy cash flow",
+        "Bad, too short means the company lacks goods to sell"
+      ],
+      "explanation": "A short CCC = little working capital needed = strong cash flow. Amazon ~5 days, a startup 60+ days."
+    },
+    {
+      "question": "To shorten the Cash Conversion Cycle (CCC), which strategy should a business adopt?",
+      "options": [
+        "Increase DIO, increase DSO, and decrease DPO",
+        "Decrease DIO, DSO, and DPO all together",
+        "Increase DIO, DSO and DPO all together",
+        "Decrease DIO, decrease DSO, increase DPO"
+      ],
+      "explanation": "The formula is CCC = DIO + DSO - DPO. To shorten CCC (freeing up cash faster), a business needs to combine selling fast (↓DIO), collecting from customers fast (↓DSO), and taking full advantage of supplier payment terms (↑DPO)."
+    },
+    {
+      "question": "A startup has a long CCC because:",
+      "options": [
+        "Without a track record, it's hard to get supplier credit",
+        "Startups always carry above-average inventory",
+        "Startups usually sell and collect cash immediately",
+        "Startups get favourable payment terms"
+      ],
+      "explanation": "A long startup CCC = it needs large working capital = short of cash even while profitable."
+    },
+    {
+      "question": "CCC rises from 30 to 40 days. Effect:",
+      "options": [
+        "Gross margin falls by exactly 10 percentage points",
+        "More working capital is needed for those 10 extra days",
+        "No effect, since CCC is just an indicator",
+        "It saves 10 days' worth of working capital"
+      ],
+      "explanation": "CCC rising = needing more cash = cash flow gets tighter."
+    },
+    {
+      "question": "JIT inventory helps shorten CCC by:",
+      "options": [
+        "Increasing DPO because suppliers are paid more slowly",
+        "Decreasing DSO because customers pay faster",
+        "Decreasing DIO because stock is only brought in when needed",
+        "Decreasing both DIO and DSO at the same time"
+      ],
+      "explanation": "JIT = DIO ~0 = cash is freed up fast = a short CCC."
+    },
+    {
+      "question": "Should a startup prioritise optimising CCC or increasing profit?",
+      "options": [
+        "Neither, prioritise increasing revenue",
+        "Optimise CCC first, to survive",
+        "Both at once, without prioritising either",
+        "Increase profit first to raise capital more easily"
+      ],
+      "explanation": "Profitable but short of cash → bankruptcy. Survive first, profit later."
+    }
+  ],
+  "keyTakeaways": [
+    "CCC = DIO + DSO − DPO - measures working-capital management efficiency",
+    "A negative CCC: collecting before paying - a competitive advantage",
+    "Lowering CCC = freeing up capital, improving FCF"
+  ],
+  "practicePrompt": {
+    "question": "Company A has a Cash Conversion Cycle (CCC) of 45 days; its competitor in the same industry has a CCC of 12 days. What does this gap say about the two companies?",
+    "options": [
+      "Company A is managing working capital far more effectively because it has a longer cycle to optimise operations",
+      "The competitor is managing working capital far more effectively - a shorter CCC means it turns inventory and collects from customers faster, needing less working capital to run the business",
+      "CCC doesn't reflect anything meaningful about the operating efficiency of these two companies",
+      "Company A certainly has higher profit because it has a longer cash conversion cycle"
+    ],
+    "explanation": "CCC = DIO + DSO − DPO measures the time from paying cash to buy goods until collecting cash from selling them. A shorter CCC (12 days versus 45 days) means the competitor frees up capital faster and needs less working capital to sustain the same revenue level - a clear competitive advantage."
+  },
+  "summary": {
+    "keyIdea": "CCC = DIO + DSO − DPO - measures working-capital management efficiency",
+    "commonMistake": "Reading a concept as a phrase to memorise rather than a principle to apply to real decisions.",
+    "action": "A negative CCC: collecting before paying - a competitive advantage"
+  },
+  "application": {
+    "title": "Estimate the cash cycle of something you do",
+    "message": "If you sell online or provide a service, try estimating: do you receive customer payment before or after delivering, and do you pay your suppliers before or after - from that, work out whether your CCC is positive or negative.",
+    "secondary": "A negative CCC is a big advantage - if you already have one, hold onto it and make the most of it."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The Cash Conversion Cycle (CCC) measures the average number of days from when a business pays cash to buy raw materials to when it collects cash back from customers. **Formula:** CCC = DIO + DSO − DPO."
+    },
+    { "type": "heading", "text": "The three components of CCC" },
+    {
+      "type": "paragraph",
+      "text": "DIO (Days Inventory Outstanding) is the number of days goods sit in the warehouse before being sold. DSO (Days Sales Outstanding) is the number of days to collect cash from customers after a sale. DPO (Days Payable Outstanding) is the number of days a business is allowed to delay paying its suppliers. The shorter the CCC, the faster cash cycles, and the less a business depends on borrowed capital to sustain operations."
+    },
+    { "type": "heading", "text": "A negative CCC - the financial weapon of large retailers" },
+    {
+      "type": "paragraph",
+      "text": "When DPO is larger than DIO plus DSO, CCC turns negative - meaning the business collects from customers before it has to pay its suppliers. Amazon and Costco are classic examples: customers pay immediately upon purchase (DSO near zero), goods turn over quickly (low DIO), but suppliers must wait 45-90 days to be paid (high DPO). As a result, these companies are essentially given free working-capital financing by their own supply chain."
+    },
+    {
+      "type": "list",
+      "items": [
+        "A large positive CCC: a business needs more borrowed/own capital to sustain operations",
+        "CCC near zero or negative: a highly capital-efficient business model, less reliant on borrowing",
+        "Improving CCC: increase inventory turnover, shorten DSO, negotiate a longer DPO - without sacrificing the partnership"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "'Growing broke' - growth that drains cash",
+      "text": "A fast-growing business usually needs working capital to rise proportionally (more inventory, more receivables), pulling cash into working capital faster than it generates profit. This is why many fast-growing companies still need to raise more capital even while reporting a profit."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Cash Conversion Cycle terminology",
+      "concepts": [
+        { "vi": "Chu kỳ chuyển đổi tiền mặt", "en": "Cash Conversion Cycle (CCC)", "def": "DIO + DSO − DPO, the number of days to convert capital to cash and back" },
+        { "vi": "Số ngày tồn kho", "en": "Days Inventory Outstanding (DIO)", "def": "The average number of days goods sit in the warehouse before being sold" },
+        { "vi": "Số ngày thu tiền", "en": "Days Sales Outstanding (DSO)", "def": "The average number of days to collect cash from customers after a sale" },
+        { "vi": "Số ngày trả tiền", "en": "Days Payable Outstanding (DPO)", "def": "The average number of days a business is allowed to delay paying suppliers" }
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "CCC is a comprehensive measure of a business's working-capital management efficiency.",
+        "A negative CCC is a strong structural advantage, usually only achieved by businesses with real scale and negotiating power.",
+        "Tracking CCC over time helps spot the 'growing broke' phenomenon early."
+      ]
+    }
+  ]
+}

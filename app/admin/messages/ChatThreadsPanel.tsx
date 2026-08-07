@@ -9,10 +9,14 @@ import { uploadChatImage, isAllowedChatImage, deleteChatMessage } from "@/lib/su
 import { createClient } from "@/lib/supabase";
 import EmptyState from "@/components/admin/EmptyState";
 import EmojiPicker from "@/components/EmojiPicker";
+import { useI18n } from "@/lib/i18n/context";
+import { intlLocale } from "@/lib/i18n";
 
 const POLL_INTERVAL_MS = 4000;
 
 export default function ChatThreadsPanel({ threads: initialThreads }: { threads: ChatThread[] }) {
+  const { t, locale } = useI18n();
+  const tc = t.adminThree.chatThreadsPanel;
   const [threads, setThreads] = useState(initialThreads);
   const [activeUserId, setActiveUserId] = useState<string | null>(null);
   const [messages, setMessages] = useState<ChatThreadMessage[]>([]);
@@ -122,7 +126,7 @@ export default function ChatThreadsPanel({ threads: initialThreads }: { threads:
         const {
           data: { user: adminUser },
         } = await supabase.auth.getUser();
-        if (!adminUser) throw new Error("Phiên đăng nhập đã hết hạn");
+        if (!adminUser) throw new Error(tc.sessionExpired);
         imageUrl = await uploadChatImage(adminUser.id, imageFile);
         setUploadingImage(false);
       }
@@ -140,7 +144,7 @@ export default function ChatThreadsPanel({ threads: initialThreads }: { threads:
       setMessages(msgs);
       getChatThreadsAction().then(setThreads).catch(() => {});
     } catch (err) {
-      toast.error(err instanceof Error ? err.message : "Không gửi được tin nhắn");
+      toast.error(err instanceof Error ? err.message : tc.sendFailed);
     } finally {
       setUploadingImage(false);
       setSending(false);
@@ -150,12 +154,12 @@ export default function ChatThreadsPanel({ threads: initialThreads }: { threads:
   const handleAdminDeleteMessage = async (msgId: number) => {
     if (!activeUserId) return;
     setMessages((prev) => prev.filter((m) => m.id !== msgId));
-    toast.success("🗑️ Đã thu hồi và xóa vĩnh viễn tin nhắn khỏi DB!");
+    toast.success(tc.messageDeleted);
     await deleteChatMessage(msgId, activeUserId).catch((error) => console.error("Error deleting message:", error));
   };
 
   if (threads.length === 0) {
-    return <EmptyState icon={MessageCircle} title="Chưa có cuộc trò chuyện nào" description="Tin nhắn từ khung chat trực tiếp của người dùng sẽ hiện ở đây." />;
+    return <EmptyState icon={MessageCircle} title={tc.emptyTitle} description={tc.emptyDescription} />;
   }
 
   const activeThread = threads.find((t) => t.user_id === activeUserId);
@@ -175,7 +179,7 @@ export default function ChatThreadsPanel({ threads: initialThreads }: { threads:
           >
             <div className="flex items-center justify-between gap-2">
               <span className="font-bold text-sm text-stone-900 dark:text-stone-100 truncate">
-                {t.user_name || t.user_email || "Người dùng"}
+                {t.user_name || t.user_email || tc.unknownUser}
               </span>
               {t.unread_count > 0 && (
                 <span className="text-[10px] font-bold bg-blue-600 text-white rounded-full px-1.5 py-0.5">{t.unread_count}</span>
@@ -183,7 +187,7 @@ export default function ChatThreadsPanel({ threads: initialThreads }: { threads:
             </div>
             <p className="text-xs text-stone-500 dark:text-stone-400 truncate mt-0.5">{t.last_message}</p>
             <p className="text-[10px] text-stone-400 dark:text-stone-500 mt-1">
-              {new Date(t.last_message_at).toLocaleString("vi-VN")}
+              {new Date(t.last_message_at).toLocaleString(intlLocale(locale))}
             </p>
           </button>
         ))}
@@ -193,19 +197,19 @@ export default function ChatThreadsPanel({ threads: initialThreads }: { threads:
       <div className="flex flex-col">
         {!activeUserId ? (
           <div className="flex-1 flex items-center justify-center text-sm text-stone-400 dark:text-stone-500">
-            Chọn một cuộc trò chuyện để xem
+            {tc.selectThreadPrompt}
           </div>
         ) : (
           <>
             <div className="px-4 py-3 border-b border-stone-200 dark:border-stone-800">
               <p className="font-bold text-sm text-stone-900 dark:text-stone-100">
-                {activeThread?.user_name || activeThread?.user_email || "Người dùng"}
+                {activeThread?.user_name || activeThread?.user_email || tc.unknownUser}
               </p>
               {activeThread?.user_email && <p className="text-xs text-stone-500 dark:text-stone-400">{activeThread.user_email}</p>}
             </div>
             <div className="flex-1 overflow-y-auto p-4 space-y-3 max-h-[380px]">
               {loadingThread ? (
-                <p className="text-xs text-stone-400">Đang tải...</p>
+                <p className="text-xs text-stone-400">{tc.loading}</p>
               ) : (
                 messages.map((m) => (
                   <div key={m.id} className={`flex flex-col ${m.sender === "admin" ? "items-end" : "items-start"}`}>
@@ -219,27 +223,27 @@ export default function ChatThreadsPanel({ threads: initialThreads }: { threads:
                       {m.image_url && (
                         <a href={m.image_url} target="_blank" rel="noopener noreferrer">
                           {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img src={m.image_url} alt="Ảnh đính kèm" className="max-w-full max-h-48 rounded-lg mb-1.5 object-cover" />
+                          <img src={m.image_url} alt={tc.attachedImageAlt} className="max-w-full max-h-48 rounded-lg mb-1.5 object-cover" />
                         </a>
                       )}
                       {m.content}
                       <p className="text-[10px] opacity-60 mt-1">
-                        {new Date(m.created_at).toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit" })}
+                        {new Date(m.created_at).toLocaleTimeString(intlLocale(locale), { hour: "2-digit", minute: "2-digit" })}
                       </p>
                     </div>
                     {m.sender === "admin" && (
                       <div className="flex items-center gap-2 mt-0.5 mr-1">
                         {m.id === lastAdminMsgId && m.read && (
-                          <span className="text-[10px] text-stone-400 dark:text-stone-500">Đã xem</span>
+                          <span className="text-[10px] text-stone-400 dark:text-stone-500">{tc.seen}</span>
                         )}
                         <button
                           type="button"
                           onClick={() => handleAdminDeleteMessage(m.id)}
                           className="text-[9px] font-bold text-rose-500 hover:text-rose-600 flex items-center gap-0.5 cursor-pointer"
-                          title="Thu hồi &amp; xóa khỏi DB"
+                          title={tc.recallAndDelete}
                         >
                           <Trash2 className="w-2.5 h-2.5" />
-                          <span>Thu hồi</span>
+                          <span>{tc.recall}</span>
                         </button>
                       </div>
                     )}
@@ -265,7 +269,7 @@ export default function ChatThreadsPanel({ threads: initialThreads }: { threads:
               {pendingImagePreview && (
                 <div className="relative inline-block mb-2">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={pendingImagePreview} alt="Xem trước" className="h-16 rounded-lg border border-stone-200 dark:border-stone-700 object-cover" />
+                  <img src={pendingImagePreview} alt={tc.previewAlt} className="h-16 rounded-lg border border-stone-200 dark:border-stone-700 object-cover" />
                   <button
                     onClick={clearPendingImage}
                     className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-stone-900 text-white flex items-center justify-center"
@@ -275,7 +279,7 @@ export default function ChatThreadsPanel({ threads: initialThreads }: { threads:
                 </div>
               )}
               {isDraggingImage && (
-                <p className="text-xs font-bold text-emerald-600 dark:text-emerald-400 text-center mb-2">Thả ảnh vào đây để đính kèm</p>
+                <p className="text-xs font-bold text-emerald-600 dark:text-emerald-400 text-center mb-2">{tc.dropImageHint}</p>
               )}
               <div className="flex gap-2">
                 <input
@@ -287,7 +291,7 @@ export default function ChatThreadsPanel({ threads: initialThreads }: { threads:
                 />
                 <button
                   onClick={() => fileInputRef.current?.click()}
-                  title="Đính kèm ảnh"
+                  title={tc.attachImage}
                   className="p-2 border border-stone-300 dark:border-stone-700 text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 rounded-lg transition flex-shrink-0"
                 >
                   <ImagePlus className="w-4 h-4" />
@@ -298,7 +302,7 @@ export default function ChatThreadsPanel({ threads: initialThreads }: { threads:
                   onChange={(e) => setReply(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && handleSend()}
                   onPaste={handlePaste}
-                  placeholder="Trả lời, dán hoặc kéo ảnh vào..."
+                  placeholder={tc.replyPlaceholder}
                   className="flex-1 min-w-0 px-3 py-2 text-sm rounded-lg border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-100 focus:outline-none focus:border-stone-500"
                 />
                 <button

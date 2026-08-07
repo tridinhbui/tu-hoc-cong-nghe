@@ -1,0 +1,132 @@
+{
+  "slug": "cost-of-equity",
+  "title": "Cost of Equity",
+  "subtitle": "The return shareholders expect - no interest paid, but not free",
+  "duration": "7 min",
+  "openingQuestion": "Why is the cost of equity always higher than the cost of debt?",
+  "openingOptions": [
+    "Because shareholders receive no interest",
+    "Because shareholders bear more risk (creditors are paid first) so they demand a higher expected return",
+    "Because of the tax rate",
+    "Because there's more equity than debt"
+  ],
+  "explanation": "The cost of equity is always higher than the cost of debt, and the reason lies in the order of payout when a company goes bankrupt: creditors get paid first, shareholders receive whatever is left - which is often nothing. Bearing more risk means demanding a higher expected return, and that's the whole logic. A consequence often overlooked: equity has no fixed payment schedule, so it has no visible cost on the financial statements - but the opportunity cost is still real.",
+  "diagram": [
+    { "label": "Shareholders stand last in line when a company goes bankrupt", "arrow": true },
+    { "label": "So they demand a higher return than creditors", "arrow": true },
+    { "label": "Take the risk-free rate plus beta times the market premium", "arrow": true },
+    { "label": "Gives the cost of equity - not on the financial statements but still real" }
+  ],
+  "realWorldExample": {
+    "company": "The financial crisis and payout priority",
+    "description": "When Lehman Brothers went bankrupt in 2008, bondholders recovered a significant portion of their investment's value, while ordinary shareholders lost almost everything - clear proof of why shareholders always demand a higher expected return (a higher cost of equity than cost of debt) to compensate for their riskier position."
+  },
+  "quiz": [
+    {
+      "question": "How does CAPM calculate the cost of equity?",
+      "options": [
+        "Take dividend divided by share price plus the dividend growth rate",
+        "Take Rf multiplied by beta then add the industry's average return",
+        "Take the market return minus the risk-free rate",
+        "Take Rf plus beta multiplied by the market risk premium"
+      ],
+      "explanation": "CAPM: Ke = Risk-free rate + Beta × Market Risk Premium. Beta measures a stock's sensitivity to the market. Higher beta → higher risk → higher cost of equity."
+    },
+    {
+      "question": "If a company's cost of equity is consistently lower than its cost of debt (contrary to standard theory), what might be going on?",
+      "options": [
+        "There's an error in the input assumptions, since shareholders always bear more risk",
+        "The company's stock is genuinely safer than its own bonds",
+        "The market is significantly overvaluing the company's stock",
+        "The company should issue more shares instead of taking on debt"
+      ],
+      "explanation": "As a basic economic principle, the cost of equity MUST be higher than the cost of debt because of shareholders' riskier position in the payout order - if a calculation shows the opposite, that's a strong signal to re-check the model's input assumptions (beta, risk-free rate, market risk premium)."
+    },
+    {
+      "question": "Why do shareholders demand a higher return than creditors?",
+      "options": [
+        "Because dividends are taxed more heavily than bank deposit interest",
+        "Because they stand last in line when the company pays out",
+        "Because stocks resell slower",
+        "Because they must hold shares longer than a bond's maturity"
+      ],
+      "explanation": "Interest is paid first, dividends are paid later and are not obligatory; in bankruptcy, shareholders get what's left - usually nothing. Higher risk means demanding a higher return."
+    },
+    {
+      "question": "A company's beta rises from 0.9 to 1.4. Rf 4%, MRP 7%. How does Ke change?",
+      "options": [
+        "From 6.3% to 9.8%, because beta only multiplies Rf",
+        "From 10.3% to 13.8%, but WACC stays unchanged",
+        "From 10.3% to 13.8%, a rise of 3.5 percentage points",
+        "From 9% to 14%, proportional to the rise in beta"
+      ],
+      "explanation": "Ke = 4% + 0.9×7% = 10.3%, then becomes 4% + 1.4×7% = 13.8%. Beta only multiplies the risk premium, not the risk-free rate - and this increase feeds straight into WACC, pulling the valuation down."
+    },
+    {
+      "question": "Why doesn't the cost of equity appear on any line of the financial statements?",
+      "options": [
+        "Because it's deducted directly from retained earnings at year end",
+        "Because accounting standards allow it to be booked into equity",
+        "Because it only arises when the company pays cash dividends",
+        "Because it's an opportunity cost, not an actual cash expense"
+      ],
+      "explanation": "A company doesn't write a check to pay the cost of equity to anyone. It's the return shareholders should have earned elsewhere at the same risk - invisible in the books but very real when shareholders decide whether to stay or sell."
+    }
+  ],
+  "keyTakeaways": [
+    "Cost of Equity > Cost of Debt - shareholders bear more risk",
+    "CAPM: Ke = Rf + β × (Rm − Rf)",
+    "There's no stated interest rate - this is shareholders' opportunity cost"
+  ],
+  "practicePrompt": {
+    "question": "When a company goes bankrupt: creditors (banks, bondholders) are paid back first, shareholders only receive whatever remains (if any) last. How does this explain why Cost of Equity is usually higher than Cost of Debt?",
+    "options": [
+      "Cost of Equity is higher because shareholders bear more risk - they're only paid after creditors when the company runs into trouble, so they demand a higher expected return to compensate for this riskier position",
+      "Cost of Equity is lower than Cost of Debt because shareholders are the true owners so they get priority over creditors",
+      "Cost of Equity and Cost of Debt are always equal because both fund the same company",
+      "Payout priority in bankruptcy has nothing to do with comparing Cost of Equity to Cost of Debt"
+    ],
+    "explanation": "Cost of Equity > Cost of Debt because shareholders bear more risk: when a company runs into trouble or goes bankrupt, creditors are paid first, and shareholders only get whatever is left (which can be zero) - this riskier position leads shareholders to demand a higher expected return to compensate."
+  },
+  "summary": {
+    "keyIdea": "Cost of Equity > Cost of Debt - shareholders bear more risk",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to real decisions.",
+    "action": "CAPM: Ke = Rf + β × (Rm − Rf)"
+  },
+  "application": {
+    "title": "Estimate Cost of Equity using CAPM",
+    "message": "Look up the beta of a stock you're interested in, pick a reasonable risk-free rate and market risk premium, and apply the CAPM formula to calculate that company's cost of equity yourself.",
+    "secondary": "Compare this number to the same company's cost of debt to see why shareholders demand more."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Shareholders don't receive a fixed interest rate like bondholders, but that doesn't mean equity is free. Cost of Equity is the minimum expected return shareholders demand to compensate for the risk they take on by holding the stock - and because that risk is higher than a bondholder's, Cost of Equity is always higher than the pre-tax Cost of Debt."
+    },
+    { "type": "heading", "text": "Why shareholders demand a higher return" },
+    {
+      "type": "paragraph",
+      "text": "If a company goes bankrupt, the payout order always places bondholders ahead of shareholders. A classic example: when Lehman Brothers went bankrupt in 2008, bondholders recovered a significant portion of their investment's value, while shareholders lost almost everything. Because they stand last in the payout order, shareholders demand a larger risk premium to compensate for this riskier position."
+    },
+    { "type": "heading", "text": "Calculating Cost of Equity with CAPM" },
+    {
+      "type": "paragraph",
+      "text": "The most common formula is CAPM: Ke = Rf + β × (Rm − Rf), where Rf is the risk-free rate, β measures the stock's sensitivity to the market, and (Rm − Rf) is the market risk premium. The higher a stock's beta (the more volatile relative to the market), the higher its Cost of Equity - correctly reflecting the principle that higher risk demands a higher expected return."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Cost of Equity must always be higher than the pre-tax Cost of Debt - if the reverse is true, the model's assumptions need to be re-checked",
+        "There's no specific 'interest rate' for equity - it's entirely an opportunity cost, hard to observe directly",
+        "CAPM is the most common tool, but not the only one (the Dividend Discount Model can also estimate Ke)",
+        "Cost of Equity usually accounts for a large share of WACC because most businesses raise more capital from equity than long-term debt"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Cost of Equity is an invisible but real cost - it isn't paid in cash each period, but a company still has to earn enough to keep shareholders on board."
+      ]
+    }
+  ]
+}

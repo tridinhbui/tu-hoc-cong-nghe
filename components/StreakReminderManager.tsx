@@ -12,6 +12,7 @@ import {
 } from "@/lib/streak-reminders";
 import { getMotivationLine } from "@/lib/daily-motivation";
 import { getRecallCountAction } from "@/lib/recall-actions";
+import { useI18n } from "@/lib/i18n/context";
 
 const BANNER_DISMISSED_KEY = "notif-banner-dismissed_v1";
 
@@ -31,6 +32,7 @@ export default function StreakReminderManager({
   userId: string;
   nextLessonId?: number;
 }) {
+  const { t } = useI18n();
   const [permission, setPermission] = useState<NotificationPermission | null>(null);
   const [bannerDismissed, setBannerDismissed] = useState(true);
 
@@ -150,10 +152,10 @@ export default function StreakReminderManager({
         </div>
         <div className="flex-1 min-w-[200px]">
           <p className="text-sm font-bold text-stone-900 dark:text-stone-100">
-            Bật nhắc nhở để không quên streak và bài ôn tập
+            {t.streakReminder.title}
           </p>
           <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">
-            Chỉ nhắc khi bạn đang mở hoặc quay lại tab này.
+            {t.streakReminder.note}
           </p>
         </div>
         <div className="flex items-center gap-2 flex-shrink-0">
@@ -161,17 +163,17 @@ export default function StreakReminderManager({
             onClick={requestNotificationPermission}
             className="px-3 py-2 text-sm font-bold rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white transition-colors"
           >
-            Bật thông báo
+            {t.streakReminder.enable}
           </button>
           <button
             onClick={dismissBanner}
             className="px-3 py-2 text-sm font-bold rounded-lg border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-900 transition-colors"
           >
-            Để sau
+            {t.streakReminder.later}
           </button>
           <button
             onClick={dismissBanner}
-            aria-label="Đóng"
+            aria-label={t.streakReminder.close}
             className="p-1.5 rounded-lg text-stone-400 hover:text-stone-600 dark:hover:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
           >
             <X className="w-4 h-4" />

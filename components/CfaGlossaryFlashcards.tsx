@@ -25,6 +25,8 @@ import FormulaBlock from "@/components/FormulaBlock";
 /** Kênh báo khi danh sách thẻ đã thuộc đổi trong cùng tab. */
 const LEARNED_CHANGED_EVENT = "thtcdn:cfa-glossary-learned";
 import { useLocalStorageValue, writeLocalStorageValue } from "@/lib/use-local-storage-value";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 /**
  * Dùng chung cho cả CFA và FRM. Mặc định là CFA để mọi chỗ gọi cũ
@@ -69,11 +71,16 @@ export default function CfaGlossaryFlashcards({
   terms = CFA_GLOSSARY_TERMS,
   subjects = CFA_LEVEL_1_SUBJECTS,
   storageKey = "cfa_glossary_learned",
-  badgeLabel = "CFA TERM",
-  tipLabel = "Mẹo thi CFA",
-  allLabel = "Tất cả (10 Môn CFA)",
-  learnedToastText = "✓ Đã đánh dấu thuộc từ vựng CFA!",
+  badgeLabel,
+  tipLabel,
+  allLabel,
+  learnedToastText,
 }: GlossaryDeckProps = {}) {
+  const { t } = useI18n();
+  const resolvedBadgeLabel = badgeLabel ?? t.cfaGlossary.badgeLabel;
+  const resolvedTipLabel = tipLabel ?? t.cfaGlossary.tipLabel;
+  const resolvedAllLabel = allLabel ?? t.cfaGlossary.allLabel;
+  const resolvedLearnedToastText = learnedToastText ?? t.cfaGlossary.learnedToastText;
   const [selectedSubject, setSelectedSubject] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -121,7 +128,7 @@ export default function CfaGlossaryFlashcards({
     const next = learnedIds.includes(id) ? learnedIds.filter((item: string) => item !== id) : [...learnedIds, id];
     writeLocalStorageValue(storageKey, JSON.stringify(next), LEARNED_CHANGED_EVENT);
     if (!learnedIds.includes(id)) {
-      toast.success(learnedToastText);
+      toast.success(resolvedLearnedToastText);
     }
   };
 
@@ -132,7 +139,7 @@ export default function CfaGlossaryFlashcards({
       utterance.rate = 0.9;
       window.speechSynthesis.speak(utterance);
     } else {
-      toast.info("Trình duyệt không hỗ trợ phát âm tự động.");
+      toast.info(t.cfaGlossary.pronounceUnsupported);
     }
   };
 
@@ -143,15 +150,15 @@ export default function CfaGlossaryFlashcards({
         <div>
           <div className="flex items-center gap-2">
             <span className="text-[10px] font-black uppercase tracking-widest bg-amber-500/20 text-amber-300 px-3 py-1 rounded-full border border-amber-500/40">
-              🎓 BỘ TỪ VỰNG & THUẬT NGỮ CFA LEVEL 1
+              {t.cfaGlossary.topBadge}
             </span>
             <span className="text-[10px] font-black uppercase tracking-widest bg-indigo-500/20 text-indigo-300 px-2.5 py-1 rounded-full border border-indigo-500/40">
-              {learnedIds.length}/{terms.length} Đã thuộc
+              {format(t.cfaGlossary.learnedCount, { done: learnedIds.length, total: terms.length })}
             </span>
           </div>
-          <h2 className="text-2xl font-black text-white mt-2">CFA Bilingual Glossary Flashcards</h2>
+          <h2 className="text-2xl font-black text-white mt-2">{t.cfaGlossary.heading}</h2>
           <p className="text-xs sm:text-sm text-stone-300 mt-1 max-w-xl">
-            Thẻ học 3D lật mặt song ngữ Anh - Việt, tích hợp phát âm chuẩn En-US, giải thích tiếng Việt và công thức toán liên quan.
+            {t.cfaGlossary.subheading}
           </p>
         </div>
       </div>
@@ -162,7 +169,7 @@ export default function CfaGlossaryFlashcards({
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-400" />
           <input
             type="text"
-            placeholder="Tìm kiếm thuật ngữ Anh/Việt (VD: ROE, WACC, DDM...)..."
+            placeholder={t.cfaGlossary.searchPlaceholder}
             value={searchQuery}
             onChange={(e) => {
               setSearchQuery(e.target.value);
@@ -184,7 +191,7 @@ export default function CfaGlossaryFlashcards({
                 : "bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-300 hover:bg-stone-200"
             }`}
           >
-            {allLabel}
+            {resolvedAllLabel}
           </button>
 
           {subjects.map((s) => (
@@ -211,9 +218,9 @@ export default function CfaGlossaryFlashcards({
         <div className="max-w-2xl mx-auto space-y-6">
           <div className="flex items-center justify-between text-xs font-extrabold text-stone-500">
             <span>
-              Thẻ {currentIndex + 1} / {filteredTerms.length}
+              {format(t.cfaGlossary.cardCounter, { current: currentIndex + 1, total: filteredTerms.length })}
             </span>
-            <span>Chạm vào thẻ để lật xem định nghĩa</span>
+            <span>{t.cfaGlossary.tapToFlip}</span>
           </div>
 
           <div
@@ -233,7 +240,7 @@ export default function CfaGlossaryFlashcards({
               >
                 <div className="flex items-center justify-between">
                   <span className="text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 border border-amber-300">
-                    {badgeLabel} • {currentTerm.subjectId.toUpperCase()}
+                    {resolvedBadgeLabel} • {currentTerm.subjectId.toUpperCase()}
                   </span>
 
                   <button
@@ -243,7 +250,7 @@ export default function CfaGlossaryFlashcards({
                       handlePronounce(currentTerm.termEn);
                     }}
                     className="p-2 rounded-xl bg-stone-100 dark:bg-stone-800 hover:bg-amber-100 text-stone-600 dark:text-stone-300 transition-colors"
-                    title="Phát âm tiếng Anh"
+                    title={t.cfaGlossary.pronounceTitle}
                   >
                     <Volume2 className="w-5 h-5 text-amber-600" />
                   </button>
@@ -259,8 +266,8 @@ export default function CfaGlossaryFlashcards({
                 </div>
 
                 <div className="flex items-center justify-between text-xs text-stone-400 pt-4 border-t border-stone-100 dark:border-stone-800">
-                  <span>Chạm để lật mặt sau 🔄</span>
-                  <span className="font-bold text-amber-500">Xem định nghĩa tiếng Việt →</span>
+                  <span>{t.cfaGlossary.tapToFlipBack}</span>
+                  <span className="font-bold text-amber-500">{t.cfaGlossary.seeDefinitionCta}</span>
                 </div>
               </div>
 
@@ -272,7 +279,7 @@ export default function CfaGlossaryFlashcards({
               >
                 <div className="flex items-center justify-between">
                   <span className="text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40">
-                    ĐỊNH NGHĨA CHUẨN CFA
+                    {t.cfaGlossary.definitionBadge}
                   </span>
                   <button
                     type="button"
@@ -287,7 +294,7 @@ export default function CfaGlossaryFlashcards({
                     }`}
                   >
                     <CheckCircle2 className="w-4 h-4" />
-                    <span>{learnedIds.includes(currentTerm.id) ? "Đã thuộc ✓" : "Đánh dấu thuộc"}</span>
+                    <span>{learnedIds.includes(currentTerm.id) ? t.cfaGlossary.markedLearned : t.cfaGlossary.markLearned}</span>
                   </button>
                 </div>
 
@@ -299,7 +306,7 @@ export default function CfaGlossaryFlashcards({
                   {currentTerm.formula && (
                     <div className="bg-stone-950 p-4 rounded-2xl border border-stone-800 text-xs">
                       <p className="text-[10px] font-black text-amber-400 uppercase tracking-widest mb-1.5">
-                        📐 Công thức toán liên quan:
+                        {t.cfaGlossary.formulaLabel}
                       </p>
                       {currentTerm.formula.numerator && currentTerm.formula.denominator ? (
                         <div className="flex items-center justify-center gap-2 text-sm font-serif font-bold text-amber-200">
@@ -319,13 +326,13 @@ export default function CfaGlossaryFlashcards({
 
                   {(currentTerm.cfaTip ?? currentTerm.frmTip) && (
                     <p className="text-xs text-amber-300 bg-amber-950/60 p-3 rounded-xl border border-amber-500/30">
-                      💡 <strong>{tipLabel}:</strong> {currentTerm.cfaTip ?? currentTerm.frmTip}
+                      💡 <strong>{resolvedTipLabel}:</strong> {currentTerm.cfaTip ?? currentTerm.frmTip}
                     </p>
                   )}
                 </div>
 
                 <div className="flex items-center justify-between text-xs text-stone-400 pt-4 border-t border-stone-800">
-                  <span>Chạm để lật lại mặt trước 🔄</span>
+                  <span>{t.cfaGlossary.tapToFlipFront}</span>
                 </div>
               </div>
             </motion.div>
@@ -338,21 +345,21 @@ export default function CfaGlossaryFlashcards({
               className="px-5 py-3 rounded-2xl bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 text-stone-800 dark:text-stone-200 font-extrabold text-sm hover:bg-stone-50 transition-all shadow-sm flex items-center gap-2 cursor-pointer"
             >
               <ChevronLeft className="w-4 h-4" />
-              <span>Thẻ trước</span>
+              <span>{t.cfaGlossary.prevCard}</span>
             </button>
 
             <button
               onClick={handleNext}
               className="px-6 py-3 rounded-2xl bg-amber-500 hover:bg-amber-600 text-white font-extrabold text-sm transition-all shadow-md flex items-center gap-2 cursor-pointer"
             >
-              <span>Thẻ tiếp theo</span>
+              <span>{t.cfaGlossary.nextCard}</span>
               <ChevronRight className="w-4 h-4" />
             </button>
           </div>
         </div>
       ) : (
         <div className="text-center py-12 text-stone-500">
-          Không tìm thấy thuật ngữ phù hợp với từ khóa tìm kiếm.
+          {t.cfaGlossary.noResults}
         </div>
       )}
     </div>

@@ -10,6 +10,8 @@ import { GAMES, GAME_DIFFICULTIES, getGameMeta, type GameType, type GameDifficul
 import { recalculateUserStats } from "@/lib/supabase-user";
 import { getIllustrativeCount } from "@/lib/illustrative-stats";
 import { soundManager } from "@/lib/sounds";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 import GameLeaderboard from "@/components/games/GameLeaderboard";
 import GameHistory from "@/components/games/GameHistory";
 import BucketGame from "@/components/games/BucketGame";
@@ -86,6 +88,8 @@ const ACCENT: Record<string, { grad: string; ring: string; chip: string; glow: s
 };
 
 export default function GameHubClient() {
+  const { t } = useI18n();
+  const gameHub = t.games.gameHub;
   const { userId, checking } = useAuthGate();
   const [activeGame, setActiveGame] = useState<GameType | null>(null);
   const [difficulty, setDifficulty] = useState<GameDifficulty>("trung-binh");
@@ -111,8 +115,8 @@ export default function GameHubClient() {
     if (activeGame) {
       setLastResult({ gameType: activeGame, score, total });
     }
-    if (xpEarned > 0) toast.success(`Hoàn thành! ${score}/${total} đúng - nhận +${xpEarned} XP`);
-    else toast.info(`Được ${score}/${total} - cần đúng ít nhất 70% để nhận XP. Thử lại nhé!`);
+    if (xpEarned > 0) toast.success(format(gameHub.finishedSuccess, { score, total, xp: xpEarned }));
+    else toast.info(format(gameHub.finishedFail, { score, total }));
     // Fold the game's best-per-game XP into the user's real total_xp/level
     // right away (best-effort - the session is already saved regardless).
     if (userId) void recalculateUserStats(userId).catch(() => {});
@@ -126,7 +130,7 @@ export default function GameHubClient() {
           <div className="mb-4 flex items-center justify-between gap-3">
             <div className="flex items-center gap-3">
               <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-1 text-[11px] font-extrabold uppercase tracking-widest text-emerald-700">
-                <Gamepad2 className="w-3.5 h-3.5" /> Mini Game
+                <Gamepad2 className="w-3.5 h-3.5" /> {gameHub.miniGameBadge}
               </span>
             </div>
             <button
@@ -137,23 +141,23 @@ export default function GameHubClient() {
                 if (next) soundManager.playCorrect();
               }}
               className="inline-flex items-center gap-1.5 text-xs font-bold text-stone-500 hover:text-stone-900 p-2 rounded-lg hover:bg-stone-100 transition-colors"
-              title={soundsEnabled ? "Tắt âm thanh" : "Bật âm thanh"}
+              title={soundsEnabled ? gameHub.soundOffTitle : gameHub.soundOnTitle}
             >
               {soundsEnabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
-              <span className="hidden sm:inline">{soundsEnabled ? "Âm thanh" : "Tắt âm"}</span>
+              <span className="hidden sm:inline">{soundsEnabled ? gameHub.soundOnLabel : gameHub.soundOffLabel}</span>
             </button>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-stone-900">Chơi để ghi nhớ kiến thức</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold text-stone-900">{gameHub.title}</h1>
           <p className="text-sm text-stone-500 mt-1.5 mb-6">
-            Kéo thả nhanh, nhớ lâu - vượt 70% mỗi ván để nhận XP và leo bảng xếp hạng riêng của từng game.
+            {gameHub.subtitle}
           </p>
 
           <div className="flex gap-1 sm:gap-1.5 mb-5 bg-stone-100 rounded-xl p-1 sm:p-1.5 max-w-lg overflow-x-auto scrollbar-none">
             {[
-              { id: "games" as const, label: "Các game", icon: Gamepad2 },
-              { id: "pvp" as const, label: "Solo PVP 1v1", icon: Swords },
-              { id: "guild" as const, label: "Quỹ Mô Phỏng", icon: Building2 },
-              { id: "combined" as const, label: "BXH tổng hợp", icon: Crown },
+              { id: "games" as const, label: gameHub.gamesTab, icon: Gamepad2 },
+              { id: "pvp" as const, label: gameHub.pvpTab, icon: Swords },
+              { id: "guild" as const, label: gameHub.guildTab, icon: Building2 },
+              { id: "combined" as const, label: gameHub.combinedTab, icon: Crown },
             ].map(({ id, label, icon: Icon }) => (
               <button
                 key={id}
@@ -180,7 +184,7 @@ export default function GameHubClient() {
               <div className="relative rounded-3xl overflow-hidden border-2 border-amber-500/40 shadow-2xl group min-h-[220px] flex flex-col justify-end p-6 sm:p-8">
                 <Image
                   src="/images/dau-truong-kien-thuc.jpg"
-                  alt="Đấu Trường Kiến Thức"
+                  alt={gameHub.pvpImageAlt}
                   fill
                   className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
                 />
@@ -189,13 +193,13 @@ export default function GameHubClient() {
                 <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4">
                   <div className="space-y-1.5 max-w-xl">
                     <span className="inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest bg-amber-500/20 text-amber-300 px-3 py-1 rounded-full border border-amber-400/40 backdrop-blur-md">
-                      ⚔️ ĐẤU TRƯỜNG TRI THỨC 1V1
+                      {gameHub.pvpBadge}
                     </span>
                     <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight drop-shadow-md">
-                      Thách đấu Solo PVP & Đo đạc Tỷ lệ Thắng
+                      {gameHub.pvpTitle}
                     </h3>
                     <p className="text-xs sm:text-sm text-stone-200 font-medium leading-relaxed drop-shadow">
-                      Thi đấu kiến thức trực tiếp 1v1, tích lũy trận thắng và leo bảng xếp hạng Cao thủ Solo PVP.
+                      {gameHub.pvpDesc}
                     </p>
                   </div>
                   <button
@@ -203,15 +207,15 @@ export default function GameHubClient() {
                     className="px-6 py-3.5 bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-stone-950 font-black text-sm rounded-2xl shadow-xl hover:scale-105 transition-all shrink-0 cursor-pointer flex items-center gap-2 border border-amber-300/50"
                   >
                     <Swords className="w-5 h-5 text-stone-950" />
-                    <span>Vào trận Solo 1v1 ngay →</span>
+                    <span>{gameHub.pvpButton}</span>
                   </button>
                 </div>
               </div>
 
               <ModeLeaderboard
                 gameType="pvp-duel"
-                title="⚔️ BXH Cao thủ Thách đấu Solo PVP (Số trận thắng & Winrate %)"
-                emptyLabel="Chưa có dữ liệu thách đấu. Hãy bấm nút phía trên để bắt đầu ván Solo PVP đầu tiên!"
+                title={gameHub.pvpLeaderboardTitle}
+                emptyLabel={gameHub.pvpLeaderboardEmpty}
               />
             </div>
           ) : hubTab === "guild" ? (
@@ -235,13 +239,13 @@ export default function GameHubClient() {
                     </div>
                     <div>
                       <div className="inline-flex items-center gap-1.5 rounded-full bg-amber-500/20 border border-amber-400/40 px-2.5 py-0.5 text-[10px] font-black text-amber-300 uppercase tracking-widest mb-1">
-                        🏆 GAME SHOW ĐẶC BIỆT
+                        {gameHub.millionaireBadge}
                       </div>
                       <h2 className="text-lg sm:text-xl font-black text-amber-100 group-hover:text-amber-300 transition-colors">
-                        Ai Là Triệu Phú Phố Wall
+                        {gameHub.millionaireTitle}
                       </h2>
                       <p className="text-xs text-stone-300 mt-1 max-w-lg leading-relaxed">
-                        15 câu hỏi chinh phục $1,000,000 vốn đầu tư! Sử dụng 3 quyền trợ giúp: 50:50, Hỏi Mascot Tài Tài & Khảo sát 1,000 Chuyên viên.
+                        {gameHub.millionaireDesc}
                       </p>
                     </div>
                   </div>
@@ -250,7 +254,7 @@ export default function GameHubClient() {
                     type="button"
                     className="px-5 py-3 rounded-2xl bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-stone-950 font-black text-xs sm:text-sm shadow-lg group-hover:scale-105 transition-all shrink-0 flex items-center gap-2 cursor-pointer"
                   >
-                    <span>Vào Game Show</span>
+                    <span>{gameHub.millionaireButton}</span>
                     <span className="group-hover:translate-x-1 transition-transform">→</span>
                   </button>
                 </div>
@@ -271,13 +275,13 @@ export default function GameHubClient() {
                     </div>
                     <div>
                       <div className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/20 border border-emerald-400/40 px-2.5 py-0.5 text-[10px] font-black text-emerald-300 uppercase tracking-widest mb-1">
-                        ⚡ GAME TỐC ĐỘ TÀI SẢN
+                        {gameHub.racerBadge}
                       </div>
                       <h2 className="text-lg sm:text-xl font-black text-emerald-100 group-hover:text-emerald-300 transition-colors">
-                        Đua Xe Lãi Kép & Hòn Tuyết Lăn
+                        {gameHub.racerTitle}
                       </h2>
                       <p className="text-xs text-stone-300 mt-1 max-w-lg leading-relaxed">
-                        Lựa chọn chiến lược phân bổ vốn (An toàn, Cân bằng, Tăng trưởng, Đòn bẩy), vượt biến động thị trường để đạt $1,000,000!
+                        {gameHub.racerDesc}
                       </p>
                     </div>
                   </div>
@@ -286,7 +290,7 @@ export default function GameHubClient() {
                     type="button"
                     className="px-5 py-3 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-400 hover:from-emerald-400 hover:to-teal-300 text-stone-950 font-black text-xs sm:text-sm shadow-lg group-hover:scale-105 transition-all shrink-0 flex items-center gap-2 cursor-pointer"
                   >
-                    <span>Tăng Tốc Ngay</span>
+                    <span>{gameHub.racerButton}</span>
                     <span className="group-hover:translate-x-1 transition-transform">→</span>
                   </button>
                 </div>
@@ -307,13 +311,13 @@ export default function GameHubClient() {
                     </div>
                     <div>
                       <div className="inline-flex items-center gap-1.5 rounded-full bg-indigo-500/20 border border-indigo-400/40 px-2.5 py-0.5 text-[10px] font-black text-indigo-300 uppercase tracking-widest mb-1">
-                        🎯 GAME THÂU TÓM M&A & ĐỊNH GIÁ
+                        {gameHub.dcfBadge}
                       </div>
                       <h2 className="text-lg sm:text-xl font-black text-indigo-100 group-hover:text-indigo-300 transition-colors">
-                        Đấu Trường Định Giá DCF & M&A
+                        {gameHub.dcfTitle}
                       </h2>
                       <p className="text-xs text-stone-300 mt-1 max-w-lg leading-relaxed">
-                        Thử thách 5 thương vụ thâu tóm doanh nghiệp! Điều chỉnh WACC & g, tính Target Price để đưa ra phán quyết MUA VÀO hay NÉ XA.
+                        {gameHub.dcfDesc}
                       </p>
                     </div>
                   </div>
@@ -322,7 +326,7 @@ export default function GameHubClient() {
                     type="button"
                     className="px-5 py-3 rounded-2xl bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-400 hover:to-purple-400 text-stone-950 font-black text-xs sm:text-sm shadow-lg group-hover:scale-105 transition-all shrink-0 flex items-center gap-2 cursor-pointer"
                   >
-                    <span>Vào Định Giá</span>
+                    <span>{gameHub.dcfButton}</span>
                     <span className="group-hover:translate-x-1 transition-transform">→</span>
                   </button>
                 </div>
@@ -354,23 +358,23 @@ export default function GameHubClient() {
                         <div className="flex items-center justify-between gap-2">
                           <p className="font-extrabold text-stone-900 group-hover:text-stone-950 transition-colors">{g.title}</p>
                           <span className="text-[9px] font-extrabold uppercase tracking-wider text-stone-400 shrink-0 bg-stone-50 px-1.5 py-0.5 rounded">
-                            {g.mechanic === "bucket" ? "Phân loại 📥" : "Ghép cặp 🔗"}
+                            {g.mechanic === "bucket" ? gameHub.bucketMechanic : gameHub.pairMechanic}
                           </span>
                         </div>
                         <p className="text-xs text-stone-500 mt-1.5 leading-relaxed">{g.description}</p>
                         <div className="flex items-center gap-2 mt-2">
                           <span className="text-[10px] font-extrabold text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full">
-                            ⭐ Tối đa +50 XP/ván
+                            {gameHub.xpBadge}
                           </span>
                           <span className="text-[10px] font-bold text-stone-400 flex items-center gap-1">
-                            👥 {getIllustrativeCount(g.id, 8, 140)} đang chơi
+                            {format(gameHub.playingCount, { count: getIllustrativeCount(g.id, 8, 140) })}
                           </span>
                         </div>
                       </div>
                     </div>
                     <div className="relative z-10 flex items-center justify-between mt-4">
                       <span className={`inline-flex items-center gap-1.5 text-xs font-extrabold px-3 py-2 rounded-xl transition-all duration-300 ${a.chip} group-hover:shadow-sm`}>
-                        Chơi ngay
+                        {gameHub.playNow}
                         <span className="transition-transform duration-300 group-hover:translate-x-0.5">→</span>
                       </span>
                     </div>
@@ -424,7 +428,7 @@ export default function GameHubClient() {
           onClick={() => setActiveGame(null)}
           className="inline-flex items-center gap-1.5 text-sm font-bold text-stone-500 hover:text-stone-900 mb-4"
         >
-          <ArrowLeft className="w-4 h-4" /> Chọn game khác
+          <ArrowLeft className="w-4 h-4" /> {gameHub.backButton}
         </button>
 
         <div className="mb-4 sm:mb-6 flex items-center justify-between gap-3">
@@ -442,16 +446,16 @@ export default function GameHubClient() {
               if (next) soundManager.playCorrect();
             }}
             className="inline-flex items-center gap-1.5 text-xs font-bold text-stone-500 hover:text-stone-900 p-2 rounded-lg hover:bg-stone-100 transition-colors"
-            title={soundsEnabled ? "Tắt âm thanh" : "Bật âm thanh"}
+            title={soundsEnabled ? gameHub.soundOffTitle : gameHub.soundOnTitle}
           >
             {soundsEnabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
-            <span className="hidden sm:inline">{soundsEnabled ? "Âm thanh" : "Tắt âm"}</span>
+            <span className="hidden sm:inline">{soundsEnabled ? gameHub.soundOnLabel : gameHub.soundOffLabel}</span>
           </button>
         </div>
 
         {innerTab === "play" && (
           <div className="mb-4 sm:mb-6">
-            <p className="text-[10px] font-extrabold text-stone-400 uppercase tracking-widest mb-2">Độ khó</p>
+            <p className="text-[10px] font-extrabold text-stone-400 uppercase tracking-widest mb-2">{gameHub.difficultyLabel}</p>
             <div className="flex flex-wrap gap-2">
               {GAME_DIFFICULTIES.map((d) => (
                 <button
@@ -473,9 +477,9 @@ export default function GameHubClient() {
 
         <div className="flex gap-1 sm:gap-1.5 mb-4 sm:mb-6 bg-stone-100 rounded-xl p-1 sm:p-1.5">
           {[
-            { id: "play" as const, label: "Chơi", short: "Chơi", icon: Gamepad2 },
-            { id: "leaderboard" as const, label: "Bảng xếp hạng", short: "BXH", icon: Trophy },
-            { id: "history" as const, label: "Lịch sử", short: "LS", icon: HistoryIcon },
+            { id: "play" as const, label: gameHub.playTabLabel, short: gameHub.playTabShort, icon: Gamepad2 },
+            { id: "leaderboard" as const, label: gameHub.leaderboardTabLabel, short: gameHub.leaderboardTabShort, icon: Trophy },
+            { id: "history" as const, label: gameHub.historyTabLabel, short: gameHub.historyTabShort, icon: HistoryIcon },
           ].map(({ id, label, short, icon: Icon }) => (
             <button
               key={id}

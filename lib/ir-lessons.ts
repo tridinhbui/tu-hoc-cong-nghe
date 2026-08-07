@@ -64,7 +64,7 @@ export const IR_LESSONS: Lesson[] = [
       {
         question: "Vì sao IR không được chọn thời điểm đẹp để công bố tin xấu?",
         options: [
-          "Vì quy định buộc công bố khi thông tin phát sinh, không khi thuận lợi",
+          "Vì quy định buộc công bố khi thông tin phát sinh",
           "Vì tin xấu công bố muộn sẽ bị báo chí phát hiện và đưa tin trước",
           "Vì ban điều hành thường muốn công bố sớm để giảm áp lực nội bộ",
           "Vì nhà đầu tư tổ chức luôn biết trước qua các kênh riêng của họ",
@@ -76,10 +76,10 @@ export const IR_LESSONS: Lesson[] = [
       {
         question: "Nhà đầu tư tổ chức đánh giá cao điều gì nhất ở một bộ phận IR?",
         options: [
-          "Tính nhất quán - nói gì thì quý sau vẫn đo lại được bằng cùng thước đo",
+          "Tính nhất quán giữa các quý báo cáo",
           "Khả năng trình bày trực quan và bộ tài liệu được thiết kế đẹp",
           "Tốc độ phản hồi email và số buổi gặp gỡ tổ chức trong năm",
-          "Quan hệ tốt với các công ty chứng khoán đang khuyến nghị mua cổ phiếu",
+          "Quan hệ tốt với công ty chứng khoán đang khuyến nghị mua",
         ],
         correct: 0,
         explanation:
@@ -89,9 +89,9 @@ export const IR_LESSONS: Lesson[] = [
         question: "Cung cấp thông tin trọng yếu riêng cho một quỹ lớn trước khi công bố là gì?",
         options: [
           "Vi phạm nguyên tắc công bằng thông tin",
-          "Hoạt động chăm sóc nhà đầu tư lớn được chấp nhận trong ngành",
-          "Rủi ro truyền thông cần cân nhắc nhưng không vi phạm quy định nào",
-          "Hợp lệ nếu có cam kết bảo mật",
+          "Chăm sóc nhà đầu tư lớn, ngành vẫn chấp nhận",
+          "Rủi ro truyền thông nhưng chưa vi phạm quy định nào",
+          "Hợp lệ nếu bên nhận có cam kết bảo mật",
         ],
         correct: 0,
         explanation:
@@ -211,10 +211,10 @@ export const IR_LESSONS: Lesson[] = [
       {
         question: "Đồng hồ công bố bắt đầu chạy từ lúc nào?",
         options: [
-          "Từ khi sự kiện phát sinh",
-          "Từ khi họp xong",
+          "Từ khi sự kiện phát sinh, không phải từ khi họp xong",
+          "Từ khi cuộc họp kết thúc",
           "Từ khi bộ phận pháp chế hoàn tất rà soát nội dung công bố",
-          "Từ phiên giao dịch đầu tiên sau khi thông tin được xác nhận đầy đủ",
+          "Từ phiên giao dịch đầu tiên sau khi xác nhận xong",
         ],
         correct: 0,
         explanation:
@@ -711,10 +711,10 @@ export const IR_LESSONS: Lesson[] = [
       {
         question: "Một thông cáo về tin xấu nên có gì mà thông cáo kém thường thiếu?",
         options: [
-          "Con số cụ thể và mốc thời gian đã biết",
-          "Lời xin lỗi cổ đông",
+          "Con số cụ thể và mốc thời gian đã biết, kể cả khi chưa đủ",
+          "Lời xin lỗi gửi tới cổ đông",
           "Cam kết sự việc sẽ không bao giờ lặp lại trong tương lai",
-          "So sánh cho thấy các doanh nghiệp cùng ngành cũng gặp vấn đề tương tự",
+          "So sánh cho thấy doanh nghiệp cùng ngành cũng gặp vấn đề",
         ],
         correct: 0,
         explanation:

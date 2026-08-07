@@ -1,6 +1,9 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useI18n } from "@/lib/i18n/context";
+import { format, intlLocale } from "@/lib/i18n";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
 /** Tháp Lãi Kép: mỗi tầng là một năm, chiều cao sàn là số tiền.
  *
@@ -12,14 +15,14 @@ import { useMemo, useState } from "react";
  *  đường cong thành một đường thẳng đẹp đẽ và giết chết toàn bộ bài học: điều
  *  cần thấy chính là sự bùng nổ, không phải sự gọn gàng. */
 
-const RATES = [
-  { rate: 0.06, label: "6%/năm · gửi tiết kiệm" },
-  { rate: 0.1, label: "10%/năm · quỹ chỉ số" },
-  { rate: 0.15, label: "15%/năm · nhà đầu tư giỏi" },
+const buildRates = (t: Dictionary) => [
+  { rate: 0.06, label: t.careerDistrict.compoundTower.rateSavings },
+  { rate: 0.1, label: t.careerDistrict.compoundTower.rateIndexFund },
+  { rate: 0.15, label: t.careerDistrict.compoundTower.rateSkilledInvestor },
 ];
 
-function money(n: number) {
-  return Math.round(n).toLocaleString("vi-VN");
+function money(n: number, locale: string) {
+  return Math.round(n).toLocaleString(locale);
 }
 
 export default function CompoundTowerPanel({
@@ -29,6 +32,9 @@ export default function CompoundTowerPanel({
   accent: string;
   onClose: () => void;
 }) {
+  const { t, locale } = useI18n();
+  const intl = intlLocale(locale);
+  const RATES = useMemo(() => buildRates(t), [t]);
   const [rate, setRate] = useState(0.1);
   const [years, setYears] = useState(40);
   const principal = 10;
@@ -49,10 +55,10 @@ export default function CompoundTowerPanel({
       <div className="mb-2 flex items-start justify-between gap-2">
         <div>
           <p className="text-[10px] font-black uppercase tracking-widest" style={{ color: accent }}>
-            Tháp Lãi Kép
+            {t.careerDistrict.compoundTower.title}
           </p>
           <p className="mt-0.5 text-[11px] text-stone-400">
-            Gửi {principal} triệu một lần, không nạp thêm đồng nào
+            {format(t.careerDistrict.compoundTower.subtitle, { n: principal })}
           </p>
         </div>
         <button
@@ -60,7 +66,7 @@ export default function CompoundTowerPanel({
           onClick={onClose}
           className="cursor-pointer text-[10px] font-bold text-stone-500 hover:text-stone-300"
         >
-          đóng
+          {t.careerDistrict.compoundTower.close}
         </button>
       </div>
 
@@ -81,7 +87,7 @@ export default function CompoundTowerPanel({
 
       <label className="mb-2 block">
         <span className="text-[10px] font-bold uppercase tracking-wider text-stone-500">
-          Số năm: {years}
+          {format(t.careerDistrict.compoundTower.yearsLabel, { n: years })}
         </span>
         <input
           type="range"
@@ -105,33 +111,38 @@ export default function CompoundTowerPanel({
               backgroundColor: y === crossover ? "#f87171" : accent,
               opacity: y === years ? 1 : 0.55,
             }}
-            title={`Năm ${y}: ${money(v)} triệu`}
+            title={format(t.careerDistrict.compoundTower.floorTitle, { year: y, amount: money(v, intl) })}
           />
         ))}
       </div>
 
       <div className="mt-2 grid grid-cols-2 gap-1.5">
         <div className="rounded-xl bg-stone-800/60 px-2.5 py-1.5">
-          <p className="text-[9px] font-bold uppercase tracking-wider text-stone-500">Bạn bỏ vào</p>
-          <p className="text-sm font-black tabular-nums text-stone-200">{money(contributed)} triệu</p>
+          <p className="text-[9px] font-bold uppercase tracking-wider text-stone-500">{t.careerDistrict.compoundTower.contributed}</p>
+          <p className="text-sm font-black tabular-nums text-stone-200">{format(t.careerDistrict.compoundTower.millionUnit, { n: money(contributed, intl) })}</p>
         </div>
         <div className="rounded-xl bg-stone-800/60 px-2.5 py-1.5">
-          <p className="text-[9px] font-bold uppercase tracking-wider text-stone-500">Lãi kép tạo ra</p>
+          <p className="text-[9px] font-bold uppercase tracking-wider text-stone-500">{t.careerDistrict.compoundTower.growthCreated}</p>
           <p className="text-sm font-black tabular-nums" style={{ color: accent }}>
-            {money(growth)} triệu
+            {format(t.careerDistrict.compoundTower.millionUnit, { n: money(growth, intl) })}
           </p>
         </div>
       </div>
 
       <p className="mt-2 text-[11px] leading-snug text-stone-300">
-        Sau <b>{years}</b> năm ở <b>{Math.round(rate * 100)}%</b>, {money(principal)} triệu thành{" "}
-        <b style={{ color: accent }}>{money(final)} triệu</b> — trong đó{" "}
-        <b>{Math.round((growth / final) * 100)}%</b> là tiền bạn không hề bỏ ra.
+        {/* xPart1 / xAnd / xPart2 - prose split around <b> markup, per i18n convention */}
+        {t.careerDistrict.compoundTower.summaryPart1}{" "}
+        <b>{years}</b> {t.careerDistrict.compoundTower.summaryPart2} <b>{Math.round(rate * 100)}%</b>
+        {t.careerDistrict.compoundTower.summaryPart3} {format(t.careerDistrict.compoundTower.millionUnit, { n: money(principal, intl) })}{" "}
+        {t.careerDistrict.compoundTower.summaryPart4}{" "}
+        <b style={{ color: accent }}>{format(t.careerDistrict.compoundTower.millionUnit, { n: money(final, intl) })}</b>
+        {" — "}
+        {t.careerDistrict.compoundTower.summaryPart5}{" "}
+        <b>{Math.round((growth / final) * 100)}%</b> {t.careerDistrict.compoundTower.summaryPart6}
       </p>
       {crossover > 0 && (
         <p className="mt-1 text-[11px] leading-snug text-rose-300">
-          Vạch đỏ là năm {crossover}: mất {crossover} năm để tiền nhân đôi lần đầu, rồi lần nhân đôi
-          tiếp theo cũng mất đúng {crossover} năm — nhưng lần đó nó tạo ra nhiều tiền gấp đôi.
+          {format(t.careerDistrict.compoundTower.crossoverNote, { n: crossover })}
         </p>
       )}
     </div>

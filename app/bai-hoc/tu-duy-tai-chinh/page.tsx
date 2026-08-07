@@ -14,9 +14,9 @@ const quiz: QuizQuestion[] = [
   {
     question: "Theo Rich Dad Poor Dad, sự khác biệt chính giữa người giàu và người nghèo là gì?",
     options: [
-      "Người giàu làm việc chăm chỉ hơn",
-      "Người giàu mua tài sản; người nghèo mua thứ họ nghĩ là tài sản nhưng thực ra là tiêu sản",
-      "Người giàu tiết kiệm nhiều hơn",
+      "Người giàu làm việc chăm chỉ hơn nên thu nhập cao hơn",
+      "Người giàu mua tài sản, người nghèo mua tiêu sản",
+      "Người giàu tiết kiệm được nhiều hơn nhờ chi tiêu ít đi",
       "Người giàu có học vấn cao hơn",
     ],
     correct: 1,
@@ -25,7 +25,7 @@ const quiz: QuizQuestion[] = [
   {
     question: "Compound interest hoạt động tốt nhất khi nào?",
     options: [
-      "Lãi suất cao nhất có thể",
+      "Lãi suất càng cao càng tốt, thời gian không quan trọng bằng",
       "Thời gian đầu tư dài nhất có thể",
       "Số tiền gốc lớn nhất có thể",
       "Tần suất nhận lãi nhiều nhất",
@@ -37,9 +37,9 @@ const quiz: QuizQuestion[] = [
     question: "'Pay yourself first' có nghĩa là gì?",
     options: [
       "Trả lương cho bản thân trước nhân viên",
-      "Tự động chuyển tiết kiệm/đầu tư trước khi chi tiêu",
+      "Chuyển tiền tiết kiệm đi trước khi chi tiêu",
       "Mua đồ cho bản thân trước khi trả hóa đơn",
-      "Tăng lương cho mình",
+      "Tự tăng lương cho mình mỗi khi công ty làm ăn tốt",
     ],
     correct: 1,
     explanation: "Pay yourself first: ngay khi nhận lương, chuyển ngay X% vào tài khoản đầu tư trước khi chi tiêu. Không chờ 'tiết kiệm phần còn lại'- vì thường không còn gì.",
@@ -47,8 +47,8 @@ const quiz: QuizQuestion[] = [
   {
     question: "Lifestyle inflation là gì và tại sao nguy hiểm?",
     options: [
-      "Lạm phát ảnh hưởng đến chi tiêu cá nhân",
-      "Chi tiêu tăng theo thu nhập - không bao giờ tích lũy được dù kiếm nhiều hơn",
+      "Lạm phát làm chi phí sinh hoạt của cá nhân đắt lên",
+      "Chi tiêu tăng đúng theo mức thu nhập tăng",
       "Tăng lương nhưng giá cả cũng tăng theo",
       "Chi phí sinh hoạt tăng theo độ tuổi",
     ],

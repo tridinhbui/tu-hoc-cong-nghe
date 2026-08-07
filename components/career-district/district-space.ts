@@ -1,14 +1,16 @@
 import { FINANCE_CAREERS } from "@/lib/finance-careers";
 import {
-  CAREER_CATEGORY_BLURBS,
+  careerCategoryBlurbsOf,
   CAREER_CATEGORY_COLORS,
-  CAREER_CATEGORY_LABELS,
+  careerCategoryLabelsOf,
   CAREER_CATEGORY_ORDER,
   type CareerCategory,
 } from "@/lib/career-categories";
-import { STATIONS, type Station } from "@/components/lobby/stations";
+import { stationsOf, type Station } from "@/components/lobby/stations";
 import { ORGANIC_BUILDINGS } from "@/lib/rpg-buildings";
 import { BODY_RADIUS, resolveObstacles, type BoxObstacle, type CircleObstacle, type Obstacle } from "@/lib/walkable-space";
+import { format } from "@/lib/i18n";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
 /** Phố nghề: một con phố Sài Gòn ngoài trời, và sau mỗi cánh cửa là một căn
  *  phòng của một nhóm ngành, mỗi cái bàn trong đó là một nghề thật.
@@ -22,7 +24,11 @@ import { BODY_RADIUS, resolveObstacles, type BoxObstacle, type CircleObstacle, t
  *  Mỗi phòng là một KHÔNG GIAN RIÊNG chứ không phải một góc của một cảnh khổng
  *  lồ: đi qua cửa là đổi phòng, và mỗi phòng chỉ mang vật cản của chính nó.
  *  Nhờ vậy va chạm không bao giờ phải xét tới đồ đạc của bốn phòng kia, và một
- *  máy yếu không phải dựng cả khu phố để đứng trong một căn phòng. */
+ *  máy yếu không phải dựng cả khu phố để đứng trong một căn phòng.
+ *
+ *  Nhãn phòng/cửa/bục (label, blurb) sống trong `t.worldSpaces.district`, xem
+ *  AGENTS.md mục "Translating the UI". Mọi thứ CẤU TRÚC - id, toạ độ, kích
+ *  thước, vật cản, href - vẫn là dữ liệu tĩnh, không phụ thuộc ngôn ngữ. */
 
 /** Mỗi tầng của toà tháp là một phòng riêng, đặt tên theo đúng id của trạm
  *  trong components/lobby/stations.ts - danh sách điều hướng đã có sẵn ở đó,
@@ -66,6 +72,14 @@ export interface Doorway {
   z: number;
   reach: number;
   label: string;
+  /** Cửa này có phải cửa RA (về phố / về phòng cũ) hay không.
+   *
+   *  DistrictWorld.tsx từng nhận biết việc này bằng một regex chỉ khớp tiếng
+   *  Việt (`/^(Ra|Về)\b/`) để không thêm chữ mời "Bước vào ·" trước một nhãn
+   *  đã tự đủ nghĩa như "Ra phố". Nhãn giờ dịch được, và bản dịch tiếng Anh
+   *  không còn bắt đầu bằng "Ra" hay "Về" nữa - cờ này thay cho quy tắc đó,
+   *  đặt ngay tại nơi tạo cửa thay vì suy luận từ chữ. */
+  isExit?: true;
   /** Chỗ đứng khi vừa sang phòng bên kia. */
   arriveAt: Pose;
   accent: string;
@@ -237,7 +251,11 @@ function roomDepthFor(count: number) {
   return Math.max(14, perRow * DESK_PITCH + 8);
 }
 
-function buildOffice(category: CareerCategory): DistrictRoom {
+function buildOffice(
+  category: CareerCategory,
+  exitLabel: string,
+  labels: Record<CareerCategory, string>
+): DistrictRoom {
   const careers = careersIn(category);
   const depth = roomDepthFor(careers.length);
   const halfD = depth / 2;
@@ -278,7 +296,7 @@ function buildOffice(category: CareerCategory): DistrictRoom {
 
   return {
     id: category,
-    label: CAREER_CATEGORY_LABELS[category],
+    label: labels[category],
     kind: "office",
     accent: CAREER_CATEGORY_COLORS[category],
     size: { width, depth, height: 4.2 },
@@ -299,7 +317,8 @@ function buildOffice(category: CareerCategory): DistrictRoom {
         x: 0,
         z: halfD - 0.4,
         reach: 2,
-        label: "Ra phố",
+        label: exitLabel,
+        isExit: true,
         // Bước ra phố thì quay dọc phố, không quay vào tường nhà: camera đứng
         // sau lưng, nên quay vào nhà là camera nằm gọn trong khối nhà và người
         // học nhận được một khung hình đen.
@@ -310,18 +329,15 @@ function buildOffice(category: CareerCategory): DistrictRoom {
   };
 }
 
-const OFFICES = CAREER_CATEGORY_ORDER.map(buildOffice);
-
-
 // ── Toà tháp Tự Học ─────────────────────────────────────────────────────────
 
 /** Toà tháp đứng ở đầu phố, và mỗi tầng của nó là một tính năng của ứng dụng.
  *
- *  Danh sách tầng lấy nguyên từ STATIONS - cùng cái danh sách đã dựng các cửa
- *  phòng trên ban công thư viện. Nhờ vậy thêm một trạm mới là có thêm một tầng,
- *  và không bao giờ có chuyện thư viện dẫn tới bảy chỗ còn khu phố dẫn tới sáu.
- *  Đây cũng là lý do phòng tầng không tự viết công thức: STATIONS đã mang sẵn
- *  công thức chủ đạo và một dòng giải thích cho mỗi trạm. */
+ *  Danh sách tầng lấy nguyên từ stationsOf(t) - cùng cái danh sách đã dựng các
+ *  cửa phòng trên ban công thư viện. Nhờ vậy thêm một trạm mới là có thêm một
+ *  tầng, và không bao giờ có chuyện thư viện dẫn tới bảy chỗ còn khu phố dẫn
+ *  tới sáu. Đây cũng là lý do phòng tầng không tự viết công thức: STATIONS đã
+ *  mang sẵn công thức chủ đạo và một dòng giải thích cho mỗi trạm. */
 export const TOWER_X = 37;
 const TOWER_WIDTH = 15;
 const TOWER_DEPTH = 15;
@@ -333,41 +349,44 @@ export function floorRoomId(station: Station): FloorRoomId {
 
 /** Sảnh tháp: chỉ có thang máy và đường ra phố. Cố tình để trống - một sảnh
  *  đầy đồ thì người học dừng lại ở đó thay vì lên tầng. */
-const TOWER_LOBBY: DistrictRoom = {
-  id: "thap",
-  label: "Tháp Tự Học",
-  kind: "office",
-  accent: "#fbbf24",
-  size: { width: TOWER_WIDTH, depth: TOWER_DEPTH, height: 5 },
-  bounds: {
-    minX: -TOWER_WIDTH / 2 + 0.7,
-    maxX: TOWER_WIDTH / 2 - 0.7,
-    minZ: -TOWER_HALF_D + 0.7,
-    maxZ: TOWER_HALF_D - 0.7,
-  },
-  obstacles: [
-    { kind: "circle", x: -TOWER_WIDTH / 2 + 1.5, z: TOWER_HALF_D - 1.6, radius: 0.55 },
-    { kind: "circle", x: TOWER_WIDTH / 2 - 1.5, z: TOWER_HALF_D - 1.6, radius: 0.55 },
-  ],
-  desks: [],
-  portals: [],
-  // Buồng thang ÁP SÁT tường, không đứng rời ra giữa sàn: camera vai thứ ba bị
-  // kẹp trong lòng phòng, nên bất cứ khối nào đứng rời khỏi tường đều có lúc
-  // nằm chen giữa camera và nhân vật và chiếm trọn khung hình.
-  lift: { x: 0, z: -TOWER_HALF_D + 0.35, reach: 2.6 },
-  doorways: [
-    {
-      id: "thap-exit",
-      to: "street",
-      x: 0,
-      z: TOWER_HALF_D - 0.4,
-      reach: 2,
-      label: "Ra phố",
-      arriveAt: { x: TOWER_X, z: -3.4, ry: Math.PI / 2 },
-      accent: "#fbbf24",
+function buildTowerLobby(d: Dictionary["worldSpaces"]["district"]): DistrictRoom {
+  return {
+    id: "thap",
+    label: d.towerLobby,
+    kind: "office",
+    accent: "#fbbf24",
+    size: { width: TOWER_WIDTH, depth: TOWER_DEPTH, height: 5 },
+    bounds: {
+      minX: -TOWER_WIDTH / 2 + 0.7,
+      maxX: TOWER_WIDTH / 2 - 0.7,
+      minZ: -TOWER_HALF_D + 0.7,
+      maxZ: TOWER_HALF_D - 0.7,
     },
-  ],
-};
+    obstacles: [
+      { kind: "circle", x: -TOWER_WIDTH / 2 + 1.5, z: TOWER_HALF_D - 1.6, radius: 0.55 },
+      { kind: "circle", x: TOWER_WIDTH / 2 - 1.5, z: TOWER_HALF_D - 1.6, radius: 0.55 },
+    ],
+    desks: [],
+    portals: [],
+    // Buồng thang ÁP SÁT tường, không đứng rời ra giữa sàn: camera vai thứ ba bị
+    // kẹp trong lòng phòng, nên bất cứ khối nào đứng rời khỏi tường đều có lúc
+    // nằm chen giữa camera và nhân vật và chiếm trọn khung hình.
+    lift: { x: 0, z: -TOWER_HALF_D + 0.35, reach: 2.6 },
+    doorways: [
+      {
+        id: "thap-exit",
+        to: "street",
+        x: 0,
+        z: TOWER_HALF_D - 0.4,
+        reach: 2,
+        label: d.exitToStreet,
+        isExit: true,
+        arriveAt: { x: TOWER_X, z: -3.4, ry: Math.PI / 2 },
+        accent: "#fbbf24",
+      },
+    ],
+  };
+}
 
 const FLOOR_WIDTH = 14;
 const FLOOR_DEPTH = 16;
@@ -411,44 +430,49 @@ function buildFloor(station: Station): DistrictRoom {
   };
 }
 
-const FLOORS = STATIONS.map(buildFloor);
-
 /** Một tầng riêng cho các chặng học, không đến từ STATIONS: chặng không phải
  *  một màn hình để mở mà là một danh sách để chọn, nên nó cần bảng chọn của
  *  riêng nó chứ không phải một cái bàn có nút "mở". */
 export const STAGE_FLOOR_ID = "tang-chang-hoc" as DistrictRoomId;
 
-const STAGE_FLOOR: DistrictRoom = {
-  id: STAGE_FLOOR_ID,
-  label: "Sảnh chặng học",
-  kind: "office",
-  accent: "#a7f3d0",
-  size: { width: 14, depth: 16, height: 4.4 },
-  bounds: { minX: -6.3, maxX: 6.3, minZ: -7.3, maxZ: 7.3 },
-  obstacles: [
-    { kind: "circle", x: -5.6, z: -6.6, radius: 0.52 },
-    { kind: "circle", x: 5.6, z: -6.6, radius: 0.52 },
-  ],
-  desks: [],
-  portals: [],
-  lift: { x: 0, z: 7.65, reach: 2.6 },
-  doorways: [],
-};
+function buildStageFloor(d: Dictionary["worldSpaces"]["district"]): DistrictRoom {
+  return {
+    id: STAGE_FLOOR_ID,
+    label: d.stageFloor,
+    kind: "office",
+    accent: "#a7f3d0",
+    size: { width: 14, depth: 16, height: 4.4 },
+    bounds: { minX: -6.3, maxX: 6.3, minZ: -7.3, maxZ: 7.3 },
+    obstacles: [
+      { kind: "circle", x: -5.6, z: -6.6, radius: 0.52 },
+      { kind: "circle", x: 5.6, z: -6.6, radius: 0.52 },
+    ],
+    desks: [],
+    portals: [],
+    lift: { x: 0, z: 7.65, reach: 2.6 },
+    doorways: [],
+  };
+}
 
 /** Danh sách tầng cho bảng thang máy, kèm sảnh ở dưới cùng. */
-export const TOWER_STOPS: Array<{ id: DistrictRoomId; label: string; accent: string; arriveAt: Pose }> = [
-  // Ra thang máy ở sảnh thì đứng NGAY TRONG buồng thang, không phải giữa sảnh:
-  // người vừa bấm nhầm tầng phải bấm lại được ngay mà không đi bộ vòng lại.
-  { id: "thap", label: "Sảnh · ra phố", accent: "#fbbf24", arriveAt: { x: 0, z: -TOWER_HALF_D + 2.4, ry: Math.PI } },
-  { id: STAGE_FLOOR_ID, label: "Chặng học tài chính", accent: "#a7f3d0", arriveAt: { x: 0, z: 5.4, ry: 0 } },
-  ...STATIONS.map((s) => ({
-    id: floorRoomId(s) as DistrictRoomId,
-    label: s.room,
-    accent: s.accent,
-    arriveAt: { x: 0, z: FLOOR_DEPTH / 2 - 2.6, ry: 0 },
-  })),
-];
-
+export function towerStopsOf(
+  t: Dictionary
+): Array<{ id: DistrictRoomId; label: string; accent: string; arriveAt: Pose }> {
+  const d = t.worldSpaces.district;
+  const stations = stationsOf(t);
+  return [
+    // Ra thang máy ở sảnh thì đứng NGAY TRONG buồng thang, không phải giữa sảnh:
+    // người vừa bấm nhầm tầng phải bấm lại được ngay mà không đi bộ vòng lại.
+    { id: "thap", label: d.towerStopStreet, accent: "#fbbf24", arriveAt: { x: 0, z: -TOWER_HALF_D + 2.4, ry: Math.PI } },
+    { id: STAGE_FLOOR_ID, label: d.towerStopStage, accent: "#a7f3d0", arriveAt: { x: 0, z: 5.4, ry: 0 } },
+    ...stations.map((s) => ({
+      id: floorRoomId(s) as DistrictRoomId,
+      label: s.room,
+      accent: s.accent,
+      arriveAt: { x: 0, z: FLOOR_DEPTH / 2 - 2.6, ry: 0 },
+    })),
+  ];
+}
 
 // ── Khu game ────────────────────────────────────────────────────────────────
 
@@ -481,7 +505,7 @@ const SQUARE_D = Math.max(30, Math.ceil(ORGANIC_BUILDINGS.length / 2) * PODIUM_P
 
 const GAME_ACCENTS = ["#f472b6", "#facc15", "#60a5fa", "#4ade80", "#c084fc", "#fb923c"];
 
-const GAME_SQUARE: DistrictRoom = (() => {
+function buildGameSquare(d: Dictionary["worldSpaces"]["district"]): DistrictRoom {
   const halfW = SQUARE_W / 2;
   const halfD = SQUARE_D / 2;
   const portals: RoomPortal[] = ORGANIC_BUILDINGS.map((b, i) => ({
@@ -490,13 +514,13 @@ const GAME_SQUARE: DistrictRoom = (() => {
     z: -halfD + 5 + Math.floor(i / 2) * PODIUM_PITCH,
     reach: 2.3,
     label: b.name,
-    blurb: b.minLevel ? `${b.subtitle} · cần cấp ${b.minLevel}` : b.subtitle,
+    blurb: b.minLevel ? `${b.subtitle} · ${format(d.levelRequirement, { level: b.minLevel })}` : b.subtitle,
     href: `/game?building=${b.id}`,
     accent: GAME_ACCENTS[i % GAME_ACCENTS.length],
   }));
   return {
     id: "khu-game",
-    label: "Quảng trường Game Tài chính",
+    label: d.gameSquare,
     kind: "office",
     accent: "#f472b6",
     size: { width: SQUARE_W, depth: SQUARE_D, height: 6 },
@@ -512,14 +536,14 @@ const GAME_SQUARE: DistrictRoom = (() => {
         x: 0,
         z: halfD - 0.6,
         reach: 2.2,
-        label: "Ra phố",
+        label: d.exitToStreet,
+        isExit: true,
         arriveAt: { x: GAME_SQUARE_X, z: -3.4, ry: Math.PI / 2 },
         accent: "#f472b6",
       },
     ],
   };
-})();
-
+}
 
 // ── Công viên và trung tâm ──────────────────────────────────────────────────
 
@@ -558,45 +582,40 @@ export const PARK_BENCHES: Array<[number, number]> = [
 
 export const POND = { x: 0, z: 0, radius: 3.4 };
 
-const PARK_ROOM: DistrictRoom = {
-  id: "cong-vien",
-  label: "Công viên Bến Nghé",
-  kind: "office",
-  accent: "#4ade80",
-  size: { width: PARK_W, depth: PARK_D, height: 14 },
-  bounds: { minX: -PARK_W / 2 + 1, maxX: PARK_W / 2 - 1, minZ: -PARK_D / 2 + 1, maxZ: PARK_D / 2 - 1 },
-  obstacles: [
-    { kind: "circle", x: POND.x, z: POND.z, radius: POND.radius },
-    ...PARK_TREES.map(([x, z]): CircleObstacle => ({ kind: "circle", x, z, radius: 0.6 })),
-    ...PARK_BENCHES.map(([x, z]): BoxObstacle => ({ kind: "box", x, z, halfW: 0.9, halfD: 0.3 })),
-  ],
-  desks: [],
-  portals: [],
-  lift: null,
-  doorways: [
-    {
-      id: "cong-vien-exit",
-      to: "street",
-      x: 0,
-      z: PARK_D / 2 - 0.6,
-      reach: 2.2,
-      label: "Ra phố",
-      arriveAt: { x: PARK_X, z: -3.4, ry: Math.PI / 2 },
-      accent: "#4ade80",
-    },
-  ],
-};
+function buildParkRoom(d: Dictionary["worldSpaces"]["district"]): DistrictRoom {
+  return {
+    id: "cong-vien",
+    label: d.park,
+    kind: "office",
+    accent: "#4ade80",
+    size: { width: PARK_W, depth: PARK_D, height: 14 },
+    bounds: { minX: -PARK_W / 2 + 1, maxX: PARK_W / 2 - 1, minZ: -PARK_D / 2 + 1, maxZ: PARK_D / 2 - 1 },
+    obstacles: [
+      { kind: "circle", x: POND.x, z: POND.z, radius: POND.radius },
+      ...PARK_TREES.map(([x, z]): CircleObstacle => ({ kind: "circle", x, z, radius: 0.6 })),
+      ...PARK_BENCHES.map(([x, z]): BoxObstacle => ({ kind: "box", x, z, halfW: 0.9, halfD: 0.3 })),
+    ],
+    desks: [],
+    portals: [],
+    lift: null,
+    doorways: [
+      {
+        id: "cong-vien-exit",
+        to: "street",
+        x: 0,
+        z: PARK_D / 2 - 0.6,
+        reach: 2.2,
+        label: d.exitToStreet,
+        isExit: true,
+        arriveAt: { x: PARK_X, z: -3.4, ry: Math.PI / 2 },
+        accent: "#4ade80",
+      },
+    ],
+  };
+}
 
 const CENTER_W = 24;
 const CENTER_D = 24;
-
-/** Bốn lối toả ra từ quảng trường trung tâm. */
-const CENTER_EXITS: Array<{ id: string; to: DistrictRoomId; x: number; z: number; label: string; accent: string }> = [
-  { id: "tt-pho", to: "street", x: 0, z: CENTER_D / 2 - 0.6, label: "Ra phố", accent: "#fbbf24" },
-  { id: "tt-thap", to: "thap", x: 0, z: -CENTER_D / 2 + 0.6, label: "Tháp Tự Học", accent: "#fbbf24" },
-  { id: "tt-game", to: "khu-game", x: CENTER_W / 2 - 0.6, z: 0, label: "Quảng trường Game", accent: "#f472b6" },
-  { id: "tt-cong-vien", to: "cong-vien", x: -CENTER_W / 2 + 0.6, z: 0, label: "Công viên", accent: "#4ade80" },
-];
 
 /** Cột đèn quanh quảng trường, xếp thành vòng. */
 export const CENTER_LAMPS: Array<[number, number]> = Array.from({ length: 8 }, (_, i) => {
@@ -607,42 +626,51 @@ export const CENTER_LAMPS: Array<[number, number]> = Array.from({ length: 8 }, (
 /** Đài phun nước ở giữa quảng trường - mốc định hướng của cả thành phố. */
 export const FOUNTAIN = { x: 0, z: 0, radius: 2.6 };
 
-const CENTER_ROOM: DistrictRoom = {
-  id: "trung-tam",
-  label: "Quảng trường Trung tâm",
-  kind: "office",
-  accent: "#fbbf24",
-  size: { width: CENTER_W, depth: CENTER_D, height: 16 },
-  bounds: { minX: -CENTER_W / 2 + 1, maxX: CENTER_W / 2 - 1, minZ: -CENTER_D / 2 + 1, maxZ: CENTER_D / 2 - 1 },
-  obstacles: [
-    { kind: "circle", x: FOUNTAIN.x, z: FOUNTAIN.z, radius: FOUNTAIN.radius },
-    ...CENTER_LAMPS.map(([x, z]): CircleObstacle => ({ kind: "circle", x, z, radius: 0.34 })),
-  ],
-  desks: [],
-  portals: [],
-  lift: null,
-  doorways: CENTER_EXITS.map((e) => ({
-    id: e.id,
-    to: e.to,
-    x: e.x,
-    z: e.z,
-    reach: 2.4,
-    label: e.label,
-    // Vào phòng nào thì đứng ở lối vào của phòng đó, không phải giữa phòng:
-    // bước qua một cánh cửa rồi thấy mình ở giữa gian phòng là mất hẳn cảm
-    // giác vừa đi qua cái gì.
-    arriveAt:
-      e.to === "street"
-        ? { x: CENTER_X, z: -3.4, ry: Math.PI / 2 }
-        : e.to === "thap"
-        ? { x: 0, z: TOWER_HALF_D - 3.8, ry: 0 }
-        : e.to === "khu-game"
-        ? { x: 0, z: SQUARE_D / 2 - 6, ry: 0 }
-        : { x: 0, z: PARK_D / 2 - 3, ry: 0 },
-    accent: e.accent,
-  })),
-};
-
+function buildCenterRoom(d: Dictionary["worldSpaces"]["district"]): DistrictRoom {
+  /** Bốn lối toả ra từ quảng trường trung tâm. */
+  const centerExits: Array<{ id: string; to: DistrictRoomId; x: number; z: number; label: string; accent: string; isExit?: true }> = [
+    { id: "tt-pho", to: "street", x: 0, z: CENTER_D / 2 - 0.6, label: d.exitToStreet, accent: "#fbbf24", isExit: true },
+    { id: "tt-thap", to: "thap", x: 0, z: -CENTER_D / 2 + 0.6, label: d.towerLobby, accent: "#fbbf24" },
+    { id: "tt-game", to: "khu-game", x: CENTER_W / 2 - 0.6, z: 0, label: d.gameSquareShort, accent: "#f472b6" },
+    { id: "tt-cong-vien", to: "cong-vien", x: -CENTER_W / 2 + 0.6, z: 0, label: d.parkShort, accent: "#4ade80" },
+  ];
+  return {
+    id: "trung-tam",
+    label: d.center,
+    kind: "office",
+    accent: "#fbbf24",
+    size: { width: CENTER_W, depth: CENTER_D, height: 16 },
+    bounds: { minX: -CENTER_W / 2 + 1, maxX: CENTER_W / 2 - 1, minZ: -CENTER_D / 2 + 1, maxZ: CENTER_D / 2 - 1 },
+    obstacles: [
+      { kind: "circle", x: FOUNTAIN.x, z: FOUNTAIN.z, radius: FOUNTAIN.radius },
+      ...CENTER_LAMPS.map(([x, z]): CircleObstacle => ({ kind: "circle", x, z, radius: 0.34 })),
+    ],
+    desks: [],
+    portals: [],
+    lift: null,
+    doorways: centerExits.map((e) => ({
+      id: e.id,
+      to: e.to,
+      x: e.x,
+      z: e.z,
+      reach: 2.4,
+      label: e.label,
+      isExit: e.isExit,
+      // Vào phòng nào thì đứng ở lối vào của phòng đó, không phải giữa phòng:
+      // bước qua một cánh cửa rồi thấy mình ở giữa gian phòng là mất hẳn cảm
+      // giác vừa đi qua cái gì.
+      arriveAt:
+        e.to === "street"
+          ? { x: CENTER_X, z: -3.4, ry: Math.PI / 2 }
+          : e.to === "thap"
+          ? { x: 0, z: TOWER_HALF_D - 3.8, ry: 0 }
+          : e.to === "khu-game"
+          ? { x: 0, z: SQUARE_D / 2 - 6, ry: 0 }
+          : { x: 0, z: PARK_D / 2 - 3, ry: 0 },
+      accent: e.accent,
+    })),
+  };
+}
 
 // ── Quán cà phê tài chính ───────────────────────────────────────────────────
 
@@ -688,7 +716,7 @@ export const CAFE_PLANTS: Array<[number, number]> = [
   [-CAFE_W / 2 + 1.4, CAFE_D / 2 - 2],
 ];
 
-const CAFE_ROOM: DistrictRoom = (() => {
+function buildCafeRoom(d: Dictionary["worldSpaces"]["district"]): DistrictRoom {
   const halfW = CAFE_W / 2;
   const halfD = CAFE_D / 2;
   // Mỗi bàn một chỗ ngồi, quay mặt về phía bàn.
@@ -700,7 +728,7 @@ const CAFE_ROOM: DistrictRoom = (() => {
   }));
   return {
     id: "quan-ca-phe",
-    label: "Cà phê Số & Sách",
+    label: d.cafe,
     kind: "office",
     accent: "#fbbf24",
     size: { width: CAFE_W, depth: CAFE_D, height: 4.6 },
@@ -728,13 +756,14 @@ const CAFE_ROOM: DistrictRoom = (() => {
         x: 0,
         z: halfD - 0.5,
         reach: 2.2,
-        label: "Ra phố",
+        label: d.exitToStreet,
+        isExit: true,
         arriveAt: { x: CAFE_X, z: -3.4, ry: Math.PI / 2 },
         accent: "#fbbf24",
       },
     ],
   };
-})();
+}
 
 /** Đứng gần hơn khoảng này thì mời ngồi. */
 export const CAFE_SEAT_REACH = 1.9;
@@ -759,7 +788,6 @@ export function nearestCafeSeat(
   return best;
 }
 
-
 // ── Khu dân sự: cửa hàng, bảng vàng, phòng thi, căn hộ, bảo tàng, nhà bạn bè ──
 
 /** Sáu căn nhà còn lại của thành phố.
@@ -771,7 +799,11 @@ export function nearestCafeSeat(
  *
  *  Mỗi căn có một "bục trung tâm" - chỗ đứng để HUD mở nội dung ra. Đó là lý do
  *  chúng không cần bàn ghế chi tiết như phòng ngành: cái đáng nhìn nằm trên
- *  HUD, còn căn phòng làm việc đưa người ta tới đúng chỗ và nói đây là chỗ gì. */
+ *  HUD, còn căn phòng làm việc đưa người ta tới đúng chỗ và nói đây là chỗ gì.
+ *
+ *  Cấu trúc (id, streetX, width, depth, teaching) là dữ liệu tĩnh ở
+ *  `CIVIC_STRUCT`; nhãn/blurb dịch được sống trong `t.worldSpaces.district.civic`
+ *  và được ghép vào bằng `civicRoomsOf(t)`. */
 
 export interface CivicSpec {
   id: DistrictRoomId;
@@ -798,129 +830,79 @@ export interface CivicSpec {
   teaching?: true;
 }
 
-export const CIVIC_ROOMS: CivicSpec[] = [
+interface CivicStruct {
+  id: DistrictRoomId;
+  accent: string;
+  streetX: number;
+  width: number;
+  depth: number;
+  teaching?: true;
+}
+
+const CIVIC_STRUCT: CivicStruct[] = [
+  { id: "ba-bao-cao", accent: "#67e8f9", streetX: -54, width: 18, depth: 18, teaching: true },
+  { id: "thap-lai-kep", accent: "#fdba74", streetX: 54, width: 14, depth: 14, teaching: true },
+  { id: "phong-lbo", accent: "#f9a8d4", streetX: -69, width: 16, depth: 16, teaching: true },
+  { id: "cua-hang", accent: "#f0abfc", streetX: -39, width: 16, depth: 16 },
+  { id: "bang-vang", accent: "#fcd34d", streetX: -24, width: 18, depth: 20 },
+  { id: "phong-thi", accent: "#93c5fd", streetX: -9, width: 16, depth: 20 },
+  { id: "can-ho", accent: "#fb923c", streetX: 9, width: 14, depth: 16 },
+  { id: "bao-tang", accent: "#a5b4fc", streetX: 27, width: 18, depth: 26 },
+  { id: "nha-ban-be", accent: "#5eead4", streetX: 42, width: 16, depth: 18 },
+  { id: "vong-quay-tien", accent: "#a3e635", streetX: 69, width: 18, depth: 20, teaching: true },
   {
-    id: "ba-bao-cao",
-    label: "Phòng Ba Báo Cáo",
-    accent: "#67e8f9",
-    streetX: -54,
-    blurb: "Chạm một khoản, nhìn nó chạy qua cả ba bảng",
-    width: 18,
-    depth: 18,
-    teaching: true,
-  },
-  {
-    id: "thap-lai-kep",
-    label: "Tháp Lãi Kép",
-    accent: "#fdba74",
-    streetX: 54,
-    blurb: "Mỗi tầng một năm - leo để thấy lãi kép",
-    width: 14,
-    depth: 14,
-    teaching: true,
-  },
-  {
-    id: "phong-lbo",
-    label: "Phòng Tầng Vốn",
-    accent: "#f9a8d4",
-    streetX: -69,
-    blurb: "Nợ ưu tiên dưới, vốn chủ trên - ai mất trước",
-    width: 16,
-    depth: 16,
-    teaching: true,
-  },
-  {
-    id: "cua-hang",
-    label: "Cửa hàng & Gương thử đồ",
-    accent: "#f0abfc",
-    streetX: -39,
-    blurb: "Thử đồ lên người trước khi mua",
-    width: 16,
-    depth: 16,
-  },
-  {
-    id: "bang-vang",
-    label: "Sảnh Bảng vàng",
-    accent: "#fcd34d",
-    streetX: -24,
-    blurb: "Ai đang dẫn đầu từng năng lực",
-    width: 18,
-    depth: 20,
-  },
-  {
-    id: "phong-thi",
-    label: "Phòng thi",
-    accent: "#93c5fd",
-    streetX: -9,
-    blurb: "Đề thi thử CFA, FRM và kiểm tra chặng",
-    width: 16,
-    depth: 20,
-  },
-  {
-    id: "can-ho",
-    label: "Căn hộ của bạn",
-    accent: "#fb923c",
-    streetX: 9,
-    blurb: "Chuỗi ngày, cúp và mục tiêu nghề của riêng bạn",
-    width: 14,
-    depth: 16,
-  },
-  {
-    id: "bao-tang",
-    label: "Bảo tàng Tài chính",
-    accent: "#a5b4fc",
-    streetX: 27,
-    blurb: "1929, 2008, lạm phát - và bài học đằng sau",
-    width: 18,
-    depth: 26,
-  },
-  {
-    id: "nha-ban-be",
-    label: "Khu nhà bạn bè",
-    accent: "#5eead4",
-    streetX: 42,
-    blurb: "Ghé thăm chuỗi ngày và tủ cúp của bạn bè",
-    width: 16,
-    depth: 18,
-  },
-  {
-    id: "vong-quay-tien",
-    label: "Phòng Vòng Quay Tiền",
-    accent: "#a3e635",
-    streetX: 69,
-    blurb: "Tiền về trước hay tiền đi trước - và ai đang tài trợ cho ai",
-    width: 18,
-    depth: 20,
-    teaching: true,
-  },
-  {
-    id: "phan-bo-rui-ro",
-    label: "Phòng Rủi Ro & Phân Bổ",
-    accent: "#38bdf8",
     // Đối xứng với -69 ở đầu kia phố. Phố dài tới ±77 nên vẫn còn chỗ, và
     // khoảng cách tới cửa 69 đúng bằng khoảng -69 tới -54.
+    id: "phan-bo-rui-ro",
+    accent: "#38bdf8",
     streetX: -84,
-    blurb: "Vì sao trộn hai thứ lại ít rủi ro hơn trung bình của chúng",
     width: 16,
     depth: 22,
     teaching: true,
   },
-  {
-    id: "ban-tron",
-    label: "Bàn Tròn Giảng Lại",
-    accent: "#fb7185",
-    streetX: 84,
-    blurb: "Giải thích bằng lời của bạn - chỗ duy nhất biết bạn có thật sự hiểu",
-    width: 16,
-    depth: 16,
-    teaching: true,
-  },
+  { id: "ban-tron", accent: "#fb7185", streetX: 84, width: 16, depth: 16, teaching: true },
 ];
+
+/** Chỉ id, dùng ở những chỗ chỉ cần biết "đây có phải một phòng dân sự
+ *  không" mà không cần chữ hiển thị (isAtCivicStand, CivicScenes.isCivicRoom). */
+export const CIVIC_ROOM_IDS: DistrictRoomId[] = CIVIC_STRUCT.map((c) => c.id);
+
+/** Khoá tra chữ hiển thị trong `t.worldSpaces.district.civic`. */
+const CIVIC_COPY_KEY: Record<string, keyof Dictionary["worldSpaces"]["district"]["civic"]> = {
+  "ba-bao-cao": "baBaoCao",
+  "thap-lai-kep": "thapLaiKep",
+  "phong-lbo": "phongLbo",
+  "cua-hang": "cuaHang",
+  "bang-vang": "bangVang",
+  "phong-thi": "phongThi",
+  "can-ho": "canHo",
+  "bao-tang": "baoTang",
+  "nha-ban-be": "nhaBanBe",
+  "vong-quay-tien": "vongQuayTien",
+  "phan-bo-rui-ro": "phanBoRuiRo",
+  "ban-tron": "banTron",
+};
+
+const civicCache = new WeakMap<Dictionary, CivicSpec[]>();
+
+/** Mười hai căn nhà dân sự, kèm chữ hiển thị theo ngôn ngữ hiện tại của
+ *  `t.worldSpaces.district.civic`. */
+export function civicRoomsOf(t: Dictionary): CivicSpec[] {
+  const cached = civicCache.get(t);
+  if (cached) return cached;
+  const copy = t.worldSpaces.district.civic;
+  const rooms = CIVIC_STRUCT.map((c): CivicSpec => {
+    const text = copy[CIVIC_COPY_KEY[c.id as string]];
+    return { ...c, label: text.label, blurb: text.blurb };
+  });
+  civicCache.set(t, rooms);
+  return rooms;
+}
 
 /** Bục trung tâm: đứng trong tầm này thì HUD mở nội dung của phòng. */
 export const CIVIC_STAND_REACH = 2.6;
 
-function buildCivic(spec: CivicSpec): DistrictRoom {
+function buildCivic(spec: CivicSpec, exitLabel: string): DistrictRoom {
   const halfW = spec.width / 2;
   const halfD = spec.depth / 2;
   return {
@@ -946,7 +928,8 @@ function buildCivic(spec: CivicSpec): DistrictRoom {
         x: 0,
         z: halfD - 0.5,
         reach: 2.2,
-        label: "Ra phố",
+        label: exitLabel,
+        isExit: true,
         arriveAt: { x: spec.streetX, z: -3.4, ry: Math.PI / 2 },
         accent: spec.accent,
       },
@@ -954,148 +937,179 @@ function buildCivic(spec: CivicSpec): DistrictRoom {
   };
 }
 
-const CIVIC = CIVIC_ROOMS.map(buildCivic);
-
 /** Đang đứng ở bục giữa phòng dân sự chưa. */
 export function isAtCivicStand(room: DistrictRoom, x: number, z: number): boolean {
-  if (!CIVIC_ROOMS.some((c) => c.id === room.id)) return false;
+  if (!CIVIC_ROOM_IDS.includes(room.id)) return false;
   return Math.hypot(x - 0, z - -1) <= CIVIC_STAND_REACH + 1.3;
 }
 
-const STREET_ROOM: DistrictRoom = {
-  id: "street",
-  label: "Phố nghề Sài Gòn",
-  kind: "street",
-  accent: "#fbbf24",
-  size: { width: STREET.halfLength * 2, depth: 26, height: STREET.height },
-  bounds: {
-    minX: -STREET.halfLength + 1,
-    maxX: STREET.halfLength - 1,
-    minZ: STREET.walkMinZ,
-    maxZ: STREET.walkMaxZ,
-  },
-  obstacles: [
-    // Hai trụ cổng ở đầu phố. Là vật cản thật để người học đi vòng qua chúng
-    // và nhận ra chúng là cửa, thay vì lướt qua một tấm biển phẳng.
-    ...GATE_XS.map((x): CircleObstacle => ({ kind: "circle", x, z: GATE_PILLAR_Z, radius: 0.6 })),
-    ...STREET_TREE_XS.map((x): CircleObstacle => ({ kind: "circle", x, z: TREE_Z, radius: 0.55 })),
-    ...LAMP_XS.map((x): CircleObstacle => ({ kind: "circle", x, z: LAMP_Z, radius: 0.3 })),
-    ...BIKE_SPOTS.map(([x, z]): BoxObstacle => ({ kind: "box", x, z, halfW: 0.85, halfD: 0.4 })),
-  ],
-  desks: [],
-  /** Đầu tây con phố mở sang hai thế giới 3D còn lại.
-   *
-   *  Chúng là RouterPortal chứ không phải Doorway: thư viện và phòng nhóm là
-   *  hai cảnh three.js riêng ở hai địa chỉ riêng, không phải hai căn phòng của
-   *  khu phố này. Gộp chúng thành một cảnh duy nhất sẽ phải nạp cả ba thế giới
-   *  mỗi lần vào bất kỳ cái nào. */
-  portals: [
-    {
-      id: "toi-thu-vien",
-      x: GATE_XS[0],
-      z: GATE_Z,
-      reach: 2.8,
-      label: "Thư viện Sài Gòn",
-      blurb: "Phòng đọc chung, gặp người khác đang học",
-      href: "/cong-dong",
-      accent: "#e5b567",
+function buildStreetRoom(
+  d: Dictionary["worldSpaces"]["district"],
+  civicRooms: CivicSpec[],
+  labels: Record<CareerCategory, string>
+): DistrictRoom {
+  return {
+    id: "street",
+    label: d.street,
+    kind: "street",
+    accent: "#fbbf24",
+    size: { width: STREET.halfLength * 2, depth: 26, height: STREET.height },
+    bounds: {
+      minX: -STREET.halfLength + 1,
+      maxX: STREET.halfLength - 1,
+      minZ: STREET.walkMinZ,
+      maxZ: STREET.walkMaxZ,
     },
-    {
-      id: "toi-nhom-hoc",
-      x: GATE_XS[1],
-      z: GATE_Z,
-      reach: 2.8,
-      label: "Phòng học nhóm",
-      blurb: "Bàn tám ghế, phiên học 25 phút cùng nhóm",
-      href: "/nhom-hoc",
-      accent: "#34d399",
-    },
-  ],
-  lift: null,
-  doorways: [
-    ...CIVIC_ROOMS.map((c) => ({
-      id: `door-${c.id}`,
-      to: c.id,
-      x: c.streetX,
-      z: STREET.facadeZ + 1.4,
-      reach: 2.4,
-      label: c.label,
-      arriveAt: { x: 0, z: c.depth / 2 - 3, ry: 0 },
-      accent: c.accent,
-    })),
-    {
-      id: "door-quan-ca-phe",
-      to: "quan-ca-phe" as DistrictRoomId,
-      x: CAFE_X,
-      z: STREET.walkMaxZ - 0.4,
-      reach: 2.6,
-      label: "Cà phê Số & Sách",
-      arriveAt: { x: 0, z: CAFE_D / 2 - 3, ry: 0 },
-      accent: "#fbbf24",
-    },
-    {
-      id: "door-cong-vien",
-      to: "cong-vien" as DistrictRoomId,
-      x: PARK_X,
-      z: STREET.walkMaxZ - 0.4,
-      reach: 2.6,
-      label: "Công viên Bến Nghé",
-      arriveAt: { x: 0, z: PARK_D / 2 - 3, ry: 0 },
-      accent: "#4ade80",
-    },
-    {
-      id: "door-trung-tam",
-      to: "trung-tam" as DistrictRoomId,
-      x: CENTER_X,
-      z: STREET.walkMaxZ - 0.4,
-      reach: 2.6,
-      label: "Quảng trường Trung tâm",
-      arriveAt: { x: 0, z: CENTER_D / 2 - 3, ry: 0 },
-      accent: "#fbbf24",
-    },
-    {
-      id: "door-khu-game",
-      to: "khu-game" as DistrictRoomId,
-      x: GAME_SQUARE_X,
-      z: STREET.facadeZ + 1.4,
-      reach: 2.6,
-      label: "Quảng trường Game",
-      // Đứng lùi hẳn vào quảng trường, không đứng sát cửa: camera bám sau lưng
-      // ~5m và bị kẹp trong khung phòng, nên đứng sát cửa là nó dí vào gáy.
-      arriveAt: { x: 0, z: SQUARE_D / 2 - 6, ry: 0 },
-      accent: "#f472b6",
-    },
-    {
-      id: "door-thap",
-      to: "thap" as DistrictRoomId,
-      x: TOWER_X,
-      z: STREET.facadeZ + 1.4,
-      reach: 2.6,
-      label: "Tháp Tự Học",
-      arriveAt: { x: 0, z: TOWER_HALF_D - 3.8, ry: 0 },
-      accent: "#fbbf24",
-    },
-    ...CAREER_CATEGORY_ORDER.map((category) => ({
-      id: `door-${category}`,
-      to: category,
-      x: SHOP_X[category],
-      z: STREET.facadeZ + 1.4,
-      reach: 2.3,
-      label: CAREER_CATEGORY_LABELS[category],
-      arriveAt: { x: 0, z: roomDepthFor(careersIn(category).length) / 2 - 2.2, ry: 0 },
-      accent: CAREER_CATEGORY_COLORS[category],
-    })),
-  ],
-};
+    obstacles: [
+      // Hai trụ cổng ở đầu phố. Là vật cản thật để người học đi vòng qua chúng
+      // và nhận ra chúng là cửa, thay vì lướt qua một tấm biển phẳng.
+      ...GATE_XS.map((x): CircleObstacle => ({ kind: "circle", x, z: GATE_PILLAR_Z, radius: 0.6 })),
+      ...STREET_TREE_XS.map((x): CircleObstacle => ({ kind: "circle", x, z: TREE_Z, radius: 0.55 })),
+      ...LAMP_XS.map((x): CircleObstacle => ({ kind: "circle", x, z: LAMP_Z, radius: 0.3 })),
+      ...BIKE_SPOTS.map(([x, z]): BoxObstacle => ({ kind: "box", x, z, halfW: 0.85, halfD: 0.4 })),
+    ],
+    desks: [],
+    /** Đầu tây con phố mở sang hai thế giới 3D còn lại.
+     *
+     *  Chúng là RouterPortal chứ không phải Doorway: thư viện và phòng nhóm là
+     *  hai cảnh three.js riêng ở hai địa chỉ riêng, không phải hai căn phòng của
+     *  khu phố này. Gộp chúng thành một cảnh duy nhất sẽ phải nạp cả ba thế giới
+     *  mỗi lần vào bất kỳ cái nào. */
+    portals: [
+      {
+        id: "toi-thu-vien",
+        x: GATE_XS[0],
+        z: GATE_Z,
+        reach: 2.8,
+        label: d.library.label,
+        blurb: d.library.blurb,
+        href: "/cong-dong",
+        accent: "#e5b567",
+      },
+      {
+        id: "toi-nhom-hoc",
+        x: GATE_XS[1],
+        z: GATE_Z,
+        reach: 2.8,
+        label: d.studyGroup.label,
+        blurb: d.studyGroup.blurb,
+        href: "/nhom-hoc",
+        accent: "#34d399",
+      },
+    ],
+    lift: null,
+    doorways: [
+      ...civicRooms.map((c) => ({
+        id: `door-${c.id}`,
+        to: c.id,
+        x: c.streetX,
+        z: STREET.facadeZ + 1.4,
+        reach: 2.4,
+        label: c.label,
+        arriveAt: { x: 0, z: c.depth / 2 - 3, ry: 0 },
+        accent: c.accent,
+      })),
+      {
+        id: "door-quan-ca-phe",
+        to: "quan-ca-phe" as DistrictRoomId,
+        x: CAFE_X,
+        z: STREET.walkMaxZ - 0.4,
+        reach: 2.6,
+        label: d.cafe,
+        arriveAt: { x: 0, z: CAFE_D / 2 - 3, ry: 0 },
+        accent: "#fbbf24",
+      },
+      {
+        id: "door-cong-vien",
+        to: "cong-vien" as DistrictRoomId,
+        x: PARK_X,
+        z: STREET.walkMaxZ - 0.4,
+        reach: 2.6,
+        label: d.park,
+        arriveAt: { x: 0, z: PARK_D / 2 - 3, ry: 0 },
+        accent: "#4ade80",
+      },
+      {
+        id: "door-trung-tam",
+        to: "trung-tam" as DistrictRoomId,
+        x: CENTER_X,
+        z: STREET.walkMaxZ - 0.4,
+        reach: 2.6,
+        label: d.center,
+        arriveAt: { x: 0, z: CENTER_D / 2 - 3, ry: 0 },
+        accent: "#fbbf24",
+      },
+      {
+        id: "door-khu-game",
+        to: "khu-game" as DistrictRoomId,
+        x: GAME_SQUARE_X,
+        z: STREET.facadeZ + 1.4,
+        reach: 2.6,
+        label: d.gameSquareShort,
+        // Đứng lùi hẳn vào quảng trường, không đứng sát cửa: camera bám sau lưng
+        // ~5m và bị kẹp trong khung phòng, nên đứng sát cửa là nó dí vào gáy.
+        arriveAt: { x: 0, z: SQUARE_D / 2 - 6, ry: 0 },
+        accent: "#f472b6",
+      },
+      {
+        id: "door-thap",
+        to: "thap" as DistrictRoomId,
+        x: TOWER_X,
+        z: STREET.facadeZ + 1.4,
+        reach: 2.6,
+        label: d.towerLobby,
+        arriveAt: { x: 0, z: TOWER_HALF_D - 3.8, ry: 0 },
+        accent: "#fbbf24",
+      },
+      ...CAREER_CATEGORY_ORDER.map((category) => ({
+        id: `door-${category}`,
+        to: category,
+        x: SHOP_X[category],
+        z: STREET.facadeZ + 1.4,
+        reach: 2.3,
+        label: labels[category],
+        arriveAt: { x: 0, z: roomDepthFor(careersIn(category).length) / 2 - 2.2, ry: 0 },
+        accent: CAREER_CATEGORY_COLORS[category],
+      })),
+    ],
+  };
+}
 
-export const DISTRICT_ROOMS: Record<string, DistrictRoom> = Object.fromEntries(
-  [STREET_ROOM, TOWER_LOBBY, STAGE_FLOOR, GAME_SQUARE, PARK_ROOM, CENTER_ROOM, CAFE_ROOM, ...CIVIC, ...OFFICES, ...FLOORS].map(
-    (r) => [r.id, r]
-  )
-);
+function buildDistrictRooms(t: Dictionary): Record<string, DistrictRoom> {
+  const d = t.worldSpaces.district;
+  const stations = stationsOf(t);
+  const civicRooms = civicRoomsOf(t);
+  const labels = careerCategoryLabelsOf(t);
+  const rooms: DistrictRoom[] = [
+    buildStreetRoom(d, civicRooms, labels),
+    buildTowerLobby(d),
+    buildStageFloor(d),
+    buildGameSquare(d),
+    buildParkRoom(d),
+    buildCenterRoom(d),
+    buildCafeRoom(d),
+    ...civicRooms.map((c) => buildCivic(c, d.exitToStreet)),
+    ...CAREER_CATEGORY_ORDER.map((category) => buildOffice(category, d.exitToStreet, labels)),
+    ...stations.map(buildFloor),
+  ];
+  return Object.fromEntries(rooms.map((r) => [r.id, r]));
+}
 
-export function getRoom(id: DistrictRoomId): DistrictRoom {
-  const room = DISTRICT_ROOMS[id] ?? pathRoomCache.get(id);
+const districtCache = new WeakMap<Dictionary, Record<string, DistrictRoom>>();
+
+/** Mọi phòng của khu phố, kèm chữ hiển thị theo ngôn ngữ hiện tại. Tính một
+ *  lần cho mỗi `t` rồi nhớ lại - phòng ốc không đổi giữa hai lần render cùng
+ *  ngôn ngữ, và việc dựng lại 26 phòng mỗi khung hình là phí. */
+export function districtRoomsOf(t: Dictionary): Record<string, DistrictRoom> {
+  const cached = districtCache.get(t);
+  if (cached) return cached;
+  const rooms = buildDistrictRooms(t);
+  districtCache.set(t, rooms);
+  return rooms;
+}
+
+export function getRoom(t: Dictionary, id: DistrictRoomId): DistrictRoom {
+  const room = districtRoomsOf(t)[id] ?? pathRoomCache.get(id);
   if (!room) throw new Error(`Không có phòng nào tên "${id}" trong khu phố nghề`);
   return room;
 }
@@ -1124,7 +1138,7 @@ export function careerCountIn(category: CareerCategory) {
   return careersIn(category).length;
 }
 
-export { CAREER_CATEGORY_BLURBS };
+export { careerCategoryBlurbsOf };
 
 // ── Đi lại ──────────────────────────────────────────────────────────────────
 
@@ -1239,6 +1253,10 @@ export function buildPathRoom(
         z: halfD - 0.5,
         reach: 2,
         label: back.label,
+        // Cửa quay lại một hành lang lộ trình luôn là cửa RA - nhãn của nó
+        // ("Về phòng ngành", "Về sảnh chặng") đã tự đủ nghĩa, không cần thêm
+        // chữ mời "Bước vào ·" trước nó.
+        isExit: true,
         arriveAt: back.arriveAt,
         accent,
       },

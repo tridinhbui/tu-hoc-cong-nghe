@@ -1,9 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { Trophy, Award, Lock, CheckCircle2, Sparkles, Star, Shield, ChevronRight } from "lucide-react";
 import { toast } from "sonner";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 interface SeasonPassWidgetProps {
   userId: string;
@@ -21,25 +23,37 @@ interface PassReward {
   isClaimed: boolean;
 }
 
+// The levels/milestones themselves are structure, not copy - kept as plain
+// data and paired positionally with t.seasonPass.rewards (see
+// lib/i18n/dictionaries/sections/quests-referral.ts).
+const REWARD_LEVELS = [1, 3, 5, 10, 15, 20, 25, 30];
+
 export default function SeasonPassWidget({ userId, userLevel = 5, userXp = 450 }: SeasonPassWidgetProps) {
+  const { t } = useI18n();
   const currentPassLevel = Math.min(30, Math.floor(userLevel * 1.5) || 1);
   const [claimedLevels, setClaimedLevels] = useState<number[]>([]);
 
-  const REWARDS: PassReward[] = [
-    { level: 1, freeReward: "+50 Coins", freeEmoji: "🪙", vipReward: "+100 Coins", vipEmoji: "💰", isUnlocked: currentPassLevel >= 1, isClaimed: claimedLevels.includes(1) },
-    { level: 3, freeReward: "X2 XP Scroll 1H", freeEmoji: "📜", vipReward: "Rolex Submariner", vipEmoji: "⌚", isUnlocked: currentPassLevel >= 3, isClaimed: claimedLevels.includes(3) },
-    { level: 5, freeReward: "Bút Vàng M&A", freeEmoji: "🖋️", vipReward: "Kính Bloomberg", vipEmoji: "🕶️", isUnlocked: currentPassLevel >= 5, isClaimed: claimedLevels.includes(5) },
-    { level: 10, freeReward: "Vest Armani", freeEmoji: "👔", vipReward: "Hào Quang Phố Wall", vipEmoji: "✨", isUnlocked: currentPassLevel >= 10, isClaimed: claimedLevels.includes(10) },
-    { level: 15, freeReward: "Thẻ VN30 Vinamilk", freeEmoji: "📇", vipReward: "+500 Coins", vipEmoji: "💎", isUnlocked: currentPassLevel >= 15, isClaimed: claimedLevels.includes(15) },
-    { level: 20, freeReward: "Thắt Lưng Hermes", freeEmoji: "🎗️", vipReward: "Cúp Vô Địch NYSE", vipEmoji: "🏆", isUnlocked: currentPassLevel >= 20, isClaimed: claimedLevels.includes(20) },
-    { level: 25, freeReward: "Title 'Wall Street Shark'", freeEmoji: "🦈", vipReward: "Siêu Xe Wall St.", vipEmoji: "🏎️", isUnlocked: currentPassLevel >= 25, isClaimed: claimedLevels.includes(25) },
-    { level: 30, freeReward: "Golden Crown Legend", freeEmoji: "👑", vipReward: "Wall Street Legend", vipEmoji: "🏛️", isUnlocked: currentPassLevel >= 30, isClaimed: claimedLevels.includes(30) },
-  ];
+  const REWARDS: PassReward[] = useMemo(
+    () =>
+      REWARD_LEVELS.map((level, i) => {
+        const copy = t.seasonPass.rewards[i];
+        return {
+          level,
+          freeReward: copy.freeReward,
+          freeEmoji: copy.freeEmoji,
+          vipReward: copy.vipReward,
+          vipEmoji: copy.vipEmoji,
+          isUnlocked: currentPassLevel >= level,
+          isClaimed: claimedLevels.includes(level),
+        };
+      }),
+    [t, currentPassLevel, claimedLevels]
+  );
 
   const handleClaim = (reward: PassReward) => {
     if (!reward.isUnlocked || reward.isClaimed) return;
     setClaimedLevels((prev) => [...prev, reward.level]);
-    toast.success(`🎉 Đã nhận thưởng Season Pass Cấp ${reward.level}: ${reward.freeEmoji} ${reward.freeReward}!`);
+    toast.success(format(t.seasonPass.claimToast, { level: reward.level, emoji: reward.freeEmoji, reward: reward.freeReward }));
   };
 
   return (
@@ -48,19 +62,19 @@ export default function SeasonPassWidget({ userId, userLevel = 5, userXp = 450 }
       <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
         <div>
           <span className="text-[10px] font-black uppercase tracking-widest text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/40 px-2.5 py-0.5 rounded-full border border-amber-200 dark:border-amber-900">
-            📜 Season 1: Wall Street Empire Pass
+            {t.seasonPass.badge}
           </span>
           <h3 className="text-lg font-black text-stone-900 dark:text-white mt-1">
-            Thẻ Mùa Chiến Thắng Wall Street (30 Cấp)
+            {t.seasonPass.title}
           </h3>
           <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">
-            Tích lũy Season XP để mở khóa danh hiệu, phụ kiện Armani & Rolex đẳng cấp!
+            {t.seasonPass.subtitle}
           </p>
         </div>
 
         <div className="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950/40 dark:to-orange-950/30 border border-amber-300 dark:border-amber-700 px-4 py-2 rounded-2xl text-right">
-          <span className="text-[9px] font-black uppercase text-amber-600 dark:text-amber-400 block">Season Pass Level</span>
-          <span className="text-xl font-black text-amber-600 dark:text-amber-400">Lv. {currentPassLevel} / 30</span>
+          <span className="text-[9px] font-black uppercase text-amber-600 dark:text-amber-400 block">{t.seasonPass.levelLabel}</span>
+          <span className="text-xl font-black text-amber-600 dark:text-amber-400">{format(t.seasonPass.levelValue, { level: currentPassLevel })}</span>
         </div>
       </div>
 
@@ -89,7 +103,7 @@ export default function SeasonPassWidget({ userId, userLevel = 5, userXp = 450 }
           >
             <div className="flex items-center justify-between mb-3">
               <span className="text-xs font-black px-2 py-0.5 rounded-full bg-amber-500 text-white shadow-xs">
-                Mốc Lv.{r.level}
+                {format(t.seasonPass.milestoneLabel, { level: r.level })}
               </span>
               {r.isClaimed ? (
                 <CheckCircle2 className="w-5 h-5 text-emerald-500" />
@@ -105,7 +119,7 @@ export default function SeasonPassWidget({ userId, userLevel = 5, userXp = 450 }
               <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 p-2 rounded-xl flex items-center gap-2">
                 <span className="text-xl">{r.freeEmoji}</span>
                 <div className="min-w-0 flex-1">
-                  <span className="text-[9px] font-black uppercase text-stone-400 block">Miễn Phí</span>
+                  <span className="text-[9px] font-black uppercase text-stone-400 block">{t.seasonPass.freeLabel}</span>
                   <p className="text-xs font-black text-stone-900 dark:text-stone-100 truncate">{r.freeReward}</p>
                 </div>
               </div>
@@ -113,7 +127,7 @@ export default function SeasonPassWidget({ userId, userLevel = 5, userXp = 450 }
               <div className="bg-gradient-to-r from-amber-50 to-yellow-50 dark:from-amber-950/40 dark:to-yellow-950/30 border border-amber-300 dark:border-amber-700/60 p-2 rounded-xl flex items-center gap-2">
                 <span className="text-xl">{r.vipEmoji}</span>
                 <div className="min-w-0 flex-1">
-                  <span className="text-[9px] font-black uppercase text-amber-600 dark:text-amber-400 block">VIP Pass</span>
+                  <span className="text-[9px] font-black uppercase text-amber-600 dark:text-amber-400 block">{t.seasonPass.vipLabel}</span>
                   <p className="text-xs font-black text-amber-700 dark:text-amber-300 truncate">{r.vipReward}</p>
                 </div>
               </div>
@@ -131,7 +145,7 @@ export default function SeasonPassWidget({ userId, userLevel = 5, userXp = 450 }
                   : "bg-stone-200 dark:bg-stone-800 text-stone-400 cursor-not-allowed"
               }`}
             >
-              {r.isClaimed ? "Đã Nhận" : r.isUnlocked ? "Nhận Thưởng" : "Chưa Mở"}
+              {r.isClaimed ? t.seasonPass.claimed : r.isUnlocked ? t.seasonPass.claim : t.seasonPass.locked}
             </button>
           </div>
         ))}

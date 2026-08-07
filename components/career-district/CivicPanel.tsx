@@ -6,6 +6,9 @@ import { createClient } from "@/lib/supabase";
 import { ITEM_DESCRIPTIONS, WEARABLE_IN_3D, type CharacterEquipments } from "@/lib/rpg-items";
 import { COMPETENCIES } from "@/lib/career-competency";
 import { getLeaderboardByMetric, type LeaderboardRow } from "@/lib/supabase-user";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 import type { DistrictRoomId } from "./district-space";
 import ThreeStatementPanel from "./ThreeStatementPanel";
 import CompoundTowerPanel from "./CompoundTowerPanel";
@@ -50,6 +53,7 @@ function Card({
   onClose: () => void;
   children: React.ReactNode;
 }) {
+  const { t } = useI18n();
   return (
     <div className="pointer-events-auto absolute inset-x-3 bottom-36 z-10 max-h-[52vh] overflow-y-auto rounded-2xl border border-stone-700 bg-stone-900/94 p-4 shadow-2xl backdrop-blur sm:inset-x-auto sm:bottom-4 sm:left-4 sm:w-96">
       <div className="mb-2 flex items-start justify-between gap-2">
@@ -64,7 +68,7 @@ function Card({
           onClick={onClose}
           className="cursor-pointer text-[10px] font-bold text-stone-500 hover:text-stone-300"
         >
-          đóng
+          {t.careerDistrict.civic.close}
         </button>
       </div>
       {children}
@@ -74,6 +78,7 @@ function Card({
 
 /** Cửa hàng: bấm một món là mặc thử ngay trên nhân vật trước gương. */
 function Shop({ accent, gear, tryOn, onTryOn, onClose }: Props) {
+  const { t } = useI18n();
   const wearable = useMemo(
     // Lọc bằng WEARABLE_IN_3D của lib/rpg-items.ts, KHÔNG chép lại danh sách.
     // Bản đầu tiên của cửa hàng giữ một bản sao ở đây, đúng loại lỗi mà cả
@@ -86,8 +91,8 @@ function Shop({ accent, gear, tryOn, onTryOn, onClose }: Props) {
 
   return (
     <Card
-      title="Cửa hàng & Gương thử đồ"
-      subtitle="Bấm để mặc thử — nhìn nhân vật trước gương rồi mới quyết"
+      title={t.careerDistrict.civic.shopTitle}
+      subtitle={t.careerDistrict.civic.shopSubtitle}
       accent={accent}
       onClose={() => {
         onTryOn(null);
@@ -128,7 +133,7 @@ function Shop({ accent, gear, tryOn, onTryOn, onClose }: Props) {
           onClick={() => onTryOn(null)}
           className="flex-1 cursor-pointer rounded-xl bg-stone-800 px-3 py-2 text-[11px] font-bold text-stone-200 transition hover:bg-stone-700"
         >
-          Về đồ đang mặc
+          {t.careerDistrict.civic.backToWorn}
         </button>
         {/* Mua vẫn ở màn hình cửa hàng thật: nó đụng tới xu và kho đồ, và một
             đường mua thứ hai là một chỗ nữa để số dư sai. */}
@@ -137,22 +142,24 @@ function Shop({ accent, gear, tryOn, onTryOn, onClose }: Props) {
           className="flex-1 rounded-xl px-3 py-2 text-center text-[11px] font-black text-stone-950 transition hover:brightness-110"
           style={{ backgroundColor: accent }}
         >
-          Tới cửa hàng mua ↗
+          {t.careerDistrict.civic.goToShop}
         </Link>
       </div>
     </Card>
   );
 }
 
-const METRICS: Array<{ id: "xp" | "lessons" | "streak" | "avg_score"; label: string }> = [
-  { id: "xp", label: "Tổng XP" },
-  { id: "lessons", label: "Số bài học" },
-  { id: "streak", label: "Chuỗi ngày" },
-  { id: "avg_score", label: "Điểm trung bình" },
+const METRICS = (t: Dictionary): Array<{ id: "xp" | "lessons" | "streak" | "avg_score"; label: string }> => [
+  { id: "xp", label: t.careerDistrict.civic.metricXp },
+  { id: "lessons", label: t.careerDistrict.civic.metricLessons },
+  { id: "streak", label: t.careerDistrict.civic.metricStreak },
+  { id: "avg_score", label: t.careerDistrict.civic.metricAvgScore },
 ];
 
 function HallOfFame({ accent, userId, onClose }: Props) {
-  const [metric, setMetric] = useState<(typeof METRICS)[number]["id"]>("xp");
+  const { t } = useI18n();
+  const metrics = useMemo(() => METRICS(t), [t]);
+  const [metric, setMetric] = useState<(typeof metrics)[number]["id"]>("xp");
   const [rows, setRows] = useState<LeaderboardRow[] | null>(null);
 
   // Đổi tiêu chí thì xoá bảng cũ NGAY lúc render. Bản trước gọi setRows(null)
@@ -175,9 +182,9 @@ function HallOfFame({ accent, userId, onClose }: Props) {
   }, [metric]);
 
   return (
-    <Card title="Sảnh Bảng vàng" subtitle="Mười người dẫn đầu" accent={accent} onClose={onClose}>
+    <Card title={t.careerDistrict.civic.hallOfFameTitle} subtitle={t.careerDistrict.civic.hallOfFameSubtitle} accent={accent} onClose={onClose}>
       <div className="mb-2 flex flex-wrap gap-1">
-        {METRICS.map((m) => (
+        {metrics.map((m) => (
           <button
             key={m.id}
             type="button"
@@ -191,9 +198,9 @@ function HallOfFame({ accent, userId, onClose }: Props) {
         ))}
       </div>
       {rows === null ? (
-        <p className="text-[11px] text-stone-400">Đang đọc bảng…</p>
+        <p className="text-[11px] text-stone-400">{t.careerDistrict.civic.loadingBoard}</p>
       ) : rows.length === 0 ? (
-        <p className="text-[11px] text-stone-400">Chưa có ai trên bảng này.</p>
+        <p className="text-[11px] text-stone-400">{t.careerDistrict.civic.emptyBoard}</p>
       ) : (
         <ol className="space-y-0.5">
           {rows.map((r, i) => (
@@ -204,41 +211,43 @@ function HallOfFame({ accent, userId, onClose }: Props) {
               }`}
             >
               <span className="w-5 shrink-0 text-right font-mono font-black text-stone-500">{i + 1}</span>
-              <span className="min-w-0 flex-1 truncate">{r.name || "Người học"}</span>
+              <span className="min-w-0 flex-1 truncate">{r.name || t.careerDistrict.civic.defaultLearnerName}</span>
               <span className="shrink-0 font-mono tabular-nums text-stone-400">{r.value}</span>
             </li>
           ))}
         </ol>
       )}
       <p className="mt-2 text-[10px] leading-snug text-stone-500">
-        Bảng theo từng năng lực ({COMPETENCIES.length} nhóm) nằm ở trang Thống kê.
+        {format(t.careerDistrict.civic.competencyBoardNote, { n: COMPETENCIES.length })}
       </p>
       <Link
         href="/analytics"
         className="mt-1.5 block rounded-xl bg-stone-800 px-3 py-1.5 text-center text-[11px] font-bold text-stone-200 transition hover:bg-stone-700"
       >
-        Xem bảng năng lực ↗
+        {t.careerDistrict.civic.viewCompetencyBoard}
       </Link>
     </Card>
   );
 }
 
-const EXAMS = [
-  { href: "/cfa/thi-thu", label: "Đề thi thử CFA Level I", note: "Theo trọng số môn thật" },
-  { href: "/kiem-tra", label: "Kiểm tra theo chặng", note: "Chấm điểm ngay" },
-  { href: "/phong-van-ky-thuat", label: "Phỏng vấn kỹ thuật IB", note: "Câu hỏi có chấm" },
+const EXAMS = (t: Dictionary) => [
+  { href: "/cfa/thi-thu", label: t.careerDistrict.civic.examCfaLabel, note: t.careerDistrict.civic.examCfaNote },
+  { href: "/kiem-tra", label: t.careerDistrict.civic.examTrackLabel, note: t.careerDistrict.civic.examTrackNote },
+  { href: "/phong-van-ky-thuat", label: t.careerDistrict.civic.examIbLabel, note: t.careerDistrict.civic.examIbNote },
 ];
 
 function ExamRoom({ accent, onClose }: Props) {
+  const { t } = useI18n();
+  const exams = useMemo(() => EXAMS(t), [t]);
   return (
     <Card
-      title="Phòng thi"
-      subtitle="Vào bàn là bắt đầu — im lặng và tính giờ"
+      title={t.careerDistrict.civic.examRoomTitle}
+      subtitle={t.careerDistrict.civic.examRoomSubtitle}
       accent={accent}
       onClose={onClose}
     >
       <div className="space-y-1.5">
-        {EXAMS.map((e) => (
+        {exams.map((e) => (
           <Link
             key={e.href}
             href={e.href}
@@ -261,6 +270,7 @@ interface ApartmentStats {
 }
 
 function Apartment({ accent, userId, onClose }: Props) {
+  const { t } = useI18n();
   const [stats, setStats] = useState<ApartmentStats | null>(null);
 
   useEffect(() => {
@@ -286,21 +296,21 @@ function Apartment({ accent, userId, onClose }: Props) {
 
   return (
     <Card
-      title="Căn hộ của bạn"
-      subtitle="Chỗ duy nhất trong thành phố là của riêng bạn"
+      title={t.careerDistrict.civic.apartmentTitle}
+      subtitle={t.careerDistrict.civic.apartmentSubtitle}
       accent={accent}
       onClose={onClose}
     >
       {stats === null ? (
-        <p className="text-[11px] text-stone-400">Đang mở cửa…</p>
+        <p className="text-[11px] text-stone-400">{t.careerDistrict.civic.openingDoor}</p>
       ) : (
         <>
           <div className="grid grid-cols-2 gap-1.5">
             {[
-              { label: "🔥 Chuỗi ngày", value: `${stats.streak} ngày` },
-              { label: "⭐ Cấp độ", value: `Lv.${stats.level}` },
-              { label: "✨ Tổng XP", value: String(stats.xp) },
-              { label: "📚 Bài đã học", value: String(stats.lessons) },
+              { label: `🔥 ${t.careerDistrict.civic.metricStreak}`, value: format(t.careerDistrict.civic.streakDays, { n: stats.streak }) },
+              { label: `⭐ ${t.careerDistrict.civic.level}`, value: `Lv.${stats.level}` },
+              { label: `✨ ${t.careerDistrict.civic.metricXp}`, value: String(stats.xp) },
+              { label: `📚 ${t.careerDistrict.civic.lessonsDone}`, value: String(stats.lessons) },
             ].map((s) => (
               <div key={s.label} className="rounded-xl bg-stone-800/60 px-2.5 py-1.5">
                 <p className="text-[9px] font-bold uppercase tracking-wider text-stone-500">{s.label}</p>
@@ -313,7 +323,7 @@ function Apartment({ accent, userId, onClose }: Props) {
             className="mt-2 block rounded-xl px-3 py-2 text-center text-[11px] font-black text-stone-950 transition hover:brightness-110"
             style={{ backgroundColor: accent }}
           >
-            Mở hồ sơ đầy đủ ↗
+            {t.careerDistrict.civic.openFullProfile}
           </Link>
         </>
       )}
@@ -331,39 +341,41 @@ function Apartment({ accent, userId, onClose }: Props) {
  *  khung-hoang-2008...) và ba trong bốn không tồn tại: cả bảo tàng dẫn tới
  *  trang trống. Bài học không có trường "năm sự kiện" nào để suy ra hiện vật,
  *  nên danh sách buộc phải viết tay - và thứ viết tay thì phải có test. */
-const EXHIBITS = [
+const EXHIBITS = (t: Dictionary) => [
   {
-    year: "Rủi ro hệ thống",
-    title: "Vì sao thị trường chỉ trả tiền cho rủi ro hệ thống",
+    year: t.careerDistrict.civic.exhibitSystemicRiskYear,
+    title: t.careerDistrict.civic.exhibitSystemicRiskTitle,
     slug: "frm-thi-truong-chi-tra-cho-rui-ro-he-thong",
   },
   {
-    year: "Ngân hàng ngầm",
-    title: "Shadow banking và rủi ro ngoài bảng cân đối",
+    year: t.careerDistrict.civic.exhibitShadowBankingYear,
+    title: t.careerDistrict.civic.exhibitShadowBankingTitle,
     slug: "ngan-hang-ngam-shadow-banking",
   },
   {
-    year: "Trái phiếu VN",
-    title: "Giải phẫu một cuộc khủng hoảng trái phiếu riêng lẻ",
+    year: t.careerDistrict.civic.exhibitVnBondsYear,
+    title: t.careerDistrict.civic.exhibitVnBondsTitle,
     slug: "trai-phieu-doanh-nghiep-rieng-le-bai-hoc",
   },
   {
-    year: "Lạm phát",
-    title: "Lạm phát là gì, vì sao tiền mất giá",
+    year: t.careerDistrict.civic.exhibitInflationYear,
+    title: t.careerDistrict.civic.exhibitInflationTitle,
     slug: "lam-phat-la-gi",
   },
 ];
 
 function Museum({ accent, onClose }: Props) {
+  const { t } = useI18n();
+  const exhibits = useMemo(() => EXHIBITS(t), [t]);
   return (
     <Card
-      title="Bảo tàng Tài chính"
-      subtitle="Mỗi hiện vật dẫn tới bài học đằng sau nó"
+      title={t.careerDistrict.civic.museumTitle}
+      subtitle={t.careerDistrict.civic.museumSubtitle}
       accent={accent}
       onClose={onClose}
     >
       <div className="space-y-1.5">
-        {EXHIBITS.map((e) => (
+        {exhibits.map((e) => (
           <Link
             key={e.slug}
             href={`/bai-hoc/${e.slug}`}
@@ -377,7 +389,7 @@ function Museum({ accent, onClose }: Props) {
         ))}
       </div>
       <p className="mt-2 text-[10px] leading-snug text-stone-500">
-        Danh sách viết tay, và mỗi slug được test đối chiếu với kho bài học.
+        {t.careerDistrict.civic.museumFooter}
       </p>
     </Card>
   );
@@ -391,6 +403,7 @@ interface FriendRow {
 }
 
 function FriendsHouse({ accent, userId, onClose }: Props) {
+  const { t } = useI18n();
   const [friends, setFriends] = useState<FriendRow[] | null>(null);
 
   useEffect(() => {
@@ -425,7 +438,7 @@ function FriendsHouse({ accent, userId, onClose }: Props) {
             const row = p as { id: string; full_name: string | null; current_level: number | null };
             return {
               user_id: row.id,
-              name: row.full_name || "Người học",
+              name: row.full_name || t.careerDistrict.civic.defaultLearnerName,
               level: row.current_level ?? 1,
               streak: streakBy.get(row.id) ?? 0,
             };
@@ -435,26 +448,26 @@ function FriendsHouse({ accent, userId, onClose }: Props) {
     return () => {
       cancelled = true;
     };
-  }, [userId]);
+  }, [userId, t]);
 
   return (
     <Card
-      title="Khu nhà bạn bè"
-      subtitle="Chuỗi ngày của những người bạn đã kết bạn"
+      title={t.careerDistrict.civic.friendsHouseTitle}
+      subtitle={t.careerDistrict.civic.friendsHouseSubtitle}
       accent={accent}
       onClose={onClose}
     >
       {friends === null ? (
-        <p className="text-[11px] text-stone-400">Đang gõ cửa…</p>
+        <p className="text-[11px] text-stone-400">{t.careerDistrict.civic.knockingOnDoors}</p>
       ) : friends.length === 0 ? (
         <>
-          <p className="text-[11px] text-stone-400">Chưa có ai ở khu này - bạn chưa kết bạn với ai.</p>
+          <p className="text-[11px] text-stone-400">{t.careerDistrict.civic.noFriendsYet}</p>
           <Link
             href="/ban-be"
             className="mt-2 block rounded-xl px-3 py-2 text-center text-[11px] font-black text-stone-950 transition hover:brightness-110"
             style={{ backgroundColor: accent }}
           >
-            Tìm bạn ↗
+            {t.careerDistrict.civic.findFriends}
           </Link>
         </>
       ) : (
@@ -462,7 +475,7 @@ function FriendsHouse({ accent, userId, onClose }: Props) {
           {friends.map((f) => (
             <div key={f.user_id} className="flex items-center gap-2 rounded-lg bg-stone-800/50 px-2.5 py-1.5">
               <span className="min-w-0 flex-1 truncate text-[11px] font-bold text-stone-200">{f.name}</span>
-              <span className="shrink-0 text-[10px] text-stone-400">Lv.{f.level}</span>
+              <span className="shrink-0 text-[10px] text-stone-400">{t.careerDistrict.civic.levelAbbr}{f.level}</span>
               <span className="shrink-0 text-[10px] font-bold text-orange-300">🔥 {f.streak}</span>
             </div>
           ))}

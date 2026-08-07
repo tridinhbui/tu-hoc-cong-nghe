@@ -7,6 +7,8 @@ import { Sparkles, Trophy, Calendar, CheckCircle2, Gift, ChevronDown, ChevronUp,
 import { getDailyQuests, claimQuestReward, getWeeklyQuestXpBudget, type Quest } from "@/lib/supabase-quests";
 import { earnChest } from "@/lib/chests";
 import { createClient } from "@/lib/supabase";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 interface DailyQuestsWidgetProps {
   userId: string;
@@ -67,6 +69,7 @@ function goToQuestAction(questId: string, router: ReturnType<typeof useRouter>) 
 }
 
 export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLoaded }: DailyQuestsWidgetProps) {
+  const { t } = useI18n();
   const router = useRouter();
   const [quests, setQuests] = useState<Quest[]>([]);
   const [dayKey, setDayKey] = useState<string>(() => new Date().toLocaleDateString("sv-SE"));
@@ -161,7 +164,7 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
         // the exact bug behind "làm nhiệm vụ mà không thấy XP": the toast
         // promised XP that never actually landed in total_xp.
         if (xpEarned > 0 && typeof window !== "undefined") {
-          window.dispatchEvent(new CustomEvent("thtcdn:xp-gained", { detail: { xp: xpEarned, label: "Thưởng nhiệm vụ!" } }));
+          window.dispatchEvent(new CustomEvent("thtcdn:xp-gained", { detail: { xp: xpEarned, label: t.dailyQuests.xpGainedLabel } }));
         }
         // Trừ vào ngân sách đang giữ trong state, để các nhiệm vụ còn lại trên
         // cùng màn hình cập nhật ngay thay vì đợi lần load sau.
@@ -175,11 +178,11 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
         // sách tuần, trong khi ngân sách còn nguyên và nhiệm vụ đó chưa bao
         // giờ cộng XP.
         if (xpEarned > 0) {
-          toast.success(`Chúc mừng! Nhận thành công +${xpEarned} XP học thuật! 🌟`);
+          toast.success(format(t.dailyQuests.claimSuccessXp, { xp: xpEarned }));
         } else if (quest.xpReward === 0) {
-          toast.success("Đã hoàn thành! Nhiệm vụ điểm danh không cộng XP - XP đến từ bài học và thời gian ngồi học.");
+          toast.success(t.dailyQuests.claimSuccessNoXpQuest);
         } else {
-          toast.success("Đã hoàn thành nhiệm vụ! (Đã đạt giới hạn XP nhiệm vụ trong tuần này, thử lại vào tuần sau)");
+          toast.success(t.dailyQuests.claimSuccessCapped);
         }
         setQuests((prev) => {
           const next = prev.map((q) => (q.id === quest.id ? { ...q, claimed: true } : q));
@@ -187,10 +190,10 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
           return next;
         });
       } else {
-        toast.error("Không thể nhận thưởng. Vui lòng thử lại.");
+        toast.error(t.dailyQuests.claimFailed);
       }
     } catch {
-      toast.error("Có lỗi xảy ra khi nhận thưởng.");
+      toast.error(t.dailyQuests.claimError);
     } finally {
       setClaimingId(null);
     }
@@ -213,17 +216,17 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
         .insert([{ user_id: userId, quest_type: "weekly_chest", day_key: weeklyKey, xp_earned: 0 }]);
 
       if (error) {
-        toast.error("Không thể mở rương - có thể bạn đã mở rồi.");
+        toast.error(t.dailyQuests.weeklyChestOpenFailed);
         return;
       }
 
       await earnChest(userId, "weekly_quest", 1);
       setWeeklyClaimed(true);
-      toast.success("Rương tri thức tuần đã mở! Kiểm tra tab Rương Quà để nhận thưởng. 🎁✨");
+      toast.success(t.dailyQuests.weeklyChestOpenedToast);
       window.dispatchEvent(new Event("thtcdn_chests_updated"));
     } catch (err) {
       console.error("Error claiming weekly chest:", err);
-      toast.error("Có lỗi xảy ra. Vui lòng thử lại.");
+      toast.error(t.dailyQuests.weeklyChestError);
     }
   };
 
@@ -260,7 +263,7 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
             <Sparkles className="w-4 h-4" />
           </div>
           <div className="text-left">
-            <h3 className="text-sm font-extrabold text-stone-900 dark:text-stone-100">Nhiệm vụ hàng ngày</h3>
+            <h3 className="text-sm font-extrabold text-stone-900 dark:text-stone-100">{t.dailyQuests.headerTitle}</h3>
             <p className="text-[10px] text-stone-400 dark:text-stone-400 font-bold uppercase tracking-wider flex items-center gap-1 mt-0.5">
               <Calendar className="w-3 h-3" /> {dayKey}
             </p>
@@ -268,7 +271,7 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
         </div>
         <div className="flex items-center gap-2">
           <span className="text-[11px] font-extrabold px-2.5 py-1 rounded-full bg-stone-50 dark:bg-stone-950/60 text-stone-600 dark:text-stone-400 border border-stone-100 dark:border-stone-800">
-            Đạt {completedQuestsCount}/3
+            {format(t.dailyQuests.doneCount, { count: completedQuestsCount })}
           </span>
         </div>
       </div>
@@ -354,7 +357,7 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
               <div className="shrink-0 flex items-center justify-between sm:justify-end gap-2 w-full sm:w-auto pt-1 sm:pt-0 border-t sm:border-t-0 border-stone-100 dark:border-stone-800/60">
                 {quest.claimed ? (
                   <span className="text-[10px] font-black text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/30 px-2.5 py-1.5 rounded-lg border border-emerald-100 dark:border-emerald-900/30 uppercase tracking-wider">
-                    Đã nhận
+                    {t.dailyQuests.claimed}
                   </span>
                 ) : isDone ? (
                   <button
@@ -367,26 +370,26 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
                       tuần (WEEKLY_QUEST_XP_CAP). Hứa "+10 XP" rồi cộng 0 chính
                       là lỗi người học báo lại. */}
                   {payoutOf(quest) > 0 ? (
-                    <>Nhận +{payoutOf(quest)} XP <Gift className="w-3.5 h-3.5" /></>
+                    <>{format(t.dailyQuests.claimWithXp, { xp: payoutOf(quest) })} <Gift className="w-3.5 h-3.5" /></>
                   ) : (
-                    <>Nhận <Gift className="w-3.5 h-3.5" /></>
+                    <>{t.dailyQuests.claimNoXp} <Gift className="w-3.5 h-3.5" /></>
                   )}
                 </button>
                 ) : (
                   <>
                     <span className="text-[10px] font-black text-stone-600 dark:text-stone-400 bg-stone-50 dark:bg-stone-950/40 px-2 py-1 rounded-lg border border-stone-200/50 dark:border-stone-800">
                       {payoutOf(quest) > 0
-                        ? `+${payoutOf(quest)} XP`
+                        ? format(t.dailyQuests.xpWithAmount, { xp: payoutOf(quest) })
                         : isCappedOut(quest)
-                          ? "Hết XP tuần"
-                          : "Không cộng XP"}
+                          ? t.dailyQuests.xpCapReached
+                          : t.dailyQuests.noXpQuest}
                     </span>
                     <button
                       onClick={() => goToQuestAction(quest.id, router)}
-                      title="Đi làm nhiệm vụ này ngay"
+                      title={t.dailyQuests.doActionTitle}
                       className="button-premium group/btn inline-flex items-center gap-1.5 text-[10.5px] font-bold text-white bg-emerald-600 hover:bg-emerald-700 px-3 py-1.5 rounded-[16px] transition-all duration-200 cursor-pointer shadow-[0_8px_18px_-16px_rgba(16,185,129,0.35)] active:scale-95 shrink-0 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-emerald-500/15"
                     >
-                      Làm ngay <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 transition-transform" />
+                      {t.dailyQuests.doNow} <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 transition-transform" />
                     </button>
                   </>
                 )}

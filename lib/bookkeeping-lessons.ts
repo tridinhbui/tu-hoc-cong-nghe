@@ -71,10 +71,10 @@ export const BOOKKEEPING_LESSONS: Lesson[] = [
       {
         question: "Bên Nợ tăng lên với loại tài khoản nào?",
         options: [
-          "Tài sản và chi phí",
-          "Nợ và vốn chủ",
+          "Tài sản và chi phí, hai nhóm tăng ở bên Nợ",
+          "Nợ phải trả và vốn chủ sở hữu",
           "Doanh thu và các khoản thu nhập khác",
-          "Mọi tài khoản, vì Nợ luôn là vế ghi tăng theo quy ước",
+          "Mọi tài khoản, vì Nợ luôn là vế ghi tăng",
         ],
         correct: 0,
         explanation:
@@ -84,9 +84,9 @@ export const BOOKKEEPING_LESSONS: Lesson[] = [
         question: "Vay ngân hàng 500 triệu về tài khoản công ty. Bút toán là gì?",
         options: [
           "Nợ tiền gửi 500, Có vay ngân hàng 500",
-          "Nợ vay 500, Có tiền gửi 500",
+          "Nợ vay ngân hàng 500, Có tiền gửi 500",
           "Nợ tiền gửi 500, Có doanh thu tài chính 500",
-          "Nợ tiền gửi 500, Có vốn chủ sở hữu 500 do nguồn vốn tăng thêm",
+          "Nợ tiền gửi 500, Có vốn chủ 500 vì nguồn vốn tăng",
         ],
         correct: 0,
         explanation:
@@ -119,10 +119,10 @@ export const BOOKKEEPING_LESSONS: Lesson[] = [
       {
         question: "Một bút toán ghi Nợ 10 triệu và Có 12 triệu. Điều này nghĩa là gì?",
         options: [
-          "Bút toán sai, hai vế bắt buộc bằng nhau",
+          "Bút toán sai, vì hai vế bắt buộc bằng nhau",
           "Chênh lệch vào lợi nhuận cuối kỳ",
-          "Bút toán hợp lệ nếu phần chênh được ghi chú trong thuyết minh",
-          "Bút toán hợp lệ khi nghiệp vụ liên quan tới nhiều hơn hai tài khoản",
+          "Hợp lệ nếu phần chênh được ghi chú trong thuyết minh",
+          "Hợp lệ khi nghiệp vụ liên quan hơn hai tài khoản",
         ],
         correct: 0,
         explanation:
@@ -143,7 +143,12 @@ export const BOOKKEEPING_LESSONS: Lesson[] = [
     },
     application: {
       title: "Ghi thử một nghiệp vụ mua tài sản",
-      message: "Bạn chi 20 triệu mua một chiếc máy tính cho công ty. Ghi hai vế của nghiệp vụ đó, rồi trả lời: lợi nhuận trong tháng có giảm 20 triệu không.",
+      // 50 triệu, cùng lý do với câu hỏi mở đầu ở trên: dưới 30 triệu thì
+      // theo Thông tư 45/2013/TT-BTC nó là công cụ dụng cụ, phân bổ qua tài
+      // khoản 242 chứ KHÔNG khấu hao - nên câu trả lời "chi phí xuất hiện dần
+      // qua khấu hao" sai ngay ở ví dụ của chính nó. Câu hỏi mở đầu đã được
+      // nâng lên 50 triệu; ô này bị bỏ sót trong cùng lần sửa đó.
+      message: "Bạn chi 50 triệu mua một chiếc máy tính cho công ty. Ghi hai vế của nghiệp vụ đó, rồi trả lời: lợi nhuận trong tháng có giảm 50 triệu không.",
       secondary: "Không - đó là đổi hình thái của cải, không phải chi phí. Chi phí chỉ xuất hiện dần qua khấu hao.",
     },
     sections: [
@@ -231,10 +236,10 @@ export const BOOKKEEPING_LESSONS: Lesson[] = [
       {
         question: "Nhật ký chung sắp xếp theo tiêu chí nào?",
         options: [
-          "Thứ tự thời gian phát sinh",
-          "Theo số hiệu tài khoản",
+          "Thứ tự thời gian nghiệp vụ phát sinh",
+          "Theo số hiệu của từng tài khoản",
           "Giá trị nghiệp vụ từ lớn xuống nhỏ trong kỳ",
-          "Loại chứng từ gốc kèm theo từng nghiệp vụ ghi nhận",
+          "Loại chứng từ gốc kèm theo từng nghiệp vụ",
         ],
         correct: 0,
         explanation:
@@ -279,10 +284,10 @@ export const BOOKKEEPING_LESSONS: Lesson[] = [
       {
         question: "Số dư trên báo cáo tài chính lấy từ đâu?",
         options: [
-          "Sổ cái của từng tài khoản",
+          "Sổ cái của từng tài khoản riêng",
           "Nhật ký chung",
           "Tập hợp chứng từ gốc của kỳ",
-          "Sổ chi tiết của từng đối tượng công nợ",
+          "Sổ chi tiết theo từng đối tượng công nợ",
         ],
         correct: 0,
         explanation:
@@ -580,10 +585,10 @@ export const BOOKKEEPING_LESSONS: Lesson[] = [
       {
         question: "Chênh lệch chia hết cho 9 thường là dấu hiệu của lỗi gì?",
         options: [
-          "Đảo chữ số khi nhập liệu",
+          "Đảo thứ tự hai chữ số khi nhập liệu",
           "Ghi trùng một nghiệp vụ vào sổ hai lần",
           "Bỏ sót một nghiệp vụ chưa được ghi vào sổ",
-          "Nhầm lẫn giữa hai tài khoản có số hiệu gần giống nhau",
+          "Nhầm hai tài khoản có số hiệu gần giống nhau",
         ],
         correct: 0,
         explanation:
@@ -737,10 +742,10 @@ export const BOOKKEEPING_LESSONS: Lesson[] = [
       {
         question: "Tài khoản nào là tài khoản tạm thời?",
         options: [
-          "Doanh thu bán hàng",
+          "Doanh thu bán hàng trong kỳ",
           "Phải trả người bán",
-          "Hàng tồn kho",
-          "Vay dài hạn từ ngân hàng thương mại",
+          "Hàng tồn kho cuối kỳ",
+          "Vay dài hạn từ ngân hàng",
         ],
         correct: 0,
         explanation:
@@ -751,8 +756,8 @@ export const BOOKKEEPING_LESSONS: Lesson[] = [
         options: [
           "Lợi nhuận giữ lại thuộc vốn chủ sở hữu",
           "Tài khoản tiền mặt tại ngân hàng",
-          "Quỹ đầu tư phát triển theo tỷ lệ do đại hội cổ đông quyết định",
-          "Tài khoản phải thu khách hàng, chờ tới khi thu được tiền về",
+          "Quỹ đầu tư phát triển theo tỷ lệ đại hội duyệt",
+          "Tài khoản phải thu, chờ tới khi thu được tiền",
         ],
         correct: 0,
         explanation:

@@ -17,6 +17,7 @@ import {
 } from "@/lib/daily-motivation";
 import { getLateNightNote } from "@/lib/quiet-corner";
 import MotivationShareCard from "@/components/MotivationShareCard";
+import { useI18n } from "@/lib/i18n/context";
 
 /**
  * "Ngọn lửa đinh hoả" - lời nhắn mỗi ngày.
@@ -27,6 +28,7 @@ import MotivationShareCard from "@/components/MotivationShareCard";
  */
 
 export default function DailyMotivationWidget({ userId }: { userId: string }) {
+  const { t } = useI18n();
   const [motivation, setMotivation] = useState<DailyMotivation | null>(null);
 
   useEffect(() => {
@@ -121,7 +123,7 @@ export default function DailyMotivationWidget({ userId }: { userId: string }) {
             {message.text}
           </p>
           <p className="mt-2 text-[11px] font-bold text-orange-600 dark:text-orange-400 group-hover:underline">
-            Mở góc yên tĩnh ›
+            {t.miscUi.dailyMotivationWidget.openQuietCorner}
           </p>
         </div>
       </Link>

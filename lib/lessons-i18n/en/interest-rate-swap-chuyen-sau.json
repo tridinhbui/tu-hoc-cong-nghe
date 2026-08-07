@@ -1,0 +1,145 @@
+{
+  "slug": "interest-rate-swap-chuyen-sau",
+  "title": "Interest Rate Swap",
+  "subtitle": "Swapping between a fixed interest rate and a floating interest rate",
+  "openingQuestion": "A business is borrowing at a floating rate (SOFR + 2%) and worries rates will rise sharply. How can an Interest Rate Swap (IRS) hedge this?",
+  "openingOptions": [
+    "Sign an IRS contract: receive floating (to offset the floating leg they're already paying), pay fixed - effectively turning the floating-rate loan into a fixed one",
+    "Pay off the old debt and take out a new loan",
+    "There is no way except renegotiating with the bank",
+    "Buy interest-rate insurance from the government"
+  ],
+  "explanation": "Interest Rate Swap (IRS): the business still pays SOFR+2% to the original lending bank, while also signing an additional IRS contract with a swap dealer: receiving SOFR (offsetting the floating leg), paying a fixed rate (e.g. 5%). Net result: the business pays a total of 5%+2%=7% fixed, no longer worrying about SOFR fluctuations.",
+  "diagram": [
+    { "label": "Pay a floating rate on the original loan", "arrow": true },
+    { "label": "Sign an additional IRS contract", "arrow": true },
+    { "label": "Receive floating, pay fixed → stable cost" }
+  ],
+  "realWorldExample": {
+    "company": "A multinational corporation",
+    "description": "Many large corporations use IRS to shift their debt structure between fixed and floating depending on their interest-rate outlook, optimizing capital cost without restructuring the original loan."
+  },
+  "quiz": [
+    {
+      "question": "Who is typically the counterparty providing an Interest Rate Swap to a business?",
+      "options": [
+        "Large investment banks acting as market makers",
+        "The financial market regulator of each individual country",
+        "Other businesses with an opposite interest-rate need",
+        "Bond funds specializing in interest-rate instruments"
+      ],
+      "explanation": "Large investment banks (Goldman Sachs, JP Morgan, HSBC...) act as swap dealers, willing to be the counterparty on both sides of a swap, earning profit from the bid-ask spread between the fixed and floating rates they quote."
+    },
+    {
+      "question": "A bank has many floating-rate loans outstanding but funds itself with fixed-rate deposits. What is the main risk they face, and how can an IRS help?",
+      "options": [
+        "Rising rates push up funding costs sharply, IRS locks that cost in",
+        "Falling rates squeeze their margin, IRS shifts income to fixed",
+        "There is no risk since lending and funding are already balanced",
+        "Liquidity risk when depositors withdraw, IRS injects capital immediately"
+      ],
+      "explanation": "This is a common real-world application of IRS in bank interest-rate risk management (asset-liability management) - matching the interest-rate characteristics of assets (loans) and liabilities (deposits) helps stabilize a bank's profit margin against market rate movements."
+    },
+    {
+      "question": "Borrowing at SOFR + 2%, signing an IRS to receive SOFR and pay 5% fixed. What is the net cost?",
+      "options": [
+        "3% fixed (= 5% − 2%, subtracting the spread out of the fixed leg)",
+        "5% fixed (= the fixed leg, the spread already handled by the swap)",
+        "7% fixed (= 2% spread + 5% fixed leg)",
+        "Still floating because the original loan hasn't changed"
+      ],
+      "explanation": "SOFR on both legs cancels out, leaving the lending bank's 2% spread plus 5% paid to the dealer. The 2% spread is what the swap can't handle - it stays tied to the business's own credit risk."
+    },
+    {
+      "question": "Why is an IRS preferred over paying off an old loan to re-borrow at a fixed rate?",
+      "options": [
+        "Because the lending bank isn't allowed to refuse a rate-conversion request",
+        "Because a fixed rate through a swap is always lower than a bank loan rate",
+        "Because a swap doesn't need to be recognized in the business's financial statements",
+        "Because there's no prepayment penalty and no need to renegotiate from scratch"
+      ],
+      "explanation": "The original loan stays as is, just with an additional parallel contract layered on top. This avoids a prepayment penalty, re-underwriting procedures, and even having to disclose a new loan."
+    },
+    {
+      "question": "A business has locked in 7% fixed, then SOFR falls from 4% to 1%. What is the situation?",
+      "options": [
+        "Still paying 7% while an unhedged party only pays 3%",
+        "Adjusted down to match the new market interest rate",
+        "The swap contract automatically terminates when rates fall this far",
+        "Pays 4% because the dealer refunds the difference each period"
+      ],
+      "explanation": "This is the price of certainty, and it is real. The swap contract at this point carries a negative market value on the balance sheet - the approval level needs to understand this before signing, not after."
+    }
+  ],
+  "keyTakeaways": [
+    "IRS: swapping fixed and floating interest-rate cash flows between two parties",
+    "Hedging a floating-rate loan: receive floating, pay fixed through an IRS contract",
+    "The swap dealer (investment bank) acts as intermediary, market maker for the market"
+  ],
+  "practicePrompt": {
+    "question": "A company borrows VND 500 billion from a bank at a floating rate, worried rates will rise sharply over the next 3 years. To 'lock in' the interest cost at a fixed level without restructuring the original loan, what instrument should the company use, and how does the mechanism work?",
+    "options": [
+      "The company should buy interest-rate insurance, a product unrelated to the derivatives market",
+      "Sign an IRS contract paying fixed - receiving floating to lock in the interest cost at a fixed level",
+      "The company should short government bonds to offset the risk of rising interest rates",
+      "The company has no tool to handle this risk other than paying off the entire loan immediately"
+    ],
+    "explanation": "IRS: swapping fixed and floating interest-rate cash flows between two parties. The company hedges its floating-rate loan by receiving floating (offsetting the original loan), paying fixed (locking in cost) through an IRS contract - the swap dealer (investment bank) acts as intermediary for this transaction."
+  },
+  "summary": {
+    "keyIdea": "IRS: swapping fixed and floating interest-rate cash flows between two parties",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to real decisions.",
+    "action": "Hedging a floating-rate loan: receive floating, pay fixed through an IRS contract"
+  },
+  "application": {
+    "title": "Calculate the net interest rate after an IRS yourself",
+    "message": "With the example of a business paying SOFR+2% on its original loan and signing an IRS receiving SOFR while paying 5% fixed, add and subtract to work out the final net fixed rate the business pays.",
+    "secondary": "Doing this calculation once yourself helps you understand why an IRS 'locks in' the interest rate."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "An Interest Rate Swap (IRS) is a tool that lets a business convert between fixed and floating interest rates without restructuring the original loan - just by signing an additional parallel contract with a swap dealer."
+    },
+    { "type": "heading", "text": "Mechanism: two layers of contracts stacked together" },
+    {
+      "type": "paragraph",
+      "text": "The business still pays SOFR+2% to the original lending bank as usual. At the same time, they sign an additional IRS contract with a swap dealer: receiving SOFR (offsetting exactly the floating leg they're paying), paying back a fixed rate - say 5%. Net result: the business pays a total of 5% + 2% = 7% fixed, no longer worrying about SOFR fluctuations even though the original loan remains floating."
+    },
+    { "type": "heading", "text": "Application in bank risk management" },
+    {
+      "type": "paragraph",
+      "text": "A bank with many floating-rate loans but funded by fixed-rate deposits faces a risk: if market rates FALL, income from floating-rate loans falls along with them while the fixed deposit rate stays the same, shrinking the net interest margin. The bank can use an IRS to convert part of its floating loan income into fixed, matching their fixed-cost funding structure - this is asset-liability management."
+    },
+    {
+      "type": "formula",
+      "title": "Adding two layers of contracts into one number",
+      "equation": "Net interest rate = (Original loan rate − Amount received from the swap) + Amount paid to the swap",
+      "variables": [
+        { "symbol": "Original loan rate", "name": "The original loan", "description": "Unchanged, floating, untouched" },
+        { "symbol": "Received from swap", "name": "The floating leg", "description": "Designed to exactly match the floating amount being paid" },
+        { "symbol": "Paid to swap", "name": "The fixed leg", "description": "The fixed level agreed with the dealer" }
+      ],
+      "example": {
+        "title": "Borrowing at SOFR + 2%, signing an IRS receiving SOFR and paying 5% fixed",
+        "calculation": "(SOFR + 2% − SOFR) + 5% = 2% + 5%",
+        "result": "7% fixed, even though the original loan is still floating",
+        "explanation": "SOFR cancels out, so its movement no longer touches the business. The 2% spread of the lending bank is what the swap doesn't handle - it stays there."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "The price of certainty",
+      "text": "Locking in 7% isn't a win - it's trading the unknown for the known. If SOFR falls from 4% to 1%, an unhedged business pays 3% while you still pay 7%, and the swap contract at this point carries a negative market value on the balance sheet. The approval level needs to understand this before signing, not after."
+    },
+    {
+      "type": "list",
+      "items": [
+        "An IRS allows converting interest-rate structure without restructuring the original loan",
+        "Swap dealer: large investment banks (Goldman Sachs, JP Morgan, HSBC...) act as intermediary, market maker",
+        "They earn from the bid-ask spread between the fixed and floating rates they quote",
+        "A common application in bank asset-liability management"
+      ]
+    }
+  ]
+}

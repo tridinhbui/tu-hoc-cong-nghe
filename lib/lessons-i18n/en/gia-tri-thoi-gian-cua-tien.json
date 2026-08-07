@@ -1,0 +1,136 @@
+{
+  "slug": "gia-tri-thoi-gian-cua-tien",
+  "title": "The time value of money: 1 million today is not 1 million a year from now.",
+  "subtitle": "Present Value and Future Value are the foundation of every quantitative financial decision.",
+  "duration": "8 min",
+  "openingQuestion": "You win the lottery and get to choose: 1 billion VND right now, or 1.2 billion in 2 years. At an interest rate of 10% a year, which do you choose?",
+  "openingOptions": [
+    "1 billion now, because 1 billion × (1.1)^2 = 1.21 billion in 2 years, so they're equivalent",
+    "1.2 billion in 2 years, because it's the larger amount",
+    "They're the same, since the gap is only 0.2 billion",
+    "1 billion now, because investing it at 10% a year gives 1.21 billion, more than the 1.2 billion offered"
+  ],
+  "explanation": "1 billion today isn't equal to 1.2 billion two years from now, because today's money can earn a return over that stretch of time: deposited at 10% a year, it becomes 1.21 billion after two years, not 1.2 billion - the extra bit is interest earned on interest. The practical consequence: never compare two sums of money at two different points in time directly. Bring them to the same point first, using present value - and that is the calculation underneath every valuation model you will meet later on.",
+  "diagram": [
+    { "label": "Two sums of money at two different points in time" },
+    { "label": "Pick a discount rate equal to the opportunity cost" },
+    { "label": "Bring both sums to present value" },
+    { "label": "Only now can they be compared" }
+  ],
+  "realWorldExample": {
+    "company": "Discounted Cash Flow (DCF) valuation",
+    "description": "DCF values a business by calculating the Present Value of all its future cash flows. The entire method is built on the time value of money."
+  },
+  "quiz": [
+    {
+      "question": "What is the formula for Present Value (PV)?",
+      "options": [
+        "PV = FV / (1 + r×n)",
+        "PV = FV × (1+r)^n",
+        "PV = FV / (1+r)^n",
+        "PV = FV − (r × n)"
+      ],
+      "explanation": "PV = FV / (1+r)^n. It discounts a future cash flow back to today at a rate r per year, over n years. This is the reverse operation of compounding."
+    },
+    {
+      "question": "What does the discount rate represent?",
+      "options": [
+        "The interest rate the State Bank announces for the whole economy each year",
+        "The current inflation rate reported periodically by the statistics office",
+        "The percentage discount retailers apply to goods during a promotion",
+        "The opportunity cost of capital: the best return you could earn at a comparable level of risk"
+      ],
+      "explanation": "The discount rate reflects opportunity cost: if you could otherwise earn 10% a year at a comparable level of risk, you use 10% to discount. A future cash flow is only worth taking on if its PV exceeds what it costs you today."
+    },
+    {
+      "question": "Scenario: A project needs 500 million VND of capital today. Expected cash flows: year 1: 100 million, year 2: 200 million, year 3: 300 million. At a discount rate of 10%, what is the PV of the total future cash flow? Should the project be funded?",
+      "options": [
+        "PV = 481 million (< 500), so it shouldn't be funded",
+        "PV = 550 million, so it should be funded (without discounting)",
+        "PV = 600 million, so it should be funded (simply adding the cash flows)",
+        "PV = 450 million, discounting the wrong number of periods"
+      ],
+      "explanation": "PV = 100/(1.1) + 200/(1.1)^2 + 300/(1.1)^3 = 90.9 + 165.3 + 225.4 = 481.6 million. PV (481 million) < the capital required (500 million), so it shouldn't be funded - it loses value once time is accounted for."
+    },
+    {
+      "question": "Scenario: You will receive 110 million exactly one year from now, at a discount rate of 10% a year. What is its present value?",
+      "options": [
+        "99 million (= 110 × 0.9, subtracting 10% instead of dividing)",
+        "100 million (= 110 ÷ 1.1, discounting one year)",
+        "121 million (= 110 × 1.1, multiplying instead of dividing)",
+        "110 million, because one year is too short a span to discount"
+      ],
+      "explanation": "PV = FV ÷ (1+r)^n, so 110 ÷ 1.1 = 100 million. Simply subtracting 10% to get 99 million is the most common mistake: discounting reverses compounding through division, not by subtracting a percentage."
+    },
+    {
+      "question": "How does the present value of a future cash flow change with a higher discount rate?",
+      "options": [
+        "It doesn't change, since the discount rate is only used to compute FV",
+        "It rises, because a higher rate makes money earn more",
+        "It falls, because the future is discounted more heavily",
+        "It falls, but only for cash flows in the very first year"
+      ],
+      "explanation": "The discount rate sits in the denominator, so as it rises, PV falls, and it falls more sharply the further out the cash flow sits. This is why, when interest rates rise, growth stocks - whose profits sit far in the future - fall harder than stocks already earning steady profits."
+    }
+  ],
+  "keyTakeaways": [
+    "Money today is worth more than the same amount of money in the future",
+    "PV = FV / (1+r)^n; FV = PV × (1+r)^n",
+    "The discount rate = the opportunity cost of capital"
+  ],
+  "practicePrompt": {
+    "question": "You're valuing an investment opportunity that will pay back 50 million VND in exactly 3 years. You can otherwise put money into a savings deposit at 8% a year with almost no risk. What is the most reasonable discount rate for calculating the present value of that 50 million?",
+    "options": [
+      "About 8% a year, because that is the real opportunity cost of capital - the return you give up by not putting it in a savings deposit",
+      "0% a year, because money in the future is always worth exactly its face amount",
+      "The inflation rate expected over the next 3 years, because that's the only factor affecting money's value",
+      "The highest expected return you could possibly find in the market, regardless of the risk that comes with it"
+    ],
+    "explanation": "A reasonable discount rate reflects the real opportunity cost of capital at a comparable level of risk - here, the 8% a year savings rate, not an arbitrary number."
+  },
+  "summary": {
+    "keyIdea": "Money today is worth more than the same amount of money in the future",
+    "commonMistake": "Reading the concept as a phrase to memorise rather than a principle to apply to a real decision.",
+    "action": "PV = FV / (1+r)^n; FV = PV × (1+r)^n"
+  },
+  "application": {
+    "title": "Work out the PV of one of your own sums of money",
+    "message": "Think of a sum of money you'll receive in the next 1-2 years (a bonus, a maturing deposit). Use PV = FV / (1+r)^n with an r you estimate yourself, to see what it's really worth today.",
+    "secondary": "The number that comes out will run against your intuition - that is exactly the point of this lesson."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "You win the lottery and are offered a choice: 1 billion right now, or 1.2 billion in 2 years. On the surface, 1.2 billion looks more attractive - but the maths of finance gives a different answer."
+    },
+    { "type": "heading", "text": "Present Value (PV) and Future Value (FV)" },
+    {
+      "type": "paragraph",
+      "text": "The time value of money is the most foundational principle in quantitative finance: 1 dong today is always worth more than 1 dong in the future, because today's dong can be invested to earn a return starting right now. Present Value (PV) is the value a future sum converts to when brought back to today; Future Value (FV) is the value a present sum grows into in the future if invested."
+    },
+    { "type": "heading", "text": "Solving the lottery problem" },
+    {
+      "type": "paragraph",
+      "text": "If you take 1 billion today and deposit it at 10% a year, after 2 years you have: 1 billion × (1.1)^2 = 1.21 billion - more than the 1.2 billion promised after 2 years. So the option 'take 1 billion now' is actually the better one, even though 1.2 billion looks more appealing at first glance. This is why sums of money at different points in time can never be compared directly without converting them to the same point in time first."
+    },
+    {
+      "type": "list",
+      "items": [
+        "FV = PV × (1+r)^n — the future value of a present sum",
+        "PV = FV / (1+r)^n — the present value of a future sum",
+        "r (the discount rate) is precisely the opportunity cost of capital"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Real-world application",
+      "text": "This is the foundational formula behind every financial valuation model - from valuing stocks (DCF) and bonds, to deciding whether to take out a mortgage. You will meet PV/FV again and again throughout your journey learning finance."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Mastering PV/FV is the key to accurately comparing any financial choice that involves time - from a lottery decision to a trillion-dong investment call."
+      ]
+    }
+  ]
+}

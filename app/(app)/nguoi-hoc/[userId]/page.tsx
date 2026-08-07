@@ -7,6 +7,8 @@ import { getPublicUserProfile } from "@/lib/public-user-profile";
 import MessageUserButton from "@/components/MessageUserButton";
 import FollowButton from "@/components/FollowButton";
 import ProfileWallPosts from "@/components/ProfileWallPosts";
+import { getServerLocale } from "@/lib/i18n/server";
+import { getDictionary, format, intlLocale } from "@/lib/i18n";
 
 export const dynamic = "force-dynamic";
 
@@ -35,6 +37,8 @@ export default async function PublicUserProfilePage({
 }: {
   params: Promise<{ userId: string }>;
 }) {
+  const locale = await getServerLocale();
+  const t = getDictionary(locale);
   const supabase = await createServerSupabaseClient();
   const {
     data: { user },
@@ -83,17 +87,17 @@ export default async function PublicUserProfilePage({
               href="/dashboard"
               className="text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 text-sm font-semibold"
             >
-              ← Quay lại bảng xếp hạng
+              {t.publicProfile.backToLeaderboard}
             </Link>
             <h1 className="text-xl font-bold text-stone-900 dark:text-stone-100 mt-2">
-              Hồ sơ người học
+              {t.publicProfile.heading}
             </h1>
           </div>
           <Link
             href="/profile"
             className="text-sm font-semibold text-stone-600 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100"
           >
-            Hồ sơ của bạn
+            {t.publicProfile.yourProfile}
           </Link>
         </div>
       </div>
@@ -118,13 +122,13 @@ export default async function PublicUserProfilePage({
 
               <div className="min-w-0 flex-1">
                 <p className="text-xs font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-widest mb-2">
-                  Người học trên BXH
+                  {t.publicProfile.eyebrow}
                 </p>
                 <h2 className="text-3xl font-extrabold text-stone-900 dark:text-stone-100 leading-tight">
                   {profile.displayName}
                 </h2>
                 <p className="text-sm text-stone-500 dark:text-stone-400 mt-2">
-                  Tham gia từ {new Date(profile.joinedAt).toLocaleDateString("vi-VN")}
+                  {format(t.publicProfile.joinedAt, { date: new Date(profile.joinedAt).toLocaleDateString(intlLocale(locale)) })}
                 </p>
                 {profile.bio ? (
                   <p className="text-sm text-stone-700 dark:text-stone-300 mt-4 leading-relaxed">
@@ -132,15 +136,15 @@ export default async function PublicUserProfilePage({
                   </p>
                 ) : (
                   <p className="text-sm text-stone-500 dark:text-stone-400 mt-4">
-                    Chưa có phần giới thiệu cá nhân.
+                    {t.publicProfile.noBio}
                   </p>
                 )}
                 <div className="mt-3 flex items-center gap-4 text-sm text-stone-500 dark:text-stone-400">
                   <span>
-                    <span className="font-extrabold text-stone-900 dark:text-stone-100">{followerCount ?? 0}</span> người theo dõi
+                    <span className="font-extrabold text-stone-900 dark:text-stone-100">{followerCount ?? 0}</span> {t.publicProfile.followers}
                   </span>
                   <span>
-                    <span className="font-extrabold text-stone-900 dark:text-stone-100">{followingCount ?? 0}</span> đang theo dõi
+                    <span className="font-extrabold text-stone-900 dark:text-stone-100">{followingCount ?? 0}</span> {t.publicProfile.following}
                   </span>
                 </div>
                 <div className="mt-5 flex items-center gap-2.5">
@@ -153,24 +157,24 @@ export default async function PublicUserProfilePage({
 
           <div className="grid grid-cols-2 gap-4">
             <StatCard
-              label="Level"
+              label={t.publicProfile.statLevel}
               value={`${profile.levelNumber}`}
               hint={profile.levelName}
             />
             <StatCard
-              label="XP"
+              label={t.publicProfile.statXp}
               value={`${profile.xp}`}
-              hint="Tổng kinh nghiệm"
+              hint={t.publicProfile.statXpHint}
             />
             <StatCard
-              label="Hoàn thành"
+              label={t.publicProfile.statCompleted}
               value={`${profile.lessonsCompleted}`}
-              hint="Bài học đã xong"
+              hint={t.publicProfile.statCompletedHint}
             />
             <StatCard
-              label="Điểm quiz"
+              label={t.publicProfile.statQuiz}
               value={`${Math.round(profile.averageQuizScore)}%`}
-              hint="Điểm trung bình"
+              hint={t.publicProfile.statQuizHint}
             />
           </div>
         </div>
@@ -180,15 +184,20 @@ export default async function PublicUserProfilePage({
             <div className="flex items-center justify-between gap-3 mb-5">
               <div>
                 <h3 className="text-lg font-extrabold text-stone-900 dark:text-stone-100">
-                  Tiến độ học tập
+                  {t.publicProfile.progressTitle}
                 </h3>
                 <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
-                  Ưu tiên hiện tại: {profile.preferredTrack === "personal" ? "Tài chính cá nhân" : "Tài chính chuyên ngành"}
+                  {format(t.publicProfile.currentPriority, {
+                    track:
+                      profile.preferredTrack === "personal"
+                        ? t.publicProfile.trackPersonal
+                        : t.publicProfile.trackProfessional,
+                  })}
                 </p>
               </div>
               <div className="text-right text-sm text-stone-500 dark:text-stone-400">
-                <div>{profile.totalStudyMinutes} phút học</div>
-                <div>{profile.currentStreak} ngày streak hiện tại</div>
+                <div>{format(t.publicProfile.studyMinutes, { minutes: profile.totalStudyMinutes })}</div>
+                <div>{format(t.publicProfile.currentStreakLine, { days: profile.currentStreak })}</div>
               </div>
             </div>
 
@@ -212,7 +221,7 @@ export default async function PublicUserProfilePage({
                         {track.completed}/{track.total}
                       </p>
                       <p className="text-xs text-stone-500 dark:text-stone-400">
-                        {track.percent}% hoàn thành
+                        {format(t.publicProfile.percentComplete, { percent: track.percent })}
                       </p>
                     </div>
                   </div>
@@ -254,31 +263,31 @@ export default async function PublicUserProfilePage({
           <div className="space-y-6">
             <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-2xl p-6">
               <h3 className="text-lg font-extrabold text-stone-900 dark:text-stone-100 mb-4">
-                Tóm tắt nhanh
+                {t.publicProfile.quickSummary}
               </h3>
               <div className="space-y-4 text-sm">
                 <div className="flex items-center justify-between gap-4">
-                  <span className="text-stone-500 dark:text-stone-400">Chuỗi hiện tại</span>
-                  <span className="font-bold text-stone-900 dark:text-stone-100">{profile.currentStreak} ngày</span>
+                  <span className="text-stone-500 dark:text-stone-400">{t.publicProfile.currentStreak}</span>
+                  <span className="font-bold text-stone-900 dark:text-stone-100">{format(t.publicProfile.days, { days: profile.currentStreak })}</span>
                 </div>
                 <div className="flex items-center justify-between gap-4">
-                  <span className="text-stone-500 dark:text-stone-400">Chuỗi dài nhất</span>
-                  <span className="font-bold text-stone-900 dark:text-stone-100">{profile.longestStreak} ngày</span>
+                  <span className="text-stone-500 dark:text-stone-400">{t.publicProfile.longestStreak}</span>
+                  <span className="font-bold text-stone-900 dark:text-stone-100">{format(t.publicProfile.days, { days: profile.longestStreak })}</span>
                 </div>
                 <div className="flex items-center justify-between gap-4">
-                  <span className="text-stone-500 dark:text-stone-400">Thời gian học</span>
-                  <span className="font-bold text-stone-900 dark:text-stone-100">{profile.totalStudyMinutes} phút</span>
+                  <span className="text-stone-500 dark:text-stone-400">{t.publicProfile.studyTime}</span>
+                  <span className="font-bold text-stone-900 dark:text-stone-100">{format(t.publicProfile.minutes, { minutes: profile.totalStudyMinutes })}</span>
                 </div>
               </div>
             </div>
 
             <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-2xl p-6">
               <h3 className="text-lg font-extrabold text-stone-900 dark:text-stone-100 mb-4">
-                Bài học gần đây
+                {t.publicProfile.recentLessons}
               </h3>
               {profile.recentLessons.length === 0 ? (
                 <p className="text-sm text-stone-500 dark:text-stone-400">
-                  Người học này chưa có bài hoàn thành nào để hiển thị.
+                  {t.publicProfile.noLessons}
                 </p>
               ) : (
                 <div className="space-y-3">
@@ -294,13 +303,13 @@ export default async function PublicUserProfilePage({
                       <div className="mt-1 flex items-center justify-between gap-3 text-xs text-stone-500 dark:text-stone-400">
                         <span>
                           {lesson.completedAt
-                            ? new Date(lesson.completedAt).toLocaleDateString("vi-VN")
-                            : "Chưa rõ ngày"}
+                            ? new Date(lesson.completedAt).toLocaleDateString(intlLocale(locale))
+                            : t.publicProfile.unknownDate}
                         </span>
                         <span>
                           {lesson.quizScore !== null && lesson.quizScore !== undefined
-                            ? `${Math.round(lesson.quizScore)}% quiz`
-                            : "Không có quiz"}
+                            ? format(t.publicProfile.quizScore, { percent: Math.round(lesson.quizScore) })
+                            : t.publicProfile.noQuiz}
                         </span>
                       </div>
                     </Link>
@@ -312,10 +321,10 @@ export default async function PublicUserProfilePage({
             <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-2xl p-6">
               <div className="flex items-center justify-between gap-3 mb-4">
                 <h3 className="text-lg font-extrabold text-stone-900 dark:text-stone-100">
-                  Bài đăng gần đây
+                  {t.publicProfile.recentPosts}
                 </h3>
                 <Link href="/finsocial" className="text-xs font-bold text-emerald-600 dark:text-emerald-400 hover:underline">
-                  Xem FinSocial →
+                  {t.publicProfile.viewFinsocial}
                 </Link>
               </div>
               <ProfileWallPosts userId={userId} />

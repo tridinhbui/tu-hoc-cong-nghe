@@ -9,6 +9,8 @@ import FlashcardClient from "@/components/flashcard/FlashcardClient";
 import { NOTES_PAGE_SIZE, type LessonNote } from "@/lib/supabase-notes";
 import type { Flashcard } from "@/lib/supabase-flashcards";
 import type { LessonHighlight } from "@/lib/lesson-highlights";
+import { getServerLocale } from "@/lib/i18n/server";
+import { getDictionary } from "@/lib/i18n";
 
 // Auth-gated and reads Supabase env vars at render time - never prerender statically.
 export const dynamic = "force-dynamic";
@@ -22,6 +24,8 @@ export const dynamic = "force-dynamic";
 // then the actual notes query) instead of one, which is what made this page
 // specifically feel slower to load than the rest of the app.
 export default async function GhiChuPage() {
+  const locale = await getServerLocale();
+  const t = getDictionary(locale);
   const supabase = await createServerSupabaseClient();
   const {
     data: { user },
@@ -83,9 +87,9 @@ export default async function GhiChuPage() {
         <div className="mx-auto w-full max-w-[1500px] xl:flex-1 xl:min-h-0 xl:rounded-[28px] xl:border xl:border-stone-200 xl:dark:border-stone-800 xl:bg-stone-50/60 xl:dark:bg-stone-900/40 xl:shadow-sm xl:p-3.5 xl:grid xl:grid-cols-12 xl:grid-rows-[auto_minmax(0,1fr)] xl:gap-3.5">
           <div className="flex items-center justify-between gap-3 mb-5 xl:mb-0 xl:col-span-12">
             <div className="min-w-0">
-              <h1 className="text-xl font-bold text-stone-900 dark:text-stone-100">Ghi chú</h1>
+              <h1 className="text-xl font-bold text-stone-900 dark:text-stone-100">{t.finalTwo.ghiChuPage.title}</h1>
               <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">
-                Ghi chú theo bài học và thẻ ghi nhớ ôn tập, nằm cạnh nhau trong một khung
+                {t.finalTwo.ghiChuPage.subtitle}
               </p>
             </div>
             <Link
@@ -93,7 +97,7 @@ export default async function GhiChuPage() {
               className="inline-flex shrink-0 items-center gap-1.5 text-sm font-bold text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg px-3 py-2 transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
-              Quay lại
+              {t.finalTwo.ghiChuPage.backLabel}
             </Link>
           </div>
 

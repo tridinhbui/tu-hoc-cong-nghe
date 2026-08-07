@@ -9,6 +9,8 @@ import { recalculateUserStats } from "@/lib/supabase-user";
 import TaiTaiQuizSuggestion from "@/components/TaiTaiQuizSuggestion";
 import StageSkipExamPanel from "@/components/StageSkipExamPanel";
 import DailyNewsQuizWidget from "@/components/DailyNewsQuizWidget";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 interface ChallengeQuestion {
   lessonId: number;
@@ -21,19 +23,10 @@ interface ChallengeQuestion {
   token: string;
 }
 
-const TRACKS: { id: QuizTrack; label: string; desc: string }[] = [
-  { id: "personal", label: "Tài chính cá nhân", desc: "Tư duy tiền bạc, đầu tư, danh mục, hưu trí" },
-  { id: "professional", label: "Tài chính chuyên ngành", desc: "Kế toán, định giá, trái phiếu, phái sinh" },
-  { id: "cfa", label: "Tài chính chứng chỉ", desc: "CFA Level I - 10 môn thi chính thức" },
-  { id: "frm", label: "Quản trị rủi ro (FRM)", desc: "Part I - 4 môn, ra đề theo trọng số GARP" },
-];
-
-const DIFFICULTIES: { id: QuizDifficulty; label: string }[] = [
-  { id: "tat-ca", label: "Tất cả" },
-  { id: "de", label: "Dễ" },
-  { id: "trung-binh", label: "Trung bình" },
-  { id: "kho", label: "Khó" },
-];
+// Ids and their order only; the label and description come from the dictionary
+// at render time, because module scope has no useI18n() to call.
+const TRACK_IDS: QuizTrack[] = ["personal", "professional", "cfa", "frm"];
+const DIFFICULTY_IDS: QuizDifficulty[] = ["tat-ca", "de", "trung-binh", "kho"];
 
 const XP_PER_QUESTION = 5;
 const PASS_RATIO = 0.6;
@@ -41,6 +34,7 @@ const PASS_RATIO = 0.6;
 type Stage = "setup" | "loading" | "empty" | "error" | "ready" | "done";
 
 export default function KiemTraPage() {
+  const { t } = useI18n();
   const supabase = createClient();
   const [userId, setUserId] = useState<string | null>(null);
   const [track, setTrack] = useState<QuizTrack>("personal");
@@ -174,21 +168,21 @@ export default function KiemTraPage() {
             <Link
               href="/dashboard"
               className="flex items-center justify-center w-9 h-9 rounded-full text-stone-500 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors"
-              aria-label="Về Dashboard"
+              aria-label={t.quizPage.backAria}
             >
               <ChevronLeft className="w-5 h-5" />
             </Link>
             <div>
-              <h1 className="text-xl font-black text-stone-900 dark:text-stone-100 tracking-tight">Kiểm tra kiến thức</h1>
+              <h1 className="text-xl font-black text-stone-900 dark:text-stone-100 tracking-tight">{t.quizPage.title}</h1>
               <p className="text-xs font-semibold text-stone-500 dark:text-stone-400 mt-0.5">
-                Thử thách tin tức vĩ mô hôm nay & tạo bài kiểm tra tự chọn
+                {t.quizPage.subtitle}
               </p>
             </div>
           </div>
 
           <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-emerald-200 bg-emerald-50 text-emerald-700 text-xs font-extrabold">
             <Sparkles className="w-4 h-4 text-emerald-600" />
-            <span>Thưởng +{XP_PER_QUESTION} XP / câu đúng</span>
+            <span>{format(t.quizPage.xpPerQuestion, { xp: XP_PER_QUESTION })}</span>
           </div>
         </div>
       </div>
@@ -204,27 +198,29 @@ export default function KiemTraPage() {
                     <div>
                       <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-rose-500 text-white shadow-2xs">
                         <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
-                        <span>Bên Trái • Tin tức tài chính hôm nay</span>
+                        <span>{t.quizPage.leftEyebrow}</span>
                       </div>
                       <h3 className="mt-1.5 text-base font-black text-stone-900 dark:text-stone-100">
-                        Thử Thách Bài Kiểm Tra Tin Tức Hằng Ngày
+                        {t.quizPage.newsTitle}
                       </h3>
                     </div>
                     {isNewsAnswered ? (
                       <span className="shrink-0 text-xs font-extrabold px-3 py-1.5 rounded-full bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 flex items-center gap-1.5 shadow-2xs">
                         <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                        Đã hoàn thành (Menu sạch warning)
+                        {t.quizPage.newsDone}
                       </span>
                     ) : (
                       <span className="shrink-0 text-xs font-extrabold px-3 py-1.5 rounded-full bg-rose-500 text-white animate-pulse shadow-2xs flex items-center gap-1">
-                        <span>⚠️ Chưa làm</span>
-                        <span className="text-[10px] opacity-90">(Menu có cảnh báo)</span>
+                        <span>{t.quizPage.newsPending}</span>
+                        <span className="text-[10px] opacity-90">{t.quizPage.newsPendingNote}</span>
                       </span>
                     )}
                   </div>
 
                   <p className="text-xs text-stone-600 dark:text-stone-400 mb-2.5 leading-snug">
-                    Trả lời chính xác tình huống tin tức vĩ mô hôm nay để nhận <strong>+15 XP</strong> và giải tỏa biểu tượng cảnh báo 🔴 trên Navbar.
+                    {t.quizPage.newsBodyPart1}
+                    <strong>{t.quizPage.newsXp}</strong>
+                    {t.quizPage.newsBodyPart2}
                   </p>
                 </div>
 
@@ -241,10 +237,10 @@ export default function KiemTraPage() {
                   <div>
                     <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
                       <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
-                      <span>Bên Phải • Tạo bài kiểm tra tự chọn</span>
+                      <span>{t.quizPage.rightEyebrow}</span>
                     </div>
                     <h3 className="mt-1.5 text-base font-black text-stone-900 dark:text-stone-100">
-                      Tùy Chỉnh & Bắt Đầu Kiểm Tra
+                      {t.quizPage.builderTitle}
                     </h3>
                   </div>
                 </div>
@@ -263,16 +259,32 @@ export default function KiemTraPage() {
                 {/* Track Selector */}
                 <div>
                   <label className="block text-xs font-black uppercase tracking-wider text-stone-500 dark:text-stone-400 mb-1.5">
-                    1. Chọn phần kiến thức
+                    {t.quizPage.step1}
                   </label>
                   <div className="space-y-1.5">
-                    {TRACKS.map((t) => {
-                      const selected = track === t.id;
+                    {TRACK_IDS.map((id) => {
+                      const label =
+                        id === "personal"
+                          ? t.quizPage.trackPersonal
+                          : id === "professional"
+                            ? t.quizPage.trackProfessional
+                            : id === "cfa"
+                              ? t.quizPage.trackCfa
+                              : t.quizPage.trackFrm;
+                      const desc =
+                        id === "personal"
+                          ? t.quizPage.trackPersonalDesc
+                          : id === "professional"
+                            ? t.quizPage.trackProfessionalDesc
+                            : id === "cfa"
+                              ? t.quizPage.trackCfaDesc
+                              : t.quizPage.trackFrmDesc;
+                      const selected = track === id;
                       return (
                         <button
-                          key={t.id}
+                          key={id}
                           type="button"
-                          onClick={() => setTrack(t.id)}
+                          onClick={() => setTrack(id)}
                           className={`w-full text-left rounded-2xl border-2 p-2.5 transition-all duration-200 cursor-pointer flex items-start justify-between gap-3 ${
                             selected
                               ? "border-emerald-500 bg-gradient-to-r from-emerald-50/90 to-teal-50/40 dark:from-emerald-950/60 dark:to-stone-900 ring-2 ring-emerald-400/30 text-stone-900 dark:text-stone-100 shadow-sm"
@@ -281,14 +293,14 @@ export default function KiemTraPage() {
                         >
                           <div className="min-w-0 flex-1">
                             <div className="font-extrabold text-sm flex items-center gap-2">
-                              <span>{t.label}</span>
+                              <span>{label}</span>
                               {selected && (
                                 <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[9px] font-black uppercase bg-emerald-500 text-white">
-                                  Đang chọn
+                                  {t.quizPage.selecting}
                                 </span>
                               )}
                             </div>
-                            <p className="text-[11px] mt-0.5 text-stone-500 dark:text-stone-400 leading-snug">{t.desc}</p>
+                            <p className="text-[11px] mt-0.5 text-stone-500 dark:text-stone-400 leading-snug">{desc}</p>
                           </div>
                         </button>
                       );
@@ -299,23 +311,31 @@ export default function KiemTraPage() {
                 {/* Difficulty Selector */}
                 <div>
                   <label className="block text-xs font-black uppercase tracking-wider text-stone-500 dark:text-stone-400 mb-1.5">
-                    2. Chọn độ khó
+                    {t.quizPage.step2}
                   </label>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5">
-                    {DIFFICULTIES.map((d) => {
-                      const selected = difficulty === d.id;
+                    {DIFFICULTY_IDS.map((id) => {
+                      const label =
+                        id === "tat-ca"
+                          ? t.quizPage.diffAll
+                          : id === "de"
+                            ? t.quizPage.diffEasy
+                            : id === "trung-binh"
+                              ? t.quizPage.diffMedium
+                              : t.quizPage.diffHard;
+                      const selected = difficulty === id;
                       return (
                         <button
-                          key={d.id}
+                          key={id}
                           type="button"
-                          onClick={() => setDifficulty(d.id)}
+                          onClick={() => setDifficulty(id)}
                           className={`rounded-xl border-2 px-3 py-1.5 text-xs font-extrabold transition-all cursor-pointer text-center ${
                             selected
                               ? "border-stone-900 dark:border-stone-100 bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 shadow-sm"
                               : "border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 hover:border-stone-300 dark:hover:border-stone-700 bg-stone-50/50 dark:bg-stone-800/40"
                           }`}
                         >
-                          {d.label}
+                          {label}
                         </button>
                       );
                     })}
@@ -326,7 +346,9 @@ export default function KiemTraPage() {
                 <div className="rounded-2xl border border-emerald-200 dark:border-emerald-900/60 bg-emerald-50/80 dark:bg-emerald-950/40 p-2.5 flex items-center gap-3">
                   <Sparkles className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
                   <p className="text-xs font-bold text-emerald-800 dark:text-emerald-300">
-                    Mỗi câu đúng thưởng <strong>+{XP_PER_QUESTION} XP</strong> cộng ngay vào tài khoản!
+                    {t.quizPage.rewardPart1}
+                    <strong>{format(t.quizPage.rewardXp, { xp: XP_PER_QUESTION })}</strong>
+                    {t.quizPage.rewardPart2}
                   </p>
                 </div>
 
@@ -335,7 +357,7 @@ export default function KiemTraPage() {
                   onClick={() => startSelectedQuiz(track, difficulty)}
                   className="w-full py-2.5 rounded-2xl font-black text-sm uppercase tracking-wider text-white bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-600 hover:from-emerald-500 hover:to-teal-500 shadow-lg shadow-emerald-500/20 active:scale-98 transition-all cursor-pointer flex items-center justify-center gap-2"
                 >
-                  <span>🚀 Bắt Đầu Kiểm Tra Ngay</span>
+                  <span>{t.quizPage.start}</span>
                   <span>→</span>
                 </button>
               </div>
@@ -355,14 +377,14 @@ export default function KiemTraPage() {
                 </div>
                 <div>
                   <p className="text-[10px] font-black uppercase tracking-[0.18em] text-amber-600 dark:text-amber-400">
-                    Investment Banking Interview Drill
+                    {t.quizPage.ibEyebrow}
                   </p>
-                  <h3 className="text-sm font-black text-stone-900 dark:text-stone-100">Technical Interview</h3>
-                  <p className="text-[11px] text-stone-500 dark:text-stone-400 mt-0.5">400 IB Questions · Accounting, Valuation, DCF, M&A, LBO, behavioral</p>
+                  <h3 className="text-sm font-black text-stone-900 dark:text-stone-100">{t.quizPage.ibTitle}</h3>
+                  <p className="text-[11px] text-stone-500 dark:text-stone-400 mt-0.5">{t.quizPage.ibSub}</p>
                 </div>
               </div>
               <span className="shrink-0 text-xs font-black text-amber-600 dark:text-amber-400 group-hover:translate-x-0.5 transition-transform">
-                Mở →
+                {t.quizPage.ibOpen}
               </span>
             </Link>
           </div>
@@ -371,22 +393,22 @@ export default function KiemTraPage() {
         {/* Quiz Execution Views (Center aligned max-w-2xl) */}
         {stage !== "setup" && (
           <div className="max-w-2xl mx-auto">
-            {stage === "loading" && <p className="text-center text-stone-500 dark:text-stone-400 py-16">Đang chuẩn bị câu hỏi...</p>}
+            {stage === "loading" && <p className="text-center text-stone-500 dark:text-stone-400 py-16">{t.quizPage.loadingQuestions}</p>}
 
             {stage === "error" && (
               <div className="text-center py-16 space-y-4">
-                <p className="text-stone-500 dark:text-stone-400">Không thể tải bài kiểm tra lúc này. Vui lòng thử lại sau.</p>
+                <p className="text-stone-500 dark:text-stone-400">{t.quizPage.loadFailed}</p>
                 <button onClick={() => setStage("setup")} className="text-sm font-bold text-stone-700 dark:text-stone-300 underline cursor-pointer">
-                  ← Quay lại chọn track
+                  {t.quizPage.backToTrack}
                 </button>
               </div>
             )}
 
             {stage === "empty" && (
               <div className="text-center py-16 space-y-4">
-                <p className="text-stone-500 dark:text-stone-400">Chưa có câu hỏi nào cho lựa chọn này. Thử track hoặc độ khó khác nhé.</p>
+                <p className="text-stone-500 dark:text-stone-400">{t.quizPage.noQuestions}</p>
                 <button onClick={() => setStage("setup")} className="text-sm font-bold text-stone-700 dark:text-stone-300 underline cursor-pointer">
-                  ← Quay lại chọn track
+                  {t.quizPage.backToTrack}
                 </button>
               </div>
             )}
@@ -398,7 +420,7 @@ export default function KiemTraPage() {
             <div>
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <span className="text-xs font-extrabold uppercase tracking-wide text-stone-500 dark:text-stone-400">
-                  Câu {activeQ + 1} / {questions.length}
+                  {format(t.quizPage.questionCounter, { current: activeQ + 1, total: questions.length })}
                 </span>
                 <span className="text-xs truncate max-w-[60%] text-stone-400 dark:text-stone-500">{q.lessonTitle}</span>
               </div>
@@ -439,7 +461,7 @@ export default function KiemTraPage() {
 
             {submitted && (
               <div className={`rounded-xl p-4 text-sm leading-relaxed border ${results[activeQ] ? "bg-emerald-50 dark:bg-emerald-950/50 border-emerald-100 dark:border-emerald-900 text-emerald-800 dark:text-emerald-400" : "bg-rose-50 dark:bg-rose-950/50 border-rose-100 dark:border-rose-900 text-rose-800 dark:text-rose-400"}`}>
-                <p className="font-bold mb-1">{results[activeQ] ? `Chính xác! +${XP_PER_QUESTION} XP` : "Giải thích:"}</p>
+                <p className="font-bold mb-1">{results[activeQ] ? format(t.quizPage.correctWithXp, { xp: XP_PER_QUESTION }) : t.quizPage.explanation}</p>
                 <p>{q.explanation}</p>
               </div>
             )}
@@ -455,11 +477,11 @@ export default function KiemTraPage() {
                 }`}
               >
                 <CheckCircle2 className="w-5 h-5" />
-                Kiểm tra đáp án
+                {t.quizPage.checkAnswer}
               </button>
             ) : (
               <button onClick={next} className="w-full py-4 rounded-xl font-extrabold text-base uppercase tracking-wide cursor-pointer text-white bg-stone-900 dark:bg-stone-100 dark:text-stone-900 hover:opacity-90">
-                {allDone ? "Xem kết quả →" : "Câu tiếp theo →"}
+                {allDone ? t.quizPage.seeResults : t.quizPage.nextQuestion}
               </button>
             )}
           </div>
@@ -469,14 +491,14 @@ export default function KiemTraPage() {
           <div className="mx-auto max-w-2xl text-center space-y-5">
             <div className="text-5xl">{score === questions.length ? "🏆" : score >= questions.length * 0.7 ? "🎉" : "💪"}</div>
             <div>
-              <h3 className="font-bold text-xl text-stone-900 dark:text-stone-100">Hoàn thành bài kiểm tra!</h3>
+              <h3 className="font-bold text-xl text-stone-900 dark:text-stone-100">{t.quizPage.doneTitle}</h3>
               <p className="text-sm mt-1 text-stone-500 dark:text-stone-400">
-                {score}/{questions.length} câu đúng {passed ? "· Đạt" : ""}
+                {format(t.quizPage.doneScore, { score, total: questions.length })}{passed ? t.quizPage.donePassed : ""}
               </p>
             </div>
 
             <div className="rounded-2xl border-2 p-5 border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/40">
-              <p className="text-xs font-bold uppercase tracking-wide mb-1 text-emerald-700 dark:text-emerald-400">XP nhận được</p>
+              <p className="text-xs font-bold uppercase tracking-wide mb-1 text-emerald-700 dark:text-emerald-400">{t.quizPage.xpEarned}</p>
               <p className="text-3xl font-extrabold text-emerald-700 dark:text-emerald-400">
                 {xpAwarded === null ? "..." : `+${xpAwarded} XP`}
               </p>
@@ -493,7 +515,7 @@ export default function KiemTraPage() {
             {questions.some((_, i) => !results[i]) && (
               <div className="text-left rounded-xl p-4 space-y-1.5 bg-stone-50 dark:bg-stone-800">
                 <p className="text-xs font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wide mb-2">
-                  Ôn lại các bài có câu sai
+                  {t.quizPage.reviewWrongLessons}
                 </p>
                 {Array.from(new Set(questions.filter((_, i) => !results[i]).map((qq) => qq.lessonId))).map((lessonId) => {
                   const lq = questions.find((qq) => qq.lessonId === lessonId)!;
@@ -508,10 +530,10 @@ export default function KiemTraPage() {
 
             <div className="grid grid-cols-2 gap-3 pt-2">
               <Link href="/dashboard" className="py-3 rounded-xl border text-sm font-bold text-center border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-800">
-                Về Dashboard
+                {t.quizPage.backToDashboard}
               </Link>
               <button onClick={() => setStage("setup")} className="py-3 rounded-xl text-sm font-bold hover:opacity-90 cursor-pointer text-white bg-stone-900 dark:bg-stone-100 dark:text-stone-900">
-                Kiểm tra mới
+                {t.quizPage.newQuiz}
               </button>
             </div>
           </div>

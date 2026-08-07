@@ -72,9 +72,9 @@ export const FINTECH_LESSONS: Lesson[] = [
         question:
           "Nền tảng A: TPV 50.000 tỷ, take rate 0,3%. Nền tảng B: TPV 3.000 tỷ, take rate 9%. Nền tảng nào doanh thu cao hơn?",
         options: [
-          "B, doanh thu 270 tỷ so với 150 tỷ",
+          "B, vì doanh thu 270 tỷ so với 150 tỷ của A",
           "A, vì khối lượng lớn hơn 16 lần",
-          "Bằng nhau, vì take rate cao bù lại đúng phần khối lượng thấp",
+          "Bằng nhau, vì take rate cao bù đúng phần khối lượng thấp",
           "Không kết luận được nếu chưa biết số người dùng",
         ],
         correct: 0,
@@ -96,10 +96,10 @@ export const FINTECH_LESSONS: Lesson[] = [
       {
         question: "Nguồn doanh thu nào thường có take rate hiệu dụng cao nhất?",
         options: [
-          "Cho vay tiêu dùng qua ứng dụng",
+          "Cho vay tiêu dùng ngay trên ứng dụng ví",
           "Nạp tiền điện thoại và thanh toán hoá đơn điện nước",
           "Chuyển tiền trong cùng ví",
-          "Quét mã thanh toán tại cửa hàng tạp hoá và quán ăn nhỏ",
+          "Quét mã thanh toán tại tạp hoá và quán ăn nhỏ",
         ],
         correct: 0,
         explanation:
@@ -398,10 +398,10 @@ export const FINTECH_LESSONS: Lesson[] = [
       {
         question: "Float của một ví điện tử sinh ra thu nhập bằng cách nào?",
         options: [
-          "Lãi từ số dư gửi tại ngân hàng",
-          "Phí rút tiền khỏi ví",
+          "Lãi sinh ra từ số dư khách gửi nằm tại ngân hàng",
+          "Phí khách trả khi rút tiền khỏi ví",
           "Chênh lệch giữa số tiền nạp vào và số tiền khách đã tiêu",
-          "Phần số dư của khách không hoạt động quá lâu được chuyển thành doanh thu",
+          "Phần số dư khách bỏ quên quá lâu được ghi thành doanh thu",
         ],
         correct: 0,
         explanation:
@@ -558,10 +558,10 @@ export const FINTECH_LESSONS: Lesson[] = [
       {
         question: "Chi phí rủi ro trong một sản phẩm cho vay là gì?",
         options: [
-          "Phần dư nợ dự kiến không thu hồi được",
+          "Phần dư nợ dự kiến sẽ không thu hồi được",
           "Phí trả cho bên chấm điểm tín dụng",
           "Lãi phải trả cho nguồn vốn công ty đi vay để cho vay lại",
-          "Khoản dự phòng bắt buộc phải nộp cho cơ quan quản lý theo quy định",
+          "Khoản dự phòng bắt buộc nộp cho cơ quan quản lý",
         ],
         correct: 0,
         explanation:
@@ -594,10 +594,10 @@ export const FINTECH_LESSONS: Lesson[] = [
       {
         question: "Cách đọc đúng chất lượng tín dụng của một danh mục đang lớn nhanh là gì?",
         options: [
-          "Theo dõi từng tập vay theo tháng giải ngân",
+          "Theo dõi từng tập vay theo tháng giải ngân riêng",
           "Nợ quá hạn chia tổng dư nợ",
-          "So sánh tỷ lệ nợ xấu với trung bình ngành trong cùng giai đoạn",
-          "Đợi hết năm tài chính rồi tính trên số liệu đã được kiểm toán xác nhận",
+          "So tỷ lệ nợ xấu với trung bình ngành cùng kỳ",
+          "Đợi hết năm rồi tính trên số đã kiểm toán",
         ],
         correct: 0,
         explanation:
@@ -882,9 +882,9 @@ export const FINTECH_LESSONS: Lesson[] = [
       {
         question: "Biên đóng góp âm nghĩa là gì?",
         options: [
-          "Bán thêm một đơn vị là lỗ thêm",
-          "Công ty chưa đủ quy mô nhưng sẽ hoà vốn khi khối lượng đủ lớn",
-          "Chi phí cố định quá cao",
+          "Mỗi đơn vị bán thêm làm khoản lỗ to ra",
+          "Công ty chưa đủ quy mô, sẽ hoà vốn khi lớn hơn",
+          "Chi phí cố định quá cao so với quy mô",
           "Sản phẩm cần tăng giá khoảng 10% để về mức an toàn",
         ],
         correct: 0,

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { Highlighter, Flag, Trash2 } from "lucide-react";
 import { deleteHighlight, type LessonHighlight } from "@/lib/lesson-highlights";
+import { useI18n } from "@/lib/i18n/context";
 
 export default function LessonHighlightsList({
   highlights,
@@ -12,6 +13,7 @@ export default function LessonHighlightsList({
   highlights: LessonHighlight[];
   onDeleted: (id: number) => void;
 }) {
+  const { t } = useI18n();
   const [deletingId, setDeletingId] = useState<number | null>(null);
 
   if (highlights.length === 0) return null;
@@ -23,7 +25,7 @@ export default function LessonHighlightsList({
       onDeleted(id);
     } catch (error) {
       console.error("Error deleting highlight:", error);
-      toast.error("Không thể xoá. Vui lòng thử lại.");
+      toast.error(t.miscUi.lessonHighlightsList.deleteFailedError);
     } finally {
       setDeletingId(null);
     }
@@ -32,7 +34,7 @@ export default function LessonHighlightsList({
   return (
     <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-5">
       <p className="text-xs font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-widest mb-3">
-        Đoạn bạn đã đánh dấu trong bài này
+        {t.miscUi.lessonHighlightsList.title}
       </p>
       <div className="space-y-2.5">
         {highlights.map((h) => {
@@ -56,7 +58,7 @@ export default function LessonHighlightsList({
                 type="button"
                 onClick={() => handleDelete(h.id)}
                 disabled={deletingId === h.id}
-                aria-label="Xoá đánh dấu"
+                aria-label={t.miscUi.lessonHighlightsList.deleteHighlight}
                 className="flex-shrink-0 p-1 rounded-lg text-stone-300 dark:text-stone-600 hover:text-rose-500 dark:hover:text-rose-400 hover:bg-white dark:hover:bg-stone-900 transition-colors disabled:opacity-50"
               >
                 <Trash2 className="w-3.5 h-3.5" />

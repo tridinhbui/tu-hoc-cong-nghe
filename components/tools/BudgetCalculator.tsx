@@ -3,10 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import { getBudgetPlan, saveBudgetPlan } from "@/lib/financial-tools";
-
-function formatVnd(value: number): string {
-  return Math.round(value || 0).toLocaleString("vi-VN");
-}
+import { useI18n } from "@/lib/i18n/context";
+import { format, intlLocale } from "@/lib/i18n";
 
 interface BudgetCalculatorProps {
   userId: string;
@@ -16,6 +14,9 @@ interface BudgetCalculatorProps {
 // 50/30/20 split, then they can override with their real numbers to compare
 // against the suggestion before saving.
 export default function BudgetCalculator({ userId }: BudgetCalculatorProps) {
+  const { t, locale } = useI18n();
+  const formatVnd = (value: number): string =>
+    Math.round(value || 0).toLocaleString(intlLocale(locale));
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [monthlyIncome, setMonthlyIncome] = useState<string>("");
@@ -41,7 +42,7 @@ export default function BudgetCalculator({ userId }: BudgetCalculatorProps) {
           setTouched(true);
         }
       } catch {
-        if (!cancelled) toast.error("Không thể tải ngân sách đã lưu.");
+        if (!cancelled) toast.error(t.budgetCalc.loadError);
       } finally {
         if (!cancelled) setLoading(false);
       }
@@ -49,7 +50,7 @@ export default function BudgetCalculator({ userId }: BudgetCalculatorProps) {
     return () => {
       cancelled = true;
     };
-  }, [userId]);
+  }, [userId, t.budgetCalc.loadError]);
 
   const income = Number(monthlyIncome) || 0;
   const suggestedNeeds = income * 0.5;
@@ -84,7 +85,7 @@ export default function BudgetCalculator({ userId }: BudgetCalculatorProps) {
 
   const handleSave = async () => {
     if (income <= 0) {
-      toast.error("Vui lòng nhập thu nhập hàng tháng.");
+      toast.error(t.budgetCalc.incomeRequired);
       return;
     }
     if (savingRef.current) return;
@@ -97,9 +98,9 @@ export default function BudgetCalculator({ userId }: BudgetCalculatorProps) {
         wantsAmount: actualWants,
         savingsAmount: actualSavings,
       });
-      toast.success("Đã lưu ngân sách");
+      toast.success(t.budgetCalc.saveSuccess);
     } catch {
-      toast.error("Không thể lưu ngân sách. Vui lòng thử lại.");
+      toast.error(t.budgetCalc.saveError);
     } finally {
       savingRef.current = false;
       setSaving(false);
@@ -118,7 +119,7 @@ export default function BudgetCalculator({ userId }: BudgetCalculatorProps) {
     <div className="space-y-4">
       <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl p-5">
         <label className="block text-sm font-bold text-stone-900 dark:text-stone-100 mb-2">
-          Thu nhập hàng tháng (VNĐ)
+          {t.budgetCalc.incomeLabel}
         </label>
         <input
           type="number"
@@ -126,7 +127,7 @@ export default function BudgetCalculator({ userId }: BudgetCalculatorProps) {
           min={0}
           value={monthlyIncome}
           onChange={(e) => handleIncomeChange(e.target.value)}
-          placeholder="VD: 15000000"
+          placeholder={t.budgetCalc.incomePlaceholder}
           className="w-full px-4 py-3 rounded-xl border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 focus:border-stone-400 dark:focus:border-stone-500 focus:ring-1 focus:ring-stone-900/5 focus:outline-none text-stone-900 dark:text-stone-100"
         />
       </div>
@@ -134,26 +135,32 @@ export default function BudgetCalculator({ userId }: BudgetCalculatorProps) {
       {income > 0 && (
         <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl p-5 space-y-4">
           <p className="text-sm font-bold text-stone-900 dark:text-stone-100">
-            Gợi ý theo quy tắc 50/30/20
+            {t.budgetCalc.suggestionTitle}
           </p>
 
           <BudgetBar
-            label="Nhu cầu thiết yếu (50%)"
+            label={format(t.budgetCalc.needsBarLabel, { percent: 50 })}
             amount={suggestedNeeds}
             percent={50}
             colorClass="bg-stone-500"
+            formatVnd={formatVnd}
+            currencySuffix={t.budgetCalc.currencySuffix}
           />
           <BudgetBar
-            label="Mong muốn (30%)"
+            label={format(t.budgetCalc.wantsBarLabel, { percent: 30 })}
             amount={suggestedWants}
             percent={30}
             colorClass="bg-stone-400"
+            formatVnd={formatVnd}
+            currencySuffix={t.budgetCalc.currencySuffix}
           />
           <BudgetBar
-            label="Tiết kiệm / đầu tư (20%)"
+            label={format(t.budgetCalc.savingsBarLabel, { percent: 20 })}
             amount={suggestedSavings}
             percent={20}
             colorClass="bg-emerald-500"
+            formatVnd={formatVnd}
+            currencySuffix={t.budgetCalc.currencySuffix}
           />
         </div>
       )}
@@ -161,12 +168,12 @@ export default function BudgetCalculator({ userId }: BudgetCalculatorProps) {
       {income > 0 && (
         <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl p-5 space-y-4">
           <p className="text-sm font-bold text-stone-900 dark:text-stone-100">
-            Con số thực tế của bạn
+            {t.budgetCalc.actualTitle}
           </p>
 
           <div>
             <label className="block text-xs font-semibold text-stone-500 dark:text-stone-400 mb-1.5">
-              Nhu cầu thiết yếu
+              {t.budgetCalc.needsFieldLabel}
             </label>
             <input
               type="number"
@@ -180,18 +187,18 @@ export default function BudgetCalculator({ userId }: BudgetCalculatorProps) {
               className="w-full px-4 py-3 rounded-xl border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 focus:border-stone-400 dark:focus:border-stone-500 focus:ring-1 focus:ring-stone-900/5 focus:outline-none text-stone-900 dark:text-stone-100"
             />
             <p className="text-xs text-stone-500 dark:text-stone-400 mt-1">
-              {formatVnd(actualNeeds)} đ ({needsPct.toFixed(0)}% thu nhập)
+              {format(t.budgetCalc.amountPercentOfIncome, { amount: formatVnd(actualNeeds), pct: needsPct.toFixed(0) })}
             </p>
             {needsWarning && (
               <p className="text-xs font-semibold text-amber-600 dark:text-amber-400 mt-1">
-                Đang cao hơn nhiều so với khung gợi ý (50%). Cân nhắc rà soát lại chi tiêu thiết yếu.
+                {t.budgetCalc.needsWarning}
               </p>
             )}
           </div>
 
           <div>
             <label className="block text-xs font-semibold text-stone-500 dark:text-stone-400 mb-1.5">
-              Mong muốn
+              {t.budgetCalc.wantsFieldLabel}
             </label>
             <input
               type="number"
@@ -205,18 +212,18 @@ export default function BudgetCalculator({ userId }: BudgetCalculatorProps) {
               className="w-full px-4 py-3 rounded-xl border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 focus:border-stone-400 dark:focus:border-stone-500 focus:ring-1 focus:ring-stone-900/5 focus:outline-none text-stone-900 dark:text-stone-100"
             />
             <p className="text-xs text-stone-500 dark:text-stone-400 mt-1">
-              {formatVnd(actualWants)} đ ({wantsPct.toFixed(0)}% thu nhập)
+              {format(t.budgetCalc.amountPercentOfIncome, { amount: formatVnd(actualWants), pct: wantsPct.toFixed(0) })}
             </p>
             {wantsWarning && (
               <p className="text-xs font-semibold text-amber-600 dark:text-amber-400 mt-1">
-                Đang cao hơn nhiều so với khung gợi ý (30%).
+                {t.budgetCalc.wantsWarning}
               </p>
             )}
           </div>
 
           <div>
             <label className="block text-xs font-semibold text-stone-500 dark:text-stone-400 mb-1.5">
-              Tiết kiệm / đầu tư
+              {t.budgetCalc.savingsFieldLabel}
             </label>
             <input
               type="number"
@@ -230,11 +237,11 @@ export default function BudgetCalculator({ userId }: BudgetCalculatorProps) {
               className="w-full px-4 py-3 rounded-xl border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 focus:border-stone-400 dark:focus:border-stone-500 focus:ring-1 focus:ring-stone-900/5 focus:outline-none text-stone-900 dark:text-stone-100"
             />
             <p className="text-xs text-stone-500 dark:text-stone-400 mt-1">
-              {formatVnd(actualSavings)} đ ({savingsPct.toFixed(0)}% thu nhập)
+              {format(t.budgetCalc.amountPercentOfIncome, { amount: formatVnd(actualSavings), pct: savingsPct.toFixed(0) })}
             </p>
             {savingsWarning && (
               <p className="text-xs font-semibold text-amber-600 dark:text-amber-400 mt-1">
-                Đang thấp hơn khung gợi ý (20%). Thử tăng phần tiết kiệm nếu có thể.
+                {t.budgetCalc.savingsWarning}
               </p>
             )}
           </div>
@@ -242,7 +249,7 @@ export default function BudgetCalculator({ userId }: BudgetCalculatorProps) {
           {overBudgetWarning && (
             <div className="rounded-xl border border-rose-200 dark:border-rose-900 bg-rose-50 dark:bg-rose-950/30 p-3">
               <p className="text-xs font-bold text-rose-700 dark:text-rose-400">
-                Tổng 3 khoản đang chiếm {totalPct.toFixed(0)}% thu nhập - vượt quá 100%. Kiểm tra lại số liệu, có thể bạn đang chi nhiều hơn số tiền thực nhận.
+                {format(t.budgetCalc.overBudgetWarning, { pct: totalPct.toFixed(0) })}
               </p>
             </div>
           )}
@@ -254,7 +261,7 @@ export default function BudgetCalculator({ userId }: BudgetCalculatorProps) {
         disabled={saving || income <= 0}
         className="w-full py-3 bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 font-bold rounded-xl disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
       >
-        {saving ? "Đang lưu..." : "Lưu ngân sách"}
+        {saving ? t.budgetCalc.savingButton : t.budgetCalc.saveButton}
       </button>
     </div>
   );
@@ -265,17 +272,21 @@ function BudgetBar({
   amount,
   percent,
   colorClass,
+  formatVnd,
+  currencySuffix,
 }: {
   label: string;
   amount: number;
   percent: number;
   colorClass: string;
+  formatVnd: (value: number) => string;
+  currencySuffix: string;
 }) {
   return (
     <div>
       <div className="flex items-center justify-between text-xs mb-1.5">
         <span className="font-semibold text-stone-700 dark:text-stone-300">{label}</span>
-        <span className="font-bold text-stone-900 dark:text-stone-100">{formatVnd(amount)} đ</span>
+        <span className="font-bold text-stone-900 dark:text-stone-100">{formatVnd(amount)} {currencySuffix}</span>
       </div>
       <div className="w-full h-2.5 bg-stone-100 dark:bg-stone-800 rounded-full overflow-hidden">
         <div className={`h-full ${colorClass} rounded-full`} style={{ width: `${percent}%` }} />

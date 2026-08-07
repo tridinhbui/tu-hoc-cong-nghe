@@ -1,0 +1,130 @@
+{
+  "slug": "expected-return-danh-muc",
+  "title": "A portfolio's expected return",
+  "subtitle": "A portfolio's expected return is the weighted average of its components",
+  "duration": "6 min",
+  "openingQuestion": "A portfolio holds 60% stocks (expected return 12%/year) and 40% bonds (expected return 5%/year). What is the portfolio's expected return?",
+  "openingOptions": [
+    "12%, taking the asset with the highest return",
+    "9.2% (0.6×12% + 0.4×5% = 7.2%+2%=9.2%) - a weighted average by each asset's weight",
+    "17%",
+    "8.5% (a simple arithmetic average)"
+  ],
+  "explanation": "A portfolio's Expected Return = the sum of (each asset's weight × that asset's expected return). This is a WEIGHTED average, not a simple arithmetic average - an asset with a larger weight has more influence on the overall result, and this is the calculation every asset-allocation decision ultimately rests on.",
+  "diagram": [
+    { "label": "Asset A's weight × asset A's expected return", "arrow": true },
+    { "label": "+ Asset B's weight × asset B's expected return", "arrow": true },
+    { "label": "= the portfolio's Expected Return" }
+  ],
+  "realWorldExample": {
+    "company": "The classic 60/40 portfolio",
+    "description": "A portfolio of 60% stocks / 40% bonds is the classic asset-allocation formula recommended by many financial advisors, balancing growth (stocks) against stability (bonds)."
+  },
+  "quiz": [
+    {
+      "question": "If an investor raises the stock weight from 60% to 80% (lowering bonds accordingly), what happens to the portfolio's Expected Return (assuming each asset's expected return stays the same)?",
+      "options": [
+        "It stays unchanged, since each asset's own return didn't change",
+        "It falls, because the portfolio has become riskier",
+        "It rises, because more weight shifts toward the higher-return asset",
+        "It cannot be determined without knowing the correlation between the two assets"
+      ],
+      "explanation": "Because stocks have a higher expected return than bonds, raising the stock weight in the weighted-average formula pulls the portfolio's overall Expected Return higher - but the portfolio's volatility rises at the same time, a basic risk-return trade-off."
+    },
+    {
+      "question": "If you misestimate the expected return of an asset in the portfolio (say, too optimistically), what happens to the portfolio's overall Expected Return?",
+      "options": [
+        "The error propagates into the result in proportion to that asset's weight",
+        "The error is canceled out by the other assets in the portfolio",
+        "The entire result becomes meaningless and must be recalculated from scratch",
+        "It only matters if that asset makes up over half the portfolio"
+      ],
+      "explanation": "Because Expected Return is a weighted average, an estimation error in any asset propagates into the final result exactly in proportion to its weight - this is why assumptions about expected return always deserve careful scrutiny, especially for assets that make up a large share of the portfolio."
+    },
+    {
+      "question": "A portfolio holds 60% stocks expecting 12%, 40% bonds expecting 5%. What is the Expected Return?",
+      "options": [
+        "8.5% (= (12% + 5%) ÷ 2, a simple arithmetic average)",
+        "9.2% (= 0.6 × 12% + 0.4 × 5%, weighted)",
+        "17% (= 12% + 5%, adding the two numbers directly)",
+        "7.2% (= 0.6 × 12%, forgetting the bond portion)"
+      ],
+      "explanation": "A portfolio's Expected Return is a weighted average: 7.2% + 2% = 9.2%. Unlike risk, expected return gains nothing from diversification - it's simply an addition weighted by allocation."
+    },
+    {
+      "question": "Why isn't portfolio risk a weighted average like return is?",
+      "options": [
+        "Because risk is only calculated on the most volatile asset",
+        "Because risk is measured in different units than expected return",
+        "Because correlation between the assets partially cancels risk out",
+        "Because portfolio risk is always greater than the sum of each asset's risk"
+      ],
+      "explanation": "This is the entire magic of diversification. Return adds up by weight, but risk doesn't - combining the right assets produces a portfolio with less risk than the average of its parts."
+    },
+    {
+      "question": "An expected-return estimate for an asset making up 10% of the portfolio is 5 points too high. What's the error in the final result?",
+      "options": [
+        "Cannot be calculated without knowing the other assets' returns",
+        "5 percentage points, exactly equal to the original error",
+        "0.05 percentage points (= 10% × 5%, multiplying two percentages)",
+        "0.5 percentage points (= 10% weight × 5-point error)"
+      ],
+      "explanation": "The error propagates exactly in proportion to the weight: 0.10 × 5 = 0.5 points. This is why a mistaken estimate on a small holding is far less dangerous than the same mistake on a holding that's half the portfolio."
+    }
+  ],
+  "keyTakeaways": [
+    "A portfolio's Expected Return = a weighted average by each asset's allocation",
+    "Raising the weight of the higher-return asset pulls up the overall expected return, along with rising risk",
+    "This is the foundational calculation for comparing different asset-allocation options"
+  ],
+  "practicePrompt": {
+    "question": "A portfolio holds 60% stocks (expected return 12%/year) and 40% bonds (expected return 5%/year). What is the Expected Return of the whole portfolio?",
+    "options": [
+      "The portfolio's Expected Return = a weighted average by each asset's allocation = 0.6×12% + 0.4×5% = 7.2% + 2% = 9.2%",
+      "Expected Return = (12%+5%)/2 = 8.5%, a simple arithmetic average with no weighting",
+      "Expected Return = 12% + 5% = 17%, directly adding the two assets' expected returns",
+      "The portfolio's Expected Return always exactly equals the return of the asset with the largest weight, i.e. 12%"
+    ],
+    "explanation": "The portfolio's Expected Return = a weighted average by each asset's allocation = 0.6×12% + 0.4×5% = 9.2%. This is the foundational formula when building a portfolio - overall expected return is a weighted average based on exactly how much capital is allocated to each asset."
+  },
+  "summary": {
+    "keyIdea": "A portfolio's Expected Return = a weighted average by each asset's allocation",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to a real decision.",
+    "action": "Raising the weight of the higher-return asset pulls up the overall expected return, along with rising risk"
+  },
+  "application": {
+    "title": "Calculate your own portfolio's expected return",
+    "message": "Suppose your portfolio holds 60% stocks (expecting 10%/year) and 40% bonds (expecting 5%/year), calculate the weighted expected return yourself: 0.6×10% + 0.4×5%.",
+    "secondary": "This calculation takes only 30 seconds but underlies every asset-allocation decision."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A portfolio's Expected Return is not a simple arithmetic average of its component assets, but a WEIGHTED average: the sum of (each asset's weight × that asset's expected return). An asset with a larger weight influences the overall result more, whether its expected return is high or low."
+    },
+    { "type": "heading", "text": "The formula and a 60/40 example" },
+    {
+      "type": "paragraph",
+      "text": "For the classic 60% stocks / 40% bonds portfolio, if stocks have an expected return of 9%/year and bonds 3%/year, the portfolio's Expected Return = 0.6 × 9% + 0.4 × 3% = 5.4% + 1.2% = 6.6%/year. This is the classic asset-allocation formula recommended by many financial advisors, balancing growth against stability."
+    },
+    { "type": "heading", "text": "Raising the weight of the higher-return asset" },
+    {
+      "type": "paragraph",
+      "text": "If you raise the stock weight from 60% to 80% (lowering bonds accordingly, keeping each asset's expected return unchanged), the portfolio's Expected Return rises: 0.8 × 9% + 0.2 × 3% = 7.8%. Because stocks have a higher expected return than bonds, raising their weight in the weighted-average formula pulls the overall Expected Return higher - but the portfolio's volatility rises along with it. This is a basic risk-return trade-off; there's no free lunch at this step."
+    },
+    { "type": "heading", "text": "Estimation errors propagate by weight" },
+    {
+      "type": "paragraph",
+      "text": "If you misestimate an asset's expected return (say, too optimistically), that error propagates into the portfolio's overall Expected Return exactly in proportion to that asset's weight. An asset making up 50% of the portfolio with a 3-percentage-point estimation error will shift the overall Expected Return by up to 1.5 percentage points - this is why assumptions about expected return always deserve careful scrutiny, especially for assets with a large weight."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Portfolio Expected Return = Σ (weight × expected return) across every asset",
+        "This is a WEIGHTED average, not a simple arithmetic average",
+        "Raising the weight of a higher-return asset pulls up Expected Return, along with rising risk",
+        "An estimation error on a large-weight asset has a strong effect on the whole portfolio's result"
+      ]
+    }
+  ]
+}

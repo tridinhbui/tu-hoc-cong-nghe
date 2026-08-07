@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { BookOpen, ArrowRight, Sparkles } from "lucide-react";
 import { getGameRelatedLessons, getGameMeta, type GameType } from "@/lib/games";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 interface GameLessonRecommendationProps {
   gameType: GameType;
@@ -17,6 +19,8 @@ export default function GameLessonRecommendation({
   total,
   className = "",
 }: GameLessonRecommendationProps) {
+  const { t } = useI18n();
+  const gl = t.games.gameLessonRecommendation;
   const gameMeta = getGameMeta(gameType);
   const relatedLessons = getGameRelatedLessons(gameType);
 
@@ -37,14 +41,14 @@ export default function GameLessonRecommendation({
           <div>
             <div className="flex items-center gap-2 flex-wrap">
               <span className="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 border border-amber-200/60">
-                Gợi ý ôn tập lý thuyết
+                {gl.badge}
               </span>
               <span className="text-[10px] font-extrabold text-emerald-600 flex items-center gap-1">
-                <Sparkles className="w-3 h-3" /> Thu nạp x1.5 XP khi học lại
+                <Sparkles className="w-3 h-3" /> {gl.bonusXp}
               </span>
             </div>
             <h4 className="text-xs sm:text-sm font-bold text-stone-900 mt-1">
-              Bài học liên quan tới &quot;{gameMeta.title}&quot;
+              {format(gl.relatedTo, { title: gameMeta.title })}
             </h4>
           </div>
         </div>
@@ -52,17 +56,17 @@ export default function GameLessonRecommendation({
         {score !== undefined && total !== undefined && (
           <div className="text-right sm:text-right shrink-0">
             <span className="text-[10px] font-semibold text-stone-500 block">
-              Kết quả vừa chơi:
+              {gl.lastResultLabel}
             </span>
             <span className="text-xs font-black text-amber-600">
-              {score}/{total} câu đúng
+              {format(gl.lastResultScore, { score, total })}
             </span>
           </div>
         )}
       </div>
 
       <p className="text-xs text-stone-600 mb-3.5 leading-relaxed">
-        Phát hiện bạn có điểm chưa hoàn hảo trong phần này. Hãy ôn lại bài học lý thuyết dưới đây để củng cố lỗ hổng kiến thức nhé:
+        {gl.description}
       </p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">

@@ -20,6 +20,8 @@ import {
   type UserStreak,
 } from "@/lib/supabase-streak";
 import { recalculateUserStats } from "@/lib/supabase-user";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 interface UserStatsProps {
   xp: number;
@@ -61,6 +63,7 @@ export default function UserStats({
   sidebar = false,
   embedded = false,
 }: UserStatsProps) {
+  const { t } = useI18n();
   const [cfaCompleted, setCfaCompleted] = useState(0);
   const currentLevel = getLevelByXp(xp, cfaCompleted);
   const nextLevel = getNextLevel(currentLevel.level);
@@ -199,9 +202,9 @@ export default function UserStats({
       setStreak(restored.current_streak);
       setStreakRow(restored);
       await recalculateUserStats(userId);
-      toast.success(`Đã khôi phục chuỗi ${restored.current_streak} ngày! (-${STREAK_RESTORE_XP_COST} XP)`);
+      toast.success(format(t.userStats.streakRestored, { days: restored.current_streak, cost: STREAK_RESTORE_XP_COST }));
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Không thể khôi phục chuỗi.");
+      toast.error(error instanceof Error ? error.message : t.userStats.restoreFailed);
     } finally {
       setRestoringStreak(false);
     }
@@ -227,16 +230,16 @@ export default function UserStats({
           whileHover={{ scale: 1.12, rotate: [0, -6, 6, 0] }}
           whileTap={{ scale: 0.9 }}
           onClick={() => {
-            toast.success(`✨ Chiến binh Cấp ${currentLevel.level} sẵn sàng chinh phục Phố Wall!`);
+            toast.success(`✨ ${format(t.userStats.activateWarrior, { level: currentLevel.level })}`);
           }}
           className="relative shrink-0 cursor-pointer group/avatar"
-          title="Bấm để kích hoạt chiến binh!"
+          title={t.userStats.clickToActivate}
         >
           <FinanceCharacterAvatar level={currentLevel.level} equipments={equippedGear} size="xs" />
         </motion.div>
         <div className="min-w-0 flex-1">
           <span className="text-[8px] sm:text-[9px] font-black text-stone-400 dark:text-stone-400 uppercase tracking-widest block leading-none">
-            Cấp độ {currentLevel.level} / {LEVELS.length}
+            {format(t.userStats.levelLabel, { level: currentLevel.level, total: LEVELS.length })}
           </span>
           <h3 className={`font-black text-stone-950 dark:text-white mt-0.5 tracking-tight leading-none truncate ${
             sidebar ? "text-[15px]" : "text-sm sm:text-base"
@@ -254,7 +257,7 @@ export default function UserStats({
             sidebar ? "text-[10px] px-2.5 py-0.5" : "text-[11px] px-3 py-1.5"
           }`}>
             <Sparkles className={sidebar ? "w-2.5 h-2.5" : "w-3 h-3"} />
-            {xp} XP
+            {xp} {t.miscUi.userStats.xpUnit}
           </span>
         </div>
       </div>
@@ -273,7 +276,7 @@ export default function UserStats({
               return (
                 <div key={lvl.level} className="flex items-center gap-2 shrink-0">
                   <div
-                    title={`Cấp ${lvl.level}: ${lvl.name} (${lvl.minXp} XP)`}
+                    title={format(t.userStats.levelTooltip, { level: lvl.level, name: lvl.name, xp: lvl.minXp })}
                     className={`flex flex-col items-center gap-1 rounded-xl px-2.5 py-2 border transition-all ${
                       isCurrent
                         ? "border-emerald-500 bg-emerald-50 dark:bg-emerald-950/40 shadow-sm scale-105"
@@ -303,7 +306,7 @@ export default function UserStats({
           sidebar ? "p-1.5" : "p-3"
         }`}>
           <div className="min-w-0 rounded-xl bg-sky-50/50 dark:bg-sky-950/15 border border-sky-100/70 dark:border-sky-900/30 px-2.5 py-1.5">
-            <span className="text-[8px] sm:text-[9px] font-black text-stone-500 dark:text-stone-400 uppercase tracking-wider block">Bài học</span>
+            <span className="text-[8px] sm:text-[9px] font-black text-stone-500 dark:text-stone-400 uppercase tracking-wider block">{t.userStats.lessons}</span>
             <div className="flex items-center gap-1 mt-1 truncate">
               <BookOpen className="w-3.5 h-3.5 text-sky-500 dark:text-sky-400 shrink-0" />
               <span className={`font-black text-stone-950 dark:text-stone-50 ${sidebar ? "text-xs" : "text-sm sm:text-base"}`}>{lessonsCompleted}</span>
@@ -315,17 +318,17 @@ export default function UserStats({
           sidebar ? "p-1.5" : "p-3"
         }`}>
           <div className="min-w-0 rounded-xl bg-emerald-50/50 dark:bg-emerald-950/15 border border-emerald-100/70 dark:border-emerald-900/30 px-2.5 py-1.5">
-            <span className="text-[8px] sm:text-[9px] font-black text-stone-500 dark:text-stone-400 uppercase tracking-wider block">Quiz TB</span>
+            <span className="text-[8px] sm:text-[9px] font-black text-stone-500 dark:text-stone-400 uppercase tracking-wider block">{t.userStats.quizAvg}</span>
             <div className="flex items-center gap-1 mt-1">
               <Target className="w-3.5 h-3.5 text-emerald-500 dark:text-emerald-400 shrink-0" />
               <span className={`font-black text-emerald-600 dark:text-emerald-400 ${sidebar ? "text-xs" : "text-sm sm:text-base"}`}>{Math.round(avgQuizScore)}%</span>
             </div>
           </div>
           <div className="min-w-0 rounded-xl bg-indigo-50/50 dark:bg-indigo-950/15 border border-indigo-100/70 dark:border-indigo-900/30 px-2.5 py-1.5">
-            <span className="text-[8px] sm:text-[9px] font-black text-stone-500 dark:text-stone-400 uppercase tracking-wider block">Tiến cấp</span>
+            <span className="text-[8px] sm:text-[9px] font-black text-stone-500 dark:text-stone-400 uppercase tracking-wider block">{t.userStats.levelUp}</span>
             <div className="flex items-center gap-1 mt-1 truncate">
               <TrendingUp className="w-3.5 h-3.5 text-indigo-500 dark:text-indigo-400 shrink-0" />
-              <span className={`font-black text-indigo-600 dark:text-indigo-400 ${sidebar ? "text-xs" : "text-sm sm:text-base"}`}>{xpToNext > 0 ? `+${xpToNext} XP` : "Tối đa"}</span>
+              <span className={`font-black text-indigo-600 dark:text-indigo-400 ${sidebar ? "text-xs" : "text-sm sm:text-base"}`}>{xpToNext > 0 ? format(t.userStats.xpToNext, { count: xpToNext }) : t.userStats.maxLevel}</span>
             </div>
           </div>
         </div>
@@ -339,16 +342,16 @@ export default function UserStats({
           <span className="text-xl shrink-0">💔</span>
           <div className="flex-1 min-w-0">
             <p className="text-xs font-extrabold text-stone-900 dark:text-stone-100">
-              Bạn vừa mất chuỗi {restoreOffer.lostStreak} ngày
+              {format(t.userStats.lostStreak, { days: restoreOffer.lostStreak })}
             </p>
-            <p className="text-[10px] text-stone-500 dark:text-stone-400 mt-0.5">Đã hết lượt bảo vệ miễn phí - khôi phục bằng XP?</p>
+            <p className="text-[10px] text-stone-500 dark:text-stone-400 mt-0.5">{t.userStats.restoreHint}</p>
           </div>
           <button
             onClick={handleRestoreStreak}
             disabled={restoringStreak}
             className="shrink-0 text-[10px] font-black uppercase px-2.5 py-2 rounded-lg bg-orange-600 hover:bg-orange-700 text-white disabled:opacity-50 transition-colors"
           >
-            {restoringStreak ? "..." : `-${STREAK_RESTORE_XP_COST} XP`}
+            {restoringStreak ? t.userStats.restoring : format(t.userStats.restoreCost, { cost: STREAK_RESTORE_XP_COST })}
           </button>
         </div>
       )}
@@ -371,7 +374,7 @@ export default function UserStats({
             href="/loi-nhan"
             className="text-[10px] font-semibold text-stone-400 underline-offset-2 transition-colors hover:text-stone-600 hover:underline dark:text-stone-500 dark:hover:text-stone-300"
           >
-            Hoặc để đó đã — ghé Góc yên tĩnh một phút
+            {t.userStats.quietCornerLink}
           </Link>
         </div>
       )}
@@ -380,9 +383,9 @@ export default function UserStats({
       {nextLevel && (
         <div className="mt-0.5 pt-2 border-t border-stone-100 dark:border-stone-800/80 relative z-10">
           <div className="flex items-center justify-between text-[10px] mb-1 font-bold text-stone-500 dark:text-stone-400">
-            <span>Tiến độ cấp {currentLevel.level} <span className="text-emerald-600 dark:text-emerald-400">({Math.round(progress)}%)</span></span>
+            <span>{format(t.userStats.progressLabel, { level: currentLevel.level })} <span className="text-emerald-600 dark:text-emerald-400">({Math.round(progress)}%)</span></span>
             <span className="inline-flex items-center gap-1 text-stone-600 dark:text-stone-300">
-              Cấp {nextLevel.level}: {nextLevel.name} <span>{LEVEL_EMOJIS[nextLevel.level] || "🌱"}</span>
+              {format(t.userStats.nextLevelLabel, { level: nextLevel.level, name: nextLevel.name })} <span>{LEVEL_EMOJIS[nextLevel.level] || "🌱"}</span>
             </span>
           </div>
           <div className="w-full h-2 bg-stone-100 dark:bg-stone-800/70 rounded-full overflow-hidden relative shadow-inner">
@@ -399,20 +402,24 @@ export default function UserStats({
               <div className="flex items-center gap-2 text-[11px] sm:text-xs font-semibold text-stone-600 dark:text-stone-300">
                 <span className="text-sm shrink-0">🎯</span>
                 <span>
-                  Còn khoảng <span className="font-extrabold text-stone-900 dark:text-stone-100">{Math.max(1, Math.ceil(xpToNext / 20))} bài học</span> (+{xpToNext} XP) để lên cấp!
+                  {t.userStats.lessonsToLevelUpPart1}{" "}
+                  <span className="font-extrabold text-stone-900 dark:text-stone-100">
+                    {format(t.userStats.lessonsToLevelUpBold, { count: Math.max(1, Math.ceil(xpToNext / 20)) })}
+                  </span>{" "}
+                  {format(t.userStats.lessonsToLevelUpPart2, { xp: xpToNext })}
                 </span>
               </div>
               <div className="flex items-center gap-2 text-[11px] sm:text-xs font-semibold text-stone-600 dark:text-stone-300">
                 <span className="text-sm shrink-0">🏆</span>
                 <span>
-                  Sắp mở danh hiệu: <span className="font-extrabold text-amber-600 dark:text-amber-400">{nextLevel.name}</span>
+                  {t.userStats.upcomingTitlePart1} <span className="font-extrabold text-amber-600 dark:text-amber-400">{nextLevel.name}</span>
                 </span>
               </div>
               {cfaGateRemaining > 0 && (
                 <div className="flex items-center gap-2 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400">
                   <span className="text-sm shrink-0">🎓</span>
                   <span>
-                    Cấp {nextLevel.level} còn yêu cầu hoàn thành thêm <span className="font-extrabold">{cfaGateRemaining} bài/module CFA</span> - đủ XP thôi chưa đủ
+                    {format(t.userStats.cfaGateRemainingPart1, { level: nextLevel.level })} <span className="font-extrabold">{format(t.userStats.cfaGateRemainingCount, { count: cfaGateRemaining })}</span> {t.userStats.cfaGateRemainingPart2}
                   </span>
                 </div>
               )}
@@ -424,7 +431,7 @@ export default function UserStats({
       {!nextLevel && (
         <div className="mt-2.5 pt-2.5 border-t border-stone-100 dark:border-stone-800/80 relative z-10">
           <div className="p-3 bg-amber-50/40 dark:bg-amber-950/10 border border-amber-200/50 dark:border-amber-900/30 rounded-xl flex items-center gap-2 text-xs text-amber-700 dark:text-amber-300 font-bold">
-            <span>👑 Bạn đã đạt cấp độ tối đa! Chúc mừng {currentLevel.name}!</span>
+            <span>👑 {format(t.userStats.maxLevelReached, { name: currentLevel.name })}</span>
           </div>
         </div>
       )}
@@ -442,12 +449,12 @@ export default function UserStats({
             <div className="flex items-center gap-2 text-left">
               <span className="text-lg">🛡️</span>
               <div>
-                <p className="leading-tight text-white drop-shadow-sm font-extrabold text-[11px]">BÀI THI THĂNG CẤP KHẮT KHE (LEVEL {nextLevel.level})</p>
-                <p className="text-[10px] text-emerald-100 font-bold">Cần thi đỗ ≥ {LEVEL_EXAMS[nextLevel.level]?.minPassPercentage || 80}% điểm trắc nghiệm để thăng hạng</p>
+                <p className="leading-tight text-white drop-shadow-sm font-extrabold text-[11px]">{format(t.userStats.examBannerTitle, { level: nextLevel.level })}</p>
+                <p className="text-[10px] text-emerald-100 font-bold">{format(t.userStats.examBannerHint, { percent: LEVEL_EXAMS[nextLevel.level]?.minPassPercentage || 80 })}</p>
               </div>
             </div>
             <span className="px-3 py-1 rounded-xl bg-stone-950 text-emerald-400 text-[10px] font-black tracking-wide shrink-0">
-              VÀO THI NGAY →
+              {t.userStats.examBannerCta}
             </span>
           </button>
         </div>
@@ -462,7 +469,7 @@ export default function UserStats({
           onClose={() => setShowExamModal(false)}
           onExamPassed={(lvl) => {
             setShowExamModal(false);
-            toast.success(`Chúc mừng bạn đã vượt qua bài thi khắt khe Level ${lvl}!`);
+            toast.success(format(t.userStats.examPassed, { level: lvl }));
           }}
         />
       )}

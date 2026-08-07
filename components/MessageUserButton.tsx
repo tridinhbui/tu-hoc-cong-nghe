@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { MessageCircle, UserPlus, Check, Clock } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import { getMySocialGraph, respondToFriendRequest, sendFriendRequest, type SocialConnection } from "@/lib/supabase-social";
+import { useI18n } from "@/lib/i18n/context";
 
 // Public profile pages (reached from the leaderboard / "nguoi-hoc") had no
 // way to message someone - only a read-only stat sheet. Messaging still
@@ -17,6 +18,7 @@ import { getMySocialGraph, respondToFriendRequest, sendFriendRequest, type Socia
 // asked yet -> sends the request (auto-accepts if it turns out they'd
 // already invited you first) and lands on /ban-be to show the pending state.
 export default function MessageUserButton({ targetUserId }: { targetUserId: string }) {
+  const { t } = useI18n();
   const router = useRouter();
   const [connection, setConnection] = useState<SocialConnection | null | undefined>(undefined);
   const [busy, setBusy] = useState(false);
@@ -53,7 +55,7 @@ export default function MessageUserButton({ targetUserId }: { targetUserId: stri
 
       if (connection?.direction === "incoming") {
         await respondToFriendRequest(connection.friendship_id, "accepted");
-        toast.success("Đã chấp nhận lời mời - vào chat ngay");
+        toast.success(t.miscUi.messageUserButton.acceptedInviteToast);
         router.push(`/ban-be?with=${targetUserId}`);
         return;
       }
@@ -64,10 +66,10 @@ export default function MessageUserButton({ targetUserId }: { targetUserId: stri
       }
 
       const result = await sendFriendRequest(user.id, targetUserId);
-      toast.success(result.status === "accepted" ? "Đã trở thành bạn bè - vào chat ngay" : "Đã gửi lời mời kết bạn, nhắn tin được ngay khi họ chấp nhận");
+      toast.success(result.status === "accepted" ? t.miscUi.messageUserButton.becameFriendsToast : t.miscUi.messageUserButton.requestSentToast);
       router.push(`/ban-be?with=${targetUserId}`);
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Không thể bắt đầu nhắn tin");
+      toast.error(error instanceof Error ? error.message : t.miscUi.messageUserButton.startFailedError);
     } finally {
       setBusy(false);
     }
@@ -80,19 +82,19 @@ export default function MessageUserButton({ targetUserId }: { targetUserId: stri
         className="inline-flex items-center gap-1.5 text-sm font-semibold px-4 py-2 rounded-xl border border-stone-200 dark:border-stone-800 text-stone-400 dark:text-stone-600"
       >
         <MessageCircle className="w-4 h-4" />
-        Nhắn tin
+        {t.miscUi.messageUserButton.message}
       </button>
     );
   }
 
   const label =
     connection?.direction === "friend"
-      ? "Nhắn tin"
+      ? t.miscUi.messageUserButton.message
       : connection?.direction === "incoming"
-        ? "Chấp nhận & nhắn tin"
+        ? t.miscUi.messageUserButton.acceptAndMessage
         : connection?.direction === "outgoing"
-          ? "Đã gửi lời mời"
-          : "Kết bạn để nhắn tin";
+          ? t.miscUi.messageUserButton.requestSent
+          : t.miscUi.messageUserButton.friendToMessage;
 
   const Icon = connection?.direction === "friend" ? MessageCircle : connection?.direction === "incoming" ? Check : connection?.direction === "outgoing" ? Clock : UserPlus;
 

@@ -2,6 +2,8 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 interface ReadingProgressProps {
   progress: number; // 0-100
@@ -13,6 +15,7 @@ const AUTO_HIDE_MS = 1800;
 const DRAG_DISMISS_PX = 30;
 
 export default function ReadingProgress({ progress, onMilestone }: ReadingProgressProps) {
+  const { t } = useI18n();
   const [celebratingMilestone, setCelebratingMilestone] = useState<number | null>(null);
   const [isCollapsed, setIsCollapsed] = useState(true);
   const previousMilestoneRef = useRef(0);
@@ -113,7 +116,7 @@ export default function ReadingProgress({ progress, onMilestone }: ReadingProgre
         <button
           onClick={() => flashOpen()}
           className="relative w-6 h-20 bg-stone-100 rounded-full overflow-hidden border-2 border-stone-300 hover:border-stone-400 transition-colors cursor-pointer group"
-          title="Mở thanh tiến độ"
+          title={t.readingProgress.open}
         >
           {/* Filled progress */}
           <motion.div
@@ -198,7 +201,7 @@ export default function ReadingProgress({ progress, onMilestone }: ReadingProgre
           {/* Progress text */}
           <div className="text-center">
             <p className="text-2xl font-black text-stone-900">{progress}%</p>
-            <p className="text-[10px] text-stone-500 font-bold uppercase tracking-wide">Đang đọc</p>
+            <p className="text-[10px] text-stone-500 font-bold uppercase tracking-wide">{t.readingProgress.reading}</p>
           </div>
 
           {/* Collapse button */}
@@ -208,9 +211,9 @@ export default function ReadingProgress({ progress, onMilestone }: ReadingProgre
               setIsCollapsed(true);
             }}
             className="text-[10px] text-stone-500 hover:text-stone-900 font-bold uppercase tracking-wide transition-colors"
-            title="Đóng thanh tiến độ"
+            title={t.readingProgress.closeTitle}
           >
-            Đóng
+            {t.readingProgress.close}
           </button>
         </div>
       )}
@@ -227,10 +230,10 @@ export default function ReadingProgress({ progress, onMilestone }: ReadingProgre
             <p className="text-2xl mb-1">{celebratingMilestone === 100 ? "🏁" : "🎉"}</p>
             <p className="font-bold">
               {celebratingMilestone === 100
-                ? "Hoàn thành chặng đua!"
-                : `Chúc mừng! Bạn đã đọc ${celebratingMilestone}%`}
+                ? t.readingProgress.finished
+                : format(t.readingProgress.congrats, { percent: celebratingMilestone })}
             </p>
-            <p className="text-xs text-stone-300 mt-1">Hãy tiếp tục - bạn đang làm rất tốt!</p>
+            <p className="text-xs text-stone-300 mt-1">{t.readingProgress.keepGoing}</p>
           </motion.div>
         )}
       </AnimatePresence>

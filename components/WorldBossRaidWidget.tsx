@@ -8,6 +8,8 @@ import { toast } from "sonner";
 import FinanceCharacterAvatar, { CharacterEquipments } from "@/components/FinanceCharacterAvatar";
 import { recalculateUserStats } from "@/lib/supabase-user";
 import { DAMAGE_PER_CORRECT, bossHpPercent } from "@/lib/world-boss";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 interface BossQuestion {
   prompt: string;
@@ -52,6 +54,7 @@ export default function WorldBossRaidWidget({
   userLevel?: number;
   equipments?: CharacterEquipments;
 }) {
+  const { t } = useI18n();
   const [boss, setBoss] = useState<WorldBoss | null>(null);
   const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
   const [loading, setLoading] = useState(true);
@@ -130,15 +133,15 @@ export default function WorldBossRaidWidget({
 
     if (isCorrect) {
       setHitState("hit_boss");
-      setLastDamageText(`💥 -${hitDamage.toLocaleString()} DMG!`);
+      setLastDamageText(format(t.miscUi.worldBossRaidWidget.hitDamage, { damage: hitDamage.toLocaleString() }));
       setSessionDamage((prev) => prev + hitDamage);
       setSessionScore((prev) => prev + 1);
-      toast.success(`💥 Nổ sát thương Combo: +${hitDamage.toLocaleString()} DMG!`);
+      toast.success(format(t.miscUi.worldBossRaidWidget.comboDamage, { damage: hitDamage.toLocaleString() }));
     } else {
       setHitState("hit_hero");
-      setLastDamageText("⚠️ MISS! BOSS PHẢN CÔNG");
+      setLastDamageText(t.miscUi.worldBossRaidWidget.missCounterattack);
       setHeroHp((hp) => Math.max(0, hp - 34));
-      toast.error("Hụt rồi! Boss phản công làm bạn mất 34 HP.");
+      toast.error(t.worldBoss.counterattack);
     }
 
     setTimeout(async () => {
@@ -166,7 +169,7 @@ export default function WorldBossRaidWidget({
             // Im lặng ở đây là lý do lỗi cũ sống lâu: đánh xong, được chúc
             // mừng, và không có gì thay đổi.
             const detail = await res.json().catch(() => null);
-            toast.error(detail?.error ?? "Không ghi được sát thương lên máy chủ.");
+            toast.error(detail?.error ?? t.miscUi.worldBossRaidWidget.submitFailedError);
           } else {
             const result = await res.json();
             window.dispatchEvent(new CustomEvent("thtcdn:coin-updated", { detail: { coins: result.newCoins } }));
@@ -174,7 +177,13 @@ export default function WorldBossRaidWidget({
             // Con số của MÁY CHỦ, không phải tổng cộng dồn ở đây: chỉ nó mới
             // là thứ thực sự trừ vào thanh máu.
             setSessionDamage(result.damageDealt ?? finalDamage);
-            toast.success(`🎉 Tổng sát thương trận này: ${(result.damageDealt ?? finalDamage).toLocaleString()} DMG! +${result.xpReward} XP & +${result.coinReward} Coins`);
+            toast.success(
+              format(t.miscUi.worldBossRaidWidget.raidSummary, {
+                damage: (result.damageDealt ?? finalDamage).toLocaleString(),
+                xp: result.xpReward,
+                coins: result.coinReward,
+              })
+            );
             fetchBossData();
           }
         } catch (error) {
@@ -187,8 +196,8 @@ export default function WorldBossRaidWidget({
     }, 1300);
   };
 
-  if (loading) return <div className="text-center p-4">Đang tải dữ liệu World Boss Server...</div>;
-  if (!boss) return <div className="text-center p-4">Chưa mở sự kiện World Boss tuần này.</div>;
+  if (loading) return <div className="text-center p-4">{t.worldBoss.loading}</div>;
+  if (!boss) return <div className="text-center p-4">{t.worldBoss.noEvent}</div>;
 
   const hpPercent = bossHpPercent(boss.current_hp, boss.max_hp);
 
@@ -206,7 +215,7 @@ export default function WorldBossRaidWidget({
           </div>
           <div>
             <span className="text-[10px] uppercase font-black tracking-widest text-red-700 bg-white border border-red-200 px-3 py-1 rounded-full shadow-sm">
-              🔥 Server World Boss Event - Hàng Tuần
+              {t.worldBoss.eventTitle}
             </span>
             <h3 className="text-xl font-black text-stone-950 mt-1.5 flex items-center gap-2">
               {boss.name}
@@ -222,14 +231,14 @@ export default function WorldBossRaidWidget({
             onClick={() => setShowBossGuide((prev) => !prev)}
             className="w-full sm:w-auto bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 font-bold text-xs px-4 py-3.5 rounded-2xl hover:bg-stone-200 cursor-pointer flex items-center justify-center gap-1.5 shrink-0"
           >
-            📖 Hướng dẫn săn Boss
+            {t.worldBoss.guideToggle}
           </button>
 
           <button
             onClick={handleStartRaid}
             className="w-full sm:w-auto bg-gradient-to-r from-red-500 via-orange-400 to-amber-300 text-white font-black text-sm px-6 py-3.5 rounded-2xl shadow-[0_18px_40px_rgba(249,115,22,0.28)] hover:scale-[1.02] transition-all flex items-center justify-center gap-2 border border-orange-200 cursor-pointer shrink-0"
           >
-            <Swords className="w-5 h-5 text-white" /> Săn Boss Server Ngay!
+            <Swords className="w-5 h-5 text-white" /> {t.worldBoss.huntNow}
           </button>
         </div>
       </div>
@@ -238,13 +247,19 @@ export default function WorldBossRaidWidget({
       {showBossGuide && (
         <div className="mb-6 p-4 rounded-2xl bg-gradient-to-r from-red-50 to-orange-50 dark:from-red-950/30 dark:to-orange-950/30 border border-red-200 dark:border-red-900/50 text-xs text-stone-800 dark:text-stone-200 space-y-2">
           <h4 className="font-black text-sm text-red-700 dark:text-red-300 flex items-center gap-1.5">
-            ⚔️ Thể lệ & Cách chơi Sự Kiện Săn Boss Server:
+            {t.worldBoss.rulesTitle}
           </h4>
           <ul className="list-disc list-inside space-y-1 font-semibold text-stone-700 dark:text-stone-300">
-            <li><strong>Thanh máu gộp 1,000,000 HP</strong>: Toàn bộ học viên trên toàn server cùng tấn công để rút máu World Boss.</li>
-            <li><strong>Sát thương chiến đấu</strong>: Mỗi câu trả lời trắc nghiệm đúng gây 5,000 Sát thương + Bonus dựa trên tốc độ trả lời & cấp độ nhân vật.</li>
-            <li><strong>Phản công của Boss</strong>: Trả lời sai sẽ bị Boss phản công trừ 25 HP của Nhân vật. Quá 3 câu sai trận đánh sẽ kết thúc.</li>
-            <li><strong>Phần thưởng Bảng Xếp Hạng</strong>: Top 10 học viên gây sát thương cao nhất tuần nhận <strong>+500 Coins</strong> + <strong>Huy hiệu dũng sĩ săn Boss</strong>!</li>
+            <li><strong>{t.worldBoss.rule1Label}</strong>: {t.worldBoss.rule1Body}</li>
+            <li><strong>{t.worldBoss.rule2Label}</strong>: {t.worldBoss.rule2Body}</li>
+            <li><strong>{t.worldBoss.rule3Label}</strong>: {t.worldBoss.rule3Body}</li>
+            <li>
+              <strong>{t.worldBoss.rule4Label}</strong>: {t.worldBoss.rule4BodyPart1}
+              <strong>{t.worldBoss.rule4Coins}</strong>
+              {t.worldBoss.rule4BodyPart2}
+              <strong>{t.worldBoss.rule4Badge}</strong>
+              {t.worldBoss.rule4BodyPart3}
+            </li>
           </ul>
         </div>
       )}
@@ -253,10 +268,10 @@ export default function WorldBossRaidWidget({
       <div className="bg-white border border-red-100 rounded-2xl p-4 mb-6 space-y-2 shadow-sm">
         <div className="flex justify-between items-center text-xs font-bold">
           <span className="text-stone-700 flex items-center gap-1.5">
-            <Flame className="w-4 h-4 text-red-500 animate-pulse" /> Thanh Máu Gộp Toàn Server:
+            <Flame className="w-4 h-4 text-red-500 animate-pulse" /> {t.worldBoss.serverHpLabel}
           </span>
           <span className="text-red-600 font-extrabold">
-            {boss.current_hp.toLocaleString()} / {boss.max_hp.toLocaleString()} HP ({hpPercent}%)
+            {format(t.worldBoss.hpLine, { current: boss.current_hp.toLocaleString(), max: boss.max_hp.toLocaleString(), percent: hpPercent })}
           </span>
         </div>
         <div className="w-full h-4 bg-red-100 rounded-full overflow-hidden border border-red-200 p-0.5">
@@ -282,25 +297,25 @@ export default function WorldBossRaidWidget({
                 <div className="bg-white border border-orange-100 rounded-2xl p-4 flex flex-col justify-between shadow-sm">
                   <div>
                     <h4 className="text-xs font-black uppercase text-orange-600 mb-3 flex items-center gap-1.5">
-                      <Sparkles className="w-4 h-4" /> Trang Bị Sẵn Sàng Săn Boss
+                      <Sparkles className="w-4 h-4" /> {t.worldBoss.gearTitle}
                     </h4>
                     <div className="flex items-center gap-4 bg-gradient-to-br from-orange-50 to-white p-3 rounded-xl border border-orange-100">
                       <FinanceCharacterAvatar level={userLevel} equipments={equipments} size="sm" />
                       <div>
-                        <span className="text-xs font-bold text-stone-900 block">Sức Mạnh Nhân Vật</span>
-                        <span className="text-[11px] text-stone-500">Level: <strong className="text-orange-600">Lv. {userLevel}</strong></span>
+                        <span className="text-xs font-bold text-stone-900 block">{t.worldBoss.heroPower}</span>
+                        <span className="text-[11px] text-stone-500">{t.worldBoss.levelPrefix}<strong className="text-orange-600">{format(t.worldBoss.levelValue, { level: userLevel })}</strong></span>
                         <p className="text-[10px] text-emerald-600 mt-1">
-                          ⚡ Mỗi đáp án đúng gây ~5,000+ Sát thương Server!
+                          {t.worldBoss.damagePerAnswer}
                         </p>
                       </div>
                     </div>
                     <div className="mt-4 grid grid-cols-2 gap-2">
                       <div className="rounded-xl border border-amber-200 bg-amber-50/70 px-3 py-2.5">
-                        <span className="text-[10px] font-black uppercase text-amber-700 block">Số câu raid</span>
-                        <span className="text-base font-black text-stone-900">{boss.questions.length} câu</span>
+                        <span className="text-[10px] font-black uppercase text-amber-700 block">{t.worldBoss.raidQuestionCount}</span>
+                        <span className="text-base font-black text-stone-900">{format(t.worldBoss.questionCount, { count: boss.questions.length })}</span>
                       </div>
                       <div className="rounded-xl border border-emerald-200 bg-emerald-50/70 px-3 py-2.5">
-                        <span className="text-[10px] font-black uppercase text-emerald-700 block">Max DMG/câu</span>
+                        <span className="text-[10px] font-black uppercase text-emerald-700 block">{t.worldBoss.maxDamagePerQuestion}</span>
                         <span className="text-base font-black text-stone-900">~7,000</span>
                       </div>
                     </div>
@@ -309,8 +324,8 @@ export default function WorldBossRaidWidget({
 
                 <div className="bg-white border border-red-100 rounded-2xl p-4 shadow-sm">
                   <h4 className="text-xs font-black uppercase text-orange-600 mb-3 flex items-center justify-between">
-                    <span className="flex items-center gap-1.5"><Trophy className="w-4 h-4 text-orange-500" /> Bảng Xếp Hạng Top Sát Thương Server</span>
-                    <button onClick={fetchBossData} className="text-stone-400 hover:text-red-500" title="Làm mới"><RefreshCw className="w-3.5 h-3.5" /></button>
+                    <span className="flex items-center gap-1.5"><Trophy className="w-4 h-4 text-orange-500" /> {t.worldBoss.leaderboardTitle}</span>
+                    <button onClick={fetchBossData} className="text-stone-400 hover:text-red-500" title={t.worldBoss.refreshTitle}><RefreshCw className="w-3.5 h-3.5" /></button>
                   </h4>
 
                   <div className="space-y-2 max-h-56 overflow-y-auto pr-1">
@@ -327,7 +342,7 @@ export default function WorldBossRaidWidget({
                           </span>
                           <span className="font-bold text-stone-800">{item.name}</span>
                         </div>
-                        <span className="font-extrabold text-red-500">{item.totalDamage.toLocaleString()} DMG</span>
+                        <span className="font-extrabold text-red-500">{format(t.worldBoss.damageValue, { value: item.totalDamage.toLocaleString() })}</span>
                       </div>
                     ))}
                   </div>
@@ -348,13 +363,13 @@ export default function WorldBossRaidWidget({
               {/* Header bar */}
               <div className="relative z-10 flex items-center justify-between border-b border-amber-100 pb-3 mb-4">
                 <span className="text-xs font-black tracking-wider text-orange-700 bg-white border border-orange-200 px-3 py-1 rounded-full shadow-sm">
-                  ⚔️ BATTLE ARENA - CÂU {qIndex + 1}/{boss.questions.length}
+                  {format(t.worldBoss.arenaTitle, { current: qIndex + 1, total: boss.questions.length })}
                 </span>
                 <button
                   onClick={() => setInCombat(false)}
                   className="text-stone-500 hover:text-stone-900 text-xs font-bold bg-stone-100 hover:bg-stone-200 px-2.5 py-1 rounded-lg transition-colors border border-stone-200"
                 >
-                  ✕ Thoát
+                  {t.worldBoss.exit}
                 </button>
               </div>
 
@@ -372,21 +387,21 @@ export default function WorldBossRaidWidget({
                         <div className="relative">
                           <FinanceCharacterAvatar level={userLevel} equipments={equipments} size="sm" />
                           <span className="absolute -bottom-1 -right-1 text-[9px] font-black bg-emerald-500 text-white px-1.5 py-0.5 rounded-full shadow-xs">
-                            Lv.{userLevel}
+                            {format(t.worldBoss.levelShort, { level: userLevel })}
                           </span>
                         </div>
-                        <span className="text-[11px] font-extrabold text-stone-800 mt-1 truncate max-w-full">Chiến Binh</span>
+                        <span className="text-[11px] font-extrabold text-stone-800 mt-1 truncate max-w-full">{t.worldBoss.heroName}</span>
                         {/* Hero HP Bar */}
                         <div className="w-full bg-emerald-100 h-2 rounded-full overflow-hidden mt-1 border border-emerald-200">
                           <div className="bg-gradient-to-r from-emerald-500 to-teal-400 h-full transition-all duration-300" style={{ width: `${heroHp}%` }} />
                         </div>
-                        <span className="text-[9px] font-bold text-emerald-400 mt-0.5">{heroHp}/100 HP</span>
+                        <span className="text-[9px] font-bold text-emerald-400 mt-0.5">{format(t.worldBoss.heroHp, { hp: heroHp })}</span>
                       </motion.div>
 
                       {/* Center: VS & Damage Pop-up */}
                       <div className="flex flex-col items-center justify-center text-center relative">
                         <span className="w-9 h-9 rounded-full bg-gradient-to-br from-amber-500 to-red-500 text-white font-black text-sm flex items-center justify-center shadow-lg border border-amber-200 animate-pulse">
-                          VS
+                          {t.worldBoss.vs}
                         </span>
                         {lastDamageText && (
                           <motion.span
@@ -398,7 +413,7 @@ export default function WorldBossRaidWidget({
                             {lastDamageText}
                           </motion.span>
                         )}
-                        <span className="text-[9px] font-bold text-orange-600 mt-1">DMG: +{sessionDamage.toLocaleString()}</span>
+                        <span className="text-[9px] font-bold text-orange-600 mt-1">{format(t.worldBoss.sessionDamage, { value: sessionDamage.toLocaleString() })}</span>
                       </div>
 
                       {/* Right: 3D Wall Street Bull Boss */}
@@ -410,18 +425,18 @@ export default function WorldBossRaidWidget({
                         <div className="relative w-16 h-16 sm:w-20 sm:h-20 shrink-0">
                           <Image
                             src="/boss-wallstreet-bull.png"
-                            alt="Wall Street bull boss"
+                            alt={t.worldBoss.bossAlt}
                             width={80}
                             height={80}
                             className="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(245,158,11,0.5)]"
                           />
                         </div>
-                        <span className="text-[11px] font-extrabold text-orange-700 mt-0.5 truncate max-w-full">Trâu Phố Wall 3D</span>
+                        <span className="text-[11px] font-extrabold text-orange-700 mt-0.5 truncate max-w-full">{t.worldBoss.bossName}</span>
                         {/* Boss HP Bar */}
                         <div className="w-full bg-red-100 h-2 rounded-full overflow-hidden mt-1 border border-red-200">
                           <div className="bg-gradient-to-r from-red-600 via-amber-500 to-red-500 h-full transition-all duration-500" style={{ width: `${hpPercent}%` }} />
                         </div>
-                        <span className="text-[9px] font-bold text-red-400 mt-0.5">{hpPercent}% HP</span>
+                        <span className="text-[9px] font-bold text-red-400 mt-0.5">{format(t.worldBoss.bossHpPercent, { percent: hpPercent })}</span>
                       </motion.div>
                     </div>
                   </div>
@@ -461,15 +476,17 @@ export default function WorldBossRaidWidget({
               ) : (
                 <div className="text-center py-6 space-y-4">
                   <Trophy className="w-16 h-16 text-amber-400 mx-auto animate-bounce" />
-                  <h3 className="text-2xl font-black text-orange-600">KẾT THÚC ĐỢT SĂN BOSS!</h3>
+                  <h3 className="text-2xl font-black text-orange-600">{t.worldBoss.doneTitle}</h3>
                   <p className="text-sm text-stone-600">
-                    Bạn đã đóng góp tổng cộng <strong className="text-orange-600 text-base">+{sessionDamage.toLocaleString()} DMG</strong> vào Thanh Máu Server!
+                    {t.worldBoss.donePart1}
+                    <strong className="text-orange-600 text-base">{format(t.worldBoss.doneDamage, { value: sessionDamage.toLocaleString() })}</strong>
+                    {t.worldBoss.donePart2}
                   </p>
                   <button
                     onClick={() => setInCombat(false)}
                     className="w-full bg-gradient-to-r from-amber-500 to-red-600 text-white font-black py-3.5 rounded-xl hover:brightness-110 transition-all shadow-lg"
                   >
-                    Đóng & Xem Bảng Xếp Hạng
+                    {t.worldBoss.closeAndSeeBoard}
                   </button>
                 </div>
               )}

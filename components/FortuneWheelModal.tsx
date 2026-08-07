@@ -5,6 +5,9 @@ import { motion } from "framer-motion";
 import { X, Sparkles, Trophy, Award, RefreshCw } from "lucide-react";
 import { toast } from "sonner";
 import { createClient } from "@/lib/supabase";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
 interface FortuneWheelModalProps {
   userId: string;
@@ -12,18 +15,25 @@ interface FortuneWheelModalProps {
   onRewardClaimed?: (type: string, amount: number) => void;
 }
 
-const SECTORS = [
-  { label: "+50 Coins", emoji: "🪙", color: "#f59e0b", xp: 0, coins: 50 },
-  { label: "+30 XP CFA", emoji: "⚡", color: "#10b981", xp: 30, coins: 0 },
-  { label: "Champagne Wall St.", emoji: "🍷", color: "#8b5cf6", xp: 20, coins: 0 },
-  { label: "Thẻ VN30 Hiếm", emoji: "📇", color: "#0284c7", xp: 15, coins: 25 },
-  { label: "+100 Coins M&A", emoji: "🪙", color: "#eab308", xp: 0, coins: 100 },
-  { label: "Hợp Đồng M&A", emoji: "📜", color: "#ec4899", xp: 50, coins: 0 },
-  { label: "Rolex Executive", emoji: "⌚", color: "#6366f1", xp: 40, coins: 50 },
-  { label: "Thuốc X2 XP 24H", emoji: "🧪", color: "#14b8a6", xp: 60, coins: 0 },
-];
+// `label` is stored back to the caller via onRewardClaimed(prize.label, ...)
+// and shown in a toast - it is display text, not a persisted/looked-up key
+// (xp/coins carry the actual reward), so it is safe to translate.
+function buildSectors(t: Dictionary) {
+  return [
+    { label: t.fortuneWheel.sectorCoins50, emoji: "🪙", color: "#f59e0b", xp: 0, coins: 50 },
+    { label: t.fortuneWheel.sectorXp30Cfa, emoji: "⚡", color: "#10b981", xp: 30, coins: 0 },
+    { label: t.fortuneWheel.sectorChampagne, emoji: "🍷", color: "#8b5cf6", xp: 20, coins: 0 },
+    { label: t.fortuneWheel.sectorVn30Card, emoji: "📇", color: "#0284c7", xp: 15, coins: 25 },
+    { label: t.fortuneWheel.sectorCoins100Ma, emoji: "🪙", color: "#eab308", xp: 0, coins: 100 },
+    { label: t.fortuneWheel.sectorMaContract, emoji: "📜", color: "#ec4899", xp: 50, coins: 0 },
+    { label: t.fortuneWheel.sectorRolex, emoji: "⌚", color: "#6366f1", xp: 40, coins: 50 },
+    { label: t.fortuneWheel.sectorDoubleXpPotion, emoji: "🧪", color: "#14b8a6", xp: 60, coins: 0 },
+  ];
+}
 
 export default function FortuneWheelModal({ userId, onClose, onRewardClaimed }: FortuneWheelModalProps) {
+  const { t } = useI18n();
+  const SECTORS = React.useMemo(() => buildSectors(t), [t]);
   const [spinning, setSpinning] = useState(false);
   const [rotation, setRotation] = useState(0);
   const [wonSector, setWonSector] = useState<typeof SECTORS[0] | null>(null);
@@ -47,7 +57,7 @@ export default function FortuneWheelModal({ userId, onClose, onRewardClaimed }: 
       const prize = SECTORS[randomIndex];
       setWonSector(prize);
 
-      toast.success(`🎉 Chúc mừng! Bạn trúng ${prize.emoji} ${prize.label}!`);
+      toast.success(format(t.fortuneWheel.wonToast, { emoji: prize.emoji, label: prize.label }));
 
       // Update user DB
       if (userId) {
@@ -83,13 +93,13 @@ export default function FortuneWheelModal({ userId, onClose, onRewardClaimed }: 
         </button>
 
         <span className="text-xs font-black uppercase tracking-widest text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/40 px-3 py-1 rounded-full border border-amber-200 dark:border-amber-900">
-          🎡 Vòng Quay Wall Street
+          {t.fortuneWheel.badge}
         </span>
         <h2 className="text-xl font-black text-stone-900 dark:text-white mt-2">
-          Vòng Quay Vận Mây Phố Wall
+          {t.fortuneWheel.title}
         </h2>
         <p className="text-xs text-stone-500 dark:text-stone-400 mt-1">
-          Quay mỗi ngày để nhận Coins, XP và xa xỉ phẩm Wall Street!
+          {t.fortuneWheel.subtitle}
         </p>
 
         {/* Wheel Canvas Container */}
@@ -149,7 +159,7 @@ export default function FortuneWheelModal({ userId, onClose, onRewardClaimed }: 
             className="mb-4 bg-gradient-to-r from-amber-500/10 via-rose-500/10 to-amber-500/10 border border-amber-300 rounded-2xl p-3 text-stone-900 dark:text-white"
           >
             <p className="text-xs font-black">
-              🎁 Bạn vừa nhận được: <span className="text-amber-600 dark:text-amber-400">{wonSector.emoji} {wonSector.label}</span>
+              {t.fortuneWheel.receivedPrefix} <span className="text-amber-600 dark:text-amber-400">{wonSector.emoji} {wonSector.label}</span>
             </p>
           </motion.div>
         )}
@@ -167,7 +177,7 @@ export default function FortuneWheelModal({ userId, onClose, onRewardClaimed }: 
           }`}
         >
           <RefreshCw className={`w-4 h-4 ${spinning ? "animate-spin" : ""}`} />
-          {spinning ? "Đang quay..." : hasSpunToday ? "Đã quay hôm nay (Quay lại ngày mai)" : "QUAY NGAY HÔM NAY (MIỄN PHÍ)"}
+          {spinning ? t.fortuneWheel.spinning : hasSpunToday ? t.fortuneWheel.spunToday : t.fortuneWheel.spinNow}
         </button>
       </motion.div>
     </div>

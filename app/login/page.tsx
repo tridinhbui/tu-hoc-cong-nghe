@@ -11,6 +11,8 @@ import { stashReferralCodeFromUrl } from "@/lib/referrals";
 import Logo from "@/components/Logo";
 import TrackPreviewPanel from "@/components/login/TrackPreviewPanel";
 import { type TrackId } from "@/lib/tracks";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 const MAX_ATTEMPTS = 5;
 const COOLDOWN_MS = 60_000;
@@ -43,6 +45,7 @@ function safeNextPath(raw: string | null): string {
 }
 
 function LoginForm() {
+  const { t } = useI18n();
   const router = useRouter();
   const searchParams = useSearchParams();
   const supabase = createClient();
@@ -296,7 +299,7 @@ function LoginForm() {
             className="inline-flex items-center gap-1.5 text-xs font-bold text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
-            Về trang chủ
+            {t.login.backHome}
           </Link>
         </div>
 
@@ -310,31 +313,31 @@ function LoginForm() {
             <div className="max-w-xl">
               <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 dark:border-emerald-900 bg-emerald-50/80 dark:bg-emerald-950/30 px-3.5 py-1 text-[10px] font-extrabold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-400">
                 <Sparkles className="w-3.5 h-3.5" />
-                Miễn phí mãi mãi
+                {t.login.freeForever}
               </div>
 
               <h1 className="mt-3 text-3xl xl:text-4xl font-black tracking-tight text-stone-950 dark:text-stone-50 leading-[1.06] text-balance">
-                Học tài chính theo cách gọn, rõ và đủ động lực để theo lâu dài
+                {t.login.heroTitle}
               </h1>
               <p className="mt-2.5 max-w-lg text-xs sm:text-sm leading-relaxed text-stone-600 dark:text-stone-300">
-                Vào lại hành trình của bạn, tiếp tục đúng bài đang học dở và để hệ thống tự giữ nhịp bằng quiz, ghi chú và Spaced Repetition.
+                {t.login.heroBody}
               </p>
 
               <div className="mt-3.5 grid gap-2.5 sm:grid-cols-3">
                 <div className="rounded-2xl border border-stone-200/60 dark:border-stone-800/80 bg-white/82 dark:bg-stone-900/60 p-3 shadow-xs">
                   <ShieldCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-                  <p className="mt-2 text-xs font-bold text-stone-900 dark:text-stone-100">Không cần trả phí</p>
-                  <p className="mt-0.5 text-[11px] leading-relaxed text-stone-500 dark:text-stone-400">Học toàn bộ nội dung mà không cần thẻ.</p>
+                  <p className="mt-2 text-xs font-bold text-stone-900 dark:text-stone-100">{t.login.perk1Title}</p>
+                  <p className="mt-0.5 text-[11px] leading-relaxed text-stone-500 dark:text-stone-400">{t.login.perk1Body}</p>
                 </div>
                 <div className="rounded-2xl border border-stone-200/60 dark:border-stone-800/80 bg-white/82 dark:bg-stone-900/60 p-3 shadow-xs">
                   <BarChart3 className="w-4 h-4 text-sky-600 dark:text-sky-400" />
-                  <p className="mt-2 text-xs font-bold text-stone-900 dark:text-stone-100">Tiến độ thật</p>
-                  <p className="mt-0.5 text-[11px] leading-relaxed text-stone-500 dark:text-stone-400">Lưu bài học, XP, streak và thống kê học tập.</p>
+                  <p className="mt-2 text-xs font-bold text-stone-900 dark:text-stone-100">{t.login.perk2Title}</p>
+                  <p className="mt-0.5 text-[11px] leading-relaxed text-stone-500 dark:text-stone-400">{t.login.perk2Body}</p>
                 </div>
                 <div className="rounded-2xl border border-stone-200/60 dark:border-stone-800/80 bg-white/82 dark:bg-stone-900/60 p-3 shadow-xs">
                   <CheckCircle2 className="w-4 h-4 text-violet-600 dark:text-violet-400" />
-                  <p className="mt-2 text-xs font-bold text-stone-900 dark:text-stone-100">Đi từng chặng</p>
-                  <p className="mt-0.5 text-[11px] leading-relaxed text-stone-500 dark:text-stone-400">Không bị ngợp vì đã có lộ trình rõ ràng.</p>
+                  <p className="mt-2 text-xs font-bold text-stone-900 dark:text-stone-100">{t.login.perk3Title}</p>
+                  <p className="mt-0.5 text-[11px] leading-relaxed text-stone-500 dark:text-stone-400">{t.login.perk3Body}</p>
                 </div>
               </div>
 
@@ -342,8 +345,8 @@ function LoginForm() {
                 <div className="mb-2 flex items-center gap-2">
                   <Logo size={24} />
                   <div>
-                    <p className="text-xs font-bold text-stone-900 dark:text-stone-100">Chọn lộ trình rồi vào học ngay</p>
-                    <p className="text-[10px] text-stone-500 dark:text-stone-400">Bạn có thể đổi hướng học sau trong phần cài đặt.</p>
+                    <p className="text-xs font-bold text-stone-900 dark:text-stone-100">{t.login.trackPickTitle}</p>
+                    <p className="text-[10px] text-stone-500 dark:text-stone-400">{t.login.trackPickBody}</p>
                   </div>
                 </div>
                 <TrackPreviewPanel previewTrack={previewTrack} setPreviewTrack={setPreviewTrack} compact />
@@ -355,7 +358,7 @@ function LoginForm() {
             <div className="flex items-center gap-2 mb-3 lg:hidden">
               <Logo size={24} />
               <span className="text-xs font-bold text-stone-500 dark:text-stone-400 uppercase tracking-widest">
-                Tự Học Tài Chính
+                {t.login.brand}
               </span>
             </div>
 
@@ -369,20 +372,20 @@ function LoginForm() {
               <div className="p-5 sm:p-6 xl:p-7 space-y-3 font-sans">
                 <div className="lg:hidden rounded-2xl border border-emerald-100/80 dark:border-emerald-900 bg-gradient-to-r from-emerald-50/75 via-white/70 to-teal-50/70 dark:from-emerald-950/25 dark:via-stone-900/40 dark:to-teal-950/20 px-3.5 py-2.5 shadow-xs">
                   <p className="text-xs font-bold text-stone-900 dark:text-stone-100">
-                    Học {lessonCountFloor ?? 360}+ bài, 100% miễn phí, lưu tiến độ thật trên tài khoản của bạn.
+                    {format(t.login.lessonCountLine, { count: lessonCountFloor ?? 360 })}
                   </p>
                 </div>
 
                 <div>
                   <h1 className="text-xl sm:text-2xl font-black text-stone-900 dark:text-stone-100 mb-1">
-                    {mode === "login" ? "Đăng nhập" : mode === "signup" ? "Tạo tài khoản" : "Quên mật khẩu"}
+                    {mode === "login" ? t.login.modeLogin : mode === "signup" ? t.login.modeSignup : t.login.modeForgot}
                   </h1>
                   <p className="text-xs text-stone-500 dark:text-stone-400 leading-relaxed">
                     {mode === "login"
-                      ? "Quay lại dashboard, tiếp tục bài đang học và xem lại tiến độ của bạn."
+                      ? t.login.subLogin
                       : mode === "signup"
-                        ? "Bắt đầu hành trình học tài chính của riêng bạn chỉ trong chưa tới một phút."
-                        : "Nhập email để nhận link đặt lại mật khẩu và quay lại học tiếp."}
+                        ? t.login.subSignup
+                        : t.login.subForgot}
                   </p>
                 </div>
 
@@ -399,13 +402,13 @@ function LoginForm() {
                         <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
                         <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
                       </svg>
-                      Đăng nhập với Google
+                      {t.login.google}
                     </button>
 
                     <div className="relative flex items-center">
                       <div className="flex-1 border-t border-stone-100 dark:border-stone-800" />
                       <span className="px-3 text-[10px] text-stone-500 dark:text-stone-400 font-extrabold uppercase tracking-wider">
-                        Hoặc email
+                        {t.login.orEmail}
                       </span>
                       <div className="flex-1 border-t border-stone-100 dark:border-stone-800" />
                     </div>
@@ -415,13 +418,15 @@ function LoginForm() {
                 {mode === "forgot" ? (
                   resetSent ? (
                     <div className="bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-900 text-emerald-800 dark:text-emerald-400 text-xs font-semibold rounded-xl px-3.5 py-3 text-center">
-                      Đã gửi email tới <strong>{email}</strong>. Mở email và bấm vào link để đặt lại mật khẩu.
+                      {t.login.resetSentPart1}
+                      <strong>{email}</strong>
+                      {t.login.resetSentPart2}
                     </div>
                   ) : (
                     <form onSubmit={handleForgotPassword} className="space-y-3">
                       <div className="space-y-1">
                         <label className="text-[10px] font-black text-stone-600 dark:text-stone-400 uppercase tracking-wider block">
-                          Địa chỉ email
+                          {t.login.emailLabel}
                         </label>
                         <input
                           type="email"
@@ -443,7 +448,7 @@ function LoginForm() {
                         disabled={loading}
                         className="button-premium w-full bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 py-3 rounded-xl font-black text-xs sm:text-sm transition-all duration-200 disabled:opacity-60 mt-1 cursor-pointer"
                       >
-                        {loading ? "Đang gửi..." : "Gửi email đặt lại mật khẩu"}
+                        {loading ? t.login.sending : t.login.sendReset}
                       </button>
                     </form>
                   )
@@ -452,13 +457,13 @@ function LoginForm() {
                     {mode === "signup" && (
                       <div className="space-y-1">
                         <label className="text-[10px] font-black text-stone-600 dark:text-stone-400 uppercase tracking-wider block">
-                          Tên của bạn
+                          {t.login.nameLabel}
                         </label>
                         <input
                           type="text"
                           value={name}
                           onChange={(e) => setName(e.target.value)}
-                          placeholder="Nguyễn Văn A"
+                          placeholder={t.login.namePlaceholder}
                           className="input-premium w-full px-3.5 py-2 text-xs sm:text-sm text-stone-900 dark:text-stone-100 placeholder:text-stone-300 dark:placeholder:text-stone-600 dark:bg-stone-800 dark:border-stone-700 rounded-xl"
                         />
                       </div>
@@ -466,7 +471,7 @@ function LoginForm() {
 
                     <div className="space-y-1">
                       <label className="text-[10px] font-black text-stone-600 dark:text-stone-400 uppercase tracking-wider block">
-                        Địa chỉ email
+                        {t.login.emailLabel}
                       </label>
                       <input
                         type="email"
@@ -480,7 +485,7 @@ function LoginForm() {
                     <div className="space-y-1">
                       <div className="flex items-center justify-between">
                         <label className="text-[10px] font-black text-stone-600 dark:text-stone-400 uppercase tracking-wider block">
-                          Mật khẩu
+                          {t.login.passwordLabel}
                         </label>
                         {mode === "login" && (
                           <button
@@ -492,7 +497,7 @@ function LoginForm() {
                             }}
                             className="text-[11px] font-bold text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 hover:underline"
                           >
-                            Quên mật khẩu?
+                            {t.login.forgotLink}
                           </button>
                         )}
                       </div>
@@ -513,7 +518,7 @@ function LoginForm() {
 
                     {cooldownUntil && (
                       <div className="bg-amber-50 dark:bg-amber-950/50 border border-amber-200 dark:border-amber-900 text-amber-800 dark:text-amber-400 text-xs font-semibold rounded-xl px-3 py-2">
-                        Quá nhiều lần thử. Vui lòng đợi {cooldownLeft} giây rồi thử lại.
+                        {format(t.login.tooManyAttempts, { seconds: cooldownLeft })}
                       </div>
                     )}
 
@@ -522,7 +527,7 @@ function LoginForm() {
                       disabled={loading || !!cooldownUntil}
                       className="button-premium w-full bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 py-3 rounded-xl font-black text-xs sm:text-sm transition-all duration-200 disabled:opacity-60 mt-1 cursor-pointer"
                     >
-                      {loading ? "Đang xử lý..." : mode === "login" ? "Đăng nhập" : "Đăng ký"}
+                      {loading ? t.login.processing : mode === "login" ? t.login.modeLogin : t.login.signUp}
                     </button>
                   </form>
                 )}
@@ -531,30 +536,30 @@ function LoginForm() {
                   <div className="rounded-xl border border-stone-200/70 bg-stone-50/80 px-2.5 py-2 dark:border-stone-800 dark:bg-stone-950/35">
                     <div className="flex items-center gap-1.5">
                       <Star className="h-3.5 w-3.5 text-amber-400 shrink-0" />
-                      <p className="text-[9px] font-black uppercase text-stone-400 truncate">Đánh giá</p>
+                      <p className="text-[9px] font-black uppercase text-stone-400 truncate">{t.login.statRating}</p>
                     </div>
-                    <p className="mt-0.5 text-xs font-bold text-stone-900 dark:text-stone-100 truncate">4.9/5 học viên</p>
+                    <p className="mt-0.5 text-xs font-bold text-stone-900 dark:text-stone-100 truncate">{t.login.statRatingValue}</p>
                   </div>
                   <div className="rounded-xl border border-stone-200/70 bg-stone-50/80 px-2.5 py-2 dark:border-stone-800 dark:bg-stone-950/35">
                     <div className="flex items-center gap-1.5">
                       <Users2 className="h-3.5 w-3.5 text-emerald-500 shrink-0" />
-                      <p className="text-[9px] font-black uppercase text-stone-400 truncate">Bài học</p>
+                      <p className="text-[9px] font-black uppercase text-stone-400 truncate">{t.login.statLessons}</p>
                     </div>
-                    <p className="mt-0.5 text-xs font-bold text-stone-900 dark:text-stone-100 truncate">{lessonCountFloor ?? 360}+ bài</p>
+                    <p className="mt-0.5 text-xs font-bold text-stone-900 dark:text-stone-100 truncate">{format(t.login.statLessonsValue, { count: lessonCountFloor ?? 360 })}</p>
                   </div>
                   <div className="rounded-xl border border-stone-200/70 bg-stone-50/80 px-2.5 py-2 dark:border-stone-800 dark:bg-stone-950/35">
                     <div className="flex items-center gap-1.5">
                       <MessageCircleMore className="h-3.5 w-3.5 text-sky-500 shrink-0" />
-                      <p className="text-[9px] font-black uppercase text-stone-400 truncate">Hỗ trợ</p>
+                      <p className="text-[9px] font-black uppercase text-stone-400 truncate">{t.login.statSupport}</p>
                     </div>
-                    <p className="mt-0.5 text-xs font-bold text-stone-900 dark:text-stone-100 truncate">Hỏi đáp 24/7</p>
+                    <p className="mt-0.5 text-xs font-bold text-stone-900 dark:text-stone-100 truncate">{t.login.statSupportValue}</p>
                   </div>
                 </div>
 
                 <div className="text-center text-xs text-stone-600 dark:text-stone-400">
                   {mode === "login" ? (
                     <>
-                      Chưa có tài khoản?{" "}
+                      {t.login.noAccount}{" "}
                       <button
                         onClick={() => {
                           setMode("signup");
@@ -562,12 +567,12 @@ function LoginForm() {
                         }}
                         className="text-stone-900 dark:text-stone-100 font-bold hover:underline cursor-pointer"
                       >
-                        Đăng ký
+                        {t.login.signUp}
                       </button>
                     </>
                   ) : (
                     <>
-                      Đã có tài khoản?{" "}
+                      {t.login.haveAccount}{" "}
                       <button
                         onClick={() => {
                           setMode("login");
@@ -576,20 +581,20 @@ function LoginForm() {
                         }}
                         className="text-stone-900 dark:text-stone-100 font-bold hover:underline cursor-pointer"
                       >
-                        Đăng nhập
+                        {t.login.modeLogin}
                       </button>
                     </>
                   )}
                 </div>
 
                 <p className="text-center text-[10px] text-stone-400 dark:text-stone-500 pt-1">
-                  Bằng việc tiếp tục, bạn đồng ý với{" "}
+                  {t.login.termsPart1}{" "}
                   <Link href="/dieu-khoan" className="underline underline-offset-2 hover:text-stone-600 dark:hover:text-stone-400">
-                    Điều khoản sử dụng
+                    {t.login.terms}
                   </Link>{" "}
-                  và{" "}
+                  {t.login.termsAnd}{" "}
                   <Link href="/chinh-sach-bao-mat" className="underline underline-offset-2 hover:text-stone-600 dark:hover:text-stone-400">
-                    Chính sách bảo mật
+                    {t.login.privacy}
                   </Link>
                   .
                 </p>

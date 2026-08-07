@@ -5,6 +5,7 @@ import Link from "next/link";
 import { AlertCircle, ArrowRight, Sparkles } from "lucide-react";
 import { getUnresolvedMistakeRows, type QuizMistakeRow } from "@/lib/quiz-mistakes";
 import type { LessonMeta } from "@/lib/lesson-types";
+import { useI18n } from "@/lib/i18n/context";
 
 interface SmartRemediationWidgetProps {
   userId: string;
@@ -12,6 +13,7 @@ interface SmartRemediationWidgetProps {
 }
 
 export default function SmartRemediationWidget({ userId, lessonsMeta }: SmartRemediationWidgetProps) {
+  const { t } = useI18n();
   const [criticalMistake, setCriticalMistake] = useState<{
     row: QuizMistakeRow;
     lesson: LessonMeta;
@@ -59,18 +61,18 @@ export default function SmartRemediationWidget({ userId, lessonsMeta }: SmartRem
           <div>
             <div className="flex items-center gap-1.5 flex-wrap">
               <span className="text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-rose-100/60 dark:bg-rose-900/40 text-rose-700 dark:text-rose-400 border border-rose-200/40">
-                Thử thách khắc phục lỗi sai
+                {t.smartRemediation.badge}
               </span>
               <span className="text-[10px] font-extrabold text-amber-600 dark:text-amber-500 flex items-center gap-1">
-                <Sparkles className="w-3 h-3" /> x1.5 XP
+                <Sparkles className="w-3 h-3" /> {t.smartRemediation.xpBonus}
               </span>
             </div>
-            
+
             <h4 className="text-xs font-bold text-stone-900 dark:text-stone-100 mt-1.5 leading-snug">
-              Tài Tài phát hiện bạn làm sai {row.wrong_count} lần trong bài &quot;{lesson.title}&quot;
+              {t.smartRemediation.titlePart1} {row.wrong_count} {t.smartRemediation.titlePart2} &quot;{lesson.title}&quot;
             </h4>
             <p className="text-[10px] text-stone-500 dark:text-stone-400 mt-1 leading-relaxed">
-              Có vẻ bạn đang gặp khó khăn ở phần kiến thức này. Hãy ôn luyện lại bài học hoặc chơi mini-game để củng cố và nhận thưởng nhân hệ số XP!
+              {t.smartRemediation.description}
             </p>
           </div>
 
@@ -79,13 +81,13 @@ export default function SmartRemediationWidget({ userId, lessonsMeta }: SmartRem
               href={`/bai-hoc/${lesson.slug}`}
               className="inline-flex items-center gap-1 px-3 py-1.5 text-[10px] font-extrabold rounded-lg bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 hover:scale-105 active:scale-95 transition-all shadow-sm"
             >
-              Học lại ngay <ArrowRight className="w-3.5 h-3.5" />
+              {t.smartRemediation.reviewNow} <ArrowRight className="w-3.5 h-3.5" />
             </Link>
             <Link
               href="/game"
               className="inline-flex items-center gap-1 px-3 py-1.5 text-[10px] font-extrabold rounded-lg border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-stone-700 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-800 transition-all"
             >
-              Chơi game mini
+              {t.smartRemediation.playMiniGame}
             </Link>
           </div>
         </div>

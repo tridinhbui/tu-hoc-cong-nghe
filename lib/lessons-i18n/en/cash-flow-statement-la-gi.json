@@ -1,0 +1,161 @@
+{
+  "slug": "cash-flow-statement-la-gi",
+  "title": "What is the Cash Flow Statement?",
+  "subtitle": "The three sections of the cash flow statement",
+  "duration": "6 min",
+  "openingQuestion": "How many sections does the Cash Flow Statement split into?",
+  "openingOptions": [
+    "Three: Operating, Investing, Financing",
+    "There's no fixed number",
+    "Four sections",
+    "Two: in and out"
+  ],
+  "explanation": "The cash flow statement splits every movement of cash into three groups by source: core business operations, investment into long-term assets, and raising or repaying capital. The sign of these three lines taken together tells you what stage a business is in: positive operating, negative investing, negative financing is the portrait of a mature business that can feed itself and is now paying money back to the people who funded it.",
+  "diagram": [
+    { "label": "Cash from core business operations", "arrow": true },
+    { "label": "Plus cash from investing activities", "arrow": true },
+    { "label": "Plus cash from financing activities", "arrow": true },
+    { "label": "Gives the change in cash for the period - matching the balance sheet" }
+  ],
+  "realWorldExample": {
+    "company": "Hoa Phat Group (HPG)",
+    "description": "Hoa Phat's cash flow statement clearly separates the three lines: cash from selling steel and industrial products (Operating), cash spent building the Dung Quat steel complex (Investing - very large CapEx), and cash from bank loans to fund the project (Financing). Reading each part separately shows Hoa Phat is in a phase of aggressive expansion investment."
+  },
+  "quiz": [
+    {
+      "question": "Which section of the Cash Flow Statement matters most for judging long-term health?",
+      "options": [
+        "Operating Cash Flow",
+        "Investing Cash Flow (ICF)",
+        "The sum of all three sections",
+        "Financing Cash Flow"
+      ],
+      "explanation": "OCF (Operating Cash Flow) shows whether a business is genuinely generating cash from its core operations. Sustainably positive OCF means a healthy business."
+    },
+    {
+      "question": "Why isn't Net Income the only possible starting point for building a Cash Flow Statement - there's also a 'direct method' that starts from actual cash receipts and payments?",
+      "options": [
+        "Accounting standards actually recommend using the direct method much more strongly",
+        "The indirect method is easier to prepare from data already in the books",
+        "There's only one method allowed under current regulations",
+        "It starts from net revenue instead of net income"
+      ],
+      "explanation": "Both methods arrive at the same final Operating Cash Flow figure - they only differ in presentation. The indirect method (used by over 95% of companies) is easier to prepare because it reuses data already on the Income Statement and Balance Sheet."
+    },
+    {
+      "question": "What are the three sections of the Cash Flow Statement, in order?",
+      "options": [
+        "Assets, Liabilities, and Equity, like the balance sheet",
+        "Revenue, Expenses, and Profit, like the structure of a P&L",
+        "Operating, Investing, and Financing - in exactly this presentation order",
+        "Short-term, Long-term, and Unusual, split by the maturity of the cash flow"
+      ],
+      "explanation": "The three sections answer three different questions: is the core business generating or consuming cash, is the company investing or divesting assets, and is the cash coming from lenders or shareholders. Reading each separately tells you far more than the total figure alone."
+    },
+    {
+      "question": "Why is the Cash Flow Statement harder to 'dress up' than the income statement?",
+      "options": [
+        "Because every line item in the cash flow statement is verified by a bank",
+        "Because the cash flow statement is audited more thoroughly than the other two",
+        "Because regulation requires the cash flow statement to be filed earlier than the others",
+        "Because cash moving in or out of an account is a real event, leaving little room for accounting estimates"
+      ],
+      "explanation": "The P&L is full of estimates: when to recognise revenue, how many years to depreciate over, how large a provision to book. Cash either lands in the account or it doesn't. This is why experienced investors read cash flow first and profit second."
+    },
+    {
+      "question": "A company has positive Net Income but negative Operating Cash Flow for several quarters running. How should this be read?",
+      "options": [
+        "A warning sign - paper profit hasn't yet turned into real cash in hand",
+        "Normal, since Operating Cash Flow is always lower than Net Income every period",
+        "Good, since the company is reinvesting all of its profit into growth",
+        "No conclusion can be drawn without knowing what industry the company is in"
+      ],
+      "explanation": "A single off quarter could just be timing of collections. Several quarters in a row means that gap is a real story: customers aren't paying, inventory is piling up, or revenue is being recognised too early. This is the earliest warning sign of trouble."
+    },
+    {
+      "question": "Where does the indirect method start the Cash Flow Statement from?",
+      "options": [
+        "From the opening cash balance on the company's balance sheet",
+        "From Net Income, then adjusting for non-cash items and working capital",
+        "From total sales revenue actually collected in cash during the period",
+        "From bank borrowing, since that's usually the largest cash source in the period"
+      ],
+      "explanation": "It starts from Net Income and reverses everything accounting added or subtracted without any matching cash: adding back depreciation, subtracting the working-capital build-up. The result is the real cash generated by operations."
+    }
+  ],
+  "keyTakeaways": [
+    "3 sections: Operating, Investing, Financing",
+    "OCF = real cash from core operations - the most important one",
+    "Net Change in Cash = OCF + ICF + FCF"
+  ],
+  "practicePrompt": {
+    "question": "A company just borrowed an extra 200 billion from a bank (Financing), spent 150 billion on new machinery (Investing), and generated 300 billion in cash from sales minus costs (Operating). Which statement do these three numbers belong to, and what does their total tell you?",
+    "options": [
+      "All three belong to the P&L, and their sum is exactly the company's Net Income for the period",
+      "These three numbers belong to the three sections of the cash flow statement (Operating, Investing, Financing); their sum (300 - 150 + 200 = 350 billion) is the Net Change in Cash for the period",
+      "All three belong to the Balance Sheet and have no meaning when added together",
+      "Only the Operating figure matters - the other two don't need to be tracked on the financial statements at all"
+    ],
+    "explanation": "The cash flow statement has 3 sections: Operating (CFO), Investing (CFI), Financing (CFF). Net Change in Cash = OCF + ICF + FCF = 300 - 150 + 200 = 350 billion - the actual increase in cash for the period, a number that, unlike accounting Net Income, cannot be faked."
+  },
+  "summary": {
+    "keyIdea": "3 sections: Operating, Investing, Financing",
+    "commonMistake": "Reading a concept as a phrase to memorise rather than a principle to apply to real decisions.",
+    "action": "OCF = real cash from core operations - the most important one"
+  },
+  "application": {
+    "title": "Read and classify a company's three cash flows",
+    "message": "Open a company's Cash Flow Statement, note down the OCF, ICF, and FCF figures for the most recent period, then add them up yourself and check whether they match the Net Change in Cash the company reports.",
+    "secondary": "Adding it up and cross-checking yourself builds trust in the numbers you read, rather than just skimming them."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The P&L tells you whether a company is profitable. The Balance Sheet tells you what it owns and owes. But only the Cash Flow Statement answers the most practical question of all: is the cash in the company's account rising or falling, and why?"
+    },
+    { "type": "heading", "text": "Three cash flows, three different stories" },
+    {
+      "type": "paragraph",
+      "text": "Operating Cash Flow (OCF) records cash moving in/out from core operations: selling goods, paying wages, paying suppliers, paying tax. This is the business's 'heartbeat' - if OCF stays negative persistently, the business cannot sustain itself through its own operations."
+    },
+    {
+      "type": "paragraph",
+      "text": "Investing Cash Flow (ICF) records cash spent buying long-term assets (CapEx: plants, machinery), acquiring other companies (M&A), or cash received from selling assets or divesting. Financing Cash Flow (FCF) records cash from bank loans, bond issuance, new share issuance, principal repayment, share buybacks, and dividends paid."
+    },
+    { "type": "heading", "text": "Why split the three flows apart instead of combining them?" },
+    {
+      "type": "paragraph",
+      "text": "If you only look at the total Net Change in Cash, you won't know whether cash rose because business is good or because the company just took on more debt. A company whose cash rose by 500 billion could be a very good sign (strong OCF) or a very worrying one (only thanks to new borrowing, while OCF is negative). Splitting the three flows apart lets an investor correctly diagnose the source of any change in cash."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Operating (OCF) - cash from sales, paying operating costs, tax",
+        "Investing (ICF) - cash buying/selling long-term assets, M&A, investment securities",
+        "Financing (FCF) - cash from borrowing, repaying debt, issuing/buying back shares, dividends"
+      ]
+    },
+    {
+      "type": "conceptTable",
+      "title": "Cash Flow Statement structure",
+      "concepts": [
+        { "vi": "Dòng tiền hoạt động kinh doanh", "en": "Operating Cash Flow (OCF)", "def": "Cash generated by daily core business operations." },
+        { "vi": "Dòng tiền hoạt động đầu tư", "en": "Investing Cash Flow (ICF)", "def": "Cash spent/received from buying and selling long-term assets and financial investments." },
+        { "vi": "Dòng tiền hoạt động tài chính", "en": "Financing Cash Flow (FCF)", "def": "Cash from borrowing, issuing shares, paying dividends, and buybacks." },
+        { "vi": "Thay đổi tiền mặt ròng", "en": "Net Change in Cash", "def": "OCF + ICF + FCF = the change in the cash balance for the period." }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Three statements, one story",
+      "text": "The Cash Flow Statement doesn't replace the P&L or the Balance Sheet - it adds the 'real cash' perspective that the other two can't fully show because of accrual accounting. You need all three together for the complete picture."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The Cash Flow Statement has three lines: Operating, Investing, Financing - each telling its own story.",
+        "The next 20 lessons go deeper into each line, and explain why accounting profit isn't the same as having cash in hand."
+      ]
+    }
+  ]
+}

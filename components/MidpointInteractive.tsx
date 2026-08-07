@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import type { QuizQuestion } from "@/lib/lesson-types";
 import { useLessonCompletion } from "@/lib/lesson-completion-context";
 import { getMidpointDone, saveMidpointDone } from "@/lib/progress";
+import { useI18n } from "@/lib/i18n/context";
 
 interface MidpointInteractiveProps {
   question: QuizQuestion;
@@ -17,6 +18,7 @@ export default function MidpointInteractive({
   lessonId,
   onComplete,
 }: MidpointInteractiveProps) {
+  const { t } = useI18n();
   const [selected, setSelected] = useState<number | null>(null);
   const [submitted, setSubmitted] = useState(false);
   const lessonCompletion = useLessonCompletion();
@@ -46,9 +48,9 @@ export default function MidpointInteractive({
       className="bg-stone-50 dark:bg-stone-900/50 border-2 border-stone-200 dark:border-stone-800 rounded-2xl p-6 my-8"
     >
       <div className="flex items-center gap-2 mb-4">
-        <h3 className="text-base font-bold text-stone-900 dark:text-stone-100">Dừng & Kiểm tra</h3>
+        <h3 className="text-base font-bold text-stone-900 dark:text-stone-100">{t.finalOne.midpointInteractive.stopAndCheck}</h3>
         <span className="ml-auto text-xs font-bold text-stone-500 dark:text-stone-400 bg-stone-100 dark:bg-stone-800 px-3 py-1 rounded-full">
-          Điểm giữa bài
+          {t.finalOne.midpointInteractive.midpointBadge}
         </span>
       </div>
 
@@ -91,7 +93,7 @@ export default function MidpointInteractive({
           }}
           className="w-full bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 py-2.5 rounded-xl font-bold text-sm transition"
         >
-          Kiểm tra
+          {t.finalOne.midpointInteractive.checkButton}
         </button>
       )}
 
@@ -106,7 +108,7 @@ export default function MidpointInteractive({
           }`}
         >
           <p className={`font-bold ${isCorrect ? "text-emerald-900 dark:text-emerald-400" : "text-stone-900 dark:text-stone-100"}`}>
-            {isCorrect ? "Chính xác!" : "Chưa đúng - xem giải thích"}
+            {isCorrect ? t.finalOne.midpointInteractive.correct : t.finalOne.midpointInteractive.incorrect}
           </p>
           <p className={`text-sm mt-1 ${isCorrect ? "text-emerald-800 dark:text-emerald-400" : "text-stone-700 dark:text-stone-300"}`}>
             {question.explanation}
@@ -121,7 +123,7 @@ export default function MidpointInteractive({
             }}
             className="mt-3 text-sm font-bold text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 underline"
           >
-            Tiếp tục đọc →
+            {t.finalOne.midpointInteractive.continueReading}
           </button>
         </motion.div>
       )}

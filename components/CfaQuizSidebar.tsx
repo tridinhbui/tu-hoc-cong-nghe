@@ -3,6 +3,8 @@
 import { useState, type ReactNode } from "react";
 import Link from "next/link";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 // Visually identical to the regular lesson page's quiz sidebar
 // (components/LessonPageLayout.tsx:920-1153) - same progress dots, one
@@ -29,6 +31,7 @@ interface Props {
 const ACCENT = { bar: "bg-amber-500", btn: "bg-amber-600 hover:bg-amber-700" };
 
 export default function CfaQuizSidebar({ quiz, onFinish, nextModuleId }: Props) {
+  const { t } = useI18n();
   const [selected, setSelected] = useState<(number | null)[]>(new Array(quiz.length).fill(null));
   const [submitted, setSubmitted] = useState<boolean[]>(new Array(quiz.length).fill(false));
   const [results, setResults] = useState<boolean[]>(new Array(quiz.length).fill(false));
@@ -115,7 +118,7 @@ export default function CfaQuizSidebar({ quiz, onFinish, nextModuleId }: Props) 
           className="w-full flex items-center justify-between p-4 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
         >
           <div className="flex items-center gap-3">
-            <span className="text-base font-extrabold text-stone-900 dark:text-stone-100 uppercase tracking-wide">Kiểm tra nhanh</span>
+            <span className="text-base font-extrabold text-stone-900 dark:text-stone-100 uppercase tracking-wide">{t.cfaQuizSidebar.quickCheck}</span>
             <span className="text-base font-bold text-stone-700 dark:text-stone-300 bg-stone-100 dark:bg-stone-800 px-3 py-1 rounded-lg">
               {submittedCount}/{quiz.length}
             </span>
@@ -129,7 +132,7 @@ export default function CfaQuizSidebar({ quiz, onFinish, nextModuleId }: Props) 
                 <button
                   key={i}
                   onClick={() => viewQuestion(i)}
-                  title={submitted[i] ? "Xem lại câu này" : undefined}
+                  title={submitted[i] ? t.cfaQuizSidebar.reviewThisQuestion : undefined}
                   className={`flex-1 h-3 rounded-full transition-all cursor-pointer ${
                     submitted[i]
                       ? results[i]
@@ -152,7 +155,7 @@ export default function CfaQuizSidebar({ quiz, onFinish, nextModuleId }: Props) 
           <div>
             <div className="flex items-center justify-between mb-4">
               <span className="text-sm font-extrabold text-stone-700 dark:text-stone-300 uppercase tracking-wider bg-stone-100 dark:bg-stone-800 px-3 py-1 rounded-lg">
-                Câu {activeQ + 1} / {quiz.length}
+                {format(t.cfaQuizSidebar.questionCounter, { current: activeQ + 1, total: quiz.length })}
               </span>
               {qSubmitted && (
                 <span
@@ -162,7 +165,7 @@ export default function CfaQuizSidebar({ quiz, onFinish, nextModuleId }: Props) 
                       : "bg-rose-100 dark:bg-rose-950/50 text-rose-900 dark:text-rose-400"
                   }`}
                 >
-                  {qCorrect ? "✓ Đúng rồi!" : "✗ Chưa đúng"}
+                  {qCorrect ? t.cfaQuizSidebar.correctBadge : t.cfaQuizSidebar.incorrectBadge}
                 </span>
               )}
             </div>
@@ -208,12 +211,12 @@ export default function CfaQuizSidebar({ quiz, onFinish, nextModuleId }: Props) 
                   : "bg-rose-50 dark:bg-rose-950/50 border-rose-100 dark:border-rose-900 text-rose-800 dark:text-rose-400"
               }`}
             >
-              <p className="font-bold mb-1.5">{qCorrect ? "Chính xác!" : "Giải thích:"}</p>
+              <p className="font-bold mb-1.5">{qCorrect ? t.cfaQuizSidebar.correctExclaim : t.cfaQuizSidebar.explanationLabel}</p>
               {!qCorrect && qSelected !== null && (
                 <p className="mb-2 pb-2 border-b border-rose-200 dark:border-rose-900">
-                  <span className="font-semibold">Bạn chọn:</span> &quot;{q.options[qSelected]}&quot;
+                  <span className="font-semibold">{t.cfaQuizSidebar.youChose}</span> &quot;{q.options[qSelected]}&quot;
                   <br />
-                  <span className="font-semibold">Đáp án đúng:</span> &quot;{q.options[q.correct]}&quot;
+                  <span className="font-semibold">{t.cfaQuizSidebar.correctAnswer}</span> &quot;{q.options[q.correct]}&quot;
                 </p>
               )}
               <p>{q.explanation}</p>
@@ -229,7 +232,7 @@ export default function CfaQuizSidebar({ quiz, onFinish, nextModuleId }: Props) 
                   qSelected !== null ? ACCENT.btn : "bg-stone-200 dark:bg-stone-700 text-stone-500 dark:text-stone-400 cursor-not-allowed shadow-none"
                 }`}
               >
-                Kiểm tra →
+                {t.cfaQuizSidebar.checkCta}
               </button>
             ) : (
               <div className="flex gap-3">
@@ -238,7 +241,7 @@ export default function CfaQuizSidebar({ quiz, onFinish, nextModuleId }: Props) 
                     onClick={() => retry(activeQ)}
                     className="flex-1 py-4 rounded-xl font-bold text-sm uppercase tracking-wider border-2 border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-900 text-stone-700 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors cursor-pointer shadow-lg"
                   >
-                    Thử lại →
+                    {t.cfaQuizSidebar.retryCta}
                   </button>
                 )}
                 {reviewMode && finished ? (
@@ -246,14 +249,14 @@ export default function CfaQuizSidebar({ quiz, onFinish, nextModuleId }: Props) 
                     onClick={() => setReviewMode(false)}
                     className={`flex-1 py-4 rounded-xl font-bold text-sm uppercase tracking-wider text-white ${ACCENT.btn} cursor-pointer shadow-lg`}
                   >
-                    ← Quay lại kết quả
+                    {t.cfaQuizSidebar.backToResults}
                   </button>
                 ) : activeQ < quiz.length - 1 ? (
                   <button
                     onClick={() => setActiveQ(activeQ + 1)}
                     className={`flex-1 py-4 rounded-xl font-bold text-sm uppercase tracking-wider text-white ${ACCENT.btn} cursor-pointer shadow-lg`}
                   >
-                    Câu tiếp theo →
+                    {t.cfaQuizSidebar.nextQuestionCta}
                   </button>
                 ) : (
                   !reviewMode &&
@@ -262,7 +265,7 @@ export default function CfaQuizSidebar({ quiz, onFinish, nextModuleId }: Props) 
                       onClick={() => setFinished(true)}
                       className={`flex-1 py-4 rounded-xl font-bold text-sm uppercase tracking-wider text-white ${ACCENT.btn} cursor-pointer shadow-lg`}
                     >
-                      Xem kết quả →
+                      {t.cfaQuizSidebar.seeResultsCta}
                     </button>
                   )
                 )}
@@ -281,9 +284,9 @@ export default function CfaQuizSidebar({ quiz, onFinish, nextModuleId }: Props) 
         >
           <div className="text-5xl">{score === quiz.length ? "★" : score >= quiz.length * 0.7 ? "+" : "↑"}</div>
           <div>
-            <h3 className="font-bold text-stone-900 dark:text-stone-100 text-xl">Hoàn thành!</h3>
+            <h3 className="font-bold text-stone-900 dark:text-stone-100 text-xl">{t.cfaQuizSidebar.completedTitle}</h3>
             <p className="text-stone-500 dark:text-stone-400 text-sm mt-1">
-              {score}/{quiz.length} câu đúng
+              {format(t.cfaQuizSidebar.completedScore, { score, total: quiz.length })}
             </p>
           </div>
           <div className="flex gap-2 justify-center flex-wrap">
@@ -291,7 +294,7 @@ export default function CfaQuizSidebar({ quiz, onFinish, nextModuleId }: Props) 
               <button
                 key={i}
                 onClick={() => (ok ? viewQuestion(i) : retry(i))}
-                title={ok ? "Xem lại câu này" : "Thử lại câu này"}
+                title={ok ? t.cfaQuizSidebar.reviewThisQuestion : t.cfaQuizSidebar.retryThisQuestion}
                 className={`w-9 h-9 rounded-full text-sm flex items-center justify-center text-white font-bold cursor-pointer ${
                   ok ? "bg-emerald-500 hover:bg-emerald-600" : "bg-rose-400 hover:bg-rose-500"
                 }`}
@@ -305,21 +308,21 @@ export default function CfaQuizSidebar({ quiz, onFinish, nextModuleId }: Props) 
               href="/cfa"
               className="py-3.5 rounded-xl border border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-400 text-sm font-bold text-center hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
             >
-              Về CFA
+              {t.cfaQuizSidebar.backToCfa}
             </Link>
             {nextModuleId ? (
               <Link href={`/cfa/${nextModuleId}`} className={`py-3.5 rounded-xl text-white text-sm font-bold text-center ${ACCENT.btn} transition-colors`}>
-                Bài tiếp →
+                {t.cfaQuizSidebar.nextLessonCta}
               </Link>
             ) : (
-              <div className="py-3.5 rounded-xl bg-stone-100 dark:bg-stone-800 text-stone-500 dark:text-stone-400 text-sm font-bold text-center">Hết bài</div>
+              <div className="py-3.5 rounded-xl bg-stone-100 dark:bg-stone-800 text-stone-500 dark:text-stone-400 text-sm font-bold text-center">{t.cfaQuizSidebar.outOfLessons}</div>
             )}
           </div>
           <button
             onClick={restartQuiz}
             className="text-xs font-bold text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 uppercase tracking-wide transition-colors cursor-pointer"
           >
-            ↺ Làm lại từ đầu
+            {t.cfaQuizSidebar.restartFromStart}
           </button>
         </div>
       )}
@@ -327,7 +330,7 @@ export default function CfaQuizSidebar({ quiz, onFinish, nextModuleId }: Props) 
       {/* Mini nav between questions */}
       {(!finished || reviewMode) && quiz.length > 1 && (
         <div className="bg-white dark:bg-stone-900 rounded-2xl border border-stone-200 dark:border-stone-800 p-4">
-          <div className="text-xs text-stone-500 dark:text-stone-400 font-bold uppercase tracking-wide mb-3">Các câu hỏi</div>
+          <div className="text-xs text-stone-500 dark:text-stone-400 font-bold uppercase tracking-wide mb-3">{t.cfaQuizSidebar.questionsNav}</div>
           <div className="grid grid-cols-5 gap-2">
             {quiz.map((_, i) => (
               <button

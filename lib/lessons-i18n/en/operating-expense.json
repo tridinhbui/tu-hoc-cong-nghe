@@ -1,0 +1,213 @@
+{
+  "slug": "operating-expense",
+  "title": "Operating Expense: SG&A, R&D",
+  "subtitle": "Operating costs - sitting between Gross Profit and Operating Income",
+  "duration": "6 min",
+  "openingQuestion": "The CEO's salary, marketing expense, and office rent belong to which type of expense?",
+  "openingOptions": [
+    "SG&A (Selling, General & Administrative)",
+    "Not an expense at all",
+    "Both COGS and SG&A",
+    "COGS"
+  ],
+  "explanation": "Operating expenses feed the organisation itself rather than directly making the product: sales salaries, marketing, management salaries, office rent, plus research and development. What's worth noticing is that they should be read differently: administrative costs growing faster than revenue signals a bloating organisation, while slashing R&D makes this year's profit look better by borrowing against future years.",
+  "diagram": [
+    { "label": "Start from gross profit", "arrow": true },
+    { "label": "Subtract selling and administrative expense", "arrow": true },
+    { "label": "Subtract research and development expense", "arrow": true },
+    { "label": "What's left is operating income" }
+  ],
+  "realWorldExample": {
+    "company": "Mobile World (MWG)",
+    "description": "MWG is a textbook example of SG&A taking up a large share of a retailer's P&L: rent for thousands of stores, sales staff salaries, marketing, and supply-chain costs. During periods of weak consumer demand, MWG has had to actively close underperforming stores to cut SG&A, showing that operating leverage cuts both ways - margins improve quickly when revenue rises, but fixed SG&A eats into profit just as fast when revenue falls."
+  },
+  "quiz": [
+    {
+      "question": "What does Operating Expense (OpEx) include?",
+      "options": [
+        "SG&A, R&D, and depreciation - operating costs not tied directly to production",
+        "Only sales staff salaries and the marketing expense incurred during the period",
+        "Raw material costs and direct production labour wages",
+        "The company's entire cost base, including COGS and interest"
+      ],
+      "explanation": "OpEx = all operating costs other than COGS. It includes office salaries, marketing, R&D, depreciation, etc."
+    },
+    {
+      "question": "What does SG&A stand for?",
+      "options": [
+        "Sales Growth & Advertising - the extra revenue gained from ad spending during the period",
+        "Selling (sales, marketing), General (shared salaries, office), Administrative (admin, legal)",
+        "Direct material and labour cost, i.e. the core of COGS",
+        "Interest expense and tax, sitting below the Operating Income line"
+      ],
+      "explanation": "SG&A = selling + general + administrative. It makes up most of OpEx at retail/service companies."
+    },
+    {
+      "question": "What is R&D?",
+      "options": [
+        "Revenue & Distribution - the cost of shipping goods out to retailers and dealers during the period",
+        "Outsourced market-research spending, which always sits inside COGS",
+        "Research & Development - the cost of developing new products and improving existing ones",
+        "A capitalised investment that becomes an asset and never appears on the P&L"
+      ],
+      "explanation": "R&D = investment in the future. High at tech/pharma companies, low at retail/F&B."
+    },
+    {
+      "question": "A company has Gross Profit 600, OpEx 400. Operating Income = ?",
+      "options": [
+        "1,000 (= 600 + 400)",
+        "600 - OpEx has not been subtracted at this line yet",
+        "Cannot be calculated without knowing revenue",
+        "200 (= 600 - 400)"
+      ],
+      "explanation": "Operating Income (EBIT) = Gross Profit - OpEx = 600 - 400 = 200."
+    },
+    {
+      "question": "Is high OpEx good or bad?",
+      "options": [
+        "It depends: high while revenue is flat eats into margin, high on R&D can be a good investment",
+        "Always bad - every single dong of OpEx reduces the profit that ultimately belongs to shareholders",
+        "Always good - high OpEx shows the company is expanding scale quickly",
+        "No effect, since OpEx sits below the Operating Income line"
+      ],
+      "explanation": "High OpEx on marketing/sales builds future revenue. High OpEx on R&D builds future products. It isn't simply 'waste'."
+    },
+    {
+      "question": "If a company wants to improve its Operating Margin, what should it do?",
+      "options": [
+        "Borrow more to expand, since interest expense is subtracted before Operating Income is calculated for the period",
+        "Grow revenue, cut unnecessary OpEx, or hold OpEx steady while revenue grows",
+        "Shrink revenue so the OpEx-to-revenue ratio looks smaller",
+        "Shift part of OpEx into COGS, since COGS doesn't affect the operating margin"
+      ],
+      "explanation": "Operating Margin = Operating Income / Revenue. Growing operating profit or revenue both improve the margin."
+    },
+    {
+      "question": "Company A: Revenue 1000, COGS 400, SG&A 300, R&D 100. Operating Income = ?",
+      "options": [
+        "600 (= 1,000 - 400, subtracting only COGS)",
+        "500 (= 1,000 - 300 - 100 - 100)",
+        "200 (= 1,000 - 400 - 300 - 100)",
+        "300 (= 1,000 - 400 - 300, dropping R&D by treating it as an investment)"
+      ],
+      "explanation": "OI = Revenue - COGS - SG&A - R&D = 1000 - 400 - 300 - 100 = 200."
+    },
+    {
+      "question": "Cutting R&D spending to boost Operating Income in the short run - good or bad?",
+      "options": [
+        "Good - R&D isn't a mandatory cost, so cutting it is the right call",
+        "No effect, since R&D is capitalised and doesn't sit on this period's P&L",
+        "Good - cutting R&D raises both Operating Income and free cash flow over the long run",
+        "Bad - future products get weaker, trading long-term strength for short-term profit"
+      ],
+      "explanation": "Cutting R&D helps profit in the short term, but weakens the company's competitiveness and hurts it over the long run."
+    },
+    {
+      "question": "Why do accountants separate COGS from OpEx?",
+      "options": [
+        "COGS varies with revenue while OpEx is nearly fixed - separating them lets you measure operating leverage",
+        "Because accounting standards ban combining the two cost types into one line",
+        "Because COGS is tax-deductible while OpEx is not, requiring different tax treatment",
+        "Because COGS belongs to the operating cash flow line while OpEx belongs to investing"
+      ],
+      "explanation": "COGS moves with revenue (variable). OpEx changes little (fixed). The split is used to plan for Operating Leverage."
+    },
+    {
+      "question": "Is high Operating Leverage (OpEx large relative to revenue) a good thing?",
+      "options": [
+        "Always good, because high fixed costs always help a company withstand even a long economic downturn",
+        "Good when revenue is rising because margin improves quickly, dangerous when revenue falls",
+        "Always bad, because fixed costs remove flexibility across every business cycle",
+        "Unrelated to revenue - it only affects interest expense owed"
+      ],
+      "explanation": "High Operating Leverage: Revenue +10% → OI +20%. But Revenue -10% → OI -20%. Risk cuts in both directions."
+    },
+    {
+      "question": "Why is R&D often seen as an investment in the future rather than a pure expense, even though accounting still records it as Operating Expense for the current period?",
+      "options": [
+        "Because regulation requires R&D to be recorded differently from every other operating cost",
+        "Because R&D always generates profit within the same period, so it doesn't need to be capitalised",
+        "Because R&D's future benefit is too uncertain to capitalise reliably, so it's expensed immediately",
+        "Because R&D doesn't affect Net Income, only the balance sheet"
+      ],
+      "explanation": "Accounting standards are conservative: because the future benefit of R&D is too uncertain to measure reliably, it's expensed immediately rather than capitalised as an asset the way CapEx is - even though, economically, R&D is really a long-term investment."
+    }
+  ],
+  "keyTakeaways": [
+    "SG&A = indirect operating cost (selling + administration)",
+    "R&D = investment in the future, usually expensed right away",
+    "Operating Income = Gross Profit − SG&A − R&D"
+  ],
+  "practicePrompt": {
+    "question": "A software company spends 2 billion/year on the engineering team writing new product code (R&D) and 3 billion/year on sales, marketing, and management (SG&A). Where do both of these sit on the P&L, and what is the fundamental difference between them?",
+    "options": [
+      "Both sit inside COGS, since both are costs the company must incur to operate and sell its product",
+      "Both sit below Gross Profit as indirect operating costs; R&D is an investment in the future (usually expensed right away), while SG&A is the current cost of selling and managing the business",
+      "R&D is counted in COGS because it directly creates the product, while SG&A sits below Gross Profit as a separate item",
+      "There is no difference between R&D and SG&A - they're just two different names for the same type of cost"
+    ],
+    "explanation": "SG&A = indirect operating cost (selling + administration). R&D = investment in the future, usually expensed right away. Both sit below Gross Profit and are subtracted to calculate Operating Income = Gross Profit − SG&A − R&D."
+  },
+  "summary": {
+    "keyIdea": "SG&A = indirect operating cost (selling + administration)",
+    "commonMistake": "Reading a concept as a phrase to memorise rather than a principle to apply to real decisions.",
+    "action": "R&D = investment in the future, usually expensed right away"
+  },
+  "application": {
+    "title": "Tell SG&A and R&D apart in a real financial statement",
+    "message": "Open the financial statements of a technology or manufacturing company, find the SG&A and R&D lines, and read the notes (if available) to see whether the company is spending more on sales/management or on investing in its product.",
+    "secondary": "The balance between these two items says a lot about a company's strategy."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "After Gross Profit, a business still has to pay for the machinery running behind the product: the sales team, management, research and development. This is Operating Expense (OpEx) - the second layer of cost on the Income Statement."
+    },
+    { "type": "heading", "text": "SG&A: selling and administrative expense" },
+    {
+      "type": "paragraph",
+      "text": "SG&A (Selling, General & Administrative) is indirect cost not tied directly to producing each unit, split into two groups: Selling (commissions, marketing, sales team salaries) and General & Administrative (leadership salaries, office rent, accounting, legal). Unlike COGS, SG&A doesn't rise and fall in proportion to units sold."
+    },
+    { "type": "heading", "text": "R&D: an investment in the future, an expense today" },
+    {
+      "type": "paragraph",
+      "text": "Research & Development is spending invested in future products/technology. Economically, R&D behaves more like a long-term investment than an operating cost, but under accounting standards most R&D still has to be expensed in the period it's incurred (aside from certain conditionally capitalised software cases)."
+    },
+    { "type": "heading", "text": "Operating Income = Gross Profit − OpEx" },
+    {
+      "type": "paragraph",
+      "text": "Operating Income (often called EBIT) is the profit left after subtracting all SG&A and R&D from Gross Profit. This is a key metric for judging core operating efficiency, independent of how the company finances itself (debt or equity) and its applicable tax rate."
+    },
+    {
+      "type": "list",
+      "items": [
+        "SG&A: selling + management cost, usually relatively fixed in the short run.",
+        "R&D: investment in future products, usually expensed right away under conservative accounting.",
+        "Operating Leverage: with fixed SG&A, rising revenue improves margin faster than proportionally.",
+        "Compare OpEx/Revenue ratios across companies in the same industry to judge operating efficiency."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "A warning sign when analysing",
+      "text": "A company growing revenue while SG&A grows even faster is a sign of losing control of costs, or of burning cash to win market share - worth examining closely before concluding anything about the quality of that growth."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Operating Expense terminology",
+      "concepts": [
+        { "vi": "Chi phí bán hàng & quản lý doanh nghiệp", "en": "SG&A", "def": "Indirect cost of selling and running the management apparatus" },
+        { "vi": "Nghiên cứu và phát triển", "en": "R&D", "def": "Investment spending on developing new products/technology" },
+        { "vi": "Lợi nhuận hoạt động", "en": "Operating Income", "def": "Gross Profit minus all Operating Expense" },
+        { "vi": "Đòn bẩy hoạt động", "en": "Operating Leverage", "def": "How much faster profit swings than revenue because of fixed costs" }
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "OpEx is where management's operating discipline shows most clearly.",
+        "Next lesson: EBIT and Operating Income - why this metric matters when comparing companies with different capital structures."
+      ]
+    }
+  ]
+}

@@ -58,6 +58,9 @@ import StudyRoomWorld from "@/components/study-room/StudyRoomWorld";
 import { getEquippedGear } from "@/lib/supabase-equipment";
 import { colorForUser } from "@/lib/supabase-lobby";
 import type { CharacterEquipments } from "@/lib/rpg-items";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
 interface SessionUser {
   id: string;
@@ -77,6 +80,8 @@ interface GroupQuizQuestion {
 const REACTION_EMOJIS = ["👍", "❤️", "🔥", "🚀", "💡", "😂"];
 
 function Avatar({ name, avatarUrl, size = 36 }: { name?: string | null; avatarUrl?: string | null; size?: number }) {
+  // Sub-component, nên có useI18n() riêng thay vì luồn `t` qua prop.
+  const { t } = useI18n();
   const initials = (name || "U")
     .split(" ")
     .map((part) => part[0])
@@ -87,7 +92,7 @@ function Avatar({ name, avatarUrl, size = 36 }: { name?: string | null; avatarUr
   return isValidAvatar(avatarUrl) ? (
     <Image
       src={avatarUrl}
-      alt={name || "User"}
+      alt={name || t.studyGroups.memberRole}
       width={size}
       height={size}
       className="rounded-full object-cover border border-stone-200 dark:border-stone-700"
@@ -205,19 +210,25 @@ const rosterSignature = (members: StudyRoomMember[]) =>
  *  session - the "+15% XP" is flavour, so the only real state worth keeping is
  *  which ones this visitor has already touched, to stop the toast firing on
  *  every idle click. */
-const QUICK_CHEERS = [
-  { emoji: "👋", label: "Đập tay", message: "👋 Đập tay cổ vũ mọi người cùng học bài nào!" },
-  { emoji: "❤️", label: "Bắn tim", message: "❤️ Bắn tim yêu thương tiếp năng lượng học tập!" },
-  { emoji: "🔔", label: "Nhắc học", message: "🔔 Ới ời cả nhóm ơi vào làm bài thôi nào!" },
-  { emoji: "🔥", label: "Tiếp sức", message: "🔥 Tiếp sức cháy hết mình hôm nay!" },
-] as const;
+function quickCheersOf(t: Dictionary) {
+  const d = t.dataRest.studyGroupsClient.quickCheers;
+  return [
+    { emoji: "👋", label: d.clap.label, message: d.clap.message },
+    { emoji: "❤️", label: d.heart.label, message: d.heart.message },
+    { emoji: "🔔", label: d.reminder.label, message: d.reminder.message },
+    { emoji: "🔥", label: d.boost.label, message: d.boost.message },
+  ];
+}
 
-const HOLO_PYLONS = [
-  { id: "valuation", name: "Định Giá", icon: "🏰", angle: 42 },
-  { id: "trading", name: "Giao Dịch", icon: "🏛️", angle: 138 },
-  { id: "cashflow", name: "Dòng Tiền", icon: "⚓", angle: 222 },
-  { id: "fed", name: "Lãi Suất", icon: "⚡", angle: 318 },
-] as const;
+function holoPylonsOf(t: Dictionary) {
+  const d = t.dataRest.studyGroupsClient.holoPylons;
+  return [
+    { id: "valuation" as const, name: d.valuation, icon: "🏰", angle: 42 },
+    { id: "trading" as const, name: d.trading, icon: "🏛️", angle: 138 },
+    { id: "cashflow" as const, name: d.cashflow, icon: "⚓", angle: 222 },
+    { id: "fed" as const, name: d.fed, icon: "⚡", angle: 318 },
+  ];
+}
 
 // "Học cùng nhóm": small (default cap 5) topic-based groups, either
 // randomly matched into an open room or picked manually from the browse
@@ -228,6 +239,9 @@ const HOLO_PYLONS = [
 // weekly_rematch_study_rooms()) - the manual join/browse UI below stays as
 // the opt-out path for anyone who wants to switch mid-week.
 export default function StudyGroupsClient({ embedded = false }: { embedded?: boolean } = {}) {
+  const { t } = useI18n();
+  const quickCheers = useMemo(() => quickCheersOf(t), [t]);
+  const holoPylons = useMemo(() => holoPylonsOf(t), [t]);
   const router = useRouter();
   const supabase = createClient();
   const [user, setUser] = useState<SessionUser | null>(null);
@@ -433,12 +447,12 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
             setPomoMode("break");
             setPomoSeconds(5 * 60);
             if (myRoom?.room_id) void setStudyRoomPomodoro(myRoom.room_id, "break", false, 5 * 60, 5 * 60).catch(() => {});
-            toast.success("☕ Hết 25 phút học tập! Cả nhóm nghỉ giải lao 5 phút (+15 XP Tập trung nhóm)! 🎉");
+            toast.success(t.studyGroups.breakStarted);
           } else {
             setPomoMode("focus");
             setPomoSeconds(25 * 60);
             if (myRoom?.room_id) void setStudyRoomPomodoro(myRoom.room_id, "focus", false, 25 * 60, 25 * 60).catch(() => {});
-            toast.info("🎯 Hết giờ nghỉ! Bắt đầu phiên 25 phút tập trung tiếp theo!");
+            toast.info(t.studyGroups.focusStarted);
           }
           return 0;
         }
@@ -461,7 +475,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
         try { noiseSourceRef.current.stop(); } catch {}
       }
       setLofiPlaying(false);
-      toast.info("🔇 Đã tắt nhạc Focus Lofi");
+      toast.info(t.studyGroups.lofiOff);
       return;
     }
 
@@ -497,9 +511,9 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
         noiseSourceRef.current = noise;
       }
       setLofiPlaying(true);
-      toast.success(`🎧 Đã bật nhạc Focus [${lofiTrack.toUpperCase()}] Chill!`);
+      toast.success(format(t.studyGroups.lofiOn, { track: lofiTrack.toUpperCase() }));
     } catch {
-      toast.error("Không thể khởi chạy nhạc Lofi");
+      toast.error(t.studyGroups.lofiFailed);
     }
   };
 
@@ -584,11 +598,11 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
   const handlePylonClick = (id: string, name: string) => {
     setActiveMapNode(id);
     if (litPylons.has(id)) {
-      toast.info(`Trạm [${name}] đã được thắp sáng trong phiên này.`);
+      toast.info(format(t.studyGroups.stationLit, { name }));
       return;
     }
     setLitPylons((prev) => new Set(prev).add(id));
-    toast.success(`Đã kích hoạt trạm 3D [${name}]! +15% XP cho cả phòng.`);
+    toast.success(format(t.studyGroups.stationActivated, { name }));
   };
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -660,11 +674,11 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
 
     // One collapsed toast, not one per arrival: the Monday re-match can seat
     // four strangers at once, and four stacked toasts would bury the room.
-    const names = arrivals.map((m) => m.full_name || "Thành viên");
+    const names = arrivals.map((m) => m.full_name || t.studyGroups.memberRole);
     toast.success(
       names.length === 1
-        ? `${names[0]} vừa vào phòng học!`
-        : `${names.length} thành viên vừa vào phòng: ${names.join(", ")}`
+        ? format(t.studyGroups.arrivedOne, { name: names[0] })
+        : format(t.studyGroups.arrivedMany, { count: names.length, names: names.join(", ") })
     );
   }, []);
 
@@ -743,7 +757,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
       setRooms(list);
     } catch (error) {
       console.error("Error loading study rooms:", error);
-      toast.error(error instanceof Error ? error.message : "Không tải được danh sách phòng học");
+      toast.error(error instanceof Error ? error.message : t.studyGroups.roomsLoadFailed);
     } finally {
       setLoadingRooms(false);
     }
@@ -755,9 +769,9 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
       const sent = await sendRoomMessage(myRoom.room_id, user.id, text);
       setMessages((prev) => (prev.some((m) => m.id === sent.id) ? prev : [...prev, sent]));
       void refreshRoomEngagement(myRoom.room_id).catch(() => {});
-      toast.success("Đã gửi lời cổ vũ đến cả nhóm! 🎉");
+      toast.success(t.studyGroups.cheerSent);
     } catch {
-      toast.error("Không thể gửi lời cổ vũ");
+      toast.error(t.studyGroups.cheerFailed);
     }
   }
 
@@ -899,7 +913,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
       }
     } catch (error) {
       console.error("Error loading older messages:", error);
-      toast.error("Không tải được tin nhắn cũ");
+      toast.error(t.studyGroups.loadOlderFailed);
     } finally {
       setLoadingOlder(false);
     }
@@ -940,9 +954,9 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
     if (!text) return;
     try {
       await navigator.clipboard.writeText(text);
-      toast.success("Đã sao chép tin nhắn");
+      toast.success(t.chat.copied);
     } catch {
-      toast.error("Không sao chép được tin nhắn");
+      toast.error(t.chat.copyFailed);
     }
   }
 
@@ -950,9 +964,9 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
     try {
       const updated = await setRoomMessagePinned(msg.id, !msg.is_pinned);
       setMessages((prev) => prev.map((m) => (m.id === updated.id ? updated : m)));
-      toast.success(updated.is_pinned ? "Đã ghim tin nhắn" : "Đã bỏ ghim tin nhắn");
+      toast.success(updated.is_pinned ? t.studyGroups.pinned : t.studyGroups.unpinned);
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Không cập nhật được ghim");
+      toast.error(error instanceof Error ? error.message : t.studyGroups.pinFailed);
     }
   }
 
@@ -962,7 +976,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
       const next = await toggleStudyRoomReaction(myRoom.room_id, msgId, emoji);
       setReactions(next);
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Không thả reaction được");
+      toast.error(error instanceof Error ? error.message : t.studyGroups.reactionFailed);
     }
   };
 
@@ -971,9 +985,9 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
     try {
       await recordStudyRoomCheckin(myRoom.room_id, "manual");
       await refreshRoomEngagement(myRoom.room_id);
-      toast.success("Đã điểm danh hôm nay. Tiến độ nhiệm vụ nhóm đã cập nhật!");
+      toast.success(t.studyGroups.checkedIn);
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Không điểm danh được lúc này");
+      toast.error(error instanceof Error ? error.message : t.studyGroups.checkinFailed);
     }
   }
 
@@ -986,9 +1000,9 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
       const row = await setStudyRoomPomodoro(myRoom.room_id, pomoMode, nextRunning, duration, remaining);
       hydratePomodoro(row);
       if (nextRunning) void recordStudyRoomCheckin(myRoom.room_id, "pomodoro").catch(() => {});
-      toast.info(nextRunning ? "Đã bắt đầu Pomodoro sync cho cả phòng" : "Đã tạm dừng Pomodoro nhóm");
+      toast.info(nextRunning ? t.studyGroups.pomodoroSyncOn : t.studyGroups.pomodoroSyncOff);
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Không cập nhật được Pomodoro nhóm");
+      toast.error(error instanceof Error ? error.message : t.studyGroups.pomodoroSyncFailed);
     }
   }
 
@@ -1005,7 +1019,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
         toast.error(result.message);
       }
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Không mở được rương nhóm");
+      toast.error(error instanceof Error ? error.message : t.studyGroups.chestFailed);
     } finally {
       setClaimingReward(false);
     }
@@ -1020,9 +1034,9 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
       setStickyNotes((prev) => [note, ...prev]);
       setNewNoteText("");
       void refreshRoomEngagement(myRoom.room_id).catch(() => {});
-      toast.success("Đã dán ghi chú mới lên bảng nhóm!");
+      toast.success(t.studyGroups.noteAdded);
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Không lưu được ghi chú");
+      toast.error(error instanceof Error ? error.message : t.studyGroups.noteSaveFailed);
     }
   }
 
@@ -1030,9 +1044,9 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
     try {
       await deleteStudyRoomNote(noteId);
       setStickyNotes((prev) => prev.filter((note) => note.id !== noteId));
-      toast.success("Đã xóa ghi chú");
+      toast.success(t.studyGroups.noteDeleted);
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Không xóa được ghi chú");
+      toast.error(error instanceof Error ? error.message : t.studyGroups.noteDeleteFailed);
     }
   }
 
@@ -1049,20 +1063,20 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
       await recordStudyRoomQuizAttempt(myRoom.room_id, myRoom.topic, correct, groupQuizQuestions.length);
       await refreshRoomEngagement(myRoom.room_id);
       if (score >= 80) {
-        toast.success(`Quiz nhóm đạt ${score}%. Đã cộng tiến độ nhiệm vụ tuần!`);
+        toast.success(format(t.studyGroups.quizScoreGood, { score }));
       } else {
-        toast.info(`Quiz nhóm đạt ${score}%. Cứ làm tiếp, tiến độ quiz tuần vẫn được ghi nhận.`);
+        toast.info(format(t.studyGroups.quizScoreKeepGoing, { score }));
       }
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Không lưu được điểm quiz nhóm");
+      toast.error(error instanceof Error ? error.message : t.studyGroups.quizScoreSaveFailed);
     }
   }
 
   function memberRole(member: StudyRoomMember) {
-    if (member.user_id === roomLeaderId) return "Trưởng nhóm";
-    if (member.current_level >= 10) return "Mentor";
-    if (member.weekly_lessons >= 3) return "Tích cực";
-    return "Thành viên";
+    if (member.user_id === roomLeaderId) return t.studyGroups.roleLeader;
+    if (member.current_level >= 10) return t.studyGroups.roleMentor;
+    if (member.weekly_lessons >= 3) return t.studyGroups.roleActive;
+    return t.studyGroups.memberRole;
   }
 
   async function handleSendMessage() {
@@ -1076,9 +1090,9 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
         setMessages((prev) => prev.map((m) => (m.id === updated.id ? updated : m)));
         setMessageInput("");
         setEditingMessage(null);
-        toast.success("Đã chỉnh sửa tin nhắn");
+        toast.success(t.chat.edited);
       } catch (error) {
-        toast.error(error instanceof Error ? error.message : "Không sửa được tin nhắn");
+        toast.error(error instanceof Error ? error.message : t.studyGroups.messageEditFailed);
       } finally {
         setSendingMessage(false);
       }
@@ -1097,7 +1111,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
         const botMessage = await requestStudyRoomBot(myRoom.room_id, rawContent);
         setMessages((prev) => (prev.some((m) => m.id === botMessage.id) ? prev : [...prev, botMessage]));
       } catch (error) {
-        toast.error(error instanceof Error ? error.message : "Không gọi được Tài Tài");
+        toast.error(error instanceof Error ? error.message : t.studyGroups.taitaiFailed);
       } finally {
         setSendingMessage(false);
       }
@@ -1185,10 +1199,10 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
     trackFeatureClick("study_room_random_match", { label: topic });
     try {
       await joinOrCreateStudyRoom(topic);
-      toast.success("Đã ghép bạn vào một phòng học ngẫu nhiên!");
+      toast.success(t.studyGroups.matched);
       await refreshMyRoom();
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Không thể ghép nhóm lúc này");
+      toast.error(error instanceof Error ? error.message : t.studyGroups.matchFailed);
     } finally {
       setBusy(false);
     }
@@ -1200,10 +1214,10 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
     trackFeatureClick("study_room_manual_join", { label: String(roomId) });
     try {
       await joinStudyRoom(roomId);
-      toast.success("Đã tham gia phòng học!");
+      toast.success(t.studyGroups.joined);
       await refreshMyRoom();
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Không thể tham gia phòng này");
+      toast.error(error instanceof Error ? error.message : t.studyGroups.joinFailed);
     } finally {
       setBusy(false);
     }
@@ -1214,14 +1228,14 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
     setBusy(true);
     try {
       await leaveStudyRoom();
-      toast.success("Đã rời phòng học");
+      toast.success(t.studyGroups.left);
       setMyRoom(null);
       seenMemberIdsRef.current = null;
       rosterSignatureRef.current = null;
       setMyRoomMembers([]);
       await refreshBrowseList(browseTopic);
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Không thể rời phòng lúc này");
+      toast.error(error instanceof Error ? error.message : t.studyGroups.leaveFailed);
     } finally {
       setBusy(false);
     }
@@ -1235,7 +1249,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
   if (loading) {
     return (
       <div className={`${embedded ? "min-h-[320px]" : "min-h-screen bg-white dark:bg-stone-950"} flex items-center justify-center`}>
-        <p className="text-stone-500 dark:text-stone-400">Đang tải...</p>
+        <p className="text-stone-500 dark:text-stone-400">{t.studyGroups.loading}</p>
       </div>
     );
   }
@@ -1247,17 +1261,17 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
         <div className="max-w-4xl mx-auto px-6 py-4">
           <Link href="/dashboard" className="inline-flex items-center gap-1.5 text-sm font-bold text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg px-3 py-2 -ml-3 transition-colors">
             <ArrowLeft className="w-4 h-4" />
-            Quay lại
+            {t.studyGroups.back}
           </Link>
-          <h1 className="text-xl font-bold text-stone-900 dark:text-stone-100 mt-2">Học cùng nhóm</h1>
+          <h1 className="text-xl font-bold text-stone-900 dark:text-stone-100 mt-2">{t.studyGroups.title}</h1>
           <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
-            Ghép ngẫu nhiên với người lạ hoặc tự chọn phòng để cùng học chung một chủ đề, đua mục tiêu XP mỗi tuần.
+            {t.studyGroups.subtitle}
           </p>
         </div>
       </div>
       )}
 
-      <div className={`${embedded ? "h-full flex flex-col overflow-hidden" : "max-w-7xl mx-auto px-3 sm:px-4 py-3 min-h-[calc(100vh-4rem)] flex flex-col font-sans"}`}>
+      <div className={`${embedded ? "flex flex-col lg:h-full lg:overflow-hidden" : "max-w-7xl mx-auto px-3 sm:px-4 py-3 min-h-[calc(100vh-4rem)] flex flex-col font-sans"}`}>
         {myRoom ? (
           <div className="h-full flex flex-col min-h-0 space-y-3">
             {/* Top Room Info, Lofi Audio & Mobile Segmented Tab Bar */}
@@ -1268,7 +1282,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 </span>
                 <div className="min-w-0">
                   <h2 className="text-xs sm:text-sm font-black text-stone-900 dark:text-stone-100 truncate">
-                    Phòng {topicLabel(myRoom.topic)} · {myRoom.member_count}/{myRoom.max_members} thành viên
+                    {format(t.studyGroups.roomHeader, { topic: topicLabel(myRoom.topic), count: myRoom.member_count, max: myRoom.max_members })}
                   </h2>
                   <div className="flex items-center gap-2 mt-0.5">
                     <div className="w-20 sm:w-32 h-2 rounded-full bg-stone-100 dark:bg-stone-800 overflow-hidden">
@@ -1278,7 +1292,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                       />
                     </div>
                     <span className="text-[10px] font-extrabold text-emerald-600 dark:text-emerald-400 shrink-0">
-                      {myRoom.weekly_xp_progress}/{myRoom.weekly_xp_goal} XP
+                      {format(t.studyGroups.xpProgress, { current: myRoom.weekly_xp_progress, goal: myRoom.weekly_xp_goal })}
                     </span>
                   </div>
                 </div>
@@ -1289,7 +1303,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 {/* ⏱️ Group Co-Pomodoro Timer Widget */}
                 <div className="flex items-center gap-1.5 bg-stone-100 dark:bg-stone-800 px-2.5 py-1 rounded-xl border border-stone-200 dark:border-stone-700 text-[10px] font-mono font-black">
                   <span className={pomoRunning ? "animate-pulse text-emerald-500" : "text-amber-500"}>
-                    {pomoMode === "focus" ? "🎯 25m" : "☕ 5m"}
+                    {pomoMode === "focus" ? t.studyGroups.pomodoroFocus : t.studyGroups.pomodoroBreak}
                   </span>
                   <span className="text-stone-900 dark:text-stone-100 font-extrabold">{formatPomoTime(pomoSeconds)}</span>
                   <button
@@ -1297,7 +1311,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                     onClick={() => void handleTogglePomodoro()}
                     className="ml-0.5 text-[9px] font-black uppercase text-emerald-600 dark:text-emerald-400 hover:underline cursor-pointer"
                   >
-                    {pomoRunning ? "Tạm dừng" : "Bắt đầu"}
+                    {pomoRunning ? t.studyGroups.pomodoroPause : t.studyGroups.pomodoroStart}
                   </button>
                 </div>
                 {/* 🎧 Lofi Chill Focus Audio Button */}
@@ -1309,10 +1323,10 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                       ? "bg-emerald-500 text-white border-emerald-400 animate-pulse shadow-xs"
                       : "bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 border-stone-200 dark:border-stone-700 hover:bg-stone-200"
                   }`}
-                  title="Bật/Tắt nhạc Lofi Chill tập trung"
+                  title={t.studyGroups.lofiToggleTitle}
                 >
                   <span>🎧</span>
-                  <span className="hidden sm:inline">{lofiPlaying ? "Nhạc Lofi: Đang phát" : "Nhạc Lofi Chill"}</span>
+                  <span className="hidden sm:inline">{lofiPlaying ? t.studyGroups.lofiPlaying : t.studyGroups.lofiIdle}</span>
                 </button>
 
                 {/* 🎙️ Voice chat - opt in, then unmute. Two separate steps on
@@ -1329,28 +1343,28 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                           ? "bg-emerald-600 text-white border-emerald-500"
                           : "bg-stone-100 dark:bg-stone-800 text-stone-500 dark:text-stone-400 border-stone-200 dark:border-stone-700"
                       }`}
-                      title="Bật/Tắt Micro"
+                      title={t.studyGroups.micToggleTitle}
                     >
                       <span>{voice.micEnabled ? "🎙️" : "🔇"}</span>
-                      <span className="hidden md:inline">{voice.micEnabled ? "Mic: Mở" : "Mic: Tắt"}</span>
+                      <span className="hidden md:inline">{voice.micEnabled ? t.studyGroups.micOn : t.studyGroups.micOff}</span>
                     </button>
                     <button
                       type="button"
                       onClick={() => void voice.leave()}
                       className="inline-flex items-center gap-1 px-2 py-1 rounded-xl text-[10px] font-extrabold border bg-rose-500 text-white border-rose-400 transition-all cursor-pointer"
-                      title="Rời voice"
+                      title={t.studyGroups.leaveVoiceTitle}
                     >
                       <span>📴</span>
-                      <span className="hidden md:inline">Rời voice ({voice.participantIds.length})</span>
+                      <span className="hidden md:inline">{format(t.studyGroups.leaveVoice, { count: voice.participantIds.length })}</span>
                     </button>
                     {voice.needsAudioUnlock && (
                       <button
                         type="button"
                         onClick={() => void voice.unlockAudio()}
                         className="inline-flex items-center gap-1 px-2 py-1 rounded-xl text-[10px] font-extrabold border bg-amber-500 text-stone-950 border-amber-400 animate-pulse cursor-pointer"
-                        title="Trình duyệt đang chặn tự phát âm thanh"
+                        title={t.studyGroups.autoplayBlockedTitle}
                       >
-                        🔈 Bấm để nghe
+                        {t.studyGroups.autoplayBlocked}
                       </button>
                     )}
                   </>
@@ -1366,17 +1380,17 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                     }`}
                     title={
                       voice.status === "unavailable"
-                        ? "Voice chưa được cấu hình trên máy chủ"
-                        : "Vào kênh thoại của phòng (mic tắt sẵn)"
+                        ? t.studyGroups.voiceUnavailableTitle
+                        : t.studyGroups.voiceJoinTitle
                     }
                   >
                     <span>🎙️</span>
                     <span className="hidden md:inline">
                       {voice.status === "connecting"
-                        ? "Đang vào..."
+                        ? t.studyGroups.voiceJoining
                         : voice.status === "unavailable"
-                        ? "Voice chưa bật"
-                        : "Vào voice"}
+                        ? t.studyGroups.voiceDisabled
+                        : t.studyGroups.voiceJoin}
                     </span>
                   </button>
                 )}
@@ -1390,7 +1404,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                       mobileTab === "3d" ? "bg-white dark:bg-stone-900 text-emerald-600 dark:text-emerald-400 shadow-xs" : "text-stone-500"
                     }`}
                   >
-                    🛋️ Bàn 3D
+                    {t.studyGroups.tab3d}
                   </button>
                   <button
                     type="button"
@@ -1399,7 +1413,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                       mobileTab === "chat" ? "bg-white dark:bg-stone-900 text-emerald-600 dark:text-emerald-400 shadow-xs" : "text-stone-500"
                     }`}
                   >
-                    💬 Chat
+                    {t.studyGroups.tabChat}
                   </button>
                 </div>
 
@@ -1409,7 +1423,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                   className="inline-flex items-center gap-1 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-xl border border-stone-200 dark:border-stone-800 text-xs font-bold text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors disabled:opacity-60 cursor-pointer"
                 >
                   <LogOut className="w-3.5 h-3.5" />
-                  <span className="hidden sm:inline">Rời phòng</span>
+                  <span className="hidden sm:inline">{t.studyGroups.leaveRoom}</span>
                 </button>
               </div>
             </div>
@@ -1422,13 +1436,15 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 </span>
                 <div>
                   <p className="flex flex-wrap items-center gap-1.5 font-extrabold text-stone-900 dark:text-stone-100">
-                    <span>Nhiệm vụ tuần của phòng học</span>
+                    <span>{t.studyGroups.questsTitle}</span>
                     <span className="text-[10px] font-black text-amber-700 dark:text-amber-300 bg-amber-100 dark:bg-amber-950/80 px-2 py-0.5 rounded-full border border-amber-300 dark:border-amber-800">
-                      {isPermanentRoom ? "Nhóm vĩnh viễn" : `${groupStreakWeeks}/3 tuần streak`}
+                      {isPermanentRoom
+                        ? t.studyGroups.permanentGroup
+                        : format(t.studyGroups.streakWeeks, { weeks: groupStreakWeeks })}
                     </span>
                   </p>
                   <p className="text-stone-600 dark:text-stone-300 text-[11px] leading-tight mt-0.5">
-                    Hoàn thành 3 nhiệm vụ để mở rương nhóm. Nhắn chat, dán note, làm quiz hoặc bật Pomodoro đều được tính là hoạt động nhóm.
+                    {t.studyGroups.questsHint}
                   </p>
                 </div>
               </div>
@@ -1437,14 +1453,14 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 onClick={() => void handleManualCheckin()}
                 className="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-black transition-all shadow-xs cursor-pointer shrink-0 active:scale-95 flex items-center gap-1"
               >
-                <span>👋 Bấm điểm danh ngay</span>
+                <span>{t.studyGroups.checkInNow}</span>
               </button>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5">
               {missions.length === 0 ? (
                 <div className="md:col-span-3 rounded-2xl border border-dashed border-stone-300 dark:border-stone-700 bg-stone-50 dark:bg-stone-900 px-4 py-3 text-xs font-bold text-stone-500 dark:text-stone-400">
-                  Chưa có dữ liệu nhiệm vụ tuần. Sau khi chạy migration mới, tiến độ sẽ tự lấy từ Supabase.
+                  {t.studyGroups.questsEmpty}
                 </div>
               ) : (
                 missions.map((mission) => {
@@ -1476,7 +1492,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
             </div>
 
             {/* Main 2-Column Split View */}
-            <div className="flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-4 overflow-hidden">
+            <div className="grid grid-cols-1 gap-3 sm:gap-4 lg:grid-cols-12 lg:flex-1 lg:min-h-0 lg:overflow-hidden">
               {/* LEFT COLUMN: 3D Spatial Table Stage 80% Viewport Height with Mouse Wheel Zoom */}
               {/* Ở chế độ đi lại, KHÔNG gắn các handler xoay phòng: chúng và
                   camera quỹ đạo của cảnh three.js cùng nghe một cú kéo chuột,
@@ -1496,8 +1512,8 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 role="group"
                 aria-label={
                   walkMode
-                    ? "Phòng học 3D đi lại được. Dùng W và S để đi, A và D để xoay người, hoặc bốn nút mũi tên ở góc dưới bên phải."
-                    : "Phòng học 3D. Dùng phím mũi tên để xoay phòng, phím cộng và trừ để phóng to thu nhỏ, phím số 0 để đặt lại góc nhìn."
+                    ? t.studyGroups.stageAriaWalk
+                    : t.studyGroups.stageAriaDesk
                 }
                 className={`lg:col-span-7 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400 ${
                   mobileTab === "3d" ? "flex" : "hidden lg:flex"
@@ -1521,7 +1537,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 <div className="relative z-30 mb-1 flex shrink-0 flex-wrap items-center justify-between gap-1.5">
                   <div className="flex min-w-0 flex-wrap items-center gap-1.5 sm:gap-2">
                     <span className="max-w-full truncate text-[10px] font-black uppercase tracking-widest text-emerald-300 bg-emerald-950/80 px-2.5 py-0.5 rounded-full border border-emerald-500/40 backdrop-blur-md">
-                      {walkMode ? "🚶 PHÒNG ĐI LẠI" : "🌐 BÀN HỌC 3D"}
+                      {walkMode ? t.studyGroups.modeWalk : t.studyGroups.modeDesk}
                       {/* Chủ đề và buổi trong ngày là thông tin phụ: trên màn
                           hẹp chúng đẩy cả hàng vỡ ra, và cả hai đều đã hiện ở
                           chỗ khác trong trang. */}
@@ -1537,9 +1553,9 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                         setWalkMode((prev) => !prev);
                       }}
                       className="text-[9px] font-bold text-emerald-200 bg-emerald-950/80 hover:bg-emerald-900 px-2 py-0.5 rounded-full border border-emerald-500/40 transition-all cursor-pointer"
-                      title={walkMode ? "Chuyển về bàn học nhìn từ ngoài" : "Vào phòng và đi lại được"}
+                      title={walkMode ? t.studyGroups.viewDeskTitle : t.studyGroups.viewWalkTitle}
                     >
-                      {walkMode ? "🪑 Xem bàn học" : "🚶 Vào phòng đi lại"}
+                      {walkMode ? t.studyGroups.viewDesk : t.studyGroups.viewWalk}
                     </button>
                     {!walkMode && (
                       <button
@@ -1549,25 +1565,25 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                           resetCamera();
                         }}
                         className="text-[9px] font-bold text-stone-300 bg-stone-900/90 hover:bg-stone-800 px-2 py-0.5 rounded-full border border-stone-700 transition-all cursor-pointer"
-                        title="Đặt lại góc 3D và độ Zoom"
-                        aria-label={`Đặt lại góc nhìn 3D và độ phóng, hiện tại ${Math.round(zoom3D * 100)} phần trăm`}
+                        title={t.studyGroups.resetViewTitle}
+                        aria-label={format(t.studyGroups.resetViewAria, { zoom: Math.round(zoom3D * 100) })}
                       >
-                        🔄 Góc & Zoom ({Math.round(zoom3D * 100)}%)
+                        {format(t.studyGroups.resetView, { zoom: Math.round(zoom3D * 100) })}
                       </button>
                     )}
                   </div>
 
                   {/* Quick Cheer Actions Bar */}
                   <div className="flex shrink-0 items-center gap-0.5 rounded-xl border border-stone-800 bg-stone-900/90 px-1.5 py-0.5 shadow-xs backdrop-blur-md sm:gap-1 sm:px-2">
-                    <span className="text-[9px] font-bold text-stone-400 mr-1 hidden sm:inline">Cổ vũ:</span>
-                    {QUICK_CHEERS.map((cheer) => (
+                    <span className="text-[9px] font-bold text-stone-400 mr-1 hidden sm:inline">{t.studyGroups.cheerLabel}</span>
+                    {quickCheers.map((cheer) => (
                       <button
                         key={cheer.emoji}
                         type="button"
                         onClick={() => void handleQuickCheer(cheer.message)}
                         className="cursor-pointer p-0.5 text-xs transition-transform hover:scale-125 sm:p-1"
                         title={`${cheer.label} ${cheer.emoji}`}
-                        aria-label={`Gửi lời cổ vũ: ${cheer.label}`}
+                        aria-label={format(t.studyGroups.cheerAria, { label: cheer.label })}
                       >
                         {cheer.emoji}
                       </button>
@@ -1592,7 +1608,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                     <StudyRoomWorld
                       roomId={myRoom.room_id}
                       userId={user.id}
-                      name={myMemberRow?.full_name || "Bạn"}
+                      name={myMemberRow?.full_name || t.studyGroups.noteAuthorYou}
                       avatarUrl={myMemberRow?.avatar_url ?? null}
                       level={myMemberRow?.current_level ?? 1}
                       weeklyLessons={myMemberRow?.weekly_lessons ?? 0}
@@ -1605,7 +1621,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                       gear={gear}
                       members={myRoomMembers.map((m) => ({
                         userId: m.user_id,
-                        name: m.full_name || "Thành viên",
+                        name: m.full_name || t.studyGroups.memberRole,
                         avatarUrl: m.avatar_url,
                         color: colorForUser(m.user_id),
                         level: m.current_level,
@@ -1634,10 +1650,10 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                       instead of shimmering as the room turns. */}
                   <div className="absolute left-0 bottom-0 z-30 w-40 rounded-2xl border border-emerald-400/40 bg-stone-950/85 backdrop-blur-md px-3 py-2.5 text-center shadow-[0_0_28px_rgba(16,185,129,0.25)]">
                     <p className="text-[9px] font-black uppercase tracking-[0.18em] text-emerald-300">
-                      🔮 Mục tiêu tuần
+                      {t.studyGroups.weeklyGoalTitle}
                     </p>
                     <p className="text-sm font-black text-white mt-0.5 tabular-nums">
-                      {myRoom.weekly_xp_progress} / {myRoom.weekly_xp_goal} XP
+                      {format(t.studyGroups.weeklyGoalXp, { current: myRoom.weekly_xp_progress, goal: myRoom.weekly_xp_goal })}
                     </p>
                     <div className="mt-1.5 h-1.5 rounded-full bg-stone-800 overflow-hidden">
                       <div
@@ -1666,10 +1682,10 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                       }`}
                     >
                       {rewardClaimed || isChestUnlocked
-                        ? "👑 Rương Đã Mở"
+                        ? t.studyGroups.chestOpened
                         : claimingReward
-                        ? "Đang mở..."
-                        : "🎁 Nhận Rương"}
+                        ? t.studyGroups.chestOpening
+                        : t.studyGroups.chestClaim}
                     </button>
                   </div>
 
@@ -1841,7 +1857,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                           only with a mouse. */}
                       <button
                         type="button"
-                        aria-label="Nạp năng lượng 3D Spatial Boost cho cả phòng"
+                        aria-label={t.studyGroups.boostAria}
                         className="absolute left-1/2 top-1/2 rounded-full border-2 border-emerald-400/60 cursor-pointer"
                         style={{
                           width: 208,
@@ -1851,7 +1867,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                             "radial-gradient(circle at 38% 32%, #2c2724 0%, #1c1917 48%, #0a0908 100%)",
                           boxShadow: "0 0 54px rgba(16,185,129,0.22)",
                         }}
-                        onClick={() => toast.success("🔮 Đã nạp năng lượng 3D Spatial Boost cho cả phòng!")}
+                        onClick={() => toast.success(t.studyGroups.boostDone)}
                       >
                         <div
                           className={`absolute inset-5 rounded-full border border-dashed border-emerald-300/30 ${
@@ -1862,7 +1878,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                       </button>
 
                       {/* ── HOLO PYLONS around the room ── */}
-                      {HOLO_PYLONS.map((node) => {
+                      {holoPylons.map((node) => {
                         const isLit = litPylons.has(node.id);
                         const isActive = activeMapNode === node.id;
                         return (
@@ -1881,8 +1897,8 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                             aria-pressed={isLit}
                             aria-label={
                               isLit
-                                ? `Trạm ${node.name} đã kích hoạt`
-                                : `Kích hoạt trạm ${node.name} để cộng 15% XP cho phòng`
+                                ? format(t.studyGroups.pylonAriaLit, { name: node.name })
+                                : format(t.studyGroups.pylonAriaUnlit, { name: node.name })
                             }
                             className={`flex flex-col items-center gap-1 px-2.5 py-1.5 rounded-xl border backdrop-blur-md text-[9px] font-black shadow-lg cursor-pointer transition-all hover:scale-110 ${
                               isActive
@@ -1976,7 +1992,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                         long as it was shown, then snap back. */}
                                     {isArriving && (
                                       <span className="absolute -top-4 left-1/2 -translate-x-1/2 px-1.5 py-px rounded-full bg-amber-400 text-stone-950 text-[8px] font-black whitespace-nowrap shadow-md">
-                                        ✨ Vừa vào phòng
+                                        {t.studyGroups.justJoined}
                                       </span>
                                     )}
 
@@ -1990,7 +2006,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                         Up here they have empty air to live in. */}
                                     <div className="mb-0.5 flex items-center gap-1">
                                       <span className="px-1.5 py-0.5 rounded-full bg-emerald-600 text-[9px] font-black text-white">
-                                        Lv.{member.current_level}
+                                        {format(t.studyGroups.levelShort, { level: member.current_level })}
                                       </span>
                                       <span className="text-[9px] font-black text-emerald-300 whitespace-nowrap">
                                         🔥 {member.weekly_lessons}
@@ -2013,11 +2029,11 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                           ? "bg-emerald-500 border-emerald-300 text-stone-950"
                                           : "bg-stone-900/95 border-stone-700 text-white"
                                       }`}
-                                      title={member.full_name || "Thành viên"}
+                                      title={member.full_name || t.studyGroups.memberRole}
                                     >
                                       <span className="block truncate text-[9px] font-black">
-                                        {member.full_name || "Thành viên"}
-                                        {isMe ? " (Bạn)" : ""}
+                                        {member.full_name || t.studyGroups.memberRole}
+                                        {isMe ? t.studyGroups.you : ""}
                                       </span>
                                     </div>
 
@@ -2026,7 +2042,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                       {idx === 0 && (
                                         <span
                                           className="absolute -top-4 left-1/2 -translate-x-1/2 text-base animate-bounce"
-                                          title="Top 1 bài học tuần này"
+                                          title={t.studyGroups.topLessonTitle}
                                         >
                                           👑
                                         </span>
@@ -2052,7 +2068,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                       {inVoice && (
                                         <span
                                           className="absolute -right-1 -bottom-1 w-4 h-4 rounded-full bg-emerald-600 border border-emerald-300 text-[8px] flex items-center justify-center shadow-md"
-                                          title="Đang ở trong voice"
+                                          title={t.studyGroups.inVoiceTitle}
                                         >
                                           🎙️
                                         </span>
@@ -2092,7 +2108,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                     <span className="w-[3px] h-4 bg-stone-800/80" />
                                     <span className="w-[3px] h-4 bg-stone-800/80" />
                                   </div>
-                                  <span className="mt-1 text-[8px] font-bold uppercase text-stone-500">Ghế trống</span>
+                                  <span className="mt-1 text-[8px] font-bold uppercase text-stone-500">{t.studyGroups.emptySeat}</span>
                                 </div>
                               )}
                             </div>
@@ -2106,9 +2122,9 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 {/* Footer hint */}
                 <div className="relative z-30 shrink-0 text-center text-[10px] text-stone-400 font-semibold pt-1">
                   <span className="hidden sm:inline">
-                    🖐️ Kéo chuột để xoay phòng 360° · 🔍 Lăn chuột để Zoom · ⌨️ Phím mũi tên / +− / 0 · Bấm 🔄 để về góc gốc
+                    {t.studyGroups.hint3dDesktop}
                   </span>
-                  <span className="sm:hidden">👉 Vuốt ngang để xoay (vẩy mạnh để quay tiếp) · vuốt dọc để cuộn trang</span>
+                  <span className="sm:hidden">{t.studyGroups.hint3dMobile}</span>
                   <span className="ml-1 tabular-nums">({Math.round(zoom3D * 100)}%)</span>
                 </div>
                   </>
@@ -2131,7 +2147,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                         chatSubTab === "chat" ? "bg-white dark:bg-stone-900 text-emerald-600 dark:text-emerald-400 shadow-xs font-black" : "text-stone-500 hover:text-stone-700"
                       }`}
                     >
-                      💬 Trò chuyện
+                      {t.studyGroups.chatTab}
                     </button>
                     <button
                       type="button"
@@ -2140,7 +2156,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                         chatSubTab === "notes" ? "bg-white dark:bg-stone-900 text-emerald-600 dark:text-emerald-400 shadow-xs font-black" : "text-stone-500 hover:text-stone-700"
                       }`}
                     >
-                      📌 Ghi chú ({stickyNotes.length})
+                      {format(t.studyGroups.notesTab, { count: stickyNotes.length })}
                     </button>
                     <button
                       type="button"
@@ -2149,22 +2165,22 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                         chatSubTab === "quiz" ? "bg-white dark:bg-stone-900 text-emerald-600 dark:text-emerald-400 shadow-xs font-black" : "text-stone-500 hover:text-stone-700"
                       }`}
                     >
-                      ⚡ Quiz Nhóm
+                      {t.studyGroups.quizTab}
                     </button>
                   </div>
                   <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded-full border border-emerald-200 dark:border-emerald-800">
-                    Live
+                    {t.studyGroups.live}
                   </span>
                 </div>
                 {chatSubTab === "chat" && (
                   <div className="flex-1 flex flex-col min-h-0">
                     <div className="mb-2 px-2.5 py-1 rounded-xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-900 shrink-0 text-[10px] text-emerald-800 dark:text-emerald-300 font-semibold flex items-center gap-1">
                       <span>💡</span>
-                      <span>Nhắn 1 tin nhắn bất kỳ lên chat để tự động ghi nhận điểm danh nhóm hôm nay!</span>
+                      <span>{t.studyGroups.chatCheckinHint}</span>
                     </div>
                     {pinnedMessage && (
                       <div className="mb-2 px-3 py-1.5 rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900 shrink-0">
-                        <p className="text-[9px] font-extrabold text-amber-700 dark:text-amber-400">Tài Tài · Quản lý nhóm · Đã ghim</p>
+                        <p className="text-[9px] font-extrabold text-amber-700 dark:text-amber-400">{t.studyGroups.pinnedByAdmin}</p>
                         <p className="text-[11px] text-stone-800 dark:text-stone-200 leading-snug truncate">{pinnedMessage.content}</p>
                       </div>
                     )}
@@ -2181,13 +2197,13 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                     disabled={loadingOlder}
                     className="px-3 py-1 rounded-full bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-700 text-[10px] font-black text-stone-500 dark:text-stone-400 hover:text-emerald-600 disabled:opacity-60 cursor-pointer"
                   >
-                    {loadingOlder ? "Đang tải..." : "↑ Xem tin nhắn cũ hơn"}
+                    {loadingOlder ? t.studyGroups.loading : t.studyGroups.loadOlder}
                   </button>
                 </div>
               )}
               {scrollMessages.length === 0 ? (
                 <p className="text-xs text-stone-400 dark:text-stone-500 text-center py-8">
-                  Chưa có tin nhắn nào. Chào các thành viên trong nhóm nhé!
+                  {t.studyGroups.chatEmpty}
                 </p>
               ) : (
                 scrollMessages.map((msg) => {
@@ -2195,7 +2211,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                     return (
                       <div key={msg.id} className="flex justify-start">
                         <div className="max-w-[85%] rounded-xl px-3 py-2 bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900">
-                          <p className="text-[10px] font-extrabold text-amber-700 dark:text-amber-400 mb-0.5">Tài Tài · Quản lý nhóm</p>
+                          <p className="text-[10px] font-extrabold text-amber-700 dark:text-amber-400 mb-0.5">{t.studyGroups.byAdmin}</p>
                           <p className="text-sm break-words text-stone-800 dark:text-stone-200">{msg.content}</p>
                         </div>
                       </div>
@@ -2203,7 +2219,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                   }
                   const isMine = msg.sender_id === user?.id;
                   const sender = msg.sender_id ? memberById.get(msg.sender_id) : undefined;
-                  const senderName = sender?.full_name || "Thành viên";
+                  const senderName = sender?.full_name || t.studyGroups.memberRole;
                   const msgReactions = reactions[msg.id] || {};
 
                   // The quote is looked up live, so editing or deleting the
@@ -2212,9 +2228,9 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                   // null by the FK) or is older than the loaded window.
                   const repliedTo = msg.reply_to_id ? messageById.get(msg.reply_to_id) ?? null : null;
                   const repliedToName = repliedTo?.is_bot
-                    ? "Tài Tài"
+                    ? t.chat.admin
                     : repliedTo?.sender_id
-                    ? memberById.get(repliedTo.sender_id)?.full_name || "Thành viên"
+                    ? memberById.get(repliedTo.sender_id)?.full_name || t.studyGroups.memberRole
                     : null;
                   const mainText = msg.content;
 
@@ -2268,14 +2284,14 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                   <span className="block font-bold opacity-90">↩️ {repliedToName}</span>
                                   <span className="block truncate opacity-75">
                                     {!repliedTo.content && repliedTo.image_url
-                                      ? "[Hình ảnh]"
+                                      ? t.chat.imagePlaceholder
                                       : !repliedTo.content && repliedTo.file_name
-                                        ? `[Tệp: ${repliedTo.file_name}]`
+                                        ? format(t.chat.filePlaceholder, { name: repliedTo.file_name })
                                         : repliedTo.content}
                                   </span>
                                 </>
                               ) : (
-                                <span className="block italic opacity-60">↩️ Tin nhắn đã bị xoá</span>
+                                <span className="block italic opacity-60">{t.chat.deleted}</span>
                               )}
                             </button>
                           )}
@@ -2290,7 +2306,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                           <button
                             onClick={() => setActiveMenuMsgId(activeMenuMsgId === msg.id ? null : msg.id)}
                             className={`${isMine ? "opacity-70" : "opacity-0"} group-hover:opacity-100 transition-all duration-200 p-1.5 rounded-full hover:bg-stone-200 dark:hover:bg-stone-700 text-stone-500 dark:text-stone-400 cursor-pointer shadow-xs bg-white/90 dark:bg-stone-800/90 border border-stone-200/80 dark:border-stone-700 hover:scale-105`}
-                            title="Tùy chọn tin nhắn"
+                            title={t.chat.optionsTitle}
                           >
                             <MoreVertical className="w-3.5 h-3.5" />
                           </button>
@@ -2308,7 +2324,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                       setActiveMenuMsgId(null);
                                     }}
                                     className="hover:scale-130 transition-transform p-0.5"
-                                    title={`Thả ${emoji}`}
+                                    title={format(t.studyGroups.reactionTitle, { emoji })}
                                   >
                                     {emoji}
                                   </button>
@@ -2317,13 +2333,13 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
 
                               <button
                                 onClick={() => {
-                                  setReplyingTo({ id: msg.id, senderName: isMine ? "bạn" : senderName, content: msg.content });
+                                  setReplyingTo({ id: msg.id, senderName: isMine ? t.chat.you : senderName, content: msg.content });
                                   setActiveMenuMsgId(null);
                                 }}
                                 className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-950/40 text-stone-800 dark:text-stone-200 font-bold transition-colors text-left"
                               >
                                 <CornerUpLeft className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-                                <span>Trả lời tin nhắn</span>
+                                <span>{t.chat.reply}</span>
                               </button>
 
                               <button
@@ -2334,7 +2350,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                 className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-xl hover:bg-amber-50 dark:hover:bg-amber-950/40 text-stone-800 dark:text-stone-200 font-bold transition-colors text-left"
                               >
                                 {msg.is_pinned ? <PinOff className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" /> : <Pin className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />}
-                                <span>{msg.is_pinned ? "Bỏ ghim tin nhắn" : "Ghim tin nhắn"}</span>
+                                <span>{msg.is_pinned ? t.chat.unpin : t.chat.pin}</span>
                               </button>
 
                               <button
@@ -2345,7 +2361,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                 className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-xl hover:bg-sky-50 dark:hover:bg-sky-950/40 text-stone-800 dark:text-stone-200 font-bold transition-colors text-left"
                               >
                                 <Copy className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400" />
-                                <span>Sao chép</span>
+                                <span>{t.chat.copy}</span>
                               </button>
 
                               {isMine && (
@@ -2360,7 +2376,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                   className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-xl hover:bg-sky-50 dark:hover:bg-sky-950/40 text-stone-800 dark:text-stone-200 font-bold transition-colors text-left"
                                 >
                                   <Pencil className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400" />
-                                  <span>Sửa tin nhắn</span>
+                                  <span>{t.chat.edit}</span>
                                 </button>
 
                                 <button
@@ -2369,15 +2385,15 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                     try {
                                       await deleteRoomMessage(msg.id);
                                       setMessages((prev) => prev.filter((m) => m.id !== msg.id));
-                                      toast.success("Đã thu hồi tin nhắn thành công!");
+                                      toast.success(t.chat.recalled);
                                     } catch (err) {
-                                      toast.error("Không thể thu hồi tin nhắn này");
+                                      toast.error(t.chat.recallFailed);
                                     }
                                   }}
                                   className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-xl hover:bg-rose-50 dark:hover:bg-rose-950/40 text-rose-600 dark:text-rose-400 font-bold transition-colors text-left"
                                 >
                                   <Trash2 className="w-3.5 h-3.5 text-rose-500" />
-                                  <span>Thu hồi tin nhắn</span>
+                                  <span>{t.chat.recall}</span>
                                 </button>
                                 </>
                               )}
@@ -2393,22 +2409,22 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                         <div className={`mt-0.5 flex items-center gap-2 ${isMine ? "justify-end" : "justify-start"}`}>
                           {hasFailed ? (
                             <>
-                              <span className="text-[10px] font-bold text-rose-500">Gửi không thành công</span>
+                              <span className="text-[10px] font-bold text-rose-500">{t.studyGroups.sendFailed}</span>
                               <button
                                 onClick={() => retryMessage(msg.id)}
                                 className="text-[10px] font-black text-emerald-600 dark:text-emerald-400 hover:underline cursor-pointer"
                               >
-                                Thử lại
+                                {t.studyGroups.retry}
                               </button>
                               <button
                                 onClick={() => discardFailedMessage(msg.id)}
                                 className="text-[10px] font-bold text-stone-400 hover:text-stone-600 cursor-pointer"
                               >
-                                Bỏ
+                                {t.studyGroups.discard}
                               </button>
                             </>
                           ) : (
-                            <span className="text-[10px] font-semibold text-stone-400">Đang gửi...</span>
+                            <span className="text-[10px] font-semibold text-stone-400">{t.chat.sending}</span>
                           )}
                         </div>
                       )}
@@ -2440,7 +2456,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                       {isMine && (
                         <div className="mt-1 flex items-center justify-end gap-1 text-[10px] font-bold text-stone-400 dark:text-stone-500 whitespace-nowrap">
                           <CheckCheck className="h-3.5 w-3.5 text-emerald-500 shrink-0" />
-                          <span className="whitespace-nowrap">{myRoomMembers.length > 1 ? "Đã xem" : "Đã gửi"}</span>
+                          <span className="whitespace-nowrap">{myRoomMembers.length > 1 ? t.chat.seen : t.chat.sent}</span>
                         </div>
                       )}
                     </div>
@@ -2460,7 +2476,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 }}
                 className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10 px-3 py-1.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-white text-[10px] font-black shadow-lg cursor-pointer"
               >
-                ↓ Tin nhắn mới
+                {t.studyGroups.newMessages}
               </button>
             )}
             </div>
@@ -2469,13 +2485,13 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
             {replyingTo && (
               <div className="flex items-center justify-between gap-2 px-3 py-2 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-xs text-stone-800 dark:text-stone-200 mt-2">
                 <div className="min-w-0 flex-1">
-                  <span className="font-bold text-emerald-600 dark:text-emerald-400">💬 Đang trả lời {replyingTo.senderName}:</span>
+                  <span className="font-bold text-emerald-600 dark:text-emerald-400">{format(t.chat.replyingTo, { name: replyingTo.senderName })}</span>
                   <p className="truncate text-[11px] text-stone-600 dark:text-stone-400 mt-0.5">{replyingTo.content}</p>
                 </div>
                 <button
                   onClick={() => setReplyingTo(null)}
                   className="text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 p-1 rounded-full cursor-pointer"
-                  title="Hủy trả lời"
+                  title={t.chat.cancelReply}
                 >
                   <X className="w-3.5 h-3.5" />
                 </button>
@@ -2484,7 +2500,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
             {editingMessage && (
               <div className="flex items-center justify-between gap-2 px-3 py-2 rounded-xl bg-sky-50 dark:bg-sky-950/40 border border-sky-200 dark:border-sky-800 text-xs text-stone-800 dark:text-stone-200 mt-2">
                 <div className="min-w-0 flex-1">
-                  <span className="font-bold text-sky-600 dark:text-sky-400">Đang sửa tin nhắn:</span>
+                  <span className="font-bold text-sky-600 dark:text-sky-400">{t.chat.editing}</span>
                   <p className="truncate text-[11px] text-stone-600 dark:text-stone-400 mt-0.5">{editingMessage.content}</p>
                 </div>
                 <button
@@ -2493,7 +2509,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                     setMessageInput("");
                   }}
                   className="text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 p-1 rounded-full cursor-pointer"
-                  title="Hủy sửa"
+                  title={t.chat.cancelEdit}
                 >
                   <X className="w-3.5 h-3.5" />
                 </button>
@@ -2511,7 +2527,13 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                     void handleSendMessage();
                   }
                 }}
-                placeholder={editingMessage ? "Chỉnh lại nội dung tin nhắn..." : replyingTo ? `Viết câu trả lời cho ${replyingTo.senderName}...` : "Nhắn gì đó cho nhóm... hoặc /taitai"}
+                placeholder={
+                  editingMessage
+                    ? t.studyGroups.editPlaceholder
+                    : replyingTo
+                      ? format(t.studyGroups.replyPlaceholder, { name: replyingTo.senderName })
+                      : t.studyGroups.chatPlaceholder
+                }
                 maxLength={2000}
                 className="flex-1 px-3.5 py-2.5 rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-sm text-stone-900 dark:text-stone-100 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-emerald-400/50"
               />
@@ -2519,7 +2541,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 onClick={() => void handleSendMessage()}
                 disabled={sendingMessage || !messageInput.trim()}
                 className="shrink-0 w-10 h-10 rounded-xl bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 flex items-center justify-center hover:opacity-90 transition-opacity disabled:opacity-40"
-                aria-label="Gửi tin nhắn"
+                aria-label={t.chat.sendAria}
               >
                 <Send className="w-4 h-4" />
               </button>
@@ -2534,7 +2556,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 type="text"
                 value={newNoteText}
                 onChange={(e) => setNewNoteText(e.target.value)}
-                placeholder="Dán ghi chú công thức hoặc mẹo học cho cả nhóm..."
+                placeholder={t.studyGroups.notePlaceholder}
                 className="flex-1 px-3 py-2 rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950 text-xs text-stone-900 dark:text-stone-100 placeholder:text-stone-400 focus:outline-none"
               />
               <button
@@ -2542,7 +2564,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 onClick={() => void handleAddNote()}
                 className="px-3 py-2 rounded-xl bg-emerald-600 text-white font-black text-xs hover:bg-emerald-500 cursor-pointer shrink-0"
               >
-                + Dán Ghi Chú
+                {t.studyGroups.noteAdd}
               </button>
             </div>
 
@@ -2550,7 +2572,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
               {stickyNotes.length === 0 ? (
                 <div className="h-full min-h-[180px] rounded-2xl border border-dashed border-stone-300 dark:border-stone-700 bg-stone-50 dark:bg-stone-950 flex items-center justify-center text-center px-6">
                   <p className="text-xs font-bold text-stone-500 dark:text-stone-400">
-                    Chưa có ghi chú nào. Dán công thức, checklist hoặc câu hỏi để cả phòng cùng thấy.
+                    {t.studyGroups.notesEmpty}
                   </p>
                 </div>
               ) : (
@@ -2560,7 +2582,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                   return (
                     <div key={note.id} className={`p-3 rounded-2xl border ${noteColorClass(note.color)} text-xs space-y-1 shadow-xs`}>
                       <div className="flex items-center justify-between gap-2 font-black text-[10px] opacity-80">
-                        <span className="truncate">📌 {isAuthor ? "Bạn" : author?.full_name || "Thành viên"}</span>
+                        <span className="truncate">📌 {isAuthor ? t.studyGroups.noteAuthorYou : author?.full_name || t.studyGroups.memberRole}</span>
                         <span className="shrink-0">{formatShortTime(note.created_at)}</span>
                       </div>
                       <p className="font-semibold leading-relaxed whitespace-pre-wrap break-words">{note.content}</p>
@@ -2571,7 +2593,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                           className="mt-1 inline-flex items-center gap-1 text-[10px] font-black text-rose-600 dark:text-rose-300 hover:underline"
                         >
                           <Trash2 className="w-3 h-3" />
-                          Xóa
+                          {t.studyGroups.noteDelete}
                         </button>
                       )}
                     </div>
@@ -2586,11 +2608,11 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
           <div className="flex-1 flex flex-col min-h-0 overflow-y-auto p-1 space-y-3">
             <div className="p-3.5 rounded-2xl bg-gradient-to-r from-amber-500/15 via-emerald-500/15 to-teal-500/15 border border-amber-500/40 text-xs space-y-1 shrink-0">
               <p className="font-black text-stone-900 dark:text-stone-100 flex items-center gap-1.5">
-                <span>⚡ THỬ THÁCH 3 PHÚT NHÓM HÔM NAY</span>
-                <span className="px-2 py-0.5 rounded-full bg-amber-500 text-stone-950 text-[9px]">Thưởng Rương +150 XP</span>
+                <span>{t.studyGroups.quizChallengeTitle}</span>
+                <span className="px-2 py-0.5 rounded-full bg-amber-500 text-stone-950 text-[9px]">{t.studyGroups.quizReward}</span>
               </p>
               <p className="text-stone-600 dark:text-stone-300 text-[11px]">
-                Mỗi lần làm quiz sẽ ghi điểm từng thành viên và cộng tiến độ nhiệm vụ quiz tuần.
+                {t.studyGroups.quizHint}
               </p>
             </div>
 
@@ -2598,17 +2620,17 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
               <div className="space-y-4">
                 {loadingGroupQuiz ? (
                   <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950 p-6 text-center text-xs font-bold text-stone-500">
-                    Đang lấy câu hỏi cho phòng...
+                    {t.studyGroups.quizLoading}
                   </div>
                 ) : groupQuizQuestions.length === 0 ? (
                   <div className="rounded-2xl border border-dashed border-stone-300 dark:border-stone-700 bg-stone-50 dark:bg-stone-950 p-6 text-center text-xs font-bold text-stone-500">
-                    Chưa có câu hỏi phù hợp cho chủ đề này.
+                    {t.studyGroups.quizEmpty}
                   </div>
                 ) : (
                   groupQuizQuestions.map((q, qIdx) => (
                     <div key={`${q.lessonId}-${qIdx}`} className="p-3 rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950/50 space-y-2 text-xs">
                       <p className="font-black text-stone-900 dark:text-stone-100">
-                        Câu {qIdx + 1}: {q.question}
+                        {format(t.studyGroups.quizQuestion, { index: qIdx + 1, question: q.question })}
                       </p>
                       <div className="space-y-1.5">
                         {q.options.map((opt, optIdx) => (
@@ -2636,17 +2658,17 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                   disabled={loadingGroupQuiz || groupQuizQuestions.length === 0 || Object.keys(groupQuizAnswers).length < groupQuizQuestions.length}
                   className="w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 disabled:opacity-40 text-white font-black text-xs transition-all cursor-pointer shadow-md"
                 >
-                  Nộp Bài Thi Nhóm
+                  {t.studyGroups.quizSubmit}
                 </button>
               </div>
             ) : (
               <div className="py-6 text-center space-y-3">
                 <div className="text-4xl">{groupQuizScore && groupQuizScore >= 80 ? "🎁" : "💪"}</div>
                 <h4 className="font-black text-sm text-stone-900 dark:text-stone-100">
-                  Kết quả Quiz Nhóm: {groupQuizScore}%
+                  {format(t.studyGroups.quizResult, { score: groupQuizScore ?? 0 })}
                 </h4>
                 <p className="text-xs text-stone-500 dark:text-stone-400">
-                  {groupQuizScore && groupQuizScore >= 80 ? "Điểm rất ổn. Lượt này đã được lưu vào bảng quiz nhóm." : "Lượt này vẫn được tính vào nhiệm vụ quiz tuần, làm lại để cải thiện accuracy nhé."}
+                  {groupQuizScore && groupQuizScore >= 80 ? t.studyGroups.quizResultGood : t.studyGroups.quizResultRetry}
                 </p>
                 <button
                   type="button"
@@ -2656,19 +2678,19 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                   }}
                   className="px-4 py-2 rounded-xl bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 text-xs font-black cursor-pointer"
                 >
-                  Thử Lại
+                  {t.studyGroups.quizRetry}
                 </button>
               </div>
             )}
             {quizAttempts.length > 0 && (
               <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950/50 p-3 space-y-2">
-                <p className="text-[10px] font-black uppercase tracking-widest text-stone-500 dark:text-stone-400">Điểm quiz tuần này</p>
+                <p className="text-[10px] font-black uppercase tracking-widest text-stone-500 dark:text-stone-400">{t.studyGroups.quizWeeklyScores}</p>
                 {quizAttempts.slice(0, 5).map((attempt) => {
                   const member = memberById.get(attempt.user_id);
                   return (
                     <div key={attempt.id} className="flex items-center justify-between gap-2 text-xs">
                       <span className="font-bold text-stone-700 dark:text-stone-200 truncate">
-                        {attempt.user_id === user?.id ? "Bạn" : member?.full_name || "Thành viên"}
+                        {attempt.user_id === user?.id ? t.studyGroups.noteAuthorYou : member?.full_name || t.studyGroups.memberRole}
                       </span>
                       <span className="font-black text-emerald-600 dark:text-emerald-400 shrink-0">
                         {attempt.score}/{attempt.total} · {attempt.percent}%
@@ -2701,7 +2723,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 <div className="min-w-0">
                   <div className="flex items-center gap-2">
                     <span className="text-[9px] font-black uppercase tracking-widest text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded-full border border-emerald-500/40">
-                      MỤC TIÊU CẢ PHÒNG TUẦN NÀY
+                      {t.studyGroups.roomGoalTitle}
                     </span>
                   </div>
                   {(() => {
@@ -2711,13 +2733,13 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                       return (
                         <p className="text-xs sm:text-sm font-black text-stone-100 mt-1 truncate">
                           {lessonMission.title} · {lessonMission.current_value}/{lessonMission.target_value}
-                          {left > 0 ? ` — còn ${left} bài` : " — đã xong"}
+                          {left > 0 ? format(t.studyGroups.roomGoalRemaining, { count: left }) : t.studyGroups.roomGoalDone}
                         </p>
                       );
                     }
                     return (
                       <p className="text-xs sm:text-sm font-black text-stone-100 mt-1 truncate">
-                        Chủ đề phòng: {topicLabel(myRoom.topic)}
+                        {format(t.studyGroups.roomTopic, { topic: topicLabel(myRoom.topic) })}
                       </p>
                     );
                   })()}
@@ -2728,7 +2750,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 href="/hoc-bai"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-stone-950 font-black px-4 py-2 rounded-xl text-xs transition-all shadow-md active:scale-95 shrink-0 cursor-pointer"
               >
-                <span>Vào học ngay</span>
+                <span>{t.studyGroups.studyNow}</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
@@ -2737,10 +2759,10 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
           <div className="space-y-6">
             <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-2xl p-6">
               <h2 className="text-sm font-extrabold text-stone-900 dark:text-stone-100 uppercase tracking-widest mb-1">
-                Ghép ngẫu nhiên
+                {t.studyGroups.matchRandom}
               </h2>
               <p className="text-xs text-stone-500 dark:text-stone-400 mb-4">
-                Chọn chủ đề, hệ thống sẽ ghép bạn vào một phòng còn trống hoặc tạo phòng mới nếu chưa có.
+                {t.studyGroups.matchRandomHint}
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 {STUDY_ROOM_TOPICS.map((t) => (
@@ -2760,7 +2782,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
             <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-2xl p-6">
               <div className="flex items-center justify-between gap-3 mb-4 flex-wrap">
                 <h2 className="text-sm font-extrabold text-stone-900 dark:text-stone-100 uppercase tracking-widest">
-                  Hoặc tự chọn phòng
+                  {t.studyGroups.orPickRoom}
                 </h2>
                 <div className="flex gap-1 bg-stone-100 dark:bg-stone-800 rounded-lg p-1">
                   {STUDY_ROOM_TOPICS.map((t) => (
@@ -2780,10 +2802,10 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
               </div>
 
               {loadingRooms ? (
-                <p className="text-xs text-stone-400">Đang tải danh sách phòng...</p>
+                <p className="text-xs text-stone-400">{t.studyGroups.roomsLoading}</p>
               ) : rooms.length === 0 ? (
                 <p className="text-xs text-stone-400">
-                  Chưa có phòng nào còn trống cho chủ đề này - bấm "Ghép ngẫu nhiên" ở trên để tạo phòng đầu tiên.
+                  {t.studyGroups.roomsEmpty}
                 </p>
               ) : (
                 <div className="space-y-2.5">
@@ -2796,10 +2818,10 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                         <Users className="w-4 h-4 text-stone-400 shrink-0" />
                         <div className="min-w-0">
                           <p className="text-sm font-bold text-stone-900 dark:text-stone-100">
-                            Phòng #{room.room_id} · {room.member_count}/{room.max_members} thành viên
+                            {format(t.studyGroups.roomCard, { id: room.room_id, count: room.member_count, max: room.max_members })}
                           </p>
                           <p className="text-[11px] text-stone-400 dark:text-stone-500">
-                            {room.weekly_xp_progress}/{room.weekly_xp_goal} XP tuần này
+                            {format(t.studyGroups.roomCardXp, { current: room.weekly_xp_progress, goal: room.weekly_xp_goal })}
                           </p>
                         </div>
                       </div>
@@ -2808,7 +2830,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                         disabled={busy}
                         className="shrink-0 px-3.5 py-2 rounded-lg bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 text-xs font-bold hover:opacity-90 transition-opacity disabled:opacity-60"
                       >
-                        Tham gia
+                        {t.studyGroups.join}
                       </button>
                     </div>
                   ))}

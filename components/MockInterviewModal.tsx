@@ -8,6 +8,8 @@ import type { ChallengeQuestion } from "@/app/api/knowledge-challenge/route";
 import { submitQuizSession, type QuizAnswerSubmission } from "@/lib/supabase-quiz-sessions";
 import { recalculateUserStats } from "@/lib/supabase-user";
 import { useIsClient } from "@/lib/use-is-client";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 // A full mock interview run: 10 IB-question-bank questions spread across the
 // bank's categories, on a clock, with no per-question feedback - you find out
@@ -41,6 +43,7 @@ function formatClock(seconds: number): string {
 }
 
 export default function MockInterviewModal({ onClose, onFinished, userId }: MockInterviewModalProps) {
+  const { t } = useI18n();
   const [state, setState] = useState<LoadState>("loading");
   const [questions, setQuestions] = useState<ChallengeQuestion[]>([]);
   const [activeQ, setActiveQ] = useState(0);
@@ -106,7 +109,7 @@ export default function MockInterviewModal({ onClose, onFinished, userId }: Mock
           total: questions.length,
           xpEarned: 0,
         });
-        toast.error("Không lưu được kết quả phỏng vấn, nhưng bạn vẫn xem được phần chấm điểm.");
+        toast.error(t.mockInterview.saveFailed);
       }
       setState("done");
     },
@@ -171,9 +174,15 @@ export default function MockInterviewModal({ onClose, onFinished, userId }: Mock
               <Mic className="w-4.5 h-4.5" />
             </span>
             <div className="min-w-0">
-              <h3 className="text-sm font-black text-stone-900 dark:text-stone-100 truncate">Mock Interview</h3>
+              <h3 className="text-sm font-black text-stone-900 dark:text-stone-100 truncate">{t.mockInterview.title}</h3>
               <p className="text-[11px] text-stone-500 dark:text-stone-400 truncate">
-                {state === "ready" ? `Câu ${activeQ + 1}/${total} · ${categoryLabel}` : "Phỏng vấn thử có tính giờ"}
+                {state === "ready"
+                  ? format(t.mockInterview.questionMeta, {
+                      index: activeQ + 1,
+                      total,
+                      category: categoryLabel,
+                    })
+                  : t.mockInterview.subtitle}
               </p>
             </div>
           </div>
@@ -192,7 +201,7 @@ export default function MockInterviewModal({ onClose, onFinished, userId }: Mock
             )}
             <button
               onClick={onClose}
-              aria-label="Đóng phỏng vấn thử"
+              aria-label={t.mockInterview.closeAria}
               className="w-9 h-9 rounded-xl bg-stone-100 dark:bg-stone-800 text-stone-500 hover:text-stone-900 dark:hover:text-stone-100 flex items-center justify-center transition-colors cursor-pointer"
             >
               <X className="w-4 h-4" />
@@ -204,24 +213,24 @@ export default function MockInterviewModal({ onClose, onFinished, userId }: Mock
           {state === "loading" && (
             <div className="py-16 flex flex-col items-center gap-3 text-stone-500 dark:text-stone-400">
               <Loader2 className="w-6 h-6 animate-spin" />
-              <p className="text-xs font-bold">Đang chuẩn bị bộ câu hỏi...</p>
+              <p className="text-xs font-bold">{t.mockInterview.preparing}</p>
             </div>
           )}
 
           {state === "empty" && (
             <p className="py-16 text-center text-sm font-bold text-stone-500 dark:text-stone-400">
-              Chưa có câu hỏi phỏng vấn nào khả dụng.
+              {t.mockInterview.empty}
             </p>
           )}
 
           {state === "error" && (
             <div className="py-16 flex flex-col items-center gap-3">
-              <p className="text-sm font-bold text-stone-500 dark:text-stone-400">Không tải được bộ câu hỏi.</p>
+              <p className="text-sm font-bold text-stone-500 dark:text-stone-400">{t.mockInterview.loadError}</p>
               <button
                 onClick={() => void load()}
                 className="px-4 py-2 rounded-xl bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 text-xs font-black cursor-pointer"
               >
-                Thử lại
+                {t.mockInterview.retry}
               </button>
             </div>
           )}
@@ -229,7 +238,7 @@ export default function MockInterviewModal({ onClose, onFinished, userId }: Mock
           {state === "submitting" && (
             <div className="py-16 flex flex-col items-center gap-3 text-stone-500 dark:text-stone-400">
               <Loader2 className="w-6 h-6 animate-spin" />
-              <p className="text-xs font-bold">Đang chấm điểm buổi phỏng vấn...</p>
+              <p className="text-xs font-bold">{t.mockInterview.grading}</p>
             </div>
           )}
 
@@ -267,13 +276,13 @@ export default function MockInterviewModal({ onClose, onFinished, userId }: Mock
 
               <div className="mt-5 flex items-center justify-between gap-3">
                 <span className="text-[11px] font-bold text-stone-400 dark:text-stone-500">
-                  Đã trả lời {answeredCount}/{total} · không có gợi ý giữa chừng
+                  {format(t.mockInterview.answeredCount, { done: answeredCount, total })}
                 </span>
                 <button
                   onClick={handleNext}
                   className="px-5 py-2.5 rounded-xl bg-indigo-500 hover:bg-indigo-400 text-white text-xs font-black shadow-sm transition-colors cursor-pointer"
                 >
-                  {activeQ + 1 >= total ? "Nộp bài phỏng vấn" : "Câu tiếp theo →"}
+                  {activeQ + 1 >= total ? t.mockInterview.submit : t.mockInterview.next}
                 </button>
               </div>
             </>
@@ -283,14 +292,14 @@ export default function MockInterviewModal({ onClose, onFinished, userId }: Mock
             <div>
               <div className="text-center py-4">
                 <p className="text-[11px] font-black uppercase tracking-widest text-stone-400 dark:text-stone-500">
-                  Kết quả phỏng vấn thử
+                  {t.mockInterview.resultTitle}
                 </p>
                 <p className="text-4xl font-black text-stone-900 dark:text-stone-100 mt-2 tabular-nums">
                   {result.score}/{result.total}
                 </p>
                 {result.xpEarned > 0 && (
                   <p className="text-xs font-black text-emerald-600 dark:text-emerald-400 mt-1.5">
-                    +{result.xpEarned} XP
+                    {format(t.mockInterview.xpEarned, { xp: result.xpEarned })}
                   </p>
                 )}
               </div>
@@ -314,7 +323,7 @@ export default function MockInterviewModal({ onClose, onFinished, userId }: Mock
                         </p>
                       </div>
                       <p className="mt-2 text-[11px] text-stone-600 dark:text-stone-400 leading-relaxed">
-                        <strong className="text-stone-900 dark:text-stone-200">Cách trả lời tốt: </strong>
+                        <strong className="text-stone-900 dark:text-stone-200">{t.mockInterview.goodAnswerLabel}</strong>
                         {question.explanation || question.options[question.correct]}
                       </p>
                     </div>
@@ -327,13 +336,13 @@ export default function MockInterviewModal({ onClose, onFinished, userId }: Mock
                   onClick={() => void load()}
                   className="flex-1 px-4 py-2.5 rounded-xl bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-200 text-xs font-black cursor-pointer"
                 >
-                  Phỏng vấn lại
+                  {t.mockInterview.retryInterview}
                 </button>
                 <button
                   onClick={onClose}
                   className="flex-1 px-4 py-2.5 rounded-xl bg-indigo-500 hover:bg-indigo-400 text-white text-xs font-black cursor-pointer"
                 >
-                  Xong
+                  {t.mockInterview.done}
                 </button>
               </div>
             </div>

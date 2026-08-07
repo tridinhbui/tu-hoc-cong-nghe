@@ -1,6 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
 // Soát một bản trả lời của AI, widget cho các bài khai `interactiveType:
 // "ai-verify"`.
@@ -23,11 +26,14 @@ import { useState } from "react";
 
 type Verdict = "derived" | "source" | "fabricated";
 
-const LABELS: Record<Verdict, string> = {
-  derived: "Suy ra được từ dữ liệu đã đưa",
-  source: "Phải đối chiếu nguồn ngoài",
-  fabricated: "Không thể có thật",
-};
+function getLabels(t: Dictionary): Record<Verdict, string> {
+  const tr = t.interactiveRest.aiVerify;
+  return {
+    derived: tr.labelDerived,
+    source: tr.labelSource,
+    fabricated: tr.labelFabricated,
+  };
+}
 
 interface Claim {
   text: string;
@@ -35,34 +41,21 @@ interface Claim {
   why: string;
 }
 
-const BRIEF = `Bạn đưa cho AI bảng số này của công ty Minh Phát và nhờ viết một đoạn ghi nhớ:
-doanh thu 2024 là 1.200 tỷ, giá vốn 900 tỷ, chi phí bán hàng và quản lý 180 tỷ,
-nợ vay 400 tỷ, vốn chủ 800 tỷ.`;
-
-const CLAIMS: Claim[] = [
-  {
-    text: "Biên lợi nhuận gộp của Minh Phát năm 2024 là 25%.",
-    answer: "derived",
-    why: "(1.200 − 900) / 1.200 = 25%. Toàn bộ dữ kiện đã nằm trong bảng bạn đưa, nên chỉ cần đọc lại phép tính. Đây là nhóm duy nhất bạn tự xác nhận được mà không rời khỏi trang.",
-  },
-  {
-    text: "Tỷ lệ nợ trên vốn chủ 0,5 lần thấp hơn trung bình ngành bán lẻ Việt Nam là 0,9 lần.",
-    answer: "source",
-    why: "Vế đầu suy ra được (400/800 = 0,5). Vế sau thì không: bạn chưa hề đưa số liệu ngành nào. Con số 0,9 có thể đúng, có thể là trung bình của một mẫu khác hẳn, có thể là số bịa — và cả ba khả năng đó trông giống nhau trên màn hình. Chưa đối chiếu được nguồn thì chưa đưa vào báo cáo.",
-  },
-  {
-    text: "Lợi nhuận trước thuế đạt 120 tỷ, tăng 18% so với năm 2023.",
-    answer: "source",
-    why: "Vế đầu suy ra được (1.200 − 900 − 180 = 120). Vế sau cần số của năm 2023, thứ bạn không đưa. Đây là dạng nguy hiểm nhất: một nửa câu đúng chắc chắn khiến nửa còn lại được tin theo.",
-  },
-  {
-    text: "Theo báo cáo kiểm toán của Deloitte phát hành ngày 12/3/2025, khoản phải thu đã được soát xét và không có ngoại trừ.",
-    answer: "fabricated",
-    why: "Bạn không đưa báo cáo kiểm toán nào, cũng không nhắc tới đơn vị kiểm toán. Một trích dẫn có tên công ty và ngày tháng cụ thể, xuất hiện từ hư không, là dấu hiệu bịa rõ nhất — và cũng là dấu hiệu thuyết phục nhất, vì chi tiết càng cụ thể thì càng trông giống đã kiểm chứng.",
-  },
-];
+function getClaims(t: Dictionary): Claim[] {
+  const tr = t.interactiveRest.aiVerify;
+  return [
+    { text: tr.claim1Text, answer: "derived", why: tr.claim1Why },
+    { text: tr.claim2Text, answer: "source", why: tr.claim2Why },
+    { text: tr.claim3Text, answer: "source", why: tr.claim3Why },
+    { text: tr.claim4Text, answer: "fabricated", why: tr.claim4Why },
+  ];
+}
 
 export default function InteractiveAiVerify() {
+  const { t } = useI18n();
+  const tr = t.interactiveRest.aiVerify;
+  const LABELS = useMemo(() => getLabels(t), [t]);
+  const CLAIMS = useMemo(() => getClaims(t), [t]);
   const [picked, setPicked] = useState<Record<number, Verdict | undefined>>({});
   const answered = CLAIMS.filter((_, i) => picked[i]).length;
   const correct = CLAIMS.filter((c, i) => picked[i] === c.answer).length;
@@ -70,10 +63,10 @@ export default function InteractiveAiVerify() {
   return (
     <div className="rounded-3xl border border-stone-200 bg-white p-6 dark:border-stone-800 dark:bg-stone-900">
       <h3 className="text-sm font-extrabold text-stone-900 dark:text-stone-100">
-        Bốn câu trong một bản ghi nhớ do AI viết. Câu nào dùng được ngay?
+        {tr.title}
       </h3>
       <p className="mt-2 whitespace-pre-line rounded-2xl bg-stone-50 p-3 text-[11px] leading-relaxed text-stone-600 dark:bg-stone-800/60 dark:text-stone-300">
-        {BRIEF}
+        {tr.brief}
       </p>
 
       <ol className="mt-4 space-y-3">
@@ -116,9 +109,7 @@ export default function InteractiveAiVerify() {
 
       {answered === CLAIMS.length && (
         <p className="mt-4 rounded-2xl bg-stone-50 p-4 text-xs leading-relaxed text-stone-600 dark:bg-stone-800/60 dark:text-stone-300">
-          {correct}/{CLAIMS.length} đúng. Để ý hai câu ở giữa: cả hai đều mở đầu bằng một phép tính
-          đúng rồi nối thêm một mệnh đề bạn không có cách nào xác nhận. Đó là hình dạng thường gặp
-          nhất, và nó lọt qua được chính vì nửa đầu kiểm là đúng ngay.
+          {format(tr.resultSummary, { correct, total: CLAIMS.length })}
         </p>
       )}
     </div>

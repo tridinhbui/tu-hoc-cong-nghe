@@ -1,9 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 import {
   Crown,
   Sparkles,
@@ -37,89 +40,99 @@ interface KingdomBuilding {
   tags: string[];
 }
 
-const KINGDOM_BUILDINGS: KingdomBuilding[] = [
+const kingdomBuildings = (t: Dictionary): KingdomBuilding[] => [
   {
     id: "goldman",
     name: "Goldman Sachs Tower",
-    subtitle: "Đấu trường Định giá & Mô hình DCF",
+    subtitle: t.kingdomPreview.goldmanSubtitle,
     image: "/rpg/goldman_sachs.png",
     minLevel: 5,
     progress: "72%",
     xpReward: 350,
     badge: "🏛️ INVESTMENT BANK",
-    description: "Thực hành phân tích định giá doanh nghiệp, P/E, P/B và mô hình chiết khấu dòng tiền DCF.",
-    tags: ["Định giá P/E", "Mô hình DCF", "Đọc BCTC"],
+    description: t.kingdomPreview.goldmanDescription,
+    tags: [t.kingdomPreview.goldmanTag1, t.kingdomPreview.goldmanTag2, t.kingdomPreview.goldmanTag3],
   },
   {
     id: "fed",
     name: "Fed Reserve Bank",
-    subtitle: "Thử thách Lãi suất & Ngân hàng Trung ương",
+    subtitle: t.kingdomPreview.fedSubtitle,
     image: "/rpg/fed_reserve.jpg",
     minLevel: 3,
     progress: "48%",
     xpReward: 250,
     badge: "🏦 CENTRAL BANK",
-    description: "Dự đoán động thái lãi suất Fed, lạm phát và ảnh hưởng đến thị trường chứng khoán.",
-    tags: ["Tỷ lệ Lãi suất", "Lạm phát", "Chính sách tiền tệ"],
+    description: t.kingdomPreview.fedDescription,
+    tags: [t.kingdomPreview.fedTag1, t.kingdomPreview.fedTag2, t.kingdomPreview.fedTag3],
   },
   {
     id: "singapore",
     name: "Singapore Maritime Dock",
-    subtitle: "Cảng Dòng tiền & Thương mại Quốc tế",
+    subtitle: t.kingdomPreview.singaporeSubtitle,
     image: "/rpg/singapore_dock.jpg",
     minLevel: 2,
     progress: "65%",
     xpReward: 180,
     badge: "🚢 GLOBAL TRADE",
-    description: "Quản lý dòng tiền lưu chuyển, xuất nhập khẩu và chu kỳ tiền mặt doanh nghiệp.",
-    tags: ["Dòng tiền Cashflow", "Vốn lưu động", "Tỷ giá"],
+    description: t.kingdomPreview.singaporeDescription,
+    tags: [
+      t.kingdomPreview.singaporeTag1,
+      t.kingdomPreview.singaporeTag2,
+      t.kingdomPreview.singaporeTag3,
+    ],
   },
   {
     id: "pvp",
-    name: "Đấu Trường Kiến Thức Solo",
-    subtitle: "Đánh Boss bằng câu hỏi Active Recall",
+    name: t.kingdomPreview.pvpName,
+    subtitle: t.kingdomPreview.pvpSubtitle,
     image: "/images/dau-truong-kien-thuc.jpg",
     minLevel: 1,
     progress: "90%",
     xpReward: 400,
     badge: "⚔️ SOLO PVP DUEL",
-    description: "Thử thách phản xạ kiến thức tài chính qua các hiệp quiz 1v1 dồn dập tích lũy điểm XP.",
-    tags: ["Active Recall", "Thách đấu 1v1", "Kho quiz 430+ bài"],
+    description: t.kingdomPreview.pvpDescription,
+    tags: [t.kingdomPreview.pvpTag1, t.kingdomPreview.pvpTag2, t.kingdomPreview.pvpTag3],
   },
 ];
 
-// Interactive Mini Game Sampler Data (Flash Quiz)
-const SAMPLER_QUESTIONS = [
+// Interactive Mini Game Sampler Data (Flash Quiz). `correct` is structure, not
+// copy, so it stays here and is never overridable by a translation.
+const samplerQuestions = (t: Dictionary) => [
   {
-    question: "Tài sản nào sau đây được xếp vào 'Tài sản Ngắn hạn'?",
+    question: t.kingdomPreview.q1,
     options: [
-      { text: "Tiền mặt & Tiền gửi ngân hàng", correct: true },
-      { text: "Nhà xưởng máy móc thiết bị", correct: false },
-      { text: "Thương hiệu & Bằng sáng chế", correct: false },
+      { text: t.kingdomPreview.q1a, correct: true },
+      { text: t.kingdomPreview.q1b, correct: false },
+      { text: t.kingdomPreview.q1c, correct: false },
     ],
-    explanation: "Chính xác! Tiền mặt & các khoản tương đương tiền có tính thanh khoản cao nhất, thuộc tài sản ngắn hạn.",
+    explanation: t.kingdomPreview.q1explanation,
   },
   {
-    question: "Chỉ số P/E (Price to Earnings) phản ánh điều gì?",
+    question: t.kingdomPreview.q2,
     options: [
-      { text: "Số năm nhà đầu tư hòa vốn nếu lợi nhuận giữ nguyên", correct: true },
-      { text: "Tổng nợ vay trên tổng vốn chủ sở hữu", correct: false },
-      { text: "Tỷ lệ trả cổ tức bằng tiền mặt", correct: false },
+      { text: t.kingdomPreview.q2a, correct: true },
+      { text: t.kingdomPreview.q2b, correct: false },
+      { text: t.kingdomPreview.q2c, correct: false },
     ],
-    explanation: "Đúng rồi! P/E = Giá cổ phiếu / EPS, thể hiện mức giá nhà đầu tư chấp nhận trả cho 1 đồng lợi nhuận.",
+    explanation: t.kingdomPreview.q2explanation,
   },
 ];
 
 export default function InteractiveKingdomPreview() {
+  const { t } = useI18n();
+  const buildings = useMemo(() => kingdomBuildings(t), [t]);
+  const questions = useMemo(() => samplerQuestions(t), [t]);
   const [activeTab, setActiveTab] = useState<PreviewTab>("map");
-  const [selectedBuilding, setSelectedBuilding] = useState<KingdomBuilding>(KINGDOM_BUILDINGS[0]);
+  const [selectedBuildingId, setSelectedBuildingId] = useState<string>(buildings[0].id);
   const [userXp, setUserXp] = useState(240);
   const [samplerIndex, setSamplerIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [answered, setAnswered] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
 
-  const currentQuestion = SAMPLER_QUESTIONS[samplerIndex];
+  const selectedBuilding =
+    buildings.find((b) => b.id === selectedBuildingId) ?? buildings[0];
+  const currentQuestion = questions[samplerIndex];
 
   function handleSelectOption(idx: number) {
     if (answered) return;
@@ -135,7 +148,7 @@ export default function InteractiveKingdomPreview() {
   function handleNextQuestion() {
     setAnswered(false);
     setSelectedOption(null);
-    setSamplerIndex((prev) => (prev + 1) % SAMPLER_QUESTIONS.length);
+    setSamplerIndex((prev) => (prev + 1) % questions.length);
   }
 
   return (
@@ -164,7 +177,7 @@ export default function InteractiveKingdomPreview() {
             }`}
           >
             <Crown className="w-3.5 h-3.5" />
-            <span>Bản đồ Vương quốc</span>
+            <span>{t.kingdomPreview.tabMap}</span>
           </button>
 
           <button
@@ -176,7 +189,7 @@ export default function InteractiveKingdomPreview() {
             }`}
           >
             <Gamepad2 className="w-3.5 h-3.5" />
-            <span>Chơi thử Mini Game</span>
+            <span>{t.kingdomPreview.tabMinigame}</span>
           </button>
 
           <button
@@ -188,7 +201,7 @@ export default function InteractiveKingdomPreview() {
             }`}
           >
             <Swords className="w-3.5 h-3.5" />
-            <span>Săn Boss NYSE</span>
+            <span>{t.kingdomPreview.tabBoss}</span>
           </button>
         </div>
       </div>
@@ -199,7 +212,7 @@ export default function InteractiveKingdomPreview() {
         <div className="absolute inset-0 pointer-events-none">
           <Image
             src="/wallstreet-nyse-header.jpg"
-            alt="Wall Street Trading Floor background"
+            alt={t.kingdomPreview.bgAlt}
             fill
             sizes="100vw"
             className="object-cover opacity-35 brightness-75 contrast-125"
@@ -213,12 +226,12 @@ export default function InteractiveKingdomPreview() {
           <div>
             <div className="inline-flex items-center gap-1.5 rounded-full border border-amber-400/50 bg-amber-950/80 px-3 py-0.5 text-[10px] font-black uppercase tracking-[0.14em] text-amber-300 shadow-md backdrop-blur-md">
               <Crown className="h-3 w-3 text-amber-400" />
-              <span>VƯƠNG QUỐC GAME TÀI CHÍNH INTERACTIVE</span>
+              <span>{t.kingdomPreview.eyebrow}</span>
             </div>
             <h3 className="mt-1 text-lg sm:text-xl font-black text-white drop-shadow-md">
-              {activeTab === "map" && "Bản đồ nhiệm vụ & Công trình"}
-              {activeTab === "minigame" && "Thử phản xạ active recall trực tiếp"}
-              {activeTab === "boss" && "Đấu trường Săn Boss Phố Wall"}
+              {activeTab === "map" && t.kingdomPreview.headingMap}
+              {activeTab === "minigame" && t.kingdomPreview.headingMinigame}
+              {activeTab === "boss" && t.kingdomPreview.headingBoss}
             </h3>
           </div>
 
@@ -229,10 +242,10 @@ export default function InteractiveKingdomPreview() {
             animate={{ scale: 1 }}
             className="rounded-xl border border-emerald-400/50 bg-emerald-950/80 px-3 py-1.5 text-right backdrop-blur-md shadow-[0_0_20px_rgba(16,185,129,0.25)] shrink-0"
           >
-            <p className="text-[9px] font-black uppercase tracking-widest text-emerald-300">XP Tích lũy</p>
+            <p className="text-[9px] font-black uppercase tracking-widest text-emerald-300">{t.kingdomPreview.xpLabel}</p>
             <p className="text-lg sm:text-xl font-black tabular-nums text-white flex items-center gap-1 justify-end">
               <Zap className="w-4 h-4 text-amber-400 fill-amber-400 animate-bounce" />
-              +{userXp} XP
+              {format(t.kingdomPreview.xpValue, { xp: userXp })}
             </p>
           </motion.div>
         </div>
@@ -242,14 +255,14 @@ export default function InteractiveKingdomPreview() {
           <div className="relative z-10 grid gap-4 lg:grid-cols-12 items-stretch flex-1">
             {/* Left: Building Cards Grid with Click Selection */}
             <div className="lg:col-span-8 grid gap-2.5 sm:grid-cols-2">
-              {KINGDOM_BUILDINGS.map((b) => {
+              {buildings.map((b) => {
                 const isSelected = selectedBuilding.id === b.id;
                 return (
                   <motion.div
                     key={b.id}
                     whileHover={{ scale: 1.01, translateY: -2 }}
                     whileTap={{ scale: 0.98 }}
-                    onClick={() => setSelectedBuilding(b)}
+                    onClick={() => setSelectedBuildingId(b.id)}
                     className={`relative cursor-pointer overflow-hidden rounded-xl border-2 transition-all duration-300 backdrop-blur-md p-2 sm:p-2.5 ${
                       isSelected
                         ? "border-amber-400 bg-amber-950/80 shadow-[0_0_20px_rgba(245,158,11,0.35)] ring-1 ring-amber-400/50"
@@ -276,8 +289,8 @@ export default function InteractiveKingdomPreview() {
                     </div>
 
                     <div className="flex items-center justify-between text-[9px] font-black uppercase tracking-wider text-stone-300">
-                      <span>Mở khóa ở Lv.{b.minLevel}</span>
-                      <span className="text-emerald-400">+{b.xpReward} XP</span>
+                      <span>{format(t.kingdomPreview.unlockAtLevel, { level: b.minLevel })}</span>
+                      <span className="text-emerald-400">{format(t.kingdomPreview.xpRewardValue, { xp: b.xpReward })}</span>
                     </div>
 
                     <div className="mt-1 h-1 w-full rounded-full bg-stone-800 overflow-hidden">
@@ -306,7 +319,7 @@ export default function InteractiveKingdomPreview() {
                 <div>
                   <div className="flex items-center gap-2 text-xs font-black text-amber-400 uppercase tracking-widest mb-1">
                     <MapPin className="w-4 h-4 text-amber-400 animate-bounce" />
-                    <span>Chi tiết công trình</span>
+                    <span>{t.kingdomPreview.buildingDetail}</span>
                   </div>
                   <h4 className="text-lg font-black text-white">{selectedBuilding.name}</h4>
                   <p className="text-xs text-amber-200/90 mt-0.5 font-semibold">{selectedBuilding.subtitle}</p>
@@ -316,7 +329,7 @@ export default function InteractiveKingdomPreview() {
                   </p>
 
                   <div className="mt-4 space-y-1.5">
-                    <p className="text-[10px] font-black uppercase tracking-widest text-stone-400">Kỹ năng mở khóa:</p>
+                    <p className="text-[10px] font-black uppercase tracking-widest text-stone-400">{t.kingdomPreview.skillsUnlocked}</p>
                     <div className="flex flex-wrap gap-1.5">
                       {selectedBuilding.tags.map((tag) => (
                         <span
@@ -336,7 +349,7 @@ export default function InteractiveKingdomPreview() {
                     className="w-full inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-amber-400 via-amber-500 to-orange-500 px-5 py-3 text-sm font-black text-stone-950 shadow-lg hover:brightness-110 active:scale-98 transition-all cursor-pointer"
                   >
                     <Zap className="w-4 h-4 text-stone-950 fill-stone-950" />
-                    <span>Mở khóa công trình này</span>
+                    <span>{t.kingdomPreview.unlockBuilding}</span>
                   </Link>
                 </div>
               </motion.div>
@@ -355,9 +368,9 @@ export default function InteractiveKingdomPreview() {
             >
               <div className="flex items-center justify-between mb-3 text-xs font-black uppercase text-emerald-400 tracking-wider">
                 <span className="flex items-center gap-1.5">
-                  <Gamepad2 className="w-4 h-4" /> Câu hỏi thử nghiệm #{samplerIndex + 1}
+                  <Gamepad2 className="w-4 h-4" /> {format(t.kingdomPreview.samplerQuestion, { index: samplerIndex + 1 })}
                 </span>
-                <span className="text-amber-400">+50 XP nếu chọn đúng</span>
+                <span className="text-amber-400">{t.kingdomPreview.samplerXp}</span>
               </div>
 
               <h4 className="text-base sm:text-lg font-black text-white mb-5 leading-snug">
@@ -401,7 +414,7 @@ export default function InteractiveKingdomPreview() {
                         : "bg-rose-950/80 border-rose-500/50 text-rose-200"
                     }`}
                   >
-                    {isCorrect ? "🎉 Chính xác! Bạn nhận được +50 XP thưởng!" : "💡 Chưa chính xác rồi!"}
+                    {isCorrect ? t.kingdomPreview.samplerCorrect : t.kingdomPreview.samplerWrong}
                     <p className="mt-1 text-stone-300">{currentQuestion.explanation}</p>
                   </div>
 
@@ -411,13 +424,13 @@ export default function InteractiveKingdomPreview() {
                       className="flex-1 py-3 px-4 rounded-xl bg-stone-800 hover:bg-stone-700 font-bold text-xs text-white transition-colors cursor-pointer flex items-center justify-center gap-1.5"
                     >
                       <RotateCcw className="w-3.5 h-3.5" />
-                      <span>Thử câu hỏi khác</span>
+                      <span>{t.kingdomPreview.tryAnother}</span>
                     </button>
                     <Link
                       href="/login?mode=signup"
                       className="flex-1 py-3 px-4 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 font-black text-xs text-stone-950 transition-all cursor-pointer text-center"
                     >
-                      Vào làm trọn bộ 430+ Quiz →
+                      {t.kingdomPreview.doAllQuizzes}
                     </Link>
                   </div>
                 </motion.div>
@@ -434,25 +447,25 @@ export default function InteractiveKingdomPreview() {
                 <div className="absolute inset-0 rounded-full bg-rose-600/30 blur-3xl animate-pulse" />
                 <Image
                   src="/boss-wallstreet-bull.png"
-                  alt="Boss Bò Phố Wall NYSE"
+                  alt={t.kingdomPreview.bossAlt}
                   fill
                   className="object-contain drop-shadow-[0_10px_30px_rgba(225,29,72,0.5)] animate-bounce"
                 />
               </div>
               <span className="text-[10px] font-black uppercase text-rose-400 bg-rose-950/80 px-3 py-1 rounded-full border border-rose-500/50">
-                👹 WORLD BOSS RAID · 1,000,000 HP
+                {t.kingdomPreview.bossRaidLabel}
               </span>
-              <h4 className="text-xl font-black text-white mt-2">Bò Tót Phố Wall Tăng Trưởng</h4>
+              <h4 className="text-xl font-black text-white mt-2">{t.kingdomPreview.bossName}</h4>
               <p className="text-xs text-stone-300 max-w-xs mt-1">
-                Toàn bộ người học trên hệ thống cùng tham gia đánh Boss mỗi ngày bằng cách trả lời đúng các câu hỏi tài chính!
+                {t.kingdomPreview.bossBody}
               </p>
             </div>
 
             <div className="lg:col-span-7 space-y-3">
               <div className="p-4 rounded-2xl bg-stone-900/90 border border-stone-800 backdrop-blur-md">
                 <div className="flex justify-between text-xs font-black uppercase text-rose-400 mb-1.5">
-                  <span>Máu Boss hiện tại</span>
-                  <span>742,500 / 1,000,000 HP</span>
+                  <span>{t.kingdomPreview.bossHpLabel}</span>
+                  <span>{t.kingdomPreview.bossHpValue}</span>
                 </div>
                 <div className="h-3 rounded-full bg-stone-950 overflow-hidden border border-stone-800">
                   <div className="h-full rounded-full bg-gradient-to-r from-rose-600 to-amber-500 w-[74%]" />
@@ -461,12 +474,12 @@ export default function InteractiveKingdomPreview() {
 
               <div className="grid grid-cols-2 gap-3">
                 <div className="p-3.5 rounded-2xl bg-stone-900/90 border border-stone-800 text-center">
-                  <p className="text-[10px] font-black uppercase text-stone-400">Sát thương hôm nay</p>
-                  <p className="text-lg font-black text-amber-400 mt-0.5">⚔️ 1,250 DMG</p>
+                  <p className="text-[10px] font-black uppercase text-stone-400">{t.kingdomPreview.damageToday}</p>
+                  <p className="text-lg font-black text-amber-400 mt-0.5">{t.kingdomPreview.damageValue}</p>
                 </div>
                 <div className="p-3.5 rounded-2xl bg-stone-900/90 border border-stone-800 text-center">
-                  <p className="text-[10px] font-black uppercase text-stone-400">Phần thưởng hạ Boss</p>
-                  <p className="text-lg font-black text-emerald-400 mt-0.5">🏆 +500 XP & Vàng</p>
+                  <p className="text-[10px] font-black uppercase text-stone-400">{t.kingdomPreview.bossReward}</p>
+                  <p className="text-lg font-black text-emerald-400 mt-0.5">{t.kingdomPreview.bossRewardValue}</p>
                 </div>
               </div>
 
@@ -475,7 +488,7 @@ export default function InteractiveKingdomPreview() {
                 className="w-full inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-rose-500 via-red-600 to-amber-500 px-6 py-3.5 text-sm font-black text-white shadow-xl hover:brightness-110 active:scale-98 transition-all cursor-pointer"
               >
                 <Swords className="w-4 h-4" />
-                <span>Tham gia Săn Boss NYSE Ngay</span>
+                <span>{t.kingdomPreview.joinBoss}</span>
               </Link>
             </div>
           </div>
@@ -485,14 +498,14 @@ export default function InteractiveKingdomPreview() {
         <div className="relative z-10 flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-stone-800/80 text-xs font-semibold text-stone-400">
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-            <span>Đang diễn ra: Mở khóa vương quốc tài chính bằng bài học thật</span>
+            <span>{t.kingdomPreview.ongoing}</span>
           </div>
 
           <Link
             href="/login?mode=signup"
             className="inline-flex items-center gap-1 text-amber-300 font-extrabold hover:text-amber-200 transition-colors"
           >
-            <span>Vào chơi thử Game Kingdom đầy đủ</span>
+            <span>{t.kingdomPreview.playFull}</span>
             <ChevronRight className="w-4 h-4" />
           </Link>
         </div>

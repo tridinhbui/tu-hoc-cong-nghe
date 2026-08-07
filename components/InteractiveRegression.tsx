@@ -2,6 +2,8 @@
 
 import { useMemo, useState } from "react";
 import { falsePositiveChance, fitLine, generateSample } from "@/lib/regression-demo";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 // Hồi quy trên dữ liệu biết trước sự thật, widget cho các bài khai
 // `interactiveType: "regression"`.
@@ -22,6 +24,7 @@ const W = 320;
 const H = 190;
 
 export default function InteractiveRegression() {
+  const { t } = useI18n();
   const [n, setN] = useState(30);
   const [trueSlope, setTrueSlope] = useState(0.5);
   const [noise, setNoise] = useState(1.5);
@@ -47,23 +50,23 @@ export default function InteractiveRegression() {
   return (
     <div className="rounded-3xl border border-stone-200 bg-white p-6 dark:border-stone-800 dark:bg-stone-900">
       <h3 className="text-sm font-extrabold text-stone-900 dark:text-stone-100">
-        Bạn đặt ra sự thật, rồi xem hồi quy tìm lại được bao nhiêu
+        {t.regressionCalc.title}
       </h3>
 
       <div className="mt-4 grid gap-3 sm:grid-cols-3">
-        <Row label="Cỡ mẫu" value={`${n}`}>
+        <Row label={t.regressionCalc.sampleSizeLabel} value={`${n}`}>
           <input type="range" min={8} max={500} step={1} value={n}
-            onChange={(e) => setN(Number(e.target.value))} aria-label="Cỡ mẫu"
+            onChange={(e) => setN(Number(e.target.value))} aria-label={t.regressionCalc.sampleSizeLabel}
             className="w-full cursor-pointer accent-stone-900 dark:accent-stone-100" />
         </Row>
-        <Row label="Hệ số thật" value={trueSlope.toFixed(2)}>
+        <Row label={t.regressionCalc.trueSlopeLabel} value={trueSlope.toFixed(2)}>
           <input type="range" min={0} max={2} step={0.05} value={trueSlope}
-            onChange={(e) => setTrueSlope(Number(e.target.value))} aria-label="Hệ số thật"
+            onChange={(e) => setTrueSlope(Number(e.target.value))} aria-label={t.regressionCalc.trueSlopeLabel}
             className="w-full cursor-pointer accent-stone-900 dark:accent-stone-100" />
         </Row>
-        <Row label="Mức nhiễu" value={noise.toFixed(1)}>
+        <Row label={t.regressionCalc.noiseLabel} value={noise.toFixed(1)}>
           <input type="range" min={0.2} max={5} step={0.1} value={noise}
-            onChange={(e) => setNoise(Number(e.target.value))} aria-label="Mức nhiễu"
+            onChange={(e) => setNoise(Number(e.target.value))} aria-label={t.regressionCalc.noiseLabel}
             className="w-full cursor-pointer accent-stone-900 dark:accent-stone-100" />
         </Row>
       </div>
@@ -73,7 +76,11 @@ export default function InteractiveRegression() {
           viewBox={`0 0 ${W} ${H}`}
           className="h-auto w-full min-w-[280px] rounded-2xl bg-stone-50 dark:bg-stone-800/60"
           role="img"
-          aria-label={`Biểu đồ phân tán ${n} điểm, đường hồi quy có hệ số ${fit.slope.toFixed(2)} so với hệ số thật ${trueSlope.toFixed(2)}`}
+          aria-label={format(t.regressionCalc.chartAriaLabel, {
+            n,
+            estimated: fit.slope.toFixed(2),
+            trueSlope: trueSlope.toFixed(2),
+          })}
         >
           {/* Đường sự thật vẽ trước, mờ hơn - để đường ước lượng nằm đè lên nó
               và khoảng lệch giữa hai đường là thứ nhìn thấy ngay. */}
@@ -92,7 +99,7 @@ export default function InteractiveRegression() {
         </svg>
       </div>
       <p className="mt-1.5 text-[10px] text-stone-500 dark:text-stone-400">
-        Nét đứt là quan hệ thật bạn vừa đặt. Nét liền là thứ hồi quy tìm ra từ mẫu này.
+        {t.regressionCalc.chartHint}
       </p>
 
       <div className="mt-3 flex flex-wrap items-center gap-2">
@@ -101,39 +108,35 @@ export default function InteractiveRegression() {
           onClick={() => setSeed((s) => s + 1)}
           className="cursor-pointer rounded-full bg-stone-900 px-4 py-2 text-[11px] font-bold text-white hover:bg-stone-700 dark:bg-stone-100 dark:text-stone-900"
         >
-          Lấy mẫu lại
+          {t.regressionCalc.resampleButton}
         </button>
         <span className="text-[11px] text-stone-500 dark:text-stone-400">
-          Cùng một sự thật, một mẫu khác. Bấm vài lần ở cỡ mẫu 15 rồi ở cỡ mẫu 300.
+          {t.regressionCalc.resampleHint}
         </span>
       </div>
 
       <div className="mt-4 grid gap-3 sm:grid-cols-4">
-        <Card label="Hệ số ước lượng" value={fit.slope.toFixed(2)} tone={err < 0.15 ? "good" : "bad"} />
-        <Card label="Lệch so với sự thật" value={err.toFixed(2)} tone={err < 0.15 ? "good" : "bad"} />
-        <Card label="R²" value={fit.r2.toFixed(2)} tone="neutral" />
-        <Card label="p-value" value={fit.pValue < 0.001 ? "<0,001" : fit.pValue.toFixed(3)} tone={significant ? "good" : "bad"} />
+        <Card label={t.regressionCalc.estimatedSlopeLabel} value={fit.slope.toFixed(2)} tone={err < 0.15 ? "good" : "bad"} />
+        <Card label={t.regressionCalc.errorLabel} value={err.toFixed(2)} tone={err < 0.15 ? "good" : "bad"} />
+        <Card label={t.regressionCalc.r2Label} value={fit.r2.toFixed(2)} tone="neutral" />
+        <Card label={t.regressionCalc.pValueLabel} value={fit.pValue < 0.001 ? t.regressionCalc.pValueBelowThreshold : fit.pValue.toFixed(3)} tone={significant ? "good" : "bad"} />
       </div>
 
       <p className="mt-4 rounded-2xl bg-stone-50 p-4 text-xs leading-relaxed text-stone-600 dark:bg-stone-800/60 dark:text-stone-300">
         {n < 30
-          ? `Ở cỡ mẫu ${n}, bấm "lấy mẫu lại" vài lần là thấy hệ số nhảy đáng kể dù sự thật không đổi. Đó là sai số chuẩn - và nó là lý do một hệ số đơn lẻ từ mẫu nhỏ không nói được gì chắc chắn.`
-          : `R² ${fit.r2.toFixed(2)} không đo mức đúng của mô hình, nó đo phần biến động của y được x giải thích. Tăng nhiễu lên là thấy R² rơi trong khi hệ số ước lượng vẫn quanh giá trị thật — hai thứ khác nhau, và bị nhầm với nhau rất thường xuyên.`}
+          ? format(t.regressionCalc.smallSampleNote, { n })
+          : format(t.regressionCalc.r2ExplainerNote, { r2: fit.r2.toFixed(2) })}
       </p>
 
       {/* Cái bẫy thứ hai, tách riêng vì nó không phải chuyện ước lượng lệch. */}
       <div className="mt-4 rounded-2xl border border-amber-200 bg-amber-50 p-4 dark:border-amber-900/60 dark:bg-amber-950/30">
-        <Row label="Số biến đã thử trước khi báo cáo kết quả" value={`${tests}`}>
+        <Row label={t.regressionCalc.testsTriedLabel} value={`${tests}`}>
           <input type="range" min={1} max={50} step={1} value={tests}
-            onChange={(e) => setTests(Number(e.target.value))} aria-label="Số biến đã thử"
+            onChange={(e) => setTests(Number(e.target.value))} aria-label={t.regressionCalc.testsTriedAriaLabel}
             className="w-full cursor-pointer accent-amber-600" />
         </Row>
         <p className="mt-3 text-xs leading-relaxed text-amber-900 dark:text-amber-200">
-          Thử {tests} biến ở mức ý nghĩa 5% trên dữ liệu KHÔNG có quan hệ nào, xác suất tìm được ít
-          nhất một kết quả &quot;có ý nghĩa thống kê&quot; là{" "}
-          <span className="font-bold tabular-nums">{(falsePositiveChance(tests) * 100).toFixed(0)}%</span>.
-          Đó là toàn bộ p-hacking: không ai bịa số liệu, người ta chỉ thử đủ nhiều rồi báo cáo cái
-          nào đẹp. Vì thế một kết quả có ý nghĩa chỉ đáng tin khi biết nó là phép thử thứ mấy.
+          {format(t.regressionCalc.pHackingText, { tests, chance: (falsePositiveChance(tests) * 100).toFixed(0) })}
         </p>
       </div>
     </div>

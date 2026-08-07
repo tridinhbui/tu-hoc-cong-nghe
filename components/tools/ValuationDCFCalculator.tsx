@@ -16,8 +16,11 @@ import {
   Info,
 } from "lucide-react";
 import { calculateDCF, calculateWACC, type DCFInput, type WACCInput } from "@/lib/dcf-wacc-calculator";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 export default function ValuationDCFCalculator() {
+  const { t } = useI18n();
   const [activeSubTab, setActiveSubTab] = useState<"dcf" | "wacc">("dcf");
 
   // DCF State (Sample defaults inspired by FPT / Vinamilk scale)
@@ -59,7 +62,7 @@ export default function ValuationDCFCalculator() {
                 : "bg-stone-100 dark:bg-stone-900 text-stone-600 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-800"
             }`}
           >
-            <Building2 className="w-4 h-4" /> Định Giá Cổ Phiếu DCF
+            <Building2 className="w-4 h-4" /> {t.dcf.tabDcf}
           </button>
           <button
             type="button"
@@ -70,12 +73,12 @@ export default function ValuationDCFCalculator() {
                 : "bg-stone-100 dark:bg-stone-900 text-stone-600 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-800"
             }`}
           >
-            <PieChart className="w-4 h-4" /> Chi Phí Vốn WACC
+            <PieChart className="w-4 h-4" /> {t.dcf.tabWacc}
           </button>
         </div>
 
         <span className="hidden sm:inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 text-[11px] font-black uppercase tracking-wider border border-amber-300 dark:border-amber-800">
-          <Sparkles className="w-3.5 h-3.5 text-amber-500" /> Chuẩn CFA & Corporate Finance
+          <Sparkles className="w-3.5 h-3.5 text-amber-500" /> {t.dcf.standardBadge}
         </span>
       </div>
 
@@ -87,10 +90,10 @@ export default function ValuationDCFCalculator() {
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-b border-stone-800 pb-3">
               <div>
                 <span className="text-[10px] font-black uppercase tracking-widest text-emerald-400 bg-emerald-950 px-2.5 py-0.5 rounded-full border border-emerald-500/30">
-                  KẾT QUẢ MÔ PHỎNG ĐỊNH GIÁ DCF
+                  {t.dcf.resultTitle}
                 </span>
                 <h2 className="text-xl sm:text-2xl font-black text-stone-100 mt-1">
-                  Giá trị nội tại: {dcfResult.intrinsicValuePerShare.toLocaleString()} VNĐ / CP
+                  {format(t.dcf.intrinsicValue, { value: dcfResult.intrinsicValuePerShare.toLocaleString() })}
                 </h2>
               </div>
               <div
@@ -105,30 +108,30 @@ export default function ValuationDCFCalculator() {
                 {dcfResult.recommendation === "UNDERVALUED" && <ArrowUpRight className="w-4 h-4 text-emerald-400" />}
                 {dcfResult.recommendation === "OVERVALUED" && <ArrowDownRight className="w-4 h-4 text-rose-400" />}
                 <span>
-                  {dcfResult.recommendation === "UNDERVALUED" && `HẤP DẪN (${dcfResult.upsidePercentage > 0 ? "+" : ""}${dcfResult.upsidePercentage}%)`}
-                  {dcfResult.recommendation === "OVERVALUED" && `ĐỊNH GIÁ CAO (${dcfResult.upsidePercentage}%)`}
-                  {dcfResult.recommendation === "FAIR" && `HỢP LÝ (${dcfResult.upsidePercentage > 0 ? "+" : ""}${dcfResult.upsidePercentage}%)`}
+                  {dcfResult.recommendation === "UNDERVALUED" && format(t.dcf.undervalued, { sign: dcfResult.upsidePercentage > 0 ? "+" : "", percent: dcfResult.upsidePercentage })}
+                  {dcfResult.recommendation === "OVERVALUED" && format(t.dcf.overvalued, { percent: dcfResult.upsidePercentage })}
+                  {dcfResult.recommendation === "FAIR" && format(t.dcf.fairValue, { sign: dcfResult.upsidePercentage > 0 ? "+" : "", percent: dcfResult.upsidePercentage })}
                 </span>
               </div>
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
               <div className="p-3 rounded-2xl bg-stone-900/80 border border-stone-800">
-                <p className="text-[10px] font-bold text-stone-400 uppercase">Giá thị trường hiện tại</p>
-                <p className="text-sm font-black text-stone-200 mt-0.5">{dcfInput.currentMarketPrice.toLocaleString()} VNĐ</p>
+                <p className="text-[10px] font-bold text-stone-400 uppercase">{t.dcf.marketPriceLabel}</p>
+                <p className="text-sm font-black text-stone-200 mt-0.5">{format(t.dcf.currency, { value: dcfInput.currentMarketPrice.toLocaleString() })}</p>
               </div>
               <div className="p-3 rounded-2xl bg-stone-900/80 border border-stone-800">
-                <p className="text-[10px] font-bold text-stone-400 uppercase">Giá trị Doanh nghiệp (EV)</p>
-                <p className="text-sm font-black text-stone-200 mt-0.5">{dcfResult.enterpriseValue.toLocaleString()} tỷ VNĐ</p>
+                <p className="text-[10px] font-bold text-stone-400 uppercase">{t.dcf.evLabel}</p>
+                <p className="text-sm font-black text-stone-200 mt-0.5">{format(t.dcf.billions, { value: dcfResult.enterpriseValue.toLocaleString() })}</p>
               </div>
               <div className="p-3 rounded-2xl bg-stone-900/80 border border-stone-800">
-                <p className="text-[10px] font-bold text-stone-400 uppercase">Giá trị Vốn CSH (Equity)</p>
-                <p className="text-sm font-black text-emerald-400 mt-0.5">{dcfResult.equityValue.toLocaleString()} tỷ VNĐ</p>
+                <p className="text-[10px] font-bold text-stone-400 uppercase">{t.dcf.equityLabel}</p>
+                <p className="text-sm font-black text-emerald-400 mt-0.5">{format(t.dcf.billions, { value: dcfResult.equityValue.toLocaleString() })}</p>
               </div>
               <div className="p-3 rounded-2xl bg-stone-900/80 border border-stone-800">
-                <p className="text-[10px] font-bold text-stone-400 uppercase">Tỷ trọng Giá trị Cuối (TV)</p>
+                <p className="text-[10px] font-bold text-stone-400 uppercase">{t.dcf.tvShareLabel}</p>
                 <p className="text-sm font-black text-amber-400 mt-0.5">
-                  {Math.round((dcfResult.pvTerminalValue / dcfResult.enterpriseValue) * 100 || 0)}% EV
+                  {format(t.dcf.percentOfEv, { percent: Math.round((dcfResult.pvTerminalValue / dcfResult.enterpriseValue) * 100 || 0) })}
                 </p>
               </div>
             </div>
@@ -138,12 +141,12 @@ export default function ValuationDCFCalculator() {
           <div className="bg-white dark:bg-stone-900 p-5 rounded-3xl border border-stone-200 dark:border-stone-800 space-y-4">
             <h3 className="text-sm font-black text-stone-900 dark:text-stone-100 flex items-center gap-2">
               <Calculator className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-              Thông số đầu vào Mô hình Chiết khấu Dòng tiền
+              {t.dcf.inputsTitle}
             </h3>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-xs font-semibold">
               <div>
-                <label className="block text-stone-600 dark:text-stone-400 mb-1">Dòng tiền tự do FCF hiện tại (tỷ VNĐ)</label>
+                <label className="block text-stone-600 dark:text-stone-400 mb-1">{t.dcf.inFcf}</label>
                 <input
                   type="number"
                   value={dcfInput.baseFCF}
@@ -153,7 +156,7 @@ export default function ValuationDCFCalculator() {
               </div>
 
               <div>
-                <label className="block text-stone-600 dark:text-stone-400 mb-1">Tốc độ tăng trưởng FCF 5 năm (%)</label>
+                <label className="block text-stone-600 dark:text-stone-400 mb-1">{t.dcf.inGrowth}</label>
                 <input
                   type="number"
                   step="0.5"
@@ -164,7 +167,7 @@ export default function ValuationDCFCalculator() {
               </div>
 
               <div>
-                <label className="block text-stone-600 dark:text-stone-400 mb-1">Tỷ lệ chiết khấu WACC (%)</label>
+                <label className="block text-stone-600 dark:text-stone-400 mb-1">{t.dcf.inWacc}</label>
                 <input
                   type="number"
                   step="0.1"
@@ -175,7 +178,7 @@ export default function ValuationDCFCalculator() {
               </div>
 
               <div>
-                <label className="block text-stone-600 dark:text-stone-400 mb-1">Tăng trưởng vĩnh viễn g_term (%)</label>
+                <label className="block text-stone-600 dark:text-stone-400 mb-1">{t.dcf.inTerminalGrowth}</label>
                 <input
                   type="number"
                   step="0.1"
@@ -186,7 +189,7 @@ export default function ValuationDCFCalculator() {
               </div>
 
               <div>
-                <label className="block text-stone-600 dark:text-stone-400 mb-1">Tiền mặt & Đầu tư ngắn hạn (tỷ VNĐ)</label>
+                <label className="block text-stone-600 dark:text-stone-400 mb-1">{t.dcf.inCash}</label>
                 <input
                   type="number"
                   value={dcfInput.cashAndEquivalents}
@@ -196,7 +199,7 @@ export default function ValuationDCFCalculator() {
               </div>
 
               <div>
-                <label className="block text-stone-600 dark:text-stone-400 mb-1">Tổng Nợ vay tài chính (tỷ VNĐ)</label>
+                <label className="block text-stone-600 dark:text-stone-400 mb-1">{t.dcf.inDebt}</label>
                 <input
                   type="number"
                   value={dcfInput.totalDebt}
@@ -206,7 +209,7 @@ export default function ValuationDCFCalculator() {
               </div>
 
               <div>
-                <label className="block text-stone-600 dark:text-stone-400 mb-1">Số lượng cổ phiếu lưu hành (triệu CP)</label>
+                <label className="block text-stone-600 dark:text-stone-400 mb-1">{t.dcf.inShares}</label>
                 <input
                   type="number"
                   value={dcfInput.sharesOutstanding}
@@ -216,7 +219,7 @@ export default function ValuationDCFCalculator() {
               </div>
 
               <div>
-                <label className="block text-stone-600 dark:text-stone-400 mb-1">Giá thị trường hiện tại (VNĐ/CP)</label>
+                <label className="block text-stone-600 dark:text-stone-400 mb-1">{t.dcf.inMarketPrice}</label>
                 <input
                   type="number"
                   step="500"
@@ -231,35 +234,35 @@ export default function ValuationDCFCalculator() {
           {/* Breakdown Forecast Table */}
           <div className="bg-white dark:bg-stone-900 p-5 rounded-3xl border border-stone-200 dark:border-stone-800 space-y-3">
             <h3 className="text-sm font-black text-stone-900 dark:text-stone-100">
-              📊 Dự báo Dòng tiền tự do & Hiện giá PV từng năm
+              {t.dcf.forecastTitle}
             </h3>
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs font-semibold text-stone-700 dark:text-stone-300">
                 <thead>
                   <tr className="border-b border-stone-200 dark:border-stone-800 text-[10px] uppercase text-stone-400">
-                    <th className="py-2 px-3">Năm</th>
-                    <th className="py-2 px-3">Dòng tiền FCF (tỷ VNĐ)</th>
-                    <th className="py-2 px-3">Hệ số Chiết khấu PV</th>
-                    <th className="py-2 px-3 text-right">Hiện giá PV (tỷ VNĐ)</th>
+                    <th className="py-2 px-3">{t.dcf.colYear}</th>
+                    <th className="py-2 px-3">{t.dcf.colFcf}</th>
+                    <th className="py-2 px-3">{t.dcf.colDiscount}</th>
+                    <th className="py-2 px-3 text-right">{t.dcf.colPv}</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-stone-100 dark:divide-stone-800">
                   {dcfResult.yearlyFCF.map((row) => (
                     <tr key={row.year} className="hover:bg-stone-50 dark:hover:bg-stone-800/40">
-                      <td className="py-2.5 px-3 font-black text-emerald-600 dark:text-emerald-400">Năm {row.year}</td>
-                      <td className="py-2.5 px-3 font-bold">{row.fcf.toLocaleString()} tỷ</td>
+                      <td className="py-2.5 px-3 font-black text-emerald-600 dark:text-emerald-400">{format(t.dcf.rowYear, { year: row.year })}</td>
+                      <td className="py-2.5 px-3 font-bold">{format(t.dcf.billionsShort, { value: row.fcf.toLocaleString() })}</td>
                       <td className="py-2.5 px-3 text-stone-400">1 / (1 + {dcfInput.wacc}%)^{row.year}</td>
                       <td className="py-2.5 px-3 text-right font-black text-stone-900 dark:text-stone-100">
-                        {row.pv.toLocaleString()} tỷ
+                        {format(t.dcf.billionsShort, { value: row.pv.toLocaleString() })}
                       </td>
                     </tr>
                   ))}
                   <tr className="bg-emerald-500/10 font-black text-emerald-800 dark:text-emerald-300">
-                    <td className="py-2.5 px-3">Tổng 5 Năm</td>
+                    <td className="py-2.5 px-3">{t.dcf.total5Years}</td>
                     <td className="py-2.5 px-3">-</td>
                     <td className="py-2.5 px-3">-</td>
                     <td className="py-2.5 px-3 text-right text-emerald-600 dark:text-emerald-400">
-                      {dcfResult.sumPvFCF.toLocaleString()} tỷ
+                      {format(t.dcf.billionsShort, { value: dcfResult.sumPvFCF.toLocaleString() })}
                     </td>
                   </tr>
                 </tbody>
@@ -276,10 +279,10 @@ export default function ValuationDCFCalculator() {
             <div className="flex items-center justify-between border-b border-stone-800 pb-3">
               <div>
                 <span className="text-[10px] font-black uppercase tracking-widest text-teal-400 bg-teal-950 px-2.5 py-0.5 rounded-full border border-teal-500/30">
-                  KẾT QUẢ TÍNH CHI PHÍ VỐN BÌNH QUÂN WACC
+                  {t.dcf.waccResultTitle}
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-black text-stone-100 mt-1">
-                  WACC = {waccResult.wacc}%
+                  {format(t.dcf.waccValue, { value: waccResult.wacc })}
                 </h2>
               </div>
               <span className="text-3xl">⚖️</span>
@@ -287,20 +290,20 @@ export default function ValuationDCFCalculator() {
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
               <div className="p-3 rounded-2xl bg-stone-900/80 border border-stone-800">
-                <p className="text-[10px] font-bold text-stone-400 uppercase">Tỷ trọng Vốn CSH (E/V)</p>
+                <p className="text-[10px] font-bold text-stone-400 uppercase">{t.dcf.equityWeight}</p>
                 <p className="text-sm font-black text-teal-400 mt-0.5">{waccResult.equityWeight}%</p>
               </div>
               <div className="p-3 rounded-2xl bg-stone-900/80 border border-stone-800">
-                <p className="text-[10px] font-bold text-stone-400 uppercase">Tỷ trọng Nợ vay (D/V)</p>
+                <p className="text-[10px] font-bold text-stone-400 uppercase">{t.dcf.debtWeight}</p>
                 <p className="text-sm font-black text-amber-400 mt-0.5">{waccResult.debtWeight}%</p>
               </div>
               <div className="p-3 rounded-2xl bg-stone-900/80 border border-stone-800">
-                <p className="text-[10px] font-bold text-stone-400 uppercase">Chi phí Nợ sau thuế (Kd*)</p>
+                <p className="text-[10px] font-bold text-stone-400 uppercase">{t.dcf.afterTaxKd}</p>
                 <p className="text-sm font-black text-stone-200 mt-0.5">{waccResult.afterTaxCostOfDebt}%</p>
               </div>
               <div className="p-3 rounded-2xl bg-stone-900/80 border border-stone-800">
-                <p className="text-[10px] font-bold text-stone-400 uppercase">Lá chắn thuế Nợ vay</p>
-                <p className="text-sm font-black text-emerald-400 mt-0.5">-{waccInput.taxRate}% Thuế TNDN</p>
+                <p className="text-[10px] font-bold text-stone-400 uppercase">{t.dcf.taxShield}</p>
+                <p className="text-sm font-black text-emerald-400 mt-0.5">{format(t.dcf.taxShieldValue, { rate: waccInput.taxRate })}</p>
               </div>
             </div>
           </div>
@@ -308,12 +311,12 @@ export default function ValuationDCFCalculator() {
           <div className="bg-white dark:bg-stone-900 p-5 rounded-3xl border border-stone-200 dark:border-stone-800 space-y-4">
             <h3 className="text-sm font-black text-stone-900 dark:text-stone-100 flex items-center gap-2">
               <PieChart className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-              Thông số cấu trúc vốn & chi phí từng thành phần
+              {t.dcf.waccInputsTitle}
             </h3>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-xs font-semibold">
               <div>
-                <label className="block text-stone-600 dark:text-stone-400 mb-1">Giá trị Vốn chủ sở hữu E (tỷ VNĐ)</label>
+                <label className="block text-stone-600 dark:text-stone-400 mb-1">{t.dcf.inEquity}</label>
                 <input
                   type="number"
                   value={waccInput.equityValue}
@@ -323,7 +326,7 @@ export default function ValuationDCFCalculator() {
               </div>
 
               <div>
-                <label className="block text-stone-600 dark:text-stone-400 mb-1">Giá trị Nợ vay tài chính D (tỷ VNĐ)</label>
+                <label className="block text-stone-600 dark:text-stone-400 mb-1">{t.dcf.inDebtValue}</label>
                 <input
                   type="number"
                   value={waccInput.debtValue}
@@ -333,7 +336,7 @@ export default function ValuationDCFCalculator() {
               </div>
 
               <div>
-                <label className="block text-stone-600 dark:text-stone-400 mb-1">Chi phí vốn CSH Ke (%)</label>
+                <label className="block text-stone-600 dark:text-stone-400 mb-1">{t.dcf.inKe}</label>
                 <input
                   type="number"
                   step="0.1"
@@ -344,7 +347,7 @@ export default function ValuationDCFCalculator() {
               </div>
 
               <div>
-                <label className="block text-stone-600 dark:text-stone-400 mb-1">Lãi suất nợ vay bình quân Kd (%)</label>
+                <label className="block text-stone-600 dark:text-stone-400 mb-1">{t.dcf.inKd}</label>
                 <input
                   type="number"
                   step="0.1"
@@ -355,7 +358,7 @@ export default function ValuationDCFCalculator() {
               </div>
 
               <div>
-                <label className="block text-stone-600 dark:text-stone-400 mb-1">Thuế suất thuế TNDN t (%)</label>
+                <label className="block text-stone-600 dark:text-stone-400 mb-1">{t.dcf.inTaxRate}</label>
                 <input
                   type="number"
                   step="1"

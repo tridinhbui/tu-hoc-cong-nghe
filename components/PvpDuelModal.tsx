@@ -9,6 +9,8 @@ import { toast } from "sonner";
 import { recalculateUserStats } from "@/lib/supabase-user";
 import { recordCustomGameSession } from "@/lib/games";
 import ModeLeaderboard from "@/components/games/ModeLeaderboard";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 interface SoloBossModalProps {
   userId?: string;
@@ -39,6 +41,7 @@ export default function PvpDuelModal({
   onClose,
   embedded = false,
 }: SoloBossModalProps) {
+  const { t } = useI18n();
   const [battleState, setBattleState] = useState<BattleState>("intro");
   const [questions, setQuestions] = useState<SoloBossQuestion[]>([]);
   const [qIndex, setQIndex] = useState(0);
@@ -55,10 +58,10 @@ export default function PvpDuelModal({
   const progressLabel = totalQuestions > 0 ? `${qIndex + 1}/${totalQuestions}` : "0/0";
 
   const learnedTone = useMemo(() => {
-    if (completedLessonCount >= 10) return "Trận solo chỉ dùng ngân hàng câu hỏi từ các bài bạn đã học xong.";
-    if (completedLessonCount >= 3) return "Boss sẽ hỏi lại đúng vùng kiến thức bạn đã đi qua.";
-    return "Hoàn thành thêm bài học để boss ra câu sát với tiến độ của bạn hơn.";
-  }, [completedLessonCount]);
+    if (completedLessonCount >= 10) return t.pvpDuel.learnedTone10;
+    if (completedLessonCount >= 3) return t.pvpDuel.learnedTone3;
+    return t.pvpDuel.learnedToneDefault;
+  }, [completedLessonCount, t]);
 
   useEffect(() => {
     if (battleState !== "loading") return;
@@ -67,7 +70,7 @@ export default function PvpDuelModal({
 
     fetch("/api/solo-boss/questions")
       .then((res) => {
-        if (!res.ok) throw new Error("Không tải được câu hỏi từ tiến độ đã học.");
+        if (!res.ok) throw new Error(t.pvpDuel.errorLoadFailed);
         return res.json() as Promise<{ questions?: SoloBossQuestion[] }>;
       })
       .then((data) => {
@@ -81,7 +84,7 @@ export default function PvpDuelModal({
         setBossHp(BOSS_MAX_HP);
 
         if (loadedQuestions.length === 0) {
-          setError("Bạn chưa có đủ bài học hoàn thành để mở trận solo này.");
+          setError(t.pvpDuel.errorNoQuestions);
           setBattleState("intro");
           return;
         }
@@ -91,14 +94,14 @@ export default function PvpDuelModal({
       })
       .catch((err: unknown) => {
         if (cancelled) return;
-        setError(err instanceof Error ? err.message : "Không tải được câu hỏi đã học.");
+        setError(err instanceof Error ? err.message : t.pvpDuel.errorLoadGeneric);
         setBattleState("intro");
       });
 
     return () => {
       cancelled = true;
     };
-  }, [battleState]);
+  }, [battleState, t]);
 
   function startBattle() {
     setError(null);
@@ -154,7 +157,7 @@ export default function PvpDuelModal({
           body: JSON.stringify({ wagerCoins, score, isWin: resultWon }),
         });
 
-        if (!res.ok) throw new Error("Không thể chốt kết quả solo.");
+        if (!res.ok) throw new Error(t.pvpDuel.errorSubmitFailed);
         const data = await res.json();
         if (cancelled) return;
 
@@ -163,7 +166,10 @@ export default function PvpDuelModal({
         setResultReward({ xp, coins });
         window.dispatchEvent(new CustomEvent("thtcdn:coin-updated", { detail: { coins: data.newCoins } }));
         await recalculateUserStats(userId);
-        toast.success(`Đã ghi nhận BXH Solo: +${xp} XP${coins > 0 ? ` & +${coins} Coins` : ""}`);
+        toast.success(
+          format(t.pvpDuel.toastRecordedBase, { xp }) +
+            (coins > 0 ? format(t.pvpDuel.toastRecordedCoinsSuffix, { coins }) : "")
+        );
       } catch (err) {
         if (!cancelled) {
           console.error(err);
@@ -185,7 +191,7 @@ export default function PvpDuelModal({
     return () => {
       cancelled = true;
     };
-  }, [battleState, resultReward, resultWon, score, submittingResult, totalQuestions, userId]);
+  }, [battleState, resultReward, resultWon, score, submittingResult, totalQuestions, userId, t]);
 
   const cardContent = (
     <motion.div
@@ -203,7 +209,7 @@ export default function PvpDuelModal({
         <button
           onClick={onClose}
           className="absolute top-4 right-4 p-2 text-stone-400 hover:text-stone-700 rounded-full bg-stone-100 transition-colors z-10"
-          aria-label="Đóng đấu trường"
+          aria-label={t.pvpDuel.closeAriaLabel}
         >
           <X className="w-5 h-5" />
         </button>
@@ -211,11 +217,11 @@ export default function PvpDuelModal({
 
       <div className={`border-b border-stone-100 ${embedded ? "pb-4 mb-5" : "pb-5 mb-6 pr-10"}`}>
         <span className="inline-flex max-w-full text-[10px] uppercase font-black tracking-widest text-sky-700 bg-sky-50 px-3 py-1 rounded-full border border-sky-100">
-          Solo Knowledge Boss
+          {t.pvpDuel.soloBossBadge}
         </span>
         <h3 className={`${embedded ? "text-xl sm:text-2xl" : "text-2xl sm:text-3xl"} font-black mt-2 flex items-start sm:items-center gap-2 leading-tight`}>
           <Brain className="w-5 h-5 text-sky-600 shrink-0 mt-1 sm:mt-0" />
-          <span>Đấu Trường Kiến Thức Solo</span>
+          <span>{t.pvpDuel.title}</span>
         </h3>
         <p className={`${embedded ? "text-xs sm:text-sm" : "text-sm"} font-semibold text-stone-500 mt-1`}>{learnedTone}</p>
       </div>
@@ -226,16 +232,16 @@ export default function PvpDuelModal({
             <div className="relative h-44 sm:h-52 w-full rounded-2xl overflow-hidden border border-sky-200/80 shadow-md">
               <Image
                 src="/images/dau-truong-kien-thuc.jpg"
-                alt="Đấu Trường Kiến Thức"
+                alt={t.pvpDuel.heroAlt}
                 fill
                 className="object-cover object-center"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-stone-950/90 via-stone-950/40 to-transparent" />
               <div className="absolute bottom-3 left-4 right-4 text-white">
                 <span className="text-[10px] font-black uppercase tracking-widest text-amber-300 bg-black/40 px-2.5 py-0.5 rounded-md backdrop-blur-sm border border-amber-300/30">
-                  ⚔️ ARENA OF KNOWLEDGE
+                  {t.pvpDuel.arenaEyebrow}
                 </span>
-                <h4 className="text-lg sm:text-xl font-black text-white mt-1 drop-shadow">Chinh phục Thách đấu & Bẻ giáp Boss</h4>
+                <h4 className="text-lg sm:text-xl font-black text-white mt-1 drop-shadow">{t.pvpDuel.heroTitle}</h4>
               </div>
             </div>
 
@@ -244,9 +250,9 @@ export default function PvpDuelModal({
                 <FinanceCharacterAvatar level={userLevel} equipments={equipments} size={embedded ? "sm" : "md"} />
               </div>
               <div className={embedded ? "text-center sm:text-left" : ""}>
-                <p className="text-xs font-black uppercase tracking-wide text-sky-700">Người học Lv.{userLevel}</p>
+                <p className="text-xs font-black uppercase tracking-wide text-sky-700">{format(t.pvpDuel.learnerLevelLabel, { level: userLevel })}</p>
                 <p className={`${embedded ? "text-sm" : "text-base"} font-bold text-stone-800 mt-1`}>
-                  Vào trận solo, trả lời đúng để bẻ giáp boss kiến thức.
+                  {t.pvpDuel.introDesc}
                 </p>
               </div>
             </div>
@@ -254,7 +260,7 @@ export default function PvpDuelModal({
             <div className={`bg-amber-50 border border-amber-100 ${embedded ? "p-3" : "p-4"} rounded-2xl flex items-start gap-2`}>
               <Shield className="w-4 h-4 text-amber-600 mt-0.5 shrink-0" />
               <p className={`${embedded ? "text-xs" : "text-sm"} font-semibold text-amber-800`}>
-                Trận này không đấu người chơi khác. Boss chỉ hỏi lại phần bạn đã học để ôn đúng trọng tâm.
+                {t.pvpDuel.noticeText}
               </p>
             </div>
 
@@ -268,19 +274,19 @@ export default function PvpDuelModal({
               onClick={startBattle}
               className={`w-full bg-sky-600 hover:bg-sky-500 font-black ${embedded ? "py-3.5 text-base" : "py-4 text-lg"} rounded-2xl text-white shadow-lg transition-colors flex items-center justify-center gap-2 cursor-pointer text-center leading-tight`}
             >
-              <Sparkles className="w-5 h-5" /> Bắt đầu đánh Boss Kiến Thức
+              <Sparkles className="w-5 h-5" /> {t.pvpDuel.startButton}
             </button>
 
             <ModeLeaderboard
               gameType="solo-knowledge-boss"
-              title="BXH Solo Kiến Thức"
-              formatter={(entry) => `${entry.bestScore}/${entry.bestTotal} câu`}
+              title={t.pvpDuel.leaderboardTitle}
+              formatter={(entry) => format(t.pvpDuel.leaderboardFormat, { score: entry.bestScore, total: entry.bestTotal })}
             />
           </motion.div>
         ) : battleState === "loading" ? (
           <motion.div key="loading" className="py-12 text-center" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             <div className="w-10 h-10 border-2 border-sky-100 border-t-sky-500 rounded-full animate-spin mx-auto" />
-            <p className="text-sm font-bold text-stone-500 mt-4">Đang chọn câu hỏi từ bài bạn đã học...</p>
+            <p className="text-sm font-bold text-stone-500 mt-4">{t.pvpDuel.loadingText}</p>
           </motion.div>
         ) : battleState === "fighting" && currentQuestion ? (
           <motion.div key="fighting" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
@@ -288,28 +294,28 @@ export default function PvpDuelModal({
               <div className="grid grid-cols-3 items-center gap-2 sm:gap-3">
                 <div className="flex flex-col items-center text-center">
                   <FinanceCharacterAvatar level={userLevel} equipments={equipments} size="sm" />
-                  <span className="text-[10px] sm:text-[11px] font-extrabold text-sky-300 mt-1">Lv.{userLevel} Bạn</span>
+                  <span className="text-[10px] sm:text-[11px] font-extrabold text-sky-300 mt-1">{format(t.pvpDuel.youLabel, { level: userLevel })}</span>
                 </div>
 
                 <div className="flex flex-col items-center text-center">
                   <span className="w-8 h-8 rounded-full bg-gradient-to-br from-sky-500 to-emerald-500 text-white font-black text-xs flex items-center justify-center shadow-md">
-                    VS
+                    {t.pvpDuel.vs}
                   </span>
-                  <span className="text-[10px] font-bold text-amber-400 mt-1">Câu {progressLabel}</span>
+                  <span className="text-[10px] font-bold text-amber-400 mt-1">{format(t.pvpDuel.questionCounter, { progress: progressLabel })}</span>
                 </div>
 
                 <div className="flex flex-col items-center text-center">
                   <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center text-3xl shadow-lg">
                     🐂
                   </div>
-                  <span className="text-[10px] sm:text-[11px] font-extrabold text-amber-400 mt-0.5 leading-tight">Trâu Phố Wall</span>
+                  <span className="text-[10px] sm:text-[11px] font-extrabold text-amber-400 mt-0.5 leading-tight">{t.pvpDuel.bullNickname}</span>
                 </div>
               </div>
 
               <div className="mt-3">
                 <div className="flex justify-between items-center text-[10px] font-extrabold text-stone-300 mb-1">
-                  <span>Thanh Máu Giáp Boss</span>
-                  <span className="text-sky-400">{bossHp}/{BOSS_MAX_HP} HP</span>
+                  <span>{t.pvpDuel.bossHpLabel}</span>
+                  <span className="text-sky-400">{format(t.pvpDuel.hpSuffix, { hp: bossHp, max: BOSS_MAX_HP })}</span>
                 </div>
                 <div className="h-2.5 rounded-full bg-stone-800 border border-stone-700 overflow-hidden">
                   <div
@@ -322,7 +328,7 @@ export default function PvpDuelModal({
 
             <div className="mb-4">
               <p className="text-[10px] font-black uppercase tracking-widest text-sky-600 mb-2">
-                Từ bài: {currentQuestion.lessonTitle}
+                {format(t.pvpDuel.fromLessonLabel, { title: currentQuestion.lessonTitle })}
               </p>
               <h3 className={`${embedded ? "text-sm" : "text-base sm:text-lg"} font-bold bg-white p-4 rounded-2xl border border-stone-200 shadow-sm leading-relaxed break-words`}>
                 {currentQuestion.prompt}
@@ -366,31 +372,32 @@ export default function PvpDuelModal({
           <motion.div key="result" className={`text-center ${embedded ? "py-5 space-y-4" : "py-8 space-y-5"}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             <Trophy className={`w-16 h-16 mx-auto ${resultWon ? "text-amber-400" : "text-stone-300"}`} />
             <h3 className={`text-2xl font-black ${resultWon ? "text-emerald-600" : "text-sky-700"}`}>
-              {resultWon ? "Hạ Boss Kiến Thức!" : "Boss còn đứng vững"}
+              {resultWon ? t.pvpDuel.resultWonTitle : t.pvpDuel.resultLostTitle}
             </h3>
             <p className={`${embedded ? "text-sm" : "text-base"} text-stone-500`}>
-              Bạn trả lời đúng <strong className="text-stone-900">{score}/{totalQuestions}</strong> câu từ các bài đã học.
+              {t.pvpDuel.resultScorePart1}<strong className="text-stone-900">{score}/{totalQuestions}</strong>{t.pvpDuel.resultScorePart2}
             </p>
             {resultReward && (
               <p className="text-sm font-bold text-emerald-600">
-                Thưởng đã ghi nhận vào BXH game: +{resultReward.xp} XP{resultReward.coins > 0 ? ` & +${resultReward.coins} Coins` : ""}
+                {format(t.pvpDuel.rewardBase, { xp: resultReward.xp })}
+                {resultReward.coins > 0 ? format(t.pvpDuel.rewardCoinsSuffix, { coins: resultReward.coins }) : ""}
               </p>
             )}
             {submittingResult && (
-              <p className="text-xs font-semibold text-stone-400">Đang ghi nhận thành tích BXH...</p>
+              <p className="text-xs font-semibold text-stone-400">{t.pvpDuel.submittingText}</p>
             )}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 <button
                   onClick={resetBattle}
                   className={`bg-stone-100 hover:bg-stone-200 font-black ${embedded ? "py-3" : "py-4"} rounded-2xl text-stone-800 transition-colors`}
               >
-                Đánh lại
+                {t.pvpDuel.retryButton}
               </button>
               <button
                 onClick={onClose}
                 className={`bg-sky-600 hover:bg-sky-500 font-black ${embedded ? "py-3" : "py-4"} rounded-2xl text-white transition-colors`}
               >
-                Đóng
+                {t.pvpDuel.closeButton}
               </button>
             </div>
           </motion.div>

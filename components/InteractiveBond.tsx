@@ -3,13 +3,23 @@
 import { useState } from "react";
 import FormulaBreakdown from "@/components/FormulaBreakdown";
 import { priceBond } from "@/lib/bond-pricing";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
-/** Số thập phân kiểu Việt: dấu phẩy, và cắt đuôi ",0" cho gọn. */
+/** Số thập phân kiểu Việt: dấu phẩy, và cắt đuôi ",0" cho gọn. Dành cho
+ *  locale vi; locale en dùng dấu chấm chuẩn qua `en()`. */
 function vn(value: number, digits = 1): string {
   return value.toFixed(digits).replace(".", ",").replace(/,0+$/, "");
 }
 
+/** Số thập phân kiểu Anh: dấu chấm, cắt đuôi ".0". */
+function en(value: number, digits = 1): string {
+  return value.toFixed(digits).replace(/\.0+$/, "");
+}
+
 export default function InteractiveBond() {
+  const { t, locale } = useI18n();
+  const num = locale === "en" ? en : vn;
   const [marketRate, setMarketRate] = useState(6);
   const bondRate = 5; // coupon cố định, %/năm
   const faceValue = 100; // triệu
@@ -36,31 +46,31 @@ export default function InteractiveBond() {
   return (
     <div className="bg-white rounded-3xl border border-stone-100 p-6 space-y-6">
       <div>
-        <h3 className="font-bold text-stone-800 text-lg mb-1">🏛️ Lãi suất vs Giá trái phiếu</h3>
+        <h3 className="font-bold text-stone-800 text-lg mb-1">{t.bondCalc.title}</h3>
         <p className="text-stone-500 text-sm">
-          Trái phiếu này trả lãi cố định <strong>{bondRate}%/năm</strong>. Kéo lãi suất thị trường để xem giá thay đổi.
+          {t.bondCalc.descPart1} <strong>{format(t.bondCalc.descCouponRate, { rate: bondRate })}</strong>. {t.bondCalc.descPart2}
         </p>
       </div>
 
       {/* Bond card */}
       <div className="bg-gradient-to-br from-stone-800 to-stone-900 rounded-2xl p-5 text-white">
-        <div className="text-xs text-stone-500 mb-3">TRÁI PHIẾU CHÍNH PHỦ</div>
+        <div className="text-xs text-stone-500 mb-3">{t.bondCalc.cardLabel}</div>
         <div className="flex justify-between items-start">
           <div>
-            <div className="text-stone-300 text-sm">Mệnh giá</div>
-            <div className="text-2xl font-bold">{faceValue} triệu</div>
+            <div className="text-stone-300 text-sm">{t.bondCalc.faceValueLabel}</div>
+            <div className="text-2xl font-bold">{format(t.bondCalc.faceValueAmount, { amount: faceValue })}</div>
           </div>
           <div className="text-right">
-            <div className="text-stone-300 text-sm">Lãi coupon cố định</div>
-            <div className="text-2xl font-bold text-emerald-400">{bondRate}%/năm</div>
+            <div className="text-stone-300 text-sm">{t.bondCalc.couponLabel}</div>
+            <div className="text-2xl font-bold text-emerald-400">{format(t.bondCalc.couponAmount, { rate: bondRate })}</div>
           </div>
         </div>
-        <div className="mt-3 text-stone-500 text-xs">Đáo hạn: {years} năm · Trả lãi hàng năm</div>
+        <div className="mt-3 text-stone-500 text-xs">{format(t.bondCalc.maturityLine, { years })}</div>
       </div>
 
       <div>
         <div className="flex justify-between items-center mb-2">
-          <span className="font-medium text-stone-700">Lãi suất thị trường hiện tại</span>
+          <span className="font-medium text-stone-700">{t.bondCalc.marketRateLabel}</span>
           <span className="text-2xl font-bold text-stone-800">{marketRate}%</span>
         </div>
         <input
@@ -75,60 +85,68 @@ export default function InteractiveBond() {
         />
         <div className="flex justify-between text-xs text-stone-500 mt-1">
           <span>1%</span>
-          <span>6.5% (bình thường)</span>
+          <span>{t.bondCalc.sliderNormal}</span>
           <span>12%</span>
         </div>
       </div>
 
       {/* Price result */}
       <div className={`rounded-2xl p-5 text-center ${isPremium ? "bg-emerald-50" : "bg-rose-50"}`}>
-        <div className="text-stone-500 text-sm mb-1">Giá thị trường của trái phiếu</div>
+        <div className="text-stone-500 text-sm mb-1">{t.bondCalc.priceLabel}</div>
         <div className={`text-4xl font-bold mb-1 ${isPremium ? "text-emerald-600" : "text-rose-600"}`}>
-          {vn(bondPrice)} triệu
+          {format(t.bondCalc.priceAmount, { amount: num(bondPrice) })}
         </div>
         <div className={`text-sm font-medium ${isPremium ? "text-emerald-700" : "text-rose-700"}`}>
           {isPremium
-            ? `+${vn(priceDiff)} triệu so với mệnh giá ↑`
-            : `${vn(priceDiff)} triệu so với mệnh giá ↓`}
+            ? format(t.bondCalc.priceAbovePar, { amount: num(priceDiff) })
+            : format(t.bondCalc.priceBelowPar, { amount: num(priceDiff) })}
         </div>
       </div>
 
       <FormulaBreakdown
-        formula={`Giá = C × [1 − (1 + r)⁻ⁿ] ÷ r  +  F ÷ (1 + r)ⁿ
-
-C = tiền lãi mỗi năm = F × coupon = ${faceValue} × ${vn(bondRate)}% = ${vn(coupon)} triệu
-F = mệnh giá = ${faceValue} triệu
-r = lãi suất thị trường = ${vn(marketRate)}%
-n = số năm còn lại = ${years}`}
+        formula={format(t.bondCalc.formula, {
+          faceValue,
+          couponRate: num(bondRate),
+          coupon: num(coupon),
+          marketRate: num(marketRate),
+          years,
+        })}
         steps={[
           {
-            label: "Hệ số chiết khấu (1 + r)ⁿ",
-            expression: `(1 + ${vn(marketRate)}%)^${years}`,
-            value: vn(discountFactor, 4),
+            label: t.bondCalc.stepDiscountFactor,
+            expression: `(1 + ${num(marketRate)}%)^${years}`,
+            value: num(discountFactor, 4),
           },
           {
-            label: "Hệ số annuity",
-            expression: `[1 − 1 ÷ ${vn(discountFactor, 4)}] ÷ ${vn(marketRate)}%`,
-            value: vn(annuityFactor, 4),
+            label: t.bondCalc.stepAnnuityFactor,
+            expression: `[1 − 1 ÷ ${num(discountFactor, 4)}] ÷ ${num(marketRate)}%`,
+            value: num(annuityFactor, 4),
           },
           {
-            label: "PV của các khoản lãi",
-            expression: `${vn(coupon)} × ${vn(annuityFactor, 4)}`,
-            value: `${vn(pvCoupons, 2)} triệu`,
+            label: t.bondCalc.stepPvCoupons,
+            expression: `${num(coupon)} × ${num(annuityFactor, 4)}`,
+            value: format(t.bondCalc.faceValueAmount, { amount: num(pvCoupons, 2) }),
           },
           {
-            label: "PV của mệnh giá nhận lại",
-            expression: `${faceValue} ÷ ${vn(discountFactor, 4)}`,
-            value: `${vn(pvFace, 2)} triệu`,
+            label: t.bondCalc.stepPvFace,
+            expression: `${faceValue} ÷ ${num(discountFactor, 4)}`,
+            value: format(t.bondCalc.faceValueAmount, { amount: num(pvFace, 2) }),
           },
         ]}
-        result={{ label: "Giá trái phiếu", value: `${vn(pvCoupons, 2)} + ${vn(pvFace, 2)} = ${vn(bondPrice, 2)} triệu` }}
+        result={{
+          label: t.bondCalc.resultLabel,
+          value: format(t.bondCalc.resultFormula, {
+            pvCoupons: num(pvCoupons, 2),
+            pvFace: num(pvFace, 2),
+            price: num(bondPrice, 2),
+          }),
+        }}
         note={
           <>
-            Đây là giá trị hiện tại của toàn bộ dòng tiền trái phiếu trả cho bạn: {years} khoản
-            lãi {vn(coupon)} triệu, cộng {faceValue} triệu mệnh giá nhận lại ở năm thứ {years} -
-            tất cả chiết khấu về hôm nay theo lãi suất thị trường. Công thức rút gọn{" "}
-            <code>C ÷ r</code> chỉ đúng với trái phiếu vĩnh viễn, loại không bao giờ đáo hạn.
+            {format(t.bondCalc.noteText, { years, coupon: num(coupon), faceValue })}{" "}
+            {/* i18n-ignore-start: formula symbol, not language text */}
+            <code>C ÷ r</code>
+            {/* i18n-ignore-end */} {t.bondCalc.noteTextEnd}
           </>
         }
       />
@@ -137,26 +155,26 @@ n = số năm còn lại = ${years}`}
       <div className="space-y-2">
         {marketRate < bondRate && (
           <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-4 text-emerald-800 text-sm">
-            <strong>Lãi suất thị trường {marketRate}% &lt; Coupon {bondRate}%</strong>
-            <br />Trái phiếu này hấp dẫn hơn mới phát hành → mọi người tranh mua → giá tăng lên {vn(bondPrice)} triệu (cao hơn mệnh giá).
+            <strong>{format(t.bondCalc.belowParTitle, { market: marketRate, coupon: bondRate })}</strong>
+            <br />{format(t.bondCalc.belowParBody, { price: num(bondPrice) })}
           </div>
         )}
         {marketRate === bondRate && (
           <div className="bg-stone-50 border border-stone-200 rounded-xl p-4 text-stone-700 text-sm">
-            <strong>Lãi suất thị trường = Coupon {bondRate}%</strong>
-            <br />Trái phiếu giao dịch đúng bằng mệnh giá. Đây là điểm cân bằng.
+            <strong>{format(t.bondCalc.equalParTitle, { coupon: bondRate })}</strong>
+            <br />{t.bondCalc.equalParBody}
           </div>
         )}
         {marketRate > bondRate && (
           <div className="bg-rose-50 border border-rose-200 rounded-xl p-4 text-rose-800 text-sm">
-            <strong>Lãi suất thị trường {marketRate}% &gt; Coupon {bondRate}%</strong>
-            <br />Trái phiếu mới phát hành lãi cao hơn → không ai muốn mua trái phiếu cũ với giá mệnh giá → phải giảm giá xuống {vn(bondPrice)} triệu để bù đắp.
+            <strong>{format(t.bondCalc.abovePartTitle, { market: marketRate, coupon: bondRate })}</strong>
+            <br />{format(t.bondCalc.abovePartBody, { price: num(bondPrice) })}
           </div>
         )}
       </div>
 
       <div className="bg-amber-50 rounded-xl p-3 text-amber-800 text-xs">
-        💡 <strong>Quy tắc vàng:</strong> Lãi suất tăng → Giá trái phiếu giảm. Lãi suất giảm → Giá trái phiếu tăng. Chúng luôn ngược chiều nhau!
+        💡 <strong>{t.bondCalc.goldenRule}</strong> {t.bondCalc.goldenRuleBody}
       </div>
     </div>
   );

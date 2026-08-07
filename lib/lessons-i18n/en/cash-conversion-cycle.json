@@ -1,0 +1,133 @@
+{
+  "slug": "cash-conversion-cycle",
+  "title": "Cash Conversion Cycle",
+  "subtitle": "From cash → inventory → sale → cash collected",
+  "duration": "6 min",
+  "openingQuestion": "CCC = DIO + DSO − DPO. Why is DPO subtracted?",
+  "openingOptions": [
+    "Because DPO has no effect",
+    "Because DPO is time spent using the supplier's money - the longer you delay paying, the longer you hold cash",
+    "Because DPO is cash going out",
+    "Because the formula just says so"
+  ],
+  "explanation": "The cash conversion cycle measures how many days your cash is tied up between paying suppliers and collecting from customers. Paying suppliers slower (a high DPO) shortens that cycle, because you're using their capital for longer - for free. When the cycle drops below zero, as with Amazon or Costco, customers pay you before you even have to pay your suppliers: the business can expand without raising extra working capital, and that's a real competitive advantage.",
+  "diagram": [
+    { "label": "DIO: days in inventory", "arrow": true },
+    { "label": "+ DSO: days to collect", "arrow": true },
+    { "label": "− DPO: days to pay suppliers", "arrow": true },
+    { "label": "= Cash Conversion Cycle" }
+  ],
+  "realWorldExample": {
+    "company": "Amazon",
+    "description": "Amazon is famous for a NEGATIVE Cash Conversion Cycle - it collects from customers almost instantly (credit card), but pays suppliers after 60-90 days, meaning Amazon is effectively using supplier capital to fund its own operations without paying any interest expense."
+  },
+  "quiz": [
+    {
+      "question": "How does DIO usually look for a make-to-order manufacturer?",
+      "options": [
+        "Lower than make-to-stock, since it only produces when it has an order",
+        "Very high, since it must keep raw materials ready for order production",
+        "Equal, since DIO doesn't depend on the production model",
+        "There is no DIO, since goods ship as soon as production finishes"
+      ],
+      "explanation": "Make-to-order: produce only when there's an order → less inventory → low DIO → shorter CCC. Make-to-stock: produce ahead of sale → high DIO. Choice of model directly affects the CCC."
+    },
+    {
+      "question": "Why is a company with a negative Cash Conversion Cycle seen as having a significant financial competitive advantage?",
+      "options": [
+        "Because suppliers are effectively funding working capital for free",
+        "A negative CCC is a calculation error and cannot occur in reality",
+        "A negative CCC is only meaningful for technology-platform companies",
+        "Because a negative CCC means the company is losing money and needs no working capital"
+      ],
+      "explanation": "A negative CCC is one of the strongest financial competitive advantages a business can have: it allows the business to scale up without needing to raise much additional working capital."
+    },
+    {
+      "question": "DIO is 60 days, DSO is 45 days, DPO is 30 days. What is the Cash Conversion Cycle?",
+      "options": [
+        "135 days (= 60 + 45 + 30, wrongly adding all three)",
+        "75 days (= DIO 60 + DSO 45 − DPO 30 days)",
+        "45 days (= 60 − 45 + 30, signs flipped on both sides)",
+        "15 days (= 60 − 45, forgetting the payables term)"
+      ],
+      "explanation": "CCC = DIO + DSO − DPO = 60 + 45 − 30 = 75 days. The business's cash is tied up for 75 days between paying suppliers and collecting from customers."
+    },
+    {
+      "question": "Why is a negative Cash Conversion Cycle such a big advantage?",
+      "options": [
+        "Because a negative figure shows all inventory has been fully sold off",
+        "Because the business doesn't need bank loans for fixed assets",
+        "Because the business uses supplier money to fund working capital",
+        "Because it means the business is earning a very high profit"
+      ],
+      "explanation": "Collecting from customers before having to pay suppliers means the more you sell, the more free cash you get to use. This is how retail and subscription models self-fund growth without needing to borrow."
+    },
+    {
+      "question": "What can shorten the CCC without damaging the relationship with customers?",
+      "options": [
+        "Lower selling prices so customers pay immediately in cash",
+        "Stretch out the payment period to suppliers as long as possible",
+        "Tighten credit terms across the entire customer base",
+        "Increase inventory turnover to reduce DIO"
+      ],
+      "explanation": "The three levers of CCC don't cost the same: squeezing customers loses orders, pressuring suppliers damages relationships, while selling faster improves all three numbers at once."
+    }
+  ],
+  "keyTakeaways": [
+    "CCC = DIO + DSO − DPO",
+    "A negative CCC: collecting before paying - a major competitive advantage",
+    "Shortening CCC = freeing up working capital"
+  ],
+  "practicePrompt": {
+    "question": "A company has DIO (time holding inventory) = 40 days, DSO (time to collect from customers) = 30 days, DPO (time to pay suppliers) = 25 days. What is this company's Cash Conversion Cycle (CCC), and what does it mean?",
+    "options": [
+      "CCC = DIO + DSO − DPO = 40 + 30 - 25 = 45 days - this is the average number of days from when the company spends cash on raw materials to when it actually collects cash from customers",
+      "CCC = DIO + DSO + DPO = 40 + 30 + 25 = 95 days, adding all three periods together",
+      "CCC = DPO - DIO - DSO = 25 - 40 - 30 = -45 days, since DPO must always be subtracted from the other two",
+      "CCC has no practical meaning, it's just a theoretical formula rarely applied"
+    ],
+    "explanation": "CCC = DIO + DSO − DPO = 40 + 30 - 25 = 45 days. A shorter CCC means the company doesn't have to wait long to recover the capital it laid out - the shorter the CCC (even negative, like Amazon's), the stronger the company's cash flow because it needs less working capital to operate."
+  },
+  "summary": {
+    "keyIdea": "CCC = DIO + DSO − DPO",
+    "commonMistake": "Reading a concept as a phrase to memorise rather than a principle to apply to real decisions.",
+    "action": "A negative CCC: collecting before paying - a major competitive advantage"
+  },
+  "application": {
+    "title": "Calculate the Cash Conversion Cycle",
+    "message": "For a company where you already have DIO and DSO from previous lessons, also find DPO (based on Accounts Payable) and calculate CCC = DIO + DSO − DPO to see how long capital is tied up.",
+    "secondary": "The shorter (or more negative) the CCC, the less a company depends on borrowed money to operate."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The Cash Conversion Cycle (CCC) combines three metrics already learned - DIO, DSO, DPO - into a single picture: from the moment cash is spent on raw materials, to the sale, to the moment cash is collected, how many days in total does that take?"
+    },
+    { "type": "callout", "label": "The formula", "text": "CCC = DIO + DSO − DPO   (DPO = Days Payable Outstanding, the average number of days to pay suppliers)" },
+    { "type": "heading", "text": "Why Amazon has a negative CCC - and why that's a major advantage" },
+    {
+      "type": "paragraph",
+      "text": "Amazon is famous for a negative CCC: it collects from customers almost instantly via credit card, but pays suppliers after 60-90 days. That means Amazon is using its own suppliers' capital to fund its operations without incurring interest expense - a form of 'free financing.' This is one of the strongest financial competitive advantages a business can have: it allows expansion without needing to raise much additional working capital."
+    },
+    { "type": "heading", "text": "How make-to-order shortens the CCC" },
+    {
+      "type": "paragraph",
+      "text": "A make-to-order manufacturer only produces once it has a confirmed order, so it holds far less inventory than make-to-stock (produce first, sell later) - lower DIO means a shorter CCC. The choice of production model, therefore, directly affects a business's working-capital needs."
+    },
+    {
+      "type": "list",
+      "items": [
+        "A short CCC = capital isn't tied up long in the business cycle, freeing up cash for investment/growth",
+        "A negative CCC = the business is effectively being 'lent to' interest-free by suppliers to fund growth",
+        "A high DPO (paying suppliers slower) shortens CCC, but consider the impact on supplier relationships",
+        "Shortening CCC is one of the most effective ways to improve cash flow without needing to increase profit"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "CCC is the one metric that tells the full working-capital story - from the moment cash leaves your pocket to when it returns."
+      ]
+    }
+  ]
+}

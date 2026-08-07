@@ -1,0 +1,148 @@
+{
+  "slug": "wacc-co-ban",
+  "title": "What is WACC?",
+  "subtitle": "Weighted average cost of capital - the discount rate in DCF",
+  "duration": "10 min",
+  "openingQuestion": "A company has 60% equity (Ke=12%) and 40% debt (Kd=6%, tax=20%). What is the WACC?",
+  "openingOptions": ["10%", "9%", "7%", "8.88%"],
+  "explanation": "WACC is the average cost of all the capital a business is currently using, weighted by each source: 60%×12% + 40%×6%×(1−20%) = 9.12%. The (1 − tax rate) term applies only to debt, because interest is tax-deductible while dividends are not. This figure is the minimum threshold every project must clear to create value, and it's also the discount rate used in DCF - so being off by one percentage point here throws a valuation far off course.",
+  "diagram": [
+    { "label": "Calculate the cost of equity and the cost of debt", "arrow": true },
+    { "label": "Reduce the cost of debt for the tax shield", "arrow": true },
+    { "label": "Multiply each by its weight in total capital", "arrow": true },
+    { "label": "Add them up to get WACC - the discount rate used in DCF" }
+  ],
+  "realWorldExample": {
+    "company": "Real DCF valuation models",
+    "description": "Every professional DCF model - from an IPO valuation to an M&A deal - begins by accurately calculating the target company's WACC, because it's the discount rate that drives the entire valuation outcome."
+  },
+  "quiz": [
+    {
+      "question": "How does a rising WACC affect a DCF valuation?",
+      "options": [
+        "The valuation rises, because a higher cost of capital comes with a higher return",
+        "The valuation falls, because every cash flow is discounted more heavily",
+        "The valuation doesn't change, because the projected cash flow stays the same",
+        "Only Terminal Value changes, the detailed forecast period is unaffected"
+      ],
+      "explanation": "A higher WACC → higher discount rate → lower PV for every unit of future FCF → lower total DCF valuation. This is why stocks (especially growth stocks) are sensitive to interest rates."
+    },
+    {
+      "question": "A company increases the weight of debt in its capital structure (holding the cost of debt and cost of equity constant). What can happen to WACC, and why doesn't more debt always keep lowering WACC forever?",
+      "options": [
+        "WACC doesn't change because total cost of capital is held fixed",
+        "WACC keeps falling steadily forever because debt is always cheaper than equity",
+        "WACC falls at first, then rises again as bankruptcy risk grows",
+        "WACC rises immediately from the first unit of debt due to financial risk"
+      ],
+      "explanation": "This is the concept of \"optimal capital structure\": there's a leverage level that minimizes WACC - beyond that point, rising financial risk makes both bondholders and shareholders demand higher returns to compensate for the risk, pushing WACC back up despite the extra cheap debt."
+    },
+    {
+      "question": "Equity 60% with Ke 12%, debt 40% with Kd 6%, tax 20%. What is the WACC?",
+      "options": [
+        "9% (= (12% + 6%) ÷ 2, a simple average)",
+        "9.6% (= 60%×12% + 40%×6%, forgetting the tax shield)",
+        "18% (= 12% + 6%, adding the two costs directly)",
+        "9.12% (= 60%×12% + 40%×6%×0.8 after tax)"
+      ],
+      "explanation": "WACC = 7.2% + 1.92% = 9.12%. The most common mistake is taking a simple average of the two costs of capital to get 9%, instead of a weighted average - that approach ignores both the weights and the tax shield."
+    },
+    {
+      "question": "Why must E and D in the WACC formula be taken at market value?",
+      "options": [
+        "Because that's the amount investors are actually putting up today",
+        "Because book values change quarterly",
+        "Because accounting standards require debt to be revalued at market prices",
+        "Because market value is always higher than book value, so WACC is more accurate"
+      ],
+      "explanation": "WACC is the cost of raising capital from today onward. A listed company trading at three times book value has two completely different capital structures depending on which number you use - and getting the weights wrong throws off the entire valuation from the very first line."
+    },
+    {
+      "question": "What happens if you use the WACC of an entire conglomerate to appraise a project far safer than its core business?",
+      "options": [
+        "The project gets favored, more easily approved than it deserves",
+        "The project gets unfairly penalized, possibly rejected despite being worthwhile",
+        "No effect, because WACC is a company-wide figure",
+        "It only matters if the project is over a quarter of total capital"
+      ],
+      "explanation": "The blended WACC is higher than the project's actual risk, so its NPV is understated. Over time, a business ends up rejecting exactly the stable projects it should take and pours capital into riskier projects that get an unfair advantage."
+    }
+  ],
+  "keyTakeaways": [
+    "WACC = Ke×(E/V) + Kd×(1−T)×(D/V)",
+    "It's the standard discount rate in DCF",
+    "WACC rises → valuation falls → the stock is riskier"
+  ],
+  "practicePrompt": {
+    "question": "A company's capital structure is 60% equity with a Cost of Equity of 15%, and 40% debt with an after-tax Cost of Debt of 6%. What is this company's WACC (weighted average cost of capital)?",
+    "options": [
+      "WACC = Ke×(E/V) + Kd×(1−T)×(D/V) = 15%×0.6 + 6%×0.4 = 9% + 2.4% = 11.4% - this is the minimum return the company must generate to avoid destroying value for both shareholders and creditors",
+      "WACC = 15% + 6% = 21%, adding the two costs of capital directly together",
+      "WACC always equals Cost of Equity because that is the higher and more important cost of capital",
+      "WACC = (15%+6%)/2 = 10.5%, a simple average not weighted by proportion"
+    ],
+    "explanation": "WACC = Ke×(E/V) + Kd×(1−T)×(D/V) = 15%×0.6 + 6%×0.4 = 11.4%. This is the weighted average cost of capital based on each source's exact proportion - it's the minimum 'hurdle rate' the company's investment projects need to clear (ROIC > WACC) to actually create value."
+  },
+  "summary": {
+    "keyIdea": "WACC = Ke×(E/V) + Kd×(1−T)×(D/V)",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to real decisions.",
+    "action": "It's the standard discount rate in DCF"
+  },
+  "application": {
+    "title": "Calculate a simple WACC yourself",
+    "message": "Assume a company with certain equity/debt proportions and cost figures for each, apply the formula WACC = Ke×(E/V) + Kd×(1−T)×(D/V) to get a specific WACC number.",
+    "secondary": "Repeat with different debt ratios to see how WACC changes."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "WACC (Weighted Average Cost of Capital) combines the cost of both borrowed capital and equity into a single number, weighted exactly by the proportion the business currently uses of each - this is the standard discount rate used in most DCF models."
+    },
+    { "type": "heading", "text": "The WACC formula" },
+    {
+      "type": "paragraph",
+      "text": "WACC = (E/V) × Ke + (D/V) × Kd × (1−T), where E is the value of equity, D is the value of debt, V = E+D, Ke is the cost of equity, Kd is the pre-tax cost of debt, T is the tax rate. **Example:** a business with 60% equity (Ke=12%) and 40% debt (Kd=6%, tax rate 20%): WACC = 60%×12% + 40%×6%×(1−20%) = 7.2% + 1.92% = 9.12%."
+    },
+    { "type": "heading", "text": "How WACC drives a DCF valuation" },
+    {
+      "type": "paragraph",
+      "text": "The higher the WACC, the more heavily future cash flow is discounted, the lower the PV → the lower the DCF valuation. This is why growth stocks (whose value lies mostly in cash flow far in the future) are especially sensitive to changes in interest rates - rising rates push WACC up, which cuts their valuation more sharply than value stocks."
+    },
+    {
+      "type": "formula",
+      "title": "WACC",
+      "equation": "WACC = (E/V) × Ke + (D/V) × Kd × (1 − T)",
+      "variables": [
+        { "symbol": "E/V, D/V", "name": "Weight of equity and debt", "description": "By MARKET value, not book value" },
+        { "symbol": "Ke", "name": "Cost of equity", "description": "Usually estimated via CAPM: Rf + β × Market Risk Premium" },
+        { "symbol": "Kd × (1 − T)", "name": "After-tax cost of debt", "description": "Interest is tax-deductible, so debt is cheaper than it looks on the surface" }
+      ],
+      "example": {
+        "title": "How much does the valuation shift for a 1-percentage-point WACC change",
+        "calculation": "Cash flow 100 billion, growing 3% forever · WACC 9.12% → 100 ÷ (9.12% − 3%) = 1,634 billion · WACC 10.12% → 100 ÷ (10.12% − 3%) = 1,405 billion",
+        "result": "14% of value lost from one percentage point",
+        "explanation": "No cash flow changed, no business assumption changed. This is why a WACC × growth sensitivity table appears next to almost every serious DCF model."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "A classic mistake: taking weights from the balance sheet",
+      "text": "E in the formula is market capitalization, not book equity. A listed company trading at three times book value gives two completely different capital structures depending on which figure you use - and because WACC is a weighted average, getting the weights wrong throws off the whole valuation from the very first line."
+    },
+    {
+      "type": "list",
+      "items": [
+        "A higher WACC → lower PV of future cash flow → lower DCF valuation",
+        "There's an optimal capital structure that minimizes WACC - beyond it, rising bankruptcy risk pushes both Kd and Ke back up",
+        "WACC should reflect the marginal cost of capital, not a historical cost of capital",
+        "A small error in WACC can create a very large valuation gap - always check sensitivity"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "WACC is a single number with the largest impact on an entire DCF model - it's worth taking the time to calculate carefully."
+      ]
+    }
+  ]
+}

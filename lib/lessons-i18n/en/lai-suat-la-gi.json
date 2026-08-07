@@ -1,0 +1,137 @@
+{
+  "slug": "lai-suat-la-gi",
+  "title": "What is an interest rate? Why rates move everything.",
+  "subtitle": "An interest rate is the price of money. When it changes, everything changes with it.",
+  "duration": "7 min",
+  "openingQuestion": "The State Bank raises its policy rate from 4% to 6%. What happens?",
+  "openingOptions": [
+    "Inflation will spike within the next few weeks, because the cost of borrowing has risen across the whole economy",
+    "Bank shares will rally hard, because a wider net interest margin improves their profitability considerably",
+    "Nothing changes for ordinary people, because this is only the rate at which banks lend to one another",
+    "Mortgages get more expensive; saving looks more attractive; businesses invest more cautiously"
+  ],
+  "explanation": "An interest rate is the price of money, so it turns up in almost every financial decision. When it rises: borrowing costs more, so people borrow less; saving pays better, so people spend less; businesses postpone projects; and asset prices come under pressure because future cash flows are discounted more heavily. That last channel is the least intuitive and the most powerful - it is why stock markets react the moment a central bank moves rates.",
+  "diagram": [
+    { "label": "The central bank changes its policy rate" },
+    { "label": "Borrowing costs and deposit yields follow" },
+    { "label": "Firms and households borrow and spend less" },
+    { "label": "Future cash flows get discounted harder: asset prices fall" }
+  ],
+  "realWorldExample": {
+    "company": "The Fed, 2022-2023",
+    "description": "The Fed raised rates from 0.25% to 5.25% in 18 months to fight inflation. Tech stocks fell 40-70% and US mortgage rates doubled."
+  },
+  "quiz": [
+    {
+      "question": "Why does a central bank raise rates when inflation is high?",
+      "options": [
+        "To attract foreign capital into government bonds",
+        "To let commercial banks widen their lending margins",
+        "To slow spending and investment, cooling off demand",
+        "To compensate depositors for what inflation has eroded"
+      ],
+      "explanation": "High rates make borrowing more expensive and saving more attractive, so consumers and businesses spend less. When demand falls, prices cool. This is the basic anti-inflation mechanism."
+    },
+    {
+      "question": "What is the real interest rate?",
+      "options": [
+        "The rate the central bank announces as its policy rate",
+        "The nominal interest rate plus the rate of inflation",
+        "The rate that is left after income tax has been paid",
+        "The nominal interest rate minus the rate of inflation"
+      ],
+      "explanation": "Real rate = nominal rate − inflation. If a bank pays 6% a year while inflation runs at 7%, the real rate is minus 1%. You are losing money despite being paid interest."
+    },
+    {
+      "question": "Scenario: You borrow 500 million VND for a house at 10% a year over 10 years. Average inflation is 5% a year. What is the real rate on the loan, and does inflation favour the borrower or the lender?",
+      "options": [
+        "A real rate of 5%, which favours the borrower",
+        "A real rate of 15%, which favours the borrower",
+        "A real rate of 10%, and neither side gains",
+        "A real rate of 5%, which favours the lender"
+      ],
+      "explanation": "Real rate = 10% − 5% = 5%. Inflation reduces the real value of the money you have to pay back. The borrower gains, because they repay in devalued money. The lender loses, receiving money with less purchasing power than it had."
+    },
+    {
+      "question": "Scenario: A savings account pays a nominal 8% a year while inflation runs at 5% a year. What is the real rate, approximately?",
+      "options": [
+        "13% (= 8 + 5, adding instead of subtracting)",
+        "3% (= 8 − 5), the purchasing power genuinely gained",
+        "8%, because inflation doesn't enter the real rate",
+        "1.6% (= 8 ÷ 5, dividing instead of subtracting)"
+      ],
+      "explanation": "The real rate is roughly the nominal rate minus inflation: 8 − 5 = 3%. It is the only figure that tells you whether you can buy more than you could last year - earning 10% while inflation runs at 12% is getting poorer, even as the passbook total rises."
+    },
+    {
+      "question": "Why does raising rates actually bring inflation down?",
+      "options": [
+        "Because a central bank prints less money when rates are high",
+        "Because high rates push the price of goods down directly",
+        "Because dearer borrowing means less spending and investment",
+        "Because deposits grow, so banks have more to lend out"
+      ],
+      "explanation": "Rates work through demand, not through prices. When borrowing is dear, businesses postpone expansion, households postpone a house or a car, and saving becomes more attractive than spending - aggregate demand falls, and so does the pressure on prices."
+    }
+  ],
+  "keyTakeaways": [
+    "An interest rate is the price of money: higher means dearer borrowing and better saving",
+    "Central banks use rates as their main tool against inflation",
+    "Real rate = nominal rate − inflation"
+  ],
+  "practicePrompt": {
+    "question": "If interest rates rise, which of these is usually most accurate?",
+    "options": [
+      "Borrowers gain, because money is easier to come by",
+      "Both sides gain to about the same extent",
+      "Inflation will come down immediately",
+      "Savers gain, while borrowers come under more pressure"
+    ],
+    "explanation": "Rising rates make borrowing more expensive while making saving more attractive. This is why a change in rates reaches spending, investment and asset prices alike."
+  },
+  "summary": {
+    "keyIdea": "An interest rate is the price of money and the main tool for steering an economy.",
+    "formula": "Real rate = nominal rate − inflation.",
+    "commonMistake": "Reading the nominal rate and ignoring inflation.",
+    "action": "Looking at a savings or loan product, ask: is this yield genuinely worth it after inflation?"
+  },
+  "application": {
+    "title": "Apply it now",
+    "message": "If you're weighing up a loan or an investment, look at both the interest rate and inflation before deciding."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The State Bank raises its policy rate from 4% to 6%. The headline sounds dry, but it will reach your wallet through more channels than you would expect."
+    },
+    { "type": "heading", "text": "An interest rate is 'the price of money'" },
+    {
+      "type": "paragraph",
+      "text": "Just like the price of rice or of petrol, an interest rate is what you pay to 'rent' someone else's money (when you borrow), or the reward you receive for letting someone rent yours (when you save). When that price moves, every decision about borrowing, lending and investing moves with it."
+    },
+    { "type": "heading", "text": "The chain reaction when rates rise" },
+    {
+      "type": "paragraph",
+      "text": "When rates rise: borrowing becomes more expensive (instalments on a house or a car go up), saving becomes more attractive (people shift out of risky investments into safe deposits), businesses borrow less to expand (a higher cost of capital leaves fewer projects still profitable), and assets like equities and property usually come under downward pressure (future cash flows are discounted at a higher rate, which lowers their present value)."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Dearer borrowing → households and firms borrow less, spending slows",
+        "More attractive saving → money tends to flow out of risky assets",
+        "Firms invest less → economic growth may slow",
+        "Asset prices (equities, property) come under pressure from higher discounting"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Why would a central bank do this?",
+      "text": "Raising rates is the main tool against inflation: it slows the economy down when prices are rising too fast. The real rate - after inflation - is the figure that reflects the true cost of borrowing or the true benefit of saving."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "An interest rate looks like a distant macro number, but it is the variable that reaches straight into your mortgage, your deposit interest, and the value of your own portfolio."
+      ]
+    }
+  ]
+}

@@ -1,5 +1,8 @@
 import { describe, expect, it } from "vitest";
-import { MIN_WORDS, TOPICS, evaluate, normalize } from "@/lib/teach-back";
+import { MIN_WORDS, evaluate, normalize, topicsOf } from "@/lib/teach-back";
+import { vi } from "@/lib/i18n/dictionaries/vi";
+
+const TOPICS = topicsOf(vi);
 
 /** Bàn tròn giảng lại.
  *

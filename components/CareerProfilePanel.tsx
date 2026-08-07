@@ -28,6 +28,8 @@ import {
 } from "@/lib/career-profile";
 import { recalculateUserStats } from "@/lib/supabase-user";
 import MockInterviewModal from "@/components/MockInterviewModal";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 // The three /su-nghiep career surfaces in one panel, because all three read
 // from the same GET /api/career-profile response: the competency profile
@@ -60,6 +62,7 @@ function Bar({ percent, color }: { percent: number; color: string }) {
 }
 
 export default function CareerProfilePanel({ userId, careerId }: CareerProfilePanelProps) {
+  const { t } = useI18n();
   const [data, setData] = useState<CareerProfileResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [failed, setFailed] = useState(false);
@@ -101,7 +104,7 @@ export default function CareerProfilePanel({ userId, careerId }: CareerProfilePa
     try {
       const res = await claimCareerMission(missionId);
       if (res.claimed) {
-        toast.success(`Đã nhận +${res.xpEarned} XP · +${res.coinEarned} xu`);
+        toast.success(format(t.careerProfile.claimed, { xp: res.xpEarned, coins: res.coinEarned }));
         // XP is summed from the claim ledger rather than written by the
         // route, so the recalc is what actually moves the user's total.
         if (userId) await recalculateUserStats(userId).catch(() => {});
@@ -119,7 +122,7 @@ export default function CareerProfilePanel({ userId, careerId }: CareerProfilePa
     try {
       await addCvBullet(userId, targetId, bulletDraft);
       setBulletDraft("");
-      toast.success("Đã lưu CV bullet");
+      toast.success(t.careerProfile.bulletSaved);
       await load();
     } catch (error) {
       toast.error(error instanceof Error ? error.message : "Không lưu được bullet");
@@ -140,13 +143,13 @@ export default function CareerProfilePanel({ userId, careerId }: CareerProfilePa
     return (
       <div className="p-6 rounded-2xl border-2 border-dashed border-stone-200 dark:border-stone-800 text-center">
         <p className="text-sm font-bold text-stone-500 dark:text-stone-400">
-          Đăng nhập để xem hồ sơ năng lực nghề nghiệp của bạn.
+          {t.careerProfile.signInPrompt}
         </p>
         <Link
           href="/login"
           className="inline-block mt-3 px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-white text-xs font-black transition-colors"
         >
-          Đăng nhập
+          {t.careerProfile.signIn}
         </Link>
       </div>
     );
@@ -156,7 +159,7 @@ export default function CareerProfilePanel({ userId, careerId }: CareerProfilePa
     return (
       <div className="py-16 flex flex-col items-center gap-3 text-stone-500 dark:text-stone-400">
         <Loader2 className="w-6 h-6 animate-spin" />
-        <p className="text-xs font-bold">Đang tính hồ sơ năng lực...</p>
+        <p className="text-xs font-bold">{t.careerProfile.computing}</p>
       </div>
     );
   }
@@ -165,13 +168,13 @@ export default function CareerProfilePanel({ userId, careerId }: CareerProfilePa
     return (
       <div className="py-12 flex flex-col items-center gap-3">
         <p className="text-sm font-bold text-stone-500 dark:text-stone-400">
-          Không tải được hồ sơ năng lực.
+          {t.careerProfile.loadFailed}
         </p>
         <button
           onClick={() => void load()}
           className="px-4 py-2 rounded-xl bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 text-xs font-black cursor-pointer"
         >
-          Thử lại
+          {t.careerProfile.retry}
         </button>
       </div>
     );
@@ -186,10 +189,10 @@ export default function CareerProfilePanel({ userId, careerId }: CareerProfilePa
         <div className="flex items-center justify-between gap-3 mb-4">
           <h3 className="text-xs font-extrabold uppercase tracking-widest text-stone-400 dark:text-stone-500 flex items-center gap-1.5">
             <TrendingUp className="w-4 h-4 text-emerald-500" />
-            Hồ sơ năng lực
+            {t.careerProfile.title}
           </h3>
           <span className="text-[11px] font-bold text-stone-400 dark:text-stone-500">
-            {data.totalLessonsCompleted} bài đã hoàn thành
+            {format(t.careerProfile.lessonsCompleted, { count: data.totalLessonsCompleted })}
           </span>
         </div>
 
@@ -238,7 +241,7 @@ export default function CareerProfilePanel({ userId, careerId }: CareerProfilePa
           className="mt-4 w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-indigo-500 hover:bg-indigo-400 text-white text-xs font-black shadow-sm transition-colors cursor-pointer"
         >
           <Mic className="w-4 h-4" />
-          Làm mock interview (10 câu, có tính giờ)
+          {t.careerProfile.mockInterview}
         </button>
       </section>
 
@@ -247,21 +250,21 @@ export default function CareerProfilePanel({ userId, careerId }: CareerProfilePa
         <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
           <h3 className="text-xs font-extrabold uppercase tracking-widest text-stone-400 dark:text-stone-500 flex items-center gap-1.5">
             <Target className="w-4 h-4 text-violet-500" />
-            Job Skill Gap
+            {t.careerProfile.gapTitle}
           </h3>
           <select
             value={targetId}
             onChange={(e) => setTargetId(e.target.value)}
             className="px-3 py-2 rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-xs font-bold text-stone-700 dark:text-stone-200 cursor-pointer"
           >
-            <optgroup label="Chứng chỉ">
+            <optgroup label={t.careerProfile.groupCertifications}>
               {Object.entries(CERTIFICATION_TARGETS).map(([id, cert]) => (
                 <option key={id} value={id}>
                   {cert.emoji} {cert.label}
                 </option>
               ))}
             </optgroup>
-            <optgroup label="Nghề nghiệp">
+            <optgroup label={t.careerProfile.groupCareers}>
               {FINANCE_CAREERS.map((career) => (
                 <option key={career.id} value={career.id}>
                   {career.emoji} {career.title}
@@ -273,7 +276,7 @@ export default function CareerProfilePanel({ userId, careerId }: CareerProfilePa
 
         {!skillGap ? (
           <p className="text-sm font-bold text-stone-500 dark:text-stone-400">
-            Chọn một mục tiêu ở trên để xem bạn còn thiếu gì.
+            {t.careerProfile.pickGoal}
           </p>
         ) : (
           <>
@@ -282,8 +285,7 @@ export default function CareerProfilePanel({ userId, careerId }: CareerProfilePa
                 {skillGap.readiness}%
               </span>
               <p className="text-[11px] font-bold text-stone-600 dark:text-stone-400 leading-relaxed">
-                mức sẵn sàng cho mục tiêu này. Các nhóm còn thiếu được xếp trên cùng - đó là việc
-                đáng làm tiếp theo.
+                {t.careerProfile.readinessBody}
               </p>
             </div>
 
@@ -303,7 +305,7 @@ export default function CareerProfilePanel({ userId, careerId }: CareerProfilePa
                       {item.label}
                       {item.priority === "must" && !item.met && (
                         <span className="px-1.5 py-0.5 rounded-md bg-rose-500/15 text-rose-600 dark:text-rose-400 text-[9px] uppercase tracking-wider">
-                          bắt buộc
+                          {t.careerProfile.required}
                         </span>
                       )}
                     </span>
@@ -331,7 +333,7 @@ export default function CareerProfilePanel({ userId, careerId }: CareerProfilePa
         <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
           <h3 className="text-xs font-extrabold uppercase tracking-widest text-stone-400 dark:text-stone-500 flex items-center gap-1.5">
             <Award className="w-4 h-4 text-amber-500" />
-            Nhiệm vụ nghề nghiệp tuần này
+            {t.careerProfile.missionsTitle}
           </h3>
           <span className="text-[11px] font-bold text-stone-400 dark:text-stone-500">
             {missions.completedCount}/{missions.missions.length} · {missions.weekKey}
@@ -364,12 +366,12 @@ export default function CareerProfilePanel({ userId, careerId }: CareerProfilePa
 
                 <div className="mt-3 flex items-center justify-between gap-3">
                   <span className="text-[11px] font-black text-amber-600 dark:text-amber-400">
-                    +{mission.xpReward} XP · +{mission.coinReward} xu
+                    {format(t.careerProfile.missionReward, { xp: mission.xpReward, coins: mission.coinReward })}
                   </span>
                   {mission.claimed ? (
                     <span className="text-[11px] font-black text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
                       <CheckCircle2 className="w-3.5 h-3.5" />
-                      Đã nhận
+                      {t.careerProfile.alreadyClaimed}
                     </span>
                   ) : mission.claimable ? (
                     <button
@@ -382,7 +384,7 @@ export default function CareerProfilePanel({ userId, careerId }: CareerProfilePa
                       ) : (
                         <Gift className="w-3.5 h-3.5" />
                       )}
-                      Nhận thưởng
+                      {t.careerProfile.claim}
                     </button>
                   ) : mission.id === "mock_interview" ? (
                     <button
@@ -414,21 +416,21 @@ export default function CareerProfilePanel({ userId, careerId }: CareerProfilePa
         >
           <div>
             <p className="text-xs font-black text-stone-900 dark:text-stone-100">
-              🏆 Tuần hoàn hảo · +{missions.perfectWeek.xpReward} XP · +{missions.perfectWeek.coinReward} xu
+              {format(t.careerProfile.perfectWeek, { xp: missions.perfectWeek.xpReward, coins: missions.perfectWeek.coinReward })}
             </p>
             <p className="mt-1 text-[11px] text-stone-500 dark:text-stone-400">
-              Hoàn thành cả {missions.missions.length} nhiệm vụ trong tuần.
+              {format(t.careerProfile.perfectWeekBody, { count: missions.missions.length })}
             </p>
           </div>
           {missions.perfectWeek.claimed ? (
-            <span className="text-[11px] font-black text-emerald-600 dark:text-emerald-400">Đã nhận</span>
+            <span className="text-[11px] font-black text-emerald-600 dark:text-emerald-400">{t.careerProfile.alreadyClaimed}</span>
           ) : (
             <button
               onClick={() => void handleClaim("perfect_week")}
               disabled={!missions.perfectWeek.claimable || claimingId === "perfect_week"}
               className="px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 disabled:opacity-50 disabled:cursor-not-allowed text-white text-[11px] font-black transition-colors cursor-pointer"
             >
-              {claimingId === "perfect_week" ? "Đang nhận..." : "Nhận thưởng"}
+              {claimingId === "perfect_week" ? t.careerProfile.claiming : t.careerProfile.claim}
             </button>
           )}
         </div>
@@ -438,38 +440,38 @@ export default function CareerProfilePanel({ userId, careerId }: CareerProfilePa
       <section>
         <h3 className="text-xs font-extrabold uppercase tracking-widest text-stone-400 dark:text-stone-500 flex items-center gap-1.5 mb-3">
           <Plus className="w-4 h-4 text-sky-500" />
-          CV bullets
+          {t.careerProfile.bulletsTitle}
         </h3>
         <p className="text-[11px] text-stone-500 dark:text-stone-400 leading-relaxed mb-3">
-          Mỗi bullet theo công thức <strong>Hành động - Con số - Kết quả</strong>. Ví dụ: "Dựng mô
-          hình DCF 3 báo cáo cho 5 công ty niêm yết, rút ngắn thời gian định giá từ 3 ngày xuống 1
-          ngày."
+          {t.careerProfile.bulletsHintPart1}
+          <strong>{t.careerProfile.bulletsFormula}</strong>
+          {t.careerProfile.bulletsHintPart2}
         </p>
 
         <textarea
           value={bulletDraft}
           onChange={(e) => setBulletDraft(e.target.value.slice(0, CV_BULLET_MAX_LENGTH))}
           rows={3}
-          placeholder="Viết một bullet cho CV của bạn..."
+          placeholder={t.careerProfile.bulletPlaceholder}
           className="w-full px-4 py-3 rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950/40 text-xs text-stone-800 dark:text-stone-200 leading-relaxed resize-none focus:outline-none focus:border-sky-400"
         />
         <div className="mt-2 flex items-center justify-between gap-3">
           <span className="text-[10px] font-bold text-stone-400 dark:text-stone-500 tabular-nums">
-            {bulletDraft.trim().length}/{CV_BULLET_MAX_LENGTH} · tối thiểu {CV_BULLET_MIN_LENGTH}
+            {format(t.careerProfile.bulletCounter, { count: bulletDraft.trim().length, max: CV_BULLET_MAX_LENGTH, min: CV_BULLET_MIN_LENGTH })}
           </span>
           <button
             onClick={() => void handleAddBullet()}
             disabled={savingBullet || bulletDraft.trim().length < CV_BULLET_MIN_LENGTH}
             className="px-4 py-2 rounded-xl bg-sky-500 hover:bg-sky-400 disabled:opacity-50 disabled:cursor-not-allowed text-white text-[11px] font-black transition-colors cursor-pointer"
           >
-            {savingBullet ? "Đang lưu..." : "Thêm bullet"}
+            {savingBullet ? t.careerProfile.savingBullet : t.careerProfile.addBullet}
           </button>
         </div>
 
         <div className="mt-3 space-y-2">
           {cvBullets.length === 0 ? (
             <p className="text-[11px] font-bold text-stone-400 dark:text-stone-500">
-              Chưa có bullet nào. Viết 3 bullet trong tuần để hoàn thành nhiệm vụ.
+              {t.careerProfile.bulletsEmpty}
             </p>
           ) : (
             cvBullets.map((bullet) => (
@@ -482,7 +484,7 @@ export default function CareerProfilePanel({ userId, careerId }: CareerProfilePa
                 </p>
                 <button
                   onClick={() => void handleDeleteBullet(bullet.id)}
-                  aria-label="Xoá bullet"
+                  aria-label={t.careerProfile.deleteBulletAria}
                   className="w-8 h-8 rounded-xl bg-stone-100 dark:bg-stone-800 text-stone-400 hover:text-rose-500 flex items-center justify-center shrink-0 transition-colors cursor-pointer"
                 >
                   <Trash2 className="w-3.5 h-3.5" />

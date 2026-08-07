@@ -1,0 +1,135 @@
+{
+  "slug": "trai-phieu-doanh-nghiep",
+  "title": "Vietnamese corporate bonds",
+  "subtitle": "Characteristics, risks, and lessons from Vietnam's bond market",
+  "duration": "6 min",
+  "openingQuestion": "Why are Vietnamese corporate bonds much riskier than government bonds?",
+  "openingOptions": [
+    "Because of the fixed interest rate",
+    "Because the interest is higher",
+    "Because of the lack of an independent credit rating, poor transparency, low liquidity, and unclear guarantees",
+    "Because the term is shorter"
+  ],
+  "explanation": "Vietnamese corporate bonds (VCB): the market grew rapidly from 2018-2021, then ran into major problems in 2022: Tan Hoang Minh, Van Thinh Phat - thousands of billions became unable to be repaid. The causes: uncontrolled private placements, no credit rating, sold through banks as if they were deposits.",
+  "diagram": [
+    { "label": "A company privately places a bond, paying more than a deposit", "arrow": true },
+    { "label": "No mandatory credit rating", "arrow": true },
+    { "label": "Retail investors buy through a distribution channel like a deposit", "arrow": true },
+    { "label": "2022: cash flow dries up, many tranches default" }
+  ],
+  "interactiveType": "bond",
+  "realWorldExample": {
+    "company": "Van Thinh Phat",
+    "description": "The 2022 Vietnamese corporate bond crisis: Van Thinh Phat issued tens of thousands of billions in corporate bonds, many of which were ineligible or fraudulent. Retail investors lost money when they couldn't distinguish corporate bonds from bank deposits."
+  },
+  "quiz": [
+    {
+      "question": "What is the best way to assess the risk of a Vietnamese corporate bond?",
+      "options": [
+        "Choose a company with a well-known brand",
+        "Compare the coupon rate against other bonds of the same term in the market",
+        "Read the prospectus, check the collateral and audited financial statements",
+        "Check whether the issuer is distributed by a large bank"
+      ],
+      "explanation": "Vietnamese corporate bonds: (1) No mandatory credit rating → assess it yourself. (2) Collateral: is it real, is it properly valued? (3) Audited financial statements: what are the actual profit and FCF? (4) Purpose of the funds: real business operations or rolling over old debt? High interest usually = high risk."
+    },
+    {
+      "question": "After cases like Tan Hoang Minh and Van Thinh Phat, what regulatory changes were made to increase transparency in the Vietnamese corporate bond market?",
+      "options": [
+        "Shifting all corporate bonds to public offerings",
+        "Requiring every corporate bond to be collateralised by real estate regardless of the issuer's industry",
+        "Requiring every tranche to have a credit rating",
+        "Tightening private placement conditions and increasing disclosure requirements"
+      ],
+      "explanation": "Major bond default events usually trigger a wave of regulatory reform - a recurring pattern in global financial history: a crisis exposes a gap, then regulators tighten rules to prevent a repeat, even at the cost of a temporary contraction in the market."
+    },
+    {
+      "question": "A corporate bond pays 14%/year while a deposit pays 5%. How should this be understood?",
+      "options": [
+        "The 9-point gap is the price of risk, not a gift",
+        "This is a rare opportunity to raise yield without adding risk",
+        "The company is run better than a bank",
+        "A high interest rate proves the bond has good collateral"
+      ],
+      "explanation": "No one pays three times the deposit rate if they could borrow more cheaply. That interest rate is exactly what the market is saying about the probability of not being repaid."
+    },
+    {
+      "question": "Why is the lack of a mandatory credit rating a major problem for the Vietnamese corporate bond market?",
+      "options": [
+        "Because companies aren't allowed to publish financial statements",
+        "Because retail investors must do their own due diligence instead of an institution",
+        "Because unrated bonds can't be traded",
+        "Because regulators can't track the cash flow from issuance"
+      ],
+      "explanation": "In developed markets, rating agencies do the heaviest due diligence before a bond reaches an investor. Without that layer, the burden falls on the buyer - who mostly lacks both the tools and the data to do it."
+    },
+    {
+      "question": "The collateral for a bond tranche is stock in the issuing company itself. Where is the risk?",
+      "options": [
+        "Bondholders must wait for a shareholder meeting to approve before it can be liquidated",
+        "Stock is not a valid form of collateral",
+        "The asset loses value at exactly the moment the company runs into trouble",
+        "The stock's value is only re-determined after the bond matures"
+      ],
+      "explanation": "Collateral only has value when it's independent of the borrower. The issuer's own stock falls hardest exactly when it needs to be sold to recover the debt - the collateral evaporates at the same time as the ability to repay."
+    }
+  ],
+  "keyTakeaways": [
+    "Vietnamese corporate bonds: rapid growth but lacking transparency",
+    "No mandatory credit rating → investors must assess risk themselves",
+    "High interest = high risk - not 'a better yield than a deposit'"
+  ],
+  "practicePrompt": {
+    "question": "The Tan Hoang Minh and Van Thinh Phat cases (2022) involved corporate bonds issued in violation of regulations, causing major losses for retail investors. What does this event reflect about the Vietnamese corporate bond market at that time?",
+    "options": [
+      "The Vietnamese corporate bond market was fully transparent and absolutely safe before these cases occurred",
+      "Vietnamese corporate bonds grew fast but the legal framework and disclosure hadn't kept pace",
+      "These cases are isolated incidents that reflect nothing general about the Vietnamese corporate bond market",
+      "The Vietnamese corporate bond market has far greater transparency than developed markets like the US or Europe"
+    ],
+    "explanation": "Vietnamese corporate bonds: rapid growth but lacking transparency. Cases like Tan Hoang Minh and Van Thinh Phat are a costly lesson showing that unusually attractive interest rates always come with matching risk - investors need to do thorough due diligence rather than just trusting an advisor's word."
+  },
+  "summary": {
+    "keyIdea": "Vietnamese corporate bonds: rapid growth but lacking transparency",
+    "commonMistake": "Reading the concept as a definition to recite rather than a principle to apply to a real decision.",
+    "action": "No mandatory credit rating → investors must assess risk themselves"
+  },
+  "application": {
+    "title": "Apply it now",
+    "message": "If someone offers you a high-interest corporate bond through a bank, try asking in return: does this bond have a credit rating, and who stands behind it if the company can't repay?",
+    "secondary": "The lesson from Tan Hoang Minh and Van Thinh Phat is that high interest always comes with a question that needs asking beforehand, not after."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Vietnam's corporate bond market boomed during 2018-2021, becoming an important capital-raising channel for real estate and manufacturing businesses. But in 2022, a series of major cases exposed serious gaps in how this market operates."
+    },
+    { "type": "heading", "text": "The structural problem of early-stage Vietnamese corporate bonds" },
+    {
+      "type": "paragraph",
+      "text": "Unlike a developed corporate bond market like the US - where almost every bond has a credit rating from Moody's, S&P, or Fitch - most Vietnamese corporate bonds during 2018-2021 were privately placed with no mandatory credit rating. Many bonds were distributed through bank channels in a way that made it easy for retail investors to confuse them with safe savings deposit products - when in reality this was a direct loan to a business, carrying the full credit risk of the issuer."
+    },
+    { "type": "heading", "text": "Lessons from the major defaults" },
+    {
+      "type": "paragraph",
+      "text": "In 2022, cases like Tan Hoang Minh and Van Thinh Phat showed that tens of thousands of billions of VND in corporate bonds were issued without meeting requirements or even showing signs of fraud, causing many retail investors to lose money when the issuers became unable to pay. After these events, regulators tightened the conditions for private placements, required more transparent disclosure, and increased oversight - a familiar pattern repeated in financial history: a crisis exposes a gap, and then regulation tightens to prevent a repeat, sometimes at the cost of a temporary market contraction."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Read the prospectus carefully: is the purpose of the funds real business operations, or just rolling over old debt?",
+        "Check the collateral: is it real, independently and reasonably valued?",
+        "Look at the audited financial statements: are the profit and free cash flow (FCF) substantial?",
+        "Don't assume a bond is as safe as a deposit just because it's sold through a bank",
+        "An unusually high interest rate relative to the norm almost always means a matching level of risk"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A corporate bond is not a savings deposit - it's a direct loan, and you bear the borrower's credit risk.",
+        "The lack of a mandatory credit rating means the burden of assessing risk falls entirely on the retail investor."
+      ]
+    }
+  ]
+}

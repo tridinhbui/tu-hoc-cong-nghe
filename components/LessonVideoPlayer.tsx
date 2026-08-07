@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Play, X } from "lucide-react";
+import { useI18n } from "@/lib/i18n/context";
 
 interface LessonVideoPlayerProps {
   videoUrl?: string;
@@ -9,6 +10,7 @@ interface LessonVideoPlayerProps {
 }
 
 export default function LessonVideoPlayer({ videoUrl, title }: LessonVideoPlayerProps) {
+  const { t } = useI18n();
   const [isOpen, setIsOpen] = useState(false);
 
   if (!videoUrl) return null;
@@ -45,7 +47,7 @@ export default function LessonVideoPlayer({ videoUrl, title }: LessonVideoPlayer
             <Play className="w-6 h-6 text-purple-600 fill-purple-600" />
           </div>
           <div className="text-left">
-            <p className="text-sm font-semibold text-white">Xem video bài học</p>
+            <p className="text-sm font-semibold text-white">{t.miscUi.lessonVideoPlayer.watchLessonVideo}</p>
             <p className="text-xs text-white/70">{title}</p>
           </div>
         </div>

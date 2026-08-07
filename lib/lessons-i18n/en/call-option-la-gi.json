@@ -1,0 +1,129 @@
+{
+  "slug": "call-option-la-gi",
+  "title": "What Is a Call Option?",
+  "subtitle": "The right to buy an asset at a fixed price - expecting the price to rise",
+  "openingQuestion": "You buy a call option on stock X with a strike price of VND 50,000, paying a premium of VND 2,000. If the stock rises to VND 60,000 at expiration, how much do you gain?",
+  "openingOptions": [
+    "A loss, because you must pay the premium",
+    "VND 60,000",
+    "VND 10,000",
+    "VND 8,000 (60,000 − 50,000 − 2,000 premium already paid)"
+  ],
+  "explanation": "A call option gives the holder the right - not the obligation - to buy an asset at a predetermined price until expiration. Because it is a right, the maximum loss is only the fee already paid, while the potential gain is uncapped. That asymmetry is exactly why options are used to place risk-controlled bets - but it is also why most options expire worthless.",
+  "diagram": [
+    { "label": "Buy a Call Option at the strike price", "arrow": true },
+    { "label": "Market price rises above the strike", "arrow": true },
+    { "label": "Exercise the cheap buy, sell at the higher price" }
+  ],
+  "realWorldExample": {
+    "company": "An individual investor",
+    "description": "An investor who believes a tech stock will surge after an earnings report often buys a call option instead of buying the stock directly - much higher leverage with a much smaller capital outlay."
+  },
+  "quiz": [
+    {
+      "question": "If stock X only reaches VND 48,000 at expiration (below the VND 50,000 strike), what will the call option buyer do?",
+      "options": [
+        "Exercise the right to buy at 50,000 and immediately sell it on the market",
+        "Not exercise the right, accepting the loss of the premium already paid",
+        "Demand a refund of the premium since the option has no value",
+        "Extend the contract to wait for the price to recover"
+      ],
+      "explanation": "This is exactly the meaning of 'a right, not an obligation'. If exercising the right to buy at 50,000 while the market is only 48,000 is unfavorable, the buyer simply doesn't exercise it - the maximum risk is limited to the premium already paid, never more."
+    },
+    {
+      "question": "Why does a call option buyer have limited risk (equal to the premium paid) while the seller (writer) of a call option has theoretically UNLIMITED risk?",
+      "options": [
+        "Because the seller isn't allowed to close their position before expiration",
+        "Because the seller must post unlimited additional margin to the exchange",
+        "Because the stock price can theoretically rise without limit",
+        "Because the seller's transaction fee rises with volatility"
+      ],
+      "explanation": "This is the famous risk asymmetry in options: a call buyer has unlimited potential gain, capped loss at the premium; a call seller (writer) has gain capped at the premium received, but potentially unlimited loss if the stock price rises sharply - this is why selling a 'naked call' (with no stock backing it) is considered an extremely risky strategy."
+    },
+    {
+      "question": "Buying a call at a strike of VND 50,000, premium VND 3,000. The price at expiration is VND 58,000. What is the net gain?",
+      "options": [
+        "VND 11,000 (= 58,000 − 50,000 + 3,000, adding the premium)",
+        "VND 8,000 (= 58,000 − 50,000, forgetting to subtract the premium)",
+        "VND 3,000 (equal to the premium paid)",
+        "VND 5,000 (= 58,000 − 50,000 − 3,000 premium)"
+      ],
+      "explanation": "The intrinsic value at expiration is VND 8,000, minus the VND 3,000 premium paid upfront leaves a net gain of VND 5,000. A call's break-even point is the strike plus the premium, here VND 53,000."
+    },
+    {
+      "question": "How much must price rise before a call buyer starts to profit?",
+      "options": [
+        "Above the strike plus the premium already paid",
+        "Above exactly the strike price",
+        "Above the market price at the time the option was bought",
+        "Above the strike minus the premium already paid"
+      ],
+      "explanation": "This is why most options expire worthless: guessing the right direction still isn't enough - price must move far enough to cover the premium, and it must do so before the expiration date."
+    },
+    {
+      "question": "Why is selling a call while holding the underlying stock less risky than selling a naked call?",
+      "options": [
+        "Because the premium received is higher",
+        "Because the shares needed to deliver, if the option is exercised, are already on hand",
+        "Because the exchange doesn't require margin in this case",
+        "Because the buyer isn't allowed to exercise a covered call"
+      ],
+      "explanation": "A naked call means the higher the price rises, the more you must pay at market price to deliver - a loss with no cap. Already holding the stock turns that unlimited risk into an opportunity cost: missing out on the gain above the strike."
+    }
+  ],
+  "keyTakeaways": [
+    "Call option: the right to buy at the strike price, profitable when price rises",
+    "Gain = Market price − Strike price − Premium (if exercised)",
+    "The call buyer's maximum risk = the premium paid, no more"
+  ],
+  "practicePrompt": {
+    "question": "You buy an option that lets you buy a stock at a fixed price of VND 100,000, expecting the price to rise sharply over the next few months. If the market price rises to VND 130,000, you can exercise the right to buy at 100,000 and immediately sell at the market price to capture the difference. What is this type of option called?",
+    "options": [
+      "This is called a Put option, the right to sell at the strike price, profitable when price falls",
+      "Call option, the right to buy at the strike price, profitable when price rises",
+      "This is called a Forward, a binding contract to buy at a price agreed in advance",
+      "This type of contract has no specific name, it's just a form of ordinary speculation"
+    ],
+    "explanation": "Call option: the right to buy at the strike price, profitable when price rises. A call option buyer profits when the underlying asset's price rises above the strike price plus the premium paid, and the maximum risk is limited to the premium if the price doesn't rise as expected."
+  },
+  "summary": {
+    "keyIdea": "Call option: the right to buy at the strike price, profitable when price rises",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to real decisions.",
+    "action": "Gain = Market price − Strike price − Premium (if exercised)"
+  },
+  "application": {
+    "title": "Calculate a call option's gain yourself",
+    "message": "Suppose you buy a call option with a strike of VND 50,000, paying a VND 2,000 premium, and the market price at expiration is VND 65,000 - calculate your net gain using the formula you've learned.",
+    "secondary": "Doing this calculation once yourself helps the formula stick much longer."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A call option gives the right to BUY an asset at a predetermined strike price - a tool for someone who expects the price to rise. If the prediction is right, the buyer can buy the asset cheaper than the market price and profit from the gap."
+    },
+    { "type": "heading", "text": "A profitable example: price rises above the strike" },
+    {
+      "type": "paragraph",
+      "text": "Suppose the strike price is VND 50,000 and the premium paid was VND 2,000. If at expiration the market price rises to VND 60,000, the buyer exercises the right: buys at 50,000, immediately sells at the market price of 60,000, a gross gain of VND 10,000. Subtracting the VND 2,000 premium paid upfront leaves a net gain of VND 8,000. General formula: Gain = Market price − Strike price − Premium."
+    },
+    { "type": "heading", "text": "An example of not exercising: price below the strike" },
+    {
+      "type": "paragraph",
+      "text": "If the stock only reaches VND 48,000 at expiration - below the VND 50,000 strike - exercising the right to buy at 50,000 while the market is only 48,000 makes no sense. The buyer simply lets the option expire worthless, losing only the VND 2,000 premium already paid. This is exactly the meaning of 'a right, not an obligation' - never losing more than the premium."
+    },
+    { "type": "heading", "text": "The risk asymmetry between buyer and seller" },
+    {
+      "type": "paragraph",
+      "text": "A call option buyer has limited risk (equal to the premium) but unlimited potential gain. Conversely, the seller (writer) of a call has gain capped at the premium received, but potentially unlimited loss: if the stock price keeps rising indefinitely, they must still buy at the market price (which could rise without limit) to deliver to the buyer at the much lower strike price. This is why selling a 'naked call' - with no stock backing it - is considered an extremely risky strategy."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Call option gain = Market price − Strike price − Premium (if exercised)",
+        "The call buyer's maximum risk = the premium paid",
+        "The call seller's (writer's) risk = theoretically unlimited",
+        "A call option is often used to speculate on a price rise with much less capital than buying the stock directly"
+      ]
+    }
+  ]
+}

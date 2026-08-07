@@ -1,0 +1,126 @@
+{
+  "slug": "default-la-gi",
+  "title": "What is a default?",
+  "subtitle": "When a borrower fails to pay debt on time",
+  "duration": "6 min",
+  "openingQuestion": "A company misses a bond interest payment by just one day. Does that count as a default?",
+  "openingOptions": [
+    "Only government bonds have a default concept",
+    "No, default only applies at bankruptcy",
+    "No, it has to be at least a year late to count as default",
+    "Yes - any breach of a debt obligation, even a short delay, can trigger a technical default"
+  ],
+  "explanation": "A default is when an issuer fails to meet a debt obligation exactly as agreed: a late coupon, a late principal payment, or a breached covenant. A 'technical default' happens even from a plain contract breach, well before bankruptcy is on the table. Rating agencies cut a credit rating as soon as any sign of default shows up.",
+  "diagram": [
+    { "label": "A loan contract carries obligations to repay principal, pay interest, and honor covenants", "arrow": true },
+    { "label": "Breaching any one of them is a default", "arrow": true },
+    { "label": "Breaching a covenant without missing a payment: technical default", "arrow": true },
+    { "label": "Lenders gain the right to demand immediate repayment of the entire loan" }
+  ],
+  "realWorldExample": {
+    "company": "Evergrande (China)",
+    "description": "Evergrande defaulted on its USD bonds in 2021 when it failed to pay interest to international bondholders on time, even though the company kept operating - a clear illustration that default does not mean immediate bankruptcy."
+  },
+  "quiz": [
+    {
+      "question": "What does the recovery rate mean in a default?",
+      "options": [
+        "How fast a company restores its profit after restructuring debt",
+        "The percentage of original principal a bondholder recovers after liquidation",
+        "The share of companies in an industry that exit default status each year",
+        "The new interest rate applied to the debt after renegotiating with creditors"
+      ],
+      "explanation": "Recovery rate = the amount a bondholder actually receives / original face value. Secured bonds usually have a higher recovery rate (60-80%) than unsecured bonds (20-40%)."
+    },
+    {
+      "question": "Why can a \"technical default\" (a contract breach, not necessarily a full loss of ability to pay) still cause severe consequences for a company, even while it can still pay part of its obligations?",
+      "options": [
+        "It legally forces the company to file for bankruptcy",
+        "It causes every outstanding bond to be delisted immediately",
+        "It triggers cross-default clauses in the company's other loan agreements",
+        "It only lowers the credit rating without changing the current debt obligation"
+      ],
+      "explanation": "Cross-default clauses, common in loan agreements, are why a small technical breach can escalate into a full-blown crisis - other creditors gain the right to treat their own loans as breached too, triggering simultaneous demands for immediate repayment."
+    },
+    {
+      "question": "A bond has a face value of 1 billion VND and a recovery rate of 40%. How much does the bondholder get back?",
+      "options": [
+        "40 million (= 1 billion × 4%, a decimal-place slip)",
+        "600 million (= 1 billion × 60%, taking the lost portion instead)",
+        "1.4 billion (= 1 billion × 1.4, adding the 40% instead of applying it)",
+        "400 million (= 1 billion × 40% recovered)"
+      ],
+      "explanation": "Recovery rate is the portion recovered, not the portion lost. Secured bonds typically recover 60-80%, while unsecured bonds can recover as little as 20-30%."
+    },
+    {
+      "question": "How does default differ from bankruptcy?",
+      "options": [
+        "Default is a breach of obligation; bankruptcy is a legal proceeding",
+        "Default applies to companies, bankruptcy to individuals",
+        "Default happens only after a court declares insolvency",
+        "The two terms are identical, just industry-specific labels"
+      ],
+      "explanation": "Missing a single interest payment already counts as default, even while the company keeps operating normally and can catch up later. Bankruptcy is a much further step, and most defaults never get there."
+    },
+    {
+      "question": "Why do secured bonds usually have a higher recovery rate?",
+      "options": [
+        "Because the law requires this group to be paid first",
+        "Because bondholders can seize and sell that specific collateral ahead of other creditors",
+        "Because only highly rated companies issue this type of bond",
+        "Because the collateral is always worth many times the loan"
+      ],
+      "explanation": "Collateral creates a separate line: this group has a claim on a specific asset instead of sharing the residual pool with everyone else. The 60-80% versus 20-30% gap is exactly the value of that position."
+    }
+  ],
+  "keyTakeaways": [
+    "Default: a breach of debt obligation, not necessarily bankruptcy",
+    "A technical default can happen from a covenant breach alone",
+    "Recovery rate depends on whether the bond is backed by collateral"
+  ],
+  "practicePrompt": {
+    "question": "A company misses a bond interest payment on time because of a temporary cash-flow crunch, but keeps operating normally and pays the missed amount later. Is this bankruptcy, and what is the precise term for this situation?",
+    "options": [
+      "This is bankruptcy, since the company failed to meet its debt obligation",
+      "Not bankruptcy - default is a breach of debt obligation that can be remedied",
+      "This is called a technical default and it always leads to bankruptcy within a few months",
+      "There is no technical term for this situation - it is simply a late payment"
+    ],
+    "explanation": "Default: a breach of debt obligation, not necessarily bankruptcy. Default comes in degrees - from a mild covenant breach (technical default) to a total loss of ability to pay that leads to bankruptcy - two related but distinct concepts."
+  },
+  "summary": {
+    "keyIdea": "Default: a breach of debt obligation, not necessarily bankruptcy",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to a real decision.",
+    "action": "A technical default can happen from a covenant breach alone"
+  },
+  "application": {
+    "title": "Apply it now",
+    "message": "Look up news of a recent default or technical default (domestic or international) and identify whether the cause was a late coupon, late principal, or a covenant breach.",
+    "secondary": "Telling these forms of default apart helps you read financial news more accurately."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A default is when a bond issuer fails to meet an obligation it agreed to - a late interest payment, a late return of principal, or even simply a breach of a clause in the loan agreement. The key thing to understand: default does not mean immediate bankruptcy, and it does not always mean the company has completely lost its ability to pay."
+    },
+    { "type": "heading", "text": "Technical default: a breach without a loss of ability to pay" },
+    {
+      "type": "paragraph",
+      "text": "A 'technical default' happens when a company breaches a covenant in a loan agreement - for example, its debt-to-equity ratio crosses an allowed threshold - even while the company is still paying interest and principal in full and on time. Technically, this still counts as a default event, and credit rating agencies typically cut the rating as soon as this sign appears, even though the company has not actually lost its ability to pay."
+    },
+    { "type": "heading", "text": "Cross-default: when a small breach spreads into a crisis" },
+    {
+      "type": "paragraph",
+      "text": "What makes a technical default dangerous is the cross-default clause common in loan agreements: when a company breaches one loan, its other loans - even ones with no direct connection - can automatically be treated as breached too. Other creditors then gain the right to demand immediate repayment, turning one seemingly small initial breach into a widespread liquidity crisis. Evergrande (China) in 2021 is a textbook example: the company defaulted on international USD bonds by failing to pay interest to bondholders on time, even as it kept running its business - a clear illustration that default and bankruptcy are two different concepts."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Default: a breach of a debt obligation - late interest, late principal, or a covenant breach - not necessarily bankruptcy",
+        "Technical default: a breach of a contract term even while still paying debt in full",
+        "Cross-default: one breach can trigger a chain reaction of breaches across other loans",
+        "Recovery rate = the amount a bondholder actually receives / original face value after asset liquidation"
+      ]
+    }
+  ]
+}

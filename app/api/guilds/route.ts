@@ -1,12 +1,20 @@
 import { NextRequest, NextResponse } from "next/server";
 import { errorMessage } from "@/lib/errors";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
+import { getServerDictionary } from "@/lib/i18n/server";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
-// Fallback Guilds data if DB tables are empty
-const FALLBACK_GUILDS = [
+// Fallback Guilds data if DB tables are empty. Never stored or cached - this
+// route computes the response fresh on every request (no revalidate, no
+// unstable_cache, and the fallback rows themselves never get written to
+// `financial_guilds`), so it is safe to read the caller's locale here rather
+// than shipping a stable id to the client. `name` is real copy and comes from
+// `t.finalOne.guildsRoute.fallbackNames`, keyed by `id`; `tag` is a short
+// guild badge/acronym kept identical in both languages.
+/* i18n-ignore-start: short guild tag/acronym badges, kept identical in both languages */
+const FALLBACK_GUILD_SHAPE = [
   {
     id: "guild-wallstreet",
-    name: "Liên Minh Phố Wall",
     tag: "WALL",
     logo_emoji: "🏛️",
     level: 5,
@@ -15,7 +23,6 @@ const FALLBACK_GUILDS = [
   },
   {
     id: "guild-tichsan",
-    name: "Hội Đầu Tư Tích Sản",
     tag: "FIRE",
     logo_emoji: "📈",
     level: 4,
@@ -24,7 +31,6 @@ const FALLBACK_GUILDS = [
   },
   {
     id: "guild-pe",
-    name: "Private Equity Syndicate",
     tag: "PES",
     logo_emoji: "💎",
     level: 3,
@@ -32,8 +38,18 @@ const FALLBACK_GUILDS = [
     member_count: 12,
   },
 ];
+/* i18n-ignore-end */
+
+function fallbackGuildsOf(t: Dictionary) {
+  const names = t.finalOne.guildsRoute.fallbackNames;
+  return FALLBACK_GUILD_SHAPE.map((g) => ({
+    ...g,
+    name: names[g.id as keyof typeof names],
+  }));
+}
 
 export async function GET(request: NextRequest) {
+  const t = await getServerDictionary();
   const supabase = await createServerSupabaseClient();
   const {
     data: { user },
@@ -66,7 +82,7 @@ export async function GET(request: NextRequest) {
     level: g.level,
     total_xp: g.total_xp,
     member_count: g.guild_members?.[0]?.count || 1,
-  })) || FALLBACK_GUILDS;
+  })) || fallbackGuildsOf(t);
 
   // Check user's current guild if logged in
   let myGuild = null;

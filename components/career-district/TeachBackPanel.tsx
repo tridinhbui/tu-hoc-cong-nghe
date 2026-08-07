@@ -1,7 +1,9 @@
 "use client";
 
-import { useState } from "react";
-import { MIN_WORDS, TOPICS, evaluate } from "@/lib/teach-back";
+import { useMemo, useState } from "react";
+import { MIN_WORDS, evaluate, topicsOf } from "@/lib/teach-back";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 /** Bàn tròn giảng lại.
  *
@@ -22,11 +24,13 @@ export default function TeachBackPanel({
   accent: string;
   onClose: () => void;
 }) {
+  const { t } = useI18n();
   const [topicId, setTopicId] = useState<string | null>(null);
   const [text, setText] = useState("");
   const [checked, setChecked] = useState(false);
 
-  const topic = TOPICS.find((t) => t.id === topicId) ?? null;
+  const TOPICS = useMemo(() => topicsOf(t), [t]);
+  const topic = TOPICS.find((topicItem) => topicItem.id === topicId) ?? null;
   const r = topic && checked ? evaluate(topic, text) : null;
 
   return (
@@ -34,10 +38,10 @@ export default function TeachBackPanel({
       <div className="mb-2 flex items-start justify-between gap-2">
         <div>
           <p className="text-[10px] font-black uppercase tracking-widest" style={{ color: accent }}>
-            Bàn Tròn Giảng Lại
+            {t.careerDistrict.teachBack.title}
           </p>
           <p className="mt-0.5 text-[11px] text-stone-400">
-            Giải thích bằng lời của bạn — không chấm điểm, chỉ soi chỗ thiếu
+            {t.careerDistrict.teachBack.subtitle}
           </p>
         </div>
         <button
@@ -45,27 +49,27 @@ export default function TeachBackPanel({
           onClick={onClose}
           className="cursor-pointer text-[10px] font-bold text-stone-500 hover:text-stone-300"
         >
-          đóng
+          {t.careerDistrict.teachBack.close}
         </button>
       </div>
 
       <div className="mb-2 space-y-1">
-        {TOPICS.map((t) => (
+        {TOPICS.map((topicItem) => (
           <button
-            key={t.id}
+            key={topicItem.id}
             type="button"
             onClick={() => {
-              setTopicId(t.id);
+              setTopicId(topicItem.id);
               setText("");
               setChecked(false);
             }}
             className={`w-full cursor-pointer rounded-xl border px-2 py-1.5 text-left text-[11px] font-bold transition ${
-              topicId === t.id
+              topicId === topicItem.id
                 ? "border-rose-400 bg-rose-950/50 text-rose-100"
                 : "border-stone-700 bg-stone-800/50 text-stone-300 hover:border-stone-500"
             }`}
           >
-            {t.label}
+            {topicItem.label}
           </button>
         ))}
       </div>
@@ -73,7 +77,7 @@ export default function TeachBackPanel({
       {topic && (
         <div className="space-y-2">
           <div className="rounded-xl bg-stone-950/70 p-2.5">
-            <p className="text-[10px] uppercase tracking-wider text-stone-500">Người nghe</p>
+            <p className="text-[10px] uppercase tracking-wider text-stone-500">{t.careerDistrict.teachBack.audience}</p>
             <p className="text-[11px] text-stone-300">{topic.audience}</p>
             <p className="mt-1.5 text-[12px] font-bold leading-snug text-stone-100">
               {topic.prompt}
@@ -87,7 +91,7 @@ export default function TeachBackPanel({
               setChecked(false);
             }}
             rows={5}
-            placeholder="Nói như đang nói với họ, không như đang viết bài kiểm tra…"
+            placeholder={t.careerDistrict.teachBack.textareaPlaceholder}
             className="w-full rounded-xl border border-stone-700 bg-stone-950/80 p-2 text-[12px] leading-snug text-stone-100 outline-none placeholder:text-stone-600 focus:border-stone-500"
           />
 
@@ -98,15 +102,14 @@ export default function TeachBackPanel({
             className="w-full cursor-pointer rounded-xl px-3 py-2 text-[11px] font-black text-stone-950 transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-40"
             style={{ backgroundColor: accent }}
           >
-            Soi lại bài giảng
+            {t.careerDistrict.teachBack.reviewButton}
           </button>
 
           {r && (
             <div className="space-y-1.5">
               {r.tooShort && (
                 <p className="rounded-xl bg-amber-950/50 p-2 text-[11px] leading-snug text-amber-200">
-                  Mới {r.words} từ. Dưới {MIN_WORDS} từ thì phần soi bên dưới chỉ đang phản chiếu
-                  lại chính đề bài — viết dài hơn rồi soi lại.
+                  {format(t.careerDistrict.teachBack.tooShort, { words: r.words, min: MIN_WORDS })}
                 </p>
               )}
               {topic.points.map((p) => {
@@ -126,8 +129,7 @@ export default function TeachBackPanel({
               {/* Nói thẳng giới hạn của cách chấm, thay vì để người học tưởng
                   bốn dấu tích là bằng chứng đã hiểu. */}
               <p className="pt-0.5 text-[10px] leading-snug text-stone-500">
-                Đây là dò từ khoá, không phải chấm bài: nó thấy bạn có nhắc tới ý đó, chứ không
-                biết bạn nói đúng hay sai. Không có điểm nào được ghi lại.
+                {t.careerDistrict.teachBack.keywordDisclaimer}
               </p>
             </div>
           )}

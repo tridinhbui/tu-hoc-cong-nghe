@@ -1,0 +1,133 @@
+{
+  "slug": "pb-la-gi",
+  "title": "What is the P/B Ratio?",
+  "subtitle": "Market value versus book value - when should you use it?",
+  "duration": "5 min",
+  "openingQuestion": "P/B = 0.8. What does that mean?",
+  "openingOptions": [
+    "A good price to buy",
+    "A good stock",
+    "The market is valuing the stock below book value - it may be undervalued or the industry may be struggling",
+    "The company is about to go bankrupt"
+  ],
+  "explanation": "P/B compares market capitalization against the book value of shareholders' equity - the price the market pays versus what accounting records. Below one means the market is valuing a business below its net assets on the books - sometimes an opportunity, but more often the market is saying those assets earn poorly or aren't worth as much as the books claim. So P/B only means something when read alongside ROE, and only fits industries where book value is close to real value.",
+  "diagram": [
+    { "label": "Market Cap (market value)", "arrow": true },
+    { "label": "Divide by Book Value (equity)", "arrow": true },
+    { "label": "= P/B Ratio", "arrow": true },
+    { "label": "< 1: cheaper than net assets - check the reason why" }
+  ],
+  "realWorldExample": {
+    "company": "Bank stocks during the 2008-2012 crisis period",
+    "description": "During the 2011-2013 Vietnamese bank bad-debt crisis, many bank stocks traded at a P/B below 1 - the market was worried real asset quality (hidden bad debt) was much worse than the numbers on the books, not simply that 'the stock was cheap.'"
+  },
+  "quiz": [
+    {
+      "question": "P/B is best suited for valuing which industry?",
+      "options": [
+        "Retail - because inventory is always recorded at market price",
+        "Pharma - because R&D costs are all capitalized into book value",
+        "Banks, insurance, real estate - assets make up most of the value",
+        "Tech startups - because value sits in already-recorded intellectual property"
+      ],
+      "explanation": "P/B is useful when book-value assets reflect real value accurately (banks: loan portfolios; real estate: land assets). For tech/software, a low book value doesn't reflect brand value and IP."
+    },
+    {
+      "question": "Why doesn't a bank with P/B = 0.7 automatically represent an attractive value-investing opportunity?",
+      "options": [
+        "A P/B below 1 is always a good opportunity, so you should buy right away when you see this ratio",
+        "A P/B below 1 only happens to a bank that's forced into mandatory bankruptcy",
+        "No further analysis is needed - if P/B is low, just buy and hold long term",
+        "You need to check asset quality - unrecognized bad debt can make the book value illusory"
+      ],
+      "explanation": "A low P/B can be a 'value trap' if the published book value doesn't accurately reflect real asset quality - especially important for banks, where most assets are loans that may hide bad debt not yet fully provisioned for."
+    },
+    {
+      "question": "Market cap is 1,400 billion, book value of equity is 2,000 billion. What is the P/B?",
+      "options": [
+        "0.7x (= 1,400 ÷ 2,000, market cap over book value)",
+        "1.43x (= 2,000 ÷ 1,400, numerator and denominator reversed)",
+        "0.6 billion (= 2,000 − 1,400, taking the difference instead of the ratio)",
+        "1.4x (= 1,400 ÷ 1,000, book value rounded down)"
+      ],
+      "explanation": "P/B = Market Cap / Book Value = 1,400/2,000 = 0.7. The market is paying 70 cents for every dong of net assets on the books - either an opportunity, or the market doesn't trust that book figure."
+    },
+    {
+      "question": "Why is P/B almost useless when valuing a software company?",
+      "options": [
+        "Because software companies aren't allowed to record shareholders' equity",
+        "Because value sits in brand and IP, things that aren't on the books",
+        "Because a software company's book value is always negative",
+        "Because software depreciates so fast the book value is instantly outdated"
+      ],
+      "explanation": "The cost of building a brand and developing products is largely expensed immediately rather than sitting on the balance sheet. Book value therefore misses exactly what creates value, making P/E or EV/EBITDA more suitable."
+    },
+    {
+      "question": "What is the relationship between P/B and ROE?",
+      "options": [
+        "Multiplying P/B by ROE gives the same company's P/E",
+        "P/B and ROE always move in opposite directions",
+        "The higher the ROE, the more the market is willing to pay in P/B",
+        "The two metrics are independent, with no relationship at all"
+      ],
+      "explanation": "A business generating 20% on each dong of equity is worth more than one generating only 5% on the same capital. This is why high-ROE banks trade above 2x book while low-ROE banks sit below 1x."
+    }
+  ],
+  "keyTakeaways": [
+    "P/B = Market Cap / Book Value",
+    "P/B < 1: cheaper than book - worth investigating why",
+    "Most suited to banks, insurance, real estate"
+  ],
+  "practicePrompt": {
+    "question": "A company has Market Cap (market capitalization) = 800 billion, Book Value (book value of shareholders' equity) = 400 billion. What is this company's P/B, and if another company has P/B = 0.7, what does that suggest?",
+    "options": [
+      "P/B = 800/400 = 2x; a P/B below 1 needs investigating, it isn't automatically a bargain",
+      "P/B = 400/800 = 0.5, showing the company's debt-to-equity ratio",
+      "P/B must always be greater than 1 for every company operating normally; a P/B below 1 signals the company is about to go bankrupt",
+      "P/B has nothing to do with book value, it only reflects the profit a company generates"
+    ],
+    "explanation": "P/B = Market Cap / Book Value = 800/400 = 2x. A P/B < 1 (cheaper than book) doesn't automatically mean 'a bargain' - it needs further investigation of asset quality and accompanying ROE, since sometimes the market prices it low for good reason (poorly earning assets, high risk)."
+  },
+  "summary": {
+    "keyIdea": "P/B = Market Cap / Book Value",
+    "commonMistake": "Reading a concept as a phrase to memorise rather than a principle to apply to real decisions.",
+    "action": "P/B < 1: cheaper than book - worth investigating why"
+  },
+  "application": {
+    "title": "Calculate P/B",
+    "message": "Divide Market Cap by Book Value (Equity) for a company, especially try it on a bank or real-estate company - this is where P/B is most meaningful.",
+    "secondary": "If P/B is below 1, don't get excited right away - find the reason before concluding it's an opportunity."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "P/B (Price-to-Book) compares a stock's market price against its book value (shareholders' equity) per share - a metric especially useful for industries where book-value assets reflect real value fairly closely."
+    },
+    { "type": "callout", "label": "The formula", "text": "P/B = Market Cap / Book Value (Total Equity)" },
+    { "type": "heading", "text": "A P/B below 1 isn't automatically an opportunity" },
+    {
+      "type": "paragraph",
+      "text": "During the 2011-2013 Vietnamese bank bad-debt crisis, many bank stocks traded at a P/B below 1. At a glance it looks like 'the stock is cheaper than net asset value' - but in substance the market was worried real asset quality (hidden bad debt not yet fully provisioned for) was much worse than the numbers on the books. This is a classic example of a 'value trap' - looking cheap but actually reflecting real risk accurately."
+    },
+    { "type": "heading", "text": "Why P/B is best suited to banks, insurance, and real estate" },
+    {
+      "type": "paragraph",
+      "text": "P/B is useful when book-value assets reflect real economic value fairly closely: for a bank, that's its loan portfolio; for real estate, it's land and building value. By contrast, for technology companies, book value is usually very low because it doesn't reflect brand value, patents, personnel, or customer data - intangible assets that don't fully appear on a traditional balance sheet."
+    },
+    {
+      "type": "list",
+      "items": [
+        "P/B < 1: the market values it below book value - worth investigating why (asset quality, low ROE, industry downturn)",
+        "For banks, the quality of book value depends heavily on whether bad-debt provisions are fully made",
+        "P/B is best suited to: banks, insurance, real estate - where assets make up most of the business's value",
+        "P/B is poorly suited to: technology, services, strong brands - where real value sits in intangible assets"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A low P/B is a question that needs answering, not a ready-made answer - always check the quality of the assets behind that book figure."
+      ]
+    }
+  ]
+}

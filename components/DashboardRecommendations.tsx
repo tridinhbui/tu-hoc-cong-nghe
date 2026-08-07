@@ -10,6 +10,9 @@ import { getWeekSeed, pickRotatingWindow } from "@/lib/content-rotation";
 import { getTotalCompletedLessonsCount } from "@/lib/supabase-user";
 import { useLocalStorageValue } from "@/lib/use-local-storage-value";
 import { GOAL_UPDATED_EVENT } from "@/components/GoalSelectionBanner";
+import { useI18n } from "@/lib/i18n/context";
+import { format, intlLocale } from "@/lib/i18n";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
 interface DashboardRecommendationsProps {
   lessonsMeta: LessonMeta[];
@@ -17,32 +20,37 @@ interface DashboardRecommendationsProps {
   userId: string;
 }
 
-const DEFAULT_TOPICS = [
-  {
-    id: "newbie",
-    title: "Nhập môn",
-    icon: BookOpen,
-    color: "text-blue-500",
-    bg: "bg-blue-50 dark:bg-blue-950/30",
-    slugs: ["tai-chinh-la-gi", "tien-la-gi", "thu-nhap-chi-phi-tiet-kiem"],
-  },
-  {
-    id: "investing",
-    title: "Đầu tư",
-    icon: TrendingUp,
-    color: "text-emerald-500",
-    bg: "bg-emerald-50 dark:bg-emerald-950/30",
-    slugs: ["lai-suat-la-gi", "rui-ro-la-gi", "loi-nhuan-ky-vong"],
-  },
-  {
-    id: "accounting",
-    title: "Kế toán",
-    icon: Target,
-    color: "text-purple-500",
-    bg: "bg-purple-50 dark:bg-purple-950/30",
-    slugs: ["ke-toan-la-gi", "doanh-thu-ghi-nhan", "cong-thuc-ke-toan"],
-  },
-];
+// Topic titles are copy, slugs/icons/colors are structure - so these are
+// built from `t` rather than kept as a static module-scope array. See
+// lib/i18n/dictionaries/sections/quests-referral.ts (`recommendations`).
+function getDefaultTopics(t: Dictionary) {
+  return [
+    {
+      id: "newbie",
+      title: t.recommendations.topicNewbie,
+      icon: BookOpen,
+      color: "text-blue-500",
+      bg: "bg-blue-50 dark:bg-blue-950/30",
+      slugs: ["tai-chinh-la-gi", "tien-la-gi", "thu-nhap-chi-phi-tiet-kiem"],
+    },
+    {
+      id: "investing",
+      title: t.recommendations.topicInvesting,
+      icon: TrendingUp,
+      color: "text-emerald-500",
+      bg: "bg-emerald-50 dark:bg-emerald-950/30",
+      slugs: ["lai-suat-la-gi", "rui-ro-la-gi", "loi-nhuan-ky-vong"],
+    },
+    {
+      id: "accounting",
+      title: t.recommendations.topicAccounting,
+      icon: Target,
+      color: "text-purple-500",
+      bg: "bg-purple-50 dark:bg-purple-950/30",
+      slugs: ["ke-toan-la-gi", "doanh-thu-ghi-nhan", "cong-thuc-ke-toan"],
+    },
+  ];
+}
 
 // Pools are intentionally larger than what's shown at once - "Đang hot tuần
 // này" picks a rotating 4-item window out of each pool (see
@@ -66,6 +74,7 @@ const DEFAULT_TRENDING_POOL = [
 const getIllustrativeStudyingCount = getIllustrativeCount;
 
 export default function DashboardRecommendations({ lessonsMeta, completed, userId }: DashboardRecommendationsProps) {
+  const { t, locale } = useI18n();
   const [collapsed, setCollapsed] = useState(false);
   const [hotCollapsed, setHotCollapsed] = useState(false);
 
@@ -116,14 +125,14 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
   // seeded once per render off the current ISO week, not randomized per
   // visitor, so everyone sees the same "hot this week" set.
   const weekSeed = getWeekSeed();
-  let activeTopics = DEFAULT_TOPICS;
+  let activeTopics = getDefaultTopics(t);
   let activeTrendingSlugs = pickRotatingWindow(DEFAULT_TRENDING_POOL, 4, weekSeed);
 
   if (selectedGoal === "personal-finance") {
     activeTopics = [
       {
         id: "pf-basic",
-        title: "Tài chính Cá nhân",
+        title: t.recommendations.topicPfBasic,
         icon: BookOpen,
         color: "text-blue-500",
         bg: "bg-blue-50 dark:bg-blue-950/30",
@@ -131,7 +140,7 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
       },
       {
         id: "pf-debt",
-        title: "Tín dụng & Nợ",
+        title: t.recommendations.topicPfDebt,
         icon: Target,
         color: "text-rose-500",
         bg: "bg-rose-50 dark:bg-rose-950/30",
@@ -147,7 +156,7 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
     activeTopics = [
       {
         id: "bi-save",
-        title: "Tích lũy",
+        title: t.recommendations.topicBiSave,
         icon: TrendingUp,
         color: "text-emerald-500",
         bg: "bg-emerald-50 dark:bg-emerald-950/30",
@@ -155,7 +164,7 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
       },
       {
         id: "bi-risk",
-        title: "Rủi ro & Kế hoạch",
+        title: t.recommendations.topicBiRisk,
         icon: BookOpen,
         color: "text-amber-500",
         bg: "bg-amber-50 dark:bg-amber-950/30",
@@ -171,7 +180,7 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
     activeTopics = [
       {
         id: "cf-reports",
-        title: "Báo cáo tài chính",
+        title: t.recommendations.topicCfReports,
         icon: Target,
         color: "text-purple-500",
         bg: "bg-purple-50 dark:bg-purple-950/30",
@@ -179,7 +188,7 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
       },
       {
         id: "cf-valuation",
-        title: "Định giá & Cổ phiếu",
+        title: t.recommendations.topicCfValuation,
         icon: TrendingUp,
         color: "text-indigo-500",
         bg: "bg-indigo-50 dark:bg-indigo-950/30",
@@ -259,7 +268,7 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
           <div className="w-full flex items-center justify-between flex-shrink-0 mb-3">
             <div className="flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-stone-400" />
-              <h2 className="text-sm font-bold text-stone-900 dark:text-stone-100">Gợi ý hôm nay</h2>
+              <h2 className="text-sm font-bold text-stone-900 dark:text-stone-100">{t.recommendations.todayTitle}</h2>
             </div>
           </div>
 
@@ -270,21 +279,21 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
                   <div className="flex items-center gap-2">
                     <span className="inline-flex items-center gap-1 rounded-full bg-white/80 px-2 py-0.5 text-[9px] font-black uppercase tracking-[0.16em] text-emerald-700 ring-1 ring-emerald-200 dark:bg-stone-950/50 dark:text-emerald-300 dark:ring-emerald-900">
                       <Radio className="h-3 w-3 animate-pulse" />
-                      Live
+                      {t.recommendations.liveBadge}
                     </span>
                     <p className="truncate text-[11px] font-black uppercase tracking-[0.14em] text-emerald-800 dark:text-emerald-300">
-                      Cộng đồng đang học
+                      {t.recommendations.liveTitle}
                     </p>
                   </div>
                   <p className="mt-1 text-xs font-semibold text-stone-600 dark:text-stone-400">
-                    Tổng số bài học đã được hoàn thành trên hệ thống
+                    {t.recommendations.liveSubtitle}
                   </p>
                 </div>
                 <div className="shrink-0 text-right">
                   <p className="text-2xl font-black tabular-nums leading-none text-stone-950 dark:text-stone-50">
-                    {liveCompletedCount.toLocaleString("vi-VN")}
+                    {liveCompletedCount.toLocaleString(intlLocale(locale))}
                   </p>
-                  <p className="mt-1 text-[10px] font-bold text-emerald-700 dark:text-emerald-300">bài học</p>
+                  <p className="mt-1 text-[10px] font-bold text-emerald-700 dark:text-emerald-300">{t.recommendations.lessonsUnit}</p>
                 </div>
               </div>
             </div>
@@ -349,7 +358,7 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
                               </span>
                               {isDone && (
                               <span className="ml-auto text-[9px] font-extrabold text-emerald-700 bg-emerald-50/70 dark:bg-emerald-950/40 px-1 py-0.5 rounded-sm">
-                                  Xong
+                                  {t.recommendations.done}
                               </span>
                               )}
                             </div>
@@ -361,7 +370,7 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
                             {lesson.subtitle}
                           </p>
                           <p className="text-[9px] text-emerald-600 dark:text-emerald-400 mt-1.5 font-bold">
-                            👥 {getIllustrativeStudyingCount(lesson.slug, 20, 120)} người đang học
+                            {format(t.recommendations.studyingCount, { count: getIllustrativeStudyingCount(lesson.slug, 20, 120) })}
                           </p>
                         </Link>
                       );
@@ -390,7 +399,7 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
                               <Gamepad2 className="w-3 h-3 text-amber-600 dark:text-amber-400" />
                             </div>
                             <span className="text-[10px] font-extrabold text-stone-600 dark:text-stone-400 uppercase tracking-wider">
-                              Mini Game {game.emoji}
+                              {format(t.recommendations.miniGameLabel, { emoji: game.emoji })}
                             </span>
                           </div>
                           <h3 className="text-xs font-bold text-stone-900 dark:text-stone-100 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors line-clamp-2 leading-tight">
@@ -428,7 +437,7 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
           <div className="w-full flex items-center justify-between flex-shrink-0 mb-3">
             <div className="flex items-center gap-2">
               <Flame className="w-4 h-4 text-stone-400" />
-              <h2 className="text-sm font-bold text-stone-900 dark:text-stone-100">Đang hot tuần này</h2>
+              <h2 className="text-sm font-bold text-stone-900 dark:text-stone-100">{t.recommendations.hotTitle}</h2>
             </div>
           </div>
           
@@ -484,11 +493,11 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
                               <Flame className="w-3 h-3 animate-pulse" />
                             </div>
                             <span className="text-[10px] font-extrabold text-rose-600 dark:text-rose-400 uppercase tracking-wider">
-                              Đang hot
+                              {t.recommendations.hotBadge}
                             </span>
                             {isDone && (
                               <span className="ml-auto text-[9px] font-extrabold text-emerald-600 bg-emerald-50 dark:bg-emerald-950/40 px-1 py-0.5 rounded-sm">
-                                Xong
+                                {t.recommendations.done}
                                 </span>
                             )}
                           </div>
@@ -500,7 +509,7 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
                           {lesson.subtitle}
                         </p>
                         <p className="text-[9px] text-rose-500 dark:text-rose-400 mt-1.5 font-bold">
-                          👥 {getIllustrativeStudyingCount(lesson.slug, 80, 340)} người đang học
+                          {format(t.recommendations.studyingCount, { count: getIllustrativeStudyingCount(lesson.slug, 80, 340) })}
                         </p>
                       </Link>
                     );

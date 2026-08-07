@@ -12,7 +12,10 @@ import { getLessonDisplayLabel, getLessonShortTitle } from "@/lib/lesson-labels"
 import { getQuizAnswers } from "@/lib/progress";
 import RecallCard from "@/components/RecallCard";
 import type { RecallItem } from "@/lib/recall-schedule";
+import type { StageTopicId, TopicAdviceId } from "@/lib/stage-topics";
 import { useLocalStorageValue, writeLocalStorageValue } from "@/lib/use-local-storage-value";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 interface ResumeLearningButtonProps {
   activeTrack: "personal" | "professional";
@@ -26,22 +29,21 @@ interface Greeting {
   totalMinutes: number;
   firstName: string | null;
   trackProgress: { completed: number; total: number; percent: number };
-  topicGapSummary: { topic: string; count: number }[];
+  topicGapSummary: { topicId: StageTopicId; count: number }[];
   criticalMistake: {
     lessonId: number;
     lessonSlug: string;
     lessonTitle: string;
-    topic: string;
+    topicId: StageTopicId;
     wrongCount: number;
-    explanation: string;
-    recommendedAction: string;
+    explanation: string | null;
+    adviceId: TopicAdviceId;
   } | null;
   stageReviewInsight: {
     lessonId: number;
     lessonSlug: string;
     lessonTitle: string;
     stageLabel: string;
-    message: string;
   } | null;
 }
 
@@ -54,6 +56,7 @@ const COLLAPSED_KEY = "thtcdn_resume_card_collapsed";
 const COLLAPSED_CHANGED_EVENT = "thtcdn:resume-card-collapsed";
 
 export default function ResumeLearningButton({ activeTrack }: ResumeLearningButtonProps) {
+  const { t } = useI18n();
   const [greeting, setGreeting] = useState<Greeting | null>(null);
   const [loading, setLoading] = useState(true);
   // Trạng thái thu gọn thẻ đọc thẳng từ localStorage. Bản cũ luôn mở ra ở
@@ -149,8 +152,8 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
             <BookOpen className="w-6 h-6" />
           </div>
           <div className="flex-1">
-            <p className="font-bold text-lg">Chúc mừng{firstName ? `, ${firstName}` : ""}!</p>
-            <p className="text-sm text-white/90">Bạn đã hoàn thành tất cả bài học</p>
+            <p className="font-bold text-lg">{format(t.resume.congrats, { name: firstName ? `, ${firstName}` : "" })}</p>
+            <p className="text-sm text-white/90">{t.resume.allDone}</p>
           </div>
         </div>
       </div>
@@ -194,11 +197,11 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
             </p>
           </div>
           <span className="shrink-0 text-[11px] font-extrabold bg-emerald-600 group-hover:bg-emerald-500 text-white dark:bg-emerald-500 px-2.5 py-1.5 rounded-xl transition-all">
-            Học
+            {t.resume.study}
           </span>
           <button
             onClick={toggleCollapsed}
-            aria-label="Mở rộng"
+            aria-label={t.resume.expandAria}
             className="shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors cursor-pointer"
           >
             <ChevronDown className="w-4 h-4" />
@@ -219,7 +222,7 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
         <div className="relative bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl p-4 sm:p-5">
           <button
             onClick={toggleCollapsed}
-            aria-label="Thu gọn"
+            aria-label={t.resume.collapseAria}
             className="absolute top-3 right-3 z-10 w-7 h-7 rounded-full flex items-center justify-center text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors cursor-pointer"
           >
             <ChevronUp className="w-4 h-4" />
@@ -236,10 +239,10 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
 
             <div className="flex-1 min-w-0">
               <span className="text-[9px] font-extrabold text-emerald-700 dark:text-emerald-300 uppercase tracking-widest bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded-md">
-                Hướng dẫn nhanh 3 bước
+                {t.resume.quickGuideTitle}
               </span>
               <p className="mt-1.5 text-stone-800 dark:text-stone-100 text-sm sm:text-[15px] font-bold leading-relaxed">
-                "Chào{firstName ? ` ${firstName}` : ""}! Lần đầu học tài chính đúng không? Đi theo 3 bước này là bạn có nền tảng ngay trong hôm nay."
+                {format(t.resume.quickGuideIntro, { name: firstName ? ` ${firstName}` : "" })}
               </p>
             </div>
           </div>
@@ -252,8 +255,8 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
             >
               <span className="shrink-0 w-6 h-6 rounded-full bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 text-[11px] font-extrabold flex items-center justify-center">1</span>
               <div className="flex-1 min-w-0">
-                <p className="text-xs sm:text-sm font-extrabold text-stone-900 dark:text-stone-50">Chọn lộ trình phù hợp</p>
-                <p className="text-[10px] text-stone-400 dark:text-stone-500 font-bold mt-0.5">Cá nhân hay chuyên ngành - chọn đúng ngay từ đầu</p>
+                <p className="text-xs sm:text-sm font-extrabold text-stone-900 dark:text-stone-50">{t.resume.step1Title}</p>
+                <p className="text-[10px] text-stone-400 dark:text-stone-500 font-bold mt-0.5">{t.resume.step1Body}</p>
               </div>
               <Map className="w-4 h-4 text-stone-400 group-hover:text-emerald-500 shrink-0" />
             </a>
@@ -265,10 +268,10 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
             >
               <span className="shrink-0 w-6 h-6 rounded-full bg-emerald-600 text-white text-[11px] font-extrabold flex items-center justify-center">2</span>
               <div className="flex-1 min-w-0">
-                <p className="text-xs sm:text-sm font-extrabold text-stone-900 dark:text-stone-50 truncate">Học bài đầu tiên: {nextLessonShortTitle}</p>
-                <p className="text-[10px] text-stone-400 dark:text-stone-500 font-bold mt-0.5">{nextLesson.duration} thôi - đủ để tạo đà</p>
+                <p className="text-xs sm:text-sm font-extrabold text-stone-900 dark:text-stone-50 truncate">{format(t.resume.step2Title, { lesson: nextLessonShortTitle ?? "" })}</p>
+                <p className="text-[10px] text-stone-400 dark:text-stone-500 font-bold mt-0.5">{format(t.resume.step2Body, { duration: nextLesson.duration })}</p>
               </div>
-              <span className="shrink-0 text-[11px] font-extrabold bg-emerald-600 group-hover:bg-emerald-500 text-white px-3 py-1.5 rounded-xl transition-all">▶ Học</span>
+              <span className="shrink-0 text-[11px] font-extrabold bg-emerald-600 group-hover:bg-emerald-500 text-white px-3 py-1.5 rounded-xl transition-all">{t.resume.study}</span>
             </Link>
 
             <Link
@@ -278,8 +281,8 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
             >
               <span className="shrink-0 w-6 h-6 rounded-full bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 text-[11px] font-extrabold flex items-center justify-center">3</span>
               <div className="flex-1 min-w-0">
-                <p className="text-xs sm:text-sm font-extrabold text-stone-900 dark:text-stone-50">Xem bảng xếp hạng & giữ streak</p>
-                <p className="text-[10px] text-stone-400 dark:text-stone-500 font-bold mt-0.5">Học đều mỗi ngày để leo hạng</p>
+                <p className="text-xs sm:text-sm font-extrabold text-stone-900 dark:text-stone-50">{t.resume.step3Title}</p>
+                <p className="text-[10px] text-stone-400 dark:text-stone-500 font-bold mt-0.5">{t.resume.step3Body}</p>
               </div>
               <ArrowRight className="w-4 h-4 text-stone-400 group-hover:text-amber-500 shrink-0" />
             </Link>
@@ -301,7 +304,7 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
 
         <button
           onClick={toggleCollapsed}
-          aria-label="Thu gọn"
+          aria-label={t.resume.collapseAria}
           className="absolute top-3.5 right-3.5 z-10 w-7 h-7 rounded-full flex items-center justify-center text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors cursor-pointer"
         >
           <ChevronUp className="w-4 h-4" />
@@ -322,10 +325,10 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
             {/* Header Labels */}
             <div className="flex items-center gap-2 flex-wrap mb-2">
               <span className="text-[10px] font-black text-stone-600 dark:text-stone-300 uppercase tracking-widest bg-stone-100 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 px-2.5 py-0.5 rounded-lg shadow-2xs">
-                🎓 HERO LEARNING BANNER
+                {t.resume.heroBanner}
               </span>
               <span className="text-[10px] font-black text-amber-700 dark:text-amber-300 uppercase tracking-widest bg-amber-50 dark:bg-amber-950/50 border border-amber-200/80 dark:border-amber-800/80 px-2.5 py-0.5 rounded-lg flex items-center gap-1 shadow-2xs">
-                🔥 +30 XP NẾU HỌC NGAY
+                {t.resume.xpIfNow}
               </span>
             </div>
 
@@ -338,7 +341,7 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
             {trackProgress && (
               <div className="mt-3.5">
                 <div className="flex items-center justify-between text-[11px] font-bold text-stone-600 dark:text-stone-400 mb-1">
-                  <span>Tiến độ Lộ trình ({trackProgress.completed}/{trackProgress.total} bài)</span>
+                  <span>{format(t.resume.trackProgress, { done: trackProgress.completed, total: trackProgress.total })}</span>
                   <span className="text-emerald-600 dark:text-emerald-400 font-extrabold">{trackProgress.percent}%</span>
                 </div>
                 <div className="w-full h-2 bg-stone-100 dark:bg-stone-800 rounded-full overflow-hidden shadow-inner">
@@ -354,19 +357,19 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
             <div className="mt-3.5 bg-stone-50/80 dark:bg-stone-950/60 border border-stone-200/80 dark:border-stone-800 group-hover:border-stone-300 dark:group-hover:border-stone-700 rounded-2xl p-3 sm:p-3.5 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 transition-all duration-300">
               <div className="min-w-0 flex-1">
                 <span className="text-[9px] font-black text-stone-500 dark:text-stone-400 uppercase tracking-wider block mb-0.5">
-                  ▶ Bài học đang tiếp tục
+                  {t.resume.continuingLesson}
                 </span>
                 <p className="text-stone-950 dark:text-white text-xs sm:text-sm font-extrabold truncate">
                   {nextLessonLabel}: {nextLessonShortTitle}
                 </p>
                 <p className="text-[10px] text-stone-500 dark:text-stone-400 font-bold mt-0.5">
-                  {totalMinutes > 0 ? `⏱️ Đã học ${totalMinutes} phút` : "🌱 Sẵn sàng khởi động bài học ngay"}
+                  {totalMinutes > 0 ? format(t.resume.minutesStudied, { minutes: totalMinutes }) : t.resume.readyToStart}
                 </p>
               </div>
 
               {/* Eye-Catching Clean Hero CTA button */}
               <div className="flex items-center justify-center gap-1.5 text-xs font-black bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2.5 rounded-xl transition-all duration-200 shadow-sm border border-emerald-500/20 w-full sm:w-auto text-center shrink-0 active:scale-95">
-                ▶ TIẾP TỤC HỌC NGAY
+                {t.resume.continueNow}
               </div>
             </div>
           </div>
@@ -386,11 +389,11 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-1.5 flex-wrap mb-2">
                 <span className="text-[9px] font-extrabold text-sky-700 dark:text-sky-300 uppercase tracking-widest bg-sky-50 dark:bg-sky-950/40 px-2 py-0.5 rounded-md">
-                  Phản hồi học tập
+                  {t.resume.feedbackTitle}
                 </span>
                 {stageReviewInsight && (
                   <span className="text-[9px] font-extrabold text-amber-700 dark:text-amber-300 uppercase tracking-widest bg-amber-50 dark:bg-amber-950/40 px-2 py-0.5 rounded-md">
-                    Tổng ôn đúng lúc
+                    {t.resume.reviewOnTime}
                   </span>
                 )}
               </div>
@@ -398,13 +401,15 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
               {stageReviewInsight && (
                 <div className="rounded-xl border border-amber-200/80 dark:border-amber-900/40 bg-amber-50/70 dark:bg-amber-950/20 p-3 mb-3">
                   <p className="text-xs font-bold text-stone-900 dark:text-stone-100 leading-relaxed">
-                    Tài Tài nhắc bạn: {stageReviewInsight.message}
+                    {format(t.resume.coachReminder, {
+                      message: format(t.resume.stageReviewMessage, { stage: stageReviewInsight.stageLabel }),
+                    })}
                   </p>
                   <Link
                     href={`/bai-hoc/${stageReviewInsight.lessonSlug}`}
                     className="inline-flex items-center gap-1 mt-2 text-[11px] font-extrabold text-amber-800 dark:text-amber-300 hover:text-amber-600 dark:hover:text-amber-200"
                   >
-                    Mở {stageReviewInsight.stageLabel}: {getLessonShortTitle({ title: stageReviewInsight.lessonTitle })} <ArrowRight className="w-3.5 h-3.5" />
+                    {format(t.resume.openStage, { stage: stageReviewInsight.stageLabel, lesson: getLessonShortTitle({ title: stageReviewInsight.lessonTitle }) })} <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>
               )}
@@ -412,15 +417,15 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
               {topicGapSummary.length > 0 && (
                 <div className="mb-3">
                   <p className="text-[11px] font-bold text-stone-700 dark:text-stone-300 mb-2">
-                    Lỗ hổng kiến thức hiện tại của bạn đang nghiêng về:
+                    {t.resume.gapsLeaning}
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {topicGapSummary.map((item) => (
                       <span
-                        key={item.topic}
+                        key={item.topicId}
                         className="inline-flex items-center gap-1 rounded-full border border-rose-200 dark:border-rose-900/40 bg-rose-50 dark:bg-rose-950/20 px-2.5 py-1 text-[10px] font-extrabold text-rose-700 dark:text-rose-300"
                       >
-                        {item.topic}
+                        {t.topics[item.topicId]}
                         <span className="rounded-full bg-rose-500 text-white px-1.5 py-0.5 text-[9px]">{item.count}</span>
                       </span>
                     ))}
@@ -431,29 +436,29 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
               {criticalMistake && (
                 <div className="rounded-xl border border-stone-200/80 dark:border-stone-800/80 bg-stone-50/70 dark:bg-stone-950/40 p-3">
                   <p className="text-[11px] font-extrabold text-stone-900 dark:text-stone-100">
-                    Bạn đang vấp nhiều nhất ở: {criticalMistake.topic}
+                    {format(t.resume.stumblingMost, { topic: t.topics[criticalMistake.topicId] })}
                   </p>
                   <p className="text-[11px] text-stone-600 dark:text-stone-400 mt-1 leading-relaxed">
-                    Đã sai {criticalMistake.wrongCount} lần trong bài “{getLessonShortTitle({ title: criticalMistake.lessonTitle })}”.
+                    {format(t.resume.wrongCount, { count: criticalMistake.wrongCount, lesson: getLessonShortTitle({ title: criticalMistake.lessonTitle }) })}
                   </p>
                   <p className="text-[11px] text-stone-700 dark:text-stone-300 mt-2 leading-relaxed">
-                    {criticalMistake.explanation}
+                    {criticalMistake.explanation ?? t.resume.explanationFallback}
                   </p>
                   <p className="text-[11px] font-bold text-emerald-700 dark:text-emerald-300 mt-2 leading-relaxed">
-                    Gợi ý của Tài Tài: {criticalMistake.recommendedAction}
+                    {format(t.resume.coachSuggestion, { action: t.topicAdvice[criticalMistake.adviceId] })}
                   </p>
                   <div className="flex flex-wrap gap-2 mt-3">
                     <Link
                       href={`/bai-hoc/${criticalMistake.lessonSlug}`}
                       className="inline-flex items-center gap-1 px-3 py-1.5 text-[10px] font-extrabold rounded-lg bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900"
                     >
-                      Ôn lại bài này <ArrowRight className="w-3.5 h-3.5" />
+                      {t.resume.reviewThisLesson} <ArrowRight className="w-3.5 h-3.5" />
                     </Link>
                     <Link
                       href="/ghi-chu"
                       className="inline-flex items-center gap-1 px-3 py-1.5 text-[10px] font-extrabold rounded-lg border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-stone-700 dark:text-stone-300"
                     >
-                      Tạo flashcard
+                      {t.resume.makeFlashcard}
                     </Link>
                   </div>
                 </div>
@@ -465,7 +470,7 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
 
       {todayRecallItems.length > 0 && (
         <div className="mt-2">
-          <RecallCard items={todayRecallItems} title="Ôn tập" />
+          <RecallCard items={todayRecallItems} title={t.resume.recallTitle} />
         </div>
       )}
     </div>

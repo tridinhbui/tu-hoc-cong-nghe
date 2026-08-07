@@ -1,0 +1,136 @@
+{
+  "slug": "loi-nhuan-ky-vong",
+  "title": "What is expected return?",
+  "subtitle": "Expected Return is a probability-weighted average across every possible scenario.",
+  "duration": "7 min",
+  "openingQuestion": "You invest 100 million. There's a 60% chance of a 20% gain, a 40% chance of a 10% loss. What is the expected return?",
+  "openingOptions": [
+    "10%, the simple average of 20% and -10%",
+    "It can't be calculated, since the outcome isn't known yet",
+    "20%, because the chance of winning is higher",
+    "8%, because 60% × 20% + 40% × (-10%) = 12% − 4% = 8%"
+  ],
+  "explanation": "Expected return is a probability-weighted average across every scenario: multiply each probability by its outcome, then add them up. The part that trips people up is that this is a long-run number, not a forecast of what happens next time. An investment with a 60% chance of a 20% gain and a 40% chance of a 10% loss has an expected return of 8%, but any single outcome can only be +20% or −10% - never exactly 8%.",
+  "diagram": [
+    { "label": "List out every possible scenario" },
+    { "label": "Assign a probability to each scenario" },
+    { "label": "Multiply each probability by its outcome, then add" },
+    { "label": "The result is a long-run average, not a single outcome" }
+  ],
+  "realWorldExample": {
+    "company": "US stock funds",
+    "description": "The S&P 500 has a long-run expected return of roughly 10% a year. But in any single year, it has swung from -37% to +38%. The expected value is the average across countless scenarios."
+  },
+  "quiz": [
+    {
+      "question": "Why doesn't expected return guarantee the actual outcome?",
+      "options": [
+        "Because it's a long-run average, not a figure for any single year",
+        "Because the initial probability estimates are almost always wrong",
+        "Because the formula always contains some fixed rounding error",
+        "Because inefficient markets mean prices misprice risk"
+      ],
+      "explanation": "An expectation of 8% means an average across many repetitions. On any single occasion, you might get 20% or lose 10%. The spread around the expected value is exactly what risk is."
+    },
+    {
+      "question": "What does the Sharpe Ratio measure?",
+      "options": [
+        "The total return a portfolio achieved during the year",
+        "The excess return divided by the standard deviation",
+        "The standard deviation divided by the excess return",
+        "The probability a portfolio loses money in any given year"
+      ],
+      "explanation": "Sharpe Ratio = (portfolio return − the risk-free rate) / standard deviation. It measures the return earned per unit of risk taken on. A higher Sharpe means greater efficiency."
+    },
+    {
+      "question": "Scenario: You're choosing between two funds. Fund A: expected return 15% a year, standard deviation 20%. Fund B: expected return 12% a year, standard deviation 10%. The risk-free rate is 6%. Which fund has the better Sharpe Ratio, and what is it?",
+      "options": [
+        "Fund A is better, Sharpe = 0.75 (forgetting to subtract 6%)",
+        "Fund A is better, Sharpe = 0.45",
+        "Fund B is better, Sharpe = 0.60",
+        "Fund B is better, Sharpe = 0.90 (forgetting to subtract 6%)"
+      ],
+      "explanation": "Sharpe A = (15% − 6%) / 20% = 0.45. Sharpe B = (12% − 6%) / 10% = 0.60. Fund B's higher Sharpe means it generates more excess return per unit of risk accepted."
+    },
+    {
+      "question": "Scenario: An investment has a 50% chance of a 20% gain, a 30% chance of a 5% gain, and a 20% chance of a 10% loss. What is the expected return?",
+      "options": [
+        "11.7% (= (20 + 5 − 10) ÷ 3, then rounded)",
+        "5% (= taking the middle scenario as representative)",
+        "15% (= (20 + 5 + 10) ÷ 3, ignoring the probabilities)",
+        "9.5% (= 0.5×20 + 0.3×5 + 0.2×(−10) a year)"
+      ],
+      "explanation": "The expectation is the sum of probability times outcome: 10 + 1.5 − 2 = 9.5%. Taking a simple average of the scenarios is the most common mistake - it implicitly assumes every scenario is equally likely, which is almost never true."
+    },
+    {
+      "question": "Scenario: Fund A expects 15% a year with a standard deviation of 20%. Fund B expects 10% with a standard deviation of 8%. The risk-free rate is 4%. Which fund has the higher Sharpe Ratio?",
+      "options": [
+        "B, because (10−4)/8 = 0.75 is higher than 0.55",
+        "A, because its expected return of 15% is higher than 10%",
+        "A, because (15−4)/20 = 0.55 is the higher figure",
+        "They're equal, because both compensate for risk the same way"
+      ],
+      "explanation": "Sharpe measures the return above the risk-free rate per unit of volatility taken on: A gives 0.55, B gives 0.75. B earns less in absolute terms, but gets more back for every percentage point of risk taken - and if you leveraged B up to match A's level of risk, B would still come out ahead."
+    }
+  ],
+  "keyTakeaways": [
+    "Expected Return = the sum of (probability × outcome) across every scenario",
+    "The expectation is a long-run average; it doesn't guarantee any short-run outcome",
+    "Sharpe Ratio: excess return earned per unit of risk"
+  ],
+  "practicePrompt": {
+    "question": "You have two options for investing 100 million VND for 1 year. Option A: 70% chance of a 10% gain, 30% chance of a 5% loss. Option B: 50% chance of a 20% gain, 50% chance of an 8% loss. Which option has the higher expected return?",
+    "options": [
+      "Option B, because its expected return is 6% (0.5×20% + 0.5×(-8%)), higher than option A",
+      "Option A, because its expected return is 7% (0.7×10%), higher than option B",
+      "The two are equal, because each pair of probabilities adds up to 100%",
+      "They can't be compared, because expected return only means something once the outcome is known for certain"
+    ],
+    "explanation": "Option A: 0.7×10% + 0.3×(-5%) = 5.5%. Option B: 0.5×20% + 0.5×(-8%) = 6%. Even though B has a higher chance of a loss, its expected value is still higher than A's."
+  },
+  "summary": {
+    "keyIdea": "Expected Return = the sum of (probability × outcome) across every scenario",
+    "commonMistake": "Reading the concept as a phrase to memorise rather than a principle to apply to a real decision.",
+    "action": "The expectation is a long-run average; it doesn't guarantee any short-run outcome"
+  },
+  "application": {
+    "title": "Calculate the expected return for a real decision",
+    "message": "Pick a financial decision you're weighing, estimate 2-3 possible scenarios with a probability for each, then calculate expected return = the sum of (probability × outcome) as in this lesson.",
+    "secondary": "Don't worry about the number being exactly right - the habit of doing this matters more than the answer itself."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "You invest 100 million. A 60% chance of a 20% gain, a 40% chance of a 10% loss. What is the expected return? This is one of the most important calculations for making an investment decision on solid ground."
+    },
+    { "type": "heading", "text": "What is Expected Return?" },
+    {
+      "type": "paragraph",
+      "text": "Expected Return is a weighted average of every possible outcome, with the weight being each outcome's probability. **Formula:** Expected Return = Σ (probability × outcome). In the example above: 0.6 × 20% + 0.4 × (−10%) = 12% − 4% = 8%."
+    },
+    { "type": "heading", "text": "An expectation isn't a certain prediction" },
+    {
+      "type": "paragraph",
+      "text": "The point most easily misunderstood: the 8% figure doesn't mean 'the actual outcome will be 8%'. On any single occasion, the actual outcome can only be +20% or −10% (never exactly 8%). The 8% only means something if this situation repeats many, many times - it is a long-run average, not a promise for any single instance."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Expected Return = the sum of (probability × outcome) across every possible scenario",
+        "The expectation is a long-run average across many repetitions, not a guarantee for any single occasion",
+        "Sharpe Ratio: measures excess return (over the risk-free rate) per unit of risk accepted"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Applying it to a portfolio",
+      "text": "Expected Return is the foundation for comparing different investment opportunities quantitatively, instead of relying on a gut feeling that something 'sounds good'. It's also the first step toward building a properly diversified portfolio."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A skilled investor doesn't only ask 'how much could I win', but always accounts for both the probability and the size of the losing scenario to get the full picture."
+      ]
+    }
+  ]
+}

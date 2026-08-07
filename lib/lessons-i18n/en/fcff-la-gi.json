@@ -1,0 +1,133 @@
+{
+  "slug": "fcff-la-gi",
+  "title": "What is FCFF?",
+  "subtitle": "Free cash flow available to all investors - both shareholders and creditors",
+  "duration": "7 min",
+  "openingQuestion": "Who does FCFF (Free Cash Flow to Firm) belong to?",
+  "openingOptions": [
+    "Only to company management",
+    "Only to creditors, not shareholders",
+    "To ALL capital providers of the company - both shareholders AND creditors (bondholders, lending banks) - because FCFF is calculated BEFORE deducting interest expense",
+    "Only to common shareholders"
+  ],
+  "explanation": "FCFF (Free Cash Flow to Firm) = after-tax operating cash flow, before deducting interest expense, after deducting CapEx and the change in working capital. Because it is calculated before interest, FCFF represents the cash flow available to ALL capital providers - both creditors and shareholders. Discounting FCFF using WACC gives Enterprise Value.",
+  "diagram": [
+    { "label": "After-tax operating profit", "arrow": true },
+    { "label": "Add back depreciation", "arrow": true },
+    { "label": "Subtract capex and the increase in working capital", "arrow": true },
+    { "label": "Get FCFF - discount with WACC for enterprise value" }
+  ],
+  "interactiveType": "profit-calc",
+  "realWorldExample": {
+    "company": "A DCF model valuing Enterprise Value",
+    "description": "When an investment bank builds a DCF model to value an entire business (not just the equity portion) for an M&A deal, they use FCFF discounted at WACC to arrive directly at Enterprise Value."
+  },
+  "quiz": [
+    {
+      "question": "If FCFF is used as the cash flow to discount, what is the appropriate discount rate, and what value does the result represent?",
+      "options": [
+        "Discount at the after-tax cost of debt, giving the value of debt",
+        "Discount at cost of equity, giving Equity Value",
+        "Discount at WACC, giving Enterprise Value",
+        "Discount at the risk-free rate, giving book value"
+      ],
+      "explanation": "The consistency principle in valuation: whoever the cash flow belongs to, discount at that group's cost of capital. FCFF belongs to both creditors and shareholders → discount at WACC (which combines cost of debt and cost of equity) → the result is Enterprise Value. To get Equity Value directly, you must use FCFE discounted at Cost of Equity."
+    },
+    {
+      "question": "A company is in a phase of very heavy CapEx investment to expand its factory (strongly negative investing cash flow). How does this affect the company's FCFF in the short term, and why might it still be a positive long-term sign?",
+      "options": [
+        "FCFF falls and that is always a sign the business is struggling",
+        "FCFF rises because CapEx is added back as a non-cash item",
+        "FCFF stays unchanged because CapEx is outside the FCFF formula",
+        "FCFF falls sharply short term but may generate cash flow later"
+      ],
+      "explanation": "It's important to distinguish negative FCFF from strategic expansion investment (positive, temporary) from negative FCFF caused by a weak core business (negative, ongoing) - the exact same negative FCFF number can carry completely different meanings depending on what is behind it."
+    },
+    {
+      "question": "NOPAT is 300 billion, depreciation is 80, CapEx is 150, working capital increases by 40. What is FCFF?",
+      "options": [
+        "190 billion (= 300 + 80 - 150 - 40, per the formula)",
+        "230 billion (= 300 + 80 - 150, forgetting working capital)",
+        "110 billion (= 300 - 80 - 150 + 40, wrong sign on depreciation)",
+        "570 billion (= 300 + 80 + 150 + 40, adding everything together)"
+      ],
+      "explanation": "FCFF = NOPAT + D&A - CapEx - ΔNWC = 300 + 80 - 150 - 40 = 190 billion. Depreciation is added back because it's not a real cash outflow, while CapEx and working capital changes are real cash outflows."
+    },
+    {
+      "question": "What is the core difference between FCFF and FCFE?",
+      "options": [
+        "FCFF is calculated yearly, FCFE is calculated quarterly",
+        "FCFF is the cash flow before paying creditors, FCFE is after",
+        "FCFF is only used for companies with no debt",
+        "FCFF is after tax, while FCFE is calculated before tax"
+      ],
+      "explanation": "FCFF belongs to both creditors and shareholders, so it's discounted at WACC to give Enterprise Value; FCFE belongs to shareholders only, so it's discounted at cost of equity to give Equity Value. Mixing the two up is a classic valuation error."
+    },
+    {
+      "question": "Why is it wrong to discount FCFF using cost of equity?",
+      "options": [
+        "Because FCFF has already deducted interest, so creditors no longer need to be considered",
+        "Because cost of equity is always lower than WACC, inflating the result",
+        "Because the cash flow belongs to two groups but the rate only reflects one",
+        "Because cost of equity only applies to listed companies"
+      ],
+      "explanation": "The rule is: whoever the cash flow belongs to, discount at that group's cost of capital. FCFF has not yet deducted the creditors' share, so the discount rate must also include the creditors' cost."
+    }
+  ],
+  "keyTakeaways": [
+    "FCFF: free cash flow belonging to all capital providers (shareholders and creditors)",
+    "Calculated before interest expense, discounted using WACC",
+    "Discounting FCFF gives Enterprise Value"
+  ],
+  "practicePrompt": {
+    "question": "When valuing with DCF at the Enterprise Value level (the whole business, before subtracting debt), which type of cash flow should the analyst discount with WACC, and why?",
+    "options": [
+      "FCFF: cash flow before interest, discounted with WACC to give Enterprise Value",
+      "FCFE (Free Cash Flow to Equity), since this is the most common cash flow used in every DCF method",
+      "Net Income, since it's the easiest final profit figure to pull from the financial statements",
+      "There's no difference between cash flow types when performing a DCF valuation"
+    ],
+    "explanation": "FCFF: free cash flow belonging to all capital providers (shareholders and creditors) - because it is calculated before interest, FCFF is appropriate to discount with WACC and gives Enterprise Value, unlike FCFE (discounted with Cost of Equity, giving Equity Value directly)."
+  },
+  "summary": {
+    "keyIdea": "FCFF: free cash flow belonging to all capital providers (shareholders and creditors)",
+    "commonMistake": "Reading the concept as a definition to recite rather than a principle to apply to a real decision.",
+    "action": "Calculated before interest expense, discounted using WACC"
+  },
+  "application": {
+    "title": "Apply it now",
+    "message": "Open a company's financial statements, find after-tax operating profit, CapEx and the change in working capital - try adding and subtracting to get a rough FCFF figure to get a feel for the formula.",
+    "secondary": "No need for absolute precision - the goal is to get comfortable with the line items on the statements."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "To run a DCF model, the first question is: which cash flow gets discounted? FCFF is the choice when you want to value the entire business - not just the equity portion."
+    },
+    { "type": "heading", "text": "The FCFF formula" },
+    {
+      "type": "paragraph",
+      "text": "FCFF (Free Cash Flow to Firm) = NOPAT + D&A - CapEx - ΔNWC (or equivalently: CFO + Interest expense × (1-Tax rate) - CapEx). Because it is calculated before deducting interest expense, FCFF represents the cash flow available to ALL capital providers - both creditors and shareholders, without distinguishing who gets paid first."
+    },
+    { "type": "heading", "text": "Discounting FCFF gives Enterprise Value" },
+    {
+      "type": "paragraph",
+      "text": "The consistency principle in valuation: whoever the cash flow belongs to, discount at that group's cost of capital. FCFF belongs to both creditors and shareholders → discount at WACC (combining both cost of debt and cost of equity) → the result is Enterprise Value. When an investment bank values an entire business for an M&A deal, they use FCFF discounted at WACC to calculate EV directly."
+    },
+    {
+      "type": "list",
+      "items": [
+        "FCFF is calculated before interest - neutral to capital structure, in the same spirit as EBITDA",
+        "Negative FCFF is not automatically bad: you must distinguish negative FCFF caused by strategic CapEx expansion (temporary, positive) from negative FCFF caused by a weak core business (ongoing, negative)",
+        "Discounting FCFF with WACC → Enterprise Value; to get Equity Value directly you need FCFE",
+        "Suitable when comparing companies with different capital structures (debt/equity ratios)"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "FCFF answers the question: how much cash does the core business generate, before considering who gets which portion of it."
+      ]
+    }
+  ]
+}

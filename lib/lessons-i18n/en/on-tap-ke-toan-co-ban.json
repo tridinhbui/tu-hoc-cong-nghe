@@ -1,0 +1,174 @@
+{
+  "slug": "on-tap-ke-toan-co-ban",
+  "title": "Review: reading the language of accounting",
+  "subtitle": "Connecting assets, liabilities, equity and cash flow together",
+  "duration": "7 min",
+  "openingQuestion": "Company A: Assets 100 billion, Liabilities 60 billion. What is equity?",
+  "openingOptions": [
+    "40 billion",
+    "160 billion",
+    "60 billion",
+    "100 billion"
+  ],
+  "explanation": "This whole track revolves around one equation: Assets = Liabilities + Equity. The balance sheet tells you what a business has and who has a claim on it at one point in time; the income statement tells the story of one period; the cash flow statement ties the two together with real cash. The three statements always line up, so when you read a strange number, the way to verify it is to trace it into the other two statements.",
+  "diagram": [
+    { "label": "Balance sheet: what it has and who has a claim, at one point in time", "arrow": true },
+    { "label": "Income statement: how much profit it made in a period", "arrow": true },
+    { "label": "Retained earnings links the two statements together", "arrow": true },
+    { "label": "The cash flow statement verifies it with real cash" }
+  ],
+  "realWorldExample": {
+    "company": "A summary of the accounting-auditing profession",
+    "description": "Hundreds of thousands of accountants and auditors in Vietnam run on exactly these principles learned over these 20 days, every single day - this is the real foundation behind every number you see on a business's financial statements."
+  },
+  "quiz": [
+    {
+      "question": "The three statements connect:",
+      "options": [
+        "Income statement → Balance sheet → Cash flow statement",
+        "Cash flow statement → Income statement → Balance sheet",
+        "The three statements are entirely independent of each other",
+        "Balance sheet → Cash flow statement → Income statement"
+      ],
+      "explanation": "The three statements are different facets of the same business."
+    },
+    {
+      "question": "Understanding accounting requires:",
+      "options": [
+        "Only knowing how to read and quote the net profit figure",
+        "The base formula, the three statements, key indicators",
+        "Only memorising the chart of accounts",
+        "Only accounting software and the raw data"
+      ],
+      "explanation": "Start with the basic knowledge, not deep specialisation."
+    },
+    {
+      "question": "When reading statements, the priority order is:",
+      "options": [
+        "Reading in any order gives the same result",
+        "Notes first, then cash flow, balance sheet and income statement",
+        "Income statement → Balance sheet → Cash flow statement → Notes",
+        "Reading only the income statement is enough to decide"
+      ],
+      "explanation": "Top-down: the whole picture first, then the detail."
+    },
+    {
+      "question": "Having found a problem, you should:",
+      "options": [
+        "Sell that company's shares immediately",
+        "Compare against other companies then conclude",
+        "Ignore it since the statements were already audited",
+        "Read the notes to understand the cause"
+      ],
+      "explanation": "Footnotes usually explain, not always something bad."
+    },
+    {
+      "question": "The income statement shows a profit, but cash flow is negative. The cause?",
+      "options": [
+        "Large CapEx, rising AR, rising inventory",
+        "The company just issued new shares",
+        "Revenue fell compared to the prior period",
+        "This period's depreciation expense was too large"
+      ],
+      "explanation": "Normal for a startup or an expanding company. Needs detailed analysis."
+    },
+    {
+      "question": "Investors care about:",
+      "options": [
+        "Only the share price and trading volume",
+        "OCF, ROE, Profit Margin and D/E together",
+        "Only revenue, since that reflects company scale",
+        "Only the most recent period's net profit"
+      ],
+      "explanation": "Combining multiple metrics leads to better decisions than looking at just one number."
+    },
+    {
+      "question": "Accounting is NOT for:",
+      "options": [
+        "Providing data to investors",
+        "Recording transactions honestly",
+        "Hiding or falsifying figures",
+        "Serving as a basis for calculating tax owed"
+      ],
+      "explanation": "Accounting = a management and compliance tool. Abusing it is illegal."
+    }
+  ],
+  "keyTakeaways": [
+    "Assets = Liabilities + Equity - always balances",
+    "The income statement measures performance; the balance sheet measures financial health",
+    "The two statements connect through Retained Earnings"
+  ],
+  "practicePrompt": {
+    "question": "After finishing this basic accounting track, you read a company's financial statements and see the income statement reporting a profit, but the balance sheet doesn't balance (Assets ≠ Liabilities + Equity). What should you conclude?",
+    "options": [
+      "This is a normal occurrence since the income statement and balance sheet are two independent statements that don't need to line up with each other",
+      "This is certainly a bookkeeping error or a sign of fraud - Assets = Liabilities + Equity must always balance under the double-entry bookkeeping principle, regardless of whether the income statement shows a profit or a loss",
+      "Since the company is profitable, its financial statements are certainly not a cause for concern",
+      "Just checking the cash flow statement is enough - there's no need to worry about whether the balance sheet balances"
+    ],
+    "explanation": "The three financial statements (income statement, balance sheet, cash flow statement) are three different facets of the same business and must always be internally consistent. A balance sheet that doesn't balance (Assets ≠ Liabilities + Equity) is always a sign of a bookkeeping error or fraud, regardless of whether the income statement shows profit or loss."
+  },
+  "summary": {
+    "keyIdea": "Assets = Liabilities + Equity - always balances",
+    "commonMistake": "Reading a concept as a phrase to memorise rather than a principle to apply to real decisions.",
+    "action": "The income statement measures performance; the balance sheet measures financial health"
+  },
+  "application": {
+    "title": "Draw out your own accounting equation",
+    "message": "Write down your total assets, total liabilities, and calculate equity = Assets − Liabilities for yourself, then try explaining to someone else why these three numbers always connect.",
+    "secondary": "Being able to explain it to someone else is a good way to check whether you've truly understood it."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The 20 lessons in this track have built the entire framework for reading the 'language of accounting' - from the structure of the balance sheet, the components of assets/liabilities, to the difference between accounting profit and actual cash flow. This review lesson doesn't introduce a new company, but ties every piece back together into one unified picture."
+    },
+    { "type": "heading", "text": "Group 1: The structure of the balance sheet" },
+    {
+      "type": "paragraph",
+      "text": "The foundational equation Assets = Liabilities + Equity always holds at every point in time. Assets split into current (cash, receivables, inventory) and non-current. Liabilities also split into current/long-term by maturity, and accounts payable is an important component of current liabilities reflecting the supplier relationship."
+    },
+    { "type": "heading", "text": "Group 2: Working capital and the cash cycle" },
+    {
+      "type": "paragraph",
+      "text": "Working Capital = Current Assets − Current Liabilities measures the short-term operating safety buffer. Cash Conversion Cycle = DIO + DSO − DPO measures the efficiency of the whole cycle from paying cash to buy raw materials to collecting cash back from customers. DIO, DSO and DPO are the three building blocks that make up CCC - understanding each block is a prerequisite for understanding the overall picture."
+    },
+    { "type": "heading", "text": "Group 3: Accrual vs Cash Accounting" },
+    {
+      "type": "paragraph",
+      "text": "The last two lessons of this track address a core question: why does accounting profit differ from actual cash flow? Accrual accounting recognises by economic obligation and follows the matching principle, while cash accounting only recognises when cash actually moves. This is exactly the key to understanding why a company can be 'profitable on the books' but still short of cash - usually because capital is tied up in growing receivables or inventory."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Important current assets: Cash, Accounts Receivable (AR), Inventory",
+        "Important current liabilities: Accounts Payable (AP), short-term loans, the current portion of long-term debt",
+        "Operating metrics: DIO, DSO, DPO, CCC, Working Capital",
+        "Accounting principles: Accrual (matching principle) vs Cash accounting"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Why 'profitable but short of cash' is a common phenomenon",
+      "text": "A fast-growing business usually has to increase inventory and receivables in proportion to revenue - pulling cash into working capital faster than it generates profit. This is the phenomenon of 'growing broke', and accrual accounting explains why the profit figure on the income statement doesn't fully capture this."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Summary of Foundational Accounting track terminology",
+      "concepts": [
+        { "vi": "Vốn lưu động", "en": "Working Capital", "def": "Current Assets − Current Liabilities" },
+        { "vi": "Chu kỳ chuyển đổi tiền mặt", "en": "Cash Conversion Cycle", "def": "DIO + DSO − DPO" },
+        { "vi": "Kế toán dồn tích", "en": "Accrual Accounting", "def": "Recognised by economic obligation, following the matching principle" },
+        { "vi": "Kế toán tiền mặt", "en": "Cash Accounting", "def": "Recognised when cash actually moves in/out" }
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Assets = Liabilities + Equity is the backbone of all financial analysis that follows.",
+        "Working Capital and the Cash Conversion Cycle are the tools for measuring true 'operating health', separate from accounting profit.",
+        "From here, you have enough foundation to move on to the more advanced tracks on reading financial statements and business valuation."
+      ]
+    }
+  ]
+}

@@ -5,6 +5,8 @@ import Image from "next/image";
 import { Trophy, Gamepad2 } from "lucide-react";
 import { getCombinedGameLeaderboard, getCombinedGameTitle, GAMES, type CombinedLeaderboardRow } from "@/lib/games";
 import { isValidAvatar } from "@/lib/avatar-utils";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 const RANK_MEDAL: Record<number, string> = { 1: "🥇", 2: "🥈", 3: "🥉" };
 
@@ -12,6 +14,8 @@ const RANK_MEDAL: Record<number, string> = { 1: "🥇", 2: "🥈", 3: "🥉" };
 // getCombinedGameXp/get_combined_game_leaderboard) so playing a variety of
 // games pays off, not just grinding one favorite.
 export default function CombinedGameLeaderboard() {
+  const { t } = useI18n();
+  const cl = t.games.combinedGameLeaderboard;
   const [rows, setRows] = useState<CombinedLeaderboardRow[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -33,13 +37,13 @@ export default function CombinedGameLeaderboard() {
   }, []);
 
   if (loading) {
-    return <div className="py-10 text-center text-sm text-stone-400">Đang tải bảng xếp hạng...</div>;
+    return <div className="py-10 text-center text-sm text-stone-400">{cl.loading}</div>;
   }
 
   if (rows.length === 0) {
     return (
       <div className="py-10 text-center text-sm text-stone-500">
-        Chưa có ai lọt bảng tổng hợp. Chơi vài game để chiếm vị trí đầu tiên!
+        {cl.empty}
       </div>
     );
   }
@@ -47,7 +51,7 @@ export default function CombinedGameLeaderboard() {
   return (
     <div className="space-y-2">
       <p className="text-xs text-stone-500 mb-1">
-        Tổng XP tốt nhất của mỗi game cộng lại - chơi càng nhiều game khác nhau, điểm càng cao.
+        {cl.subtitle}
       </p>
       {rows.map((row, i) => {
         const rank = i + 1;
@@ -81,11 +85,11 @@ export default function CombinedGameLeaderboard() {
               ) : (
                 <p className="text-[11px] text-stone-400 flex items-center gap-1">
                   <Gamepad2 className="w-3 h-3" />
-                  {row.gamesPlayed}/{GAMES.length} game
+                  {format(cl.gamesPlayed, { played: row.gamesPlayed, total: GAMES.length })}
                 </p>
               )}
             </div>
-            <span className="text-sm font-extrabold text-stone-900 flex-shrink-0">{row.totalXp} XP</span>
+            <span className="text-sm font-extrabold text-stone-900 flex-shrink-0">{format(cl.totalXp, { xp: row.totalXp })}</span>
           </div>
         );
       })}

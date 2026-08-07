@@ -1,0 +1,144 @@
+{
+  "slug": "swap-la-gi",
+  "title": "What Is a Swap?",
+  "subtitle": "Two parties exchange future cash flows according to an agreed formula",
+  "openingQuestion": "What is the core concept behind every type of swap?",
+  "openingOptions": [
+    "It only applies to foreign currency",
+    "Two parties commit to exchanging (swapping) a series of future cash flows with each other according to a formula agreed in advance, usually to convert the type of risk each side is carrying",
+    "A swap always has a term under 1 year",
+    "Two parties exchange physical assets directly"
+  ],
+  "explanation": "A swap is a derivative contract in which two parties agree to exchange future cash flows according to a predetermined formula. Most common: an Interest Rate Swap (swapping fixed-rate and floating-rate cash flows) and a Currency Swap (swapping cash flows in two different currencies). A swap lets each side convert the type of risk they carry into the type they'd rather have.",
+  "diagram": [
+    { "label": "Two parties agree on a formula in advance", "arrow": true },
+    { "label": "Swap future cash flows with each other", "arrow": true },
+    { "label": "= Swap" }
+  ],
+  "realWorldExample": {
+    "company": "The global swap market",
+    "description": "The global Interest Rate Swap market has a notional value running into the hundreds of trillions of USD - one of the largest OTC derivatives markets in the world, mostly between banks and large corporations."
+  },
+  "quiz": [
+    {
+      "question": "Is the notional principal in a swap contract actually exchanged between the two parties?",
+      "options": [
+        "No, because notional is just a number written into a template contract",
+        "Yes, the two parties exchange the entire principal as soon as the contract is signed",
+        "Yes, but only once, exchanged on the maturity date",
+        "No, it is only the basis for calculating the interest each side owes the other"
+      ],
+      "explanation": "In an ordinary Interest Rate Swap, the notional principal (e.g. VND 100 billion) does not change hands - it is only the basis for calculating the fixed and floating interest each side owes the other. At the end of each period, only the difference (net) is actually settled, significantly reducing counterparty risk compared with exchanging the full notional."
+    },
+    {
+      "question": "If market interest rates move very sharply during the life of a swap contract, who benefits and who is disadvantaged in a typical Interest Rate Swap (one side pays fixed, the other pays floating)?",
+      "options": [
+        "The fixed-rate payer benefits when rates rise, loses when rates fall",
+        "Both sides benefit equally since the risk was split evenly",
+        "The floating-rate payer always benefits since long-term rates tend to rise",
+        "Neither side benefits since a swap is designed to be neutral"
+      ],
+      "explanation": "A swap is essentially a zero-sum game between the two parties with respect to interest-rate movement - one side always benefits when rates move in a given direction, the other bears the corresponding disadvantage, which is exactly why the parties have different expectations about future rate direction when they agree to the swap."
+    },
+    {
+      "question": "Notional VND 200 billion, fixed rate 6%, this period's floating rate 4.5%, half-year term. Who transfers how much?",
+      "options": [
+        "The floating-rate payer transfers VND 1.5 billion to the fixed-rate payer",
+        "The fixed-rate payer transfers VND 1.5 billion (= 200 × 1.5% × 0.5 year)",
+        "The fixed-rate payer transfers VND 3 billion (= 200 × 1.5%, for the full year)",
+        "The two parties exchange the entire VND 200 billion under the contract"
+      ],
+      "explanation": "A 1.5 percentage point gap on VND 200 billion over half a year is VND 1.5 billion, and the fixed-rate payer is the one who owes it since the fixed level is currently higher than floating. Only the difference changes hands, not the notional."
+    },
+    {
+      "question": "Why does a swap reduce counterparty risk compared with exchanging the full principal?",
+      "options": [
+        "Because a central clearing house guarantees the entire transaction",
+        "Because a swap always comes with collateral attached to the contract",
+        "Because only the small net difference is actually transferred",
+        "Because either side can cancel the contract at any time at no cost"
+      ],
+      "explanation": "A notional of VND 100 billion but net settlement each period of only a few hundred million. If the full principal had to be exchanged both ways, counterparty risk would be hundreds of times larger for the same economic purpose."
+    },
+    {
+      "question": "A business with a floating-rate loan wants to switch to fixed. How do they set up the swap?",
+      "options": [
+        "Pay off the old loan and take out a new one at a fixed rate",
+        "Pay floating and receive fixed from a swap dealer",
+        "Pay both fixed and floating, then receive back the difference",
+        "Receive floating and pay fixed to a swap dealer"
+      ],
+      "explanation": "The floating leg received exactly cancels out the floating amount owed on the bank loan, leaving only the fixed obligation. The original loan is untouched - that is the main advantage of this approach."
+    }
+  ],
+  "keyTakeaways": [
+    "Swap: exchanging future cash flows according to an agreed formula",
+    "Two most common types: Interest Rate Swap and Currency Swap",
+    "The notional principal usually doesn't change hands - only the difference (net) is settled"
+  ],
+  "practicePrompt": {
+    "question": "Two companies agree: each period, Company A pays Company B an amount based on a fixed interest rate of 6%, and B pays A back an amount based on a floating rate (Libor+1%), both calculated on the same notional principal. Neither side transfers that principal amount. What is this transaction called?",
+    "options": [
+      "This is an ordinary bond contract, because it involves fixed and floating interest rates",
+      "Swap: exchanging future cash flows according to a formula, settling only the difference",
+      "This is an option contract, because Company A has the right to choose whether to perform the transaction or not",
+      "This is a futures contract, because the two parties agreed on a trading price in advance"
+    ],
+    "explanation": "Swap: exchanging future cash flows according to an agreed formula. This is an Interest Rate Swap - the notional principal usually doesn't change hands, only the difference (net) between the two interest-rate streams is settled each period."
+  },
+  "summary": {
+    "keyIdea": "Swap: exchanging future cash flows according to an agreed formula",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to real decisions.",
+    "action": "Two most common types: Interest Rate Swap and Currency Swap"
+  },
+  "application": {
+    "title": "Draw a swap's cash-flow diagram",
+    "message": "Draw two arrows by hand showing the cash flows the two sides exchange in a simple interest rate swap: one side pays fixed interest, the other pays floating interest.",
+    "secondary": "Visualizing it with a diagram makes the swap concept much less abstract."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A swap is a derivative contract in which two parties agree to exchange future cash flows according to a predetermined formula. The most common are the Interest Rate Swap (swapping fixed-rate and floating-rate cash flows) and the Currency Swap (swapping cash flows in two different currencies)."
+    },
+    { "type": "heading", "text": "Notional principal: a number for calculation, not for changing hands" },
+    {
+      "type": "paragraph",
+      "text": "In an ordinary Interest Rate Swap contract, the notional principal - e.g. VND 100 billion - is usually NOT actually exchanged between the two parties. It is only the basis for calculating the fixed and floating interest each side owes the other. At the end of each period, only the difference (net payment) is actually settled - significantly reducing counterparty risk compared with having to transfer the full notional back and forth."
+    },
+    { "type": "heading", "text": "Who benefits when rates move?" },
+    {
+      "type": "paragraph",
+      "text": "In a typical Interest Rate Swap - one side pays fixed, one pays floating - this is a zero-sum game between the two parties. If market rates RISE sharply, the side paying fixed (and receiving floating) benefits, since they're paying a fixed level much lower than the new floating rate. If rates FALL, the floating-rate payer (receiving fixed) benefits instead. It is exactly this difference in expectations about future rates that leads the two sides to agree to the swap."
+    },
+    {
+      "type": "formula",
+      "title": "Why VND 100 billion notional only sees a few hundred million change hands",
+      "equation": "Net payment = Notional × (Fixed rate − This period's floating rate)",
+      "variables": [
+        { "symbol": "Notional", "name": "Notional principal", "description": "Just the basis for multiplying out the interest, doesn't change hands" },
+        { "symbol": "Rate gap", "name": "Fixed − Floating", "description": "Positive means the fixed-rate payer transfers money, negative means the reverse" }
+      ],
+      "example": {
+        "title": "Notional VND 100 billion, fixed 5%, this period's floating 4.2%, 6-month term",
+        "calculation": "100 billion × (5% − 4.2%) × 6/12 = 100 billion × 0.8% × 0.5",
+        "result": "VND 400 million changes hands",
+        "explanation": "0.4% of the notional. If the full VND 100 billion principal had to be exchanged both ways, counterparty risk would be 250 times larger for the exact same economic purpose - that is exactly why the notional stays put."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Notional staying put doesn't mean there's no risk",
+      "text": "What you can actually lose isn't VND 100 billion, but the remaining stream of net payments if your counterparty collapses - plus the cost of signing an equivalent replacement contract at new market rates, usually right when the market has already moved unfavorably. Much smaller than the notional, but not zero."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Swap: exchanging future cash flows according to an agreed formula",
+        "Two most common types: Interest Rate Swap and Currency Swap",
+        "The notional principal usually doesn't change hands - only the net is settled",
+        "The global Interest Rate Swap market has a notional value running into the hundreds of trillions of USD, mostly between banks and large corporations"
+      ]
+    }
+  ]
+}

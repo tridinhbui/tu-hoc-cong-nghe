@@ -1,0 +1,140 @@
+{
+  "slug": "treasury-bond-la-gi",
+  "title": "What is a Treasury bond?",
+  "subtitle": "Government bonds - the market's safest reference point",
+  "duration": "6 min",
+  "openingQuestion": "Why is a US government bond (US Treasury) treated as a globally 'risk-free' asset?",
+  "openingOptions": [
+    "Because its interest rate is always the highest in the market",
+    "Because the US government can print money and collect taxes to pay its debt, making the probability of default nearly zero",
+    "Because no one is allowed to sell it",
+    "Because its price never moves"
+  ],
+  "explanation": "A government bond is a debt instrument the state issues to fund public spending. The power to tax and the power to issue its own currency make the risk of failing to repay debt in that same currency very low, so its yield becomes the risk-free benchmark for pricing everything else. Two limits are worth remembering: this only holds for debt in the local currency, and 'risk-free' here means free of default risk, not free of price risk or inflation risk.",
+  "diagram": [
+    { "label": "The government needs to fund public spending", "arrow": true },
+    { "label": "It issues bonds in its own currency", "arrow": true },
+    { "label": "The power to tax and to issue currency keeps default risk very low", "arrow": true },
+    { "label": "Its yield becomes the risk-free benchmark for pricing everything else" }
+  ],
+  "realWorldExample": {
+    "company": "Vietnam Government Bonds",
+    "description": "The 10-year Vietnam government bond is the risk-free reference for the domestic capital market - every valuation of Vietnamese stocks and corporate bonds is anchored to this yield."
+  },
+  "quiz": [
+    {
+      "question": "Why does the risk-free rate matter to every financial valuation model?",
+      "options": [
+        "Because it is used to calculate tax on investment income",
+        "Because it sets the economy's inflation target",
+        "Because it is the maximum yield an investor can ever achieve",
+        "Because it is the base that every other risk premium is added on top of"
+      ],
+      "explanation": "CAPM, WACC, and DCF all use the risk-free rate as their base: Expected Return = Risk-free rate + Risk premium. When the risk-free rate rises (a Fed hike), the cost of capital for every asset rises with it, pulling down stock and bond prices."
+    },
+    {
+      "question": "If a country has a stable government but issues bonds in a FOREIGN currency (not the local currency it can print itself), is that bond still fully \"risk-free\" the way a US Treasury is?",
+      "options": [
+        "No, because the government cannot print the currency it owes",
+        "Yes, because a stable government always repays on time",
+        "Yes, but only if the bond's maturity is under ten years",
+        "No, because foreign-currency bonds are always taxed more heavily"
+      ],
+      "explanation": "This is why the \"risk-free\" label only really holds for bonds denominated in a currency the issuing government fully controls (like the USD for the US) - many developing countries have defaulted on foreign-currency bonds despite never defaulting on local-currency debt, for lack of a 'print money' tool to cover the foreign-currency obligation."
+    },
+    {
+      "question": "Why is a US government bond considered to carry almost no default risk?",
+      "options": [
+        "Because every debt is backed by national gold reserves",
+        "Because the government has the power to tax and to issue that currency",
+        "Because Congress separately guarantees each new bond issuance",
+        "Because government bonds always have short maturities, which keeps risk low"
+      ],
+      "explanation": "Debt denominated in the currency you issue yourself is, technically, always repayable. The real risk in a government bond is not default but inflation and interest rates - both of which can erode real value without anyone ever missing a payment."
+    },
+    {
+      "question": "What risk does a 10-year government bond still carry, even though it is nearly free of default risk?",
+      "options": [
+        "The risk of being downgraded below investment grade",
+        "The risk that the issuer stops paying interest partway through",
+        "The risk that rising interest rates push its market price down",
+        "The risk of finding no buyer when you need to sell"
+      ],
+      "explanation": "Hold it to maturity and you get the full principal and interest. But sell it partway through after rates have risen, and you take a real capital loss - in 2022 many government bond portfolios lost double digits without a single default."
+    },
+    {
+      "question": "Why does the Vietnam government bond yield sit higher than the US Treasury yield at the same maturity?",
+      "options": [
+        "Because the Vietnamese government pays interest twice a year instead of once",
+        "Because Vietnam issues fewer bonds, making them scarcer",
+        "Because Vietnamese bonds have a shorter actual maturity than stated",
+        "Because investors demand compensation for country risk and inflation"
+      ],
+      "explanation": "Every currency has its own risk-free rate, reflecting that country's inflation expectations and country risk. This is also why you cannot use the US risk-free rate to discount VND cash flows."
+    }
+  ],
+  "keyTakeaways": [
+    "Treasury bond: the global risk-free reference benchmark",
+    "Default risk is extremely low thanks to the government's power to print money and collect taxes",
+    "The risk-free rate is the foundation of every financial valuation model"
+  ],
+  "practicePrompt": {
+    "question": "When financial analysts everywhere need a 'risk-free rate' to compute CAPM, WACC, or any valuation model, they almost always use the 10-year US Treasury yield as the reference benchmark. Why is this bond chosen as the global standard?",
+    "options": [
+      "Because the US Treasury bond always has the highest yield of any bond in the world",
+      "Treasury bonds are the global risk-free benchmark because their default risk is nearly zero",
+      "Because international financial institutions mandate it, with no underlying economic reason",
+      "Treasury bonds are only used as a benchmark within the US market, not elsewhere in the world"
+    ],
+    "explanation": "Treasury bond: the global risk-free reference benchmark. Because default risk is nearly zero, the Treasury yield is used as the starting point (Rf) in most financial valuation models (CAPM, WACC) worldwide."
+  },
+  "summary": {
+    "keyIdea": "Treasury bond: the global risk-free reference benchmark",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to a real decision.",
+    "action": "Default risk is extremely low thanks to the government's power to print money and collect taxes"
+  },
+  "application": {
+    "title": "Look up today's risk-free rate",
+    "message": "The lesson already worked a real example using Vietnam's risk-free rate (~4.11%/year, 10-year maturity) - see the 'Real example' section above. Now look up the latest figure on VBMA yourself, since this number changes with every auction.",
+    "secondary": "Write this number down - you'll use it repeatedly when valuing stocks later on."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Every financial valuation model - from pricing a stock to pricing a corporate bond - shares a common starting point: the risk-free rate. And the reference benchmark for that risk-free rate is almost always a government bond (Treasury bond)."
+    },
+    { "type": "heading", "text": "Why government bonds are treated as risk-free" },
+    {
+      "type": "paragraph",
+      "text": "A Treasury bond is a debt instrument a government issues to fund public spending. For a country borrowing in its own local currency, default risk is nearly zero because the government holds two special tools a company does not have: the power to print more currency (at the cost of inflation) and the power to tax in order to meet its debt obligations. That is why the yield on a government bond (like the 10-year US Treasury, or the 10-year Vietnam government bond) becomes the 'floor' on top of which a risk premium is added when pricing any risky asset: Expected Return = Risk-free rate + Risk premium. This is the foundation of CAPM, WACC, and every DCF model."
+    },
+    { "type": "heading", "text": "An important exception: government bonds in a foreign currency" },
+    {
+      "type": "paragraph",
+      "text": "The 'risk-free' label only holds firmly when a government borrows in a currency it fully controls the issuance of. If a country issues bonds in a foreign currency (say, USD), it cannot 'print money' to repay that foreign-currency debt the way it can with its local currency - making actual default risk much higher. History records many developing countries that defaulted on USD-denominated bonds while never defaulting on their local-currency bonds, precisely because they lacked the 'print money' tool for that foreign-currency debt."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Treasury bond: the risk-free rate benchmark for the entire capital market",
+        "Default risk is extremely low thanks to the government's power to print (local) currency and to tax",
+        "A rising risk-free rate (the Fed or the State Bank raising rates) pulls up the cost of capital for every other asset",
+        "A government bond in a foreign currency is not as fully risk-free as one in the local currency"
+      ]
+    },
+    { "type": "heading", "text": "Real example: today's risk-free rate in Vietnam" },
+    {
+      "type": "list",
+      "items": [
+        "The winning yield at Vietnam's 10-year government bond auction: about 4.11%/year (2026 data, source: State Treasury/VBMA)",
+        "This is the closest approximation to a \"risk-free rate\" in valuation models used in Vietnam - because the government carries almost no local-currency default risk",
+        "This figure is used as the anchor in most models: CAPM (computing a stock's expected return), discounted cash flow (DCF), the Sharpe Ratio, and more"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "How to look up the latest figure yourself",
+      "text": "This yield changes with every auction - check the latest figure on the VBMA website (vbma.org.vn, Government Bond Auction Results section) or the State Treasury before using it in any valuation model."
+    }
+  ]
+}

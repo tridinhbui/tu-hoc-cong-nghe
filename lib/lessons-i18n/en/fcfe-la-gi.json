@@ -1,0 +1,133 @@
+{
+  "slug": "fcfe-la-gi",
+  "title": "What is FCFE?",
+  "subtitle": "Free cash flow reserved for shareholders alone, after debt obligations are paid",
+  "duration": "7 min",
+  "openingQuestion": "How does FCFE (Free Cash Flow to Equity) differ from FCFF in terms of who benefits from it?",
+  "openingOptions": [
+    "FCFE only applies to companies with no debt",
+    "FCFE is the cash flow left AFTER paying interest expense and net debt obligations - belonging only to SHAREHOLDERS, while FCFF belongs to both creditors and shareholders",
+    "There's no difference - the two metrics are identical",
+    "FCFE is always larger than FCFF in every case"
+  ],
+  "explanation": "FCFE (Free Cash Flow to Equity) = FCFF - After-tax interest expense + Net new borrowing (or - net debt repayment). FCFE is the cash flow that genuinely belongs to SHAREHOLDERS after the company has met all its obligations to creditors. Discounting FCFE with Cost of Equity (not WACC) gives Equity Value directly.",
+  "diagram": [
+    { "label": "Start from FCFF", "arrow": true },
+    { "label": "Subtract after-tax interest", "arrow": true },
+    { "label": "Add new borrowing, subtract principal repayment", "arrow": true },
+    { "label": "Get FCFE - discount with cost of equity for equity value" }
+  ],
+  "interactiveType": "profit-calc",
+  "realWorldExample": {
+    "company": "Valuing a low-debt company",
+    "description": "For a company with almost no debt (as with many early-stage tech companies), FCFE and FCFF are nearly identical because there is no meaningful interest expense or borrowing/repayment cash flow."
+  },
+  "quiz": [
+    {
+      "question": "If a company takes on a large new loan during the year, how does this affect its FCFE for that year?",
+      "options": [
+        "FCFE is only affected by interest expense, not the principal amount borrowed",
+        "FCFE always falls when a company takes on more debt because future repayment obligations increase",
+        "It has no effect on FCFE because borrowing is a financing activity",
+        "FCFE increases by the amount of new borrowing received in that period"
+      ],
+      "explanation": "The FCFE formula includes '+ net new borrowing' - if a company borrows more during the period, the cash received from that loan adds to the shareholders' FCFE for that period."
+    },
+    {
+      "question": "A company takes on significant new debt during the year to fund an investment project. How does this immediately affect that year's FCFE and FCFF - are they affected the same way?",
+      "options": [
+        "FCFE rises with the new borrowing; FCFF is unchanged because it's calculated before capital structure",
+        "Neither is affected by the company taking on new debt, since both are cash-flow metrics",
+        "Both FCFE and FCFF increase by the same amount when new debt is taken on",
+        "FCFF falls sharply with new borrowing because interest is deducted from it"
+      ],
+      "explanation": "This is the core difference between the two metrics: FCFE is directly affected by financing decisions (borrowing/repaying debt), while FCFF is independent of capital structure."
+    },
+    {
+      "question": "What is FCFE discounted with, and what value does it give?",
+      "options": [
+        "WACC, giving the Enterprise Value of the business",
+        "Cost of equity, giving Equity Value directly",
+        "The risk-free rate, giving book value",
+        "After-tax cost of debt, giving the value of the debt"
+      ],
+      "explanation": "FCFE is the portion left over for shareholders alone after creditors have been paid, so the discount rate must also be the shareholders' own cost of capital. The result is therefore Equity Value, with no need to subtract debt again."
+    },
+    {
+      "question": "How does taking on new debt during the year affect that year's FCFE?",
+      "options": [
+        "FCFE is unchanged, because borrowing has nothing to do with shareholders",
+        "FCFE falls, because more interest must be paid on the new loan",
+        "FCFE rises, because the borrowed cash is an inflow to shareholders",
+        "FCFE falls, because debt increases risk to the equity portion"
+      ],
+      "explanation": "The FCFE formula adds net new borrowing. This is also its weakness: a company that borrows heavily in a given year will show an unusually flattering FCFE, even though that loan must eventually be repaid."
+    },
+    {
+      "question": "Why do many analysts prefer FCFF over FCFE?",
+      "options": [
+        "Because FCFF requires no assumption about a discount rate at all",
+        "Because FCFF is always larger, giving a higher valuation",
+        "Because FCFE can only be calculated for companies with no debt",
+        "Because FCFE swings with the year-to-year borrowing/repayment policy"
+      ],
+      "explanation": "Borrowing heavily one year and repaying heavily the next will make FCFE bounce around even though the underlying business hasn't changed. FCFF sits above financing decisions, making it more stable and easier to forecast."
+    }
+  ],
+  "keyTakeaways": [
+    "FCFE: the free cash flow left over that belongs only to shareholders, after debt obligations",
+    "Discounted with Cost of Equity, giving Equity Value directly",
+    "Affected by the company's borrowing/repayment policy each period - interpret with care"
+  ],
+  "practicePrompt": {
+    "question": "When valuing with DCF at the Equity Value level (value belonging only to shareholders) and discounting with Cost of Equity, which type of cash flow should the analyst use, and how does it differ from FCFF?",
+    "options": [
+      "FCFE is the cash flow left for shareholders after debt obligations, discounted with Cost of Equity",
+      "FCFF, since it's the only cash flow type accepted in every standard DCF method",
+      "Net Income, since this is precisely the cash flow belonging to shareholders after all expenses",
+      "There's no difference between FCFE and FCFF when applied to a DCF valuation"
+    ],
+    "explanation": "FCFE: the free cash flow left over that belongs only to shareholders, after debt obligations. Having already removed the creditors' share (interest and principal payments), FCFE is appropriate to discount with Cost of Equity (not WACC) and gives Equity Value directly, without needing to subtract debt again as with FCFF."
+  },
+  "summary": {
+    "keyIdea": "FCFE: the free cash flow left over that belongs only to shareholders, after debt obligations",
+    "commonMistake": "Reading the concept as a definition to recite rather than a principle to apply to a real decision.",
+    "action": "Discounted with Cost of Equity, giving Equity Value directly"
+  },
+  "application": {
+    "title": "Apply it now",
+    "message": "Starting from the FCFF you estimated in the previous lesson, subtract after-tax interest expense and add/subtract net borrowing/repayment to get FCFE - compare how far apart the two figures are.",
+    "secondary": "The gap between FCFF and FCFE is exactly the portion belonging to creditors."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "If FCFF is the slice of the pie for all investors, FCFE is the remaining slice that truly belongs to shareholders - after the company has met all its obligations to creditors."
+    },
+    { "type": "heading", "text": "The FCFE formula" },
+    {
+      "type": "paragraph",
+      "text": "FCFE (Free Cash Flow to Equity) = FCFF - After-tax interest expense + Net new borrowing (or - net debt repayment if the company reduces debt in the period). Discounting FCFE with Cost of Equity (not WACC) gives Equity Value directly, without needing an extra step to subtract net debt as with FCFF. For a company with almost no debt, FCFE and FCFF are nearly identical because there is no meaningful interest expense or borrowing/repayment cash flow."
+    },
+    { "type": "heading", "text": "FCFE is sensitive to borrowing policy" },
+    {
+      "type": "paragraph",
+      "text": "If a company takes on a large new loan during the year, that year's FCFE INCREASES by the new cash received (an inflow from financing activities), even though the company will eventually have to pay interest and principal on this loan. By contrast, FCFF is NOT directly affected by borrowing decisions - because it is calculated BEFORE considering the capital structure, correctly reflecting FCFF's purpose of measuring the core business's cash-generating power, independent of how it is financed."
+    },
+    {
+      "type": "list",
+      "items": [
+        "FCFE discounted with Cost of Equity → gives Equity Value directly",
+        "FCFE swings significantly with the year's borrowing/repayment policy - be careful using a single year to value a company",
+        "FCFF is independent of capital structure, more suitable when comparing companies with different leverage",
+        "FCFE ≈ FCFF for a company with almost no debt"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Choose FCFF when you want to value the entire business; choose FCFE when you only care about the portion belonging to shareholders."
+      ]
+    }
+  ]
+}

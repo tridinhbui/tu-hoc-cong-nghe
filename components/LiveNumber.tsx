@@ -2,12 +2,15 @@
 
 import { useEffect, useRef, useState } from "react";
 import { animateCountTo } from "@/lib/animate-count";
+import { useI18n } from "@/lib/i18n/context";
+import { intlLocale } from "@/lib/i18n";
 
 // A number that visibly reads as "live" - pulsing dot glued to it, not just
 // a plain figure - so a count-up animation on mount doesn't get mistaken
 // for a static hardcoded marketing claim. Shared by the homepage hero,
 // stat section, and the login page.
 export default function LiveNumber({ value, className = "" }: { value: number; className?: string }) {
+  const { locale } = useI18n();
   const [displayValue, setDisplayValue] = useState(0);
   const cancelledRef = useRef(false);
 
@@ -25,7 +28,7 @@ export default function LiveNumber({ value, className = "" }: { value: number; c
         <span className="animate-ping absolute inline-flex w-full h-full rounded-full bg-emerald-400 opacity-75" />
         <span className="relative inline-flex rounded-full w-1.5 h-1.5 bg-emerald-500" />
       </span>
-      {displayValue.toLocaleString("vi-VN")}+
+      {displayValue.toLocaleString(intlLocale(locale))}+
     </span>
   );
 }

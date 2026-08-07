@@ -2,6 +2,8 @@
 
 import { Sun, BookOpen, Moon } from "lucide-react";
 import { setTheme } from "@/lib/theme";
+import { useI18n } from "@/lib/i18n/context";
+import type { Dictionary } from "@/lib/i18n";
 
 export type ReadingMode = "light" | "sepia" | "dark";
 
@@ -13,11 +15,15 @@ export function loadReadingMode(): ReadingMode {
   return saved === "sepia" || saved === "dark" ? saved : "light";
 }
 
-const MODES: { id: ReadingMode; label: string; icon: typeof Sun }[] = [
-  { id: "light", label: "Sáng", icon: Sun },
-  { id: "sepia", label: "Dịu nhẹ", icon: BookOpen },
-  { id: "dark", label: "Tối", icon: Moon },
-];
+// Labels come from the dictionary at render time; module scope has no
+// useI18n() to call, so this keeps only the ids/icons and their order.
+function modes(t: Dictionary): { id: ReadingMode; label: string; icon: typeof Sun }[] {
+  return [
+    { id: "light", label: t.finalTwo.readingModeControl.light, icon: Sun },
+    { id: "sepia", label: t.finalTwo.readingModeControl.sepia, icon: BookOpen },
+    { id: "dark", label: t.finalTwo.readingModeControl.dark, icon: Moon },
+  ];
+}
 
 interface Props {
   mode: ReadingMode;
@@ -35,6 +41,8 @@ interface Props {
 // over the reading area - the same technique reader-mode browser extensions
 // use, and it needs zero changes to existing component styling.
 export default function ReadingModeControl({ mode, onChange }: Props) {
+  const { t } = useI18n();
+  const MODES = modes(t);
   function select(next: ReadingMode) {
     onChange(next);
     window.localStorage.setItem(STORAGE_KEY, next);

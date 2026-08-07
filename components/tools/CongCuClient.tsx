@@ -1,37 +1,72 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import dynamic from "next/dynamic";
-import { Wallet, PiggyBank, ShieldAlert, TrendingUp, Sparkles, Building2 } from "lucide-react";
+import { Wallet, PiggyBank, ShieldAlert, TrendingUp, Sparkles, Building2, Table2 } from "lucide-react";
 import { useAuthGate } from "@/lib/use-auth-gate";
+import { useI18n } from "@/lib/i18n/context";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
+
+function Loading() {
+  const { t } = useI18n();
+  return (
+    <div className="py-12 text-center text-sm text-stone-400 dark:text-stone-500">
+      {t.dataTables.toolsIndex.loading}
+    </div>
+  );
+}
 
 // Only one tab renders at a time - lazy-load each so switching tabs is what
 // pulls in its code instead of every visit shipping all three up front.
 // NetWorthTracker alone pulls in recharts, a sizeable chart library that two
 // of the three tabs never touch.
-const LOADING = <div className="py-12 text-center text-sm text-stone-400 dark:text-stone-500">Đang tải...</div>;
-const NetWorthTracker = dynamic(() => import("@/components/tools/NetWorthTracker"), { loading: () => LOADING });
-const BudgetCalculator = dynamic(() => import("@/components/tools/BudgetCalculator"), { loading: () => LOADING });
-const EmergencyFundCalculator = dynamic(() => import("@/components/tools/EmergencyFundCalculator"), { loading: () => LOADING });
-const CompoundInterestSimulator = dynamic(() => import("@/components/tools/CompoundInterestSimulator"), { loading: () => LOADING });
-const FirePlanner = dynamic(() => import("@/components/tools/FirePlanner"), { loading: () => LOADING });
-const ValuationDCFCalculator = dynamic(() => import("@/components/tools/ValuationDCFCalculator"), { loading: () => LOADING });
+const NetWorthTracker = dynamic(() => import("@/components/tools/NetWorthTracker"), { loading: Loading });
+const BudgetCalculator = dynamic(() => import("@/components/tools/BudgetCalculator"), { loading: Loading });
+const EmergencyFundCalculator = dynamic(() => import("@/components/tools/EmergencyFundCalculator"), { loading: Loading });
+const CompoundInterestSimulator = dynamic(() => import("@/components/tools/CompoundInterestSimulator"), { loading: Loading });
+const FirePlanner = dynamic(() => import("@/components/tools/FirePlanner"), { loading: Loading });
+const ValuationDCFCalculator = dynamic(() => import("@/components/tools/ValuationDCFCalculator"), { loading: Loading });
+const ValuationModelSim = dynamic(() => import("@/components/tools/ValuationModelSim"), { loading: Loading });
+type Tab =
+  | "net-worth"
+  | "budget"
+  | "emergency-fund"
+  | "compound-interest"
+  | "fire-planner"
+  | "valuation-dcf"
+  | "valuation-model";
 
-type Tab = "net-worth" | "budget" | "emergency-fund" | "compound-interest" | "fire-planner" | "valuation-dcf";
-
-const TABS: { id: Tab; label: string; icon: typeof Wallet }[] = [
-  { id: "net-worth", label: "Tài sản ròng", icon: Wallet },
-  { id: "budget", label: "Ngân sách 50/30/20", icon: PiggyBank },
-  { id: "emergency-fund", label: "Quỹ khẩn cấp", icon: ShieldAlert },
-  { id: "compound-interest", label: "Giả lập Lãi kép", icon: TrendingUp },
-  { id: "fire-planner", label: "Kế hoạch FIRE", icon: Sparkles },
-  { id: "valuation-dcf", label: "Định giá DCF & WACC", icon: Building2 },
+// Structural shape of the tab list: id and icon. Labels come from
+// `t.dataTables.toolsIndex.tabs`; see `tabsOf`.
+const TAB_ICONS: { id: Tab; icon: typeof Wallet }[] = [
+  { id: "net-worth", icon: Wallet },
+  { id: "budget", icon: PiggyBank },
+  { id: "emergency-fund", icon: ShieldAlert },
+  { id: "compound-interest", icon: TrendingUp },
+  { id: "fire-planner", icon: Sparkles },
+  { id: "valuation-dcf", icon: Building2 },
+  { id: "valuation-model", icon: Table2 },
 ];
+
+function tabsOf(t: Dictionary): { id: Tab; label: string; icon: typeof Wallet }[] {
+  const copy = t.dataTables.toolsIndex.tabs;
+  return [
+    { ...TAB_ICONS[0], label: copy.netWorth },
+    { ...TAB_ICONS[1], label: copy.budget },
+    { ...TAB_ICONS[2], label: copy.emergencyFund },
+    { ...TAB_ICONS[3], label: copy.compoundInterest },
+    { ...TAB_ICONS[4], label: copy.firePlanner },
+    { ...TAB_ICONS[5], label: copy.valuationDcf },
+    { ...TAB_ICONS[6], label: copy.valuationModel },
+  ];
+}
 
 // Hub for the personal-finance & corporate-valuation tools that turn lesson
 // concepts into interactive calculators.
 export default function CongCuClient() {
   const { userId, checking } = useAuthGate();
+  const { t } = useI18n();
+  const TABS = useMemo(() => tabsOf(t), [t]);
   const [tab, setTab] = useState<Tab>("net-worth");
 
   if (checking || !userId) {
@@ -47,13 +82,13 @@ export default function CongCuClient() {
       <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
         <div className="mb-6">
           <p className="text-xs font-extrabold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-1">
-            Công cụ tài chính & Định giá
+            {t.dataTables.toolsIndex.eyebrow}
           </p>
           <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-100">
-            Áp dụng số liệu vào thực tế
+            {t.dataTables.toolsIndex.title}
           </h1>
           <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
-            Mô phỏng tài chính cá nhân & định giá doanh nghiệp chuẩn CFA.
+            {t.dataTables.toolsIndex.subtitle}
           </p>
         </div>
 
@@ -80,6 +115,7 @@ export default function CongCuClient() {
         {tab === "compound-interest" && <CompoundInterestSimulator />}
         {tab === "fire-planner" && <FirePlanner />}
         {tab === "valuation-dcf" && <ValuationDCFCalculator />}
+        {tab === "valuation-model" && <ValuationModelSim />}
       </div>
     </div>
   );

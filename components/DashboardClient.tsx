@@ -61,9 +61,16 @@ import BossBattleModal from "@/components/BossBattleModal";
 import PvpDuelModal from "@/components/PvpDuelModal";
 import DashboardStreakWidget from "@/components/DashboardStreakWidget";
 import DailyMotivationWidget from "@/components/DailyMotivationWidget";
+import { useI18n } from "@/lib/i18n/context";
+import { format, intlLocale } from "@/lib/i18n";
 
 
 
+/* i18n-ignore-start: these are lookup KEYS, not display text. Each is built at
+   the call site as `${track}-${stageLabel}` where stageLabel comes from
+   lib/track-stages.ts, so translating them would break the lookup and every
+   stage would silently fall through to the default theme. The stage label the
+   learner reads is rendered separately and does go through the dictionary. */
 const STAGE_THEMES: Record<string, { emoji: string; bg: string; text: string; barColor: string }> = {
   // All stages use the clean neutral Stone color theme of Stage 0
   "personal-Chặng 0": { emoji: "🔍", bg: "bg-stone-50 dark:bg-stone-900/60 border border-stone-200 dark:border-stone-800", text: "text-stone-600 dark:text-stone-400", barColor: "bg-stone-400" },
@@ -88,6 +95,7 @@ const STAGE_THEMES: Record<string, { emoji: string; bg: string; text: string; ba
   "professional-Chặng 12": { emoji: "🧬", bg: "bg-stone-50 dark:bg-stone-900/60 border border-stone-200 dark:border-stone-800", text: "text-stone-600 dark:text-stone-400", barColor: "bg-stone-400" },
   "professional-Chặng 13": { emoji: "🤖", bg: "bg-emerald-50/60 dark:bg-emerald-950/40 border border-emerald-300 dark:border-emerald-800", text: "text-emerald-700 dark:text-emerald-300", barColor: "bg-emerald-500" },
 };
+/* i18n-ignore-end */
 
 // Slim projection of Lesson - just enough to render the dashboard listing,
 // so the full lesson bodies (sections/quiz/etc) never reach this client bundle.
@@ -166,6 +174,7 @@ function isTrackTab(tab: DashboardTab): tab is "personal" | "professional" {
 
 export default function DashboardClient({ lessonsMeta, view = "overview" }: { lessonsMeta: LessonMeta[]; view?: DashboardView }) {
   const isLessonsView = view === "lessons";
+  const { locale, t } = useI18n();
   const router = useRouter();
   const searchParams = useSearchParams();
   const supabase = createClient();
@@ -253,7 +262,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
   useEffect(() => {
     const lockedSlug = searchParams.get("locked");
     if (lockedSlug) {
-      toast.error("Bài học này đang bị khoá. Hoàn thành các bài trước để mở khoá.");
+      toast.error(t.dashboard.lessonLocked);
       router.replace("/dashboard");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -555,7 +564,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
     // 1. Process offline queue asynchronously in the background
     void syncOfflineQueue(userId).then((didSync) => {
       if (didSync) {
-        toast.success("Tiến độ học tập offline đã được đồng bộ thành công! 🌟");
+        toast.success(t.dashboard.offlineSynced);
         // Re-run sync to pull fresh data after sync completes
         void syncProgressAndXP(userId);
       }
@@ -754,7 +763,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
           </div>
         </div>
         <p className="text-stone-500 dark:text-stone-400 font-semibold text-sm flex items-center gap-1.5">
-          Đang tải
+          {t.dashboard.loading}
           <span className="inline-flex gap-1">
             <span className="w-1.5 h-1.5 rounded-full bg-stone-400 animate-bounce" style={{ animationDelay: "0ms" }} />
             <span className="w-1.5 h-1.5 rounded-full bg-stone-400 animate-bounce" style={{ animationDelay: "150ms" }} />
@@ -841,13 +850,13 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
     const targets = sorted.filter((lesson) => selectedFlagLessonIds.has(lesson.id));
     const selectableTargets = targets.filter((lesson) => !completed.includes(lesson.id));
     if (selectableTargets.length === 0) {
-      toast.message("Các bài này đã được hệ thống tính tiến độ rồi.");
+      toast.message(t.dashboard.markLearned.alreadyCounted);
       clearFlagSelection();
       return;
     }
 
     const confirmed = window.confirm(
-      "Bạn xác nhận đã học các bài này nhé, nhưng sẽ không được nhận kinh nghiệm trừ khi bạn đọc hết và làm hết."
+      t.dashboard.markLearned.confirmPrompt
     );
     if (!confirmed) return;
 
@@ -870,7 +879,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
 
       toast.success(
         toRemove.length > 0 && toAdd.length > 0
-          ? "Đã cập nhật các đánh dấu đã học."
+          ? t.dashboard.markLearned.updated
           : toAdd.length > 0
             ? `Đã đánh dấu ${toAdd.length} bài là bạn đã học.`
             : `Đã bỏ đánh dấu ${toRemove.length} bài.`
@@ -878,7 +887,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
       clearFlagSelection();
     } catch (error) {
       console.error("Error applying lesson flags:", error);
-      toast.error("Không thể cập nhật đánh dấu. Vui lòng thử lại.");
+      toast.error(t.dashboard.markLearned.updateFailed);
     } finally {
       setFlagSaving(false);
     }
@@ -897,7 +906,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
   // cases (e.g. a new valuation case landing after every non-valuation one).
   const bonusGroups = BONUS_CATEGORY_ORDER.map((category) => ({
     category,
-    lessons: bonusLessons.filter((l) => (BONUS_CATEGORIES[l.slug] ?? "Khác") === category),
+    lessons: bonusLessons.filter((l) => (BONUS_CATEGORIES[l.slug] ?? t.dashboard.bonusOther) === category),
   })).filter((g) => g.lessons.length > 0);
 
   return (
@@ -919,7 +928,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
         )}
 
         {/* ── Lối vào không gian 3D ──
-            Thư viện là nơi duy nhất trong app có người khác đang hiện diện
+            {t.dashboard.libraryPresence}
             cùng lúc, nhưng nó chỉ có một dòng trong navbar - và một dòng
             trong navbar thì trông giống mọi trang khác. Đặt ở đây vì đây là
             màn hình mọi người mở đầu tiên, và vì lời mời vào một căn phòng
@@ -938,14 +947,14 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
           </span>
           <span className="min-w-0 flex-1">
             <span className="block text-[13px] font-extrabold text-stone-900 dark:text-stone-100">
-              Bước vào Thư viện · Phòng đọc Sài Gòn
+              {t.dashboard.libraryEnter}
             </span>
             <span className="block truncate text-[11px] text-stone-500 dark:text-stone-400">
-              Không gian 3D đi lại được - ngồi vào bàn, thấy ai đang học cùng giờ với bạn
+              {t.dashboard.librarySubtitle}
             </span>
           </span>
           <span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-violet-600 px-3 py-1.5 text-[11px] font-extrabold text-white transition-transform group-hover:translate-x-0.5">
-            Vào
+            {t.dashboard.libraryEnterCta}
             <ArrowRight className="h-3 w-3" />
           </span>
         </Link>
@@ -994,10 +1003,10 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                     <div className="relative z-10 mb-2.5 flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
                       <div>
                         <h3 className="text-[15px] font-bold text-stone-900 dark:text-stone-100">
-                          Bản đồ Cấp độ Học viên
+                          {t.dashboard.levelMapTitle}
                         </h3>
                         <p className="text-[10px] text-stone-500 dark:text-stone-400 mt-0.5">
-                          XP là tiến độ học; sát hạch và điểm kiểm tra mới xác nhận năng lực thật
+                          {t.dashboard.levelMapNote}
                         </p>
                       </div>
                       <div className="flex flex-wrap items-center gap-2.5 text-left sm:text-right self-start sm:self-auto">
@@ -1006,16 +1015,16 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                           <Link
                             href="/game?building=world-boss"
                             className="inline-flex items-center gap-1 text-[11px] font-extrabold text-amber-700 bg-white border border-amber-200 px-2.5 py-1.5 rounded-xl hover:bg-amber-50 transition-colors cursor-pointer shadow-2xs"
-                            title="Tiến vào Vương Quốc Game - Săn Boss"
+                            title={t.dashboard.gameBoss}
                           >
-                            ⚔️ Đánh Boss
+                            {t.dashboard.fightBoss}
                           </Link>
                           <Link
                             href="/game?building=pvp"
                             className="inline-flex items-center gap-1 text-[11px] font-extrabold text-stone-600 bg-stone-50 border border-stone-200 px-2.5 py-1.5 rounded-xl hover:bg-stone-100 transition-colors cursor-pointer shadow-2xs"
-                            title="Tiến vào Vương Quốc Game - Đấu Trường Kiến Thức Solo"
+                            title={t.dashboard.gameSolo}
                           >
-                            🧠 Solo
+                            {t.finalOne.dashboardClient.soloLabel}
                           </Link>
                         </div>
                       </div>
@@ -1038,14 +1047,14 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                           <button
                             onClick={() => levelStripRef.current?.scrollBy({ left: -220, behavior: "smooth" })}
                             className="hidden sm:flex absolute -left-3 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-700 shadow-md items-center justify-center text-stone-600 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-800 transition-all opacity-0 group-hover/level-strip:opacity-100"
-                            aria-label="Cuộn sang trái"
+                            aria-label={t.dashboard.scrollLeft}
                           >
                             <ChevronLeft className="w-4 h-4" />
                           </button>
                           <button
                             onClick={() => levelStripRef.current?.scrollBy({ left: 220, behavior: "smooth" })}
                             className="hidden sm:flex absolute -right-3 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-700 shadow-md items-center justify-center text-stone-600 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-800 transition-all opacity-0 group-hover/level-strip:opacity-100"
-                            aria-label="Cuộn sang phải"
+                            aria-label={t.dashboard.scrollRight}
                           >
                             <ChevronRight className="w-4 h-4" />
                           </button>
@@ -1099,13 +1108,13 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                             L{lvl.level}
                                           </span>
                                           {isUserCurrent && (
-                                            <span className={`text-[7px] font-black uppercase text-white px-1 py-0.5 rounded-full ${accent.solid}`}>Bạn</span>
+                                            <span className={`text-[7px] font-black uppercase text-white px-1 py-0.5 rounded-full ${accent.solid}`}>{t.dashboard.youBadge}</span>
                                           )}
                                         </div>
                                         <p className={`text-[10px] font-extrabold mt-0.5 leading-snug line-clamp-2 flex-1 ${isReached ? "text-stone-900 dark:text-stone-100" : "text-stone-500 dark:text-stone-500"}`}>
                                           {lvl.name}
                                         </p>
-                                        <p className="text-[9px] text-stone-400 dark:text-stone-500 mt-0.5">{lvl.minXp} XP</p>
+                                        <p className="text-[9px] text-stone-400 dark:text-stone-500 mt-0.5">{format(t.finalOne.dashboardClient.xpValue, { xp: lvl.minXp })}</p>
                                         <div className={`inline-flex items-center gap-1 text-[8px] font-bold mt-1 px-1.5 py-0.5 rounded-full w-fit ${isReached ? `${accent.bg} ${accent.text}` : "bg-stone-100 dark:bg-stone-800 text-stone-400 dark:text-stone-500"}`}>
                                           👥 {members.length}
                                         </div>
@@ -1133,7 +1142,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                               >
                                 <div className={`mt-4 rounded-2xl border-2 ${accent.border} ${accent.bg} p-4`}>
                                   <p className={`text-xs font-black uppercase tracking-wider ${accent.text} mb-3`}>
-                                    Thành viên Cấp {lvl.level} - {lvl.name} ({members.length})
+                                    {format(t.dashboard.levelMembers, { level: lvl.level, name: lvl.name, count: members.length })}
                                   </p>
                                   {members.length > 0 ? (
                                     <div className="grid sm:grid-cols-2 gap-2">
@@ -1154,19 +1163,19 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                             {m.name}
                                           </span>
                                           <span className="text-xs font-black text-emerald-600 dark:text-emerald-400 shrink-0">
-                                            {m.xp} XP
+                                            {format(t.finalOne.dashboardClient.xpValue, { xp: m.xp })}
                                           </span>
                                         </Link>
                                       ))}
                                       {members.length > 20 && (
                                         <p className="text-xs font-bold text-stone-400 dark:text-stone-500 italic sm:col-span-2">
-                                          và {members.length - 20} người khác...
+                                          {format(t.dashboard.levelAndOthers, { count: members.length - 20 })}
                                         </p>
                                       )}
                                     </div>
                                   ) : (
                                     <p className="text-sm font-bold text-stone-400 dark:text-stone-500 italic">
-                                      Chưa có thành viên ở cấp này.
+                                      {t.dashboard.levelNoMembers}
                                     </p>
                                   )}
                                 </div>
@@ -1220,10 +1229,10 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                   </div>
                   <div className="min-w-0 flex-1">
                     <p className="text-base sm:text-lg font-extrabold text-stone-900 dark:text-stone-100">
-                      Vào Học bài
+                      {t.dashboard.enterLessons}
                     </p>
                     <p className="text-xs sm:text-sm text-stone-600 dark:text-stone-400 mt-0.5">
-                      Toàn bộ lộ trình, bài học và case chuyên sâu nằm ở một chỗ duy nhất
+                      {t.dashboard.enterLessonsSubtitle}
                     </p>
                   </div>
                   <span className="shrink-0 text-2xl font-bold text-emerald-600 dark:text-emerald-400 group-hover:translate-x-1 transition-transform">
@@ -1233,10 +1242,10 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
 
                 <div className="mt-4 flex flex-wrap items-center gap-2">
                   <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-white/80 dark:bg-stone-900/80 text-stone-700 dark:text-stone-300 border border-stone-200 dark:border-stone-800">
-                    {completed.length}/{sorted.length} bài đã hoàn thành
+                    {format(t.dashboard.lessonsCompletedOf, { done: completed.length, total: sorted.length })}
                   </span>
                   <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-white/80 dark:bg-stone-900/80 text-stone-700 dark:text-stone-300 border border-stone-200 dark:border-stone-800">
-                    4 lộ trình
+                    {t.dashboard.trackCount}
                   </span>
                 </div>
               </Link>
@@ -1264,15 +1273,15 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                       <Bookmark className="w-4 h-4" />
                     </div>
                     <div>
-                      <p className="text-sm font-extrabold text-stone-900 dark:text-stone-100">Bài đã lưu</p>
-                      <p className="text-xs text-stone-500 dark:text-stone-400">Quay lại nhanh những bài bạn muốn đọc tiếp</p>
+                      <p className="text-sm font-extrabold text-stone-900 dark:text-stone-100">{t.dashboard.savedTitle}</p>
+                      <p className="text-xs text-stone-500 dark:text-stone-400">{t.dashboard.savedSubtitle}</p>
                     </div>
                   </div>
                   <Link
                     href="/profile"
                     className="text-xs font-bold text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200"
                   >
-                    Xem tất cả
+                    {t.dashboard.seeAll}
                   </Link>
                 </div>
 
@@ -1289,7 +1298,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                             {bookmark.lesson_title}
                           </p>
                           <p className="text-xs text-stone-500 dark:text-stone-400 mt-1">
-                            Lưu ngày {new Date(bookmark.created_at).toLocaleDateString("vi-VN")}
+                            {format(t.dashboard.bookmarkedOn, { date: new Date(bookmark.created_at).toLocaleDateString(intlLocale(locale)) })}
                           </p>
                         </div>
                         <Bookmark className="w-4 h-4 shrink-0 text-amber-500 dark:text-amber-400 group-hover:scale-110 transition-transform" />
@@ -1334,7 +1343,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                   </div>
                 </div>
                 <div className="text-xs mt-1.5 text-stone-500 dark:text-stone-400 font-normal">
-                  ~{TRACK_PERSONAL.estimatedHours} giờ học nền tảng
+                  {format(t.dashboard.foundationHours, { hours: TRACK_PERSONAL.estimatedHours })}
                 </div>
                 <div className="sm:hidden text-xs mt-2 leading-snug text-stone-500 dark:text-stone-400">
                   {TRACK_PERSONAL.description}
@@ -1376,7 +1385,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                   </div>
                 </div>
                 <div className="text-xs mt-1.5 text-stone-500 dark:text-stone-400 font-normal">
-                  180 bài chuyên sâu
+                  {t.dashboard.advancedLessons}
                 </div>
                 <div className="sm:hidden text-xs mt-2 leading-snug text-stone-500 dark:text-stone-400">
                   {TRACK_PROFESSIONAL.description}
@@ -1459,14 +1468,14 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
               <input
                 value={stageSearchQuery}
                 onChange={(e) => setStageSearchQuery(e.target.value)}
-                placeholder="Tìm bài học trong lộ trình này..."
+                placeholder={t.dashboard.searchPlaceholder}
                 className="w-full pl-10 pr-9 py-2.5 rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-sm font-medium text-stone-900 dark:text-stone-100 placeholder:text-stone-400 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all shadow-2xs"
               />
               {stageSearchQuery && (
                 <button
                   onClick={() => setStageSearchQuery("")}
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 cursor-pointer"
-                  title="Xoá tìm kiếm"
+                  title={t.dashboard.searchClear}
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -1478,20 +1487,20 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
               {flagSelectionMode && (
                 <>
                   <span className="text-xs font-bold text-sky-600 dark:text-sky-400 hidden lg:inline">
-                    {selectedFlagLessonIds.size} bài chọn
+                    {format(t.dashboard.selectedCount, { count: selectedFlagLessonIds.size })}
                   </span>
                   <button
                     onClick={clearFlagSelection}
                     className="px-3 py-2 text-xs font-bold rounded-xl border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-900 transition-colors cursor-pointer"
                   >
-                    Hủy
+                    {t.dashboard.cancel}
                   </button>
                   <button
                     onClick={applyManualFlags}
                     disabled={flagSaving || selectedFlagLessonIds.size === 0}
                     className="px-3 py-2 text-xs font-bold rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors cursor-pointer shadow-xs"
                   >
-                    {flagSaving ? "Đang lưu..." : "Xác nhận đánh dấu"}
+                    {flagSaving ? t.dashboard.markLearned.saving : t.dashboard.markLearned.confirm}
                   </button>
                 </>
               )}
@@ -1508,7 +1517,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                       : "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-stone-700 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-800"
                   }`}
                 >
-                  <span>Đánh dấu đã học</span>
+                  <span>{t.dashboard.markLearned.button}</span>
                   <span
                     onClick={(e) => {
                       e.stopPropagation();
@@ -1516,7 +1525,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                     }}
                     className="inline-flex items-center justify-center rounded-full border border-stone-300 dark:border-stone-700 w-4 h-4 text-[10px] font-black text-stone-500 transition-colors hover:bg-stone-100 dark:text-stone-400"
                     aria-expanded={manualFlagInfoOpen}
-                    aria-label="Giải thích cách đánh dấu đã học"
+                    aria-label={t.dashboard.markLearned.help}
                   >
                     ?
                   </span>
@@ -1525,13 +1534,26 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                 <div className={`absolute right-0 top-full z-30 mt-2 w-80 max-w-[90vw] rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-4 text-xs text-stone-700 dark:text-stone-300 leading-relaxed shadow-xl origin-top-right transition-all duration-150 space-y-2 ${
                   manualFlagInfoOpen ? "opacity-100 scale-100 pointer-events-auto" : "pointer-events-none opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100"
                 }`}>
+                  {/* Split into segments rather than one string, so the <strong>
+                      and the coloured <span> stay in JSX. A dictionary value
+                      carrying markup would have to be dangerouslySetInnerHTML'd
+                      to render, and word order differs between the two
+                      languages anyway. */}
                   <p>
-                    Cuộn hết 100% nội dung bài <strong>và</strong> làm xong hết quiz → bài chuyển{" "}
-                    <span className="font-semibold text-emerald-600 dark:text-emerald-400">xanh lá</span> và được cộng XP.
+                    {t.dashboard.markLearned.autoPart1}
+                    <strong>{t.dashboard.markLearned.autoAnd}</strong>
+                    {t.dashboard.markLearned.autoPart2}
+                    <span className="font-semibold text-emerald-600 dark:text-emerald-400">
+                      {t.dashboard.markLearned.autoColour}
+                    </span>
+                    {t.dashboard.markLearned.autoPart3}
                   </p>
                   <p>
-                    Chỉ bấm &quot;Tự đánh dấu&quot; vì tự biết mình đã học rồi → bài chuyển{" "}
-                    <span className="font-semibold text-sky-600 dark:text-sky-400">xanh dương</span> để ghi nhớ tiến độ, nhưng không cộng XP.
+                    {t.dashboard.markLearned.manualPart1}
+                    <span className="font-semibold text-sky-600 dark:text-sky-400">
+                      {t.dashboard.markLearned.manualColour}
+                    </span>
+                    {t.dashboard.markLearned.manualPart2}
                   </p>
                 </div>
               </div>
@@ -1597,14 +1619,14 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                       </span>
                       {stage.isNew && (
                         <span className="text-[10px] font-black text-white bg-gradient-to-r from-rose-500 to-orange-500 px-2 py-0.5 rounded-full shrink-0 animate-pulse">
-                          MỚI
+                          {t.dashboard.isNew}
                         </span>
                       )}
                       <span className="text-base sm:text-lg font-extrabold text-stone-900 dark:text-stone-100 flex-1 leading-snug">{stage.name}</span>
                       {isCurrentMilestonePassed ? (
                         <div className="flex items-center gap-2">
                       <span className="flex items-center gap-1 text-xs font-bold text-stone-600 dark:text-stone-300 shrink-0 bg-stone-100 dark:bg-stone-800 px-2.5 py-1 rounded-lg">
-                        Đã vượt ải
+                        {t.dashboard.milestone.passed}
                       </span>
                           <span
                             role="button"
@@ -1614,18 +1636,18 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                             }}
                             className="flex items-center gap-1 text-[11px] font-black text-white shrink-0 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 px-2.5 py-1 rounded-lg shadow-sm shadow-amber-500/20 active:scale-95 transition-all cursor-pointer"
                           >
-                            📜 Nhận Chứng Chỉ
+                            {t.dashboard.milestone.certificate}
                           </span>
                         </div>
                       ) : isStageLockedByMilestone ? (
                         <span className="flex items-center gap-1 text-xs font-bold text-rose-500 dark:text-rose-400 shrink-0">
-                          <Lock className="w-3 h-3" /> Chờ vượt ải
+                          <Lock className="w-3 h-3" /> {t.dashboard.milestone.awaiting}
                         </span>
                       ) : (
                         stage.available && stageLockedCount > 0 && (
                           <span className="flex items-center gap-1 text-xs font-bold text-stone-500 dark:text-stone-400 shrink-0">
                             <Lock className="w-3 h-3" />
-                            {stageLockedCount} khoá
+                            {format(t.dashboard.lockedCount, { count: stageLockedCount })}
                           </span>
                         )
                       )}
@@ -1668,8 +1690,8 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                         </svg>
                       </div>
                       <div>
-                        <p className="text-stone-600 dark:text-stone-400 text-sm font-extrabold">Chặng này bị khoá</p>
-                        <p className="text-stone-500 dark:text-stone-400 text-xs mt-1">Hoàn thành chặng trước để mở</p>
+                        <p className="text-stone-600 dark:text-stone-400 text-sm font-extrabold">{t.dashboard.stageLockedTitle}</p>
+                        <p className="text-stone-500 dark:text-stone-400 text-xs mt-1">{t.dashboard.stageLockedHint}</p>
                       </div>
                     </div>
                   </div>
@@ -1689,8 +1711,8 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                     {/* Content */}
                     <div className="relative z-10 flex flex-col items-center gap-2">
                       <div className="text-3xl animate-bounce">🏗️</div>
-                      <p className="text-stone-600 dark:text-stone-400 text-sm font-extrabold">Đang xây dựng</p>
-                      <p className="text-stone-500 dark:text-stone-400 text-xs">Bài học sắp được hoàn thiện</p>
+                      <p className="text-stone-600 dark:text-stone-400 text-sm font-extrabold">{t.dashboard.buildingTitle}</p>
+                      <p className="text-stone-500 dark:text-stone-400 text-xs">{t.dashboard.buildingSubtitle}</p>
                     </div>
                   </div>
                 )}
@@ -1717,7 +1739,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                           >
                             <span className="font-bold text-stone-800 dark:text-stone-300 text-sm">{part.name}</span>
                             <span className="text-xs text-stone-500 dark:text-stone-400 font-mono">
-                              Bài {lessonOrdinal.get(partLessons[0].id)}-{lessonOrdinal.get(partLessons[partLessons.length - 1].id)}
+                              {format(t.dashboard.lessonRange, { from: lessonOrdinal.get(partLessons[0].id) ?? "", to: lessonOrdinal.get(partLessons[partLessons.length - 1].id) ?? "" })}
                             </span>
                             {partLockedCount > 0 && (
                               <span className="flex items-center gap-1 text-xs font-bold text-stone-500 dark:text-stone-400">
@@ -1765,8 +1787,8 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                           </div>
                                           <div className="text-sm mt-1 truncate text-stone-400 dark:text-stone-400">
                                             {isWaitingOnChallenge(lesson)
-                                              ? "🎯 Vượt qua thử thách kiến thức để mở khoá"
-                                              : "Yêu cầu hoàn thành bài trước - nhấn để nhắn admin mở khoá"}
+                                              ? t.dashboard.unlockByChallenge
+                                              : t.dashboard.unlockByRequest}
                                           </div>
                                         </div>
                                       </div>
@@ -1825,7 +1847,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                           {lesson.title}
                                         </div>
                                         <div className={`text-sm mt-1 truncate ${isDone ? "text-emerald-700 dark:text-emerald-400" : isFlagged ? "text-sky-700 dark:text-sky-400" : "text-stone-600 dark:text-stone-400"}`}>
-                                          {isFlagged ? "Bạn đã tự đánh dấu đã học bài này" : lesson.subtitle}
+                                          {isFlagged ? t.dashboard.markLearned.flaggedSubtitle : lesson.subtitle}
                                         </div>
                                         <div className="text-[11px] mt-0.5 text-stone-400 dark:text-stone-500 font-semibold">
                                           {/* The time estimate also sits in the desktop meta
@@ -1833,7 +1855,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                               so on mobile it would never be shown at all
                                               without repeating it here. */}
                                           <span className="sm:hidden">⏱ {formatLessonTime(lesson)} · </span>
-                                          👥 {getIllustrativeCount(lesson.slug, 60, 480)} người đã học
+                                          {format(t.dashboard.learnerCount, { count: getIllustrativeCount(lesson.slug, 60, 480) })}
                                         </div>
                                       </Link>
 
@@ -1849,7 +1871,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                               ? "border-sky-500 bg-sky-500 text-white"
                                               : "border-stone-300 dark:border-stone-700 text-transparent"
                                           }`}
-                                          aria-label="Chọn để tự đánh dấu đã học"
+                                          aria-label={t.dashboard.markLearned.selectAria}
                                         >
                                           <CheckCheck className="w-3.5 h-3.5" />
                                         </button>
@@ -1867,7 +1889,11 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                               ? "bg-sky-100 dark:bg-sky-950/60 text-sky-800 dark:text-sky-300"
                                             : "bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300"
                                         }`}>
-                                          {isDone ? "Xong" : isFlagged ? "Tự đánh dấu" : lesson.difficulty}
+                                          {isDone
+                                              ? t.dashboard.markLearned.doneBadge
+                                              : isFlagged
+                                                ? t.dashboard.markLearned.flaggedBadge
+                                                : t.difficulty[lesson.difficulty]}
                                         </span>
                                         {isFlagged && !isDone && (
                                           <button
@@ -1879,7 +1905,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                             }}
                                             className="text-xs font-bold text-stone-400 dark:text-stone-500 hover:text-sky-600 dark:hover:text-sky-400 underline underline-offset-2"
                                           >
-                                            Khiếu nại
+                                            {t.dashboard.appeal}
                                           </button>
                                         )}
                                       </div>
@@ -1904,10 +1930,10 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                   <div className="mt-4 p-5 rounded-2xl border border-amber-300 bg-amber-500/[0.04] dark:border-amber-950/40 flex flex-col sm:flex-row items-center justify-between gap-4">
                     <div className="min-w-0 flex-1">
                       <h4 className="text-xs font-bold text-amber-800 dark:text-amber-400 flex items-center gap-1.5">
-                        🏆 Đã đủ điều kiện Thi Vượt Ải {stage.label}
+                        {format(t.dashboard.milestone.eligible, { stage: stage.label })}
                       </h4>
                       <p className="text-[10px] text-stone-500 dark:text-stone-400 mt-1 leading-relaxed">
-                        Chúc mừng bạn đã học xong tất cả bài học trong chặng này! Hãy vượt qua bài thi trắc nghiệm cột mốc (15 câu) để nhận <strong>+50 XP</strong> và mở khóa chặng sau.
+                        {t.dashboard.milestone.eligibleBodyPart1}<strong>{t.finalOne.dashboardClient.milestoneBonusXp}</strong>{t.dashboard.milestone.eligibleBodyPart2}
                       </p>
                     </div>
                     <button
@@ -1918,7 +1944,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                       })}
                       className="px-4 py-2 text-xs font-extrabold bg-amber-500 hover:bg-amber-600 text-white rounded-xl shadow-[0_4px_10px_-2px_rgba(245,158,11,0.4)] hover:scale-105 active:scale-95 transition-all cursor-pointer shrink-0"
                     >
-                      Bắt đầu thi 🏆
+                      {t.dashboard.milestone.start}
                     </button>
                   </div>
                 )}
@@ -1931,9 +1957,9 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                         <Lock className="w-6 h-6" />
                       </div>
                       <div>
-                        <p className="text-stone-900 dark:text-stone-100 text-sm font-extrabold">Chặng này đang bị khoá 🔒</p>
+                        <p className="text-stone-900 dark:text-stone-100 text-sm font-extrabold">{t.dashboard.stageLockedBadge}</p>
                         <p className="text-stone-500 dark:text-stone-400 text-xs mt-1 max-w-xs mx-auto leading-relaxed">
-                          Bạn cần hoàn thành toàn bộ bài học và vượt qua <strong>Kỳ thi Vượt ải {prevStageLabel}</strong> để mở khoá chặng tiếp theo!
+                          {t.dashboard.milestone.lockedPart1}<strong>{format(t.dashboard.milestone.lockedExamName, { stage: prevStageLabel })}</strong>{t.dashboard.milestone.lockedPart2}
                         </p>
                       </div>
                     </div>
@@ -1952,9 +1978,9 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                 className="w-full flex items-baseline gap-4 mb-4 cursor-pointer text-left"
               >
                 <span className="text-xs font-extrabold text-stone-900 dark:text-stone-100 uppercase tracking-widest bg-stone-100 dark:bg-stone-800 px-3 py-1 rounded-lg">
-                  Bonus
+                  {t.finalOne.dashboardClient.bonusLabel}
                 </span>
-                <span className="text-lg font-extrabold text-stone-900 dark:text-stone-100" role="heading" aria-level={2}>Case chuyên sâu</span>
+                <span className="text-lg font-extrabold text-stone-900 dark:text-stone-100" role="heading" aria-level={2}>{t.dashboard.caseStudies}</span>
                 <span className="ml-auto text-base font-bold text-stone-900 dark:text-stone-100 bg-stone-100 dark:bg-stone-800 px-4 py-1 rounded-lg">
                   {bonusDone}/{bonusLessons.length}
                 </span>
@@ -1995,8 +2021,8 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                               </div>
                               <div className="text-sm mt-0.5 truncate text-stone-400 dark:text-stone-400">
                                 {isWaitingOnChallenge(lesson)
-                                  ? "🎯 Vượt qua thử thách kiến thức để mở khoá"
-                                  : "Yêu cầu hoàn thành bài trước - nhấn để nhắn admin mở khoá"}
+                                  ? t.dashboard.unlockByChallenge
+                                  : t.dashboard.unlockByRequest}
                               </div>
                             </div>
                           </div>
@@ -2045,7 +2071,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                               {lesson.title}
                             </div>
                             <div className={`text-sm mt-0.5 truncate ${isDone ? "text-emerald-700 dark:text-emerald-400" : isFlagged ? "text-sky-700 dark:text-sky-400" : "text-stone-600 dark:text-stone-400"}`}>
-                              {isFlagged ? "Bạn đã tự đánh dấu đã học bài này" : lesson.subtitle}
+                              {isFlagged ? t.dashboard.markLearned.flaggedSubtitle : lesson.subtitle}
                             </div>
                           </Link>
                           {flagSelectionMode && !isDone && (
@@ -2060,7 +2086,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                   ? "border-sky-500 bg-sky-500 text-white"
                                   : "border-stone-300 dark:border-stone-700 text-transparent"
                               }`}
-                              aria-label="Chọn để tự đánh dấu đã học"
+                              aria-label={t.dashboard.markLearned.selectAria}
                             >
                               <CheckCheck className="w-3.5 h-3.5" />
                             </button>
@@ -2156,7 +2182,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
         <CertificateModal
           stageLabel={selectedCertStage.label}
           stageName={selectedCertStage.name}
-          userName={user?.user_metadata?.full_name || user?.email || "Người học"}
+          userName={user?.user_metadata?.full_name || user?.email || t.dashboard.defaultUserName}
           onClose={() => setSelectedCertStage(null)}
         />
       )}
@@ -2180,14 +2206,25 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
       )}
       {showBossBattle && user?.id ? (
         <BossBattleModal
-          bossName="Boss Bẫy Nợ Nần & Lạm Phát"
+          bossName={t.dashboard.boss.name}
           bossEmoji="🐉"
           userLevel={getLevelByXp(userXp, cfaCompletedForLevel).level}
           equipments={equippedGear}
           questions={[
-            { prompt: "Để chống chọi với Lạm Phát 8%, danh mục đầu tư cần có tỷ suất sinh lời tối thiểu là bao nhiêu?", options: ["> 8%", "= 8%", "< 8%"], correct: 0 },
-            { prompt: "Bẫy nợ tín dụng nguy hiểm nhất ở điểm nào?", options: ["Lãi suất thả nổi cao & Lãi nhập gốc", "Không cho gia hạn", "Không có chiết khấu"], correct: 0 },
-            { prompt: "Tỷ lệ Nợ/Vốn chủ sở hữu (D/E) an toàn tuyệt đối thường nằm dưới mức nào?", options: ["1.0x", "5.0x", "10.0x"], correct: 0 }
+            // `correct: 0` is safe here: BossBattleModal shuffles via
+            // lib/quiz-shuffle, so position leaks nothing. Option length does
+            // survive the shuffle - see the note on t.dashboard.boss.
+            { prompt: t.dashboard.boss.q1, options: ["> 8%", "= 8%", "< 8%"], correct: 0 },
+            {
+              prompt: t.dashboard.boss.q2,
+              options: [
+                t.dashboard.boss.q2o1,
+                t.dashboard.boss.q2o2,
+                t.dashboard.boss.q2o3,
+              ],
+              correct: 0,
+            },
+            { prompt: t.dashboard.boss.q3, options: ["1.0x", "5.0x", "10.0x"], correct: 0 }
           ]}
           onVictory={async ({ xp, coins }) => {
             // XP goes in as a game_sessions row, not a direct total_xp write.
@@ -2216,7 +2253,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             });
             await recalculateUserStats(userId).catch(() => {});
             window.dispatchEvent(new CustomEvent("thtcdn:coin-updated", { detail: { coins: newCoins } }));
-            toast.success(`🎉 Hạ gục Boss thành công! Nhận +${xp} XP & 🪙 +${coins} Coins!`);
+            toast.success(format(t.finalOne.dashboardClient.bossDefeatedToast, { xp, coins }));
           }}
           onClose={() => setShowBossBattle(false)}
         />

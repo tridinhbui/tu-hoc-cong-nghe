@@ -6,6 +6,8 @@ import { RefreshCw, CheckCircle, XCircle, HelpCircle, Sparkles, ChevronDown, Che
 import { getLessonRecalls, processRecallAttempt, type LessonRecall } from "@/lib/supabase-recalls";
 import { getLessonDetailsForRecall } from "@/app/actions/flashcard-actions";
 import { recalculateUserStats } from "@/lib/supabase-user";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 interface LessonRecallWidgetProps {
   userId: string;
@@ -28,6 +30,7 @@ interface RecallQuestion {
 }
 
 export default function LessonRecallWidget({ userId }: LessonRecallWidgetProps) {
+  const { t } = useI18n();
   const [dueRecalls, setDueRecalls] = useState<DueRecallItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [collapsed, setCollapsed] = useState(true);
@@ -75,7 +78,7 @@ export default function LessonRecallWidget({ userId }: LessonRecallWidgetProps) 
   const startReview = async (item: DueRecallItem) => {
     const detail = await getLessonDetailsForRecall(item.lessonId);
     if (!detail || !detail.quiz || detail.quiz.length === 0) {
-      toast.error("Không tìm thấy câu hỏi trắc nghiệm cho bài này.");
+      toast.error(t.recallWidget.noQuizFound);
       return;
     }
     
@@ -122,17 +125,17 @@ export default function LessonRecallWidget({ userId }: LessonRecallWidgetProps) 
       const ok = await processRecallAttempt(userId, activeItem.lessonId, allCorrect);
       if (ok) {
         if (allCorrect) {
-          toast.success("Tuyệt vời! Bạn đã vượt qua chu kỳ ôn tập và nhận +10 XP học thuật! 🔄🏆");
+          toast.success(t.recallWidget.passedToast);
           void recalculateUserStats(userId).catch(() => {});
         } else {
-          toast.info("Ôn tập hoàn tất. Một số câu chưa đúng, bài học sẽ hiển thị lại sớm hơn để bạn ôn luyện.");
+          toast.info(t.recallWidget.partialToast);
         }
         
         // Remove item from due list
         setDueRecalls((prev) => prev.filter((r) => r.lessonId !== activeItem.lessonId));
       }
     } catch {
-      toast.error("Không thể cập nhật tiến độ ôn tập.");
+      toast.error(t.recallWidget.updateFailed);
     } finally {
       setReviewFinished(true);
       setActiveItem(null);
@@ -175,14 +178,15 @@ export default function LessonRecallWidget({ userId }: LessonRecallWidgetProps) 
                 ? 'text-red-800 dark:text-red-200'
                 : 'text-stone-900 dark:text-stone-100'
             }`}>
-              CẦN ÔN LẠI GÌ {hasWarning && `(${dueRecalls.length})`}
+              {t.recallWidget.heading}
+              {hasWarning && format(t.recallWidget.headingCount, { count: dueRecalls.length })}
             </h3>
             <p className={`text-[10px] mt-0.5 truncate ${
               hasWarning
                 ? 'text-red-700 dark:text-red-300'
                 : 'text-stone-500 dark:text-stone-400'
             }`}>
-              {hasWarning ? 'Có bài học cần ôn tập ngay' : 'Các bài học đã đến chu kỳ ôn tập'}
+              {hasWarning ? t.recallWidget.warningSubtitle : t.recallWidget.normalSubtitle}
             </p>
           </div>
         </div>
@@ -210,20 +214,20 @@ export default function LessonRecallWidget({ userId }: LessonRecallWidgetProps) 
                     {item.lessonTitle}
                   </p>
                   <p className="text-[9px] text-stone-500 dark:text-stone-400 mt-0.5">
-                    Chu kỳ: Chặng {item.recallStage}/4
+                    {format(t.recallWidget.stageLine, { stage: item.recallStage })}
                   </p>
                 </div>
                 <button
                   onClick={() => startReview(item)}
                   className="px-3 py-1.5 text-[10px] font-extrabold rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white shadow-sm hover:scale-105 active:scale-95 transition-all cursor-pointer flex items-center gap-1 shrink-0"
                 >
-                  <RefreshCw className="w-3 h-3" /> Ôn ngay
+                  <RefreshCw className="w-3 h-3" /> {t.recallWidget.reviewNow}
                 </button>
               </div>
             ))}
             {dueRecalls.length > 3 && (
               <p className="text-[10px] text-stone-400 dark:text-stone-500 text-center font-bold">
-                Còn {dueRecalls.length - 3} bài khác đang chờ ôn tập
+                {format(t.recallWidget.moreWaiting, { count: dueRecalls.length - 3 })}
               </p>
             )}
           </div>
@@ -233,10 +237,10 @@ export default function LessonRecallWidget({ userId }: LessonRecallWidgetProps) 
         <div className="space-y-4">
           <div className="flex items-center justify-between border-b border-stone-100 dark:border-stone-800/80 pb-2">
             <span className="text-xs font-extrabold text-stone-900 dark:text-stone-100 truncate max-w-[70%]">
-              Ôn tập: {activeItem.lessonTitle}
+              {format(t.recallWidget.reviewingLesson, { title: activeItem.lessonTitle })}
             </span>
             <span className="text-[10px] font-extrabold text-stone-600 dark:text-stone-300 bg-stone-100 dark:bg-stone-800 px-2 py-0.5 rounded-md shrink-0">
-              Câu {currentQIndex + 1}/{questions.length}
+              {format(t.recallWidget.questionCounter, { index: currentQIndex + 1, total: questions.length })}
             </span>
           </div>
 
@@ -281,7 +285,7 @@ export default function LessonRecallWidget({ userId }: LessonRecallWidgetProps) 
                   disabled={selectedOpt === null}
                   className="w-full bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all disabled:opacity-50 cursor-pointer"
                 >
-                  Xác nhận
+                  {t.recallWidget.confirm}
                 </button>
               ) : (
                 <div className="space-y-3">
@@ -291,7 +295,7 @@ export default function LessonRecallWidget({ userId }: LessonRecallWidgetProps) 
                       : "bg-rose-50 border-rose-200 dark:bg-rose-950/50 dark:border-rose-800 text-rose-900 dark:text-rose-200"
                   }`}>
                     <p className="font-bold mb-0.5">
-                      {selectedOpt === questions[currentQIndex].correct ? "Đúng rồi! 🎉" : "Chưa đúng!"}
+                      {selectedOpt === questions[currentQIndex].correct ? t.recallWidget.correct : t.recallWidget.wrong}
                     </p>
                     <p>{questions[currentQIndex].explanation}</p>
                   </div>
@@ -299,7 +303,7 @@ export default function LessonRecallWidget({ userId }: LessonRecallWidgetProps) 
                     onClick={nextQuestion}
                     className="w-full bg-emerald-500 hover:bg-emerald-600 text-white py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all cursor-pointer"
                   >
-                    {currentQIndex + 1 === questions.length ? "Hoàn tất" : "Câu tiếp theo"}
+                    {currentQIndex + 1 === questions.length ? t.recallWidget.finish : t.recallWidget.nextQuestion}
                   </button>
                 </div>
               )}

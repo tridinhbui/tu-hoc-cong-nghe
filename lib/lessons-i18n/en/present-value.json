@@ -1,0 +1,138 @@
+{
+  "slug": "present-value",
+  "title": "Present Value",
+  "subtitle": "How much is a dong received in the future worth today?",
+  "duration": "6 min",
+  "openingQuestion": "If the interest rate is 10%/year, what is the present value of 1 million received after 1 year?",
+  "openingOptions": [
+    "1.1 million",
+    "500,000 dong",
+    "1 million",
+    "909,090 dong (~909K)"
+  ],
+  "explanation": "Present value converts a future amount back to today by dividing by one plus the interest rate, raised to the number of years. The idea underneath is simple: money today can be invested to earn a return, so it's worth more than the same amount received later. Two consequences to remember - the higher the discount rate, the lower the present value, and the further out a cash flow is, the faster it shrinks because of the exponent. All of financial valuation is built on this calculation.",
+  "diagram": [
+    { "label": "An amount to be received in the future", "arrow": true },
+    { "label": "Choose a discount rate matching that amount's risk", "arrow": true },
+    { "label": "Divide by (1+r) raised to the number of years", "arrow": true },
+    { "label": "Get the present value - now comparable against money today" }
+  ],
+  "realWorldExample": {
+    "company": "Valuing government bonds",
+    "description": "The price of any bond on the market is essentially the sum of the Present Value of the coupon payments and face value to be received in the future, discounted back to today at the market yield - this is the most direct and common real-world application of Present Value."
+  },
+  "quiz": [
+    {
+      "question": "Why does a higher discount rate reduce Present Value?",
+      "options": [
+        "Because risk falls, making future cash flow more trustworthy than the present",
+        "Because opportunity cost is higher - money today can earn more",
+        "Because rising inflation reduces the nominal value of the cash flow",
+        "Because the formula just says so, with no underlying economic reason"
+      ],
+      "explanation": "A higher discount rate = higher opportunity cost = future money is worth less relative to today. When interest rates rise, the PV of every future cash flow falls → stock and bond prices fall."
+    },
+    {
+      "question": "If the discount rate falls from 10% to 5%, how will the Present Value of an amount received in the future change?",
+      "options": [
+        "It falls, because a lower interest rate makes future money earn less",
+        "It doesn't change since FV and the number of years are unchanged",
+        "It rises - a smaller r means a smaller denominator, so a larger PV",
+        "It only changes if the number of discounting years also changes"
+      ],
+      "explanation": "PV = FV / (1+r)^n - the smaller r is, the smaller the denominator, the larger PV becomes. This is exactly why, when market interest rates fall, the valuation of stocks and bonds rises."
+    },
+    {
+      "question": "Receiving 1,000,000 dong after 5 years, discount rate 10%. What is the PV?",
+      "options": [
+        "≈ 1,610,500 dong (= 1M × 1.61, multiplying instead of dividing)",
+        "≈ 500,000 dong (= 1M ÷ 2, halved for 5 years)",
+        "≈ 909,100 dong (= 1M ÷ 1.1, discounting only 1 year)",
+        "≈ 620,900 dong (= 1M ÷ 1.1 to the 5th power, i.e. divided by 1.61)"
+      ],
+      "explanation": "PV = FV / (1+r)^n = 1,000,000 / 1.61051 ≈ 620,900 dong. The figure 1,610,500 dong is actually Future Value - multiplying moves you toward the future, dividing is what pulls you back to the present."
+    },
+    {
+      "question": "Two cash flows of 1 billion, one received after 3 years, one after 10 years, at the same discount rate. Compare their PV.",
+      "options": [
+        "The 3-year cash flow has higher PV since it's discounted fewer times",
+        "The two cash flows have equal PV since the nominal amount is identical",
+        "The 10-year cash flow is higher because it has more time to compound",
+        "They can't be compared without knowing if the cash flow grows"
+      ],
+      "explanation": "The denominator (1+r)^n grows exponentially as n increases. This is why in a DCF model, cash flows from the final years contribute far less even though the nominal figures might be larger."
+    },
+    {
+      "question": "Why is PV the foundation of every valuation model?",
+      "options": [
+        "Because it removes the impact of inflation from cash flow",
+        "Because it converts cash flows at different points in time onto the same footing",
+        "Because it tells you whether a business has enough cash to pay its debts",
+        "Because it's the only metric that doesn't depend on any assumption"
+      ],
+      "explanation": "You can't add 100 million from this year to 100 million from year seven - they're two different units. Discounting is the conversion that lets you add them together, and every DCF model is just a chain of that same conversion repeated."
+    }
+  ],
+  "keyTakeaways": [
+    "PV = FV / (1+r)^n",
+    "Higher discount rate → lower PV",
+    "The foundation of DCF valuation and every investment decision"
+  ],
+  "practicePrompt": {
+    "question": "You are promised 121 million dong to be received in 2 years. If a reasonable discount rate is 10%/year, what is the present value (PV) of this amount?",
+    "options": [
+      "PV = FV / (1+r)^n = 121 / (1.1)^2 = 100 million dong - this is the amount today that is equivalent to 121 million received after 2 years, at a discount rate of 10%/year",
+      "PV = FV × (1+r)^n = 121 × 1.21 = 146.4 million dong, since you must multiply by interest for each waiting year",
+      "PV always exactly equals FV = 121 million because money's value doesn't change over time",
+      "PV cannot be calculated without knowing exactly who the company or individual promising to pay is"
+    ],
+    "explanation": "PV = FV / (1+r)^n = 121,000,000 / (1.1)^2 = 100,000,000 dong. This is the discounting formula: present value is always smaller than future value because a dong today can earn a return over time (time value of money)."
+  },
+  "summary": {
+    "keyIdea": "PV = FV / (1+r)^n",
+    "commonMistake": "Reading a concept as a phrase to memorise rather than a principle to apply to real decisions.",
+    "action": "Higher discount rate → lower PV"
+  },
+  "application": {
+    "title": "Calculate PV yourself",
+    "message": "Pick an amount you might receive in the future (a bonus, salary, money lent), assume a reasonable discount rate, and calculate for yourself how much it's worth today.",
+    "secondary": "Choose a higher discount rate when you feel the risk of receiving that amount is greater."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A dong received in the future is worth less than a dong in hand today, because today's dong can be invested to earn a return immediately. Present Value (PV) answers the reverse question: an amount X received after n years - how much is that worth today? This question sits at the root of every financial valuation - from stock prices, to bond prices, to whether a project is worth investing in."
+    },
+    { "type": "heading", "text": "The PV formula" },
+    {
+      "type": "paragraph",
+      "text": "PV = FV / (1+r)^n, where FV is the future amount, r is the discount rate (reflecting opportunity cost), and n is the number of years. **Example:** receiving 1,000,000 dong after 1 year, discount rate 10%. PV = 1,000,000 / 1.1 = 909,091 dong. That means if you had 909,091 dong today and deposited it at 10% interest, after 1 year you'd have exactly 1,000,000 dong - the two amounts are 'worth the same.'"
+    },
+    { "type": "heading", "text": "PV falls as n rises or r rises" },
+    {
+      "type": "paragraph",
+      "text": "The same 1,000,000 dong received after 5 years instead of 1 year: PV = 1,000,000 / (1.1)^5 = 1,000,000 / 1.61051 ≈ 620,921 dong - much lower. The further into the future, the smaller the PV. Similarly, if the discount rate rises from 10% to 15%, the PV of the same amount 1 year later falls to 1,000,000 / 1.15 ≈ 869,565 dong. A higher discount rate means the 'cost' of waiting is higher."
+    },
+    {
+      "type": "list",
+      "items": [
+        "PV is the foundation for bond valuation: bond price = PV of coupons + PV of face value",
+        "PV is the foundation for equity valuation via DCF: business value = PV of future free cash flow",
+        "The higher the discount rate (the greater the risk), the lower the PV, even if future cash flow doesn't change",
+        "Don't confuse PV with 'the amount to be received' - PV is always smaller than the nominal future amount when r > 0"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Why rising interest rates push stock prices down",
+      "text": "When market interest rates rise, the discount rate used to value every asset rises with it → the PV of future cash flow falls → stock and bond valuations fall, even though the business itself hasn't changed at all."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "PV is the question 'how much is future money worth today' - the foundational question of every valuation.",
+        "Remember the formula PV = FV/(1+r)^n, and the rest of the Time Value of Money track is just variations on it."
+      ]
+    }
+  ]
+}

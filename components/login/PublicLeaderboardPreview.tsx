@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -22,38 +22,50 @@ import {
 } from "lucide-react";
 import { getLeaderboardByMetric, type LeaderboardRow } from "@/lib/supabase-user";
 import { isValidAvatar } from "@/lib/avatar-utils";
+import { useI18n } from "@/lib/i18n/context";
+import { format, intlLocale } from "@/lib/i18n";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
 type MetricFilter = "xp" | "streak" | "lessons";
 
-// Mock Fallback Data in case DB table is empty or loading
-const MOCK_LEADERBOARD: Record<MetricFilter, LeaderboardRow[]> = {
-  xp: [
-    { user_id: "1", name: "Thúy Đặng", value: 4639, avatarUrl: "/avatars/avatar-1.png" },
-    { user_id: "2", name: "Con đố finance", value: 4558, avatarUrl: "/avatars/avatar-2.png" },
-    { user_id: "3", name: "Kim Anh Vũ", value: 3256, avatarUrl: "" },
-    { user_id: "4", name: "Minh Huy", value: 2987, avatarUrl: "" },
-    { user_id: "5", name: "Ân Triệu Ca", value: 2606, avatarUrl: "" },
-    { user_id: "6", name: "Dead Poets Society", value: 2449, avatarUrl: "" },
-  ],
-  streak: [
-    { user_id: "1", name: "Thúy Đặng", value: 28, avatarUrl: "/avatars/avatar-1.png" },
-    { user_id: "4", name: "Minh Huy", value: 21, avatarUrl: "" },
-    { user_id: "2", name: "Con đố finance", value: 18, avatarUrl: "/avatars/avatar-2.png" },
-    { user_id: "3", name: "Kim Anh Vũ", value: 14, avatarUrl: "" },
-    { user_id: "5", name: "Ân Triệu Ca", value: 12, avatarUrl: "" },
-    { user_id: "6", name: "Dead Poets Society", value: 9, avatarUrl: "" },
-  ],
-  lessons: [
-    { user_id: "2", name: "Con đố finance", value: 64, avatarUrl: "/avatars/avatar-2.png" },
-    { user_id: "1", name: "Thúy Đặng", value: 58, avatarUrl: "/avatars/avatar-1.png" },
-    { user_id: "3", name: "Kim Anh Vũ", value: 42, avatarUrl: "" },
-    { user_id: "4", name: "Minh Huy", value: 39, avatarUrl: "" },
-    { user_id: "5", name: "Ân Triệu Ca", value: 31, avatarUrl: "" },
-    { user_id: "6", name: "Dead Poets Society", value: 27, avatarUrl: "" },
-  ],
-};
+// Mock fallback data in case the DB table is empty or loading. The names are
+// illustrative learners - proper nouns, not UI copy - so they come from the
+// dictionary only to satisfy the i18n coverage script; the Vietnamese and
+// English values are identical on purpose (see AGENTS.md instructions for
+// this component).
+function getMockLeaderboard(t: Dictionary): Record<MetricFilter, LeaderboardRow[]> {
+  const n = t.leaderboardPreview;
+  return {
+    xp: [
+      { user_id: "1", name: n.name1, value: 4639, avatarUrl: "/avatars/avatar-1.png" },
+      { user_id: "2", name: n.name2, value: 4558, avatarUrl: "/avatars/avatar-2.png" },
+      { user_id: "3", name: n.name3, value: 3256, avatarUrl: "" },
+      { user_id: "4", name: n.name4, value: 2987, avatarUrl: "" },
+      { user_id: "5", name: n.name5, value: 2606, avatarUrl: "" },
+      { user_id: "6", name: n.name6, value: 2449, avatarUrl: "" },
+    ],
+    streak: [
+      { user_id: "1", name: n.name1, value: 28, avatarUrl: "/avatars/avatar-1.png" },
+      { user_id: "4", name: n.name4, value: 21, avatarUrl: "" },
+      { user_id: "2", name: n.name2, value: 18, avatarUrl: "/avatars/avatar-2.png" },
+      { user_id: "3", name: n.name3, value: 14, avatarUrl: "" },
+      { user_id: "5", name: n.name5, value: 12, avatarUrl: "" },
+      { user_id: "6", name: n.name6, value: 9, avatarUrl: "" },
+    ],
+    lessons: [
+      { user_id: "2", name: n.name2, value: 64, avatarUrl: "/avatars/avatar-2.png" },
+      { user_id: "1", name: n.name1, value: 58, avatarUrl: "/avatars/avatar-1.png" },
+      { user_id: "3", name: n.name3, value: 42, avatarUrl: "" },
+      { user_id: "4", name: n.name4, value: 39, avatarUrl: "" },
+      { user_id: "5", name: n.name5, value: 31, avatarUrl: "" },
+      { user_id: "6", name: n.name6, value: 27, avatarUrl: "" },
+    ],
+  };
+}
 
 export default function PublicLeaderboardPreview() {
+  const { t, locale } = useI18n();
+  const MOCK_LEADERBOARD = useMemo(() => getMockLeaderboard(t), [t]);
   const [metric, setMetric] = useState<MetricFilter>("xp");
   const [leaderboardData, setLeaderboardData] = useState<LeaderboardRow[]>(MOCK_LEADERBOARD.xp);
   const [selectedUser, setSelectedUser] = useState<LeaderboardRow | null>(null);
@@ -75,15 +87,15 @@ export default function PublicLeaderboardPreview() {
     return () => {
       cancelled = true;
     };
-  }, [metric]);
+  }, [metric, MOCK_LEADERBOARD]);
 
   const top = leaderboardData.length > 0 ? leaderboardData : MOCK_LEADERBOARD[metric];
   const podium = [top[1] || top[0], top[0], top[2] || top[0]].filter(Boolean);
 
   const podiumMeta = [
-    { rank: 2, height: "h-8 sm:h-10", tone: "from-slate-300 via-slate-200 to-slate-100 text-slate-900 border-slate-300", ring: "ring-slate-300", title: "BẠC 🥈" },
-    { rank: 1, height: "h-12 sm:h-14", tone: "from-amber-400 via-amber-300 to-yellow-100 text-amber-950 border-amber-400", ring: "ring-amber-300", title: "VÀNG 🥇" },
-    { rank: 3, height: "h-6 sm:h-8", tone: "from-orange-300 via-amber-200 to-orange-100 text-orange-950 border-orange-300", ring: "ring-orange-300", title: "ĐỒNG 🥉" },
+    { rank: 2, height: "h-8 sm:h-10", tone: "from-slate-300 via-slate-200 to-slate-100 text-slate-900 border-slate-300", ring: "ring-slate-300", title: t.leaderboardPreview.rankSilver },
+    { rank: 1, height: "h-12 sm:h-14", tone: "from-amber-400 via-amber-300 to-yellow-100 text-amber-950 border-amber-400", ring: "ring-amber-300", title: t.leaderboardPreview.rankGold },
+    { rank: 3, height: "h-6 sm:h-8", tone: "from-orange-300 via-amber-200 to-orange-100 text-orange-950 border-orange-300", ring: "ring-orange-300", title: t.leaderboardPreview.rankBronze },
   ];
 
   function handleCheerUser(userId: string, e: React.MouseEvent) {
@@ -92,9 +104,9 @@ export default function PublicLeaderboardPreview() {
   }
 
   function getMetricUnit(val: number) {
-    if (metric === "xp") return `${val.toLocaleString("vi-VN")} XP`;
-    if (metric === "streak") return `${val} ngày streak`;
-    return `${val} bài hoàn thành`;
+    if (metric === "xp") return format(t.leaderboardPreview.metricXp, { value: val.toLocaleString(intlLocale(locale)) });
+    if (metric === "streak") return format(t.leaderboardPreview.metricStreak, { value: val });
+    return format(t.leaderboardPreview.metricLessons, { value: val });
   }
 
   return (
@@ -108,7 +120,7 @@ export default function PublicLeaderboardPreview() {
               <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" />
             </span>
             <p className="text-xs font-black uppercase tracking-widest text-emerald-800 dark:text-emerald-300">
-              BẢNG VINH DANH LIVE HỌC VIÊN
+              {t.leaderboardPreview.liveTitle}
             </p>
           </div>
 
@@ -123,7 +135,7 @@ export default function PublicLeaderboardPreview() {
               }`}
             >
               <Zap className="w-3.5 h-3.5" />
-              <span>Top XP</span>
+              <span>{t.leaderboardPreview.tabXp}</span>
             </button>
             <button
               onClick={() => setMetric("streak")}
@@ -134,7 +146,7 @@ export default function PublicLeaderboardPreview() {
               }`}
             >
               <Flame className="w-3.5 h-3.5" />
-              <span>Streak</span>
+              <span>{t.leaderboardPreview.tabStreak}</span>
             </button>
             <button
               onClick={() => setMetric("lessons")}
@@ -145,7 +157,7 @@ export default function PublicLeaderboardPreview() {
               }`}
             >
               <Trophy className="w-3.5 h-3.5" />
-              <span>Số bài học</span>
+              <span>{t.leaderboardPreview.tabLessons}</span>
             </button>
           </div>
         </div>
@@ -158,12 +170,12 @@ export default function PublicLeaderboardPreview() {
           <div className="mb-1.5 flex items-center justify-between">
             <div>
               <p className="text-[9px] font-black uppercase tracking-widest text-emerald-600 dark:text-emerald-400">
-                BỤC VINH QUANG 🏆
+                {t.leaderboardPreview.podiumBadge}
               </p>
               <p className="text-xs font-black text-stone-900 dark:text-stone-100 mt-0.5">
-                {metric === "xp" && "Học viên xuất sắc nhất tuần này"}
-                {metric === "streak" && "Top học viên kiên trì giữ chuỗi streak"}
-                {metric === "lessons" && "Học viên chinh phục nhiều bài học nhất"}
+                {metric === "xp" && t.leaderboardPreview.podiumTitleXp}
+                {metric === "streak" && t.leaderboardPreview.podiumTitleStreak}
+                {metric === "lessons" && t.leaderboardPreview.podiumTitleLessons}
               </p>
             </div>
             <Crown className="w-5 h-5 text-amber-400 animate-bounce shrink-0" />
@@ -225,10 +237,10 @@ export default function PublicLeaderboardPreview() {
                     <button
                       onClick={(e) => handleCheerUser(entry.user_id, e)}
                       className="mt-0.5 inline-flex items-center gap-0.5 text-[8px] font-black px-1.5 py-0.2 rounded-full bg-rose-50 dark:bg-rose-950/80 border border-rose-300 dark:border-rose-800 text-rose-600 dark:text-rose-300 hover:scale-105 active:scale-95 transition-transform shadow-2xs"
-                      title="Bấm để cổ vũ học viên"
+                      title={t.leaderboardPreview.cheerButtonTitle}
                     >
                       <Heart className="w-2.5 h-2.5 fill-rose-500 text-rose-500" />
-                      <span>{userCheers > 0 ? `+${userCheers}` : "Thả tim"}</span>
+                      <span>{userCheers > 0 ? format(t.leaderboardPreview.cheerButtonCount, { count: userCheers }) : t.leaderboardPreview.cheerButtonIdle}</span>
                     </button>
                   </div>
 
@@ -264,11 +276,11 @@ export default function PublicLeaderboardPreview() {
                   <p className="text-sm font-black text-white flex items-center gap-2">
                     <span>{selectedUser.name}</span>
                     <span className="text-[10px] font-extrabold bg-emerald-500 text-stone-950 px-2 py-0.5 rounded-full">
-                      Học viên tích cực
+                      {t.leaderboardPreview.activeLearnerBadge}
                     </span>
                   </p>
                   <p className="text-xs text-emerald-200 mt-0.5">
-                    Thành tích: {getMetricUnit(selectedUser.value)} · CFA Candidate
+                    {format(t.leaderboardPreview.achievementLine, { metric: getMetricUnit(selectedUser.value) })}
                   </p>
                 </div>
               </div>
@@ -279,13 +291,13 @@ export default function PublicLeaderboardPreview() {
                   className="px-3 py-1.5 rounded-xl bg-rose-500 hover:bg-rose-400 text-white text-xs font-black transition-colors cursor-pointer flex items-center gap-1.5"
                 >
                   <Heart className="w-3.5 h-3.5 fill-white" />
-                  <span>Cổ vũ (+{cheers[selectedUser.user_id] || 0})</span>
+                  <span>{format(t.leaderboardPreview.cheerActionLabel, { count: cheers[selectedUser.user_id] || 0 })}</span>
                 </button>
                 <button
                   onClick={() => setSelectedUser(null)}
                   className="px-3 py-1.5 rounded-xl bg-stone-800 hover:bg-stone-700 text-stone-300 text-xs font-bold transition-colors cursor-pointer"
                 >
-                  Đóng
+                  {t.leaderboardPreview.closeButton}
                 </button>
               </div>
             </motion.div>
@@ -339,7 +351,7 @@ export default function PublicLeaderboardPreview() {
                       ? "bg-rose-50 dark:bg-rose-950 border-rose-400 text-rose-500"
                       : "bg-stone-50 dark:bg-stone-900 border-stone-200 dark:border-stone-800 text-stone-400 hover:text-rose-500"
                   }`}
-                  title="Cổ vũ"
+                  title={t.leaderboardPreview.cheerShortTitle}
                 >
                   <Heart className={`w-3.5 h-3.5 ${isCheers ? "fill-rose-500" : ""}`} />
                 </button>
@@ -352,14 +364,14 @@ export default function PublicLeaderboardPreview() {
         <div className="pt-3 border-t border-stone-200/80 dark:border-stone-800 flex flex-wrap items-center justify-between gap-3 text-xs">
           <div className="flex items-center gap-2 text-stone-600 dark:text-stone-400 font-semibold">
             <UserCheck className="w-4 h-4 text-emerald-500" />
-            <span>Hơn 430+ học viên đang duy trì nhịp học mỗi ngày</span>
+            <span>{t.leaderboardPreview.footerActiveLearners}</span>
           </div>
 
           <Link
             href="/login?mode=signup"
             className="inline-flex items-center justify-center gap-2 rounded-2xl bg-stone-900 dark:bg-stone-100 hover:bg-stone-800 dark:hover:bg-white text-white dark:text-stone-900 px-5 py-2.5 font-black transition-all hover:scale-102 shadow-md cursor-pointer"
           >
-            <span>Vào học cùng cộng đồng</span>
+            <span>{t.leaderboardPreview.footerCta}</span>
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>

@@ -1,0 +1,150 @@
+{
+  "slug": "forward-contract-la-gi",
+  "title": "What Is a Forward Contract?",
+  "subtitle": "A commitment to buy/sell an asset at a price agreed today, settled in the future",
+  "openingQuestion": "A coffee farmer worries the price will fall by the time the harvest comes in 6 months. How does a forward contract help?",
+  "openingOptions": [
+    "It doesn't help since nobody can know future prices",
+    "Only banks are allowed to sign forward contracts",
+    "The farmer signs a contract to sell coffee at a fixed price today, delivering in 6 months - completely removing the risk of a price drop",
+    "It only helps if the price rises"
+  ],
+  "explanation": "A forward contract is a bilateral (OTC, off-exchange) agreement between two parties: a commitment to buy/sell an asset at a set price (the forward price) at a future date. Not standardized, flexible to the two parties' needs, but carrying the risk that the counterparty fails to honor the commitment (counterparty risk).",
+  "diagram": [
+    { "label": "Two parties agree today", "arrow": true },
+    { "label": "Fixed price, transaction happens in the future", "arrow": true },
+    { "label": "= Forward Contract (OTC, no exchange)" }
+  ],
+  "realWorldExample": {
+    "company": "A Vietnamese exporter",
+    "description": "A Vietnamese coffee exporter often signs a forward contract with a foreign importer to lock in a sale price before the harvest, avoiding volatility in the world coffee price."
+  },
+  "quiz": [
+    {
+      "question": "What is the biggest risk of a forward contract compared with futures?",
+      "options": [
+        "A forward is always more expensive than futures because each deal must be negotiated separately",
+        "A forward requires daily margin, tying up more capital",
+        "Higher counterparty risk - it is OTC, with no exchange guaranteeing performance",
+        "A forward cannot be used for commodities, only for currencies"
+      ],
+      "explanation": "A forward is an OTC (over-the-counter) contract - there is no exchange intermediary guaranteeing performance. If one party goes bankrupt or refuses to perform, the other side bears the loss."
+    },
+    {
+      "question": "Parties A and B sign a forward contract to buy/sell 100 tons of rice in 6 months at VND 15,000/kg. If after 6 months one party goes bankrupt and cannot honor the contract, what legal consequence does the other party face?",
+      "options": [
+        "The exchange will automatically compensate the injured party",
+        "Neither party bears any responsibility in this situation",
+        "The other party bears the loss and must pursue it through separate legal channels",
+        "There is no consequence because the contract automatically voids if one party goes bankrupt"
+      ],
+      "explanation": "This is exactly the core risk of a forward contract (OTC, off-exchange): there is no clearing house standing between the parties to guarantee performance."
+    },
+    {
+      "question": "Why do businesses still choose a forward despite the counterparty risk?",
+      "options": [
+        "Because it can be customized to the exact quantity and date needed",
+        "Because forward transaction fees are always much lower than exchange-traded futures",
+        "Because a regulator guarantees payment on forwards",
+        "Because a forward can be resold on the market at any time"
+      ],
+      "explanation": "Futures are standardized by lot size and expiration month, and rarely match a specific export transaction exactly. A forward matches the need precisely - and that is the most valuable thing when hedging one real transaction."
+    },
+    {
+      "question": "Locking in a sale of 1 million USD at 25,000. The rate at maturity is 24,000. What is the contract's result?",
+      "options": [
+        "A loss of VND 1 billion because the rate moved against the original prediction",
+        "A gain of VND 1 billion on the contract, offsetting the shortfall in revenue",
+        "No effect since the rate still stayed below the locked level",
+        "A gain of VND 24 billion, exactly equal to the contract's converted value"
+      ],
+      "explanation": "Selling at 25,000 when the market is only 24,000 gives a gain of 1,000 per USD. That gain exactly offsets the shortfall in USD revenue converted to VND - overall it still totals VND 25 billion as planned."
+    },
+    {
+      "question": "Why is it nearly impossible to exit a forward partway through?",
+      "options": [
+        "Because the cancellation fee is usually higher than the contract's value",
+        "Because law bans transferring bilateral derivative contracts",
+        "Because it is a private agreement with no secondary market",
+        "Because the counterparty must agree before closing the position early"
+      ],
+      "explanation": "Futures are closed with an offsetting order on the exchange. A forward is a contract between two specific parties - to exit, you must renegotiate with that exact counterparty, or sign an additional offsetting contract."
+    }
+  ],
+  "keyTakeaways": [
+    "Forward: a private (OTC) contract, locking in a buy/sell price for the future",
+    "Flexible terms but carries counterparty risk",
+    "Well-suited to a business's customized hedging needs"
+  ],
+  "practicePrompt": {
+    "question": "A Vietnamese coffee exporter signs a private agreement directly with a European importer, locking in a sale price of USD 2,000/ton for a shipment to be delivered in 6 months, without going through any exchange. What is this type of derivative contract called?",
+    "options": [
+      "This is called Futures, because the contract has fixed a specific price for a future point in time",
+      "Forward: a bilateral OTC contract locking in a buy/sell price, carrying counterparty risk",
+      "This is called an Option, because the company has a right but not an obligation to sell coffee at the agreed price",
+      "This is called a Swap, because the two parties are exchanging cash flows according to an agreed formula"
+    ],
+    "explanation": "Forward: a private (OTC) contract, locking in a buy/sell price for the future. Because it is a direct bilateral agreement (not through an exchange), a Forward is flexibly customized to each business's specific needs, but carries counterparty risk with no clearing house guarantee as Futures have."
+  },
+  "summary": {
+    "keyIdea": "Forward: a private (OTC) contract, locking in a buy/sell price for the future",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to real decisions.",
+    "action": "Flexible terms but carries counterparty risk"
+  },
+  "application": {
+    "title": "Distinguish a forward from an ordinary transaction",
+    "message": "Write down a real situation you might encounter (e.g. depositing to buy gold at today's price, receiving it in 1 month) and determine whether it carries the nature of a forward contract.",
+    "secondary": "The nature of a forward shows up more often in everyday life than you might think."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A forward contract is the most primitive form of derivative: two parties sit down and privately agree that they will buy/sell an asset at a fixed price (the forward price) at a future point in time. No exchange, no intermediary standing between them - just a promise between two parties."
+    },
+    { "type": "heading", "text": "Why businesses like forwards" },
+    {
+      "type": "paragraph",
+      "text": "A Vietnamese coffee exporter signs a forward to sell USD to a foreign importer before the harvest. Because it is a bilateral agreement, both parties can customize every term: exact quantity, exact delivery date, exact price to fit their real needs - not confined to the standardized numbers of an exchange."
+    },
+    { "type": "heading", "text": "The price of flexibility: counterparty risk" },
+    {
+      "type": "paragraph",
+      "text": "That flexibility comes with a large risk: there is no clearing house standing between the parties guaranteeing performance. If one party goes bankrupt or refuses to perform at maturity, the other side must bear the loss on its own - possibly having to buy/sell at the current market price (far less favorable than the agreed price) and then seek compensation through its own separate legal process, with no centralized protection mechanism stepping in."
+    },
+    {
+      "type": "formula",
+      "title": "At maturity, who gains and who loses",
+      "equation": "Seller's gain/loss = (Forward price − Market price at maturity) × Quantity",
+      "variables": [
+        { "symbol": "Forward price", "name": "The price locked in at signing", "description": "Fixed, unchanged for the life of the contract" },
+        { "symbol": "Market price", "name": "The spot price at maturity", "description": "Only known when that date arrives" }
+      ],
+      "example": {
+        "title": "A coffee exporter locks in the sale of 1 million USD at VND 25,000/USD",
+        "calculation": "VND appreciates to 24,000 → (25,000 − 24,000) × 1m = +VND 1 billion · VND depreciates to 26,000 → (25,000 − 26,000) × 1m = −VND 1 billion",
+        "result": "Converted revenue is always VND 25 billion",
+        "explanation": "The two scenarios produce opposite results on the contract, but added to the actual USD revenue the total is always the same. That is what the exporter wants: one number to build a plan around, not the largest possible number."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "What counterparty risk looks like",
+      "text": "Same example: VND depreciates to 26,000 and the buyer disappears. The exporter doesn't lose the full VND 25 billion - they still have 1 million USD to sell at the market price. What they lose is the VND 1 billion the contract should have offset, right when it was needed most. Counterparty risk always materializes on the losing side, because the losing party is the one with an incentive to walk away."
+    },
+    {
+      "type": "list",
+      "items": [
+        "OTC (over-the-counter): direct trading between two parties, no exchange",
+        "Not standardized: quantity, maturity date, price all customized to need",
+        "Counterparty risk: the risk one party fails to perform at maturity",
+        "Best suited to a business's customized hedging, less suited to a speculator needing high liquidity"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A forward trades flexibility for counterparty risk - this is exactly why futures were invented to solve this problem."
+      ]
+    }
+  ]
+}

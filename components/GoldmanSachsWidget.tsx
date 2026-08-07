@@ -1,11 +1,14 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Briefcase, Award, TrendingUp, DollarSign, Layers, CheckCircle2, Sparkles, Trophy } from "lucide-react";
 import { toast } from "sonner";
 import { addXpToUser } from "@/lib/supabase-progress";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
 interface GoldmanSachsWidgetProps {
   userId: string;
@@ -22,31 +25,35 @@ interface MACompany {
   recommendedPrice: number; // In million USD
 }
 
-const MA_DEALS: MACompany[] = [
-  {
-    id: "tech-corp",
-    name: "TechCloud AI Global",
-    ticker: "TCAI",
-    revenue: "240M USD",
-    ebitda: "45M USD",
-    evEbitdaMultiple: 12,
-    synergyPotential: "+15M USD tiết kiệm chi phí vận hành",
-    recommendedPrice: 540,
-  },
-  {
-    id: "retail-chain",
-    name: "VinMart Retail Chain",
-    ticker: "VMR",
-    revenue: "850M USD",
-    ebitda: "90M USD",
-    evEbitdaMultiple: 8,
-    synergyPotential: "+30M USD mở rộng chuỗi cung ứng",
-    recommendedPrice: 720,
-  },
-];
+function buildMaDeals(t: Dictionary): MACompany[] {
+  return [
+    {
+      id: "tech-corp",
+      name: "TechCloud AI Global",
+      ticker: "TCAI",
+      revenue: "240M USD",
+      ebitda: "45M USD",
+      evEbitdaMultiple: 12,
+      synergyPotential: t.goldmanWidget.synergyTechCorp,
+      recommendedPrice: 540,
+    },
+    {
+      id: "retail-chain",
+      name: "VinMart Retail Chain",
+      ticker: "VMR",
+      revenue: "850M USD",
+      ebitda: "90M USD",
+      evEbitdaMultiple: 8,
+      synergyPotential: t.goldmanWidget.synergyRetailChain,
+      recommendedPrice: 720,
+    },
+  ];
+}
 
 export default function GoldmanSachsWidget({ userId }: GoldmanSachsWidgetProps) {
-  const [selectedDeal, setSelectedDeal] = useState<MACompany>(MA_DEALS[0]);
+  const { t } = useI18n();
+  const maDeals = useMemo(() => buildMaDeals(t), [t]);
+  const [selectedDeal, setSelectedDeal] = useState<MACompany>(maDeals[0]);
   const [userOffer, setUserOffer] = useState<number>(540);
   const [pitchSubmitted, setPitchSubmitted] = useState<boolean>(false);
   const [score, setScore] = useState<number | null>(null);
@@ -64,10 +71,10 @@ export default function GoldmanSachsWidget({ userId }: GoldmanSachsWidgetProps) 
     setPitchSubmitted(true);
 
     if (dealScore >= 80) {
-      toast.success(`🎉 DEAL M&A THÀNH CÔNG RỰC RỠ! Bạn đạt ${dealScore}/100 điểm, nhận +120 XP & 80 Coins!`);
+      toast.success(format(t.goldmanWidget.toastSuccess, { score: dealScore }));
       if (userId) void addXpToUser(userId, 120);
     } else {
-      toast.info(`Deal hoàn tất với ${dealScore}/100 điểm. Định giá hơi lệch so với mức cân bằng thị trường!`);
+      toast.info(format(t.goldmanWidget.toastPartial, { score: dealScore }));
     }
   };
 
@@ -77,26 +84,26 @@ export default function GoldmanSachsWidget({ userId }: GoldmanSachsWidgetProps) 
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-800">
         <div className="flex items-center gap-3">
           <div className="w-14 h-14 rounded-2xl overflow-hidden relative border-2 border-sky-400 shadow-md shrink-0">
-            <Image src="/rpg/goldman_sachs.png" alt="Goldman Sachs HQ" fill className="object-cover" />
+            <Image src="/rpg/goldman_sachs.png" alt={t.goldmanWidget.hqAlt} fill className="object-cover" />
           </div>
           <div>
             <div className="flex items-center gap-2">
               <span className="text-[10px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full bg-sky-500/20 text-sky-400 border border-sky-500/40">
-                🏛️ GOLDMAN SACHS WALL ST.
+                {t.goldmanWidget.orgBadge}
               </span>
               <span className="text-[10px] font-black uppercase px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/40">
-                ⭐ INVESTMENT BANKING
+                {t.goldmanWidget.trackBadge}
               </span>
             </div>
-            <h3 className="text-xl font-extrabold text-white mt-1">Tập Đoàn Goldman Sachs Investment Bank</h3>
-            <p className="text-xs text-slate-400">Đấu Trường M&A Dealmaking, Định Giá Doanh Nghiệp & IPO Pitching</p>
+            <h3 className="text-xl font-extrabold text-white mt-1">{t.goldmanWidget.orgTitle}</h3>
+            <p className="text-xs text-slate-400">{t.goldmanWidget.orgSubtitle}</p>
           </div>
         </div>
       </div>
 
       {/* Select Deal */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        {MA_DEALS.map((deal) => (
+        {maDeals.map((deal) => (
           <div
             key={deal.id}
             onClick={() => {
@@ -112,8 +119,8 @@ export default function GoldmanSachsWidget({ userId }: GoldmanSachsWidgetProps) 
             }`}
           >
             <div className="flex items-center justify-between">
-              <span className="text-xs font-black uppercase text-sky-400 tracking-wider">M&A CASE #{deal.ticker}</span>
-              <span className="text-xs font-bold text-slate-400">EBITDA: {deal.ebitda}</span>
+              <span className="text-xs font-black uppercase text-sky-400 tracking-wider">{format(t.goldmanWidget.dealCase, { ticker: deal.ticker })}</span>
+              <span className="text-xs font-bold text-slate-400">{format(t.goldmanWidget.dealEbitda, { ebitda: deal.ebitda })}</span>
             </div>
             <h4 className="text-base font-extrabold text-white mt-1">{deal.name}</h4>
             <p className="text-xs text-slate-400 mt-1">{deal.synergyPotential}</p>
@@ -125,18 +132,18 @@ export default function GoldmanSachsWidget({ userId }: GoldmanSachsWidgetProps) 
       <div className="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-4">
         <div className="flex items-center justify-between border-b border-slate-800 pb-3">
           <div>
-            <h4 className="text-sm font-extrabold text-white">Định Giá Thương Vụ: {selectedDeal.name}</h4>
-            <p className="text-xs text-slate-400 mt-0.5">Mẫu số bội số EV/EBITDA ngành: {selectedDeal.evEbitdaMultiple}x</p>
+            <h4 className="text-sm font-extrabold text-white">{format(t.goldmanWidget.valuationTitle, { name: selectedDeal.name })}</h4>
+            <p className="text-xs text-slate-400 mt-0.5">{format(t.goldmanWidget.valuationMultiple, { multiple: selectedDeal.evEbitdaMultiple })}</p>
           </div>
           <span className="text-xs font-mono font-bold text-emerald-400 bg-emerald-950/60 px-3 py-1 rounded-full border border-emerald-500/30">
-            Doanh thu: {selectedDeal.revenue}
+            {format(t.goldmanWidget.revenueBadge, { revenue: selectedDeal.revenue })}
           </span>
         </div>
 
         <div className="space-y-3">
           <div className="flex items-center justify-between text-xs font-bold">
-            <span className="text-slate-300">Đưa ra mức giá chào mua (Enterprise Value Pitch):</span>
-            <span className="text-sky-400 font-mono text-base font-black">{userOffer} Triệu USD</span>
+            <span className="text-slate-300">{t.goldmanWidget.pitchLabel}</span>
+            <span className="text-sky-400 font-mono text-base font-black">{format(t.goldmanWidget.pitchValue, { price: userOffer })}</span>
           </div>
 
           <input
@@ -156,18 +163,18 @@ export default function GoldmanSachsWidget({ userId }: GoldmanSachsWidgetProps) 
             className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-sky-500 hover:bg-sky-400 font-extrabold text-xs text-slate-950 transition-all shadow-md cursor-pointer flex items-center justify-center gap-2"
           >
             <Sparkles className="w-4 h-4" />
-            <span>Nộp Báo Cáo Thuyết Minh M&A (Pitch Deal)</span>
+            <span>{t.goldmanWidget.submitPitchButton}</span>
           </button>
         </div>
 
         {pitchSubmitted && score !== null && (
           <div className="p-4 rounded-xl bg-slate-900 border border-sky-500/40 text-xs space-y-2 mt-4">
             <div className="flex items-center justify-between">
-              <span className="font-extrabold text-sky-300 uppercase tracking-wider">Đánh Giá Hội Đồng Goldman Sachs:</span>
-              <span className="font-black text-emerald-400 text-sm">{score}/100 Điểm</span>
+              <span className="font-extrabold text-sky-300 uppercase tracking-wider">{t.goldmanWidget.reviewLabel}</span>
+              <span className="font-black text-emerald-400 text-sm">{format(t.goldmanWidget.reviewScore, { score })}</span>
             </div>
             <p className="text-slate-300 leading-relaxed">
-              Mức giá định giá hợp lý của thương vụ dựa trên phương pháp EV/EBITDA chuẩn là ~<strong>{selectedDeal.recommendedPrice} Million USD</strong>.
+              {t.goldmanWidget.reviewNotePart1}<strong>{format(t.goldmanWidget.reviewAmount, { price: selectedDeal.recommendedPrice })}</strong>{t.goldmanWidget.reviewNotePart2}
             </p>
           </div>
         )}

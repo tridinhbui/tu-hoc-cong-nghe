@@ -1,0 +1,173 @@
+{
+  "slug": "tai-san-trong-ke-toan",
+  "title": "What is an asset in accounting?",
+  "subtitle": "Current assets, non-current assets, and how they create value",
+  "duration": "6 min",
+  "openingQuestion": "Which of the following is NOT an asset on the balance sheet?",
+  "openingOptions": [
+    "Machinery and equipment",
+    "Cash",
+    "Inventory",
+    "Unrecognised brand reputation"
+  ],
+  "explanation": "An item is only recognised as an asset when the business controls it, it promises future economic benefit, and its value can be measured reliably. That third condition is where the biggest gap opens up between the books and reality: a self-built brand, a great team, or a loyal customer base all generate money but have no clear original cost, so they don't appear on the balance sheet.",
+  "diagram": [
+    { "label": "Does the business control this resource?", "arrow": true },
+    { "label": "Does it promise future economic benefit?", "arrow": true },
+    { "label": "Can it be reliably measured in money?", "arrow": true },
+    { "label": "Only if all three hold is it recognised as an asset" }
+  ],
+  "realWorldExample": {
+    "company": "Vinamilk",
+    "description": "Vinamilk recognises its dairy plants and production lines as long-term assets worth tens of thousands of billions of dong, while cash and finished-goods inventory are classified as current assets - the asset mix reflects the capital-intensive nature of manufacturing."
+  },
+  "quiz": [
+    {
+      "question": "Which of the following is NOT recognised as an asset on the balance sheet?",
+      "options": [
+        "Accounts receivable from customers",
+        "The CEO's management ability",
+        "Real estate held for lease",
+        "Manufacturing machinery"
+      ],
+      "explanation": "Management ability and staff experience aren't recognised because they can't be measured objectively in money. Only assets measurable at historical cost or market value are recognised."
+    },
+    {
+      "question": "Why is inventory classified as a current asset rather than a non-current one?",
+      "options": [
+        "Because inventory is recognised at market value rather than at cost",
+        "Because inventory value is usually smaller than a company's fixed assets",
+        "Because the business expects to sell it all within a year or one operating cycle",
+        "Because inventory isn't subject to depreciation the way machinery and plants are"
+      ],
+      "explanation": "Current assets are whatever can be converted to cash within 12 months. In retail, inventory turns over fast (high turnover), so it's a current asset."
+    },
+    {
+      "question": "If a company buys a software licence worth 100 million to use for 5 years, how is this recognised?",
+      "options": [
+        "A current asset, since the software can be put into use immediately",
+        "A tangible non-current asset, depreciated on a declining basis",
+        "The full 100 million expensed on the income statement right at the time of purchase",
+        "An intangible non-current asset, amortised gradually over 5 years"
+      ],
+      "explanation": "A software licence is an intangible non-current asset. Because it has a defined useful life, it is amortised gradually over 5 years, 20 million per year."
+    },
+    {
+      "question": "What distinguishes tangible from intangible assets?",
+      "options": [
+        "Tangible assets have physical form, intangible assets do not",
+        "Intangible assets are revalued every year, tangible assets keep their original cost",
+        "Tangible assets must be depreciated, intangible ones never are",
+        "Tangible assets are always current, intangible assets are always non-current"
+      ],
+      "explanation": "The key difference is physical nature. Intangible assets (acquired from outside) are recognised if there is a clear original cost."
+    },
+    {
+      "question": "A company's assets grew from 1,000 billion last year to 1,200 billion this year. Is that definitely good?",
+      "options": [
+        "No - assets growing faster than revenue is always a sign of fraudulent books",
+        "Not necessarily - it depends on whether assets grew via equity or via more debt",
+        "Yes - proof the company has expanded successfully",
+        "Yes - as total assets rise, the return on assets rises with them"
+      ],
+      "explanation": "Assets = Liabilities + Equity. Rising assets need to be checked: is it equity growing (from profit) or debt growing (borrowing)? Rising debt without improving ROA is not good."
+    },
+    {
+      "question": "A factory cost 500 billion to build, with a 50-year life. After 10 years, what is its book value?",
+      "options": [
+        "450 billion (= 500 − 500 ÷ 10, dividing by the wrong number of years)",
+        "100 billion (= 500 ÷ 50 × 10, mistakenly taking the depreciation portion)",
+        "400 billion (= 500 − 10 billion/year × 10 years)",
+        "500 billion (depreciation not yet deducted)"
+      ],
+      "explanation": "Book value = Original cost - Accumulated depreciation. Annual depreciation = 500 billion ÷ 50 years = 10 billion/year. After 10 years = 10 × 10 = 100 billion of depreciation. Remaining book value = 500 - 100 = 400 billion."
+    },
+    {
+      "question": "Why is a company's market value often higher than the total book value of its assets?",
+      "options": [
+        "Because accounting has already added expected profit into the figure",
+        "Because accounting standards require assets to be recorded 20% below market price",
+        "Because market value is computed as total assets before deducting debt",
+        "Because accounting records at cost and ignores self-created intangible assets"
+      ],
+      "explanation": "Market value = Book value + the value of unrecognised intangible assets + the future value of profit. Accounting is conservative, so book value is usually lower than market value."
+    }
+  ],
+  "keyTakeaways": [
+    "Assets = what a business owns and controls",
+    "Current assets: convertible to cash within 12 months",
+    "Non-current assets: provide benefit over many years, usually depreciated gradually"
+  ],
+  "practicePrompt": {
+    "question": "A tech startup spends 2 billion building a strong engineering team and company culture over 3 years - something competitors find hard to copy. Why does this '2-billion worth of people' not appear on the balance sheet as an asset?",
+    "options": [
+      "Because accounting only recognises what a company owns and controls with a value that can be objectively measured in money - team capability doesn't meet this criterion, despite being genuinely valuable",
+      "Because the company deliberately hid this asset to reduce the tax it owes the state",
+      "Because Vietnamese accounting law hasn't yet been updated to reflect newly emerging types of technology assets",
+      "Because this is actually a wasted expense that created no real value for the company at all"
+    ],
+    "explanation": "An asset is only recognised when a company owns/controls it and its value can be objectively measured in money (historical cost or market value). Team capability and company culture are real intangible assets but don't meet the measurement criterion, so they don't appear on the balance sheet - this is exactly why a company's market value is usually higher than its book value."
+  },
+  "summary": {
+    "keyIdea": "Assets = what a business owns and controls",
+    "commonMistake": "Reading a concept as a phrase to memorise rather than a principle to apply to real decisions.",
+    "action": "Current assets: convertible to cash within 12 months"
+  },
+  "application": {
+    "title": "List the assets you actually control",
+    "message": "Write down what you consider to be your own 'assets', then ask of each one: does it bring a measurable future benefit in money, or is it just a feeling of ownership?",
+    "secondary": "Some things you think of as assets may not meet the accounting definition - and that's fine too."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Vinamilk's dairy plant, worth tens of thousands of billions of dong, is an asset. The 'Vinamilk' brand - the thing that has earned consumer trust for nearly 50 years - doesn't appear as a separate figure on the balance sheet. Why this strange difference?"
+    },
+    { "type": "heading", "text": "The definition of an asset in accounting" },
+    {
+      "type": "paragraph",
+      "text": "An item is recognised as an Asset when it satisfies three conditions: (1) the business controls the resource, (2) the resource is expected to bring future economic benefit, and (3) its value can be reliably measured in money - usually based on the cost incurred to obtain it (historical cost). This is why a self-built brand, however valuable on the market, isn't recognised: there's no clear 'purchase invoice' to value it under accounting's prudence principle."
+    },
+    { "type": "heading", "text": "Two groups of assets: current and non-current" },
+    {
+      "type": "paragraph",
+      "text": "Current Assets are resources expected to convert into cash or be used up within 12 months: cash, accounts receivable, inventory. Non-current/Fixed Assets bring benefit over many years: plants, machinery, equipment, land-use rights, intangible assets such as acquired patents or software."
+    },
+    {
+      "type": "paragraph",
+      "text": "The asset mix clearly reflects industry characteristics: a capital-intensive manufacturer like Vinamilk or Hoa Phat has a very large proportion of non-current assets (plants, production lines), while a services/tech company like FPT has a relatively higher proportion of current and intangible assets."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Cash and cash equivalents",
+        "Accounts receivable",
+        "Inventory",
+        "Property, plant, machinery and equipment (PP&E)",
+        "Acquired intangible assets: patents, licensed software, goodwill from acquiring another company"
+      ]
+    },
+    {
+      "type": "conceptTable",
+      "title": "Asset terminology",
+      "concepts": [
+        { "vi": "Tài sản", "en": "Asset", "def": "An economic resource controlled by the business, expected to bring future benefit, measurable in money." },
+        { "vi": "Tài sản ngắn hạn", "en": "Current Assets", "def": "Converted to cash or used up within 12 months." },
+        { "vi": "Tài sản dài hạn", "en": "Non-current Assets / Fixed Assets", "def": "Provide economic benefit over many years, usually depreciated gradually." },
+        { "vi": "Nguyên giá lịch sử", "en": "Historical Cost", "def": "The value at which an asset is recognised, based on the actual cost incurred to acquire it, not its current market price." }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "What investors should remember",
+      "text": "The book value of assets on the balance sheet is often lower than a business's true market value, especially for companies with a strong brand, great talent, or a good market position - things that cannot be recognised under accounting's prudence principle."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "An asset in accounting is what can be measured in money and controlled, not everything of value.",
+        "Correctly reading a company's asset mix helps you understand the capital nature of each industry."
+      ]
+    }
+  ]
+}

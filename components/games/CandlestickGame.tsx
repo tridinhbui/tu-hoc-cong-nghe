@@ -1,25 +1,28 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import { TrendingUp, TrendingDown, Clock, Trophy, RefreshCw, ChevronLeft } from "lucide-react";
 import { toast } from "sonner";
 import GoldCoinIcon from "@/components/GoldCoinIcon";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
 interface CandlestickQuestion {
   id: number;
+  patternKey: "hammer" | "bullishEngulfing" | "shootingStar";
   patternName: string;
   trend: "bullish" | "bearish";
   description: string;
   candles: { type: "green" | "red"; height: number; wickTop: number; wickBottom: number }[];
 }
 
-const PATTERNS: CandlestickQuestion[] = [
+const PATTERN_DATA: { id: number; patternKey: CandlestickQuestion["patternKey"]; trend: "bullish" | "bearish"; candles: CandlestickQuestion["candles"] }[] = [
   {
     id: 1,
-    patternName: "Mô hình Nến Búa (Hammer Candle)",
+    patternKey: "hammer",
     trend: "bullish",
-    description: "Thân nhỏ ở trên, bóng nến dưới dài gấp 2-3 lần thân. Tín hiệu đảo chiều tăng giá mạnh!",
     candles: [
       { type: "red", height: 40, wickTop: 5, wickBottom: 15 },
       { type: "red", height: 30, wickTop: 5, wickBottom: 20 },
@@ -28,9 +31,8 @@ const PATTERNS: CandlestickQuestion[] = [
   },
   {
     id: 2,
-    patternName: "Mô hình Nến Nhấn Chìm Tăng (Bullish Engulfing)",
+    patternKey: "bullishEngulfing",
     trend: "bullish",
-    description: "Nến xanh lớn bao trùm toàn bộ nến đỏ phía trước. Phe Mua áp đảo hoàn toàn phe Bán!",
     candles: [
       { type: "red", height: 30, wickTop: 10, wickBottom: 10 },
       { type: "green", height: 75, wickTop: 8, wickBottom: 8 },
@@ -38,9 +40,8 @@ const PATTERNS: CandlestickQuestion[] = [
   },
   {
     id: 3,
-    patternName: "Mô hình Nến Sao Băng (Shooting Star)",
+    patternKey: "shootingStar",
     trend: "bearish",
-    description: "Bóng nến trên dài ngoằng, thân nhỏ ở dưới. Tín hiệu đảo chiều giảm giá khốc liệt!",
     candles: [
       { type: "green", height: 45, wickTop: 10, wickBottom: 5 },
       { type: "red", height: 20, wickTop: 65, wickBottom: 5 },
@@ -48,7 +49,19 @@ const PATTERNS: CandlestickQuestion[] = [
   },
 ];
 
+function buildPatterns(t: Dictionary): CandlestickQuestion[] {
+  const p = t.games.candlestick.patterns;
+  return PATTERN_DATA.map((d) => ({
+    ...d,
+    patternName: p[d.patternKey].name,
+    description: p[d.patternKey].description,
+  }));
+}
+
 export default function CandlestickGame({ onBack, completedLessonIds = [] }: { onBack?: () => void; completedLessonIds?: number[] }) {
+  const { t } = useI18n();
+  const cs = t.games.candlestick;
+  const PATTERNS = useMemo(() => buildPatterns(t), [t]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [streak, setStreak] = useState(0);
@@ -61,10 +74,10 @@ export default function CandlestickGame({ onBack, completedLessonIds = [] }: { o
       const addedScore = 50 + streak * 10;
       setScore((s) => s + addedScore);
       setStreak((s) => s + 1);
-      toast.success(`📈 CHÍNH XÁC! +${addedScore} ĐIỂM (${currentQ.patternName})`);
+      toast.success(format(cs.toastCorrect, { points: addedScore, pattern: currentQ.patternName }));
     } else {
       setStreak(0);
-      toast.error(`📉 SAI RỒI! ${currentQ.patternName} báo hiệu ${currentQ.trend === "bullish" ? "TĂNG GIÁ 📈" : "GIẢM GIÁ 📉"}`);
+      toast.error(format(cs.toastWrong, { pattern: currentQ.patternName, direction: currentQ.trend === "bullish" ? cs.bullishDirection : cs.bearishDirection }));
     }
 
     if (currentIndex < PATTERNS.length - 1) {
@@ -89,22 +102,22 @@ export default function CandlestickGame({ onBack, completedLessonIds = [] }: { o
             onClick={onBack}
             className="flex items-center gap-1 text-xs font-black text-stone-600 hover:text-amber-600 cursor-pointer"
           >
-            <ChevronLeft className="w-4 h-4" /> Bản Đồ
+            <ChevronLeft className="w-4 h-4" /> {cs.backButton}
           </button>
         )}
         <div className="text-center flex-1">
           <span className="text-[10px] font-black uppercase tracking-widest text-amber-600 bg-amber-50 px-3 py-1 rounded-full border border-amber-200">
-            📊 NYSE Central District
+            {cs.districtBadge}
           </span>
           <h2 className="text-xl font-black text-stone-900 mt-1">
-            Sàn Giao Dịch Nến Nhật 10S
+            {cs.title}
           </h2>
           <p className="text-[10px] font-bold text-amber-700 mt-0.5">
-            🎯 Đồng bộ với {completedLessonIds.length} bài học Phân Tích Kỹ Thuật của bạn
+            {format(cs.syncNote, { count: completedLessonIds.length })}
           </p>
         </div>
         <div className="flex items-center gap-1 font-black text-amber-600 text-sm">
-          <GoldCoinIcon className="w-4 h-4" /> {score} pts
+          <GoldCoinIcon className="w-4 h-4" /> {format(cs.pointsLabel, { score })}
         </div>
       </div>
 
@@ -148,13 +161,13 @@ export default function CandlestickGame({ onBack, completedLessonIds = [] }: { o
               onClick={() => handleGuess("bullish")}
               className="py-4 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-black text-base shadow-lg shadow-emerald-500/25 hover:scale-105 transition-all flex items-center justify-center gap-2 cursor-pointer"
             >
-              <TrendingUp className="w-5 h-5" /> TĂNG GIÁ (BULLISH 📈)
+              <TrendingUp className="w-5 h-5" /> {cs.bullishButton}
             </button>
             <button
               onClick={() => handleGuess("bearish")}
               className="py-4 rounded-2xl bg-gradient-to-r from-rose-500 to-red-600 text-white font-black text-base shadow-lg shadow-rose-500/25 hover:scale-105 transition-all flex items-center justify-center gap-2 cursor-pointer"
             >
-              <TrendingDown className="w-5 h-5" /> GIẢM GIÁ (BEARISH 📉)
+              <TrendingDown className="w-5 h-5" /> {cs.bearishButton}
             </button>
           </div>
         </div>
@@ -162,16 +175,16 @@ export default function CandlestickGame({ onBack, completedLessonIds = [] }: { o
         <div className="text-center py-8 space-y-4">
           <Trophy className="w-16 h-16 text-amber-500 mx-auto animate-bounce" />
           <h3 className="text-2xl font-black text-stone-900">
-            HOÀN THÀNH PHIÊN TRADING!
+            {cs.finishedTitle}
           </h3>
           <p className="text-sm font-bold text-amber-600">
-            Tổng điểm đạt được: {score} XP & Coins!
+            {format(cs.finishedScore, { score })}
           </p>
           <button
             onClick={handleRestart}
             className="px-6 py-3 rounded-2xl bg-amber-500 text-white font-black text-sm hover:scale-105 transition-all flex items-center gap-2 mx-auto cursor-pointer shadow-md"
           >
-            <RefreshCw className="w-4 h-4" /> Chơi Lại Phiên Mới
+            <RefreshCw className="w-4 h-4" /> {cs.restartButton}
           </button>
         </div>
       )}

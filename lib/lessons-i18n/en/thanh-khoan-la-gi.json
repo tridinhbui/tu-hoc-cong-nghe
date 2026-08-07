@@ -1,0 +1,137 @@
+{
+  "slug": "thanh-khoan-la-gi",
+  "title": "What is liquidity? Assets that sell easily, and assets that don't.",
+  "subtitle": "Liquidity is the ability to turn an asset into cash quickly without losing much value.",
+  "duration": "6 min",
+  "openingQuestion": "You need 500 million urgently within 24 hours. You hold 600 million in listed stocks and 600 million in a plot of land. Which do you use?",
+  "openingOptions": [
+    "The land, because it's worth more than the stocks",
+    "Neither, because both need more time than that",
+    "Either one, since both are worth 600 million",
+    "The stocks, because they can be sold during the trading session and paid out within a few days"
+  ],
+  "explanation": "Liquidity is the ability to sell quickly without having to cut the price much. Listed stocks sell within a trading session and the money lands a few days later; a plot of land can take months to find a buyer. This isn't just about convenience: an illiquid asset must pay a higher return to compensate you for being locked in, and its book value is only an estimate until someone actually pays for it.",
+  "diagram": [
+    { "label": "You need to sell an asset to get cash" },
+    { "label": "Is a buyer ready at the market price?" },
+    { "label": "Yes: sell fast, with almost no loss of value" },
+    { "label": "No: cut the price or wait - that is the cost of illiquidity" }
+  ],
+  "realWorldExample": {
+    "company": "The 2008 crisis",
+    "description": "Many funds held large amounts of mortgage-backed securities they thought were safe. When the market collapsed, nobody would buy, liquidity fell to zero, and funds went under even though the assets still had theoretical value."
+  },
+  "quiz": [
+    {
+      "question": "What is a liquidity premium?",
+      "options": [
+        "A reward for trading in large volumes",
+        "An extra return that compensates for an asset being hard to sell",
+        "The mandatory reserve ratio a bank must hold",
+        "An extra fee paid to have a payment processed faster"
+      ],
+      "explanation": "An illiquid asset must offer a higher return to compensate investors. Land pays a higher yield than large-cap stocks partly because it is harder to sell. This is the liquidity premium."
+    },
+    {
+      "question": "How does a bank manage its liquidity?",
+      "options": [
+        "By keeping every deposit it raises locked in a vault, never lending or investing any of it",
+        "By only making loans shorter than 1 year, so capital is always recovered in time when needed",
+        "By maintaining a required reserve ratio and a portfolio of assets that can be sold quickly when needed",
+        "By not actively managing it at all, since the State Bank guarantees against every risk"
+      ],
+      "explanation": "A bank raises short-term money (savings deposits) but lends it out long-term (mortgages). Liquidity risk arises when many depositors withdraw at once (a bank run). Reserves and highly liquid assets are the first line of defence."
+    },
+    {
+      "question": "Scenario: You have 2 billion VND to invest for 5 years. Option A: cheap suburban land, expected to appreciate 15% a year but very hard to sell, possibly taking 1-2 years to find a buyer. Option B: listed blue-chip stocks, expected to appreciate 10% a year but sellable on any given day. If you might need the money urgently at any point, which option fits better?",
+      "options": [
+        "B, because its high liquidity lets you sell the moment you need to",
+        "A, because its expected return is 5 percentage points higher a year",
+        "Split 50-50 to balance return and liquidity",
+        "Neither fits, because both carry too much risk"
+      ],
+      "explanation": "If you might need cash urgently, liquidity matters more than expected return. Illiquid land might not sell at all when you need it, creating financial pressure. Stocks can be sold within days, giving far more flexibility for an unforeseen need."
+    },
+    {
+      "question": "Why do remote plots of land usually have to promise a higher yield than a downtown apartment?",
+      "options": [
+        "Because they're illiquid, and that has to be offset with a liquidity premium",
+        "Because land prices always swing more sharply than apartment prices",
+        "Because the cost of owning land is far higher than owning an apartment",
+        "Because banks won't accept land as collateral for a loan"
+      ],
+      "explanation": "A hard-to-sell asset has to pay extra to attract a buyer - that's the liquidity premium. That extra payment isn't a free lunch: right when you need cash urgently, the hard-to-sell asset will only move at a heavily discounted price."
+    },
+    {
+      "question": "Scenario: You are certain you'll need this money in exactly 6 months. Which channel makes the most sense?",
+      "options": [
+        "Land, because 6 months is enough time for a good price gain",
+        "A short-term time deposit, withdrawn exactly when needed",
+        "Stocks, because they offer the highest expected return",
+        "A 10-year bond, because its interest rate is fixed"
+      ],
+      "explanation": "When the moment you'll need the money is known and close at hand, the only criterion is being certain the cash is there on that exact day. Stocks could well be down 20% the very week you need to sell, and selling a long-term bond or land early always means taking a loss on price."
+    }
+  ],
+  "keyTakeaways": [
+    "Liquidity: the ability to sell quickly without losing much value",
+    "Liquidity premium: an illiquid asset must pay a higher yield",
+    "Always keep some assets in a highly liquid form for emergencies"
+  ],
+  "practicePrompt": {
+    "question": "You've just learned your parents urgently need 300 million for surgery within the next 3 days. You have 300 million in a private corporate bond fund (usually taking 2-3 weeks to redeem) and 300 million in listed stocks. Where should you withdraw from?",
+    "options": [
+      "From the listed stocks, since they can be sold and paid out within a few trading days, matching the urgent need",
+      "From the corporate bond fund, since bonds are always safer than stocks in any emergency",
+      "It doesn't matter which, since both are worth 300 million right now",
+      "Take out a bank loan secured against both assets, since that's always the fastest option in any case"
+    ],
+    "explanation": "Even at equal value, their liquidity differs: listed stocks can be sold within a few days, while a private corporate bond fund needs 2-3 weeks - too slow for a 3-day urgent need."
+  },
+  "summary": {
+    "keyIdea": "Liquidity: the ability to sell quickly without losing much value",
+    "commonMistake": "Reading the concept as a phrase to memorise rather than a principle to apply to a real decision.",
+    "action": "Liquidity premium: an illiquid asset must pay a higher yield"
+  },
+  "application": {
+    "title": "Rank your own assets by liquidity",
+    "message": "List every asset you hold (cash, savings, stocks, land, gold...) and rank them from easiest to sell to hardest to sell within 24 hours.",
+    "secondary": "If most of your assets sit at the bottom of that list, you may be short on a liquidity buffer."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "You urgently need 500 million within 24 hours. You hold listed stocks worth 600 million and a plot of land worth 600 million. Equal value on paper, but only one of the two can actually help you right now."
+    },
+    { "type": "heading", "text": "What is liquidity?" },
+    {
+      "type": "paragraph",
+      "text": "Liquidity is the ability to convert an asset into cash quickly without having to sell it at a significantly reduced price. Two assets can carry the exact same market value, yet differ entirely in how fast and how cheaply they can be sold when needed urgently."
+    },
+    { "type": "heading", "text": "Why are stocks more liquid than land?" },
+    {
+      "type": "paragraph",
+      "text": "Listed stocks trade on a centralised, price-transparent market with near-instant matching - place a sell order today, and the money usually lands in your account 2 working days later (T+2). Land has to go through finding a buyer, negotiating a price, notarisation, transferring the title - a process that usually takes weeks to months, and if you really need to sell fast, the buyer will know it and push the price down much further."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Liquidity: the ability to sell quickly without losing much value relative to a fair market price",
+        "Liquidity premium: illiquid assets (real estate, private company shares) usually need to offer a higher expected yield to compensate for the inconvenience of needing cash urgently",
+        "Listed stocks, bank deposits: highly liquid",
+        "Real estate, unlisted company shares: illiquid"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "A rule for managing personal assets",
+      "text": "Always keep a portion of your assets in a highly liquid form (cash, short-term savings, an emergency fund) sufficient to cover an unexpected need, rather than putting everything into assets with high return potential but that are hard to sell in a hurry."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "When building a portfolio, don't only look at expected return - always ask as well: 'if I needed cash urgently, would this asset actually be able to help me?'"
+      ]
+    }
+  ]
+}

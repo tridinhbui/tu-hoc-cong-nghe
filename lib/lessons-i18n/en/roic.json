@@ -1,0 +1,171 @@
+{
+  "slug": "roic",
+  "title": "Deep-dive case: ROIC",
+  "subtitle": "Return on Invested Capital - measuring genuine value creation",
+  "duration": "7 min",
+  "openingQuestion": "ROIC = NOPAT / Invested Capital. Why is ROIC better than ROE for assessing performance?",
+  "openingOptions": [
+    "ROIC is always higher than ROE",
+    "ROIC isn't distorted by leverage",
+    "ROIC is easier to calculate",
+    "ROIC is only used for banks"
+  ],
+  "explanation": "ROIC takes after-tax operating profit and divides it by all the capital being used in the business, debt and equity alike. Because it sits on top of both funding sources, it isn't distorted by leverage the way ROE is - a business can push its ROE up simply by borrowing more, while ROIC doesn't budge. Set alongside WACC, ROIC answers the question that matters most: does each unit of capital put in produce more than what it cost to obtain?",
+  "diagram": [
+    { "label": "NOPAT" },
+    { "label": "Divided by invested capital" },
+    { "label": "Compared against WACC" },
+    { "label": "Gives the value added" }
+  ],
+  "realWorldExample": {
+    "company": "Two businesses with the same 20% ROE",
+    "description": "Business A has a 20% ROE with very little debt; business B also has a 20% ROE, but equity is only a third of its total funding and the rest is borrowed. On ROE the two look identical. On ROIC the gap appears: A generates that return on all the capital it uses, while B is amplifying a weaker core return with leverage. When rates rise or revenue falls, B is hit far harder - leverage amplifies in both directions, not only on the way up."
+  },
+  "quiz": [
+    {
+      "question": "What does ROIC > WACC usually imply?",
+      "options": [
+        "The business is destroying value",
+        "The business has no need to grow",
+        "The share price is certain to rise",
+        "The business is creating value"
+      ],
+      "explanation": "When the return on invested capital exceeds the cost of capital, the company is adding value."
+    },
+    {
+      "question": "If ROIC rises while growth stays the same, what usually follows?",
+      "options": [
+        "Higher FCF",
+        "Lower FCF",
+        "Debt rises automatically",
+        "Gross margin falls"
+      ],
+      "explanation": "A higher ROIC means less reinvestment is needed to achieve the same growth, so free cash flow rises."
+    },
+    {
+      "question": "Two businesses both have a 20% ROE, but their ROIC figures are 18% and 9%. What does that tell you?",
+      "options": [
+        "The two are of equal quality, since their ROE is the same",
+        "The 9% ROIC business leans heavily on leverage to reach the same ROE, so it is riskier when rates rise",
+        "The 9% ROIC business has better earnings quality",
+        "A ROIC below ROE is a sign of an accounting error"
+      ],
+      "explanation": "The gap between ROE and ROIC is precisely what financial leverage contributed. The wider the gap, the more the ROE depends on borrowing rather than on operating performance."
+    },
+    {
+      "question": "Why does NOPAT use EBIT rather than ordinary profit after tax?",
+      "options": [
+        "Because profit after tax isn't disclosed in the statements",
+        "Because EBIT is always larger, so the ratio looks better",
+        "Because EBIT is before interest, so the numerator isn't affected by how the business is funded",
+        "Because the accounting standards require it"
+      ],
+      "explanation": "ROIC's denominator includes debt, so its numerator has to be the profit belonging to lenders and shareholders alike - that is, before interest. Keeping numerator and denominator consistent is what makes ROIC neutral to capital structure."
+    },
+    {
+      "question": "How is invested capital in the ROIC formula usually calculated?",
+      "options": [
+        "The market value of the equity plus outstanding borrowings",
+        "Every asset on the balance sheet as at the reporting date",
+        "Equity plus all liabilities, trade payables included",
+        "Borrowings plus equity, less any excess cash"
+      ],
+      "explanation": "The denominator has to be the capital genuinely being used to generate operating profit. So excess cash is deducted - it takes no part in operations - and supplier credit is excluded, being a natural source of funding that costs nothing."
+    }
+  ],
+  "keyTakeaways": [
+    "ROIC measures performance on all capital, not only equity",
+    "ROIC > WACC = value created",
+    "A high ROIC usually comes with a valuation premium"
+  ],
+  "practicePrompt": {
+    "question": "Which of the following is correct according to this lesson?",
+    "options": [
+      "A business with future foreign-currency cash flows should establish its exposure clearly before choosing a hedging instrument",
+      "ROIC = NOPAT / (Debt + Equity − Cash)",
+      "Reflects pricing power and production efficiency",
+      "Short-term debt: maturing in ≤ 12 months - higher liquidity risk"
+    ],
+    "explanation": "ROIC = NOPAT / (Debt + Equity − Cash)"
+  },
+  "summary": {
+    "keyIdea": "ROIC is a better measure than ROE for seeing the quality of value creation.",
+    "commonMistake": "Being misled by a high ROE and forgetting the debt leverage behind it.",
+    "action": "Compare a company's ROIC against its WACC before concluding it is worth buying."
+  },
+  "application": {
+    "title": "Read a real set of accounts",
+    "message": "Take a company you know, estimate its NOPAT and invested capital, then compare against WACC to see whether it is creating or destroying value.",
+    "secondary": "If ROIC is below WACC, growth is not necessarily a good thing."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "ROE (Return on Equity) is a familiar ratio, but it has one major weakness: a company can push its ROE up simply by borrowing more, without genuinely improving how the business performs."
+    },
+    { "type": "heading", "text": "ROIC looks at all the capital, not just equity" },
+    {
+      "type": "paragraph",
+      "text": "ROIC (Return on Invested Capital) = NOPAT / Invested Capital measures the return on ALL invested capital - debt as well as equity. Because the denominator already includes debt, ROIC isn't 'inflated' by financial leverage the way ROE is, so it gives a truer picture of how much value the core business genuinely creates."
+    },
+    {
+      "type": "list",
+      "items": [
+        "ROIC > WACC means the business is adding value for its investors",
+        "A higher ROIC lets a business reinvest less to achieve the same growth, so FCF is usually higher",
+        "Businesses with a high and stable ROIC are typically valued more highly by the market (a valuation premium)"
+      ]
+    },
+    {
+      "type": "formula",
+      "title": "The ROIC formula",
+      "equation": "ROIC = NOPAT ÷ Invested capital",
+      "variables": [
+        {
+          "symbol": "NOPAT",
+          "name": "Net operating profit after tax",
+          "description": "EBIT × (1 − tax rate). Using EBIT means it is before interest - which is why ROIC isn't distorted by leverage."
+        },
+        {
+          "symbol": "Invested capital",
+          "name": "Invested capital",
+          "description": "Equity + borrowings − excess cash. That is, all the capital genuinely being used in the business."
+        }
+      ],
+      "example": {
+        "title": "A worked example",
+        "calculation": "EBIT 500 billion × (1 − 20%) ÷ 2,500 billion",
+        "result": "= 400 ÷ 2,500 = 16%",
+        "explanation": "Every 100 units of capital put into the business produces 16 units of after-tax operating profit. If WACC is 11%, the business is adding 5 percentage points of value on every unit of capital."
+      }
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "ROE",
+        "text": "The denominator is equity alone. Borrowing more to fund the same operations shrinks that denominator and lifts ROE, even though operating performance is unchanged."
+      },
+      "right": {
+        "label": "ROIC",
+        "text": "The denominator covers debt and equity, and the numerator uses NOPAT, which is before interest. Borrowing more does not lift ROIC - it measures only how the business performs."
+      }
+    },
+    { "type": "heading", "text": "Reading ROIC properly" },
+    {
+      "type": "list",
+      "items": [
+        "Always set ROIC beside WACC: only a positive spread is value creation, and the width of that spread matters more than the absolute figure.",
+        "Look at the multi-year trend: a ROIC of 16% falling from 22% tells a completely different story from a ROIC of 16% climbing from 11%.",
+        "Compare within an industry: capital-intensive sectors (power, steel, infrastructure) naturally run lower ROIC than capital-light ones (software, services).",
+        "Be careful with large cash balances: leave excess cash in invested capital and a cash-rich business will read as less profitable than it is."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Don't let a high ROE mislead you.",
+        "Always ask the follow-up: does that performance come from a good business, or just from more borrowing?"
+      ]
+    }
+  ]
+}

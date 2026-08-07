@@ -1,0 +1,227 @@
+{
+  "slug": "net-income-y-nghia",
+  "title": "Net Income: meaning and limits",
+  "subtitle": "The final line of the P&L - it doesn't always tell the whole truth",
+  "duration": "6 min",
+  "openingQuestion": "A company reports Net Income of 500 billion but FCF of -200 billion. What should worry you?",
+  "openingOptions": [
+    "Nothing - positive profit is good",
+    "Real cash isn't coming in - AR may be growing fast, CapEx may be large, or working capital may be poorly managed",
+    "Revenue needs to increase",
+    "The company is paying too much tax"
+  ],
+  "explanation": "Net income is the final line and also the most-watched number, but it's the product of many accounting estimates: depreciation, provisions, revenue recognition. That's why the right way to use it is to always place it next to operating cash flow. The two numbers tracking each other across several years is a sign of good earnings quality; a widening, persistent gap means you have to go looking in receivables, inventory, or one-off items.",
+  "diagram": [
+    { "label": "Positive net income on the statement", "arrow": true },
+    { "label": "Cross-check against operating cash flow", "arrow": true },
+    { "label": "They track together: good earnings quality", "arrow": true },
+    { "label": "A wide gap: check receivables, inventory, one-off items" }
+  ],
+  "realWorldExample": {
+    "company": "Masan Group (MSN)",
+    "description": "Masan is a good example of the limits of Net Income as a single number. This multi-industry group often has Net Income heavily affected by non-recurring items: fair-value revaluation of investments, gains/losses from divesting subsidiaries, or financing costs tied to large M&A deals. Investors following Masan usually need to also look at the Core Net Income the company itself discloses (stripping out unusual items), rather than relying only on accounting Net Income, to better judge the sustainable profitability of its main businesses (consumer, retail, animal feed)."
+  },
+  "quiz": [
+    {
+      "question": "What is Net Income?",
+      "options": [
+        "Total revenue the company recognises during the reporting period, before any cost",
+        "The cash the company actually collects during the period, after every payment made",
+        "Profit before interest and tax, i.e. the Operating Income line for the period",
+        "Net profit - what's left for shareholders after every expense and tax"
+      ],
+      "explanation": "Net Income = (Revenue - COGS - OpEx - Interest) - Tax. This is the 'final profit' on the P&L."
+    },
+    {
+      "question": "Why is Net Income called the 'Bottom Line'?",
+      "options": [
+        "Because it's the final line of the P&L, after every expense and tax is subtracted",
+        "Because it's the only metric an investor ever needs to judge a business",
+        "Because it always sits at the bottom of the balance sheet, below equity",
+        "Because it's the minimum profit floor a company formally promises its shareholders it will hit"
+      ],
+      "explanation": "The P&L reads top to bottom: Revenue → Gross Profit → Operating Income → EBT → Net Income. NI is the last line."
+    },
+    {
+      "question": "Positive Net Income means a company is profitable - true or false?",
+      "options": [
+        "Always true - positive Net Income always means the company is genuinely profitable this period",
+        "Not quite enough - you need to check it against revenue (margin) and against real cash flow",
+        "Always false - positive Net Income is just the result of an accounting trick",
+        "It can't be determined, since Net Income has nothing to do with profit or loss"
+      ],
+      "explanation": "NI of +100 million on revenue of 5,000 = 2% margin = weak. NI of +100 million on revenue of 500 = 20% = strong. Context matters."
+    },
+    {
+      "question": "What is a limit of Net Income?",
+      "options": [
+        "There is no limit - Net Income already fully reflects a period's real cash flows",
+        "NI is only wrong when a company has debt, since interest is deducted before tax",
+        "NI is always lower than real cash flow, so you only need to add back depreciation",
+        "Accrual accounting: NI contains non-cash costs (depreciation) and revenue not yet collected"
+      ],
+      "explanation": "A company can show NI of +100 while Cash Flow is -50. NI doesn't tell the whole story."
+    },
+    {
+      "question": "What is EPS (Earnings Per Share)?",
+      "options": [
+        "EPS = dividend per share for the period, after dividend tax is subtracted",
+        "EPS = Net Income ÷ shareholders' equity, i.e. return on contributed capital",
+        "EPS = revenue ÷ shares outstanding, a measure of size per share",
+        "EPS = Net Income ÷ shares outstanding = profit per share"
+      ],
+      "explanation": "EPS = the profit 'sitting on' each share. If NI is 1,000 million and there are 100M shares, EPS = 10 thousand per share."
+    },
+    {
+      "question": "Why do software companies often report low Net Income despite high revenue?",
+      "options": [
+        "Because heavy R&D pushes OpEx up, but that's investment in future products",
+        "Because software has very high COGS, squeezing Gross Margin very thin",
+        "Because software companies usually borrow heavily, so interest eats most of the profit",
+        "Because the tax rate applied to the tech industry is higher than for manufacturers"
+      ],
+      "explanation": "A software company with Revenue 1000, R&D 600, SG&A 300, depreciation 50, has EBIT of 50, a 5% Net Margin. High R&D goes into future products."
+    },
+    {
+      "question": "Net Margin = ?",
+      "options": [
+        "Net Income ÷ COGS - profit relative to cost of goods sold",
+        "Net Income ÷ Revenue - net profit relative to revenue",
+        "Net Income ÷ Operating Expense - profit earned per dong of OpEx",
+        "Revenue ÷ Net Income - how much revenue is needed to make one dong of profit"
+      ],
+      "explanation": "Net Margin = NI / Revenue. If NI is 100 and Revenue is 1000, Net Margin = 10%."
+    },
+    {
+      "question": "If Net Income rises but not because of business operations (for example, selling real estate, financial restructuring), is that good or bad?",
+      "options": [
+        "No effect at all, since one-off items have already been fully excluded from reported Net Income figures",
+        "Good - profit is profit, investors don't distinguish where it comes from",
+        "Bad - it's a one-off item that won't repeat next year; look at Operating Income instead",
+        "Good - selling an asset shows the company is optimising its balance sheet"
+      ],
+      "explanation": "One-off gains inflate NI but aren't sustainable. Investors prefer NI generated by regular business operations."
+    },
+    {
+      "question": "Why do accountants distinguish Operating Income from Net Income?",
+      "options": [
+        "Because accounting standards require both lines to be presented in full",
+        "Because Operating Income belongs to the P&L while Net Income belongs to the balance sheet",
+        "Because Operating Income is taxed while Net Income has already had tax subtracted",
+        "Operating = core business efficiency; Net = after both interest and tax"
+      ],
+      "explanation": "Operating Income of 200 minus Interest of 150 minus Tax of 8 gives Net of 42. Operations are strong but Net is weak because of heavy debt. The split makes the problem clear."
+    },
+    {
+      "question": "To judge a company's real business health, what should an investor look at first?",
+      "options": [
+        "Operating Income or EBITDA, then Net Margin, then cash flow",
+        "Only Net Income, since it's the final number that packages up everything",
+        "Only revenue, since rising revenue is bound to make profit rise along with it",
+        "Only Gross Profit, since it's the cleanest profit figure on the statement"
+      ],
+      "explanation": "Operating Income/EBITDA are clean. Net Income is affected by capital structure. Cash Flow is affected by accruals. Looking at all three gives the full picture."
+    },
+    {
+      "question": "A company's Net Income has grown steadily at 15%/year for three straight years, but most of that growth comes from reducing its bad-debt provision (an accounting estimate) rather than real revenue growth. What does this say about earnings quality?",
+      "options": [
+        "As long as Net Income is positive, that's enough - the source of growth doesn't matter",
+        "It's suspicious - the growth comes from an accounting estimate, not from the business itself",
+        "It's irrelevant - earnings quality is only ever judged on cash flow, never on Net Income",
+        "It's a very good sign - steady growth in Net Income for three years shows a stable business"
+      ],
+      "explanation": "Earnings quality is high when growth comes from real revenue and effective cost control. Growth coming from subjective accounting estimates (provisions, asset revaluations) is a warning sign worth digging into in the financial notes to understand what's really happening."
+    }
+  ],
+  "keyTakeaways": [
+    "Net Income is the bottom line - but only an accounting number",
+    "Positive NI + negative FCF = dig deeper",
+    "EPS = Net Income / Diluted Shares - used for P/E"
+  ],
+  "practicePrompt": {
+    "question": "A company reports positive Net Income of 80 billion for the year, but Free Cash Flow (FCF) is negative 50 billion over the same period. How should an investor react to this gap?",
+    "options": [
+      "Ignore it, since positive Net Income is enough to confirm the company is financially healthy",
+      "Dig deeper - Net Income is the bottom line but only an accounting number, and can be affected by uncollected revenue or non-cash costs; negative FCF shows more real cash is leaving the company than it can generate",
+      "Immediately conclude the company is committing financial-statement fraud, since these two numbers don't match",
+      "Treat negative FCF as completely normal and not worth attention as long as Net Income stays positive"
+    ],
+    "explanation": "Net Income is the bottom line but only an accounting number - it can differ substantially from real cash flow. When NI is positive but FCF is negative, that's a signal worth digging into: it could be large CapEx, rising working capital, or a genuine earnings-quality problem."
+  },
+  "summary": {
+    "keyIdea": "Net Income is the bottom line - but only an accounting number",
+    "commonMistake": "Reading a concept as a phrase to memorise rather than a principle to apply to real decisions.",
+    "action": "Positive NI + negative FCF = dig deeper"
+  },
+  "application": {
+    "title": "Cross-check Net Income against real cash flow",
+    "message": "The lesson already gave a real example using FPT's 2025 Net Income - see the 'Real example' section above. Now cross-check the Net Income of another company against its own Operating Cash Flow.",
+    "secondary": "This is a classic exercise for training yourself to spot profit that only exists 'on paper'."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Net Income is the number quoted most often in financial media, but also the number most easily misread. Understanding its meaning and its limits correctly is a required step before using it to value a company or make an investment decision."
+    },
+    { "type": "heading", "text": "What Net Income is and what it's used for" },
+    {
+      "type": "paragraph",
+      "text": "Net Income (the 'bottom line') = EBT − Tax Expense. Put simply, this is what's left over for shareholders after the company has paid every cost, interest, and tax. Investors divide this number by diluted shares to get EPS (Earnings Per Share), and from EPS calculate P/E - a valuation metric almost everyone uses."
+    },
+    { "type": "heading", "text": "First limit: Net Income is an accounting number, not cash" },
+    {
+      "type": "paragraph",
+      "text": "Net Income is recorded under accrual accounting, meaning revenue and expenses are recognised when a transaction occurs, not when cash actually changes hands. A company can report a large positive Net Income while Free Cash Flow (FCF) is negative because it's waiting to collect from customers (rising Accounts Receivable), or spending heavily on fixed assets (large CapEx)."
+    },
+    { "type": "heading", "text": "Second limit: unusual and one-off items" },
+    {
+      "type": "paragraph",
+      "text": "Net Income can be distorted by unusual, non-recurring income/expense: gains from asset sales, investment revaluations, restructuring costs, a large one-time provision. That's why many companies and analysts also use Adjusted/Core Net Income - stripping out unusual items to better reflect the repeatable profitability of the main business."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Positive Net Income doesn't guarantee the company has enough cash to pay dividends or reinvest.",
+        "Always cross-check Net Income against Cash Flow from Operations (CFO) and Free Cash Flow (FCF).",
+        "Watch for 'non-recurring items' that can inflate or deflate a particular quarter's Net Income.",
+        "EPS = Net Income / Diluted Shares - uses the diluted share count to better reflect value per share."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "A warning sign",
+      "text": "If Net Income keeps rising quarter after quarter without CFO rising along with it, or if the gap between Net Income and FCF keeps widening, that's a signal to read the financial-statement notes carefully before trusting the story of 'growing profit'."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Net Income terminology",
+      "concepts": [
+        { "vi": "Lợi nhuận ròng", "en": "Net Income", "def": "The final profit after subtracting every expense, interest, and tax" },
+        { "vi": "Lợi nhuận trên mỗi cổ phần", "en": "Earnings Per Share (EPS)", "def": "Net Income divided by the average diluted share count" },
+        { "vi": "Dòng tiền tự do", "en": "Free Cash Flow (FCF)", "def": "Cash left after subtracting CapEx from operating cash flow" },
+        { "vi": "Lợi nhuận cốt lõi", "en": "Core/Adjusted Net Income", "def": "Net Income with unusual, one-off items stripped out" }
+      ]
+    },
+    { "type": "heading", "text": "A real example: why you must cross-check Net Income against real cash flow" },
+    {
+      "type": "list",
+      "items": [
+        "FPT 2025: after-tax profit of VND 9,369.31 billion, up 19.37% from 2024 - this is Net Income, an accounting number",
+        "Positive Net Income doesn't mean the company has an equivalent amount of cash - you need to check it against Operating Cash Flow (OCF) on the Cash Flow Statement to know whether that profit has really 'turned into cash' or is sitting in receivables or inventory",
+        "If OCF is much lower or negative despite positive Net Income, that's a warning sign to look for the cause in receivables, inventory, or CapEx"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "How to cross-check it yourself",
+      "text": "Open the financial statements, compare Net Income (Income Statement) with the 'Net cash flow from operating activities' line (Cash Flow Statement) for the same period."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Net Income is a good starting point for analysis, but it should never be the ending point.",
+        "In the next lesson, we move to the Balance Sheet - starting with how to read it as a whole."
+      ]
+    }
+  ]
+}

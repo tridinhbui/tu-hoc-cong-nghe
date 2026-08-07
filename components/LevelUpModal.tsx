@@ -5,6 +5,8 @@ import { Sparkles, X, Download, Share2, Check } from "lucide-react";
 import { toast } from "sonner";
 import { LEVELS } from "@/lib/levels";
 import { svgToPngBlob, shareOrDownloadImage } from "@/lib/share-image";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 interface LevelUpModalProps {
   level: number;
@@ -41,6 +43,7 @@ function useConfettiPieces(count: number) {
 // this device (localStorage), so it fires once per level gained regardless
 // of which page/action caused it.
 export default function LevelUpModal({ level, userName, onClose }: LevelUpModalProps) {
+  const { t } = useI18n();
   const confetti = useConfettiPieces(48);
   const levelInfo = LEVELS.find((l) => l.level === level);
   const [visible, setVisible] = useState(false);
@@ -75,18 +78,18 @@ export default function LevelUpModal({ level, userName, onClose }: LevelUpModalP
       const outcome = await shareOrDownloadImage(
         blob,
         cardFilename,
-        `Mình vừa lên cấp ${level} tại Tự Học Tài Chính 🎉`
+        format(t.levelUp.shareCaption, { level })
       );
       if (outcome === "cancelled") return;
       setDownloaded(true);
       toast.success(
         outcome === "shared"
-          ? "Đã lưu/chia sẻ ảnh thành tích! 🎉"
-          : "Đã tải ảnh thành tích! Đăng lên story/Facebook khoe ngay nào 🎉"
+          ? t.levelUp.toastSharedOrSaved
+          : t.levelUp.toastDownloaded
       );
     } catch (error) {
       console.error("Error creating level-up card download:", error);
-      toast.error("Không thể tạo ảnh lúc này.");
+      toast.error(t.levelUp.toastDownloadError);
     } finally {
       setDownloading(false);
     }
@@ -100,13 +103,15 @@ export default function LevelUpModal({ level, userName, onClose }: LevelUpModalP
       const outcome = await shareOrDownloadImage(
         blob,
         cardFilename,
-        `Mình vừa lên Level ${level}${levelInfo ? ` - ${levelInfo.name}` : ""} trên Tự học Tài chính! 🎉`
+        levelInfo
+          ? format(t.levelUp.shareCaptionWithName, { level, name: levelInfo.name })
+          : format(t.levelUp.shareCaption, { level })
       );
-      if (outcome === "shared") toast.success("Đã chia sẻ thành tích!");
-      else if (outcome === "downloaded") toast.success("Đã tải ảnh - đăng lên Facebook/story và đính kèm ảnh này nhé!");
+      if (outcome === "shared") toast.success(t.levelUp.toastShared);
+      else if (outcome === "downloaded") toast.success(t.levelUp.toastSharedDownloaded);
     } catch (error) {
       console.error("Error sharing level-up card:", error);
-      toast.error("Không thể chia sẻ lúc này.");
+      toast.error(t.levelUp.toastShareError);
     } finally {
       setSharing(false);
     }
@@ -117,7 +122,7 @@ export default function LevelUpModal({ level, userName, onClose }: LevelUpModalP
       className={`fixed inset-0 z-[100] flex items-center justify-center px-4 transition-opacity duration-300 ${visible ? "opacity-100" : "opacity-0"}`}
       role="dialog"
       aria-modal="true"
-      aria-label="Lên cấp"
+      aria-label={t.levelUp.dialogAriaLabel}
     >
       <div className="absolute inset-0 bg-stone-950/70 backdrop-blur-sm" onClick={onClose} />
 
@@ -149,7 +154,7 @@ export default function LevelUpModal({ level, userName, onClose }: LevelUpModalP
       >
         <button
           onClick={onClose}
-          aria-label="Đóng"
+          aria-label={t.levelUp.closeAriaLabel}
           className="absolute top-4 right-4 text-stone-400 hover:text-stone-600 dark:hover:text-stone-200 transition-colors"
         >
           <X className="w-5 h-5" />
@@ -164,13 +169,13 @@ export default function LevelUpModal({ level, userName, onClose }: LevelUpModalP
         </div>
 
         <p className="text-xs font-extrabold uppercase tracking-widest text-emerald-600 dark:text-emerald-400 mb-1.5">
-          Lên cấp!
+          {t.levelUp.kicker}
         </p>
         <h2 className="text-2xl font-extrabold text-stone-900 dark:text-stone-100 mb-1">
-          Level {level}{levelInfo ? ` · ${levelInfo.name}` : ""}
+          {levelInfo ? format(t.levelUp.headingWithName, { level, name: levelInfo.name }) : format(t.levelUp.heading, { level })}
         </h2>
         <p className="text-sm text-stone-500 dark:text-stone-400 mb-6">
-          Kiến thức tài chính của bạn đang tích luỹ thật sự. Tiếp tục phát huy nhé!
+          {t.levelUp.subtitle}
         </p>
 
         <div className="flex gap-2 mb-3">
@@ -186,7 +191,7 @@ export default function LevelUpModal({ level, userName, onClose }: LevelUpModalP
             ) : (
               <Download className="w-3.5 h-3.5" />
             )}
-            Tải ảnh
+            {t.levelUp.download}
           </button>
           <button
             onClick={handleShare}
@@ -198,7 +203,7 @@ export default function LevelUpModal({ level, userName, onClose }: LevelUpModalP
             ) : (
               <Share2 className="w-3.5 h-3.5" />
             )}
-            Chia sẻ
+            {t.levelUp.share}
           </button>
         </div>
 
@@ -206,7 +211,7 @@ export default function LevelUpModal({ level, userName, onClose }: LevelUpModalP
           onClick={onClose}
           className="w-full py-3.5 rounded-xl bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 font-bold text-sm hover:bg-stone-800 dark:hover:bg-white transition-colors"
         >
-          Tuyệt vời! 🎉
+          {t.levelUp.confirm}
         </button>
       </div>
 
@@ -239,10 +244,10 @@ export default function LevelUpModal({ level, userName, onClose }: LevelUpModalP
         <path d="M 62 62 L 738 62 L 738 738 L 62 738 Z" fill="none" stroke="#ffffff" strokeWidth="0.6" opacity="0.15" />
 
         <text x="400" y="140" textAnchor="middle" fill="#fbbf24" fontSize="14" fontWeight="900" letterSpacing="5">
-          TỰ HỌC TÀI CHÍNH MỖI NGÀY
+          {t.levelUp.svgHeaderName}
         </text>
         <text x="400" y="185" textAnchor="middle" fill="#ffffff" fontSize="26" fontWeight="800" letterSpacing="3">
-          THÀNH TÍCH LÊN CẤP
+          {t.levelUp.svgTitle}
         </text>
         <line x1="300" y1="215" x2="500" y2="215" stroke="url(#levelAccent)" strokeWidth="1.5" />
 
@@ -253,15 +258,15 @@ export default function LevelUpModal({ level, userName, onClose }: LevelUpModalP
         </text>
 
         <text x="400" y="555" textAnchor="middle" fill="#94a3b8" fontSize="14" fontStyle="italic">
-          {userName} vừa đạt
+          {format(t.levelUp.svgUserAchieved, { userName })}
         </text>
         <text x="400" y="600" textAnchor="middle" fill="#ffffff" fontSize="30" fontWeight="800" letterSpacing="1">
-          Level {level}{levelInfo ? ` · ${levelInfo.name}` : ""}
+          {levelInfo ? format(t.levelUp.svgLevelWithName, { level, name: levelInfo.name }) : format(t.levelUp.svgLevel, { level })}
         </text>
 
         <line x1="220" y1="650" x2="580" y2="650" stroke="#334155" strokeWidth="0.8" />
         <text x="400" y="700" textAnchor="middle" fill="#64748b" fontSize="12" fontWeight="700" letterSpacing="1">
-          HỌC TÀI CHÍNH MỖI NGÀY · TUHOCTAICHINH.COM
+          {t.levelUp.svgFooter}
         </text>
       </svg>
 

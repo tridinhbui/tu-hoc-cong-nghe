@@ -1,0 +1,145 @@
+{
+  "slug": "precedent-transaction-la-gi",
+  "title": "What is Precedent Transaction analysis?",
+  "subtitle": "Valuing a company based on prices actually paid in similar past M&A deals",
+  "duration": "9 min",
+  "openingQuestion": "What is the core difference between Precedent Transaction Analysis and Comparable Company Analysis?",
+  "openingOptions": [
+    "Precedent Transaction uses the ACTUAL prices paid in completed past M&A deals (including a control premium), while Comps uses ordinary trading prices on the exchange (no control premium)",
+    "There is no difference - the two methods are identical",
+    "Precedent Transaction only applies to unlisted companies",
+    "Comps always produces a higher result than Precedent Transaction"
+  ],
+  "explanation": "Precedent Transaction Analysis: study similar completed M&A deals (same industry, comparable size), take the valuation multiples that were actually paid (not everyday exchange trading prices) to estimate the target company's value. Because a buyer usually has to pay a 'control premium' to gain controlling ownership, Precedent Transaction multiples are typically HIGHER than Comps.",
+  "diagram": [
+    { "label": "Find a similar completed M&A deal", "arrow": true },
+    { "label": "Take the multiple actually paid", "arrow": true },
+    { "label": "Apply it to the current valuation" }
+  ],
+  "realWorldExample": {
+    "company": "An M&A deal in banking",
+    "description": "When valuing a bank about to be acquired, analysts typically reference the P/B multiples actually paid in previous, similar bank M&A deals - usually significantly higher than the bank's ordinary trading P/B."
+  },
+  "quiz": [
+    {
+      "question": "Why are Precedent Transaction multiples usually higher than Comparable Company Analysis multiples?",
+      "options": [
+        "Because the buyer has to pay a control premium to gain control",
+        "Because Precedent Transaction is only used for large-cap companies",
+        "Because published M&A deal data is always inaccurate",
+        "There is no systematic difference between the two valuation methods"
+      ],
+      "explanation": "The control premium reflects the value of control itself: a controlling owner can change management, strategy and capital structure to optimise the company's value."
+    },
+    {
+      "question": "A precedent transaction happened during an extremely hot M&A market (multiple bidders competing for the same target). Should its multiple be applied directly to value a similar company today, in a quiet M&A market?",
+      "options": [
+        "Precedent Transaction is never affected by market conditions, since it is fixed at signing",
+        "It needs adjusting - the multiple is highly sensitive to market conditions at the time",
+        "Being in the same industry is enough on its own, regardless of timing",
+        "Yes, apply it directly since both are deals in the same industry"
+      ],
+      "explanation": "This is an important limitation of Precedent Transaction Analysis: the multiple reflects M&A market conditions AT THE TIME the deal happened (competitive intensity, market sentiment)."
+    },
+    {
+      "question": "Why are Precedent Transaction multiples usually higher than Comps?",
+      "options": [
+        "Because M&A buyers usually skip thorough due diligence",
+        "Because M&A deals always happen when the market is at a high",
+        "Because the deal price already includes a premium for control",
+        "Because deal multiples are calculated on post-merger profit"
+      ],
+      "explanation": "Buying the right to decide always costs more than buying a minority stake. A 20-40% control premium sits inside every deal price, so applying that same multiple to a small stake overvalues it."
+    },
+    {
+      "question": "What is the problem with using a 2021 Precedent Transaction for a valuation today?",
+      "options": [
+        "The parties in that deal may have since gone bankrupt",
+        "Old deal data is usually not fully disclosed",
+        "Accounting standards have changed, so the figures can't be compared",
+        "The multiple reflects market conditions from that specific point in time"
+      ],
+      "explanation": "Interest rates and risk appetite in 2021 were very different from today. A deal's multiple is a snapshot of one market at one moment, not an industry constant."
+    },
+    {
+      "question": "When is Precedent Transaction the most appropriate method to use?",
+      "options": [
+        "When valuing a deal for acquiring control",
+        "When valuing a minority stake under five percent",
+        "When the business has no profit yet to calculate a multiple",
+        "When a quick number is needed with no market data available"
+      ],
+      "explanation": "Because the multiple already contains a control premium, it matches exactly the situation where the buyer is also acquiring control. Using it for any other purpose carries along a premium that doesn't belong to the buyer."
+    }
+  ],
+  "keyTakeaways": [
+    "Precedent Transaction: uses actual prices from completed M&A deals",
+    "Usually includes a 'control premium', making the multiple higher than Comps",
+    "Useful when valuing a company in the context of a merger or full acquisition"
+  ],
+  "practicePrompt": {
+    "question": "A PE fund is valuing a target company ahead of an acquisition, and references the prices other buyers actually paid when acquiring similar companies over the past 2-3 years (including the control premium). What is this valuation method called, and how does it differ from Comps?",
+    "options": [
+      "Precedent Transaction uses prices from completed M&A deals, so it carries a control premium",
+      "This is actually the Comps method - there's no difference from comparing listed companies",
+      "This is the DCF method, since it estimates value from the company's historical data",
+      "This method is unreliable because it always relies on deals that are too old relative to today"
+    ],
+    "explanation": "Precedent Transaction: uses actual prices from completed M&A deals. Unlike Comps (everyday stock trading prices, with no control rights), Precedent Transaction reflects the price actually paid to acquire full control of a company - so it is usually higher than Comps because it includes an acquisition premium."
+  },
+  "summary": {
+    "keyIdea": "Precedent Transaction: uses actual prices from completed M&A deals",
+    "commonMistake": "Reading the concept as a definition to recite rather than a principle to apply to a real decision.",
+    "action": "Usually includes a 'control premium', making the multiple higher than Comps"
+  },
+  "application": {
+    "title": "Apply it now",
+    "message": "The lesson already has a real example - the Masan-WinCommerce deal (valued at $2.8 billion USD) - see the 'Real example' section above. Now find another M&A deal yourself and estimate its multiple.",
+    "secondary": "Recognising this premium helps you understand why M&A purchase prices are always higher than exchange trading prices."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "If you want to know what a company is truly worth when bought outright, don't look at everyday exchange trading prices - look at what buyers have actually paid in similar past M&A deals."
+    },
+    { "type": "heading", "text": "How Precedent Transaction Analysis works" },
+    {
+      "type": "paragraph",
+      "text": "Precedent Transaction Analysis: study similar completed M&A deals (same industry, comparable size), take the valuation multiples actually paid to estimate the target company's value. When valuing a bank about to be acquired, analysts typically reference the P/B multiples paid in previous, similar bank M&A deals."
+    },
+    { "type": "heading", "text": "Why M&A multiples are usually higher than Comps" },
+    {
+      "type": "paragraph",
+      "text": "A buyer in an M&A deal usually has to pay a 'control premium' - an extra amount to gain control over and decision-making power at the target company. A controlling owner can change management, strategy and capital structure to optimise the company's value on their own terms - a right that doesn't exist for a small shareholder trading on the exchange. That is why M&A prices are usually higher than ordinary trading prices for the same company."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Precedent Transaction multiples are usually higher than Comps because they include a control premium",
+        "Highly sensitive to M&A market conditions at the time the deal happened",
+        "A deal from a hot M&A period (multiple competing bidders) should not be applied directly to a quiet period without adjustment",
+        "Most useful when valuing in the context of a merger or full acquisition, not a minority stock trade"
+      ]
+    },
+    { "type": "heading", "text": "Real example: the Masan - WinCommerce deal" },
+    {
+      "type": "list",
+      "items": [
+        "In 2024, SK Group (South Korea) sold a 7.1% stake in WinCommerce to Masan for $200 million USD - this price valued all of WinCommerce at roughly $2.8 billion USD",
+        "This is a real 'precedent transaction': valuing another retail chain in Vietnam could use the multiple (deal value / WinCommerce's revenue or EBITDA at that time) as a reference point",
+        "M&A multiples are usually higher than ordinary market valuation because the buyer pays an extra 'control premium' - the right to control the entire operation, not just a minority stake"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "How to apply this yourself",
+      "text": "Find a recent M&A deal in the financial press (VnExpress, TheLEADER, Mekong ASEAN all cover M&A fairly thoroughly), determine the deal value, and estimate its multiple against the target company's most recently disclosed revenue/EBITDA."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Precedent Transaction shows the actual price paid to take ownership - but always check the timing and market context of that deal."
+      ]
+    }
+  ]
+}

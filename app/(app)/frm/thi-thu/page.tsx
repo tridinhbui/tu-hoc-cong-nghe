@@ -1,13 +1,18 @@
 import type { Metadata } from "next";
 import FrmMockExamClient from "@/components/FrmMockExamClient";
+import { getServerLocale } from "@/lib/i18n/server";
+import { getDictionary } from "@/lib/i18n";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
-  title: "Thi thử FRM",
-  description:
-    "Bài thi thử đúng khuôn đề GARP: Part I 100 câu, Part II 80 câu, mỗi phần một ca 4 tiếng, chấm điểm tách theo từng môn.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getServerLocale();
+  const t = getDictionary(locale);
+  return {
+    title: t.finalTwo.frmThiThuPage.metaTitle,
+    description: t.finalTwo.frmThiThuPage.metaDescription,
+  };
+}
 
 export default function FrmMockExamPage() {
   return <FrmMockExamClient />;

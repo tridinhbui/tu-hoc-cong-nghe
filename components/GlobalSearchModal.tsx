@@ -1,9 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, BookOpen, Calculator, MessageCircle, ArrowRight, X, Sparkles, HelpCircle } from "lucide-react";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
 interface SearchResultItem {
   id: string;
@@ -13,26 +16,51 @@ interface SearchResultItem {
   url: string;
 }
 
-const SAMPLE_LESSONS: SearchResultItem[] = [
-  { id: "l-1", category: "lesson", title: "Audit Tài chính Cá nhân & Tích sản", desc: "Đánh giá bức tranh tài sản ròng và dòng tiền cá nhân.", url: "/bai-hoc/audit-tai-chinh-ca-nhan" },
-  { id: "l-2", category: "lesson", title: "Đọc Bảng Cân Đối Kế Toán Doanh Nghiệp", desc: "Tài sản = Nợ phải trả + Vốn chủ sở hữu.", url: "/dashboard" },
-  { id: "l-3", category: "lesson", title: "Phân tích Định giá Cổ phiếu DCF", desc: "Chiết khấu dòng tiền tự do FCF về hiện tại.", url: "/dashboard" },
-  { id: "l-4", category: "lesson", title: "Chi phí vốn WACC & Cấu trúc Nợ", desc: "Tính toán chi phí vốn bình quân gia quyền.", url: "/dashboard" },
-];
+// Stub search-result data - there is already an open task to replace these
+// with the real lesson/tool/glossary corpus. Translated in the meantime so
+// the English UI doesn't show Vietnamese; id/category/url stay structural.
+const SAMPLE_LESSON_URLS: Record<string, string> = {
+  "l-1": "/bai-hoc/audit-tai-chinh-ca-nhan",
+  "l-2": "/dashboard",
+  "l-3": "/dashboard",
+  "l-4": "/dashboard",
+};
+const SAMPLE_GLOSSARY_URLS: Record<string, string> = {
+  "g-dcf": "/cong-cu",
+  "g-wacc": "/cong-cu",
+  "g-pe": "/tai-lieu",
+  "g-roe": "/tai-lieu",
+};
+const SAMPLE_TOOL_URLS: Record<string, string> = {
+  "t-networth": "/cong-cu",
+  "t-budget": "/cong-cu",
+  "t-fire": "/cong-cu",
+  "t-dcf": "/cong-cu",
+};
 
-const SAMPLE_GLOSSARY: SearchResultItem[] = [
-  { id: "g-dcf", category: "glossary", title: "DCF (Discounted Cash Flow)", desc: "Phương pháp chiết khấu dòng tiền tự do về hiện tại để định giá doanh nghiệp.", url: "/cong-cu" },
-  { id: "g-wacc", category: "glossary", title: "WACC (Weighted Average Cost of Capital)", desc: "Chi phí vốn bình quân gia quyền đại diện cho tỷ lệ sinh lời tối thiểu cần đạt.", url: "/cong-cu" },
-  { id: "g-pe", category: "glossary", title: "P/E (Price to Earnings)", desc: "Hệ số giữa giá cổ phiếu và lợi nhuận trên mỗi cổ phiếu.", url: "/tai-lieu" },
-  { id: "g-roe", category: "glossary", title: "ROE (Return on Equity)", desc: "Tỷ suất lợi nhuận trên vốn chủ sở hữu đo lường hiệu quả sử dụng vốn.", url: "/tai-lieu" },
-];
+function sampleLessonsOf(t: Dictionary): SearchResultItem[] {
+  return t.dataRest.globalSearchModal.sampleLessons.map((l) => ({
+    ...l,
+    category: "lesson" as const,
+    url: SAMPLE_LESSON_URLS[l.id],
+  }));
+}
 
-const SAMPLE_TOOLS: SearchResultItem[] = [
-  { id: "t-networth", category: "tool", title: "Máy tính Tài sản ròng", desc: "Theo dõi tổng tài sản trừ đi tổng nợ vay cá nhân.", url: "/cong-cu" },
-  { id: "t-budget", category: "tool", title: "Ngân sách 50/30/20", desc: "Phân bổ thu nhập thành Thiết yếu - Mong muốn - Tích sản.", url: "/cong-cu" },
-  { id: "t-fire", category: "tool", title: "Kế hoạch Tự do tài chính FIRE", desc: "Tính số tiền cần tích lũy để nghỉ hưu sớm.", url: "/cong-cu" },
-  { id: "t-dcf", category: "tool", title: "Máy tính Định giá DCF & WACC", desc: "Mô phỏng chiết khấu dòng tiền & tính chi phí vốn doanh nghiệp.", url: "/cong-cu" },
-];
+function sampleGlossaryOf(t: Dictionary): SearchResultItem[] {
+  return t.dataRest.globalSearchModal.sampleGlossary.map((g) => ({
+    ...g,
+    category: "glossary" as const,
+    url: SAMPLE_GLOSSARY_URLS[g.id],
+  }));
+}
+
+function sampleToolsOf(t: Dictionary): SearchResultItem[] {
+  return t.dataRest.globalSearchModal.sampleTools.map((tool) => ({
+    ...tool,
+    category: "tool" as const,
+    url: SAMPLE_TOOL_URLS[tool.id],
+  }));
+}
 
 export default function GlobalSearchModal({
   isOpen,
@@ -41,9 +69,13 @@ export default function GlobalSearchModal({
   isOpen: boolean;
   onClose: () => void;
 }) {
+  const { t } = useI18n();
   const router = useRouter();
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<SearchResultItem[]>([]);
+  const sampleLessons = useMemo(() => sampleLessonsOf(t), [t]);
+  const sampleGlossary = useMemo(() => sampleGlossaryOf(t), [t]);
+  const sampleTools = useMemo(() => sampleToolsOf(t), [t]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -66,15 +98,15 @@ export default function GlobalSearchModal({
       return;
     }
 
-    const filteredTools = SAMPLE_TOOLS.filter((t) => t.title.toLowerCase().includes(q) || t.desc.toLowerCase().includes(q));
-    const filteredGlossary = SAMPLE_GLOSSARY.filter((g) => g.title.toLowerCase().includes(q) || g.desc.toLowerCase().includes(q));
+    const filteredTools = sampleTools.filter((tool) => tool.title.toLowerCase().includes(q) || tool.desc.toLowerCase().includes(q));
+    const filteredGlossary = sampleGlossary.filter((g) => g.title.toLowerCase().includes(q) || g.desc.toLowerCase().includes(q));
 
-    const filteredLessons = SAMPLE_LESSONS.filter(
+    const filteredLessons = sampleLessons.filter(
       (l) => l.title.toLowerCase().includes(q) || l.desc.toLowerCase().includes(q)
     );
 
     setResults([...filteredLessons, ...filteredTools, ...filteredGlossary]);
-  }, [query]);
+  }, [query, sampleTools, sampleGlossary, sampleLessons]);
 
   if (!isOpen) return null;
 
@@ -94,13 +126,14 @@ export default function GlobalSearchModal({
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Tìm bài học, thuật ngữ, công cụ định giá... (ví dụ: DCF, WACC, P/E)"
+              placeholder={t.globalSearch.inputPlaceholder}
               autoFocus
               className="w-full bg-transparent pl-9 pr-10 text-base font-bold text-stone-900 dark:text-stone-100 placeholder:text-stone-400 focus:outline-none"
             />
             <button
               type="button"
               onClick={onClose}
+              aria-label={t.globalSearch.closeAriaLabel}
               className="absolute right-4 top-1/2 -translate-y-1/2 p-1.5 rounded-full text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-800 cursor-pointer"
             >
               <X className="w-5 h-5" />
@@ -112,8 +145,11 @@ export default function GlobalSearchModal({
             {query.trim() === "" ? (
               <div className="text-center py-8 text-stone-400 space-y-2">
                 <Sparkles className="w-8 h-8 text-emerald-500 mx-auto opacity-70" />
-                <p className="text-xs font-bold">Nhập từ khóa bất kỳ để tìm kiếm toàn bộ hệ thống</p>
+                <p className="text-xs font-bold">{t.globalSearch.emptyPrompt}</p>
                 <div className="flex flex-wrap justify-center gap-2 pt-2 text-[11px]">
+                  {/* i18n-ignore-start: these are search query seeds, not UI copy - they
+                      must match the Vietnamese-only sample data below, so they stay
+                      Vietnamese regardless of UI locale (search behaviour is not copy) */}
                   {["DCF", "WACC", "LBO", "P/E", "ROE", "Nợ vay", "Tích sản"].map((kw) => (
                     <button
                       key={kw}
@@ -124,11 +160,12 @@ export default function GlobalSearchModal({
                       {kw}
                     </button>
                   ))}
+                  {/* i18n-ignore-end */}
                 </div>
               </div>
             ) : results.length === 0 ? (
               <p className="text-center py-8 text-xs text-stone-400">
-                Không tìm thấy kết quả nào phù hợp với &quot;{query}&quot;.
+                {format(t.globalSearch.noResults, { query })}
               </p>
             ) : (
               <div className="space-y-2">
@@ -151,7 +188,11 @@ export default function GlobalSearchModal({
                       <div>
                         <div className="flex items-center gap-2">
                           <span className="text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-500 dark:text-stone-400">
-                            {item.category === "lesson" ? "Bài học" : item.category === "tool" ? "Công cụ" : "Thuật ngữ"}
+                            {item.category === "lesson"
+                              ? t.globalSearch.categoryLesson
+                              : item.category === "tool"
+                              ? t.globalSearch.categoryTool
+                              : t.globalSearch.categoryGlossary}
                           </span>
                         </div>
                         <h4 className="text-xs sm:text-sm font-black text-stone-900 dark:text-stone-100 mt-0.5">

@@ -34,7 +34,7 @@ describe("nội suy theo giờ", () => {
   });
 
   it("gói giờ ngoài khoảng về đúng chỗ", () => {
-    expect(daylightAt(26).label).toBe(daylightAt(2).label);
+    expect(daylightAt(26).phase).toBe(daylightAt(2).phase);
     expect(daylightAt(-1).sunIntensity).toBeCloseTo(daylightAt(23).sunIntensity);
   });
 

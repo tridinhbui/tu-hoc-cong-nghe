@@ -32,6 +32,8 @@ import { countUserNotes } from "@/lib/supabase-notes";
 import { getUserLessonFlags } from "@/lib/supabase-lesson-flags";
 import { getUserBookmarks, type LessonBookmark } from "@/lib/supabase-bookmarks";
 import { TRACKS } from "@/lib/tracks";
+import { useI18n } from "@/lib/i18n/context";
+import { format, intlLocale } from "@/lib/i18n";
 import { toast } from "sonner";
 import {
   TRACK_PERSONAL,
@@ -199,6 +201,7 @@ function formatDate(iso: string): string {
 }
 
 export default function ProfilePage() {
+  const { locale, t } = useI18n();
   const router = useRouter();
   const [supabase] = useState(() => createClient());
   const [user, setUser] = useState<CurrentUser | null>(null);
@@ -263,7 +266,7 @@ export default function ProfilePage() {
       localStorage.setItem(`thtcdn_active_title_${user.id}`, title);
     }
     window.dispatchEvent(new Event("thtcdn_profile_updated"));
-    toast.success("Đã cập nhật danh hiệu hiển thị!");
+    toast.success(t.profile.titleUpdated);
   };
 
   const handleEquipTheme = (theme: string) => {
@@ -277,7 +280,7 @@ export default function ProfilePage() {
     }
     window.dispatchEvent(new Event("thtcdn_theme_updated"));
     window.dispatchEvent(new Event("thtcdn_profile_updated"));
-    toast.success("Đã cập nhật giao diện hiển thị!");
+    toast.success(t.profile.themeUpdated);
   };
 
   useEffect(() => {
@@ -414,7 +417,7 @@ export default function ProfilePage() {
   if (loading) {
     return (
       <div className="min-h-screen bg-white dark:bg-stone-950 flex items-center justify-center">
-        <p className="text-stone-500 dark:text-stone-400">Đang tải...</p>
+        <p className="text-stone-500 dark:text-stone-400">{t.profile.loading}</p>
       </div>
     );
   }
@@ -442,11 +445,11 @@ export default function ProfilePage() {
             href="/dashboard"
             className="text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 text-sm font-semibold"
           >
-            ← Quay lại
+            {t.profile.back}
           </Link>
-          <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mt-2">Hồ sơ cá nhân</h1>
+          <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mt-2">{t.profile.title}</h1>
           <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
-            Nơi bạn theo dõi hành trình học, thành tích và những việc nên làm tiếp theo.
+            {t.profile.subtitle}
           </p>
         </div>
       </div>
@@ -486,7 +489,7 @@ export default function ProfilePage() {
                     {currentTrackLabel}
                   </span>
                   <span className="inline-flex items-center rounded-full bg-emerald-500/20 px-3 py-1 text-[10px] font-extrabold uppercase tracking-widest text-emerald-300">
-                    Level {currentLevel.level} · {currentLevel.name}
+                    {format(t.profile.levelLine, { level: currentLevel.level, name: currentLevel.name })}
                   </span>
                 </div>
                 <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
@@ -499,10 +502,10 @@ export default function ProfilePage() {
                 )}
                 <p className="text-sm text-stone-400 mt-1.5">{user?.email}</p>
                 <p className="text-xs text-stone-500 mt-1">
-                  Tham gia ngày {joinedAt ? new Date(joinedAt).toLocaleDateString("vi-VN") : "chưa rõ"}
+                  {format(t.profile.joinedOn, { date: joinedAt ? new Date(joinedAt).toLocaleDateString(intlLocale(locale)) : t.profile.joinedUnknown })}
                 </p>
                 <p className="text-sm text-stone-300 mt-4 max-w-xl leading-relaxed italic">
-                  "{profile?.bio?.trim() || "Bạn chưa có phần giới thiệu. Hãy thêm vài dòng ngắn về mục tiêu học tập để hồ sơ rõ chất riêng hơn!"}"
+                  &quot;{profile?.bio?.trim() || t.profile.bioEmpty}&quot;
                 </p>
               </div>
             </div>
@@ -513,7 +516,7 @@ export default function ProfilePage() {
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-white hover:bg-stone-100 text-stone-900 font-bold px-4 py-2.5 text-xs transition-all shadow-sm active:scale-95 w-full sm:w-auto"
               >
                 <Edit3 className="w-3.5 h-3.5" />
-                Thiết lập tài khoản
+                {t.profile.accountSettings}
               </Link>
             </div>
           </div>
@@ -522,12 +525,13 @@ export default function ProfilePage() {
           <div className="mt-8 pt-5 border-t border-white/5">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2 text-xs text-stone-400">
               <div className="flex items-center gap-1.5">
-                <span className="font-bold text-stone-200">Tiến trình lên Level {currentLevel.level + 1}</span>
+                <span className="font-bold text-stone-200">{format(t.profile.progressToLevel, { level: currentLevel.level + 1 })}</span>
                 <span>·</span>
-                <span>{xpToNextLevel > 0 ? `Còn ${xpToNextLevel} XP` : "Đã đạt cấp tối đa"}</span>
+                <span>{xpToNextLevel > 0 ? format(t.profile.xpToGo, { xp: xpToNextLevel }) : t.profile.maxLevel}</span>
               </div>
               <div className="font-extrabold text-stone-200">
-                {profile?.total_xp || 0} XP <span className="text-stone-500 font-normal">({levelProgress}%)</span>
+                {format(t.profile.xpWithPercent, { xp: profile?.total_xp || 0 })}{" "}
+                <span className="text-stone-500 font-normal">({levelProgress}%)</span>
               </div>
             </div>
             <div className="h-2 rounded-full bg-white/10 dark:bg-stone-800 overflow-hidden">
@@ -552,8 +556,8 @@ export default function ProfilePage() {
                   <Target className="w-5 h-5" />
                 </div>
                 <div className="min-w-0">
-                  <h3 className="text-base sm:text-lg font-extrabold text-stone-900 dark:text-stone-100">Tiến độ Lộ trình</h3>
-                  <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">Tiến độ tổng quát lộ trình học của bạn</p>
+                  <h3 className="text-base sm:text-lg font-extrabold text-stone-900 dark:text-stone-100">{t.profile.trackProgressTitle}</h3>
+                  <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">{t.profile.trackProgressSub}</p>
                 </div>
               </div>
 
@@ -575,7 +579,7 @@ export default function ProfilePage() {
                             <p className="text-xs sm:text-sm font-extrabold text-stone-900 dark:text-stone-100">{track.title}</p>
                             {isCurrent && (
                               <span className="inline-flex rounded bg-emerald-100/70 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-400 px-1.5 py-0.5 text-[9px] font-extrabold uppercase tracking-wider">
-                                Đang học
+                                {t.profile.inProgress}
                               </span>
                             )}
                           </div>
@@ -585,10 +589,10 @@ export default function ProfilePage() {
                         </div>
                         <div className="text-right shrink-0">
                           <p className="text-xs sm:text-sm font-extrabold text-stone-900 dark:text-stone-100">
-                            {track.completed}/{track.total} bài
+                            {format(t.profile.lessonsOf, { done: track.completed, total: track.total })}
                           </p>
                           <p className="text-[10px] text-stone-400 dark:text-stone-500 mt-0.5">
-                            {track.percent}% · ~{track.estimatedHours} giờ
+                            {format(t.profile.percentAndHours, { percent: track.percent, hours: track.estimatedHours })}
                           </p>
                         </div>
                       </div>
@@ -612,14 +616,14 @@ export default function ProfilePage() {
                   <BookOpen className="w-5 h-5" />
                 </div>
                 <div className="min-w-0">
-                  <h3 className="text-base sm:text-lg font-extrabold text-stone-900 dark:text-stone-100">Bài học hoàn thành gần đây</h3>
-                  <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">Các bài vừa học xong gần nhất để bạn ôn tập</p>
+                  <h3 className="text-base sm:text-lg font-extrabold text-stone-900 dark:text-stone-100">{t.profile.recentTitle}</h3>
+                  <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">{t.profile.recentSub}</p>
                 </div>
               </div>
 
               {recentLessons.length === 0 ? (
                 <p className="text-xs text-stone-500 dark:text-stone-400 py-2">
-                  Chưa có bài hoàn thành nào để hiển thị. Hãy tiếp tục học trên Dashboard để lưu tiến độ nhé!
+                  {t.profile.recentEmpty}
                 </p>
               ) : (
                 <div className="space-y-2.5">
@@ -634,15 +638,17 @@ export default function ProfilePage() {
                           {lesson.title}
                         </p>
                         <p className="text-[10px] text-stone-400 dark:text-stone-500 mt-0.5">
-                          {lesson.completedAt ? `Hoàn thành ngày ${new Date(lesson.completedAt).toLocaleDateString("vi-VN")}` : "Không rõ ngày"}
+                          {lesson.completedAt ? format(t.profile.completedOn, { date: new Date(lesson.completedAt).toLocaleDateString(intlLocale(locale)) }) : t.profile.dateUnknown}
                         </p>
                       </div>
                       <div className="flex items-center gap-3 shrink-0">
                         <div className="text-right">
                           <span className="text-xs font-extrabold text-stone-900 dark:text-stone-100">
+                            {/* i18n-ignore-start: "N/A" is language-neutral, the same in both locales */}
                             {lesson.quizScore !== null && lesson.quizScore !== undefined ? `${Math.round(lesson.quizScore)}%` : "N/A"}
+                            {/* i18n-ignore-end */}
                           </span>
-                          <p className="text-[9px] text-stone-400 dark:text-stone-500">Đọc & Quiz</p>
+                          <p className="text-[9px] text-stone-400 dark:text-stone-500">{t.profile.readAndQuiz}</p>
                         </div>
                         <ArrowRight className="w-3.5 h-3.5 text-stone-400 group-hover:text-emerald-500 transition-colors" />
                       </div>
@@ -659,14 +665,14 @@ export default function ProfilePage() {
                   <Target className="w-5 h-5 text-violet-500" />
                 </div>
                 <div className="min-w-0">
-                  <h3 className="text-base sm:text-lg font-extrabold text-stone-900 dark:text-stone-100">Hành trình học tập</h3>
-                  <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">Dòng thời gian các cột mốc quan trọng của bạn</p>
+                  <h3 className="text-base sm:text-lg font-extrabold text-stone-900 dark:text-stone-100">{t.profile.journeyTitle}</h3>
+                  <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">{t.profile.journeySub}</p>
                 </div>
               </div>
 
               {milestones.length === 0 ? (
                 <p className="text-xs text-stone-500 dark:text-stone-400 py-2">
-                  Chưa có cột mốc nào để hiển thị. Hãy tiếp tục học để tạo cột mốc đầu tiên nhé!
+                  {t.profile.journeyEmpty}
                 </p>
               ) : (
                 <div className="relative pl-6 max-h-[350px] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-stone-200 dark:scrollbar-thumb-stone-800">
@@ -697,27 +703,27 @@ export default function ProfilePage() {
 
             {/* Unified Key Stats Grid */}
             <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl p-5 shadow-sm">
-              <h4 className="text-sm font-extrabold text-stone-900 dark:text-stone-100 mb-4 tracking-tight">Thống kê tóm tắt</h4>
+              <h4 className="text-sm font-extrabold text-stone-900 dark:text-stone-100 mb-4 tracking-tight">{t.profile.summaryTitle}</h4>
               <div className="grid grid-cols-2 gap-2 sm:gap-3">
                 <div className="min-w-0 bg-stone-50/70 dark:bg-stone-900/30 border border-stone-200/50 dark:border-stone-800 rounded-xl p-3.5">
-                  <span className="text-[10px] font-extrabold text-stone-400 dark:text-stone-500 uppercase tracking-wider block mb-1">Thời gian học</span>
-                  <p className="text-base font-extrabold text-stone-900 dark:text-stone-100 truncate">{studyMinutes} phút</p>
-                  <p className="text-[10px] text-stone-400 dark:text-stone-400 mt-0.5 truncate">{lessonsStarted} bài đã mở</p>
+                  <span className="text-[10px] font-extrabold text-stone-400 dark:text-stone-500 uppercase tracking-wider block mb-1">{t.profile.studyTime}</span>
+                  <p className="text-base font-extrabold text-stone-900 dark:text-stone-100 truncate">{format(t.profile.minutes, { count: studyMinutes })}</p>
+                  <p className="text-[10px] text-stone-400 dark:text-stone-400 mt-0.5 truncate">{format(t.profile.lessonsOpened, { count: lessonsStarted })}</p>
                 </div>
                 <div className="min-w-0 bg-stone-50/70 dark:bg-stone-900/30 border border-stone-200/50 dark:border-stone-800 rounded-xl p-3.5">
-                  <span className="text-[10px] font-extrabold text-stone-400 dark:text-stone-500 uppercase tracking-wider block mb-1">Xếp hạng tuần</span>
-                  <p className="text-base font-extrabold text-stone-900 dark:text-stone-100 truncate">{xpRank ? `#${xpRank.rank}` : "Chưa xếp hạng"}</p>
-                  <p className="text-[10px] text-stone-400 dark:text-stone-400 mt-0.5 truncate">{xpRank ? `${xpRank.value} XP` : "Học tiếp để lên hạng"}</p>
+                  <span className="text-[10px] font-extrabold text-stone-400 dark:text-stone-500 uppercase tracking-wider block mb-1">{t.profile.weeklyRank}</span>
+                  <p className="text-base font-extrabold text-stone-900 dark:text-stone-100 truncate">{xpRank ? `#${xpRank.rank}` : t.profile.unranked}</p>
+                  <p className="text-[10px] text-stone-400 dark:text-stone-400 mt-0.5 truncate">{xpRank ? format(t.profile.xpWithPercent, { xp: xpRank.value }) : t.profile.rankKeepGoing}</p>
                 </div>
                 <div className="min-w-0 bg-stone-50/70 dark:bg-stone-900/30 border border-stone-200/50 dark:border-stone-800 rounded-xl p-3.5">
-                  <span className="text-[10px] font-extrabold text-stone-400 dark:text-stone-500 uppercase tracking-wider block mb-1">Nhịp học streak</span>
-                  <p className="text-base font-extrabold text-stone-900 dark:text-stone-100 truncate">{streak?.current_streak || 0} ngày</p>
-                  <p className="text-[10px] text-stone-400 dark:text-stone-400 mt-0.5 truncate">Kỷ lục {streak?.longest_streak || 0} ngày</p>
+                  <span className="text-[10px] font-extrabold text-stone-400 dark:text-stone-500 uppercase tracking-wider block mb-1">{t.profile.streakLabel}</span>
+                  <p className="text-base font-extrabold text-stone-900 dark:text-stone-100 truncate">{format(t.profile.days, { count: streak?.current_streak || 0 })}</p>
+                  <p className="text-[10px] text-stone-400 dark:text-stone-400 mt-0.5 truncate">{format(t.profile.streakRecord, { count: streak?.longest_streak || 0 })}</p>
                 </div>
                 <div className="min-w-0 bg-stone-50/70 dark:bg-stone-900/30 border border-stone-200/50 dark:border-stone-800 rounded-xl p-3.5">
-                  <span className="text-[10px] font-extrabold text-stone-400 dark:text-stone-500 uppercase tracking-wider block mb-1">Ghi chú & Flag</span>
-                  <p className="text-base font-extrabold text-stone-900 dark:text-stone-100 truncate">{notesCount} Note</p>
-                  <p className="text-[10px] text-stone-400 dark:text-stone-400 mt-0.5 truncate">{flaggedLessonCount} bài tự đánh dấu</p>
+                  <span className="text-[10px] font-extrabold text-stone-400 dark:text-stone-500 uppercase tracking-wider block mb-1">{t.profile.notesAndFlags}</span>
+                  <p className="text-base font-extrabold text-stone-900 dark:text-stone-100 truncate">{format(t.profile.noteCount, { count: notesCount })}</p>
+                  <p className="text-[10px] text-stone-400 dark:text-stone-400 mt-0.5 truncate">{format(t.profile.flaggedCount, { count: flaggedLessonCount })}</p>
                 </div>
               </div>
             </div>
@@ -727,26 +733,26 @@ export default function ProfilePage() {
               <div className="flex items-center justify-between mb-4 border-b border-stone-100 dark:border-stone-800 pb-3">
                 <h4 className="text-sm font-extrabold text-stone-900 dark:text-stone-100 flex items-center gap-1.5">
                   <Trophy className="w-4 h-4 text-amber-500" />
-                  Huy hiệu & Danh hiệu
+                  {t.profile.badgesTitle}
                 </h4>
                 <span className="text-[10px] font-extrabold text-stone-400 dark:text-stone-500 bg-stone-100 dark:bg-stone-800 px-2 py-0.5 rounded">
-                  Tổng {badges.length + gameTitles.length}
+                  {format(t.profile.badgesTotal, { count: badges.length + gameTitles.length })}
                 </span>
               </div>
 
               {gameTitles.length > 0 && (
                 <div className="space-y-2 mb-4">
-                  {gameTitles.map((t) => (
+                  {gameTitles.map((gt) => (
                     <div
-                      key={t.gameType}
+                      key={gt.gameType}
                       className="flex items-center gap-3 rounded-xl border border-amber-200 dark:border-amber-900/60 bg-amber-50/30 dark:bg-amber-950/10 px-3.5 py-2.5"
                     >
-                      <span className="text-xl flex-shrink-0">{t.gameEmoji}</span>
+                      <span className="text-xl flex-shrink-0">{gt.gameEmoji}</span>
                       <div className="min-w-0 flex-1">
-                        <p className="text-xs font-extrabold text-amber-700 dark:text-amber-400 truncate">{t.title}</p>
-                        <p className="text-[10px] text-stone-500 dark:text-stone-400 truncate">{t.gameLabel}</p>
+                        <p className="text-xs font-extrabold text-amber-700 dark:text-amber-400 truncate">{gt.title}</p>
+                        <p className="text-[10px] text-stone-500 dark:text-stone-400 truncate">{gt.gameLabel}</p>
                       </div>
-                      <span className="text-[10px] font-extrabold text-amber-600 dark:text-amber-500 shrink-0">Hạng #{t.rank}</span>
+                      <span className="text-[10px] font-extrabold text-amber-600 dark:text-amber-500 shrink-0">{format(t.profile.rankNumber, { rank: gt.rank })}</span>
                     </div>
                   ))}
                 </div>
@@ -754,7 +760,7 @@ export default function ProfilePage() {
 
               {badges.length === 0 ? (
                 <p className="text-xs text-stone-500 dark:text-stone-400 py-1">
-                  Chưa đạt được huy hiệu học tập nào. Hoàn thành thêm bài học nhé!
+                  {t.profile.badgesEmpty}
                 </p>
               ) : (
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
@@ -778,33 +784,33 @@ export default function ProfilePage() {
             <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl p-5 shadow-sm">
               <h4 className="text-sm font-extrabold text-stone-900 dark:text-stone-100 flex items-center gap-1.5 border-b border-stone-100 dark:border-stone-800 pb-3 mb-4">
                 <Sparkles className="w-4 h-4 text-rose-500 animate-pulse" />
-                Vật phẩm Rương Quà
+                {t.profile.chestItems}
               </h4>
               
               {/* Titles Section */}
               <div className="space-y-2 mb-4">
                 <h5 className="text-[10px] font-bold text-stone-400 uppercase tracking-wider">
-                  Danh hiệu ({unlockedTitles.length})
+                  {format(t.profile.titlesSection, { count: unlockedTitles.length })}
                 </h5>
                 {unlockedTitles.length === 0 ? (
                   <p className="text-xs text-stone-500 dark:text-stone-400 italic">
-                    Chưa mở khóa danh hiệu nào. Mở rương quà ở Dashboard để kiếm danh hiệu!
+                    {t.profile.titlesEmpty}
                   </p>
                 ) : (
                   <div className="flex flex-wrap gap-2">
-                    {unlockedTitles.map((t) => {
-                      const isEquipped = activeTitle === t;
+                    {unlockedTitles.map((title) => {
+                      const isEquipped = activeTitle === title;
                       return (
                         <button
-                          key={t}
-                          onClick={() => handleEquipTitle(t)}
+                          key={title}
+                          onClick={() => handleEquipTitle(title)}
                           className={`px-3 py-1.5 rounded-xl border text-[10px] sm:text-[11px] font-bold transition-all focus:outline-none cursor-pointer whitespace-nowrap ${
                             isEquipped
                               ? "bg-amber-500 text-white border-amber-500 shadow-sm shadow-amber-500/20"
                               : "border-stone-200 dark:border-stone-800 text-stone-700 dark:text-stone-300 hover:border-amber-400 dark:hover:border-amber-700"
                           }`}
                         >
-                          {t} {isEquipped ? "✓" : ""}
+                          {title} {isEquipped ? "✓" : ""}
                         </button>
                       );
                     })}
@@ -815,17 +821,17 @@ export default function ProfilePage() {
               {/* Themes Section */}
               <div className="space-y-2">
                 <h5 className="text-[10px] font-bold text-stone-400 uppercase tracking-wider">
-                  Giao diện ({unlockedThemes.length})
+                  {format(t.profile.themesSection, { count: unlockedThemes.length })}
                 </h5>
                 {unlockedThemes.length === 0 ? (
                   <p className="text-xs text-stone-500 dark:text-stone-400 italic">
-                    Chưa mở khóa giao diện nào.
+                    {t.profile.themesEmpty}
                   </p>
                 ) : (
                   <div className="flex flex-wrap gap-2">
                     {unlockedThemes.map((th) => {
                       const isEquipped = activeTheme === th;
-                      const themeName = th === "gold" ? "Hoàng Kim" : "Ngọc Lục Bảo";
+                      const themeName = th === "gold" ? t.profile.themeGold : t.profile.themeEmerald;
                       const colorClass = th === "gold" ? "text-amber-500" : "text-emerald-500";
                       return (
                         <button
@@ -839,7 +845,7 @@ export default function ProfilePage() {
                               : "border-stone-200 dark:border-stone-800 text-stone-700 dark:text-stone-300 hover:border-stone-400 dark:hover:border-stone-700"
                           }`}
                         >
-                          <span className={isEquipped ? "text-white" : colorClass}>✦</span> Giao diện {themeName} {isEquipped ? "✓" : ""}
+                          <span className={isEquipped ? "text-white" : colorClass}>✦</span> {format(t.profile.themeLabel, { name: themeName })} {isEquipped ? "✓" : ""}
                         </button>
                       );
                     })}
@@ -853,7 +859,7 @@ export default function ProfilePage() {
               <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl p-5 shadow-sm">
                 <h4 className="text-sm font-extrabold text-stone-900 dark:text-stone-100 mb-3.5 flex items-center gap-1.5">
                   <Bookmark className="w-4 h-4 text-emerald-500" />
-                  Bài học đã lưu ({bookmarks.length})
+                  {format(t.profile.savedLessons, { count: bookmarks.length })}
                 </h4>
                 <div className="space-y-2">
                   {bookmarks.map((bookmark) => (
@@ -877,7 +883,7 @@ export default function ProfilePage() {
               <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl p-5 shadow-sm">
                 <h4 className="text-sm font-extrabold text-stone-900 dark:text-stone-100 mb-3.5 flex items-center gap-1.5">
                   <CheckCircle2 className="w-4 h-4 text-amber-500" />
-                  Bài tự đánh dấu ({flaggedLessonCount})
+                  {format(t.profile.flaggedLessons, { count: flaggedLessonCount })}
                 </h4>
                 <div className="space-y-2">
                   {flaggedLessons.map((lesson) => (

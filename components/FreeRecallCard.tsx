@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Brain, Check } from "lucide-react";
 import { trackFeatureClick } from "@/lib/feature-events";
 import { getFreeRecallDone, saveFreeRecallDone } from "@/lib/progress";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 // Free recall: write down everything you remember, unprompted, before being
 // shown the answers. It is the single strongest retrieval-practice technique
@@ -45,6 +47,7 @@ export default function FreeRecallCard({
   takeaways,
   children,
 }: FreeRecallCardProps) {
+  const { t } = useI18n();
   const [phase, setPhase] = useState<Phase>("idle");
   const [secondsLeft, setSecondsLeft] = useState(RECALL_SECONDS);
   const [text, setText] = useState("");
@@ -132,9 +135,9 @@ export default function FreeRecallCard({
       <div className="bg-stone-900 dark:bg-stone-950 px-6 py-5 flex items-center gap-3">
         <Brain className="w-5 h-5 text-amber-400 flex-shrink-0" />
         <div className="min-w-0">
-          <p className="text-white font-extrabold text-lg tracking-wide">Đổ não 60 giây</p>
+          <p className="text-white font-extrabold text-lg tracking-wide">{t.freeRecall.headerTitle}</p>
           <p className="text-stone-400 text-xs mt-0.5">
-            Viết ra trước khi xem đáp án - nhớ lại khó hơn nhận ra, và đó là lý do nó hiệu quả
+            {t.freeRecall.headerSubtitle}
           </p>
         </div>
       </div>
@@ -144,21 +147,20 @@ export default function FreeRecallCard({
           {phase === "idle" && (
             <motion.div key="idle" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="space-y-4">
               <p className="text-stone-700 dark:text-stone-300 leading-relaxed">
-                Không cuộn lên xem lại. Trong 60 giây, viết ra mọi thứ bạn còn nhớ từ bài này -
-                gạch đầu dòng, sai chính tả, thiếu ý đều không sao.
+                {t.freeRecall.idleInstructions}
               </p>
               <div className="flex flex-wrap gap-3">
                 <button
                   onClick={start}
                   className="bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 px-5 py-2.5 rounded-xl font-bold text-sm transition"
                 >
-                  Bắt đầu 60 giây
+                  {t.freeRecall.startButton}
                 </button>
                 <button
                   onClick={skip}
                   className="text-sm font-bold text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 underline transition"
                 >
-                  Bỏ qua, xem tóm tắt
+                  {t.freeRecall.skipButton}
                 </button>
               </div>
             </motion.div>
@@ -168,13 +170,13 @@ export default function FreeRecallCard({
             <motion.div key="writing" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="space-y-3">
               <div className="flex items-center justify-between gap-4">
                 <span className="text-sm font-bold text-stone-600 dark:text-stone-400">
-                  Còn {secondsLeft} giây
+                  {format(t.freeRecall.secondsLeft, { seconds: secondsLeft })}
                 </span>
                 <button
                   onClick={finishWriting}
                   className="text-xs font-bold text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 underline"
                 >
-                  Xong sớm
+                  {t.freeRecall.finishEarly}
                 </button>
               </div>
               <div className="h-1.5 bg-stone-100 dark:bg-stone-800 rounded-full overflow-hidden">
@@ -188,12 +190,12 @@ export default function FreeRecallCard({
                 value={text}
                 onChange={(e) => setText(e.target.value)}
                 rows={6}
-                placeholder="Mình nhớ rằng..."
-                aria-label="Viết ra những gì bạn còn nhớ"
+                placeholder={t.freeRecall.textareaPlaceholder}
+                aria-label={t.freeRecall.textareaAriaLabel}
                 className="w-full rounded-xl border-2 border-stone-200 dark:border-stone-700 bg-stone-50 dark:bg-stone-950 p-4 text-stone-800 dark:text-stone-100 leading-relaxed focus:outline-hidden focus:border-stone-900 dark:focus:border-stone-400 resize-none"
               />
               <p className="text-xs text-stone-400 dark:text-stone-500">
-                Nội dung bạn viết không được lưu lại ở đâu cả.
+                {t.freeRecall.privacyNote}
               </p>
             </motion.div>
           )}
@@ -201,7 +203,7 @@ export default function FreeRecallCard({
           {phase === "scoring" && (
             <motion.div key="scoring" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="space-y-4">
               <p className="text-stone-700 dark:text-stone-300 leading-relaxed">
-                Hết giờ. Dưới đây là các ý chính - đánh dấu những ý bạn đã viết được.
+                {t.freeRecall.scoringIntro}
               </p>
               <div className="space-y-2">
                 {takeaways.map((takeaway, i) => {
@@ -235,13 +237,13 @@ export default function FreeRecallCard({
               </div>
               <div className="flex items-center justify-between gap-4 flex-wrap">
                 <p className="text-sm font-bold text-stone-600 dark:text-stone-400">
-                  Nhớ được {ticked.size}/{takeaways.length} ý
+                  {format(t.freeRecall.recalledCount, { recalled: ticked.size, total: takeaways.length })}
                 </p>
                 <button
                   onClick={submitScore}
                   className="bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 px-5 py-2.5 rounded-xl font-bold text-sm transition"
                 >
-                  Xem tóm tắt đầy đủ
+                  {t.freeRecall.viewSummaryButton}
                 </button>
               </div>
             </motion.div>

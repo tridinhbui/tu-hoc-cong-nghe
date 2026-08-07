@@ -228,3 +228,35 @@ describe("hiển thị và chấm bài", () => {
     expect(valuesMatch(0, new ExcelError("#N/A"))).toBe(false);
   });
 });
+
+describe("MEDIAN", () => {
+  // Trung vị có mặt trong engine vì định giá so sánh dùng nó: một công ty ngang
+  // hàng bị định giá lệch kéo trung bình đi mà không kéo trung vị, nên MEDIAN là
+  // con số nhà phân tích thực sự lấy.
+  const sheetOf = (values: number[]): Sheet =>
+    Object.fromEntries(values.map((v, i) => [`A${i + 1}`, { value: v }]));
+
+  it("lấy giá trị giữa khi số lượng lẻ", () => {
+    const sheet: Sheet = { ...sheetOf([7.4, 8.5, 11.1]), B1: { formula: "=MEDIAN(A1:A3)" } };
+    expect(evaluateCell(sheet, "B1")).toBe(8.5);
+  });
+
+  it("lấy trung bình hai giá trị giữa khi số lượng chẵn", () => {
+    const sheet: Sheet = { ...sheetOf([7.4, 8.5, 9.2, 11.1]), B1: { formula: "=MEDIAN(A1:A4)" } };
+    expect(evaluateCell(sheet, "B1")).toBeCloseTo(8.85, 10);
+  });
+
+  it("không phụ thuộc thứ tự ô, và không bị một giá trị lệch kéo đi", () => {
+    const ordered: Sheet = { ...sheetOf([1, 2, 3, 4, 500]), B1: { formula: "=MEDIAN(A1:A5)" } };
+    const shuffled: Sheet = { ...sheetOf([500, 3, 1, 4, 2]), B1: { formula: "=MEDIAN(A1:A5)" } };
+    expect(evaluateCell(ordered, "B1")).toBe(3);
+    expect(evaluateCell(shuffled, "B1")).toBe(3);
+    // Trung bình của cùng dãy là 102 - chênh lệch chính là điểm của hàm này.
+    const mean: Sheet = { ...sheetOf([1, 2, 3, 4, 500]), B1: { formula: "=AVERAGE(A1:A5)" } };
+    expect(evaluateCell(mean, "B1")).toBe(102);
+  });
+
+  it("dãy rỗng là lỗi, không phải 0", () => {
+    expect(isError(evaluateCell({ B1: { formula: "=MEDIAN(A1:A3)" } }, "B1"))).toBe(true);
+  });
+});

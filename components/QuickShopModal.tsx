@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { X } from "lucide-react";
 import CosmeticStore from "@/components/CosmeticStore";
 import { useIsClient } from "@/lib/use-is-client";
+import { useI18n } from "@/lib/i18n/context";
 
 interface QuickShopModalProps {
   userId: string;
@@ -13,6 +14,7 @@ interface QuickShopModalProps {
 }
 
 export default function QuickShopModal({ userId, onClose }: QuickShopModalProps) {
+  const { t } = useI18n();
   const mounted = useIsClient();
 
   useEffect(() => {
@@ -38,7 +40,7 @@ export default function QuickShopModal({ userId, onClose }: QuickShopModalProps)
         <button
           onClick={onClose}
           className="absolute top-4 right-4 p-2.5 rounded-full bg-stone-100 text-stone-600 hover:text-stone-900 hover:bg-stone-200 transition-colors z-30 cursor-pointer shadow-sm"
-          title="Đóng cửa hàng"
+          title={t.miscUi.quickShopModal.closeShop}
         >
           <X className="w-5 h-5" />
         </button>

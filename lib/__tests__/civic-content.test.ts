@@ -1,7 +1,10 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { WEARABLE_IN_3D, ITEM_DESCRIPTIONS } from "@/lib/rpg-items";
-import { CIVIC_ROOMS } from "@/components/career-district/district-space";
+import { civicRoomsOf } from "@/components/career-district/district-space";
+import { vi as viDict } from "@/lib/i18n/dictionaries/vi";
+
+const CIVIC_ROOMS = civicRoomsOf(viDict);
 
 /** Nội dung viết tay trong các căn nhà dân sự.
  *

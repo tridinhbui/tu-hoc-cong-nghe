@@ -1,0 +1,980 @@
+{
+  "accrual-accounting": {
+    "title": "What is accrual accounting?",
+    "subtitle": "Recognised by economic obligation, not by cash flow",
+    "duration": "6 min"
+  },
+  "active-vs-passive-investing": {
+    "title": "Active vs Passive Investing",
+    "subtitle": "Trying to beat the market, or simply owning the whole market?"
+  },
+  "alpha-la-gi": {
+    "title": "What is alpha?",
+    "subtitle": "The excess return a fund manager generates over the market",
+    "duration": "6 min"
+  },
+  "annuity": {
+    "title": "Annuity: level cash flows",
+    "subtitle": "A series of equal payments over a fixed period",
+    "duration": "6 min"
+  },
+  "asset-turnover": {
+    "title": "Asset Turnover",
+    "subtitle": "How much revenue does each dong of assets generate?",
+    "duration": "5 min"
+  },
+  "balance-sheet-doc": {
+    "title": "Reading a Balance Sheet from start to finish",
+    "subtitle": "How to read a balance sheet in 5 minutes",
+    "duration": "7 min"
+  },
+  "bang-can-doi-can-bang": {
+    "title": "Why must a balance sheet always balance?",
+    "subtitle": "Double-entry bookkeeping and the logic behind every number",
+    "duration": "5 min"
+  },
+  "beta-la-gi": {
+    "title": "What is Beta in finance?",
+    "subtitle": "Measuring a stock's sensitivity to the broader market",
+    "duration": "6 min"
+  },
+  "beta-trong-danh-muc": {
+    "title": "Beta in a portfolio",
+    "subtitle": "Measuring how sensitive a portfolio is to the broad market's swings",
+    "duration": "6 min"
+  },
+  "bo-3-bao-cao": {
+    "title": "What makes up the three financial statements?",
+    "subtitle": "Income Statement, Balance Sheet, Cash Flow Statement - three views of one business",
+    "duration": "5 min"
+  },
+  "burn-rate-runway": {
+    "title": "Burn Rate and Runway",
+    "subtitle": "How fast is a startup burning cash, and how long can it survive?",
+    "duration": "6 min"
+  },
+  "but-toan-ghi-so-kep-hai-ve": {
+    "title": "Bookkeeping, Lesson 1: Double entry - why every transaction has two sides",
+    "subtitle": "What debit and credit actually mean, the increase/decrease rule for each account type, and why the totals always balance",
+    "duration": "11 min"
+  },
+  "buyback-co-phieu": {
+    "title": "Share Buyback",
+    "subtitle": "A way to pay shareholders that isn't a dividend",
+    "duration": "6 min"
+  },
+  "ca-nhan-doanh-nghiep-chinh-phu": {
+    "title": "How individuals, businesses and governments manage money differently.",
+    "subtitle": "Three financial actors, three different goals, three different toolkits.",
+    "duration": "7 min"
+  },
+  "call-option-la-gi": {
+    "title": "What Is a Call Option?",
+    "subtitle": "The right to buy an asset at a fixed price - expecting the price to rise"
+  },
+  "capex-vs-opex": {
+    "title": "CapEx vs OpEx",
+    "subtitle": "Capital spending vs operating expense - different effects on the financials",
+    "duration": "6 min"
+  },
+  "capital-structure": {
+    "title": "Capital Structure",
+    "subtitle": "Finding the optimal mix of debt and equity",
+    "duration": "9 min"
+  },
+  "capm-la-gi": {
+    "title": "What is CAPM?",
+    "subtitle": "Capital Asset Pricing Model",
+    "duration": "7 min"
+  },
+  "case-dinh-gia-pe-va-dcf": {
+    "title": "Mini case - Valuing a company with P/E and a simple DCF",
+    "subtitle": "Practical application: combining relative and absolute methods to make a decision",
+    "duration": "9 min"
+  },
+  "case-doc-duong-cong-loi-suat": {
+    "title": "Mini case - reading the yield curve",
+    "subtitle": "A practical application: reading the yield curve to guess the economic cycle",
+    "duration": "7 min"
+  },
+  "case-hang-hang-khong-phong-ho-gia-dau": {
+    "title": "Small Case - An Airline Hedges Oil Prices",
+    "subtitle": "Applying theory in practice: building a hedging strategy for fuel cost"
+  },
+  "case-xay-danh-muc-3-tai-san": {
+    "title": "Small Case - Building a 3-Asset Portfolio",
+    "subtitle": "Applying theory in practice: combining stocks, bonds, and gold based on correlation"
+  },
+  "cash-accounting": {
+    "title": "What is cash accounting?",
+    "subtitle": "Recognised by actual cash flow - simple but limited",
+    "duration": "5 min"
+  },
+  "cash-conversion-cycle-2": {
+    "title": "Cash Conversion Cycle (CCC)",
+    "subtitle": "How long from putting money out to getting money back?",
+    "duration": "6 min"
+  },
+  "cash-conversion-cycle": {
+    "title": "Cash Conversion Cycle",
+    "subtitle": "From cash → inventory → sale → cash collected",
+    "duration": "6 min"
+  },
+  "cash-flow-statement-la-gi": {
+    "title": "What is the Cash Flow Statement?",
+    "subtitle": "The three sections of the cash flow statement",
+    "duration": "6 min"
+  },
+  "chi-phi-vs-dong-tien-ra": {
+    "title": "How does an expense differ from cash going out?",
+    "subtitle": "Why buying a 1-billion machine doesn't cut profit by 1 billion right away",
+    "duration": "6 min"
+  },
+  "chinh-sach-tien-te": {
+    "title": "Monetary policy and interest rates",
+    "subtitle": "How do the Fed and the State Bank steer the economy through interest rates?",
+    "duration": "7 min"
+  },
+  "co-phieu-la-gi-day121": {
+    "title": "What is a stock?",
+    "subtitle": "A certificate of ownership in part of a business",
+    "duration": "6 min"
+  },
+  "co-tuc-chinh-sach": {
+    "title": "Dividend Policy",
+    "subtitle": "Pay a dividend or retain earnings for reinvestment?",
+    "duration": "6 min"
+  },
+  "comparable-company-analysis-la-gi": {
+    "title": "What is Comparable Company Analysis?",
+    "subtitle": "Valuing a company by how the market is pricing similar ones",
+    "duration": "9 min"
+  },
+  "compounding-dau-tu": {
+    "title": "Compounding in Investing",
+    "subtitle": "The power of time and continuous reinvestment",
+    "duration": "6 min"
+  },
+  "cong-thuc-ke-toan": {
+    "title": "Assets = Liabilities + Equity",
+    "subtitle": "The basic accounting equation and why it always holds",
+    "duration": "5 min"
+  },
+  "cong-ty-lai-ma-het-tien": {
+    "title": "Why can a profitable company run short of cash?",
+    "subtitle": "The accounting-profit trap versus real cash flow",
+    "duration": "6 min"
+  },
+  "cong-ty-lo-ma-con-tien": {
+    "title": "Why can a company post a loss and still have cash?",
+    "subtitle": "The depreciation shield and the timing gap between P&L and cash",
+    "duration": "5 min"
+  },
+  "corporate-bond-la-gi": {
+    "title": "What is a corporate bond?",
+    "subtitle": "A company borrowing directly from investors, bypassing banks",
+    "duration": "6 min"
+  },
+  "corporate-finance-la-gi": {
+    "title": "What is Corporate Finance?",
+    "subtitle": "The three core financial decisions of every business",
+    "duration": "6 min"
+  },
+  "correlation-tuong-quan-tai-san": {
+    "title": "Correlation between assets",
+    "subtitle": "A measure of how much two assets move together or apart",
+    "duration": "7 min"
+  },
+  "cost-of-capital": {
+    "title": "Cost of Capital",
+    "subtitle": "Whose money are you using? How expensive is it?",
+    "duration": "6 min"
+  },
+  "cost-of-debt": {
+    "title": "Cost of Debt",
+    "subtitle": "The real after-tax interest rate on a loan",
+    "duration": "5 min"
+  },
+  "cost-of-equity": {
+    "title": "Cost of Equity",
+    "subtitle": "The return shareholders expect - no interest paid, but not free",
+    "duration": "7 min"
+  },
+  "credit-rating": {
+    "title": "Credit Rating",
+    "subtitle": "How do Moody's, S&P, and Fitch assess default risk?",
+    "duration": "6 min"
+  },
+  "credit-spread": {
+    "title": "Credit Spread",
+    "subtitle": "The credit risk premium over the risk-free rate",
+    "duration": "6 min"
+  },
+  "currency-swap-chuyen-sau": {
+    "title": "Currency Swap",
+    "subtitle": "Swapping cash flows between two different currencies"
+  },
+  "current-long-term-liabilities": {
+    "title": "Current and Long-term Liabilities",
+    "subtitle": "Classifying debt by maturity",
+    "duration": "5 min"
+  },
+  "current-non-current-assets": {
+    "title": "Current Assets and Non-current Assets",
+    "subtitle": "Classifying assets by liquidity",
+    "duration": "5 min"
+  },
+  "current-ratio": {
+    "title": "Current Ratio: Short-Term Solvency",
+    "subtitle": "Does the business have enough cash to pay its debts in the next 12 months?",
+    "duration": "5 min"
+  },
+  "dcf-la-gi-day133": {
+    "title": "What is DCF?",
+    "subtitle": "Valuing a company as the present value of all its future cash flows",
+    "duration": "11 min"
+  },
+  "debt-to-equity": {
+    "title": "Debt-to-Equity",
+    "subtitle": "Financial leverage and capital-structure risk",
+    "duration": "6 min"
+  },
+  "default-la-gi": {
+    "title": "What is a default?",
+    "subtitle": "When a borrower fails to pay debt on time",
+    "duration": "6 min"
+  },
+  "default-risk": {
+    "title": "Default risk and the default rate",
+    "subtitle": "The probability of not repaying debt, and the recovery rate",
+    "duration": "6 min"
+  },
+  "derivatives-la-gi": {
+    "title": "What Are Derivatives?",
+    "subtitle": "Instruments whose value depends on another underlying asset"
+  },
+  "discount-rate": {
+    "title": "Discount Rate",
+    "subtitle": "The discount rate reflects risk and opportunity cost",
+    "duration": "6 min"
+  },
+  "discounting": {
+    "title": "Discounting: Pulling Future Money Back to the Present",
+    "subtitle": "The reverse of compounding - the basis of every valuation",
+    "duration": "6 min"
+  },
+  "diversification-da-dang-hoa": {
+    "title": "Diversification",
+    "subtitle": "Don't put all your eggs in one basket - the oldest rule in investing",
+    "duration": "6 min"
+  },
+  "doanh-thu-ghi-nhan": {
+    "title": "Revenue: when is it recognised?",
+    "subtitle": "Accrual vs cash - two different views of the same transaction",
+    "duration": "6 min"
+  },
+  "doc-bctc-apple": {
+    "title": "Case study: reading Apple's / Vinamilk's financial statements",
+    "subtitle": "Applying the three statements to a real example",
+    "duration": "7 min"
+  },
+  "don-bay-tai-chinh-2": {
+    "title": "Financial Leverage",
+    "subtitle": "Amplifying profit - and risk",
+    "duration": "7 min"
+  },
+  "don-bay-tai-chinh": {
+    "title": "What is financial leverage?",
+    "subtitle": "Leverage amplifies both gains and losses. It's a genuine double-edged sword.",
+    "duration": "7 min"
+  },
+  "dong-tien": {
+    "title": "What is cash flow? Why the wealthy look at cash before profit.",
+    "subtitle": "Profit shows efficiency on the statement. Cash flow shows financial capacity in reality.",
+    "duration": "7 min"
+  },
+  "du-an-cho-thue-noi-va-cap-rate": {
+    "title": "Property projects, Lesson 4: Rental assets - NOI and why it differs from accounting profit",
+    "subtitle": "How to calculate net operating income, the relationship between NOI and the cap rate, and the three deductions beginners always forget",
+    "duration": "11 min"
+  },
+  "ebit-operating-income": {
+    "title": "EBIT and Operating Income",
+    "subtitle": "Earnings before interest and tax - measuring pure operating efficiency",
+    "duration": "6 min"
+  },
+  "efficient-frontier-la-gi": {
+    "title": "What is the Efficient Frontier?",
+    "subtitle": "The efficient frontier - the set of every possible optimal portfolio",
+    "duration": "7 min"
+  },
+  "enterprise-value-la-gi-day125": {
+    "title": "What is Enterprise Value?",
+    "subtitle": "The value of the whole business - including debt, minus cash",
+    "duration": "7 min"
+  },
+  "eps-chi-so": {
+    "title": "EPS: Earnings Per Share",
+    "subtitle": "How much profit does each share held earn a shareholder?",
+    "duration": "5 min"
+  },
+  "equity-value-vs-enterprise-value": {
+    "title": "Equity Value vs Enterprise Value",
+    "subtitle": "The value that belongs to shareholders differs from the value of the whole operating business",
+    "duration": "6 min"
+  },
+  "etf-la-gi-day176": {
+    "title": "What is an ETF?",
+    "subtitle": "Exchange-traded fund - trades like a stock, diversifies like a fund"
+  },
+  "ev-ebitda-dung-khi-nao": {
+    "title": "When should EV/EBITDA be used?",
+    "subtitle": "The preferred ratio when comparing companies with different capital structures",
+    "duration": "7 min"
+  },
+  "ev-ebitda-la-gi": {
+    "title": "What is EV/EBITDA?",
+    "subtitle": "The most common multiple in M&A and business comparisons",
+    "duration": "6 min"
+  },
+  "exit-multiple-method": {
+    "title": "Exit Multiple Method",
+    "subtitle": "An alternative approach to calculating Terminal Value based on market multiples",
+    "duration": "6 min"
+  },
+  "expected-return-danh-muc": {
+    "title": "A portfolio's expected return",
+    "subtitle": "A portfolio's expected return is the weighted average of its components",
+    "duration": "6 min"
+  },
+  "fcfe-la-gi": {
+    "title": "What is FCFE?",
+    "subtitle": "Free cash flow reserved for shareholders alone, after debt obligations are paid",
+    "duration": "7 min"
+  },
+  "fcff-la-gi": {
+    "title": "What is FCFF?",
+    "subtitle": "Free cash flow available to all investors - both shareholders and creditors",
+    "duration": "7 min"
+  },
+  "financial-model-la-gi": {
+    "title": "What is a Financial Model?",
+    "subtitle": "The analyst's financial forecasting tool",
+    "duration": "7 min"
+  },
+  "financial-ratios-la-gi": {
+    "title": "What are Financial Ratios?",
+    "subtitle": "Why you need ratios to compare businesses",
+    "duration": "5 min"
+  },
+  "financing-cash-flow": {
+    "title": "What is Financing Cash Flow?",
+    "subtitle": "Cash flow from borrowing, issuing shares, and paying dividends",
+    "duration": "5 min"
+  },
+  "forward-contract-la-gi": {
+    "title": "What Is a Forward Contract?",
+    "subtitle": "A commitment to buy/sell an asset at a price agreed today, settled in the future"
+  },
+  "free-cash-flow-co-ban": {
+    "title": "What is Free Cash Flow?",
+    "subtitle": "OCF − CapEx = the cash a business is genuinely free to use",
+    "duration": "6 min"
+  },
+  "future-value": {
+    "title": "Future Value",
+    "subtitle": "What will 1 million today become after 10 years?",
+    "duration": "5 min"
+  },
+  "futures-contract-la-gi": {
+    "title": "What Is a Futures Contract?",
+    "subtitle": "Like a forward but standardized, exchange-traded, and safer"
+  },
+  "gia-co-phieu-vs-gia-tri-doanh-nghiep": {
+    "title": "How do stock price and business value differ?",
+    "subtitle": "Price is what the market is paying right now; value is what the business is really worth",
+    "duration": "7 min"
+  },
+  "gia-trai-phieu-va-lai-suat": {
+    "title": "Bond price and interest rates",
+    "subtitle": "The foundational inverse relationship of the debt market",
+    "duration": "6 min"
+  },
+  "gia-tri-thoi-gian-cua-tien": {
+    "title": "The time value of money: 1 million today is not 1 million a year from now.",
+    "subtitle": "Present Value and Future Value are the foundation of every quantitative financial decision.",
+    "duration": "8 min"
+  },
+  "gordon-growth-method": {
+    "title": "Gordon Growth Method",
+    "subtitle": "The most common formula for calculating Terminal Value based on perpetual growth",
+    "duration": "7 min"
+  },
+  "gross-margin": {
+    "title": "Gross Margin",
+    "subtitle": "Measuring production efficiency and pricing power",
+    "duration": "5 min"
+  },
+  "hang-ton-kho-la-gi": {
+    "title": "What is inventory?",
+    "subtitle": "Asset or burden - it depends on how it's managed",
+    "duration": "5 min"
+  },
+  "he-thong-tai-chinh": {
+    "title": "Who makes up the financial system: banks, funds, companies, investors.",
+    "subtitle": "The financial system is the network connecting people with spare money to people who need it.",
+    "duration": "7 min"
+  },
+  "hedge-fund-la-gi": {
+    "title": "What is a Hedge Fund?",
+    "subtitle": "A flexible fund for institutions and wealthy individuals, with lighter regulation"
+  },
+  "hedging-la-gi": {
+    "title": "What Is Hedging?",
+    "subtitle": "Using derivatives to reduce risk, not to earn extra profit"
+  },
+  "income-statement-la-gi": {
+    "title": "Income Statement: the profit-and-loss report",
+    "subtitle": "From revenue down to net income - the story of efficiency",
+    "duration": "6 min"
+  },
+  "interest-coverage-chi-so": {
+    "title": "Interest Coverage",
+    "subtitle": "How many times over can profit cover interest?",
+    "duration": "5 min"
+  },
+  "interest-rate-swap-chuyen-sau": {
+    "title": "Interest Rate Swap",
+    "subtitle": "Swapping between a fixed interest rate and a floating interest rate"
+  },
+  "interest-tax-expense": {
+    "title": "Interest Expense and Tax Expense",
+    "subtitle": "The last two items before Net Income - the effect of debt and tax",
+    "duration": "5 min"
+  },
+  "intrinsic-value-time-value": {
+    "title": "Intrinsic Value and Time Value",
+    "subtitle": "The two components that make up every option's price"
+  },
+  "inventory-turnover-co-ban": {
+    "title": "Inventory Turnover: how fast stock moves",
+    "subtitle": "Whether goods sell fast or slow - a signal of operating efficiency",
+    "duration": "5 min"
+  },
+  "investing-cash-flow": {
+    "title": "What is Investing Cash Flow?",
+    "subtitle": "Cash spent on buying assets and long-term investments",
+    "duration": "5 min"
+  },
+  "ipo-la-gi": {
+    "title": "What is an IPO?",
+    "subtitle": "The first time a company sells shares to the public",
+    "duration": "6 min"
+  },
+  "irr-co-ban": {
+    "title": "IRR: Internal Rate of Return",
+    "subtitle": "The discount rate that makes NPV = 0 - measuring a project's true return",
+    "duration": "7 min"
+  },
+  "ke-toan-la-gi": {
+    "title": "Accounting is the language of business",
+    "subtitle": "Why every financial decision needs accounting",
+    "duration": "5 min"
+  },
+  "khau-hao-co-ban": {
+    "title": "What is depreciation?",
+    "subtitle": "Why buying a 1-billion machine doesn't cut profit by 1 billion right away",
+    "duration": "6 min"
+  },
+  "khi-mua-co-phieu-so-huu-gi": {
+    "title": "When you buy a stock, what do you actually own?",
+    "subtitle": "Not just a line of numbers on a screen - but a real economic right",
+    "duration": "6 min"
+  },
+  "khoan-phai-thu-la-gi": {
+    "title": "What are accounts receivable?",
+    "subtitle": "Goods already sold but cash not yet in - a hidden risk in a pretty number",
+    "duration": "5 min"
+  },
+  "khoan-phai-tra-la-gi": {
+    "title": "What is accounts payable?",
+    "subtitle": "Supplier debt - a burden, or a negotiating edge?",
+    "duration": "5 min"
+  },
+  "lai-don-lai-kep": {
+    "title": "Simple interest and compound interest.",
+    "subtitle": "Einstein called compounding the eighth wonder of the world. Here's why.",
+    "duration": "7 min"
+  },
+  "lai-suat-la-gi": {
+    "title": "What is an interest rate? Why rates move everything.",
+    "subtitle": "An interest rate is the price of money. When it changes, everything changes with it.",
+    "duration": "7 min"
+  },
+  "lai-suat-thuc-vs-danh-nghia": {
+    "title": "Real interest rate vs. nominal interest rate",
+    "subtitle": "The Fisher Equation and the real purchasing power of an interest rate",
+    "duration": "6 min"
+  },
+  "lam-phat-la-gi": {
+    "title": "What is inflation? Why money loses value.",
+    "subtitle": "Inflation isn't an accident. It is a built-in feature of every modern economy.",
+    "duration": "7 min"
+  },
+  "lam-phat-va-dau-tu": {
+    "title": "Inflation and its effect on investing",
+    "subtitle": "Which assets protect purchasing power best?",
+    "duration": "6 min"
+  },
+  "lbo-la-gi": {
+    "title": "What is an LBO?",
+    "subtitle": "Leveraged Buyout - buying a company using debt leverage",
+    "duration": "11 min"
+  },
+  "loi-nhuan-cac-cap-do": {
+    "title": "Gross, operating, and net profit",
+    "subtitle": "Three tiers of profit - each tells a different story",
+    "duration": "7 min"
+  },
+  "loi-nhuan-ky-vong": {
+    "title": "What is expected return?",
+    "subtitle": "Expected Return is a probability-weighted average across every possible scenario.",
+    "duration": "7 min"
+  },
+  "ma-la-gi": {
+    "title": "What is M&A?",
+    "subtitle": "Buying and merging companies",
+    "duration": "7 min"
+  },
+  "market-cap-la-gi": {
+    "title": "What is Market Cap?",
+    "subtitle": "The total market value of all a company's shares outstanding",
+    "duration": "5 min"
+  },
+  "modern-portfolio-theory-la-gi": {
+    "title": "What is Modern Portfolio Theory?",
+    "subtitle": "Harry Markowitz and turning optimal portfolio construction into math",
+    "duration": "7 min"
+  },
+  "modigliani-miller": {
+    "title": "The Modigliani-Miller Theorem",
+    "subtitle": "Does capital structure matter? - a controversial answer",
+    "duration": "10 min"
+  },
+  "municipal-bond-la-gi": {
+    "title": "What is a municipal bond?",
+    "subtitle": "Local-government bonds that fund public infrastructure",
+    "duration": "6 min"
+  },
+  "mutual-fund-la-gi": {
+    "title": "What is a Mutual Fund?",
+    "subtitle": "A pooled fund - professionally managed, priced once a day"
+  },
+  "net-income-y-nghia": {
+    "title": "Net Income: meaning and limits",
+    "subtitle": "The final line of the P&L - it doesn't always tell the whole truth",
+    "duration": "6 min"
+  },
+  "net-profit-margin": {
+    "title": "Net Profit Margin",
+    "subtitle": "After everything - costs, interest, and tax - how much is left?",
+    "duration": "5 min"
+  },
+  "no-co-loi-ich-gi": {
+    "title": "What benefit does debt provide a business?",
+    "subtitle": "The tax shield and financial leverage",
+    "duration": "6 min"
+  },
+  "no-ngan-han-dai-han": {
+    "title": "Current and long-term liabilities",
+    "subtitle": "Maturity determines liquidity risk",
+    "duration": "5 min"
+  },
+  "no-phai-tra": {
+    "title": "What are liabilities?",
+    "subtitle": "Financial obligations and how they affect a business",
+    "duration": "5 min"
+  },
+  "no-tot-no-xau": {
+    "title": "Good debt and bad debt.",
+    "subtitle": "Not every debt is bad. What matters is what the debt creates.",
+    "duration": "6 min"
+  },
+  "npv-co-ban": {
+    "title": "NPV: Net Present Value",
+    "subtitle": "Does the project create value? NPV gives the answer",
+    "duration": "7 min"
+  },
+  "npv-vs-payback": {
+    "title": "Why is NPV better than Payback?",
+    "subtitle": "Comparing project appraisal methods",
+    "duration": "6 min"
+  },
+  "on-tap-3-bao-cao": {
+    "title": "Review: the three financial statements",
+    "subtitle": "Connecting the P&L, Balance Sheet, and Cash Flow Statement",
+    "duration": "7 min"
+  },
+  "on-tap-chang-1": {
+    "title": "Stage 3 review: money, time, risk, cash flow.",
+    "subtitle": "The first 20 days built the foundation. This is the map of the core concepts.",
+    "duration": "8 min"
+  },
+  "on-tap-chi-so-tai-chinh": {
+    "title": "Review: Using Ratios to Compare Businesses",
+    "subtitle": "Combining ratios for a comprehensive view",
+    "duration": "7 min"
+  },
+  "on-tap-gia-tri-thoi-gian": {
+    "title": "Review: The Time Value of Money",
+    "subtitle": "PV, FV, NPV, IRR, WACC - connecting the whole Time Value of Money track",
+    "duration": "7 min"
+  },
+  "on-tap-ke-toan-co-ban": {
+    "title": "Review: reading the language of accounting",
+    "subtitle": "Connecting assets, liabilities, equity and cash flow together",
+    "duration": "7 min"
+  },
+  "on-tap-tai-chinh-doanh-nghiep": {
+    "title": "Review: Corporate Finance",
+    "subtitle": "Corporate Finance, Capital Structure, M&A, PE/VC - tying the Corporate Finance track together",
+    "duration": "7 min"
+  },
+  "on-tap-trai-phieu": {
+    "title": "Review: Bonds & Interest Rates",
+    "subtitle": "Bond pricing, YTM, credit risk, yield curve - connecting the Bonds, Interest Rates and Credit track",
+    "duration": "7 min"
+  },
+  "on-tap-wacc": {
+    "title": "Deep-dive case: WACC review",
+    "subtitle": "5 quiz questions on the cost of capital - understand it, don't memorise it",
+    "duration": "6 min"
+  },
+  "operating-cash-flow": {
+    "title": "What is Operating Cash Flow?",
+    "subtitle": "Real cash from operations - how it differs from Net Income",
+    "duration": "6 min"
+  },
+  "operating-expense": {
+    "title": "Operating Expense: SG&A, R&D",
+    "subtitle": "Operating costs - sitting between Gross Profit and Operating Income",
+    "duration": "6 min"
+  },
+  "operating-margin": {
+    "title": "Operating Margin",
+    "subtitle": "Measuring operating efficiency after indirect costs too",
+    "duration": "5 min"
+  },
+  "option-la-gi": {
+    "title": "What Is an Option?",
+    "subtitle": "A right - not an obligation - to buy or sell an asset"
+  },
+  "payback-period": {
+    "title": "Payback Period",
+    "subtitle": "How long does it take to recover the initial investment?",
+    "duration": "5 min"
+  },
+  "pb-dung-khi-nao": {
+    "title": "When should P/B be used?",
+    "subtitle": "Most useful for asset-heavy or financial businesses",
+    "duration": "6 min"
+  },
+  "pb-la-gi": {
+    "title": "What is the P/B Ratio?",
+    "subtitle": "Market value versus book value - when should you use it?",
+    "duration": "5 min"
+  },
+  "pe-dung-khi-nao": {
+    "title": "When should P/E be used?",
+    "subtitle": "The most popular ratio, but you need to understand its limits to use it right",
+    "duration": "7 min"
+  },
+  "pe-la-gi": {
+    "title": "What is the P/E Ratio?",
+    "subtitle": "How many times profit does an investor pay to buy a share",
+    "duration": "6 min"
+  },
+  "perpetuity": {
+    "title": "Perpetuity: cash flows forever",
+    "subtitle": "A level cash flow that continues indefinitely",
+    "duration": "5 min"
+  },
+  "portfolio-la-gi": {
+    "title": "What is a portfolio?",
+    "subtitle": "A collection of investments managed as a single whole",
+    "duration": "5 min"
+  },
+  "precedent-transaction-la-gi": {
+    "title": "What is Precedent Transaction analysis?",
+    "subtitle": "Valuing a company based on prices actually paid in similar past M&A deals",
+    "duration": "9 min"
+  },
+  "present-value": {
+    "title": "Present Value",
+    "subtitle": "How much is a dong received in the future worth today?",
+    "duration": "6 min"
+  },
+  "private-equity-la-gi": {
+    "title": "What is Private Equity?",
+    "subtitle": "Investing in unlisted companies to create value",
+    "duration": "6 min"
+  },
+  "put-option-la-gi": {
+    "title": "What Is a Put Option?",
+    "subtitle": "The right to sell an asset at a fixed price - expecting a price drop or wanting to insure a portfolio"
+  },
+  "quick-ratio": {
+    "title": "Quick Ratio: Acid-Test Liquidity",
+    "subtitle": "Excludes inventory - stricter than the Current Ratio",
+    "duration": "5 min"
+  },
+  "receivables-turnover": {
+    "title": "Receivables Turnover",
+    "subtitle": "Collecting cash from customers fast or slow?",
+    "duration": "5 min"
+  },
+  "revenue-cogs-gross-profit": {
+    "title": "Revenue, COGS, and Gross Profit",
+    "subtitle": "The first three lines of the P&L - the foundation of every analysis",
+    "duration": "6 min"
+  },
+  "revenue-multiple-dung-khi-nao": {
+    "title": "When should Revenue Multiple be used?",
+    "subtitle": "The last resort when a company has no profit yet to value it by",
+    "duration": "6 min"
+  },
+  "risk-free-rate": {
+    "title": "Risk-Free Rate and Market Risk Premium",
+    "subtitle": "The foundation of every risk pricing model",
+    "duration": "6 min"
+  },
+  "risk-return-tradeoff": {
+    "title": "The Risk-Return Tradeoff",
+    "subtitle": "To get a higher expected return, you have to accept correspondingly higher risk",
+    "duration": "6 min"
+  },
+  "roa-chi-so": {
+    "title": "ROA: Return on Assets",
+    "subtitle": "Measuring how efficiently assets generate profit",
+    "duration": "5 min"
+  },
+  "roe-chi-so": {
+    "title": "ROE: Return on Equity",
+    "subtitle": "How much do shareholders get per dong of capital invested?",
+    "duration": "6 min"
+  },
+  "roic-chi-so": {
+    "title": "ROIC: Return on Invested Capital",
+    "subtitle": "The best metric for judging the quality of a business",
+    "duration": "7 min"
+  },
+  "roic": {
+    "title": "Deep-dive case: ROIC",
+    "subtitle": "Return on Invested Capital - measuring genuine value creation",
+    "duration": "7 min"
+  },
+  "rui-ro-la-gi": {
+    "title": "What is risk? No return ever comes for free.",
+    "subtitle": "Risk isn't something to avoid; it's something to understand and price correctly.",
+    "duration": "7 min"
+  },
+  "sensitivity-analysis-la-gi": {
+    "title": "What is Sensitivity Analysis?",
+    "subtitle": "Testing how a valuation result changes when key assumptions change",
+    "duration": "9 min"
+  },
+  "shareholders-equity": {
+    "title": "What makes up Shareholders' Equity?",
+    "subtitle": "The components of equity - from paid-in capital to retained earnings",
+    "duration": "6 min"
+  },
+  "sharpe-ratio-la-gi": {
+    "title": "What is the Sharpe Ratio?",
+    "subtitle": "Measuring return earned per unit of risk taken on",
+    "duration": "6 min"
+  },
+  "speculation-la-gi": {
+    "title": "What Is Speculation?",
+    "subtitle": "Using derivatives to bet on price direction for profit - with no underlying risk to protect"
+  },
+  "spread-la-gi": {
+    "title": "What is a spread?",
+    "subtitle": "The yield gap that reflects perceived risk",
+    "duration": "6 min"
+  },
+  "standard-deviation-dau-tu": {
+    "title": "Standard deviation in investing",
+    "subtitle": "The mathematical tool that precisely measures volatility",
+    "duration": "7 min"
+  },
+  "strike-price-expiration-date": {
+    "title": "Strike Price and Expiration Date",
+    "subtitle": "The two factors that determine the value and life span of every option contract"
+  },
+  "suc-manh-thoi-gian": {
+    "title": "The power of time in finance.",
+    "subtitle": "Time is the most valuable asset in investing. And it doesn't wait.",
+    "duration": "6 min"
+  },
+  "swap-la-gi": {
+    "title": "What Is a Swap?",
+    "subtitle": "Two parties exchange future cash flows according to an agreed formula"
+  },
+  "synergy-trong-ma": {
+    "title": "Synergy in M&A",
+    "subtitle": "1+1=3 - or just an illusion?",
+    "duration": "9 min"
+  },
+  "tai-chinh-la-gi": {
+    "title": "What is finance? Why finance is not just about money.",
+    "subtitle": "Finance is the science of allocating scarce resources across time under uncertainty.",
+    "duration": "6 min"
+  },
+  "tai-san-tieu-san": {
+    "title": "Assets and liabilities: getting it right, without going to extremes.",
+    "subtitle": "An asset puts money in your pocket; a liability takes money out of it.",
+    "duration": "6 min"
+  },
+  "tai-san-trong-ke-toan": {
+    "title": "What is an asset in accounting?",
+    "subtitle": "Current assets, non-current assets, and how they create value",
+    "duration": "6 min"
+  },
+  "terminal-value-la-gi": {
+    "title": "What is Terminal Value?",
+    "subtitle": "The single largest share of value in most DCF models",
+    "duration": "10 min"
+  },
+  "thanh-khoan-la-gi": {
+    "title": "What is liquidity? Assets that sell easily, and assets that don't.",
+    "subtitle": "Liquidity is the ability to turn an asset into cash quickly without losing much value.",
+    "duration": "6 min"
+  },
+  "thi-truong-tai-chinh": {
+    "title": "What is a financial market?",
+    "subtitle": "A financial market is where people with spare capital meet people who need capital, through price.",
+    "duration": "7 min"
+  },
+  "thu-nhap-chi-phi-tiet-kiem": {
+    "title": "Income, expenses, saving and investing.",
+    "subtitle": "Four basic concepts that build the whole of personal finance.",
+    "duration": "6 min"
+  },
+  "tien-la-gi": {
+    "title": "What is money? How money differs from an asset.",
+    "subtitle": "Money is a medium of exchange, not the end goal itself.",
+    "duration": "6 min"
+  },
+  "tien-mat-bctc": {
+    "title": "Cash on the financial statements",
+    "subtitle": "Cash & equivalents - the safest slice of assets",
+    "duration": "5 min"
+  },
+  "tinh-npv-du-an": {
+    "title": "Case study: Calculating the NPV of a simple project",
+    "subtitle": "A practical application: opening a new branch - is it worth it?",
+    "duration": "7 min"
+  },
+  "tong-on-chang-8-trai-phieu": {
+    "title": "Review: Bonds, Interest Rates and Credit - Bonds are a world of interest rates and trust",
+    "subtitle": "Connecting coupon, yield, credit risk and the yield curve into one complete picture",
+    "duration": "8 min"
+  },
+  "tong-on-chang-9-danh-muc": {
+    "title": "Review - Portfolio and Risk Management Track: Investing Is Managing Risk, Not Just Hunting Returns",
+    "subtitle": "Connecting diversification, correlation, MPT, the Sharpe Ratio, and fund types"
+  },
+  "tracking-error-la-gi": {
+    "title": "What is tracking error?",
+    "subtitle": "Measuring how far a fund strays from the benchmark it tracks",
+    "duration": "6 min"
+  },
+  "trai-phieu-doanh-nghiep": {
+    "title": "Vietnamese corporate bonds",
+    "subtitle": "Characteristics, risks, and lessons from Vietnam's bond market",
+    "duration": "6 min"
+  },
+  "trai-phieu-la-gi": {
+    "title": "What is a bond?",
+    "subtitle": "A basic debt instrument - you lend, they pay interest",
+    "duration": "5 min"
+  },
+  "treasury-bond-la-gi": {
+    "title": "What is a Treasury bond?",
+    "subtitle": "Government bonds - the market's safest reference point",
+    "duration": "6 min"
+  },
+  "unit-economics": {
+    "title": "Unit Economics",
+    "subtitle": "Profit per unit - the foundation of every business model",
+    "duration": "7 min"
+  },
+  "vay-tien-giau-hay-pha-san": {
+    "title": "Why borrowing can make you rich, or bankrupt you.",
+    "subtitle": "The outcome depends on whether the return on borrowed capital beats the loan's interest rate.",
+    "duration": "7 min"
+  },
+  "venture-capital-la-gi": {
+    "title": "What is Venture Capital?",
+    "subtitle": "Risk capital for early-stage startups",
+    "duration": "6 min"
+  },
+  "vi-sao-doanh-nghiep-dung-phai-sinh-phong-ho": {
+    "title": "Why Do Businesses Use Derivatives to Hedge?",
+    "subtitle": "Stabilizing cash flow and protecting profit margin from market volatility"
+  },
+  "vi-sao-khong-nen-nhin-tung-khoan-dau-tu": {
+    "title": "Why shouldn't you look at each investment in isolation?",
+    "subtitle": "An asset's risk can vanish once placed in the context of a portfolio",
+    "duration": "6 min"
+  },
+  "vi-sao-phai-sinh-nguy-hiem": {
+    "title": "Why Can Derivatives Be So Dangerous?",
+    "subtitle": "High leverage, complexity, and systemic risk"
+  },
+  "volatility-bien-dong": {
+    "title": "Volatility",
+    "subtitle": "A measure of how much an asset's price swings over time",
+    "duration": "6 min"
+  },
+  "von-chu-so-huu": {
+    "title": "What is equity?",
+    "subtitle": "What's left after subtracting all debt - who does it really belong to?",
+    "duration": "5 min"
+  },
+  "von-luu-dong-la-gi": {
+    "title": "What is working capital?",
+    "subtitle": "Working Capital - the daily fuel that runs a business",
+    "duration": "6 min"
+  },
+  "wacc-co-ban": {
+    "title": "What is WACC?",
+    "subtitle": "Weighted average cost of capital - the discount rate in DCF",
+    "duration": "10 min"
+  },
+  "working-capital-management": {
+    "title": "Working Capital Management",
+    "subtitle": "Cash, inventory, receivables - the turnover cycle",
+    "duration": "6 min"
+  },
+  "working-capital-van-hanh": {
+    "title": "Working Capital in running a business",
+    "subtitle": "The Cash Conversion Cycle and how to optimise operating cash flow",
+    "duration": "7 min"
+  },
+  "yield-curve-la-gi": {
+    "title": "What is the yield curve?",
+    "subtitle": "A curve connecting yields across different maturities",
+    "duration": "7 min"
+  },
+  "yield-curve": {
+    "title": "The Yield Curve",
+    "subtitle": "The yield curve - a macroeconomic barometer",
+    "duration": "7 min"
+  },
+  "yield-to-maturity": {
+    "title": "Yield to Maturity (YTM)",
+    "subtitle": "The real return if you hold a bond until maturity",
+    "duration": "7 min"
+  }
+}

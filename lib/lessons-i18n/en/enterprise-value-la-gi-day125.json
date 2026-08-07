@@ -1,0 +1,132 @@
+{
+  "slug": "enterprise-value-la-gi-day125",
+  "title": "What is Enterprise Value?",
+  "subtitle": "The value of the whole business - including debt, minus cash",
+  "duration": "7 min",
+  "openingQuestion": "Why doesn't a buyer acquiring an entire company simply pay exactly its Market Cap?",
+  "openingOptions": [
+    "Because Market Cap is always lower than true value",
+    "Because an M&A transaction tax must be paid on top",
+    "Because the law requires paying an extra fee",
+    "Because the buyer must also take on the company's existing debt (added), but also receives the company's available cash (subtracted) - this is exactly Enterprise Value"
+  ],
+  "explanation": "Enterprise Value (EV) = Market Cap + Total Debt − Cash and cash equivalents. EV reflects the real cost of 'buying out' a company's entire operating business: paying shareholders (Market Cap), taking on its existing debt, but getting some of that back through the cash the company already holds.",
+  "diagram": [
+    { "label": "Market Cap" },
+    { "label": "+ Total Debt" },
+    { "label": "− Cash and cash equivalents" },
+    { "label": "= Enterprise Value" }
+  ],
+  "realWorldExample": {
+    "company": "Real-world M&A",
+    "description": "When a conglomerate acquires another company outright, the deal price is usually calculated based on Enterprise Value rather than just Market Cap - because the buyer has to handle the target's entire capital structure, including both its debt and its cash."
+  },
+  "quiz": [
+    {
+      "question": "Company A has Market Cap 100 billion, debt 30 billion, cash 10 billion. What is company A's Enterprise Value?",
+      "options": [
+        "130 billion (100 + 30, cash not yet subtracted)",
+        "120 billion (= 100 + 30 debt − 10 cash)",
+        "90 billion (100 − 30 + 10, both signs flipped)",
+        "100 billion - EV equals exactly Market Cap"
+      ],
+      "explanation": "EV = Market Cap + Debt − Cash = 100 + 30 − 10 = 120 billion. A company with more cash on hand will have an EV correspondingly lower than its Market Cap."
+    },
+    {
+      "question": "A company has Market Cap 500 billion, no debt at all, but 200 billion in cash. What is this company's Enterprise Value, and what's special about this case?",
+      "options": [
+        "EV = 700 billion (500 + 200), because cash makes the company more valuable",
+        "EV = 500 billion, equal to Market Cap because the company has no debt",
+        "EV = 300 billion, lower than Market Cap - a positive net cash case",
+        "EV can't be calculated if the company has no debt at all"
+      ],
+      "explanation": "This is the interesting case of \"net cash\" companies (like many tech companies with huge cash piles): an EV lower than Market Cap accurately reflects the real economics."
+    },
+    {
+      "question": "Why is cash subtracted when calculating Enterprise Value?",
+      "options": [
+        "Because accounting standards don't allow adding cash to value",
+        "Because cash doesn't generate profit so it has no value",
+        "Because cash has already been counted in market capitalization",
+        "Because the buyer can use that cash to offset the purchase price"
+      ],
+      "explanation": "Buying out a business with 200 billion in cash means you could withdraw that 200 billion the very next day. What you actually have to pay for the operating business itself is therefore lower than the nominal purchase price by exactly that amount of cash available."
+    },
+    {
+      "question": "A company with no debt and cash exceeding its market cap has a negative EV. What does that mean?",
+      "options": [
+        "The market values the operating business below zero",
+        "The business is quietly losing its ability to pay its debts",
+        "There's a calculation error since EV can never be negative",
+        "All the cash has been pledged against some loan"
+      ],
+      "explanation": "A negative EV means buying the entire company and withdrawing the cash would still leave you with a surplus. This case does happen but is rare, and usually reflects the market believing the operating business will burn through all that cash."
+    },
+    {
+      "question": "Why is EV the figure used in M&A rather than Market Cap?",
+      "options": [
+        "Because Market Cap changes every session so it can't be negotiated",
+        "Because the buyer takes on the obligation of the business's debt as well",
+        "Because EV is always lower than Market Cap so it's easier to agree on",
+        "Because regulators require disclosing EV in deal filings"
+      ],
+      "explanation": "Buying control means buying the whole package: equity plus the responsibility to repay debt, minus the cash already on hand. Market Cap only states the price of the equity slice, leaving out the part the buyer still has to carry."
+    }
+  ],
+  "keyTakeaways": [
+    "Enterprise Value = Market Cap + Debt − Cash",
+    "Reflects the real cost of buying out a company's entire operating business",
+    "The basis for pricing in most real-world M&A deals"
+  ],
+  "practicePrompt": {
+    "question": "A company has Market Cap = 5,000 billion, Total Debt = 2,000 billion, Cash = 500 billion. What is this company's Enterprise Value (EV - the value of the whole business), and why must you add debt and subtract cash compared to Market Cap?",
+    "options": [
+      "EV = 5,000 + 2,000 - 500 = 6,500 billion, because the buyer takes on the debt and is compensated by the cash",
+      "EV = Market Cap = 5,000 billion, because market capitalization already fully reflects the business's value",
+      "EV = Market Cap - Debt + Cash = 3,500 billion, reversing the standard formula",
+      "EV has nothing to do with the company's debt and cash, it depends only on the share price"
+    ],
+    "explanation": "Enterprise Value = Market Cap + Debt − Cash = 5,000 + 2,000 - 500 = 6,500 billion. EV reflects the value of the WHOLE business that a buyer would have to pay: they buy the equity (Market Cap) AND take on the extra debt, but get 'refunded' the cash already available in the company."
+  },
+  "summary": {
+    "keyIdea": "Enterprise Value = Market Cap + Debt − Cash",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to a real decision.",
+    "action": "Reflects the real cost of buying out a company's entire operating business"
+  },
+  "application": {
+    "title": "Calculate an Enterprise Value yourself",
+    "message": "Using the same company you just calculated Market Cap for, find its total debt and cash from the latest financial statement, then add and subtract to get Enterprise Value, to see the real cost of 'buying out' that company.",
+    "secondary": "Comparing EV against Market Cap shows you whether the company is borrowing heavily or lightly."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "If you wanted to buy an entire company outright - not just a few loose shares - the amount you'd really need to pay isn't the Market Cap. It's the Enterprise Value."
+    },
+    { "type": "heading", "text": "The EV formula" },
+    {
+      "type": "paragraph",
+      "text": "Enterprise Value (EV) = Market Cap + Total Debt − Cash and cash equivalents. The logic is very intuitive: to own the whole company, you have to pay existing shareholders (Market Cap), while also taking on the debt the company already carries (since that debt still has to be repaid after you buy it), but you get some of that back through the cash the company already holds (since you can use that cash right away)."
+    },
+    { "type": "heading", "text": "A worked example" },
+    {
+      "type": "paragraph",
+      "text": "Company A has Market Cap 100 billion, debt 30 billion, cash 10 billion → EV = 100 + 30 − 10 = 120 billion. On the other hand, a 'net cash' company - Market Cap 500 billion, no debt, but 200 billion in cash - would have EV = 500 − 200 = 300 billion, LOWER than Market Cap. In theory, a buyer of this company only needs to put up 300 billion, since they can immediately use the 200 billion in cash on hand to offset part of the acquisition cost."
+    },
+    {
+      "type": "list",
+      "items": [
+        "A heavily indebted company → EV significantly higher than Market Cap",
+        "A cash-rich, low-debt company (typically tech) → EV can be lower than Market Cap",
+        "EV is the common valuation basis in most real-world M&A deals",
+        "EV reflects the real cost of 'buying out' the entire operating business, not just the equity slice"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Market Cap answers the question 'what do shareholders think the company is worth'. EV answers the bigger question: 'how much does buying out this whole company actually cost'."
+      ]
+    }
+  ]
+}

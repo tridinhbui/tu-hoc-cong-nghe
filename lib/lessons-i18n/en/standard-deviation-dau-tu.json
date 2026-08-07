@@ -1,0 +1,145 @@
+{
+  "slug": "standard-deviation-dau-tu",
+  "title": "Standard deviation in investing",
+  "subtitle": "The mathematical tool that precisely measures volatility",
+  "duration": "7 min",
+  "openingQuestion": "Fund A averages 10%/year with a 5% standard deviation. Fund B also averages 10%/year but with a 20% standard deviation. Which fund is 'easier to predict'?",
+  "openingOptions": [
+    "Cannot be compared without a longer observation period",
+    "Both are the same since the average return is identical",
+    "Fund A - a lower standard deviation means actual yearly returns cluster closer to the average, with fewer surprises",
+    "Fund B, because its standard deviation is higher"
+  ],
+  "explanation": "Standard deviation precisely measures, in a single number, how dispersed returns are around their average. Two assets with the same expected return but different standard deviations carry very different risk levels: a lower standard deviation means the actual outcome is less 'surprising' year to year.",
+  "diagram": [
+    { "label": "An asset's average return", "arrow": true },
+    { "label": "Measure the dispersion around that value", "arrow": true },
+    { "label": "= Standard Deviation" }
+  ],
+  "realWorldExample": {
+    "company": "Comparing a bond fund and a stock fund",
+    "description": "A government bond fund usually has an annual return standard deviation of just 2-5%, while a growth stock fund can reach 15-25% - clearly reflecting the difference in risk between the two asset types."
+  },
+  "quiz": [
+    {
+      "question": "In a normal distribution, roughly what percentage of outcomes fall within ±1 standard deviation of the average?",
+      "options": [
+        "About 50%, since one standard deviation splits the distribution in half",
+        "About 68% - following the 68-95-99.7 rule of a normal distribution",
+        "Cannot be determined without actual return data",
+        "100%, since every observation falls within one standard deviation"
+      ],
+      "explanation": "The 68-95-99.7 rule: if returns are normally distributed, about 68% of observations fall within ±1 standard deviation, 95% within ±2, and 99.7% within ±3."
+    },
+    {
+      "question": "If an asset's return distribution doesn't follow a normal distribution (it has \"fat tails\" - a higher probability of extreme events than predicted), is standard deviation alone enough to measure risk?",
+      "options": [
+        "Standard deviation alone is fine for every asset type in every situation",
+        "Yes, standard deviation always accurately reflects every kind of asset risk",
+        "A normal distribution always holds true for every financial asset that exists",
+        "No - it understates the probability of extreme events, so add VaR too"
+      ],
+      "explanation": "This is an important limitation many economists (like Nassim Taleb with his \"Black Swan\" concept) have pointed out: real financial markets tend to have far more extreme events than a normal distribution predicts."
+    },
+    {
+      "question": "What does an asset's standard deviation measure?",
+      "options": [
+        "The dispersion of returns around the average value",
+        "The gap between the highest and lowest return",
+        "The probability that asset loses money in any given year",
+        "The average growth rate of the asset across the years"
+      ],
+      "explanation": "It measures the width of the distribution, not its direction. Two assets with the same 10% average return but standard deviations of 5% and 25% deliver completely different experiences for the holder."
+    },
+    {
+      "question": "Average return of 8%, standard deviation of 15%. What range contains roughly 68% of years?",
+      "options": [
+        "From 0% to 16% (= 8% ± 8%, using the wrong number)",
+        "From −7% to 23% (= 8% ± 15% standard deviation)",
+        "From −15% to 15% (using only the standard deviation)",
+        "From 8% to 23% (counting only the upside)"
+      ],
+      "explanation": "In a normal distribution, one standard deviation around the average contains 68% of observations. The −7% figure shows that even an asset with a decent expected return still has fairly frequent negative years."
+    },
+    {
+      "question": "Why does standard deviation understate the real risk of financial markets?",
+      "options": [
+        "Because it completely ignores the downside portion of volatility",
+        "Because it can only be calculated with over ten years of data",
+        "Because actual returns have fatter tails than a normal distribution",
+        "Because it's calculated on closing prices rather than intraday prices"
+      ],
+      "explanation": "Major crashes happen far more often than a normal distribution predicts. Events the model calls a once-in-ten-thousand-years occurrence have shown up several times in just recent decades."
+    }
+  ],
+  "keyTakeaways": [
+    "Standard deviation: the precise mathematical tool for measuring return dispersion",
+    "Two assets with the same average return but different standard deviations carry very different risk",
+    "The 68-95-99.7 rule helps estimate the probability of real-world return scenarios"
+  ],
+  "practicePrompt": {
+    "question": "You want to quantify a stock's volatility with a specific number (not just a qualitative description like 'very volatile' or 'stable'), based on 3 years of monthly return history. What mathematical tool is used to calculate this number?",
+    "options": [
+      "Beta, since it's the only tool that measures a stock's degree of volatility",
+      "Standard deviation measures the dispersion of returns around the average",
+      "Correlation, since it's the tool that measures an individual asset's price swings",
+      "No mathematical tool can precisely quantify volatility, only qualitative estimation is possible"
+    ],
+    "explanation": "Standard deviation: the precise mathematical tool for measuring return dispersion around the average. This is the most common way to quantify volatility in finance - the larger the standard deviation, the more widely dispersed the returns, and the more the asset swings."
+  },
+  "summary": {
+    "keyIdea": "Standard deviation: the precise mathematical tool for measuring return dispersion",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to a real decision.",
+    "action": "Two assets with the same average return but different standard deviations carry very different risk"
+  },
+  "application": {
+    "title": "Look up a fund's standard deviation",
+    "message": "The lesson already showed how to read the standard deviation on a real fund's factsheet (for example VESAF) - see the section above. Now download the factsheet of a fund you're interested in and find that number yourself.",
+    "secondary": "This number often gets overlooked, but it says a lot about how much 'surprise' you should expect."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Standard deviation is the mathematical tool that turns the concept of \"volatility\" into a precise number - measuring how dispersed returns are around their average. Two assets with the same expected return but different standard deviations carry very different risk levels: a lower standard deviation means the actual outcome is less \"surprising\" from year to year."
+    },
+    { "type": "heading", "text": "The 68-95-99.7 rule" },
+    {
+      "type": "paragraph",
+      "text": "If an asset's returns follow a normal distribution, about 68% of outcomes fall within ±1 standard deviation of the average, 95% fall within ±2, and 99.7% fall within ±3. This is a basic statistical rule widely used in finance to estimate the probability of return scenarios. For example, a government bond fund typically has an annual return standard deviation of just 2-5%, while a growth stock fund can reach 15-25% - clearly reflecting the difference in risk."
+    },
+    { "type": "heading", "text": "A limit: fat tails" },
+    {
+      "type": "paragraph",
+      "text": "The problem is that real financial markets don't always follow a normal distribution - many assets have \"fat tails\", meaning the probability of an extreme event (a market crash, a crisis) is much higher than a normal distribution predicts. Nassim Taleb calls these events \"Black Swans\". Relying on standard deviation alone to measure risk can lead an investor to UNDERSTATE the probability of major shocks - other tools such as Value at Risk or stress testing need to be added."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Standard deviation precisely quantifies how dispersed returns are",
+        "The 68-95-99.7 rule helps estimate the probability of return scenarios",
+        "Government bonds: low standard deviation (2-5%); growth stocks: high (15-25%)",
+        "Assets with \"fat tails\" cause plain standard deviation to understate extreme risk"
+      ]
+    },
+    { "type": "heading", "text": "How to read standard deviation on a real fund factsheet" },
+    {
+      "type": "list",
+      "items": [
+        "Vietnamese open-ended fund factsheets (VESAF, VEOF, SSI-SCA...) usually publish an annual \"Standard Deviation\" figure alongside the average return - this measures how much returns swing year to year, not the return itself",
+        "Two funds with the same average return but different standard deviations: the fund with lower standard deviation is more trustworthy, since its returns are steadier year to year, rather than swinging between very high and very low years",
+        "VESAF averaged 22.9%/year (over 5 years) - this figure alone doesn't tell you about stability; it needs to be set beside the standard deviation for a full assessment"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "How to look this up yourself",
+      "text": "Open a fund's PDF factsheet (downloadable from the fund manager's website, e.g. VinaCapital, SSIAM), find the \"Statistics\" section, and compare the standard deviation between 2 funds with a similar expected return."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Standard deviation gives you a number - but that number is only correct if the real world behaves the way the model assumes."
+      ]
+    }
+  ]
+}

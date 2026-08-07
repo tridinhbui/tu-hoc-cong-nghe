@@ -1,0 +1,140 @@
+{
+  "slug": "yield-curve-la-gi",
+  "title": "What is the yield curve?",
+  "subtitle": "A curve connecting yields across different maturities",
+  "duration": "7 min",
+  "openingQuestion": "Under normal conditions, does a 10-year bond yield more or less than a 1-year bond?",
+  "openingOptions": [
+    "Less, because a short maturity carries higher risk",
+    "There's no pattern at all",
+    "More - investors demand extra compensation for the risk of holding longer (unpredictable swings in rates and inflation)",
+    "They're always equal"
+  ],
+  "explanation": "A yield curve plots yield against maturity for bonds within the same risk group, usually government bonds. An upward slope is normal because holding money longer means bearing more uncertainty about inflation and interest rates, so investors demand more compensation. What makes this curve worth watching is that it isn't anyone's forecast - it's the price the market is actually trading at, meaning real money is behind that expectation.",
+  "diagram": [
+    { "label": "Take bonds with the same risk level but different maturities", "arrow": true },
+    { "label": "Plot yield against maturity", "arrow": true },
+    { "label": "An upward slope is normal: longer holding periods demand more compensation", "arrow": true },
+    { "label": "Flat or inverted means the market is shifting its expectations" }
+  ],
+  "realWorldExample": {
+    "company": "The Fed and the US yield curve",
+    "description": "The US Federal Reserve closely watches the Treasury yield curve to gauge the market's expectations for future interest rates and economic growth."
+  },
+  "quiz": [
+    {
+      "question": "What does an 'inverted' yield curve - where short-term rates exceed long-term rates - usually signal?",
+      "options": [
+        "Inflation is about to fall to zero, so long-term yields don't need to be high",
+        "Nothing predictive at all - it's just short-term market noise",
+        "The economy is growing so strongly that money is piling into short maturities",
+        "The market fears a recession - one of the most reliable indicators there is"
+      ],
+      "explanation": "An inverted yield curve happens when investors expect the central bank will have to cut rates in the future to rescue a weakening economy, so they rush to buy long-term bonds."
+    },
+    {
+      "question": "If a yield curve has an unusual \"U shape\" (short-term yields high, mid-term yields low, long-term yields rising again), what mix of market expectations might this reflect?",
+      "options": [
+        "A yield curve only has two possible shapes: normal or fully inverted",
+        "A yield curve's shape is always simple and predictable within a cycle",
+        "A yield curve can never have a complex shape like the one described",
+        "Current tightening, a mid-term recession expectation, and long-term inflation"
+      ],
+      "explanation": "A real-world yield curve can take on shapes far more complex than the two simple states (normal/inverted) - each segment of the curve reflects expectations for a different time horizon."
+    },
+    {
+      "question": "What data is used to build a yield curve?",
+      "options": [
+        "Government bond yields across different maturities",
+        "The lending rates of major commercial banks",
+        "The yields of the highest-rated corporate bonds",
+        "The policy rate announced at meetings throughout the year"
+      ],
+      "explanation": "Government bonds are used because their credit risk is nearly zero, so the curve's shape reflects only interest-rate and inflation expectations, without default risk mixed in."
+    },
+    {
+      "question": "What does a bond's duration tell you?",
+      "options": [
+        "The number of years remaining until the bond matures",
+        "How sensitive the price is to a change in interest rates",
+        "The average time between two coupon payments",
+        "The minimum period the bond must be held"
+      ],
+      "explanation": "Duration is close to maturity but isn't the same thing: it's a weighted average of the timing of each cash flow. A duration of 7 means a 1% rate rise cuts the price by about 7%."
+    },
+    {
+      "question": "Why is the yield curve called a map of the market's expectations?",
+      "options": [
+        "Because its shape is decided by large investment funds",
+        "Because the central bank publishes it alongside its economic forecast",
+        "Because every point on it is a collective forecast of future interest rates",
+        "Because it changes every time new inflation data comes out"
+      ],
+      "explanation": "The 10-year yield reflects where the market thinks short-term rates will sit over that entire ten years. The curve is therefore a forecast priced with real money, not the opinion of any single institution."
+    }
+  ],
+  "keyTakeaways": [
+    "A normal yield curve: upward sloping, longer maturities yield more",
+    "An inverted yield curve: a strong warning signal of an economic recession",
+    "One of the macro tools most closely watched by central banks and investors alike"
+  ],
+  "practicePrompt": {
+    "question": "You observe government bond yields: 1-year = 3%, 5-year = 4.5%, 10-year = 5.5%. What shape is this yield curve, and is this the 'normal' shape expected under stable economic conditions?",
+    "options": [
+      "This is an inverted yield curve, usually a warning sign of an upcoming recession",
+      "A normal yield curve: upward sloping, longer maturities demanding a higher risk premium",
+      "This is a flat yield curve, showing the market has no clear expectation about the economic future",
+      "The shape of a yield curve carries no analytical meaning - it just reflects random differences between maturities"
+    ],
+    "explanation": "A normal yield curve: upward sloping, longer maturities yield more. This is the shape expected under stable economic conditions because investors demand a higher risk premium for locking up capital longer (rising interest-rate and inflation risk further into the future)."
+  },
+  "summary": {
+    "keyIdea": "A normal yield curve: upward sloping, longer maturities yield more",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to a real decision.",
+    "action": "An inverted yield curve: a strong warning signal of an economic recession"
+  },
+  "application": {
+    "title": "Plot your own yield curve",
+    "message": "The lesson already gave 2 real data points (2-year: 3.27%, 10-year: 4.11%) showing the curve currently sloping upward - see the 'Real example' section above. Now look up 2 more maturities yourself to plot the full curve.",
+    "secondary": "This is exactly the tool professional investors check every single day."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Before you can read the complex macro signals hidden in a yield curve, you first need its mechanical meaning: a yield curve is simply a chart connecting the yields of bonds that share the same risk category (say, all government bonds) but differ in maturity - from 1 month out to 30 years."
+    },
+    { "type": "heading", "text": "Why the 'normal' curve slopes upward" },
+    {
+      "type": "paragraph",
+      "text": "Under normal conditions, the yield curve slopes upward: the longer the maturity, the higher the yield. The simple reason is that an investor bears more risk when locking up capital for longer - interest-rate risk (if rates rise while you're holding a long-maturity bond, its value falls more sharply) and inflation risk eroding purchasing power over a longer stretch of time. The extra yield that compensates for these risks is called the term premium. The US Federal Reserve tracks the Treasury yield curve daily to gauge the market's expectations for future rates and growth."
+    },
+    { "type": "heading", "text": "When the curve inverts" },
+    {
+      "type": "paragraph",
+      "text": "When short-term rates exceed long-term rates - called an inverted yield curve - that is an abnormal state relative to the natural condition. It happens when investors expect the central bank will have to cut rates in the future to rescue a weakening economy, so they rush to buy long-term bonds right now to lock in today's yield, pushing long-term yields below short-term ones. This is one of the most reliable recession indicators in US financial history - nearly every inversion has preceded an actual recession by 6 to 24 months."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Yield curve: a chart of yield against maturity, within the same credit-risk category (usually government bonds)",
+        "Normal curve: upward sloping, reflecting a term premium that compensates for time-related risk",
+        "Inverted curve: short-term rates exceed long-term rates, a strong recession warning signal",
+        "In practice, a yield curve can take on more complex shapes (like a U shape) reflecting a mix of expectations across different time horizons"
+      ]
+    },
+    { "type": "heading", "text": "Real example: plotting Vietnam's yield curve with 2 real data points" },
+    {
+      "type": "list",
+      "items": [
+        "2-year maturity: yield of about 3.27%/year",
+        "10-year maturity: yield of about 4.11%/year",
+        "With these two points, the curve is currently sloping upward - longer maturities demanding higher yield, matching the 'normal' shape a yield curve holds most of the time, reflecting long-term inflation/growth expectations"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "How to plot the full curve yourself",
+      "text": "Look up the 5-year and 15-year yields on VBMA (Government Bond Auction Results section) and connect all 4 points into a full curve - if the curve flattens or inverts (short maturities yielding more than long ones), that's usually a sign the market is worried about a recession."
+    }
+  ]
+}

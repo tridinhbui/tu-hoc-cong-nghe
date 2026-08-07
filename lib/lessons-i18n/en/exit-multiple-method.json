@@ -1,0 +1,132 @@
+{
+  "slug": "exit-multiple-method",
+  "title": "Exit Multiple Method",
+  "subtitle": "An alternative approach to calculating Terminal Value based on market multiples",
+  "duration": "6 min",
+  "openingQuestion": "How does the Exit Multiple Method calculate Terminal Value, differently from the Gordon Growth Method?",
+  "openingOptions": [
+    "There is no other way to calculate Terminal Value besides Gordon Growth",
+    "It's also based on the exact same perpetual growth formula as Gordon Growth",
+    "It applies a typical industry valuation multiple (like EV/EBITDA) to the company's financial metric in the final forecast year - assuming the company would be 'sold' or valued at that market multiple at that point",
+    "It only uses the book value of assets in the final year"
+  ],
+  "explanation": "Exit Multiple Method: Terminal Value = Final-year forecast EBITDA × a typical industry EV/EBITDA multiple (taken from Comparable Company Analysis). This approach 'anchors' Terminal Value to current market valuation reality, unlike the Gordon Growth Method which is purely based on perpetual growth theory.",
+  "diagram": [
+    { "label": "Final forecast year EBITDA", "arrow": true },
+    { "label": "× typical industry EV/EBITDA multiple", "arrow": true },
+    { "label": "= Terminal Value (anchored to market reality)" }
+  ],
+  "interactiveType": "multiples",
+  "realWorldExample": {
+    "company": "Private Equity and the Exit Multiple",
+    "description": "Private Equity funds often prefer the Exit Multiple Method because it accurately reflects their actual business model: buy a company, improve its operations for a few years, then sell it (exit) at the market multiple prevailing at that time - not hold it forever, as the Gordon Growth Method assumes."
+  },
+  "quiz": [
+    {
+      "question": "Why do professional analysts often calculate Terminal Value using BOTH methods (Gordon Growth and Exit Multiple) and compare them?",
+      "options": [
+        "Because each method only applies to one type of industry",
+        "Because regulations require presenting both methods in the filing",
+        "As a cross-check - if the two results are close, that's more trustworthy",
+        "Because averaging the two results always gives the most accurate figure"
+      ],
+      "explanation": "Using both methods as a cross-check is standard industry practice: if Gordon Growth and Exit Multiple produce similar Terminal Value results, that's a good sign the model is reasonable. If the gap is too large, it's time to revisit the g, WACC, or industry multiple assumptions being used."
+    },
+    {
+      "question": "Why do some analysts use BOTH the Gordon Growth Method and Exit Multiple Method and take an average or present a range, instead of choosing just one method?",
+      "options": [
+        "Because averaging completely eliminates the model's error",
+        "Because the two methods always give exactly identical results",
+        "Because clients usually require at least two valuation methods",
+        "Because a range is more honest than a single point estimate"
+      ],
+      "explanation": "This is standard practice in professional valuation: use multiple independent methods as a cross-check, rather than relying entirely on a single number from one method - this approach more honestly reflects the inherent uncertainty in any valuation problem."
+    },
+    {
+      "question": "Final-year EBITDA is 200 billion, industry EV/EBITDA multiple is 8x. What is the Terminal Value?",
+      "options": [
+        "1,600 billion (= EBITDA 200 × multiple of 8x)",
+        "25 billion (= 200 ÷ 8, dividing instead of multiplying)",
+        "208 billion (= 200 + 8, adding instead of multiplying)",
+        "1,600 billion but net debt must still be subtracted"
+      ],
+      "explanation": "TV = EBITDA × multiple = 200 × 8 = 1,600 billion, and this is already Enterprise Value, so debt is not subtracted at this step. Subtracting debt is a later step, when converting from EV to Equity Value."
+    },
+    {
+      "question": "What is the weakness of the Exit Multiple Method?",
+      "options": [
+        "It requires forecasting detailed cash flow all the way to infinity",
+        "It assumes today's market multiple still holds true years from now",
+        "It cannot be used for a business with positive EBITDA",
+        "It always gives a lower result than the Gordon Growth Method"
+      ],
+      "explanation": "The industry multiple reflects market sentiment at the time it was taken. Anchoring year-ten's Terminal Value to today's multiple implicitly assumes the market will value the company exactly the same way then."
+    },
+    {
+      "question": "Gordon Growth and Exit Multiple give results 60% apart. How should this be interpreted?",
+      "options": [
+        "Take the simple average of the two figures as the final result",
+        "Choose the lower result to be safe and move on",
+        "Some assumption is unreasonable and needs re-examining",
+        "This is normal, since the two methods are inherently different"
+      ],
+      "explanation": "Two independent methods giving similar results is a sign the assumptions are reasonable. Too large a gap means the perpetual growth rate or the multiple being used contradicts the other - and averaging them just hides that contradiction."
+    }
+  ],
+  "keyTakeaways": [
+    "Exit Multiple Method: Terminal Value based on a typical market multiple (like EV/EBITDA)",
+    "Anchored to market valuation reality, unlike Gordon Growth's perpetual growth theory",
+    "Should be used alongside Gordon Growth as a cross-check on the valuation result"
+  ],
+  "practicePrompt": {
+    "question": "Instead of using the Gordon Growth formula (assuming perpetual growth g), an M&A analyst calculates Terminal Value by multiplying final-year forecast EBITDA by a typical EV/EBITDA multiple of 8x from similar industry deals. What is this method called?",
+    "options": [
+      "This is still the Gordon Growth Method, just a different way of calculating the same formula",
+      "Exit Multiple: Terminal Value based on a market multiple such as EV/EBITDA",
+      "This is the Comps method, since it's comparing against other companies in the market",
+      "This method is invalid because Terminal Value can only be calculated with the Gordon Growth formula"
+    ],
+    "explanation": "Exit Multiple Method: Terminal Value based on a typical market multiple (like EV/EBITDA). This method is common in M&A and LBO valuation because it reflects the price the market is actually willing to pay - unlike Gordon Growth, which rests on a theoretical long-term growth assumption."
+  },
+  "summary": {
+    "keyIdea": "Exit Multiple Method: Terminal Value based on a typical market multiple (like EV/EBITDA)",
+    "commonMistake": "Reading the concept as a definition to recite rather than a principle to apply to a real decision.",
+    "action": "Anchored to market valuation reality, unlike Gordon Growth's perpetual growth theory"
+  },
+  "application": {
+    "title": "Apply it now",
+    "message": "Using the same FCF/EBITDA example assumed in the previous lesson, try recalculating Terminal Value using Exit Multiple (EBITDA × industry multiple, e.g. 8x) and compare it against the Gordon Growth result.",
+    "secondary": "If the two methods give similar results, that's a good sign the assumptions are reasonable."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Not everyone trusts a purely theoretical perpetual growth formula. The Exit Multiple Method takes a more pragmatic approach: anchor Terminal Value to what the market is actually paying."
+    },
+    { "type": "heading", "text": "The Exit Multiple formula" },
+    {
+      "type": "paragraph",
+      "text": "Exit Multiple Method: Terminal Value = Final-year forecast EBITDA × typical industry EV/EBITDA multiple (taken from Comparable Company Analysis). This approach assumes that by the end of the forecast period, the company will be valued by the market at a multiple similar to today's peers - quite different from Gordon Growth's purely theoretical perpetual growth logic. Private Equity funds particularly favour this method because it reflects their actual business model: buy a company, improve operations for a few years, then sell it (exit) at the market multiple prevailing at that time."
+    },
+    { "type": "heading", "text": "Cross-checking between the two methods" },
+    {
+      "type": "paragraph",
+      "text": "Professional analysts often calculate Terminal Value using BOTH methods - Gordon Growth and Exit Multiple - and compare. The two methods rest on entirely different logic (pure long-term growth theory vs. anchoring to current market valuation reality). If the results from both methods are close, that reinforces confidence in the model. If the gap is too large, it's a warning to re-examine the g, WACC, or industry multiple assumptions being used."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Exit Multiple anchors to current market reality, instead of perpetual growth theory",
+        "Favoured in the Private Equity industry because it matches the 'buy then sell' reality",
+        "Should be used alongside Gordon Growth as a cross-check",
+        "A large gap between the two methods is a signal to review the assumptions"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Neither method is absolutely 'correct' for calculating Terminal Value - using both and comparing is the most professional way to check yourself."
+      ]
+    }
+  ]
+}

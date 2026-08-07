@@ -246,10 +246,10 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
       {
         question: "Khi tăng số bước của cây lên rất lớn, kết quả tiến tới đâu?",
         options: [
-          "Hội tụ về giá Black-Scholes",
-          "Phân kỳ do sai số tích luỹ",
-          "Về đúng giá trị nội tại của quyền chọn tại thời điểm hiện tại",
-          "Về 0 vì mỗi bước nhỏ dần khiến biến động mỗi bước cũng nhỏ dần"
+          "Hội tụ về giá theo công thức Black-Scholes",
+          "Phân kỳ dần do sai số tích luỹ qua từng bước",
+          "Về đúng giá trị nội tại của quyền chọn hôm nay",
+          "Về 0 vì biến động mỗi bước cũng nhỏ dần"
         ],
         correct: 0,
         explanation: "Đây là mối liên hệ đẹp nhất của chương này: cây nhị thức với số bước tiến ra vô cùng hội tụ về công thức Black-Scholes. Hai mô hình trông rất khác nhau nhưng cùng đứng trên một nguyên lý."
@@ -1521,10 +1521,10 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
       {
         question: "Vì sao lãi suất tham chiếu mới cần một khoản chênh lệch điều chỉnh khi thay cho LIBOR?",
         options: [
-          "Vì LIBOR chứa rủi ro tín dụng ngân hàng",
+          "Vì LIBOR có chứa rủi ro tín dụng của ngân hàng",
           "Vì lãi suất mới công bố chậm hơn một ngày",
-          "Vì hai loại lãi suất sử dụng số ngày trong năm khác nhau khi tính lãi",
-          "Vì cơ quan quản lý muốn giảm chi phí vay cho các doanh nghiệp nhỏ"
+          "Vì hai loại dùng số ngày trong năm khác nhau",
+          "Vì muốn giảm chi phí vay cho doanh nghiệp nhỏ"
         ],
         correct: 0,
         explanation: "LIBOR là lãi suất vay không bảo đảm giữa các ngân hàng, nên nó luôn cao hơn một lãi suất gần như phi rủi ro. Chuyển thẳng mà không cộng chênh lệch sẽ chuyển giá trị từ bên này sang bên kia của mọi hợp đồng."

@@ -1,12 +1,17 @@
 import { describe, expect, it } from "vitest";
 import {
-  CIVIC_ROOMS,
-  DISTRICT_ROOMS,
-  getRoom,
+  civicRoomsOf,
+  districtRoomsOf,
+  getRoom as getRoomOf,
   isAtCivicStand,
   moveWithin,
   type DistrictRoom,
 } from "@/components/career-district/district-space";
+import { vi as viDict } from "@/lib/i18n/dictionaries/vi";
+
+const CIVIC_ROOMS = civicRoomsOf(viDict);
+const DISTRICT_ROOMS = districtRoomsOf(viDict);
+const getRoom = (id: Parameters<typeof getRoomOf>[1]) => getRoomOf(viDict, id);
 
 /** Từ cửa vào có ĐI TỚI được bục giữa phòng không.
  *

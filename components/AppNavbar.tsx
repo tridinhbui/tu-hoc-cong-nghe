@@ -8,7 +8,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { FileText, BarChart3, StickyNote, GraduationCap, Gamepad2, Menu, X, Briefcase, BriefcaseBusiness, BookOpen, Home, Flame, Users, MessageSquareMore, Search, ChevronDown, Award, ShieldAlert, Route, Landmark, Network, type LucideIcon } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
-import type { Dictionary } from "@/lib/i18n";
+import { format, type Dictionary } from "@/lib/i18n";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { createClient } from "@/lib/supabase";
 import GoldCoinIcon from "@/components/GoldCoinIcon";
@@ -36,12 +36,16 @@ interface NavProfile {
   coins?: number;
 }
 
-// `labelKey` indexes into the nav section of the dictionary; `label` is for
-// the entries that are proper nouns and read the same in both languages, so
-// translating them would only make the product harder to talk about.
+// `labelKey` indexes into the nav section of the dictionary; `dataLabelKey`
+// indexes into the newer dataRest.appNavbar section (added after this file's
+// labels were audited for hard-coded copy - see AGENTS.md "Translating the
+// UI"); `label` is for the entries that are proper nouns and read the same in
+// both languages, so translating them would only make the product harder to
+// talk about.
 type NavLink =
-  | { href: string; label: string; labelKey?: never; icon: LucideIcon }
-  | { href: string; labelKey: keyof Dictionary["nav"]; label?: never; icon: LucideIcon };
+  | { href: string; label: string; labelKey?: never; dataLabelKey?: never; icon: LucideIcon }
+  | { href: string; labelKey: keyof Dictionary["nav"]; label?: never; dataLabelKey?: never; icon: LucideIcon }
+  | { href: string; dataLabelKey: keyof Dictionary["dataRest"]["appNavbar"]; label?: never; labelKey?: never; icon: LucideIcon };
 
 /**
  * Above the sections, ungrouped, always visible.
@@ -60,11 +64,18 @@ type NavLink =
  * the row leaving the group it belongs to.
  */
 const TOP_LEVEL_LINKS: NavLink[] = [
+  /* i18n-ignore-start: proper nouns / product names, identical in both languages (Dashboard, FinSocial) */
   { href: "/dashboard", label: "Dashboard", icon: Home },
-  // Thư viện 3D - tên riêng của không gian nên hardcode label như FinSocial.
-  { href: "/cong-dong", label: "Thư viện", icon: Landmark },
+  /* i18n-ignore-end */
+  // "Thư viện" was hardcoded here as the 3D space's own name, like FinSocial.
+  // But the room's own header is translated (t.lobby.title, "Library · Saigon
+  // Reading Room"), so the nav and the page it opens named the same room two
+  // different ways in English. It is a common noun; it gets translated.
+  { href: "/cong-dong", dataLabelKey: "library", icon: Landmark },
   { href: "/nhom-hoc", labelKey: "studyGroup", icon: Users },
+  /* i18n-ignore-start: proper noun / product name, identical in both languages (FinSocial) */
   { href: "/finsocial", label: "FinSocial", icon: MessageSquareMore },
+  /* i18n-ignore-end */
 ];
 
 /** The nav is grouped by what the reader is trying to *do*, not by feature
@@ -82,7 +93,7 @@ const NAV_SECTIONS: NavSection[] = [
   {
     titleKey: "sectionLearn",
     links: [
-      { href: "/hoc-bai", label: "Học bài", icon: BookOpen },
+      { href: "/hoc-bai", dataLabelKey: "hocBai", icon: BookOpen },
       // Tách khỏi dashboard cùng đợt với CFA và FRM. Cả ba trước đó là thẻ
       // trong dãy chọn track nhưng không phải track trong lộ trình đánh số
       // theo ngày - chúng là các lối học song song, nên thuộc navbar.
@@ -91,7 +102,7 @@ const NAV_SECTIONS: NavSection[] = [
       // hai trang trả lời hai câu khác nhau - trang kia là "nghề nào hợp với
       // tôi", trang này là "nghề đó thì học bài nào" - và dùng chung icon
       // cặp táp thì đọc như một mục bị lặp.
-      { href: "/nghe-nghiep-hoc", label: "Học theo nghề", icon: Route },
+      { href: "/nghe-nghiep-hoc", dataLabelKey: "hocTheoNghe", icon: Route },
       // Cùng lý do với /cfa ngay dưới: cây kỹ năng chỉ mở được từ một tab trong
       // dashboard, tab đó bị gỡ ở c3f7ec9, và không như thẻ/cosmetics/thử thách
       // tuần - vốn còn bản thứ hai ở RPG hub - nó không tồn tại ở đâu khác. Từ
@@ -106,8 +117,10 @@ const NAV_SECTIONS: NavSection[] = [
       // it, so ten subjects, 324 cross-referenced lessons, fourteen
       // purpose-built Ethics lessons, flashcards and the formula sheet were
       // reachable only by typing the URL.
+      /* i18n-ignore-start: proper nouns / certification names, identical in both languages (CFA Level I, FRM) */
       { href: "/cfa", label: "CFA Level I", icon: Award },
       { href: "/frm", label: "FRM", icon: ShieldAlert },
+      /* i18n-ignore-end */
       // Kiểm tra thuộc nhóm Học tập chứ không phải Thực hành: các bài kiểm tra
       // ở đây chấm đúng phần kiến thức của những lối học ngay phía trên, không
       // phải một trò để luyện tay như Game hay Phỏng vấn.
@@ -126,7 +139,9 @@ const NAV_SECTIONS: NavSection[] = [
   {
     titleKey: "sectionPractice",
     links: [
+      /* i18n-ignore-start: proper noun / product name, identical in both languages (Game) */
       { href: "/game", label: "Game", icon: Gamepad2 },
+      /* i18n-ignore-end */
       { href: "/phong-van-ky-thuat", labelKey: "technicalInterview", icon: BriefcaseBusiness },
     ],
   },
@@ -136,7 +151,7 @@ const NAV_SECTIONS: NavSection[] = [
   },
   {
     titleKey: "sectionResources",
-    links: [{ href: "/tai-lieu", label: "Tài liệu Miễn phí", icon: FileText }],
+    links: [{ href: "/tai-lieu", labelKey: "docsLong", icon: FileText }],
   },
 ];
 
@@ -185,6 +200,11 @@ export default function AppNavbar() {
   const [sectionsHydrated, setSectionsHydrated] = useState(false);
   const desktopDropdownRef = useRef<HTMLDivElement>(null);
   const mobileDropdownRef = useRef<HTMLDivElement>(null);
+  // The mobile dropdown PANEL is rendered outside the avatar button's wrapper -
+  // see the comment where it is rendered - so the outside-click handler needs a
+  // second ref, or a tap on a menu item would count as "outside" and close the
+  // panel on mousedown before the click ever reached the item.
+  const mobileDropdownPanelRef = useRef<HTMLDivElement>(null);
 
   useRoutePrefetch(["/dashboard", "/hoc-bai", "/analytics", "/bxh", "/profile", "/ban-be", "/nhom-hoc", "/finsocial", "/bang-tin", "/cong-dong", "/su-nghiep", "/ghi-chu", "/cong-cu", "/game", "/settings", "/tai-lieu", "/kiem-tra", "/phong-van-ky-thuat", "/cfa"]);
 
@@ -330,7 +350,8 @@ export default function AppNavbar() {
       const target = event.target as Node;
       const clickedInsideDesktop = desktopDropdownRef.current?.contains(target) ?? false;
       const clickedInsideMobile = mobileDropdownRef.current?.contains(target) ?? false;
-      if (!clickedInsideDesktop && !clickedInsideMobile) {
+      const clickedInsidePanel = mobileDropdownPanelRef.current?.contains(target) ?? false;
+      if (!clickedInsideDesktop && !clickedInsideMobile && !clickedInsidePanel) {
         setDropdownOpen(false);
       }
     }
@@ -360,7 +381,7 @@ export default function AppNavbar() {
     router.push("/game?building=shop");
   };
 
-  const displayName = profile?.full_name || profile?.email || "Người dùng";
+  const displayName = profile?.full_name || profile?.email || t.nav.user;
   const initials = displayName
     .split(" ")
     .map((n) => n[0])
@@ -488,8 +509,8 @@ export default function AppNavbar() {
    *  below it. Written once rather than per call site: the badge and
    *  highlight rules already run to a dozen branches, and three copies of
    *  them is how the desktop and mobile menus drifted apart before. */
-  const renderNavItem = ({ href, label, labelKey, icon: Icon }: NavLink, onNavigate?: () => void) => {
-    const navLabel = labelKey ? t.nav[labelKey] : label;
+  const renderNavItem = ({ href, label, labelKey, dataLabelKey, icon: Icon }: NavLink, onNavigate?: () => void) => {
+    const navLabel = labelKey ? t.nav[labelKey] : dataLabelKey ? t.dataRest.appNavbar[dataLabelKey] : label;
     const active = pathname === href;
     const isGame = href === "/game";
     const isCareer = href === "/su-nghiep";
@@ -525,35 +546,35 @@ export default function AppNavbar() {
         }`}
       >
         <Icon className={`h-4 w-4 shrink-0 ${isGame ? "text-amber-600 dark:text-amber-400" : isThuVien ? "text-violet-500 dark:text-violet-400" : isCareer ? "text-emerald-600 dark:text-emerald-400" : isKiemTra && hasPendingNewsQuiz ? "text-rose-500 animate-pulse" : isNhomHoc && hasPendingStudyGroupCheckin ? "text-amber-600 animate-bounce" : ""}`} />
-        <span className="flex-1">{isGame ? "Game Kingdom" : navLabel}</span>
+        <span className="flex-1">{isGame ? t.dataRest.appNavbar.gameKingdomLabel : navLabel}</span>
         {isGame && (
           <span className="inline-flex items-center gap-1 text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-white text-amber-700 border border-amber-200 dark:bg-amber-950 dark:text-amber-300 dark:border-amber-800">
             <Flame className="h-2.5 w-2.5 text-orange-500 dark:text-orange-400" />
-            HOT
+            {t.nav.badgeHot}
           </span>
         )}
         {isThuVien && (
           <span className="inline-flex items-center gap-1 rounded-full border border-violet-300 bg-white px-1.5 py-0.5 text-[9px] font-black uppercase tracking-wider text-violet-700 shadow-2xs dark:border-violet-700/70 dark:bg-violet-950 dark:text-violet-300">
             <span className="h-1.5 w-1.5 rounded-full bg-violet-500" />
-            3D
+            {t.nav.badge3d}
           </span>
         )}
         {isKiemTra && hasPendingNewsQuiz && (
           <span className="inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-rose-500 text-white shadow-xs animate-pulse">
             <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
-            Tin mới
+            {t.nav.badgeNews}
           </span>
         )}
         {isNhomHoc && hasPendingStudyGroupCheckin && (
           <span className="inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-amber-500 text-white shadow-xs animate-pulse">
             <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
-            Check-in
+            {t.nav.badgeCheckin}
           </span>
         )}
         {isCareer && !careerGoalId && (
           <span className="inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-amber-500 text-white shadow-2xs animate-pulse">
             <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
-            Chưa chọn
+            {t.nav.badgeNoGoal}
           </span>
         )}
       </Link>
@@ -622,7 +643,7 @@ export default function AppNavbar() {
         <div className="flex h-full w-full flex-col px-3.5 py-4 overflow-y-auto scrollbar-none">
           <Link href="/dashboard" className="flex items-center gap-3 px-3 py-2 rounded-2xl shrink-0">
             <Logo size={30} />
-            <span className="text-base font-bold text-stone-900 dark:text-stone-100">Tự Học Tài Chính</span>
+            <span className="text-base font-bold text-stone-900 dark:text-stone-100">{t.nav.brand}</span>
           </Link>
 
           <button
@@ -632,10 +653,10 @@ export default function AppNavbar() {
           >
             <span className="flex items-center gap-2">
               <Search className="w-3.5 h-3.5 text-stone-400" />
-              <span>Tìm kiếm...</span>
+              <span>{t.nav.searchPlaceholder}</span>
             </span>
             <kbd className="px-1.5 py-0.5 rounded-md bg-white dark:bg-stone-800 text-[10px] font-mono border border-stone-200 dark:border-stone-700 shadow-2xs">
-              ⌘K
+              {t.dataRest.appNavbar.cmdKHint}
             </kbd>
           </button>
 
@@ -650,11 +671,11 @@ export default function AppNavbar() {
                 <button
                   onClick={() => setShowQuickShop(true)}
                   className="flex flex-1 min-w-0 items-center justify-between rounded-2xl border border-amber-200 bg-amber-50 px-3 py-2.5 text-sm font-black text-amber-700 shadow-sm transition-colors hover:bg-amber-100/80 dark:border-amber-900 dark:bg-amber-950/40 dark:text-amber-400"
-                  title="Số dư Coin tích lũy - Bấm để mở Cửa hàng Nhanh"
+                  title={t.nav.coinBalanceTitle}
                 >
                   <span className="flex items-center gap-2">
                     <GoldCoinIcon className="w-5 h-5" />
-                    <span>Coins</span>
+                    <span>{t.nav.coins}</span>
                   </span>
                   <span>{profile.coins ?? 0}</span>
                 </button>
@@ -678,7 +699,7 @@ export default function AppNavbar() {
                     </div>
                   )}
                   <div className="min-w-0 flex-1">
-                    <p className="truncate text-xs font-bold text-stone-900 dark:text-stone-100">{profile.full_name || "Người dùng"}</p>
+                    <p className="truncate text-xs font-bold text-stone-900 dark:text-stone-100">{profile.full_name || t.nav.user}</p>
                     <p className="truncate text-[11px] text-stone-500 dark:text-stone-400">{profile.email}</p>
                   </div>
                 </button>
@@ -686,13 +707,13 @@ export default function AppNavbar() {
                 {dropdownOpen && (
                   <div className="mt-2 space-y-1 rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50/90 dark:bg-stone-900/90 p-2 shadow-sm animate-[fadeIn_0.15s_ease-out]">
                     <button type="button" onClick={() => handleDropdownNavigate("/profile")} className="block w-full rounded-xl px-3 py-2 text-left text-xs font-bold text-stone-800 transition hover:bg-white dark:text-stone-200 dark:hover:bg-stone-800">
-                      👤 Hồ sơ cá nhân
+                      {t.nav.menuProfile}
                     </button>
                     <button type="button" onClick={() => handleDropdownNavigate("/ban-be")} className="block w-full rounded-xl px-3 py-2 text-left text-xs font-bold text-stone-800 transition hover:bg-white dark:text-stone-200 dark:hover:bg-stone-800">
-                      👥 Bạn bè & Kết nối
+                      {t.nav.menuFriends}
                     </button>
                     <button type="button" onClick={() => handleDropdownNavigate("/settings")} className="block w-full rounded-xl px-3 py-2 text-left text-xs font-bold text-stone-800 transition hover:bg-white dark:text-stone-200 dark:hover:bg-stone-800">
-                      ⚙️ Cài đặt tài khoản
+                      {t.nav.menuSettings}
                     </button>
                     <div className="flex items-center justify-between gap-2 rounded-xl px-3 py-2">
                       <span className="text-xs font-bold text-stone-800 dark:text-stone-200">
@@ -726,7 +747,7 @@ export default function AppNavbar() {
         <div className="max-w-6xl mx-auto h-full px-3 sm:px-6 flex items-center justify-between gap-1.5 sm:gap-4 w-full overflow-hidden">
           <Link href="/dashboard" className="flex items-center gap-2 shrink-0">
             <Logo size={28} />
-            <span className="hidden sm:inline text-sm sm:text-base font-bold text-stone-900 dark:text-stone-100 whitespace-nowrap">Tự Học Tài Chính</span>
+            <span className="hidden sm:inline text-sm sm:text-base font-bold text-stone-900 dark:text-stone-100 whitespace-nowrap">{t.nav.brand}</span>
           </Link>
 
           <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
@@ -739,15 +760,15 @@ export default function AppNavbar() {
               }`}
             >
               <FileText className="w-3.5 h-3.5 shrink-0" />
-              <span className="hidden sm:inline">Tài liệu Miễn phí</span>
-              <span className="sm:hidden text-[11px]">Tài liệu</span>
+              <span className="hidden sm:inline">{t.nav.docsLong}</span>
+              <span className="sm:hidden text-[11px]">{t.nav.docsShort}</span>
             </Link>
 
             {profile && (
               <button
                 onClick={() => setShowQuickShop(true)}
                 className="flex items-center gap-1 text-xs font-black px-2 sm:px-2.5 py-1.5 sm:py-2 rounded-xl bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400 border border-amber-200 dark:border-amber-900 hover:bg-amber-100/80 transition-colors shadow-xs cursor-pointer whitespace-nowrap"
-                title="Số dư Coin tích lũy - Bấm để mở Cửa hàng Nhanh"
+                title={t.nav.coinBalanceTitle}
               >
                 <GoldCoinIcon className="w-4 h-4" />
                 <span className="font-black text-amber-600 dark:text-amber-400">{profile.coins ?? 0}</span>
@@ -782,45 +803,62 @@ export default function AppNavbar() {
                   )}
                 </button>
 
-                {dropdownOpen && (
-                  <div className="absolute right-0 mt-2 w-[min(16rem,calc(100vw-2rem))] bg-white dark:bg-stone-900 rounded-xl border border-stone-200 dark:border-stone-800 shadow-xl z-50 p-3.5">
-                    <div className="flex gap-2.5 mb-3 pb-3 border-b border-stone-100 dark:border-stone-800 items-center">
-                      {isValidAvatar(profile.avatar_url) ? (
-                        <Image src={profile.avatar_url} alt={displayName} width={36} height={36} className="w-9 h-9 rounded-full object-cover shrink-0" />
-                      ) : (
-                        <div className="w-9 h-9 rounded-full bg-emerald-500 flex items-center justify-center text-white font-bold text-xs shrink-0">{initials || "?"}</div>
-                      )}
-                      <div className="flex-1 min-w-0">
-                        <p className="font-bold text-stone-900 dark:text-stone-100 truncate text-xs">{profile.full_name || "Người dùng"}</p>
-                        <p className="text-[11px] text-stone-500 dark:text-stone-400 truncate">{profile.email}</p>
-                      </div>
-                    </div>
-
-                    <div className="space-y-1 mb-2">
-                      <button type="button" onClick={() => handleDropdownNavigate("/profile")} className="block w-full rounded-lg px-3 py-1.5 text-left text-xs font-semibold text-stone-900 transition hover:bg-stone-50 dark:text-stone-100 dark:hover:bg-stone-800">
-                        Hồ sơ
-                      </button>
-                      <button type="button" onClick={() => handleDropdownNavigate("/ban-be")} className="block w-full rounded-lg px-3 py-1.5 text-left text-xs font-semibold text-stone-900 transition hover:bg-stone-50 dark:text-stone-100 dark:hover:bg-stone-800">
-                        Bạn bè
-                      </button>
-                      <button type="button" onClick={() => handleDropdownNavigate("/settings")} className="block w-full rounded-lg px-3 py-1.5 text-left text-xs font-semibold text-stone-900 transition hover:bg-stone-50 dark:text-stone-100 dark:hover:bg-stone-800">
-                        Cài đặt
-                      </button>
-                    </div>
-
-                    <button
-                      onClick={handleSignOut}
-                      disabled={signingOut}
-                      className="w-full px-3 py-1.5 text-xs font-bold text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/50 rounded-lg transition disabled:opacity-50 text-left"
-                    >
-                      {signingOut ? t.nav.signingOut : t.nav.signOut}
-                    </button>
-                  </div>
-                )}
               </div>
             )}
           </div>
         </div>
+
+        {/* Avatar dropdown, deliberately rendered here as a child of <header>
+            rather than inside the avatar button's wrapper.
+
+            The row above is `h-full` of an `h-14` header AND `overflow-hidden`,
+            so a panel positioned below the avatar was clipped to nothing: on a
+            phone, tapping the avatar toggled the state and displayed absolutely
+            nothing. That also left the phone with no reachable sign-out except
+            the hamburger drawer or the bottom of /settings.
+
+            The header is `sticky`, which is a positioned value, so it is the
+            containing block for this `absolute` - and it has no overflow of its
+            own, so the panel can hang below the header edge. `top-full` puts it
+            on that edge; the right inset matches the row's own px-3/sm:px-6. */}
+        {dropdownOpen && profile && (
+          <div
+            ref={mobileDropdownPanelRef}
+            className="absolute right-3 sm:right-6 top-full mt-2 w-[min(16rem,calc(100vw-2rem))] bg-white dark:bg-stone-900 rounded-xl border border-stone-200 dark:border-stone-800 shadow-xl z-50 p-3.5"
+          >
+            <div className="flex gap-2.5 mb-3 pb-3 border-b border-stone-100 dark:border-stone-800 items-center">
+              {isValidAvatar(profile.avatar_url) ? (
+                <Image src={profile.avatar_url} alt={displayName} width={36} height={36} className="w-9 h-9 rounded-full object-cover shrink-0" />
+              ) : (
+                <div className="w-9 h-9 rounded-full bg-emerald-500 flex items-center justify-center text-white font-bold text-xs shrink-0">{initials || "?"}</div>
+              )}
+              <div className="flex-1 min-w-0">
+                <p className="font-bold text-stone-900 dark:text-stone-100 truncate text-xs">{profile.full_name || t.nav.user}</p>
+                <p className="text-[11px] text-stone-500 dark:text-stone-400 truncate">{profile.email}</p>
+              </div>
+            </div>
+
+            <div className="space-y-1 mb-2">
+              <button type="button" onClick={() => handleDropdownNavigate("/profile")} className="block w-full rounded-lg px-3 py-1.5 text-left text-xs font-semibold text-stone-900 transition hover:bg-stone-50 dark:text-stone-100 dark:hover:bg-stone-800">
+                {t.nav.menuProfileShort}
+              </button>
+              <button type="button" onClick={() => handleDropdownNavigate("/ban-be")} className="block w-full rounded-lg px-3 py-1.5 text-left text-xs font-semibold text-stone-900 transition hover:bg-stone-50 dark:text-stone-100 dark:hover:bg-stone-800">
+                {t.nav.menuFriendsShort}
+              </button>
+              <button type="button" onClick={() => handleDropdownNavigate("/settings")} className="block w-full rounded-lg px-3 py-1.5 text-left text-xs font-semibold text-stone-900 transition hover:bg-stone-50 dark:text-stone-100 dark:hover:bg-stone-800">
+                {t.nav.menuSettingsShort}
+              </button>
+            </div>
+
+            <button
+              onClick={handleSignOut}
+              disabled={signingOut}
+              className="w-full px-3 py-1.5 text-xs font-bold text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/50 rounded-lg transition disabled:opacity-50 text-left"
+            >
+              {signingOut ? t.nav.signingOut : t.nav.signOut}
+            </button>
+          </div>
+        )}
 
         {mobileMenuOpen && (
           <>
@@ -851,8 +889,8 @@ export default function AppNavbar() {
                       </div>
                     )}
                     <div className="min-w-0">
-                      <p className="font-bold text-xs text-stone-900 dark:text-stone-100 truncate">{profile.full_name || "Người dùng"}</p>
-                      <p className="text-[10px] text-stone-500 dark:text-stone-400 truncate">Cấp {profile.current_level ?? 1} • {profile.total_xp ?? 0} XP</p>
+                      <p className="font-bold text-xs text-stone-900 dark:text-stone-100 truncate">{profile.full_name || t.nav.user}</p>
+                      <p className="text-[10px] text-stone-500 dark:text-stone-400 truncate">{format(t.nav.levelXp, { level: profile.current_level ?? 1, xp: profile.total_xp ?? 0 })}</p>
                     </div>
                   </div>
                   <button

@@ -1,0 +1,131 @@
+{
+  "slug": "co-phieu-la-gi-day121",
+  "title": "What is a stock?",
+  "subtitle": "A certificate of ownership in part of a business",
+  "duration": "6 min",
+  "openingQuestion": "When you buy 100 shares of a listed company, what are you actually doing?",
+  "openingOptions": [
+    "Lending the company money to earn interest",
+    "Buying one of the company's products",
+    "Betting on the price going up or down like a game",
+    "Becoming a co-owner of a small slice of that company, with rights to profit and assets proportional to your ownership stake"
+  ],
+  "explanation": "A stock (or share) is a certificate of ownership in part of a business. A shareholder has the right to: receive dividends (if the company distributes them), vote at the shareholder meeting, and receive a share of the remaining assets if the company is dissolved (after all debts are paid). This is completely different from a bond - a shareholder is an owner, not a creditor.",
+  "diagram": [
+    { "label": "The business issues shares" },
+    { "label": "An investor buys → becomes a shareholder" },
+    { "label": "Rights: dividends, voting, remaining assets" }
+  ],
+  "realWorldExample": {
+    "company": "The HOSE exchange in Vietnam",
+    "description": "When you buy VNM (Vinamilk) shares on the HOSE exchange, you own an extremely tiny but real slice of the company - including its factories, its brand, and the right to receive dividends proportional to your ownership."
+  },
+  "quiz": [
+    {
+      "question": "What happens to shareholders if a company goes bankrupt and has to liquidate its assets?",
+      "options": [
+        "They get their original contributed capital back ahead of other creditors",
+        "They receive whatever remains after every creditor has been paid",
+        "They're paid on equal footing alongside bondholders",
+        "They're refunded a percentage based on the shares they hold"
+      ],
+      "explanation": "The payout priority order in bankruptcy is: secured creditors → unsecured creditors (including bondholders) → preferred shareholders → common shareholders, paid last. This is why stocks carry higher risk than bonds but, in exchange, also higher potential return."
+    },
+    {
+      "question": "If a company issues additional preferred stock that has the right to a fixed dividend ahead of common shareholders, how does this affect the risk position of existing common shareholders?",
+      "options": [
+        "Unchanged, since preferred stock is still equity",
+        "Risk falls, because the company raises new capital",
+        "Risk rises, because there's now an extra layer paid ahead of them",
+        "Unchanged, because preferred dividends are paid after tax"
+      ],
+      "explanation": "Preferred stock sits between bonds and common stock in the priority order - it has the right to a fixed dividend and liquidation priority ahead of common shareholders but behind creditors, which leaves common shareholders always in the riskiest position in the capital structure."
+    },
+    {
+      "question": "What are the three basic rights of a common shareholder?",
+      "options": [
+        "Buying more shares at cost, voting, and being exempt from tax",
+        "Receiving fixed interest, voting, and withdrawing capital anytime",
+        "Receiving dividends, priority debt repayment, and appointing the director",
+        "Receiving dividends, voting, and a share of remaining assets"
+      ],
+      "explanation": "A common shareholder has the right to receive dividends if the company decides to distribute them, vote at the shareholder meeting, and receive a share of what remains upon dissolution. None of those rights is guaranteed - quite unlike bond interest."
+    },
+    {
+      "question": "Why is a stock riskier than a bond of the same business?",
+      "options": [
+        "Because shareholders get paid last, with nothing guaranteed",
+        "Because a stock generally has a shorter holding period than a bond",
+        "Because stock prices move every session while bond prices don't",
+        "Because dividends are taxed while bond interest is exempt"
+      ],
+      "explanation": "A bondholder has a contract requiring interest and principal to be paid; a shareholder only receives whatever is left. In bankruptcy, what's left is usually nothing - which is why shareholders demand a higher expected return."
+    },
+    {
+      "question": "Where does preferred stock sit in the payout priority order?",
+      "options": [
+        "Ahead of even secured creditors",
+        "Behind creditors but ahead of common shareholders",
+        "On equal footing with unsecured bonds",
+        "Behind common shareholders since preferred dividends are fixed"
+      ],
+      "explanation": "Preferred stock is the layer in between: a fixed dividend and priority ahead of common shareholders, but still ranked behind every debt obligation. That's why it's seen as a hybrid between debt and equity."
+    }
+  ],
+  "keyTakeaways": [
+    "A stock: a certificate of ownership in part of a business",
+    "Shareholders have the right to receive dividends, vote, and share in remaining assets upon dissolution",
+    "Higher risk than bonds because they're paid last if the company goes bankrupt"
+  ],
+  "practicePrompt": {
+    "question": "A friend says: 'Buying Vinamilk stock is just like lending Vinamilk money, and they'll pay you back with interest.' Does this correctly capture the nature of owning a stock?",
+    "options": [
+      "Correct, buying stock is essentially identical to lending a company money and receiving periodic interest like a bond",
+      "Incorrect - a stock is a certificate of ownership in part of a business, not a loan; a shareholder is an owner sharing both risk and profit with the company, with no fixed repayment commitment like a creditor has",
+      "Partly correct, because a stock is both an ownership right and a loan with a fixed interest rate",
+      "Incorrect, because a stock is just a piece of paper with no real economic value at all"
+    ],
+    "explanation": "A stock: a certificate of ownership in part of a business - completely different from a bond (a loan with a fixed interest rate and term). A shareholder shares both the risk (of losing capital) and the profit (unlimited) with the company, with no repayment commitment like a creditor has."
+  },
+  "summary": {
+    "keyIdea": "A stock: a certificate of ownership in part of a business",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to a real decision.",
+    "action": "Shareholders have the right to receive dividends, vote, and share in remaining assets upon dissolution"
+  },
+  "application": {
+    "title": "Check the stock you're holding",
+    "message": "If you already own some stock, look up whether that company pays dividends and what voting rights you actually have at the shareholder meeting - that's the real benefit you're holding.",
+    "secondary": "Many people buy stock without ever noticing what rights they actually hold."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A stock isn't just a number flickering on a screen - it's a certificate that you own a real slice of a real business, with its own factories, brand, staff, and cash flow. Buying a VNM share means you become a co-owner of Vinamilk, however small the ratio."
+    },
+    { "type": "heading", "text": "Three benefits that come with a stock" },
+    {
+      "type": "paragraph",
+      "text": "A shareholder has three basic rights: (1) receive dividends if the company decides to distribute them; (2) vote at the shareholder meeting on major matters such as electing the board, mergers, issuing new shares; (3) receive a share of the remaining assets if the company is dissolved - but only after everything owed to creditors has been paid. These three rights are exactly what creates the real economic value behind that stock certificate."
+    },
+    { "type": "heading", "text": "Why shareholders carry more risk than bondholders" },
+    {
+      "type": "paragraph",
+      "text": "When a company goes bankrupt, the repayment order is always: secured creditors → unsecured creditors (including bondholders) → preferred shareholders → common shareholders. Common shareholders stand at the back of the line - if the liquidated assets aren't enough to cover all the debt, shareholders lose everything. This is why stock is always considered a riskier asset than bonds, and in exchange, has far greater profit potential if the business succeeds."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Dividends aren't a mandatory obligation like bond interest - the company can withhold them at any time",
+        "Preferred stock sits between bondholders and common shareholders in the priority order",
+        "Voting rights are proportional to the number of shares held, not by headcount",
+        "Common shareholders are always the group bearing the highest risk in the entire capital structure"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Owning a stock is owning risk and opportunity at the same time - understanding your position in the capital structure is the first step toward disciplined investing."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,138 @@
+{
+  "slug": "mutual-fund-la-gi",
+  "title": "What is a Mutual Fund?",
+  "subtitle": "A pooled fund - professionally managed, priced once a day",
+  "openingQuestion": "What is the key difference between a Mutual Fund and an ETF in how they trade?",
+  "openingOptions": [
+    "There is no difference at all",
+    "A Mutual Fund is always cheaper than an ETF",
+    "A Mutual Fund is only for large institutional investors",
+    "A Mutual Fund can only be bought/sold once a day at its net asset value (NAV) set at the end of the session, while an ETF trades continuously intraday like a stock"
+  ],
+  "explanation": "A Mutual Fund pools money from many investors to invest in a diversified portfolio, run by a professional fund manager. Unlike an ETF, a mutual fund is priced and can only be bought/sold ONCE a day, based on Net Asset Value (NAV) calculated at the end of the trading session - it does not trade continuously intraday.",
+  "diagram": [
+    { "label": "Many investors pool their money", "arrow": true },
+    { "label": "A professional manager picks the portfolio", "arrow": true },
+    { "label": "Priced and traded once a day" }
+  ],
+  "realWorldExample": {
+    "company": "Open-end funds in Vietnam",
+    "description": "Open-end funds in Vietnam - such as domestic equity funds and bond funds - operate on the mutual fund model: investors buy/sell fund certificates at the NAV published at the end of the day."
+  },
+  "quiz": [
+    {
+      "question": "Why do actively managed mutual funds usually have higher management fees than passive ETFs?",
+      "options": [
+        "Because they need a research team continuously picking stocks",
+        "Because regulations require active funds to charge higher fees",
+        "There is no meaningful cost difference between the two fund types",
+        "Because mutual funds always perform better than ETFs so they charge more"
+      ],
+      "explanation": "The operating cost of an active fund (analyst salaries, market research, more frequent trading) is much higher than that of a passive ETF that simply mirrors an index."
+    },
+    {
+      "question": "Why does a Mutual Fund usually require a minimum initial investment (say, VND 1 million or more), while an ETF can be bought in whatever small quantity an investor's budget allows on the exchange?",
+      "options": [
+        "The minimum threshold is unrelated to how the fund trades",
+        "A Mutual Fund trades directly with the management company; an ETF trades on the exchange",
+        "There is no difference in minimum investment threshold between the two once fees are accounted for",
+        "An ETF always requires far more capital than a Mutual Fund"
+      ],
+      "explanation": "The difference in distribution mechanism (Mutual Fund directly through the management company, ETF through an exchange like a stock) naturally creates a difference in minimum investment threshold."
+    },
+    {
+      "question": "How does a mutual fund match orders?",
+      "options": [
+        "At the average price of the most recent trading session",
+        "Continuously intraday based on supply and demand on the exchange",
+        "At a price negotiated between the investor and the management company",
+        "A single price once a day based on net asset value"
+      ],
+      "explanation": "An order placed at 10am or 2pm both match at the same end-of-day price. This mechanism makes mutual funds unsuited to short-term trading - and that is partly deliberate."
+    },
+    {
+      "question": "Why do mutual funds usually have a minimum investment level?",
+      "options": [
+        "Because the cost of managing each account is nearly fixed",
+        "Because regulation requires every fund to set a minimum threshold",
+        "Because the fund wants to limit the number of participating investors",
+        "Because the fund's assets can only be divided in large lots"
+      ],
+      "explanation": "Opening and maintaining an account costs roughly the same whether the balance is one million or one billion. A minimum threshold keeps that cost from eating up the returns of accounts that are too small."
+    },
+    {
+      "question": "What is the tax disadvantage of a mutual fund compared with an ETF?",
+      "options": [
+        "A mutual fund is taxed twice on the same gain",
+        "An investor can bear tax caused by another investor's redemption",
+        "A mutual fund does not qualify for any long-term tax break",
+        "A mutual fund's tax is calculated on its beginning-of-period value"
+      ],
+      "explanation": "When many investors redeem at once, the fund must sell assets, and the resulting gain is allocated to everyone who remains. An ETF's in-kind exchange structure largely avoids this situation."
+    }
+  ],
+  "keyTakeaways": [
+    "Mutual Fund: priced and traded once a day based on NAV",
+    "Differs from an ETF in trading mechanism - no continuous intraday trading",
+    "Usually has a higher management fee if actively managed, due to research and operating costs"
+  ],
+  "practicePrompt": {
+    "question": "You place a buy order for fund units in the morning, but the actual price you pay is only determined at the end of the trading day (based on the fund's total net asset value divided by the number of units outstanding), not a continuously fluctuating price like a stock. What is this type of fund called, and how does it differ from an ETF?",
+    "options": [
+      "This is called an ETF, because an ETF is also only priced once a day as described above",
+      "Mutual Fund: priced and traded once a day at the end-of-session NAV",
+      "This is called a Hedge Fund, reserved only for institutions and high-net-worth individuals",
+      "There is no difference between a Mutual Fund and an ETF in how they are priced and traded"
+    ],
+    "explanation": "Mutual Fund: priced and traded once a day based on NAV. Unlike an ETF, which trades flexibly intraday, a Mutual Fund only allows buying/selling at a single price determined at the end of the trading day."
+  },
+  "summary": {
+    "keyIdea": "Mutual Fund: priced and traded once a day based on NAV",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to real decisions.",
+    "action": "Differs from an ETF in trading mechanism - no continuous intraday trading"
+  },
+  "application": {
+    "title": "Compare how an ETF and a mutual fund are priced",
+    "message": "The lesson already gave a real comparison of how E1VFVN30 and VESAF are priced - see the 'Real-world example' section above. Now find another ETF/mutual fund pair to compare yourself.",
+    "secondary": "This difference directly affects when you are able to buy and sell."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A Mutual Fund pools money from many investors to invest in a diversified portfolio, run by a professional fund manager. Unlike an ETF, a mutual fund is priced and can only be bought/sold ONCE a day, based on Net Asset Value (NAV) calculated at the end of the trading session."
+    },
+    { "type": "heading", "text": "Why active mutual funds are more expensive" },
+    {
+      "type": "paragraph",
+      "text": "An active mutual fund needs a team continuously researching, analyzing, and picking stocks to try to beat the market - this operating cost is passed directly into the management fee investors pay. This cost is much higher than a passive ETF that simply mirrors the structure of an existing index. In Vietnam, open-end funds run by domestic fund management companies operate on this model - buying/selling fund units at the NAV published at the end of the day."
+    },
+    { "type": "heading", "text": "Why there is a minimum investment threshold" },
+    {
+      "type": "paragraph",
+      "text": "A Mutual Fund trades directly with the fund management company (not through an exchange), so the company usually sets a minimum threshold (e.g. VND 1 million or more) to manage operating costs efficiently. An ETF trades like a stock on an exchange, so it can be bought/sold in small quantities depending on the investor's budget. This difference comes from a different distribution mechanism, not an arbitrary rule."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Mutual Fund: priced and traded once a day at end-of-session NAV",
+        "Differs from an ETF in trading mechanism - no continuous intraday trading",
+        "Usually has a higher management fee if actively managed",
+        "Usually requires a minimum investment amount due to trading directly through the fund management company"
+      ]
+    },
+    { "type": "heading", "text": "Real-world example: how E1VFVN30 (ETF) and VESAF (mutual fund) are priced differently" },
+    {
+      "type": "list",
+      "items": [
+        "E1VFVN30 (ETF): listed on HOSE, priced by continuous intraday matching like a stock, tradable at any moment the market is open",
+        "VESAF (VinaCapital's open-end/mutual fund): not listed, priced only once a day at end-of-day NAV, buy/sell orders match at that NAV, no real-time trading",
+        "This is the most important structural difference between an ETF and a traditional mutual fund, not a difference in investment strategy"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "How to compare another fund pair yourself",
+      "text": "Pick one ETF and one open-end fund both investing in Vietnamese stocks, and check whether the fund's information page publishes a \"real-time\" price (ETF) or only an end-of-day \"NAV/unit\" (open-end fund)."
+    }
+  ]
+}

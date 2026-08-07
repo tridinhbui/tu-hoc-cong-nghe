@@ -1,0 +1,153 @@
+{
+  "slug": "hang-ton-kho-la-gi",
+  "title": "What is inventory?",
+  "subtitle": "Asset or burden - it depends on how it's managed",
+  "duration": "5 min",
+  "openingQuestion": "Inventory growing faster than revenue is a sign of what?",
+  "openingOptions": [
+    "The business is doing well",
+    "Goods may be selling slowly or piling up",
+    "Profit margin is rising",
+    "It has no particular meaning"
+  ],
+  "explanation": "Inventory is an asset on the balance sheet, but it's really cash being held hostage: already paid to the supplier and not yet collected back from a customer. That's why the key figure isn't the inventory level but how fast it turns over. Inventory growing faster than revenue is almost always a sign goods are selling slowly, and for industries like fashion or electronics, goods sitting too long also carry the risk of a forced fire sale.",
+  "diagram": [
+    { "label": "Buy raw materials, pay the supplier", "arrow": true },
+    { "label": "Goods sit in the warehouse: capital is tied up", "arrow": true },
+    { "label": "Once sold: converts into COGS and receivables", "arrow": true },
+    { "label": "Inventory growing faster than revenue signals slow sales" }
+  ],
+  "realWorldExample": {
+    "company": "Bach Hoa Xanh (Mobile World)",
+    "description": "The Bach Hoa Xanh retail chain has to tightly manage its fresh-food inventory - too much leads to spoilage, too little leads to stock-outs and lost revenue, requiring a delicate balance between the two risks."
+  },
+  "quiz": [
+    {
+      "question": "What are the three layers of inventory for a manufacturing business?",
+      "options": [
+        "Goods in the warehouse, goods in transit, and goods already sold",
+        "Imported goods, domestic goods, and consignment goods",
+        "New goods, aged goods, and goods awaiting liquidation",
+        "Raw materials, work-in-progress, and finished goods"
+      ],
+      "explanation": "The three layers reflect three stages of the production chain: uncut fabric, a shirt still being sewn, a finished shirt ready to go. A trading business only has a single layer: goods bought to resell, with no production step."
+    },
+    {
+      "question": "Inventory rises 40% while revenue rises only 5%. What signal is this?",
+      "options": [
+        "Warning: goods may be selling more slowly than expected",
+        "Positive: the business is stocking up for a peak season",
+        "Neutral: these two indicators aren't inherently related",
+        "Warning: the business is about to run short of stock to deliver to customers"
+      ],
+      "explanation": "When sales are good, inventory and revenue rise at the same pace. Inventory swelling much faster means either goods are selling slowly while the company still stocks according to the old plan, or the product is starting to go stale - both leading to a forced discount to clear stock."
+    },
+    {
+      "question": "Cost of goods sold is 1,200 billion, average inventory is 200 billion. What is the inventory turnover ratio?",
+      "options": [
+        "0.17 times (= 200 ÷ 1,200, flipping numerator and denominator)",
+        "6 times per year (= 1,200 ÷ 200)",
+        "1,000 billion (= 1,200 − 200, taking the difference)",
+        "12 times (= 1,200 ÷ 100, wrong inventory figure)"
+      ],
+      "explanation": "Inventory Turnover = COGS / Average Inventory = 1,200/200 = 6 times. Dividing 365 by 6 gives about 61 days - the average time a batch of goods sits in the warehouse before it's sold."
+    },
+    {
+      "question": "Why is inventory called tied-up capital even though it's still an asset?",
+      "options": [
+        "Because inventory is subject to an annual asset tax until it's sold",
+        "Because accounting doesn't allow inventory to be recorded at market value",
+        "Because cash has already been spent but hasn't come back until the goods are sold",
+        "Because inventory isn't counted as part of a business's current assets"
+      ],
+      "explanation": "A batch of goods sitting idle is still an asset on the books, but it's cash spent that hasn't come back. The more capital sits in the warehouse, the less is left to pay salaries, pay suppliers, or invest."
+    },
+    {
+      "question": "What is the specific risk of fashion inventory compared to dry-food inventory?",
+      "options": [
+        "Higher import tax applied to garment goods",
+        "Faster physical spoilage due to storage conditions",
+        "Higher storage costs because it needs more space",
+        "Losing value from going out of style even while physically intact"
+      ],
+      "explanation": "Dry food has a long shelf life; an outdated garment breaks down economically rather than physically. A season-old shirt can lose 50-70% of its value while still brand new."
+    }
+  ],
+  "keyTakeaways": [
+    "Inventory is tied-up capital - it needs tight management",
+    "Inventory growing faster than revenue is a warning signal",
+    "Inventory turnover = COGS / Average Inventory"
+  ],
+  "practicePrompt": {
+    "question": "Retailer X has Inventory up 40% while Revenue is up only 8% compared to last year. What signal is this for investors?",
+    "options": [
+      "A positive signal - the company is stocking up abundantly to get ahead of strong future demand growth",
+      "A warning - goods may be selling more slowly than expected or piling up, with capital getting 'stuck' in the warehouse instead of generating cash flow",
+      "No meaning at all, since inventory isn't related to core business performance",
+      "It simply reflects the company opening a number of new retail stores"
+    ],
+    "explanation": "Inventory growing faster than Revenue is a classic warning signal: inventory is tied-up capital, and if it's growing faster than sales, it means goods are selling more slowly, or the company misjudged market demand."
+  },
+  "summary": {
+    "keyIdea": "Inventory is tied-up capital - it needs tight management",
+    "commonMistake": "Reading a concept as a phrase to memorise rather than a principle to apply to real decisions.",
+    "action": "Inventory growing faster than revenue is a warning signal"
+  },
+  "application": {
+    "title": "Estimate inventory turnover for a store you know",
+    "message": "If you or someone you know runs a business with inventory, try estimating: on average how long does it take incoming stock to sell out, and compared to a few months ago - is that speeding up or slowing down?",
+    "secondary": "If you don't have business data to hand, watch a store you visit often to practise this way of thinking."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Inventory sits in the current-assets group, but differs from cash in one important way: it may not turn into cash at all. A batch of goods sitting idle in a warehouse is still recorded as an 'asset' on the balance sheet, even though in reality it's dead money waiting to be sold - or worse, waiting to be liquidated at a loss."
+    },
+    { "type": "heading", "text": "Three types of inventory" },
+    {
+      "type": "paragraph",
+      "text": "For a manufacturing business, inventory splits into three layers: raw materials not yet put into production, work-in-progress on the production line, and finished goods ready to sell. For a trading business - retail, distribution - there's only one type: goods bought to resell, with no production step."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Raw materials: fabric, steel coil, raw fresh milk...",
+        "Work-in-progress: a shirt still being sewn, steel still being rolled...",
+        "Finished goods: a completed shirt, bundled steel bars ready to ship to a dealer"
+      ]
+    },
+    { "type": "heading", "text": "Why inventory growing faster than revenue is a bad signal" },
+    {
+      "type": "paragraph",
+      "text": "When a company is selling well, inventory and revenue usually rise at the same pace - inventory turns over evenly to meet demand. But if inventory swells much faster than revenue, there are three possibilities: (1) goods are selling more slowly than expected while the company keeps producing/stocking under the old plan, (2) products are starting to go out of date or lose competitiveness, (3) the company is deliberately stockpiling to speculate on raw-material prices. Cases (1) and (2) both lead to the risk of deep discounting or an inventory write-down provision - a hidden loss not yet on the income statement but soon to be recognised."
+    },
+    {
+      "type": "callout",
+      "label": "Metric to remember",
+      "text": "Inventory Turnover = Cost of Goods Sold (COGS) / Average Inventory. The higher the turnover, the faster goods rotate and the less capital sits idle in the warehouse. Food retail has high turnover (10-15 times/year), while luxury goods or real estate have very low turnover (under 1 time/year) because the products' nature is completely different."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Inventory terminology",
+      "concepts": [
+        { "vi": "Hàng tồn kho", "en": "Inventory", "def": "Current assets including raw materials, work-in-progress, and unsold finished goods" },
+        { "vi": "Vòng quay hàng tồn kho", "en": "Inventory Turnover", "def": "COGS / Average Inventory - measures how fast goods rotate" },
+        { "vi": "Số ngày tồn kho", "en": "Days Inventory Outstanding (DIO)", "def": "365 / Inventory Turnover - the average number of days goods sit in the warehouse" },
+        { "vi": "Dự phòng giảm giá hàng tồn kho", "en": "Inventory write-down", "def": "A provision recorded when the market value of goods falls below their book cost" }
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": { "label": "High Turnover", "text": "Goods rotate quickly, little capital tied up, low obsolescence risk - common in food retail, F&B" },
+      "right": { "label": "Low Turnover", "text": "Goods sit for a long time, a lot of capital tied up, high risk of markdown or obsolescence - common in luxury goods, industrial machinery" }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Inventory is a conditional asset - it's only really valuable once it sells at a good price.",
+        "Tracking inventory growth against revenue is the earliest way to spot a sales problem.",
+        "Inventory Turnover and DIO are two indicators you must check when analysing any business with physical goods."
+      ]
+    }
+  ]
+}

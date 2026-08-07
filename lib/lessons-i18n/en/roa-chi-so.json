@@ -1,0 +1,133 @@
+{
+  "slug": "roa-chi-so",
+  "title": "ROA: Return on Assets",
+  "subtitle": "Measuring how efficiently assets generate profit",
+  "duration": "5 min",
+  "openingQuestion": "ROA = Net Income / Total Assets = 8%. What does that mean?",
+  "openingOptions": [
+    "Assets grew 8%",
+    "The company is about to go bankrupt",
+    "Profit is 8% of revenue",
+    "For every 100 dong of assets, 8 dong of net profit is created"
+  ],
+  "explanation": "ROA measures how many dong of profit each dong of assets generates, so it speaks to operating efficiency without being distorted by leverage the way ROE can be. Because of this, what counts as a reasonable level depends almost entirely on the business model: software or consulting needs almost no assets so ROA is very high, while manufacturing or utilities must sink large capital into plants so a low ROA is normal. Comparing ROA across two different industries almost never yields a useful conclusion.",
+  "diagram": [
+    { "label": "Net income for the period", "arrow": true },
+    { "label": "Divide by average total assets", "arrow": true },
+    { "label": "Get return per dong of assets", "arrow": true },
+    { "label": "The comparison is only meaningful within the same business model" }
+  ],
+  "realWorldExample": {
+    "company": "Banks vs consulting firms",
+    "description": "Banks typically have an ROA of only 1-2% because total assets (mostly loans) are very large relative to profit, while a consulting firm with very few fixed assets can achieve an ROA above 20% - not because the bank runs a worse business, but because of the fundamentally different asset intensity of the two business models."
+  },
+  "quiz": [
+    {
+      "question": "Which type of business usually has the highest ROA?",
+      "options": [
+        "Banks, because their loan portfolios are very large",
+        "Software companies, with few fixed assets",
+        "Airlines, because their fleets are high-value assets",
+        "Power plants, because infrastructure assets are large"
+      ],
+      "explanation": "Asset-light businesses like software and consulting have few fixed assets but generate significant profit, giving a high ROA. Banks have very large total assets (loans), so their ROA is typically only 1-2%."
+    },
+    {
+      "question": "Why is comparing ROA between a bank and a software company nearly meaningless, even though the ROA formula is identical for both?",
+      "options": [
+        "Because software companies don't record any fixed assets at all",
+        "Because banks apply a separate accounting standard for assets",
+        "Because the two models require fundamentally different amounts of assets",
+        "Because bank profit has already been reduced by provisions, so it can't be compared"
+      ],
+      "explanation": "ROA is only meaningful when comparing companies in the SAME industry with a similar asset-usage model. Cross-industry comparisons (especially between an asset-intensive industry like banking and a people-intensive one like consulting) will always give a misleading result."
+    },
+    {
+      "question": "A business has net income of 60 billion and total assets of 1,500 billion. What is the ROA?",
+      "options": [
+        "6% (= 60 ÷ 1,000, assets rounded down)",
+        "25% (= 1,500 ÷ 60, numerator and denominator reversed)",
+        "40% (= 60 ÷ 150, off by a zero)",
+        "4% (= 60 ÷ 1,500, net income over total assets)"
+      ],
+      "explanation": "ROA = Net Income / Total Assets = 60/1,500 = 4%. Every dong of assets is generating 4 cents of profit. For a manufacturer, that is normal; for a software company, it would be low."
+    },
+    {
+      "question": "A manufacturer's ROA rises from 6% to 9% over three years, while total assets stay almost unchanged. What happened?",
+      "options": [
+        "Profit rose on the same old asset base",
+        "The business sold off underperforming assets",
+        "Total assets fell sharply due to rapid depreciation",
+        "The business shifted to an asset-light model"
+      ],
+      "explanation": "ROA can rise because the numerator rose or the denominator fell. The question already pins the denominator as nearly unchanged, leaving only one explanation: the same set of assets is now generating more profit."
+    },
+    {
+      "question": "Where do ROA and ROE differ?",
+      "options": [
+        "The numerator: gross profit versus net profit",
+        "The denominator: total assets versus shareholders' equity",
+        "ROA is calculated quarterly, while ROE is calculated annually",
+        "ROA is used for unlisted companies, ROE for listed ones"
+      ],
+      "explanation": "Both share the same numerator, net income, but differ in the denominator. The gap between the two ratios is exactly leverage: the more a company borrows, the larger assets grow relative to equity, and the further ROE pulls ahead of ROA."
+    }
+  ],
+  "keyTakeaways": [
+    "ROA = Net Income / Total Assets",
+    "Measures how efficiently assets are used",
+    "Asset-light businesses have higher ROA than asset-heavy ones"
+  ],
+  "practicePrompt": {
+    "question": "Company A has Net Income = 100 billion, Total Assets = 2,000 billion. Company B has Net Income = 100 billion, Total Assets = 500 billion. Which company is using its assets more efficiently to generate profit?",
+    "options": [
+      "Both companies are equally efficient since they have the same Net Income; assets have no bearing on profitability",
+      "Company B is more efficient - B's ROA = 100/500 = 20%, much higher than A's ROA = 100/2,000 = 5%, meaning B generates far more profit per dong of assets it owns",
+      "Company A is more efficient because it has a larger asset base, showing it has stronger capacity",
+      "ROA cannot be compared between two companies without knowing more about their capital structure"
+    ],
+    "explanation": "ROA = Net Income / Total Assets measures asset-use efficiency. B has an ROA of 100/500 = 20%, while A has only 100/2,000 = 5% - even with identical absolute profit, B is earning far more profit per unit of assets, showing superior capital efficiency."
+  },
+  "summary": {
+    "keyIdea": "ROA = Net Income / Total Assets",
+    "commonMistake": "Reading a concept as a phrase to memorise rather than a principle to apply to real decisions.",
+    "action": "Measures how efficiently assets are used"
+  },
+  "application": {
+    "title": "Calculate ROA",
+    "message": "Divide Net Income by Total Assets from a company's Balance Sheet, then compare it against an asset-heavy company (e.g. manufacturing or power) to see the difference in ROA.",
+    "secondary": "Don't rush to conclude a low ROA is bad - check whether the industry inherently needs a lot of assets."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "ROA (Return on Assets) answers the question: for every dong of assets a business holds, how much profit does it generate? This is a measure of asset-use efficiency - and it differs enormously between asset-heavy and asset-light business models."
+    },
+    { "type": "callout", "label": "The formula", "text": "ROA = Net Income / Total Assets" },
+    { "type": "heading", "text": "Why banks have an ROA of only 1-2% despite running good businesses" },
+    {
+      "type": "paragraph",
+      "text": "For a bank, loans themselves are assets - the entire business model is holding very large assets (loans) to generate profit from an interest-rate spread. Because total assets are enormous relative to profit, a bank's ROA is typically only 1-2% - not a sign of poor performance, simply that the denominator (assets) is inherently large for the nature of the industry."
+    },
+    { "type": "heading", "text": "Asset-light businesses and high ROA" },
+    {
+      "type": "paragraph",
+      "text": "By contrast, a consulting firm holds almost no fixed assets - the value it creates comes mainly from people, not machinery or facilities. With very small assets on the balance sheet but meaningful profit, ROA can exceed 20%. This is why comparing ROA between a bank and a software/consulting company is nearly meaningless despite an identical formula - the two models use assets in entirely different ways."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Asset-light (software, consulting, strong brands): ROA is usually high",
+        "Asset-heavy (banks, manufacturing, utilities, airlines): ROA is naturally low",
+        "ROA is only meaningful when comparing companies in the same industry with a similar asset model",
+        "A rising ROA over the years shows a company is extracting more from its existing assets, generating extra profit without needing much additional investment"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A low ROA in an asset-heavy industry isn't a weakness - it's an inherent feature of a business model that requires a lot of assets to operate."
+      ]
+    }
+  ]
+}

@@ -2,8 +2,11 @@
 
 import { useState } from "react";
 import { TrendingUp, TrendingDown, DollarSign, ArrowRight } from "lucide-react";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 export default function InteractiveCashFlowSimulator() {
+  const { t } = useI18n();
   const [revenue, setRevenue] = useState(100);
   const [cogs, setCogs] = useState(60);
   const [opex, setOpex] = useState(20);
@@ -14,7 +17,7 @@ export default function InteractiveCashFlowSimulator() {
     const grossProfit = revenue - cogs;
     const operatingIncome = grossProfit - opex;
     const netIncome = operatingIncome;
-    
+
     // Cash flow calculation
     const cashFromSales = revenue - receivables;
     const cashPaidForCOGS = cogs - payables;
@@ -37,17 +40,17 @@ export default function InteractiveCashFlowSimulator() {
   return (
     <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl p-6">
       <h3 className="font-bold text-lg text-stone-900 dark:text-stone-100 mb-4">
-        Mô phỏng Dòng tiền vs Lợi nhuận
+        {t.cashFlowSim.title}
       </h3>
       <p className="text-sm text-stone-600 dark:text-stone-400 mb-6">
-        Điều chỉnh các thông số để thấy sự khác biệt giữa lợi nhuận kế toán và dòng tiền thực tế
+        {t.cashFlowSim.subtitle}
       </p>
 
       {/* Input Controls */}
       <div className="space-y-4 mb-6">
         <div>
           <label className="text-sm font-semibold text-stone-700 dark:text-stone-300 mb-2 block">
-            Doanh thu (triệu VNĐ): {revenue}
+            {format(t.cashFlowSim.revenueLabel, { value: revenue })}
           </label>
           <input
             type="range"
@@ -61,7 +64,7 @@ export default function InteractiveCashFlowSimulator() {
 
         <div>
           <label className="text-sm font-semibold text-stone-700 dark:text-stone-300 mb-2 block">
-            Giá vốn (COGS): {cogs}
+            {format(t.cashFlowSim.cogsLabel, { value: cogs })}
           </label>
           <input
             type="range"
@@ -75,7 +78,7 @@ export default function InteractiveCashFlowSimulator() {
 
         <div>
           <label className="text-sm font-semibold text-stone-700 dark:text-stone-300 mb-2 block">
-            Chi phí vận hành (OpEx): {opex}
+            {format(t.cashFlowSim.opexLabel, { value: opex })}
           </label>
           <input
             type="range"
@@ -89,7 +92,7 @@ export default function InteractiveCashFlowSimulator() {
 
         <div>
           <label className="text-sm font-semibold text-stone-700 dark:text-stone-300 mb-2 block">
-            Công nợ phải thu (chưa thu tiền): {receivables}
+            {format(t.cashFlowSim.receivablesLabel, { value: receivables })}
           </label>
           <input
             type="range"
@@ -103,7 +106,7 @@ export default function InteractiveCashFlowSimulator() {
 
         <div>
           <label className="text-sm font-semibold text-stone-700 dark:text-stone-300 mb-2 block">
-            Công nợ phải trả (chưa trả tiền): {payables}
+            {format(t.cashFlowSim.payablesLabel, { value: payables })}
           </label>
           <input
             type="range"
@@ -122,14 +125,14 @@ export default function InteractiveCashFlowSimulator() {
           <div className="flex items-center gap-2 mb-2">
             <DollarSign className="w-4 h-4 text-blue-600 dark:text-blue-400" />
             <span className="text-xs font-bold text-blue-700 dark:text-blue-400 uppercase">
-              Lợi nhuận kế toán
+              {t.cashFlowSim.accountingProfitLabel}
             </span>
           </div>
           <p className="text-2xl font-bold text-blue-900 dark:text-blue-100">
-            {metrics.netIncome}M
+            {format(t.cashFlowSim.amountMillion, { amount: metrics.netIncome })}
           </p>
           <p className="text-xs text-blue-600 dark:text-blue-400 mt-1">
-            Revenue - COGS - OpEx
+            {t.cashFlowSim.accountingProfitFormula}
           </p>
         </div>
 
@@ -137,14 +140,14 @@ export default function InteractiveCashFlowSimulator() {
           <div className="flex items-center gap-2 mb-2">
             <TrendingUp className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
             <span className="text-xs font-bold text-emerald-700 dark:text-emerald-400 uppercase">
-              Dòng tiền thực
+              {t.cashFlowSim.realCashFlowLabel}
             </span>
           </div>
           <p className={`text-2xl font-bold ${metrics.netCashFlow >= 0 ? "text-emerald-900 dark:text-emerald-100" : "text-rose-900 dark:text-rose-100"}`}>
-            {metrics.netCashFlow}M
+            {format(t.cashFlowSim.amountMillion, { amount: metrics.netCashFlow })}
           </p>
           <p className="text-xs text-emerald-600 dark:text-emerald-400 mt-1">
-            Cash in - Cash out
+            {t.cashFlowSim.realCashFlowFormula}
           </p>
         </div>
       </div>
@@ -152,35 +155,44 @@ export default function InteractiveCashFlowSimulator() {
       {/* Explanation */}
       <div className="p-4 bg-stone-50 dark:bg-stone-800 rounded-xl">
         <h4 className="font-semibold text-sm text-stone-900 dark:text-stone-100 mb-3">
-          Tại sao có sự khác biệt?
+          {t.cashFlowSim.whyDifferenceTitle}
         </h4>
         <div className="space-y-2 text-sm">
           <div className="flex items-start gap-2">
             <ArrowRight className="w-4 h-4 text-stone-500 mt-0.5 flex-shrink-0" />
             <p className="text-stone-700 dark:text-stone-300">
-              <strong>Lợi nhuận:</strong> {revenue} - {cogs} - {opex} = <strong>{metrics.netIncome}M</strong>
+              <strong>{t.cashFlowSim.profitLineLabel}</strong>{" "}
+              {format(t.cashFlowSim.profitLineFormula, { revenue, cogs, opex, result: metrics.netIncome })}
             </p>
           </div>
           <div className="flex items-start gap-2">
             <ArrowRight className="w-4 h-4 text-stone-500 mt-0.5 flex-shrink-0" />
             <p className="text-stone-700 dark:text-stone-300">
-              <strong>Dòng tiền:</strong> ({revenue} - {receivables}) - ({cogs} - {payables}) - {opex} = <strong>{metrics.netCashFlow}M</strong>
+              <strong>{t.cashFlowSim.cashFlowLineLabel}</strong>{" "}
+              {format(t.cashFlowSim.cashFlowLineFormula, {
+                revenue,
+                receivables,
+                cogs,
+                payables,
+                opex,
+                result: metrics.netCashFlow,
+              })}
             </p>
           </div>
         </div>
-        
+
         {metrics.netCashFlow < metrics.netIncome && (
           <div className="mt-4 p-3 bg-amber-50 dark:bg-amber-950/30 rounded-lg border border-amber-200 dark:border-amber-900">
             <p className="text-sm text-amber-800 dark:text-amber-300">
-              ⚠️ Công ty báo lãi nhưng thiếu tiền mặt! Khách hàng chưa trả {receivables}M.
+              ⚠️ {format(t.cashFlowSim.profitButNoCashWarning, { amount: receivables })}
             </p>
           </div>
         )}
-        
+
         {metrics.netCashFlow > metrics.netIncome && (
           <div className="mt-4 p-3 bg-emerald-50 dark:bg-emerald-950/30 rounded-lg border border-emerald-200 dark:border-emerald-900">
             <p className="text-sm text-emerald-800 dark:text-emerald-300">
-              ✅ Dòng tiền tốt hơn lợi nhuận! Đang trì hoãn trả nợ {payables}M.
+              ✅ {format(t.cashFlowSim.cashBetterThanProfitNote, { amount: payables })}
             </p>
           </div>
         )}

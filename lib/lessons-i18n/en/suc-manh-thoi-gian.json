@@ -1,0 +1,136 @@
+{
+  "slug": "suc-manh-thoi-gian",
+  "title": "The power of time in finance.",
+  "subtitle": "Time is the most valuable asset in investing. And it doesn't wait.",
+  "duration": "6 min",
+  "openingQuestion": "Two people each invest 5 million a month at 10% a year. Person A starts at 25 and stops at 35 (10 years). Person B starts at 35 and stops at 65 (30 years). By age 65, who has more money?",
+  "openingOptions": [
+    "Person B, because they invested for 30 years, far more",
+    "Person A, because they started earlier, even with only 10 years of contributions",
+    "It can't be worked out",
+    "The same, because they put in the same amount each month"
+  ],
+  "explanation": "What decides the outcome isn't how many years you contribute, but how many years your money is left to grow. Someone who starts at 25 and stops contributing after ten years still has forty years for that money to compound; someone who starts at 35 and contributes steadily for thirty years only gets thirty years of growth. The practical consequence: ten years of delay is a loss that contributing more later cannot make up for.",
+  "diagram": [
+    { "label": "Start putting money in early" },
+    { "label": "Stop contributing, but leave it in the account" },
+    { "label": "The years of growth keep running" },
+    { "label": "The outcome is set by years of growth, not years of contributing" }
+  ],
+  "realWorldExample": {
+    "company": "A pension fund",
+    "description": "Someone who starts contributing to a pension fund at 22 usually ends up with 3-4 times the money of someone who starts at 32, even contributing the same amount each month."
+  },
+  "quiz": [
+    {
+      "question": "Why does starting to invest early matter more than investing a large amount?",
+      "options": [
+        "Because compounding needs a long stretch of time to create a large difference",
+        "Because the stock market always rises over the long run",
+        "Because young people can tolerate risk better than older people",
+        "Because interest rates are higher in emerging markets"
+      ],
+      "explanation": "Compounding grows exponentially, not linearly. Ten extra years at the start can produce more money than twenty extra years of investing added later."
+    },
+    {
+      "question": "What is Dollar Cost Averaging (DCA), and why does it suit long-term investing?",
+      "options": [
+        "Putting your entire amount in at once when the market is low",
+        "Investing a fixed amount at regular intervals every month",
+        "Averaging the interest rates across several investments",
+        "Converting money into US dollars to avoid depreciation"
+      ],
+      "explanation": "DCA removes the pressure of having to pick the right moment to enter the market. Buying the same amount every month means buying more when prices are low and less when they're high, which brings the average purchase price down below the market's peak."
+    },
+    {
+      "question": "Scenario: You're choosing between two ways to invest in a stock fund averaging 12% a year. Option A: invest 10 million a month for 10 years (total 1.2 billion). Option B: wait 5 years, then invest 20 million a month for 5 years (also totalling 1.2 billion). 15 years from today, which option gives the better result, and by roughly how much?",
+      "options": [
+        "Option B is better, by roughly 30%",
+        "Option B is better, because it invests a larger amount each month",
+        "Option A is better, by roughly 50%",
+        "The two are equal, because the total capital invested is the same"
+      ],
+      "explanation": "A: invests for 10 years, and the money grows for 15 years. B: invests for 5 years, and the money grows for 10 years. Under compounding, those extra 5 years of growth create a large gap. A comes out ahead thanks to the longer growth period, even with the same total capital."
+    },
+    {
+      "question": "Scenario: A invests for 10 years and then stops entirely. B starts 10 years later than A but keeps contributing steadily for 30 years. At the same interest rate, who usually ends up with more money?",
+      "options": [
+        "B, because contributing continuously always beats contributing intermittently",
+        "B, because the total amount B contributes is far larger than A's",
+        "The same, because the same interest rate applies to both",
+        "A, because A's capital gets an extra 10 years to earn a return"
+      ],
+      "explanation": "What multiplies the money is the number of years it sits and grows, not the number of years you contribute. A's first ten years run through the full forty years of compounding, while every dong of B's only gets thirty - so A usually finishes ahead despite putting in far less."
+    },
+    {
+      "question": "Why does DCA suit a new investor?",
+      "options": [
+        "Because it removes the need to time the market, which is very hard to get right",
+        "Because DCA guarantees a higher return than investing a lump sum at once",
+        "Because buying at regular intervals always keeps the price below average",
+        "Because DCA fully eliminates the risk of an asset's price falling"
+      ],
+      "explanation": "DCA doesn't promise a higher return - a lump sum invested right before a rising market often does better. What it removes is the question of 'is now the right time', a question new investors get wrong often, and usually in the direction of staying out forever."
+    }
+  ],
+  "keyTakeaways": [
+    "Starting early matters more than investing a large amount later",
+    "The years your money grows, not the years you contribute, decide the outcome",
+    "DCA: invest a fixed amount at regular intervals, with no need to wait for the right moment"
+  ],
+  "practicePrompt": {
+    "question": "Why is investing steadily each month usually more sensible than waiting for the 'right' moment to invest a lump sum?",
+    "options": [
+      "Because investing just once is enough",
+      "Because it reduces the impact of price swings and avoids buying right at the peak",
+      "Because inflation stops mattering",
+      "Because the interest rate is always fixed"
+    ],
+    "explanation": "Investing steadily lets you buy more when prices are low and less when they're high, reducing the risk of picking the wrong moment."
+  },
+  "summary": {
+    "keyIdea": "Time and consistency usually matter more than finding the perfect moment.",
+    "formula": "DCA = investing a fixed amount at regular intervals over a long period.",
+    "commonMistake": "Waiting for the market's lowest point before deciding to invest.",
+    "action": "Set yourself a regular monthly investing schedule, even with a small amount."
+  },
+  "application": {
+    "title": "Apply it now",
+    "message": "If you want to start investing, pick a fixed amount and automate that investment every month."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Two people each invest 5 million a month at 10% a year. Person A invests for 10 years (age 25-35) then stops entirely. Person B invests for 30 years (age 35-65). By age 65, who has more money? The answer surprises most people."
+    },
+    { "type": "heading", "text": "Years of growth, not years of contributing" },
+    {
+      "type": "paragraph",
+      "text": "Person A only contributes for 10 years, but that money has a full 40 years (from age 25 to 65) to grow through compounding. Person B contributes steadily for 30 years, but the first contribution only has 30 years to grow, and the last contribution has barely had time to earn anything at all. The result: despite contributing far less in total, Person A often ends up with an equal or even larger amount than Person B."
+    },
+    { "type": "heading", "text": "Why is this counter-intuitive?" },
+    {
+      "type": "paragraph",
+      "text": "Our instinct says 'contributing longer = ending up with more money'. But compounding works exponentially, meaning the EARLIEST years of growth are worth far more than later years, because they have the most time left to multiply. A dong invested at 25 'works' for 40 years; a dong invested at 60 only 'works' for 5."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Starting early matters more than investing a large amount later",
+        "Every year investing is delayed is a year of growth lost at its most valuable stage",
+        "Dollar-Cost Averaging (DCA): invest steadily every month, with no need to wait for the 'perfect moment'"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "The practical lesson",
+      "text": "If you're 25 and torn between 'waiting until I have more money before investing' and 'starting now with a small amount' - the maths of compounding always favours the second option."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Time is the most valuable asset in investing, and unlike money, it cannot be recovered once it has passed."
+      ]
+    }
+  ]
+}

@@ -1,7 +1,11 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { FINANCE_CAREERS } from "@/lib/finance-careers";
-import { CAREER_CATEGORY_ORDER, CAREER_CATEGORY_LABELS } from "@/lib/career-categories";
+import {
+  CAREER_CATEGORY_ORDER,
+  careerCategoryLabelsOf,
+  isCareerCategory,
+} from "@/lib/career-categories";
 import { insideAnyObstacle, touchingPairs } from "@/lib/walkable-space";
 import {
   buildStageIndex,
@@ -9,32 +13,41 @@ import {
   lessonSlugsFor,
   lessonSlugsForCareer,
 } from "@/components/career-district/district-content";
-import { STATIONS } from "@/components/lobby/stations";
+import { stationsOf } from "@/components/lobby/stations";
 import { ORGANIC_BUILDINGS } from "@/lib/rpg-buildings";
 import {
-  DISTRICT_ROOMS,
+  districtRoomsOf,
   STREET_SPAWN,
-  TOWER_STOPS,
-  CIVIC_ROOMS,
+  towerStopsOf,
+  civicRoomsOf,
   buildPathRoom,
   floorRoomId,
   isAtLift,
   nearestPortal,
   nearestStop,
-  getRoom,
+  getRoom as getRoomOf,
   moveWithin,
   nearestDesk,
   nearestDoorway,
   type DistrictRoom,
 } from "@/components/career-district/district-space";
+import { vi as viDict } from "@/lib/i18n/dictionaries/vi";
+import { en as enDict } from "@/lib/i18n/dictionaries/en";
 
 /** Khu phố nghề được dựng từ dữ liệu nghề, nên mỗi lần thêm một nghề là hình
  *  học của một căn phòng đổi theo. Những ràng buộc dưới đây là thứ giữ cho
  *  việc đó không lặng lẽ sinh ra một cái bàn nằm trong tường hay một cánh cửa
  *  không đi tới được - chúng chỉ lộ ra sau vài chục bước đi trong trình duyệt,
- *  mà ở dạng số thì kiểm trong vài mili giây. */
+ *  mà ở dạng số thì kiểm trong vài mili giây.
+ *
+ *  Nhãn/blurb giờ dịch được (t.worldSpaces), nên các phòng được dựng bằng
+ *  dictionary tiếng Việt cố định - bài này kiểm HÌNH HỌC, không kiểm chữ. */
 
-const ALL_ROOMS: DistrictRoom[] = Object.values(DISTRICT_ROOMS);
+const STATIONS = stationsOf(viDict);
+const CIVIC_ROOMS = civicRoomsOf(viDict);
+const TOWER_STOPS = towerStopsOf(viDict);
+const getRoom = (id: Parameters<typeof getRoomOf>[1]) => getRoomOf(viDict, id);
+const ALL_ROOMS: DistrictRoom[] = Object.values(districtRoomsOf(viDict));
 
 function inBounds(room: DistrictRoom, x: number, z: number) {
   return (
@@ -53,7 +66,7 @@ describe("khu phố nghề", () => {
       CAREER_CATEGORY_ORDER.length + STATIONS.length + 7 + CIVIC_ROOMS.length
     );
     for (const category of CAREER_CATEGORY_ORDER) {
-      expect(getRoom(category).label).toBe(CAREER_CATEGORY_LABELS[category]);
+      expect(getRoom(category).label).toBe(careerCategoryLabelsOf(viDict)[category]);
     }
   });
 
@@ -105,6 +118,41 @@ describe("khu phố nghề", () => {
   it("không có hai vùng chặn nào chạm nhau trong cùng một phòng", () => {
     for (const room of ALL_ROOMS) {
       expect(touchingPairs(room.obstacles), `phòng ${room.id}`).toEqual([]);
+    }
+  });
+});
+
+describe("isCareerCategory", () => {
+  it("nhận đúng năm nhóm ngành", () => {
+    for (const category of CAREER_CATEGORY_ORDER) {
+      expect(isCareerCategory(category), category).toBe(true);
+    }
+  });
+
+  it("từ chối tên trên chuỗi nguyên mẫu", () => {
+    // Bản đầu kiểm bằng `id in CAREER_CATEGORY_LABELS`, và `in` đi cả chuỗi
+    // nguyên mẫu: năm chuỗi dưới đây đều LỌT QUA lá chắn kiểu, rồi đi thẳng vào
+    // chỗ đang chờ một nhóm ngành. Cùng lỗ đã bắt ở ?phong= (lesson-room-links).
+    const labels = careerCategoryLabelsOf(viDict);
+    for (const evil of ["constructor", "toString", "valueOf", "__proto__", "hasOwnProperty"]) {
+      expect(evil in labels, `${evil} nằm trên chuỗi nguyên mẫu`).toBe(true);
+      expect(isCareerCategory(evil), `${evil} phải bị từ chối`).toBe(false);
+    }
+  });
+
+  it("từ chối chuỗi vô nghĩa", () => {
+    expect(isCareerCategory("")).toBe(false);
+    expect(isCareerCategory("khong-co-nhom-nay")).toBe(false);
+  });
+
+  it("không phụ thuộc vào từ điển đang chọn", () => {
+    // Lý do thứ hai của lần đổi: nhãn đi theo ngôn ngữ, nên một phép kiểm cấu
+    // trúc đọc bảng nhãn sẽ đổi kết quả theo từ điển. Kiểm bằng cách so với
+    // bảng nhãn tiếng Anh - id là hằng số, nhãn thì không.
+    const enLabels = careerCategoryLabelsOf(enDict);
+    for (const category of CAREER_CATEGORY_ORDER) {
+      expect(enLabels[category], `thiếu nhãn tiếng Anh cho ${category}`).toBeTruthy();
+      expect(isCareerCategory(category)).toBe(true);
     }
   });
 });

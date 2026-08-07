@@ -6,7 +6,9 @@ export default function Logo({ size = 32, className = "" }: { size?: number; cla
   return (
     <Image
       src="/logo.png"
+      /* i18n-ignore-start: product name, a proper noun invariant across locales */
       alt="Tự Học Tài Chính"
+      /* i18n-ignore-end */
       width={size}
       height={size}
       className={`rounded-lg flex-shrink-0 ${className}`}

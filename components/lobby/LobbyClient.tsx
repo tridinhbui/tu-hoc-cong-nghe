@@ -30,14 +30,24 @@ import {
 
 /** three.js chỉ chạy phía trình duyệt - ssr:false giữ nó ngoài bundle server,
  *  và người dùng thấy khung chờ thay vì lỗi hydrate. */
-import type { GateTarget } from "./RoomFixtures";
+import type { GateTarget } from "./gates";
+import LobbyDirectory from "./LobbyDirectory";
 import Joystick from "@/components/world-controls/joystick";
 import { createWalkState } from "@/components/world-controls/easy-walk";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 const LobbySceneInner = dynamic(() => import("./LobbySceneInner"), {
   ssr: false,
-  loading: () => <SceneFallback label="Đang dựng thư viện…" />,
+  loading: () => <BuildingFallback />,
 });
+
+/** The dynamic() loading slot renders inside the provider, so it can read the
+ *  dictionary itself rather than being handed a hard-coded label. */
+function BuildingFallback() {
+  const { t } = useI18n();
+  return <SceneFallback label={t.lobby.building} />;
+}
 
 function SceneFallback({ label }: { label: string }) {
   return (
@@ -51,6 +61,7 @@ function SceneFallback({ label }: { label: string }) {
 }
 
 export default function LobbyClient() {
+  const { t } = useI18n();
   const router = useRouter();
   const [identity, setIdentity] = useState<LobbyIdentity | null>(null);
   /** Bài kế tiếp trong lộ trình, để có việc làm ngay khi vừa vào sảnh. */
@@ -260,7 +271,7 @@ export default function LobbyClient() {
   };
 
   if (failed) {
-    return <SceneFallback label="Không kết nối được. Thử tải lại trang." />;
+    return <SceneFallback label={t.lobby.connectFailed} />;
   }
 
   return (
@@ -279,22 +290,22 @@ export default function LobbyClient() {
           walkRef={walkRef}
         />
       ) : (
-        <SceneFallback label="Đang mở cửa thư viện…" />
+        <SceneFallback label={t.lobby.opening} />
       )}
 
       {/* Tiêu đề + số người THẬT trong phòng (đếm từ presence, không phải số dựng) */}
       <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex flex-col items-center gap-2 p-4 pt-[max(1rem,env(safe-area-inset-top))]">
         <div className="rounded-2xl bg-stone-900/75 px-5 py-2.5 text-center shadow-lg backdrop-blur">
-          <h1 className="text-sm font-bold text-amber-200">Thư viện · Phòng đọc Sài Gòn</h1>
+          <h1 className="text-sm font-bold text-amber-200">{t.lobby.title}</h1>
           {todayMinutes !== null && todayMinutes > 0 && (
             <p className="text-[11px] font-bold text-amber-300">
-              ⏱ Hôm nay bạn đã ngồi học {todayMinutes} phút
+              {format(t.lobby.studiedToday, { minutes: todayMinutes })}
             </p>
           )}
           <p className="text-[11px] text-stone-400">
             {peerCount > 0
-              ? `${peerCount} người đang ở trong sảnh`
-              : "Bạn đang ở đây một mình"}
+              ? format(t.lobby.peersHere, { count: peerCount })
+              : t.lobby.alone}
           </p>
         </div>
 
@@ -310,15 +321,23 @@ export default function LobbyClient() {
             <span className="shrink-0 text-xl">📖</span>
             <span className="min-w-0">
               <span className="block text-[10px] font-black uppercase tracking-widest text-amber-300">
-                Bài kế tiếp của bạn
+                {t.lobby.nextLessonLabel}
               </span>
               <span className="block truncate text-sm font-bold text-white">{nextLesson.title}</span>
             </span>
             <span className="ml-auto shrink-0 rounded-xl bg-amber-400 px-3 py-1.5 text-[11px] font-black text-stone-950">
-              Vào học
+              {t.lobby.startLesson}
             </span>
           </Link>
         )}
+
+        {/* Bảng chỉ đường. Nằm trong CHÍNH cột này chứ không neo riêng ở một
+            góc: nó phải xếp chồng dưới thẻ bài kế tiếp, còn một panel neo góc
+            trên màn 390px thì rộng gần hết bề ngang và đè lên thẻ đó.
+            Ẩn cùng lúc với thẻ bài kế tiếp khi đang đứng trước một cửa hoặc
+            một cổng - lúc ấy đích đến đã ở ngay trước mặt, một danh sách mười
+            đích khác chỉ làm nhiễu. */}
+        {!nearGate && !station && <LobbyDirectory />}
       </div>
 
       {/* Ngồi vào bàn / đứng dậy. Nút chỉ xuất hiện khi thực sự đứng cạnh một
@@ -335,14 +354,14 @@ export default function LobbyClient() {
               }}
               className="pointer-events-auto rounded-2xl bg-emerald-500 px-6 py-3 text-sm font-bold text-white shadow-xl transition hover:bg-emerald-400"
             >
-              Ngồi xuống học · phiên 25 phút
+              {t.lobby.sitDown}
             </button>
           ) : (
             <div className="pointer-events-auto flex items-center gap-3 rounded-2xl bg-stone-900/85 px-4 py-2.5 shadow-xl backdrop-blur">
               <span className="font-mono text-lg font-bold tabular-nums text-amber-300">
                 {(() => {
                   const left = remainingMs(seatStartedAt, nowTick, POMODORO_MS);
-                  return left === 0 ? "Xong!" : formatCountdown(left);
+                  return left === 0 ? t.lobby.sessionDone : formatCountdown(left);
                 })()}
               </span>
               <button
@@ -353,7 +372,7 @@ export default function LobbyClient() {
                 }}
                 className="rounded-xl bg-stone-700 px-3 py-1.5 text-xs font-bold text-stone-100 transition hover:bg-stone-600"
               >
-                Đứng dậy
+                {t.lobby.standUp}
               </button>
             </div>
           )}
@@ -410,7 +429,7 @@ export default function LobbyClient() {
                 className="shrink-0 rounded-xl px-3.5 py-2 text-xs font-bold text-stone-900 transition hover:brightness-110"
                 style={{ backgroundColor: station.accent }}
               >
-                Vào phòng →
+                {t.lobby.enterRoom}
               </Link>
             </div>
           </div>
@@ -434,7 +453,7 @@ export default function LobbyClient() {
               value={draft}
               onChange={(e) => setDraft(e.target.value)}
               maxLength={CHAT_MAX_LENGTH}
-              placeholder="Nói gì đó với cả sảnh…"
+              placeholder={t.lobby.chatPlaceholder}
               className="min-w-0 flex-1 rounded-2xl border border-stone-700 bg-stone-900/85 px-4 py-2.5 text-sm text-stone-100 placeholder:text-stone-500 shadow-lg backdrop-blur outline-none focus:border-amber-500"
             />
             <button
@@ -442,15 +461,16 @@ export default function LobbyClient() {
               disabled={!draft.trim()}
               className="shrink-0 rounded-2xl bg-amber-500 px-4 py-2.5 text-sm font-bold text-stone-900 shadow-lg transition hover:bg-amber-400 disabled:opacity-40"
             >
-              Gửi
+              {t.lobby.send}
             </button>
           </form>
           <div className="pointer-events-none hidden text-[11px] font-medium text-stone-400 pointer-fine:sm:block">
-            Chạm vào chỗ muốn tới, hoặc bấm{" "}
-            <kbd className="rounded bg-stone-800 px-1.5 py-0.5">W A S D</kbd> · kéo chuột để đổi góc nhìn, lăn để phóng · tin nhắn không được lưu lại
+            {t.lobby.hintPart1}
+            <kbd className="rounded bg-stone-800 px-1.5 py-0.5">{t.lobby.hintKeys}</kbd>
+            {t.lobby.hintPart2}
           </div>
           <div className="pointer-events-none hidden truncate text-[11px] font-medium text-stone-400 max-sm:block pointer-coarse:block">
-            Kéo cần điều khiển để đi · kéo màn hình để đổi góc nhìn
+            {t.lobby.hintTouch}
           </div>
         </div>
         <div className="order-1 flex justify-end sm:order-2">

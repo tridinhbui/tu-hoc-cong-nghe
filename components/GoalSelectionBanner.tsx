@@ -1,9 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Wallet, TrendingUp, Target, CheckCircle2, Shuffle, ChevronDown, ChevronUp, type LucideIcon } from "lucide-react";
 import { toast } from "sonner";
 import { notifyLocalStorageChanged, useLocalStorageValue } from "@/lib/use-local-storage-value";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
 interface GoalSelectionBannerProps {
   userId: string;
@@ -11,37 +14,42 @@ interface GoalSelectionBannerProps {
 
 export type LearningGoal = "personal-finance" | "basic-investing" | "corporate-finance";
 
-export const GOALS: { id: LearningGoal; name: string; desc: string; icon: LucideIcon; color: string; bg: string }[] = [
-  {
-    id: "personal-finance",
-    name: "Tài chính Cá nhân & Thoát nợ",
-    desc: "Cách quản lý chi tiêu, quản lý nợ tốt/xấu, thiết lập quỹ khẩn cấp.",
-    icon: Wallet,
-    color: "text-blue-500",
-    bg: "bg-blue-50 dark:bg-blue-950/20"
-  },
-  {
-    id: "basic-investing",
-    name: "Tích lũy & Đầu tư cơ bản",
-    desc: "Học về sức mạnh lãi kép, lạm phát, chứng chỉ quỹ mở, vàng.",
-    icon: TrendingUp,
-    color: "text-emerald-500",
-    bg: "bg-emerald-50 dark:bg-emerald-950/20"
-  },
-  {
-    id: "corporate-finance",
-    name: "Phân tích Doanh nghiệp & Cổ phiếu",
-    desc: "Đọc báo cáo tài chính, mô hình phân tích Dupont, dòng tiền FCF, chỉ số ROIC.",
-    icon: Target,
-    color: "text-purple-500",
-    bg: "bg-purple-50 dark:bg-purple-950/20"
-  }
-];
+export function goalsOf(t: Dictionary): { id: LearningGoal; name: string; desc: string; icon: LucideIcon; color: string; bg: string }[] {
+  const d = t.dataRest.goalSelectionBanner.goals;
+  return [
+    {
+      id: "personal-finance",
+      name: d.personalFinance.name,
+      desc: d.personalFinance.desc,
+      icon: Wallet,
+      color: "text-blue-500",
+      bg: "bg-blue-50 dark:bg-blue-950/20"
+    },
+    {
+      id: "basic-investing",
+      name: d.basicInvesting.name,
+      desc: d.basicInvesting.desc,
+      icon: TrendingUp,
+      color: "text-emerald-500",
+      bg: "bg-emerald-50 dark:bg-emerald-950/20"
+    },
+    {
+      id: "corporate-finance",
+      name: d.corporateFinance.name,
+      desc: d.corporateFinance.desc,
+      icon: Target,
+      color: "text-purple-500",
+      bg: "bg-purple-50 dark:bg-purple-950/20"
+    }
+  ];
+}
 
 /** Kênh báo đổi lộ trình học trong cùng một tab. */
 export const GOAL_UPDATED_EVENT = "thtcdn_goal_updated";
 
 export default function GoalSelectionBanner({ userId }: GoalSelectionBannerProps) {
+  const { t } = useI18n();
+  const GOALS = useMemo(() => goalsOf(t), [t]);
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
 
   const goalKey = `thtcdn_learning_goal_${userId}`;
@@ -63,7 +71,7 @@ export default function GoalSelectionBanner({ userId }: GoalSelectionBannerProps
       notifyLocalStorageChanged(GOAL_UPDATED_EVENT);
     }
     setShowSelector(false);
-    toast.success(`Đã cập nhật lộ trình học: ${GOALS.find(g => g.id === goalId)?.name}! 🎯`);
+    toast.success(format(t.dataRest.goalSelectionBanner.updatedToast, { goal: GOALS.find(g => g.id === goalId)?.name ?? "" }));
   };
 
   const activeGoalInfo = GOALS.find((g) => g.id === selectedGoal);
@@ -83,7 +91,7 @@ export default function GoalSelectionBanner({ userId }: GoalSelectionBannerProps
               </div>
               <div>
                 <span className="text-[9px] font-extrabold uppercase tracking-widest text-stone-400 dark:text-stone-500 block">
-                  Mục tiêu hiện tại của bạn
+                  {t.dataRest.goalSelectionBanner.currentGoalLabel}
                 </span>
                 <h4 className="text-xs font-black text-stone-900 dark:text-stone-100 mt-0.5">
                   {activeGoalInfo.name}
@@ -99,7 +107,7 @@ export default function GoalSelectionBanner({ userId }: GoalSelectionBannerProps
                 className="px-3.5 py-1.5 text-[10px] font-extrabold bg-stone-100 hover:bg-stone-200 dark:bg-stone-800 dark:hover:bg-stone-800 text-stone-700 dark:text-stone-300 rounded-lg transition-colors flex items-center gap-1 cursor-pointer focus:outline-none"
               >
                 <Shuffle className="w-3.5 h-3.5" />
-                <span>Thay đổi</span>
+                <span>{t.dataRest.goalSelectionBanner.changeButton}</span>
               </button>
               {isCollapsed ? <ChevronDown className="w-4 h-4 text-stone-400 dark:text-stone-500" /> : <ChevronUp className="w-4 h-4 text-stone-400 dark:text-stone-500" />}
             </div>
@@ -117,10 +125,10 @@ export default function GoalSelectionBanner({ userId }: GoalSelectionBannerProps
         <div className="p-6 space-y-4">
           <div>
             <h3 className="text-sm font-black text-stone-900 dark:text-stone-100">
-              Chọn mục tiêu học tập của bạn 🎯
+              {t.dataRest.goalSelectionBanner.selectorTitle}
             </h3>
             <p className="text-[11px] text-stone-500 dark:text-stone-400 mt-1">
-              Hệ thống sẽ điều chỉnh lộ trình gợi ý và ưu tiên các bài học phù hợp nhất với mục tiêu của bạn.
+              {t.dataRest.goalSelectionBanner.selectorSubtitle}
             </p>
           </div>
 

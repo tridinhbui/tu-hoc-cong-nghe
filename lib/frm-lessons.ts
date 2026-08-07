@@ -91,10 +91,10 @@ export const FRM_LESSONS: Lesson[] = [
       {
         question: "Vai trò của hội đồng quản trị trong khung ERM là gì?",
         options: [
-          "Trực tiếp phê duyệt từng giao dịch riêng lẻ của mọi trading desk trong tổ chức trước khi lệnh được đặt ra thị trường mỗi ngày",
-          "Đặt khẩu vị rủi ro tổng thể và giám sát tuân thủ, không can thiệp vận hành hằng ngày",
-          "Thay thế hoàn toàn vai trò của phòng Quản trị Rủi ro",
-          "Chỉ họp khi có khủng hoảng xảy ra",
+          "Trực tiếp phê duyệt từng giao dịch của mọi bàn",
+          "Đặt khẩu vị rủi ro và giám sát tuân thủ",
+          "Thay hoàn toàn vai trò phòng Quản trị Rủi ro",
+          "Chỉ họp khi khủng hoảng đã xảy ra",
         ],
         correct: 1,
         explanation:
@@ -216,8 +216,8 @@ export const FRM_LESSONS: Lesson[] = [
         question: "Văn hoá rủi ro lành mạnh khác gì so với việc chỉ có đầy đủ chính sách rủi ro bằng văn bản?",
         options: [
           "Không có gì khác biệt, có chính sách bằng văn bản là đủ",
-          "Văn hoá lành mạnh nghĩa là nhân viên thực sự dám báo cáo và được lắng nghe, không chỉ có quy định trên giấy",
-          "Văn hoá rủi ro chỉ thực sự quan trọng ở các ngân hàng nhỏ mới thành lập, còn ngân hàng lớn đã có đủ hệ thống công nghệ nên không cần quan tâm tới yếu tố con người này nữa",
+          "Nhân viên dám báo cáo và được lắng nghe, không chỉ có quy định trên giấy",
+          "Chỉ ngân hàng nhỏ mới cần, ngân hàng lớn đã đủ hệ thống",
           "Văn hoá rủi ro là trách nhiệm duy nhất của phòng nhân sự",
         ],
         correct: 1,
@@ -425,7 +425,7 @@ export const FRM_LESSONS: Lesson[] = [
       question: "Một quỹ đầu tư báo cáo danh mục \"đa dạng hoá tốt\" dựa trên tương quan lịch sử thấp giữa các tài sản trong 5 năm thị trường ổn định gần nhất. Rủi ro nào bạn nên đặt câu hỏi ngay?",
       options: [
         "Rủi ro tỷ giá, vì quỹ có thể đầu tư ra nước ngoài",
-        "Rủi ro tương quan hội tụ: liệu các tài sản này có giữ nguyên tương quan thấp khi thị trường rơi vào khủng hoảng, hay chúng chỉ trông tách biệt trong giai đoạn bình yên",
+        "Tương quan có hội tụ khi thị trường khủng hoảng không",
         "Rủi ro thuế, vì mỗi tài sản có thể chịu thuế suất khác nhau",
         "Rủi ro về phí quản lý quỹ quá cao",
       ],
@@ -570,7 +570,7 @@ export const FRM_LESSONS: Lesson[] = [
       question: "Một ngân hàng chỉ dùng 3 năm dữ liệu tổn thất nội bộ để ước lượng vốn dự phòng rủi ro vận hành, không có sự cố cực lớn nào trong giai đoạn đó. Rủi ro của cách làm này là gì?",
       options: [
         "Không có rủi ro gì, 3 năm dữ liệu là đủ chính xác",
-        "Mô hình sẽ đánh giá thấp phần đuôi của phân phối mức độ nghiêm trọng, vì sự kiện cực đoan (như Knight Capital) hiếm khi xảy ra trong một cửa sổ 3 năm ngắn",
+        "Đánh giá thấp phần đuôi vì cửa sổ 3 năm quá ngắn",
         "Mô hình sẽ đánh giá quá cao vốn dự phòng cần thiết",
         "Vấn đề chỉ là dữ liệu quá cũ, cần cập nhật dữ liệu mới nhất",
       ],
@@ -1011,7 +1011,7 @@ export const FRM_LESSONS: Lesson[] = [
       question: "Một ngân hàng có tỷ lệ an toàn vốn (CAR) đạt 15%, cao hơn nhiều so với yêu cầu tối thiểu, nhưng 70% nguồn tài trợ đến từ vay liên ngân hàng kỳ hạn 1 tuần để tài trợ cho danh mục cho vay doanh nghiệp kỳ hạn 5 năm. Rủi ro lớn nhất ở đây là gì?",
       options: [
         "Không có rủi ro đáng kể, vì tỷ lệ an toàn vốn đã đủ cao",
-        "Rủi ro lệch kỳ hạn tài trợ nghiêm trọng: nếu thị trường liên ngân hàng đóng băng dù chỉ trong thời gian ngắn, ngân hàng không thể tái cấp vốn kịp cho các khoản vay dài hạn - giống hệt mẫu hình Northern Rock",
+        "Rủi ro lệch kỳ hạn tài trợ, giống mẫu hình Northern Rock",
         "Rủi ro duy nhất là rủi ro lãi suất, không liên quan tới thanh khoản",
         "Ngân hàng nên tăng thêm vốn chủ sở hữu để giải quyết vấn đề này",
       ],
@@ -1326,7 +1326,7 @@ export const FRM_LESSONS: Lesson[] = [
       question: "Một ngân hàng dùng tiền gửi không kỳ hạn (có thể rút bất kỳ lúc nào) để tài trợ cho các khoản vay mua nhà lãi suất cố định kỳ hạn 20 năm. Khi lãi suất thị trường tăng mạnh, rủi ro nào xuất hiện đồng thời?",
       options: [
         "Chỉ rủi ro tín dụng của người vay mua nhà",
-        "Cả rủi ro lãi suất trên sổ ngân hàng (giá trị kinh tế của khoản vay cố định giảm, chi phí huy động tiền gửi có thể tăng) lẫn rủi ro thanh khoản nếu người gửi rút tiền tìm nơi lãi suất cao hơn",
+        "Cả rủi ro lãi suất trên sổ ngân hàng lẫn rủi ro thanh khoản nếu người gửi rút",
         "Chỉ rủi ro vận hành vì quy trình xử lý hồ sơ vay chậm hơn",
         "Không có rủi ro nào đáng kể vì tiền gửi không kỳ hạn thường lãi suất thấp và ổn định",
       ],

@@ -1,7 +1,11 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { LESSON_ROOM_LINKS, linkForLesson, roomHref } from "@/lib/lesson-room-links";
-import { CIVIC_ROOMS, DISTRICT_ROOMS } from "@/components/career-district/district-space";
+import { civicRoomsOf, districtRoomsOf } from "@/components/career-district/district-space";
+import { vi as viDict } from "@/lib/i18n/dictionaries/vi";
+
+const CIVIC_ROOMS = civicRoomsOf(viDict);
+const DISTRICT_ROOMS = districtRoomsOf(viDict);
 
 /** Người đối chiếu cho một bảng viết tay.
  *

@@ -1,0 +1,132 @@
+{
+  "slug": "tong-on-chang-9-danh-muc",
+  "title": "Review - Portfolio and Risk Management Track: Investing Is Managing Risk, Not Just Hunting Returns",
+  "subtitle": "Connecting diversification, correlation, MPT, the Sharpe Ratio, and fund types",
+  "openingQuestion": "If you could take away only one lesson from 20 days studying portfolios, what should it be?",
+  "openingOptions": [
+    "Successful investing is essentially managing risk systematically - through diversification, understanding asset correlation, and measuring risk-adjusted performance - not simply hunting for the highest return",
+    "Market timing matters more than any other factor",
+    "Investing only in the lowest-fee fund is enough",
+    "Picking good stocks is the sole decisive factor for success"
+  ],
+  "explanation": "The journey through the Portfolio and Risk Management track: from the Portfolio concept → why you shouldn't look at each asset in isolation → Diversification and Correlation → measuring risk (Volatility, Standard Deviation) → Expected Return and the Risk-return tradeoff → Modern Portfolio Theory and the Efficient Frontier → risk-adjusted performance measures (Sharpe, Alpha, Beta, Tracking Error) → Active vs Passive → fund types (ETF, Mutual Fund, Hedge Fund) → a practical portfolio-building case. All of it serves one goal: managing risk systematically instead of leaving it to chance.",
+  "diagram": [
+    { "label": "Portfolio and why not to look at assets in isolation", "arrow": true },
+    { "label": "Diversification, Correlation, MPT", "arrow": true },
+    { "label": "Sharpe Ratio measures risk-return efficiency" }
+  ],
+  "realWorldExample": {
+    "company": "John Bogle's three golden rules",
+    "description": "John Bogle distilled his investment philosophy into three principles: invest early and stay invested (harness compounding), diversify broadly (reduce unsystematic risk), and keep costs low (maximize long-term net return) - simple, yet proven more effective than most complex strategies."
+  },
+  "quiz": [
+    {
+      "question": "Why is 'risk-adjusted return' a more important concept than absolute return when evaluating an investment strategy?",
+      "options": [
+        "Because the same gain achieved with different risk is not equivalent",
+        "Because absolute return doesn't reflect the fees paid",
+        "Because institutional investors are only allowed to use risk-adjusted metrics",
+        "Because absolute return changes depending on the period measured"
+      ],
+      "explanation": "This is the thread running through the whole Portfolio and Risk Management track: the Sharpe Ratio, Alpha, and Beta all try to answer 'what risk was paid for this return?' A successful long-term investor needs not just a high return but the ability to STICK WITH the strategy through volatile periods - only feasible when risk is managed at an acceptable level, not maximized at all costs."
+      },
+    {
+      "question": "If you had to boil down the entire Portfolio and Risk Management track into one question an investor should ask before EVERY investment decision, what should it be?",
+      "options": [
+        "How many percent could this position gain next year?",
+        "How much risk does this position add to the whole portfolio?",
+        "How many analysts are recommending buying this position?",
+        "How much has this position gained over the past twelve months?"
+      ],
+      "explanation": "This is exactly the mindset running through the whole Portfolio and Risk Management track - from Portfolio, Diversification, Correlation to MPT and risk-adjusted return measures: every investment decision should be evaluated in the context of the WHOLE portfolio, not as an isolated decision."
+    },
+    {
+      "question": "What are the three foundational concepts of portfolio management covered in this track?",
+      "options": [
+        "Liquidity, market capitalization, and average trading volume",
+        "Dividends, growth, and valuation by market multiples",
+        "Diversification, correlation, and risk-adjusted return",
+        "Management fee, tax rate, and per-order transaction cost"
+      ],
+      "explanation": "These three concepts answer three connected questions in turn: how does risk change when assets are combined, what determines the degree of offsetting, and how much is the final result worth relative to the risk taken."
+    },
+    {
+      "question": "Why is diversification called the only free lunch in investing?",
+      "options": [
+        "Because it lets an investor borrow capital at a lower interest rate",
+        "Because it incurs no transaction cost at all",
+        "Because it guarantees the portfolio will never suffer a loss",
+        "Because it reduces risk without sacrificing expected return"
+      ],
+      "explanation": "Every other improvement in investing requires a trade-off - wanting a higher return means accepting higher risk. Diversification is the exception: combining the right assets gives lower risk at the same expected return."
+    },
+    {
+      "question": "If you could keep only one principle from the whole track, what should it be?",
+      "options": [
+        "Evaluate every investment by its contribution to the overall portfolio",
+        "Always choose whichever single asset has the highest possible expected return",
+        "Hold at least thirty stocks under all circumstances",
+        "Sell the entire portfolio whenever the market starts to fall"
+      ],
+      "explanation": "A risky asset can make a portfolio safer; a safe asset can make a portfolio less efficient. The question is always what this position does for the whole, not whether it is good or bad standing alone."
+    }
+  ],
+  "keyTakeaways": [
+    "Successful investing is systematic risk management, not just hunting the highest return",
+    "Diversification, correlation, and risk-adjusted return measures are the core toolkit",
+    "The choice between active/passive and fund type should be based on genuine understanding of cost, risk, and personal goals, not just trends"
+  ],
+  "practicePrompt": {
+    "question": "After reviewing the entire Portfolio-Building track (portfolio, diversification, correlation, volatility, Sharpe Ratio, Alpha, Beta, MPT, Efficient Frontier), what is the core lesson an investor should take away?",
+    "options": [
+      "The core lesson is to find the stock with the highest expected return and put all your capital into it to maximize profit",
+      "Successful investing is systematic risk management, not just hunting the highest return",
+      "The core lesson is to always choose active funds because they can generate higher Alpha than passive funds",
+      "Diversification and risk-measurement tools are only theoretically meaningful and don't need real-world application"
+    ],
+    "explanation": "Successful investing is systematic risk management, not just hunting the highest return. This is the thread running through everything: from diversification and correlation to measurement tools (Sharpe Ratio, Beta) - all serving the goal of disciplined risk control to achieve sustainable long-term returns."
+  },
+  "summary": {
+    "keyIdea": "Successful investing is systematic risk management, not just hunting the highest return",
+    "commonMistake": "Reading the concept as a phrase to memorize rather than a principle to apply to real decisions.",
+    "action": "Diversification, correlation, and risk-adjusted return measures are the core toolkit"
+  },
+  "application": {
+    "title": "Sum up the Portfolio and Risk Management track in one sentence",
+    "message": "Write a single sentence summarizing why 'investing is managing risk, not just hunting returns' the way you will apply it to your own portfolio.",
+    "secondary": "If that sentence can be made specific to your situation, it means this track has truly sunk in."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The Portfolio and Risk Management track moves from the Portfolio concept, through Diversification and Correlation, to risk measures (Volatility, Standard Deviation), Expected Return and the Risk-return tradeoff, Modern Portfolio Theory and the Efficient Frontier, risk-adjusted performance measures (Sharpe, Alpha, Beta, Tracking Error), Active vs Passive, fund types (ETF, Mutual Fund, Hedge Fund), and a practical portfolio-building case. All of it serves a single goal: managing risk systematically instead of leaving it to chance."
+    },
+    { "type": "heading", "text": "Why risk-adjusted return matters more than absolute return" },
+    {
+      "type": "paragraph",
+      "text": "Two portfolios can achieve the same absolute return with completely different levels of risk (volatility, chance of capital loss) - the less risky path to the same result is always better for long-term capital management. This is the thread running through the whole Portfolio and Risk Management track: the Sharpe Ratio, Alpha, and Beta all try to answer 'what risk was paid for this return?' A successful long-term investor needs the ability to STICK WITH a strategy through volatile periods, which is only feasible when risk is managed at an acceptable level."
+    },
+    { "type": "heading", "text": "John Bogle's three golden rules" },
+    {
+      "type": "paragraph",
+      "text": "John Bogle distilled his investment philosophy into three principles: invest early and stay invested (harness compounding), diversify broadly (reduce unsystematic risk), and keep costs low (maximize long-term net return). Simple, yet proven more effective than most complex strategies - a neat summary of everything the Portfolio and Risk Management track has covered."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Portfolio → Diversification → Correlation: the foundation of risk-management thinking",
+        "Volatility, Standard Deviation, Expected Return: measurement tools",
+        "MPT, Efficient Frontier: the theoretical framework for building an optimal portfolio",
+        "Sharpe, Alpha, Beta, Tracking Error: risk-adjusted performance measures",
+        "Active vs Passive, ETF/Mutual Fund/Hedge Fund: choosing the right execution vehicle"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The question to ask before every investment decision: how does this position affect the risk and return of the WHOLE portfolio, not just standing alone?",
+        "Successful investing is systematic risk management, not just hunting the highest return."
+      ]
+    }
+  ]
+}

@@ -3,6 +3,9 @@
 import React, { useState } from "react";
 import { Copy, Check, Calculator, Sparkles, HelpCircle } from "lucide-react";
 import { toast } from "sonner";
+import { useI18n } from "@/lib/i18n/context";
+import { copyToClipboard } from "@/lib/copy-to-clipboard";
+import { format } from "@/lib/i18n";
 
 export interface FormulaVariable {
   symbol: string;
@@ -32,7 +35,7 @@ export interface FormulaBlockProps {
 
 export default function FormulaBlock({
   title,
-  label = "Công thức tính toán",
+  label,
   numerator,
   denominator,
   multiplier,
@@ -40,9 +43,11 @@ export default function FormulaBlock({
   variables = [],
   example,
 }: FormulaBlockProps) {
+  const { t } = useI18n();
   const [copied, setCopied] = useState(false);
+  const resolvedLabel = label ?? t.formulaBlock.defaultLabel;
 
-  const copyFormulaText = () => {
+  const copyFormulaText = async () => {
     let textToCopy = "";
     if (numerator && denominator) {
       textToCopy = `${title ? title + ": " : ""}(${numerator}) / (${denominator})${multiplier ? " × " + multiplier : ""}`;
@@ -50,12 +55,16 @@ export default function FormulaBlock({
       textToCopy = `${title ? title + ": " : ""}${equation}`;
     }
 
-    if (textToCopy) {
-      navigator.clipboard.writeText(textToCopy);
-      setCopied(true);
-      toast.success("Đã sao chép công thức vào bộ nhớ tạm! 📋");
-      setTimeout(() => setCopied(false), 2000);
+    if (!textToCopy) return;
+    // Bản cũ bỏ qua Promise của `writeText` và báo thành công vô điều kiện,
+    // nên người dùng thấy "Đã sao chép công thức" rồi dán ra thứ khác.
+    if (!(await copyToClipboard(textToCopy))) {
+      toast.error(t.formulaBlock.copyFailedToast);
+      return;
     }
+    setCopied(true);
+    toast.success(t.formulaBlock.copiedToast);
+    setTimeout(() => setCopied(false), 2000);
   };
 
   return (
@@ -68,7 +77,7 @@ export default function FormulaBlock({
           </div>
           <div>
             <p className="text-[10px] font-extrabold text-amber-400 uppercase tracking-widest leading-none">
-              {label}
+              {resolvedLabel}
             </p>
             {title && (
               <h4 className="text-sm font-extrabold text-white mt-1 tracking-wide">
@@ -82,17 +91,17 @@ export default function FormulaBlock({
           type="button"
           onClick={copyFormulaText}
           className="flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-lg bg-stone-800 hover:bg-stone-700 text-stone-300 transition-colors cursor-pointer border border-stone-700"
-          title="Sao chép công thức"
+          title={t.formulaBlock.copyTooltip}
         >
           {copied ? (
             <>
               <Check className="w-3.5 h-3.5 text-emerald-400" />
-              <span className="text-emerald-400">Đã chép</span>
+              <span className="text-emerald-400">{t.formulaBlock.copiedLabel}</span>
             </>
           ) : (
             <>
               <Copy className="w-3.5 h-3.5" />
-              <span>Copy</span>
+              <span>{t.formulaBlock.copyLabel}</span>
             </>
           )}
         </button>
@@ -129,7 +138,7 @@ export default function FormulaBlock({
         <div className="p-5 bg-stone-50/50 dark:bg-stone-900/60 border-b border-stone-200/80 dark:border-stone-800">
           <p className="text-[11px] font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-widest mb-3 flex items-center gap-1.5">
             <HelpCircle className="w-3.5 h-3.5 text-amber-500" />
-            Giải thích biến số & ký hiệu
+            {t.formulaBlock.variablesTitle}
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
             {variables.map((v) => (
@@ -160,13 +169,13 @@ export default function FormulaBlock({
           <div className="flex items-center gap-2 mb-2">
             <Sparkles className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
             <p className="text-xs font-extrabold text-emerald-800 dark:text-emerald-300 uppercase tracking-wider">
-              {example.title || "Ví dụ tính toán bằng số thực tế"}
+              {example.title || t.formulaBlock.defaultExampleTitle}
             </p>
           </div>
 
           <div className="bg-white dark:bg-stone-900 p-3.5 rounded-xl border border-emerald-200/60 dark:border-emerald-800/60 text-xs space-y-1.5 shadow-2xs">
             <div className="flex items-baseline justify-between gap-2 flex-wrap font-mono font-bold">
-              <span className="text-stone-700 dark:text-stone-300">Phép tính: {example.calculation}</span>
+              <span className="text-stone-700 dark:text-stone-300">{format(t.formulaBlock.calculationPrefix, { calculation: example.calculation })}</span>
               <span className="text-emerald-600 dark:text-emerald-400 text-sm font-extrabold bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-0.5 rounded-lg border border-emerald-200 dark:border-emerald-800">
                 = {example.result}
               </span>

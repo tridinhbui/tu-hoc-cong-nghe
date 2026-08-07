@@ -13,6 +13,8 @@
  *  kiểm được bằng test mà không cần dựng một khung hình 3D nào - đúng cách
  *  lib/three-statement-model.ts làm. */
 
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
+
 export interface CycleInputs {
   /** Số ngày trung bình để thu tiền khách (Days Sales Outstanding). */
   dso: number;
@@ -61,47 +63,33 @@ export interface CycleScenario {
   punchline: string;
 }
 
-/** Bốn mô hình, cố ý xếp từ tệ nhất tới âm nhất, để thấy DẤU chứ không chỉ
- *  thấy độ lớn. */
-export const SCENARIOS: CycleScenario[] = [
-  {
-    id: "xay-dung",
-    label: "Nhà thầu xây dựng",
-    inputs: { dso: 120, dio: 45, dpo: 60 },
-    question: "Thu tiền sau 120 ngày, trả nhà cung cấp sau 60. Cần sẵn bao nhiêu ngày doanh thu?",
-    why:
-      "Chủ đầu tư nghiệm thu xong mới trả, và giữ lại một phần bảo hành. Vật tư thì phải mua trước.",
-    punchline:
-      "105 ngày doanh thu nằm ngoài két. Nhà thầu có lãi trên giấy vẫn phải đi vay để trả lương - và đó là lý do ngành này sống bằng vốn vay.",
-  },
-  {
-    id: "san-xuat",
-    label: "Nhà máy sản xuất",
-    inputs: { dso: 45, dio: 60, dpo: 40 },
-    question: "Hàng nằm kho 60 ngày. Rút kho xuống 30 thì tiền đổi bao nhiêu?",
-    why: "Bán buôn cho đại lý nên có công nợ, và phải trữ nguyên liệu để chạy máy liên tục.",
-    punchline:
-      "Vòng quay 65 ngày. Rút kho từ 60 xuống 30 là kéo nó còn 35 - mỗi ngày rút khỏi kho trả về két đúng một ngày doanh thu. Giảm kho không phải việc của thủ kho, nó là quyết định tài chính.",
-  },
-  {
-    id: "ban-le",
-    label: "Chuỗi siêu thị",
-    inputs: { dso: 2, dio: 25, dpo: 55 },
-    question: "Khách trả tiền ngay, nhà cung cấp đợi 55 ngày. Vòng quay bằng bao nhiêu?",
-    why: "Bán lẻ thu tiền mặt tại quầy, còn nhà cung cấp phải chịu công nợ để được lên kệ.",
-    punchline:
-      "ÂM 28 ngày. Siêu thị cầm tiền của khách gần một tháng trước khi phải trả nhà cung cấp - mở thêm cửa hàng TẠO ra tiền chứ không ngốn tiền.",
-  },
-  {
-    id: "thue-bao",
-    label: "Phần mềm thuê bao",
-    inputs: { dso: 0, dio: 0, dpo: 30 },
-    question: "Thu trước cả năm, không có kho. Vòng quay bằng bao nhiêu?",
-    why: "Khách trả trước khi dùng, và sản phẩm là bản sao nên không có hàng tồn.",
-    punchline:
-      "ÂM 30 ngày, và đó là trước khi tính tiền thu trước cả năm. Tăng trưởng tự nuôi chính nó - lý do mô hình thuê bao được định giá cao hơn.",
-  },
+/** Phần CẤU TRÚC của bốn mô hình: id và các ngày (dso/dio/dpo), cố ý xếp từ tệ
+ *  nhất tới âm nhất để thấy DẤU chứ không chỉ thấy độ lớn. Chữ hiển thị
+ *  (label/question/why/punchline) sống trong district-content.ts, xem
+ *  `scenariosOf`. */
+const SCENARIO_INPUTS: { id: string; inputs: CycleInputs }[] = [
+  { id: "xay-dung", inputs: { dso: 120, dio: 45, dpo: 60 } },
+  { id: "san-xuat", inputs: { dso: 45, dio: 60, dpo: 40 } },
+  { id: "ban-le", inputs: { dso: 2, dio: 25, dpo: 55 } },
+  { id: "thue-bao", inputs: { dso: 0, dio: 0, dpo: 30 } },
 ];
+
+/** Chỉ id, dùng khi không cần chữ hiển thị. */
+export const SCENARIO_IDS: string[] = SCENARIO_INPUTS.map((s) => s.id);
+
+export function inputsFor(id: string): CycleInputs | undefined {
+  return SCENARIO_INPUTS.find((s) => s.id === id)?.inputs;
+}
+
+/** Bốn mô hình, kèm chữ hiển thị theo ngôn ngữ hiện tại của
+ *  `t.districtContent.cashCycle.scenarios`. */
+export function scenariosOf(t: Dictionary): CycleScenario[] {
+  const copy = t.districtContent.cashCycle.scenarios;
+  return SCENARIO_INPUTS.map(({ id, inputs }) => {
+    const c = copy[id as keyof typeof copy];
+    return { id, inputs, label: c.label, question: c.question, why: c.why, punchline: c.punchline };
+  });
+}
 
 /** Vòng quay âm là điểm mạnh hay điểm yếu?
  *
