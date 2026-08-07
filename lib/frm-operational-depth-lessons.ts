@@ -106,6 +106,19 @@ export const FRM_OPERATIONAL_DEPTH_LESSONS: Lesson[] = [
           "Tổn thất kỳ vọng hàng năm là tần suất nhân mức độ: (1/20) × 500 = 25 tỷ. Con số này dùng để so các kịch bản với nhau, nhưng đừng đọc nó thành dự báo - trong 19 năm tổn thất là 0 và một năm là 500 tỷ, không năm nào bằng 25.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Sau một sự cố an ninh mạng lớn trong ngành, buổi phân tích kịch bản của ngân hàng nâng ước tính tổn thất mạng từ 200 tỷ lên 900 tỷ, các kịch bản khác giữ nguyên. Điều gì đáng lo?",
+      options: [
+        "Neo vào sự cố gần nhất, nên các kịch bản khác bị bỏ quên",
+        "Con số 900 tỷ quá cao so với quy mô vốn của ngân hàng",
+        "Không nên đổi kịch bản giữa kỳ, phải chờ tới rà soát năm sau",
+        "Nâng ước tính là đúng, nhưng phải nâng đều cả bốn nguồn dữ liệu",
+      ],
+      correct: 0,
+      explanation:
+        "Neo vào sự cố gần nhất là thiên lệch nguy hiểm nhất của phân tích kịch bản, và dấu hiệu của nó chính là hình dạng ở đây: một kịch bản phình lên gấp bốn lần trong khi mọi kịch bản khác đứng im. Điều thực sự đổi sau một sự cố trong ngành không phải xác suất của riêng loại đó, mà là hiểu biết về chuỗi sự kiện và các chốt kiểm soát có thể cùng thất bại - và bài học đó thường áp được cho vài kịch bản khác. Đây cũng là lý do giá trị của một buổi kịch bản nằm ở chuỗi sự kiện và chốt kiểm soát chứ không nằm ở con số tiền: con số bị neo, còn cơ chế thì không.",
+    },
     keyTakeaways: [
       "Dữ liệu nội bộ dày ở thân và trống ở đuôi; ngoại suy ra mức 99,9% là để dạng phân phối quyết định kết quả",
       "Basel yêu cầu bốn nguồn: tổn thất nội bộ, tổn thất bên ngoài, kịch bản, và yếu tố môi trường kinh doanh cùng kiểm soát",
@@ -242,6 +255,19 @@ export const FRM_OPERATIONAL_DEPTH_LESSONS: Lesson[] = [
           "Dữ liệu nội bộ mô tả phần thân của phân phối tốt hơn bất kỳ nguồn nào khác vì nó đúng là tổ chức mình. Thứ nó không có là phần đuôi, và đó chính là chỗ dữ liệu ngành lấp vào - dùng nó thay cho phần thân sẽ đánh mất đặc thù của chính tổ chức.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Mượn một sự kiện tổn thất 5.000 tỷ từ ngân hàng có doanh thu gấp 10 lần mình. Quy đổi tuyến tính theo doanh thu cho 500 tỷ. Vì sao con số này thường quá thấp?",
+      options: [
+        "Vì tổn thất tăng dưới tuyến tính so với quy mô tổ chức",
+        "Vì ngân hàng lớn luôn có chất lượng kiểm soát tốt hơn hẳn",
+        "Vì dữ liệu công khai chỉ ghi nhận phần thiệt hại trực tiếp",
+        "Vì tỷ giá và lạm phát giữa hai thời điểm chưa được điều chỉnh",
+      ],
+      correct: 0,
+      explanation:
+        "Quan hệ giữa quy mô và tổn thất hoạt động là dưới tuyến tính: một tổ chức lớn gấp mười lần không chịu tổn thất gấp mười lần, vì phần lớn sự kiện lớn gắn với một quy trình hay một con người cụ thể chứ không nở ra theo doanh thu. Một vụ giao dịch trái phép hay một lần triển khai hỏng gây thiệt hại gần như nhau ở cả hai nơi. Chia thẳng cho 10 vì thế cắt quá tay. Hệ số mũ thường dùng nằm quanh 0,5 tới 0,8, và nó phải kèm một điều chỉnh thứ hai theo chênh lệch chất lượng kiểm soát - nếu không thì tiền đầu tư vào kiểm soát không bao giờ hiện ra trong vốn.",
+    },
     keyTakeaways: [
       "Dữ liệu bên ngoài lấp phần đuôi mà dữ liệu nội bộ không có; nó không thay thế phần thân",
       "Phải quy đổi theo biến quy mô, thường dưới tuyến tính chứ không tuyến tính",
@@ -379,6 +405,19 @@ export const FRM_OPERATIONAL_DEPTH_LESSONS: Lesson[] = [
           "Thay đổi khẩn cấp gộp đúng hai điều kiện xấu nhất: áp lực thời gian và kiểm thử rút gọn. Miễn quy trình cho chúng là bỏ kiểm soát đúng lúc cần nhất. Cách xử lý đúng là một quy trình rút gọn nhưng vẫn bắt buộc - phê duyệt hai người, ghi nhận đầy đủ, và rà soát bắt buộc sau đó.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Một bản cập nhật hệ thống thanh toán qua kiểm thử đầy đủ, triển khai đêm chủ nhật, và sập vào 9 giờ sáng thứ hai. Nguyên nhân điển hình nhất là gì?",
+      options: [
+        "Môi trường kiểm thử đúng chức năng nhưng sai khối lượng giao dịch",
+        "Đội triển khai đã bỏ qua một bước bắt buộc trong quy trình duyệt",
+        "Đêm chủ nhật là khung giờ sai, nên phải chuyển sang giữa tuần",
+        "Kế hoạch quay lui đã được viết nhưng chưa ai từng đọc lại nó",
+      ],
+      correct: 0,
+      explanation:
+        "Môi trường kiểm thử gần như luôn nhỏ hơn môi trường thật vài bậc về khối lượng, nên nó chứng minh được phần mềm làm ĐÚNG VIỆC mà không chứng minh được nó chịu nổi TẢI. Lỗi thuộc loại này - khoá tài nguyên, hàng đợi tràn, truy vấn chậm dần - chỉ xuất hiện khi lưu lượng thật đổ vào, tức giờ cao điểm đầu tiên sau khi triển khai. Đó cũng là lý do triển khai theo lô nhỏ với cổng kiểm tra hiệu quả hơn một lần đổi lớn: nó đưa một phần lưu lượng thật vào sớm, khi phạm vi quay lui còn nhỏ và còn kịp.",
+    },
     keyTakeaways: [
       "Phần lớn gián đoạn dịch vụ nghiêm trọng bắt nguồn từ một thay đổi do chính tổ chức triển khai",
       "Đây là loại rủi ro hoạt động dễ kiểm soát nhất vì thời điểm và phạm vi đều do mình chọn",
@@ -515,6 +554,19 @@ export const FRM_OPERATIONAL_DEPTH_LESSONS: Lesson[] = [
           "Kịch bản quá nhẹ thì luôn qua và không nói lên gì; kịch bản bất khả thi thì luôn trượt và cũng không nói lên gì. Vùng có thông tin nằm ở giữa: những chuyện đủ nghiêm trọng để làm lộ điểm gãy nhưng vẫn nằm trong phạm vi có thể xảy ra thật.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Ngưỡng chịu đựng cho dịch vụ chuyển tiền là 4 giờ. Hệ thống chính có thể khôi phục trong 3 giờ, nhưng nhà cung cấp xác thực bên ngoài cam kết 6 giờ. Khả năng phục hồi thật là bao nhiêu?",
+      options: [
+        "6 giờ, vì mắt xích yếu nhất định nghĩa cả chuỗi",
+        "3 giờ, vì hệ thống chính là thứ ngân hàng kiểm soát",
+        "4 giờ, vì đó là ngưỡng đã được hội đồng phê duyệt",
+        "4,5 giờ, tức trung bình có trọng số của hai mốc trên",
+      ],
+      correct: 0,
+      explanation:
+        "Khách hàng không chuyển được tiền cho tới khi TOÀN BỘ chuỗi hoạt động trở lại, nên con số duy nhất có nghĩa là mắt xích chậm nhất: 6 giờ. Đó là lý do phải vẽ toàn chuỗi phụ thuộc thay vì liệt kê hệ thống nội bộ - phần lớn khoảng cách nằm ở những mắt xích tổ chức không sở hữu. Và ngưỡng 4 giờ được đặt theo mức hại chấp nhận được với khách hàng, độc lập với năng lực hiện có, nên nó không phải một mô tả về thực trạng mà là một mục tiêu. Khoảng cách 2 giờ giữa hai con số chính là việc phải làm, và nó chỉ hiện ra khi hỏi đúng câu hỏi thứ hai.",
+    },
     keyTakeaways: [
       "Dịch vụ trọng yếu xác định theo góc nhìn khách hàng, không theo sơ đồ hệ thống nội bộ",
       "Ngưỡng chịu đựng đặt theo mức hại chấp nhận được, độc lập với năng lực hiện có - khoảng cách giữa hai thứ là việc phải làm",
@@ -651,6 +703,19 @@ export const FRM_OPERATIONAL_DEPTH_LESSONS: Lesson[] = [
           "Một vị trí không bao giờ đổi người là một vị trí không ai khác hiểu và không ai khác kiểm tra được. Luân chuyển giải quyết cả hai cùng lúc: kiến thức buộc phải viết ra và bàn giao, còn công việc cũ buộc phải chịu một cặp mắt mới nhìn vào.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Một chuyên viên là người duy nhất hiểu và vận hành mô hình định giá cho một dòng sản phẩm, đã bốn năm không nghỉ phép liên tục quá hai ngày. Đây là mấy rủi ro?",
+      options: [
+        "Hai: mất năng lực nếu người đó đi, và không ai kiểm tra được",
+        "Một: rủi ro nhân sự chủ chốt, xử lý bằng kế hoạch kế nhiệm",
+        "Một: rủi ro gian lận, xử lý bằng quy định nghỉ phép bắt buộc",
+        "Không rủi ro nào, vì chuyên môn sâu là tài sản của tổ chức",
+      ],
+      correct: 0,
+      explanation:
+        "Hai rủi ro khác nhau nằm chồng lên nhau ở cùng một người. Thứ nhất là năng lực: người đó nghỉ việc thì tổ chức mất khả năng định giá một dòng sản phẩm, và không ai đủ hiểu để tiếp nhận. Thứ hai là kiểm soát: không ai khác chạy được mô hình nghĩa là không ai kiểm chứng được kết quả của nó, và một sai lệch - dù vô tình hay không - có thể tồn tại nhiều năm. Bốn năm không nghỉ liên tục là dấu hiệu kinh điển, vì một lớp che giấu cần bảo trì hằng ngày. Luân chuyển vị trí xử lý được cả hai cùng lúc, và đó là lý do nó được xếp vào kiểm soát chứ không phải chính sách nhân sự.",
+    },
     keyTakeaways: [
       "Nghỉ phép bắt buộc là chốt kiểm soát gian lận, không phải phúc lợi - gian lận cần duy trì hàng ngày nên dễ lộ khi vắng mặt",
       "Một người duy nhất hiểu một hoạt động là hai rủi ro cùng lúc: mất năng lực khi họ đi, và không kiểm tra được khi họ ở",

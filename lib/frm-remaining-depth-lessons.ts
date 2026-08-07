@@ -103,6 +103,19 @@ export const FRM_REMAINING_DEPTH_LESSONS: Lesson[] = [
           "Nếu phần dư vẫn còn tự tương quan thì mô hình chưa vắt hết cấu trúc có thể dự báo trong dữ liệu - còn thông tin bị bỏ lại. Đây là lý do kiểm định Ljung-Box trên phần dư là bước bắt buộc chứ không phải tuỳ chọn.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Hồi quy chỉ số giá nhà theo số lượng phim rạp chiếu mỗi năm, giai đoạn 2010-2024, cho R bình phương 0,89 và t rất lớn. Kết luận đúng là gì?",
+      options: [
+        "Hai chuỗi cùng có xu hướng nên đây là hồi quy giả mạo",
+        "Có quan hệ kinh tế thật, cần tìm cơ chế truyền dẫn giữa chúng",
+        "R bình phương 0,89 chưa đủ cao để kết luận bất cứ điều gì",
+        "Cần thêm biến kiểm soát rồi hệ số sẽ về mức hợp lý hơn",
+      ],
+      correct: 0,
+      explanation:
+        "Hai chuỗi không dừng cùng đi lên theo thời gian sẽ cho R bình phương cao và thống kê t rất lớn dù giữa chúng không có quan hệ nào - phần chung mà hồi quy tìm thấy chỉ là thời gian. Đó là hồi quy giả mạo, và điều nguy hiểm là nó không để lại dấu hiệu nào trên các con số quen thuộc: R bình phương đẹp, t đẹp, mọi thứ trông như một phát hiện. Kiểm tra tính dừng vì thế là bước ĐẦU TIÊN chứ không phải bước kiểm tra cuối - bỏ qua nó thì mọi con số phía sau đều tính đúng trên một câu hỏi sai. Cách xử lý thông thường là lấy sai phân hoặc kiểm tra đồng tích hợp.",
+    },
     keyTakeaways: [
       "Hai chuỗi cùng có xu hướng sẽ tương quan cao dù không liên quan - đó là hồi quy giả mạo",
       "Dừng yếu: trung bình và phương sai ổn định, hiệp phương sai chỉ phụ thuộc độ trễ",
@@ -239,6 +252,19 @@ export const FRM_REMAINING_DEPTH_LESSONS: Lesson[] = [
           "Giả định phương sai đồng nhất gần như luôn sai với dữ liệu thị trường, và sai số chuẩn vững vẫn đúng ngay cả khi giả định đó tình cờ được thoả. Chi phí dùng nó khi không cần thiết là mất một chút hiệu quả; chi phí không dùng khi cần là kết luận sai.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Hồi quy lợi suất danh mục theo ba nhân tố cho hệ số 0,8 với t = 3,2. Phần dư có phương sai thay đổi rõ rệt. Điều gì cần sửa?",
+      options: [
+        "Sai số chuẩn, nên t = 3,2 chưa dùng để kết luận được",
+        "Hệ số 0,8, vì phương sai thay đổi làm nó bị chệch lên",
+        "Cả hệ số lẫn sai số chuẩn, vì giả định gốc đã bị vi phạm",
+        "Không gì cả, vì t = 3,2 đã vượt ngưỡng ý nghĩa thông thường",
+      ],
+      correct: 0,
+      explanation:
+        "Phương sai sai số thay đổi KHÔNG làm hệ số chệch - ước lượng bình phương nhỏ nhất vẫn không chệch và vẫn nhất quán. Thứ nó phá là sai số chuẩn, tức mẫu số của thống kê t. Nên 0,8 vẫn là con số tốt nhất về độ lớn tác động, còn 3,2 thì không dùng được để nói tác động đó có ý nghĩa thống kê hay không, và nó thường bị thổi phồng. Sửa bằng sai số chuẩn vững của White; nếu phần dư còn tự tương quan thì cần Newey-West. Với dữ liệu tài chính, giả định đồng nhất gần như luôn sai, nên sai số chuẩn vững nên là mặc định chứ không phải một bước chữa cháy.",
+    },
     keyTakeaways: [
       "Phương sai thay đổi và tự tương quan không làm hệ số chệch, chúng làm sai số chuẩn sai",
       "White vững với phương sai thay đổi; Newey-West xử lý thêm cả tự tương quan",
@@ -399,6 +425,19 @@ export const FRM_REMAINING_DEPTH_LESSONS: Lesson[] = [
           "Mô hình học máy nắm bắt các quan hệ phức tạp trong dữ liệu quá khứ mà không cần giả thuyết kinh tế đứng sau. Khi hành vi thay đổi, một mô hình có cấu trúc lý thuyết còn xuống cấp từ từ, còn mô hình thuần dữ liệu có thể hỏng đột ngột mà không ai thấy trước.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Mô hình dự báo vỡ nợ đạt AUC 0,94 trên tập kiểm tra, nhưng tập kiểm tra được tách NGẪU NHIÊN từ dữ liệu năm năm. Con số 0,94 nói lên điều gì?",
+      options: [
+        "Chưa nói được gì: mô hình đã nhìn thấy tương lai khi học",
+        "Mô hình phân biệt rất tốt và sẵn sàng đưa vào vận hành",
+        "Cần thêm biến đầu vào để đẩy AUC lên trên ngưỡng 0,95",
+        "Mô hình đang khớp quá mức nên phải giảm số biến xuống",
+      ],
+      correct: 0,
+      explanation:
+        "Tách ngẫu nhiên nghĩa là một khoản vay của tháng 3/2021 có thể nằm ở tập kiểm tra trong khi khoản vay tháng 9/2023 nằm ở tập huấn luyện. Mô hình được học trên tương lai rồi đem chấm quá khứ, và điều kiện kinh tế của giai đoạn sau rò rỉ vào tham số. AUC 0,94 vì thế đo một bài toán không tồn tại trong vận hành, nơi hôm nay chỉ có dữ liệu tới hôm nay. Cách tách đúng là theo thời gian: huấn luyện tới một mốc, kiểm tra sau mốc đó. Vấn đề cũng không phải khớp quá mức theo nghĩa thông thường - giảm số biến không sửa được một phép tách sai.",
+    },
     keyTakeaways: [
       "Khoảng cách lớn giữa kết quả trong mẫu và ngoài mẫu là dấu hiệu khớp quá mức - thêm biến làm tệ hơn",
       "Dữ liệu chuỗi thời gian phải tách theo thời gian; tách ngẫu nhiên cho mô hình nhìn thấy tương lai",
@@ -562,6 +601,19 @@ export const FRM_REMAINING_DEPTH_LESSONS: Lesson[] = [
           "Mạng lưới chằng chịt các phơi nhiễm song phương được thay bằng cấu trúc hình sao, nên một bên vỡ nợ không lan trực tiếp sang các bên khác. Đổi lại là rủi ro tập trung vào chính CCP - nên yêu cầu ký quỹ và quỹ bảo đảm của CCP trở thành điểm quan trọng của cả hệ thống.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Với một đối tác có bốn hợp đồng giá trị +80, −50, +30, −20 tỷ. Nếu KHÔNG có thoả thuận bù trừ, phơi nhiễm khi đối tác phá sản là bao nhiêu?",
+      options: [
+        "110 tỷ (= 80 + 30, chỉ các hợp đồng dương)",
+        "40 tỷ (= 80 − 50 + 30 − 20 ròng)",
+        "180 tỷ (= tổng giá trị tuyệt đối)",
+        "70 tỷ (= 50 + 20, các hợp đồng âm)",
+      ],
+      correct: 0,
+      explanation:
+        "Không có bù trừ thì bên quản lý tài sản phá sản được quyền chọn hợp đồng: họ đòi đủ 50 và 20 tỷ ở các hợp đồng có lợi cho họ, còn 80 và 30 tỷ mình đáng được nhận thì xếp hàng cùng các chủ nợ không bảo đảm. Đó là cherry-picking, và nó biến phơi nhiễm từ 40 tỷ ròng thành 110 tỷ. Chênh lệch 70 tỷ đó không đến từ mô hình nào cả - nó đến từ một điều khoản hợp đồng có hay không có. Đây là lý do phần lớn việc giảm rủi ro đối tác nằm ở hợp đồng và tài sản bảo đảm; mô hình chỉ đo phần còn lại sau khi hai thứ đó đã làm việc của chúng.",
+    },
     keyTakeaways: [
       "Không có bù trừ, phơi nhiễm bằng tổng các hợp đồng đang dương - vì bên phá sản sẽ cherry-picking",
       "Ngưỡng và mức chuyển tối thiểu trong phụ lục tài sản bảo đảm quyết định phơi nhiễm còn lại",
@@ -698,6 +750,19 @@ export const FRM_REMAINING_DEPTH_LESSONS: Lesson[] = [
           "Tập trung là chuyện nhiều khoản cùng phản ứng với một thứ. Kịch bản căng thẳng đánh thẳng vào đúng thứ đó - giá nhà giảm 30%, giá dầu giảm một nửa - và cho thấy tổn thất đồng thời, thứ mà một tham số tương quan duy nhất khó truyền tải hết.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Danh mục A có 500 khoản vay rải khắp mười ngành. Danh mục B có 500 khoản vay đều cho nhà cung ứng của một tập đoàn. Cùng PD, cùng LGD, cùng quy mô. Khác nhau ở đâu?",
+      options: [
+        "Tổn thất kỳ vọng bằng nhau, nhưng đuôi của B dày hơn hẳn",
+        "Tổn thất kỳ vọng của B cao hơn vì rủi ro tập trung lớn hơn",
+        "Không khác gì, vì 500 khoản vay là đã đủ đa dạng hoá rồi",
+        "B an toàn hơn vì hiểu rõ một ngành thì thẩm định tốt hơn",
+      ],
+      correct: 0,
+      explanation:
+        "Tổn thất kỳ vọng cộng tuyến tính qua từng khoản vay, nên nó mù hoàn toàn với việc các khoản vay đó có cùng số phận hay không: hai danh mục có cùng PD và LGD thì có cùng tổn thất kỳ vọng, không có ngoại lệ. Khác biệt chỉ hiện ở phần đuôi. Trong danh mục A, một ngành gặp khó thì chín ngành còn lại vẫn trả nợ. Trong danh mục B, 500 khoản vay chỉ chịu đúng một nhân tố - tập đoàn kia - nên phân phối tổn thất gần như là một phép tung đồng xu quy mô lớn. Đếm số khoản vay không đo được đa dạng hoá; đếm số nhân tố độc lập thì có.",
+    },
     keyTakeaways: [
       "Tổn thất kỳ vọng cộng tuyến tính nên mù hoàn toàn với tập trung; tập trung chỉ hiện ở phần đuôi",
       "Tương quan trong mô hình một nhân tố đến từ nhân tố hệ thống chung, không từ quan hệ trực tiếp giữa các bên vay",
@@ -854,6 +919,19 @@ export const FRM_REMAINING_DEPTH_LESSONS: Lesson[] = [
           "Thanh toán trong ngày là một chuỗi nối tiếp: khoản A nhận được dùng để trả khoản B. Một mắt xích dừng lại làm cả chuỗi phía sau dừng theo, và hiệu ứng đó lan nhanh hơn nhiều so với các kênh lây lan khác trong hệ thống tài chính.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Ngân hàng có LCR 145% và kết thúc mọi ngày với số dư dương tại ngân hàng trung ương. Lúc 10 giờ sáng, một lệnh thanh toán lớn không thực hiện được. Điều này có mâu thuẫn không?",
+      options: [
+        "Không: LCR đo theo ngày nên mù với lệch pha trong vài giờ",
+        "Có: LCR 145% bảo đảm thanh toán được ở mọi thời điểm",
+        "Có: số dư cuối ngày dương thì trong ngày không thể thiếu",
+        "Không: đây là rủi ro hoạt động chứ không phải thanh khoản",
+      ],
+      correct: 0,
+      explanation:
+        "LCR hỏi ngân hàng có đủ tài sản thanh khoản cho ba mươi ngày căng thẳng không, và câu trả lời tính trên cả ngày. Hệ thống thanh toán hỏi câu khác hẳn: lúc 10 giờ, tài khoản này có đủ tiền cho lệnh này không. Tiền vào từ đối tác thường dồn về buổi chiều trong khi nghĩa vụ phải trả rơi vào buổi sáng, nên một ngân hàng dư dả cả ngày vẫn có thể thiếu trong vài giờ. Số dư cuối ngày không nhìn thấy điều đó, vì nó là một ảnh chụp sau khi mọi thứ đã xong. Chỉ số theo dõi rủi ro này bắt buộc phải có trục thời gian trong ngày.",
+    },
     keyTakeaways: [
       "LCR và NSFR đo theo ngày và theo năm; cả hai mù với sự lệch pha trong vòng vài giờ",
       "Ba nguồn thanh khoản nội ngày: số dư tại NHTW, tiền vào từ đối tác, hạn mức thấu chi có bảo đảm",
@@ -1026,6 +1104,19 @@ export const FRM_REMAINING_DEPTH_LESSONS: Lesson[] = [
           "Rủi ro ở đây là rủi ro đảo hợp đồng, nên cách chữa gốc là giảm lượng phải đảo mỗi ngày. Tăng tài sản bảo đảm không giúp gì khi haircut tăng cho mọi tài sản, còn dồn vào một đối tác thì đổi rủi ro thị trường lấy rủi ro tập trung.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Ngân hàng đang tài trợ 100.000 tỷ trái phiếu bằng repo với haircut 2%. Thị trường căng thẳng, haircut nâng lên 8%. Ngân hàng phải tìm thêm bao nhiêu tiền?",
+      options: [
+        "6.000 tỷ (= 8% − 2% trên 100.000 tỷ)",
+        "8.000 tỷ (= 8% của 100.000 tỷ tài sản)",
+        "2.000 tỷ (= mức haircut cũ 2% ban đầu)",
+        "10.000 tỷ (= 8% cộng 2%, hai mức gộp)",
+      ],
+      correct: 0,
+      explanation:
+        "Với haircut 2%, 100.000 tỷ trái phiếu huy động được 98.000 tỷ và ngân hàng tự bỏ 2.000 tỷ. Haircut lên 8% thì cùng số trái phiếu đó chỉ còn huy động được 92.000 tỷ, nên phần phải tự lo tăng lên 8.000 tỷ - tức cần thêm 6.000 tỷ tiền mặt mà không có tài sản nào mới được mua. Đây là cơ chế khuếch đại: cách rẻ nhất để tìm 6.000 tỷ là bán bớt trái phiếu, việc đó đẩy giá xuống, giá xuống thì haircut được nâng tiếp, và vòng lặp tự nuôi chính nó. Không ai vỡ nợ, không ai rút tiền, mà nguồn vốn vẫn bốc hơi.",
+    },
     keyTakeaways: [
       "Haircut quyết định huy động được bao nhiêu trên cùng một lượng tài sản: 100 với haircut 5% cho 95",
       "Repo qua đêm tài trợ tài sản dài hạn là lệch kỳ hạn cực đoan - rủi ro nằm ở việc phải đảo mỗi ngày",
@@ -1184,6 +1275,19 @@ export const FRM_REMAINING_DEPTH_LESSONS: Lesson[] = [
           "Chọn mã giỏi trong đúng ngành đang giữ tỷ trọng cao tạo ra một phần cộng hưởng không thuộc riêng hiệu ứng nào. Phần này thường nhỏ, nhưng nếu nó lớn bất thường thì đó là dấu hiệu hai loại quyết định đang không độc lập với nhau như mô hình giả định.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Quỹ vượt chỉ số 6% trong một năm thị trường tăng mạnh. Beta của quỹ là 1,4 còn chỉ số là 1,0. Kết luận nào hợp lý?",
+      options: [
+        "Phần lớn 6% đến từ beta cao, chưa phải bằng chứng kỹ năng",
+        "Quỹ có kỹ năng chọn mã rõ rệt, thể hiện qua mức vượt 6%",
+        "Beta 1,4 không liên quan, vì quy kết đã tách hết rủi ro rồi",
+        "Cần so với các quỹ cùng nhóm trước khi nói bất cứ điều gì",
+      ],
+      correct: 0,
+      explanation:
+        "Beta 1,4 nghĩa là danh mục được thiết kế để tăng nhanh hơn thị trường 40%, nên trong một năm thị trường tăng mạnh thì phần vượt xuất hiện mà không cần bất kỳ quyết định chọn mã nào. Đòn bẩy thị trường không phải kỹ năng - nhà đầu tư có thể tự tạo ra nó với chi phí gần bằng không. Phải điều chỉnh rủi ro trước, rồi mới hỏi phần còn lại đến từ phân bổ hay chọn mã. Và cùng beta đó sẽ tạo ra khoản lỗ vượt trội tương ứng trong năm thị trường giảm, nên một năm dữ liệu không tách được kỹ năng khỏi may mắn dù có điều chỉnh rủi ro hay không.",
+    },
     keyTakeaways: [
       "Quy kết tách phần vượt chỉ số thành hiệu ứng phân bổ, hiệu ứng chọn mã và phần tương tác",
       "Phải điều chỉnh rủi ro trước khi kết luận về kỹ năng - beta cao tự nó tạo ra phần vượt trong thị trường tăng",
@@ -1355,6 +1459,19 @@ export const FRM_REMAINING_DEPTH_LESSONS: Lesson[] = [
           "Chuỗi lợi suất trong những năm bình thường không hé lộ gì về việc quỹ sẽ bị buộc đóng vị thế ở đâu. Rủi ro đòn bẩy là rủi ro về đường đi: quỹ có thể đúng về hướng dài hạn mà vẫn bị đẩy ra khỏi vị thế trước khi điều đó xảy ra.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Một quỹ tín dụng tư nhân báo lợi suất tháng rất đều, tự tương quan bậc một của chuỗi lợi suất là 0,45. Điều này gợi ý gì?",
+      options: [
+        "Giá theo mô hình đang làm mượt, nên rủi ro thật cao hơn",
+        "Chiến lược có tính ổn định cao, đúng như quỹ vẫn quảng bá",
+        "Quỹ đang dùng đòn bẩy thấp nên biến động tự nhiên thấp",
+        "Dữ liệu quá ngắn nên hệ số tự tương quan chưa đáng tin",
+      ],
+      correct: 0,
+      explanation:
+        "Lợi suất của tài sản định giá theo thị trường gần như không tự tương quan - giá hôm nay đã phản ánh mọi thứ đã biết. Tự tương quan 0,45 nói rằng định giá tháng này còn mang theo phần lớn định giá tháng trước, dấu hiệu của tài sản không có giá thị trường và được định giá theo mô hình hoặc theo giao dịch gần nhất. Việc đó làm mượt chuỗi, kéo độ lệch chuẩn xuống và đẩy Sharpe lên mà không thay đổi gì về rủi ro thật. Sự ổn định quan sát được là thuộc tính của phương pháp định giá, không phải của chiến lược - và nó biến mất đúng lúc phải bán thật.",
+    },
     keyTakeaways: [
       "Ba thiên lệch cùng thổi phồng lợi suất ngành: sống sót, điền ngược, và tự chọn thời điểm báo cáo",
       "Tự tương quan dương trong lợi suất là dấu hiệu giá theo mô hình đã làm mượt biến động",

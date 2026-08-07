@@ -105,6 +105,19 @@ export const FRM_MARKET_RISK_DEPTH_LESSONS: Lesson[] = [
           "Hệ quả nằm ở cấp bàn chứ không lan ra toàn ngân hàng, và nó là kinh tế chứ không phải cấm đoán: bàn bị đẩy về phương pháp chuẩn hoá, vốn tăng lên. Chính chênh lệch vốn đó là thứ tạo động cơ giữ mô hình cho chuẩn, thay vì một lệnh cấm.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Một bàn giao dịch trượt P&L attribution test hai quý liên tiếp. Theo FRTB thì điều gì xảy ra với bàn đó?",
+      options: [
+        "Về phương pháp chuẩn hoá, với mức vốn cao hơn đáng kể",
+        "Bị đóng cho tới khi mô hình nội bộ được hiệu chỉnh lại xong",
+        "Không gì cả, vì bài kiểm tra này chỉ mang tính tham khảo",
+        "Toàn ngân hàng mất quyền dùng mô hình nội bộ ở mọi bàn",
+      ],
+      correct: 0,
+      explanation:
+        "P&L attribution test so lãi lỗ mô hình rủi ro dự báo với lãi lỗ thật mà hệ thống hạch toán ghi nhận. Lệch quá nhiều nghĩa là mô hình đang mô tả một danh mục khác với danh mục bàn đó thực sự nắm, nên con số rủi ro nó cho ra không dùng được. Hệ quả là bàn đó mất quyền dùng mô hình nội bộ và chuyển sang phương pháp chuẩn hoá, thường tốn vốn hơn hẳn - đó là phần răn đe. Điều đáng chú ý là bài kiểm tra chạy ở CẤP BÀN chứ không cấp ngân hàng: trước FRTB, một mô hình tổng thể có thể qua kiểm định trong khi vài bàn bên trong nó sai hoàn toàn.",
+    },
     keyTakeaways: [
       "FRTB siết ranh giới hai sổ vì trước đó ngân hàng chuyển vị thế qua lại để chọn mức vốn rẻ hơn",
       "Thước đo chuyển từ VaR 99% sang Expected Shortfall 97,5% để nắm được phần đuôi",
@@ -241,6 +254,19 @@ export const FRM_MARKET_RISK_DEPTH_LESSONS: Lesson[] = [
           "Một công cụ neo vào một điểm trên đường cong chỉ bù được rủi ro tại điểm đó. Danh mục trải trên nhiều kỳ hạn cần nhiều công cụ ở nhiều điểm khác nhau - và phần chênh còn lại chính là basis risk của chính phép phòng hộ.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Danh mục có duration hiệu dụng bằng 0, nhưng key rate duration là +6 ở điểm 2 năm và −6 ở điểm 10 năm. Đường cong dốc lên thêm 30 điểm cơ bản ở đầu 10 năm. Điều gì xảy ra?",
+      options: [
+        "Danh mục lỗ, vì duration 0 chỉ miễn nhiễm với dịch song song",
+        "Danh mục hoà vốn, vì duration bằng 0 nghĩa là không có rủi ro",
+        "Danh mục lãi, vì vị thế âm ở đầu dài hưởng lợi khi lãi suất tăng",
+        "Không xác định được nếu chưa biết convexity của danh mục",
+      ],
+      correct: 0,
+      explanation:
+        "Duration hiệu dụng bằng 0 nói đúng một điều: nếu toàn bộ đường cong dịch lên hay xuống cùng một mức thì danh mục không đổi giá trị. Nó không nói gì về trường hợp đường cong XOAY, và đây chính là trường hợp đó - đầu 10 năm tăng 30 điểm trong khi đầu 2 năm đứng yên. Vị thế −6 ở điểm 10 năm nghĩa là mỗi điểm cơ bản tăng ở đó làm danh mục mất tiền, và không có gì bù lại vì đầu 2 năm không nhúc nhích. Đây là rủi ro hình dạng, và duration - dù bằng 0 hay bằng bao nhiêu - mù hoàn toàn với nó.",
+    },
     keyTakeaways: [
       "Duration giả định đường cong dịch song song; đường cong thật còn xoay và gãy",
       "Key rate duration đo độ nhạy với từng điểm kỳ hạn riêng, nên nhìn thấy rủi ro hình dạng",
@@ -394,6 +420,19 @@ export const FRM_MARKET_RISK_DEPTH_LESSONS: Lesson[] = [
           "Thêm nhân tố nghĩa là giữ được nhiều chi tiết rủi ro hơn, nhưng cũng nghĩa là phải ước lượng nhiều tham số hơn từ cùng một lượng dữ liệu - và ước lượng nhiễu có thể làm hại nhiều hơn phần chi tiết vừa giữ được. Đây là đánh đổi giữa sai lệch và phương sai, quen thuộc trong mọi bài toán mô hình.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Danh mục trái phiếu doanh nghiệp được ánh xạ toàn bộ về đường cong lợi suất chính phủ. VaR tính ra thấp hơn hẳn mức tổn thất thực tế trong đợt căng thẳng. Vì sao?",
+      options: [
+        "Chênh lệch tín dụng bị gộp mất và không được cộng lại tường minh",
+        "Đường cong chính phủ biến động mạnh hơn đường cong doanh nghiệp",
+        "Số nhân tố rủi ro quá nhiều nên ma trận hiệp phương sai kém ổn định",
+        "Ánh xạ về đường cong chính phủ luôn làm VaR bị ước lượng quá cao",
+      ],
+      correct: 0,
+      explanation:
+        "Ánh xạ về đường cong chính phủ giữ lại rủi ro lãi suất và bỏ mất rủi ro chênh lệch tín dụng - phần chính xác là phần bung ra trong căng thẳng, khi lãi suất chính phủ có thể giảm còn chênh lệch tín dụng thì giãn mạnh. Ánh xạ càng thô thì VaR càng bị ước lượng thấp, vì gộp nhiều vị thế vào cùng một nhân tố ngầm giả định chúng tương quan hoàn hảo và triệt tiêu mất phần rủi ro riêng. Cách xử lý không phải bỏ ánh xạ - không có nó thì 1.000 công cụ cần khoảng nửa triệu tham số hiệp phương sai - mà là cộng lại phần rủi ro riêng một cách tường minh.",
+    },
     keyTakeaways: [
       "Ánh xạ là điều kiện để bài toán ước lượng được: n công cụ cần n(n+1)/2 tham số hiệp phương sai",
       "Phân bổ dòng tiền phải giữ nguyên giá trị hiện tại và giữ nguyên mức rủi ro thị trường",
@@ -548,6 +587,19 @@ export const FRM_MARKET_RISK_DEPTH_LESSONS: Lesson[] = [
           "Marginal là đạo hàm, phù hợp cho quyết định điều chỉnh nhỏ. Incremental so hai trạng thái có và không có vị thế, phù hợp cho quyết định nhận hay từ chối cả thương vụ. Với vị thế lớn, ngoại suy từ marginal sẽ sai vì quan hệ không tuyến tính.",
       },
     ],
+    practicePrompt: {
+      question:
+        "VaR toàn ngân hàng là 300 tỷ. Tổng VaR riêng lẻ của sáu bàn cộng lại là 480 tỷ. Nếu tính phí vốn cho từng bàn theo VaR riêng lẻ thì hệ quả là gì?",
+      options: [
+        "Bàn giảm rủi ro tổng thể bị phạt nặng nhất, dù nó giúp cả nhóm",
+        "Phí vốn phân bổ công bằng vì mỗi bàn trả đúng rủi ro của mình",
+        "Tổng phí vốn khớp đúng 300 tỷ, chỉ khác cách chia giữa các bàn",
+        "Không đo được, vì lợi ích đa dạng hoá không quy về tiền được",
+      ],
+      correct: 0,
+      explanation:
+        "Chênh lệch 180 tỷ giữa 480 và 300 chính là lợi ích đa dạng hoá, và tính phí theo VaR riêng lẻ nghĩa là chia một hoá đơn 480 tỷ cho một rủi ro thật 300 tỷ - phần dôi bị đổ lên đầu ai đó. Người chịu nặng nhất là bàn có VaR riêng lẻ lớn nhưng tương quan âm với phần còn lại, tức đúng bàn đang KÉO GIẢM rủi ro toàn hàng. Hạn mức và phí vốn khi đó chống lại chính việc đa dạng hoá. Component VaR sinh ra để chữa điều này: nó cộng lại vừa khít 300 tỷ, nên mỗi bàn trả đúng phần nó đóng góp vào tổng thể chứ không phải phần nó gây ra khi đứng một mình.",
+    },
     keyTakeaways: [
       "Tổng VaR riêng lẻ vượt VaR toàn ngân hàng đúng bằng lợi ích đa dạng hoá giữa các bàn",
       "Component VaR cộng lại vừa khít tổng thể, nên nó là thước đo dùng được để phân bổ vốn và hạn mức",

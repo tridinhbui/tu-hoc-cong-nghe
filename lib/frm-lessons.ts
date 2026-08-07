@@ -703,6 +703,19 @@ export const FRM_LESSONS: Lesson[] = [
           "RTO = 2 giờ là cam kết về thời gian khôi phục tối đa. Với chức năng có RTO ngắn như xử lý thanh toán liên ngân hàng, tổ chức thường phải đầu tư hệ thống dự phòng hot/warm site (sẵn sàng chuyển đổi gần như ngay lập tức), tốn kém hơn nhiều so với chức năng có RTO dài hơn (vài ngày).",
       },
     ],
+    practicePrompt: {
+      question:
+        "Dịch vụ thanh toán đặt RTO 2 giờ và RPO 15 phút. Sự cố xảy ra lúc 14 giờ, hệ thống chạy lại lúc 15 giờ 30 nhưng mất toàn bộ giao dịch từ 13 giờ. Kết quả thế nào?",
+      options: [
+        "Đạt RTO nhưng trượt RPO, vì mất 60 phút dữ liệu so với ngưỡng 15",
+        "Đạt cả hai, vì hệ thống đã chạy lại trong vòng hai giờ cho phép",
+        "Trượt cả hai, vì sự cố kéo dài hơn ngưỡng mười lăm phút quy định",
+        "Chưa kết luận được nếu chưa biết số lượng giao dịch bị mất là bao nhiêu",
+      ],
+      correct: 0,
+      explanation:
+        "RTO và RPO là hai câu hỏi khác nhau và phải chấm riêng. RTO hỏi chịu được bao lâu KHÔNG HOẠT ĐỘNG: một tiếng rưỡi, dưới ngưỡng hai giờ, đạt. RPO hỏi chịu mất bao nhiêu DỮ LIỆU: bản sao lưu gần nhất là 13 giờ nên mất 60 phút giao dịch, gấp bốn lần ngưỡng 15 phút, trượt. Hai chỉ số này đòi hai khoản đầu tư khác nhau - RTO cần hệ thống dự phòng chuyển đổi nhanh, RPO cần sao lưu dày hơn - nên gộp chúng thành một mục tiêu chung là cách chắc chắn để tiêu tiền sai chỗ. Số lượng giao dịch không đổi được kết luận: ngưỡng đặt theo thời gian.",
+    },
     keyTakeaways: [
       "BCP là kế hoạch tổng thể duy trì chức năng kinh doanh thiết yếu; DR là phần con kỹ thuật khôi phục hệ thống IT/dữ liệu",
       "RTO = thời gian tối đa chấp nhận ngừng hoạt động; RPO = lượng dữ liệu tối đa chấp nhận mất - hai chỉ số này quyết định mức đầu tư dự phòng cần thiết",
@@ -871,6 +884,19 @@ export const FRM_LESSONS: Lesson[] = [
       "explanation": "Mô hình định giá trái phiếu doanh nghiệp vẫn trả về một con số khi bạn đưa vào một sản phẩm cấu trúc - nó không có cách nào biết rằng giả định nền đã không còn đúng. Đây là lý do quản trị rủi ro mô hình phải ghi rõ phạm vi sử dụng ngay trong hồ sơ mô hình."
     }
     ],
+    practicePrompt: {
+      question:
+        "Một mô hình định giá được xây và kiểm định cho trái phiếu doanh nghiệp có thanh khoản tốt. Một bàn khác dùng nó cho trái phiếu doanh nghiệp nhỏ ít giao dịch. Nguồn rủi ro mô hình nào?",
+      options: [
+        "Dùng đúng mô hình sai chỗ, tức ngoài phạm vi thiết kế của nó",
+        "Giả định nền tảng sai, vì công thức định giá vốn đã không đúng",
+        "Dữ liệu không đại diện, vì mẫu huấn luyện đã quá cũ so với nay",
+        "Không phải rủi ro mô hình, vì mô hình đã được kiểm định đầy đủ",
+      ],
+      correct: 0,
+      explanation:
+        "Ba nguồn rủi ro mô hình cần ba cách chữa khác nhau, nên xác định đúng nguồn là bước đầu tiên. Ở đây mô hình không sai và dữ liệu không sai - nó được xây đúng cho một loại tài sản và đang được dùng cho loại khác, nơi giả định về thanh khoản và về độ tin cậy của giá tham chiếu không còn đúng. Không đợt kiểm định lại nào phát hiện được điều này, vì kiểm định chỉ hỏi mô hình có làm đúng việc nó được thiết kế để làm hay không. Cách chữa là một sổ đăng ký mô hình ghi rõ phạm vi áp dụng, và một chốt kiểm soát khi ai đó dùng mô hình ra ngoài phạm vi đó.",
+    },
     keyTakeaways: [
       "Rủi ro mô hình có ba nguồn: giả định nền tảng sai, dữ liệu không đại diện cho tương lai, và mô hình bị dùng ngoài phạm vi thiết kế",
       "London Whale (JPMorgan, 2012): lỗi triển khai mô hình VaR khiến rủi ro bị báo cáo thấp hơn thực tế, cho phép vị thế phình to trước khi lỗ hơn 6 tỷ USD",
@@ -1175,6 +1201,19 @@ export const FRM_LESSONS: Lesson[] = [
           "SVB mất 42 tỷ USD tiền gửi trong một ngày - tốc độ mà giả định căng thẳng 30 ngày của LCR truyền thống chưa từng tính tới, vì mô hình được xây dựng dựa trên hành vi rút tiền của các cuộc khủng hoảng trước khi ngân hàng số và mạng xã hội phổ biến. Đây là ví dụ cho thấy mô hình rủi ro cần được cập nhật khi hành vi khách hàng và công nghệ thay đổi - liên hệ trực tiếp tới rủi ro mô hình đã học ở chặng trước.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Một ngân hàng có 90% tiền gửi đến từ các quỹ đầu tư mạo hiểm và công ty công nghệ trong cùng một hệ sinh thái. LCR đạt 160%. Rủi ro chính nằm ở đâu?",
+      options: [
+        "Tập trung tài trợ: một cú sốc niềm tin làm cả nhóm rút cùng lúc",
+        "Không có rủi ro đáng kể, vì LCR 160% vượt xa mức tối thiểu 100%",
+        "Rủi ro lãi suất, vì khách hàng công nghệ nhạy cảm với lãi suất hơn",
+        "Rủi ro hoạt động, vì phục vụ một ngành đòi hỏi quy trình chuyên biệt",
+      ],
+      correct: 0,
+      explanation:
+        "LCR giả định dòng rút trải trong ba mươi ngày, còn một cơ sở khách hàng đồng nhất thì không hành xử như vậy: họ đọc cùng nguồn tin, quen nhau, và cùng nhận một lời khuyên rút tiền trong cùng buổi chiều. SVB mất 42 tỷ USD trong MỘT ngày - tốc độ mà không mô hình nào hiệu chỉnh từ lịch sử dự báo được, vì lịch sử không có ứng dụng ngân hàng và mạng xã hội. Đó là lý do tập trung tài trợ được tách thành một loại rủi ro riêng: nó không hiện ra ở bất kỳ tỷ lệ thanh khoản nào, mà chỉ hiện ra khi hỏi nguồn vốn này đến từ bao nhiêu nhóm hành xử độc lập.",
+    },
     keyTakeaways: [
       "Rủi ro tập trung tài trợ xảy ra khi nguồn vốn phụ thuộc quá nhiều vào một nhóm khách hàng/kỳ hạn/thị trường đồng nhất, khiến một cú sốc niềm tin duy nhất kích hoạt rút vốn đồng loạt",
       "SVB (2023): 42 tỷ USD rút trong một ngày - tốc độ vượt xa giả định căng thẳng 30 ngày truyền thống của LCR, do cơ sở khách hàng tập trung và công nghệ rút tiền tức thời",

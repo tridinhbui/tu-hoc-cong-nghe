@@ -90,6 +90,19 @@ export const FRM_SOVEREIGN_DIGITAL_LESSONS: Lesson[] = [
           "Đây là ứng dụng trực tiếp của khái niệm willingness to pay: cùng một mức nợ công/GDP, một quốc gia có thể chế ổn định và lịch sử trả nợ tốt thường được xếp hạng cao hơn một quốc gia bất ổn chính trị, dù chỉ số tài chính thuần tuý giống hệt nhau.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Một quốc gia vỡ nợ trái phiếu phát hành bằng chính đồng nội tệ của mình, dù ngân hàng trung ương có thể in thêm tiền. Cách đọc đúng là gì?",
+      options: [
+        "Đó là lựa chọn chính trị, không phải bất khả kháng về kỹ thuật",
+        "Không thể xảy ra, vì nợ nội tệ luôn trả được bằng cách in tiền",
+        "Chứng tỏ ngân hàng trung ương đã mất quyền phát hành tiền tệ",
+        "Chỉ xảy ra khi dự trữ ngoại hối của quốc gia đã cạn hoàn toàn",
+      ],
+      correct: 0,
+      explanation:
+        "Nga năm 1998 là ví dụ: in tiền để trả nợ nội tệ là khả thi về kỹ thuật nhưng sẽ phá tỷ giá và bùng lạm phát, nên chính phủ chọn vỡ nợ thay vì chọn cái giá đó. Đây là lý do phân tích tín dụng chủ quyền cần HAI trục độc lập - khả năng trả và ý chí trả - trong khi phân tích doanh nghiệp gần như chỉ cần trục thứ nhất. Một doanh nghiệp không muốn trả vẫn bị toà án phá sản cưỡng chế; với một quốc gia thì không có toà án quốc tế nào làm việc đó, và tranh chấp với nhóm chủ nợ không chịu tái cơ cấu có thể kéo dài hơn một thập kỷ như Argentina.",
+    },
     keyTakeaways: [
       "Rủi ro tín dụng chủ quyền khác về bản chất với rủi ro doanh nghiệp: không có toà án phá sản quốc tế cưỡng chế thi hành việc trả nợ",
       "Ability to pay (khả năng tài chính khách quan) và willingness to pay (ý chí chính trị) là hai trục đánh giá độc lập, cả hai đều cần thiết",
@@ -243,6 +256,19 @@ export const FRM_SOVEREIGN_DIGITAL_LESSONS: Lesson[] = [
           "Đây là sợi chỉ xuyên suốt toàn bộ lộ trình FRM: dù là đòn bẩy của LTCM, cấu trúc phân lớp của CDO, hay cơ chế đổi song song của UST/Luna, mẫu hình thất bại luôn giống nhau - một cơ chế ổn định trong điều kiện bình thường trở thành cơ chế khuếch đại khủng hoảng đúng lúc nó được kỳ vọng phát huy tác dụng nhất.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Một stablecoin công bố dự trữ 100% bằng thương phiếu doanh nghiệp kỳ hạn ngắn, kiểm toán mỗi quý. Rủi ro mất neo còn không?",
+      options: [
+        "Còn: quy đổi là hằng ngày còn dự trữ thì không bán ngay được",
+        "Không: dự trữ 100% bảo đảm mỗi đồng luôn đổi được đúng mệnh giá",
+        "Không: kiểm toán hằng quý đã loại trừ khả năng thiếu hụt dự trữ",
+        "Còn, nhưng chỉ khi tổ chức phát hành cố ý gian lận về dự trữ",
+      ],
+      correct: 0,
+      explanation:
+        "Dự trữ đủ 100% và dự trữ BÁN ĐƯỢC NGAY là hai chuyện khác nhau - đúng bài toán rút tiền hàng loạt đã quen từ ngân hàng. Người nắm được quy đổi hằng ngày, còn thương phiếu doanh nghiệp trong một đợt căng thẳng có thể mất thanh khoản đúng lúc cần bán, và bán vội thì dưới mệnh giá. Khi đó tỷ lệ dự trữ trên giấy vẫn là 100% trong khi giá thị trường của đồng tiền đã dưới 1. Kiểm toán hằng quý cũng chỉ chụp lại một thời điểm và nói về đủ hay thiếu, không nói gì về chất lượng và thanh khoản của tài sản trong ngày xấu nhất.",
+    },
     keyTakeaways: [
       "Stablecoin asset-backed được hậu thuẫn bằng tài sản dự trữ có thể kiểm toán; stablecoin thuật toán dựa vào cơ chế cung-cầu không có tài sản đảm bảo tương đương",
       "TerraUSD/Luna (5/2022): cơ chế đổi song song thiết kế để bảo vệ giá neo trở thành vòng xoáy tự huỷ khi áp lực bán vượt ngưỡng, xoá sổ khoảng 40 tỷ USD",

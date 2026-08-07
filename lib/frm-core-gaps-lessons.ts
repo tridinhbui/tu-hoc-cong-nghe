@@ -1186,6 +1186,19 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       "explanation": "Đây là trường hợp ranh giới kinh điển: khoản vay mất tiền nên nó là tổn thất tín dụng về mặt vốn, nhưng nguyên nhân là lỗi quy trình nên nó phải nằm trong dữ liệu vận hành để mô hình nhìn thấy. Bỏ nó khỏi một trong hai chỗ đều làm sai lệch."
     }
     ],
+    practicePrompt: {
+      question:
+        "Một ngân hàng đặt ngưỡng ghi nhận tổn thất hoạt động ở 500 triệu đồng để giảm khối lượng nhập liệu. Hệ quả với mô hình là gì?",
+      options: [
+        "Mất phần thân phân phối, nên ước lượng tần suất bị lệch",
+        "Không ảnh hưởng, vì vốn chỉ được quyết định bởi phần đuôi",
+        "Mô hình chạy nhanh hơn và ước lượng ổn định hơn trước",
+        "Chỉ mất các sự kiện nhỏ, vốn không có giá trị phân tích",
+      ],
+      correct: 0,
+      explanation:
+        "Phân phối tổn thất hoạt động có rất nhiều sự kiện nhỏ và rất ít sự kiện lớn, nên ngưỡng cao cắt đi phần đông nhất của dữ liệu. Hai hệ quả đi cùng nhau: tần suất ước lượng ra thấp hơn thực tế vì phần lớn sự kiện không được đếm, và hình dạng phân phối khớp từ mẫu bị cắt cụt không còn mô tả đúng tổng thể - kể cả phần đuôi, vì tham số được ước lượng từ toàn bộ mẫu. Các sự kiện nhỏ cũng có giá trị riêng: chúng lặp lại đủ nhiều để chỉ ra quy trình nào đang hỏng, trước khi một sự kiện lớn xảy ra ở đúng chỗ đó.",
+    },
     keyTakeaways: [
       "Bảy nhóm sự kiện Basel tồn tại để dữ liệu so sánh và gộp được giữa các tổ chức",
       "Mỗi sự kiện gán hai chiều: nhóm sự kiện và mảng kinh doanh",
@@ -1344,6 +1357,19 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       "explanation": "Chỉ số dựng trước khi biết rủi ro nào quan trọng thường là những đại lượng dễ đo chứ không phải đại lượng đáng đo. Thứ tự đúng là nhận diện rủi ro trước, rồi mới hỏi dấu hiệu sớm của rủi ro đó trông như thế nào."
     }
     ],
+    practicePrompt: {
+      question:
+        "Một quy trình được chấm rủi ro cố hữu ở mức Cao và rủi ro còn lại ở mức Thấp. Năm sau, ngân sách cắt giảm khiến hai chốt kiểm soát bị bỏ. Điều gì xảy ra?",
+      options: [
+        "Rủi ro còn lại bật lại gần mức cố hữu, vốn không hề đổi",
+        "Cả hai mức cùng giảm, vì quy trình đã đơn giản hơn trước",
+        "Rủi ro cố hữu tăng lên, vì kiểm soát đã bị gỡ đi hai chốt",
+        "Không đổi gì, vì mức Thấp đã được ghi nhận trong hồ sơ",
+      ],
+      correct: 0,
+      explanation:
+        "Rủi ro cố hữu là mức rủi ro của bản thân hoạt động khi chưa có kiểm soát nào, nên nó không thay đổi theo việc ngân hàng lắp hay gỡ chốt kiểm soát - nó chỉ đổi khi bản chất hoạt động đổi. Rủi ro còn lại mới là thứ phản ứng, và khoảng cách giữa hai con số CHÍNH LÀ giá trị mà bộ kiểm soát đang tạo ra. Gỡ hai chốt là xoá một phần khoảng cách đó, nên rủi ro còn lại bật lại. Đây là lý do RCSA phải làm lại khi quy trình đổi chứ không phải một năm một lần theo lịch: cái đổi là mẫu số của phép trừ, và không ai được nhắc.",
+    },
     keyTakeaways: [
       "Dữ liệu tổn thất nhìn về sau, RCSA và KRI nhìn về trước",
       "Rủi ro cố hữu trừ hiệu lực kiểm soát ra rủi ro còn lại - khoảng cách đó là giá trị của kiểm soát",
@@ -1505,6 +1531,19 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       "explanation": "Không hàng phòng thủ nào kín tuyệt đối, nên câu hỏi không phải có bị vào hay không mà là bao lâu thì biết. Khoảng thời gian kẻ tấn công ở trong hệ thống mà không bị phát hiện tỷ lệ gần như thuận với quy mô thiệt hại cuối cùng."
     }
     ],
+    practicePrompt: {
+      question:
+        "Một ngân hàng sao lưu dữ liệu hằng đêm sang một máy chủ khác trong cùng mạng nội bộ, có phân quyền riêng. Mã độc tống tiền xâm nhập. Vấn đề là gì?",
+      options: [
+        "Cùng mạng thì bản sao lưu bị mã hoá cùng lúc với bản chính",
+        "Sao lưu hằng đêm là quá thưa, cần sao lưu theo thời gian thực",
+        "Phân quyền riêng không đủ mạnh, cần thêm xác thực hai lớp",
+        "Máy chủ sao lưu cần dung lượng lớn hơn bản chính để đủ chỗ",
+      ],
+      correct: 0,
+      explanation:
+        "Mã độc tống tiền hiện đại tìm và mã hoá bản sao lưu trước, vì đó là thứ duy nhất khiến nạn nhân không phải trả tiền. Nằm cùng một mạng nghĩa là nó tới được, và phân quyền riêng chỉ làm chậm chứ không chặn - kẻ tấn công đã ở trong mạng thì có thời gian leo thang. Bản sao lưu phải TÁCH BIỆT khỏi mạng chính, ngoại tuyến hoặc chỉ ghi được một lần. Tăng tần suất sao lưu vào cùng chỗ đó không giúp gì: nó chỉ tạo ra nhiều bản sao hơn để cùng bị mã hoá, và đó là lý do khả năng phục hồi được coi ngang khả năng phòng ngừa.",
+    },
     keyTakeaways: [
       "An ninh mạng có đối thủ thích nghi, nên mô hình dựa trên tần suất quá khứ đặc biệt yếu",
       "Phân quyền tối thiểu không ngăn xâm nhập mà giới hạn phạm vi thiệt hại sau xâm nhập",
@@ -1677,6 +1716,19 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       "explanation": "Phân tách nhiệm vụ hoạt động vì hai người không có động cơ chung. Khi họ bắt tay, chính cơ chế ấy thành lớp vỏ bảo vệ - mọi bước đều có chữ ký hợp lệ. Đây là lý do phải bổ sung các chốt không dựa vào con người, như luân chuyển vị trí và nghỉ phép bắt buộc."
     }
     ],
+    practicePrompt: {
+      question:
+        "Một giao dịch viên vừa đặt lệnh vừa xác nhận giao dịch với đối tác và vừa nhập kết quả vào hệ thống. Cạnh nào của tam giác gian lận đang mở?",
+      options: [
+        "Cơ hội, vì không ai khác thấy được một giao dịch bịa ra",
+        "Động cơ, vì khối lượng công việc lớn tạo áp lực tâm lý",
+        "Tự bào chữa, vì người đó thấy mình xứng đáng được hơn",
+        "Cả ba cạnh cùng lúc, nên không tách riêng cạnh nào được",
+      ],
+      correct: 0,
+      explanation:
+        "Nắm trọn chu trình từ khởi tạo tới ghi nhận nghĩa là một giao dịch không tồn tại vẫn có thể được nhập, xác nhận và đối chiếu khớp - bởi cùng một người. Đó là cơ hội ở dạng thuần khiết nhất, và nó là cạnh DUY NHẤT của tam giác mà thiết kế quy trình chạm tới được: động cơ nằm ở hoàn cảnh cá nhân, tự bào chữa nằm trong đầu người ta, còn cơ hội nằm trong sơ đồ phân nhiệm. Đây cũng là lý do nghỉ phép liên tục bắt buộc lại hiệu quả: một lớp che giấu kiểu này cần bảo trì hằng ngày, và hai tuần vắng mặt là đủ để nó lộ ra.",
+    },
     keyTakeaways: [
       "Tam giác gian lận: động cơ, cơ hội, tự bào chữa - kiểm soát nhắm chủ yếu vào cơ hội",
       "Tách biệt nhiệm vụ: không ai nắm trọn chu trình từ khởi tạo tới ghi nhận và kiểm tra",
@@ -1855,6 +1907,19 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       "explanation": "Vốn không ngăn được một sự cố nào cả - nó chỉ bảo đảm tổ chức sống sót khi sự cố xảy ra. Thứ làm giảm rủi ro thật là quy trình, chốt kiểm soát và văn hoá; vốn là lớp cuối cùng sau khi ba thứ đó đã thất bại."
     }
     ],
+    practicePrompt: {
+      question:
+        "Một ngân hàng có lịch sử tổn thất hoạt động sạch nên hệ số nhân tổn thất nội bộ thấp, kéo vốn yêu cầu xuống. Ban điều hành coi đó là bằng chứng rủi ro đã được quản lý tốt. Nhận định đúng?",
+      options: [
+        "Vốn thấp là kết quả, không phải công cụ làm giảm rủi ro",
+        "Đúng, vì công thức SMA đã phản ánh chất lượng kiểm soát",
+        "Sai, vì hệ số nhân tổn thất không liên quan tới kiểm soát",
+        "Đúng, miễn là dữ liệu tổn thất đã được kiểm toán đầy đủ",
+      ],
+      correct: 0,
+      explanation:
+        "Hệ số nhân tổn thất nội bộ đúng là đưa lịch sử tổn thất của chính ngân hàng vào công thức, nên vốn thấp phản ánh một quá khứ sạch. Nhưng vốn hoạt động theo chiều ngược với điều ban điều hành đang nghĩ: nó HẤP THỤ hậu quả sau khi sự kiện xảy ra, nó không làm sự kiện ít xảy ra hơn. Thứ giảm rủi ro thật là kiểm soát - phân tách nhiệm vụ, đối chiếu độc lập, phê duyệt sản phẩm mới - và không đồng vốn nào thay được chúng. Lịch sử sạch cũng là mẫu nhỏ của một phân phối đuôi rất dày: nó nói ngân hàng chưa gặp sự kiện lớn, không nói sẽ không gặp.",
+    },
     keyTakeaways: [
       "Basel bỏ mô hình nội bộ cho rủi ro hoạt động vì kết quả thiếu tính so sánh và dễ bị điều chỉnh",
       "SMA dựa trên cấu phần chỉ số kinh doanh lấy từ báo cáo tài chính đã kiểm toán",
@@ -2029,6 +2094,19 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       "explanation": "Nhiều vụ phạt lớn nhất xuất phát từ sản phẩm bán đúng quy trình pháp lý lúc đó nhưng không phù hợp với nhu cầu và hiểu biết của người mua. Câu hỏi kiểm tra thực tế không phải điều này có hợp pháp không, mà khách hàng có hiểu họ đang mua gì không."
     }
     ],
+    practicePrompt: {
+      question:
+        "Một sản phẩm bảo hiểm liên kết đầu tư được bán đúng quy định, đủ chữ ký, đủ tài liệu công bố. Ba năm sau phần lớn khách hàng huỷ hợp đồng và mất phần lớn phí đã đóng. Đây là gì?",
+      options: [
+        "Rủi ro hành vi: hợp pháp nhưng khách hàng không phù hợp",
+        "Rủi ro tuân thủ: hồ sơ chắc chắn đã thiếu một giấy tờ nào đó",
+        "Rủi ro thị trường: khoản đầu tư bên dưới đã diễn biến xấu đi",
+        "Không phải rủi ro nào: khách hàng đã ký nên tự chịu trách nhiệm",
+      ],
+      correct: 0,
+      explanation:
+        "Tuân thủ hỏi 'có vi phạm quy định không' và câu trả lời ở đây là không. Rủi ro hành vi hỏi câu khác: sản phẩm này có phù hợp với người đã mua nó không. Một hợp đồng phạt nặng khi huỷ sớm bán cho người có thu nhập không ổn định là hợp pháp và gần như chắc chắn kết thúc bằng huỷ hợp đồng. Độ trễ là điều khiến loại rủi ro này khó chặn: doanh thu và hoa hồng ghi nhận ngay, hậu quả tới sau ba năm, nên mọi chỉ số kinh doanh trong hai năm đầu đều nói sản phẩm này rất tốt. Chốt chặn rẻ nhất là khâu phê duyệt sản phẩm mới.",
+    },
     keyTakeaways: [
       "Tuân thủ hỏi có vi phạm quy định không, hành vi hỏi có đối xử công bằng với khách hàng không",
       "Rủi ro hành vi có độ trễ dài: doanh thu ngay, hậu quả nhiều năm sau",
@@ -2207,6 +2285,19 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       "explanation": "Một danh mục trái phiếu chính phủ lớn không giúp gì nếu toàn bộ đã nằm trong các hợp đồng mua lại. Đây là lý do chuẩn thanh khoản chỉ tính phần tài sản thực sự tự do và chuyển thành tiền được ngay khi cần."
     }
     ],
+    practicePrompt: {
+      question:
+        "Một định chế có tỷ lệ vốn 16%, cao hơn nhiều mức tối thiểu, nhưng không đảo được khoản repo đến hạn tuần này. Điều gì đang xảy ra?",
+      options: [
+        "Đủ vốn nhưng thiếu thanh khoản - hai câu hỏi khác nhau",
+        "Tỷ lệ vốn 16% chắc chắn đã được tính sai ở đâu đó",
+        "Vốn cao thì luôn huy động được, nên đây là lỗi vận hành",
+        "Thiếu thanh khoản luôn kéo theo thiếu vốn ngay lập tức",
+      ],
+      correct: 0,
+      explanation:
+        "Vốn đo khả năng HẤP THỤ LỖ: còn bao nhiêu đệm trước khi tài sản không đủ trả nợ. Thanh khoản đo khả năng TRẢ ĐÚNG HẠN: hôm nay có tiền cho nghĩa vụ hôm nay không. Một tổ chức có thể rất dư ở câu hỏi thứ nhất và vỡ ở câu hỏi thứ hai, vì tài sản của nó dài hạn còn nghĩa vụ thì đến hạn tuần này. Vòng xoáy bắt đầu từ đây: không đảo được nguồn thì phải bán tài sản, bán vào thị trường đang xấu thì giá giảm, giá giảm thì haircut tăng và các đối tác khác cũng rút - và đến lúc đó thì tỷ lệ vốn 16% mới bắt đầu bào mòn thật.",
+    },
     keyTakeaways: [
       "Thanh khoản thị trường thuộc về tài sản, thanh khoản tài trợ thuộc về tổ chức",
       "Vốn đo khả năng hấp thụ lỗ, thanh khoản đo khả năng trả nghĩa vụ đến hạn - hai câu hỏi khác nhau",
@@ -2756,6 +2847,19 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       "explanation": "Kế hoạch không nói rõ ai bấm nút, ở ngưỡng nào, và gọi nguồn nào thì sẽ được đọc lại lần đầu tiên đúng vào lúc khủng hoảng. Nguồn vốn dự phòng cũng phải được thử trong điều kiện bình thường - hạn mức chưa từng rút thường không có sẵn khi cần nhất."
     }
     ],
+    practicePrompt: {
+      question:
+        "Kịch bản căng thẳng: tài sản thanh khoản chưa ràng buộc 45.000 tỷ, dòng ra ròng ước tính 9.000 tỷ mỗi ngày. Con số nào là kết quả cần báo cáo?",
+      options: [
+        "Thời gian sống sót 5 ngày, vì đó là con số hành động được",
+        "Tỷ lệ bao phủ 500%, vì nó so được với chuẩn quy định",
+        "Dòng ra 9.000 tỷ, vì đó là đại lượng đo trực tiếp được",
+        "Tài sản 45.000 tỷ, vì đó là nguồn lực thật đang nắm giữ",
+      ],
+      correct: 0,
+      explanation:
+        "Chia 45.000 cho 9.000 ra năm ngày, và đó là kết quả cốt lõi của mọi kiểm định thanh khoản vì nó là con số duy nhất nối thẳng với hành động: năm ngày quyết định kế hoạch tài trợ dự phòng phải kích hoạt vào ngày nào, ai gọi cho ai, và nguồn nào đã được kiểm chứng là rút được thật. Một tỷ lệ phần trăm không nói được điều đó. Và cần nhớ mẫu số 9.000 tỷ là phần nhạy cảm nhất của cả mô hình: nó đến từ giả định về tốc độ rút tiền gửi, mà lịch sử gần đây cho thấy tốc độ đó có thể vượt xa mọi hiệu chỉnh từ quá khứ.",
+    },
     keyTakeaways: [
       "Kết quả cốt lõi là thời gian sống sót, vì đó là con số hành động được",
       "Ba loại kịch bản: riêng tổ chức, toàn thị trường, và kết hợp - loại thứ ba khắc nghiệt nhất",
@@ -2927,6 +3031,19 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       "explanation": "Một trái phiếu được thế chấp, rồi bên nhận đem thế chấp tiếp, tạo ra một chuỗi các bên cùng tin rằng mình có tài sản bảo đảm. Chuỗi càng dài thì việc lần ra ai thực sự nắm gì càng chậm - và trong khủng hoảng, sự chậm đó là chính vấn đề."
     }
     ],
+    practicePrompt: {
+      question:
+        "Ngân hàng có tổng tài sản 500.000 tỷ, trong đó 120.000 tỷ đang được dùng làm tài sản bảo đảm cho các khoản vay hiện có. Con số nào đo được năng lực thanh khoản?",
+      options: [
+        "Phần tài sản chưa bị ràng buộc, không phải tổng tài sản",
+        "Tổng tài sản 500.000 tỷ, vì đều có thể bán khi cần thiết",
+        "Phần đã ràng buộc 120.000 tỷ, vì nó đã được thị trường nhận",
+        "Trung bình của hai con số, tức khoảng 310.000 tỷ tài sản",
+      ],
+      correct: 0,
+      explanation:
+        "Tài sản đã đem thế chấp không huy động được đồng nào nữa - nó đã đổi lấy tiền một lần rồi. Nên khi cần thanh khoản gấp, con số đáng hỏi là phần CHƯA BỊ RÀNG BUỘC, và nó luôn nhỏ hơn tổng tài sản, đôi khi nhỏ hơn rất nhiều. Điều làm chỉ số này khó chịu là nó xấu đi đúng lúc căng thẳng: haircut tăng buộc phải nộp thêm tài sản bảo đảm cho các khoản vay đang có, nên phần chưa ràng buộc co lại đúng lúc cần dùng tới nó. Tổng tài sản trên bảng cân đối không nói được gì về việc này.",
+    },
     keyTakeaways: [
       "Haircut là phần chiết khấu bảo vệ bên cho vay trước biến động giá tài sản bảo đảm",
       "Haircut tăng đồng loạt trong căng thẳng tạo vòng khuếch đại tự củng cố",
@@ -3107,6 +3224,19 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       "explanation": "Định giá xoay chiều chuyển chi phí giao dịch sang chính người rút, nên nó xoá đi lợi thế của việc rút trước. Cổng thì thô hơn: nó chặn dòng rút để quỹ không phải bán tháo, nhưng cũng chính là điều có thể kích hoạt hoảng loạn ở các quỹ tương tự."
     }
     ],
+    practicePrompt: {
+      question:
+        "Quỹ mở trái phiếu doanh nghiệp gặp làn sóng rút vốn. Người quản lý bán trước phần trái phiếu chính phủ dễ bán nhất. Hệ quả với nhà đầu tư còn lại là gì?",
+      options: [
+        "Danh mục còn lại kém thanh khoản hơn, nên nên rút sớm hơn",
+        "Danh mục còn lại có lợi suất cao hơn nên họ được hưởng lợi",
+        "Không đổi gì, vì giá trị tài sản ròng mỗi đơn vị vẫn giữ nguyên",
+        "Chi phí giao dịch được chia đều nên mọi người chịu như nhau",
+      ],
+      correct: 0,
+      explanation:
+        "Bán phần dễ bán trước là lựa chọn rẻ nhất tại thời điểm đó và nó chuyển chi phí sang người ở lại: danh mục còn lại đặc hơn phần khó bán, nên đợt rút tiếp theo sẽ phải bán vào chỗ thị trường mỏng và chịu tác động giá lớn hơn. Người rút hôm nay ra ở giá tốt, người rút tuần sau ra ở giá xấu. Nhận ra điều đó thì hành động hợp lý của từng nhà đầu tư là rút TRƯỚC người khác - tức chính cấu trúc này tạo ra động cơ tháo chạy. Định giá xoay chiều tồn tại để triệt tiêu động cơ đó, bằng cách bắt người rút gánh chi phí giao dịch mà họ tạo ra.",
+    },
     keyTakeaways: [
       "Quỹ mở thực hiện chuyển hoá thanh khoản giống ngân hàng nhưng không có bảng cân đối để đệm",
       "Bán tài sản dễ bán trước làm danh mục còn lại kém thanh khoản hơn và tạo động cơ rút sớm",
@@ -3265,6 +3395,19 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       "explanation": "Ở vùng đuôi của rủi ro hoạt động, dữ liệu ít tới mức ước lượng tần suất gần như vô nghĩa. Bayes cho một cách chính thức để đưa phán đoán chuyên môn vào làm phân phối tiên nghiệm rồi cập nhật khi có quan sát mới - đổi lại, giả định tiên nghiệm phải được nêu rõ."
     }
     ],
+    practicePrompt: {
+      question:
+        "Hệ thống phát hiện gian lận đúng 99% với giao dịch gian lận và báo nhầm 1% với giao dịch bình thường. Tỷ lệ gian lận thật là 0,1%. Khi hệ thống báo động, xác suất đó là gian lận thật xấp xỉ bao nhiêu?",
+      options: [
+        "Khoảng 9% (= 0,099 chia 1,098)",
+        "Khoảng 99%, đúng bằng độ chính xác",
+        "Khoảng 50%, vì hai loại sai bù nhau",
+        "Khoảng 0,1%, đúng bằng xác suất nền",
+      ],
+      correct: 0,
+      explanation:
+        "Trong 100.000 giao dịch có 100 vụ gian lận thật, hệ thống bắt được 99. Còn 99.900 giao dịch bình thường thì 1% bị báo nhầm, tức 999 báo động sai. Tổng cộng 1.098 báo động, trong đó chỉ 99 là thật - khoảng 9%. Chín trên mười lần chuông kêu là kêu oan, dù hệ thống chính xác 99%. Xác suất nền chi phối độ tin cậy của cảnh báo mạnh hơn độ chính xác của hệ thống, và sự kiện càng hiếm thì tỷ lệ báo động sai càng cao. Đây là lý do một đội vận hành sẽ học cách bỏ qua chuông, và cũng là lý do phải nâng ngưỡng hoặc chồng nhiều tín hiệu độc lập.",
+    },
     keyTakeaways: [
       "Xác suất nền chi phối độ tin cậy của cảnh báo mạnh hơn độ chính xác của hệ thống",
       "Sự kiện càng hiếm, tỷ lệ cảnh báo sai trên tổng cảnh báo càng cao",
@@ -3434,6 +3577,19 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       "explanation": "Một phân phối khớp rất đẹp ở vùng thân vẫn có thể sai hoàn toàn ở vùng đuôi, và các kiểm định tổng quát bị vùng thân đông đảo chi phối nên không phát hiện điều đó. Với mục đích đo rủi ro, phần khớp duy nhất đáng quan tâm lại là phần ít dữ liệu nhất."
     }
     ],
+    practicePrompt: {
+      question:
+        "Khớp phân phối cho chuỗi tổn thất bằng MLE. Kiểm định độ khớp tổng thể cho kết quả rất tốt. Với ứng dụng đo rủi ro, cần kiểm tra thêm gì?",
+      options: [
+        "Độ khớp riêng ở vùng đuôi, nơi phần lớn dữ liệu không có",
+        "Số lần lặp của thuật toán tối ưu đã đủ để hội tụ hay chưa",
+        "Giá trị hàm hợp lý có cao hơn phương pháp moment hay không",
+        "Cỡ mẫu có vượt ngưỡng ba mươi quan sát theo thông lệ không",
+      ],
+      correct: 0,
+      explanation:
+        "Kiểm định độ khớp tổng thể cân theo số quan sát, mà số quan sát tập trung gần như toàn bộ ở phần thân. Nên một phân phối mô tả phần thân rất tốt và phần đuôi rất tệ vẫn vượt kiểm định tổng thể dễ dàng - phần đuôi có quá ít điểm để kéo được thống kê. Với ứng dụng rủi ro thì đó lại là toàn bộ vấn đề: VaR và Expected Shortfall chỉ đọc phần đuôi, và một sai lệch ở đó không hiện ra ở bất kỳ con số tổng thể nào. Vì thế phải nhìn riêng vùng đuôi, thường bằng đồ thị phân vị hoặc so số lần vượt ngưỡng thực tế với số lần mô hình dự báo.",
+    },
     keyTakeaways: [
       "MLE chọn tham số làm dữ liệu quan sát trở nên có khả năng xảy ra cao nhất",
       "Phương pháp moment đặt moment lý thuyết bằng moment mẫu rồi giải ra tham số",

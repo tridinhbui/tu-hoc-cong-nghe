@@ -109,6 +109,19 @@ export const FRM_FOUNDATIONS_DEPTH_LESSONS: Lesson[] = [
           "Mẫu số là một con số mô hình, không phải một con số quan sát được. Hai mảng dùng hai mức tin cậy khác nhau hoặc hai giả định tương quan khác nhau sẽ cho ra vốn kinh tế không so được với nhau, và bảng xếp hạng RAROC khi đó phản ánh lựa chọn mô hình nhiều hơn phản ánh hiệu quả kinh doanh.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Mảng A lãi 200 tỷ trên vốn kinh tế 2.500 tỷ, tổn thất kỳ vọng 50 tỷ. Mảng B lãi 90 tỷ trên vốn kinh tế 600 tỷ, tổn thất kỳ vọng 15 tỷ. Chi phí vốn 12%. Nên rót vốn vào đâu?",
+      options: [
+        "Mảng B, RAROC 12,5% so với 6% của mảng A",
+        "Mảng A, vì lợi nhuận tuyệt đối cao hơn gấp đôi",
+        "Cả hai, vì cùng vượt mức chi phí vốn 12% đề ra",
+        "Chưa quyết được nếu chưa biết quy mô doanh thu",
+      ],
+      correct: 0,
+      explanation:
+        "RAROC của A là (200 − 50)/2.500 = 6%, của B là (90 − 15)/600 = 12,5%. Chi phí vốn 12% nên A đang HUỶ giá trị dù lãi 200 tỷ, còn B tạo giá trị dù lãi chưa bằng một nửa. Đó là toàn bộ lý do RAROC tồn tại: lợi nhuận tuyệt đối luôn thưởng cho mảng gánh nhiều rủi ro nhất, vì gánh thêm rủi ro gần như luôn tạo thêm lợi nhuận danh nghĩa. Một lưu ý: mẫu số là con số mô hình, nên so RAROC giữa hai mảng chỉ có nghĩa khi vốn kinh tế của cả hai được tính bằng cùng một phương pháp.",
+    },
     keyTakeaways: [
       "RAROC = (Lợi nhuận − Tổn thất kỳ vọng) ÷ Vốn kinh tế, so với chi phí vốn để biết mảng đó tạo hay huỷ giá trị",
       "Vốn kinh tế gánh tổn thất NGOÀI dự kiến; tổn thất kỳ vọng đã nằm trong dự phòng và trong giá bán",
@@ -245,6 +258,19 @@ export const FRM_FOUNDATIONS_DEPTH_LESSONS: Lesson[] = [
           "Tuyến ba kiểm tra xem hai tuyến kia có làm đúng việc không, và ban điều hành nằm trong phạm vi bị kiểm tra đó. Một bộ phận báo cáo cho chính đối tượng mình đánh giá thì kết luận của nó không còn giá trị đảm bảo - đó là lý do kiểm toán nội bộ báo cáo cho Uỷ ban Kiểm toán của hội đồng.",
       },
     ],
+    practicePrompt: {
+      question:
+        "CRO báo cáo cho Tổng giám đốc, và tiền thưởng của CRO gắn với lợi nhuận toàn ngân hàng. Vấn đề quản trị nằm ở đâu?",
+      options: [
+        "Cảnh báo bị chặn ở chính nơi cần nghe, và động cơ thì ngược chiều",
+        "Không có vấn đề, vì Tổng giám đốc chịu trách nhiệm cao nhất",
+        "Chỉ là vấn đề nếu CRO thực sự từng bị ép đổi một kết luận nào",
+        "Vấn đề nằm ở tiền thưởng, còn đường báo cáo thì hoàn toàn ổn",
+      ],
+      correct: 0,
+      explanation:
+        "Hai lỗi cùng chiều nhau. Đường báo cáo qua Tổng giám đốc nghĩa là tin xấu về một mảng kinh doanh phải đi qua đúng người chịu trách nhiệm về mảng đó trước khi tới hội đồng - và một cảnh báo bị chặn ở đó thì không ai biết nó từng tồn tại. Thưởng theo lợi nhuận toàn hàng thì đặt CRO vào cùng phía với người mình phải giám sát. Không cần ai cố ý làm sai để hệ thống hỏng: nó hỏng ở chỗ những cảnh báo yếu, sớm và chưa chắc chắn - loại có giá trị nhất - sẽ tự nhiên không được nêu. Vì thế bổ nhiệm, bãi nhiệm và đãi ngộ CRO phải thuộc hội đồng.",
+    },
     keyTakeaways: [
       "CRO phải có đường báo cáo trực tiếp tới Uỷ ban Rủi ro của HĐQT; bổ nhiệm và bãi nhiệm CRO thuộc hội đồng chứ không thuộc ban điều hành",
       "Ba tuyến phòng vệ: đơn vị kinh doanh sở hữu rủi ro, bộ phận rủi ro giám sát độc lập, kiểm toán nội bộ đảm bảo cả hai",
@@ -381,6 +407,19 @@ export const FRM_FOUNDATIONS_DEPTH_LESSONS: Lesson[] = [
           "Giữ lại cũng là một quyết định có giá của nó, và né cũng vậy - bỏ một hoạt động là bỏ luôn phần lợi nhuận của nó. Cả bốn đều là đánh đổi, nên câu hỏi luôn là bỏ ra bao nhiêu để đổi lấy phần rủi ro nào được xử lý, chứ không phải làm sao cho rủi ro nhỏ nhất.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Một ngân hàng đầu tư cân nhắc phòng hộ toàn bộ rủi ro tín dụng trong danh mục bảo lãnh phát hành - mảng cốt lõi mà nó thu phí. Lựa chọn nào hợp lý?",
+      options: [
+        "Giữ có ý thức, vì đó là rủi ro tổ chức được trả tiền để gánh",
+        "Chuyển hết qua CDS, vì giảm rủi ro luôn là hướng đúng đắn",
+        "Né hẳn, vì rủi ro tín dụng không thuộc năng lực của ngân hàng",
+        "Giảm bằng kiểm soát nội bộ, vì đó là công cụ rẻ nhất hiện có",
+      ],
+      correct: 0,
+      explanation:
+        "Bốn lựa chọn - né, giảm, chuyển, giữ - là toàn bộ không gian quyết định, và cái sai tốn kém nhất là mặc định coi giảm rủi ro luôn tốt. Bảo lãnh phát hành là hoạt động mà ngân hàng thu phí CHÍNH VÌ nó gánh rủi ro tín dụng trong khoảng thời gian phân phối; phòng hộ hết phần đó là trả lại toàn bộ lý do khách hàng trả phí. Giữ có ý thức khác giữ vì quên: nó đi kèm hạn mức, vốn kinh tế phân bổ và quy trình leo thang. Rủi ro nằm trong năng lực cốt lõi thì nên giữ; thứ đáng chuyển đi là rủi ro tổ chức không có lợi thế nào.",
+    },
     keyTakeaways: [
       "Bốn lựa chọn: né (bỏ hoạt động), giảm (kiểm soát), chuyển (phòng hộ, bảo hiểm), giữ (nhận có ý thức)",
       "Rủi ro nằm trong năng lực cốt lõi thì nên GIỮ - đó là thứ tổ chức được trả tiền để gánh",
@@ -517,6 +556,19 @@ export const FRM_FOUNDATIONS_DEPTH_LESSONS: Lesson[] = [
           "Cùng độ lệch chuẩn nghĩa là cùng tổng rủi ro, nhưng cấu trúc khác nhau: A phần lớn là rủi ro hệ thống, B phần lớn là riêng lẻ. Thị trường chỉ trả cho phần hệ thống, nên A nhận phần bù lớn hơn. Người nắm B đang gánh đúng bằng chừng ấy biến động để nhận về ít hơn.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Hai cổ phiếu cùng độ lệch chuẩn 45%. A có beta 1,3; B có beta 0,2. Lãi phi rủi ro 4%, phần bù thị trường 6%. Nhận định nào đúng?",
+      options: [
+        "A đáng lợi suất 11,8%, B chỉ 5,2%, dù rủi ro tổng bằng nhau",
+        "Cả hai đáng lợi suất bằng nhau, vì độ lệch chuẩn giống hệt nhau",
+        "B đáng lợi suất cao hơn, vì beta thấp thì rủi ro riêng lẻ cao hơn",
+        "Chưa kết luận được nếu chưa biết tương quan giữa A và B với nhau",
+      ],
+      correct: 0,
+      explanation:
+        "CAPM cho A là 4 + 1,3 × 6 = 11,8% và B là 4 + 0,2 × 6 = 5,2%. Cùng độ lệch chuẩn 45% nhưng phần bù chênh nhau hơn gấp đôi, vì thị trường chỉ trả tiền cho phần rủi ro KHÔNG đa dạng hoá đi được. Phần riêng lẻ của B rất lớn - đó là lý do độ lệch chuẩn của nó cao dù beta thấp - nhưng nhà đầu tư nắm một danh mục rộng đã triệt tiêu phần đó gần hết, nên không ai trả tiền cho nó. Gánh rủi ro riêng lẻ mà không được đền bù chính là làm việc không công, và đó là lập luận trung tâm ủng hộ đa dạng hoá.",
+    },
     keyTakeaways: [
       "Tổng rủi ro tách thành phần hệ thống và phần riêng lẻ; đa dạng hoá chỉ triệt tiêu được phần riêng lẻ",
       "Phần bù rủi ro chỉ trả cho beta - gánh rủi ro riêng lẻ là làm việc không công",
@@ -653,6 +705,19 @@ export const FRM_FOUNDATIONS_DEPTH_LESSONS: Lesson[] = [
           "Không quy trình nào phủ hết được mọi tình huống, và hai loại rủi ro này sống đúng ở phần không được phủ. Thứ quyết định ở đó là điều người ta làm khi không có ai nhìn và không có quy định nào áp dụng - tức là văn hoá, chứ không phải bảng kiểm.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Một nhóm muốn đưa rủi ro danh tiếng vào mô hình vốn bằng cách khớp phân phối từ mười năm dữ liệu sự cố truyền thông. Vấn đề ở đâu?",
+      options: [
+        "Mẫu quá thưa và không đồng nhất, nên phân phối khớp ra là vô nghĩa",
+        "Rủi ro danh tiếng không gây thiệt hại tài chính nên không cần vốn",
+        "Mười năm là đủ dài, vấn đề chỉ nằm ở việc chọn dạng phân phối",
+        "Phải dùng dữ liệu bên ngoài ngành thay vì dữ liệu nội bộ mười năm",
+      ],
+      correct: 0,
+      explanation:
+        "Rủi ro danh tiếng gần như luôn là thứ cấp: nó khởi phát từ một sự kiện thuộc loại khác - một vụ gian lận, một sản phẩm bán sai đối tượng, một sự cố hệ thống - nên các quan sát trong mười năm không phải rút từ cùng một tổng thể và không có phân phối chung nào để khớp. Không đo được không có nghĩa là không lớn, nhưng ép nó vào một phân phối thống kê tạo ra một con số có vẻ chính xác mà không có nền tảng nào, và điều đó nguy hiểm hơn việc thừa nhận mình không đo được. Công cụ đúng ở đây là phân tích kịch bản và phán đoán chuyên gia.",
+    },
     keyTakeaways: [
       "Rủi ro danh tiếng và rủi ro chiến lược không có chuỗi dữ liệu đủ dài để ước lượng phân phối - không đo được không có nghĩa là không lớn",
       "Rủi ro danh tiếng gần như luôn là thứ cấp, khởi phát từ một sự kiện thuộc loại khác, nên hay rơi khỏi mọi bảng phân loại",

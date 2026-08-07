@@ -106,6 +106,19 @@ export const FRM_CREDIT_CURRENT_LESSONS: Lesson[] = [
       "explanation": "Khoản bồi thường bằng phần tổn thất, tức mệnh giá trừ tỷ lệ thu hồi. Đáng chú ý là phương án cuối cùng sai một cách quan trọng: hợp đồng không đòi bên mua phải sở hữu tài sản tham chiếu, và chính điều đó cho phép dùng nó để đầu cơ."
     }
     ],
+    practicePrompt: {
+      question:
+        "CDS 5 năm của một doanh nghiệp nhảy từ 120 lên 640 điểm cơ bản trong hai tuần, trong khi xếp hạng tín nhiệm vẫn giữ nguyên mức BBB. Đọc thế nào?",
+      options: [
+        "Thị trường đã định giá lại rủi ro trước khi xếp hạng kịp đổi",
+        "Xếp hạng BBB đúng, nên mức CDS 640 điểm là sai lệch tạm thời",
+        "Hai con số đo hai thứ khác nhau nên không so sánh được với nhau",
+        "CDS tăng do thanh khoản kém đi chứ không do rủi ro tín dụng",
+      ],
+      correct: 0,
+      explanation:
+        "CDS spread là một GIÁ - nó có người mua và người bán đặt tiền thật vào mỗi ngày, nên nó cập nhật liên tục. Xếp hạng tín nhiệm là một Ý KIẾN, được rà soát theo chu kỳ và thường thay đổi sau khi thông tin đã rõ. Chênh lệch giữa hai thứ vì thế là chuyện bình thường và gần như luôn nghiêng về một phía: CDS đi trước. Mức 640 điểm cơ bản nghĩa là thị trường đòi 6,4% mỗi năm để bảo vệ khoản nợ này, một mức không tương thích với BBB - và đó là tín hiệu đáng hành động, không phải một sai lệch chờ tự điều chỉnh.",
+    },
     keyTakeaways: [
       "CDS là hợp đồng bảo vệ tín dụng: bên mua trả phí định kỳ, bên bán bồi thường nếu xảy ra sự kiện tín dụng với tổ chức tham chiếu",
       "CDS spread phản ánh xác suất vỡ nợ theo đánh giá của thị trường - phản ứng nhanh, thường nhanh hơn xếp hạng tín nhiệm chính thức",
@@ -249,6 +262,19 @@ export const FRM_CREDIT_CURRENT_LESSONS: Lesson[] = [
       "explanation": "Toàn bộ phép màu nằm ở giả định tương quan thấp: nếu vỡ nợ rải rác thì lớp dưới hấp thụ hết và lớp trên gần như an toàn. Khi giá nhà giảm trên cả nước, các khoản vay vỡ cùng lúc, và lớp đệm bên dưới bốc hơi trong vài tháng."
     }
     ],
+    practicePrompt: {
+      question:
+        "Rổ tài sản 1.000 tỷ chia ba lớp: Equity 50 tỷ, Mezzanine 150 tỷ, Senior 800 tỷ. Rổ lỗ 180 tỷ. Ai chịu bao nhiêu?",
+      options: [
+        "Equity mất trọn 50, Mezzanine mất 130, Senior còn nguyên",
+        "Cả ba lớp cùng mất 18% giá trị theo tỷ lệ nắm giữ",
+        "Senior mất trước 180 tỷ vì lớp này lớn nhất trong rổ",
+        "Equity mất 50 và phần 130 còn lại chia đều hai lớp trên",
+      ],
+      correct: 0,
+      explanation:
+        "Thác nước tổn thất chảy từ dưới lên: Equity hấp thụ tới khi hết 50 tỷ, rồi Mezzanine gánh 130 tỷ tiếp theo và mất 87% giá trị, còn Senior chưa chạm tới. Chia tranche không làm rủi ro biến mất, nó phân phối lại - và lợi suất cao của lớp Equity chính là tiền trả cho việc đứng đầu hàng chịu tổn thất. Điều đáng chú ý là độ nhạy: rổ lỗ 18% mà một lớp mất gần hết. Đó cũng là lý do xếp hạng lớp Senior phụ thuộc hoàn toàn vào giả định tương quan giữa các khoản vay trong rổ - tương quan cao thì tổn thất dồn cục và ăn xuyên qua các lớp đệm nhanh hơn nhiều.",
+    },
     keyTakeaways: [
       "CDO chia dòng tiền từ một rổ tài sản thành nhiều lớp (tranche): Senior nhận trước và chịu tổn thất sau cùng, Equity nhận sau cùng và chịu tổn thất trước",
       "Lợi suất cao hơn ở lớp thấp bù đắp cho việc chịu rủi ro tổn thất đầu tiên - nguyên tắc rủi ro-lợi suất áp dụng trong cấu trúc phân lớp",
@@ -553,6 +579,19 @@ export const FRM_CREDIT_CURRENT_LESSONS: Lesson[] = [
       "explanation": "Họ làm cùng một việc là chuyển kỳ hạn - huy động ngắn để cho vay dài - nhưng không có lưới an toàn nào phía sau. Khi nguồn tài trợ ngắn hạn đóng lại, không có người cho vay cuối cùng, và họ buộc phải bán tài sản đúng lúc giá xấu nhất."
     }
     ],
+    practicePrompt: {
+      question:
+        "Một quỹ thị trường tiền tệ cho phép rút hằng ngày trong khi nắm thương phiếu kỳ hạn 90 ngày. Nó khác một ngân hàng ở điểm nào quan trọng nhất?",
+      options: [
+        "Cùng lệch kỳ hạn, nhưng không có bảo hiểm tiền gửi và cửa sổ chiết khấu",
+        "Không lệch kỳ hạn, vì thương phiếu 90 ngày vẫn là công cụ ngắn hạn",
+        "Rủi ro thấp hơn ngân hàng vì tài sản của quỹ có chất lượng tín dụng cao",
+        "Được quản lý chặt hơn ngân hàng nên rủi ro hệ thống của nó nhỏ hơn",
+      ],
+      correct: 0,
+      explanation:
+        "Hứa rút hằng ngày trong khi nắm tài sản 90 ngày chính là chuyển đổi kỳ hạn - đúng nghiệp vụ cốt lõi của một ngân hàng, chỉ khác cái tên. Điều khác biệt nằm ở mạng an toàn: người gửi tiền ngân hàng có bảo hiểm tiền gửi nên không có lý do chạy trước, và ngân hàng có cửa sổ chiết khấu để vay khi cần gấp. Quỹ không có cả hai, nên một cú sốc nhỏ đủ để mọi người rút cùng lúc và quỹ buộc phải bán tài sản vào thị trường đang xấu. Reserve Primary Fund năm 2008 cho thấy một sự kiện ở một quỹ đơn lẻ đủ kích hoạt rút vốn khỏi cả ngành.",
+    },
     keyTakeaways: [
       "Shadow banking là các tổ chức phi ngân hàng thực hiện chức năng trung gian tín dụng tương tự ngân hàng nhưng không có bảo hiểm tiền gửi hay cửa sổ chiết khấu ngân hàng trung ương",
       "Reserve Primary Fund (2008): một sự kiện tại một quỹ đơn lẻ kích hoạt rút vốn hàng loạt khỏi cả ngành quỹ thị trường tiền tệ",
@@ -721,6 +760,19 @@ export const FRM_CREDIT_CURRENT_LESSONS: Lesson[] = [
       "explanation": "Trước đây mỗi bên là một mắt xích và không ai nhìn được cả mạng. Đưa qua trung tâm bù trừ làm mạng gọn lại và ai cũng nhìn thấy, nhưng chính trung tâm đó trở thành tổ chức không được phép sụp - nên yêu cầu vốn và ký quỹ của nó là chuyện hệ thống."
     }
     ],
+    practicePrompt: {
+      question:
+        "Tổ chức A có tài sản 800.000 tỷ nhưng gần như không có giao dịch phái sinh. Tổ chức B có tài sản 60.000 tỷ và là đối tác của bốn mươi định chế lớn. Bên nào gây rủi ro hệ thống lớn hơn?",
+      options: [
+        "B, vì mức độ liên kết quyết định chứ không phải quy mô tài sản",
+        "A, vì tài sản lớn hơn hơn mười lần nên thiệt hại tiềm tàng lớn hơn",
+        "Bằng nhau, vì rủi ro hệ thống tính theo tài sản có rủi ro điều chỉnh",
+        "Không so được nếu chưa biết tỷ lệ vốn của cả hai tổ chức là bao nhiêu",
+      ],
+      correct: 0,
+      explanation:
+        "AIG là ví dụ chuẩn: nó không phải định chế lớn nhất, nhưng nằm ở một nút mà bốn mươi bên khác phụ thuộc vào qua thị trường CDS, nên nó vỡ thì bốn mươi bảng cân đối cùng lúc mất phần bảo vệ họ đã trả tiền để có. Tổ chức A dù lớn hơn mười lần vẫn hỏng một mình - thiệt hại dừng ở cổ đông và chủ nợ của chính nó. Điều khiến vấn đề này khó là cấu trúc liên kết thay đổi liên tục theo công nghệ và quy định, nên nút quan trọng nhất luôn di chuyển. Chuyển phái sinh sang CCP giảm được mạng lưới song phương, nhưng đổi lại tạo một nút tập trung mới.",
+    },
     keyTakeaways: [
       "Too-interconnected-to-fail: mức độ liên kết với hệ thống, không chỉ quy mô tài sản, quyết định một tổ chức có gây rủi ro hệ thống hay không (AIG qua thị trường CDS)",
       "Chuyển giao dịch phái sinh sang CCP giảm rủi ro mạng lưới song phương nhưng tạo ra rủi ro tập trung mới ở chính CCP",

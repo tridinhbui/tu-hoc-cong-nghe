@@ -110,6 +110,19 @@ export const IR_LESSONS: Lesson[] = [
           "Một hồ sơ không có rủi ro nào là hồ sơ đang bán hàng. Nhà đầu tư chuyên nghiệp đọc phần rủi ro trước, và phần đó trống nghĩa là họ phải tự đi tìm.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Một công ty tổ chức buổi gặp riêng với năm quỹ lớn nhất, chia sẻ trước định hướng chiến lược sẽ công bố tuần sau. Đây là gì?",
+      options: [
+        "Công bố thông tin chọn lọc, lỗi nặng nhất của nghề IR",
+        "Thực hành tốt, vì cổ đông lớn xứng đáng được biết trước",
+        "Chấp nhận được nếu năm quỹ đó cam kết không giao dịch",
+        "Vấn đề của bộ phận pháp chế chứ không thuộc phạm vi IR",
+      ],
+      correct: 0,
+      explanation:
+        "Nói riêng cho một nhóm trước thị trường là lỗi nặng nhất của nghề, và nó không phụ thuộc vào việc nhóm đó có giao dịch hay không: thiệt hại nằm ở chỗ một phần thị trường có thông tin mà phần còn lại không có, và mọi giao dịch xảy ra trong khoảng đó đều diễn ra trên một sân không phẳng. Lời cam kết không giao dịch cũng không giải quyết được, vì thông tin đã ra khỏi công ty thì không thu về được. Quyền của cổ đông lớn nằm ở lá phiếu và ở việc được gặp ban lãnh đạo, không nằm ở việc biết trước - và IR là bộ phận phải nói không, chứ không phải pháp chế.",
+    },
     keyTakeaways: [
       "IR nói với người bỏ vốn, và mọi câu nói nằm dưới quy định công bố thông tin.",
       "Không được chọn thời điểm: thông tin trọng yếu công bố khi phát sinh, không khi thuận lợi.",
@@ -257,6 +270,19 @@ export const IR_LESSONS: Lesson[] = [
           "Thị trường không đợi. Không nói gì không có nghĩa là không có gì được nói - chỉ là người khác nói thay, bằng dữ liệu kém hơn.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Sáng thứ ba, công ty biết một khách hàng chiếm 30% doanh thu vừa chấm dứt hợp đồng. Ban điều hành muốn chờ tới thứ sáu để có phương án ứng phó rồi công bố cùng lúc. Đúng hay sai?",
+      options: [
+        "Sai: đồng hồ chạy từ khi sự kiện phát sinh, không từ khi có phương án",
+        "Đúng: công bố kèm phương án giúp thị trường phản ứng bình tĩnh hơn",
+        "Đúng: chỉ phải công bố sau khi hội đồng quản trị đã họp và thông qua",
+        "Sai: phải chờ tới hết quý rồi công bố trong báo cáo tài chính định kỳ",
+      ],
+      correct: 0,
+      explanation:
+        "Trọng yếu nghĩa là một nhà đầu tư hợp lý sẽ đổi quyết định, và mất 30% doanh thu chắc chắn đạt ngưỡng đó. Đồng hồ bắt đầu chạy từ lúc công ty BIẾT, không từ lúc công ty sẵn sàng - nếu không thì mọi tin xấu đều hoãn được vô hạn với lý do đang chuẩn bị phương án. Ba ngày im lặng cũng tạo ra rủi ro thứ hai: trong khoảng đó thông tin thường rò rỉ, giá biến động bất thường, và một số người giao dịch trên thông tin mà phần còn lại chưa có. Phương án ứng phó vẫn công bố được sau, như một bản cập nhật.",
+    },
     keyTakeaways: [
       "Trọng yếu = nhà đầu tư hợp lý đổi quyết định. Không phụ thuộc tin tốt hay xấu.",
       "Đồng hồ chạy từ khi sự kiện phát sinh, không từ khi họp xong hay có phương án.",
@@ -427,6 +453,19 @@ export const IR_LESSONS: Lesson[] = [
           "Nhà đầu tư chấp nhận công ty gặp khó khăn. Thứ họ không chấp nhận là phát hiện ban điều hành không nhìn thấy khó khăn đó đang tới.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Công ty đặt kế hoạch lợi nhuận 1.000 tỷ và báo cáo 990 tỷ - hụt 1%. Giá cổ phiếu giảm 14%. Cách giải thích hợp lý nhất là gì?",
+      options: [
+        "Thị trường định giá lại độ tin cậy của mọi con số tương lai",
+        "Phản ứng quá mức, vì 1% chênh lệch là sai số bình thường",
+        "Do nhà đầu tư đã dùng đòn bẩy nên bị bán giải chấp hàng loạt",
+        "Vì 990 tỷ vẫn thấp hơn lợi nhuận cùng kỳ năm trước của công ty",
+      ],
+      correct: 0,
+      explanation:
+        "Mười tỷ đồng không đáng 14% giá trị doanh nghiệp - thứ bị định giá lại không phải quý này mà là mọi quý sau. Guidance là công ty tuyên bố mình nhìn thấy được tương lai gần của chính mình; hụt kế hoạch nghĩa là tuyên bố đó sai, nên mọi con số tương lai công ty đưa ra từ nay đều bị chiết khấu thêm một lớp bất định. Đó là lý do biết chắc sẽ hụt thì phải điều chỉnh SỚM và công khai: điều chỉnh sớm chỉ tốn một lần đau về con số, còn để tới ngày công bố mới lộ thì mất luôn phần độ tin cậy - thứ đắt hơn nhiều và mất nhiều năm mới lấy lại.",
+    },
     keyTakeaways: [
       "Hụt kế hoạch bị phạt vì mất niềm tin vào dự báo tương lai, không vì con số chênh lệch.",
       "Thận trọng quá thì thị trường tự trừ hao và con số mất tác dụng.",
@@ -579,6 +618,19 @@ export const IR_LESSONS: Lesson[] = [
           "Ước lượng nói trong phòng họp kín vẫn là thông tin ra riêng cho một nhóm. Hẹn trả lời qua kênh công khai giữ được cả tính công bằng lẫn quan hệ.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Trong buổi gặp riêng, một quỹ hỏi biên lợi nhuận gộp quý này - số chưa công bố. Cách trả lời đúng là gì?",
+      options: [
+        "Từ chối và nêu nguyên tắc chỉ nói số đã công bố ra công chúng",
+        "Trả lời chung chung theo hướng tích cực để giữ quan hệ với quỹ",
+        "Cho biết xu hướng nhưng không nêu con số cụ thể của quý này",
+        "Trả lời đầy đủ, vì quỹ này đã ký thoả thuận bảo mật với công ty",
+      ],
+      correct: 0,
+      explanation:
+        "Từ chối có nêu lý do là một câu trả lời hợp lệ và không ai mất điểm vì nó - nhà đầu tư tổ chức hiểu quy định công bố thông tin và thường đánh giá cao một bộ phận IR có nguyên tắc rõ ràng, vì nó nghĩa là họ cũng không được kể riêng cho người khác. Nói 'xu hướng nhưng không con số' vẫn là truyền tải thông tin trọng yếu, chỉ ở dạng khó chứng minh hơn; nói chung chung theo hướng tích cực cũng vậy. Và thoả thuận bảo mật không cứu được: vấn đề không phải quỹ đó có giữ kín không, mà là các nhà đầu tư khác không có cùng thông tin tại cùng thời điểm.",
+    },
     keyTakeaways: [
       "Từ chối trả lời số chưa công bố, và nêu nguyên tắc - từ chối có lý do không phải là né tránh.",
       "Trả lời chung chung theo hướng tích cực vẫn là truyền tải thông tin.",
@@ -745,6 +797,19 @@ export const IR_LESSONS: Lesson[] = [
           "Đổi câu chuyện giữa chừng gây thiệt hại lớn hơn chính tin xấu ban đầu, vì nó nói rằng phiên bản đầu tiên chưa đầy đủ.",
       },
     ],
+    practicePrompt: {
+      question:
+        "Phát hiện một sự cố trọng yếu lúc 8 giờ sáng, phạm vi thiệt hại chưa xác định xong. Việc đầu tiên phải làm là gì?",
+      options: [
+        "Khoá giao dịch nội bộ, trước cả khi bắt đầu soạn thông cáo",
+        "Soạn ngay thông cáo và phát hành trong vòng một giờ đầu",
+        "Chờ xác định xong phạm vi rồi mới thông báo cho ban điều hành",
+        "Liên hệ trước với vài chuyên viên phân tích thân thiết để dò phản ứng",
+      ],
+      correct: 0,
+      explanation:
+        "Từ lúc một người trong công ty biết, mọi giao dịch cổ phiếu của người nội bộ đều diễn ra trên thông tin thị trường chưa có - và khoá giao dịch là việc làm được ngay trong vài phút, không cần biết phạm vi thiệt hại. Soạn thông cáo cần thời gian, xác định phạm vi cần nhiều thời gian hơn, nhưng cả hai việc đó không được diễn ra trong lúc cửa giao dịch còn mở. Sau đó mới tới nguyên tắc thứ hai: xác định phạm vi rồi công bố TRỌN VẸN một lần, vì công bố nhỏ giọt khiến mức bất định không bao giờ đóng lại và mỗi bản cập nhật lại là một cú sốc mới.",
+    },
     keyTakeaways: [
       "Khoá giao dịch nội bộ ngay khi biết - trước cả khi soạn thông cáo.",
       "Xác định phạm vi rồi công bố trọn vẹn một lần; nhỏ giọt khiến mức bất định không đóng lại.",
