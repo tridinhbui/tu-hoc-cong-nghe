@@ -8,9 +8,24 @@
 //   node scripts/audit-ib-option-length.mjs            # summary per category
 //   node scripts/audit-ib-option-length.mjs --ids      # also list offending ids
 //
-// With 4 options, "correct is longest" should land near 25% by chance. The
-// guard in lib/__tests__/ib-question-bank.test.ts enforces the ceiling; this
-// script is the batch-by-batch progress readout while rewriting.
+// With 4 options, "correct is longest" should land near 25% by chance.
+//
+// This script only PRINTS - it always exits 0, so nothing it reports can fail a
+// build. For most of its life that was the whole story: the comment here used
+// to claim "the guard in lib/__tests__/ib-question-bank.test.ts enforces the
+// ceiling", and no such ceiling existed. The only length test over there checks
+// the longest/shortest RATIO of each question one at a time, which says nothing
+// about the distribution - a bank where every question sits inside a 3x ratio
+// can still have the correct answer as the longest option 90% of the time.
+//
+// That gate exists now, in the same test file, as a tie-aware two-sided
+// z-score over IB_TECHNICAL_QUESTIONS. This script stays what it actually is:
+// the per-category readout you look at while rewriting a batch, where a share
+// broken down by category is easier to act on than one number.
+//
+// Read the shares here with the sample size in mind. A category with 8
+// questions reading 50% is four questions, which is one coin flip away from
+// 25% - that is precisely why the gate is a z-score and not a share.
 
 import { readFile } from "node:fs/promises";
 import path from "node:path";

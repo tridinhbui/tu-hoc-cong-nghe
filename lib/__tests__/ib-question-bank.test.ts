@@ -165,4 +165,85 @@ describe("rewrite backlog", () => {
     // artifacts that no surface renders, so they need no rewrite.
     expect(IB_REWRITE_PENDING_COUNT).toBe(IB_TECHNICAL_QUESTIONS.length - overriddenIds.length);
   });
+
+  /** Tồn đọng chưa viết lại là CỔNG CỨNG ở 0, vì kho đã ở 0.
+   *
+   *  Bài ngay trên chỉ kiểm rằng phép trừ được tính đúng - nó xanh với mọi giá
+   *  trị của con số, kể cả 0 hay 300, nên nó không chặn được gì. Không có cổng
+   *  thì một câu kỹ thuật mới thêm vào ngân hàng mà chưa viết lại phương án sẽ
+   *  mang nguyên bốn phương án cào từ sách về, và không có gì đỏ. Đây là ngân
+   *  hàng nuôi interview_readiness và ib_readiness ở lib/career-competency.ts.
+   *
+   *  Không bao giờ nâng nó lên khỏi 0 để một build đỏ thành xanh: câu mới thì
+   *  viết phương án cho nó trong lib/ib-question-overrides.ts. */
+  it("stays at zero: a new technical question arrives with its options rewritten", () => {
+    expect(IB_REWRITE_PENDING_COUNT).toBe(0);
+  });
+});
+
+/** Đáp án đúng có phải phương án dài nhất - hay ngắn nhất - thường xuyên hơn
+ *  may rủi không.
+ *
+ *  VÌ SAO BÀI NÀY TỒN TẠI. scripts/audit-ib-option-length.mjs nói trong chú
+ *  thích đầu file rằng "the guard in lib/__tests__/ib-question-bank.test.ts
+ *  enforces the ceiling". Không có trần nào cả: bài duy nhất về độ dài ở đây
+ *  kiểm TỶ LỆ dài/ngắn của TỪNG câu, và chỉ chạy trên các câu đã viết lại. Nó
+ *  không nói gì về phân bố - một ngân hàng mà mọi câu đều nằm trong tỷ lệ 3x
+ *  vẫn có thể có đáp án đúng là phương án dài nhất ở 90% số câu. Bộ kiểm đo
+ *  phân bố đó nhưng chỉ in ra và luôn thoát 0, nên suốt đời nó, con số này chỉ
+ *  được nhìn khi có người nhớ chạy tay.
+ *
+ *  Đo bằng z chứ không bằng tỷ lệ, cùng lý do đã ghi trong AGENTS.md cho kho
+ *  bài học: 315 câu và 2.469 câu có sàn nhiễu khác nhau nên một con số phần
+ *  trăm nói hai chuyện khác nhau, và một trần một chiều mù với việc trôi xuống
+ *  DƯỚI mức may rủi - chiều mà kho này đang nghiêng về.
+ *
+ *  Kỳ vọng có tính tới hoà: khi hai phương án dài bằng nhau thì không có
+ *  "phương án dài nhất duy nhất" để chọn, nên câu đó đóng góp 0 vào kỳ vọng
+ *  thay vì 0,25. So với một mức 25% phẳng sẽ thổi phồng phía dài.
+ *
+ *  Chỉ đo câu kỹ thuật: đó là tập duy nhất bài luyện có chấm điểm rút ra. */
+describe("length bias across the technical bank", () => {
+  /** Đặt ở 3,7 vì |z| tệ nhất của kho đang là 3,29 ở phía "ngắn nhất" - đúng
+   *  luật của AGENTS.md, cổng đặt ở mức kho ĐÃ ĐẠT chứ không phải mức mong
+   *  muốn, để nó gác đợt viết lại tiếp theo mà không đẩy kho hiện tại vào nợ.
+   *  Khoảng đệm 0,4 là chỗ cho vài chục câu xê dịch, không phải chỗ cho một
+   *  đợt trôi.
+   *
+   *  KHÔNG đọc con số −3,29 như một tồn đọng phải cày xuống. AGENTS.md đã ghi
+   *  lại phép đo cho kho bài học: một z âm nhẹ là hệ quả số học của việc đáp án
+   *  đúng phát biểu một mệnh đề trong khi mỗi phương án nhiễu phải mang theo
+   *  cái sai sinh ra nó. Đóng nốt nó chỉ còn hai đường và cả hai làm hỏng câu
+   *  hỏi: nhồi chữ vào đáp án đúng, hoặc rút lý lẽ khỏi phương án nhiễu. */
+  const MAX_LENGTH_BIAS_Z = 3.7;
+
+  function biasZ(questions: { options: string[]; correct: number }[], side: "longest" | "shortest") {
+    let observed = 0;
+    let expected = 0;
+    let variance = 0;
+    for (const q of questions) {
+      const lengths = q.options.map((o) => o.length);
+      const extreme = side === "longest" ? Math.max(...lengths) : Math.min(...lengths);
+      // Hoà thì không có phương án cực trị DUY NHẤT, nên câu đó không mách nước
+      // gì và cũng không đóng góp vào kỳ vọng.
+      if (lengths.filter((l) => l === extreme).length !== 1) continue;
+      const p = 1 / lengths.length;
+      if (lengths[q.correct] === extreme) observed += 1;
+      expected += p;
+      variance += p * (1 - p);
+    }
+    return variance > 0 ? (observed - expected) / Math.sqrt(variance) : 0;
+  }
+
+  it("stays near chance on both sides", () => {
+    const questions = IB_TECHNICAL_QUESTIONS.map((q) => ({ options: q.options, correct: q.correct }));
+    const zLongest = biasZ(questions, "longest");
+    const zShortest = biasZ(questions, "shortest");
+    // Hai chiều đều khai thác được. Dương ở "longest": chọn phương án dài nhất
+    // là ăn. Âm ở "longest" đi kèm dương ở "shortest": loại phương án dài nhất
+    // rồi đoán trong ba - đúng cách kho bài học từng trôi tới z = −4,6 vì cắt
+    // đáp án đúng cho ngắn. Đích là đáp án đúng nằm GIỮA nhóm.
+    expect(Math.abs(zLongest), `z(longest) = ${zLongest.toFixed(2)}`).toBeLessThan(MAX_LENGTH_BIAS_Z);
+    expect(Math.abs(zShortest), `z(shortest) = ${zShortest.toFixed(2)}`).toBeLessThan(MAX_LENGTH_BIAS_Z);
+  });
 });
