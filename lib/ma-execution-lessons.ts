@@ -876,7 +876,7 @@ export const MA_EXECUTION_LESSONS: Lesson[] = [
       "Ý kiến về tính công bằng do ngân hàng đầu tư phát hành khẳng định điều gì?",
     openingOptions: [
       "Rằng đây là mức giá tốt nhất có thể đạt được trên thị trường",
-      "Rằng mức giá nằm trong khoảng hợp lý về mặt tài chính",
+      "Rằng mức giá đó nằm trong một khoảng hợp lý về mặt tài chính thôi",
       "Rằng thương vụ sẽ mang lại lợi ích cho cả hai bên",
       "Rằng doanh nghiệp mục tiêu đã được thẩm định đầy đủ",
     ],

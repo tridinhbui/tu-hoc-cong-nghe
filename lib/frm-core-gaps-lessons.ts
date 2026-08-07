@@ -3137,7 +3137,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
     whyItMatters: "Quỹ mở không có bảng cân đối như ngân hàng nhưng vẫn thực hiện chuyển hoá thanh khoản - và rủi ro của họ ngày càng được cơ quan quản lý coi là vấn đề hệ thống chứ không chỉ là chuyện riêng của nhà đầu tư trong quỹ.",
     openingQuestion: "Rủi ro thanh khoản cốt lõi của một quỹ mở nằm ở đâu?",
     openingOptions: [
-      "Cam kết cho rút hằng ngày trong khi tài sản cần thời gian",
+      "Cam kết cho rút hằng ngày trong khi tài sản thì cần thời gian bán",
       "Quỹ mở không được phép nắm giữ tiền mặt theo quy định hiện hành",
       "Quỹ mở phải trả lãi cố định cho nhà đầu tư bất kể kết quả đầu tư",
       "Quỹ mở bị cấm sử dụng bất kỳ hình thức vay nợ nào"

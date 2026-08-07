@@ -25,7 +25,7 @@ export const FRM_MARKET_RISK_DEPTH_LESSONS: Lesson[] = [
       "Trước FRTB, vấn đề lớn nhất của ranh giới giữa sổ giao dịch và sổ ngân hàng là gì?",
     openingOptions: [
       "Ranh giới quá chặt khiến ngân hàng không phân loại được sản phẩm mới",
-      "Ngân hàng chuyển được vị thế qua lại để hưởng mức vốn thấp hơn",
+      "Ngân hàng chuyển được vị thế qua lại để hưởng mức vốn thấp hơn hẳn nhiều",
       "Ranh giới chỉ áp dụng cho ngân hàng có quy mô quốc tế",
       "Hai sổ dùng chung một phương pháp tính vốn nên không phân biệt được",
     ],

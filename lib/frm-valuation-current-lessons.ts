@@ -1201,7 +1201,7 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
     whyItMatters: "Học máy đã vào chấm điểm tín dụng, phát hiện gian lận và giám sát giao dịch. Nhưng quản trị rủi ro có một ràng buộc mà nhiều lĩnh vực khác không có: quyết định phải giải thích được cho khách hàng và cho cơ quan quản lý.",
     openingQuestion: "Đánh đổi cốt lõi khi đưa mô hình học máy vào quyết định tín dụng là gì?",
     openingOptions: [
-      "Dự báo chính xác hơn nhưng khó giải thích vì sao một hồ sơ bị từ chối",
+      "Dự báo chính xác hơn nhưng lại khó giải thích vì sao một hồ sơ cụ thể bị từ chối",
       "Chi phí vận hành thấp hơn nhưng thời gian xử lý mỗi hồ sơ kéo dài hơn",
       "Xử lý được nhiều hồ sơ hơn nhưng chỉ áp dụng được cho khách hàng doanh nghiệp",
       "Giảm rủi ro tín dụng nhưng làm tăng rủi ro thanh khoản của ngân hàng"
@@ -1593,7 +1593,7 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
     whyItMatters: "Đây là cuộc phẫu thuật hạ tầng lớn nhất mà thị trường tài chính từng thực hiện, và nó cho một bài học chung: một chuẩn tham chiếu dựa trên phán đoán thay vì giao dịch thật là một điểm yếu nằm sẵn trong hệ thống.",
     openingQuestion: "Vấn đề cốt lõi khiến LIBOR phải bị thay thế là gì?",
     openingOptions: [
-      "Nó dựa trên báo giá ước tính của các ngân hàng thay vì giao dịch thật",
+      "Nó dựa trên báo giá ước tính của các ngân hàng chứ không phải giao dịch thật",
       "Nó chỉ được công bố cho đồng đô la Mỹ nên không dùng được cho tiền tệ khác",
       "Nó được tính theo phương pháp quá phức tạp khiến thị trường khó kiểm chứng",
       "Nó chỉ có kỳ hạn qua đêm nên không phù hợp cho hợp đồng dài hạn"
@@ -2151,7 +2151,7 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
     whyItMatters: "Đây là đợt căng thẳng ngân hàng lớn nhất kể từ 2008, và điều đáng chú ý là nó không đến từ rủi ro tín dụng. Nó là bài kiểm tra thực tế cho gần như mọi chương trong FRM Part II cùng lúc.",
     openingQuestion: "Nguyên nhân trực tiếp dẫn tới đợt bất ổn ngân hàng năm 2023 ở Mỹ là gì?",
     openingOptions: [
-      "Lỗ chưa thực hiện trên danh mục trái phiếu khi lãi suất tăng mạnh",
+      "Lỗ chưa thực hiện trên danh mục trái phiếu khi lãi suất tăng lên rất mạnh",
       "Tỷ lệ nợ xấu tăng vọt trong danh mục cho vay bất động sản thương mại",
       "Gian lận nội bộ quy mô lớn tại bộ phận giao dịch tự doanh",
       "Sự cố công nghệ kéo dài làm gián đoạn hệ thống thanh toán liên ngân hàng"

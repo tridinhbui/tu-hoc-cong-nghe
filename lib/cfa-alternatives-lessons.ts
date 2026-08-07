@@ -31,7 +31,7 @@ export const CFA_ALTERNATIVES_LESSONS: Lesson[] = [
       "Điều gì phân biệt tài sản thay thế với cổ phiếu và trái phiếu niêm yết một cách cơ bản nhất?",
     openingOptions: [
       "Tài sản thay thế luôn có lợi nhuận kỳ vọng cao hơn hẳn",
-      "Kém thanh khoản, định giá thưa, và đòn bẩy thường cao hơn",
+      "Kém thanh khoản, định giá thưa, và đòn bẩy thì thường cao hơn nhiều",
       "Tài sản thay thế không chịu sự giám sát của cơ quan quản lý nào",
       "Tài sản thay thế chỉ dành cho nhà đầu tư tổ chức theo quy định",
     ],

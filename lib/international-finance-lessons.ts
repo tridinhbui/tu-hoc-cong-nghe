@@ -200,7 +200,7 @@ export const INTERNATIONAL_FINANCE_LESSONS: Lesson[] = [
     openingQuestion:
       "Theo ngang giá sức mua, điều gì xảy ra với đồng tiền của quốc gia có lạm phát cao hơn?",
     openingOptions: [
-      "Đồng tiền đó có xu hướng mất giá so với đồng tiền của quốc gia lạm phát thấp",
+      "Đồng tiền đó có xu hướng mất giá so với đồng tiền của quốc gia có lạm phát thấp hơn",
       "Đồng tiền đó tăng giá vì lãi suất danh nghĩa trong nước cũng cao hơn tương ứng",
       "Tỷ giá không đổi vì lạm phát ảnh hưởng như nhau lên cả hàng hóa xuất và nhập khẩu",
       "Tỷ giá biến động ngẫu nhiên vì lạm phát không liên quan tới thị trường ngoại hối",

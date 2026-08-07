@@ -516,7 +516,7 @@ export const ACTUARIAL_LESSONS: Lesson[] = [
     openingQuestion:
       "Công ty bán bảo hiểm sức khoẻ không thẩm định, ai cũng mua được cùng một mức phí. Chuyện gì xảy ra?",
     openingOptions: [
-      "Người khoẻ thấy phí đắt nên bỏ, tập còn lại xấu dần, phí phải tăng",
+      "Người khoẻ thấy phí đắt nên bỏ, tập còn lại xấu dần, và phí lại phải tăng",
       "Số lượng hợp đồng tăng mạnh nên luật số lớn phát huy tác dụng tốt hơn",
       "Chi phí thẩm định giảm nên công ty có thể hạ phí cho toàn bộ khách hàng",
       "Tỷ lệ bồi thường ổn định vì người khoẻ và người yếu bù trừ cho nhau",

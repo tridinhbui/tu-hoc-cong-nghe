@@ -192,7 +192,7 @@ export const VN_MARKET_LESSONS: Lesson[] = [
       "Vì sao việc một thị trường được nâng hạng lại kéo theo dòng vốn ngoại?",
     openingOptions: [
       "Vì nhà đầu tư nước ngoài được miễn thuế khi giao dịch ở thị trường mới nổi",
-      "Vì nhiều quỹ chỉ số bắt buộc phân bổ theo rổ chỉ số của hạng thị trường đó",
+      "Vì nhiều quỹ chỉ số bắt buộc phân bổ theo rổ chỉ số của chính hạng thị trường ấy đó",
       "Vì lãi suất trong nước giảm ngay sau khi thị trường được nâng hạng chính thức",
       "Vì doanh nghiệp niêm yết được phép phát hành cổ phiếu ra nước ngoài sau nâng hạng",
     ],
@@ -839,7 +839,7 @@ export const VN_MARKET_LESSONS: Lesson[] = [
     openingQuestion: "Giao dịch ký quỹ làm gì với rủi ro của nhà đầu tư?",
     openingOptions: [
       "Giảm rủi ro vì công ty chứng khoán cùng chịu một phần khoản lỗ",
-      "Khuếch đại cả lãi lẫn lỗ, và thêm rủi ro bị bán cưỡng bức",
+      "Khuếch đại cả lãi lẫn lỗ, và còn thêm rủi ro bị bán cưỡng bức nữa",
       "Không đổi rủi ro, chỉ giúp mua được nhiều cổ phiếu hơn",
       "Chỉ tăng rủi ro khi nhà đầu tư vay quá tỷ lệ cho phép",
     ],
@@ -1007,7 +1007,7 @@ export const VN_MARKET_LESSONS: Lesson[] = [
     openingQuestion: "Vì sao nhà đầu tư vốn nhỏ khó tự đa dạng hóa?",
     openingOptions: [
       "Vì quy định giới hạn số mã cổ phiếu một cá nhân được nắm giữ",
-      "Vì chi phí giao dịch và theo dõi mỗi mã gần như cố định",
+      "Vì chi phí giao dịch và công theo dõi trên mỗi mã gần như cố định",
       "Vì cổ phiếu vốn hóa lớn chỉ bán cho nhà đầu tư tổ chức",
       "Vì cần tối thiểu ba mươi mã mới được mở tài khoản chứng khoán",
     ],

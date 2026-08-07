@@ -556,7 +556,7 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
     openingOptions: [
       "Nhận lời vì thăm nhà máy là hoạt động nghiên cứu chính đáng",
       "Từ chối mọi chuyến thăm nhà máy để giữ tính khách quan tuyệt đối",
-      "Đi thăm nhà máy, nhưng công ty bạn tự chi trả chi phí đi",
+      "Đi thăm nhà máy, nhưng công ty bạn tự chi trả chi phí đi lại và ăn ở",
       "Nhận lời rồi công bố việc này ở cuối báo cáo phân tích",
     ],
     correctOption: 2,
@@ -1147,7 +1147,7 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
       "Một nhà giao dịch đặt lệnh mua lớn rồi hủy trước khi khớp, lặp lại nhiều lần trong phiên. Điều gì quyết định đây là thao túng hay giao dịch bình thường?",
     openingOptions: [
       "Số lượng lệnh bị hủy - vượt một ngưỡng nhất định thì thành vi phạm",
-      "Mục đích: tạo ảo giác về cung cầu để dẫn dụ, hay chỉ để thăm dò",
+      "Mục đích: tạo ảo giác về cung cầu để dẫn dụ, hay chỉ để thăm dò thị trường",
       "Giá trị của các lệnh đó so với vốn điều lệ của công ty chứng khoán",
       "Việc nhà giao dịch có thực sự kiếm được lợi nhuận từ hành vi đó không",
     ],

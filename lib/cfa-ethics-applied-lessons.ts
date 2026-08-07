@@ -908,7 +908,7 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
       "Vì sao Standard V(C) yêu cầu lưu trữ hồ sơ phân tích, ngoài lý do tuân thủ quy định?",
     openingOptions: [
       "Để đồng nghiệp có thể tái sử dụng lại kết quả nghiên cứu",
-      "Vì đó là bằng chứng duy nhất rằng khuyến nghị có cơ sở",
+      "Vì đó là bằng chứng duy nhất cho thấy khuyến nghị từng có cơ sở",
       "Để công ty tính được chi phí nghiên cứu phân bổ cho từng khách",
       "Vì cơ quan quản lý yêu cầu nộp hồ sơ định kỳ mỗi quý",
     ],
@@ -1806,7 +1806,7 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
       "Một mô hình học máy đưa ra khuyến nghị đầu tư mà bạn không giải thích được cơ chế bên trong. Standard V(A) áp dụng thế nào?",
     openingOptions: [
       "Không áp dụng vì quyết định do mô hình đưa ra, không phải bạn",
-      "Vẫn áp dụng nguyên vẹn: phải hiểu dữ liệu và giới hạn",
+      "Vẫn áp dụng nguyên vẹn: phải hiểu dữ liệu, giả định và giới hạn",
       "Chỉ áp dụng nếu mô hình do chính công ty bạn xây dựng",
       "Áp dụng nhẹ hơn vì mô hình khách quan hơn con người",
     ],

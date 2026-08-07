@@ -28,7 +28,7 @@ export const IR_LESSONS: Lesson[] = [
       "Người mới vào nghề IR thường nghĩ việc của mình là làm doanh nghiệp trông đẹp. Nghĩ vậy sẽ hỏng ngay quý đầu tiên có tin xấu, vì nhà đầu tư không mua câu chuyện đẹp - họ mua khả năng dự đoán được, và một công ty giấu tin xấu là công ty không dự đoán được.",
     openingQuestion: "Khác biệt cốt lõi giữa IR và PR là gì?",
     openingOptions: [
-      "IR nói với người bỏ vốn và bị ràng buộc bởi quy định công bố thông tin",
+      "IR nói với người bỏ vốn và bị ràng buộc bởi các quy định công bố thông tin chặt",
       "IR chỉ làm việc với báo chí tài chính còn PR làm việc với báo chí phổ thông",
       "IR thuộc phòng tài chính còn PR thuộc phòng marketing của doanh nghiệp",
       "IR dùng số liệu còn PR dùng hình ảnh và câu chuyện thương hiệu để truyền tải",
@@ -372,7 +372,7 @@ export const IR_LESSONS: Lesson[] = [
     openingQuestion:
       "Công ty đặt kế hoạch lợi nhuận 500 tỷ, đạt 495 tỷ. Cổ phiếu giảm 8%. Vì sao?",
     openingOptions: [
-      "Vì hụt kế hoạch làm thị trường hạ niềm tin vào mọi con số tương lai",
+      "Vì hụt kế hoạch làm thị trường hạ niềm tin vào mọi con số tương lai khác nữa",
       "Vì 5 tỷ chênh lệch là số tiền lớn với quy mô của doanh nghiệp",
       "Vì nhà đầu tư luôn bán ra sau mỗi kỳ công bố kết quả kinh doanh",
       "Vì các công ty chứng khoán buộc phải hạ khuyến nghị khi kế hoạch không đạt",

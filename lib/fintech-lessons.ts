@@ -388,7 +388,7 @@ export const FINTECH_LESSONS: Lesson[] = [
       "Số dư khách để trong ví là khoản lớn nhất trên bảng cân đối của nhiều công ty fintech, và cũng là khoản bị hiểu sai nhiều nhất. Hiểu sai nó dẫn tới hai hậu quả rất khác nhau: một là định giá sai công ty, hai là vi phạm quy định về tài khoản đảm bảo thanh toán.",
     openingQuestion: "Người dùng để tổng cộng 2.000 tỷ đồng trong ví. Khoản này ghi nhận thế nào?",
     openingOptions: [
-      "Nợ phải trả - tiền của khách, công ty phải trả lại bất cứ lúc nào",
+      "Nợ phải trả - đó là tiền của khách và công ty phải trả lại bất cứ lúc nào",
       "Doanh thu chưa thực hiện, phân bổ dần theo thời gian khách để tiền",
       "Vốn chủ sở hữu, vì tiền đang nằm trong tài khoản của công ty",
       "Tài sản của công ty, vì công ty là bên đứng tên tài khoản tại ngân hàng",

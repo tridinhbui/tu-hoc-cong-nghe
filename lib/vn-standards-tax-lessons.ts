@@ -561,7 +561,7 @@ export const VN_STANDARDS_TAX_LESSONS: Lesson[] = [
       "Vì sao thuế giá trị gia tăng không làm giảm lợi nhuận của doanh nghiệp?",
     openingOptions: [
       "Vì thuế suất của sắc thuế này quá thấp để ảnh hưởng tới lợi nhuận sau thuế",
-      "Vì doanh nghiệp chỉ thu hộ từ người mua và nộp lại, không phải người chịu thuế",
+      "Vì doanh nghiệp chỉ thu hộ từ người mua rồi nộp lại, chứ không phải là người chịu thuế",
       "Vì cơ quan thuế hoàn lại toàn bộ số thuế này vào cuối mỗi năm tài chính",
       "Vì khoản thuế này được ghi thẳng vào vốn chủ sở hữu chứ không qua kết quả kinh doanh",
     ],
@@ -725,7 +725,7 @@ export const VN_STANDARDS_TAX_LESSONS: Lesson[] = [
       "Thuế hoãn lại phát sinh từ đâu?",
     openingOptions: [
       "Từ việc doanh nghiệp xin gia hạn thời điểm nộp thuế với cơ quan quản lý",
-      "Từ chênh lệch tạm thời giữa cách ghi nhận của kế toán và của thuế",
+      "Từ chênh lệch tạm thời giữa cách ghi nhận của kế toán và của cơ quan thuế",
       "Từ phần thuế mà doanh nghiệp đang tranh chấp và chưa nộp cho ngân sách",
       "Từ khoản thuế đã nộp thừa trong các năm trước và đang chờ được hoàn lại",
     ],
