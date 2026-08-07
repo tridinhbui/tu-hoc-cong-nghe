@@ -1064,7 +1064,7 @@ export const FINANCIAL_MODELING_LESSONS: Lesson[] = [
       "Khác biệt cốt lõi giữa phân tích độ nhạy (sensitivity) và phân tích kịch bản (scenario) là gì?",
     openingOptions: [
       "Không có khác biệt, hai tên gọi của cùng một việc",
-      "Độ nhạy thay đổi một hoặc hai biến độc lập; kịch bản thay đổi đồng thời nhiều biến theo một câu chuyện nhất quán",
+      "Độ nhạy đổi một biến; kịch bản đổi nhiều biến",
       "Độ nhạy dùng cho doanh thu, kịch bản dùng cho chi phí",
       "Kịch bản chỉ áp dụng cho mô hình DCF",
     ],
@@ -1385,7 +1385,7 @@ export const FINANCIAL_MODELING_LESSONS: Lesson[] = [
       "Cách kiểm tra tính hợp lý (sanity check) nhanh nhất cho một mô hình vừa dựng xong là gì?",
     openingOptions: [
       "Kiểm tra font chữ và định dạng có đẹp không",
-      "So sánh các chỉ số dự phóng với dữ liệu lịch sử và với doanh nghiệp cùng ngành - nếu biên lợi nhuận nhảy vọt bất thường thì cần giải thích được lý do",
+      "So sánh dự phóng với lịch sử và ngành",
       "Đếm số công thức trong file",
       "Chạy lại file trên máy khác",
     ],
@@ -1573,7 +1573,7 @@ export const FINANCIAL_MODELING_LESSONS: Lesson[] = [
       "Thứ tự hợp lý nhất khi dựng một mô hình 3 báo cáo từ đầu là gì?",
     openingOptions: [
       "Dựng bảng cân đối trước, rồi suy ngược ra P&L",
-      "Nhập số liệu lịch sử → dựng giả định → P&L → bảng hỗ trợ → bảng cân đối và dòng tiền → nối khép vòng → kiểm tra",
+      "Lịch sử → giả định → P&L → bảng cân đối",
       "Bắt đầu từ DCF rồi suy ngược ra các báo cáo",
       "Dựng đồng thời cả ba báo cáo từ đầu",
     ],

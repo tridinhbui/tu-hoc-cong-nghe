@@ -26,7 +26,7 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
       "Vì sao các bài kiểm tra dựng mô hình thường đánh giá cả tốc độ thao tác bàn phím?",
     openingOptions: [
       "Vì nhà tuyển dụng muốn nhân viên làm việc nhanh cho kịp tiến độ",
-      "Vì thao tác bằng chuột chậm hơn nhiều lần, và người phải dồn hết thời gian vào việc gõ sẽ không còn thời gian để kiểm tra logic của chính mô hình",
+      "Vì thao tác bằng chuột chậm hơn nhiều lần",
       "Vì phím tắt giúp file nhẹ hơn",
       "Vì Excel tính toán nhanh hơn khi dùng phím tắt",
     ],
@@ -174,7 +174,7 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
       "Vì sao INDEX/MATCH được ưa dùng hơn VLOOKUP trong mô hình tài chính?",
     openingOptions: [
       "Vì INDEX/MATCH tính nhanh hơn nhiều lần",
-      "Vì nó không phụ thuộc vào vị trí cột: chèn hoặc xóa một cột không làm hỏng công thức, và nó tra cứu được cả sang trái",
+      "Vì nó không phụ thuộc vào vị trí cột",
       "Vì VLOOKUP đã bị Excel loại bỏ",
       "Vì INDEX/MATCH không cần dữ liệu được sắp xếp",
     ],
@@ -505,7 +505,7 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
       "Bạn nghi ngờ một ô kết quả sai nhưng công thức trông có vẻ đúng. Kỹ thuật kiểm tra hiệu quả nhất là gì?",
     openingOptions: [
       "Xóa công thức và gõ lại từ đầu",
-      "Bôi đen từng phần của công thức rồi nhấn F9 để xem giá trị của riêng phần đó, tìm ra đoạn nào cho kết quả bất thường",
+      "Bôi đen từng phần công thức rồi bấm F9",
       "Chuyển sang máy tính cầm tay để tính lại",
       "Sao chép công thức sang một file mới",
     ],
@@ -699,7 +699,7 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
       "Lợi ích lớn nhất của Power Query so với việc làm sạch dữ liệu thủ công là gì?",
     openingOptions: [
       "Xử lý được nhiều dữ liệu hơn giới hạn dòng của Excel",
-      "Các bước làm sạch được ghi lại thành một quy trình, nên tháng sau chỉ cần làm mới dữ liệu là toàn bộ thao tác tự chạy lại y hệt",
+      "Các bước được ghi lại thành quy trình dùng lại",
       "Tự động phát hiện được lỗi trong dữ liệu",
       "Tính toán nhanh hơn công thức thông thường",
     ],

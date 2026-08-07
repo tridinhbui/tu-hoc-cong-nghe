@@ -577,12 +577,22 @@ const MAX_PRACTICE_BIAS_Z = 3;
  *  về đúng mức nhưng chiều "ngắn" vẫn nguyên. Trong các đợt còn lại, khoảng
  *  bốn phần mười số câu phải viết THÀNH ngắn nhất, sáu phần mười vào giữa.
  *
- *  Ngưỡng hạ dần theo từng đợt viết lại: 37 → 28,1 (sau đợt 1). Cùng cách
- *  `MAX_PRACTICE_BIAS_Z` từng
- *  được đặt ở 9,2. Đây là mức kho đang HỎNG, ghi vào để con số hiện ra trong
- *  CI và bị hạ dần sau mỗi đợt viết lại, không phải để chấp nhận. 610 câu là
- *  đợt việc riêng, lớn hơn toàn bộ những gì đã làm cho practicePrompt. */
-const MAX_OPENING_BIAS_Z = 28.1;
+ *  Ngưỡng là mức kho đang HỎNG, ghi vào để con số hiện ra trong CI và bị hạ
+ *  dần sau mỗi đợt viết lại, không phải để chấp nhận.
+ *
+ *  TÁCH THEO NGÔN NGỮ, khác `MAX_PRACTICE_BIAS_Z` dùng chung một số. Lý do rất
+ *  cụ thể: bản dịch mang theo văn bản tiếng Anh của riêng nó, nên hai kho trôi
+ *  độc lập. Sau đợt 2-3, kho tiếng Việt xuống 14,19 còn kho tiếng Anh vẫn ở
+ *  20,74 - một hằng số dùng chung sẽ phải đặt ở mức xấu hơn trong hai, tức là
+ *  khoá luôn phần tiến độ đã làm được bên tiếng Việt. AGENTS.md đã ghi "The
+ *  length gates are per-language"; chỗ này làm đúng điều đó.
+ *
+ *  Mỗi ngôn ngữ hạ ngưỡng theo nhịp riêng:
+ *    vi: 37 → 28,1 (đợt 1) → 14,2 (đợt 2-3)
+ *    en: chưa viết lại lần nào - 182 trên 208 bài dịch vẫn có đáp án đúng dài
+ *        nhất. Đợt việc riêng, giống hệt những gì practicePrompt đã cần. */
+const OPENING_BIAS_Z_BY_LOCALE = { vi: 14.2, en: 20.8 };
+const MAX_OPENING_BIAS_Z = OPENING_BIAS_Z_BY_LOCALE[LOCALE] ?? 37;
 const openingStats = {
   questions: 0,
   longest: 0,

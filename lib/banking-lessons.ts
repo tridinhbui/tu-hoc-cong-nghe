@@ -27,7 +27,7 @@ export const BANKING_LESSONS: Lesson[] = [
       "Vì sao không thể dùng EV/EBITDA để định giá một ngân hàng?",
     openingOptions: [
       "Vì ngân hàng không công bố EBITDA theo quy định",
-      "Vì nợ vay là nguyên liệu đầu vào của ngân hàng chứ không phải cấu trúc vốn, nên khái niệm enterprise value mất ý nghĩa",
+      "Vì nợ vay là nguyên liệu đầu vào của ngân hàng",
       "Vì ngân hàng luôn có EBITDA âm",
       "Vì EBITDA chỉ áp dụng cho công ty niêm yết ở nước ngoài",
     ],

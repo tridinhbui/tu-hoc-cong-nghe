@@ -529,7 +529,7 @@ export const INTERNATIONAL_FINANCE_LESSONS: Lesson[] = [
     openingQuestion:
       "Doanh nghiệp báo lỗ chênh lệch tỷ giá do đánh giá lại khoản vay ngoại tệ cuối kỳ. Đây là loại phơi nhiễm nào?",
     openingOptions: [
-      "Phơi nhiễm giao dịch, và khoản lỗ này sẽ thành tiền thật khi trả nợ nếu tỷ giá giữ nguyên",
+      "Phơi nhiễm giao dịch, và khoản lỗ sẽ thành tiền thật",
       "Phơi nhiễm chuyển đổi, chỉ là bút toán quy đổi và không bao giờ ảnh hưởng tới dòng tiền",
       "Phơi nhiễm kinh tế, phản ánh việc năng lực cạnh tranh dài hạn của doanh nghiệp giảm sút",
       "Không thuộc loại nào vì đánh giá lại cuối kỳ chỉ là thủ tục kế toán bắt buộc",

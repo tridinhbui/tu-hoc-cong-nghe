@@ -26,7 +26,7 @@ export const QUANT_METHODS_LESSONS: Lesson[] = [
       "Vì sao giả định lợi suất cổ phiếu tuân theo phân phối chuẩn lại nguy hiểm trong quản trị rủi ro?",
     openingOptions: [
       "Vì phân phối chuẩn khó tính toán trên máy tính",
-      "Vì lợi suất thực tế có đuôi dày hơn: những cú biến động cực đoan xảy ra thường xuyên hơn nhiều so với mức phân phối chuẩn dự đoán",
+      "Vì lợi suất thực tế có đuôi dày hơn chuẩn",
       "Vì phân phối chuẩn chỉ áp dụng cho trái phiếu",
       "Vì phân phối chuẩn luôn cho kết quả bi quan quá mức",
     ],
@@ -718,7 +718,7 @@ export const QUANT_METHODS_LESSONS: Lesson[] = [
       "Vì sao thêm biến giải thích vào mô hình hầu như luôn làm tăng R bình phương?",
     openingOptions: [
       "Vì biến mới luôn chứa thông tin hữu ích",
-      "Vì về mặt toán học, thêm biến không bao giờ làm mô hình khớp kém đi trong mẫu, kể cả khi biến đó hoàn toàn ngẫu nhiên",
+      "Vì thêm biến không bao giờ làm khớp kém đi",
       "Vì phần mềm tự động loại bỏ biến vô dụng",
       "Vì R bình phương không phụ thuộc vào số biến",
     ],

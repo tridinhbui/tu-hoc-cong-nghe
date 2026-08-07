@@ -402,7 +402,7 @@ export const DERIVATIVES_PRICING_LESSONS: Lesson[] = [
       "Bạn nắm một danh mục quyền chọn có delta bằng 0. Điều đó có nghĩa danh mục an toàn không?",
     openingOptions: [
       "Có, delta bằng 0 nghĩa là không còn rủi ro",
-      "Không, danh mục vẫn chịu rủi ro từ gamma, vega và theta - chỉ rủi ro theo hướng giá là tạm thời bị trung hòa",
+      "Không, vẫn còn rủi ro gamma, vega và theta",
       "Có, vì delta là thước đo rủi ro duy nhất",
       "Không xác định được nếu chưa biết giá thực hiện",
     ],

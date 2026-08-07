@@ -175,7 +175,7 @@ export const FRM_OPERATIONAL_DEPTH_LESSONS: Lesson[] = [
       "Một ngân hàng nhỏ thấy trong dữ liệu ngành một vụ tổn thất 5.000 tỷ ở một ngân hàng lớn gấp mười lần mình. Họ nên đưa con số đó vào mô hình thế nào?",
     openingOptions: [
       "Đưa nguyên giá trị 5.000 tỷ vào, vì sự kiện đó hoàn toàn có thể xảy ra với họ",
-      "Quy đổi theo quy mô và đặc điểm nghiệp vụ trước khi đưa vào, vì cùng một loại sự kiện gây thiệt hại khác nhau ở hai tổ chức khác quy mô",
+      "Quy đổi theo quy mô và đặc điểm nghiệp vụ trước khi đưa vào",
       "Bỏ qua vì sự kiện xảy ra ở tổ chức khác nên không liên quan tới họ",
       "Chia đều cho mười năm để làm mượt tác động lên phân phối",
     ],

@@ -961,7 +961,7 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
       "Bạn phỏng vấn mười nhà cung cấp của một hãng bán lẻ, mỗi người chỉ nói về đơn hàng của riêng họ. Ghép lại, bạn kết luận doanh thu quý này sẽ giảm mạnh và bán cổ phiếu trước khi công ty công bố. Đây có phải giao dịch nội gián?",
     openingOptions: [
       "Có, vì bạn biết trước kết quả mà thị trường chưa biết",
-      "Không, nếu từng mảnh thông tin riêng lẻ không trọng yếu và không phải thông tin nội bộ - kết luận là sản phẩm phân tích của bạn",
+      "Không, nếu từng mảnh thông tin riêng lẻ không trọng yếu",
       "Có, vì bạn đã tiếp xúc trực tiếp với các bên liên quan tới công ty",
       "Không, vì thông tin từ nhà cung cấp không bao giờ được coi là trọng yếu",
     ],
@@ -1147,7 +1147,7 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
       "Một nhà giao dịch đặt lệnh mua lớn rồi hủy trước khi khớp, lặp lại nhiều lần trong phiên. Điều gì quyết định đây là thao túng hay giao dịch bình thường?",
     openingOptions: [
       "Số lượng lệnh bị hủy - vượt một ngưỡng nhất định thì thành vi phạm",
-      "Mục đích: đặt lệnh để tạo ảo giác về cung cầu nhằm dẫn dụ người khác, hay để thăm dò thanh khoản và điều chỉnh chiến lược thật",
+      "Mục đích: tạo ảo giác về cung cầu để dẫn dụ, hay chỉ để thăm dò",
       "Giá trị của các lệnh đó so với vốn điều lệ của công ty chứng khoán",
       "Việc nhà giao dịch có thực sự kiếm được lợi nhuận từ hành vi đó không",
     ],
@@ -2063,7 +2063,7 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
       "Bạn đã thi đỗ cả ba cấp độ nhưng chưa đủ kinh nghiệm làm việc yêu cầu. Bạn được ghi gì trên hồ sơ?",
     openingOptions: [
       "'CFA' - vì đã hoàn thành toàn bộ ba kỳ thi",
-      "Mô tả chính xác rằng đã đỗ cả ba cấp độ và đang hoàn thiện yêu cầu kinh nghiệm, nhưng chưa được dùng danh xưng CFA",
+      "Mô tả chính xác là đã đỗ ba cấp, chưa đủ kinh nghiệm",
       "'CFA (chờ cấp)' - vì chỉ còn thiếu thủ tục hành chính",
       "Tùy chọn, miễn là không gây hiểu nhầm cho nhà tuyển dụng",
     ],

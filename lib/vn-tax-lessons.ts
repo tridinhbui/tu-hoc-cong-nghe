@@ -929,7 +929,7 @@ export const VN_TAX_LESSONS: Lesson[] = [
       "Vì sao nhiều người làm công ăn lương lại được HOÀN thuế khi quyết toán cuối năm?",
     openingOptions: [
       "Vì nhà nước thưởng cho người nộp thuế đúng hạn",
-      "Vì thuế khấu trừ hằng tháng là tạm tính, chưa phản ánh đủ giảm trừ hoặc thu nhập không đều giữa các tháng",
+      "Vì thuế khấu trừ hằng tháng chỉ là tạm tính",
       "Vì thuế suất được giảm hồi tố mỗi năm",
       "Vì công ty luôn khấu trừ thừa 10% theo quy định",
     ],

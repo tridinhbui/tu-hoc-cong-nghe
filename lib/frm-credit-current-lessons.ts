@@ -24,7 +24,7 @@ export const FRM_CREDIT_CURRENT_LESSONS: Lesson[] = [
       "CDS là công cụ phái sinh tín dụng phổ biến nhất, đồng thời là nhân vật trung tâm của khủng hoảng 2008 (AIG bán CDS mà không đủ vốn dự phòng). Hiểu cơ chế CDS là điều kiện để hiểu cả cách phòng hộ rủi ro tín dụng lẫn cách rủi ro đó có thể lan ra ngoài bảng cân đối kế toán của ngân hàng gốc.",
     openingQuestion: "Trong một hợp đồng Credit Default Swap (CDS), bên mua bảo vệ (protection buyer) làm gì?",
     openingOptions: [
-      "Trả phí định kỳ (spread) cho bên bán bảo vệ để đổi lấy khoản bồi thường nếu tổ chức tham chiếu (reference entity) xảy ra sự kiện tín dụng",
+      "Trả phí định kỳ để đổi lấy khoản bồi thường nếu bên vay vỡ nợ",
       "Cho tổ chức tham chiếu vay tiền trực tiếp với lãi suất cố định",
       "Mua cổ phiếu của tổ chức tham chiếu để phòng hộ rủi ro giá",
       "Nhận phí định kỳ và chịu rủi ro nếu tổ chức tham chiếu vỡ nợ",
@@ -181,7 +181,7 @@ export const FRM_CREDIT_CURRENT_LESSONS: Lesson[] = [
     openingQuestion: "Trong một cấu trúc CDO (Collateralized Debt Obligation), lớp Senior (senior tranche) có đặc điểm gì?",
     openingOptions: [
       "Chịu tổn thất đầu tiên khi danh mục tài sản cơ sở bắt đầu vỡ nợ, đổi lại lợi suất cao nhất",
-      "Được ưu tiên nhận dòng tiền đầu tiên và chỉ chịu tổn thất sau khi các lớp thấp hơn đã bị xoá sổ hoàn toàn, nên xếp hạng tín nhiệm cao nhất và lợi suất thấp nhất",
+      "Được ưu tiên nhận dòng tiền đầu tiên, chịu tổn thất sau cùng",
       "Có mức rủi ro và lợi suất giống hệt tất cả các lớp khác trong cùng cấu trúc",
       "Không nhận bất kỳ dòng tiền nào từ danh mục tài sản cơ sở",
     ],
@@ -336,7 +336,7 @@ export const FRM_CREDIT_CURRENT_LESSONS: Lesson[] = [
     openingQuestion: "CVA (Credit Valuation Adjustment) đo lường điều gì?",
     openingOptions: [
       "Chi phí vốn cần thiết để mở một chi nhánh ngân hàng mới ở khu vực rủi ro cao",
-      "Khoản điều chỉnh giảm giá trị của một hợp đồng phái sinh để phản ánh rủi ro rằng đối tác giao dịch (counterparty) có thể vỡ nợ trước khi hợp đồng đáo hạn",
+      "Điều chỉnh giảm giá trị phái sinh theo rủi ro đối tác",
       "Tỷ lệ nợ xấu trung bình của toàn ngành ngân hàng trong một năm tài chính",
       "Mức phí bảo hiểm tiền gửi mà ngân hàng phải nộp cho cơ quan bảo hiểm tiền gửi",
     ],

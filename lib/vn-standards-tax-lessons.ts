@@ -388,7 +388,7 @@ export const VN_STANDARDS_TAX_LESSONS: Lesson[] = [
       "Vì sao thuế suất hiệu dụng của một doanh nghiệp thường khác thuế suất phổ thông?",
     openingOptions: [
       "Vì cơ quan thuế áp mức riêng cho từng doanh nghiệp dựa trên quy mô doanh thu",
-      "Vì thu nhập tính thuế khác lợi nhuận kế toán, và có ưu đãi cùng khoản chuyển lỗ",
+      "Vì thu nhập tính thuế khác lợi nhuận kế toán",
       "Vì doanh nghiệp được tự chọn mức thuế suất phù hợp với ngành nghề của mình",
       "Vì thuế suất phổ thông chỉ áp dụng cho doanh nghiệp có vốn đầu tư nước ngoài",
     ],

@@ -346,7 +346,7 @@ export const FRM_LESSONS: Lesson[] = [
     openingQuestion: "Quỹ Long-Term Capital Management (LTCM) sụp đổ năm 1998 chủ yếu vì lý do gì?",
     openingOptions: [
       "Mô hình định giá của quỹ tính toán sai công thức toán học cơ bản",
-      "Đòn bẩy cực cao kết hợp với giả định các thị trường không tương quan trong khủng hoảng - nhưng khi khủng hoảng Nga xảy ra, mọi thị trường bỗng tương quan cùng lúc",
+      "Đòn bẩy cực cao cộng giả định thị trường không tương quan",
       "Quỹ bị gian lận kế toán nội bộ",
       "Lãi suất Fed tăng đột ngột khiến toàn bộ vị thế trái phiếu mất giá",
     ],
@@ -634,7 +634,7 @@ export const FRM_LESSONS: Lesson[] = [
     openingQuestion: "Kế hoạch Liên tục Kinh doanh (Business Continuity Plan - BCP) khác gì với Kế hoạch Khôi phục sau Thảm hoạ (Disaster Recovery - DR)?",
     openingOptions: [
       "Hai kế hoạch này hoàn toàn giống nhau, chỉ khác tên gọi",
-      "BCP tập trung vào việc duy trì các chức năng kinh doanh thiết yếu trong và sau gián đoạn (con người, quy trình, địa điểm thay thế); DR tập trung hẹp hơn vào khôi phục hệ thống IT và dữ liệu",
+      "BCP giữ chức năng kinh doanh thiết yếu; DR khôi phục hệ thống IT",
       "DR chỉ áp dụng cho thiên tai, BCP chỉ áp dụng cho tấn công mạng",
       "BCP là trách nhiệm của phòng IT, DR là trách nhiệm của phòng nhân sự",
     ],
@@ -958,7 +958,7 @@ export const FRM_LESSONS: Lesson[] = [
     openingQuestion: "Tỷ lệ Bảo đảm Thanh khoản (Liquidity Coverage Ratio - LCR) đo lường điều gì?",
     openingOptions: [
       "Tỷ lệ vốn chủ sở hữu trên tổng tài sản có rủi ro",
-      "Khả năng ngân hàng có đủ tài sản thanh khoản chất lượng cao để chịu đựng một kịch bản căng thẳng dòng tiền ra trong 30 ngày",
+      "Đủ tài sản thanh khoản chịu 30 ngày căng thẳng",
       "Tỷ lệ nợ xấu trên tổng dư nợ cho vay",
       "Mức độ đa dạng hoá danh mục đầu tư của ngân hàng",
     ],
@@ -1132,7 +1132,7 @@ export const FRM_LESSONS: Lesson[] = [
     openingQuestion: "Rủi ro tập trung tài trợ (funding concentration risk) là gì?",
     openingOptions: [
       "Rủi ro khi ngân hàng có quá nhiều chi nhánh tập trung ở một khu vực địa lý",
-      "Rủi ro khi ngân hàng phụ thuộc quá nhiều vào một số ít nguồn tài trợ, kỳ hạn, hoặc đối tác - nếu nguồn đó rút lui cùng lúc, ngân hàng mất khả năng tái cấp vốn nhanh chóng",
+      "Phụ thuộc quá nhiều vào ít nguồn tài trợ hoặc đối tác",
       "Rủi ro khi lãi suất huy động vốn tăng đồng loạt trên toàn thị trường",
       "Rủi ro chỉ áp dụng cho ngân hàng có vốn hoá nhỏ",
     ],
@@ -1274,7 +1274,7 @@ export const FRM_LESSONS: Lesson[] = [
     openingQuestion: "Rủi ro lãi suất trên Sổ Ngân hàng (IRRBB) khác gì với rủi ro lãi suất trên sổ giao dịch (trading book)?",
     openingOptions: [
       "Không có khác biệt, hai khái niệm là một",
-      "IRRBB phát sinh từ cấu trúc kỳ hạn giữa tài sản và nợ trong hoạt động ngân hàng truyền thống (cho vay, huy động), được đo bằng thay đổi giá trị kinh tế và thu nhập lãi ròng dài hạn, khác với rủi ro giá thị trường ngắn hạn của danh mục giao dịch tích cực",
+      "IRRBB đến từ lệch kỳ hạn giữa tài sản và nợ trên sổ ngân hàng",
       "IRRBB chỉ áp dụng cho trái phiếu chính phủ, không áp dụng cho khoản vay",
       "Rủi ro lãi suất trên sổ giao dịch luôn lớn hơn IRRBB ở mọi ngân hàng",
     ],

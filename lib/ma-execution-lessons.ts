@@ -386,7 +386,7 @@ export const MA_EXECUTION_LESSONS: Lesson[] = [
       "Bên mua trả 500 tỷ cho một công ty có giá trị sổ sách vốn chủ sở hữu 200 tỷ. Chênh lệch 300 tỷ đi đâu?",
     openingOptions: [
       "Toàn bộ ghi vào lợi thế thương mại",
-      "Trước hết phân bổ cho tài sản được đánh giá lại và tài sản vô hình nhận diện được, phần dư mới là lợi thế thương mại",
+      "Phân bổ cho tài sản đánh giá lại trước",
       "Ghi thẳng vào chi phí trong năm phát sinh",
       "Ghi vào thặng dư vốn cổ phần của bên mua",
     ],
@@ -706,7 +706,7 @@ export const MA_EXECUTION_LESSONS: Lesson[] = [
       "Ký hợp đồng mua bán và đóng thương vụ có phải là một thời điểm?",
     openingOptions: [
       "Đúng, ký xong là thương vụ hoàn tất",
-      "Không: giữa hai mốc thường có vài tháng để hoàn thành các điều kiện tiên quyết như phê duyệt của cơ quan quản lý",
+      "Không: giữa hai mốc còn điều kiện tiên quyết",
       "Không, nhưng khoảng cách chỉ vài ngày làm việc",
       "Tùy thuộc vào việc thanh toán bằng tiền mặt hay cổ phiếu",
     ],

@@ -553,7 +553,7 @@ export const ANALYST_CRAFT_LESSONS: Lesson[] = [
     openingQuestion:
       "Khác biệt lớn nhất giữa công việc của chuyên viên phân tích và người ra quyết định đầu tư là gì?",
     openingOptions: [
-      "Chuyên viên tạo ra phân tích; người ra quyết định chọn tin vào phân tích nào và chịu trách nhiệm",
+      "Chuyên viên tạo phân tích; người quyết định chịu trách nhiệm",
       "Chuyên viên làm việc với số liệu còn người ra quyết định chỉ làm việc với con người",
       "Người ra quyết định dựng mô hình phức tạp hơn và sử dụng nhiều công cụ chuyên sâu hơn",
       "Chuyên viên tập trung vào ngắn hạn còn người ra quyết định chỉ quan tâm tới dài hạn",

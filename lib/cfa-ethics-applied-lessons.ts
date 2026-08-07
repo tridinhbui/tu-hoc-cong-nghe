@@ -192,7 +192,7 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
       "Một khách hàng hưu trí, khẩu vị rủi ro thấp, yêu cầu bạn mua một cổ phiếu công nghệ biến động mạnh. Bạn nên làm gì?",
     openingOptions: [
       "Từ chối vì cổ phiếu đó không phù hợp với khẩu vị rủi ro của khách",
-      "Xét xem khoản đó ảnh hưởng thế nào tới rủi ro của cả danh mục, giải thích lại với khách, và ghi nhận nếu đây là lệnh khách tự quyết",
+      "Xét ảnh hưởng tới rủi ro danh mục rồi giải thích lại với khách",
       "Thực hiện ngay vì khách hàng có quyền quyết định tiền của họ",
       "Yêu cầu khách ký cam kết miễn trừ trách nhiệm rồi thực hiện",
     ],
@@ -568,7 +568,7 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
       "Bạn sắp nghỉ việc để mở công ty riêng. Trong tháng cuối còn làm, bạn được làm gì?",
     openingOptions: [
       "Chuẩn bị mọi thứ kể cả liên hệ trước với khách hàng hiện tại",
-      "Chuẩn bị hành chính như thuê văn phòng, đăng ký doanh nghiệp - nhưng không dùng thời gian và nguồn lực công ty để cạnh tranh với chính họ",
+      "Chuẩn bị hành chính, nhưng không dùng nguồn lực công ty",
       "Không được chuẩn bị gì cho tới ngày chính thức nghỉ",
       "Tùy chọn, miễn là năng suất công việc hiện tại không giảm",
     ],
@@ -1104,7 +1104,7 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
       "Bạn nắm 200 cổ phiếu của một doanh nghiệp mà bạn sắp viết báo cáo phân tích. Số tiền rất nhỏ so với thu nhập của bạn. Có phải công bố không?",
     openingOptions: [
       "Không, vì giá trị quá nhỏ nên không thể ảnh hưởng tới phán đoán",
-      "Có, vì chuẩn là xung đột có thể hợp lý được kỳ vọng làm ảnh hưởng - và người đọc là bên đánh giá điều đó, không phải bạn",
+      "Có, vì xung đột có thể hợp lý kỳ vọng làm ảnh hưởng",
       "Chỉ cần công bố nếu giá trị vượt một tỷ lệ nhất định của tài sản",
       "Chỉ cần công bố nếu bạn có ý định bán trong thời gian tới",
     ],
@@ -1637,7 +1637,7 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
       "Danh sách hạn chế (restricted list) và danh sách theo dõi (watch list) khác nhau thế nào?",
     openingOptions: [
       "Hai tên gọi khác nhau của cùng một cơ chế kiểm soát",
-      "Danh sách hạn chế được công bố nội bộ và cấm giao dịch; danh sách theo dõi là bí mật, chỉ dùng để giám sát mà không tiết lộ công ty đang làm việc với ai",
+      "Danh sách hạn chế công bố nội bộ; danh sách theo dõi thì bí mật",
       "Danh sách hạn chế áp dụng cho nhân viên, danh sách theo dõi cho khách hàng",
       "Danh sách theo dõi cấm giao dịch, danh sách hạn chế chỉ cảnh báo",
     ],
@@ -1806,7 +1806,7 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
       "Một mô hình học máy đưa ra khuyến nghị đầu tư mà bạn không giải thích được cơ chế bên trong. Standard V(A) áp dụng thế nào?",
     openingOptions: [
       "Không áp dụng vì quyết định do mô hình đưa ra, không phải bạn",
-      "Vẫn áp dụng nguyên vẹn: bạn phải hiểu đủ về dữ liệu, giả định và giới hạn của mô hình để đánh giá được kết quả nó đưa ra",
+      "Vẫn áp dụng nguyên vẹn: phải hiểu dữ liệu và giới hạn",
       "Chỉ áp dụng nếu mô hình do chính công ty bạn xây dựng",
       "Áp dụng nhẹ hơn vì mô hình khách quan hơn con người",
     ],

@@ -353,7 +353,7 @@ export const VN_MARKET_LESSONS: Lesson[] = [
       "Nguyên nhân trực tiếp khiến nhiều doanh nghiệp mất khả năng thanh toán trái phiếu là gì?",
     openingOptions: [
       "Lợi nhuận kinh doanh của họ sụt giảm đột ngột ngay trong quý phát sinh sự việc",
-      "Rủi ro tái cấp vốn: họ dựa vào việc phát hành đợt mới để trả đợt cũ, và cửa đó đóng lại",
+      "Rủi ro tái cấp vốn: cửa phát hành mới đóng lại",
       "Lãi suất coupon được điều chỉnh tăng đột ngột theo điều khoản của hợp đồng",
       "Nhà đầu tư đồng loạt yêu cầu chuyển đổi trái phiếu thành cổ phiếu phổ thông",
     ],

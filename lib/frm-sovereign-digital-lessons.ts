@@ -21,7 +21,7 @@ export const FRM_SOVEREIGN_DIGITAL_LESSONS: Lesson[] = [
     openingQuestion: "Điểm khác biệt cốt lõi giữa rủi ro tín dụng chủ quyền và rủi ro tín dụng doanh nghiệp là gì?",
     openingOptions: [
       "Không có khác biệt nào, cả hai được đánh giá bằng đúng một bộ chỉ số tài chính giống hệt nhau",
-      "Chủ nợ không thể ép một quốc gia vào thủ tục phá sản hay tịch thu tài sản như với doanh nghiệp, nên vỡ nợ chủ quyền phần lớn là lựa chọn chính trị, không chỉ là hết khả năng chi trả",
+      "Không thể ép một quốc gia vào thủ tục phá sản",
       "Rủi ro tín dụng chủ quyền chỉ tồn tại ở các nước đang phát triển, không tồn tại ở các nước phát triển",
       "Doanh nghiệp không bao giờ vỡ nợ nên chỉ có chính phủ mới có loại rủi ro tín dụng này",
     ],
@@ -187,7 +187,7 @@ export const FRM_SOVEREIGN_DIGITAL_LESSONS: Lesson[] = [
     openingQuestion: "Điểm khác biệt cốt lõi giữa stablecoin được hậu thuẫn bằng tài sản dự trữ (asset-backed) và stablecoin thuật toán (algorithmic) là gì?",
     openingOptions: [
       "Không có khác biệt gì, cả hai loại đều có cùng mức độ rủi ro và được quản lý bởi cùng một cơ chế kỹ thuật",
-      "Stablecoin asset-backed được đảm bảo bằng tài sản dự trữ thực (tiền mặt, trái phiếu kho bạc) có thể kiểm toán; stablecoin thuật toán duy trì giá neo bằng cơ chế cung-cầu và một token phụ trợ, không có tài sản dự trữ tương đương đầy đủ",
+      "Asset-backed có dự trữ thực; loại thuật toán thì không",
           "Stablecoin thuật toán luôn an toàn hơn vì không phụ thuộc vào bất kỳ tổ chức tài chính truyền thống nào",
           "Stablecoin asset-backed chỉ tồn tại trên lý thuyết, chưa từng được phát hành thực tế trên thị trường",
     ],

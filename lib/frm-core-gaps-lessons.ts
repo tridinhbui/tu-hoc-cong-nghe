@@ -200,7 +200,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
     openingQuestion: "Tuyên bố khẩu vị rủi ro của một tổ chức cần được diễn dịch thành thứ gì để có tác dụng thực tế?",
     openingOptions: [
       "Một bản cam kết chung do ban điều hành ký, phổ biến tới toàn bộ nhân viên qua email nội bộ",
-      "Hệ thống hạn mức cụ thể, đo được và phân bổ xuống từng đơn vị kinh doanh, từng bàn giao dịch",
+      "Hệ thống hạn mức đo được, phân bổ xuống từng đơn vị",
       "Một khoản dự phòng bằng tiền mặt tương ứng với mức rủi ro mà tổ chức chấp nhận",
       "Một hợp đồng bảo hiểm chuyển toàn bộ phần rủi ro vượt ngưỡng sang công ty bảo hiểm"
     ],
@@ -562,7 +562,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
     whyItMatters: "CAPM cho ngôn ngữ chung để nói về rủi ro hệ thống và là nền của beta, alpha, chi phí vốn. Nhưng thực nghiệm cho thấy một nhân tố không giải thích hết lợi suất, và với người làm quản trị rủi ro thì biết mô hình sai ở đâu quan trọng ngang việc biết nó nói gì.",
     openingQuestion: "Giả định trung tâm của CAPM về phần rủi ro được thị trường đền bù là gì?",
     openingOptions: [
-      "Chỉ rủi ro hệ thống được đền bù, vì rủi ro riêng lẻ nhà đầu tư tự loại bỏ được bằng đa dạng hoá",
+      "Chỉ rủi ro hệ thống được đền bù",
       "Toàn bộ rủi ro của từng tài sản đều được đền bù tương ứng với độ lệch chuẩn của nó",
       "Chỉ rủi ro thanh khoản được đền bù, các loại rủi ro khác không ảnh hưởng tới lợi suất",
       "Không loại rủi ro nào được đền bù vì thị trường luôn ở trạng thái cân bằng hoàn hảo"
@@ -926,7 +926,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
     openingQuestion: "BCBS 239 ra đời để giải quyết vấn đề gì được bộc lộ trong khủng hoảng tài chính toàn cầu?",
     openingOptions: [
       "Các mô hình VaR sử dụng giả định phân phối chuẩn không phù hợp với thực tế thị trường",
-      "Nhiều ngân hàng không tổng hợp nổi phơi nhiễm rủi ro toàn tập đoàn kịp thời vì dữ liệu phân mảnh giữa các hệ thống",
+      "Dữ liệu phân mảnh nên không tổng hợp nổi kịp thời",
       "Các cơ quan xếp hạng tín nhiệm đánh giá quá cao sản phẩm tài chính cấu trúc",
       "Tỷ lệ vốn tối thiểu theo Basel II được đặt ở mức quá thấp so với rủi ro thực tế"
     ],
@@ -1629,7 +1629,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
     whyItMatters: "Gian lận nội bộ là nhóm sự kiện có số vụ ít nhưng thiệt hại mỗi vụ lớn nhất, và gần như mọi vụ đổ vỡ ngân hàng do giao dịch trái phép đều có chung một lỗi thiết kế kiểm soát rất cơ bản.",
     openingQuestion: "Trong tam giác gian lận, cạnh nào là cạnh mà hệ thống kiểm soát nội bộ tác động được trực tiếp nhất?",
     openingOptions: [
-      "Cơ hội, vì tách biệt nhiệm vụ và đối chiếu độc lập làm hành vi gian lận khó thực hiện và khó che giấu",
+      "Cơ hội, vì tách nhiệm vụ làm gian lận khó che giấu",
       "Động cơ, vì tổ chức có thể loại bỏ hoàn toàn khó khăn tài chính cá nhân của nhân viên",
       "Khả năng tự bào chữa, vì quy định nội bộ thay đổi được suy nghĩ của từng cá nhân",
       "Cả ba cạnh đều bị kiểm soát nội bộ tác động với mức độ hoàn toàn như nhau"
@@ -1821,7 +1821,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
     whyItMatters: "Rủi ro hoạt động từng được phép tính vốn bằng mô hình nội bộ, rồi Basel bãi bỏ hoàn toàn cách làm đó. Hiểu vì sao là một bài học lớn về giới hạn của mô hình định lượng khi dữ liệu quá thưa và người tính có động cơ để con số nhỏ đi.",
     openingQuestion: "Vì sao Basel III bãi bỏ phương pháp đo lường tiên tiến dùng mô hình nội bộ cho rủi ro hoạt động?",
     openingOptions: [
-      "Vì kết quả vốn giữa các ngân hàng có hồ sơ rủi ro tương tự chênh lệch quá lớn, cho thấy mô hình thiếu tính so sánh và dễ bị điều chỉnh",
+      "Vì vốn giữa các ngân hàng có hồ sơ rủi ro tương tự chênh quá lớn",
       "Vì mô hình nội bộ luôn cho ra mức vốn cao hơn nhiều so với mức cần thiết",
       "Vì các ngân hàng không có đủ năng lực công nghệ để chạy mô hình nội bộ",
       "Vì rủi ro hoạt động không còn được coi là loại rủi ro cần tính vốn"
@@ -2198,7 +2198,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
     whyItMatters: "Gần như mọi cuộc khủng hoảng tài chính đều đi qua kênh thanh khoản. Phân biệt được hai loại thanh khoản là điều kiện để hiểu vì sao một tổ chức có đủ vốn trên giấy vẫn có thể sụp trong vài ngày.",
     openingQuestion: "Thanh khoản thị trường khác thanh khoản tài trợ ở điểm nào?",
     openingOptions: [
-      "Thanh khoản thị trường là khả năng bán tài sản nhanh mà không mất giá, thanh khoản tài trợ là khả năng huy động tiền để duy trì hoạt động",
+      "Bán nhanh không mất giá, khác với huy động được tiền",
       "Thanh khoản thị trường áp dụng cho cổ phiếu, thanh khoản tài trợ áp dụng cho trái phiếu",
       "Thanh khoản thị trường do ngân hàng trung ương quyết định, thanh khoản tài trợ do thị trường quyết định",
       "Hai khái niệm này giống nhau, chỉ khác cách gọi ở thị trường phát triển và mới nổi"
@@ -3664,7 +3664,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
     whyItMatters: "Monte Carlo là công cụ vạn năng của quản trị rủi ro: định giá sản phẩm phức tạp, tính VaR danh mục nhiều tài sản, mô hình tổn thất hoạt động. Nhưng nó cũng dễ tạo cảm giác chính xác giả, vì kết quả trông rất cụ thể dù giả định đầu vào có thể sai hoàn toàn.",
     openingQuestion: "Sai số chuẩn của ước lượng Monte Carlo giảm theo tốc độ nào khi tăng số lần mô phỏng?",
     openingOptions: [
-      "Tỷ lệ nghịch với căn bậc hai của số lần mô phỏng, nên muốn giảm sai số một nửa phải chạy gấp bốn lần",
+      "Tỷ lệ nghịch với căn bậc hai số lần mô phỏng",
       "Tỷ lệ nghịch với số lần mô phỏng, nên chạy gấp đôi thì sai số giảm một nửa",
       "Giảm theo hàm mũ, nên chỉ cần tăng vài trăm lần mô phỏng là sai số về gần 0",
       "Không phụ thuộc vào số lần mô phỏng mà chỉ phụ thuộc vào chất lượng bộ sinh số ngẫu nhiên"
