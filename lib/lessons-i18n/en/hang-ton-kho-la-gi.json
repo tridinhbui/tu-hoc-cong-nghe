@@ -47,8 +47,8 @@
       "question": "Inventory rises 40% while revenue rises only 5%. What signal is this?",
       "options": [
         "Warning: goods may be selling more slowly than expected",
-        "Positive: the business is stocking up for a peak season",
-        "Neutral: these two indicators aren't inherently related",
+        "Positive: the business is stocking up early for a peak season",
+        "Neutral: these two indicators aren't inherently related to each other",
         "Warning: the business is about to run short of stock to deliver to customers"
       ],
       "explanation": "When sales are good, inventory and revenue rise at the same pace. Inventory swelling much faster means either goods are selling slowly while the company still stocks according to the old plan, or the product is starting to go stale - both leading to a forced discount to clear stock."

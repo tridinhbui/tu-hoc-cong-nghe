@@ -46,7 +46,7 @@
         "To set a floor on the sale price, capping the possible loss",
         "To increase profit if the stock continues to rise sharply",
         "To receive additional premium income from a put seller",
-        "To remove the obligation to hold the stock until expiration"
+        "To drop the obligation to hold the stock until expiration"
       ],
       "explanation": "This is a protective put - true portfolio insurance. However far the stock falls, it can still be sold at the strike, in exchange for the premium forfeited if the price doesn't fall."
     },

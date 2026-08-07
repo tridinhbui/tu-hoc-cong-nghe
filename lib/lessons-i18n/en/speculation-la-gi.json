@@ -35,7 +35,7 @@
       "options": [
         "Because hedge funds are exempt from all disclosure obligations",
         "Because hedge funds don't provide liquidity to the market",
-        "Because hedge funds only trade with each other, not with the market",
+        "Because hedge funds only trade with each other, never the market",
         "Because high leverage and concentrated positions amplify volatility"
       ],
       "explanation": "This is a complex balance: speculation both provides liquidity the market needs (someone has to be willing to take on the risk that the hedging side wants to transfer), and can amplify instability when high leverage and concentrated positions lead to mass liquidations causing extreme volatility."

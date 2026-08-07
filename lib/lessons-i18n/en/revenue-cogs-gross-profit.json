@@ -138,7 +138,7 @@
       "options": [
         "It stays the same, since COGS per unit is unchanged",
         "Gross Margin rises",
-        "Gross Margin falls",
+        "Gross Margin falls instead",
         "It can't be determined without knowing SG&A costs"
       ],
       "explanation": "Gross Margin % = Gross Profit / Revenue. If price rises while unit production cost stays flat, gross profit per unit rises by exactly the price increase - lifting Gross Margin % accordingly. This is why pricing power (raising price without losing customers) is so valuable."

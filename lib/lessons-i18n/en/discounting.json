@@ -36,7 +36,7 @@
       "question": "Why do two cash flows with the same total nominal amount (say, both 1 billion dong) but received at different times end up with different present values (PV)?",
       "options": [
         "Because the risk of not receiving the money grows the longer you wait",
-        "Because inflation is different each year, so the amount loses value differently",
+        "Because inflation differs each year, so the amount loses value differently",
         "Because each cash flow must be discounted separately, matched to its own timing",
         "Because banks apply different fees for different receipt periods"
       ],

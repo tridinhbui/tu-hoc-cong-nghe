@@ -68,7 +68,7 @@
       "options": [
         "Cash Flow and the ending Balance Sheet, since cash is the most important thing",
         "The Income Statement and Cash Flow, since both reflect changes during the period",
-        "The Income Statement and the ending Balance Sheet, since those are the two mandatory statements",
+        "The Income Statement and the ending Balance Sheet, the two mandatory statements",
         "The opening and closing Balance Sheet, since from them you can rebuild the other two statements"
       ],
       "explanation": "Two balance sheets bookending a period contain every change that happened between them - from that, you can derive how much retained earnings grew and where the cash went. This is a classic exercise in finance interviews."

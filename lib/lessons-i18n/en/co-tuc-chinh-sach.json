@@ -36,7 +36,7 @@
     {
       "question": "What does a dividend yield of 3% mean?",
       "options": [
-        "The share price rises 3% each year thanks to the dividend policy",
+        "The share price rises 3% a year from the dividend policy",
         "Dividends account for 3% of after-tax profit",
         "Buy 100 units of stock and receive 3 units of dividend each year",
         "The company distributes 3% of outstanding shares as a dividend"
@@ -46,7 +46,7 @@
     {
       "question": "Why is a company's dividend policy usually far 'stickier' (changing less) than its actual profit, which can swing wildly quarter to quarter?",
       "options": [
-        "Because accounting profit fluctuates but cash flow doesn't change",
+        "Because accounting profit fluctuates while cash flow stays constant",
         "Because regulations require holding dividends flat for three years",
         "Because dividends are calculated on paid-in capital, not on profit",
         "Because the market reads a dividend cut as a bad long-term signal"

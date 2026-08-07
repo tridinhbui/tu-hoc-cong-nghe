@@ -48,8 +48,8 @@
       "options": [
         "Because retail is allowed to exclude inventory from the calculation",
         "Retail collects cash immediately so it still has enough to pay its debts",
-        "A Current Ratio below 1.0 is always dangerous, with no exceptions at all",
-        "Only banks are permitted to have a Current Ratio below 1.0 by regulation"
+        "A Current Ratio below 1.0 is always dangerous, no exceptions",
+        "Only banks may have a Current Ratio below 1.0 by regulation"
       ],
       "explanation": "You need to view the Current Ratio in the context of each industry's cash cycle: retailers/supermarkets have a very short (even negative) Cash Conversion Cycle, so they can operate safely with a much lower Current Ratio than the usual 1.5-2.0 'safe' threshold that applies to manufacturing."
     },

@@ -34,7 +34,7 @@
       "question": "Why do hedge funds often require investors to commit to a lock-up period, rather than allowing free withdrawal at any time?",
       "options": [
         "So the fund has time to collect its full committed management fee",
-        "So investors cannot withdraw money while the fund is sitting deep in an unrealized loss",
+        "So investors can't withdraw while the fund sits on a deep unrealized loss",
         "Because regulation requires every private fund to have a lock-up",
         "To avoid being forced to sell illiquid assets at a fire-sale price when redemptions hit"
       ],

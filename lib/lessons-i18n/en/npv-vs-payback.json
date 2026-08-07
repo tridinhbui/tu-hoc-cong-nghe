@@ -62,7 +62,7 @@
       "options": [
         "It favors projects with cash flow that increases toward the final years",
         "It ends up choosing too many high-risk projects with very long lifespans",
-        "It overvalues projects requiring a large initial capital outlay",
+        "It overvalues projects that need a large initial capital outlay upfront",
         "It misses out on long-term projects that create much more value"
       ],
       "explanation": "This criterion is biased toward short, fast-payback projects. Applied over time, a business gradually ends up with only small, safe investments, while competitors using NPV take on the slower, larger projects."

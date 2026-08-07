@@ -48,7 +48,7 @@
         "1.8x (= (3,000 − 1,200) ÷ 1,000, subtracting before dividing)",
         "0.4x (= 1,200 ÷ 3,000, numerator and denominator reversed)",
         "2.5x (= 3,000 ÷ 1,200, revenue over assets)",
-        "3.0x (= 3,000 ÷ 1,000, assets rounded down)"
+        "3.0x (= 3,000 ÷ 1,000, mistakenly rounding assets down to 1,000)"
       ],
       "explanation": "Asset Turnover = Revenue / Total Assets = 3,000/1,200 = 2.5x. Every dong of assets is generating 2.5 dong of revenue - a typical level for retail, and very high for a heavy manufacturer."
     },

@@ -1,0 +1,160 @@
+{
+  "slug": "audit-tai-chinh-ca-nhan",
+  "title": "Track 1, Lesson 2: A personal financial audit - where do you actually stand?",
+  "subtitle": "Before learning to invest or save, you need to know exactly what your numbers are today.",
+  "duration": "6 min",
+  "whyItMatters": "All financial advice is meaningless if you don't know your starting point. This lesson gets you to the single most important number - net worth - in 10 minutes, so every later decision (how much to save, which debt to clear first) rests on real figures rather than a feeling.",
+  "openingQuestion": "You have 50 million in savings but owe 80 million on a credit card. Are you getting richer or poorer?",
+  "openingOptions": [
+    "Richer, because you have 50 million in hand",
+    "Poorer, because net worth is minus 30 million (50m of assets − 80m of debt)",
+    "Neither, because the savings and the debt cancel each other out",
+    "Impossible to say without looking at monthly income"
+  ],
+  "explanation": "Net worth = total assets − total liabilities. Looking at the savings balance alone and forgetting the debt is the most common mistake there is. Here: 50 million of assets − 80 million of debt = −30 million. You are getting poorer every month until that debt is dealt with, however healthy the savings account looks.",
+  "diagram": [
+    {
+      "label": "Total assets you hold",
+      "arrow": true
+    },
+    {
+      "label": "Minus total debt you owe",
+      "arrow": true
+    },
+    {
+      "label": "= Net worth (which can be negative)"
+    }
+  ],
+  "realWorldExample": {
+    "company": "An individual",
+    "description": "Many people feel \"fine\" because they have a savings account, while forgetting to add up credit card debt, instalments on a bike or phone, or money borrowed from relatives. A full audit usually reveals a picture quite different from the impression."
+  },
+  "quiz": [
+    {
+      "question": "What is the formula for net worth?",
+      "options": [
+        "Gross salary less the personal income tax deducted",
+        "Monthly income − monthly spending",
+        "Savings plus whatever is currently invested",
+        "Total assets less total liabilities owed"
+      ],
+      "explanation": "Net worth = assets − liabilities. It is a far more accurate measure of financial health than income or the balance of a single account."
+    },
+    {
+      "question": "Why list 'soft' debts, such as money borrowed from family or a phone on instalments, in the audit?",
+      "options": [
+        "Because they are real obligations - leaving them out overstates net worth and leads to wrong decisions",
+        "Because commercial banks require every debt to be declared in full before they will consider a further loan",
+        "Because money borrowed from family members within a household is always worth far more than a bank loan",
+        "There is no need to list them, because only formal bank borrowing counts towards net worth under the rules"
+      ],
+      "explanation": "Debt is debt, whether it came from a bank or a relative, on instalments or by hand. Omitting any of it inflates the picture - the single most common error people make assessing their own finances."
+    },
+    {
+      "question": "You have 200 million in savings, an apartment worth 2 billion (fully paid), 15 million of credit card debt, and 20 million still owed on a motorbike. What is your net worth?",
+      "options": [
+        "2.185 billion (subtracting only the credit card, not the bike)",
+        "2.165 billion (2.2 billion of assets − 35 million of debt)",
+        "185 million (counting only cash less debt)",
+        "2.2 billion (ignoring the debt entirely)"
+      ],
+      "explanation": "Total assets = 200m + 2,000m = 2,200 million. Total debt = 15m + 20m = 35 million. Net worth = 2,200 − 35 = 2,165 million. Every asset has to be added and every debt subtracted, with no small item left out."
+    },
+    {
+      "question": "You have 300 million in savings, 120 million of credit card debt and an 80 million car loan. What is your net worth?",
+      "options": [
+        "180 million (= 300 − 120, forgetting the car loan)",
+        "300 million (adding assets only, ignoring all debt)",
+        "100 million (= 300 − 120 − 80, subtracting both debts)",
+        "220 million (= 300 − 80, forgetting the credit card)"
+      ],
+      "explanation": "Net worth = total assets − total debt, so both debts come off: 300 − 120 − 80 = 100 million. Looking at 300 million of savings feels very different from the real figure, and that is exactly why you audit rather than estimate."
+    },
+    {
+      "question": "Why can two people who both have 50 million in savings be far apart on net worth?",
+      "options": [
+        "Because monthly income is the true measure of net worth",
+        "Because every bank applies a different rate to savings",
+        "Because savings have to be adjusted for inflation before comparing",
+        "Because net worth depends on debt too, not on savings alone"
+      ],
+      "explanation": "Savings are just one line on the asset side. Someone with 50 million saved and 200 million of debt is 150 million in the red, while someone with 50 million saved and no debt is 50 million in the black - the same savings figure, 200 million apart."
+    }
+  ],
+  "keyTakeaways": [
+    "Net worth = total assets − total debt; both sides must be listed IN FULL, including 'soft' debt (credit cards, family loans, instalments)",
+    "Having savings does not mean getting richer if debt is growing faster",
+    "The audit is the mandatory first step - without it, every later financial plan lacks a foundation"
+  ],
+  "practicePrompt": {
+    "question": "You have 200 million in savings and a fully paid apartment worth 2 billion, but forgot to count 8 million still owed on a phone because it felt 'too small to matter'. What does that omission do to your financial picture?",
+    "options": [
+      "Your net worth is overstated by 8 million, because the instalment is a real obligation however small it is",
+      "It has no effect at all, because debts of under 10 million do not need to be included in the net worth calculation",
+      "Your net worth is understated, because leaving out a debt always makes the resulting calculation look more pessimistic",
+      "It only affects your personal credit score, and has nothing whatsoever to do with how net worth is calculated"
+    ],
+    "explanation": "Net worth = total assets − total debt - leaving out an 8 million debt understates total debt, and so shows a net worth 8 million higher than it really is."
+  },
+  "summary": {
+    "keyIdea": "Net worth = total assets − total debt; both sides must be listed IN FULL, including 'soft' debt (credit cards, family loans, instalments)",
+    "commonMistake": "Reading the idea as a phrase to remember rather than a principle to apply to real decisions.",
+    "action": "Having savings does not mean getting richer if debt is growing faster"
+  },
+  "application": {
+    "title": "Work it out now",
+    "message": "List all your assets (cash, savings, investments) and all your debts (credit cards, loans, instalments) right now, then subtract the debt from the assets.",
+    "secondary": "If the number is negative, don't panic - it is simply the starting point to improve from."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Before learning any investing or saving technique, you need to answer something more basic: where do you stand today? The answer is not the balance of your savings account but a single number - net worth. It is an honest snapshot of your financial health at a point in time."
+    },
+    {
+      "type": "heading",
+      "text": "A simple formula that is often skipped"
+    },
+    {
+      "type": "paragraph",
+      "text": "Net worth = total assets − total liabilities. Total assets include cash, savings, investments, property, vehicles - anything with a value convertible into money. Total liabilities include every financial obligation: bank loans, credit card debt, instalment plans, and money borrowed from relatives. The most common mistake is looking only at the asset side and forgetting to add up the debt - feeling \"fine\" because a savings account exists, while credit card debt and instalments quietly erode the real number."
+    },
+    {
+      "type": "heading",
+      "text": "An example showing the gap between the feeling and the number"
+    },
+    {
+      "type": "paragraph",
+      "text": "Suppose you have 50 million in savings - looking at it, you feel reasonably secure. But once you add the credit card balance, the motorbike instalments and the phone on finance, total debt comes to 80 million. Real net worth is 50 million − 80 million = −30 million. You are getting poorer every month, even though the savings account still shows a positive number that keeps you relaxed."
+    },
+    {
+      "type": "heading",
+      "text": "Why 'soft' debt has to be listed too"
+    },
+    {
+      "type": "paragraph",
+      "text": "Many people count only formal bank debt and skip money borrowed from relatives or a phone on instalments, because those feel \"not serious\". But they are real financial obligations - omitting any of them shows a net worth higher than reality, which leads to wrong decisions (thinking you have enough to invest when you are actually in the red)."
+    },
+    {
+      "type": "list",
+      "items": [
+        "List every asset: cash, savings, investments, property, vehicles, anything else of value",
+        "List every debt: bank loans, credit cards, instalment plans, money owed to family or friends",
+        "Leave nothing small out - a 5 million debt is still a debt and has to be subtracted",
+        "Repeat the calculation periodically (every 3-6 months) to watch the trend, rather than doing it once and forgetting"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "A full example",
+      "text": "200 million of savings + a 2 billion apartment (fully paid) = 2,200 million of total assets. Credit card debt of 15 million + motorbike instalments of 20 million = 35 million of total debt. Net worth = 2,200 − 35 = 2,165 million."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The audit is not there to make you feel bad about yourself, but to give you an honest starting point.",
+        "Without this step, every financial plan that follows is built on sand."
+      ]
+    }
+  ]
+}

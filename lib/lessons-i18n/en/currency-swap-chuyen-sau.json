@@ -25,7 +25,7 @@
       "options": [
         "A currency swap only applies to businesses with foreign capital",
         "A currency swap usually really exchanges the principal at the start and end",
-        "A currency swap's maximum term is always shorter than an Interest Rate Swap",
+        "A currency swap's term is always shorter than an Interest Rate Swap",
         "A currency swap doesn't calculate interest, only swaps the conversion rate"
       ],
       "explanation": "Because the two parties use two different currencies, a currency swap usually really does exchange the notional principal at the start of the period (at the spot rate) and exchange it back at the end of the period (at a pre-agreed or the original rate) - unlike an Interest Rate Swap, where the notional is in one currency so it doesn't need to change hands."

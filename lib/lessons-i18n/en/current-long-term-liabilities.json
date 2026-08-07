@@ -116,8 +116,8 @@
     {
       "question": "A company has Total Liabilities of 6000, Equity of 3000. D/E ratio = ?",
       "options": [
-        "0.5 (= 3,000 / 6,000)",
-        "3.0 (= 9,000 / 3,000)",
+        "0.5 (= 3,000 / 6,000, numerator and denominator swapped)",
+        "3.0 (= 9,000 / 3,000, adding equity into liabilities)",
         "2.0 (= 6,000 / 3,000)",
         "Cannot be calculated without total assets"
       ],

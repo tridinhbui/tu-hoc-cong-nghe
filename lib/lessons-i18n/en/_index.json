@@ -23,6 +23,11 @@
     "subtitle": "How much revenue does each dong of assets generate?",
     "duration": "5 min"
   },
+  "audit-tai-chinh-ca-nhan": {
+    "title": "Track 1, Lesson 2: A personal financial audit - where do you actually stand?",
+    "subtitle": "Before learning to invest or save, you need to know exactly what your numbers are today.",
+    "duration": "6 min"
+  },
   "bai-cuoi-phan-tich-doanh-nghiep-hoan-chinh": {
     "title": "Final lesson - Analyze a complete company from A to Z yourself",
     "subtitle": "Applying all 200 days to a real analysis workflow"
@@ -1206,6 +1211,11 @@
   "tong-on-cong-cu-phai-sinh": {
     "title": "Derivatives review",
     "subtitle": "Connecting Forwards, Futures, Options and Swaps into one picture"
+  },
+  "tra-no-thong-minh-snowball-avalanche": {
+    "title": "Track 1, Lesson 6: Paying off debt sensibly - Snowball vs Avalanche",
+    "subtitle": "Two different repayment strategies - one optimises the money, the other the motivation. Pick the one that fits the person you actually are.",
+    "duration": "6 min"
   },
   "tracking-error-la-gi": {
     "title": "What is tracking error?",

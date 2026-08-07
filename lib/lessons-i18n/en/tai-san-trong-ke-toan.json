@@ -49,7 +49,7 @@
         "Because inventory is recognised at market value rather than at cost",
         "Because inventory value is usually smaller than a company's fixed assets",
         "Because the business expects to sell it all within a year or one operating cycle",
-        "Because inventory isn't subject to depreciation the way machinery and plants are"
+        "Because inventory isn't depreciated the way machinery and plants are"
       ],
       "explanation": "Current assets are whatever can be converted to cash within 12 months. In retail, inventory turns over fast (high turnover), so it's a current asset."
     },

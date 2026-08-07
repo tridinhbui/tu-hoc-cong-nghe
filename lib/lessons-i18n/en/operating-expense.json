@@ -97,7 +97,7 @@
       "question": "Company A: Revenue 1000, COGS 400, SG&A 300, R&D 100. Operating Income = ?",
       "options": [
         "600 (= 1,000 - 400, subtracting only COGS)",
-        "500 (= 1,000 - 300 - 100 - 100)",
+        "500 (= 1,000 - 300 - 100 - 100, dropping COGS entirely)",
         "200 (= 1,000 - 400 - 300 - 100)",
         "300 (= 1,000 - 400 - 300, dropping R&D by treating it as an investment)"
       ],

@@ -58,7 +58,7 @@
       "options": [
         "The bank lending rate plus the corporate tax rate",
         "The risk-free opportunity cost plus a risk premium",
-        "The inflation rate plus the business's growth rate",
+        "The inflation rate plus the firm's growth rate",
         "The cost of equity minus the tax shield from debt"
       ],
       "explanation": "The base is the return achievable while bearing almost no risk; the additional part is the price of uncertainty. The harder a cash flow is to predict, the larger the premium, and the smaller the present value."
@@ -78,7 +78,7 @@
       "options": [
         "Because projects have completely different payback periods",
         "Because WACC changes every quarter with market fluctuations",
-        "Because a larger project needs a higher discount rate than a small one",
+        "Because bigger projects need a higher discount rate than small ones",
         "Because each project carries its own level of risk, not an average one"
       ],
       "explanation": "Using a company-wide WACC for everything unfairly penalizes safe projects and favors risky ones - over the years, the company ends up funneling capital into exactly the projects it should have rejected."

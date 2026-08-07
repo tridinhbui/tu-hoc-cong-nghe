@@ -46,7 +46,7 @@
     {
       "question": "A P/E valuation gives 60,000 VND while DCF gives 40,000 VND. What should the next step be?",
       "options": [
-        "Choose the lower result to be safe when investing",
+        "Choose the lower result to be safe, since it limits the downside",
         "Take the average of the two numbers as the final result",
         "Investigate which assumption is creating that gap",
         "Drop the DCF method because it depends too heavily on assumptions"

@@ -38,7 +38,7 @@
       "options": [
         "Current Assets − Current Liabilities",
         "Total Assets − Total Liabilities",
-        "Current Assets ÷ Current Liabilities",
+        "Current Assets ÷ Liabilities",
         "Cash + Inventory"
       ],
       "explanation": "WC = CA - CL. It measures the ability to pay off current liabilities."

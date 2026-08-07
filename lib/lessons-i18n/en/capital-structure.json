@@ -54,7 +54,7 @@
       "options": [
         "D/E = 3.0 and debt accounts for 75% of total capital",
         "D/E = 0.33 and debt accounts for 25% of total capital",
-        "D/E = 3.0 and debt accounts for 30% of total capital",
+        "D/E = 3.0 but debt is only 30% of total capital, mixing the two ratios",
         "D/E = 0.75 and debt accounts for 75% of total capital"
       ],
       "explanation": "D/E = 1,500/500 = 3.0. Debt proportion = 1,500/2,000 = 75%. These two metrics are often confused: one is divided by equity, the other by total capital, and they give very different numbers."

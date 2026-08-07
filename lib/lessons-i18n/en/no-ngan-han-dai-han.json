@@ -45,7 +45,7 @@
         "Current 100 billion, long-term 900 billion",
         "The full 1,000 billion recorded as a long-term liability",
         "The full 1,000 billion recorded as a current liability",
-        "Current 900 billion, long-term 100 billion"
+        "Current 900 billion, long-term 100 billion (portions swapped)"
       ],
       "explanation": "The portion due <12 months = reclassified as current to reflect the true payment pressure."
     },

@@ -69,7 +69,7 @@
         "Because its purchasing power falls steadily with nothing to offset it",
         "Because a bank can freeze an account when inflation is high",
         "Because cash is taxed at a rate matching annual inflation",
-        "Because exchange rates always fluctuate sharply during high inflation"
+        "Because exchange rates fluctuate sharply during high inflation"
       ],
       "explanation": "Cash doesn't lose nominal value, but it loses real value every day. Inflation of 7% a year erodes nearly half of purchasing power after ten years - being safe on the statement doesn't mean being safe in value."
     }

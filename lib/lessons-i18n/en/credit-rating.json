@@ -69,7 +69,7 @@
         "Because the issuer pays the very agency that rates it",
         "Because rating agencies weren't allowed access to financial statements",
         "Because rating scales differ between countries, making comparison hard",
-        "Because ratings are only updated once per fiscal year"
+        "Because ratings are only updated once per fiscal year, so they lag"
       ],
       "explanation": "The issuer-pays model creates a conflict of interest: rating agencies compete for contracts from the very entities they're assessing. Many AAA-rated securitised products defaulted within months."
     }

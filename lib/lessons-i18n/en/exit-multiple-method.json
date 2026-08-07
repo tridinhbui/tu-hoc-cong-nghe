@@ -55,7 +55,7 @@
     {
       "question": "What is the weakness of the Exit Multiple Method?",
       "options": [
-        "It requires forecasting detailed cash flow all the way to infinity",
+        "It requires forecasting cash flow all the way to infinity",
         "It assumes today's market multiple still holds true years from now",
         "It cannot be used for a business with positive EBITDA",
         "It always gives a lower result than the Gordon Growth Method"

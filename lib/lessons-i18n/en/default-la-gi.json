@@ -28,7 +28,7 @@
         "How fast a company restores its profit after restructuring debt",
         "The percentage of original principal a bondholder recovers after liquidation",
         "The share of companies in an industry that exit default status each year",
-        "The new interest rate applied to the debt after renegotiating with creditors"
+        "The new rate applied to the debt after renegotiating with creditors"
       ],
       "explanation": "Recovery rate = the amount a bondholder actually receives / original face value. Secured bonds usually have a higher recovery rate (60-80%) than unsecured bonds (20-40%)."
     },

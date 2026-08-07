@@ -33,7 +33,7 @@
       "options": [
         "The buyer pays a fixed fee for protection, with the maximum loss capped at that fee",
         "Because insurance companies themselves are the issuers of options",
-        "Because an option always turns a profit, making it a safe instrument like insurance",
+        "Because an option always turns a profit, so it's safe like insurance",
         "An option has nothing to do with insurance, it's purely a speculative tool"
       ],
       "explanation": "Like an insurance policy: you pay a premium (fee) for the right to be protected if an unfavorable event occurs. If that event doesn't happen, you only lose the premium."

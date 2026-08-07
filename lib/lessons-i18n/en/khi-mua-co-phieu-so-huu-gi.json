@@ -76,7 +76,7 @@
         "The share count stays the same but the ownership ratio doubles",
         "The share count doubles and so does the total value held",
         "The share count doubles, the price halves, value stays the same",
-        "The share count doubles and the company must raise more capital"
+        "The share count doubles and the company raises more capital"
       ],
       "explanation": "Cutting a cake into more slices doesn't make the cake bigger. A split mainly makes the price per share more accessible to small investors - it creates no value at all."
     }

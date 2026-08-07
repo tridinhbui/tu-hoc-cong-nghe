@@ -39,7 +39,7 @@
         "The valuation rises, because a higher cost of capital comes with a higher return",
         "The valuation falls, because every cash flow is discounted more heavily",
         "The valuation doesn't change, because the projected cash flow stays the same",
-        "Only Terminal Value changes, the detailed forecast period is unaffected"
+        "Only Terminal Value changes, while the detailed forecast period stays unaffected"
       ],
       "explanation": "A higher WACC → higher discount rate → lower PV for every unit of future FCF → lower total DCF valuation. This is why stocks (especially growth stocks) are sensitive to interest rates."
     },

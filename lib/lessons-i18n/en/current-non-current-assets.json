@@ -109,7 +109,7 @@
         "To assess liquidity: Current will soon become cash, Non-current is used long-term",
         "Because accounting standards require it, with no other analytical meaning",
         "Because only Current Assets count toward a company's total assets",
-        "Because Non-current Assets aren't depreciated, so they need separate presentation"
+        "Because Non-current Assets aren't depreciated, so they need separate lines"
       ],
       "explanation": "Current Assets are the short-term liquidity buffer. Non-current is the real long-term capital that generates future cash flow."
     },

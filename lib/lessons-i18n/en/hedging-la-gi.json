@@ -45,7 +45,7 @@
       "options": [
         "The real cost is 70 USD, the average of the two prices",
         "The real cost is 60 USD because they buy at market price",
-        "The real cost is 100 USD because the contract's loss is added on top",
+        "The real cost is 100 USD, the contract's loss added on top",
         "The real cost is still exactly 80 USD, exactly as the hedge intended"
       ],
       "explanation": "The physical purchase costs 60, the contract loses 20, the total is still 80 - exactly the locked-in level. But the report only clearly shows the 20 loss, while the certainty gained doesn't appear on any line."

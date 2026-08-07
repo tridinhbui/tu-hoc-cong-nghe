@@ -57,8 +57,8 @@
       "options": [
         "Because DCF is calculated from that company's own cash flow",
         "Because DCF always produces a more accurate result than Comps",
-        "Because DCF requires no assumptions at all about the future",
-        "Because Comps can only be used for companies already listed"
+        "Because DCF requires no assumptions whatsoever about the future",
+        "Because Comps can only be used for companies already publicly listed"
       ],
       "explanation": "DCF doesn't ask what the market is currently paying for someone else. It builds value from the cash flow the business itself will generate - so it can still give an answer even when the whole industry is being mispriced."
     },

@@ -59,7 +59,7 @@
         "When the debt-to-equity ratio exceeds 1.0x",
         "When revenue grows faster than fixed costs",
         "When ROIC is higher than the after-tax cost of debt",
-        "When the market interest rate falls below inflation"
+        "When market rates fall below inflation"
       ],
       "explanation": "Borrowing at 6% to generate a 12% return on invested capital means the 6% spread belongs to shareholders, and more borrowing amplifies it further. Reversed, a negative spread amplifies exactly the same way."
     },

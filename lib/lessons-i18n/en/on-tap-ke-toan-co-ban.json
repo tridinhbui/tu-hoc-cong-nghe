@@ -37,9 +37,9 @@
       "question": "The three statements connect:",
       "options": [
         "Income statement → Balance sheet → Cash flow statement",
-        "Cash flow statement → Income statement → Balance sheet",
+        "Cash flow statement → Income statement → Balance sheet (wrong order)",
         "The three statements are entirely independent of each other",
-        "Balance sheet → Cash flow statement → Income statement"
+        "Balance sheet → Cash flow statement → Income statement (wrong order)"
       ],
       "explanation": "The three statements are different facets of the same business."
     },
@@ -66,7 +66,7 @@
     {
       "question": "Having found a problem, you should:",
       "options": [
-        "Sell that company's shares immediately",
+        "Sell that company's shares immediately, no further checking",
         "Compare against other companies then conclude",
         "Ignore it since the statements were already audited",
         "Read the notes to understand the cause"

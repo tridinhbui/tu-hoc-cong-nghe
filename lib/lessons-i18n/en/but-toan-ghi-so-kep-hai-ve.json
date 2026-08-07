@@ -46,9 +46,9 @@
     {
       "question": "Why does buying an asset not create an expense straight away?",
       "options": [
-        "Because fixed assets are tracked separately, outside the ledger system",
+        "Because fixed assets sit outside the ledger system",
         "Because the standards permit the expense to be deferred",
-        "Because an expense arises only when the business disposes of the asset",
+        "Because an expense only arises on disposal",
         "Because no wealth is consumed - it has changed from cash into an asset"
       ],
       "explanation": "An expense is wealth that has gone. The machine is still there, so nothing has gone yet; it is consumed gradually through depreciation, and each period's depreciation is the expense."
