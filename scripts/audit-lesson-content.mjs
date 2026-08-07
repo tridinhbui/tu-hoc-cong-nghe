@@ -571,11 +571,18 @@ const MAX_PRACTICE_BIAS_Z = 3;
  *  Nhưng nó là tương tác đầu tiên của người học với mỗi bài, và ở mức này nó
  *  dạy đúng một điều trước khi họ kịp đọc gì: đoán theo độ dài là ăn.
  *
- *  Ngưỡng đặt ở 37 vì kho đang ở 36,64 - cùng cách `MAX_PRACTICE_BIAS_Z` từng
+ *  CHIỀU CÒN LẠI CŨNG ĐANG LỆCH, VÀ LỆCH SẴN TỪ ĐẦU: chỉ 52 trên 715 câu có
+ *  đáp án đúng là phương án NGẮN nhất, so với kỳ vọng 191 - z = −11,94. Nên
+ *  không thể chữa bằng cách đẩy tất cả về giữa nhóm: làm thế thì chiều "dài"
+ *  về đúng mức nhưng chiều "ngắn" vẫn nguyên. Trong các đợt còn lại, khoảng
+ *  bốn phần mười số câu phải viết THÀNH ngắn nhất, sáu phần mười vào giữa.
+ *
+ *  Ngưỡng hạ dần theo từng đợt viết lại: 37 → 28,1 (sau đợt 1). Cùng cách
+ *  `MAX_PRACTICE_BIAS_Z` từng
  *  được đặt ở 9,2. Đây là mức kho đang HỎNG, ghi vào để con số hiện ra trong
  *  CI và bị hạ dần sau mỗi đợt viết lại, không phải để chấp nhận. 610 câu là
  *  đợt việc riêng, lớn hơn toàn bộ những gì đã làm cho practicePrompt. */
-const MAX_OPENING_BIAS_Z = 37;
+const MAX_OPENING_BIAS_Z = 28.1;
 const openingStats = {
   questions: 0,
   longest: 0,

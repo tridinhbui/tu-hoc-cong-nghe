@@ -472,7 +472,7 @@ export const FRM_CREDIT_CURRENT_LESSONS: Lesson[] = [
     openingQuestion: "\"Ngân hàng ngầm\" (shadow banking) đề cập tới điều gì?",
     openingOptions: [
       "Các hoạt động ngân hàng bất hợp pháp, trốn thuế hoặc rửa tiền có tổ chức",
-      "Các tổ chức tài chính phi ngân hàng (quỹ đầu tư, quỹ thị trường tiền tệ, nền tảng cho vay) thực hiện các chức năng giống ngân hàng - trung gian tín dụng, chuyển đổi kỳ hạn - nhưng không chịu khung giám sát và mạng lưới an toàn như ngân hàng chính thức",
+      "Tổ chức phi ngân hàng làm chức năng giống ngân hàng nhưng ngoài khung giám sát",
       "Chỉ các ngân hàng nước ngoài hoạt động không có giấy phép tại một quốc gia",
       "Một thuật ngữ lỗi thời không còn được các cơ quan quản lý tài chính quốc tế sử dụng",
     ],
@@ -640,7 +640,7 @@ export const FRM_CREDIT_CURRENT_LESSONS: Lesson[] = [
     openingQuestion: "\"Too-interconnected-to-fail\" khác gì với \"too-big-to-fail\"?",
     openingOptions: [
       "Hai khái niệm hoàn toàn giống nhau, chỉ là hai cách diễn đạt khác nhau của cùng một ý",
-      "Too-big-to-fail dựa trên quy mô tài sản của một tổ chức; too-interconnected-to-fail dựa trên mức độ tổ chức đó liên kết với các tổ chức khác trong hệ thống (qua phái sinh, cho vay liên ngân hàng, thanh toán), nên một tổ chức tương đối nhỏ vẫn có thể gây rủi ro hệ thống lớn nếu liên kết đủ dày đặc",
+      "Too-big dựa trên quy mô tài sản; còn too-interconnected dựa trên mức độ liên kết hệ thống",
       "Too-interconnected-to-fail chỉ áp dụng cho các công ty công nghệ, không áp dụng cho tổ chức tài chính",
       "Too-big-to-fail là khái niệm mới hơn, thay thế hoàn toàn cho too-interconnected-to-fail sau 2008",
     ],
