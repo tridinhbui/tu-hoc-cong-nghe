@@ -35,7 +35,7 @@
     {
       "question": "Why do Private Equity funds doing LBOs especially favor companies with stable, predictable cash flow (like essential consumer goods) over high-growth but uncertain companies (like early-stage tech)?",
       "options": [
-        "Because the consumer sector faces less regulatory intervention",
+        "Because the consumer sector faces much less regulatory intervention than banking",
         "Because high-growth companies are usually too expensive to buy",
         "Because the debt must be repaid on schedule no matter how the business performs",
         "Because stable cash flow helps the business be resold faster"
@@ -65,7 +65,7 @@
     {
       "question": "What is the biggest risk of an LBO structure?",
       "options": [
-        "The old leadership refuses to stay after the deal closes",
+        "The old leadership refuses to stay on after the deal officially closes",
         "Cash flow falls short of forecast while interest still must be paid",
         "The PE fund can't find a buyer after exactly five years",
         "Regulators require cutting the debt ratio below 50%"

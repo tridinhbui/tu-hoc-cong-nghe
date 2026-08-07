@@ -25,7 +25,7 @@
     {
       "question": "Should you prioritize cutting burn rate or growing revenue when runway is short?",
       "options": [
-        "Cutting burn rate is always better because saving is the surest option",
+        "Cutting burn rate is always the better option because saving cash is the surest path",
         "Growing revenue is always better because revenue solves every problem",
         "It doesn't matter, as long as you raise the next round on time",
         "It depends: if revenue growth is clearly strong, push revenue - if not, cut burn"
@@ -38,7 +38,7 @@
         "High interest rates lower growth-company valuations and tighten the VC funding tap",
         "Interest rates don't affect startups at all since they don't take bank loans",
         "Runway has nothing to do with the economy's interest rate environment",
-        "High interest rates always benefit startups because their cash deposits earn more"
+        "High interest rates always benefit startups because their cash deposits earn more interest"
       ],
       "explanation": "This is an indirect but powerful transmission channel: high interest rates lower growth valuations and tighten global venture capital funding - a short-runway startup may not raise its next round in time."
     },
@@ -65,7 +65,7 @@
     {
       "question": "How does a sharp rise in interest rates affect a startup without profits yet?",
       "options": [
-        "Valuation rises because investors seek out high-growth assets",
+        "Valuation rises because investors go looking for high-growth assets to buy",
         "Interest expense rises, pushing burn rate up correspondingly",
         "Revenue falls because customers cut spending right away",
         "Capital becomes harder to raise, so runway becomes a matter of survival"
