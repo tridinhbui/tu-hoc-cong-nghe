@@ -108,6 +108,19 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       "explanation": "Danh tiếng hiếm khi tự hỏng - nó hỏng vì một sự kiện thuộc nhóm khác đã xảy ra: gian lận, sự cố hệ thống, hay xử lý khủng hoảng kém. Vì thế nó được theo dõi như một kênh khuếch đại, và biện pháp phòng ngừa nằm ở chính các loại rủi ro sinh ra nó."
     }
     ],
+    practicePrompt: {
+      question:
+        "Một giao dịch viên nhập sai khối lượng lệnh, ngân hàng phải bán tháo vị thế trong phiên và lỗ 80 tỷ. Khoản lỗ này được xếp vào loại rủi ro nào?",
+      options: [
+        "Rủi ro hoạt động, vì nguyên nhân gốc là lỗi thực thi lệnh",
+        "Rủi ro thị trường, vì lỗ hiện ra qua biến động giá",
+        "Rủi ro thanh khoản, vì phải bán tháo mới thành lỗ",
+        "Chia đều ba loại, vì cả ba đều góp phần vào khoản lỗ",
+      ],
+      correct: 0,
+      explanation:
+        "Khoản lỗ ĐI QUA giá thị trường và bị khuếch đại bởi thanh khoản mỏng, nhưng nguyên nhân gốc là một thao tác sai - không có cú nhập lệnh đó thì không có gì để bán tháo. Phân loại theo kênh mà khoản lỗ hiện ra sẽ đẩy nó vào rủi ro thị trường, và hệ quả là tổ chức đi hiệu chỉnh mô hình VaR trong khi thứ cần sửa là kiểm soát nhập lệnh. Chia đều cho ba loại nghe công bằng nhưng phá đúng mục đích của việc phân loại: nó là bước chọn công cụ đo và chọn nơi khắc phục, nên một khoản lỗ chia ba là ba lần nửa vời.",
+    },
     keyTakeaways: [
       "Phân loại theo nguyên nhân gốc, không theo kênh mà khoản lỗ hiện ra",
       "Rủi ro thanh khoản thường là hệ quả và bộ khuếch đại của loại rủi ro khác",
@@ -272,6 +285,19 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       "explanation": "Một hạn mức đặt khi vốn tự có bằng một nửa hiện nay là một ràng buộc quá chặt; đặt khi thị trường còn thanh khoản tốt thì lại quá lỏng trong điều kiện hiện tại. Hạn mức không được rà soát dần trở nên hoặc vô nghĩa hoặc bị lách."
     }
     ],
+    practicePrompt: {
+      question:
+        "Ngân hàng có vốn tự có 20.000 tỷ, và mức lỗ tối đa chịu được trước khi vi phạm tỷ lệ vốn tối thiểu là 6.000 tỷ. Ban điều hành tuyên bố khẩu vị rủi ro 7.000 tỷ. Vấn đề nằm ở đâu?",
+      options: [
+        "Khẩu vị vượt năng lực, nên nó không thực thi được",
+        "Không có vấn đề, vì khẩu vị do ban điều hành quyết định",
+        "Khẩu vị quá thận trọng so với vốn tự có 20.000 tỷ",
+        "Thiếu ngưỡng cảnh báo đặt dưới mức 7.000 tỷ tuyên bố",
+      ],
+      correct: 0,
+      explanation:
+        "Năng lực chịu rủi ro là ngưỡng vật lý - vượt qua nó thì tổ chức vi phạm quy định về vốn, bất kể ai đã quyết định gì. Khẩu vị là mức CHỌN nhận, và nó phải nằm dưới năng lực, thường là dưới hẳn để còn khoảng đệm. Đặt khẩu vị 7.000 tỷ trên năng lực 6.000 tỷ nghĩa là hệ thống hạn mức phân rã từ nó sẽ cho phép những vị thế mà tổ chức không được phép chịu, và mọi hạn mức phía dưới đều thừa hưởng lỗi đó. Con số 20.000 tỷ vốn tự có không phải năng lực chịu lỗ: phần lớn nó đang chống đỡ tài sản có rủi ro hiện hữu.",
+    },
     keyTakeaways: [
       "Năng lực chịu rủi ro là ngưỡng vật lý, khẩu vị là mức chủ động chọn và luôn nằm dưới năng lực",
       "Tuyên bố khẩu vị chỉ có hiệu lực khi phân rã thành hạn mức đo được ở từng cấp",
@@ -429,6 +455,19 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       "explanation": "Đây là hệ quả trực tiếp của thống kê chứ không phải đặc thù tài chính: sai số chuẩn giảm theo căn bậc hai của số quan sát. Với mức biến động thường thấy của thị trường cổ phiếu, phân biệt một mức vượt trội vài phần trăm với nhiễu cần vài chục năm dữ liệu."
     }
     ],
+    practicePrompt: {
+      question:
+        "Quỹ có lợi suất 14%, độ lệch chuẩn 20%, beta 0,8. Lãi phi rủi ro 4%, chuẩn tham chiếu 11%. Nhà đầu tư đặt TOÀN BỘ tài sản vào quỹ này. Thước đo nào đúng, và bằng bao nhiêu?",
+      options: [
+        "Sharpe 0,50, vì rủi ro tổng mới là rủi ro của họ",
+        "Treynor 12,5, vì beta đo phần rủi ro được đền bù",
+        "Information Ratio 3%, vì đã có chuẩn tham chiếu",
+        "Jensen's alpha 4,4%, vì nó trừ phần beta giải thích",
+      ],
+      correct: 0,
+      explanation:
+        "Bốn thước đo cùng chia lợi suất vượt trội, chỉ khác nhau ở định nghĩa rủi ro dưới mẫu số, nên chọn thước đo là chọn định nghĩa rủi ro hợp với hoàn cảnh của nhà đầu tư. Ở đây quỹ là TOÀN BỘ tài sản của họ, nên phần rủi ro riêng lẻ không được đa dạng hoá đi đâu cả và rủi ro thật của họ là rủi ro tổng: Sharpe = (14 − 4)/20 = 0,50. Ba con số kia đều tính đúng - Treynor 10/0,8 = 12,5 và Jensen 14 − (4 + 0,8 × 7) = 4,4% - nhưng cả hai đo bằng beta, tức ngầm giả định phần rủi ro riêng lẻ đã biến mất, điều không đúng với người này.",
+    },
     keyTakeaways: [
       "Bốn thước đo cùng chia lợi suất vượt trội, khác nhau ở định nghĩa rủi ro trong mẫu số",
       "Sharpe dùng rủi ro tổng, hợp khi danh mục là toàn bộ tài sản của nhà đầu tư",
@@ -609,6 +648,19 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       "explanation": "Một danh mục ba mươi mã trông rất đa dạng vẫn có thể là một cược duy nhất vào nhân tố giá trị hoặc vào chu kỳ lãi suất. Phân rã theo nhân tố cho thấy điều đó, trong khi đếm số mã thì không."
     }
     ],
+    practicePrompt: {
+      question:
+        "Danh mục cổ phiếu có beta thị trường 0,9. Trong quý, thị trường tăng 5% nhưng danh mục giảm 3%. Mô hình đa nhân tố dùng để làm gì trong tình huống này?",
+      options: [
+        "Chỉ ra nhân tố nào đã kéo ngược lại phần beta",
+        "Dự báo lợi suất quý sau chính xác hơn CAPM đơn thuần",
+        "Chứng minh beta 0,9 đã ước lượng sai từ đầu",
+        "Thay danh mục thị trường bằng một danh mục quan sát được",
+      ],
+      correct: 0,
+      explanation:
+        "Với người làm quản trị rủi ro, giá trị của mô hình đa nhân tố là CHẨN ĐOÁN phơi nhiễm chứ không phải dự báo lợi suất. Beta 0,9 đáng lẽ cho khoảng +4,5%, nên khoảng cách 7,5 điểm phần trăm phải đến từ đâu đó: phơi nhiễm giá trị, quy mô, động lượng, hay một nhân tố ngành. Phân rã ra sẽ nói danh mục này thực sự đang đặt cược vào cái gì - thường là những cược mà không ai trong đội cố ý đặt. Còn phê phán Roll thì đúng nhưng lạc đề ở đây: nó nói kiểm định CAPM không dứt khoát được, không nói mô hình đa nhân tố sinh ra để thay danh mục thị trường.",
+    },
     keyTakeaways: [
       "CAPM: chỉ rủi ro hệ thống được đền bù, vì rủi ro riêng lẻ tự loại bỏ được",
       "APT cho phép nhiều nhân tố và không cần xác định danh mục thị trường, nhưng không chỉ ra nhân tố nào",
@@ -787,6 +839,19 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       "explanation": "Ngân hàng sụp đổ kéo theo người gửi tiền, đối tác và cả hệ thống thanh toán - chi phí không dừng ở cổ đông. Đó là lý do người làm quản trị rủi ro được đặt một nghĩa vụ rộng hơn nghĩa vụ với chủ sử dụng lao động của mình."
     }
     ],
+    practicePrompt: {
+      question:
+        "Bạn phát hiện mô hình VaR đang dùng bỏ sót một nhóm phơi nhiễm, khiến con số báo cáo thấp hơn thực tế. Trưởng bộ phận kinh doanh đề nghị hoãn báo tới sau kỳ chốt sổ. Xử lý đúng là gì?",
+      options: [
+        "Báo cáo ngay qua kênh nội bộ, không hoãn theo kỳ chốt sổ",
+        "Hoãn tới sau chốt sổ nếu phần bỏ sót dưới ngưỡng trọng yếu",
+        "Tự sửa mô hình rồi báo khi đã có con số mới đúng hơn",
+        "Chờ kiểm toán nội bộ phát hiện để giữ quan hệ với bộ phận kia",
+      ],
+      correct: 0,
+      explanation:
+        "Đề nghị hoãn tới sau kỳ chốt sổ chính là dạng áp lực kinh doanh mà nguyên tắc độc lập tồn tại để chống lại: thời điểm được chọn vì nó có lợi cho một con số báo cáo, không vì lý do kỹ thuật nào. Tự sửa lặng lẽ nghe có trách nhiệm hơn nhưng còn tệ hơn - nó xoá mất dấu vết rằng số đã công bố từng sai, và tước của người khác quyền biết họ đã ra quyết định trên con số nào. Ngưỡng trọng yếu cũng không cứu được: khi chưa báo thì chưa ai độc lập với bạn xác nhận phần bỏ sót nhỏ tới đâu.",
+    },
     keyTakeaways: [
       "Tính chính trực nghề nghiệp: kết quả đánh giá rủi ro không được bẻ cong theo áp lực kinh doanh",
       "Độc lập về đường báo cáo là điều kiện cần, nếu không cảnh báo có thể bị chặn tại chính nơi cần nghe",
@@ -946,6 +1011,19 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       "explanation": "Hai hệ thống cùng mô tả một khối tài sản thì phải quy về nhau được. Không đối chiếu được nghĩa là ít nhất một trong hai sai, và không ai biết cái nào - lúc đó cả hai đều mất giá trị làm cơ sở ra quyết định."
     }
     ],
+    practicePrompt: {
+      question:
+        "Giữa một phiên thị trường biến động mạnh, ban điều hành hỏi tổng phơi nhiễm với một đối tác cụ thể trên toàn bộ các mảng. Đội rủi ro trả lời sau bốn ngày. BCBS 239 đánh giá thế nào?",
+      options: [
+        "Không đạt tính thích ứng: câu hỏi đột xuất phải trả lời được ngay",
+        "Đạt, vì báo cáo định kỳ hằng tháng vẫn nộp đúng hạn suốt năm",
+        "Không đánh giá được, vì BCBS 239 chỉ nói về mô hình đo lường",
+        "Đạt nếu con số cuối cùng chính xác, vì chính xác đứng trên tốc độ",
+      ],
+      correct: 0,
+      explanation:
+        "Tính thích ứng là nguyên tắc phân biệt BCBS 239 với mọi yêu cầu báo cáo trước đó: nó không hỏi tổ chức có nộp báo cáo đúng hạn không, mà hỏi tổ chức có trả lời được một câu hỏi CHƯA ĐƯỢC CHUẨN BỊ TRƯỚC, ngay lúc cần, hay không. Bốn ngày nghĩa là dữ liệu đang được ghép tay từ nhiều hệ thống, và một quyết định trong khủng hoảng không chờ được bốn ngày. Đây cũng là lý do BCBS 239 nhắm vào hạ tầng dữ liệu chứ không vào mô hình đo lường - một mô hình VaR tinh vi chạy trên dữ liệu phải ghép tay bốn ngày thì con số nó cho ra đã lỗi thời trước khi ai đọc.",
+    },
     keyTakeaways: [
       "BCBS 239 nhắm vào năng lực hạ tầng dữ liệu, không phải vào mô hình đo lường rủi ro",
       "Bốn nhóm nguyên tắc: quản trị và hạ tầng, năng lực tổng hợp, thực hành báo cáo, giám sát",
@@ -2313,6 +2391,19 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       "explanation": "Một dải âm không có nghĩa là thiếu tiền nếu dải trước đó dư ra đủ để mang sang. Con số cần nhìn là thời điểm mà tổng cộng dồn chuyển sang âm - đó mới là ngày tổ chức thật sự hết tiền."
     }
     ],
+    practicePrompt: {
+      question:
+        "Khe hở thanh khoản của bốn dải kỳ hạn liên tiếp, đơn vị tỷ đồng: +200, −350, +100, −180. Khe hở dồn tích cho biết điều gì?",
+      options: [
+        "Cạn tiền từ dải thứ hai, dồn tích âm 150 tỷ",
+        "Không cạn, vì tổng bốn dải chỉ âm 230 tỷ",
+        "Cạn từ dải thứ tư, nơi dồn tích âm sâu nhất",
+        "Không cạn, vì dải một dư 200 tỷ bù được cho sau",
+      ],
+      correct: 0,
+      explanation:
+        "Dồn tích lần lượt là +200, −150, −50, −230, nên tổ chức chuyển sang âm ngay tại dải thứ hai và ở lại âm suốt phần còn lại. Đó là điều khe hở từng dải không nói được: nhìn riêng lẻ thì dải ba dương 100 trông như một sự hồi phục, nhưng nó chỉ thu hẹp một khoản thiếu hụt chứ không xoá nó. Dải một dư 200 tỷ có bù được cho dải hai - phép cộng dồn đã tính đúng phần bù đó rồi, và phần còn thiếu vẫn là 150 tỷ. Ngày cạn tiền là dải hai, và đó mới là ngày phải thu xếp nguồn.",
+    },
     keyTakeaways: [
       "Thang dòng tiền xếp dòng vào và ra theo dải kỳ hạn, khe hở dồn tích chỉ ra thời điểm cạn tiền",
       "Xếp theo hợp đồng cho kết quả vô nghĩa; cần mô hình hành vi cho tiền gửi và khoản trả trước",
@@ -2485,6 +2576,19 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       "explanation": "Giá nội bộ sai dẫn tới phân bổ vốn sai, và nó sai theo hướng nguy hiểm: mảng gánh rủi ro kỳ hạn nhiều nhất lại trông sinh lời nhất, nên được giao thêm nguồn lực. FTP không chỉ là bút toán nội bộ - nó định hình chiến lược."
     }
     ],
+    practicePrompt: {
+      question:
+        "Một ngân hàng áp cùng một mức FTP 5% cho mọi kỳ hạn. Đơn vị nào đang được trợ giá, và hệ quả tích lại là gì?",
+      options: [
+        "Bên cho vay dài hạn, và tổ chức tích dần lệch kỳ hạn",
+        "Bên huy động tiền gửi ngắn hạn, biên lãi bị ép",
+        "Không đơn vị nào, vì cùng một giá là công bằng với mọi bên",
+        "Bên cho vay ngắn hạn, và danh mục dồn dần về kỳ hạn ngắn",
+      ],
+      correct: 0,
+      explanation:
+        "Nguồn vốn dài hạn đắt hơn nguồn ngắn hạn, nên một mức giá duy nhất nghĩa là bên cho vay dài hạn đang trả ít hơn chi phí thật của nguồn họ dùng, còn bên cho vay ngắn hạn trả nhiều hơn. FTP là tín hiệu giá NỘI BỘ, nên nó không chỉ ghi nhận sai lợi nhuận - nó điều hướng nguồn lực: mảng dài hạn trông lãi hơn thật nên được cấp thêm vốn và thêm người, năm này qua năm khác. Hệ quả không phải một khoản lỗ mà là một bảng cân đối lệch kỳ hạn tích tụ dần, và nó chỉ lộ ra khi thị trường huy động đóng lại.",
+    },
     keyTakeaways: [
       "FTP đưa chi phí vốn và chi phí thanh khoản về đúng đơn vị kinh doanh tạo ra chúng",
       "Giá phải khác nhau theo kỳ hạn, nếu không sẽ trợ giá cho hành vi lệch kỳ hạn",
@@ -3491,6 +3595,19 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       "explanation": "Một trăm nghìn kịch bản trông thuyết phục hơn hẳn một công thức, nhưng tất cả đều sinh ra từ cùng một bộ giả định về phân phối và tương quan. Nếu giả định sai thì mô phỏng chỉ làm sai lệch đó trở nên chi tiết hơn chứ không đúng hơn."
     }
     ],
+    practicePrompt: {
+      question:
+        "Chạy 10.000 lần mô phỏng cho sai số chuẩn 0,4%. Muốn hạ sai số chuẩn xuống 0,1% thì cần chạy bao nhiêu lần?",
+      options: [
+        "160.000 (= 10.000 × 16, vì sai số theo căn)",
+        "40.000 (= 10.000 × 4, theo tỷ lệ sai số)",
+        "2.500 (= 10.000 / 4, chạy ít đi cho nhanh)",
+        "1.000.000 (= 10.000 × 100, bình phương 10)",
+      ],
+      correct: 0,
+      explanation:
+        "Sai số Monte Carlo giảm theo căn bậc hai số lần chạy, nên muốn sai số nhỏ đi 4 lần thì số lần chạy phải lớn lên 16 lần. Quan hệ căn bậc hai này là lý do kỹ thuật giảm phương sai tồn tại: biến đối ngẫu và lấy mẫu quan trọng rẻ hơn nhiều so với việc mua độ chính xác bằng sức tính. Và cần nhớ con số 0,1% chỉ nói mô phỏng đã hội tụ tới đâu quanh giá trị mà GIẢ ĐỊNH ĐẦU VÀO ngụ ý - nó không nói gì về việc giả định phân phối và tương quan đó có đúng không.",
+    },
     keyTakeaways: [
       "Sai số Monte Carlo giảm theo căn bậc hai số lần chạy - tăng độ chính xác rất tốn kém",
       "Biến đối ngẫu tạo cặp chuỗi đối xứng để sai số bù trừ nhau",
@@ -3655,6 +3772,19 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       "explanation": "Bootstrapping lấy mẫu lại từ chính dữ liệu đã có, nên mọi kịch bản nó tạo ra đều nằm trong biên độ của quá khứ. Muốn nói về vùng chưa từng xảy ra thì phải dùng công cụ có mô hình cho phần đuôi, như lý thuyết giá trị cực trị."
     }
     ],
+    practicePrompt: {
+      question:
+        "Mẫu 2.000 ngày lợi suất không chứa ngày nào giảm quá 7%. Chạy bootstrap 100.000 lần để ước VaR 99,9%. Kết quả nói lên điều gì?",
+      options: [
+        "Mức lỗ tệ nhất ước ra vẫn không vượt quá mức 7%",
+        "Ước lượng đáng tin vì 100.000 lần chạy đã đủ hội tụ",
+        "Sai số chuẩn nhỏ nên khoảng tin cậy rất hẹp",
+        "Cần thêm giả định phân phối chuẩn để bootstrap chạy",
+      ],
+      correct: 0,
+      explanation:
+        "Bootstrap lấy mẫu lại CÓ HOÀN LẠI từ chính dữ liệu gốc, nên mọi giá trị nó sinh ra đều đã từng xuất hiện trong mẫu. Chạy một trăm nghìn lần hay một tỷ lần cũng không tạo ra được một ngày giảm 9% nếu mẫu không có ngày nào như thế. Con số hội tụ rất đẹp và rất chắc chắn - chắc chắn về một phân phối đã bị cắt cụt phần đuôi. Đó là đánh đổi cốt lõi của phương pháp: đổi giả định về dạng phân phối lấy giả định rằng mẫu quan sát đại diện tốt cho tổng thể, rất tốt ở phần thân và rất kém đúng ở chỗ VaR 99,9% quan tâm.",
+    },
     keyTakeaways: [
       "Bootstrapping lấy mẫu lại có hoàn lại từ dữ liệu gốc để dựng phân phối của một thống kê",
       "Ưu điểm lớn nhất: không cần giả định trước về dạng phân phối",
@@ -3825,6 +3955,19 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       "explanation": "VaR chỉ đọc một điểm phân vị, nên phần lớn công sức mô hình hoá đuôi bị bỏ phí. Expected Shortfall lấy trung bình toàn bộ phần vượt qua điểm đó - đúng phần mà lý thuyết giá trị cực trị vừa mô tả."
     }
     ],
+    practicePrompt: {
+      question:
+        "Trên 3.000 quan sát, một nhóm chọn ngưỡng EVT ở phân vị 90% thay vì 99%. Đánh đổi của lựa chọn đó là gì?",
+      options: [
+        "Nhiều quan sát hơn nhưng chệch, vì lẫn cả phần thân",
+        "Ít quan sát hơn nên phương sai ước lượng tăng mạnh",
+        "Không đổi gì, vì EVT tự chuẩn hoá theo số quan sát",
+        "Đuôi được mô tả chính xác hơn nhờ có thêm dữ liệu",
+      ],
+      correct: 0,
+      explanation:
+        "Hạ ngưỡng từ phân vị 99% xuống 90% đưa số quan sát dùng để khớp từ 30 lên 300, nên phương sai ước lượng giảm rõ rệt - đó là phần được. Phần mất là độ chệch: định lý nền của EVT chỉ nói phân phối Pareto tổng quát xấp xỉ tốt phần VƯỢT MỘT NGƯỠNG ĐỦ CAO, và ở phân vị 90% thì 9 trong 10 quan sát được đưa vào là quan sát của phần thân. Tham số hình dạng khớp ra sẽ mô tả phần thân nhiều hơn phần đuôi, tức đúng cái mà EVT sinh ra để tránh. Không có quy tắc máy móc cho lựa chọn này, chỉ có đánh đổi phải nhìn thấy.",
+    },
     keyTakeaways: [
       "EVT mô hình hoá riêng phần đuôi thay vì để phần thân quyết định tham số",
       "Tham số hình dạng cho biết mức độ dày của đuôi; dữ liệu tài chính gần như luôn cho kết quả đuôi dày",
@@ -3989,6 +4132,19 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       "explanation": "Ma trận ước lượng từ giai đoạn bình thường mô tả một thế giới không còn tồn tại vào ngày bạn cần nó. Đây là lý do mọi mô hình dựa trên tương quan đều phải kèm phân tích kịch bản, trong đó tương quan được đặt tay ở mức căng thẳng."
     }
     ],
+    practicePrompt: {
+      question:
+        "Một danh mục có 250 yếu tố rủi ro. Ma trận hiệp phương sai của nó cần ước lượng bao nhiêu tham số độc lập?",
+      options: [
+        "31.375 (= 250 × 251 rồi chia đôi)",
+        "62.500 (= 250 × 250, cả ma trận)",
+        "250, mỗi yếu tố đúng một phương sai",
+        "31.125 (= 250 × 249/2, bỏ đường chéo)",
+      ],
+      correct: 0,
+      explanation:
+        "Ma trận đối xứng nên chỉ nửa trên cộng đường chéo là độc lập: 250 × 251 / 2 = 31.375, gồm 250 phương sai và 31.125 hiệp phương sai. Con số đó lớn hơn số ngày giao dịch trong một trăm năm, nên với dữ liệu vài năm thì ma trận ước lượng ra phần lớn là nhiễu - và nhiễu đó không vô hại, nó sinh ra những danh mục tối ưu hoá trông tuyệt vời trên giấy vì đã khớp vào chính phần nhiễu. Đây là lý do PCA có ích: rút hàng nghìn tham số về vài chiều giải thích được phần lớn biến động, thay vì ước lượng tất cả rồi tin vào chúng.",
+    },
     keyTakeaways: [
       "Số tham số của ma trận hiệp phương sai tăng theo bình phương số yếu tố rủi ro",
       "PCA phân rã thành các thành phần trực giao xếp theo mức giải thích biến động giảm dần",
