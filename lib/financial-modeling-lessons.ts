@@ -544,7 +544,7 @@ export const FINANCIAL_MODELING_LESSONS: Lesson[] = [
     openingOptions: [
       "Một tỷ lệ cố định trên tổng tài sản",
       "Số ngày luân chuyển: DIO, DSO, DPO gắn với doanh thu và giá vốn",
-      "Bằng đúng số dư năm trước, giữ nguyên",
+      "Bằng đúng số dư của năm trước, giữ nguyên không đổi qua từng năm",
       "Theo tỷ lệ lạm phát hằng năm",
     ],
     correctOption: 1,

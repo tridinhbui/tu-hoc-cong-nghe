@@ -212,7 +212,7 @@ export const DERIVATIVES_PRICING_LESSONS: Lesson[] = [
       "Giá cổ phiếu hiện tại",
       "Giá thực hiện",
       "Độ biến động của cổ phiếu trong tương lai",
-      "Thời gian còn lại đến đáo hạn",
+      "Thời gian còn lại cho đến ngày đáo hạn của hợp đồng",
     ],
     correctOption: 2,
     explanation:
