@@ -175,6 +175,19 @@ export const BOOKKEEPING_LESSONS: Lesson[] = [
         text: "Đây là rào cản đầu tiên và nó hoàn toàn do ngôn ngữ. \"Nợ\" không có nghĩa là nợ nần, \"Có\" không có nghĩa là sở hữu. Chúng là tên của cột trái và cột phải, dịch từ tiếng Latin và giữ nguyên qua bảy thế kỷ. Ai cố tìm ý nghĩa trong hai từ đó sẽ mắc kẹt; ai coi chúng là trái và phải sẽ đi tiếp được ngay.",
       },
       {
+        // Ba ví dụ này đến từ app/bai-hoc/credit-debit-phan-1 - một trang viết
+        // tay dạy đúng phần bài này dạy, nhưng ít hơn: 4 loại tài khoản thay vì
+        // 5 và không nói vì sao. Trang đã xoá; phần đáng giữ là ba ví dụ đời
+        // thường đặt trước bảng quy tắc, vì chúng cho thấy hai vế trước khi
+        // người học phải thuộc cột nào là cột nào.
+        type: "list",
+        items: [
+          "Mua đồ ăn 50.000đ bằng tiền mặt: tiền (tài sản) giảm 50.000đ, đổi lại một bữa ăn (chi phí) tăng 50.000đ - tiền không biến mất, nó chuyển thành thứ khác",
+          "Vay ngân hàng 20 triệu mua xe: tiền tăng 20 triệu, nhưng nợ phải trả cũng tăng 20 triệu - có thêm tiền không nghĩa là giàu hơn",
+          "Nhận lương 15 triệu: tiền tăng 15 triệu và thu nhập tăng tương ứng, không phát sinh khoản nợ nào - đây là tiền của bạn thật sự",
+        ],
+      },
+      {
         type: "conceptTable",
         title: "Bảng duy nhất phải thuộc",
         subtitle: "Phần còn lại của kế toán suy ra được từ đây",
