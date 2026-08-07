@@ -43,8 +43,7 @@ setInterval(() => {
 }, RATE_WINDOW);
 
 // A handful of lessons are hand-authored as their own static page
-// (app/bai-hoc/<slug>/page.tsx, e.g. "roic", "walmart-earnings",
-// "vingroup-cash-flow") instead of going through the data-driven
+// (app/bai-hoc/<slug>/page.tsx) instead of going through the data-driven
 // app/bai-hoc/[slug]/page.tsx route. Next.js resolves the static route
 // first, so [slug]'s own server-side lock check (lib/lesson-locking.ts)
 // never runs for these — they would otherwise ship full lesson content to
@@ -55,49 +54,40 @@ setInterval(() => {
 // common case — lessons served by [slug], which already checks itself —
 // doesn't pay for a second DB round trip per page view.
 //
+// THIS LIST HAD ZERO OVERLAP WITH REALITY when it was last measured. All 38
+// slugs it named — "roic", "walmart-earnings", "vingroup-cash-flow" and the
+// rest — had their page.tsx deleted 767 commits earlier and now come from the
+// data route, which checks itself. Meanwhile all 13 pages that DO still exist
+// were absent. Nothing broke, only because lesson locking is disabled
+// site-wide (isLessonLockedForUser returns false unconditionally), so the map
+// has been decorative the whole time. The day someone follows the instructions
+// at the top of lib/lesson-locking.ts and turns locking back on, every one of
+// those 13 pages would serve its full content to anyone with the URL — the
+// exact defect this map exists to prevent — while 38 dead entries made it look
+// maintained.
+//
+// The maintenance note below is what failed: it asked a human to remember.
+// lib/__tests__/static-lesson-pages.test.ts now checks it instead, in both
+// directions, against the filesystem.
+//
 // Maintenance note: if a new lesson is hand-coded as its own static page
 // under app/bai-hoc/<slug>/ AND is not isFundamental (i.e. meant to be
 // locked behind a prerequisite), its slug + numeric lesson id must be added
 // here too, or its lock is purely cosmetic on the dashboard.
 const STATIC_PAGE_LESSON_IDS: Record<string, number> = {
-  "bds-business-model": 1028,
-  "bien-so-r-twr-mwrr": 1037,
-  "bitcoin-crypto": 1025,
-  "cap-rate": 1009,
-  "commodity": 261,
-  "commodity-phan-2": 1005,
-  "discontinued-operations": 1001,
-  "disney-pixar-ma": 1021,
-  "dinh-gia-tai-san-rong": 1036,
-  "dividend": 1017,
-  "dupont-analysis": 1016,
-  "enterprise-value": 1008,
-  "fcf-deep-dive": 1035,
-  "finance-as-math": 1033,
-  "financial-risk": 1029,
-  "fpt-cfo-cash": 1023,
-  "hoc-tai-chinh-hanh-trinh": 1030,
-  "income-affiliates-jv": 1011,
-  "interim-comprehensive-income": 1012,
-  "inventory-turnover": 1019,
-  "maple-leaf-leverage": 1014,
-  "market-fair-value": 1006,
-  "modern-portfolio-theory": 1032,
-  "nvidia-cash-securities": 1022,
-  "oil-gas-business-model": 1024,
-  "on-tap-wacc": 1002,
-  "operating-leverage": 1010,
-  "post-ipo-dividend": 1020,
-  "pvgas-bad-debt": 1026,
-  "retail-store-analysis": 1027,
-  "roic": 1003,
-  "roic-phan-2": 1004,
-  "samsung-ai-finance": 1034,
-  "tesla-cash-flow": 1015,
-  "transfer-pricing": 1013,
-  "vingroup-cash-flow": 1007,
-  "walmart-earnings": 1018,
-  "wealth-management": 1031,
+  "10-cong-thuc-finance": 9001,
+  "bang-can-doi-ke-toan": 9002,
+  "bao-cao-luu-chuyen-tien-te": 9003,
+  "cac-loai-debt": 9004,
+  "chon-phuong-phap-dinh-gia": 9005,
+  "credit-debit-phan-1": 9006,
+  "fair-value": 9009,
+  "free-cash-flow": 9010,
+  "interest-coverage": 9011,
+  "khau-hao": 9012,
+  "source-cash-ma": 9014,
+  "synergy-ma": 9015,
+  "time-value-of-money": 9016,
 };
 
 // Default-deny route gate: every page requires a signed-in session UNLESS
