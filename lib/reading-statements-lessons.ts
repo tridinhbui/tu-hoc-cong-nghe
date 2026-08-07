@@ -224,7 +224,7 @@ export const READING_STATEMENTS_LESSONS: Lesson[] = [
     openingQuestion:
       "Doanh nghiệp A có chi phí bán hàng 200 tỷ, B có 40 tỷ. A tiêu tốn hơn cho việc bán hàng?",
     openingOptions: [
-      "Chưa kết luận được - phải quy về phần trăm doanh thu của từng bên trước đã",
+      "Chưa kết luận được - phải quy về phần trăm doanh thu",
       "Đúng, 200 tỷ lớn hơn 40 tỷ nên A tốn kém hơn",
       "Sai, doanh nghiệp lớn có lợi thế quy mô nên A hiệu quả hơn",
       "Đúng, chi phí tuyệt đối phản ánh mức đầu tư cho thị trường",
@@ -398,7 +398,7 @@ export const READING_STATEMENTS_LESSONS: Lesson[] = [
     openingQuestion:
       "Báo cáo kiểm toán ghi 'ý kiến chấp nhận toàn phần'. Điều đó bảo đảm gì?",
     openingOptions: [
-      "Báo cáo phản ánh trung thực và hợp lý trên các khía cạnh trọng yếu",
+      "Báo cáo phản ánh trung thực trên các khía cạnh trọng yếu",
       "Doanh nghiệp có tình hình tài chính lành mạnh, kinh doanh hiệu quả",
       "Mọi con số trong báo cáo chính xác tuyệt đối tới từng đồng",
       "Không có gian lận nào trong kỳ báo cáo được kiểm toán",

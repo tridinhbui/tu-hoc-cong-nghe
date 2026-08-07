@@ -491,7 +491,7 @@ export const FRM_LESSONS: Lesson[] = [
     openingQuestion: "Phương pháp Phân phối Tổn thất (Loss Distribution Approach) mô hình hoá tổn thất vận hành bằng cách kết hợp hai phân phối nào?",
     openingOptions: [
       "Phân phối lợi suất cổ phiếu và phân phối lãi suất",
-      "Phân phối tần suất (số lần xảy ra sự cố) và phân phối mức độ nghiêm trọng (thiệt hại mỗi lần)",
+      "Phân phối tần suất và phân phối mức độ nghiêm trọng",
       "Phân phối chuẩn và phân phối nhị thức, luôn cố định không đổi",
       "Phân phối tỷ giá hối đoái và phân phối giá hàng hoá",
     ],
@@ -803,7 +803,7 @@ export const FRM_LESSONS: Lesson[] = [
     openingQuestion: "Rủi ro mô hình (model risk) phát sinh từ những nguồn nào?",
     openingOptions: [
       "Chỉ từ lỗi lập trình trong code của mô hình",
-      "Từ giả định sai, dữ liệu đầu vào không đại diện, và/hoặc mô hình bị áp dụng sai bối cảnh so với mục đích thiết kế ban đầu",
+      "Từ giả định sai và dữ liệu đầu vào không đại diện",
       "Chỉ xảy ra với các mô hình học máy (machine learning), không xảy ra với mô hình thống kê truyền thống",
       "Rủi ro mô hình chỉ tồn tại về mặt lý thuyết, chưa từng gây tổn thất thực tế đáng kể",
     ],

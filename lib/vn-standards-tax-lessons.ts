@@ -1061,7 +1061,7 @@ export const VN_STANDARDS_TAX_LESSONS: Lesson[] = [
     openingQuestion: "Ưu đãi thuế ảnh hưởng thế nào tới việc định giá một doanh nghiệp?",
     openingOptions: [
       "Không ảnh hưởng vì ưu đãi chỉ là chính sách hành chính tạm thời",
-      "Nâng lợi nhuận sau thuế trong thời gian ưu đãi, nên phải mô hình theo lịch trình",
+      "Nâng lợi nhuận sau thuế trong thời gian ưu đãi, nên phải mô hình",
       "Làm giảm giá trị doanh nghiệp vì phụ thuộc vào chính sách nhà nước",
       "Chỉ ảnh hưởng tới doanh nghiệp có vốn đầu tư nước ngoài",
     ],
@@ -1222,7 +1222,7 @@ export const VN_STANDARDS_TAX_LESSONS: Lesson[] = [
       "Truy thu thuế là một khoản nợ tiềm tàng không nằm trên bảng cân đối cho tới khi nó thành hiện thực. Với người phân tích, biết cơ chế này giúp đọc được một dòng thuyết minh mà phần lớn người đọc lướt qua - và đôi khi nó lớn hơn cả lợi nhuận một năm.",
     openingQuestion: "Vì sao rủi ro thuế không xuất hiện đầy đủ trên bảng cân đối kế toán?",
     openingOptions: [
-      "Vì nghĩa vụ chỉ được ghi nhận khi đủ điều kiện chắc chắn và ước tính được",
+      "Vì nghĩa vụ chỉ được ghi nhận khi đã đủ điều kiện chắc chắn",
       "Vì cơ quan thuế cấm doanh nghiệp công bố thông tin về thanh tra",
       "Vì thuế truy thu luôn được ghi thẳng vào vốn chủ sở hữu",
       "Vì rủi ro thuế chỉ áp dụng cho doanh nghiệp chưa niêm yết",

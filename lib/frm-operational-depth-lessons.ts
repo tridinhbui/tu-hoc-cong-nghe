@@ -324,7 +324,7 @@ export const FRM_OPERATIONAL_DEPTH_LESSONS: Lesson[] = [
       "Thống kê sự cố công nghệ ở các định chế tài chính cho thấy phần lớn gián đoạn nghiêm trọng có nguyên nhân gần nhất là gì?",
     openingOptions: [
       "Tấn công mạng từ bên ngoài vào hạ tầng cốt lõi",
-      "Một thay đổi do chính tổ chức triển khai lên hệ thống đang chạy",
+      "Thay đổi do tổ chức đưa lên hệ thống chạy",
       "Hỏng hóc phần cứng tại trung tâm dữ liệu chính",
       "Lỗi của nhà cung cấp dịch vụ đám mây bên thứ ba",
     ],

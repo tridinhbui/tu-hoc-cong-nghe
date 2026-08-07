@@ -25,7 +25,7 @@ export const FINANCIAL_MODELING_LESSONS: Lesson[] = [
       "Nguyên tắc quan trọng nhất khi bố cục một mô hình tài chính là gì?",
     openingOptions: [
       "Dùng càng nhiều sheet càng tốt để chia nhỏ nội dung",
-      "Tách bạch rõ ràng ba lớp: giả định đầu vào, phần tính toán, và kết quả đầu ra",
+      "Tách bạch giả định, phần tính toán và phần kết quả",
       "Giấu các dòng trung gian để bảng trông gọn gàng",
       "Viết công thức càng dài càng tốt để giảm số dòng",
     ],
@@ -374,7 +374,7 @@ export const FINANCIAL_MODELING_LESSONS: Lesson[] = [
       "Trong mô hình 3 báo cáo, điều gì chứng tỏ mô hình của bạn đúng?",
     openingOptions: [
       "Lợi nhuận ròng dương qua mọi năm dự phóng",
-      "Bảng cân đối kế toán cân: Tổng tài sản = Nợ phải trả + Vốn chủ sở hữu, ở mọi kỳ",
+      "Bảng cân đối cân: Tài sản = Nợ + Vốn chủ",
       "Doanh thu tăng trưởng ổn định",
       "Dòng tiền hoạt động luôn lớn hơn lợi nhuận ròng",
     ],
@@ -901,7 +901,7 @@ export const FINANCIAL_MODELING_LESSONS: Lesson[] = [
     openingOptions: [
       "Dòng tiền năm thứ nhất",
       "Tổng dòng tiền 5 năm dự phóng",
-      "Giá trị cuối (terminal value), thường chiếm 60-80% tổng giá trị",
+      "Giá trị cuối, thường chiếm 60-80% tổng",
       "Giá trị tài sản cố định trên bảng cân đối",
     ],
     correctOption: 2,

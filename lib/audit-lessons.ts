@@ -356,7 +356,7 @@ export const AUDIT_LESSONS: Lesson[] = [
       "Loại bằng chứng nào đáng tin cậy nhất trong kiểm toán?",
     openingOptions: [
       "Giải trình bằng lời của ban giám đốc doanh nghiệp",
-      "Xác nhận nhận trực tiếp từ bên thứ ba độc lập, như thư xác nhận số dư từ ngân hàng",
+      "Xác nhận nhận trực tiếp từ bên thứ ba độc lập",
       "Sổ sách kế toán nội bộ đã được đối chiếu đầy đủ",
       "Báo cáo của bộ phận kiểm toán nội bộ",
     ],
@@ -858,7 +858,7 @@ export const AUDIT_LESSONS: Lesson[] = [
       "Kiểm toán nội bộ nên báo cáo trực tiếp cho ai?",
     openingOptions: [
       "Tổng giám đốc, vì đó là người điều hành cao nhất",
-      "Ủy ban kiểm toán thuộc hội đồng quản trị, để giữ độc lập với chính bộ máy điều hành mà mình kiểm tra",
+      "Ủy ban kiểm toán thuộc hội đồng quản trị",
       "Giám đốc tài chính, vì phần lớn nội dung kiểm tra liên quan tài chính",
       "Kiểm toán độc lập bên ngoài",
     ],

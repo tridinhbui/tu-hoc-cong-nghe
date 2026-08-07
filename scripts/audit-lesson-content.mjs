@@ -600,11 +600,16 @@ const MAX_PRACTICE_BIAS_Z = 3;
  *  length gates are per-language"; chỗ này làm đúng điều đó.
  *
  *  Mỗi ngôn ngữ hạ ngưỡng theo nhịp riêng:
- *    vi: 37 → 28,1 (đợt 1) → 14,2 (đợt 2-3) → 5,4 (đợt 4). Chiều ngắn đã về
- *        mức may rủi (z = +0,22); chỉ còn chiều dài, cần thêm khoảng 63 câu.
+ *    vi: 37 → 28,1 → 14,2 → 5,4 → 3 (đợt 5). Cả hai chiều đã về mức may rủi:
+ *        dài z = −0,34, ngắn z = +0,41. Nhóm câu có phương án nhiễu đủ dài đã
+ *        xong; còn 184 câu mà nhiễu quá ngắn (<40 ký tự), phải viết lại chính
+ *        các phương án nhiễu chứ không cắt đáp án đúng được nữa.
+ *        Dừng ở 3 chứ không siết xuống sát 0,49, cùng lý do với MAX_PRACTICE_BIAS_Z:
+ *        z có nhiễu, và một kho vài trăm câu dao động vài phần mười chỉ vì thêm
+ *        dăm bài mới.
  *    en: chưa viết lại lần nào - 182 trên 208 bài dịch vẫn có đáp án đúng dài
  *        nhất. Đợt việc riêng, giống hệt những gì practicePrompt đã cần. */
-const OPENING_BIAS_Z_BY_LOCALE = { vi: 5.4, en: 20.8 };
+const OPENING_BIAS_Z_BY_LOCALE = { vi: 3, en: 20.8 };
 const MAX_OPENING_BIAS_Z = OPENING_BIAS_Z_BY_LOCALE[LOCALE] ?? 37;
 const openingStats = {
   questions: 0,

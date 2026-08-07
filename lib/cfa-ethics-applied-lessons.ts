@@ -30,7 +30,7 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
       "Bạn quản lý quỹ hưu trí cho một doanh nghiệp. Ban lãnh đạo doanh nghiệp yêu cầu tăng tỷ trọng cổ phiếu chính công ty họ. Nghĩa vụ của bạn thuộc về ai?",
     openingOptions: [
       "Ban lãnh đạo doanh nghiệp, vì họ là bên ký hợp đồng và trả phí",
-      "Người thụ hưởng quỹ hưu trí - tức người lao động - chứ không phải bên ký hợp đồng",
+      "Người thụ hưởng quỹ hưu trí, tức chính người lao động",
       "Cả hai bên như nhau, nên cần tìm phương án dung hòa",
       "Cơ quan quản lý, vì quỹ hưu trí chịu giám sát đặc biệt",
     ],
@@ -382,7 +382,7 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
       "Một khách hàng cũ đã chấm dứt quan hệ hai năm trước. Bạn còn nghĩa vụ bảo mật thông tin của họ không?",
     openingOptions: [
       "Không, nghĩa vụ chấm dứt cùng lúc với hợp đồng dịch vụ",
-      "Có, nghĩa vụ bảo mật kéo dài kể cả sau khi quan hệ đã chấm dứt",
+      "Có, nghĩa vụ bảo mật kéo dài sau khi quan hệ chấm dứt",
       "Chỉ còn nghĩa vụ nếu hợp đồng có điều khoản bảo mật riêng",
       "Chỉ trong vòng một năm kể từ ngày chấm dứt quan hệ",
     ],
@@ -908,7 +908,7 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
       "Vì sao Standard V(C) yêu cầu lưu trữ hồ sơ phân tích, ngoài lý do tuân thủ quy định?",
     openingOptions: [
       "Để đồng nghiệp có thể tái sử dụng lại kết quả nghiên cứu",
-      "Vì đó là bằng chứng duy nhất chứng minh khuyến nghị từng có cơ sở hợp lý theo Standard V(A)",
+      "Vì đó là bằng chứng duy nhất rằng khuyến nghị có cơ sở",
       "Để công ty tính được chi phí nghiên cứu phân bổ cho từng khách",
       "Vì cơ quan quản lý yêu cầu nộp hồ sơ định kỳ mỗi quý",
     ],

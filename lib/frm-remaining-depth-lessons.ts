@@ -172,7 +172,7 @@ export const FRM_REMAINING_DEPTH_LESSONS: Lesson[] = [
       "Hồi quy có phương sai sai số thay đổi theo thời gian. Hệ quả trực tiếp nhất là gì?",
     openingOptions: [
       "Hệ số ước lượng bị chệch nên phải bỏ toàn bộ kết quả",
-      "Hệ số vẫn không chệch nhưng sai số chuẩn sai, nên kiểm định t không còn tin được",
+      "Hệ số vẫn không chệch, nhưng sai số chuẩn thì sai lệch",
       "R² bị thổi phồng lên nên mô hình trông tốt hơn thực tế",
       "Không thể ước lượng được mô hình bằng bình phương nhỏ nhất",
     ],
@@ -345,7 +345,7 @@ export const FRM_REMAINING_DEPTH_LESSONS: Lesson[] = [
       "Một mô hình chấm điểm tín dụng đạt độ chính xác 99% trên dữ liệu huấn luyện và 71% trên dữ liệu mới. Vấn đề rõ nhất là gì?",
     openingOptions: [
       "Dữ liệu mới có chất lượng kém hơn dữ liệu huấn luyện",
-      "Mô hình khớp quá mức, đã học cả phần nhiễu của tập huấn luyện",
+      "Mô hình khớp quá mức, đã học cả phần nhiễu",
       "Mô hình cần thêm biến giải thích để tăng độ chính xác",
       "Ngưỡng phân loại được đặt sai nên tỷ lệ sai tăng lên",
     ],
@@ -670,7 +670,7 @@ export const FRM_REMAINING_DEPTH_LESSONS: Lesson[] = [
       "Hai danh mục có cùng tổng dư nợ và cùng tổn thất kỳ vọng. Danh mục A trải trên 20 ngành, danh mục B dồn vào một ngành. Khác biệt xuất hiện ở đâu?",
     openingOptions: [
       "Ở tổn thất kỳ vọng, vì tập trung làm PD trung bình tăng lên",
-      "Ở phần đuôi phân phối tổn thất, nên ở vốn chứ không ở dự phòng",
+      "Ở phần đuôi phân phối tổn thất, nên nằm ở phần vốn",
       "Không có khác biệt nào vì hai danh mục cùng EL",
       "Ở lãi suất cho vay bình quân mà hai danh mục thu được",
     ],
@@ -837,7 +837,7 @@ export const FRM_REMAINING_DEPTH_LESSONS: Lesson[] = [
     openingQuestion:
       "Vì sao một ngân hàng có tỷ lệ LCR trên 130% vẫn có thể gặp sự cố thanh khoản nội ngày?",
     openingOptions: [
-      "Vì LCR đo trạng thái theo ngày, còn nghĩa vụ thanh toán đến theo từng giờ",
+      "Vì LCR đo trạng thái theo ngày, còn nghĩa vụ đến từng giờ",
       "Vì LCR không tính tới các khoản tiền gửi của khách hàng cá nhân",
       "Vì LCR chỉ áp dụng cho ngân hàng có hoạt động quốc tế",
       "Vì LCR được tính theo giá trị sổ sách chứ không theo giá thị trường",
@@ -1022,7 +1022,7 @@ export const FRM_REMAINING_DEPTH_LESSONS: Lesson[] = [
     openingQuestion:
       "Trong một hợp đồng repo, haircut tăng từ 2% lên 10%. Với cùng lượng tài sản bảo đảm, bên vay huy động được ít hơn bao nhiêu?",
     openingOptions: [
-      "Khoảng 8% giá trị tài sản, và phải tìm nguồn khác bù vào phần đó",
+      "Khoảng 8% giá trị tài sản, và phải tìm nguồn khác bù vào",
       "Không đổi, vì haircut chỉ ảnh hưởng tới lãi suất repo",
       "Khoảng 10% giá trị tài sản, tương ứng đúng mức haircut mới",
       "Không xác định được nếu chưa biết kỳ hạn của hợp đồng repo",
@@ -1194,7 +1194,7 @@ export const FRM_REMAINING_DEPTH_LESSONS: Lesson[] = [
     openingQuestion:
       "Một quỹ vượt chỉ số 3% trong năm. Phân tích quy kết dùng để trả lời câu hỏi nào?",
     openingOptions: [
-      "Phần vượt đó đến từ phân bổ ngành, từ chọn mã, hay từ tương tác giữa hai yếu tố",
+      "Phần vượt đến từ phân bổ ngành, chọn mã hay tương tác",
       "Quỹ có nên thay đổi chỉ số tham chiếu cho năm tiếp theo hay không",
       "Mức phí quản lý mà quỹ được phép thu trên phần vượt",
       "Quỹ có tuân thủ các giới hạn đầu tư đã cam kết hay không",

@@ -556,7 +556,7 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
     openingOptions: [
       "Nhận lời vì thăm nhà máy là hoạt động nghiên cứu chính đáng",
       "Từ chối mọi chuyến thăm nhà máy để giữ tính khách quan tuyệt đối",
-      "Đi thăm nhà máy, nhưng công ty bạn tự chi trả chi phí đi lại và lưu trú",
+      "Đi thăm nhà máy, nhưng công ty bạn tự chi trả chi phí đi",
       "Nhận lời rồi công bố việc này ở cuối báo cáo phân tích",
     ],
     correctOption: 2,

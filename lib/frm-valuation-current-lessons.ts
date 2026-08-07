@@ -403,7 +403,7 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
     whyItMatters: "FRM không kiểm tra bạn có nhớ công thức không - nó kiểm tra bạn có biết công thức sai ở đâu không. Mọi thất bại phái sinh lớn đều là một giả định của mô hình này gãy trong thực tế.",
     openingQuestion: "Đầu vào nào của Black-Scholes không quan sát trực tiếp được trên thị trường?",
     openingOptions: [
-      "Độ biến động của tài sản cơ sở trong quãng thời gian còn lại",
+      "Độ biến động tài sản cơ sở trong kỳ còn lại",
       "Giá thực hiện ghi trong hợp đồng quyền chọn",
       "Thời gian còn lại tính tới ngày đáo hạn",
       "Giá hiện tại của tài sản cơ sở trên thị trường"

@@ -412,7 +412,7 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
       "Standard I(D) áp dụng cho hành vi cá nhân nào ngoài công việc?",
     openingOptions: [
       "Mọi hành vi cá nhân, vì thành viên CFA phải gương mẫu",
-      "Hành vi liên quan tới tính trung thực, đáng tin cậy hoặc năng lực nghề",
+      "Hành vi liên quan tới tính trung thực và năng lực nghề",
       "Không hành vi nào, vì đời tư nằm ngoài phạm vi chuẩn mực",
       "Chỉ hành vi đã bị tòa án kết án bằng bản án có hiệu lực",
     ],
@@ -606,7 +606,7 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
       "Bạn nhận được yêu cầu cung cấp thông tin từ bộ phận Professional Conduct của CFA Institute. Nghĩa vụ của bạn là gì?",
     openingOptions: [
       "Không có nghĩa vụ nào vì đây không phải cơ quan nhà nước",
-      "Hợp tác đầy đủ - không hợp tác là một vi phạm riêng biệt",
+      "Hợp tác đầy đủ - không hợp tác là một vi phạm riêng",
       "Chỉ trả lời nếu có luật sư đại diện tham gia cùng",
       "Chỉ cung cấp thông tin nếu vi phạm được chứng minh trước",
     ],
@@ -796,7 +796,7 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
       "Bạn dùng báo cáo của một tổ chức nghiên cứu uy tín làm cơ sở cho khuyến nghị của mình. Standard V(A) yêu cầu gì?",
     openingOptions: [
       "Không yêu cầu gì thêm vì tổ chức đó đã có uy tín",
-      "Thẩm định phương pháp và tính hợp lý của nghiên cứu đó",
+      "Thẩm định phương pháp và tính hợp lý của nó",
       "Chỉ cần ghi rõ nguồn trong báo cáo của bạn",
       "Phải tự làm lại toàn bộ phân tích từ dữ liệu gốc",
     ],
@@ -1742,7 +1742,7 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
       "Tài liệu chào bán quỹ mới ghi: 'Chiến lược đạt 18%/năm giai đoạn 2019-2024' - trong đó 2019-2022 là mô phỏng ngược. Vấn đề nằm ở đâu?",
     openingOptions: [
       "Không có vấn đề nếu phần mô phỏng được tính đúng phương pháp",
-      "Trình bày sai lệch: gộp mô phỏng với vận hành thật thành một con số duy nhất",
+      "Trình bày sai lệch: gộp mô phỏng với vận hành thật vào một",
       "Chỉ là vấn đề nếu giai đoạn mô phỏng cho kết quả cao hơn",
       "Vấn đề duy nhất là chưa nêu rõ mức phí đã trừ hay chưa",
     ],

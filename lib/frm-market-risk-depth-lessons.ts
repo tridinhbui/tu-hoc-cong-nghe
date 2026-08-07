@@ -174,7 +174,7 @@ export const FRM_MARKET_RISK_DEPTH_LESSONS: Lesson[] = [
       "Một danh mục mua trái phiếu 2 năm và bán khống trái phiếu 10 năm, tổng duration đúng bằng 0. Rủi ro lớn nhất còn lại là gì?",
     openingOptions: [
       "Không còn rủi ro lãi suất nào vì duration đã bằng 0",
-      "Rủi ro đường cong đổi hình dạng, khi đầu ngắn và đầu dài dịch chuyển khác nhau",
+      "Rủi ro đường cong đổi hình dạng chứ không song song",
       "Rủi ro tín dụng của tổ chức phát hành hai trái phiếu",
       "Rủi ro thanh khoản khi cần đóng vị thế bán khống",
     ],

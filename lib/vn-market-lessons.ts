@@ -1007,7 +1007,7 @@ export const VN_MARKET_LESSONS: Lesson[] = [
     openingQuestion: "Vì sao nhà đầu tư vốn nhỏ khó tự đa dạng hóa?",
     openingOptions: [
       "Vì quy định giới hạn số mã cổ phiếu một cá nhân được nắm giữ",
-      "Vì chi phí giao dịch và công theo dõi trên mỗi mã gần như cố định",
+      "Vì chi phí giao dịch và theo dõi mỗi mã gần như cố định",
       "Vì cổ phiếu vốn hóa lớn chỉ bán cho nhà đầu tư tổ chức",
       "Vì cần tối thiểu ba mươi mã mới được mở tài khoản chứng khoán",
     ],

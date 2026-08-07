@@ -27,7 +27,7 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
       "Vì sao lập ngân sách bằng cách nhân doanh thu năm ngoái với một tỷ lệ tăng trưởng lại là cách làm yếu?",
     openingOptions: [
       "Vì tỷ lệ tăng trưởng quá khứ không bao giờ lặp lại trong tương lai",
-      "Vì khi thực tế lệch kế hoạch, con số đó không cho biết yếu tố nào gây ra chênh lệch",
+      "Vì con số đó không cho biết yếu tố nào gây lệch",
       "Vì cách này vi phạm chuẩn mực kế toán về lập báo cáo",
       "Vì nó luôn cho ra con số thấp hơn thực tế",
     ],
@@ -378,7 +378,7 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
       "Vì sao dự báo dòng tiền ngắn hạn lại lập theo tuần chứ không theo tháng?",
     openingOptions: [
       "Vì chuẩn mực kế toán quy định kỳ báo cáo dòng tiền tối thiểu là một tuần",
-      "Vì trong một tháng, tiền có thể chạm đáy vào giữa kỳ rồi hồi lại, và con số cuối tháng che mất điều đó",
+      "Vì trong một tháng, tiền có thể chạm đáy giữa kỳ rồi hồi",
       "Vì dữ liệu theo tuần chính xác hơn dữ liệu theo tháng",
       "Vì ngân hàng chỉ chấp nhận báo cáo theo tuần",
     ],
@@ -890,7 +890,7 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
       "Phần nào của bộ báo cáo quản trị hằng tháng tạo ra nhiều giá trị nhất?",
     openingOptions: [
       "Bảng số liệu đầy đủ và chính xác đến từng đồng",
-      "Phần bình luận giải thích vì sao số liệu lệch kế hoạch và điều đó nghĩa là gì",
+      "Phần bình luận giải thích vì sao số lệch",
       "Các biểu đồ trực quan hóa xu hướng",
       "Phần so sánh với cùng kỳ năm trước",
     ],

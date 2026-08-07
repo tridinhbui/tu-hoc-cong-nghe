@@ -327,7 +327,7 @@ export const FRM_FOUNDATIONS_DEPTH_LESSONS: Lesson[] = [
       "Một ngân hàng thương mại kiếm lời chính từ chênh lệch lãi suất huy động và cho vay. Họ nên xử lý rủi ro tín dụng của danh mục cho vay thế nào?",
     openingOptions: [
       "Chuyển toàn bộ ra ngoài bằng phái sinh tín dụng để danh mục sạch rủi ro",
-      "Giữ lại phần lớn và quản nó, vì chính rủi ro đó là thứ ngân hàng được trả tiền để gánh",
+      "Giữ lại phần lớn và quản nó, vì đó chính là rủi ro nghề",
       "Né hoàn toàn bằng cách chỉ cho vay khi có bảo lãnh của bên thứ ba",
       "Giảm xuống mức thấp nhất có thể bất kể chi phí bỏ ra",
     ],

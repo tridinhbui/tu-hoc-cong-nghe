@@ -3309,7 +3309,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
     whyItMatters: "Mọi hệ thống phát hiện gian lận, chấm điểm tín dụng hay cảnh báo sớm đều là bài toán xác suất có điều kiện. Không hiểu Bayes thì rất dễ đọc sai độ tin cậy của chính hệ thống mình đang vận hành.",
     openingQuestion: "Một hệ thống phát hiện gian lận đúng 99% và tỷ lệ giao dịch gian lận thực tế là 1 phần nghìn. Khi hệ thống báo động, xác suất đó thực sự là gian lận vào khoảng bao nhiêu?",
     openingOptions: [
-      "Khoảng 9%, vì số báo động sai từ khối giao dịch hợp lệ khổng lồ lấn át số ca gian lận thật",
+      "Khoảng 9%, vì số báo động sai từ khối giao dịch hợp lệ lớn",
       "Đúng 99%, bằng với độ chính xác đã công bố của hệ thống",
       "Khoảng 50%, vì mỗi lần báo động chỉ có hai khả năng đúng hoặc sai",
       "Khoảng 1 phần nghìn, bằng đúng tỷ lệ gian lận thực tế trong tổng giao dịch"
@@ -4202,7 +4202,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
     whyItMatters: "Rủi ro danh mục không phải tổng rủi ro từng vị thế mà phụ thuộc vào cấu trúc phụ thuộc giữa chúng. Với danh mục lớn, số tham số cần ước lượng bùng nổ và phần lớn trong đó chỉ là nhiễu - PCA là công cụ chuẩn để rút gọn về vài chiều thực sự có ý nghĩa.",
     openingQuestion: "Với một danh mục gồm 100 yếu tố rủi ro, ma trận hiệp phương sai cần ước lượng bao nhiêu tham số độc lập?",
     openingOptions: [
-      "Khoảng 5.050 tham số, gồm 100 phương sai và 4.950 hiệp phương sai đôi một",
+      "Khoảng 5.050 tham số: 100 phương sai và 4.950 hiệp phương sai",
       "Đúng 100 tham số, mỗi yếu tố rủi ro một tham số",
       "Đúng 200 tham số, gồm một phương sai và một trung bình cho mỗi yếu tố",
       "Đúng 10.000 tham số, bằng bình phương số yếu tố rủi ro"

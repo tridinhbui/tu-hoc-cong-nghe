@@ -367,7 +367,7 @@ export const FRM_MARKET_RISK_LESSONS: Lesson[] = [
       "VaR của danh mục A là 10, của danh mục B là 10. Gộp hai danh mục lại, VaR có thể là bao nhiêu?",
     openingOptions: [
       "Luôn nhỏ hơn hoặc bằng 20, vì đa dạng hoá luôn làm giảm rủi ro",
-      "Có thể lớn hơn 20 - VaR không bảo đảm tính cộng gộp, và đó chính là lỗi khiến nó bị thay thế",
+      "Có thể lớn hơn 20 - VaR không bảo đảm tính cộng gộp",
       "Luôn đúng bằng 20",
       "Luôn bằng 20 nhân hệ số tương quan",
     ],
@@ -537,7 +537,7 @@ export const FRM_MARKET_RISK_LESSONS: Lesson[] = [
       "Đặc điểm nào của biến động thị trường mà độ lệch chuẩn tính trên cửa sổ cố định không nắm bắt được?",
     openingOptions: [
       "Biến động luôn tăng theo thời gian",
-      "Biến động dồn cụm: giai đoạn biến động cao đi liền nhau, giai đoạn yên ả cũng vậy",
+      "Biến động dồn cụm theo từng giai đoạn",
       "Biến động luôn tỷ lệ thuận với khối lượng giao dịch",
       "Biến động của mọi tài sản đều bằng nhau trong dài hạn",
     ],

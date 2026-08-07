@@ -32,7 +32,7 @@ export const VN_TAX_LESSONS: Lesson[] = [
       "Hợp đồng ghi lương 30 triệu/tháng (gross), bạn chưa có người phụ thuộc. Số tiền thực tế vào tài khoản mỗi tháng khoảng bao nhiêu?",
     openingOptions: [
       "Đúng 30 triệu, vì thuế do công ty chịu",
-      "Khoảng 26,2 triệu, sau khi trừ bảo hiểm bắt buộc và thuế TNCN",
+      "Khoảng 26,2 triệu sau khi trừ bảo hiểm và thuế",
       "Khoảng 21 triệu, vì thuế TNCN chiếm khoảng 30% lương",
       "Không thể tính được nếu chưa biết thưởng cuối năm",
     ],
@@ -219,7 +219,7 @@ export const VN_TAX_LESSONS: Lesson[] = [
       "Thu nhập tính thuế của bạn đang là 9,8 triệu/tháng (bậc 1, thuế suất 5%). Nếu được tăng lên 11 triệu, vượt qua ngưỡng 10 triệu sang bậc 2 (10%), điều gì xảy ra?",
     openingOptions: [
       "Toàn bộ 11 triệu bị đánh thuế 10%, nên bạn thực nhận ít hơn trước",
-      "Chỉ phần 1 triệu vượt ngưỡng bị đánh 10%, 10 triệu đầu vẫn chỉ chịu 5%",
+      "Chỉ phần 1 triệu vượt ngưỡng mới bị đánh thuế suất 10%",
       "Bạn phải nộp bù thuế cho cả những tháng trước đó",
       "Thuế suất áp dụng cho cả năm bị nâng lên 10% từ đầu năm",
     ],
@@ -1113,7 +1113,7 @@ export const VN_TAX_LESSONS: Lesson[] = [
       "Bạn nhận 6 triệu đồng cho một dự án freelance từ một công ty không ký hợp đồng lao động dài hạn với bạn. Công ty sẽ làm gì?",
     openingOptions: [
       "Trả đủ 6 triệu, bạn tự đi nộp thuế sau",
-      "Khấu trừ 10% thuế TNCN trước khi trả, vì khoản này từ 5 triệu đồng/lần trở lên",
+      "Khấu trừ 10% thuế TNCN ngay trước khi trả",
       "Khấu trừ theo biểu lũy tiến 5 bậc như lương",
       "Không khấu trừ gì vì đây không phải tiền lương",
     ],
@@ -1290,7 +1290,7 @@ export const VN_TAX_LESSONS: Lesson[] = [
     openingOptions: [
       "Gross → trừ thuế → trừ bảo hiểm → trừ giảm trừ gia cảnh",
       "Gross → trừ giảm trừ gia cảnh → trừ bảo hiểm → áp biểu thuế",
-      "Gross → trừ bảo hiểm bắt buộc → trừ giảm trừ gia cảnh → áp biểu thuế lũy tiến",
+      "Gross → trừ bảo hiểm → trừ giảm trừ → áp biểu thuế",
       "Gross → áp biểu thuế → trừ bảo hiểm và giảm trừ",
     ],
     correctOption: 2,

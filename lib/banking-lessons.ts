@@ -266,7 +266,7 @@ export const BANKING_LESSONS: Lesson[] = [
       "Theo lý thuyết, một ngân hàng nên giao dịch ở P/B trên 1 khi nào?",
     openingOptions: [
       "Khi ngân hàng có quy mô tổng tài sản lớn nhất thị trường",
-      "Khi ROE của ngân hàng cao hơn chi phí vốn chủ sở hữu mà nhà đầu tư đòi hỏi",
+      "Khi ROE cao hơn chi phí vốn chủ sở hữu",
       "Khi ngân hàng trả cổ tức tiền mặt đều đặn hàng năm",
       "Khi tỷ lệ nợ xấu dưới 1%",
     ],

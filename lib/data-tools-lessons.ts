@@ -358,7 +358,7 @@ export const DATA_TOOLS_LESSONS: Lesson[] = [
     openingOptions: [
       "Xóa toàn bộ các dòng bị thiếu để dữ liệu sạch hoàn toàn",
       "Điền giá trị trung bình vào chỗ thiếu cho đủ số liệu",
-      "Tìm hiểu vì sao thiếu trước đã, vì cách thiếu quyết định cách xử lý",
+      "Tìm hiểu vì sao thiếu trước đã",
       "Điền số 0 vào các ô trống",
     ],
     correctOption: 2,
@@ -892,7 +892,7 @@ export const DATA_TOOLS_LESSONS: Lesson[] = [
       "Sau khi JOIN hai bảng, tổng doanh thu tăng lên so với bảng gốc. Điều này có nghĩa gì?",
     openingOptions: [
       "Phép JOIN đã lấy thêm được doanh thu bị thiếu ở bảng gốc",
-      "Khóa ghép không duy nhất ở bảng bên phải, khiến các dòng bên trái bị nhân bản",
+      "Khóa ghép không duy nhất ở bảng bên phải",
       "Đã dùng nhầm INNER JOIN thay vì LEFT JOIN",
       "Cần thêm mệnh đề GROUP BY để gộp lại",
     ],

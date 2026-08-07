@@ -381,7 +381,7 @@ export const DATA_THINKING_LESSONS: Lesson[] = [
       "Đang chạy thử nghiệm A/B, sau ba ngày nhóm B đã vượt nhóm A rõ rệt. Nên dừng và triển khai luôn?",
     openingOptions: [
       "Nên, vì kết quả đã rõ ràng nên kéo dài thêm chỉ tốn chi phí",
-      "Không nên: dừng khi vừa thấy kết quả đẹp làm tăng mạnh xác suất kết luận sai",
+      "Không nên: dừng sớm làm tăng xác suất kết luận sai",
       "Nên, nếu chênh lệch vượt quá 10%",
       "Không nên, vì thử nghiệm luôn phải chạy tối thiểu ba tháng",
     ],
@@ -721,7 +721,7 @@ export const DATA_THINKING_LESSONS: Lesson[] = [
       "Trình bày kết quả phân tích cho ban lãnh đạo, nên bắt đầu từ đâu?",
     openingOptions: [
       "Từ phương pháp và nguồn dữ liệu, để người nghe tin vào độ tin cậy trước",
-      "Từ kết luận và khuyến nghị, rồi mới đến bằng chứng cho những ai muốn đào sâu",
+      "Từ kết luận và khuyến nghị, rồi mới đến bằng chứng",
       "Từ biểu đồ ấn tượng nhất để thu hút sự chú ý",
       "Từ bối cảnh thị trường chung rồi thu hẹp dần",
     ],
@@ -892,7 +892,7 @@ export const DATA_THINKING_LESSONS: Lesson[] = [
       "Một mô hình chấm điểm tín dụng không hề dùng giới tính làm biến đầu vào. Nó có thể phân biệt đối xử theo giới không?",
     openingOptions: [
       "Không, vì biến giới tính đã bị loại khỏi mô hình",
-      "Có, vì các biến khác có thể tương quan chặt với giới tính và đóng vai trò thay thế",
+      "Có, vì biến khác có thể tương quan với giới tính",
       "Không, trừ khi người xây mô hình cố tình can thiệp",
       "Có, nhưng chỉ khi dữ liệu huấn luyện quá nhỏ",
     ],
