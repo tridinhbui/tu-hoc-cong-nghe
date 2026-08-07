@@ -12,10 +12,21 @@
   ],
   "explanation": "Net profit margin is what remains after everything - cost of goods, operating costs, interest, tax - so it is the one number that truly belongs to shareholders. Because it passes through so many layers, it is also easily distorted by one-off items: asset sales, tax refunds, revaluations. What counts as good depends on the industry: 5% is normal for retail and very low for pharma. And a thin margin can still produce a high ROE if asset turnover is fast enough.",
   "diagram": [
-    { "label": "Operating Margin", "arrow": true },
-    { "label": "Subtract interest expense", "arrow": true },
-    { "label": "Subtract tax and one-off items", "arrow": true },
-    { "label": "What remains is Net Margin - the part that truly belongs to shareholders" }
+    {
+      "label": "Operating Margin",
+      "arrow": true
+    },
+    {
+      "label": "Subtract interest expense",
+      "arrow": true
+    },
+    {
+      "label": "Subtract tax and one-off items",
+      "arrow": true
+    },
+    {
+      "label": "What remains is Net Margin - the part that truly belongs to shareholders"
+    }
   ],
   "realWorldExample": {
     "company": "Airlines vs software companies",
@@ -82,7 +93,7 @@
     "question": "A company has Revenue = 1,000 billion, Operating Income (EBIT) = 150 billion; after subtracting 30 billion of interest and 24 billion of tax (20% on EBT), Net Income is 96 billion. What is this company's Net Margin?",
     "options": [
       "Net Margin = EBIT / Revenue = 150/1,000 = 15%, since this is the most important profitability metric to track",
-      "Net Margin = 96/1,000 = 9.6% - meaning the company retains 9.6 dong of final net profit from every 100 dong of revenue, after subtracting every cost, interest, and tax",
+      "Net Margin = 96/1,000 = 9.6%, which means 9.6 dong of bottom-line profit out of every 100 dong of sales revenue booked",
       "Net Margin cannot be calculated if you only know Net Income without knowing the company's Total Assets",
       "Net Margin = Net Income / EBIT = 96/150 = 64%, since Net Income must be compared against EBIT rather than revenue"
     ],
@@ -103,13 +114,23 @@
       "type": "lead",
       "text": "Net Profit Margin is the final stop in the chain of margins: after subtracting everything, including interest and tax, what percentage of revenue does the business keep as real profit for shareholders?"
     },
-    { "type": "callout", "label": "The formula", "text": "Net Margin = Net Income / Revenue" },
-    { "type": "heading", "text": "What makes Net Margin different from Operating Margin" },
+    {
+      "type": "callout",
+      "label": "The formula",
+      "text": "Net Margin = Net Income / Revenue"
+    },
+    {
+      "type": "heading",
+      "text": "What makes Net Margin different from Operating Margin"
+    },
     {
       "type": "paragraph",
       "text": "In essence: Net Margin = Operating Margin − (Interest Expense/Revenue) − (Tax/Revenue). If Operating Margin is unchanged but Net Margin keeps declining, the cause is almost certainly one of two things: the company took on more debt, raising interest expense, or the effective tax rate rose. That's why, when Net Margin is falling, the first thing to do is compare it against Operating Margin to isolate the cause, rather than rushing to conclude 'the core business is deteriorating.'"
     },
-    { "type": "heading", "text": "A low Net Margin doesn't mean a bad company" },
+    {
+      "type": "heading",
+      "text": "A low Net Margin doesn't mean a bad company"
+    },
     {
       "type": "paragraph",
       "text": "Airlines typically achieve only a 3-8% Net Margin due to enormous fuel, maintenance, and staffing costs, while a software company like Adobe can exceed 25%. But a company with only a 3% Net Margin and extremely fast asset turnover (the Walmart-style model) can still achieve an attractive ROE - this is exactly the insight of DuPont Analysis: ROE is the product of margin, asset turnover, and financial leverage, not margin alone."

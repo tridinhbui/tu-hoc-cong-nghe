@@ -12,10 +12,21 @@
   ],
   "explanation": "This whole track revolves around one equation: Assets = Liabilities + Equity. The balance sheet tells you what a business has and who has a claim on it at one point in time; the income statement tells the story of one period; the cash flow statement ties the two together with real cash. The three statements always line up, so when you read a strange number, the way to verify it is to trace it into the other two statements.",
   "diagram": [
-    { "label": "Balance sheet: what it has and who has a claim, at one point in time", "arrow": true },
-    { "label": "Income statement: how much profit it made in a period", "arrow": true },
-    { "label": "Retained earnings links the two statements together", "arrow": true },
-    { "label": "The cash flow statement verifies it with real cash" }
+    {
+      "label": "Balance sheet: what it has and who has a claim, at one point in time",
+      "arrow": true
+    },
+    {
+      "label": "Income statement: how much profit it made in a period",
+      "arrow": true
+    },
+    {
+      "label": "Retained earnings links the two statements together",
+      "arrow": true
+    },
+    {
+      "label": "The cash flow statement verifies it with real cash"
+    }
   ],
   "realWorldExample": {
     "company": "A summary of the accounting-auditing profession",
@@ -102,7 +113,7 @@
     "question": "After finishing this basic accounting track, you read a company's financial statements and see the income statement reporting a profit, but the balance sheet doesn't balance (Assets ≠ Liabilities + Equity). What should you conclude?",
     "options": [
       "This is a normal occurrence since the income statement and balance sheet are two independent statements that don't need to line up with each other",
-      "This is certainly a bookkeeping error or a sign of fraud - Assets = Liabilities + Equity must always balance under the double-entry bookkeeping principle, regardless of whether the income statement shows a profit or a loss",
+      "It is certainly a bookkeeping error or a sign of fraud, because Assets = Liabilities + Equity has to balance every time",
       "Since the company is profitable, its financial statements are certainly not a cause for concern",
       "Just checking the cash flow statement is enough - there's no need to worry about whether the balance sheet balances"
     ],
@@ -123,17 +134,26 @@
       "type": "lead",
       "text": "The 20 lessons in this track have built the entire framework for reading the 'language of accounting' - from the structure of the balance sheet, the components of assets/liabilities, to the difference between accounting profit and actual cash flow. This review lesson doesn't introduce a new company, but ties every piece back together into one unified picture."
     },
-    { "type": "heading", "text": "Group 1: The structure of the balance sheet" },
+    {
+      "type": "heading",
+      "text": "Group 1: The structure of the balance sheet"
+    },
     {
       "type": "paragraph",
       "text": "The foundational equation Assets = Liabilities + Equity always holds at every point in time. Assets split into current (cash, receivables, inventory) and non-current. Liabilities also split into current/long-term by maturity, and accounts payable is an important component of current liabilities reflecting the supplier relationship."
     },
-    { "type": "heading", "text": "Group 2: Working capital and the cash cycle" },
+    {
+      "type": "heading",
+      "text": "Group 2: Working capital and the cash cycle"
+    },
     {
       "type": "paragraph",
       "text": "Working Capital = Current Assets − Current Liabilities measures the short-term operating safety buffer. Cash Conversion Cycle = DIO + DSO − DPO measures the efficiency of the whole cycle from paying cash to buy raw materials to collecting cash back from customers. DIO, DSO and DPO are the three building blocks that make up CCC - understanding each block is a prerequisite for understanding the overall picture."
     },
-    { "type": "heading", "text": "Group 3: Accrual vs Cash Accounting" },
+    {
+      "type": "heading",
+      "text": "Group 3: Accrual vs Cash Accounting"
+    },
     {
       "type": "paragraph",
       "text": "The last two lessons of this track address a core question: why does accounting profit differ from actual cash flow? Accrual accounting recognises by economic obligation and follows the matching principle, while cash accounting only recognises when cash actually moves. This is exactly the key to understanding why a company can be 'profitable on the books' but still short of cash - usually because capital is tied up in growing receivables or inventory."
@@ -156,10 +176,26 @@
       "type": "conceptTable",
       "title": "Summary of Foundational Accounting track terminology",
       "concepts": [
-        { "vi": "Vốn lưu động", "en": "Working Capital", "def": "Current Assets − Current Liabilities" },
-        { "vi": "Chu kỳ chuyển đổi tiền mặt", "en": "Cash Conversion Cycle", "def": "DIO + DSO − DPO" },
-        { "vi": "Kế toán dồn tích", "en": "Accrual Accounting", "def": "Recognised by economic obligation, following the matching principle" },
-        { "vi": "Kế toán tiền mặt", "en": "Cash Accounting", "def": "Recognised when cash actually moves in/out" }
+        {
+          "vi": "Vốn lưu động",
+          "en": "Working Capital",
+          "def": "Current Assets − Current Liabilities"
+        },
+        {
+          "vi": "Chu kỳ chuyển đổi tiền mặt",
+          "en": "Cash Conversion Cycle",
+          "def": "DIO + DSO − DPO"
+        },
+        {
+          "vi": "Kế toán dồn tích",
+          "en": "Accrual Accounting",
+          "def": "Recognised by economic obligation, following the matching principle"
+        },
+        {
+          "vi": "Kế toán tiền mặt",
+          "en": "Cash Accounting",
+          "def": "Recognised when cash actually moves in/out"
+        }
       ]
     },
     {

@@ -12,9 +12,15 @@
   ],
   "explanation": "The financial system exists to connect people with idle money to people who need capital. A bank does this indirectly: taking deposits at a low rate, lending at a higher rate, and living off the spread while bearing the credit risk. Capital markets do this directly: a company issues stock or bonds and sells them straight to investors. Investment funds sit in between, pooling many small savers' money to invest at a larger scale.",
   "diagram": [
-    { "label": "Someone with spare money (savings)" },
-    { "label": "A bank or fund (intermediary)" },
-    { "label": "Someone who needs capital (borrowing/investing)" }
+    {
+      "label": "Someone with spare money (savings)"
+    },
+    {
+      "label": "A bank or fund (intermediary)"
+    },
+    {
+      "label": "Someone who needs capital (borrowing/investing)"
+    }
   ],
   "realWorldExample": {
     "company": "Vietcombank",
@@ -80,7 +86,7 @@
   "practicePrompt": {
     "question": "A tech startup first sells shares to the public through an IPO on the HOSE exchange. Three months later, you buy those shares from another investor on the exchange. Which market does your purchase take place in?",
     "options": [
-      "The secondary market, because you're buying already-issued shares from another investor, not directly from the company",
+      "The secondary market, because you are buying existing shares from another investor, not from the company",
       "The primary market, because those shares still belong to the startup's original IPO",
       "The over-the-counter (OTC) market, because the trade doesn't go through the official HOSE exchange",
       "Neither market, since this is simply a private transaction between two investors"
@@ -102,17 +108,26 @@
       "type": "lead",
       "text": "When you put money into a savings account, your money doesn't sit idle in a vault - it enters a complex machine called the financial system."
     },
-    { "type": "heading", "text": "The financial system: a bridge between spare capital and needed capital" },
+    {
+      "type": "heading",
+      "text": "The financial system: a bridge between spare capital and needed capital"
+    },
     {
       "type": "paragraph",
       "text": "The financial system is the network of institutions and markets connecting people with idle money (who want to save or invest) to people who need capital (for consumption, business, or investment). Without this system, someone wanting to borrow to buy a house would have to go find a stranger with enough spare money willing to lend it - hugely inefficient."
     },
-    { "type": "heading", "text": "Banks: credit intermediaries" },
+    {
+      "type": "heading",
+      "text": "Banks: credit intermediaries"
+    },
     {
       "type": "paragraph",
       "text": "A bank plays the role of a credit intermediary: raising money from millions of savers (paying a low interest rate), then lending it to thousands of other individuals and businesses (charging a higher rate). The gap between these two rates (the net interest margin) is the bank's main source of profit, and also the cost it bears for managing credit risk - the chance that a borrower fails to repay."
     },
-    { "type": "heading", "text": "Investment funds: pooling capital for collective investing" },
+    {
+      "type": "heading",
+      "text": "Investment funds: pooling capital for collective investing"
+    },
     {
       "type": "paragraph",
       "text": "Unlike a bank (which lends at a fixed rate), an investment fund pools money from many investors to put into stocks, bonds, or other assets - and investors bear the market's volatility directly, with no fixed-return promise like a bank deposit."

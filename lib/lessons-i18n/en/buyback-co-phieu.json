@@ -12,10 +12,21 @@
   ],
   "explanation": "A share buyback is a way to return money to shareholders instead of a dividend: shares outstanding fall, so each remaining shareholder's slice grows. Its advantage over a dividend is flexibility - pausing it isn't read as a bad signal. But it's fundamentally an investment decision: the company is buying itself, so it creates value when the stock is undervalued and destroys value when bought at a high price.",
   "diagram": [
-    { "label": "The company buys back shares (buyback)", "arrow": true },
-    { "label": "Shares outstanding fall", "arrow": true },
-    { "label": "The same profit divided by fewer shares", "arrow": true },
-    { "label": "EPS rises" }
+    {
+      "label": "The company buys back shares (buyback)",
+      "arrow": true
+    },
+    {
+      "label": "Shares outstanding fall",
+      "arrow": true
+    },
+    {
+      "label": "The same profit divided by fewer shares",
+      "arrow": true
+    },
+    {
+      "label": "EPS rises"
+    }
   ],
   "realWorldExample": {
     "company": "Apple",
@@ -81,7 +92,7 @@
   "practicePrompt": {
     "question": "A company has Net Income = 500 billion, 100 million shares outstanding (EPS = 5,000 VND/share). The company spends 200 billion in cash to buy back 10 million shares, reducing shares outstanding to 90 million. What is the new EPS after the buyback, and why does it change?",
     "options": [
-      "Buyback = reduce shares outstanding → EPS rises: new EPS = 500 billion / 90 million ≈ 5,556 VND/share, higher than before even though Net Income is unchanged, because the same profit is now split among fewer shares",
+      "EPS rises: 500 billion / 90 million ≈ 5,556 dong, because the very same profit is now split across far fewer shares",
       "EPS is unchanged because a buyback doesn't affect the company's Net Income",
       "EPS falls to 4,500 VND/share because the company spent 200 billion in cash to buy back shares",
       "EPS only changes if the company simultaneously increases Net Income; a buyback alone isn't enough to affect EPS"
@@ -103,20 +114,32 @@
       "type": "lead",
       "text": "A share buyback is the second way to return money to shareholders, alongside dividends - but instead of transferring cash directly, the company uses cash to buy back its own shares on the market, reducing the number of shares outstanding."
     },
-    { "type": "heading", "text": "The mechanism: how a buyback raises EPS" },
+    {
+      "type": "heading",
+      "text": "The mechanism: how a buyback raises EPS"
+    },
     {
       "type": "paragraph",
       "text": "When the number of shares outstanding falls, the same net profit is now divided among fewer shares, raising EPS (earnings per share) even though absolute profit hasn't changed. Apple is a classic example: from 2012-2023, Apple bought back hundreds of billions of USD in stock, reducing shares outstanding from about 26 billion to about 15.5 billion shares - EPS rose sharply even though net income grew only modestly. Warren Buffett is a strong supporter of this strategy when executed properly."
     },
-    { "type": "heading", "text": "When a buyback actually creates value" },
+    {
+      "type": "heading",
+      "text": "When a buyback actually creates value"
+    },
     {
       "type": "paragraph",
       "text": "A buyback only creates value for shareholders when the company buys back shares at a price below or equal to intrinsic value - similar to buying an asset at a bargain. If management buys back shares when they're overvalued, that's effectively spending shareholders' cash on something expensive, destroying value for the remaining shareholders. Some managers use buybacks purely to 'juice' short-term EPS (EPS gaming) rather than for shareholders' genuine benefit - investors need to distinguish between these two motives."
     },
     {
       "type": "comparison",
-      "left": { "label": "Dividend", "text": "A committed periodic payment, creates a stable expectation, taxed immediately upon receipt (in many markets), hard to cut without a negative reaction." },
-      "right": { "label": "Buyback", "text": "Flexible, doesn't create a repeated commitment, has a tax advantage in many markets (only taxed when the shares are sold), but only creates value when bought at a reasonable price or below intrinsic value." }
+      "left": {
+        "label": "Dividend",
+        "text": "A committed periodic payment, creates a stable expectation, taxed immediately upon receipt (in many markets), hard to cut without a negative reaction."
+      },
+      "right": {
+        "label": "Buyback",
+        "text": "Flexible, doesn't create a repeated commitment, has a tax advantage in many markets (only taxed when the shares are sold), but only creates value when bought at a reasonable price or below intrinsic value."
+      }
     },
     {
       "type": "list",

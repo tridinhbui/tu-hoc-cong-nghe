@@ -12,10 +12,18 @@
   ],
   "explanation": "In finance, risk doesn't mean losing money; it means an outcome that isn't certain - one that can go either way. Investors don't avoid risk, they demand extra payment to bear it, and that extra payment is called the risk premium. This is why government bonds pay less than corporate bonds, and it is the foundation underneath every valuation method that follows: an asset's price is its cash flow discounted for its level of risk.",
   "diagram": [
-    { "label": "The future outcome is uncertain" },
-    { "label": "Investors demand compensation for that uncertainty" },
-    { "label": "The higher the risk, the higher the required return" },
-    { "label": "Asset price = cash flow discounted for the level of risk" }
+    {
+      "label": "The future outcome is uncertain"
+    },
+    {
+      "label": "Investors demand compensation for that uncertainty"
+    },
+    {
+      "label": "The higher the risk, the higher the required return"
+    },
+    {
+      "label": "Asset price = cash flow discounted for the level of risk"
+    }
   ],
   "realWorldExample": {
     "company": "Credit Default Swaps",
@@ -81,7 +89,7 @@
   "practicePrompt": {
     "question": "You're comparing two 5-year bonds: a government bond paying 5% a year and a small real-estate company's bond paying 12% a year. Why does the corporate bond pay so much more?",
     "options": [
-      "Because investors demand a risk premium to compensate for the company's higher probability of default relative to the government",
+      "Because investors demand a risk premium for a company's higher default odds than the government's",
       "Because the real-estate company always has steadier cash flow than the government, so it pays more to attract capital",
       "Because the corporate bond has a shorter maturity than the government bond, so it must pay a higher rate",
       "Because a company sets its own bond's interest rate freely, unaffected by the market"
@@ -103,12 +111,18 @@
       "type": "lead",
       "text": "Why does a small company's bond always pay a higher rate than a government bond? The answer sits in one unchanging principle: no return ever comes for free."
     },
-    { "type": "heading", "text": "What is risk, and why does it need to be 'priced'?" },
+    {
+      "type": "heading",
+      "text": "What is risk, and why does it need to be 'priced'?"
+    },
     {
       "type": "paragraph",
       "text": "Risk is the chance that the actual outcome differs from what was expected - in particular, the chance of losing part or all of your invested capital. Risk isn't something to be avoided at all costs; it is something to be understood clearly and priced correctly, because every opportunity for a return above the risk-free rate comes with a matching level of uncertainty."
     },
-    { "type": "heading", "text": "The risk premium - the reward for risk" },
+    {
+      "type": "heading",
+      "text": "The risk premium - the reward for risk"
+    },
     {
       "type": "paragraph",
       "text": "A government bond is nearly risk-free because a government can print money and levy tax to pay its debts. A small company can go bankrupt and default. To compensate for that higher chance of losing capital, investors demand a higher interest rate to buy a corporate bond - that gap is called the risk premium."

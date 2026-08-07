@@ -12,9 +12,17 @@
   ],
   "explanation": "Liabilities are every present obligation a business has to outside parties, not just bank loans: money still owed to suppliers, unpaid salaries, unpaid taxes, cash customers advanced for goods not yet delivered. They are split by payment term - accounts payable to suppliers is usually 30-90 days, so it's a current liability. Reading this structure carefully matters because supplier debt is interest-free capital, while a bank loan is not.",
   "diagram": [
-    { "label": "Business receives goods/services", "arrow": true },
-    { "label": "Doesn't pay immediately", "arrow": true },
-    { "label": "Records a liability" }
+    {
+      "label": "Business receives goods/services",
+      "arrow": true
+    },
+    {
+      "label": "Doesn't pay immediately",
+      "arrow": true
+    },
+    {
+      "label": "Records a liability"
+    }
   ],
   "realWorldExample": {
     "company": "Novaland",
@@ -100,7 +108,7 @@
   "practicePrompt": {
     "question": "Company Y just received a large order, and the customer paid 500 million upfront, but the company hasn't delivered yet. At the same time, the company owes 300 million to its raw-material suppliers, unpaid. How should both amounts be classified on the balance sheet?",
     "options": [
-      "Both are liabilities - because both are obligations the company must fulfil in the future (delivering goods or paying money), even though their nature differs (one is a delivery obligation, the other a payment obligation)",
+      "Both are liabilities, because both are obligations the company will have to settle at some future point",
       "Both are the company's assets, because the company holds control over both this cash and these goods",
       "The customer prepayment is an asset, and the supplier debt need not be recorded since it isn't due yet",
       "Neither amount needs to appear on the balance sheet since neither transaction is complete"
@@ -122,12 +130,18 @@
       "type": "lead",
       "text": "Novaland owes suppliers, owes banks, owes bondholders - tens of thousands of billions of dong in different financial obligations, each with its own deadline and level of urgency. Correctly reading the structure of liabilities is a survival skill when assessing a business's risk."
     },
-    { "type": "heading", "text": "What are liabilities?" },
+    {
+      "type": "heading",
+      "text": "What are liabilities?"
+    },
     {
       "type": "paragraph",
       "text": "Liabilities are a business's present obligation arising from past events, whose settlement will reduce the business's future economic resources. Put simply: they are what a business 'owes' someone else - it could be money, goods, or a service not yet provided."
     },
-    { "type": "heading", "text": "Current and long-term liabilities" },
+    {
+      "type": "heading",
+      "text": "Current and long-term liabilities"
+    },
     {
       "type": "paragraph",
       "text": "Current Liabilities are obligations payable within 12 months: accounts payable to suppliers, salaries owed to employees, taxes payable, and the portion of a long-term loan due in the coming year. Long-term Liabilities include issued bonds, long-term bank loans, and long-term finance lease obligations."
@@ -136,7 +150,10 @@
       "type": "paragraph",
       "text": "This classification matters because it directly affects a liquidity indicator like the Current Ratio = Current Assets ÷ Current Liabilities. If a company has far too many current liabilities relative to current assets, the risk of short-term default rises significantly, even if the company still shows a healthy profit on the income statement."
     },
-    { "type": "heading", "text": "Not just 'borrowed money' - liabilities are much broader" },
+    {
+      "type": "heading",
+      "text": "Not just 'borrowed money' - liabilities are much broader"
+    },
     {
       "type": "paragraph",
       "text": "A common misconception is that liabilities only mean bank loans. In fact, any obligation the company still has to fulfil - even after already receiving cash for it - is a form of liability. For example, cash a customer deposits in advance for an order not yet delivered is recorded as 'unearned revenue', a liability item until the goods are delivered."
@@ -155,10 +172,26 @@
       "type": "conceptTable",
       "title": "Liabilities terminology",
       "concepts": [
-        { "vi": "Nợ phải trả", "en": "Liabilities", "def": "A business's present obligation, the settlement of which will reduce future economic resources." },
-        { "vi": "Nợ ngắn hạn", "en": "Current Liabilities", "def": "Obligations payable within 12 months." },
-        { "vi": "Khoản phải trả nhà cung cấp", "en": "Accounts Payable (AP)", "def": "Money the company still owes suppliers for goods/services already received." },
-        { "vi": "Tỷ số thanh toán hiện hành", "en": "Current Ratio", "def": "Current assets divided by current liabilities, measuring the ability to pay near-term obligations." }
+        {
+          "vi": "Nợ phải trả",
+          "en": "Liabilities",
+          "def": "A business's present obligation, the settlement of which will reduce future economic resources."
+        },
+        {
+          "vi": "Nợ ngắn hạn",
+          "en": "Current Liabilities",
+          "def": "Obligations payable within 12 months."
+        },
+        {
+          "vi": "Khoản phải trả nhà cung cấp",
+          "en": "Accounts Payable (AP)",
+          "def": "Money the company still owes suppliers for goods/services already received."
+        },
+        {
+          "vi": "Tỷ số thanh toán hiện hành",
+          "en": "Current Ratio",
+          "def": "Current assets divided by current liabilities, measuring the ability to pay near-term obligations."
+        }
       ]
     },
     {

@@ -12,10 +12,18 @@
   ],
   "explanation": "Every decision about how to use money is a financial decision: spend today, or invest for tomorrow? Finance helps you make that call on firmer ground, by forcing you to weigh three things explicitly: the time value of money, the level of risk you're willing to accept, and the opportunity cost of the option you didn't take.",
   "diagram": [
-    { "label": "You have a sum of money and several ways to use it" },
-    { "label": "Bring every option to the same point in time" },
-    { "label": "Weigh the risk and the opportunity cost" },
-    { "label": "Choose the option that creates the most value" }
+    {
+      "label": "You have a sum of money and several ways to use it"
+    },
+    {
+      "label": "Bring every option to the same point in time"
+    },
+    {
+      "label": "Weigh the risk and the opportunity cost"
+    },
+    {
+      "label": "Choose the option that creates the most value"
+    }
   ],
   "realWorldExample": {
     "company": "An individual",
@@ -82,7 +90,7 @@
     "question": "If you have 10 million VND today, which use of it best optimises long-term value?",
     "options": [
       "Spend it right away on personal items you need now",
-      "Put it toward a short-term savings goal and a small investment",
+      "Put it toward short-term goals and some small investing",
       "Lend it out to someone else immediately",
       "Leave it in an account that earns no return at all"
     ],
@@ -103,12 +111,18 @@
       "type": "lead",
       "text": "You have 10 million VND. Buy an iPhone, or save it? That seemingly simple question is actually a complete financial problem - and how you answer it reveals your entire way of thinking about money."
     },
-    { "type": "heading", "text": "Finance isn't about 'having a lot of money'" },
+    {
+      "type": "heading",
+      "text": "Finance isn't about 'having a lot of money'"
+    },
     {
       "type": "paragraph",
       "text": "Many people think finance is the study of how to earn more money. In fact, finance is the science of allocating a scarce resource - money, time, capital - across different points in time, under an uncertain future. A person with 10 million and a corporation with 10,000 billion face exactly the same core question: use this resource now, or hold it for later, and if held, where to place it."
     },
-    { "type": "heading", "text": "The three axes behind every financial decision" },
+    {
+      "type": "heading",
+      "text": "The three axes behind every financial decision"
+    },
     {
       "type": "paragraph",
       "text": "Every financial decision, whether as small as buying an iPhone or as large as a trillion-dong M&A deal, turns on three factors: the time value of money (one dong today is not one dong tomorrow), the level of risk you're willing to accept (is the outcome certain?), and opportunity cost (what do you give up by choosing this option?)."
@@ -121,7 +135,10 @@
         "Opportunity cost: choosing A means giving up whatever value B could have brought"
       ]
     },
-    { "type": "heading", "text": "Where finance differs from accounting" },
+    {
+      "type": "heading",
+      "text": "Where finance differs from accounting"
+    },
     {
       "type": "paragraph",
       "text": "Accounting answers 'what happened' - it records past transactions precisely. Finance answers 'what should happen next' - it uses that past data to decide what comes ahead: where to invest, how much to borrow, how to save. The two fields complement each other but cannot replace one another."

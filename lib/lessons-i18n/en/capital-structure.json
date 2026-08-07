@@ -12,9 +12,17 @@
   ],
   "explanation": "Capital structure is the ratio of debt to equity, and the optimization problem is balancing two opposing forces. Debt is cheaper than equity and gets a tax shield, so adding debt initially lowers the weighted average cost of capital. But the more debt, the greater the risk of financial distress, and that cost shows up well before actual default - in the form of suppliers tightening terms, top talent leaving, and good investment opportunities being passed up because there's no room left to borrow.",
   "diagram": [
-    { "label": "Debt: a tax shield but bankruptcy risk", "arrow": true },
-    { "label": "Equity: safer but a higher cost", "arrow": true },
-    { "label": "Optimal capital structure = the balance point" }
+    {
+      "label": "Debt: a tax shield but bankruptcy risk",
+      "arrow": true
+    },
+    {
+      "label": "Equity: safer but a higher cost",
+      "arrow": true
+    },
+    {
+      "label": "Optimal capital structure = the balance point"
+    }
   ],
   "realWorldExample": {
     "company": "Banks vs. tech companies",
@@ -80,7 +88,7 @@
   "practicePrompt": {
     "question": "Company A funds its operations with 70% debt and 30% equity. Company B, in the same industry, funds itself with 20% debt and 80% equity. What is this difference called, and how does it affect each company's financial risk?",
     "options": [
-      "This is a difference in capital structure (Capital Structure = Debt / Equity ratio) - company A has much higher financial leverage, meaning higher volatility in profit and higher bankruptcy risk when business turns difficult, compared to B",
+      "This is a difference in capital structure: A carries more financial leverage, so more risk",
       "This is a difference in dividend policy, unrelated to the financial risk of the two companies",
       "Both companies have the same financial risk because total capital (debt + equity) equals 100% for both",
       "Company B is riskier than company A because it has a higher proportion of equity"
@@ -102,20 +110,32 @@
       "type": "lead",
       "text": "Capital structure answers the question: where does a business get the money to fund its operations - debt or equity - and what is the ratio between the two? This isn't a fixed number, but a continuous trade-off between benefit and risk."
     },
-    { "type": "heading", "text": "What the D/E ratio measures" },
+    {
+      "type": "heading",
+      "text": "What the D/E ratio measures"
+    },
     {
       "type": "paragraph",
       "text": "D/E (Debt-to-Equity) = Total debt / Total equity. D/E = 2 means for every 1 unit of equity, the business borrows an additional 2 units of debt - total assets are funded mostly by debt. The higher the D/E, the greater the leverage: higher potential ROE when business is favorable, but sharply higher bankruptcy risk when times get tough."
     },
-    { "type": "heading", "text": "Why each industry has its own characteristic capital structure" },
+    {
+      "type": "heading",
+      "text": "Why each industry has its own characteristic capital structure"
+    },
     {
       "type": "paragraph",
       "text": "There's no single standard D/E formula that applies to every business. Commercial banks typically have very high D/E (8-10x) because their business model is raising deposits to lend back out - the cash flow and collateral (loans, mortgaged real estate) are stable and easy to value. In contrast, tech companies like Google or FPT typically keep D/E very low, because their cash flow is more uncertain and their assets are mostly intangible (patents, people, brand) - not good collateral for a bank."
     },
     {
       "type": "comparison",
-      "left": { "label": "High debt (high D/E)", "text": "Cheaper cost of capital thanks to the tax shield, amplified ROE when business is good, but high financial distress risk when cash flow declines - interest and principal obligations are fixed regardless of revenue." },
-      "right": { "label": "More equity (low D/E)", "text": "Safer, more flexible during difficult times because there's no fixed obligation, but the cost of equity is usually more expensive than debt and ROE isn't amplified." }
+      "left": {
+        "label": "High debt (high D/E)",
+        "text": "Cheaper cost of capital thanks to the tax shield, amplified ROE when business is good, but high financial distress risk when cash flow declines - interest and principal obligations are fixed regardless of revenue."
+      },
+      "right": {
+        "label": "More equity (low D/E)",
+        "text": "Safer, more flexible during difficult times because there's no fixed obligation, but the cost of equity is usually more expensive than debt and ROE isn't amplified."
+      }
     },
     {
       "type": "list",

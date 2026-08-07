@@ -12,10 +12,21 @@
   ],
   "explanation": "This whole track is built on a single idea: money has a price over time, so two amounts at two different points in time can't be compared directly. From that comes present value and future value; applied to a project's cash flow it becomes NPV and IRR; applied to a whole company's cash flow it becomes the discounted cash flow model, with the discount rate being exactly the weighted average cost of capital. Nothing above stands independently of that original idea.",
   "diagram": [
-    { "label": "Money today can earn a return, so it's worth more than money next year", "arrow": true },
-    { "label": "From that comes present value and future value", "arrow": true },
-    { "label": "Applied to project cash flow, it becomes NPV and IRR", "arrow": true },
-    { "label": "Applied to an entire company, it becomes DCF, discounted by WACC" }
+    {
+      "label": "Money today can earn a return, so it's worth more than money next year",
+      "arrow": true
+    },
+    {
+      "label": "From that comes present value and future value",
+      "arrow": true
+    },
+    {
+      "label": "Applied to project cash flow, it becomes NPV and IRR",
+      "arrow": true
+    },
+    {
+      "label": "Applied to an entire company, it becomes DCF, discounted by WACC"
+    }
   ],
   "realWorldExample": {
     "company": "A summary of financial valuation tools",
@@ -81,7 +92,7 @@
   "practicePrompt": {
     "question": "After reviewing the Time Value of Money track, you've concluded that PV, FV, discounting, compounding, annuities, perpetuities, NPV, and IRR all revolve around a single core principle. What is that principle?",
     "options": [
-      "TVM: 1 dollar today > 1 dollar in the future - because money today can be invested to earn a return, and every formula in this track (PV, FV, NPV, IRR...) is a different application of this same core principle",
+      "TVM: a dong today is worth more than a dong tomorrow - and that is the root of every formula in this stage",
       "Each formula in this track is independent with no common relationship between them",
       "The core principle is that interest rates are always fixed and never change in any financial situation",
       "TVM only applies to corporate investment decisions, not to personal finance"
@@ -103,12 +114,18 @@
       "type": "lead",
       "text": "The Time Value of Money track revolves around a single idea, repeated in many forms: money has value over time, and every serious financial decision comes down to comparing the present value of cash flows, discounted at the appropriate level of risk."
     },
-    { "type": "heading", "text": "A map of the formulas covered" },
+    {
+      "type": "heading",
+      "text": "A map of the formulas covered"
+    },
     {
       "type": "paragraph",
       "text": "PV = FV/(1+r)^n - pulls future money back to today. FV = PV×(1+r)^n - pushes today's money into the future through compounding. PV Annuity = PMT×[(1−(1+r)^−n)/r] - values a level cash flow with a fixed term. PV Perpetuity = C/r (or C/(r−g) with growth) - values a cash flow that lasts forever. NPV = PV(cash flow) − Initial investment - the investment decision criterion. IRR - the discount rate that makes NPV=0. WACC = Ke×(E/V) + Kd×(1−T)×(D/V) - the weighted average cost of capital, used as the standard discount rate in DCF."
     },
-    { "type": "heading", "text": "Why Terminal Value accounts for most of a DCF's value" },
+    {
+      "type": "heading",
+      "text": "Why Terminal Value accounts for most of a DCF's value"
+    },
     {
       "type": "paragraph",
       "text": "A DCF model usually forecasts in detail for only 5-10 years, but a business is assumed to keep operating indefinitely after that. Terminal Value (calculated with the Gordon Growth Model, PV = C/(r−g)) represents the entire value from the last forecast year onward - and because this is the sum of an infinite cash flow, it usually accounts for 60-80% of the total DCF value. This is also why the long-run growth assumption g is the most sensitive and most debated variable in any valuation model."

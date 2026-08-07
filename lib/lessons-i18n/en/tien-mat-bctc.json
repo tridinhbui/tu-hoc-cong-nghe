@@ -12,10 +12,21 @@
   ],
   "explanation": "Cash and equivalents include cash on hand, bank deposits, and investments with an original term of three months or less - the criterion is converting to cash almost instantly without significant value fluctuation. This is the first line on the balance sheet and also the most trustworthy, since it's hard to distort with accounting estimates. But a lot of cash isn't automatically good: idle cash is capital that isn't earning a return.",
   "diagram": [
-    { "label": "Cash on hand and bank deposits", "arrow": true },
-    { "label": "Plus investments maturing under three months", "arrow": true },
-    { "label": "Becomes cash and equivalents on the balance sheet", "arrow": true },
-    { "label": "A lot of cash isn't automatically good: you still have to ask what it's for" }
+    {
+      "label": "Cash on hand and bank deposits",
+      "arrow": true
+    },
+    {
+      "label": "Plus investments maturing under three months",
+      "arrow": true
+    },
+    {
+      "label": "Becomes cash and equivalents on the balance sheet",
+      "arrow": true
+    },
+    {
+      "label": "A lot of cash isn't automatically good: you still have to ask what it's for"
+    }
   ],
   "realWorldExample": {
     "company": "Apple Inc.",
@@ -102,7 +113,7 @@
     "question": "Company A has 500 billion in cash from years of accumulated operating profit; company B also has 500 billion in cash but just got it by borrowing from a bank. Why should investors judge these two '500-billion cash' figures differently?",
     "options": [
       "They shouldn't be judged differently, since cash is cash - its origin doesn't matter to a company's financial health",
-      "They should be judged differently - cash from operating profit (company A) reflects genuinely good operational health, while cash from debt (company B) comes with an interest obligation and higher risk, even with the same cash balance",
+      "They should be judged differently: cash earned from operations is not the same as cash from borrowing",
       "Company B should be rated higher for successfully raising additional external capital",
       "Both companies should be rated poorly for holding too much cash that isn't earning a return"
     ],
@@ -123,12 +134,18 @@
       "type": "lead",
       "text": "Cash & Cash Equivalents always sits at the top of the current-assets list on the balance sheet - because it's the most liquid asset, usable immediately to pay debt, buy goods, or settle any obligation."
     },
-    { "type": "heading", "text": "What cash equivalents include" },
+    {
+      "type": "heading",
+      "text": "What cash equivalents include"
+    },
     {
       "type": "paragraph",
       "text": "Pure cash includes paper currency and demand deposits at a bank. Cash equivalents are investments with liquidity nearly equal to cash - an original maturity of 3 months or less from the purchase date, for example short-term treasury bills, short-term certificates of deposit, or money market funds. Because their maturity is so short, the risk of value fluctuation is nearly zero."
     },
-    { "type": "heading", "text": "Why a large cash balance is both a strength and a criticism" },
+    {
+      "type": "heading",
+      "text": "Why a large cash balance is both a strength and a criticism"
+    },
     {
       "type": "paragraph",
       "text": "A company holding a lot of cash has a good buffer against economic volatility, ample resources for acquisitions (M&A), share buybacks when the price is attractive, or accelerated R&D investment when the opportunity arises. But long-term investors often ask the opposite question: cash sitting idle earns a savings-deposit rate far below the return shareholders expect the company to generate - if management has no clear plan for using it, that's wasted capital that should be returned to shareholders through dividends or buybacks."
@@ -150,10 +167,26 @@
       "type": "conceptTable",
       "title": "Cash and cash equivalents terminology",
       "concepts": [
-        { "vi": "Tiền và tương đương tiền", "en": "Cash & Cash Equivalents", "def": "Cash plus investments maturing ≤ 3 months, near-absolute liquidity" },
-        { "vi": "Tín phiếu kho bạc", "en": "Treasury bills", "def": "A short-term government debt instrument, very low risk" },
-        { "vi": "Tiền bị hạn chế sử dụng", "en": "Restricted cash", "def": "Cash bound to a specific purpose, such as a guarantee or deposit" },
-        { "vi": "Mua lại cổ phiếu", "en": "Share buyback", "def": "A company using cash to buy back its own shares on the market" }
+        {
+          "vi": "Tiền và tương đương tiền",
+          "en": "Cash & Cash Equivalents",
+          "def": "Cash plus investments maturing ≤ 3 months, near-absolute liquidity"
+        },
+        {
+          "vi": "Tín phiếu kho bạc",
+          "en": "Treasury bills",
+          "def": "A short-term government debt instrument, very low risk"
+        },
+        {
+          "vi": "Tiền bị hạn chế sử dụng",
+          "en": "Restricted cash",
+          "def": "Cash bound to a specific purpose, such as a guarantee or deposit"
+        },
+        {
+          "vi": "Mua lại cổ phiếu",
+          "en": "Share buyback",
+          "def": "A company using cash to buy back its own shares on the market"
+        }
       ]
     },
     {

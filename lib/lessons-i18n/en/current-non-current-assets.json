@@ -12,10 +12,21 @@
   ],
   "explanation": "Assets are split by a single question: will it turn into cash within twelve months. Current covers cash, receivables, inventory; non-current covers plant, equipment, intangible assets, and long-term investments. The mix between the two groups says a lot about the business model: a business heavy in long-term assets struggles to adapt when demand drops, while an asset-light business is more flexible but also faces lower barriers to entry.",
   "diagram": [
-    { "label": "Will this asset turn into cash within 12 months?", "arrow": true },
-    { "label": "Yes: current asset - cash, receivables, inventory", "arrow": true },
-    { "label": "No: non-current asset - plant, equipment, intangibles", "arrow": true },
-    { "label": "The mix between the two decides how flexible the business is" }
+    {
+      "label": "Will this asset turn into cash within 12 months?",
+      "arrow": true
+    },
+    {
+      "label": "Yes: current asset - cash, receivables, inventory",
+      "arrow": true
+    },
+    {
+      "label": "No: non-current asset - plant, equipment, intangibles",
+      "arrow": true
+    },
+    {
+      "label": "The mix between the two decides how flexible the business is"
+    }
   ],
   "realWorldExample": {
     "company": "Hoa Phat (HPG)",
@@ -142,7 +153,7 @@
     "question": "A company has: cash 100 billion, receivables 50 billion, inventory 80 billion, a production plant worth 500 billion, and patents worth 30 billion. Which items are classified as current assets?",
     "options": [
       "Only the 100 billion of cash is classified as a current asset; everything else is a non-current asset",
-      "Cash, receivables, and inventory (100 + 50 + 80 = 230 billion) - because all three can turn into cash or be consumed within 1 year; the plant and patents are non-current assets",
+      "Cash, receivables and inventory - that is 100 + 50 + 80 = 230 billion - all convertible within a year",
       "All five items are classified as current assets, because the company owns and controls all of them",
       "The production plant and patents are the current assets, since they keep generating value for the company continuously"
     ],
@@ -163,17 +174,26 @@
       "type": "lead",
       "text": "Not every asset carries the same 'value' in terms of liquidity. The Balance Sheet splits assets into two broad groups based on one criterion: will this asset turn into cash within the next 12 months."
     },
-    { "type": "heading", "text": "Current Assets" },
+    {
+      "type": "heading",
+      "text": "Current Assets"
+    },
     {
       "type": "paragraph",
       "text": "Current Assets are assets expected to turn into cash, be sold, or be consumed within 12 months, including: Cash & Cash Equivalents, Accounts Receivable (AR), Inventory, and short-term investments. This group is usually listed in decreasing order of liquidity, starting from cash."
     },
-    { "type": "heading", "text": "Non-current Assets" },
+    {
+      "type": "heading",
+      "text": "Non-current Assets"
+    },
     {
       "type": "paragraph",
       "text": "Non-current Assets are assets a company holds and uses for many years, not expected to be sold in the short term: PP&E - Property, Plant & Equipment (land, buildings, machinery), Intangible Assets (patents, brands, software), Goodwill (arising from M&A), and long-term investments."
     },
-    { "type": "heading", "text": "Goodwill: a special kind of intangible asset" },
+    {
+      "type": "heading",
+      "text": "Goodwill: a special kind of intangible asset"
+    },
     {
       "type": "paragraph",
       "text": "Goodwill arises when a company acquires another business for more than the fair value of the target's net assets - that gap reflects expectations about brand, loyal customers, or synergy from the deal. Goodwill isn't amortised periodically like PP&E, but it must be tested for impairment every year - if the M&A deal underperforms, the company must write down Goodwill, causing a large loss on the P&L."
@@ -189,17 +209,39 @@
     },
     {
       "type": "comparison",
-      "left": { "label": "High share of Current Assets", "text": "Common in retail and trading - assets are mostly cash, inventory, and receivables, giving better liquidity." },
-      "right": { "label": "High share of Non-current Assets", "text": "Common in manufacturing, infrastructure, and real estate - requiring large upfront investment with a slower payback." }
+      "left": {
+        "label": "High share of Current Assets",
+        "text": "Common in retail and trading - assets are mostly cash, inventory, and receivables, giving better liquidity."
+      },
+      "right": {
+        "label": "High share of Non-current Assets",
+        "text": "Common in manufacturing, infrastructure, and real estate - requiring large upfront investment with a slower payback."
+      }
     },
     {
       "type": "conceptTable",
       "title": "Asset classification terminology",
       "concepts": [
-        { "vi": "Tài sản ngắn hạn", "en": "Current Assets", "def": "Assets turning into cash within 12 months" },
-        { "vi": "Tài sản dài hạn", "en": "Non-current Assets", "def": "Assets held and used over many years" },
-        { "vi": "Tài sản cố định hữu hình", "en": "Property, Plant & Equipment (PP&E)", "def": "Land, buildings, machinery, and equipment" },
-        { "vi": "Lợi thế thương mại", "en": "Goodwill", "def": "The gap between the purchase price and the fair value of net assets in an M&A deal" }
+        {
+          "vi": "Tài sản ngắn hạn",
+          "en": "Current Assets",
+          "def": "Assets turning into cash within 12 months"
+        },
+        {
+          "vi": "Tài sản dài hạn",
+          "en": "Non-current Assets",
+          "def": "Assets held and used over many years"
+        },
+        {
+          "vi": "Tài sản cố định hữu hình",
+          "en": "Property, Plant & Equipment (PP&E)",
+          "def": "Land, buildings, machinery, and equipment"
+        },
+        {
+          "vi": "Lợi thế thương mại",
+          "en": "Goodwill",
+          "def": "The gap between the purchase price and the fair value of net assets in an M&A deal"
+        }
       ]
     },
     {

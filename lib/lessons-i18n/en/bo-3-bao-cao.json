@@ -12,10 +12,21 @@
   ],
   "explanation": "The three statements answer three different questions: the income statement says how much profit the last period produced, the balance sheet says what the business owns and owes right now, and the cash flow statement says how much real cash actually moved. They are not independent - they lock together: profit flows into retained earnings on the balance sheet, and the cash flow statement's ending cash must match the actual cash balance. Reading only one leaves you without that cross-check.",
   "diagram": [
-    { "label": "Income statement: did the last period turn a profit or a loss?", "arrow": true },
-    { "label": "Balance sheet: what does the business own and owe right now?", "arrow": true },
-    { "label": "Cash flow: how much real cash actually moved in and out?", "arrow": true },
-    { "label": "The three statements must tie together - a mismatch anywhere is a red flag" }
+    {
+      "label": "Income statement: did the last period turn a profit or a loss?",
+      "arrow": true
+    },
+    {
+      "label": "Balance sheet: what does the business own and owe right now?",
+      "arrow": true
+    },
+    {
+      "label": "Cash flow: how much real cash actually moved in and out?",
+      "arrow": true
+    },
+    {
+      "label": "The three statements must tie together - a mismatch anywhere is a red flag"
+    }
   ],
   "realWorldExample": {
     "company": "Vingroup (VIC)",
@@ -142,7 +153,7 @@
     "question": "Investor X wants to know how much real cash Company X actually has right now, investor Y wants to know whether Company X turned a profit or loss over the past year, and investor Z wants to know what Company X owns and owes at the current moment. Which of the three statements answers each of these three questions?",
     "options": [
       "All three investors should only need to read the P&L to get a complete answer",
-      "X → Cash Flow (real cash on hand); Y → P&L (profit/loss over time); Z → Balance Sheet (financial position at one point in time)",
+      "X → Cash Flow (real cash held); Y → P&L (profit over a period); Z → Balance Sheet (position at one moment)",
       "X → Balance Sheet; Y → Cash Flow; Z → P&L, because these three statements can swap roles with each other",
       "None of these three questions can be answered correctly using only the basic financial statements"
     ],
@@ -163,17 +174,26 @@
       "type": "lead",
       "text": "A business is like a living body: you can't judge its health from a single number. The three financial statements - Income Statement, Balance Sheet, Cash Flow Statement - are three complementary cross-sections, each answering a question the other two cannot."
     },
-    { "type": "heading", "text": "Income Statement: is the business profitable?" },
+    {
+      "type": "heading",
+      "text": "Income Statement: is the business profitable?"
+    },
     {
       "type": "paragraph",
       "text": "The Income Statement (also called the P&L - Profit & Loss statement) measures operating performance over a span of time, such as a quarter or a year. It starts from Revenue and subtracts successive layers of expenses down to Net Income. This is a 'flow' statement - it measures value flowing through a period, not a fixed point in time."
     },
-    { "type": "heading", "text": "Balance Sheet: where does the business stand?" },
+    {
+      "type": "heading",
+      "text": "Balance Sheet: where does the business stand?"
+    },
     {
       "type": "paragraph",
       "text": "The Balance Sheet is a snapshot at one specific date - for example, 31/12/2025. It lists all the Assets the company owns, its Liabilities, and its Equity. The fundamental accounting equation always holds: Assets = Liabilities + Equity. This is a 'stock' statement - it measures position at a point in time, not over a span."
     },
-    { "type": "heading", "text": "Cash Flow Statement: where does the real cash go?" },
+    {
+      "type": "heading",
+      "text": "Cash Flow Statement: where does the real cash go?"
+    },
     {
       "type": "paragraph",
       "text": "The Cash Flow Statement tracks actual cash moving in and out, split into three groups: CFO (Cash Flow from Operations), CFI (from investing), CFF (from financing, such as borrowing or issuing shares). Unlike Net Income on the P&L - which can be distorted by non-cash accounting entries (depreciation, provisions, revenue recognised by progress) - cash flow is the hardest number to fake."
@@ -196,11 +216,31 @@
       "type": "conceptTable",
       "title": "Core terminology",
       "concepts": [
-        { "vi": "Báo cáo kết quả kinh doanh", "en": "Income Statement / P&L", "def": "Measures profit over a period, from revenue down to net income" },
-        { "vi": "Bảng cân đối kế toán", "en": "Balance Sheet", "def": "A snapshot of assets, liabilities, and equity at one point in time" },
-        { "vi": "Báo cáo lưu chuyển tiền tệ", "en": "Cash Flow Statement", "def": "Tracks actual cash moving in/out across three activity groups" },
-        { "vi": "Dòng chảy", "en": "Flow", "def": "Measured over a span of time (P&L, Cash Flow)" },
-        { "vi": "Tồn kho/vị thế", "en": "Stock", "def": "Measured at one fixed point in time (Balance Sheet)" }
+        {
+          "vi": "Báo cáo kết quả kinh doanh",
+          "en": "Income Statement / P&L",
+          "def": "Measures profit over a period, from revenue down to net income"
+        },
+        {
+          "vi": "Bảng cân đối kế toán",
+          "en": "Balance Sheet",
+          "def": "A snapshot of assets, liabilities, and equity at one point in time"
+        },
+        {
+          "vi": "Báo cáo lưu chuyển tiền tệ",
+          "en": "Cash Flow Statement",
+          "def": "Tracks actual cash moving in/out across three activity groups"
+        },
+        {
+          "vi": "Dòng chảy",
+          "en": "Flow",
+          "def": "Measured over a span of time (P&L, Cash Flow)"
+        },
+        {
+          "vi": "Tồn kho/vị thế",
+          "en": "Stock",
+          "def": "Measured at one fixed point in time (Balance Sheet)"
+        }
       ]
     },
     {

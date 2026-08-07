@@ -12,9 +12,17 @@
   ],
   "explanation": "Current liabilities mature within 12 months, so they are obligations that must be settled with real cash, not with a good outlook. A business performing well can still default if a loan comes due at the wrong moment without enough cash gathered and no way to refinance - that's liquidity risk, quite different from a loss risk. That's why reading a balance sheet must also cover the maturity schedule, not just the total outstanding debt.",
   "diagram": [
-    { "label": "A debt obligation arises", "arrow": true },
-    { "label": "Maturity ≤ 12 months → Current liability", "arrow": true },
-    { "label": "Maturity > 12 months → Long-term liability" }
+    {
+      "label": "A debt obligation arises",
+      "arrow": true
+    },
+    {
+      "label": "Maturity ≤ 12 months → Current liability",
+      "arrow": true
+    },
+    {
+      "label": "Maturity > 12 months → Long-term liability"
+    }
   ],
   "realWorldExample": {
     "company": "Masan Group",
@@ -100,7 +108,7 @@
   "practicePrompt": {
     "question": "Company Z has 800 billion of debt maturing within the next 11 months, while current assets are only 300 billion and expected operating cash flow is 200 billion/year. What is the biggest risk facing this company?",
     "options": [
-      "Liquidity risk - the company may not have enough cash/current assets to repay the enormous current debt as it matures, even though it may still be profitable on the income statement",
+      "Liquidity risk: there may not be enough current assets to cover that debt as it falls due next year",
       "No significant risk since the company is still generating positive operating cash flow every year",
       "The only risk is that market interest rates might rise in the near future",
       "Foreign-exchange risk, because the debt might be denominated in foreign currency"
@@ -122,11 +130,18 @@
       "type": "lead",
       "text": "Liabilities are split into current and long-term based on a single criterion: time to maturity. Current liabilities must be paid within 12 months, long-term liabilities have a longer repayment horizon. This classification matters because it determines the liquidity pressure a business faces over the coming year."
     },
-    { "type": "heading", "text": "Why maturity matters more than the size of the debt" },
     {
-      "type": "paragraph","text": "A company with total debt of 1,000 billion but spread evenly over 10 years is far safer than one owing 500 billion that is entirely due next year. In the second case, if the company doesn't have enough cash and can't borrow anew to roll over the debt (refinance), it can fall into a liquidity crisis - even while it's still profitable and its business is still doing fine."
+      "type": "heading",
+      "text": "Why maturity matters more than the size of the debt"
     },
-    { "type": "heading", "text": "Maturity profile - the full picture of debt" },
+    {
+      "type": "paragraph",
+      "text": "A company with total debt of 1,000 billion but spread evenly over 10 years is far safer than one owing 500 billion that is entirely due next year. In the second case, if the company doesn't have enough cash and can't borrow anew to roll over the debt (refinance), it can fall into a liquidity crisis - even while it's still profitable and its business is still doing fine."
+    },
+    {
+      "type": "heading",
+      "text": "Maturity profile - the full picture of debt"
+    },
     {
       "type": "paragraph",
       "text": "A debt maturity profile is a chart showing how much debt comes due each future year. Credit analysts and bondholders always study this chart closely to spot a 'maturity wall' - a year when a huge amount of debt comes due at once. If that year coincides with a period of tight credit markets (higher interest rates, banks restricting lending), the business can face serious trouble refinancing."
@@ -148,10 +163,26 @@
       "type": "conceptTable",
       "title": "Liabilities-by-term terminology",
       "concepts": [
-        { "vi": "Nợ ngắn hạn", "en": "Current liabilities", "def": "Financial obligations to be paid within 12 months" },
-        { "vi": "Nợ dài hạn", "en": "Long-term liabilities", "def": "Financial obligations with a payment horizon beyond 12 months" },
-        { "vi": "Lịch đáo hạn nợ", "en": "Debt maturity profile", "def": "A chart showing how much debt comes due each year" },
-        { "vi": "Tái cấp vốn", "en": "Refinancing", "def": "Borrowing anew to pay off an old debt that's coming due" }
+        {
+          "vi": "Nợ ngắn hạn",
+          "en": "Current liabilities",
+          "def": "Financial obligations to be paid within 12 months"
+        },
+        {
+          "vi": "Nợ dài hạn",
+          "en": "Long-term liabilities",
+          "def": "Financial obligations with a payment horizon beyond 12 months"
+        },
+        {
+          "vi": "Lịch đáo hạn nợ",
+          "en": "Debt maturity profile",
+          "def": "A chart showing how much debt comes due each year"
+        },
+        {
+          "vi": "Tái cấp vốn",
+          "en": "Refinancing",
+          "def": "Borrowing anew to pay off an old debt that's coming due"
+        }
       ]
     },
     {

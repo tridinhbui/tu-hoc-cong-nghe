@@ -12,10 +12,21 @@
   ],
   "explanation": "Accounts payable is the amount a business still owes its suppliers, and it is an interest-free source of capital. A business with strong negotiating leverage can stretch out its payment days, using its supply chain's capital to fund its own operations - Walmart and Amazon are classic examples. But the same rising number can also mean the business is short of cash and paying late against its will, so it must be read alongside cash balances.",
   "diagram": [
-    { "label": "Buy from a supplier", "arrow": true },
-    { "label": "Don't pay immediately", "arrow": true },
-    { "label": "Record Accounts Payable (AP)", "arrow": true },
-    { "label": "Paying late = using supplier capital for free" }
+    {
+      "label": "Buy from a supplier",
+      "arrow": true
+    },
+    {
+      "label": "Don't pay immediately",
+      "arrow": true
+    },
+    {
+      "label": "Record Accounts Payable (AP)",
+      "arrow": true
+    },
+    {
+      "label": "Paying late = using supplier capital for free"
+    }
   ],
   "realWorldExample": {
     "company": "Walmart",
@@ -101,7 +112,7 @@
   "practicePrompt": {
     "question": "Walmart is famous for paying its suppliers 45-60 days late while collecting from customers almost instantly (direct retail sales). What advantage does this create for Walmart?",
     "options": [
-      "Walmart uses supplier money (high AP) as a form of interest-free credit to fund its operations, meaningfully improving free cash flow",
+      "Walmart uses its suppliers' money as an interest-free credit line, which materially improves its free cash flow",
       "This is a sign Walmart is in financial trouble and cannot afford to pay suppliers on time",
       "This creates no financial benefit whatsoever, it's simply a management habit of the company",
       "This is a breach of contract with suppliers and will cause lasting damage to the business relationship"
@@ -123,12 +134,18 @@
       "type": "lead",
       "text": "Accounts Payable (AP) is the amount a business owes suppliers because it has purchased goods/services but not yet paid for them. It sounds like 'bad debt', but for a strong business, high AP is actually a subtle financial advantage."
     },
-    { "type": "heading", "text": "Why paying suppliers late can be an advantage" },
+    {
+      "type": "heading",
+      "text": "Why paying suppliers late can be an advantage"
+    },
     {
       "type": "paragraph",
       "text": "When a business is large and reputable enough, it has the negotiating power to demand longer payment terms - 30, 60, even 90 days. During that time, the business keeps cash in hand to invest, cycle capital, or simply earn deposit interest, while still using the goods/services already received. This is essentially an 'interest-free loan' from the supplier."
     },
-    { "type": "heading", "text": "DPO and the limits of the pay-late strategy" },
+    {
+      "type": "heading",
+      "text": "DPO and the limits of the pay-late strategy"
+    },
     {
       "type": "paragraph",
       "text": "Days Payable Outstanding (DPO) = AP / (COGS / 365) - the average number of days a business takes to pay its suppliers. A high DPO is good for the buyer's cash flow, but if stretched beyond what's reasonable for the industry, suppliers may stop extending credit, deprioritise delivery, or raise prices to offset the risk - damaging the long-term partnership."
@@ -150,15 +167,33 @@
       "type": "conceptTable",
       "title": "Accounts payable terminology",
       "concepts": [
-        { "vi": "Khoản phải trả", "en": "Accounts Payable (AP)", "def": "Money a business owes suppliers for unpaid purchases" },
-        { "vi": "Số ngày phải trả bình quân", "en": "Days Payable Outstanding (DPO)", "def": "AP / (COGS/365) - the average number of days to pay a supplier" },
-        { "vi": "Tín dụng thương mại", "en": "Trade credit", "def": "The implicit credit a supplier extends to a customer through payment terms" }
+        {
+          "vi": "Khoản phải trả",
+          "en": "Accounts Payable (AP)",
+          "def": "Money a business owes suppliers for unpaid purchases"
+        },
+        {
+          "vi": "Số ngày phải trả bình quân",
+          "en": "Days Payable Outstanding (DPO)",
+          "def": "AP / (COGS/365) - the average number of days to pay a supplier"
+        },
+        {
+          "vi": "Tín dụng thương mại",
+          "en": "Trade credit",
+          "def": "The implicit credit a supplier extends to a customer through payment terms"
+        }
       ]
     },
     {
       "type": "comparison",
-      "left": { "label": "High AP from strength", "text": "Walmart, Amazon: market power lets them negotiate slow payment without hurting the supplier relationship" },
-      "right": { "label": "High AP from weakness", "text": "A small business in liquidity trouble is forced to delay payment, which can risk losing suppliers" }
+      "left": {
+        "label": "High AP from strength",
+        "text": "Walmart, Amazon: market power lets them negotiate slow payment without hurting the supplier relationship"
+      },
+      "right": {
+        "label": "High AP from weakness",
+        "text": "A small business in liquidity trouble is forced to delay payment, which can risk losing suppliers"
+      }
     },
     {
       "type": "closing",

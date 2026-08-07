@@ -12,10 +12,21 @@
   ],
   "explanation": "Operating cash flow is the real cash the business generates, and the common way to calculate it starts from net profit and adjusts for two groups. The first is non-cash expenses like depreciation and provisions, which get added back. The second is the change in working capital: rising inventory and receivables mean cash is being tied up, so they get subtracted. The final number is far harder to distort than profit.",
   "diagram": [
-    { "label": "Start from net profit", "arrow": true },
-    { "label": "Add back depreciation and other non-cash items", "arrow": true },
-    { "label": "Subtract the increase in working capital", "arrow": true },
-    { "label": "That gives operating cash flow - real cash from the business" }
+    {
+      "label": "Start from net profit",
+      "arrow": true
+    },
+    {
+      "label": "Add back depreciation and other non-cash items",
+      "arrow": true
+    },
+    {
+      "label": "Subtract the increase in working capital",
+      "arrow": true
+    },
+    {
+      "label": "That gives operating cash flow - real cash from the business"
+    }
   ],
   "realWorldExample": {
     "company": "Vinamilk (VNM)",
@@ -92,7 +103,7 @@
     "question": "A company has Net Income of 150 billion, depreciation (D&A) of 60 billion (a non-cash cost), and working capital that grew by 40 billion (from rising inventory and receivables). What is this company's OCF?",
     "options": [
       "OCF = 150 billion, exactly equal to Net Income, since that is the company's official profit figure",
-      "OCF = 170 billion: Net Income (150) + D&A (60, added back since it's non-cash) - the working capital increase (40, subtracted since it consumes cash)",
+      "OCF = 170 billion: Net Income 150 + D&A 60 (non-cash, so added back) - working capital 40 (cash used)",
       "OCF = 210 billion, since you only need to add back depreciation without subtracting the working-capital increase",
       "OCF = 90 billion, since both depreciation and the working-capital increase must be subtracted from Net Income"
     ],
@@ -113,7 +124,10 @@
       "type": "lead",
       "text": "Net Income is an accounting number, shaped by non-cash recognition rules. Operating Cash Flow (OCF) answers a more practical question: how much cash did the core business actually generate during the period?"
     },
-    { "type": "heading", "text": "The formula: from Net Income to OCF" },
+    {
+      "type": "heading",
+      "text": "The formula: from Net Income to OCF"
+    },
     {
       "type": "paragraph",
       "text": "The most common approach - the indirect method - starts from Net Income and adjusts for non-cash items: OCF = Net Income + D&A − ΔNWC (change in net working capital). D&A (Depreciation & Amortization) is an expense already subtracted from Net Income on the P&L but which cost no cash this period - because the cash was already spent back when the asset was purchased. That's why D&A has to be added back."
@@ -122,7 +136,10 @@
       "type": "paragraph",
       "text": "ΔNWC (change in net working capital) reflects cash being 'tied up' or 'freed' by operations: if receivables (AR) and inventory rise, cash is being tied up (subtracted from OCF); if payables (AP) rise, the company is using supplier funding - cash is kept longer, raising OCF."
     },
-    { "type": "heading", "text": "What does OCF say about earnings quality?" },
+    {
+      "type": "heading",
+      "text": "What does OCF say about earnings quality?"
+    },
     {
       "type": "paragraph",
       "text": "Comparing OCF with Net Income across several years lets an investor judge 'earnings quality'. If OCF consistently runs well below Net Income, that's a warning sign: the company might be recognising revenue too early, letting receivables balloon, or holding unsellable inventory. Conversely, OCF sustainably exceeding Net Income across several years is a sign of a healthy business managing its working capital well."
@@ -145,9 +162,21 @@
       "type": "conceptTable",
       "title": "Operating Cash Flow terminology",
       "concepts": [
-        { "vi": "Khấu hao & Phân bổ", "en": "Depreciation & Amortization (D&A)", "def": "A non-cash cost that spreads the value of fixed/intangible assets over their useful life." },
-        { "vi": "Vốn lưu động ròng", "en": "Net Working Capital (NWC)", "def": "The gap between current operating assets and current operating liabilities (AR + Inventory − AP)." },
-        { "vi": "Chất lượng lợi nhuận", "en": "Earnings Quality", "def": "How well Net Income is backed by real cash flow rather than just accounting entries." }
+        {
+          "vi": "Khấu hao & Phân bổ",
+          "en": "Depreciation & Amortization (D&A)",
+          "def": "A non-cash cost that spreads the value of fixed/intangible assets over their useful life."
+        },
+        {
+          "vi": "Vốn lưu động ròng",
+          "en": "Net Working Capital (NWC)",
+          "def": "The gap between current operating assets and current operating liabilities (AR + Inventory − AP)."
+        },
+        {
+          "vi": "Chất lượng lợi nhuận",
+          "en": "Earnings Quality",
+          "def": "How well Net Income is backed by real cash flow rather than just accounting entries."
+        }
       ]
     },
     {

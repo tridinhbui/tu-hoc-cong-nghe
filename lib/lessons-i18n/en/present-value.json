@@ -12,10 +12,21 @@
   ],
   "explanation": "Present value converts a future amount back to today by dividing by one plus the interest rate, raised to the number of years. The idea underneath is simple: money today can be invested to earn a return, so it's worth more than the same amount received later. Two consequences to remember - the higher the discount rate, the lower the present value, and the further out a cash flow is, the faster it shrinks because of the exponent. All of financial valuation is built on this calculation.",
   "diagram": [
-    { "label": "An amount to be received in the future", "arrow": true },
-    { "label": "Choose a discount rate matching that amount's risk", "arrow": true },
-    { "label": "Divide by (1+r) raised to the number of years", "arrow": true },
-    { "label": "Get the present value - now comparable against money today" }
+    {
+      "label": "An amount to be received in the future",
+      "arrow": true
+    },
+    {
+      "label": "Choose a discount rate matching that amount's risk",
+      "arrow": true
+    },
+    {
+      "label": "Divide by (1+r) raised to the number of years",
+      "arrow": true
+    },
+    {
+      "label": "Get the present value - now comparable against money today"
+    }
   ],
   "realWorldExample": {
     "company": "Valuing government bonds",
@@ -81,7 +92,7 @@
   "practicePrompt": {
     "question": "You are promised 121 million dong to be received in 2 years. If a reasonable discount rate is 10%/year, what is the present value (PV) of this amount?",
     "options": [
-      "PV = FV / (1+r)^n = 121 / (1.1)^2 = 100 million dong - this is the amount today that is equivalent to 121 million received after 2 years, at a discount rate of 10%/year",
+      "PV = FV / (1+r)^n = 121 / (1.1)² = 100 million dong, which is what that sum is worth today",
       "PV = FV × (1+r)^n = 121 × 1.21 = 146.4 million dong, since you must multiply by interest for each waiting year",
       "PV always exactly equals FV = 121 million because money's value doesn't change over time",
       "PV cannot be calculated without knowing exactly who the company or individual promising to pay is"
@@ -103,12 +114,18 @@
       "type": "lead",
       "text": "A dong received in the future is worth less than a dong in hand today, because today's dong can be invested to earn a return immediately. Present Value (PV) answers the reverse question: an amount X received after n years - how much is that worth today? This question sits at the root of every financial valuation - from stock prices, to bond prices, to whether a project is worth investing in."
     },
-    { "type": "heading", "text": "The PV formula" },
+    {
+      "type": "heading",
+      "text": "The PV formula"
+    },
     {
       "type": "paragraph",
       "text": "PV = FV / (1+r)^n, where FV is the future amount, r is the discount rate (reflecting opportunity cost), and n is the number of years. **Example:** receiving 1,000,000 dong after 1 year, discount rate 10%. PV = 1,000,000 / 1.1 = 909,091 dong. That means if you had 909,091 dong today and deposited it at 10% interest, after 1 year you'd have exactly 1,000,000 dong - the two amounts are 'worth the same.'"
     },
-    { "type": "heading", "text": "PV falls as n rises or r rises" },
+    {
+      "type": "heading",
+      "text": "PV falls as n rises or r rises"
+    },
     {
       "type": "paragraph",
       "text": "The same 1,000,000 dong received after 5 years instead of 1 year: PV = 1,000,000 / (1.1)^5 = 1,000,000 / 1.61051 ≈ 620,921 dong - much lower. The further into the future, the smaller the PV. Similarly, if the discount rate rises from 10% to 15%, the PV of the same amount 1 year later falls to 1,000,000 / 1.15 ≈ 869,565 dong. A higher discount rate means the 'cost' of waiting is higher."

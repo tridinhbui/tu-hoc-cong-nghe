@@ -12,9 +12,17 @@
   ],
   "explanation": "Tracking Error measures the standard deviation of the return gap between a portfolio/fund and the benchmark it tracks. For an active fund, a high tracking error can be acceptable (reflecting a distinct strategy). For a passive index fund, tracking error should be very low - since its main goal is to track the index as precisely as possible.",
   "diagram": [
-    { "label": "The portfolio/fund's return", "arrow": true },
-    { "label": "Minus the tracked benchmark's return", "arrow": true },
-    { "label": "The standard deviation of that gap = Tracking Error" }
+    {
+      "label": "The portfolio/fund's return",
+      "arrow": true
+    },
+    {
+      "label": "Minus the tracked benchmark's return",
+      "arrow": true
+    },
+    {
+      "label": "The standard deviation of that gap = Tracking Error"
+    }
   ],
   "realWorldExample": {
     "company": "An ETF tracking an index",
@@ -81,7 +89,7 @@
     "question": "An ETF claims to track the VN30 index, but its actual annual return differs from the VN30's own return by 2% (from management fees, trading costs, and technical slippage). What is this 2% gap called, and what does it assess about the fund's operational quality?",
     "options": [
       "This is called Alpha, showing the fund's ability to outperform the broad market",
-      "Tracking Error measures the deviation between a fund's return and the index it tracks",
+      "Tracking Error measures how far the fund's return drifts from the index it promises to follow",
       "This is called Beta, measuring how sensitive the fund is to the broad market's swings",
       "This gap carries no meaning at all for assessing an ETF's quality"
     ],
@@ -102,12 +110,18 @@
       "type": "lead",
       "text": "Tracking Error measures the standard deviation of the return gap between a fund and the benchmark it tracks. What this number means depends entirely on the fund type: for an active fund, a high tracking error can be acceptable since it reflects a distinct strategy; for a passive index fund, tracking error should be very low."
     },
-    { "type": "heading", "text": "Why a high tracking error is a problem for an index fund" },
+    {
+      "type": "heading",
+      "text": "Why a high tracking error is a problem for an index fund"
+    },
     {
       "type": "paragraph",
       "text": "An index fund's core purpose is to accurately replicate the index's performance. A high tracking error means the fund is failing at the most basic promise it made to investors. The cause usually traces back to high management costs, rebalancing slippage, or an inefficient index-replication strategy - all signs of poor operational quality. High-quality ETFs tracking the S&P 500 typically have a tracking error of just a few basis points per year."
     },
-    { "type": "heading", "text": "\"Closet indexing\" - a suspicious signal in the opposite direction" },
+    {
+      "type": "heading",
+      "text": "\"Closet indexing\" - a suspicious signal in the opposite direction"
+    },
     {
       "type": "paragraph",
       "text": "An active fund with a very low Tracking Error despite being marketed as actively managed can signal \"closet indexing\": the fund is essentially replicating the benchmark while still charging high management fees like a genuinely active fund, without generating value proportional to that cost. This is a real problem that leaves investors paying high fees for performance that's essentially the same as a much cheaper index fund."

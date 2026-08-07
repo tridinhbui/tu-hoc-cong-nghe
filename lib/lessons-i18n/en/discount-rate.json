@@ -12,10 +12,21 @@
   ],
   "explanation": "The discount rate is the minimum return you require to accept the risk of an investment - it is an opportunity cost, not a technical parameter. The higher the risk, the higher that requirement, the stronger the discount, and the lower the present value. Because it sits in the denominator and is raised to a power over time, a small change in this rate shifts a valuation enormously - that's why every DCF model must come with a sensitivity table.",
   "diagram": [
-    { "label": "Identify the cash flow's risk", "arrow": true },
-    { "label": "Start from the risk-free rate as a base", "arrow": true },
-    { "label": "Add a matching risk premium", "arrow": true },
-    { "label": "Get the discount rate - placed in the denominator, raised to a power by year" }
+    {
+      "label": "Identify the cash flow's risk",
+      "arrow": true
+    },
+    {
+      "label": "Start from the risk-free rate as a base",
+      "arrow": true
+    },
+    {
+      "label": "Add a matching risk premium",
+      "arrow": true
+    },
+    {
+      "label": "Get the discount rate - placed in the denominator, raised to a power by year"
+    }
   ],
   "realWorldExample": {
     "company": "Valuing a renewable-energy project vs a tech startup",
@@ -81,7 +92,7 @@
   "practicePrompt": {
     "question": "When valuing a high-risk startup, an investor uses a discount rate of 25%/year; when valuing an almost risk-free government bond, they use a discount rate of only 5%/year. Why is the gap between these two discount rates so large?",
     "options": [
-      "Discount rate = opportunity cost + risk premium - a high-risk startup demands a much larger risk premium than an almost perfectly safe government bond, so its discount rate is higher to correctly reflect the greater uncertainty",
+      "Discount rate = opportunity cost + a risk premium, so a startup's rate sits well above a bond's",
       "The discount rate must always be identical across every asset type to ensure a fair comparison",
       "The discount rate only depends on the central bank's interest rate, having nothing to do with any specific asset's risk",
       "A startup always uses a lower discount rate because its growth potential compensates for its risk"
@@ -103,12 +114,18 @@
       "type": "lead",
       "text": "The discount rate isn't an arbitrary number - it's the minimum return an investor requires to accept the risk of a specific cash flow. The discount rate is exactly the bridge connecting risk to valuation: the higher the risk, the higher the discount rate, and the lower the PV of the same cash flow."
     },
-    { "type": "heading", "text": "Where does the discount rate come from?" },
+    {
+      "type": "heading",
+      "text": "Where does the discount rate come from?"
+    },
     {
       "type": "paragraph",
       "text": "In essence, discount rate = opportunity cost (what an investor could earn from another investment of the same risk level) plus a matching risk premium. In business valuation via DCF, the standard discount rate is WACC - because it accurately reflects the true cost of both the debt and equity capital a business uses."
     },
-    { "type": "heading", "text": "Example: renewable energy and a tech startup" },
+    {
+      "type": "heading",
+      "text": "Example: renewable energy and a tech startup"
+    },
     {
       "type": "paragraph",
       "text": "A solar power project with a long-term electricity purchase contract has very predictable cash flow - the discount rate is usually just 8-10%. A tech startup without stable revenue yet has extremely uncertain cash flow - the discount rate can reach 20-30%. Suppose both expect to receive 100 million dong after 5 years: the energy project's PV = 100/(1.09)^5 ≈ 65 million dong; the startup's PV = 100/(1.25)^5 ≈ 33 million dong - the same future amount, but present values almost twice apart, purely because of different risk levels."

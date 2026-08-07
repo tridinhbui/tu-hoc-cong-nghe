@@ -12,10 +12,18 @@
   ],
   "explanation": "Managing working capital means managing the cash trapped in day-to-day operations, and it has three levers: collect from customers faster, hold inventory for fewer days, pay suppliers more slowly. Every day shaved off frees up cash without needing to borrow. This is why fast-growing companies often run short of cash despite being profitable: as revenue rises, inventory and receivables rise with it, and they eat up cash before the cash comes back in.",
   "diagram": [
-    { "label": "High Receivables Days (slow collection)" },
-    { "label": "+ High Inventory Days (unsold stock)" },
-    { "label": "− Payable Days (paying fast)" },
-    { "label": "= Capital trapped in operations" }
+    {
+      "label": "High Receivables Days (slow collection)"
+    },
+    {
+      "label": "+ High Inventory Days (unsold stock)"
+    },
+    {
+      "label": "− Payable Days (paying fast)"
+    },
+    {
+      "label": "= Capital trapped in operations"
+    }
   ],
   "realWorldExample": {
     "company": "A fast-growing manufacturer",
@@ -82,7 +90,7 @@
     "question": "A company wants to improve Working Capital Management to free up more cash for its operations. Which three actions below actually have a direct impact on the formula Working Capital = Current Assets − Current Liabilities?",
     "options": [
       "Only increasing sales revenue affects Working Capital - the other factors are unrelated",
-      "Reducing excess inventory (lowering CA), collecting from customers faster (turning AR into cash, lowering CA), and reasonably extending supplier payment terms (raising CL in a controlled way) - all three are real levers that affect Working Capital",
+      "Cut excess inventory, collect from customers faster, and stretch supplier payment terms sensibly",
       "Only taking on more long-term debt can improve a company's Working Capital",
       "Working Capital depends only on the profit a company generates, and has nothing to do with managing short-term assets and liabilities"
     ],
@@ -103,12 +111,18 @@
       "type": "lead",
       "text": "Working Capital is the cash 'trapped' in day-to-day operations - unsold inventory, money customers haven't paid yet, compared against money owed to suppliers that isn't due yet. Managing working capital well can be the difference between a business surviving and going bankrupt, even while profitable."
     },
-    { "type": "heading", "text": "The formula and the root cause of being 'cash-trapped'" },
+    {
+      "type": "heading",
+      "text": "The formula and the root cause of being 'cash-trapped'"
+    },
     {
       "type": "paragraph",
       "text": "Working Capital = Current Assets − Current Liabilities (short-term assets minus short-term liabilities). Being cash-trapped happens when high Receivables Days (slow customer collection) plus high Inventory Days (goods take a long time to sell) minus Payable Days (time to pay suppliers) produces a large number - meaning the business has to advance cash out for a long time before getting cash back in."
     },
-    { "type": "heading", "text": "Why fast growth can lead to bankruptcy" },
+    {
+      "type": "heading",
+      "text": "Why fast growth can lead to bankruptcy"
+    },
     {
       "type": "paragraph",
       "text": "Fast growth requires a matching rise in working capital - revenue growing 50% a year usually needs a corresponding increase in raw materials, inventory, and receivables. If the company can't raise enough capital to fund this need in time, it can run out of cash to keep operating even while the P&L still shows a profit - a phenomenon called 'growing broke'. This is a real risk for fast-growing manufacturers, whenever the growth rate outpaces the ability to fund working capital."

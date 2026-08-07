@@ -12,10 +12,18 @@
   ],
   "explanation": "Burn rate is the net cash a business spends every month, and runway is how many months it can keep living if nothing changes. The 18-month mark gets mentioned often because raising a round usually takes six months, and you don't want to be negotiating when you only have a few weeks of cash left - because at that point the other side knows exactly where you stand. It's worth distinguishing total spend from net spend: rising revenue lengthens the runway without any cost cutting at all.",
   "diagram": [
-    { "label": "Total monthly spend minus revenue" },
-    { "label": "Gives the net monthly burn rate" },
-    { "label": "Divide available cash by that figure" },
-    { "label": "Gives the number of months left - below 18 months is when fundraising should start" }
+    {
+      "label": "Total monthly spend minus revenue"
+    },
+    {
+      "label": "Gives the net monthly burn rate"
+    },
+    {
+      "label": "Divide available cash by that figure"
+    },
+    {
+      "label": "Gives the number of months left - below 18 months is when fundraising should start"
+    }
   ],
   "realWorldExample": {
     "company": "The 2022-2023 tech layoff wave",
@@ -81,7 +89,7 @@
   "practicePrompt": {
     "question": "A startup has 2,400 million dong in cash, and each month spends 200 million dong more than it takes in (Net Burn Rate). What is this startup's runway (the number of months it can keep operating before running out of cash)?",
     "options": [
-      "Runway = Cash ÷ Net Burn Rate = 2,400 / 200 = 12 months - this is how long the startup can keep operating before running out of cash if it doesn't raise more capital or improve its cash flow",
+      "Runway = 2,400 / 200 = 12 months of operating before the cash runs out",
       "Runway = 200 / 2,400 = 0.08 months, calculated as the burn rate over total cash",
       "Runway = Cash × Net Burn Rate = 2,400 × 200 = 480,000 months, multiplying the two figures directly",
       "Runway can't be calculated without knowing the startup's revenue"
@@ -103,12 +111,18 @@
       "type": "lead",
       "text": "For a startup without profits yet, two numbers matter more than revenue: Burn Rate (the speed of spending cash) and Runway (how long it can keep living) - they decide how much time the startup has to prove its business model before running out of capital."
     },
-    { "type": "heading", "text": "How to calculate Runway, and Gross Burn vs Net Burn" },
+    {
+      "type": "heading",
+      "text": "How to calculate Runway, and Gross Burn vs Net Burn"
+    },
     {
       "type": "paragraph",
       "text": "Runway = Cash / Monthly Burn Rate. **Example:** having 12 billion dong in cash, burning 1 billion dong a month → Runway = 12 months. Gross burn is total monthly spending; Net burn = spending − revenue, which more accurately reflects how fast cash is actually declining. Most startups want to maintain a runway of at least 18 months to have enough time to prove growth and raise the next round before running out of cash."
     },
-    { "type": "heading", "text": "Default alive or default dead - and the lesson from 2022-2023" },
+    {
+      "type": "heading",
+      "text": "Default alive or default dead - and the lesson from 2022-2023"
+    },
     {
       "type": "paragraph",
       "text": "When runway gets shorter, the key question becomes: at the current rate, will revenue overtake burn rate before cash runs out (default alive), or will the company definitely run out of cash without a change (default dead)? The high interest rate environment of 2022-2023 was especially dangerous for high-burn startups: high rates lowered growth-company valuations (due to a higher discount rate) and made venture investors more cautious about deploying new capital. Many large tech startups were forced into mass layoffs during this period to extend runway when they couldn't raise capital in time."

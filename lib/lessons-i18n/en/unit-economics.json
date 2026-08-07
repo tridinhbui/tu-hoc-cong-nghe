@@ -12,10 +12,18 @@
   ],
   "explanation": "Unit economics asks a very specific question: does serving one more customer earn a profit or a loss? The two key figures are the cost of acquiring a customer and the profit that customer generates over their lifetime; a ratio of three or higher is usually considered the threshold for being able to scale profitably. The point most often missed is payback time: a model with a beautiful ratio that takes two years to recover its acquisition cost still burns cash while growing fast.",
   "diagram": [
-    { "label": "Calculate the cost of acquiring a new customer" },
-    { "label": "Calculate the profit that customer generates over their lifetime" },
-    { "label": "Divide LTV by CAC" },
-    { "label": "Three or higher and scaling becomes profitable" }
+    {
+      "label": "Calculate the cost of acquiring a new customer"
+    },
+    {
+      "label": "Calculate the profit that customer generates over their lifetime"
+    },
+    {
+      "label": "Divide LTV by CAC"
+    },
+    {
+      "label": "Three or higher and scaling becomes profitable"
+    }
   ],
   "realWorldExample": {
     "company": "Early-stage ride-hailing startups",
@@ -81,7 +89,7 @@
   "practicePrompt": {
     "question": "A startup has LTV (customer lifetime value) = 3 million dong, CAC (cost to acquire one customer) = 2 million dong. The LTV/CAC ratio is 1.5. How should an investor assess this business model?",
     "options": [
-      "A concern - LTV/CAC = 1.5 is below the safety threshold commonly recommended (≥3), meaning the company spends nearly as much as it earns back from each customer, leaving a very thin or negative margin once other operating costs are deducted",
+      "Worrying: an LTV/CAC of 1.5 sits well below the commonly used safety threshold of 3",
       "Very good, since LTV/CAC > 1 means the company is already profitable on every customer it acquires",
       "No need to worry about this ratio at all, since a startup's business model always needs time to be optimized",
       "LTV/CAC has no meaning at all for companies in the early growth stage"
@@ -103,12 +111,18 @@
       "type": "lead",
       "text": "Unit Economics is the most basic question every business model, whether a startup or a corporation, must answer: is each individual customer actually profitable? If the answer is no, growing fast just means burning cash faster."
     },
-    { "type": "heading", "text": "LTV, CAC and the golden 3:1 ratio" },
+    {
+      "type": "heading",
+      "text": "LTV, CAC and the golden 3:1 ratio"
+    },
     {
       "type": "paragraph",
       "text": "LTV (Lifetime Value) is the total revenue or profit a customer generates over their entire time using the product. CAC (Customer Acquisition Cost) is the cost spent to acquire a new customer (marketing, sales, promotions). An LTV/CAC ratio ≥ 3 is seen as the benchmark for a sustainable business model - meaning the value returned is at least 3 times the cost spent to acquire that customer."
     },
-    { "type": "heading", "text": "When LTV/CAC is below 1: growth is burning cash" },
+    {
+      "type": "heading",
+      "text": "When LTV/CAC is below 1: growth is burning cash"
+    },
     {
       "type": "paragraph",
       "text": "A startup with LTV/CAC = 0.8 (below 1) but growing its customer count very fast is actually losing money on each new customer - the faster it grows, the faster it burns cash, because each new customer brings in less value than it costs to acquire them. Many early-stage ride-hailing startups accepted this situation for years, spending more on promotions than the value customers brought in, betting that at sufficient scale, CAC would fall and LTV would rise thanks to network effects. This strategy is only sustainable if the company has a clear plan to improve this ratio before it runs out of capital."

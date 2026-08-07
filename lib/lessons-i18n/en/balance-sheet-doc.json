@@ -12,10 +12,21 @@
   ],
   "explanation": "A balance sheet reads top-to-bottom from most liquid to least: cash, receivables, inventory, then long-term assets. The Current Ratio (current assets divided by current liabilities) summarises that upper half into a single number about the ability to pay debt over the next 12 months, and below 1.0 is a level that needs explaining. But one ratio isn't enough: at the same Current Ratio of 1.5, a company whose current assets are mostly slow-moving inventory is far weaker than one holding cash.",
   "diagram": [
-    { "label": "Assets (at the top)", "arrow": true },
-    { "label": "Liabilities", "arrow": true },
-    { "label": "Shareholders' equity", "arrow": true },
-    { "label": "Assets = Liabilities + Equity" }
+    {
+      "label": "Assets (at the top)",
+      "arrow": true
+    },
+    {
+      "label": "Liabilities",
+      "arrow": true
+    },
+    {
+      "label": "Shareholders' equity",
+      "arrow": true
+    },
+    {
+      "label": "Assets = Liabilities + Equity"
+    }
   ],
   "realWorldExample": {
     "company": "Techcombank (TCB)",
@@ -142,7 +153,7 @@
     "question": "You've just opened a Balance Sheet packed with numbers for a company for the first time. What is the most sensible place to look first for a quick read on its financial health?",
     "options": [
       "Read every line of intangible assets and goodwill in detail first, since that's usually the most complex and important section",
-      "Compare current assets with current liabilities first - to quickly judge the company's ability to meet obligations coming due soon",
+      "Compare current assets against current liabilities first, to judge quickly whether near-term obligations can be met",
       "Read the equity section first, since that's always the single most important figure on the whole balance sheet",
       "Reading order doesn't matter, every section of the balance sheet deserves equally careful attention from the start"
     ],
@@ -163,22 +174,34 @@
       "type": "lead",
       "text": "A Balance Sheet looks like a dry table of numbers, but if you know how to read it in the right order, you can judge a company's liquidity, leverage, and book value in just five minutes."
     },
-    { "type": "heading", "text": "The fundamental accounting equation" },
+    {
+      "type": "heading",
+      "text": "The fundamental accounting equation"
+    },
     {
       "type": "paragraph",
       "text": "Every Balance Sheet follows an unchanging equation: Assets = Liabilities + Equity. In other words, every asset a company owns is financed either by debt or by shareholders' capital. This is why it's called 'balanced' - the two sides always match."
     },
-    { "type": "heading", "text": "Step 1: check short-term liquidity first" },
+    {
+      "type": "heading",
+      "text": "Step 1: check short-term liquidity first"
+    },
     {
       "type": "paragraph",
       "text": "Before diving into detail, compare Current Assets with Current Liabilities. Current Ratio = Current Assets / Current Liabilities shows whether the company has enough easily convertible assets to meet obligations coming due soon. A Current Ratio below 1.0 is a signal worth attention, though not always dangerous (some industries with specific business cycles can tolerate a lower ratio)."
     },
-    { "type": "heading", "text": "Step 2: look at debt structure and financial leverage" },
+    {
+      "type": "heading",
+      "text": "Step 2: look at debt structure and financial leverage"
+    },
     {
       "type": "paragraph",
       "text": "Next, look at how Total Liabilities splits between short-term and long-term, and compare it with Total Equity via the Debt-to-Equity ratio. The higher this ratio, the more the business depends on financial leverage - higher risk, but also able to amplify return on equity (ROE) when business goes well."
     },
-    { "type": "heading", "text": "Step 3: Book Value" },
+    {
+      "type": "heading",
+      "text": "Step 3: Book Value"
+    },
     {
       "type": "paragraph",
       "text": "Book Value = Total Equity = Total Assets − Total Liabilities. This is the value 'on paper' belonging to shareholders if the company liquidated all its assets at book value and paid off all its debt. The P/B ratio = Market Cap / Book Value shows how many times higher or lower the market is valuing the company relative to its book value."
@@ -201,10 +224,26 @@
       "type": "conceptTable",
       "title": "Balance Sheet terminology",
       "concepts": [
-        { "vi": "Bảng cân đối kế toán", "en": "Balance Sheet", "def": "A report of assets, liabilities, and equity at one point in time" },
-        { "vi": "Hệ số thanh toán hiện hành", "en": "Current Ratio", "def": "Current Assets divided by Current Liabilities" },
-        { "vi": "Tỷ lệ nợ trên vốn chủ", "en": "Debt-to-Equity Ratio", "def": "Total Liabilities divided by Total Equity" },
-        { "vi": "Giá trị sổ sách", "en": "Book Value", "def": "Total Equity, equal to Total Assets minus Total Liabilities" }
+        {
+          "vi": "Bảng cân đối kế toán",
+          "en": "Balance Sheet",
+          "def": "A report of assets, liabilities, and equity at one point in time"
+        },
+        {
+          "vi": "Hệ số thanh toán hiện hành",
+          "en": "Current Ratio",
+          "def": "Current Assets divided by Current Liabilities"
+        },
+        {
+          "vi": "Tỷ lệ nợ trên vốn chủ",
+          "en": "Debt-to-Equity Ratio",
+          "def": "Total Liabilities divided by Total Equity"
+        },
+        {
+          "vi": "Giá trị sổ sách",
+          "en": "Book Value",
+          "def": "Total Equity, equal to Total Assets minus Total Liabilities"
+        }
       ]
     },
     {

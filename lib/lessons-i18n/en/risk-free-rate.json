@@ -12,10 +12,21 @@
   ],
   "explanation": "The risk-free rate is the return available with essentially no default risk, usually taken from a government bond with the same maturity as the cash flow being valued. The market risk premium is the excess return investors demand to hold stocks rather than government bonds. These two figures are the foundation of every valuation, so picking the wrong maturity or the wrong currency for the risk-free rate throws the entire model off.",
   "diagram": [
-    { "label": "Take the government bond yield as the base", "arrow": true },
-    { "label": "Measure the expected return of the entire stock market", "arrow": true },
-    { "label": "The difference between the two is the market risk premium", "arrow": true },
-    { "label": "Every risky asset is priced on top of this base" }
+    {
+      "label": "Take the government bond yield as the base",
+      "arrow": true
+    },
+    {
+      "label": "Measure the expected return of the entire stock market",
+      "arrow": true
+    },
+    {
+      "label": "The difference between the two is the market risk premium",
+      "arrow": true
+    },
+    {
+      "label": "Every risky asset is priced on top of this base"
+    }
   ],
   "realWorldExample": {
     "company": "Vietnamese government bonds and the VN-Index stock market",
@@ -81,7 +92,7 @@
   "practicePrompt": {
     "question": "When calculating CAPM or valuing any asset, financial analysts commonly use the yield on 10-year US Treasury bonds as the 'risk-free rate' instead of a commercial bank's savings rate. Why is it chosen this way?",
     "options": [
-      "Risk-free rate = US T-bill or a long-term government bond - because this is considered to carry almost no default risk (the government can print money and levy taxes to pay its debt), whereas a commercial bank still carries some risk of failure",
+      "The risk-free rate is the T-bill or government bond, because default risk there is close to zero",
       "Because a commercial bank's savings rate is always higher than a government bond so it's unsuitable as the lowest reference benchmark",
       "Because US government bonds always have the highest yield of any financial asset in the world",
       "The risk-free rate is purely a theoretical concept, with no real asset used as a reference benchmark"
@@ -103,12 +114,18 @@
       "type": "lead",
       "text": "The risk-free rate is the foundation of every risk pricing model in finance - it's the return on an asset with essentially no default risk, and every other risk premium (for stocks, corporate bonds, investment projects) is added on top of this base."
     },
-    { "type": "heading", "text": "Where the risk-free rate comes from" },
+    {
+      "type": "heading",
+      "text": "Where the risk-free rate comes from"
+    },
     {
       "type": "paragraph",
       "text": "In the US, the risk-free rate is typically taken from the yield on US Treasury bills/bonds (T-bill, T-bond) - because default risk is nearly zero. In Vietnam, the yield on 10-year Vietnamese government bonds is typically used as the reference risk-free rate - every CAPM or DCF model for a Vietnamese company starts from this number."
     },
-    { "type": "heading", "text": "Market Risk Premium" },
+    {
+      "type": "heading",
+      "text": "Market Risk Premium"
+    },
     {
       "type": "paragraph",
       "text": "Market Risk Premium = Rm − Rf, the extra return investors demand to accept the risk of the broad stock market rather than investing in a risk-free asset. The US's historical figure has typically been around 5-7%/year since the early 20th century. This is a much-debated number, because it varies by period and calculation method."
@@ -118,9 +135,21 @@
       "title": "How the risk-free rate flows into a valuation",
       "equation": "Ke = Rf + β × (Rm − Rf)",
       "variables": [
-        { "symbol": "Rf", "name": "Risk-free rate", "description": "The yield on a government bond, matched to the maturity of the cash flow" },
-        { "symbol": "β", "name": "Beta", "description": "The stock's sensitivity to the general movement of the market" },
-        { "symbol": "Rm − Rf", "name": "Market Risk Premium", "description": "The premium for bearing stock-market risk" }
+        {
+          "symbol": "Rf",
+          "name": "Risk-free rate",
+          "description": "The yield on a government bond, matched to the maturity of the cash flow"
+        },
+        {
+          "symbol": "β",
+          "name": "Beta",
+          "description": "The stock's sensitivity to the general movement of the market"
+        },
+        {
+          "symbol": "Rm − Rf",
+          "name": "Market Risk Premium",
+          "description": "The premium for bearing stock-market risk"
+        }
       ],
       "example": {
         "title": "Suppose Rf 3.5%, MRP 7%, β = 1.2 - then Rf rises 1 point",

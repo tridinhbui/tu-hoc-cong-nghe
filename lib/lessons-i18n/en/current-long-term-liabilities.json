@@ -12,10 +12,21 @@
   ],
   "explanation": "Debt is classified by time remaining, not by its original term at issuance: a 10-year loan with under 12 months left gets moved to current liabilities. That shifts the Current Ratio down without the business itself changing at all - and for a company with a large loan approaching maturity, that reclassification can even trip a covenant signed with the bank. That's why you have to read the debt maturity schedule, not just the total outstanding balance.",
   "diagram": [
-    { "label": "Originally a long-term liability", "arrow": true },
-    { "label": "≤ 12 months left until it matures", "arrow": true },
-    { "label": "Reclassified as a current liability", "arrow": true },
-    { "label": "Affects the Current Ratio" }
+    {
+      "label": "Originally a long-term liability",
+      "arrow": true
+    },
+    {
+      "label": "≤ 12 months left until it matures",
+      "arrow": true
+    },
+    {
+      "label": "Reclassified as a current liability",
+      "arrow": true
+    },
+    {
+      "label": "Affects the Current Ratio"
+    }
   ],
   "realWorldExample": {
     "company": "Novaland (NVL)",
@@ -142,7 +153,7 @@
     "question": "A SaaS company receives customer prepayment for a 2-year service package (Deferred Revenue), and also has a 5-year bank loan whose final year (year 5) comes due within the next 12 months. How should these two liabilities be classified on this year's balance sheet?",
     "options": [
       "Both are classified as long-term liabilities, since both arise from contracts with a term longer than 12 months",
-      "Deferred Revenue (the portion not yet delivered, usually >12 months) is a long-term liability; the loan portion due within the next 12 months must be reclassified as a current liability",
+      "Deferred Revenue is a long-term liability, while the slice of the loan falling due within 12 months must be reclassified",
       "Both are classified as current liabilities, since both are financial obligations the company currently carries",
       "Deferred Revenue isn't considered a liability at all, since the company has already received the cash from the customer"
     ],
@@ -163,22 +174,34 @@
       "type": "lead",
       "text": "The right side of the Balance Sheet - Liabilities - is also classified by maturity, just like Assets. But unlike assets, debt is mandatory: failing to pay on time can trigger default, seriously damaging reputation and future access to capital."
     },
-    { "type": "heading", "text": "Current Liabilities" },
+    {
+      "type": "heading",
+      "text": "Current Liabilities"
+    },
     {
       "type": "paragraph",
       "text": "Current Liabilities are financial obligations due within 12 months, including: Accounts Payable, Short-term Debt, the Current Portion of Long-term Debt, taxes payable, wages payable, and short-term Deferred Revenue."
     },
-    { "type": "heading", "text": "Long-term Liabilities" },
+    {
+      "type": "heading",
+      "text": "Long-term Liabilities"
+    },
     {
       "type": "paragraph",
       "text": "Long-term Liabilities are obligations due after 12 months: long-term Bonds Payable, long-term bank loans, long-term lease liabilities, and other long-term provisions."
     },
-    { "type": "heading", "text": "Reclassification as maturity approaches" },
+    {
+      "type": "heading",
+      "text": "Reclassification as maturity approaches"
+    },
     {
       "type": "paragraph",
       "text": "An important point often overlooked: when a long-term debt has 12 months or less remaining until maturity, accounting rules require reclassifying that portion from Long-term Liabilities to Current Liabilities, even though the loan was originally long-term. This causes Current Liabilities to jump sharply in the maturity year, dragging the Current Ratio down, even when nothing about the underlying business has changed - which is why investors need to track the debt maturity schedule in the financial-statement notes, not just the total outstanding balance."
     },
-    { "type": "heading", "text": "Deferred Revenue: a liability arising from cash already collected" },
+    {
+      "type": "heading",
+      "text": "Deferred Revenue: a liability arising from cash already collected"
+    },
     {
       "type": "paragraph",
       "text": "Deferred Revenue is money a customer has already paid, but for which the company hasn't yet delivered the corresponding goods or service - by nature this is a liability, not an asset, even though the company already holds the cash. A classic example is a full-year prepaid software subscription: the company records Deferred Revenue when it collects the cash, then gradually converts it into Revenue on the P&L as it delivers the service month by month."
@@ -201,10 +224,26 @@
       "type": "conceptTable",
       "title": "Liabilities terminology",
       "concepts": [
-        { "vi": "Nợ ngắn hạn", "en": "Current Liabilities", "def": "Financial obligations due within 12 months" },
-        { "vi": "Nợ dài hạn", "en": "Long-term Liabilities", "def": "Financial obligations due after more than 12 months" },
-        { "vi": "Khoản phải trả nhà cung cấp", "en": "Accounts Payable (AP)", "def": "Money the company owes suppliers for goods/services already received" },
-        { "vi": "Doanh thu nhận trước", "en": "Deferred Revenue", "def": "Cash collected upfront, with an obligation to still deliver goods/services" }
+        {
+          "vi": "Nợ ngắn hạn",
+          "en": "Current Liabilities",
+          "def": "Financial obligations due within 12 months"
+        },
+        {
+          "vi": "Nợ dài hạn",
+          "en": "Long-term Liabilities",
+          "def": "Financial obligations due after more than 12 months"
+        },
+        {
+          "vi": "Khoản phải trả nhà cung cấp",
+          "en": "Accounts Payable (AP)",
+          "def": "Money the company owes suppliers for goods/services already received"
+        },
+        {
+          "vi": "Doanh thu nhận trước",
+          "en": "Deferred Revenue",
+          "def": "Cash collected upfront, with an obligation to still deliver goods/services"
+        }
       ]
     },
     {

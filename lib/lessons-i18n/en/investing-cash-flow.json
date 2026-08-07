@@ -12,10 +12,21 @@
   ],
   "explanation": "Negative investing cash flow is usually a good sign: money flows out to buy machinery, plants, or acquire other companies - in other words, to build future capacity. What should worry you is the opposite: large positive investing cash flow means the company is selling assets, and if those assets were generating revenue, it has just traded its future for cash today. A company claiming to be growing while CapEx sits near zero is usually a company eating into its old assets.",
   "diagram": [
-    { "label": "Spending on machinery, plants, or acquiring another company", "arrow": true },
-    { "label": "Negative investing cash flow - building future capacity", "arrow": true },
-    { "label": "Selling assets makes this line positive", "arrow": true },
-    { "label": "Large and persistent positive: check whether revenue-generating assets are being sold off" }
+    {
+      "label": "Spending on machinery, plants, or acquiring another company",
+      "arrow": true
+    },
+    {
+      "label": "Negative investing cash flow - building future capacity",
+      "arrow": true
+    },
+    {
+      "label": "Selling assets makes this line positive",
+      "arrow": true
+    },
+    {
+      "label": "Large and persistent positive: check whether revenue-generating assets are being sold off"
+    }
   ],
   "realWorldExample": {
     "company": "Vingroup (VIC)",
@@ -92,7 +103,7 @@
     "question": "Company A has Investing Cash Flow (ICF) of -500 billion for the year (spending on a new plant and a small acquisition). Company B has ICF of +200 billion (having just sold a non-core business). What does this say about the two companies' strategies?",
     "options": [
       "Company B is performing better than Company A because it has positive ICF, proving it's collecting more cash",
-      "Company A is investing heavily in the future (CapEx, M&A); Company B is recovering capital from an asset/business unit it sold - both can be sound strategies depending on context, and positive ICF isn't necessarily better than negative ICF",
+      "A is investing heavily (CapEx, M&A) while B is recovering capital - either can be sensible",
       "Negative ICF is always a bad sign showing the company is in serious financial trouble",
       "ICF has no analytical meaning at all, only Operating Cash Flow matters"
     ],
@@ -113,7 +124,10 @@
       "type": "lead",
       "text": "A company spending trillions of dong to build a new plant doesn't record that money on the P&L as an expense for the year. It sits in Investing Cash Flow (ICF), the second section of the Cash Flow Statement, capturing all of a business's long-term asset transactions."
     },
-    { "type": "heading", "text": "What does ICF record?" },
+    {
+      "type": "heading",
+      "text": "What does ICF record?"
+    },
     {
       "type": "paragraph",
       "text": "Investing Cash Flow includes: CapEx (Capital Expenditures) to purchase or build fixed assets like plants, machinery, land; cash spent on M&A (acquiring other companies); cash spent on long-term financial investments (shares, bonds of other companies). In the other direction, ICF also records cash received when a company sells fixed assets, divests from a subsidiary, or sells financial investments."
@@ -122,7 +136,10 @@
       "type": "paragraph",
       "text": "Because most growing businesses continuously buy more new assets than they sell, ICF at these companies is almost always negative - and a larger negative figure usually reflects a stronger level of investment in the future."
     },
-    { "type": "heading", "text": "Distinguishing maintenance CapEx from expansion CapEx" },
+    {
+      "type": "heading",
+      "text": "Distinguishing maintenance CapEx from expansion CapEx"
+    },
     {
       "type": "paragraph",
       "text": "Not all CapEx is the same. Maintenance CapEx is spending that keeps current production capacity intact - replacing old machinery, repairing plants. Growth CapEx is spending that adds new production capacity - building more plants, opening more stores. A company with negative ICF mainly from Growth CapEx is usually in a phase of expanding market share; if it's mainly Maintenance CapEx, the company may just be holding steady."
@@ -138,20 +155,45 @@
     },
     {
       "type": "comparison",
-      "left": { "label": "Deeply negative ICF", "text": "Usually a sign the company is investing heavily for future growth (new plants, market expansion) - watch it alongside OCF to see whether the company can fund itself or must borrow." },
-      "right": { "label": "Positive ICF", "text": "Could be a good signal (recovering capital from a profitable investment) or a bad one (forced to sell core assets to cover operations)." }
+      "left": {
+        "label": "Deeply negative ICF",
+        "text": "Usually a sign the company is investing heavily for future growth (new plants, market expansion) - watch it alongside OCF to see whether the company can fund itself or must borrow."
+      },
+      "right": {
+        "label": "Positive ICF",
+        "text": "Could be a good signal (recovering capital from a profitable investment) or a bad one (forced to sell core assets to cover operations)."
+      }
     },
     {
       "type": "conceptTable",
       "title": "Investing Cash Flow terminology",
       "concepts": [
-        { "vi": "Chi tiêu vốn", "en": "Capital Expenditures (CapEx)", "def": "Cash spent purchasing or building long-term fixed assets." },
-        { "vi": "CapEx duy trì", "en": "Maintenance CapEx", "def": "CapEx that keeps existing production capacity intact, without expanding it." },
-        { "vi": "CapEx mở rộng", "en": "Growth CapEx", "def": "CapEx that adds production capacity and expands the scale of the business." },
-        { "vi": "Mua bán & Sáp nhập", "en": "Mergers & Acquisitions (M&A)", "def": "Acquiring or merging with another company, recorded within ICF." }
+        {
+          "vi": "Chi tiêu vốn",
+          "en": "Capital Expenditures (CapEx)",
+          "def": "Cash spent purchasing or building long-term fixed assets."
+        },
+        {
+          "vi": "CapEx duy trì",
+          "en": "Maintenance CapEx",
+          "def": "CapEx that keeps existing production capacity intact, without expanding it."
+        },
+        {
+          "vi": "CapEx mở rộng",
+          "en": "Growth CapEx",
+          "def": "CapEx that adds production capacity and expands the scale of the business."
+        },
+        {
+          "vi": "Mua bán & Sáp nhập",
+          "en": "Mergers & Acquisitions (M&A)",
+          "def": "Acquiring or merging with another company, recorded within ICF."
+        }
       ]
     },
-    { "type": "heading", "text": "A real example: how much FPT is investing in its future" },
+    {
+      "type": "heading",
+      "text": "A real example: how much FPT is investing in its future"
+    },
     {
       "type": "list",
       "items": [

@@ -12,10 +12,21 @@
   ],
   "explanation": "P/E = share price divided by earnings per share. Read literally: a P/E of 25 means you pay 25 dong for every dong the company earns in a year. A high P/E isn't inherently expensive - it reflects an expectation that profit will grow, and it will be justified if that happens. A low P/E isn't inherently cheap either: the market might be right that profit is about to fall. This number only means something when set beside growth rate and peer companies in the same industry.",
   "diagram": [
-    { "label": "A share's market price", "arrow": true },
-    { "label": "Divide by earnings per share", "arrow": true },
-    { "label": "Get the number of years of profit needed to pay for that share", "arrow": true },
-    { "label": "Only comparable against companies in the same industry with similar growth prospects" }
+    {
+      "label": "A share's market price",
+      "arrow": true
+    },
+    {
+      "label": "Divide by earnings per share",
+      "arrow": true
+    },
+    {
+      "label": "Get the number of years of profit needed to pay for that share",
+      "arrow": true
+    },
+    {
+      "label": "Only comparable against companies in the same industry with similar growth prospects"
+    }
   ],
   "realWorldExample": {
     "company": "Comparing P/E between Vietnam's banking and tech sectors",
@@ -81,7 +92,7 @@
   "practicePrompt": {
     "question": "Company A's stock trades at 100,000 dong, EPS = 5,000 dong. Company B's stock trades at 50,000 dong, EPS = 5,000 dong. What is the P/E of these two companies, and what does that tell you?",
     "options": [
-      "A's P/E = 100,000/5,000 = 20x; B's P/E = 50,000/5,000 = 10x - investors are paying twice as many times earnings for A as for B, possibly because they expect A to grow faster in the future",
+      "A's P/E = 100,000/5,000 = 20x, while B's is 50,000/5,000 = 10x - investors pay twice as much",
       "The two companies' P/E is equal since EPS is equal; share price doesn't affect P/E",
       "B's P/E is higher than A's because B has a lower share price, and a lower price always means a higher P/E",
       "P/E can't be compared between two different companies because each company has its own separate P/E standard"
@@ -103,13 +114,23 @@
       "type": "lead",
       "text": "P/E (Price-to-Earnings) is the most commonly cited valuation metric in the stock market: how many times annual profit is an investor paying to own a share?"
     },
-    { "type": "callout", "label": "The formula", "text": "P/E = Price / EPS.  A P/E of 25x means an investor is paying the equivalent of 25 years of current profit to buy that share" },
-    { "type": "heading", "text": "What a high or low P/E says about market expectations" },
+    {
+      "type": "callout",
+      "label": "The formula",
+      "text": "P/E = Price / EPS.  A P/E of 25x means an investor is paying the equivalent of 25 years of current profit to buy that share"
+    },
+    {
+      "type": "heading",
+      "text": "What a high or low P/E says about market expectations"
+    },
     {
       "type": "paragraph",
       "text": "Vietnamese bank stocks typically trade at P/E 8-12x, while high-growth tech stocks like FPT can trade at P/E 15-20x. This gap reflects different profit-growth expectations - not that one industry is 'better' than the other. The market is willing to pay a higher P/E for businesses capable of fast, sustainable future profit growth."
     },
-    { "type": "heading", "text": "The biggest limitation of P/E" },
+    {
+      "type": "heading",
+      "text": "The biggest limitation of P/E"
+    },
     {
       "type": "paragraph",
       "text": "P/E is distorted by financial leverage - two companies with identical EBIT but different debt levels will have different Net Income (and therefore EPS and P/E) even though their core operations are equivalent. P/E is also affected by accounting policy, and is completely unusable for a lossmaking company (a negative P/E is meaningless). When two stocks in the same industry have P/E of 10x and 25x, the correct conclusion isn't 'the cheaper stock is always better,' but that you need to find the reason behind it: perhaps the 25x stock has a much higher expected growth rate, or the 10x stock carries hidden risk the market has already priced in (high debt, a declining industry, poor governance)."

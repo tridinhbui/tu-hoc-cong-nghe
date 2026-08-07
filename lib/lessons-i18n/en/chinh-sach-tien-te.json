@@ -12,10 +12,21 @@
   ],
   "explanation": "Monetary policy is how a central bank influences the quantity and price of money in the economy, mainly through the policy rate, open market operations, and the reserve requirement ratio. The transmission mechanism passes through several stages - the interbank rate, lending rates, business investment decisions - so the full effect usually isn't visible until several quarters later. That very lag is what makes policymaking hard: decisions must be made based on forecasts, not on today's data.",
   "diagram": [
-    { "label": "The central bank watches inflation and growth", "arrow": true },
-    { "label": "Adjusts the policy interest rate", "arrow": true },
-    { "label": "Interbank and lending rates shift accordingly", "arrow": true },
-    { "label": "Credit, consumption and investment react after several quarters" }
+    {
+      "label": "The central bank watches inflation and growth",
+      "arrow": true
+    },
+    {
+      "label": "Adjusts the policy interest rate",
+      "arrow": true
+    },
+    {
+      "label": "Interbank and lending rates shift accordingly",
+      "arrow": true
+    },
+    {
+      "label": "Credit, consumption and investment react after several quarters"
+    }
   ],
   "interactiveType": "interest-rate",
   "realWorldExample": {
@@ -83,7 +94,7 @@
     "question": "When the economy is overheating and inflation exceeds target, the State Bank usually raises the policy rate to 'cool down' the economy. What tool is being used here, and what is its transmission mechanism?",
     "options": [
       "This is fiscal policy, since it involves adjusting government spending",
-      "Interest rates = the main monetary policy tool - when the central bank raises rates, borrowing costs rise, reducing demand for loans to spend and invest, which helps cool inflation",
+      "Interest rates are the main monetary policy tool: raising them cools inflation down",
       "This is exchange rate policy, since interest rates only affect the domestic currency's value against foreign currencies and trade flows",
       "Interest rates are not a policy tool, just a natural outcome of supply and demand in the capital market"
     ],
@@ -104,12 +115,18 @@
       "type": "lead",
       "text": "Interest rates don't arise on their own - they are largely shaped by the monetary policy decisions of central banks like the Fed (US) or the State Bank of Vietnam. This is the most powerful tool for steering an entire economy."
     },
-    { "type": "heading", "text": "Three main monetary policy tools" },
+    {
+      "type": "heading",
+      "text": "Three main monetary policy tools"
+    },
     {
       "type": "paragraph",
       "text": "A central bank has three main tools: (1) the policy rate (the Fed Funds Rate in the US, the State Bank's policy rate in Vietnam) - the anchor rate for the entire banking system; (2) open market operations (OMO) - buying/selling government bonds to regulate the money supply in the system; (3) the reserve requirement ratio - what percentage of deposits banks must hold back, not lend out. Raising rates is tightening (reducing inflation by slowing borrowing and spending); lowering rates is easing (stimulating growth)."
     },
-    { "type": "heading", "text": "QE: a special tool once rates have hit zero" },
+    {
+      "type": "heading",
+      "text": "QE: a special tool once rates have hit zero"
+    },
     {
       "type": "paragraph",
       "text": "When short-term rates have already hit zero (the zero lower bound) but the economy still needs more stimulus, the central bank uses Quantitative Easing (QE): directly buying a large volume of government bonds and other assets to inject money into the system, pulling down long-term rates. The Fed used QE after the 2008 crisis and during the COVID-19 pandemic in 2020. The reverse is Quantitative Tightening (QT) - selling off assets, pulling money out of the system. During 2022-2023, the Fed raised rates from 0% to 5.25% - the fastest pace in 40 years - to rein in 9% inflation, causing bond prices to fall sharply and contributing to the collapse of Silicon Valley Bank, which held a large amount of long-term bonds that had lost value."

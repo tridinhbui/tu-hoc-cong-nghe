@@ -12,10 +12,18 @@
   ],
   "explanation": "The line between capital spending and operating spending sits on whether the spend serves many years or is used up within the period. Capital spending goes onto the balance sheet and is spread out as depreciation; operating spending goes straight onto the income statement. The consequence worth remembering: both reduce cash the same way, but only one reduces profit immediately - which is why capitalizing aggressively is a familiar way to make profit look prettier than reality.",
   "diagram": [
-    { "label": "Does this spend serve many years, or get used up within the period?" },
-    { "label": "Many years: record as an asset, depreciate gradually" },
-    { "label": "Within the period: expense it straight away" },
-    { "label": "Both reduce free cash flow, but only one reduces profit right away" }
+    {
+      "label": "Does this spend serve many years, or get used up within the period?"
+    },
+    {
+      "label": "Many years: record as an asset, depreciate gradually"
+    },
+    {
+      "label": "Within the period: expense it straight away"
+    },
+    {
+      "label": "Both reduce free cash flow, but only one reduces profit right away"
+    }
   ],
   "realWorldExample": {
     "company": "Netflix: shifting from content CapEx to operating expense",
@@ -81,7 +89,7 @@
   "practicePrompt": {
     "question": "A company spends 300 million buying a new server (to be used for 5 years), and 50 million paying monthly electricity and internet bills for its office. Are these two spends classified as CapEx or OpEx, and how do they affect the P&L differently?",
     "options": [
-      "The server purchase is CapEx: a long-term asset, depreciated gradually (60 million/year over 5 years) rather than expensed in full to the P&L right away; the electricity/internet bill is OpEx, expensed in full during the period it's incurred",
+      "The server is CapEx, depreciated 60 million a year; electricity is OpEx, expensed in the period",
       "Both spends are CapEx because both are costs necessary for the company to operate day to day",
       "Both spends are OpEx because both are paid in cash immediately",
       "Classifying something as CapEx or OpEx has no effect at all on how it's recorded in the financial statements"
@@ -103,12 +111,18 @@
       "type": "lead",
       "text": "CapEx and OpEx are two completely different ways of spending financially, even though they can sometimes look similar on the surface - telling the two apart correctly is the key to understanding why Free Cash Flow is often so different from Net Income."
     },
-    { "type": "heading", "text": "The basic difference between CapEx and OpEx" },
+    {
+      "type": "heading",
+      "text": "The basic difference between CapEx and OpEx"
+    },
     {
       "type": "paragraph",
       "text": "CapEx (Capital Expenditure) is spending to buy long-term assets - machinery, real estate, large-scale software - recorded on the Balance Sheet and depreciated gradually over many years, not immediately affecting profit. OpEx (Operating Expense) is day-to-day operating expense - salaries, electricity, marketing - recorded straight onto the P&L in the period it's incurred. CapEx affects free cash flow (FCF) far more strongly than it affects Net Income."
     },
-    { "type": "heading", "text": "Why FCF often looks very different from Net Income" },
+    {
+      "type": "heading",
+      "text": "Why FCF often looks very different from Net Income"
+    },
     {
       "type": "paragraph",
       "text": "FCF = Net Income + D&A − CapEx − ΔWorking Capital. D&A (depreciation) isn't real cash, so it's added back. CapEx is real cash spent but doesn't pass through the P&L right away, so it's subtracted out. Changes in working capital affect cash but don't pass through the income statement. Different capitalization policies between companies - for example Netflix capitalizing a large portion of its original content production costs into assets (content assets) and depreciating them gradually - can make Net Income 'look prettier' than reality in the short run, but the cash has really already been spent the moment CapEx occurs."

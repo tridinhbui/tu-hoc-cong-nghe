@@ -12,10 +12,21 @@
   ],
   "explanation": "The largest and most measurable benefit of debt is the tax shield: interest is deducted before tax is calculated, so every unit of interest paid reduces the tax owed by exactly the tax rate. As a result, the real cost of debt is lower than the rate stated on the contract. Debt has another, less-discussed benefit: the fixed obligation to pay interest forces management to be disciplined with cash flow, rather than spending it on poorly performing projects.",
   "diagram": [
-    { "label": "Interest expense is incurred", "arrow": true },
-    { "label": "It's deductible before tax", "arrow": true },
-    { "label": "Tax Shield = Interest × Tax rate", "arrow": true },
-    { "label": "Reduces the real cost of debt" }
+    {
+      "label": "Interest expense is incurred",
+      "arrow": true
+    },
+    {
+      "label": "It's deductible before tax",
+      "arrow": true
+    },
+    {
+      "label": "Tax Shield = Interest × Tax rate",
+      "arrow": true
+    },
+    {
+      "label": "Reduces the real cost of debt"
+    }
   ],
   "realWorldExample": {
     "company": "Capital structure of real estate corporations",
@@ -81,7 +92,7 @@
   "practicePrompt": {
     "question": "A company borrows 1,000 billion at an interest rate of 8%/year (interest expense = 80 billion/year), with a corporate tax rate of 20%. How much 'tax shield' does the company save each year thanks to this loan?",
     "options": [
-      "Tax shield = Interest × Tax rate = 80 × 0.2 = 16 billion/year - this is the tax the company saves because interest is deductible before calculating corporate income tax",
+      "Tax shield = 80 × 0.2 = 16 billion a year, because interest is deductible before tax",
       "Tax shield = 1,000 × 0.2 = 200 billion, calculated on the total loan rather than the interest",
       "Tax shield = 80 billion, equal to the entire interest expense payable each year",
       "The tax shield doesn't exist because the company still has to pay the full 80 billion in interest every year regardless"
@@ -103,12 +114,18 @@
       "type": "lead",
       "text": "Debt is often seen as a burden, but in Corporate Finance it has a concrete, measurable benefit: the tax shield - the tax saved because interest is deductible before corporate income tax is calculated."
     },
-    { "type": "heading", "text": "How the tax shield works" },
+    {
+      "type": "heading",
+      "text": "How the tax shield works"
+    },
     {
       "type": "paragraph",
       "text": "When a business takes on debt, interest is recorded as an expense and deducted before calculating taxable profit. **Example:** interest expense of 100 million, tax rate 20% → Tax Shield = 100 million × 20% = 20 million VND of tax saved. So the real cost of debt is always lower than the stated interest rate: After-tax cost of debt = Interest rate × (1 − Tax rate). If the borrowing rate is 8% and the tax rate is 20%, the real cost is only 8% × 0.8 = 6.4%."
     },
-    { "type": "heading", "text": "The higher the tax rate, the more attractive debt becomes" },
+    {
+      "type": "heading",
+      "text": "The higher the tax rate, the more attractive debt becomes"
+    },
     {
       "type": "paragraph",
       "text": "Because Tax Shield = Interest × Tax rate, the relationship between the two is direct: the higher the corporate tax rate, the more tax each unit of interest saves. This is why in countries with high corporate tax rates, businesses tend to use more debt leverage to optimize their tax burden - and it's also why many Vietnamese real estate corporations make use of corporate bonds to both raise capital and enjoy the tax shield, though this comes with higher financial risk when the market turns difficult."

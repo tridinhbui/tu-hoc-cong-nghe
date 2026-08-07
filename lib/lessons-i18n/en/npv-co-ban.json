@@ -92,7 +92,7 @@
   "practicePrompt": {
     "question": "An investment project requires 500 million VND today, and after discounting all future cash flows back to the present, the present value of the incoming cash flows is 620 million VND. What is the project's NPV, and should the company invest?",
     "options": [
-      "NPV = 620 - 500 = 120 million VND (positive) - the project creates value beyond the cost of capital invested, so investing is reasonable",
+      "NPV = 620 - 500 = 120 million dong - positive, so the project creates value above the capital it costs",
       "NPV = 620 + 500 = 1,120 million VND, adding the cost and benefit together",
       "NPV always equals 0 if the project is calculated correctly using the discounted cash flow method",
       "No conclusion about NPV can be drawn without knowing the project's exact payback period"

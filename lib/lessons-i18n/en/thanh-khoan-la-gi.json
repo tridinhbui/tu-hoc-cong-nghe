@@ -12,10 +12,18 @@
   ],
   "explanation": "Liquidity is the ability to sell quickly without having to cut the price much. Listed stocks sell within a trading session and the money lands a few days later; a plot of land can take months to find a buyer. This isn't just about convenience: an illiquid asset must pay a higher return to compensate you for being locked in, and its book value is only an estimate until someone actually pays for it.",
   "diagram": [
-    { "label": "You need to sell an asset to get cash" },
-    { "label": "Is a buyer ready at the market price?" },
-    { "label": "Yes: sell fast, with almost no loss of value" },
-    { "label": "No: cut the price or wait - that is the cost of illiquidity" }
+    {
+      "label": "You need to sell an asset to get cash"
+    },
+    {
+      "label": "Is a buyer ready at the market price?"
+    },
+    {
+      "label": "Yes: sell fast, with almost no loss of value"
+    },
+    {
+      "label": "No: cut the price or wait - that is the cost of illiquidity"
+    }
   ],
   "realWorldExample": {
     "company": "The 2008 crisis",
@@ -81,7 +89,7 @@
   "practicePrompt": {
     "question": "You've just learned your parents urgently need 300 million for surgery within the next 3 days. You have 300 million in a private corporate bond fund (usually taking 2-3 weeks to redeem) and 300 million in listed stocks. Where should you withdraw from?",
     "options": [
-      "From the listed stocks, since they can be sold and paid out within a few trading days, matching the urgent need",
+      "Draw from the listed shares, since they can be sold and settled within a few trading days",
       "From the corporate bond fund, since bonds are always safer than stocks in any emergency",
       "It doesn't matter which, since both are worth 300 million right now",
       "Take out a bank loan secured against both assets, since that's always the fastest option in any case"
@@ -103,12 +111,18 @@
       "type": "lead",
       "text": "You urgently need 500 million within 24 hours. You hold listed stocks worth 600 million and a plot of land worth 600 million. Equal value on paper, but only one of the two can actually help you right now."
     },
-    { "type": "heading", "text": "What is liquidity?" },
+    {
+      "type": "heading",
+      "text": "What is liquidity?"
+    },
     {
       "type": "paragraph",
       "text": "Liquidity is the ability to convert an asset into cash quickly without having to sell it at a significantly reduced price. Two assets can carry the exact same market value, yet differ entirely in how fast and how cheaply they can be sold when needed urgently."
     },
-    { "type": "heading", "text": "Why are stocks more liquid than land?" },
+    {
+      "type": "heading",
+      "text": "Why are stocks more liquid than land?"
+    },
     {
       "type": "paragraph",
       "text": "Listed stocks trade on a centralised, price-transparent market with near-instant matching - place a sell order today, and the money usually lands in your account 2 working days later (T+2). Land has to go through finding a buyer, negotiating a price, notarisation, transferring the title - a process that usually takes weeks to months, and if you really need to sell fast, the buyer will know it and push the price down much further."

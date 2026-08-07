@@ -12,9 +12,15 @@
   ],
   "explanation": "Mergers and acquisitions differ on paper: one combines two businesses into a new legal entity, the other has the buyer taking control of the other side. In practice the line is blurry, and 'merger of equals' is often just a softer name for what is really an acquisition. What matters more than the label is who ends up holding decision-making power afterward, because that is what determines whether the integration actually works.",
   "diagram": [
-    { "label": "Merger: A + B → C (as equals)" },
-    { "label": "Acquisition: A buys B" },
-    { "label": "B becomes a subsidiary" }
+    {
+      "label": "Merger: A + B → C (as equals)"
+    },
+    {
+      "label": "Acquisition: A buys B"
+    },
+    {
+      "label": "B becomes a subsidiary"
+    }
   ],
   "realWorldExample": {
     "company": "Disney's acquisition of Pixar (2006)",
@@ -80,7 +86,7 @@
   "practicePrompt": {
     "question": "Two similarly sized banks agree to merge into a new brand, with leadership split evenly between the two sides. A large tech company, meanwhile, buys a small startup outright and replaces the entire old leadership team. Which concepts do these two situations illustrate the difference between?",
     "options": [
-      "Merger: combining as equals (the two banks, standing on equal footing); Acquisition: buying and taking control (the tech company buying the startup, one side fully dominant)",
+      "Merger: a union of equals (the two banks); Acquisition: one side buys and controls (the startup)",
       "Both are examples of Acquisition because both involve combining two companies together",
       "Both are examples of Merger because neither company was fully dissolved after the deal",
       "Merger and Acquisition are just two names for the same type of deal, with no real difference"
@@ -102,12 +108,18 @@
       "type": "lead",
       "text": "M&A (Mergers and Acquisitions) is the business of buying and merging companies - one of the fastest routes to growth in Corporate Finance, but also one of the riskiest, with most deals falling short of their original expectations."
     },
-    { "type": "heading", "text": "How mergers and acquisitions differ" },
+    {
+      "type": "heading",
+      "text": "How mergers and acquisitions differ"
+    },
     {
       "type": "paragraph",
       "text": "A merger is when two companies A and B combine into a new company C, often described as a 'merger of equals'. An acquisition is when company A buys company B, and B becomes a subsidiary of A. In practice, the line between the two is quite blurry - many deals labeled a 'merger of equals' are, in substance, still an acquisition that neither side wants to call a takeover, for internal political reasons and brand image."
     },
-    { "type": "heading", "text": "Why most M&A fails to create value" },
+    {
+      "type": "heading",
+      "text": "Why most M&A fails to create value"
+    },
     {
       "type": "paragraph",
       "text": "Research from McKinsey and other organizations shows that 50-70% of M&A deals fail to meet their stated value targets. A deal can 'succeed' in closing the transaction but still fail to create value years later, because closing is only the first step - real success depends on post-merger integration: retaining key talent, reconciling corporate cultures, and actually achieving the synergies promised when the deal was priced. The 2000 AOL-Time Warner deal, worth $165 billion, is the biggest failure in M&A history for exactly these reasons."

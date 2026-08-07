@@ -12,9 +12,15 @@
   ],
   "explanation": "An initial public offering takes a company onto the exchange, opening up a large source of capital and creating liquidity for existing shareholders. The cost that comes with it isn't just the underwriting fee: the company must disclose information periodically, bear compliance costs, and most importantly face quarterly performance pressure - which can push management toward decisions that look good this quarter but are bad for the next five years.",
   "diagram": [
-    { "label": "A private company needs large capital" },
-    { "label": "IPO: sell shares to the public" },
-    { "label": "Listed on the exchange, early shareholders gain liquidity" }
+    {
+      "label": "A private company needs large capital"
+    },
+    {
+      "label": "IPO: sell shares to the public"
+    },
+    {
+      "label": "Listed on the exchange, early shareholders gain liquidity"
+    }
   ],
   "realWorldExample": {
     "company": "VinFast",
@@ -80,7 +86,7 @@
   "practicePrompt": {
     "question": "A private (unlisted) company decides to sell shares to the public for the first time on the stock exchange, to raise large capital and increase liquidity for existing shareholders. What is this event called?",
     "options": [
-      "IPO (Initial Public Offering) = the first time shares are sold to the public - this is the shift from a private company to a public one, allowing large capital to be raised and creating liquidity for the stock",
+      "An IPO is the first sale of shares to the public, taking the company from private to public",
       "This is called a buyback, because the company is buying back its own shares to increase liquidity for shareholders",
       "This is called M&A, because the company is changing its ownership structure through a transaction with the public",
       "This is simply a bond issuance, unrelated to shares at all"
@@ -102,12 +108,18 @@
       "type": "lead",
       "text": "An IPO (Initial Public Offering) is the moment a company first sells shares to the public, shifting from a private business to a listed one - a milestone that can raise anywhere from hundreds of billions to trillions of dong, but comes with no small cost and pressure."
     },
-    { "type": "heading", "text": "The benefits and costs of an IPO" },
+    {
+      "type": "heading",
+      "text": "The benefits and costs of an IPO"
+    },
     {
       "type": "paragraph",
       "text": "An IPO lets a company raise large capital from the public to expand its operations, while also creating a liquidity exit for early shareholders such as founders and VC funds that invested at an early stage. In exchange, the company must pay underwriter fees (investment banks that underwrite the offering, such as Goldman Sachs or Morgan Stanley - typically 3-7% of the total IPO value), comply with mandatory disclosure requirements, and bear quarterly earnings pressure from the market - pressure that can push management toward short-term thinking."
     },
-    { "type": "heading", "text": "Traditional IPO versus SPAC merger" },
+    {
+      "type": "heading",
+      "text": "Traditional IPO versus SPAC merger"
+    },
     {
       "type": "paragraph",
       "text": "VinFast IPO'd on Nasdaq in 2023 via a SPAC merger, with an initial valuation of roughly $85 billion - higher than both Ford and GM despite far smaller revenue, and the share price then dropped sharply. This is a textbook example of an overvalued, hype-driven IPO. A SPAC (Special Purpose Acquisition Company) is a faster and initially less costly route to listing, but it lacks the rigorous due diligence of a traditional investment-bank-led IPO - the market has since learned to price companies listed this way more cautiously."

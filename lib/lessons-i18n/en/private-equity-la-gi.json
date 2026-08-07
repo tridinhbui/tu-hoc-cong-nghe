@@ -12,9 +12,15 @@
   ],
   "explanation": "Private equity buys stakes in unlisted companies, usually buying outright to take control. The core difference from venture capital lies in the stage and how returns are generated: buyout funds target mature businesses with stable cash flow and use leverage, while venture funds put in pure equity capital into young businesses and accept that most investments will be lost.",
   "diagram": [
-    { "label": "PE: buy a mature company, restructure it" },
-    { "label": "VC: fund early-stage startups" },
-    { "label": "Both exit via IPO or sale" }
+    {
+      "label": "PE: buy a mature company, restructure it"
+    },
+    {
+      "label": "VC: fund early-stage startups"
+    },
+    {
+      "label": "Both exit via IPO or sale"
+    }
   ],
   "realWorldExample": {
     "company": "KKR, Blackstone, and major buyout deals",
@@ -81,7 +87,7 @@
     "question": "A fund buys a retail chain that has operated for 20 years, with stable cash flow but poorly run operations. The fund uses debt leverage, replaces management, cuts costs, and optimizes operations over 6 years, then sells or IPOs the company at a much higher price. Which type of fund does this investment model characterize?",
     "options": [
       "This is characteristic of Venture Capital, because the fund is investing in a company to create growth value",
-      "PE: buy mature companies, restructure them, exit after 5-7 years - unlike VC (investing in high-risk early-stage startups), PE targets companies that already have stable cash flow, using leverage and operational improvement to create value before exiting",
+      "PE buys mature companies that already have steady cash flow, restructures them, then exits after five to seven years",
       "This is characteristic of a bond fund, because it focuses on the target company's stable cash flow",
       "This is a direct IPO transaction, because the company is sold to the market after being restructured"
     ],
@@ -102,12 +108,18 @@
       "type": "lead",
       "text": "Private Equity (PE) and Venture Capital (VC) are often lumped together, but they are actually two clearly distinct investment models: PE targets already-mature companies to restructure and optimize operations, while VC targets early-stage startups to bet on breakthrough growth."
     },
-    { "type": "heading", "text": "What PE does and how it exits" },
+    {
+      "type": "heading",
+      "text": "What PE does and how it exits"
+    },
     {
       "type": "paragraph",
       "text": "Buyout PE funds like KKR or Blackstone buy mature companies that already have stable cash flow, then restructure operations and improve efficiency over roughly 5-7 years, then exit via one of three routes: IPO (highest liquidity), sale to a strategic buyer (usually the highest price thanks to strategic synergy), or sale to another PE fund (secondary buyout). A PE fund's term typically runs 10 years: roughly 5-7 years of holding plus 2-3 years of raising and exiting."
     },
-    { "type": "heading", "text": "Why PE is hard for individual investors to access" },
+    {
+      "type": "heading",
+      "text": "Why PE is hard for individual investors to access"
+    },
     {
       "type": "paragraph",
       "text": "Unlike listed shares that can be freely bought and sold at any time with a small amount of capital, PE funds usually require a very large minimum investment (millions of dollars) and lock up capital for many years, reserved for institutional investors and high-net-worth individuals (accredited investors). This is why PE's potentially higher returns are usually reserved for large institutional investors like pension funds, sovereign wealth funds, and ultra-wealthy individuals - not ordinary public investors."

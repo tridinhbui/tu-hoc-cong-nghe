@@ -12,10 +12,21 @@
   ],
   "explanation": "Receivables turnover, usually converted into an average days-to-collect figure, shows how long it typically takes for sales revenue to actually land in the bank. What's reasonable depends entirely on the industry: retail collects immediately so it's a matter of days, while selling to large corporations or the government can normally take months. What's worth watching is the direction of change, because the number stretching out always means cash is arriving slower than revenue is being recorded.",
   "diagram": [
-    { "label": "AR (accounts receivable)", "arrow": true },
-    { "label": "Divide by (Revenue / 365)", "arrow": true },
-    { "label": "= DSO (days to collect)", "arrow": true },
-    { "label": "A sudden spike → collection risk" }
+    {
+      "label": "AR (accounts receivable)",
+      "arrow": true
+    },
+    {
+      "label": "Divide by (Revenue / 365)",
+      "arrow": true
+    },
+    {
+      "label": "= DSO (days to collect)",
+      "arrow": true
+    },
+    {
+      "label": "A sudden spike → collection risk"
+    }
   ],
   "realWorldExample": {
     "company": "B2B construction contractors",
@@ -81,7 +92,7 @@
   "practicePrompt": {
     "question": "A company has Revenue = 3,650 billion/year, accounts receivable (AR) = 500 billion. What is this company's Receivables Turnover and DSO (Days Sales Outstanding)?",
     "options": [
-      "Receivables Turnover = 3,650/500 = 7.3x; DSO = 365/7.3 = 50 days - on average, the company takes 50 days to collect cash from customers after a sale",
+      "Receivables Turnover = 3,650/500 = 7.3x, so DSO = 365/7.3 = 50 days on average to collect from a customer",
       "Receivables Turnover = 500/3,650 = 0.14x; DSO = 365 × 0.14 = 51 days, using an inverted formula",
       "DSO is always exactly 30 days for every company under standard accounting rules, no calculation needed",
       "Receivables Turnover and DSO have nothing to do with accounts receivable, only with inventory"
@@ -103,13 +114,23 @@
       "type": "lead",
       "text": "Receivables Turnover and DSO (Days Sales Outstanding) measure how fast a business actually collects cash from customers after recognizing revenue - a crucial gap that the P&L alone can't show."
     },
-    { "type": "callout", "label": "The formula", "text": "Receivables Turnover = Revenue / AR   |   DSO = AR / (Revenue/365) = 365 / Receivables Turnover" },
-    { "type": "heading", "text": "A high DSO isn't always bad" },
+    {
+      "type": "callout",
+      "label": "The formula",
+      "text": "Receivables Turnover = Revenue / AR   |   DSO = AR / (Revenue/365) = 365 / Receivables Turnover"
+    },
+    {
+      "type": "heading",
+      "text": "A high DSO isn't always bad"
+    },
     {
       "type": "paragraph",
       "text": "A DSO of 120 days means it takes an average of 4 months to collect cash from customers after a sale. For industrial B2B, this can be completely normal - large construction contractors often have a DSO of 90-150 days because project owners pay according to construction-milestone acceptance. The issue isn't the absolute number, but whether that number is rising out of step with the industry norm."
     },
-    { "type": "heading", "text": "When DSO rises faster than the industry - a signal to investigate" },
+    {
+      "type": "heading",
+      "text": "When DSO rises faster than the industry - a signal to investigate"
+    },
     {
       "type": "paragraph",
       "text": "A company whose DSO gradually rises from 45 to 90 days over 3 years, while the industry holds steady around 45-50 days, is a genuinely worrying signal: perhaps the company is loosening credit terms excessively to retain customers (a sign of competitive pressure), or struggling to collect from its own customers. Both erode cash-flow quality even as revenue on paper keeps rising steadily."

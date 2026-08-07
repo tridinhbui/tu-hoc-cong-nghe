@@ -12,10 +12,21 @@
   ],
   "explanation": "Reading a yield curve means reading market expectations, not any single institution's forecast. When the two-year yield exceeds the ten-year yield, the market is saying that the current level of rates is too high for the economy to bear and will have to come down. The thing to be careful about with this signal is the lag: the gap between an inversion and an actual recession has ranged from a few months to over two years.",
   "diagram": [
-    { "label": "Compare the 2-year yield with the 10-year yield", "arrow": true },
-    { "label": "Short-term higher than long-term: an inverted curve", "arrow": true },
-    { "label": "The market is betting rates will have to fall", "arrow": true },
-    { "label": "Historically, this signal has preceded a recession by 12-18 months" }
+    {
+      "label": "Compare the 2-year yield with the 10-year yield",
+      "arrow": true
+    },
+    {
+      "label": "Short-term higher than long-term: an inverted curve",
+      "arrow": true
+    },
+    {
+      "label": "The market is betting rates will have to fall",
+      "arrow": true
+    },
+    {
+      "label": "Historically, this signal has preceded a recession by 12-18 months"
+    }
   ],
   "realWorldExample": {
     "company": "The US, 2022-2023",
@@ -82,7 +93,7 @@
     "question": "You notice a 2-year government bond yielding more than a 10-year one - unusual relative to the norm. How do you 'read' an economic signal from this, and what is that analytical step called?",
     "options": [
       "This is just a random coincidence between two maturities, carrying no economic meaning",
-      "A short yield exceeding a long one is an inverted curve, usually signaling recession expectations",
+      "Short yields sitting above long ones is an inverted curve, which usually signals recession expectations",
       "This phenomenon always means inflation is about to spike in the short run, unrelated to recession",
       "There's no way to draw economic meaning from a yield gap between different maturities"
     ],
@@ -103,17 +114,26 @@
       "type": "lead",
       "text": "Understanding yield curve theory is one thing - applying it to read a real economic cycle is another. The simplest method professional investors use every day: compare the 2-year government bond yield against the 10-year yield."
     },
-    { "type": "heading", "text": "Reading the 2-year versus 10-year signal" },
+    {
+      "type": "heading",
+      "text": "Reading the 2-year versus 10-year signal"
+    },
     {
       "type": "paragraph",
       "text": "When the 2-year yield exceeds the 10-year yield, that's a clear inversion signal - the market believes today's rate level is unusually high and will have to come down to respond to slowing growth or a recession. During 2022-2023, the US yield curve inverted the deepest in over 40 years as the Fed hiked rates aggressively to fight inflation - many economists used this signal to forecast a recession, though the exact timing always remained hard to pin down."
     },
-    { "type": "heading", "text": "An investment strategy when expecting rates to fall" },
+    {
+      "type": "heading",
+      "text": "An investment strategy when expecting rates to fall"
+    },
     {
       "type": "paragraph",
       "text": "If a bond investor believes rates are about to drop sharply (say, because they expect the central bank to pivot toward easing), the sensible strategy is to buy long-maturity bonds instead of short ones. The reason lies in duration: long-maturity bonds have higher duration, so when rates fall, their prices rise far more than short-maturity bonds - producing a larger capital gain if the call is right. Conversely, if you expect rates to rise, leaning toward short-maturity bonds minimizes price losses."
     },
-    { "type": "heading", "text": "When the curve flattens: a more ambiguous signal" },
+    {
+      "type": "heading",
+      "text": "When the curve flattens: a more ambiguous signal"
+    },
     {
       "type": "paragraph",
       "text": "A yield curve doesn't always give a clear upward-sloping or inverted signal. When the curve is nearly completely flat - yields across maturities nearly equal - that's usually a transition stage: the market isn't yet sure which way rates and the economy will move next, and may be near the peak of a tightening cycle before it turns. This is when you need to bring in other data (inflation, unemployment, GDP growth) rather than relying on the curve's shape alone."

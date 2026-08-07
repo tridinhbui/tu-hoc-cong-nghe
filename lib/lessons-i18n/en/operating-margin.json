@@ -12,10 +12,21 @@
   ],
   "explanation": "Operating margin divides EBIT by revenue, measuring what remains after both cost of goods sold and operating costs like selling, admin, and R&D. Because it subtracts more, it is always lower than gross margin. The gap between the two margins is the most valuable piece of information: it shows how much of every dong of gross profit the operating machine is consuming, and that gap widening over time is a sign costs are getting out of control.",
   "diagram": [
-    { "label": "Gross Margin", "arrow": true },
-    { "label": "Subtract selling, admin, and R&D costs", "arrow": true },
-    { "label": "What remains is Operating Margin", "arrow": true },
-    { "label": "The gap between the two margins shows how costly operations are" }
+    {
+      "label": "Gross Margin",
+      "arrow": true
+    },
+    {
+      "label": "Subtract selling, admin, and R&D costs",
+      "arrow": true
+    },
+    {
+      "label": "What remains is Operating Margin",
+      "arrow": true
+    },
+    {
+      "label": "The gap between the two margins shows how costly operations are"
+    }
   ],
   "realWorldExample": {
     "company": "Microsoft (Software)",
@@ -81,7 +92,7 @@
   "practicePrompt": {
     "question": "A company has Revenue = 1,000 billion, Gross Profit = 400 billion, and after subtracting SG&A + R&D, EBIT = 150 billion remains. What is this company's Operating Margin?",
     "options": [
-      "Operating Margin = EBIT / Revenue = 150/1,000 = 15% - meaning the company keeps 15 dong of operating profit from every 100 dong of revenue",
+      "Operating Margin = EBIT / Revenue = 150/1,000 = 15%, so 15 dong of operating profit per 100 dong of revenue",
       "Operating Margin = Gross Profit / Revenue = 400/1,000 = 40%, since this is exactly the formula for Operating Margin",
       "Operating Margin = EBIT / Gross Profit = 150/400 = 37.5%, since EBIT must be compared against gross profit rather than revenue",
       "Operating Margin has no meaning once a company already has Gross Margin to assess business efficiency"
@@ -103,13 +114,23 @@
       "type": "lead",
       "text": "Gross Margin only subtracts direct production costs. Operating Margin goes one step further: it also subtracts selling and general administrative costs (SG&A) and research and development (R&D) - showing how efficiently a business actually operates, not just how well it produces."
     },
-    { "type": "callout", "label": "The formula", "text": "Operating Margin = EBIT / Revenue (EBIT = earnings before interest and tax)" },
-    { "type": "heading", "text": "Operating Margin is always lower than Gross Margin" },
+    {
+      "type": "callout",
+      "label": "The formula",
+      "text": "Operating Margin = EBIT / Revenue (EBIT = earnings before interest and tax)"
+    },
+    {
+      "type": "heading",
+      "text": "Operating Margin is always lower than Gross Margin"
+    },
     {
       "type": "paragraph",
       "text": "This is a mathematical rule, not an anomaly: since EBIT = Gross Profit − SG&A − R&D, Operating Margin can never exceed Gross Margin. What matters is how large that gap is, and whether it is widening or narrowing over the years."
     },
-    { "type": "heading", "text": "Why Microsoft has an Operating Margin above 40%" },
+    {
+      "type": "heading",
+      "text": "Why Microsoft has an Operating Margin above 40%"
+    },
     {
       "type": "paragraph",
       "text": "Software has very particular economics: once the initial development cost is spent, producing one more copy costs almost nothing extra (near-zero marginal cost). As revenue rises, most of that increase falls straight through to operating profit instead of being 'eaten' by proportionally rising production costs - this is why SaaS/software companies have Operating Margins far above manufacturing, retail, or airlines."

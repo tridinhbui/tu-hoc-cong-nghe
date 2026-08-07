@@ -12,10 +12,21 @@
   ],
   "explanation": "The cost of equity is always higher than the cost of debt, and the reason lies in the order of payout when a company goes bankrupt: creditors get paid first, shareholders receive whatever is left - which is often nothing. Bearing more risk means demanding a higher expected return, and that's the whole logic. A consequence often overlooked: equity has no fixed payment schedule, so it has no visible cost on the financial statements - but the opportunity cost is still real.",
   "diagram": [
-    { "label": "Shareholders stand last in line when a company goes bankrupt", "arrow": true },
-    { "label": "So they demand a higher return than creditors", "arrow": true },
-    { "label": "Take the risk-free rate plus beta times the market premium", "arrow": true },
-    { "label": "Gives the cost of equity - not on the financial statements but still real" }
+    {
+      "label": "Shareholders stand last in line when a company goes bankrupt",
+      "arrow": true
+    },
+    {
+      "label": "So they demand a higher return than creditors",
+      "arrow": true
+    },
+    {
+      "label": "Take the risk-free rate plus beta times the market premium",
+      "arrow": true
+    },
+    {
+      "label": "Gives the cost of equity - not on the financial statements but still real"
+    }
   ],
   "realWorldExample": {
     "company": "The financial crisis and payout priority",
@@ -81,7 +92,7 @@
   "practicePrompt": {
     "question": "When a company goes bankrupt: creditors (banks, bondholders) are paid back first, shareholders only receive whatever remains (if any) last. How does this explain why Cost of Equity is usually higher than Cost of Debt?",
     "options": [
-      "Cost of Equity is higher because shareholders bear more risk - they're only paid after creditors when the company runs into trouble, so they demand a higher expected return to compensate for this riskier position",
+      "Cost of Equity is higher because shareholders are only paid after creditors when things go wrong",
       "Cost of Equity is lower than Cost of Debt because shareholders are the true owners so they get priority over creditors",
       "Cost of Equity and Cost of Debt are always equal because both fund the same company",
       "Payout priority in bankruptcy has nothing to do with comparing Cost of Equity to Cost of Debt"
@@ -103,12 +114,18 @@
       "type": "lead",
       "text": "Shareholders don't receive a fixed interest rate like bondholders, but that doesn't mean equity is free. Cost of Equity is the minimum expected return shareholders demand to compensate for the risk they take on by holding the stock - and because that risk is higher than a bondholder's, Cost of Equity is always higher than the pre-tax Cost of Debt."
     },
-    { "type": "heading", "text": "Why shareholders demand a higher return" },
+    {
+      "type": "heading",
+      "text": "Why shareholders demand a higher return"
+    },
     {
       "type": "paragraph",
       "text": "If a company goes bankrupt, the payout order always places bondholders ahead of shareholders. A classic example: when Lehman Brothers went bankrupt in 2008, bondholders recovered a significant portion of their investment's value, while shareholders lost almost everything. Because they stand last in the payout order, shareholders demand a larger risk premium to compensate for this riskier position."
     },
-    { "type": "heading", "text": "Calculating Cost of Equity with CAPM" },
+    {
+      "type": "heading",
+      "text": "Calculating Cost of Equity with CAPM"
+    },
     {
       "type": "paragraph",
       "text": "The most common formula is CAPM: Ke = Rf + β × (Rm − Rf), where Rf is the risk-free rate, β measures the stock's sensitivity to the market, and (Rm − Rf) is the market risk premium. The higher a stock's beta (the more volatile relative to the market), the higher its Cost of Equity - correctly reflecting the principle that higher risk demands a higher expected return."

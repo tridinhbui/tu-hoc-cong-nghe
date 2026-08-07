@@ -4,13 +4,29 @@
   "subtitle": "Capital Asset Pricing Model",
   "duration": "7 min",
   "openingQuestion": "CAPM: Ke = Rf + β(Rm − Rf). If Rf=4%, Rm=10%, β=1.2. Ke = ?",
-  "openingOptions": ["10%", "4%", "14%", "11.2% = 4% + 1.2×(10%−4%)"],
+  "openingOptions": [
+    "10%",
+    "4%",
+    "14%",
+    "11.2% = 4% + 1.2×(10%−4%)"
+  ],
   "explanation": "CAPM estimates the return shareholders require by starting from the risk-free rate as a base, then adding the market risk premium multiplied by the stock's beta. The idea underneath it is quite compact: you get paid extra exactly in proportion to the undiversifiable risk you take on. The model is heavily criticized - beta isn't stable, the market premium is hard to estimate - but it's still the most common way to arrive at a single cost-of-equity number.",
   "diagram": [
-    { "label": "Start from the risk-free rate as a base", "arrow": true },
-    { "label": "Measure beta: does the stock move more or less than the market", "arrow": true },
-    { "label": "Multiply beta by the market risk premium", "arrow": true },
-    { "label": "Add it to the base: gives the return shareholders require" }
+    {
+      "label": "Start from the risk-free rate as a base",
+      "arrow": true
+    },
+    {
+      "label": "Measure beta: does the stock move more or less than the market",
+      "arrow": true
+    },
+    {
+      "label": "Multiply beta by the market risk premium",
+      "arrow": true
+    },
+    {
+      "label": "Add it to the base: gives the return shareholders require"
+    }
   ],
   "realWorldExample": {
     "company": "Applying CAPM to IPO valuation",
@@ -76,7 +92,7 @@
   "practicePrompt": {
     "question": "Risk-free rate (Rf) = 4%, expected market return (Rm) = 12%, stock Beta = 1.2. Use CAPM to calculate this stock's Cost of Equity (Ke).",
     "options": [
-      "Ke = Rf + β(Rm − Rf) = 4% + 1.2×(12%-4%) = 4% + 9.6% = 13.6% - this is the expected return shareholders require, higher than the broad market because Beta > 1 (higher systematic risk)",
+      "Ke = Rf + β(Rm − Rf) = 4% + 1.2 × (12% - 4%) = 13.6% expected by shareholders",
       "Ke = Rf + Rm = 4% + 12% = 16%, adding the two rates directly together",
       "Ke = β × Rm = 1.2 × 12% = 14.4%, multiplying Beta by the market return only, ignoring the risk-free rate",
       "Ke always equals Rf = 4% because that's the base rate independent of Beta"
@@ -98,12 +114,18 @@
       "type": "lead",
       "text": "CAPM (Capital Asset Pricing Model) is the most widely used formula for estimating Cost of Equity - it connects three factors: the risk-free rate, the stock's sensitivity to the market (beta), and the reward for accepting general market risk."
     },
-    { "type": "heading", "text": "The CAPM formula" },
+    {
+      "type": "heading",
+      "text": "The CAPM formula"
+    },
     {
       "type": "paragraph",
       "text": "Ke = Rf + β × (Rm − Rf). **Example:** risk-free rate 4%, stock beta 1.2, market risk premium (Rm−Rf) 6%: Ke = 4% + 1.2 × 6% = 4% + 7.2% = 11.2%. This is the minimum return shareholders require to hold this stock - below this number, an investor would not consider the risk worth taking."
     },
-    { "type": "heading", "text": "Application to unlisted companies" },
+    {
+      "type": "heading",
+      "text": "Application to unlisted companies"
+    },
     {
       "type": "paragraph",
       "text": "A private company that hasn't gone public has no share price to compute beta directly, but can still apply CAPM using the 'proxy beta' technique - borrowing the average beta from listed companies in the same industry, similar in size and risk, then adjusting for capital structure differences if needed. This is the standard technique investment banks use when valuing a company preparing for an IPO."

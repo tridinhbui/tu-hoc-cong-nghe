@@ -12,10 +12,21 @@
   ],
   "explanation": "Free cash flow is what's left after a business has spent enough to maintain and expand its operating capacity - operating cash flow minus asset investment. This is the number that decides whether a business truly sustains itself, because only from here comes the cash to pay debt, pay dividends, or buy back stock without having to borrow more. It's also the figure sitting in the numerator of every discounted-cash-flow model.",
   "diagram": [
-    { "label": "Cash flow from operations", "arrow": true },
-    { "label": "Subtract spending on fixed-asset investment", "arrow": true },
-    { "label": "What's left is free cash flow", "arrow": true },
-    { "label": "Used to pay debt, pay dividends, buy back shares, or acquire companies" }
+    {
+      "label": "Cash flow from operations",
+      "arrow": true
+    },
+    {
+      "label": "Subtract spending on fixed-asset investment",
+      "arrow": true
+    },
+    {
+      "label": "What's left is free cash flow",
+      "arrow": true
+    },
+    {
+      "label": "Used to pay debt, pay dividends, buy back shares, or acquire companies"
+    }
   ],
   "realWorldExample": {
     "company": "FPT Corporation",
@@ -92,7 +103,7 @@
     "question": "A company has OCF (Operating Cash Flow) of 500 billion for the year, and spends 350 billion maintaining and upgrading its production plant (CapEx). What is this company's Free Cash Flow (FCF), and what does that number mean?",
     "options": [
       "FCF = 500 billion, exactly equal to OCF, since CapEx doesn't affect the company's free cash flow",
-      "FCF = 150 billion (500 - 350): this is the cash genuinely free after sustaining the business, usable for dividends, buybacks, or paying down debt",
+      "FCF = 500 - 350 = 150 billion, the cash that is genuinely free once the business has been kept running",
       "FCF = 850 billion, adding OCF and CapEx together since both are positive cash flows for the company",
       "FCF cannot be calculated without knowing the company's Net Income for the period"
     ],
@@ -113,7 +124,10 @@
       "type": "lead",
       "text": "If you had to pick a single number to judge a business's financial health, many legendary investors - including Warren Buffett - would pick Free Cash Flow (FCF), not Net Income."
     },
-    { "type": "heading", "text": "A simple but powerful formula: FCF = OCF − CapEx" },
+    {
+      "type": "heading",
+      "text": "A simple but powerful formula: FCF = OCF − CapEx"
+    },
     {
       "type": "paragraph",
       "text": "Free Cash Flow is calculated as Operating Cash Flow minus CapEx (capital expenditure). The logic is intuitive: OCF is the cash a business generates from its operations, but part of that must be reinvested into fixed assets to sustain and grow production capacity - that's CapEx. What's left after subtracting CapEx is truly 'free' - the company has full discretion over what to do with it: pay debt, pay dividends, buy back shares, do M&A, or simply build up a cash reserve."
@@ -122,7 +136,10 @@
       "type": "paragraph",
       "text": "This is why FCF is considered a more honest measure than Net Income: Net Income can be distorted by non-cash accounting entries (D&A, early revenue recognition), while FCF reflects the real cash a business generates after subtracting the investment it's required to make just to keep operating."
     },
-    { "type": "heading", "text": "Warren Buffett's 'Owner Earnings'" },
+    {
+      "type": "heading",
+      "text": "Warren Buffett's 'Owner Earnings'"
+    },
     {
       "type": "paragraph",
       "text": "Warren Buffett uses a similar concept called 'owner earnings': Net Income + D&A − maintenance CapEx (excluding growth CapEx). He argues this is the number that truly reflects the value a business creates for shareholders each year, and it's the foundation for valuing a business through the Discounted Cash Flow (DCF) method."
@@ -140,9 +157,21 @@
       "type": "conceptTable",
       "title": "Free Cash Flow terminology",
       "concepts": [
-        { "vi": "Dòng tiền tự do", "en": "Free Cash Flow (FCF)", "def": "OCF minus CapEx - cash a business has full discretion over after sustaining operations." },
-        { "vi": "Lợi nhuận chủ sở hữu", "en": "Owner Earnings", "def": "Warren Buffett's concept: NI + D&A − maintenance CapEx, measuring real value created for shareholders." },
-        { "vi": "Chiết khấu dòng tiền", "en": "Discounted Cash Flow (DCF)", "def": "A valuation method based on the present value of future FCF." }
+        {
+          "vi": "Dòng tiền tự do",
+          "en": "Free Cash Flow (FCF)",
+          "def": "OCF minus CapEx - cash a business has full discretion over after sustaining operations."
+        },
+        {
+          "vi": "Lợi nhuận chủ sở hữu",
+          "en": "Owner Earnings",
+          "def": "Warren Buffett's concept: NI + D&A − maintenance CapEx, measuring real value created for shareholders."
+        },
+        {
+          "vi": "Chiết khấu dòng tiền",
+          "en": "Discounted Cash Flow (DCF)",
+          "def": "A valuation method based on the present value of future FCF."
+        }
       ]
     },
     {

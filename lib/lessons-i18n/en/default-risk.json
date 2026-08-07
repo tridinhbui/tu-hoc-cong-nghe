@@ -12,10 +12,21 @@
   ],
   "explanation": "Default risk breaks down into two independent questions: how likely is the borrower to fail to repay, and if that happens, how much can be recovered? Multiplying the two gives the expected loss. The recovery rate depends heavily on payment priority and collateral, so two bonds from the same company can carry very different risk levels. The required yield must compensate for the expected loss plus a premium for the uncertainty of that estimate itself.",
   "diagram": [
-    { "label": "Estimate the probability of default", "arrow": true },
-    { "label": "Estimate the recovery rate if default happens", "arrow": true },
-    { "label": "Multiply probability by the loss: gives expected loss", "arrow": true },
-    { "label": "The required yield must cover that loss plus an uncertainty premium" }
+    {
+      "label": "Estimate the probability of default",
+      "arrow": true
+    },
+    {
+      "label": "Estimate the recovery rate if default happens",
+      "arrow": true
+    },
+    {
+      "label": "Multiply probability by the loss: gives expected loss",
+      "arrow": true
+    },
+    {
+      "label": "The required yield must cover that loss plus an uncertainty premium"
+    }
   ],
   "interactiveType": "bond",
   "realWorldExample": {
@@ -82,7 +93,7 @@
   "practicePrompt": {
     "question": "A loan has a probability of default (PD) = 5%, and if default occurs, the bank only recovers 40% of the loan's value (meaning Loss Given Default = 60%). If the loan is worth 1,000 billion, what is the Expected Loss?",
     "options": [
-      "Expected Loss = PD × LGD × loan value = 0.05 × 0.6 × 1,000 billion = 30 billion - this is the average expected loss the bank needs to provision for this loan",
+      "Expected Loss = PD × LGD × exposure = 0.05 × 0.6 × 1,000 = 30 billion the bank must provision",
       "Expected Loss = PD × loan value = 0.05 × 1,000 billion = 50 billion, without needing to account for LGD at all since the loan is fully collateralised",
       "Expected Loss = 1,000 billion, because this is the total value of the loan carrying default risk",
       "Expected Loss cannot be calculated without information about the borrower's credit rating"
@@ -104,12 +115,18 @@
       "type": "lead",
       "text": "When assessing a risky bond, the question isn't just 'will this company default' but also 'if it defaults, how much do I lose?'. These two factors combine into the Expected Loss framework - the standard tool for quantifying credit risk in finance."
     },
-    { "type": "heading", "text": "Expected Loss = PD × LGD" },
+    {
+      "type": "heading",
+      "text": "Expected Loss = PD × LGD"
+    },
     {
       "type": "paragraph",
       "text": "Expected Loss (EL) is calculated as Probability of Default (PD) multiplied by Loss Given Default (LGD - the loss rate if default occurs). LGD = 1 - Recovery Rate. **Example:** a bond with a 5% probability of default in a year, and if default happens the recovery rate is 40% (LGD = 60%) → Expected Loss = 5% × 60% = 3%. This is the minimum risk premium that bond's credit spread needs to cover, plus a premium for poor liquidity and uncertainty."
     },
-    { "type": "heading", "text": "Recovery rate depends on bankruptcy payment priority" },
+    {
+      "type": "heading",
+      "text": "Recovery rate depends on bankruptcy payment priority"
+    },
     {
       "type": "paragraph",
       "text": "The recovery rate isn't fixed - it depends mainly on whether the bond is secured. A secured bond gives bondholders priority to recover value directly from specific collateral when the company goes bankrupt, so it usually has a high recovery rate (50-60% or more, sometimes 60-80%). An unsecured bond has to wait in line for what's left after secured creditors are paid first, so its recovery rate is much lower (30-40%, sometimes below 20% for subordinated debt). The full bankruptcy priority order is: secured creditors → senior unsecured creditors → subordinated creditors → preferred shareholders → common shareholders (usually zero). Evergrande's 2021 international bond default is a real-world example: bondholders recovered only a very small fraction of the original value, demonstrating the low recovery rate in highly leveraged real estate corporate defaults."

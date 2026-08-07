@@ -12,10 +12,21 @@
   ],
   "explanation": "Accrual accounting recognises revenue and expenses at the point the economic obligation arises, not when cash moves. December's salary paid in January is still an expense of December, and the unpaid portion sits on the balance sheet as a payable. The goal is for each period's profit to reflect that period's actual activity - the cost is that profit no longer means the same thing as cash.",
   "diagram": [
-    { "label": "An economic obligation arises during the period", "arrow": true },
-    { "label": "Revenue and expense are recognised right then", "arrow": true },
-    { "label": "Expense is matched with the revenue it generates", "arrow": true },
-    { "label": "The gap versus real cash sits in receivables and payables" }
+    {
+      "label": "An economic obligation arises during the period",
+      "arrow": true
+    },
+    {
+      "label": "Revenue and expense are recognised right then",
+      "arrow": true
+    },
+    {
+      "label": "Expense is matched with the revenue it generates",
+      "arrow": true
+    },
+    {
+      "label": "The gap versus real cash sits in receivables and payables"
+    }
   ],
   "realWorldExample": {
     "company": "Companies listed on HOSE/HNX",
@@ -102,7 +113,7 @@
     "question": "A consulting company completes a project for a client in December and issues a 200-million invoice, but the client only pays in February of the following year. Under accrual accounting, when is this 200-million revenue recognised?",
     "options": [
       "In February of the following year - exactly when the company actually receives the cash into its bank account",
-      "In December - exactly when the company has completed its obligation (the project is finished), regardless of the cash not yet arriving, because accrual records by economic obligation, not by cash flow",
+      "Recognise it in December, when the company had finished the obligation, even though the cash itself had not arrived",
       "Split evenly: 100 million in December and 100 million in February of the following year",
       "This revenue isn't recognised until there is independent audit confirmation"
     ],
@@ -123,12 +134,18 @@
       "type": "lead",
       "text": "Accrual Accounting is the foundation of every modern financial statement - its core principle is recognising revenue and expenses when they arise economically, not when cash actually moves."
     },
-    { "type": "heading", "text": "The matching principle - the heart of accrual" },
+    {
+      "type": "heading",
+      "text": "The matching principle - the heart of accrual"
+    },
     {
       "type": "paragraph",
       "text": "The matching principle requires that expenses be recognised in the same period as the revenue they generate. **Example:** December's salary expense must be recognised in December - because employees worked and created value that month - even though the company actually pays the salary at the start of January. This unpaid amount creates a line item called 'accrued liabilities' on the balance sheet."
     },
-    { "type": "heading", "text": "Another example of accrual" },
+    {
+      "type": "heading",
+      "text": "Another example of accrual"
+    },
     {
       "type": "paragraph",
       "text": "The same applies to revenue: if a consulting company finishes a project in March but the client pays in May, the revenue is still recognised in March - because the service is complete, the economic obligation has arisen. The uncollected amount creates Accounts Receivable on the balance sheet, not a 'non-existent' item."
@@ -150,10 +167,26 @@
       "type": "conceptTable",
       "title": "Accrual accounting terminology",
       "concepts": [
-        { "vi": "Kế toán dồn tích", "en": "Accrual Accounting", "def": "Recognises revenue/expenses when the economic obligation arises, not by cash flow" },
-        { "vi": "Nguyên tắc khớp", "en": "Matching principle", "def": "Related revenue and expenses must be recognised in the same accounting period" },
-        { "vi": "Chi phí phải trả", "en": "Accrued expenses", "def": "Expenses already incurred but not yet paid in cash" },
-        { "vi": "Chi phí trả trước", "en": "Prepaid expenses", "def": "Cash already paid upfront, with the expense allocated gradually over later periods" }
+        {
+          "vi": "Kế toán dồn tích",
+          "en": "Accrual Accounting",
+          "def": "Recognises revenue/expenses when the economic obligation arises, not by cash flow"
+        },
+        {
+          "vi": "Nguyên tắc khớp",
+          "en": "Matching principle",
+          "def": "Related revenue and expenses must be recognised in the same accounting period"
+        },
+        {
+          "vi": "Chi phí phải trả",
+          "en": "Accrued expenses",
+          "def": "Expenses already incurred but not yet paid in cash"
+        },
+        {
+          "vi": "Chi phí trả trước",
+          "en": "Prepaid expenses",
+          "def": "Cash already paid upfront, with the expense allocated gradually over later periods"
+        }
       ]
     },
     {

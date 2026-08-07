@@ -12,10 +12,21 @@
   ],
   "explanation": "ROA measures how many dong of profit each dong of assets generates, so it speaks to operating efficiency without being distorted by leverage the way ROE can be. Because of this, what counts as a reasonable level depends almost entirely on the business model: software or consulting needs almost no assets so ROA is very high, while manufacturing or utilities must sink large capital into plants so a low ROA is normal. Comparing ROA across two different industries almost never yields a useful conclusion.",
   "diagram": [
-    { "label": "Net income for the period", "arrow": true },
-    { "label": "Divide by average total assets", "arrow": true },
-    { "label": "Get return per dong of assets", "arrow": true },
-    { "label": "The comparison is only meaningful within the same business model" }
+    {
+      "label": "Net income for the period",
+      "arrow": true
+    },
+    {
+      "label": "Divide by average total assets",
+      "arrow": true
+    },
+    {
+      "label": "Get return per dong of assets",
+      "arrow": true
+    },
+    {
+      "label": "The comparison is only meaningful within the same business model"
+    }
   ],
   "realWorldExample": {
     "company": "Banks vs consulting firms",
@@ -82,7 +93,7 @@
     "question": "Company A has Net Income = 100 billion, Total Assets = 2,000 billion. Company B has Net Income = 100 billion, Total Assets = 500 billion. Which company is using its assets more efficiently to generate profit?",
     "options": [
       "Both companies are equally efficient since they have the same Net Income; assets have no bearing on profitability",
-      "Company B is more efficient - B's ROA = 100/500 = 20%, much higher than A's ROA = 100/2,000 = 5%, meaning B generates far more profit per dong of assets it owns",
+      "B is the more efficient one: B's ROA = 100/500 = 20% against A's 100/2,000 = 5% on the same profit",
       "Company A is more efficient because it has a larger asset base, showing it has stronger capacity",
       "ROA cannot be compared between two companies without knowing more about their capital structure"
     ],
@@ -103,13 +114,23 @@
       "type": "lead",
       "text": "ROA (Return on Assets) answers the question: for every dong of assets a business holds, how much profit does it generate? This is a measure of asset-use efficiency - and it differs enormously between asset-heavy and asset-light business models."
     },
-    { "type": "callout", "label": "The formula", "text": "ROA = Net Income / Total Assets" },
-    { "type": "heading", "text": "Why banks have an ROA of only 1-2% despite running good businesses" },
+    {
+      "type": "callout",
+      "label": "The formula",
+      "text": "ROA = Net Income / Total Assets"
+    },
+    {
+      "type": "heading",
+      "text": "Why banks have an ROA of only 1-2% despite running good businesses"
+    },
     {
       "type": "paragraph",
       "text": "For a bank, loans themselves are assets - the entire business model is holding very large assets (loans) to generate profit from an interest-rate spread. Because total assets are enormous relative to profit, a bank's ROA is typically only 1-2% - not a sign of poor performance, simply that the denominator (assets) is inherently large for the nature of the industry."
     },
-    { "type": "heading", "text": "Asset-light businesses and high ROA" },
+    {
+      "type": "heading",
+      "text": "Asset-light businesses and high ROA"
+    },
     {
       "type": "paragraph",
       "text": "By contrast, a consulting firm holds almost no fixed assets - the value it creates comes mainly from people, not machinery or facilities. With very small assets on the balance sheet but meaningful profit, ROA can exceed 20%. This is why comparing ROA between a bank and a software/consulting company is nearly meaningless despite an identical formula - the two models use assets in entirely different ways."

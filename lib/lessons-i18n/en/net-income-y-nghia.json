@@ -12,10 +12,21 @@
   ],
   "explanation": "Net income is the final line and also the most-watched number, but it's the product of many accounting estimates: depreciation, provisions, revenue recognition. That's why the right way to use it is to always place it next to operating cash flow. The two numbers tracking each other across several years is a sign of good earnings quality; a widening, persistent gap means you have to go looking in receivables, inventory, or one-off items.",
   "diagram": [
-    { "label": "Positive net income on the statement", "arrow": true },
-    { "label": "Cross-check against operating cash flow", "arrow": true },
-    { "label": "They track together: good earnings quality", "arrow": true },
-    { "label": "A wide gap: check receivables, inventory, one-off items" }
+    {
+      "label": "Positive net income on the statement",
+      "arrow": true
+    },
+    {
+      "label": "Cross-check against operating cash flow",
+      "arrow": true
+    },
+    {
+      "label": "They track together: good earnings quality",
+      "arrow": true
+    },
+    {
+      "label": "A wide gap: check receivables, inventory, one-off items"
+    }
   ],
   "realWorldExample": {
     "company": "Masan Group (MSN)",
@@ -142,7 +153,7 @@
     "question": "A company reports positive Net Income of 80 billion for the year, but Free Cash Flow (FCF) is negative 50 billion over the same period. How should an investor react to this gap?",
     "options": [
       "Ignore it, since positive Net Income is enough to confirm the company is financially healthy",
-      "Dig deeper - Net Income is the bottom line but only an accounting number, and can be affected by uncollected revenue or non-cash costs; negative FCF shows more real cash is leaving the company than it can generate",
+      "Investigate further: Net Income is an accounting figure, while negative FCF is real money leaving",
       "Immediately conclude the company is committing financial-statement fraud, since these two numbers don't match",
       "Treat negative FCF as completely normal and not worth attention as long as Net Income stays positive"
     ],
@@ -163,17 +174,26 @@
       "type": "lead",
       "text": "Net Income is the number quoted most often in financial media, but also the number most easily misread. Understanding its meaning and its limits correctly is a required step before using it to value a company or make an investment decision."
     },
-    { "type": "heading", "text": "What Net Income is and what it's used for" },
+    {
+      "type": "heading",
+      "text": "What Net Income is and what it's used for"
+    },
     {
       "type": "paragraph",
       "text": "Net Income (the 'bottom line') = EBT − Tax Expense. Put simply, this is what's left over for shareholders after the company has paid every cost, interest, and tax. Investors divide this number by diluted shares to get EPS (Earnings Per Share), and from EPS calculate P/E - a valuation metric almost everyone uses."
     },
-    { "type": "heading", "text": "First limit: Net Income is an accounting number, not cash" },
+    {
+      "type": "heading",
+      "text": "First limit: Net Income is an accounting number, not cash"
+    },
     {
       "type": "paragraph",
       "text": "Net Income is recorded under accrual accounting, meaning revenue and expenses are recognised when a transaction occurs, not when cash actually changes hands. A company can report a large positive Net Income while Free Cash Flow (FCF) is negative because it's waiting to collect from customers (rising Accounts Receivable), or spending heavily on fixed assets (large CapEx)."
     },
-    { "type": "heading", "text": "Second limit: unusual and one-off items" },
+    {
+      "type": "heading",
+      "text": "Second limit: unusual and one-off items"
+    },
     {
       "type": "paragraph",
       "text": "Net Income can be distorted by unusual, non-recurring income/expense: gains from asset sales, investment revaluations, restructuring costs, a large one-time provision. That's why many companies and analysts also use Adjusted/Core Net Income - stripping out unusual items to better reflect the repeatable profitability of the main business."
@@ -196,13 +216,32 @@
       "type": "conceptTable",
       "title": "Net Income terminology",
       "concepts": [
-        { "vi": "Lợi nhuận ròng", "en": "Net Income", "def": "The final profit after subtracting every expense, interest, and tax" },
-        { "vi": "Lợi nhuận trên mỗi cổ phần", "en": "Earnings Per Share (EPS)", "def": "Net Income divided by the average diluted share count" },
-        { "vi": "Dòng tiền tự do", "en": "Free Cash Flow (FCF)", "def": "Cash left after subtracting CapEx from operating cash flow" },
-        { "vi": "Lợi nhuận cốt lõi", "en": "Core/Adjusted Net Income", "def": "Net Income with unusual, one-off items stripped out" }
+        {
+          "vi": "Lợi nhuận ròng",
+          "en": "Net Income",
+          "def": "The final profit after subtracting every expense, interest, and tax"
+        },
+        {
+          "vi": "Lợi nhuận trên mỗi cổ phần",
+          "en": "Earnings Per Share (EPS)",
+          "def": "Net Income divided by the average diluted share count"
+        },
+        {
+          "vi": "Dòng tiền tự do",
+          "en": "Free Cash Flow (FCF)",
+          "def": "Cash left after subtracting CapEx from operating cash flow"
+        },
+        {
+          "vi": "Lợi nhuận cốt lõi",
+          "en": "Core/Adjusted Net Income",
+          "def": "Net Income with unusual, one-off items stripped out"
+        }
       ]
     },
-    { "type": "heading", "text": "A real example: why you must cross-check Net Income against real cash flow" },
+    {
+      "type": "heading",
+      "text": "A real example: why you must cross-check Net Income against real cash flow"
+    },
     {
       "type": "list",
       "items": [
