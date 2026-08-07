@@ -1014,7 +1014,7 @@ if (practiceStats.questions >= MIN_QUESTIONS_FOR_SHARE_GATES) {
 
 /** Trần cho số bài THIẾU practicePrompt.
  *
- *  Đặt ở 84 vì kho đang thiếu đúng 84 - luật quen thuộc của AGENTS.md: cổng đặt
+ *  Đặt ở 73 vì kho đang thiếu đúng 73 - luật quen thuộc của AGENTS.md: cổng đặt
  *  ở mức kho ĐÃ ĐẠT, đủ để chặn phình thêm, không tạo nợ cho những gì đã có.
  *
  *  Ở đây một ĐẾM là đúng, chứ không phải một tỉ lệ - ngược với MAX_TELL_SHARE.
@@ -1025,7 +1025,7 @@ if (practiceStats.questions >= MIN_QUESTIONS_FOR_SHARE_GATES) {
  *
  *  Hạ nó sau mỗi đợt viết; khi về 0 thì bỏ hằng số này và đổi thành cổng cứng
  *  như MIN_QUIZ_COUNT. Không bao giờ nâng để một build đỏ thành xanh. */
-const MAX_MISSING_PRACTICE = 84;
+const MAX_MISSING_PRACTICE = 73;
 
 if (missingPractice.length > MAX_MISSING_PRACTICE && !process.argv.includes("--warn-only")) {
   console.error(
