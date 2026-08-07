@@ -151,14 +151,18 @@ console.log(
 
 const results = { personal: [], professional: [], bonus: [] };
 
-/** z-score lệch độ dài của practicePrompt ở một chiều, so với kỳ vọng có tính hoà. */
-function practiceBiasZ(side) {
-  const observed = side === "longest" ? practiceStats.longest : practiceStats.shortest;
-  const expected = side === "longest" ? practiceStats.expLongest : practiceStats.expShortest;
-  const variance = side === "longest" ? practiceStats.varLongest : practiceStats.varShortest;
+/** z-score lệch độ dài ở một chiều, so với kỳ vọng có tính hoà.
+ *  Tên khác `biasZ` phía dưới - hàm đó đo corpus quiz với chữ ký khác. */
+function optionBiasZ(stats, side) {
+  const observed = side === "longest" ? stats.longest : stats.shortest;
+  const expected = side === "longest" ? stats.expLongest : stats.expShortest;
+  const variance = side === "longest" ? stats.varLongest : stats.varShortest;
   if (variance <= 0) return 0;
   return (observed - expected) / Math.sqrt(variance);
 }
+
+const practiceBiasZ = (side) => optionBiasZ(practiceStats, side);
+const openingBiasZ = (side) => optionBiasZ(openingStats, side);
 
 for (const lesson of corpus) {
   const issues = auditLesson(lesson);
@@ -550,6 +554,38 @@ const missingPractice = [];
  *  mới. 3 độ lệch chuẩn là mức phân biệt được trôi thật với dao động thường,
  *  cùng bậc với MAX_LENGTH_BIAS_Z bên corpus quiz. */
 const MAX_PRACTICE_BIAS_Z = 3;
+
+/** Ngưỡng lệch độ dài của openingOptions - câu hỏi mở đầu mỗi bài.
+ *
+ *  TRƯỜNG THỨ BA TRONG CÙNG MỘT HỌ. `quiz` được đo từ lâu, `practicePrompt`
+ *  mới được đo và hoá ra hỏng nặng, và đây là trường còn lại: nó có
+ *  `correctOption`, `OpeningQuestionBlock` chấm đúng/sai và đổi màu ô, nhưng
+ *  suốt cả đời bộ kiểm này chưa ai nhìn vào bên trong nó lần nào.
+ *
+ *  Đo lần đầu: 610 trên 715 bài có đáp án đúng là phương án dài nhất, so với
+ *  kỳ vọng 184. z = +36,6. "Chọn phương án dài nhất" ăn khoảng 85% ở câu mở
+ *  đầu của mọi bài học.
+ *
+ *  Nó KHÔNG vào `avg_quiz_score`, không vào XP, không vào cổng mở khoá - đó là
+ *  lý do nó ở mức nghiêm trọng thấp hơn `practicePrompt` dù con số tệ hơn.
+ *  Nhưng nó là tương tác đầu tiên của người học với mỗi bài, và ở mức này nó
+ *  dạy đúng một điều trước khi họ kịp đọc gì: đoán theo độ dài là ăn.
+ *
+ *  Ngưỡng đặt ở 37 vì kho đang ở 36,64 - cùng cách `MAX_PRACTICE_BIAS_Z` từng
+ *  được đặt ở 9,2. Đây là mức kho đang HỎNG, ghi vào để con số hiện ra trong
+ *  CI và bị hạ dần sau mỗi đợt viết lại, không phải để chấp nhận. 610 câu là
+ *  đợt việc riêng, lớn hơn toàn bộ những gì đã làm cho practicePrompt. */
+const MAX_OPENING_BIAS_Z = 37;
+const openingStats = {
+  questions: 0,
+  longest: 0,
+  shortest: 0,
+  expLongest: 0,
+  varLongest: 0,
+  expShortest: 0,
+  varShortest: 0,
+};
+
 const practiceStats = {
   questions: 0,
   longestScore: 0,
@@ -604,6 +640,28 @@ for (const lesson of corpus) {
     practiceStats.varShortest += pShortest * (1 - pShortest);
     if (correctLength === longest) practiceStats.longest++;
     if (correctLength === shortest) practiceStats.shortest++;
+  }
+
+  // openingOptions: cùng hình dạng, cùng cách đo. Chỉ số đúng nằm ở
+  // `correctOption` chứ không phải `correct` - tên khác với mọi trường khác,
+  // và đó là một phần lý do nó không được đo suốt thời gian qua.
+  const opening = lesson.openingOptions;
+  if (opening?.length && typeof lesson.correctOption === "number") {
+    const lengths = opening.map((option) => String(option).length);
+    const longest = Math.max(...lengths);
+    const shortest = Math.min(...lengths);
+    openingStats.questions++;
+    if (longest !== shortest) {
+      const correctLength = lengths[lesson.correctOption] ?? 0;
+      const pLongest = lengths.filter((l) => l === longest).length / lengths.length;
+      const pShortest = lengths.filter((l) => l === shortest).length / lengths.length;
+      openingStats.expLongest += pLongest;
+      openingStats.varLongest += pLongest * (1 - pLongest);
+      openingStats.expShortest += pShortest;
+      openingStats.varShortest += pShortest * (1 - pShortest);
+      if (correctLength === longest) openingStats.longest++;
+      if (correctLength === shortest) openingStats.shortest++;
+    }
   }
 
   let lessonLongest = 0;
@@ -890,6 +948,18 @@ if (practiceStats.questions > 0) {
     `  Đích là đáp án đúng nằm GIỮA nhóm - cắt cho ngắn nhất chỉ đổi mách nước này lấy mách nước kia.`
   );
 }
+
+if (openingStats.questions > 0) {
+  const zLong = openingBiasZ("longest");
+  const zShort = openingBiasZ("shortest");
+  console.log(
+    `  openingOptions: ${openingStats.questions} câu mở đầu` +
+      `  ·  dài nhất ${openingStats.longest} vs ${openingStats.expLongest.toFixed(0)} kỳ vọng` +
+      `  z = ${zLong.toFixed(2)}` +
+      `  ·  ngắn nhất ${openingStats.shortest} vs ${openingStats.expShortest.toFixed(0)}` +
+      `  z = ${zShort.toFixed(2)}   (trần |z| ${MAX_OPENING_BIAS_Z})`
+  );
+}
 const biasFailures = biasRows.filter(
   (r) => Math.abs(r.zLong) > MAX_LENGTH_BIAS_Z || Math.abs(r.zShort) > MAX_LENGTH_BIAS_Z
 );
@@ -1088,6 +1158,23 @@ if (practiceStats.questions > 0) {
         `  nhất là ăn. Dương ở chiều "ngắn": chọn phương án ngắn nhất là ăn. Cắt đáp\n` +
         `  án đúng xuống ngắn nhất để chữa chiều thứ nhất chính là cách tạo ra chiều\n` +
         `  thứ hai - đích là đáp án đúng nằm GIỮA nhóm.\n` +
+        `  Sửa bằng cách viết lại phương án, không bằng cách nâng ngưỡng.`
+    );
+    process.exit(1);
+  }
+}
+
+if (openingStats.questions > 0) {
+  const zLong = openingBiasZ("longest");
+  const zShort = openingBiasZ("shortest");
+  const worst = Math.abs(zLong) > Math.abs(zShort) ? zLong : zShort;
+  if (Math.abs(worst) > MAX_OPENING_BIAS_Z && !process.argv.includes("--warn-only")) {
+    console.error(
+      `\nopeningOptions lệch độ dài |z| = ${Math.abs(worst).toFixed(2)}, vượt ngưỡng ` +
+        `${MAX_OPENING_BIAS_Z}.\n` +
+        `  z(dài) = ${zLong.toFixed(2)}, z(ngắn) = ${zShort.toFixed(2)}\n\n` +
+        `  Cắt đáp án đúng về đúng mệnh đề - phần lý lẽ đã nằm ở explanation của bài.\n` +
+        `  Đích là PHÂN BỐ: khoảng một phần tư dài nhất, một phần tư ngắn nhất.\n` +
         `  Sửa bằng cách viết lại phương án, không bằng cách nâng ngưỡng.`
     );
     process.exit(1);
