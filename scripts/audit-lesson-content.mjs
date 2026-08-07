@@ -369,6 +369,15 @@ const baseline = new Set(
 // Hạ 5 -> 4,5 -> 4 -> 3,4 qua ba đợt viết lại. Track tệ nhất giờ ở 2,98
 // (professional, phía "đáp án đúng hiếm khi là phương án dài nhất"), nên 3,4
 // để lại khoảng 0,4 - đủ cho vài chục câu xê dịch, không đủ cho một lần trôi.
+//
+// VÀ DỪNG Ở ĐÂY. Đợt sau cắt thêm 14 phương án vào đúng dải ±20% của luật 6 mà
+// z không đổi một phần trăm nào - vẫn đúng 486 câu, không câu nào lật, vì cắt
+// phương án nhiễu dài nhất hiếm khi kéo nó xuống dưới đáp án đúng. Đo tiếp thì
+// trong 1.902 câu "đáp án đúng không dài nhất" của track này đã có 1.599 câu
+// (84%) nằm trọn trong dải - chúng không hỏng. Phần −2,98 còn lại là hệ quả số
+// học của luật 1 cộng luật 3, và đóng nốt nó chỉ còn hai đường, cả hai đều làm
+// hỏng câu hỏi: nhồi chữ vào đáp án đúng, hoặc rút phép tính khỏi phương án
+// nhiễu. Con số này là cái chặn đợt MỚI trôi, không phải cái đích phải chạm.
 const MAX_LENGTH_BIAS_Z = 3.4;
 
 /**

@@ -42,8 +42,31 @@ than by reading:
   watching, because every gate was a ceiling and this is a floor.
 
   `MAX_LENGTH_BIAS_Z` gates both directions, per track and overall, against a
-  tie-aware expectation. Fixing it means writing some correct options *longer*,
-  not shorter.
+  tie-aware expectation.
+
+- **Where the downward drift stops, and why chasing it further is wrong.** The
+  rewrite above took `professional` from z = −4.6 to **−2.98**, and there it
+  stuck. The last batch tightened fourteen options into rule 6's ±20% band —
+  one of them cut from 125 characters to 46 beside a 39-character answer — and
+  moved the statistic by *zero*: 486 uniquely-longest before, 486 after. Not
+  one question flipped, because trimming the longest distractor almost never
+  brings it below the correct answer.
+
+  Then the useful measurement: of the 1,902 `professional` questions where the
+  correct answer is not the longest, **1,599 (84%) already satisfy rule 6**.
+  They are not defective. The residual z = −2.98 is the arithmetic consequence
+  of rules 1 and 3 held together — the correct option states a claim, while
+  every distractor has to carry the mistake that produces it, so a longer
+  distractor is the normal shape of a well-built question.
+
+  So do **not** read a mild negative z as a backlog to grind down. Closing it
+  leaves only two moves and both damage the bank: pad the correct option past
+  its claim (breaks rule 1), or strip the arithmetic out of the distractors
+  (breaks rule 3). `MAX_LENGTH_BIAS_Z` stays at 3.4 for this reason rather than
+  being ratcheted further — it is a guard against a *new* batch drifting, not a
+  target to reach. The earlier version of this section told you to fix a
+  downward z by "writing some correct options longer"; that advice is what this
+  measurement retired.
 
 ## Rules
 
