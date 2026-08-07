@@ -192,7 +192,7 @@ export const FRM_LESSONS: Lesson[] = [
     openingQuestion: "Điều gì thường khiến nhân viên tuyến 2 (Rủi ro/Tuân thủ) ngần ngại báo cáo một rủi ro nghiêm trọng, dù họ nhìn thấy nó rõ ràng?",
     openingOptions: [
       "Vì họ không được đào tạo đủ về kỹ thuật đo lường rủi ro",
-      "Vì thưởng, đánh giá hiệu suất hoặc sự nghiệp của họ gắn với kết quả kinh doanh của chính bộ phận họ đang giám sát",
+      "Vì thưởng và sự nghiệp của họ gắn với kết quả kinh doanh",
       "Vì hệ thống công nghệ thông tin quá chậm để tổng hợp báo cáo",
       "Vì họ không có quyền truy cập vào dữ liệu giao dịch",
     ],

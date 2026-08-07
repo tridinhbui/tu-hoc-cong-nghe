@@ -1397,7 +1397,7 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
     whyItMatters: "Cơ quan quản lý ở nhiều nước đã đưa kiểm định khí hậu vào chương trình giám sát ngân hàng. Đây cũng là bài toán rủi ro đầu tiên mà toàn bộ hộp công cụ dựa trên dữ liệu quá khứ gần như vô dụng.",
     openingQuestion: "Rủi ro vật lý khác rủi ro chuyển đổi trong rủi ro khí hậu ở điểm nào?",
     openingOptions: [
-      "Vật lý là thiệt hại do thiên tai và khí hậu, chuyển đổi là do chính sách và công nghệ đổi",
+      "Vật lý là thiên tai, chuyển đổi là chính sách",
       "Vật lý áp dụng cho tài sản hữu hình, chuyển đổi áp dụng cho tài sản tài chính",
       "Vật lý xảy ra trong ngắn hạn, chuyển đổi chỉ xuất hiện sau năm mươi năm nữa",
       "Vật lý do doanh nghiệp gánh, chuyển đổi do ngân sách nhà nước gánh"
@@ -1953,7 +1953,7 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
     whyItMatters: "Mỗi định chế chuyển lên đám mây đều có lý do đúng: rẻ hơn, an toàn hơn, chạy nhanh hơn. Nhưng khi tất cả cùng chọn một trong số ít nhà cung cấp, tổng lại thành một điểm đổ vỡ mà không ai sở hữu.",
     openingQuestion: "Vì sao cơ quan quản lý lo ngại tập trung nhà cung cấp đám mây trong ngành tài chính?",
     openingOptions: [
-      "Một sự cố ở một nhà cung cấp có thể làm gián đoạn đồng thời nhiều định chế",
+      "Một sự cố có thể gián đoạn nhiều định chế cùng lúc",
       "Nhà cung cấp đám mây thường có mức bảo mật thấp hơn hệ thống tự vận hành",
       "Chi phí thuê đám mây tăng đều mỗi năm làm giảm lợi nhuận của các ngân hàng",
       "Dữ liệu khách hàng bắt buộc phải được lưu trữ trong lãnh thổ quốc gia"

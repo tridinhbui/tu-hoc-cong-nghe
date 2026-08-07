@@ -29,7 +29,7 @@ export const DATA_TOOLS_LESSONS: Lesson[] = [
       "Đâu là dấu hiệu đáng tin cậy nhất cho thấy một bài toán nên chuyển từ Excel sang code?",
     openingOptions: [
       "Bảng dữ liệu đã vượt quá một trăm nghìn dòng",
-      "Cùng một chuỗi thao tác phải lặp lại theo định kỳ, và mỗi lần lặp lại là một cơ hội sai khác",
+      "Cùng chuỗi thao tác lặp lại theo định kỳ",
       "Công ty đã mua bản quyền phần mềm phân tích",
       "Sếp yêu cầu biểu đồ trông chuyên nghiệp hơn",
     ],
@@ -198,7 +198,7 @@ export const DATA_TOOLS_LESSONS: Lesson[] = [
       "Khác biệt tư duy lớn nhất giữa bảng tính và một bảng dữ liệu trong code là gì?",
     openingOptions: [
       "Bảng dữ liệu trong code có thể chứa nhiều dòng hơn",
-      "Bảng tính thao tác theo từng ô, còn bảng dữ liệu trong code thao tác trên cả cột cùng lúc",
+      "Bảng tính theo ô, còn code theo cả cột dữ liệu",
       "Bảng dữ liệu trong code không cần đặt tên cột",
       "Bảng tính không lưu được kiểu dữ liệu ngày tháng",
     ],
@@ -552,7 +552,7 @@ export const DATA_TOOLS_LESSONS: Lesson[] = [
       "Vì sao cắt trục tung không bắt đầu từ 0 lại là vấn đề với biểu đồ cột?",
     openingOptions: [
       "Vì phần mềm vẽ biểu đồ không hỗ trợ tùy chọn này",
-      "Vì chiều cao cột được mắt đọc như đại lượng tuyệt đối, nên cắt trục thổi phồng khác biệt nhỏ",
+      "Vì mắt đọc chiều cao cột như số tuyệt đối",
       "Vì trục tung luôn phải cùng đơn vị với trục hoành",
       "Vì nó làm biểu đồ khó in ra giấy",
     ],
@@ -723,7 +723,7 @@ export const DATA_TOOLS_LESSONS: Lesson[] = [
       "Vì sao nhiều dashboard sau vài tuần thì không ai mở nữa?",
     openingOptions: [
       "Vì dữ liệu cập nhật chậm",
-      "Vì nó trả lời những câu hỏi không dẫn tới hành động nào, nên xem xong người ta không biết làm gì",
+      "Vì trả lời câu hỏi không dẫn tới hành động",
       "Vì thiếu màu sắc và hình ảnh hấp dẫn",
       "Vì người dùng chưa được đào tạo cách sử dụng",
     ],

@@ -32,7 +32,7 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
       "Bạn được sếp yêu cầu đổi khuyến nghị từ 'Trung lập' sang 'Mua' cho một cổ phiếu mà công ty bạn sắp bảo lãnh phát hành. Bước đầu tiên nên làm là gì?",
     openingOptions: [
       "Từ chối ngay và nộp đơn nghỉ việc để giữ tính chính trực",
-      "Xác định rõ tình huống: ai bị ảnh hưởng, nghĩa vụ của bạn với từng bên, và sự thật nào đang bị bỏ qua",
+      "Xác định ai bị ảnh hưởng và nghĩa vụ của bạn",
       "Làm theo yêu cầu vì sếp chịu trách nhiệm cuối cùng về báo cáo",
       "Đổi khuyến nghị nhưng ghi chú nhỏ ở cuối báo cáo để tự bảo vệ",
     ],
@@ -200,7 +200,7 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
       "Điều gì khiến dịch vụ tài chính khó đánh giá chất lượng hơn so với mua một chiếc điện thoại?",
     openingOptions: [
       "Vì dịch vụ tài chính có giá cao hơn nhiều so với hàng tiêu dùng",
-      "Vì kết quả phụ thuộc vào tương lai và bị lẫn với may rủi, nên khách hàng không tách được kỹ năng khỏi vận may",
+      "Vì kết quả lẫn với may rủi, khách khó tự đánh giá",
       "Vì ngành tài chính chịu nhiều quy định pháp lý hơn các ngành khác",
       "Vì hợp đồng tài chính thường dài và khó đọc đối với người thường",
     ],
@@ -369,7 +369,7 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
       "Bạn làm việc ở một nước mà luật cho phép nhận hoa hồng từ bên thứ ba mà không cần công bố cho khách hàng, trong khi Code of Ethics yêu cầu công bố. Bạn phải làm gì?",
     openingOptions: [
       "Theo luật sở tại, vì luật có hiệu lực pháp lý cao hơn quy tắc nghề nghiệp",
-      "Theo tiêu chuẩn nghiêm ngặt hơn - ở đây là Code of Ethics, tức vẫn phải công bố",
+      "Theo tiêu chuẩn nghiêm ngặt hơn - Code of Ethics",
       "Tùy chọn, miễn là nhất quán trong suốt thời gian làm việc tại nước đó",
       "Theo yêu cầu của nhà tuyển dụng vì họ chịu trách nhiệm pháp lý cuối cùng",
     ],
@@ -756,7 +756,7 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
       "Bạn dùng một mô hình ngôn ngữ để soạn phần tổng quan ngành cho báo cáo của mình, rồi biên tập lại đôi chỗ. Theo Standard I(C), điều này có vấn đề không?",
     openingOptions: [
       "Không, vì bạn đã biên tập lại nên đó là sản phẩm của bạn",
-      "Có vấn đề nếu bạn để người đọc hiểu đó là phân tích của chính bạn, và nếu bạn không kiểm chứng được từng khẳng định trong đó",
+      "Có, nếu người đọc hiểu đó là phân tích của bạn",
       "Không, vì công cụ AI không phải là một tác giả có bản quyền",
       "Có, vì Standard I(C) cấm hoàn toàn việc dùng công cụ AI trong phân tích",
     ],
@@ -1336,7 +1336,7 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
       "Công ty bạn có gói dịch vụ cao cấp trả phí cao hơn. Khách gói đó có được nhận báo cáo phân tích sớm hơn khách gói thường không?",
     openingOptions: [
       "Không, mọi khách hàng phải nhận thông tin cùng một thời điểm",
-      "Được, nếu chênh lệch dịch vụ được công bố trước và mọi khách trong cùng một gói được đối xử như nhau",
+      "Được, nếu chênh lệch được công bố trước",
       "Được, vì khách trả phí cao hơn thì đương nhiên nhận được nhiều hơn",
       "Không, trừ khi khách gói thường đồng ý bằng văn bản với việc đó",
     ],
@@ -1526,7 +1526,7 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
       "Một công ty quảng cáo 'các quỹ của chúng tôi trung bình lãi 14%/năm trong 10 năm qua', tính trên các quỹ hiện đang hoạt động. Vấn đề ở đâu?",
     openingOptions: [
       "Không có vấn đề nếu từng con số đều đúng và kiểm chứng được",
-      "Thiên lệch sống sót: các quỹ đóng cửa vì kết quả kém đã bị loại khỏi phép tính, nên con số trung bình bị đẩy lên",
+      "Thiên lệch sống sót: quỹ đóng cửa đã bị loại",
       "Vấn đề là mười năm quá dài để có ý nghĩa với nhà đầu tư mới",
       "Vấn đề là chưa nêu rõ mức phí quản lý đã được trừ hay chưa",
     ],
@@ -1715,7 +1715,7 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
       "Một khách hàng hài lòng đề nghị thưởng riêng cho bạn nếu danh mục của họ vượt 15% năm tới. Bạn nên làm gì?",
     openingOptions: [
       "Từ chối vì mọi khoản thưởng từ khách hàng đều bị cấm tuyệt đối",
-      "Nhận nếu được nhà tuyển dụng đồng ý bằng văn bản, sau khi đã báo rõ bản chất, số tiền và thời hạn",
+      "Nhận nếu nhà tuyển dụng đồng ý bằng văn bản sau khi báo rõ",
       "Nhận vì đó là phần thưởng cho kết quả tốt của chính bạn",
       "Nhận nhưng chỉ cần báo miệng cho quản lý trực tiếp là đủ",
     ],
@@ -1901,7 +1901,7 @@ export const CFA_ETHICS_STANDARDS_LESSONS: Lesson[] = [
       "Trong báo cáo, bạn viết: 'Doanh nghiệp sẽ đạt tăng trưởng doanh thu 25% năm tới nhờ nhà máy mới đi vào hoạt động'. Vấn đề ở đâu?",
     openingOptions: [
       "Không có vấn đề nếu phân tích của bạn thực sự dẫn tới con số đó",
-      "Câu này trình bày một dự báo như thể là sự thật - phải nêu rõ đây là ước tính của bạn và dựa trên giả định nào",
+      "Câu này trình bày một dự báo như thể là sự thật",
       "Vấn đề là con số 25% quá cụ thể nên dễ bị sai",
       "Vấn đề là chưa nêu rõ nguồn dữ liệu về nhà máy mới",
     ],

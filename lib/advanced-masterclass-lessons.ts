@@ -666,7 +666,7 @@ export const ADVANCED_MASTERCLASS_LESSONS: Lesson[] = [
     openingOptions: [
       "Tỷ suất lợi nhuận kỳ vọng là 95%/năm",
       "Danh mục chắc chắn mất 200 triệu VNĐ mỗi ngày",
-      "Trong 95% số ngày, mức lỗ không vượt quá 200 triệu VNĐ - tức khoảng 5% số ngày sẽ lỗ nhiều hơn thế",
+      "Trong 95% số ngày, lỗ không vượt 200 triệu",
       "Có 5% khả năng danh mục lãi 200 triệu VNĐ",
     ],
     correctOption: 2,

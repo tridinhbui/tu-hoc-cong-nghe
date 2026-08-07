@@ -198,7 +198,7 @@ export const CFA_ALTERNATIVES_LESSONS: Lesson[] = [
       "Một quỹ bất động sản báo cáo độ lệch chuẩn lợi nhuận thấp hơn hẳn cổ phiếu niêm yết. Kết luận nào đúng?",
     openingOptions: [
       "Bất động sản thực sự ít rủi ro hơn cổ phiếu niêm yết",
-      "Con số đó bị làm mượt vì định giá theo thẩm định định kỳ, chứ không phản ánh biến động thật của giá trị tài sản",
+      "Con số bị làm mượt vì định giá theo thẩm định định kỳ",
       "Quỹ đó quản lý rủi ro tốt hơn các quỹ cổ phiếu thông thường",
       "Độ lệch chuẩn không áp dụng được cho bất động sản",
     ],
@@ -363,7 +363,7 @@ export const CFA_ALTERNATIVES_LESSONS: Lesson[] = [
       "Vì sao các quỹ nợ tư nhân mở rộng mạnh sau khủng hoảng tài chính 2008?",
     openingOptions: [
       "Vì lãi suất giảm khiến việc cho vay trở nên rẻ hơn",
-      "Vì quy định vốn siết chặt khiến ngân hàng rút khỏi mảng cho vay doanh nghiệp vừa, để lại khoảng trống nhu cầu",
+      "Vì quy định vốn siết khiến ngân hàng rút khỏi mảng này",
       "Vì doanh nghiệp không còn muốn vay từ ngân hàng nữa",
       "Vì cơ quan quản lý khuyến khích các quỹ thay thế ngân hàng",
     ],
@@ -559,7 +559,7 @@ export const CFA_ALTERNATIVES_LESSONS: Lesson[] = [
       "Vì sao quỹ hưu trí đặc biệt quan tâm tới tài sản hạ tầng?",
     openingOptions: [
       "Vì hạ tầng luôn cho lợi nhuận cao hơn cổ phiếu niêm yết",
-      "Vì dòng tiền dài hạn, ổn định và thường gắn với lạm phát - khớp với nghĩa vụ chi trả kéo dài hàng chục năm",
+      "Vì dòng tiền dài hạn, ổn định và thường gắn lạm phát",
       "Vì hạ tầng được nhà nước bảo lãnh toàn bộ vốn gốc",
       "Vì tài sản hạ tầng có thể bán lại rất nhanh khi cần tiền",
     ],
@@ -724,7 +724,7 @@ export const CFA_ALTERNATIVES_LESSONS: Lesson[] = [
       "Lợi nhuận từ đầu tư rừng trồng đến từ những nguồn nào?",
     openingOptions: [
       "Chỉ từ việc bán gỗ khi thu hoạch",
-      "Từ ba nguồn: cây lớn lên nên khối lượng gỗ tăng, giá gỗ thay đổi, và giá đất thay đổi",
+      "Từ ba nguồn: khối lượng gỗ, giá gỗ, và giá đất",
       "Chỉ từ việc giá đất tăng theo thời gian",
       "Từ tiền cho thuê đất trả hằng năm bởi bên khai thác",
     ],
@@ -926,7 +926,7 @@ export const CFA_ALTERNATIVES_LESSONS: Lesson[] = [
       "Vì sao hedge fund được coi là một cấu trúc quỹ chứ không phải một nhóm tài sản?",
     openingOptions: [
       "Vì hedge fund có thể đầu tư vào bất kỳ tài sản nào",
-      "Vì thứ chung duy nhất giữa chúng là cấu trúc pháp lý và phí, còn nguồn rủi ro thì khác nhau hoàn toàn",
+      "Vì thứ chung duy nhất giữa chúng là cấu trúc và phí",
       "Vì hedge fund không bị cơ quan quản lý giám sát",
       "Vì hedge fund luôn sử dụng đòn bẩy trong mọi chiến lược",
     ],
@@ -1088,7 +1088,7 @@ export const CFA_ALTERNATIVES_LESSONS: Lesson[] = [
       "Theo cách phân loại của chương trình CFA, tài sản số được chia theo tiêu chí nào?",
     openingOptions: [
       "Theo vốn hóa thị trường từ lớn tới nhỏ",
-      "Theo chức năng kinh tế: phương tiện thanh toán, token tiện ích, token chứng khoán, và stablecoin",
+      "Theo chức năng kinh tế của từng loại token",
       "Theo công nghệ nền tảng mà mỗi loại sử dụng",
       "Theo mức độ được cơ quan quản lý chấp nhận ở từng nước",
     ],
@@ -1255,7 +1255,7 @@ export const CFA_ALTERNATIVES_LESSONS: Lesson[] = [
       "Vì sao mô hình tối ưu hóa trung bình - phương sai thường đề xuất tỷ trọng tài sản thay thế cao bất thường?",
     openingOptions: [
       "Vì tài sản thay thế thực sự nên chiếm tỷ trọng lớn trong danh mục",
-      "Vì đầu vào bị bóp méo: độ lệch chuẩn và tương quan báo cáo đều thấp hơn thực tế do làm mượt",
+      "Vì đầu vào bị bóp méo: độ lệch và tương quan thấp",
       "Vì mô hình không tính đến chi phí giao dịch của tài sản thay thế",
       "Vì lợi nhuận lịch sử của tài sản thay thế cao hơn cổ phiếu",
     ],

@@ -678,7 +678,7 @@ export const VN_MARKET_LESSONS: Lesson[] = [
     openingQuestion: "VN-Index tăng 1% nghĩa là gì về mặt thị trường?",
     openingOptions: [
       "Phần lớn cổ phiếu trên sàn đã tăng giá trong phiên hôm đó",
-      "Tổng vốn hóa của rổ tính chỉ số tăng 1%, không nói gì về số mã tăng",
+      "Tổng vốn hóa rổ tăng 1%, không nói số mã tăng",
       "Mọi cổ phiếu trong rổ đều tăng đúng 1% so với giá tham chiếu",
       "Khối lượng giao dịch toàn thị trường đã tăng 1% so với phiên trước",
     ],

@@ -191,7 +191,7 @@ export const PERSONAL_ENTRY_LESSONS: Lesson[] = [
     openingQuestion: "Vì sao kế hoạch tiết kiệm thường thất bại dù con số hợp lý?",
     openingOptions: [
       "Vì lãi suất tiết kiệm thay đổi làm mục tiêu ban đầu không còn đúng",
-      "Vì nó dựa vào việc còn tiền cuối tháng, mà cuối tháng thì hiếm khi còn",
+      "Vì nó dựa vào việc còn tiền cuối tháng",
       "Vì ngân hàng giới hạn số lần chuyển tiền vào tài khoản tiết kiệm",
       "Vì mục tiêu tiết kiệm luôn được đặt cao hơn khả năng thực tế",
     ],
@@ -353,7 +353,7 @@ export const PERSONAL_ENTRY_LESSONS: Lesson[] = [
     openingQuestion: "Bảo hiểm khác quỹ khẩn cấp ở điểm nào?",
     openingOptions: [
       "Bảo hiểm sinh lời cao hơn nên thay thế được quỹ khẩn cấp",
-      "Bảo hiểm lo rủi ro hiếm nhưng lớn; quỹ khẩn cấp lo rủi ro nhỏ và thường gặp",
+      "Bảo hiểm lo rủi ro lớn hiếm; quỹ khẩn cấp lo nhỏ",
       "Bảo hiểm chỉ dành cho người có thu nhập cao và tài sản lớn",
       "Bảo hiểm và quỹ khẩn cấp phục vụ cùng một mục đích, chọn một là đủ",
     ],

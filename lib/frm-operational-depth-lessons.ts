@@ -26,7 +26,7 @@ export const FRM_OPERATIONAL_DEPTH_LESSONS: Lesson[] = [
       "Một ngân hàng có 12 năm dữ liệu tổn thất nội bộ, sự kiện lớn nhất là 40 tỷ. Họ muốn ước lượng tổn thất ở mức 99,9%. Cách tiếp cận nào hợp lý?",
     openingOptions: [
       "Ngoại suy trực tiếp phân phối khớp từ 12 năm dữ liệu ra tới mức 99,9%",
-      "Kết hợp dữ liệu nội bộ với dữ liệu ngành và phân tích kịch bản, vì mức 99,9% nằm ngoài mọi quan sát họ từng có",
+      "Kết hợp dữ liệu nội bộ, dữ liệu ngành và kịch bản",
       "Lấy sự kiện lớn nhất trong 12 năm nhân với hệ số an toàn 3 lần",
       "Bỏ qua phần đuôi vì không có cơ sở thống kê nào để ước lượng",
     ],
@@ -473,7 +473,7 @@ export const FRM_OPERATIONAL_DEPTH_LESSONS: Lesson[] = [
     openingQuestion:
       "Điểm khác nhau cốt lõi giữa 'ngưỡng chịu đựng tác động' và mục tiêu thời gian khôi phục truyền thống là gì?",
     openingOptions: [
-      "Ngưỡng chịu đựng đặt theo mức hại cho khách hàng và thị trường, còn mục tiêu khôi phục đặt theo năng lực kỹ thuật của hệ thống",
+      "Ngưỡng đặt theo mức hại cho khách hàng và thị trường",
       "Ngưỡng chịu đựng chỉ áp dụng cho hệ thống công nghệ, mục tiêu khôi phục áp dụng cho toàn bộ nghiệp vụ",
       "Ngưỡng chịu đựng do nhà cung cấp cam kết, mục tiêu khôi phục do tổ chức tự đặt",
       "Hai khái niệm giống nhau, chỉ khác tên gọi theo từng cơ quan quản lý",
@@ -623,7 +623,7 @@ export const FRM_OPERATIONAL_DEPTH_LESSONS: Lesson[] = [
       "Một bàn giao dịch có kết quả xuất sắc nhiều năm liền, do một người duy nhất phụ trách, và người đó chưa từng nghỉ phép dài. Đây là dấu hiệu của điều gì?",
     openingOptions: [
       "Một nhân sự tận tuỵ mà tổ chức nên giữ bằng mọi giá",
-      "Một cảnh báo cần kiểm tra, vì không nghỉ phép là cách che giấu vị thế phổ biến và nó cũng là rủi ro nhân sự chủ chốt",
+      "Một cảnh báo cần kiểm tra, vì không nghỉ phép là dấu hiệu",
       "Một vấn đề nhân sự thuần tuý, không thuộc phạm vi quản trị rủi ro",
       "Một dấu hiệu cho thấy quy trình bàn giao đang hoạt động tốt",
     ],

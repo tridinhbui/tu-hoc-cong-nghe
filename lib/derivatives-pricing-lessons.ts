@@ -612,7 +612,7 @@ export const DERIVATIVES_PRICING_LESSONS: Lesson[] = [
       "Vì sao quyền chọn bán sâu ngoài tiền của chỉ số cổ phiếu thường có độ biến động hàm ý cao hơn quyền chọn ngang giá?",
     openingOptions: [
       "Vì sở giao dịch quy định mức phí cao hơn cho quyền chọn ngoài tiền",
-      "Vì nhà đầu tư sẵn sàng trả thêm để bảo hiểm trước cú sập, và thị trường thật có đuôi trái dày hơn phân phối chuẩn giả định",
+      "Vì nhà đầu tư sẵn sàng trả thêm để bảo hiểm trước cú sập",
       "Vì thanh khoản của quyền chọn ngoài tiền luôn cao hơn",
       "Vì lãi suất phi rủi ro ảnh hưởng mạnh hơn đến quyền chọn ngoài tiền",
     ],

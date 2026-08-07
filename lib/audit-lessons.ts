@@ -29,7 +29,7 @@ export const AUDIT_LESSONS: Lesson[] = [
       "Báo cáo tài chính được kiểm toán chấp nhận toàn phần. Điều đó có nghĩa là số liệu chắc chắn không có sai sót nào?",
     openingOptions: [
       "Đúng, đó là mục đích của việc kiểm toán",
-      "Không: nó nói báo cáo không còn sai sót trọng yếu, tức là sai sót nhỏ vẫn có thể tồn tại",
+      "Không: nó chỉ nói không còn sai sót trọng yếu",
       "Đúng, nếu do công ty kiểm toán lớn thực hiện",
       "Không, vì kiểm toán viên chỉ kiểm tra phần doanh thu",
     ],
@@ -190,7 +190,7 @@ export const AUDIT_LESSONS: Lesson[] = [
       "Mức trọng yếu trong một cuộc kiểm toán thường được xác định thế nào?",
     openingOptions: [
       "Một con số cố định do cơ quan quản lý ban hành cho từng ngành",
-      "Một tỷ lệ phần trăm trên một chỉ tiêu nền như lợi nhuận trước thuế, doanh thu hoặc tổng tài sản",
+      "Một tỷ lệ trên chỉ tiêu nền như lợi nhuận trước thuế",
       "Bằng đúng số dư nhỏ nhất trên bảng cân đối kế toán",
       "Do doanh nghiệp được kiểm toán tự đề xuất",
     ],
@@ -527,7 +527,7 @@ export const AUDIT_LESSONS: Lesson[] = [
       "Kiểm toán viên kiểm tra 60 hóa đơn trong tổng số 40.000 và không thấy sai sót. Kết luận đúng là gì?",
     openingOptions: [
       "Toàn bộ 40.000 hóa đơn đều không có sai sót",
-      "Có cơ sở hợp lý để tin tỷ lệ sai sót thấp hơn ngưỡng đã đặt, với một mức độ tin cậy xác định",
+      "Có cơ sở hợp lý tin tỷ lệ sai sót dưới ngưỡng",
       "Mẫu quá nhỏ nên không kết luận được gì",
       "Cần kiểm tra ít nhất 10% tổng số hóa đơn mới kết luận được",
     ],
@@ -687,7 +687,7 @@ export const AUDIT_LESSONS: Lesson[] = [
       "Vì sao gian lận khó phát hiện hơn nhầm lẫn kế toán thông thường?",
     openingOptions: [
       "Vì gian lận thường có giá trị lớn hơn nhầm lẫn",
-      "Vì nó cố ý và có người chủ động che giấu, thường bằng cách làm giả chứng từ hoặc thông đồng",
+      "Vì nó cố ý và có người chủ động che giấu đi",
       "Vì chuẩn mực kiểm toán không yêu cầu tìm gian lận",
       "Vì gian lận chỉ xảy ra ở doanh nghiệp lớn",
     ],

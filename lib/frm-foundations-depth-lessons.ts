@@ -178,7 +178,7 @@ export const FRM_FOUNDATIONS_DEPTH_LESSONS: Lesson[] = [
       "Giám đốc rủi ro (CRO) của một ngân hàng báo cáo trực tiếp cho Tổng giám đốc, người có thưởng gắn với lợi nhuận năm. Rủi ro cấu trúc lớn nhất ở đây là gì?",
     openingOptions: [
       "CRO sẽ thiếu thông tin kinh doanh để đánh giá đúng các vị thế",
-      "Người phải nói không với hoạt động sinh lời lại phụ thuộc lương và ghế vào chính người hưởng lợi từ hoạt động đó",
+      "Người phải nói không lại phụ thuộc lương và ghế vào đó",
       "Hội đồng quản trị sẽ nhận được quá nhiều báo cáo rủi ro chi tiết",
       "Chi phí vận hành bộ phận rủi ro sẽ tăng lên đáng kể",
     ],
@@ -476,7 +476,7 @@ export const FRM_FOUNDATIONS_DEPTH_LESSONS: Lesson[] = [
       "Cổ phiếu X biến động rất mạnh nhưng gần như không tương quan với thị trường chung. Theo lý thuyết định giá tài sản, lợi suất kỳ vọng của nó nên ở mức nào?",
     openingOptions: [
       "Cao, vì độ lệch chuẩn lớn nên nhà đầu tư phải được đền bù nhiều hơn",
-      "Thấp, gần với lãi suất phi rủi ro, vì phần biến động của nó có thể đa dạng hoá đi được",
+      "Thấp, gần lãi suất phi rủi ro",
       "Bằng đúng lợi suất trung bình của thị trường, vì mọi cổ phiếu đều là tài sản rủi ro",
       "Không xác định được nếu chưa biết độ lệch chuẩn của thị trường",
     ],
@@ -625,7 +625,7 @@ export const FRM_FOUNDATIONS_DEPTH_LESSONS: Lesson[] = [
       "Vì sao rủi ro danh tiếng rất hiếm khi xuất hiện trong các mô hình vốn kinh tế?",
     openingOptions: [
       "Vì tác động của nó thường nhỏ so với rủi ro thị trường và tín dụng",
-      "Vì nó không có chuỗi dữ liệu tổn thất đủ dài để ước lượng phân phối, chứ không phải vì nó không quan trọng",
+      "Vì thiếu chuỗi dữ liệu tổn thất đủ dài",
       "Vì các cơ quan quản lý không cho phép tính nó vào yêu cầu vốn",
       "Vì nó luôn là hệ quả của một loại rủi ro khác nên tính hai lần",
     ],

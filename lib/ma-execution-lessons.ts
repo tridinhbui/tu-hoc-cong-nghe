@@ -28,7 +28,7 @@ export const MA_EXECUTION_LESSONS: Lesson[] = [
       "Một thương vụ toàn cổ phiếu: bên mua có P/E 20, bên bán có P/E 15. Kết quả EPS thế nào?",
     openingOptions: [
       "Pha loãng, vì phát hành thêm cổ phiếu luôn làm giảm thu nhập trên mỗi cổ phiếu của bên mua",
-      "Tăng, vì bên mua đang mua lợi nhuận với giá rẻ hơn mức thị trường đang trả cho lợi nhuận của chính nó",
+      "Tăng, vì bên mua mua lợi nhuận với giá rẻ hơn",
       "Không đổi, vì hai bên được cộng gộp theo đúng tỷ lệ giá trị",
       "Không xác định được nếu chưa biết quy mô doanh thu hai bên",
     ],
@@ -202,7 +202,7 @@ export const MA_EXECUTION_LESSONS: Lesson[] = [
       "Bên mua đồng ý mua 100% vốn chủ sở hữu với giá 500 tỷ. Tổng số tiền cần chuẩn bị có phải 500 tỷ?",
     openingOptions: [
       "Đúng, đó là giá đã thỏa thuận giữa hai bên",
-      "Không: thường phải cộng thêm phần nợ vay của bên bán phải trả ngay và các loại phí giao dịch",
+      "Không: phải cộng thêm nợ vay bên bán phải trả ngay",
       "Không, vì còn phải trừ đi tiền mặt của bên bán",
       "Chỉ đúng nếu thương vụ được trả toàn bộ bằng tiền mặt",
     ],
@@ -547,7 +547,7 @@ export const MA_EXECUTION_LESSONS: Lesson[] = [
       "Vì sao lập báo cáo tài chính cho một mảng kinh doanh sắp bán lại khó hơn nhiều so với cho một công ty độc lập?",
     openingOptions: [
       "Vì mảng đó thường có quy mô nhỏ nên số liệu ít tin cậy",
-      "Vì mảng đó chưa từng tồn tại độc lập: nó dùng chung hệ thống, nhân sự và chi phí với công ty mẹ",
+      "Vì mảng đó chưa từng tồn tại độc lập, dùng chung hết",
       "Vì chuẩn mực kế toán không có quy định cho trường hợp này",
       "Vì dữ liệu quá khứ thường đã bị xóa khỏi hệ thống",
     ],

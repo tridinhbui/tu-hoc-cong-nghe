@@ -29,7 +29,7 @@ export const FRM_MARKET_RISK_LESSONS: Lesson[] = [
       "VaR tham số giả định lợi suất phân phối chuẩn. Trong khủng hoảng, giả định đó làm con số sai theo hướng nào?",
     openingOptions: [
       "Sai cao hơn thực tế, vì phân phối chuẩn phóng đại biến động",
-      "Sai thấp hơn thực tế, vì phân phối chuẩn có đuôi mỏng hơn lợi suất thật nên đánh giá nhẹ các cú sốc lớn",
+      "Sai thấp hơn thực tế, vì phân phối chuẩn có đuôi mỏng",
       "Không sai, vì định lý giới hạn trung tâm bảo đảm tính chuẩn",
       "Sai theo hướng ngẫu nhiên, không dự đoán được",
     ],
@@ -697,7 +697,7 @@ export const FRM_MARKET_RISK_LESSONS: Lesson[] = [
       "Hai tài sản có hệ số tương quan 0,3. Điều đó bảo đảm gì về hành vi của chúng trong khủng hoảng?",
     openingOptions: [
       "Bảo đảm chúng chỉ cùng giảm trong 30% số trường hợp",
-      "Không bảo đảm gì: hệ số tương quan đo quan hệ tuyến tính trung bình, không mô tả riêng phần đuôi",
+      "Không bảo đảm gì: tương quan đo quan hệ tuyến tính",
       "Bảo đảm danh mục gồm hai tài sản này giảm tối đa 30%",
       "Bảo đảm chúng độc lập khi thị trường bình thường",
     ],
@@ -882,7 +882,7 @@ export const FRM_MARKET_RISK_LESSONS: Lesson[] = [
       "Stress testing khác VaR ở điểm căn bản nào?",
     openingOptions: [
       "Stress testing chính xác hơn vì dùng dữ liệu mới hơn",
-      "Stress testing không gắn xác suất: nó hỏi nếu kịch bản này xảy ra thì mất bao nhiêu, không hỏi khả năng bao nhiêu",
+      "Stress testing không gắn xác suất, chỉ hỏi mất bao nhiêu",
       "Stress testing chỉ áp dụng cho danh mục trái phiếu",
       "Stress testing thay thế hoàn toàn VaR trong khung Basel hiện hành",
     ],

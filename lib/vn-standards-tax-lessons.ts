@@ -28,7 +28,7 @@ export const VN_STANDARDS_TAX_LESSONS: Lesson[] = [
       "Khác biệt triết lý lớn nhất giữa VAS và IFRS là gì?",
     openingOptions: [
       "VAS dùng đơn vị tiền tệ là đồng, còn IFRS bắt buộc quy đổi sang đô la Mỹ",
-      "VAS thiên về nguyên tắc giá gốc, IFRS cho phép và yêu cầu giá trị hợp lý ở nhiều khoản mục",
+      "VAS thiên về giá gốc, IFRS dùng giá trị hợp lý",
       "VAS chỉ áp dụng cho doanh nghiệp nhà nước, IFRS cho doanh nghiệp tư nhân",
       "VAS không yêu cầu lập báo cáo lưu chuyển tiền tệ trong bộ báo cáo năm",
     ],
@@ -897,7 +897,7 @@ export const VN_STANDARDS_TAX_LESSONS: Lesson[] = [
     openingQuestion: "Vì sao lợi nhuận tính thuế thường khác lợi nhuận kế toán?",
     openingOptions: [
       "Vì kế toán và cơ quan thuế dùng hai kỳ báo cáo khác nhau trong năm",
-      "Vì luật thuế loại một số chi phí mà kế toán vẫn ghi nhận bình thường",
+      "Vì luật thuế loại một số chi phí kế toán ghi",
       "Vì doanh nghiệp được chọn con số nào có lợi hơn để kê khai",
       "Vì lợi nhuận kế toán luôn được làm tròn theo quy định công bố",
     ],

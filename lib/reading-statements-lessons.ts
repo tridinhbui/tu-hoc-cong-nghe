@@ -34,7 +34,7 @@ export const READING_STATEMENTS_LESSONS: Lesson[] = [
     openingQuestion:
       "Hai doanh nghiệp cùng ngành, cùng doanh thu 1.000 tỷ, cùng lợi nhuận 80 tỷ. Đọc ở đâu để biết hai con số 80 tỷ đó có so sánh được với nhau không?",
     openingOptions: [
-      "Thuyết minh - chính sách kế toán quyết định cùng sự việc thành con số nào",
+      "Thuyết minh - chính sách kế toán quyết định con số",
       "Bảng cân đối, vì tổng tài sản phản ánh đúng quy mô thật của doanh nghiệp",
       "Lưu chuyển tiền tệ, vì dòng tiền không chịu ảnh hưởng của chính sách nào",
       "Không cần đọc thêm - hai doanh nghiệp cùng ngành thì cùng cách ghi nhận",

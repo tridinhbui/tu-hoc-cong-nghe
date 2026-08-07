@@ -690,7 +690,7 @@ export const REAL_ESTATE_PROJECT_LESSONS: Lesson[] = [
     openingQuestion:
       "Dự án chậm pháp lý 18 tháng. Chi phí xây dựng và giá bán bị ảnh hưởng thế nào?",
     openingOptions: [
-      "Chi phí thường tăng và giá bán có thể đã đổi - ba rủi ro đi cùng nhau",
+      "Chi phí thường tăng và giá bán có thể đã đổi",
       "Chỉ tăng chi phí lãi vay, chi phí xây dựng và giá bán giữ nguyên",
       "Giá bán tăng theo lạm phát nên phần nào bù được chi phí chậm tiến độ",
       "Không ảnh hưởng gì nếu hợp đồng với nhà thầu đã chốt đơn giá cố định",

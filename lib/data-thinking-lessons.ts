@@ -198,7 +198,7 @@ export const DATA_THINKING_LESSONS: Lesson[] = [
       "Tỷ lệ khách hàng quay lại của công ty giữ nguyên 40% suốt một năm. Điều này có nghĩa là tình hình ổn định?",
     openingOptions: [
       "Đúng, con số không đổi nghĩa là chất lượng dịch vụ được duy trì",
-      "Không chắc: nhóm khách cũ có thể đang tốt lên trong khi nhóm mới xấu đi, và hai xu hướng bù trừ nhau",
+      "Không chắc: nhóm cũ tốt lên trong khi nhóm mới xấu đi",
       "Đúng, vì tỷ lệ đã được tính trên toàn bộ khách hàng",
       "Không, tỷ lệ 40% luôn là mức thấp đáng báo động",
     ],
@@ -550,7 +550,7 @@ export const DATA_THINKING_LESSONS: Lesson[] = [
       "Dữ liệu cho thấy khách hàng dùng ứng dụng di động của ngân hàng có số dư cao hơn hẳn. Kết luận nào hợp lý?",
     openingOptions: [
       "Nên đẩy mạnh cài đặt ứng dụng vì nó làm tăng số dư của khách hàng",
-      "Chưa kết luận được: khách có số dư cao vốn đã là nhóm thường xuyên dùng ứng dụng hơn",
+      "Chưa kết luận được: khách số dư cao vốn đã khác",
       "Ứng dụng di động là kênh sinh lời tốt nhất của ngân hàng",
       "Cần thiết kế lại ứng dụng để phục vụ khách hàng số dư thấp",
     ],

@@ -212,7 +212,7 @@ export const FINANCIAL_MODELING_LESSONS: Lesson[] = [
       "Cách dự phóng doanh thu nào có sức thuyết phục cao nhất khi trình bày với nhà đầu tư?",
     openingOptions: [
       "Giả định doanh thu tăng đều 10% mỗi năm trong 5 năm",
-      "Tách thành các động lực có thể kiểm chứng: số lượng × giá bán, hoặc số khách × giá trị đơn hàng × tần suất",
+      "Tách thành động lực kiểm chứng được: lượng × giá",
       "Lấy trung bình tăng trưởng ngành rồi áp cho công ty",
       "Dùng đúng mức tăng trưởng của năm gần nhất",
     ],

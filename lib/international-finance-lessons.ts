@@ -366,7 +366,7 @@ export const INTERNATIONAL_FINANCE_LESSONS: Lesson[] = [
       "Dòng tiền dự phóng bằng đồng Việt Nam thì phải chiết khấu bằng gì?",
     openingOptions: [
       "Chi phí vốn tính bằng đô la Mỹ để so sánh được với thị trường quốc tế",
-      "Chi phí vốn tính bằng đồng Việt Nam, phản ánh lạm phát và rủi ro của chính đồng đó",
+      "Chi phí vốn tính bằng đồng Việt Nam",
       "Lãi suất trái phiếu chính phủ Mỹ cùng kỳ hạn với giai đoạn dự phóng",
       "Bình quân chi phí vốn của hai đồng tiền theo tỷ trọng doanh thu từng thị trường",
     ],

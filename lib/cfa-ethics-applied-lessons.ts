@@ -737,7 +737,7 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
       "Một nhân viên dưới quyền bạn vi phạm quy định giao dịch. Bạn hoàn toàn không biết. Bạn có chịu trách nhiệm không?",
     openingOptions: [
       "Không, vì bạn không tham gia và không biết về hành vi đó",
-      "Có thể có, nếu bạn đã không thiết lập hoặc không vận hành hệ thống kiểm soát hợp lý để phát hiện được",
+      "Có thể có, nếu bạn không vận hành hệ thống kiểm soát",
       "Có, trong mọi trường hợp vì bạn là người giám sát",
       "Chỉ chịu trách nhiệm nếu bạn được hưởng lợi từ vi phạm đó",
     ],
@@ -1266,7 +1266,7 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
       "Sau khi thi xong Level I, bạn nhắn cho nhóm bạn cùng ôn: 'Phần Ethics hỏi nhiều về Standard III, ôn kỹ phần đó nhé'. Đánh giá?",
     openingOptions: [
       "Hợp lệ vì bạn không nêu nội dung câu hỏi cụ thể nào",
-      "Vi phạm: tiết lộ cấu trúc và trọng tâm đề thi cũng nằm trong phạm vi bảo mật đã cam kết",
+      "Vi phạm: cấu trúc đề thi cũng nằm trong bảo mật",
       "Hợp lệ vì bạn đang giúp bạn bè học tập tốt hơn",
       "Chỉ vi phạm nếu bạn nhận tiền cho thông tin đó",
     ],
@@ -1448,7 +1448,7 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
       "Một công ty quản lý quỹ tuyên bố 'quỹ cổ phiếu tăng trưởng của chúng tôi tuân thủ GIPS'. Vấn đề ở đâu?",
     openingOptions: [
       "Không có vấn đề nếu quỹ đó thực sự tuân thủ đầy đủ",
-      "GIPS chỉ được tuyên bố ở cấp toàn công ty, không thể tuân thủ cho riêng một sản phẩm",
+      "GIPS chỉ tuyên bố được ở cấp công ty, không riêng",
       "Vấn đề là chưa nêu rõ giai đoạn nào đã tuân thủ",
       "Vấn đề là chưa có bên thứ ba xác minh tuyên bố đó",
     ],
@@ -1988,7 +1988,7 @@ export const CFA_ETHICS_APPLIED_LESSONS: Lesson[] = [
       "Một mối quan hệ cá nhân cho bạn biết doanh nghiệp X sắp công bố kết quả kinh doanh đột biến. Người đó không làm ở X mà nghe từ một người bạn làm ở đó. Bạn được giao dịch không?",
     openingOptions: [
       "Được, vì bạn nhận thông tin qua nhiều tầng nên không còn là nội bộ",
-      "Không: thông tin vẫn là trọng yếu và chưa công bố, và chuỗi truyền tin bắt nguồn từ một người có nghĩa vụ bảo mật",
+      "Không: thông tin vẫn là trọng yếu và chưa công bố",
       "Được, nếu bạn không trả tiền để có thông tin đó",
       "Được, nếu bạn công bố nguồn tin trong báo cáo phân tích",
     ],

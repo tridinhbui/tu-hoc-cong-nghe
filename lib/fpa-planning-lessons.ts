@@ -196,7 +196,7 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
       "Vì sao chi phí lương cả năm không nên lập bằng cách lấy số nhân sự cuối năm nhân lương bình quân?",
     openingOptions: [
       "Vì lương bình quân không phản ánh đúng cơ cấu thu nhập của từng vị trí",
-      "Vì người tuyển giữa năm chỉ phát sinh chi phí cho phần thời gian còn lại, nên cách tính đó thổi phồng con số",
+      "Vì người tuyển giữa năm chỉ phát sinh chi phí phần còn lại",
       "Vì chuẩn mực kế toán yêu cầu ghi nhận chi phí lương theo từng tháng",
       "Vì lương luôn tăng vào giữa năm",
     ],
@@ -548,7 +548,7 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
       "Phân tích độ nhạy và phân tích kịch bản khác nhau ở điểm nào?",
     openingOptions: [
       "Độ nhạy dùng cho ngắn hạn, kịch bản dùng cho dài hạn",
-      "Độ nhạy thay đổi một biến mỗi lần, kịch bản thay đổi cả nhóm biến cùng nhau theo một câu chuyện nhất quán",
+      "Độ nhạy đổi một biến, kịch bản đổi cả nhóm biến",
       "Độ nhạy dùng số liệu quá khứ, kịch bản dùng số liệu dự báo",
       "Hai khái niệm này là một, chỉ khác tên gọi",
     ],
@@ -730,7 +730,7 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
       "Vì sao việc chọn tiêu thức phân bổ chi phí chung lại quan trọng đến vậy?",
     openingOptions: [
       "Vì nó ảnh hưởng tới tổng lợi nhuận của toàn doanh nghiệp",
-      "Vì cùng một khoản chi phí chung, tiêu thức khác nhau có thể khiến một bộ phận từ lãi thành lỗ",
+      "Vì tiêu thức khác nhau cho kết quả khác nhau",
       "Vì chuẩn mực kế toán quy định bắt buộc một tiêu thức duy nhất",
       "Vì cơ quan thuế yêu cầu doanh nghiệp giải trình cách phân bổ",
     ],

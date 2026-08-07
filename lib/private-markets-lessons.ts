@@ -24,7 +24,7 @@ export const PRIVATE_MARKETS_LESSONS: Lesson[] = [
       "Cam kết vốn của nhà đầu tư vào một quỹ đầu tư tư nhân hoạt động thế nào?",
     openingOptions: [
       "Nhà đầu tư chuyển toàn bộ số tiền cam kết ngay khi quỹ hoàn tất huy động",
-      "Nhà đầu tư cam kết một hạn mức, và chỉ chuyển tiền khi quỹ gọi vốn theo từng thương vụ",
+      "Cam kết hạn mức, chỉ chuyển tiền khi quỹ gọi vốn",
       "Nhà đầu tư mua chứng chỉ quỹ trên sàn và có thể bán lại bất cứ lúc nào",
       "Nhà đầu tư góp vốn theo lịch cố định hằng quý trong suốt vòng đời của quỹ",
     ],
@@ -186,7 +186,7 @@ export const PRIVATE_MARKETS_LESSONS: Lesson[] = [
     openingQuestion:
       "Ngưỡng lợi nhuận tối thiểu trong hợp đồng quỹ có tác dụng gì?",
     openingOptions: [
-      "Đảm bảo nhà đầu tư nhận đủ một mức lợi suất trước khi nhà quản lý được chia lãi",
+      "Nhà đầu tư nhận đủ mức lợi suất trước nhà quản lý",
       "Giới hạn mức lỗ tối đa mà nhà đầu tư phải chịu trong toàn bộ vòng đời quỹ",
       "Xác định mức lãi suất mà quỹ được phép vay để tài trợ cho các thương vụ",
       "Quy định mức lợi suất tối thiểu mà quỹ cam kết trả cho nhà đầu tư bằng văn bản",
@@ -354,7 +354,7 @@ export const PRIVATE_MARKETS_LESSONS: Lesson[] = [
     openingQuestion:
       "Vì sao IRR của một quỹ có thể bị đẩy lên mà không cần tạo thêm giá trị nào?",
     openingOptions: [
-      "Vì IRR rất nhạy với thời điểm dòng tiền, nên rút ngắn thời gian nắm giữ là đủ",
+      "Vì IRR rất nhạy với thời điểm dòng tiền",
       "Vì IRR được tính trên vốn cam kết chứ không trên vốn thực tế đã giải ngân",
       "Vì IRR không tính đến phí quản lý và phần chia lãi của nhà quản lý quỹ",
       "Vì IRR chỉ đo phần lợi nhuận đã thực hiện chứ không đo phần chưa thoái vốn",
@@ -523,7 +523,7 @@ export const PRIVATE_MARKETS_LESSONS: Lesson[] = [
       "Vì sao kế hoạch thoái vốn phải được nêu ngay trong luận điểm đầu tư ban đầu?",
     openingOptions: [
       "Vì quy định yêu cầu quỹ công bố kế hoạch thoái vốn trước khi giải ngân",
-      "Vì lợi nhuận chỉ thành hiện thực khi bán được, và không phải lúc nào cũng có người mua",
+      "Vì lợi nhuận chỉ thành hiện thực khi bán được",
       "Vì giá bán trong tương lai đã được xác định ngay tại thời điểm ký hợp đồng đầu tư",
       "Vì thời điểm thoái vốn quyết định mức thuế mà quỹ phải nộp trên phần lợi nhuận",
     ],

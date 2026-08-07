@@ -23,7 +23,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
     openingQuestion: "Một ngân hàng lỗ lớn vì nhân viên giao dịch vượt hạn mức rồi giấu vị thế. Đây là rủi ro loại gì?",
     openingOptions: [
       "Thuần tuý rủi ro thị trường, vì khoản lỗ phát sinh từ biến động giá tài sản",
-      "Rủi ro hoạt động, vì nguyên nhân gốc là thất bại của con người và hệ thống kiểm soát nội bộ",
+      "Rủi ro hoạt động - do con người và hệ thống",
       "Rủi ro tín dụng, vì nhân viên đó không có khả năng bù đắp khoản lỗ đã gây ra",
       "Rủi ro thanh khoản, vì ngân hàng phải bán tài sản để bù lỗ"
     ],
@@ -369,7 +369,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
     whyItMatters: "Lợi suất trần trụi không nói lên điều gì về kỹ năng: nhân đôi đòn bẩy cũng nhân đôi lợi suất kỳ vọng. Các thước đo điều chỉnh rủi ro là cách tách phần lợi suất đến từ việc chấp nhận thêm rủi ro ra khỏi phần đến từ năng lực thực sự.",
     openingQuestion: "Điểm khác biệt cốt lõi giữa tỷ số Sharpe và tỷ số Treynor nằm ở đâu?",
     openingOptions: [
-      "Sharpe chia cho độ lệch chuẩn của toàn bộ rủi ro, Treynor chia cho beta tức phần rủi ro hệ thống",
+      "Sharpe chia độ lệch chuẩn, Treynor chia beta",
       "Sharpe dùng lợi suất quá khứ, còn Treynor dùng lợi suất kỳ vọng trong tương lai",
       "Sharpe chỉ áp dụng cho cổ phiếu, còn Treynor chỉ áp dụng cho trái phiếu",
       "Sharpe tính theo tháng, còn Treynor bắt buộc phải tính theo năm"
@@ -753,7 +753,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
     openingQuestion: "Một chuyên viên rủi ro bị cấp trên yêu cầu nới giả định mô hình để một thương vụ lớn lọt qua ngưỡng phê duyệt. Bộ quy tắc GARP đòi hỏi gì?",
     openingOptions: [
       "Thực hiện theo yêu cầu vì cấp trên là người chịu trách nhiệm cuối cùng về quyết định",
-      "Giữ nguyên đánh giá chuyên môn độc lập và ghi nhận rõ ràng, không để áp lực kinh doanh làm sai lệch kết quả mô hình",
+      "Giữ nguyên đánh giá độc lập và ghi nhận rõ ràng",
       "Từ chức ngay lập tức để tránh liên đới trách nhiệm về sau",
       "Chỉ cần thông báo cho bộ phận kiểm toán nội bộ rồi vẫn thực hiện theo yêu cầu"
     ],
@@ -1100,7 +1100,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
     whyItMatters: "Mọi mô hình rủi ro hoạt động đều bắt đầu từ một cơ sở dữ liệu tổn thất được phân loại nhất quán. Phân loại tuỳ tiện khiến dữ liệu nhiều năm trở nên vô dụng vì không so sánh được giữa các đơn vị và không ghép được với dữ liệu ngành.",
     openingQuestion: "Vì sao Basel định nghĩa sẵn bảy nhóm sự kiện rủi ro hoạt động thay vì để mỗi ngân hàng tự phân loại?",
     openingOptions: [
-      "Để dữ liệu tổn thất so sánh và gộp được giữa các đơn vị và giữa các tổ chức trong ngành",
+      "Để dữ liệu tổn thất so sánh và gộp được",
       "Để giảm số lượng sự kiện mà ngân hàng phải ghi nhận vào sổ theo dõi",
       "Để cơ quan quản lý có thể áp cùng một mức phạt cho mọi loại sự kiện",
       "Để ngân hàng không cần lưu trữ dữ liệu tổn thất quá ba năm"
@@ -1270,7 +1270,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
     whyItMatters: "Chờ tổn thất xảy ra rồi mới biết có rủi ro là quá muộn. RCSA buộc chính người vận hành phải chỉ ra chỗ yếu trong quy trình của mình, còn KRI biến các dấu hiệu sớm thành con số theo dõi được hằng tháng.",
     openingQuestion: "Điểm khác biệt cốt lõi giữa dữ liệu tổn thất và RCSA là gì?",
     openingOptions: [
-      "Dữ liệu tổn thất ghi lại điều đã xảy ra, RCSA đánh giá điều có thể xảy ra dựa trên chất lượng kiểm soát hiện tại",
+      "Tổn thất ghi điều đã xảy ra, RCSA đánh giá điều có thể",
       "Dữ liệu tổn thất do bộ phận rủi ro lập, RCSA do cơ quan quản lý bên ngoài thực hiện",
       "Dữ liệu tổn thất chỉ dùng cho báo cáo, RCSA dùng để tính vốn pháp định",
       "Dữ liệu tổn thất tính bằng tiền, RCSA bắt buộc phải tính bằng số giờ gián đoạn"
@@ -1444,7 +1444,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
     whyItMatters: "Phần lớn rủi ro hoạt động đến từ sai sót vô ý. An ninh mạng khác về bản chất vì có một bên đối kháng thông minh, học hỏi và thích nghi với chính các biện pháp phòng thủ bạn dựng lên - nên các mô hình dựa trên tần suất quá khứ đặc biệt yếu ở đây.",
     openingQuestion: "Vì sao mô hình dựa trên tần suất tổn thất quá khứ đặc biệt kém hiệu quả với rủi ro an ninh mạng?",
     openingOptions: [
-      "Vì có đối thủ chủ động thay đổi cách tấn công để né các biện pháp phòng thủ, nên quá khứ không dự báo được tương lai",
+      "Vì có đối thủ chủ động đổi cách tấn công",
       "Vì các vụ tấn công mạng không gây thiệt hại tài chính nên không có dữ liệu để ghi nhận",
       "Vì cơ quan quản lý cấm sử dụng mô hình định lượng cho rủi ro công nghệ",
       "Vì tần suất tấn công mạng là hằng số không đổi qua các năm"
@@ -2007,7 +2007,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
     whyItMatters: "Các khoản phạt liên quan tới hành vi ứng xử với khách hàng đã trở thành nguồn tổn thất rủi ro hoạt động lớn nhất tại nhiều ngân hàng toàn cầu, vượt cả gian lận và sự cố công nghệ - và chúng thường phát sinh từ các hoạt động hoàn toàn hợp pháp tại thời điểm thực hiện.",
     openingQuestion: "Rủi ro hành vi khác rủi ro tuân thủ ở điểm nào?",
     openingOptions: [
-      "Tuân thủ hỏi có vi phạm quy định không, hành vi hỏi cách đối xử với khách hàng có công bằng không dù quy định chưa cấm",
+      "Tuân thủ hỏi có vi phạm không, hành vi hỏi cách đối xử",
       "Rủi ro hành vi chỉ áp dụng cho nhân viên, rủi ro tuân thủ chỉ áp dụng cho ban điều hành",
       "Rủi ro tuân thủ tính bằng tiền, rủi ro hành vi không đo lường được bằng bất kỳ đơn vị nào",
       "Hai khái niệm giống hệt nhau, chỉ khác tên gọi giữa các thị trường"
@@ -2395,7 +2395,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
     whyItMatters: "Trước mọi tỷ lệ quy định phức tạp, quản trị thanh khoản bắt đầu từ một bảng đơn giản: mỗi kỳ hạn có bao nhiêu tiền vào, bao nhiêu tiền ra, và chênh lệch dồn tích tới lúc nào thì âm.",
     openingQuestion: "Thang dòng tiền trong quản trị thanh khoản trình bày điều gì?",
     openingOptions: [
-      "Dòng tiền vào và ra dự kiến theo từng dải kỳ hạn, kèm chênh lệch dồn tích qua các dải",
+      "Dòng tiền vào ra dự kiến theo từng dải kỳ hạn",
       "Danh sách toàn bộ tài sản của tổ chức xếp theo giá trị sổ sách giảm dần",
       "Lợi nhuận dự kiến của từng mảng kinh doanh trong mười hai tháng tới",
       "Xếp hạng tín nhiệm của tất cả các đối tác mà tổ chức đang giao dịch"
@@ -2580,7 +2580,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
     whyItMatters: "FTP là cơ chế biến rủi ro thanh khoản từ vấn đề của bộ phận nguồn vốn thành chi phí mà từng đơn vị kinh doanh phải gánh. Không có nó, mọi lời kêu gọi thận trọng về thanh khoản đều thua trước động cơ lợi nhuận.",
     openingQuestion: "Mục đích cốt lõi của hệ thống giá vốn điều chuyển nội bộ là gì?",
     openingOptions: [
-      "Tính đúng chi phí vốn và chi phí thanh khoản vào từng khoản kinh doanh, để lợi nhuận hiển thị phản ánh đúng rủi ro tạo ra",
+      "Tính đúng chi phí vốn và thanh khoản vào từng khoản",
       "Chuyển toàn bộ lợi nhuận của các chi nhánh về hội sở để tính thuế tập trung",
       "Xác định lãi suất mà ngân hàng công bố cho khách hàng gửi tiền",
       "Phân bổ chi phí nhân sự và văn phòng cho từng đơn vị kinh doanh"
@@ -2760,7 +2760,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
     whyItMatters: "Các tỷ lệ quy định như LCR dùng chung một kịch bản chuẩn cho mọi ngân hàng. Kiểm định nội bộ tồn tại để trả lời câu hỏi riêng của từng tổ chức, với những điểm yếu mà một công thức chung không nhìn thấy.",
     openingQuestion: "Kết quả quan trọng nhất mà một bài kiểm định sức chịu đựng thanh khoản cần đưa ra là gì?",
     openingOptions: [
-      "Thời gian sống sót: số ngày tổ chức đáp ứng được nghĩa vụ trước khi cạn nguồn thanh khoản trong kịch bản đó",
+      "Thời gian sống sót: số ngày trước khi cạn tiền",
       "Mức lợi nhuận dự kiến của tổ chức trong kịch bản căng thẳng",
       "Xếp hạng tín nhiệm mà tổ chức sẽ nhận được sau khủng hoảng",
       "Số lượng nhân sự cần cắt giảm để tiết kiệm chi phí vận hành"
@@ -2944,7 +2944,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
     whyItMatters: "Phần lớn hoạt động tài trợ ngắn hạn của định chế tài chính đều có bảo đảm. Điều đó nghe an toàn hơn cho vay tín chấp, nhưng lại tạo ra một cơ chế khuếch đại: giá tài sản giảm làm haircut tăng, haircut tăng làm phải bán thêm tài sản.",
     openingQuestion: "Haircut trong giao dịch có tài sản bảo đảm là gì?",
     openingOptions: [
-      "Phần chiết khấu trừ vào giá trị thị trường của tài sản để xác định số tiền được vay trên tài sản đó",
+      "Phần chiết khấu trừ vào giá trị thị trường",
       "Khoản phí mà bên vay trả cho bên cho vay khi ký hợp đồng có bảo đảm",
       "Mức lãi suất chênh lệch giữa khoản vay có bảo đảm và không có bảo đảm",
       "Thời gian tối đa mà tài sản bảo đảm được giữ tại bên cho vay"
@@ -3137,7 +3137,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
     whyItMatters: "Quỹ mở không có bảng cân đối như ngân hàng nhưng vẫn thực hiện chuyển hoá thanh khoản - và rủi ro của họ ngày càng được cơ quan quản lý coi là vấn đề hệ thống chứ không chỉ là chuyện riêng của nhà đầu tư trong quỹ.",
     openingQuestion: "Rủi ro thanh khoản cốt lõi của một quỹ mở nằm ở đâu?",
     openingOptions: [
-      "Cam kết cho nhà đầu tư rút hằng ngày trong khi tài sản nắm giữ có thể cần nhiều ngày hoặc nhiều tuần để bán",
+      "Cam kết cho rút hằng ngày trong khi tài sản cần thời gian",
       "Quỹ mở không được phép nắm giữ tiền mặt theo quy định hiện hành",
       "Quỹ mở phải trả lãi cố định cho nhà đầu tư bất kể kết quả đầu tư",
       "Quỹ mở bị cấm sử dụng bất kỳ hình thức vay nợ nào"
@@ -3490,7 +3490,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
     whyItMatters: "Mọi mô hình rủi ro đều cần gắn một phân phối vào dữ liệu, và việc gắn đó luôn đi qua một phương pháp ước lượng tham số. Hai phương pháp phổ biến cho kết quả khác nhau, đặc biệt ở vùng đuôi - nơi con số rủi ro được quyết định.",
     openingQuestion: "Nguyên lý của phương pháp ước lượng hợp lý cực đại là gì?",
     openingOptions: [
-      "Chọn bộ tham số làm cho dữ liệu đã quan sát trở nên có khả năng xảy ra cao nhất",
+      "Chọn tham số làm dữ liệu quan sát dễ xảy ra nhất",
       "Chọn bộ tham số sao cho sai số bình phương giữa dự báo và thực tế nhỏ nhất",
       "Chọn bộ tham số bằng đúng giá trị trung bình của các quan sát trong mẫu",
       "Chọn bộ tham số do chuyên gia trong ngành thống nhất đề xuất"
@@ -3841,7 +3841,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
     whyItMatters: "Điểm yếu lớn nhất của mô hình rủi ro là giả định phân phối. Bootstrapping tránh được giả định đó bằng cách lấy mẫu lại từ chính dữ liệu quan sát - nhưng cái giá là nó chỉ biết những gì đã từng xảy ra.",
     openingQuestion: "Bootstrapping ước lượng độ bất định của một thống kê bằng cách nào?",
     openingOptions: [
-      "Lấy mẫu lại có hoàn lại từ chính bộ dữ liệu gốc nhiều lần, tính thống kê trên từng mẫu để dựng phân phối của nó",
+      "Lấy mẫu lại có hoàn lại từ chính bộ dữ liệu gốc",
       "Chia bộ dữ liệu thành hai nửa rồi so sánh kết quả giữa hai nửa đó",
       "Giả định thống kê tuân theo phân phối chuẩn rồi tra bảng giá trị tới hạn",
       "Thu thập thêm dữ liệu mới cho tới khi cỡ mẫu đủ lớn để áp dụng định lý giới hạn trung tâm"
@@ -4024,7 +4024,7 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
     whyItMatters: "Lợi suất tài chính có đuôi dày hơn phân phối chuẩn rất nhiều, nên các con số rủi ro dựa trên giả định chuẩn đánh giá thấp một cách hệ thống đúng những biến cố có khả năng huỷ diệt tổ chức.",
     openingQuestion: "Lý thuyết giá trị cực trị khác cách tiếp cận thông thường ở điểm nào?",
     openingOptions: [
-      "Nó chỉ mô hình hoá riêng phần đuôi bằng một họ phân phối phù hợp, thay vì khớp một phân phối cho toàn bộ dữ liệu",
+      "Nó mô hình hoá riêng phần đuôi",
       "Nó loại bỏ các quan sát cực trị khỏi mẫu để ước lượng ổn định hơn",
       "Nó giả định toàn bộ dữ liệu tuân theo phân phối chuẩn với phương sai lớn hơn",
       "Nó chỉ áp dụng được khi bộ dữ liệu có trên một triệu quan sát"

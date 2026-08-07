@@ -216,7 +216,7 @@ export const ANALYST_CRAFT_LESSONS: Lesson[] = [
       "Bạn bị hỏi một con số mà bạn không nhớ chính xác. Cách xử lý tốt nhất là gì?",
     openingOptions: [
       "Đưa ra một con số gần đúng để giữ nhịp trình bày và tránh tạo khoảng lặng",
-      "Nói rõ mình không nhớ chính xác, đưa khoảng ước lượng và cam kết kiểm tra lại",
+      "Nói rõ không nhớ chính xác và cam kết kiểm tra lại",
       "Chuyển hướng sang một khía cạnh khác mà bạn nắm chắc hơn về mặt số liệu",
       "Giải thích rằng con số đó không quan trọng với luận điểm chính của bạn",
     ],
@@ -385,7 +385,7 @@ export const ANALYST_CRAFT_LESSONS: Lesson[] = [
       "Trong một bài kiểm tra dựng mô hình 90 phút, việc đầu tiên nên làm là gì?",
     openingOptions: [
       "Bắt đầu nhập ngay số liệu lịch sử để tận dụng tối đa thời gian có sẵn",
-      "Đọc hết đề, xác định kết quả cuối cùng cần nộp, rồi phân bổ thời gian ngược lại",
+      "Đọc hết đề, xác định kết quả cần nộp, rồi phân bổ giờ",
       "Dựng trước phần định giá vì đó là phần chiếm nhiều điểm nhất trong bài",
       "Thiết lập định dạng và quy ước màu cho toàn bộ bảng tính trước khi nhập số",
     ],

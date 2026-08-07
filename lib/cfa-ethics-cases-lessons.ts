@@ -977,7 +977,7 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
       "Bạn viết khuyến nghị Trung lập cho một doanh nghiệp mà công ty bạn sắp bảo lãnh phát hành. Trưởng bộ phận bảo lãnh yêu cầu nâng lên Mua và nói rằng hợp đồng có thể mất. Vi phạm nào đã xảy ra tại thời điểm này?",
     openingOptions: [
       "Chưa có vi phạm nào cho tới khi bạn thực sự đổi khuyến nghị",
-      "Đã có: việc tạo và truyền sức ép lên tính độc lập vi phạm Standard I(B), bất kể bạn có chịu thua hay không",
+      "Đã có: tạo sức ép lên tính độc lập vi phạm I(B)",
       "Chỉ vi phạm nếu doanh nghiệp đó biết về cuộc trao đổi này",
       "Chỉ vi phạm Standard IV(A) về nghĩa vụ với nhà tuyển dụng",
     ],
@@ -1143,7 +1143,7 @@ export const CFA_ETHICS_CASES_LESSONS: Lesson[] = [
       "Một quỹ đầu tư mời riêng bạn tham gia vòng gọi vốn hạn chế, quy mô nhỏ, không đủ chỗ cho khách hàng. Bạn được tham gia không?",
     openingOptions: [
       "Được, vì lời mời dành cho cá nhân bạn chứ không cho công ty",
-      "Phải xét trước xem cơ hội này có phù hợp với khách hàng nào không - nếu có, khách được ưu tiên",
+      "Phải xét trước xem cơ hội có phù hợp khách hàng nào không",
       "Được, nếu bạn công bố việc tham gia cho khách hàng biết",
       "Không được trong mọi trường hợp vì đây là xung đột lợi ích",
     ],
