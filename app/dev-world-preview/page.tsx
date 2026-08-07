@@ -89,6 +89,33 @@ export default async function WorldPreviewPage({
       </div>
     );
   }
+  if (scene === "quiet") {
+    // Khung rừng ĐẶT ĐÚNG CHỖ nó thật sự nằm: trong thẻ bo tròn của
+    // QuietCornerClient, có chữ chạy tiếp bên dưới. `?scene=forest` chỉ dựng
+    // cảnh trong một hộp 420px, nên nó trả lời được "cảnh có chạy không" mà
+    // không trả lời được "khung cao 58svh có nuốt mất phần chữ không" - và
+    // câu thứ hai mới là câu hỏi sau khi nới khung.
+    return (
+      <div className="mx-auto max-w-2xl px-4 py-6 lg:max-w-5xl">
+        <section className="relative overflow-hidden rounded-[28px] border-2 border-orange-500/30 bg-white px-6 py-12 text-center dark:bg-[#0a0806]">
+          <QuietForestScene intensity={0.85} />
+          {/* i18n-ignore-start: chỗ giữ chỗ trong trang xem thử chỉ chạy khi
+              dev - đứng thay cho lời nhắn và khối thở thật, chỉ để đo xem
+              khung 3D cao 58svh có nuốt mất phần chữ bên dưới không. Không
+              phải copy của sản phẩm và không người dùng nào thấy. */}
+          <p className="mt-5 text-lg font-bold text-stone-800 dark:text-stone-100">
+            Lời nhắn hôm nay đứng ở đây
+          </p>
+        </section>
+        <section className="mt-6 rounded-[28px] border border-stone-200 bg-stone-50 px-6 py-7 dark:border-stone-800 dark:bg-stone-900/50">
+          <p className="text-center text-base font-extrabold text-stone-800 dark:text-stone-100">
+            Một phút thở
+          </p>
+          {/* i18n-ignore-end */}
+        </section>
+      </div>
+    );
+  }
   if (scene === "forest") {
     return (
       <div className="min-h-screen bg-stone-950 p-6">

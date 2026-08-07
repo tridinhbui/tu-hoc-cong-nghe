@@ -1,11 +1,9 @@
 "use client";
 
-import { useMemo, useRef } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { useCallback, useMemo, useRef, useState } from "react";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import {
-  DRAG_PITCH_LIMIT,
-  DRAG_YAW_LIMIT,
   EMBER_COUNT,
   RAIN_COUNT,
   SHELTER_RADIUS,
@@ -15,8 +13,28 @@ import {
   gustAt,
   kindleProgress,
   pushOutOfShelter,
-  springBack,
 } from "@/lib/quiet-flame-scene";
+import {
+  SPAWN,
+  SPAWN_CLEAR,
+  clearsSigns,
+  nearestSign,
+  WALK_RADIUS,
+  resolveQuietWalk,
+  signsOf,
+  type QuietSign,
+} from "@/lib/quiet-forest-space";
+import {
+  applyFollowCamera,
+  cameraYawOf,
+  inputTowardTarget,
+  turnToward,
+  useWalkKeys,
+  worldDirection,
+  type OrbitState,
+  type WalkState,
+} from "@/components/world-controls/easy-walk";
+import { useI18n } from "@/lib/i18n/context";
 
 /** Ngưỡng tốc độ kéo ngang để tính là một cú thổi, điểm ảnh mỗi giây. Đặt trên
  *  tốc độ của một cú kéo thong thả để "nhìn nghiêng" không vô tình dập lửa. */
@@ -359,6 +377,22 @@ function Rain() {
   );
 }
 
+/** Rừng THẤY ĐƯỢC, sau khi bỏ những cây chắn chỗ.
+ *
+ *  `forestTrees()` sinh rừng từ trước khi cảnh này có biển và có người đi lại,
+ *  nên nó không biết gì về hai thứ đó. Lọc ở đây thay vì sửa nó: hàm ấy còn
+ *  phục vụ chỗ khác, và "chỗ nào có cây" không nên phụ thuộc vào "chỗ nào có
+ *  biển".
+ *
+ *  Cùng một danh sách này được dùng cho va chạm, nên cây bị bỏ đi cũng thôi
+ *  chặn đường - nếu hai bên đọc hai danh sách khác nhau thì người dùng sẽ đâm
+ *  vào một thân cây vô hình, đúng loại lỗi không ai đoán ra khi nhìn màn hình. */
+function visibleTrees() {
+  return forestTrees().filter(
+    (t) => clearsSigns(t) && Math.hypot(t.x - SPAWN.x, t.z - SPAWN.z) > SPAWN_CLEAR
+  );
+}
+
 /** Rừng: thân cây và tán, gần như đen. Sương mù lo phần chiều sâu.
  *
  *  Vật liệu là `meshStandardMaterial` chứ không phải `basic`: cả khu rừng chỉ
@@ -366,7 +400,7 @@ function Rain() {
  *  người xem biết đống lửa đang toả sáng. Dùng `basic` thì rừng sáng đều và
  *  ngọn lửa mất hết vai trò. */
 function Forest() {
-  const trees = useMemo(() => forestTrees(), []);
+  const trees = useMemo(() => visibleTrees(), []);
 
   return (
     <group>
@@ -432,49 +466,330 @@ function ShelterTree() {
   );
 }
 
-/** Kéo để nhìn nghiêng. Thả tay thì cảnh tự về vị trí nghỉ.
+/** Một tấm biển gỗ: hai cọc, một tấm ván, và một ngọn đèn nhỏ trên đầu.
  *
- *  Sân khấu chỉ ĐỌC góc từ trạng thái con trỏ; việc bắt sự kiện nằm ở thẻ DOM
- *  bao ngoài Canvas. */
-function DraggableStage({
-  pointer,
-  children,
-}: {
-  pointer: React.RefObject<PointerState>;
-  children: React.ReactNode;
-}) {
+ *  Chữ KHÔNG khắc lên gỗ bằng texture. Đã thử và bỏ: ở khoảng cách đọc được
+ *  thì ba dòng chữ Việt có dấu trên một tấm ván rộng 1,2m phải render ở cỡ
+ *  chữ mà màn điện thoại không tải nổi, và xoay camera đi mười độ là nó nhoè
+ *  hẳn. Tấm biển ở đây là thứ NÓI RẰNG có gì đó để đọc; chữ thật hiện trên
+ *  HUD khi đứng đủ gần - cùng cách thẻ cửa phòng ở sảnh thư viện làm, và vì
+ *  cùng một lý do đã ghi ở đó.
+ *
+ *  Đèn nhỏ là thứ khiến tấm biển tìm được trong bóng tối. Không có nó thì cả
+ *  ba tấm chìm vào rừng đen và người đọc không biết là có gì để đi tới. */
+function Signpost({ sign, lit }: { sign: QuietSign; lit: boolean }) {
+  const glow = useRef<THREE.Mesh>(null);
+
+  useFrame(({ clock }) => {
+    if (!glow.current) return;
+    const mat = glow.current.material as THREE.MeshBasicMaterial;
+    // Nhịp thở chậm, và sáng thêm khi có người đứng cạnh. 0,18Hz - chậm hơn
+    // nhịp thở người thật, vì một cái đèn nhấp nháy theo nhịp thở là thứ người
+    // ta nhìn thấy chứ không phải thứ làm họ dịu xuống.
+    const pulse = 0.5 + Math.sin(clock.getElapsedTime() * 1.1) * 0.14;
+    mat.opacity = lit ? Math.min(1, pulse + 0.42) : pulse;
+  });
+
+  return (
+    <group position={[sign.x, GROUND_Y, sign.z]} rotation={[0, sign.ry, 0]}>
+      {/* Hai cọc */}
+      {[-0.42, 0.42].map((x) => (
+        <mesh key={x} position={[x, 0.62, 0]}>
+          <cylinderGeometry args={[0.045, 0.05, 1.24, 6]} />
+          <meshStandardMaterial color="#3a2d22" roughness={1} />
+        </mesh>
+      ))}
+      {/* Ván */}
+      <mesh position={[0, 1.02, 0.02]}>
+        <boxGeometry args={[1.12, 0.52, 0.06]} />
+        <meshStandardMaterial color="#5a4433" roughness={0.9} />
+      </mesh>
+      {/* Ba vạch khắc - gợi ra là có chữ, không cố giả làm chữ. */}
+      {[0.14, 0.0, -0.14].map((y, i) => (
+        <mesh key={y} position={[-0.12 + i * 0.04, 1.02 + y, 0.06]}>
+          <boxGeometry args={[0.62 - i * 0.14, 0.035, 0.01]} />
+          <meshStandardMaterial color="#2a1d13" roughness={1} />
+        </mesh>
+      ))}
+      {/* Đèn treo trên đầu biển */}
+      <mesh ref={glow} position={[0, 1.46, 0.02]}>
+        <sphereGeometry args={[0.075, 12, 12]} />
+        <meshBasicMaterial color={sign.accent} transparent opacity={0.6} toneMapped={false} />
+      </mesh>
+      <pointLight
+        position={[0, 1.46, 0.3]}
+        color={sign.accent}
+        intensity={lit ? 3.4 : 1.5}
+        distance={4.2}
+        decay={2}
+      />
+    </group>
+  );
+}
+
+/** Người đi trong rừng: đầu, thân, hai tay hai chân đánh lắc khi bước.
+ *
+ *  Cố ý KHÔNG dùng lại `components/lobby/LobbyAvatar`. Hình khối thì giống,
+ *  nhưng cái đó mang theo biển tên, cấp độ, chuỗi ngày, đồ trang bị và bong
+ *  bóng chat - toàn bộ những thứ mà trang này là trang duy nhất trong app cố ý
+ *  không có. Một nhân vật đeo biển "Lv.7 · chuỗi 12 ngày" đứng trong Góc yên
+ *  tĩnh sẽ mang nguyên phần còn lại của ứng dụng vào đây.
+ *
+ *  Màu cũng khác: một bóng người tối, chỉ nhận ánh lửa. Đây là bạn đang đứng
+ *  trong rừng lúc nửa đêm, không phải một avatar trong game. */
+function Wanderer({ poseRef }: { poseRef: React.MutableRefObject<{ x: number; z: number; ry: number; stride: number }> }) {
   const group = useRef<THREE.Group>(null);
+  const armL = useRef<THREE.Mesh>(null);
+  const armR = useRef<THREE.Mesh>(null);
+  const legL = useRef<THREE.Mesh>(null);
+  const legR = useRef<THREE.Mesh>(null);
+
+  useFrame(() => {
+    const p = poseRef.current;
+    if (group.current) {
+      group.current.position.set(p.x, GROUND_Y, p.z);
+      group.current.rotation.y = p.ry;
+    }
+    // `stride` do vòng đi bộ cộng dồn theo QUÃNG ĐƯỜNG chứ theo thời gian:
+    // đứng yên thì chân đứng yên, và đi chậm thì bước chậm - không cần một cờ
+    // "đang đi" nào cả.
+    const swing = Math.sin(p.stride) * 0.55;
+    if (armL.current) armL.current.rotation.x = swing;
+    if (armR.current) armR.current.rotation.x = -swing;
+    if (legL.current) legL.current.rotation.x = -swing;
+    if (legR.current) legR.current.rotation.x = swing;
+  });
+
+  // Đủ sáng để tìm thấy mình trong rừng đêm.
+  //
+  // Bản đầu để #2b2622 - một bóng người tối, đúng ý đồ "bạn đang đứng trong
+  // rừng lúc nửa đêm" và sai hoàn toàn trên màn hình: trên nền đất gần đen,
+  // dưới một nguồn sáng duy nhất cách 5m, hình người biến mất. Nhìn ảnh chụp
+  // thì thấy một khu rừng trống, và người dùng sẽ kết luận là không có nhân
+  // vật nào chứ không kết luận là nhân vật đang tối.
+  //
+  // `emissive` rất nhẹ là thứ giữ cho nó không bao giờ tan hẳn vào nền khi đi
+  // ra xa đống lửa - ánh lửa lo phần còn lại.
+  const limb = "#8a7b68";
+  const cloth = "#6f6354";
+  return (
+    <group ref={group}>
+      {/* Vệt tối dưới chân: bóng giả, và cũng là thứ nói "bạn đang đứng ĐÂY".
+          Rẻ hơn hẳn một bóng đổ thật, và bóng thật ở đây sẽ do một nguồn sáng
+          động hắt ra - tức là phải bật shadow map cho cả cảnh. */}
+      <mesh position={[0, 0.02, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+        <circleGeometry args={[0.26, 20]} />
+        <meshBasicMaterial color="#000000" transparent opacity={0.32} depthWrite={false} />
+      </mesh>
+
+      {/* Chân */}
+      <mesh ref={legL} position={[-0.075, 0.34, 0]}>
+        <capsuleGeometry args={[0.05, 0.3, 4, 8]} />
+        <meshStandardMaterial color={limb} roughness={0.9} emissive="#2a1f14" emissiveIntensity={0.5} />
+      </mesh>
+      <mesh ref={legR} position={[0.075, 0.34, 0]}>
+        <capsuleGeometry args={[0.05, 0.3, 4, 8]} />
+        <meshStandardMaterial color={limb} roughness={0.9} emissive="#2a1f14" emissiveIntensity={0.5} />
+      </mesh>
+      {/* Thân */}
+      <mesh position={[0, 0.72, 0]}>
+        <capsuleGeometry args={[0.115, 0.3, 4, 10]} />
+        <meshStandardMaterial color={cloth} roughness={0.9} emissive="#2a1f14" emissiveIntensity={0.5} />
+      </mesh>
+      {/* Tay */}
+      <mesh ref={armL} position={[-0.165, 0.78, 0]}>
+        <capsuleGeometry args={[0.035, 0.26, 4, 8]} />
+        <meshStandardMaterial color={limb} roughness={0.9} emissive="#2a1f14" emissiveIntensity={0.5} />
+      </mesh>
+      <mesh ref={armR} position={[0.165, 0.78, 0]}>
+        <capsuleGeometry args={[0.035, 0.26, 4, 8]} />
+        <meshStandardMaterial color={limb} roughness={0.9} emissive="#2a1f14" emissiveIntensity={0.5} />
+      </mesh>
+      {/* Đầu */}
+      <mesh position={[0, 1.02, 0]}>
+        <sphereGeometry args={[0.105, 14, 14]} />
+        <meshStandardMaterial color="#9c8b76" roughness={0.85} emissive="#2a1f14" emissiveIntensity={0.5} />
+      </mesh>
+    </group>
+  );
+}
+
+/** Vòng đi bộ và máy quay bám sau lưng.
+ *
+ *  Dùng lại `easy-walk` của ba thế giới 3D kia thay vì viết riêng: đi từ Sảnh
+ *  thư viện sang đây mà ngón tay phải học lại cách đi là thứ người dùng đọc
+ *  thành "hai ứng dụng khác nhau" - đúng lý do file đó được gộp lại.
+ *
+ *  Khác một chỗ có chủ ý: TỐC ĐỘ. Ba thế giới kia đi 2,6 m/s vì ở đó người ta
+ *  đang đi tới chỗ cần tới. Trang này thì không có chỗ nào cần tới, nên đi
+ *  nhanh là đang chống lại chính nó. */
+const WALK_SPEED = 1.35;
+
+function Wandering({
+  walkRef,
+  orbitRef,
+  poseRef,
+  signs,
+  onSignNear,
+}: {
+  walkRef: React.MutableRefObject<WalkState>;
+  orbitRef: React.MutableRefObject<OrbitState>;
+  poseRef: React.MutableRefObject<{ x: number; z: number; ry: number; stride: number }>;
+  signs: QuietSign[];
+  onSignNear: (sign: QuietSign | null) => void;
+}) {
+  const { camera } = useThree();
+  const trees = useMemo(() => visibleTrees(), []);
+  const nearId = useRef<string | null>(null);
 
   useFrame((_, delta) => {
-    const p = pointer.current;
-    if (!p.dragging) {
-      p.yaw = springBack(p.yaw, delta);
-      p.pitch = springBack(p.pitch, delta);
+    const pose = poseRef.current;
+    const walk = walkRef.current;
+    const yaw = cameraYawOf(camera, pose.x, pose.z);
+
+    // Đích tự đi tới ghi vào cùng vector với phím và cần điều khiển, nên ba
+    // cách điều khiển không bao giờ đánh nhau.
+    let input = walk.input;
+    if (walk.target) {
+      const toward = inputTowardTarget(walk.target, pose.x, pose.z, yaw);
+      if (!toward) walk.target = null;
+      else input = toward;
     }
-    if (group.current) {
-      group.current.rotation.y += (p.yaw - group.current.rotation.y) * Math.min(1, delta * 6);
-      group.current.rotation.x += (p.pitch - group.current.rotation.x) * Math.min(1, delta * 6);
+
+    const dir = worldDirection(input, yaw);
+    if (dir) {
+      const step = WALK_SPEED * delta;
+      const next = resolveQuietWalk(pose.x + dir.x * step, pose.z + dir.z * step, trees);
+      // Quãng THẬT sự đi được, sau va chạm - đi vào thân cây thì chân dừng
+      // theo, không giậm tại chỗ.
+      pose.stride += Math.hypot(next.x - pose.x, next.z - pose.z) * 5.2;
+      pose.x = next.x;
+      pose.z = next.z;
+      pose.ry = turnToward(pose.ry, dir.x, dir.z, delta);
+    }
+
+    // `lookAtY` phải tính TỪ MẶT ĐẤT của cảnh này, không phải từ y = 0.
+    //
+    // `applyFollowCamera` sinh ra cho ba thế giới có sàn ở y = 0, nên mặc định
+    // của nó (1,45) là ngang ngực một người đứng trên sàn đó. Rừng này hạ mặt
+    // đất xuống -0,78, nên cùng con số ấy trỏ vào khoảng không trên đầu nhân
+    // vật - máy quay nhìn qua đầu và hình người tụt xuống dưới mép khung. Nhìn
+    // ảnh chụp thì thấy một khu rừng không có ai trong đó, và không có lỗi nào
+    // để tra.
+    // `bounds` giữ máy quay TRONG khoảng trống. Máy quay vai thứ ba đứng cách
+    // nhân vật hơn 5m, nên đi tới sát mép vành đi lại là nó lùi ra ngoài, vào
+    // giữa vành cây - và thân cây chỉ vẽ một mặt, nên khung hình thành một
+    // mảng đen không đọc được là cái gì. Cùng lý do `applyFollowCamera` có
+    // tham số này cho Sảnh thư viện.
+    //
+    // Nới thêm 1,2 so với vành đi lại: kẹp đúng bằng vành thì máy quay dán vào
+    // lưng nhân vật ngay khi họ chạm mép, và cú đổi góc nhìn đột ngột ấy còn
+    // khó chịu hơn một cái cây chắn ngang.
+    const edge = WALK_RADIUS + 1.2;
+    applyFollowCamera(camera, pose, orbitRef.current, delta, {
+      lookAtY: GROUND_Y + 0.8,
+      bounds: { minX: -edge, maxX: edge, minZ: -edge, maxZ: edge },
+    });
+
+    // Báo ra ngoài khi ĐỔI tấm biển, không phải mỗi khung hình: setState 60
+    // lần một giây sẽ dựng lại cả cây React của trang.
+    const near = nearestSign(signs, pose.x, pose.z);
+    const id = near?.id ?? null;
+    if (id !== nearId.current) {
+      nearId.current = id;
+      onSignNear(near);
     }
   });
 
-  return <group ref={group}>{children}</group>;
+  return null;
+}
+
+/** Chạm vào mặt đất là đi tới đó.
+ *
+ *  Chuyển điểm chạm thành một điểm trên mặt đất bằng giao tuyến với mặt phẳng
+ *  y = GROUND_Y, không bằng tia chiếu vào mesh. Mặt đất là một đĩa bán kính 26
+ *  nên tia chiếu cũng trúng, nhưng nó sẽ trúng cả thân cây, tấm biển và màn
+ *  mưa nằm chắn phía trước - và "chạm vào chỗ muốn tới" mà bị một hạt mưa nuốt
+ *  mất là lỗi không ai tái hiện được.
+ *
+ *  Điểm chạm để trong ref chứ không phải state: nó được sinh ra trong trình xử
+ *  lý sự kiện DOM bên ngoài Canvas và chỉ được đọc trong vòng khung hình. */
+function TapToWalk({
+  tapRef,
+  walkRef,
+}: {
+  tapRef: React.MutableRefObject<{ x: number; y: number } | null>;
+  walkRef: React.MutableRefObject<WalkState>;
+}) {
+  const { camera } = useThree();
+  const raycaster = useMemo(() => new THREE.Raycaster(), []);
+  const plane = useMemo(() => new THREE.Plane(new THREE.Vector3(0, 1, 0), -GROUND_Y), []);
+  const hit = useMemo(() => new THREE.Vector3(), []);
+
+  useFrame(() => {
+    const tap = tapRef.current;
+    if (!tap) return;
+    tapRef.current = null;
+    raycaster.setFromCamera(new THREE.Vector2(tap.x, tap.y), camera);
+    if (!raycaster.ray.intersectPlane(plane, hit)) return;
+    // Chạm vào trời thì không có đích nào cả - `intersectPlane` vẫn trả điểm
+    // cho tia đi lên nếu mặt phẳng ở phía sau, nên phải tự loại.
+    if (!Number.isFinite(hit.x)) return;
+    walkRef.current.target = { x: hit.x, z: hit.z };
+  });
+
+  return null;
 }
 
 export default function QuietForestSceneInner({
   intensity = 0.6,
   reducedMotion = false,
   setDownCount = 0,
+  walkRef,
+  onSignNear,
 }: {
   intensity?: number;
   reducedMotion?: boolean;
   setDownCount?: number;
+  /** Ý định di chuyển, sở hữu ở ngoài Canvas: cần điều khiển ảo là một phần
+   *  tử HTML nằm đè lên khung, nên nó phải ghi được vào cùng vector mà vòng
+   *  lặp vẽ đọc. Cùng khuôn với Sảnh thư viện. */
+  walkRef: React.MutableRefObject<WalkState>;
+  onSignNear: (sign: QuietSign | null) => void;
 }) {
+  const { t } = useI18n();
+  const signs = useMemo(() => signsOf(t), [t]);
   const pointer = useRef<PointerState>({
     dragging: false,
     yaw: 0,
     pitch: 0,
     gust: { strength: 0, at: 0 },
   });
+  /** Vị trí và hướng nhân vật. Ref chứ không state: đổi 60 lần một giây. */
+  const pose = useRef({ x: SPAWN.x, z: SPAWN.z, ry: SPAWN.ry, stride: 0 });
+  /** Góc máy quay quanh nhân vật. Góc TUYỆT ĐỐI, không phải độ lệch so với
+   *  hướng nhân vật - xem chú thích ở OrbitState về cái vòng lặp tự xoáy. */
+  /** Góc ngẩng thấp hơn ba thế giới kia: chiều cao máy quay mà
+   *  `applyFollowCamera` tính ra cũng lấy mốc y = 0, nên trên mặt đất -0,78
+   *  mọi góc ngẩng đều cao hơn ý định đúng 0,78. */
+  const orbit = useRef<OrbitState>({ yaw: 0, pitch: 0.14, dist: 5.2 });
+  const tap = useRef<{ x: number; y: number } | null>(null);
+  /** Tổng quãng kéo của cử chỉ hiện tại, để phân biệt một cú CHẠM với một cú
+   *  KÉO mà không phải chia màn hình làm hai vùng. */
+  const moved = useRef(0);
+  /** Tấm biển đang đứng cạnh. Ở đây chỉ để làm sáng ngọn đèn trên biển đó;
+   *  chữ thì do trang bên ngoài hiện, qua `onSignNear`. */
+  const [litSign, setLitSign] = useState<string | null>(null);
+
+  useWalkKeys(walkRef);
+
+  const handleSignNear = useCallback(
+    (sign: QuietSign | null) => {
+      setLitSign(sign?.id ?? null);
+      onSignNear(sign);
+    },
+    [onSignNear]
+  );
   /** Toạ độ lần trước, để tự tính quãng dịch. `movementX` của sự kiện pointer
    *  bằng 0 trên phần lớn trình duyệt di động khi nguồn là ngón tay - đó là lý
    *  do thứ hai khiến thao tác kéo "không ăn", và nó chỉ hỏng trên điện thoại
@@ -483,11 +798,28 @@ export default function QuietForestSceneInner({
 
   const begin = (e: React.PointerEvent<HTMLDivElement>) => {
     pointer.current.dragging = true;
+    moved.current = 0;
     last.current = { x: e.clientX, y: e.clientY, t: e.timeStamp };
     e.currentTarget.setPointerCapture?.(e.pointerId);
   };
 
-  const end = () => {
+  const end = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!pointer.current.dragging) return;
+    pointer.current.dragging = false;
+    last.current = null;
+    // Dưới 8 điểm ảnh là một cú chạm, không phải cú kéo - cùng ngưỡng với
+    // usePointerControls ở ba thế giới kia.
+    if (moved.current >= 8) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    tap.current = {
+      x: ((e.clientX - rect.left) / rect.width) * 2 - 1,
+      y: -(((e.clientY - rect.top) / rect.height) * 2 - 1),
+    };
+  };
+
+  /** Rời khung hoặc bị huỷ thì chỉ thả cú kéo, KHÔNG tính là một cú chạm: kéo
+   *  ra ngoài mép khung rồi nhả tay không phải là "tôi muốn đi tới đó". */
+  const cancel = () => {
     pointer.current.dragging = false;
     last.current = null;
   };
@@ -498,10 +830,20 @@ export default function QuietForestSceneInner({
     const dy = e.clientY - last.current.y;
     const dt = Math.max(1, e.timeStamp - last.current.t);
     last.current = { x: e.clientX, y: e.clientY, t: e.timeStamp };
+    moved.current += Math.abs(dx) + Math.abs(dy);
 
-    const p = pointer.current;
-    p.yaw = Math.max(-DRAG_YAW_LIMIT, Math.min(DRAG_YAW_LIMIT, p.yaw + dx * 0.004));
-    p.pitch = Math.max(-DRAG_PITCH_LIMIT, Math.min(DRAG_PITCH_LIMIT, p.pitch + dy * 0.003));
+    // Kéo giờ xoay MÁY QUAY quanh nhân vật, không xoay cả sân khấu như trước.
+    // Sân khấu xoay được là hợp lý khi cảnh là một bức tranh động; khi có
+    // người đứng trong đó thì nghiêng cả khu rừng đi là nghiêng luôn cả mặt
+    // đất người ta đang đứng.
+    //
+    // Không kẹp góc ngang: đi vòng quanh đống lửa rồi muốn nhìn lại phía sau
+    // là việc bình thường, và DRAG_YAW_LIMIT sinh ra cho một cảnh đứng yên.
+    // Góc ngẩng thì vẫn kẹp - lật qua đỉnh đầu là cách nhanh nhất để mất
+    // phương hướng.
+    const o = orbit.current;
+    o.yaw -= dx * 0.005;
+    o.pitch = Math.max(0.05, Math.min(0.85, o.pitch + dy * 0.004));
 
     // Thổi vào lửa bằng TỐC ĐỘ ngang, không bằng việc trúng ngọn lửa. Lướt tay
     // nhanh ngang qua một ngọn nến thì nó dạt - đó là thứ ai cũng đã làm ngoài
@@ -511,7 +853,7 @@ export default function QuietForestSceneInner({
     if (Math.abs(speed) > BLOW_SPEED) {
       const strength = Math.max(-1.4, Math.min(1.4, (speed / BLOW_SPEED) * 0.5));
       // `at: -1` là "chưa đóng dấu" - xem chú thích ở PointerState.
-      p.gust = { strength, at: -1 };
+      pointer.current.gust = { strength, at: -1 };
     }
   };
 
@@ -524,15 +866,15 @@ export default function QuietForestSceneInner({
       onPointerDown={begin}
       onPointerMove={move}
       onPointerUp={end}
-      onPointerLeave={end}
-      onPointerCancel={end}
+      onPointerLeave={cancel}
+      onPointerCancel={cancel}
     >
       <Canvas
         // Trần DPR: màn Retina 3x không cần render 3x cho một khoảng rừng tối,
         // và đây là khác biệt lớn nhất giữa mát máy và cháy quạt.
         dpr={[1, 1.75]}
-        camera={{ position: [0, 1.15, 5.1], fov: 48 }}
-        onCreated={({ camera }) => camera.lookAt(0, 0.35, 0)}
+        camera={{ position: [SPAWN.x, 2.4, SPAWN.z + 5.4], fov: 48 }}
+        onCreated={({ camera }) => camera.lookAt(SPAWN.x, 1.0, SPAWN.z)}
         gl={{ antialias: true, powerPreference: "low-power" }}
         style={{ background: "transparent" }}
         frameloop={reducedMotion ? "demand" : "always"}
@@ -546,15 +888,26 @@ export default function QuietForestSceneInner({
             chìm hẳn thành mảng đen phẳng. */}
         <directionalLight position={[-3, 6, -2]} intensity={0.5} color="#7ea6cc" />
 
-        <DraggableStage pointer={pointer}>
-          <Ground />
-          <Forest />
-          <ShelterTree />
-          <Rain />
-          <Campfire />
-          <Flame intensity={intensity} pointer={pointer} />
-          <Embers setDownCount={setDownCount} />
-        </DraggableStage>
+        <Ground />
+        <Forest />
+        <ShelterTree />
+        <Rain />
+        <Campfire />
+        <Flame intensity={intensity} pointer={pointer} />
+        <Embers setDownCount={setDownCount} />
+
+        {signs.map((s) => (
+          <Signpost key={s.id} sign={s} lit={s.id === litSign} />
+        ))}
+        <Wanderer poseRef={pose} />
+        <TapToWalk tapRef={tap} walkRef={walkRef} />
+        <Wandering
+          walkRef={walkRef}
+          orbitRef={orbit}
+          poseRef={pose}
+          signs={signs}
+          onSignNear={handleSignNear}
+        />
       </Canvas>
     </div>
   );
