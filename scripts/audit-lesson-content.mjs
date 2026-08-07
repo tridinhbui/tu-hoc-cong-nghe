@@ -611,6 +611,40 @@ const MAX_PRACTICE_BIAS_Z = 3;
  *        nhất. Đợt việc riêng, giống hệt những gì practicePrompt đã cần. */
 const OPENING_BIAS_Z_BY_LOCALE = { vi: 3, en: 20.8 };
 const MAX_OPENING_BIAS_Z = OPENING_BIAS_Z_BY_LOCALE[LOCALE] ?? 37;
+/** Đo openingOptions theo TỪNG NHÓM độ dài, không chỉ trên toàn kho.
+ *
+ *  VÌ SAO PHẢI CÓ. Cổng tổng `MAX_OPENING_BIAS_Z` báo z = −0,49 sau đợt 5,
+ *  tức là toàn kho đứng đúng mức may rủi. Con số đó đúng và che mất mọi thứ:
+ *
+ *    nhiễu dài nhất   số câu   đúng-là-dài-nhất   kỳ vọng      z
+ *      0-40             201          183             52     +21,15
+ *      40-60            160            0             43      −7,71
+ *      60-90            242            0             64      −9,44
+ *      90+              112            0             29      −6,34
+ *
+ *  Năm đợt viết lại đã đẩy BA nhóm nhiễu dài xuống đúng 0 - đáp án đúng không
+ *  bao giờ là phương án dài nhất ở đó - trong khi nhóm nhiễu ngắn chưa động
+ *  tới vẫn ở 91%. Hai mách nước ngược chiều triệt tiêu nhau khi lấy trung
+ *  bình, và cả hai đều học được: "nhiễu đều dài thì loại phương án dài nhất
+ *  đi", "nhiễu đều ngắn thì chọn phương án dài".
+ *
+ *  Đây là lần thứ ba trong cùng một đợt việc mà một luật áp cho từng câu tạo
+ *  ra cấu trúc mà cổng tổng không nhìn thấy. Cổng tổng đo trung bình; trung
+ *  bình không phát hiện được túi. Nên đo theo nhóm.
+ *
+ *  Ngưỡng đặt ở 21,2 vì nhóm tệ nhất đang ở 21,15 - mức kho đang HỎNG, ghi
+ *  vào để hiện ra trong CI và hạ dần, không phải để chấp nhận. */
+const OPENING_BUCKETS = [
+  { name: "0-40", lo: 0, hi: 40 },
+  { name: "40-60", lo: 40, hi: 60 },
+  { name: "60-90", lo: 60, hi: 90 },
+  { name: "90+", lo: 90, hi: Infinity },
+];
+const MAX_OPENING_BUCKET_Z = 21.2;
+const openingBuckets = OPENING_BUCKETS.map((b) => ({
+  ...b, questions: 0, longest: 0, expLongest: 0, varLongest: 0,
+}));
+
 const openingStats = {
   questions: 0,
   longest: 0,
@@ -696,6 +730,17 @@ for (const lesson of corpus) {
       openingStats.varShortest += pShortest * (1 - pShortest);
       if (correctLength === longest) openingStats.longest++;
       if (correctLength === shortest) openingStats.shortest++;
+
+      // Cùng số liệu, nhưng tách theo độ dài của phương án nhiễu DÀI NHẤT -
+      // đó chính là trục mà người đoán nhìn thấy khi mở câu hỏi ra.
+      const cap = Math.max(...lengths.filter((_, i) => i !== lesson.correctOption));
+      const bucket = openingBuckets.find((b) => cap >= b.lo && cap < b.hi);
+      if (bucket) {
+        bucket.questions++;
+        bucket.expLongest += pLongest;
+        bucket.varLongest += pLongest * (1 - pLongest);
+        if (correctLength === longest) bucket.longest++;
+      }
     }
   }
 
@@ -1046,6 +1091,20 @@ if (openingStats.questions > 0) {
       `  z = ${zShort.toFixed(2)}   (trần |z| ${MAX_OPENING_BIAS_Z})`
   );
 }
+
+if (openingBuckets.some((b) => b.questions > 0)) {
+  console.log("    theo nhóm độ dài của phương án nhiễu dài nhất:");
+  for (const b of openingBuckets) {
+    if (!b.questions) continue;
+    const z = b.varLongest > 0 ? (b.longest - b.expLongest) / Math.sqrt(b.varLongest) : 0;
+    console.log(
+      `      ${b.name.padEnd(6)} ${String(b.questions).padStart(4)} câu` +
+        `  ·  dài nhất ${String(b.longest).padStart(4)} vs ${b.expLongest.toFixed(0).padStart(4)} kỳ vọng` +
+        `  z = ${z.toFixed(2)}`
+    );
+  }
+  console.log(`    (trần |z| mỗi nhóm ${MAX_OPENING_BUCKET_Z} - trung bình toàn kho không thấy được túi)`);
+}
 const biasFailures = biasRows.filter(
   (r) =>
     Math.abs(r.zLong) > MAX_LENGTH_BIAS_Z ||
@@ -1265,6 +1324,23 @@ if (openingStats.questions > 0) {
         `  Cắt đáp án đúng về đúng mệnh đề - phần lý lẽ đã nằm ở explanation của bài.\n` +
         `  Đích là PHÂN BỐ: khoảng một phần tư dài nhất, một phần tư ngắn nhất.\n` +
         `  Sửa bằng cách viết lại phương án, không bằng cách nâng ngưỡng.`
+    );
+    process.exit(1);
+  }
+}
+
+{
+  const bad = openingBuckets
+    .filter((b) => b.questions > 0 && b.varLongest > 0)
+    .map((b) => ({ b, z: (b.longest - b.expLongest) / Math.sqrt(b.varLongest) }))
+    .filter(({ z }) => Math.abs(z) > MAX_OPENING_BUCKET_Z);
+  if (bad.length > 0 && !process.argv.includes("--warn-only")) {
+    console.error(
+      `\nopeningOptions: ${bad.length} nhóm độ dài vượt ngưỡng |z| > ${MAX_OPENING_BUCKET_Z}:\n` +
+        bad.map(({ b, z }) => `  nhiễu ${b.name}: ${b.longest}/${b.questions} câu, z = ${z.toFixed(2)}`).join("\n") +
+        `\n\n  Toàn kho có thể đứng đúng mức may rủi mà vẫn có túi khai thác được:\n` +
+        `  một nhóm dương và một nhóm âm triệt tiêu nhau khi lấy trung bình.\n` +
+        `  Đích là mỗi nhóm đều gần may rủi, không phải chỉ con số tổng.`
     );
     process.exit(1);
   }
