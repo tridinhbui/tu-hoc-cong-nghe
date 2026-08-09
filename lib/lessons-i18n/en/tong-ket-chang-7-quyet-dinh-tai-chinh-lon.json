@@ -1,0 +1,190 @@
+{
+  "slug": "tong-ket-chang-7-quyet-dinh-tai-chinh-lon",
+  "title": "Stage 9, Lesson 10: Recap - a checklist for the big financial decisions of a life",
+  "subtitle": "Housing, credit, insurance, marriage, inheritance - looking back over the whole stage",
+  "duration": "7 min",
+  "openingQuestion": "What do the decisions in Stage 9 (a mortgage, credit, insurance, marriage, inheritance) most have in common?",
+  "openingOptions": [
+    "They are all small decisions with little lasting effect",
+    "They are all large, hard to reverse, and shape many years",
+    "They all concern one individual only and affect nobody else",
+    "None of them needs planning ahead; you deal with problems as they arise"
+  ],
+  "explanation": "Unlike day-to-day spending (easily adjusted, small mistakes easily fixed), every decision in Stage 9 shares the same features: a long-term commitment (a 20-year loan, a marriage, an estate), being hard to reverse (selling a home costs transaction fees, divorce is complicated), and affecting other people (family, heirs) - so they need preparation and a clear grasp of the principles beforehand. You cannot try and correct as you go the way you can with ordinary spending.",
+  "diagram": [
+    { "label": "Mortgages and credit", "arrow": false },
+    { "label": "Insurance and protecting assets", "arrow": false },
+    { "label": "Marriage and inheritance", "arrow": false },
+    { "label": "In common: a long commitment, hard to reverse, affecting many people" }
+  ],
+  "realWorldExample": {
+    "company": "A checklist for large financial decisions",
+    "description": "Before any large decision (buying a home, marrying, writing a will), taking the time to understand the mechanics, do the arithmetic carefully, and talk openly with the people involved almost always costs far less than repairing the consequences once the decision has been made."
+  },
+  "quiz": [
+    {
+      "question": "Why do \"borrowing right up to the bank's maximum\" (Lesson 2) and \"lending a relative more than you could stand to lose entirely\" (Lesson 9) share the same underlying error?",
+      "options": [
+        "Both skip the step of setting your own safe limit",
+        "Both need a clear written agreement drawn up first",
+        "Both involve a decision about borrowing money",
+        "Both are affected by prevailing market interest rates"
+      ],
+      "explanation": "This is the thread running through the whole stage: whether you are borrowing or lending, the most common error is letting SOMEONE ELSE'S MAXIMUM decide your behaviour, instead of setting your own SAFE LIMIT based on how much risk you can genuinely absorb."
+    },
+    {
+      "question": "Having finished Stage 9, which concrete action is worth most in practice, rather than merely memorising a set of disconnected concepts?",
+      "options": [
+        "Reading the stage through once more to remember it better",
+        "Memorising the full DTI formula and the credit score calculation",
+        "Finding the bank that will lend you the largest possible amount",
+        "Applying the safe-limit framework to the decision ahead of you"
+      ],
+      "explanation": "As in earlier stages, the greatest value is not in memorising formulas or particular numbers (which change with time and circumstance) but in applying the core principle - setting your own safe limit based on how much risk you can genuinely absorb - to the real large financial decisions in front of you."
+    },
+    {
+      "question": "What do all the large financial decisions in this stage have in common?",
+      "options": [
+        "A long commitment, hard to reverse, affecting many people",
+        "They should all be completed before you turn forty",
+        "They all require the advice of a financial professional",
+        "They all involve sums above one billion dong"
+      ],
+      "explanation": "These three features are exactly what sets them apart from day-to-day spending, and why preparing in advance matters far more than reacting after the decision is made."
+    },
+    {
+      "question": "What is the running mistake this stage wants you to avoid?",
+      "options": [
+        "Failing to plan a fallback for the worst-case situation",
+        "Letting someone else's maximum become the level you pick",
+        "Not consulting an expert before making the decision",
+        "Deciding too quickly without doing the arithmetic"
+      ],
+      "explanation": "The bank's ceiling, the salesperson's proposal, society's expectations - none of them knows your particular circumstances. The safe limit has to be one you set yourself, based on what you can genuinely absorb."
+    },
+    {
+      "question": "What do a mortgage, buying insurance and planning an estate have in common financially?",
+      "options": [
+        "All three are long commitments and all three are very expensive to reverse",
+        "All three are legally required to involve professional advice before proceeding",
+        "All three should only be done once you have accumulated enough wealth",
+        "All three can be adjusted easily each year, much like a spending plan"
+      ],
+      "explanation": "Get day-to-day spending wrong and you fix it next month. These three lock you into one direction for years and charge dearly when you want to turn back - so the effort belongs in the deliberation beforehand, not in the repair afterwards."
+    }
+  ],
+  "keyTakeaways": [
+    "The large financial decisions (housing, credit, insurance, marriage, inheritance) share the same features: a long commitment, hard to reverse, affecting many people",
+    "The most common mistake running through the stage: letting someone else's maximum decide your behaviour, instead of setting your own safe limit based on the risk you can absorb",
+    "The greatest value is in applying the principle, not in memorising a formula or a particular number"
+  ],
+  "practicePrompt": {
+    "question": "Throughout this stage: the bank lends up to 50% DTI, so you borrow exactly 50%; the card limit is 100 million, so you spend close to 100 million. What is the core mistake being repeated?",
+    "options": [
+      "The mistake is not making full use of the maximum allowed - you should borrow and spend exactly up to the limit given, to make the most of the resources available",
+      "The common mistake is letting someone else's maximum decide your behaviour, instead of setting your own safe limit",
+      "The mistake is that you must always consult a financial professional before making any borrowing decision at all",
+      "There is no common mistake here; every large financial decision needs to be assessed entirely independently of the others"
+    ],
+    "explanation": "The most common mistake running through the stage: letting someone else's maximum decide your behaviour, instead of setting your own safe limit based on how much risk you can genuinely absorb."
+  },
+  "application": {
+    "title": "Write down your own ceiling",
+    "message": "For each large decision ahead, write a numeric limit in advance - the maximum DTI, the cover you need, the amount you would lend a relative - and date it. Take it with you when you sit down opposite the salesperson, and do not revise it during that meeting.",
+    "secondary": "The other side of the table always has a maximum figure for you. That figure is optimised for their risk, not for what you can absorb."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A mortgage, credit, insurance, marriage, inheritance - the five apparently unrelated topics of Stage 9 in fact share one thread running through all of them."
+    },
+    {
+      "type": "heading",
+      "text": "What they share: a long commitment, hard to reverse"
+    },
+    {
+      "type": "paragraph",
+      "text": "Unlike day-to-day spending (easily adjusted, small mistakes easily fixed), every decision in Stage 9 shares the same features: a long-term commitment, hard to reverse, and affecting other people. The most common mistake running through the stage is letting SOMEONE ELSE'S MAXIMUM (the bank's, society's expectations) decide your behaviour, instead of setting your own SAFE LIMIT based on how much risk you can genuinely absorb."
+    },
+    {
+      "type": "list",
+      "items": [
+        "The large financial decisions share the same features: a long commitment, hard to reverse, affecting many people",
+        "The most common mistake: letting someone else's maximum decide your behaviour, instead of setting your own safe limit",
+        "The greatest value is in applying the principle, not in memorising a formula or a particular number"
+      ]
+    },
+    {
+      "type": "conceptTable",
+      "title": "The whole-stage checklist",
+      "subtitle": "One check question for each large decision",
+      "concepts": [
+        {
+          "vi": "Vay mua nhà",
+          "en": "Lessons 1-2 - the mortgage",
+          "def": "Have you worked out the instalment at a floating rate, and does anything remain to save with after the instalment is paid?"
+        },
+        {
+          "vi": "Thuê hay mua",
+          "en": "Lesson 3 - rent or buy",
+          "def": "Have you counted the full cost of ownership including the opportunity cost of the deposit, and how long do you plan to stay?"
+        },
+        {
+          "vi": "Lịch sử tín dụng",
+          "en": "Lesson 4 - credit history",
+          "def": "Is anything currently overdue, and have you ever looked up your own credit record?"
+        },
+        {
+          "vi": "Nợ tiêu dùng",
+          "en": "Lesson 5 - consumer debt",
+          "def": "Have you listed every debt in descending order of interest rate, and is the spare money going to the highest one?"
+        },
+        {
+          "vi": "Bảo hiểm nhân thọ",
+          "en": "Lesson 6 - life insurance",
+          "def": "Who would be financially affected if you were gone, and does your current cover meet that obligation?"
+        },
+        {
+          "vi": "Thừa kế",
+          "en": "Lesson 7 - inheritance",
+          "def": "Do you have a list of your assets and debt obligations, and does anyone you trust know where it is?"
+        },
+        {
+          "vi": "Tài chính hôn nhân",
+          "en": "Lesson 8 - money and marriage",
+          "def": "Have the two of you spoken plainly about debts, incomes, and the spending threshold that needs discussing?"
+        },
+        {
+          "vi": "Vay mượn người thân",
+          "en": "Lesson 8 - lending to relatives",
+          "def": "Is the amount you are considering one you could lose and still be fine, and have you confirmed it in a message?"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "The common thread: who is setting your limit"
+    },
+    {
+      "type": "paragraph",
+      "text": "Reading back over the stage, the same pattern repeats. The bank sets its DTI ceiling according to its own risk appetite. The insurance seller proposes products from the range they distribute. Society sets expectations about the age by which you ought to have bought a home. Not one of them knows how much money you have left after the instalment, how stable your income is, or how long you intend to live in this city. The real skill of this stage is moving the job of setting limits back from the outside to yourself."
+    },
+    {
+      "type": "callout",
+      "label": "Three numbers to know about yourself",
+      "text": "What is your current debt service as a share of income? How many months could your emergency fund cover if the income stopped? And if the rates on your loans rose by 4 percentage points, how much more would you pay each month? Answer those three and most large decisions become considerably easier."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "From the mortgage to the estate, every lesson teaches the same skill: setting your own safe limit.",
+        "That skill will still be useful long after every specific number in this programme has gone out of date."
+      ]
+    }
+  ],
+  "summary": {
+    "keyIdea": "The large financial decisions (housing, credit, insurance, marriage, inheritance) share the same features: a long commitment, hard to reverse, affecting many people",
+    "commonMistake": "Easy to miss: the most common mistake running through the stage is letting someone else's maximum decide your behaviour, instead of setting your own safe limit based on the risk you can absorb",
+    "action": "The greatest value is in applying the principle, not in memorising a formula or a particular number"
+  }
+}
