@@ -1,0 +1,186 @@
+{
+  "slug": "hoach-dinh-tai-chinh-theo-giai-doan-cuoc-doi",
+  "title": "Financial planning by life stage: the same person, four different problems",
+  "subtitle": "Why advice that is right at 25 can become the wrong advice at 55",
+  "duration": "9 min",
+  "openingQuestion": "Two clients each have 500 million VND and each want to 'invest safely but earn a good return'. The first is 28, single, with a stable and rising income. The second is 58, two years from retirement, and this money is most of what they have accumulated. Why does the same question need two different answers?",
+  "openingOptions": [
+    "Because younger people have a higher risk appetite by temperament, while older people tend to be more cautious",
+    "Because their capacity to bear risk differs: at 28 there is still time to make it back, at 58 there is not",
+    "Because older people do not understand modern investment products",
+    "Because current deposit rates happen to suit someone close to retirement better"
+  ],
+  "explanation": "The core difference is not temperament or knowledge but structural risk capacity, which has two components: the time left before the money is needed, and the ability to make a loss back out of future income. At 28 you have both, so you can accept larger swings in exchange for a higher expected return. At 58 you are about to move from the accumulation stage to the withdrawal stage - and a deep drawdown just before or just after withdrawals begin has a lasting effect quite unlike the same drawdown at 28.",
+  "diagram": [
+    {
+      "label": "Starting a career - building the base, time is the biggest advantage",
+      "arrow": true
+    },
+    {
+      "label": "Building a family - protection needs peak, the risk of over-borrowing",
+      "arrow": true
+    },
+    {
+      "label": "Peak accumulation - accelerating for retirement, starting to cut risk",
+      "arrow": true
+    },
+    {
+      "label": "Near-retirement and retirement - shifting to drawdown, managing sequence-of-returns risk",
+      "arrow": false
+    }
+  ],
+  "realWorldExample": {
+    "company": "Sequence-of-returns risk - the problem specific to the years around retirement",
+    "description": "Two people retire with the same amount, withdraw the same percentage each year, and meet a sequence of returns with the same average over 20 years. The first hits the sharply negative years early in retirement; the second hits exactly those same years, but at the end. Their final outcomes can differ enormously, and the one who met the losses early may run out of money first. The reason is that withdrawing from a falling portfolio sells more units of the asset, leaving less behind to recover later. This is called sequence-of-returns risk, and it barely touches someone still accumulating - which is why the same portfolio can be appropriate in one stage and inappropriate in the other."
+  },
+  "quiz": [
+    {
+      "question": "Structural risk capacity depends mainly on which two factors?",
+      "options": [
+        "The size of the client's net worth and the investing experience built up",
+        "The time remaining and the capacity to rebuild from later income",
+        "How much portfolio volatility the investor can psychologically stomach",
+        "The investor's age and their current level of income today"
+      ],
+      "explanation": "Those two factors are objective and measurable, unlike risk appetite, which is subjective. Someone may say they accept high risk, but if they need the money in 18 months their real capacity to bear risk is still low. Net worth and experience matter to product selection but do not shorten the horizon or create income to rebuild with. Psychological tolerance is willingness, not capacity - it is precisely the thing a risk questionnaire measures and the thing that changes the moment a market falls. Age alone is only a rough proxy for the horizon, and current income says nothing about whether that income will still be there after a loss."
+    },
+    {
+      "question": "Sequence-of-returns risk hits which group hardest?",
+      "options": [
+        "Anyone whose portfolio is concentrated in just a handful of stocks",
+        "Young savers in the first ten years of accumulating steadily",
+        "Those near retirement and in the first years after retiring",
+        "Investors borrowing on margin to invest at high leverage levels"
+      ],
+      "explanation": "For someone still accumulating, a fall actually helps - it lets each contribution buy in at a lower price. For someone drawing down, the same fall forces them to sell more units of the asset, leaving less behind to participate in the recovery. Concentration risk and leverage are both real risks, but they are about the size of a possible loss, not about the ORDER in which returns arrive; a concentrated young saver still has decades to recover. Sequence risk is specific to the point where contributions turn into withdrawals."
+    },
+    {
+      "question": "A person's need for life insurance usually peaks at which stage?",
+      "options": [
+        "Retirement, once they are living off the investment portfolio",
+        "The first working years, when income is low and still unsteady",
+        "The pre-retirement stage, when accumulated assets are at a peak",
+        "The family-building stage: big mortgage, young children"
+      ],
+      "explanation": "Life insurance protects the people who depend on your income. The need peaks when the largest financial obligations coincide with the smallest pile of accumulated assets, then declines as debt is paid down and assets grow. In the first working years income is low, but so are the obligations, and there is often nobody dependent on that income yet. At the pre-retirement stage the accumulated assets themselves can cover the dependants, which is why the need falls rather than peaks. And in retirement there is generally no earned income left to insure at all."
+    },
+    {
+      "question": "Why does the same level of volatility produce such different consequences in the accumulation stage and the withdrawal stage?",
+      "options": [
+        "Because the capital sold in a drawdown is no longer there to recover",
+        "Because market volatility is genuinely larger at retirement age",
+        "Because retirees are taxed at a higher rate on their gains",
+        "Because retirement portfolios may not hold equities at all"
+      ],
+      "explanation": "Someone accumulating who meets a falling market simply buys more units with the same contribution. Someone drawing down has to sell more units at the low price, and what has been sold is no longer there to enjoy the recovery - the same volatility, two opposite outcomes. The market itself does not become more volatile because the investor turned 60; the volatility is the same, only the cash-flow direction has reversed. Tax treatment varies by jurisdiction and is not what drives the effect, and there is no rule barring a retirement portfolio from holding equities - in fact keeping some growth exposure is usually necessary against inflation."
+    },
+    {
+      "question": "Scenario: someone aged 55 has roughly ten working years left. How should the portfolio be adjusted?",
+      "options": [
+        "Keep the same weights as at age 30 to make up the difference",
+        "Trim the risk-asset weighting gradually as the horizon shortens",
+        "Raise the equity weighting so the retirement target is still reached",
+        "Move the entire portfolio into deposits straight away at 55"
+      ],
+      "explanation": "The time left to make a drawdown back is shortening, so the weighting in risk assets has to come down with it - steadily rather than abruptly. Keeping the age-30 allocation ignores that the horizon has changed, and raising equity to catch up is the classic mistake of taking more risk exactly when there is least room to absorb it. Moving everything into deposits at 55 creates a different risk instead: three decades of retirement ahead still need a growth component to keep pace with inflation."
+    }
+  ],
+  "keyTakeaways": [
+    "Structural risk capacity - the time remaining and the ability to rebuild from income - matters more than subjective risk appetite.",
+    "The same level of volatility produces very different consequences in the accumulation stage and the withdrawal stage.",
+    "The need for insurance peaks in the family-building stage and then declines; it is not fixed for life.",
+    "Every major life event is a marker at which the whole plan has to be reviewed."
+  ],
+  "practicePrompt": {
+    "question": "A client of 55 expects to retire at 60 and currently holds all of their accumulated assets in a growth equity portfolio. What is the most sensible recommendation?",
+    "options": [
+      "Keep it all as it is, since equities deliver the highest long-run return",
+      "Move everything into deposits immediately to eliminate the risk entirely",
+      "Reduce the weighting in high-volatility assets along a multi-year path",
+      "Borrow to invest more, to make up for the short time remaining"
+    ],
+    "explanation": "Keeping it all ignores sequence-of-returns risk, which bites hardest precisely in the five years either side of retirement. Moving everything into deposits creates a different risk instead: assets that cannot keep pace with inflation over two or three decades of retirement. Borrowing to invest raises the size of a possible loss at exactly the moment there is least time to recover from it. The usual approach is a phased glide path, with the spending needs of the first few retirement years carved out separately."
+  },
+  "summary": {
+    "keyIdea": "The same client needs four different plans across four life stages, because risk capacity and priorities change structurally rather than by preference.",
+    "commonMistake": "Applying one fixed asset-allocation formula to every client, or keeping an old plan in place after the circumstances have changed.",
+    "action": "Work out which stage you are in, and write down one thing in your current plan that ought to be different from the previous stage."
+  },
+  "application": {
+    "title": "Apply it now",
+    "message": "For every client, write down two numbers before any product is discussed: how many years until the money is needed, and if the assets fell 30%, what income source they would still have to make it back with.",
+    "secondary": "Those two numbers determine the asset allocation far more tightly than the client's answers to a risk-appetite questionnaire."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "One of the most common mistakes in financial advice is giving advice that is right - but right for a different stage of life. This lesson separates out four stages and shows how the priorities shift from one to the next."
+    },
+    {
+      "type": "heading",
+      "text": "Four stages and the priorities that define each"
+    },
+    {
+      "type": "conceptTable",
+      "title": "The same person, four different problems",
+      "subtitle": "Priorities shift structurally, not by preference",
+      "concepts": [
+        {
+          "def": "Income is still low but the horizon is the longest it will ever be. Priorities: build the emergency fund, clear high-interest debt, form a steady saving habit, and use that long horizon to accept higher volatility."
+        },
+        {
+          "def": "Income rises but obligations rise faster: a mortgage, young children, supporting parents. This is the stage where the need for protection peaks, and also the stage where over-borrowing is easiest."
+        },
+        {
+          "def": "Income is usually at its highest, the mortgage is largely paid down, the children are becoming independent. Priorities: accelerate retirement saving, begin easing portfolio risk down, and review the estate plan."
+        },
+        {
+          "def": "The shift from accumulation to withdrawal. Priorities: protect the spending needs of the first few years, manage sequence-of-returns risk, and balance volatility risk against inflation risk over two or three decades."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Why the family-building stage is the easiest one to get wrong"
+    },
+    {
+      "type": "paragraph",
+      "text": "This is the stage where income visibly rises, creating the feeling that more obligations can be carried. But it is also the stage where obligations rise fastest and are least flexible: a 20-year mortgage cannot be paused, and the cost of raising children cannot be cut back abruptly. The result is that many families end up with fixed obligations absorbing most of their income, so every small setback creates strain, and retirement saving is pushed back into exactly the years when compounding would have done the most work."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Accumulation stage",
+        "text": "A falling market is an opportunity: each regular contribution buys more units of the asset at a lower price. The long horizon ahead allows you to wait for the recovery. Volatility is an acceptable price for a higher expected return."
+      },
+      "right": {
+        "label": "Withdrawal stage",
+        "text": "A falling market is a double loss: you still have to withdraw to live on, so you sell more units at the low price, leaving less behind to recover. And there is no longer earned income to make up the difference."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "Three markers that force a full review of the plan"
+    },
+    {
+      "type": "list",
+      "items": [
+        "A change in family structure: marriage, a birth, a divorce, or taking on the care of a parent - each of these changes both the need for protection and the accumulation targets.",
+        "A significant change in income: a large pay rise, a move into work with variable income, or job loss - which changes both the capacity to save and the size of buffer required.",
+        "Approaching the point where the money is needed: once the remaining horizon falls below roughly five years, the allocation for that goal has to be revisited regardless of what the market is doing."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Inflation risk in retirement is routinely underestimated",
+      "text": "Many people approaching retirement move everything into deposits to avoid volatility. But a retirement can run for two or three decades, and over that span inflation materially erodes the purchasing power of a fixed sum. Removing volatility risk entirely is really an exchange for a different risk, one that is slower but more certain. This is why a retirement allocation usually still holds some assets capable of growth - the difference being that the spending needs of the first few years are carved out separately from that portion."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "There is no single correct asset allocation for everyone, only the allocation that fits the stage and the specific circumstances.",
+        "Two numbers decide the most: how many years before the money is needed, and what is left to fall back on if it goes wrong."
+      ]
+    }
+  ]
+}
