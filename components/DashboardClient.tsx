@@ -1051,7 +1051,14 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
 
                           <div
                             ref={levelStripRef}
-                            className="overflow-x-auto pb-2 -mx-1 px-1 no-scrollbar overscroll-x-contain [contain:paint] [backface-visibility:hidden] [transform:translateZ(0)] xl:flex-1 xl:min-w-0"
+                            // Khung nhìn chốt ở 7-8 cấp một lúc, phần còn lại
+                            // cuộn ngang (hai nút mũi tên hai bên, và vuốt trên
+                            // cảm ứng). Mỗi cấp rộng 92px cộng đoạn nối 28-36px,
+                            // nên ~1000px là vừa tám cấp; hơn thế thì dải kéo
+                            // hết bề ngang thẻ và cấp thứ mười lăm vẫn nằm ngoài
+                            // khung - tức vẫn phải cuộn, chỉ là sau khi đã nhìn
+                            // qua một hàng dài hơn mắt bắt được.
+                            className="overflow-x-auto pb-2 -mx-1 px-1 no-scrollbar overscroll-x-contain [contain:paint] [backface-visibility:hidden] [transform:translateZ(0)] xl:min-w-0 xl:max-w-[1000px]"
                             style={{ WebkitOverflowScrolling: "touch" }}
                           >
                             <div className="flex items-stretch gap-0 min-w-max [backface-visibility:hidden]">
@@ -1059,11 +1066,6 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                 const isUserCurrent = currentUserLevel === lvl.level;
                                 const isPassed = currentUserLevel > lvl.level;
                                 const isReached = isPassed || isUserCurrent;
-                                // Cấp kế tiếp được giữ nguyên cỡ cùng các cấp đã đạt: nó là đích
-                                // gần nhất, và một cái đích bị thu bằng cái đích xa mười cấp thì
-                                // không còn là đích.
-                                const isNext = lvl.level === currentUserLevel + 1;
-                                const isNear = isReached || isNext;
                                 const members = communityUsersByLevel.get(lvl.level) || [];
                                 const accent = ACCENTS[idx % ACCENTS.length];
                                 const isOpen = openLevel === lvl.level;
@@ -1074,12 +1076,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                       <div className={`w-7 sm:w-9 h-0.5 self-end mb-[42px] shrink-0 ${isReached ? "bg-emerald-400 dark:bg-emerald-600" : "bg-stone-200 dark:bg-stone-800"}`} />
                                     )}
                                     <div className="flex flex-col items-center gap-2 shrink-0">
-                                      {/* Cấp chưa tới và không phải cấp kế tiếp thì thu còn một
-                                          chấm. Bảy khung ảnh xám giống hệt nhau từng chiếm phần
-                                          rộng nhất của dải mà chỉ nói đúng một điều - "chưa tới" -
-                                          và chúng đẩy cấp KẾ TIẾP, thứ duy nhất người học cần
-                                          nhìn, ra khỏi khung. */}
-                                      <div className={`${isNear ? "w-12 h-12 sm:w-[64px] sm:h-[64px]" : "w-7 h-7"} relative flex items-center justify-center select-none pointer-events-none overflow-hidden rounded-full border border-stone-200/50 dark:border-stone-800/50 bg-stone-50 dark:bg-stone-800 shadow-inner [backface-visibility:hidden] [transform:translateZ(0)]`}>
+                                      <div className="w-12 h-12 sm:w-[64px] sm:h-[64px] relative flex items-center justify-center select-none pointer-events-none overflow-hidden rounded-full border border-stone-200/50 dark:border-stone-800/50 bg-stone-50 dark:bg-stone-800 shadow-inner [backface-visibility:hidden] [transform:translateZ(0)]">
                                         <img
                                           src={`/levels/level${lvl.level}.jpg`}
                                           alt={t.levelTitles[lvl.level] ?? lvl.name}
@@ -1096,7 +1093,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                         // dài hơn, nên dòng XP và huy hiệu số người bị đẩy ra ngoài khung.
                                         // Hàng cha là `items-stretch`, nên thẻ cao nhất kéo cả hàng theo -
                                         // chúng vẫn bằng nhau, chỉ là bằng nhau ở chiều cao đủ chứa chữ.
-                                        className={`relative text-left rounded-xl border p-1.5 shrink-0 bg-white dark:bg-stone-900 transition-all cursor-pointer flex flex-col [backface-visibility:hidden] ${isNear ? "w-[92px] min-h-[88px]" : "w-[58px] min-h-[52px]"} ${
+                                        className={`relative text-left rounded-xl border p-1.5 w-[92px] min-h-[88px] shrink-0 bg-white dark:bg-stone-900 transition-all cursor-pointer flex flex-col [backface-visibility:hidden] ${
                                           isReached
                                             ? `${accent.border} ${isOpen ? `shadow-md scale-[1.02] ${accent.glow}` : isUserCurrent ? `shadow-sm ${accent.glow}` : ""}`
                                             : "border-stone-100 dark:border-stone-800 opacity-60 grayscale hover:opacity-90 hover:grayscale-0"
@@ -1116,25 +1113,13 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                             <span className={`text-[7px] font-black uppercase text-white px-1 py-0.5 rounded-full ${accent.solid}`}>{t.dashboard.youBadge}</span>
                                           )}
                                         </div>
-                                        {isNear && (
-                                          <>
-                                            <p className={`text-[10px] font-extrabold mt-0.5 leading-snug line-clamp-2 flex-1 ${isReached ? "text-stone-900 dark:text-stone-100" : "text-stone-500 dark:text-stone-500"}`}>
-                                              {t.levelTitles[lvl.level] ?? lvl.name}
-                                            </p>
-                                            <p className="text-[9px] text-stone-400 dark:text-stone-500 mt-0.5">{format(t.finalOne.dashboardClient.xpValue, { xp: lvl.minXp })}</p>
-                                          </>
-                                        )}
-                                        {/* Cấp không có ai thì KHÔNG nói gì.
-                                            "👥 0" ở L1-L2 đứng cạnh "👥 19" ở L7 đọc ra một câu
-                                            không ai định viết: cấp của bạn trống, còn cấp cao thì
-                                            đông - tức ai cũng đã đi xa hơn bạn. Đó là câu tệ nhất
-                                            có thể nói với người vừa bắt đầu, và nó chỉ là hệ quả
-                                            của việc in một con số 0. */}
-                                        {members.length > 0 && (
-                                          <div className={`inline-flex items-center gap-1 text-[8px] font-bold mt-1 px-1.5 py-0.5 rounded-full w-fit ${isReached ? `${accent.bg} ${accent.text}` : "bg-stone-100 dark:bg-stone-800 text-stone-400 dark:text-stone-500"}`}>
-                                            👥 {members.length}
-                                          </div>
-                                        )}
+                                        <p className={`text-[10px] font-extrabold mt-0.5 leading-snug line-clamp-2 flex-1 ${isReached ? "text-stone-900 dark:text-stone-100" : "text-stone-500 dark:text-stone-500"}`}>
+                                          {t.levelTitles[lvl.level] ?? lvl.name}
+                                        </p>
+                                        <p className="text-[9px] text-stone-400 dark:text-stone-500 mt-0.5">{format(t.finalOne.dashboardClient.xpValue, { xp: lvl.minXp })}</p>
+                                        <div className={`inline-flex items-center gap-1 text-[8px] font-bold mt-1 px-1.5 py-0.5 rounded-full w-fit ${isReached ? `${accent.bg} ${accent.text}` : "bg-stone-100 dark:bg-stone-800 text-stone-400 dark:text-stone-500"}`}>
+                                          👥 {members.length}
+                                        </div>
                                       </button>
                                     </div>
                                   </div>
