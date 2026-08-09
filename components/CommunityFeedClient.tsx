@@ -329,7 +329,7 @@ function MarketSentimentWidget({ onShareSentiment }: { onShareSentiment?: (text:
             type="button"
             onClick={() => {
               const text = `#PhanTich #MarketSentiment Hôm nay mình nhận định thị trường ${
-                votedOption === "bullish" ? "🐂 Biển Xanh (Bullish - Tăng trưởng)" : "🐻 Biển Đỏ (Bearish - Thận trọng)"
+                votedOption === "bullish" ? t.feed.voteBullish : t.feed.voteBearish
               }. Khảo sát cộng đồng hiện đạt ${bullishPct}% Bullish vs ${bearishPct}% Bearish!`;
               onShareSentiment(text);
             }}
@@ -906,9 +906,9 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
     (post) => getPostCategory(post) === "thanh-tuu" && post.kind !== "streak"
   );
   const spotlightItems = [
-    questionPost && { label: "Câu hỏi cần trả lời", post: questionPost, icon: HelpCircle },
-    analysisPost && { label: "Phân tích đáng đọc", post: analysisPost, icon: BarChart3 },
-    achievementPost && { label: "Thành tựu mới", post: achievementPost, icon: Target },
+    questionPost && { label: t.feed.spotlightQuestion, post: questionPost, icon: HelpCircle },
+    analysisPost && { label: t.feed.spotlightAnalysis, post: analysisPost, icon: BarChart3 },
+    achievementPost && { label: t.feed.spotlightAchievement, post: achievementPost, icon: Target },
   ].filter((item): item is { label: string; post: CommunityFeedPost; icon: typeof HelpCircle } => Boolean(item));
   const shellClass = embedded ? "" : "min-h-screen bg-stone-50 dark:bg-stone-950";
 
@@ -1110,7 +1110,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
             {/* Facebook-style Composer Trigger Bar */}
             <div className="mb-6 rounded-[22px] bg-white p-3.5 sm:p-4 shadow-sm ring-1 ring-stone-200/80 dark:bg-stone-900 dark:ring-stone-800 font-sans">
               <div className="flex items-center gap-3">
-                <Avatar name={user.user_metadata?.full_name || "Thành viên"} avatarUrl={user.user_metadata?.avatar_url} />
+                <Avatar name={user.user_metadata?.full_name || t.feed.anonMember} avatarUrl={user.user_metadata?.avatar_url} />
                 <button
                   type="button"
                   onClick={() => setIsComposeModalOpen(true)}
@@ -1177,7 +1177,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                     <div className="p-4 overflow-y-auto space-y-4 flex-1">
                       {/* User Profile & Audience Dropdowns */}
                       <div className="flex items-center gap-3">
-                        <Avatar name={user?.user_metadata?.full_name || "Thành viên"} avatarUrl={user?.user_metadata?.avatar_url} />
+                        <Avatar name={user?.user_metadata?.full_name || t.feed.anonMember} avatarUrl={user?.user_metadata?.avatar_url} />
                         <div>
                           <p className="text-sm font-black text-stone-900 dark:text-stone-100">
                             {user?.user_metadata?.full_name || t.feed.memberRole}
@@ -1664,7 +1664,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                       <div className="mt-4 rounded-[20px] bg-stone-50 p-3.5 dark:bg-stone-950/60">
                         {user && (
                           <div className="mb-3 flex items-start gap-2">
-                            <Avatar name={user.user_metadata?.full_name ?? "Bạn"} avatarUrl={user.user_metadata?.avatar_url ?? null} />
+                            <Avatar name={user.user_metadata?.full_name ?? t.feed.anonYou} avatarUrl={user.user_metadata?.avatar_url ?? null} />
                             <div className="flex-1 rounded-[18px] bg-white p-3 shadow-[0_8px_18px_-18px_rgba(15,23,42,0.16)] dark:bg-stone-900">
                               <textarea
                                 value={commentDrafts[post.id] ?? ""}

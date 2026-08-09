@@ -16,7 +16,6 @@ export const en: Dictionary = {
     sectionResources: "Resources",
     quiz: "Quiz",
     notes: "Notes",
-    skillTree: "Skill tree",
     learningPath: "Learning path",
     studyGroup: "Study groups",
     technicalInterview: "Technical Interview",
@@ -734,6 +733,12 @@ export const en: Dictionary = {
     passwordLabel: "Password",
     forgotLink: "Forgotten your password?",
     tooManyAttempts: "Too many attempts. Please wait {seconds} seconds and try again.",
+    genericError: "Something went wrong. Please try again.",
+    fillAllSignup: "Please fill in your name, email and password.",
+    passwordTooShort: "Password must be at least 6 characters.",
+    signupNoAutoLogin: "Your account was created but we couldn't sign you in automatically. Please sign in manually.",
+    fillEmailPassword: "Please fill in your email and password.",
+    enterEmail: "Please enter your email address.",
     processing: "Working on it...",
     signUp: "Sign up",
 
@@ -966,6 +971,25 @@ export const en: Dictionary = {
   },
 
   analytics: {
+    // Peak study window: the data layer returns an id, the copy lives here.
+    peakWindow: {
+      unknown: "Not enough data",
+      lateNight: "Late night / very early",
+      morning: "Morning",
+      afternoon: "Afternoon",
+      evening: "Evening",
+      night: "Late evening",
+    },
+    insightNoStudy7d: "No study in 7 days",
+    insightLessons7d: "{count} lessons / 7 days",
+    insightNotes: "{count} notes",
+    insightCompletion: "{percent}% completed",
+    minutesDone: "{count} minutes completed",
+    trackPersonal: "Personal",
+    trackProfessional: "Professional",
+    hintCompletionRatio: "Lessons finished / lessons opened",
+    hintSelfMarked: "Lessons you marked as done yourself",
+    hintConsistency: "How steadily you showed up over 8 weeks",
     // Nhãn tooltip biểu đồ. Trước là template literal trong thân arrow gọn -
     // hình dạng mà i18n-coverage chỉ thấy được sau khi thêm rule returned-text.
     lessonsUnit: "{count} lessons",
@@ -1221,6 +1245,13 @@ export const en: Dictionary = {
   },
 
   feed: {
+    voteBullish: "🐂 Blue Sea (Bullish - growth)",
+    voteBearish: "🐻 Red Sea (Bearish - cautious)",
+    spotlightQuestion: "Questions needing an answer",
+    spotlightAnalysis: "Analysis worth reading",
+    spotlightAchievement: "New achievements",
+    anonMember: "Member",
+    anonYou: "You",
     sentimentBullish: "🐂 Your Blue Sea bullish call has been recorded!",
     sentimentBearish: "🐻 Your Red Sea bearish call has been recorded!",
     postFailed: "Couldn't publish the post. Please try again.",
@@ -1954,6 +1985,22 @@ export const en: Dictionary = {
   },
 
   jobs: {
+    quizDone: "Assessment completed",
+    // The assessment's four career buckets. `topType` is an internal id; the
+    // copy lives here.
+    quizTypeLabel: {
+      Analytical: "Analysis & Investment (Analytical)",
+      Compliance: "Accounting & Audit (Compliance)",
+      "Client-facing": "Client Relations & Dealing (Client-facing)",
+      Quantitative: "Treasury & Quantitative",
+    },
+    quizTypeRoles: {
+      Analytical: "Financial Analyst, Investment Banking, FP&A, Investing (CFA track).",
+      Compliance: "Accountant, Auditor, Chief Accountant / CFO track.",
+      "Client-facing": "Credit Officer, Securities Broker.",
+      Quantitative: "Fund Manager, Risk Manager, Treasury Officer.",
+    },
+    quizResultLine: "{type} - Suggested roles: {roles}",
     careerAlt: "Career",
     examWeightTitle: "Exam weight: {weight}",
     cfaRelated: "CFA relevance:",
@@ -2476,6 +2523,8 @@ export const en: Dictionary = {
   },
   // components/lobby/LobbyClient.tsx - the shared 3D library lobby.
   lobby: {
+    plateDoneToday: "today",
+    plateNotYet: "not yet",
     building: "Building the library…",
     connectFailed: "Could not connect. Try reloading the page.",
     opening: "Opening the library doors…",

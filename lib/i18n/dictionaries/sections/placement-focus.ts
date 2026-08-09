@@ -1,5 +1,5 @@
 // Dictionary section for: DiagnosticPlacementModal, FocusTimePanel,
-// FortuneWheelModal, SkillTreeWidget, SmartRemediationWidget,
+// FortuneWheelModal, SmartRemediationWidget,
 // MotivationShareCard, UserMenu, and analytics/LeaderboardSection.
 // See "Translating the UI" in AGENTS.md.
 
@@ -70,15 +70,6 @@ export const placementFocusVi = {
     sectorMaContract: "Hợp Đồng M&A",
     sectorRolex: "Rolex Executive",
     sectorDoubleXpPotion: "Thuốc X2 XP 24H",
-  },
-  skillTree: {
-    title: "🌲 Cây Kỹ Năng Tài Chính (Finance Skill Tree)",
-    subtitle: "Theo dõi lộ trình phát triển năng lực tài chính cốt lõi theo logic tiên quyết khoa học.",
-    statusCompleted: "Đã học",
-    statusInProgress: "Đang học",
-    statusLocked: "Đang khóa",
-    goToLesson: "Học ngay bài học tương ứng →",
-    prerequisitesLabel: "Yêu cầu hoàn thành trước:",
   },
   smartRemediation: {
     badge: "Thử thách khắc phục lỗi sai",
@@ -203,15 +194,6 @@ export const placementFocusEn: typeof placementFocusVi = {
     sectorMaContract: "M&A Contract",
     sectorRolex: "Rolex Executive",
     sectorDoubleXpPotion: "24H Double XP Potion",
-  },
-  skillTree: {
-    title: "🌲 Finance Skill Tree",
-    subtitle: "Track your core finance competency progression through a scientific prerequisite chain.",
-    statusCompleted: "Completed",
-    statusInProgress: "In progress",
-    statusLocked: "Locked",
-    goToLesson: "Go to this lesson now →",
-    prerequisitesLabel: "Requires completing first:",
   },
   smartRemediation: {
     badge: "Mistake-fixing challenge",

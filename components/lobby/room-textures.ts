@@ -171,7 +171,15 @@ export interface NameplateStatus {
  *
  *  Trạng thái nằm NGAY TRÊN ĐẦU chứ không giấu trong menu nào: cả điểm của
  *  việc hiển thị nó là người đi ngang qua đọc được mà không phải bấm gì. */
-export function nameplateTexture(name: string, status?: NameplateStatus): THREE.Texture {
+// `labels` truyền vào chứ không dựng tại chỗ, giống `pomodoroTexture` ngay
+// dưới: chữ vẽ lên canvas không phải vị trí hiển thị nào mà `i18n-coverage`
+// nhìn thấy, nên một literal ở đây sẽ là tiếng Việt vĩnh viễn mà không cổng
+// nào kêu.
+export function nameplateTexture(
+  name: string,
+  status?: NameplateStatus,
+  labels: { doneToday: string; notYet: string } = { doneToday: "✓", notYet: "·" }
+): THREE.Texture {
   const W = 512;
   const H = status ? 190 : 128;
   const canvas = document.createElement("canvas");
@@ -190,7 +198,7 @@ export function nameplateTexture(name: string, status?: NameplateStatus): THREE.
   if (status) {
     if (status.streak > 0) bits.push(`🔥 ${status.streak}`);
     bits.push(`Lv.${status.level}`);
-    bits.push(status.doneToday ? "✓ hôm nay" : "· chưa học");
+    bits.push(status.doneToday ? `✓ ${labels.doneToday}` : `· ${labels.notYet}`);
   }
   const statusText = bits.join("   ");
   ctx.font = "500 34px ui-sans-serif, system-ui, -apple-system, sans-serif";

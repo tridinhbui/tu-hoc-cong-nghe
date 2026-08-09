@@ -99,11 +99,23 @@ const IGNORE_BLOCK = /\/\*\s*i18n-ignore-start:[\s\S]*?i18n-ignore-end\s*\*\//g;
 const BLOCK_COMMENT = /\/\*[\s\S]*?\*\//g;
 const LINE_COMMENT = /(^|\s)\/\/[^\n]*/g;
 
+// `throw new Error("...")` is not copy. It reaches a developer through a stack
+// trace, never a learner through a screen, and i18n-coverage already excludes
+// it - so leaving it in here made the two scripts disagree on files that were
+// in fact finished. components/lobby/room-textures.ts read 5 strings while
+// every one of them was a canvas-context guard.
+//
+// Excluded in the RULE rather than by wrapping the throws in i18n-ignore: an
+// ignore block is an unreviewed claim that a string is not copy, and this is a
+// shape the scanner can recognise on its own.
+const THROW_ERROR = /throw new [A-Z]\w*Error\((["'`])(?:\\.|(?!\1)[^\\])*\1\)/g;
+
 function stringsIn(src) {
   const scannable = src
     .replace(IGNORE_BLOCK, "")
     .replace(BLOCK_COMMENT, "")
-    .replace(LINE_COMMENT, "$1");
+    .replace(LINE_COMMENT, "$1")
+    .replace(THROW_ERROR, "throw new Error()");
   const found = [];
   for (const re of PATTERNS) {
     for (const m of scannable.matchAll(re)) {
@@ -132,7 +144,7 @@ function ignoredIn(src) {
   return n;
 }
 
-const target = process.argv[2];
+const target = process.argv.slice(2).find((a) => !a.startsWith("--"));
 
 if (target) {
   const src = readFileSync(target, "utf8");
@@ -188,8 +200,12 @@ for (const [category, { count, files }] of [...byCategory].sort((a, b) => b[1].c
 }
 
 const learner = rows.filter((r) => r.category === "learner-facing UI");
+// `--all` in ra HẾT thay vì 15 file nặng nhất. Bản rút gọn hợp lý khi đang
+// triage, nhưng lúc dọn cả một hạng mục thì cái đuôi mới là phần còn lại của
+// việc - và một danh sách bị cắt trông y hệt một danh sách đã xong.
+const limit = process.argv.includes("--all") ? learner.length : 15;
 console.log("\nNặng nhất trong learner-facing UI:");
-for (const { file, count } of learner.slice(0, 15)) {
+for (const { file, count } of learner.slice(0, limit)) {
   console.log(`  ${String(count).padStart(4)}  ${file}`);
 }
 console.log(`\nChi tiết một file:  node scripts/i18n-scan.mjs ${learner[0]?.file ?? "<path>"}`);

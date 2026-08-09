@@ -142,7 +142,7 @@ function LoginForm() {
     setError("");
 
     if (cooldownUntil) {
-      setError(`Bạn đã thử quá nhiều lần. Vui lòng đợi ${cooldownLeft} giây rồi thử lại.`);
+      setError(format(t.login.tooManyAttempts, { seconds: cooldownLeft }));
       return;
     }
 
@@ -152,12 +152,12 @@ function LoginForm() {
       if (mode === "signup") {
         // Validate inputs
         if (!name.trim() || !email.trim() || !password.trim()) {
-          setError("Vui lòng điền đầy đủ tên, email và mật khẩu.");
+          setError(t.login.fillAllSignup);
           setLoading(false);
           return;
         }
         if (password.length < 6) {
-          setError("Mật khẩu phải ít nhất 6 ký tự.");
+          setError(t.login.passwordTooShort);
           setLoading(false);
           return;
         }
@@ -195,7 +195,7 @@ function LoginForm() {
             setNeedsEmailConfirm(true);
             setError("");
           } else {
-            setError("Đã tạo tài khoản nhưng không thể tự động đăng nhập. Vui lòng đăng nhập thủ công.");
+            setError(t.login.signupNoAutoLogin);
           }
           setLoading(false);
           return;
@@ -207,7 +207,7 @@ function LoginForm() {
       } else {
         // Login mode
         if (!email.trim() || !password.trim()) {
-          setError("Vui lòng điền email và mật khẩu.");
+          setError(t.login.fillEmailPassword);
           setLoading(false);
           return;
         }
@@ -236,7 +236,7 @@ function LoginForm() {
         router.push(nextPath);
       }
     } catch {
-      setError("Có lỗi xảy ra. Vui lòng thử lại.");
+      setError(t.login.genericError);
       setLoading(false);
     }
   }
@@ -259,7 +259,7 @@ function LoginForm() {
         setConfirmResent(true);
       }
     } catch {
-      setError("Có lỗi xảy ra. Vui lòng thử lại.");
+      setError(t.login.genericError);
     } finally {
       setLoading(false);
     }
@@ -271,7 +271,7 @@ function LoginForm() {
     setError("");
 
     if (!email.trim()) {
-      setError("Vui lòng nhập email của bạn.");
+      setError(t.login.enterEmail);
       return;
     }
 
@@ -290,7 +290,7 @@ function LoginForm() {
       setResetSent(true);
       setLoading(false);
     } catch {
-      setError("Có lỗi xảy ra. Vui lòng thử lại.");
+      setError(t.login.genericError);
       setLoading(false);
     }
   }
@@ -324,7 +324,7 @@ function LoginForm() {
         setLoading(false);
       }
     } catch {
-      setError("Có lỗi xảy ra. Vui lòng thử lại.");
+      setError(t.login.genericError);
       setLoading(false);
     }
   }

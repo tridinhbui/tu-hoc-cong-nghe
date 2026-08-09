@@ -40,6 +40,7 @@ import LeaderboardSection from "@/components/analytics/LeaderboardSection";
 import CompetencyStatsSection from "@/components/analytics/CompetencyStatsSection";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 import { getCurrentUser } from "@/lib/current-user";
 
 const fadeUp = {
@@ -121,27 +122,27 @@ const CustomTooltip = ({ active, payload, label, formatter, labelFormatter }: Cu
   return null;
 };
 
-function insightFromAnalytics(analytics: LearningAnalyticsType) {
+// Hàm thuần nên không gọi được `useI18n()`; nhận `t` làm tham số thay vì
+// dựng câu chữ tại chỗ.
+function insightFromAnalytics(analytics: LearningAnalyticsType, t: Dictionary) {
   const insights: string[] = [];
 
-  if (analytics.recentMomentum.last7DaysLessons >= 3) {
-    insights.push(`${analytics.recentMomentum.last7DaysLessons} bài / 7 ngày`);
-  } else if (analytics.recentMomentum.last7DaysLessons === 0) {
-    insights.push("7 ngày chưa học");
+  if (analytics.recentMomentum.last7DaysLessons === 0) {
+    insights.push(t.analytics.insightNoStudy7d);
   } else {
-    insights.push(`${analytics.recentMomentum.last7DaysLessons} bài / 7 ngày`);
+    insights.push(format(t.analytics.insightLessons7d, { count: analytics.recentMomentum.last7DaysLessons }));
   }
 
   if (analytics.bestStudyHour !== null) {
-    insights.push(`${formatHour(analytics.bestStudyHour)} · ${analytics.peakStudyWindow}`);
+    insights.push(`${formatHour(analytics.bestStudyHour)} · ${t.analytics.peakWindow[analytics.peakStudyWindow]}`);
   }
 
   if (analytics.notes.totalNotes > 0) {
-    insights.push(`${analytics.notes.totalNotes} ghi chú`);
+    insights.push(format(t.analytics.insightNotes, { count: analytics.notes.totalNotes }));
   }
 
   if (analytics.completionRate < 60 && analytics.totalLessonsStarted >= 3) {
-    insights.push(`${analytics.completionRate}% hoàn thành`);
+    insights.push(format(t.analytics.insightCompletion, { percent: analytics.completionRate }));
   }
 
   return insights.slice(0, 3);
@@ -266,8 +267,8 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
   const trackPieData = useMemo(() => {
     if (!analytics) return [];
     return [
-      { name: "Cá nhân", value: analytics.lessonsByTrack.personal, color: "#10b981" },
-      { name: "Chuyên ngành", value: analytics.lessonsByTrack.professional, color: "#57534e" },
+      { name: t.analytics.trackPersonal, value: analytics.lessonsByTrack.personal, color: "#10b981" },
+      { name: t.analytics.trackProfessional, value: analytics.lessonsByTrack.professional, color: "#57534e" },
       { name: "Bonus", value: analytics.lessonsByTrack.bonus, color: "#f59e0b" },
     ].filter((item) => item.value > 0);
   }, [analytics]);
@@ -286,7 +287,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
     return analytics.studyTimeDistribution.filter((slot) => slot.lessonsCompleted > 0);
   }, [analytics]);
 
-  const insights = useMemo(() => (analytics ? insightFromAnalytics(analytics) : []), [analytics]);
+  const insights = useMemo(() => (analytics ? insightFromAnalytics(analytics, t) : []), [analytics]);
 
   if (loading) {
     return <AnalyticsSkeleton />;
@@ -350,7 +351,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
               <p className="mt-1 text-base sm:text-lg font-black text-stone-900 dark:text-stone-100 whitespace-nowrap">
                 {analytics.bestStudyHour !== null ? formatHour(analytics.bestStudyHour) : t.analytics.hourUnknown}
               </p>
-              <p className="text-[9px] font-semibold text-stone-500 truncate">{analytics.peakStudyWindow}</p>
+              <p className="text-[9px] font-semibold text-stone-500 truncate">{t.analytics.peakWindow[analytics.peakStudyWindow]}</p>
             </div>
           </div>
         </div>
@@ -403,7 +404,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
               icon={<Sparkles className="h-5 w-5" />}
               label={t.analytics.cardWeekRhythm}
               value={`${analytics.recentMomentum.last7DaysLessons} bài`}
-              hint={`${analytics.recentMomentum.last7DaysMinutes} phút hoàn thành`}
+              hint={format(t.analytics.minutesDone, { count: analytics.recentMomentum.last7DaysMinutes })}
               accent="from-emerald-500 to-teal-500"
               delay={0.06}
             />
@@ -411,7 +412,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
               icon={<Clock3 className="h-5 w-5" />}
               label={t.analytics.cardStudyTime}
               value={`${analytics.totalTimeSpent} phút`}
-              hint={`${analytics.peakStudyWindow} · ${analytics.bestStudyHour !== null ? formatHour(analytics.bestStudyHour) : "chưa rõ giờ"}`}
+              hint={`${t.analytics.peakWindow[analytics.peakStudyWindow]} · ${analytics.bestStudyHour !== null ? formatHour(analytics.bestStudyHour) : t.analytics.hourUnknown}`}
               accent="from-sky-400 to-blue-600"
               delay={0.1}
             />
@@ -551,7 +552,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
               icon={<CheckCircle2 className="h-5 w-5" />}
               label={t.analytics.cardCompletionRate}
               value={`${analytics.completionRate}%`}
-              hint="Tỷ số bài kết thúc / bài đã mở"
+              hint={t.analytics.hintCompletionRatio}
               accent="from-indigo-400 to-purple-600"
               delay={0.1}
             />
@@ -677,7 +678,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
               icon={<BookMarked className="h-5 w-5" />}
               label={t.analytics.cardManualFlags}
               value={`${analytics.manualFlags.totalFlags} bài`}
-              hint="Các bài tự bấm đánh dấu đã học"
+              hint={t.analytics.hintSelfMarked}
               accent="from-cyan-400 to-sky-500"
               delay={0.06}
             />
@@ -685,7 +686,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
               icon={<Award className="h-5 w-5" />}
               label={t.analytics.cardRhythmStability}
               value={`${analytics.consistencyScore}%`}
-              hint="Độ hiện diện đều đặn trong 8 tuần"
+              hint={t.analytics.hintConsistency}
               accent="from-stone-500 to-stone-700"
               delay={0.1}
             />

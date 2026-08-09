@@ -67,7 +67,6 @@ export const miscUiVi = {
     lessonPageLayout: {
       cardDropped: "📇 Rơi thẻ mới: {ticker} - {name}!",
       lessonCompletedLabel: "Hoàn thành bài học!",
-      skillUnlocked: "🌲 Mở khoá kỹ năng: {name} - xem ở Cây kỹ năng",
       streakFreezeUsed: "🧊 Bạn đã lỡ mất 1 ngày, nhưng chuỗi {streak} ngày vẫn được giữ nguyên nhờ lượt bảo vệ chuỗi (còn {remaining} lượt).",
     },
     lessonRoomCard: {
@@ -225,7 +224,6 @@ export const miscUiEn: typeof miscUiVi = {
     lessonPageLayout: {
       cardDropped: "📇 New card dropped: {ticker} - {name}!",
       lessonCompletedLabel: "Lesson completed!",
-      skillUnlocked: "🌲 Skill unlocked: {name} - check the Skill Tree",
       streakFreezeUsed: "🧊 You missed a day, but your {streak}-day streak was saved by a streak freeze ({remaining} left).",
     },
     lessonRoomCard: {

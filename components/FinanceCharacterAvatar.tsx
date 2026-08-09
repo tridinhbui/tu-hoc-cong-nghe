@@ -2,7 +2,7 @@
 // được mà không cần chỉ thị này chỉ vì MỌI file import nó đều đã "use client",
 // nên nó được kéo vào bundle client theo. Đó là một cái bẫy chứ không phải một
 // thiết kế: server component đầu tiên import nó sẽ làm sập trang, đúng như
-// TopicMasteryWidget vừa làm sập /cay-ky-nang. Khai rõ ra thì không phụ thuộc
+// TopicMasteryWidget từng làm sập /cay-ky-nang. Khai rõ ra thì không phụ thuộc
 // vào việc ai gọi mình nữa.
 "use client";
 

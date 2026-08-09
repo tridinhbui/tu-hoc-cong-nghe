@@ -650,7 +650,7 @@ export default function JobSearchClient() {
             .maybeSingle();
           if (data) {
             setQuizCompleted(true);
-            setQuizResult("Đã hoàn thành khảo sát");
+            setQuizResult(t.jobs.quizDone);
           }
         }
       }
@@ -752,23 +752,15 @@ export default function JobSearchClient() {
         }
       });
 
-      let typeLabel = "";
-      let rolesText = "";
-      if (topType === "Analytical") {
-        typeLabel = "Phân tích & Đầu tư (Analytical)";
-        rolesText = "Phân tích Tài chính, Investment Banking, FP&A, Đầu tư (CFA Track).";
-      } else if (topType === "Compliance") {
-        typeLabel = "Kế toán & Kiểm toán (Compliance)";
-        rolesText = "Kế toán viên, Kiểm toán viên, Kế toán trưởng / CFO Track.";
-      } else if (topType === "Client-facing") {
-        typeLabel = "Quan hệ Khách hàng & Giao dịch (Client-facing)";
-        rolesText = "Chuyên viên Tín dụng, Chuyên viên Môi giới Chứng khoán.";
-      } else {
-        typeLabel = "Nguồn vốn & Định lượng (Quantitative)";
-        rolesText = "Quản lý Quỹ, Quản lý Rủi ro, Chuyên viên Nguồn vốn.";
-      }
-
-      const resultString = `${typeLabel} - Gợi ý: ${rolesText}`;
+      const bucket = (["Analytical", "Compliance", "Client-facing", "Quantitative"] as const).includes(
+        topType as "Analytical" | "Compliance" | "Client-facing" | "Quantitative"
+      )
+        ? (topType as "Analytical" | "Compliance" | "Client-facing" | "Quantitative")
+        : "Quantitative";
+      const resultString = format(t.jobs.quizResultLine, {
+        type: t.jobs.quizTypeLabel[bucket],
+        roles: t.jobs.quizTypeRoles[bucket],
+      });
       setQuizResult(resultString);
       setQuizCompleted(true);
       setShowQuiz(false);

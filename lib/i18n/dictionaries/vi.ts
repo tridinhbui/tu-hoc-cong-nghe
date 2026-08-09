@@ -22,7 +22,6 @@ export const vi = {
     sectionResources: "Tài nguyên",
     quiz: "Kiểm tra",
     notes: "Ghi chú",
-    skillTree: "Cây kỹ năng",
     learningPath: "Lộ trình học",
     studyGroup: "Học nhóm",
     technicalInterview: "Phỏng vấn kỹ thuật",
@@ -787,6 +786,12 @@ export const vi = {
     passwordLabel: "Mật khẩu",
     forgotLink: "Quên mật khẩu?",
     tooManyAttempts: "Quá nhiều lần thử. Vui lòng đợi {seconds} giây rồi thử lại.",
+    genericError: "Có lỗi xảy ra. Vui lòng thử lại.",
+    fillAllSignup: "Vui lòng điền đầy đủ tên, email và mật khẩu.",
+    passwordTooShort: "Mật khẩu phải ít nhất 6 ký tự.",
+    signupNoAutoLogin: "Đã tạo tài khoản nhưng không thể tự động đăng nhập. Vui lòng đăng nhập thủ công.",
+    fillEmailPassword: "Vui lòng điền email và mật khẩu.",
+    enterEmail: "Vui lòng nhập email của bạn.",
     processing: "Đang xử lý...",
     signUp: "Đăng ký",
 
@@ -1039,6 +1044,25 @@ export const vi = {
     weekStarting: "Tuần bắt đầu {label}",
     hourBucket: "Khung giờ {hour}",
     noData: "Không có dữ liệu analytics",
+    // Khung giờ học đỉnh: tầng dữ liệu trả về ID, câu chữ nằm ở đây.
+    peakWindow: {
+      unknown: "Chưa đủ dữ liệu",
+      lateNight: "Khuya / rất sớm",
+      morning: "Buổi sáng",
+      afternoon: "Buổi chiều",
+      evening: "Buổi tối",
+      night: "Đêm muộn",
+    },
+    insightNoStudy7d: "7 ngày chưa học",
+    insightLessons7d: "{count} bài / 7 ngày",
+    insightNotes: "{count} ghi chú",
+    insightCompletion: "{percent}% hoàn thành",
+    minutesDone: "{count} phút hoàn thành",
+    trackPersonal: "Cá nhân",
+    trackProfessional: "Chuyên ngành",
+    hintCompletionRatio: "Tỷ số bài kết thúc / bài đã mở",
+    hintSelfMarked: "Các bài tự bấm đánh dấu đã học",
+    hintConsistency: "Độ hiện diện đều đặn trong 8 tuần",
     personal: "Cá nhân",
     currentRhythm: "Nhịp học hiện tại",
 
@@ -1292,6 +1316,13 @@ export const vi = {
 
   // components/CommunityFeedClient.tsx - the FinSocial feed (/finsocial).
   feed: {
+    voteBullish: "🐂 Biển Xanh (Bullish - Tăng trưởng)",
+    voteBearish: "🐻 Biển Đỏ (Bearish - Thận trọng)",
+    spotlightQuestion: "Câu hỏi cần trả lời",
+    spotlightAnalysis: "Phân tích đáng đọc",
+    spotlightAchievement: "Thành tựu mới",
+    anonMember: "Thành viên",
+    anonYou: "Bạn",
     sentimentBullish: "🐂 Đã ghi nhận nhận định Biển Xanh Bullish của bạn!",
     sentimentBearish: "🐻 Đã ghi nhận nhận định Biển Đỏ Bearish của bạn!",
     postFailed: "Không đăng được bài. Vui lòng thử lại.",
@@ -2090,6 +2121,21 @@ export const vi = {
   // Renders twice, desktop and mobile, so several labels appear in two places
   // with different styling; they share one key.
   jobs: {
+    quizDone: "Đã hoàn thành khảo sát",
+    // Bốn nhóm nghề của bài khảo sát. `topType` là ID nội bộ, câu chữ ở đây.
+    quizTypeLabel: {
+      Analytical: "Phân tích & Đầu tư (Analytical)",
+      Compliance: "Kế toán & Kiểm toán (Compliance)",
+      "Client-facing": "Quan hệ Khách hàng & Giao dịch (Client-facing)",
+      Quantitative: "Nguồn vốn & Định lượng (Quantitative)",
+    },
+    quizTypeRoles: {
+      Analytical: "Phân tích Tài chính, Investment Banking, FP&A, Đầu tư (CFA Track).",
+      Compliance: "Kế toán viên, Kiểm toán viên, Kế toán trưởng / CFO Track.",
+      "Client-facing": "Chuyên viên Tín dụng, Chuyên viên Môi giới Chứng khoán.",
+      Quantitative: "Quản lý Quỹ, Quản lý Rủi ro, Chuyên viên Nguồn vốn.",
+    },
+    quizResultLine: "{type} - Gợi ý: {roles}",
     careerAlt: "Nghề nghiệp",
     examWeightTitle: "Tỷ trọng đề thi: {weight}",
     cfaRelated: "Liên quan CFA:",
@@ -2651,6 +2697,8 @@ export const vi = {
   },
   // components/lobby/LobbyClient.tsx - the shared 3D library lobby.
   lobby: {
+    plateDoneToday: "hôm nay",
+    plateNotYet: "chưa học",
     building: "Đang dựng thư viện…",
     connectFailed: "Không kết nối được. Thử tải lại trang.",
     opening: "Đang mở cửa thư viện…",

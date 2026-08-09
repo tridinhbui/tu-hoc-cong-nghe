@@ -7,6 +7,7 @@ import { nameplateTexture, speechBubbleTexture, type NameplateStatus } from "./r
 import { CHAT_BUBBLE_MS } from "@/lib/supabase-lobby";
 import AvatarGear from "./AvatarGear";
 import { type CharacterEquipments } from "@/lib/rpg-items";
+import { useI18n } from "@/lib/i18n/context";
 
 /** Hình người tối giản: đầu - thân - hai tay hai chân đánh lắc khi bước.
  *  Không tải model GLB nào cả: một hình khối rõ ràng, chạy mượt với vài chục
@@ -93,6 +94,7 @@ export default function LobbyAvatar({
   gear,
   ghost = false,
 }: Props) {
+  const { t } = useI18n();
   const root = useRef<THREE.Group>(null);
   const leftArm = useRef<THREE.Mesh>(null);
   const rightArm = useRef<THREE.Mesh>(null);
@@ -103,8 +105,8 @@ export default function LobbyAvatar({
   const lastPos = useRef(new THREE.Vector2());
 
   const nameTex = useMemo(
-    () => nameplateTexture(name, status),
-    [name, status?.streak, status?.level, status?.doneToday]
+    () => nameplateTexture(name, status, { doneToday: t.lobby.plateDoneToday, notYet: t.lobby.plateNotYet }),
+    [name, status?.streak, status?.level, status?.doneToday, t.lobby.plateDoneToday, t.lobby.plateNotYet]
   );
   useEffect(() => () => nameTex.dispose(), [nameTex]);
   const shirt = useMemo(() => new THREE.Color(color), [color]);

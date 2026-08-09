@@ -30,6 +30,8 @@ function inferAnalyticsTopic(lesson: LessonMetaRow): StageTopicId {
   return stageTopicFor(lesson.id, lesson.track === "professional" ? "professional" : "personal");
 }
 
+export type PeakStudyWindow = "unknown" | "lateNight" | "morning" | "afternoon" | "evening" | "night";
+
 export interface LearningAnalytics {
   totalLessonsCompleted: number;
   totalLessonsStarted: number;
@@ -43,7 +45,7 @@ export interface LearningAnalytics {
   longestStreak: number;
   consistencyScore: number;
   bestStudyHour: number | null;
-  peakStudyWindow: string;
+  peakStudyWindow: PeakStudyWindow;
   recentMomentum: {
     last7DaysLessons: number;
     last30DaysLessons: number;
@@ -98,13 +100,17 @@ function formatWeekLabel(date: Date) {
   return `${date.getDate()}/${date.getMonth() + 1}`;
 }
 
-function getPeakStudyWindow(hour: number | null) {
-  if (hour === null) return "Chưa đủ dữ liệu";
-  if (hour < 6) return "Khuya / rất sớm";
-  if (hour < 12) return "Buổi sáng";
-  if (hour < 18) return "Buổi chiều";
-  if (hour < 22) return "Buổi tối";
-  return "Đêm muộn";
+/** Trả về ID chứ không phải câu chữ. Hàm này chạy ở tầng dữ liệu, nơi không có
+ *  `useI18n()` và cũng không nên có: một chuỗi tiếng Việt dựng ở đây sẽ đi
+ *  thẳng ra màn hình của người đọc tiếng Anh mà không cổng nào chặn được -
+ *  `i18n-coverage` chỉ nhìn vị trí hiển thị, còn chỗ này là một `return`. */
+function getPeakStudyWindow(hour: number | null): PeakStudyWindow {
+  if (hour === null) return "unknown";
+  if (hour < 6) return "lateNight";
+  if (hour < 12) return "morning";
+  if (hour < 18) return "afternoon";
+  if (hour < 22) return "evening";
+  return "night";
 }
 
 export async function getUserAnalytics(userId: string): Promise<LearningAnalytics> {

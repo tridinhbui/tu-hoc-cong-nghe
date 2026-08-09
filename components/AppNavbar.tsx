@@ -6,7 +6,7 @@ import Image from "next/image";
 import { isValidAvatar } from "@/lib/avatar-utils";
 import { usePathname, useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { FileText, BarChart3, StickyNote, GraduationCap, Gamepad2, Menu, X, Briefcase, BriefcaseBusiness, BookOpen, Home, Flame, Users, MessageSquareMore, Search, ChevronDown, Award, ShieldAlert, Route, Landmark, Network, Trophy, type LucideIcon } from "lucide-react";
+import { FileText, BarChart3, StickyNote, GraduationCap, Gamepad2, Menu, X, Briefcase, BriefcaseBusiness, BookOpen, Home, Flame, Users, MessageSquareMore, Search, ChevronDown, Award, ShieldAlert, Route, Landmark, Trophy, type LucideIcon } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import { format, type Dictionary } from "@/lib/i18n";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
@@ -63,9 +63,26 @@ type NavLink =
  * the row leaving the group it belongs to.
  */
 const TOP_LEVEL_LINKS: NavLink[] = [
-  /* i18n-ignore-start: proper nouns / product names, identical in both languages (Dashboard, FinSocial) */
+  /* i18n-ignore-start: proper nouns / product names, identical in both languages (Dashboard) */
   { href: "/dashboard", label: "Dashboard", icon: Home },
   /* i18n-ignore-end */
+];
+
+/** Ba lối vào cộng đồng, render NGAY SAU nhóm "Học tập" chứ không ở đầu nav.
+ *
+ *  Chúng từng nằm chung TOP_LEVEL_LINKS với Dashboard, tức đứng TRÊN mọi nhóm
+ *  học. Thứ tự đó đặt ba phòng sinh hoạt lên trước việc chính người học mở app
+ *  ra để làm. Học tập lên đầu; cộng đồng đứng ngay sau nó.
+ *
+ *  Vẫn KHÔNG gói thành một section riêng, giữ nguyên lý lẽ cũ: một tiêu đề gập
+ *  được đặt trên đúng ba dòng tốn nhiều chỗ hơn phần nó giấu đi, và chữ "Cộng
+ *  đồng" không nói thêm gì mà ba cái nhãn kia chưa nói. Chúng render phẳng,
+ *  cùng kiểu với Dashboard.
+ *
+ *  Kéo theo: ALL_SECTION_KEYS và forcedOpenKeys chỉ biết tới NAV_SECTIONS, nên
+ *  cụm này không gập được và không bao giờ bị ẩn - đúng ý định, vì không có
+ *  tiêu đề nào để bấm. */
+const COMMUNITY_LINKS: NavLink[] = [
   // "Thư viện" was hardcoded here as the 3D space's own name, like FinSocial.
   // But the room's own header is translated (t.lobby.title, "Library · Saigon
   // Reading Room"), so the nav and the page it opens named the same room two
@@ -76,6 +93,9 @@ const TOP_LEVEL_LINKS: NavLink[] = [
   { href: "/finsocial", label: "FinSocial", icon: MessageSquareMore },
   /* i18n-ignore-end */
 ];
+
+/** Nhóm mà cụm cộng đồng bám ngay phía sau. */
+const COMMUNITY_AFTER_SECTION: NavSection["titleKey"] = "sectionLearn";
 
 /** The nav is grouped by what the reader is trying to *do*, not by feature
  *  age. Eleven flat entries gave no hint which of them belonged together, so
@@ -102,14 +122,6 @@ const NAV_SECTIONS: NavSection[] = [
       // tôi", trang này là "nghề đó thì học bài nào" - và dùng chung icon
       // cặp táp thì đọc như một mục bị lặp.
       { href: "/nghe-nghiep-hoc", dataLabelKey: "hocTheoNghe", icon: Route },
-      // Cùng lý do với /cfa ngay dưới: cây kỹ năng chỉ mở được từ một tab trong
-      // dashboard, tab đó bị gỡ ở c3f7ec9, và không như thẻ/cosmetics/thử thách
-      // tuần - vốn còn bản thứ hai ở RPG hub - nó không tồn tại ở đâu khác. Từ
-      // lúc đó tới nay không có đường nào vào, kể cả gõ URL.
-      //
-      // Đặt cạnh "Học theo nghề" vì hai trang trả lời cùng một dạng câu hỏi
-      // "học bài nào tiếp", chỉ khác trục: một bên theo nghề, một bên theo thứ
-      // tự tiên quyết của khái niệm.
       // Đặt đầu nhóm vì đây là trang người mới cần TRƯỚC mọi trang khác: chọn
       // lộ trình, đặt nhịp, rồi mới học. Trước đó việc chọn lộ trình chỉ nằm ở
       // hai thẻ track trên dashboard, không kèm một chữ hướng dẫn nào - nên
@@ -118,9 +130,8 @@ const NAV_SECTIONS: NavSection[] = [
       // KHÔNG làm thành tab dashboard: DASHBOARD_TABS còn bốn giá trị tàn dư từ
       // lần dải tab bị gỡ ở c3f7ec9, và thêm cái thứ bảy là tạo thêm đúng loại
       // giá trị lưu được mà không có nút nào chọn lại. Một route riêng cộng một
-      // mục navbar là khuôn /nghe-nghiep-hoc và /cay-ky-nang đã dùng.
+      // mục navbar là khuôn /nghe-nghiep-hoc đã dùng.
       { href: "/lo-trinh", labelKey: "learningPath", icon: Flame },
-      { href: "/cay-ky-nang", labelKey: "skillTree", icon: Network },
       // /cfa had no nav entry at all. The only way in was a placement modal
       // that fires once per browser and never again once localStorage records
       // it, so ten subjects, 324 cross-referenced lessons, fourteen
@@ -657,6 +668,14 @@ export default function AppNavbar() {
               </div>
             </div>
           </div>
+          {/* Cụm cộng đồng nằm NGOÀI khối gập ở trên - nó bám sau nhóm này,
+              không thuộc vào nhóm này, nên gập "Học tập" lại không được giấu
+              nó đi. */}
+          {section.titleKey === COMMUNITY_AFTER_SECTION && (
+            <div className="mt-2.5 flex flex-col gap-1">
+              {COMMUNITY_LINKS.map((link) => renderNavItem(link, onNavigate))}
+            </div>
+          )}
         </div>
       );
     });
