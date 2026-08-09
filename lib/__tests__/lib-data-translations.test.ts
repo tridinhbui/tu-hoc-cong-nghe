@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { libDataVi, libDataEn } from "@/lib/i18n/dictionaries/sections/lib-data";
 import { FINANCE_CARDS } from "@/lib/finance-cards";
 import { DOCUMENT_CATEGORIES } from "@/lib/document-categories";
+import { WEEKLY_CAREER_MISSIONS } from "@/lib/weekly-career-mission";
 
 /** Ba module dữ liệu được dịch qua TỪ ĐIỂN chứ không qua thư mục `-i18n/`:
  *  lib/finance-cards.ts, lib/document-categories.ts và
@@ -47,6 +48,21 @@ describe("libData: module dữ liệu dịch qua từ điển", () => {
       if (a.join("|") !== b.join("|")) drift.push(`${group}: vi=[${a}] en=[${b}]`);
     }
     expect(drift, drift.join("\n")).toEqual([]);
+  });
+
+  it("mọi nhiệm vụ nghề nghiệp đều có khoá trong cả hai ngôn ngữ", () => {
+    const ids = WEEKLY_CAREER_MISSIONS.map((m) => m.id);
+    const missingEn = ids.filter((id) => !en.careerMissions?.[id]);
+    const missingVi = ids.filter((id) => !vi.careerMissions?.[id]);
+    expect(missingEn, `thiếu bản EN: ${missingEn.join(", ")}`).toEqual([]);
+    expect(missingVi, `thiếu bản VI: ${missingVi.join(", ")}`).toEqual([]);
+  });
+
+  it("sáu thời điểm trong ngày đều có nhãn ở cả hai ngôn ngữ", () => {
+    const phases = ["dawn", "morning", "afternoon", "dusk", "night", "lateNight"];
+    for (const bag of [vi, en]) {
+      expect(Object.keys(bag.roomTimeOfDay ?? {}).sort()).toEqual([...phases].sort());
+    }
   });
 
   it("bản EN không còn chuỗi tiếng Việt", () => {

@@ -54,7 +54,7 @@ import {
   type StudyRoomSummary,
   type StudyRoomTopic,
 } from "@/lib/supabase-study-rooms";
-import { getRoomLighting } from "@/lib/study-room-lighting";
+import { getRoomLighting, getRoomPhase } from "@/lib/study-room-lighting";
 import StudyRoomWorld from "@/components/study-room/StudyRoomWorld";
 import { getEquippedGear } from "@/lib/supabase-equipment";
 import { colorForUser } from "@/lib/supabase-lobby";
@@ -1551,7 +1551,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                           chỗ khác trong trang. */}
                       <span className="hidden sm:inline">
                         {" · "}
-                        {topicLabel(myRoom.topic).toUpperCase()} · {lighting.label.toUpperCase()}
+                        {topicLabel(myRoom.topic).toUpperCase()} · {t.libData.roomTimeOfDay[getRoomPhase(new Date().getHours())].toUpperCase()}
                       </span>
                     </span>
                     <button

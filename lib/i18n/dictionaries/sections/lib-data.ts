@@ -21,6 +21,47 @@
 
 export const libDataVi = {
   libData: {
+    // lib/study-room-lighting.ts - nhãn thời điểm trong ngày của phòng học 3D.
+    // Khoá là RoomTimeOfDay, không phải chỉ số mảng.
+    roomTimeOfDay: {
+      dawn: "Rạng sáng",
+      morning: "Buổi sáng",
+      afternoon: "Buổi chiều",
+      dusk: "Hoàng hôn",
+      night: "Buổi tối",
+      lateNight: "Khuya",
+    },
+
+
+    // lib/weekly-career-mission.ts - nhiệm vụ nghề nghiệp hằng tuần.
+    careerMissions: {
+      ib_questions: {
+        title: "Làm 20 câu IB question",
+        description: "Luyện technical + behavioral từ IB question bank trong mục Kiểm tra.",
+        ctaLabel: "Luyện IB question",
+      },
+      valuation_lessons: {
+        title: "Hoàn thành 2 bài valuation",
+        description: "Bất kỳ 2 bài thuộc nhóm Định giá (DCF, comps, terminal value...).",
+        ctaLabel: "Chọn bài định giá",
+      },
+      cv_bullets: {
+        title: "Viết 3 CV bullets",
+        description: "Mỗi bullet mô tả 1 việc bạn đã làm theo công thức Hành động - Con số - Kết quả.",
+        ctaLabel: "Viết bullet",
+      },
+      mock_interview: {
+        title: "Làm 1 mock interview",
+        description: "Một phiên phỏng vấn thử có tính giờ, 10 câu trải đều các nhóm câu hỏi.",
+        ctaLabel: "Bắt đầu phỏng vấn thử",
+      },
+      company_case: {
+        title: "Đọc 1 company case",
+        description: "Hoàn thành một case doanh nghiệp thật trong Thử thách tuần.",
+        ctaLabel: "Mở case tuần",
+      },
+    },
+
     documentCategories: {
       "mau-bieu": "Mẫu biểu",
       ebook: "Ebook / Tài liệu đọc",
@@ -111,6 +152,44 @@ export const libDataVi = {
 
 export const libDataEn: typeof libDataVi = {
   libData: {
+    roomTimeOfDay: {
+      dawn: "Dawn",
+      morning: "Morning",
+      afternoon: "Afternoon",
+      dusk: "Dusk",
+      night: "Evening",
+      lateNight: "Late night",
+    },
+
+
+    careerMissions: {
+      ib_questions: {
+        title: "Answer 20 IB questions",
+        description: "Work through technical and behavioural questions from the IB bank in the Quiz section.",
+        ctaLabel: "Practise IB questions",
+      },
+      valuation_lessons: {
+        title: "Finish 2 valuation lessons",
+        description: "Any 2 lessons from the valuation group (DCF, comps, terminal value, ...).",
+        ctaLabel: "Pick a valuation lesson",
+      },
+      cv_bullets: {
+        title: "Write 3 CV bullets",
+        description: "Each bullet describes something you did, in the form Action - Number - Result.",
+        ctaLabel: "Write a bullet",
+      },
+      mock_interview: {
+        title: "Do 1 mock interview",
+        description: "One timed mock interview, 10 questions spread across the question groups.",
+        ctaLabel: "Start the mock interview",
+      },
+      company_case: {
+        title: "Read 1 company case",
+        description: "Finish one real company case in the weekly challenge.",
+        ctaLabel: "Open this week's case",
+      },
+    },
+
     documentCategories: {
       "mau-bieu": "Templates",
       ebook: "Ebook / Reading material",

@@ -352,9 +352,9 @@ export default function CareerProfilePanel({ userId, careerId }: CareerProfilePa
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0">
-                    <p className="text-xs font-black text-stone-900 dark:text-stone-100">{mission.title}</p>
+                    <p className="text-xs font-black text-stone-900 dark:text-stone-100">{t.libData.careerMissions[mission.id as keyof typeof t.libData.careerMissions]?.title ?? mission.title}</p>
                     <p className="mt-1 text-[11px] text-stone-500 dark:text-stone-400 leading-relaxed">
-                      {mission.description}
+                      {t.libData.careerMissions[mission.id as keyof typeof t.libData.careerMissions]?.description ?? mission.description}
                     </p>
                   </div>
                   <span className="text-[11px] font-black tabular-nums text-stone-500 dark:text-stone-400 shrink-0">
@@ -393,14 +393,14 @@ export default function CareerProfilePanel({ userId, careerId }: CareerProfilePa
                       onClick={() => setInterviewOpen(true)}
                       className="px-4 py-2 rounded-xl bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-200 text-[11px] font-black transition-colors cursor-pointer"
                     >
-                      {mission.ctaLabel}
+                      {t.libData.careerMissions[mission.id as keyof typeof t.libData.careerMissions]?.ctaLabel ?? mission.ctaLabel}
                     </button>
                   ) : (
                     <Link
                       href={mission.href}
                       className="px-4 py-2 rounded-xl bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-200 text-[11px] font-black transition-colors"
                     >
-                      {mission.ctaLabel}
+                      {t.libData.careerMissions[mission.id as keyof typeof t.libData.careerMissions]?.ctaLabel ?? mission.ctaLabel}
                     </Link>
                   )}
                 </div>
