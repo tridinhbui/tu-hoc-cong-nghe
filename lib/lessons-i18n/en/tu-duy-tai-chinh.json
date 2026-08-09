@@ -1,0 +1,189 @@
+{
+  "slug": "tu-duy-tai-chinh",
+  "title": "Financial thinking",
+  "subtitle": "Knowledge is not the missing part - how you think is",
+  "duration": "6 min",
+  "openingQuestion": "Is the home you live in an asset or a liability?",
+  "openingOptions": [
+    "An asset, because property in general tends to appreciate over the long run",
+    "It depends on the cash flow: a home you live in takes money out every month",
+    "A liability, because every loan is a liability",
+    "An asset, because it sits on your personal balance sheet"
+  ],
+  "explanation": "The test is not the label but the direction of the cash flow: what puts money in your pocket is an asset, what takes money out is a liability. The same house falls into either group depending on how it is used - a rented-out house collects money every month, while the one you live in costs mortgage interest, tax, management fees and repairs. That does not make buying a home to live in wrong: it meets a real need, and not every decision should be optimised for cash flow. It only means you should not count the home you live in among the things currently feeding you when you tally up what actually produces income.",
+  "diagram": [
+    {
+      "label": "Income from work",
+      "arrow": true
+    },
+    {
+      "label": "Buy things that produce cash flow",
+      "arrow": true
+    },
+    {
+      "label": "Passive cash flow grows",
+      "arrow": true
+    },
+    {
+      "label": "That cash flow pays for your spending",
+      "arrow": false
+    }
+  ],
+  "realWorldExample": {
+    "company": "An office worker in Hanoi",
+    "description": "Two people both earn 20 million and both reach 30 million after five years. The one who held their standard of living steady and pushed the whole raise into investments ends those five years with capital already earning for them; the one whose spending rose with their salary keeps the same savings rate - a higher income, but no closer to financial independence."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Most personal finance knowledge is neither difficult nor secret. What separates two people on the same income is a handful of habits repeated long enough, plus one simple test applied to every large purchase."
+    },
+    {
+      "type": "heading",
+      "text": "Assets and liabilities: the test is cash flow"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Puts money in your pocket",
+        "text": "Shares and ETFs, rental property, a stake in a business that generates cash, savings that earn interest."
+      },
+      "right": {
+        "label": "Takes money out of your pocket",
+        "text": "A car bought on instalments for getting around, a high-rate credit card balance, luxury goods on deferred payment - and the home you live in while the mortgage is still running."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Do not turn this into a hard rule",
+      "text": "The same house can sit in both columns depending on how it is used, so this is a test for seeing clearly, not an instruction to sell up and rent. Buying a home to live in meets a real need; just do not count it among the things currently feeding you."
+    },
+    {
+      "type": "heading",
+      "text": "Time does most of the work"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Start at 25, contribute 5 million a month at 10% a year: roughly 4.5bn by 65",
+        "Start at 35, same contribution and same rate: roughly 1.7bn",
+        "Start at 45: roughly 650 million",
+        "Those first ten years change the outcome by nearly threefold, while the total contributed differs by only about three tenths"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "That is why the question worth asking is not how much to contribute each month but when to start. Adding two million a month does not make up for ten years already gone, because most of the final figure comes from interest earning interest rather than from the principal."
+    },
+    {
+      "type": "heading",
+      "text": "The order of the four layers"
+    },
+    {
+      "type": "list",
+      "items": [
+        "An emergency fund of 3-6 months of spending, so one incident does not force you to sell assets early or borrow at a high rate",
+        "Clear high-rate debt, credit card balances and consumer loans first",
+        "Basic health and life cover",
+        "Long-term investing: shares, ETFs, property"
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Three minimum habits"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Save at least 20% of income - the 50% needs, 30% wants, 20% saving and investing frame",
+        "Track your personal cash flow: knowing where the money goes is the precondition for controlling it",
+        "Study finance 15 minutes a day - knowledge compounds over time too"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Move the savings out the moment your salary lands, before you spend, rather than saving whatever is left - because usually nothing is.",
+        "And when your pay rises, hold your standard of living steady for a while: that is the cheapest moment to lift your savings rate."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "According to Rich Dad Poor Dad, what is the main difference between the rich and the poor?",
+      "options": [
+        "The rich buy assets, the poor buy liabilities",
+        "The rich work harder, so they earn more",
+        "The rich manage to save more because they spend less",
+        "The rich have more education"
+      ],
+      "explanation": "Kiyosaki: an asset is something that puts money in your pocket (shares, rental property, a business). A liability is something that takes money out (a consumer car, a home you live in). The rich accumulate assets."
+    },
+    {
+      "question": "When does compound interest work best?",
+      "options": [
+        "The higher the rate the better; time matters less",
+        "Over the longest possible investment horizon",
+        "With the largest possible principal",
+        "With interest credited as often as possible"
+      ],
+      "explanation": "Time is the strongest factor in compounding because its effect is exponential. 100 million at 10% a year for 30 years reaches 1.7bn. Over 40 years, 4.5bn."
+    },
+    {
+      "question": "What does 'pay yourself first' mean?",
+      "options": [
+        "Paying yourself a salary before your staff",
+        "Buying things for yourself before paying the bills",
+        "Moving savings out before you start spending",
+        "Giving yourself a raise whenever the company does well"
+      ],
+      "explanation": "Pay yourself first: the moment your salary arrives, move X% into the investment account before spending. Do not wait to 'save what is left' - usually nothing is."
+    },
+    {
+      "question": "What is lifestyle inflation and why is it dangerous?",
+      "options": [
+        "Inflation making an individual's cost of living more expensive",
+        "Living costs rising with age",
+        "A pay rise arriving alongside rising prices",
+        "Spending rising by exactly as much as income rises"
+      ],
+      "explanation": "Lifestyle inflation: pay rises 20% and spending rises 20% too, so the savings rate does not move. Wealthy people hold their lifestyle steady as income rises and invest the difference."
+    },
+    {
+      "question": "Under sound financial thinking, what should come first?",
+      "options": [
+        "Building an emergency fund of 3-6 months of spending",
+        "Buying a home - property is the best investment there is",
+        "Investing in shares, to start compounding early",
+        "Clearing all debt before thinking about investing"
+      ],
+      "explanation": "The emergency fund is the mandatory foundation. Without it, any incident - job loss, illness - forces you to sell investments early or borrow at a high rate."
+    }
+  ],
+  "keyTakeaways": [
+    "The asset-or-liability test is the direction of the cash flow, not the name of the thing",
+    "Time is the strongest variable in compounding - starting ten years earlier beats contributing more each month",
+    "Move the savings out the moment you are paid; do not save what is left over",
+    "If spending rises with every pay rise, the savings rate stands still"
+  ],
+  "summary": {
+    "keyIdea": "Wealth is not measured by income but by the share of income turned into things that produce money themselves",
+    "commonMistake": "Letting spending rise by exactly the size of the pay rise, and mistaking that for getting ahead",
+    "action": "Set up an automatic transfer into the investment account on the day your salary lands"
+  },
+  "application": {
+    "title": "Do this month",
+    "message": "Take the last three months of statements, sort every outgoing into things that put money in your pocket and things that take money out, then work out what percentage of your income goes towards the first group each month.",
+    "secondary": "If the figure is below 20%, the fix is usually not in your income but in your second and third largest expenses."
+  },
+  "practicePrompt": {
+    "question": "Your salary rises from 20 to 25 million. You were saving 4 million a month, which was 20%. To hold your standard of living steady, what should you do?",
+    "options": [
+      "Save 9 million: keep spending at the same 16 million as before",
+      "Save 5 million, to keep the same 20% rate as before",
+      "Save 4 million as before, and use the increase to live a little better",
+      "Wait until year end to see actual spending before deciding"
+    ],
+    "explanation": "Holding your standard of living steady means holding the amount spent steady, not the rate. The old spending was 20 - 4 = 16 million, so after the raise savings become 25 - 16 = 9 million and the rate jumps to 36%. Keeping the 20% rate is the tempting mistake: it lets spending rise to 20 million, so four fifths of the raise is absorbed by lifestyle."
+  }
+}
