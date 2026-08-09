@@ -783,4 +783,292 @@ export const IB_QUESTIONS_EN: IbQuestionTranslations = {
     explanation:
       "The interest rate channel is the most direct: dearer borrowing makes companies postpone projects and households postpone a house or a car. The other channels - exchange rate, asset prices, expectations - are real but slower and more indirect.",
   },
+  5066: {
+    category: "Macro - Policy & cycles",
+    question: "How does fiscal policy differ from monetary policy?",
+    options: [
+      "Fiscal uses tax and public spending; monetary uses rates and money supply",
+      "Fiscal is run by the central bank and monetary by parliament",
+      "Fiscal applies only in recession and monetary only in growth",
+      "Fiscal acts immediately while monetary always lags for years",
+    ],
+    explanation:
+      "The two tools sit in different institutions with different kinds of lag: fiscal needs legislation so it is slow to enact but fast once the money is spent; monetary is decided quickly but takes several quarters to work through the economy.",
+  },
+  5067: {
+    category: "Macro - Policy & cycles",
+    question: "What relationship does the Phillips curve describe?",
+    options: [
+      "A short-run trade-off between unemployment and inflation",
+      "The link between the budget and the trade balance",
+      "The correlation between short and long interest rates",
+      "The relation between money supply and real GDP growth",
+    ],
+    explanation:
+      "The key words are SHORT RUN. The trade-off broke down in the 1970s when inflation and unemployment were high together, and the explanation - inflation expectations shifting the whole curve - is the foundation of anchoring expectations today.",
+  },
+  5068: {
+    category: "Macro - Policy & cycles",
+    question: "Why do central banks care so much about inflation expectations?",
+    options: [
+      "Because expectations become self-fulfilling through wage and price setting",
+      "Because expectations feed into the GDP formula",
+      "Because the law requires publishing expectations quarterly",
+      "Because expectations directly determine the exchange rate",
+    ],
+    explanation:
+      "If companies believe prices will rise 8%, they set prices 8% higher and workers ask for 8% more - inflation arrives because everyone expected it. This is why a central bank that has lost credibility pays a far higher price to bring inflation back down.",
+  },
+  5069: {
+    category: "Macro - Policy & cycles",
+    question: "How does a leading indicator like PMI differ from a lagging one?",
+    options: [
+      "It changes before the economy actually turns",
+      "It reflects the state of the economy right now",
+      "It is published once a year by international bodies",
+      "It only confirms a trend after it has already happened",
+    ],
+    explanation:
+      "PMI asks purchasing managers about orders ahead, so it reacts before actual output. Unemployment is the opposite - firms cut staff after being weak for a while, so it confirms a recession rather than forecasting one.",
+  },
+  5070: {
+    category: "Macro - Policy & cycles",
+    question: "What pressure does a persistent trade surplus put on the exchange rate?",
+    options: [
+      "It raises demand for the local currency, pushing it up",
+      "None, because the central bank sets the rate",
+      "It lowers demand for the local currency, as exports get relatively cheaper",
+      "It pushes domestic rates up to attract foreign capital",
+    ],
+    explanation:
+      "Buyers of exports must convert foreign currency into local currency to pay, so a persistent surplus lifts demand for it. That is also the self-correcting mechanism: a stronger currency makes exports dearer and gradually shrinks the surplus itself.",
+  },
+  5071: {
+    category: "Macro - Policy & cycles",
+    question: "What state of the economy does stagflation describe?",
+    options: [
+      "High inflation alongside stagnant growth",
+      "Fast growth alongside a trade deficit",
+      "Prolonged deflation alongside very low unemployment",
+      "High inflation alongside an overheating boom",
+    ],
+    explanation:
+      "This is the hardest situation for a central bank: cutting rates to rescue growth makes inflation worse, raising them to stop inflation makes growth worse. The usual cause is a supply shock, such as an oil price spike.",
+  },
+  5072: {
+    category: "Macro - Policy & cycles",
+    question: "Why does monetary policy take so long to reach the economy?",
+    options: [
+      "Because investment and consumption decisions respond slowly",
+      "Because the law makes policy effective only after twelve months",
+      "Because statistics are published several years behind reality",
+      "Because the central bank meets only once a year",
+    ],
+    explanation:
+      "A factory already under construction does not stop because rates rose, and existing loans keep running on their old terms. The typical lag is estimated at four to eight quarters, so today's policy targets the economy of a year or two ahead, not today's.",
+  },
+  5073: {
+    category: "Tax - Corporate & personal",
+    question: "Where does deferred corporate income tax come from?",
+    options: [
+      "Temporary differences between the accounting books and the tax books",
+      "Tax reassessed after an inspection",
+      "Foreign contractor tax not yet declared in the period",
+      "Tax whose payment was deferred to next year on request",
+    ],
+    explanation:
+      "Accounting and tax recognise the same item at different moments - depreciation being the classic case. That difference reverses over time, so it creates a deferred tax asset or liability rather than tax genuinely payable now.",
+  },
+  5074: {
+    category: "Tax - Corporate & personal",
+    question: "What is the benefit of accelerated depreciation for tax purposes?",
+    options: [
+      "It defers the tax bill, which is worth something in time-value terms",
+      "It allows the asset to be recorded above its real value",
+      "It lowers the total tax paid over the asset's life",
+      "It raises accounting profit in the first year of use",
+    ],
+    explanation:
+      "The total tax across the asset's life is unchanged - acceleration only moves the obligation later. But a dong of tax paid in year five is cheaper than one paid today, so the present value of the obligation falls. The benefit is in cash flow, not in the amount.",
+  },
+  5075: {
+    category: "Tax - Corporate & personal",
+    question: "How does the effective tax rate differ from the statutory rate?",
+    options: [
+      "The effective rate is tax actually paid over accounting pre-tax profit",
+      "The two are always equal if the company complies with the law",
+      "The effective rate applies only to foreign-invested companies",
+      "The effective rate is a statutory ceiling for the industry",
+    ],
+    explanation:
+      "The statutory rate is the number in the law; the effective rate is what the company actually pays after incentives, loss carry-forwards, exempt income and cross-border differences. The gap between the two is where an analyst should read the notes carefully.",
+  },
+  5076: {
+    category: "Tax - Corporate & personal",
+    question: "What problem does a double taxation treaty solve?",
+    options: [
+      "The same income being taxed in two different countries",
+      "VAT being charged twice through the distribution chain",
+      "An individual having income from two different jobs",
+      "A company having to pay tax twice in the same year",
+    ],
+    explanation:
+      "Without a treaty, both the source country and the country of residence have a claim on the same income. A treaty allocates the taxing right and credits the tax paid abroad - otherwise cross-border investment would be taxed to the point of being unworkable.",
+  },
+  5077: {
+    category: "Tax - Corporate & personal",
+    question: "How does VAT differ in nature from corporate income tax?",
+    options: [
+      "VAT taxes consumption; corporate income tax taxes profit",
+      "VAT applies only to imported goods",
+      "VAT is computed annually and income tax per transaction",
+      "VAT is borne by the company and income tax by the buyer",
+    ],
+    explanation:
+      "The company collects VAT from the buyer and remits the difference after deducting input VAT, so the final burden sits with the consumer. Corporate income tax falls directly on the company's own profit - two taxes with genuinely different people bearing them.",
+  },
+  5078: {
+    category: "Tax - Corporate & personal",
+    question: "Why does the interest tax shield raise a company's value?",
+    options: [
+      "Because interest is deducted before taxable income is computed",
+      "Because interest reduces revenue subject to VAT",
+      "Because part of the interest is refunded from the state budget",
+      "Because interest is capitalised into the asset",
+    ],
+    explanation:
+      "Every dong of interest saves tax equal to interest times the tax rate, and that saving belongs to the owners. It is the core argument for using debt - but it is only worth anything while the company still has profit to deduct against.",
+  },
+  5079: {
+    category: "Tax - Corporate & personal",
+    question: "What does a loss carry-forward let a company do?",
+    options: [
+      "Offset a prior year's loss against taxable profit in later years",
+      "Record the loss as an intangible asset on the balance sheet",
+      "Reclaim tax paid in earlier years from the authority",
+      "Push the loss onto the parent company",
+    ],
+    explanation:
+      "Without it, a company losing 100 this year and making 100 next year would still pay tax on 100 despite breaking even overall. Carry-forward smooths the tax burden across the cycle, and it is also what creates a deferred tax asset on the balance sheet.",
+  },
+  5080: {
+    category: "Tax - Corporate & personal",
+    question: "What does a progressive personal income tax with brackets mean?",
+    options: [
+      "Each slice of income is taxed at that bracket's own rate",
+      "All income is taxed at the highest bracket reached",
+      "High earners are charged a single flat rate",
+      "The rate rises with the number of years worked",
+    ],
+    explanation:
+      "This is the most common misunderstanding about income tax: moving into a new bracket does not tax all your income at the higher rate, only the part above the threshold. A raise can therefore never leave you worse off after tax.",
+  },
+  5081: {
+    category: "Tax - Corporate & personal",
+    question: "Why do investment tax incentives usually come with a time limit?",
+    options: [
+      "To encourage investment without giving up budget revenue forever",
+      "Because companies only need relief during construction",
+      "Because the tax authority lacks staff to monitor longer",
+      "Because international law forbids incentives beyond five years",
+    ],
+    explanation:
+      "A time-limited incentive is long enough to shift the initial investment decision - the thing policy wants - and ends before it becomes a permanent subsidy. When appraising a project, it is the profit after the incentive expires that shows whether it is genuinely viable.",
+  },
+  5082: {
+    category: "Insurance - Pricing & risk",
+    question: "How does insurance risk pooling work?",
+    options: [
+      "Many contribute so the few who suffer a loss are compensated",
+      "The insurer keeps all the risk and shares none of it",
+      "Each person pays exactly their own expected loss",
+      "The risk is transferred entirely to the state regulator",
+    ],
+    explanation:
+      "One individual cannot predict whether they will have an accident, but across ten thousand people the rate is fairly stable. Insurance sells exactly that stability: swapping one large uncertain loss for one small certain premium.",
+  },
+  5083: {
+    category: "Insurance - Pricing & risk",
+    question: "What does adverse selection mean in insurance?",
+    options: [
+      "Higher-risk people are more inclined to buy cover",
+      "People behave more carelessly once they are insured",
+      "The insurer picks the wrong target customer group",
+      "Customers choose a policy that does not fit their needs",
+    ],
+    explanation:
+      "Someone who knows their health is poor cares more about health cover than someone healthy, so the insured pool is riskier than the general population. Without underwriting and risk classing, premiums must rise, the healthy leave, and that spiral can break a market.",
+  },
+  5084: {
+    category: "Insurance - Pricing & risk",
+    question: "How does moral hazard differ from adverse selection?",
+    options: [
+      "Moral hazard happens after purchase, adverse selection at purchase",
+      "Moral hazard is caused by the insurer, adverse selection by the client",
+      "Moral hazard exists only in life cover and adverse selection in general",
+      "They are the same concept under two regional names",
+    ],
+    explanation:
+      "Adverse selection is a problem of WHO buys; moral hazard is a problem of how the insured BEHAVES afterwards. The two need different tools: underwriting and risk classing for the first, deductibles and co-payment for the second.",
+  },
+  5085: {
+    category: "Insurance - Pricing & risk",
+    question: "What does the pure premium consist of?",
+    options: [
+      "The expected loss, before expenses and profit",
+      "A minimum premium set by the regulator for the industry",
+      "The whole premium the client pays, agent commission included",
+      "The premium left over after all claims are paid",
+    ],
+    explanation:
+      "Pure premium = probability of occurrence x average loss. The commercial premium the client actually pays adds acquisition costs, commission, administration and a profit margin - so the gap between the two shows how expensive the insurer's machinery is.",
+  },
+  5086: {
+    category: "Insurance - Pricing & risk",
+    question: "What does a loss ratio of 110% mean?",
+    options: [
+      "Claims exceed premiums collected, so underwriting is loss-making",
+      "There were 110 claims for every 100 policies sold",
+      "The insurer pays out 110% of the contract value",
+      "Premium revenue grew 110% against the same period last year",
+    ],
+    explanation:
+      "Loss ratio = claims / premiums. Above 100% means the underwriting itself loses money before operating costs are even counted. Many insurers stay profitable by investing the premiums collected in advance - but that is investment profit, not profit from pricing risk correctly.",
+  },
+  5087: {
+    category: "Insurance - Pricing & risk",
+    question: "What does reinsurance do for an insurer?",
+    options: [
+      "Passes part of a large risk to a third party",
+      "Reduces the reserving obligation to zero",
+      "Sells the whole policy on to another insurer",
+      "Raises the premium collected from existing clients",
+    ],
+    explanation:
+      "Without reinsurance a single storm could wipe out a regional insurer's capital. Reinsurance lets it write policies larger than its own capital could bear, in exchange for ceding part of the premium - buying insurance for itself.",
+  },
+  5088: {
+    category: "Insurance - Pricing & risk",
+    question: "What are technical reserves on an insurer's balance sheet?",
+    options: [
+      "Estimated obligations for losses incurred and still to emerge",
+      "Undistributed profit retained from earlier years",
+      "The share of equity set aside for investment activity",
+      "Cash required to be deposited at the central bank",
+    ],
+    explanation:
+      "This is the largest and most judgemental line on an insurer's balance sheet: it includes losses that have occurred but not yet been reported. Under-reserving flatters today's profit and pushes the problem into later years, which is why analysts scrutinise it hardest.",
+  },
+  5089: {
+    category: "Insurance - Pricing & risk",
+    question: "Why does life insurance have a savings element while general insurance does not?",
+    options: [
+      "Because the contract is long-dated, so early premiums accumulate",
+      "Because mortality risk is always lower than property damage risk",
+      "Because general insurers may not invest the premiums collected",
+      "Because the law requires life insurers to pay interest",
+    ],
+    explanation:
+      "A life contract runs for decades at a roughly level premium while mortality risk rises with age - so the excess premium paid in the early years accumulates to cover the later ones. That accumulation is what creates the surrender value.",
+  },
 };
