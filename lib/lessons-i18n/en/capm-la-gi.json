@@ -5,7 +5,7 @@
   "duration": "7 min",
   "openingQuestion": "CAPM: Ke = Rf + β(Rm − Rf). If Rf=4%, Rm=10%, β=1.2. Ke = ?",
   "openingOptions": [
-    "10%",
+    "10%, the market return itself",
     "4%",
     "14%",
     "11.2% = 4% + 1.2×(10%−4%)"

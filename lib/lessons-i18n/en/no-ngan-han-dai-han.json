@@ -5,7 +5,7 @@
   "duration": "5 min",
   "openingQuestion": "A company has a lot of current debt maturing next year but little cash. What is the main risk?",
   "openingOptions": [
-    "Interest-rate risk",
+    "Interest-rate risk, since the borrowing cost gets dearer",
     "Liquidity risk - not enough cash to repay debt on time",
     "No risk at all",
     "Currency risk"

@@ -8,7 +8,7 @@
     "A, because leverage amplifies ROE for shareholders",
     "B, because it's safer",
     "Equal",
-    "Depends on the industry"
+    "It depends entirely on which industry the two are in"
   ],
   "explanation": "Financial leverage works through a single mechanism: debt has a fixed cost, so every unit of profit above that cost belongs entirely to shareholders - less equity, roughly the same profit, and ROE jumps. But that same mechanism runs in reverse just as sharply when ROIC falls below the borrowing rate, and interest still has to be paid on time regardless. So the real question when using leverage is how stable the cash flow is, not how attractive the ROE looks.",
   "diagram": [

@@ -7,7 +7,7 @@
   "openingOptions": [
     "1 million",
     "500,000 dong",
-    "1.08^5 × 1 million",
+    "1.08^5 × 1 million, multiplying instead",
     "1 million / (1.08)^5 = ~680,000 dong"
   ],
   "explanation": "Discounting is the reverse calculation of compounding: instead of asking what an amount today will become, we ask how much a future amount is worth right now. Because the denominator carries an exponent, the farther out a cash flow is, the more heavily it gets compressed - at a 10% discount rate, an amount received twenty years out retains only about fifteen percent of its value. This is why the distant-future portion of a valuation model contributes far less than it feels like it should.",

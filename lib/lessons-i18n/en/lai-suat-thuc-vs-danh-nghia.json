@@ -5,7 +5,7 @@
   "duration": "6 min",
   "openingQuestion": "The bank rate is 8%, inflation is 6%. What is the real interest rate?",
   "openingOptions": [
-    "14%",
+    "14%, from adding the inflation on top of the bank rate",
     "8%",
     "About 2% (8% - 6%) - you're only genuinely 2% richer",
     "6%"

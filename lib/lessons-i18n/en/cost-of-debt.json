@@ -6,7 +6,7 @@
   "openingQuestion": "A company borrows at 8%/year, tax rate 20%. What is the after-tax cost of debt?",
   "openingOptions": [
     "1.6%",
-    "10%",
+    "10%, the rate plus the tax",
     "6.4% (= 8% × (1−20%))",
     "8%"
   ],

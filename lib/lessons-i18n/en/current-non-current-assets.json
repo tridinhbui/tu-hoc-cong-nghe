@@ -7,7 +7,7 @@
   "openingOptions": [
     "Cash",
     "Inventory",
-    "Accounts receivable",
+    "Accounts receivable from customers",
     "Plant and equipment (PP&E)"
   ],
   "explanation": "Assets are split by a single question: will it turn into cash within twelve months. Current covers cash, receivables, inventory; non-current covers plant, equipment, intangible assets, and long-term investments. The mix between the two groups says a lot about the business model: a business heavy in long-term assets struggles to adapt when demand drops, while an asset-light business is more flexible but also faces lower barriers to entry.",

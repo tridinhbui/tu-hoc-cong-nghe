@@ -5,7 +5,7 @@
   "duration": "7 min",
   "openingQuestion": "Opening a branch: invest 500 million, receive 200 million/year for 5 years, WACC 10%. Roughly what is the NPV?",
   "openingOptions": [
-    "500 million",
+    "500 million, which is the initial outlay itself",
     "258 million (positive NPV - should invest)",
     "−258 million",
     "0"

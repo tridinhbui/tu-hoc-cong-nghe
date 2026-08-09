@@ -5,7 +5,7 @@
   "duration": "10 min",
   "openingQuestion": "A company has 60% equity (Ke=12%) and 40% debt (Kd=6%, tax=20%). What is the WACC?",
   "openingOptions": [
-    "10%",
+    "10%, the simple average of the two",
     "9%",
     "7%",
     "8.88%"

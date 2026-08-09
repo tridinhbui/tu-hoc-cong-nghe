@@ -5,7 +5,7 @@
   "duration": "5 min",
   "openingQuestion": "PV Perpetuity = PMT / r. If you receive 10 million/year forever at r = 10%, what is it worth today?",
   "openingOptions": [
-    "10 million",
+    "10 million, the payment itself",
     "100 million (= 10 / 0.1)",
     "Infinite",
     "200 million"

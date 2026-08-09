@@ -8,7 +8,7 @@
     "Current Assets vs Current Liabilities",
     "Total debt",
     "Total assets",
-    "Shareholders' equity"
+    "Shareholders' equity on the balance sheet"
   ],
   "explanation": "A balance sheet reads top-to-bottom from most liquid to least: cash, receivables, inventory, then long-term assets. The Current Ratio (current assets divided by current liabilities) summarises that upper half into a single number about the ability to pay debt over the next 12 months, and below 1.0 is a level that needs explaining. But one ratio isn't enough: at the same Current Ratio of 1.5, a company whose current assets are mostly slow-moving inventory is far weaker than one holding cash.",
   "diagram": [

@@ -5,7 +5,7 @@
   "duration": "6 min",
   "openingQuestion": "A startup has 12 billion, burn rate 1 billion/month. What's the runway?",
   "openingOptions": [
-    "1 year",
+    "1 year, rounding the months to a whole year",
     "12 months (12 billion ÷ 1 billion/month)",
     "6 months",
     "24 months"
