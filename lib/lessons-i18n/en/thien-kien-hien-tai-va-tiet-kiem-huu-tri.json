@@ -1,0 +1,166 @@
+{
+  "slug": "thien-kien-hien-tai-va-tiet-kiem-huu-tri",
+  "title": "Present bias: why we know we should save for retirement and still do not",
+  "subtitle": "Your brain values 1 million today far above 1 million in 10 years - even when the future reward is many times larger",
+  "duration": "6 min",
+  "openingQuestion": "You are offered: (A) 2 million dong TODAY, or (B) 2.2 million dong in 1 MONTH. Many people take (A) even though (B) is mathematically better (10% in a month is enormous). But change it to: (A') 2 million in 12 months, or (B') 2.2 million in 13 months - and most people now take (B'). Why does the same one-month gap produce a different choice?",
+  "openingOptions": [
+    "Because people are miscalculating in one of the two cases",
+    "Hyperbolic discounting - immediate rewards are weighted excessively",
+    "Because 2.2 million is always better than 2 million in every case, so the question means nothing",
+    "Because people always prefer the larger amount regardless of time"
+  ],
+  "explanation": "This is hyperbolic discounting - one of the most important findings about present bias: people do not discount future value at a CONSISTENT rate over time as classical economic models assume, but weight a reward available RIGHT NOW disproportionately. The psychological distance between \"today\" and \"in a month\" feels far larger than the distance between \"in 12 months\" and \"in 13 months\", even though on the calendar both are exactly one month.",
+  "realWorldExample": {
+    "company": "The global retirement savings shortfall",
+    "description": "Present bias is regarded as one of the main psychological causes behind the shortfall in retirement savings across many countries: everyone rationally knows they should save for old age, but keeps deferring, because the benefit (financial security at 60-70) feels remote and abstract next to the pleasure of spending now. This is why auto-enrolment pension schemes - where employees are enrolled BY DEFAULT unless they actively opt out - have raised participation rates so much against schemes requiring an active sign-up."
+  },
+  "quiz": [
+    {
+      "question": "Why are auto-enrolment schemes (workers are enrolled in the pension automatically and must actively opt out) so much more effective than schemes requiring active sign-up, when in theory workers have exactly the same free choice in both?",
+      "options": [
+        "Because the law forbids leaving the scheme once enrolled",
+        "Because workers do not know they have been enrolled automatically",
+        "Because the default contribution rate is lower than a chosen one",
+        "Because doing nothing becomes the easiest available default"
+      ],
+      "explanation": "This is the famous application of nudge theory - developed by Richard Thaler and Cass Sunstein directly from what we know about present bias: because people defer any action requiring active effort (even a clearly beneficial one), changing the DEFAULT (from \"out unless you sign up\" to \"in unless you refuse\") uses that very psychological inertia to produce a better outcome for the worker, without restricting their freedom of choice at all."
+    },
+    {
+      "question": "How does a commitment device - such as automatically diverting part of your salary into a savings account that CANNOT be withdrawn before a set date - fight present bias?",
+      "options": [
+        "It removes the spend-it-now option from your future self",
+        "It allows withdrawal at any time, but subject to a penalty charge",
+        "It raises the bonus interest rate if you hold to the original term",
+        "It sends periodic reminders so the saver does not forget the goal"
+      ],
+      "explanation": "Commitment devices work off a deep insight about present bias: the person doing the PLANNING (at the start of the month, when the salary has just arrived) usually has strong willpower and a good long view, while the person doing the EXECUTING (facing an immediate temptation to spend) is easily swayed by the present. Locking the money away lets the planning self beat the executing self by removing the option to break the plan."
+    },
+    {
+      "question": "Why do people readily commit to \"from next month I will start saving / exercising / dieting\" and yet struggle to do the same thing today?",
+      "options": [
+        "Because long-term plans are always harder to carry out than short-term ones",
+        "Because a sacrifice now feels heavier than a sacrifice later",
+        "Because next month usually brings a higher income than this one",
+        "Because people underestimate their own ability to follow through"
+      ],
+      "explanation": "This is what procrastination looks like through the lens of present bias: when planning for the future, the cost of the sacrifice feels abstract and far easier to bear than when you face it RIGHT NOW. The catch is that when \"next month\" arrives it becomes that moment's \"now\", and the loop continues - which is why planning alone is usually not enough, and a concrete commitment device is needed to break it."
+    },
+    {
+      "question": "Why does switching the default from \"you must sign up\" to \"you must opt out\" send pension participation soaring?",
+      "options": [
+        "Because the contribution rate in the default option is always lower and therefore easier to accept",
+        "Because workers are not informed that they have any right to withdraw from the scheme at all",
+        "Because most people stay with whatever the default is, whichever way it is set",
+        "Because the law requires that anyone enrolled cannot withdraw during the first several years"
+      ],
+      "explanation": "Procrastination and inertia make the default the real choice for the majority. The notable part: freedom is not taken away at all - anyone can refuse - but the cost of procrastinating has been flipped to work in the saver's favour."
+    },
+    {
+      "question": "Which phenomenon does hyperbolic discounting explain?",
+      "options": [
+        "People tend to overrate their own ability to forecast where markets are going",
+        "People value future money at one steady discount rate that never varies",
+        "Investors demand a higher return on investments with longer maturities",
+        "Committing to something in future is easy, then on the day you change your mind"
+      ],
+      "explanation": "We discount the gap from today to tomorrow very heavily, and the gap from next year to the year after very lightly. So \"I'll start saving next month\" sounds entirely reasonable - and next month, that same argument pushes it out one more month."
+    }
+  ],
+  "keyTakeaways": [
+    "Hyperbolic discounting: people weight a reward available RIGHT NOW disproportionately against consistent time discounting - the gap \"today vs a month away\" feels far larger than \"next year vs next year plus a month\"",
+    "Auto-enrolment (enrolled by default, must actively opt out) uses psychological inertia to improve retirement saving rates, compared with active sign-up",
+    "Commitment devices (locked money, commitments that cannot easily be broken) let the planning self of today protect against the easily tempted self of the near future",
+    "Procrastination happens because the cost of a sacrifice feels lighter when placed in an abstract future - but that future becomes the present, with the same psychology attached"
+  ],
+  "practicePrompt": {
+    "question": "Your company offers a voluntary pension scheme with a 50% employer match (the company adds 50% of whatever you contribute). You have \"been meaning to sign up\" for the past 6 months and have not. Given what you know about present bias, which strategy actually gets you saving?",
+    "options": [
+      "Keep meaning to do it and wait until you feel psychologically ready",
+      "Sign up now at 2-3% of salary rather than waiting for the perfect moment",
+      "Wait until your salary rises considerably before starting to save",
+      "Present bias does not apply to retirement savings decisions"
+    ],
+    "explanation": "This is the most important practical principle for handling present bias: \"start small but start now\" always beats \"wait for the perfect plan\", because present bias guarantees that any future moment will meet the very same psychological barrier once it becomes the present. Missing the 50% employer match for every month of delay is a real, calculable opportunity cost."
+  },
+  "summary": {
+    "keyIdea": "Present bias makes people value immediate rewards far above what consistent time discounting would justify, which makes long-term saving hard - mechanisms such as auto-enrolment and commitment devices get you past that psychological barrier.",
+    "commonMistake": "Waiting for the perfect moment or the complete plan before starting to save, instead of taking a small action immediately",
+    "action": "If there is any automatic savings scheme available (a company pension, an automatic salary deduction), sign up NOW with a small amount rather than waiting for a more suitable time"
+  },
+  "application": {
+    "title": "Apply it now",
+    "message": "Identify one financial goal you have been meaning to act on and keep deferring - set up a specific commitment device (an automatic transfer, a locked savings account) to turn the intention into action today, even with a small amount.",
+    "secondary": "The next lesson pulls together the 5 biases covered so far and builds a decision filter you can run yourself before any large financial decision."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Everyone knows they should save for the future - but knowing is one thing and acting is another. Present bias explains the painful gap between good intentions and actual behaviour."
+    },
+    {
+      "type": "heading",
+      "text": "Hyperbolic discounting - when \"now\" matters disproportionately"
+    },
+    {
+      "type": "paragraph",
+      "text": "Classical economic models assume people discount future value at a FIXED and CONSISTENT rate over time (exponential discounting). Observed behaviour shows people using hyperbolic discounting instead - a pattern in which the gap between the PRESENT and the NEAR FUTURE is weighted disproportionately against an equivalent gap between two points in the DISTANT FUTURE. That is why a reward available right now is always more attractive than pure logic would allow."
+    },
+    {
+      "type": "heading",
+      "text": "Nudge theory - designing the choice intelligently"
+    },
+    {
+      "type": "paragraph",
+      "text": "Nudge theory, developed by Richard Thaler (Nobel laureate in economics, 2017) and Cass Sunstein, applies what we know about present bias directly: rather than trying to fix human psychology (hard and expensive), REDESIGN the default so that the good action becomes the path of least resistance. Auto-enrolment into a pension is the classic example - it turns saving from something requiring active effort into the default, while leaving everyone's freedom to opt out entirely intact."
+    },
+    {
+      "type": "heading",
+      "text": "Commitment devices - tying yourself to the mast"
+    },
+    {
+      "type": "paragraph",
+      "text": "Inspired by Ulysses lashing himself to the mast so the Sirens' song could not take him, commitment devices are mechanisms that let the present self (with its willpower and long view) protect against the near-future self (easily tempted by immediate consumption). **Examples:** an automatic transfer into savings the moment the salary lands (before there is any chance to spend it), or fixed-term savings accounts with a penalty for early withdrawal."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Three layers of defence against present bias",
+      "subtitle": "None of them cures the bias; all three are ways of living with it",
+      "concepts": [
+        {
+          "vi": "Chiết khấu hyperbolic",
+          "en": "Hyperbolic Discounting",
+          "def": "The root problem: the value of a reward falls very fast in the short term and then flattens out. So today we always want to spend, and always intend to save next month."
+        },
+        {
+          "vi": "Thiết kế lựa chọn",
+          "en": "Nudge / Default",
+          "def": "Change the default rather than argue the case. An automatic salary deduction into savings beats every piece of advice, because it needs no willpower at the moment of spending."
+        },
+        {
+          "vi": "Công cụ tự ràng buộc",
+          "en": "Commitment Device",
+          "def": "Take the choice away from your own future self - a fixed-term deposit, an account that is hard to draw on. Present you is working against future you."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Worth remembering",
+      "text": "The order of operations matters more than willpower. Saving whatever is left after spending nearly always fails, because spending expands to fill exactly the balance you can see."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Present bias is not a sign of weak willpower - it is a universal feature of the human brain, shaped over millions of years of evolution in which a reward available right now (food, safety) really did matter more than an abstract future one.",
+        "Beating present bias does not come from stronger willpower, but from DESIGNING the systems and the environment around you so the right action becomes the easiest path."
+      ]
+    }
+  ],
+  "diagram": [
+    { "label": "Hyperbolic discounting - \"now\" is weighted disproportionately", "arrow": true },
+    { "label": "Knowing you should save, and always deferring to next month", "arrow": true },
+    { "label": "Nudge: automatic enrolment, saving rate rising with salary", "arrow": true },
+    { "label": "Commit in advance: an automatic transfer on payday itself", "arrow": false }
+  ]
+}
