@@ -110,6 +110,16 @@ const NAV_SECTIONS: NavSection[] = [
       // Đặt cạnh "Học theo nghề" vì hai trang trả lời cùng một dạng câu hỏi
       // "học bài nào tiếp", chỉ khác trục: một bên theo nghề, một bên theo thứ
       // tự tiên quyết của khái niệm.
+      // Đặt đầu nhóm vì đây là trang người mới cần TRƯỚC mọi trang khác: chọn
+      // lộ trình, đặt nhịp, rồi mới học. Trước đó việc chọn lộ trình chỉ nằm ở
+      // hai thẻ track trên dashboard, không kèm một chữ hướng dẫn nào - nên
+      // người mới thấy 722 bài và không biết bắt đầu từ đâu.
+      //
+      // KHÔNG làm thành tab dashboard: DASHBOARD_TABS còn bốn giá trị tàn dư từ
+      // lần dải tab bị gỡ ở c3f7ec9, và thêm cái thứ bảy là tạo thêm đúng loại
+      // giá trị lưu được mà không có nút nào chọn lại. Một route riêng cộng một
+      // mục navbar là khuôn /nghe-nghiep-hoc và /cay-ky-nang đã dùng.
+      { href: "/lo-trinh", labelKey: "learningPath", icon: Flame },
       { href: "/cay-ky-nang", labelKey: "skillTree", icon: Network },
       // /cfa had no nav entry at all. The only way in was a placement modal
       // that fires once per browser and never again once localStorage records
@@ -211,6 +221,9 @@ export default function AppNavbar() {
   // second ref, or a tap on a menu item would count as "outside" and close the
   // panel on mousedown before the click ever reached the item.
   const mobileDropdownPanelRef = useRef<HTMLDivElement>(null);
+  // Cùng lý do, cho bản desktop: panel bay ngang ra khỏi sidebar nên nó phải
+  // nằm ngoài khối cuộn, tức ngoài cả desktopDropdownRef.
+  const desktopDropdownPanelRef = useRef<HTMLDivElement>(null);
 
 
   useEffect(() => {
@@ -354,9 +367,15 @@ export default function AppNavbar() {
     function handleClickOutside(event: MouseEvent) {
       const target = event.target as Node;
       const clickedInsideDesktop = desktopDropdownRef.current?.contains(target) ?? false;
+      const clickedInsideDesktopPanel = desktopDropdownPanelRef.current?.contains(target) ?? false;
       const clickedInsideMobile = mobileDropdownRef.current?.contains(target) ?? false;
       const clickedInsidePanel = mobileDropdownPanelRef.current?.contains(target) ?? false;
-      if (!clickedInsideDesktop && !clickedInsideMobile && !clickedInsidePanel) {
+      if (
+        !clickedInsideDesktop &&
+        !clickedInsideDesktopPanel &&
+        !clickedInsideMobile &&
+        !clickedInsidePanel
+      ) {
         setDropdownOpen(false);
       }
     }
@@ -691,16 +710,9 @@ export default function AppNavbar() {
             {!profile ? (
               <div className="h-12 rounded-2xl bg-stone-100 dark:bg-stone-900 animate-pulse" />
             ) : (
-              /* `flex-col-reverse` để menu bung LÊN chứ không xuống.
-                 Khối này nằm trong `mt-auto` ghim đáy sidebar, nên panel mở
-                 xuống chạy thẳng ra ngoài mép dưới màn hình - mục cuối
-                 ("Đăng xuất") bị đẩy sát đáy và nằm dưới cả badge devtools
-                 của Next.js. Đây đúng là tình huống NotificationBell ngay
-                 phía trên đã phải xử lý, và ghi chú của nó mô tả y hệt.
-                 Panel này nằm trong luồng chứ không `absolute`, nên đảo thứ
-                 tự trục dọc là đủ - không cần portal hay tính toạ độ như bên
-                 chuông, vì ở đây không có `overflow-hidden` nào cắt mất nó. */
-              <div className="flex flex-col-reverse">
+              /* Panel không nằm ở đây nữa - nó bay NGANG ra khỏi sidebar và
+                 được render ngay dưới khối cuộn, xem chú thích ở đó. */
+              <div>
                 <button
                   onClick={toggleProfileDropdown}
                   className="flex w-full items-center gap-2.5 rounded-2xl border border-stone-200 bg-white px-2.5 py-2.5 text-left transition-colors hover:bg-stone-50 dark:border-stone-800 dark:bg-stone-900 dark:hover:bg-stone-800 cursor-pointer"
@@ -717,39 +729,61 @@ export default function AppNavbar() {
                     <p className="truncate text-[11px] text-stone-500 dark:text-stone-400">{profile.email}</p>
                   </div>
                 </button>
-
-                {dropdownOpen && (
-                  /* mb-2 chứ không mt-2: sau khi đảo trục, khoảng hở phải nằm
-                     giữa panel và nút bên dưới nó. */
-                  <div className="mb-2 space-y-1 rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50/90 dark:bg-stone-900/90 p-2 shadow-sm animate-[fadeIn_0.15s_ease-out]">
-                    <button type="button" onClick={() => handleDropdownNavigate("/profile")} className="block w-full rounded-xl px-3 py-2 text-left text-xs font-bold text-stone-800 transition hover:bg-white dark:text-stone-200 dark:hover:bg-stone-800">
-                      {t.nav.menuProfile}
-                    </button>
-                    <button type="button" onClick={() => handleDropdownNavigate("/ban-be")} className="block w-full rounded-xl px-3 py-2 text-left text-xs font-bold text-stone-800 transition hover:bg-white dark:text-stone-200 dark:hover:bg-stone-800">
-                      {t.nav.menuFriends}
-                    </button>
-                    <button type="button" onClick={() => handleDropdownNavigate("/settings")} className="block w-full rounded-xl px-3 py-2 text-left text-xs font-bold text-stone-800 transition hover:bg-white dark:text-stone-200 dark:hover:bg-stone-800">
-                      {t.nav.menuSettings}
-                    </button>
-                    <div className="flex items-center justify-between gap-2 rounded-xl px-3 py-2">
-                      <span className="text-xs font-bold text-stone-800 dark:text-stone-200">
-                        🌐 {t.language.label}
-                      </span>
-                      <LanguageSwitcher compact />
-                    </div>
-                    <button
-                      onClick={handleSignOut}
-                      disabled={signingOut}
-                      className="block w-full rounded-xl px-3 py-2 text-left text-xs font-bold text-rose-600 transition hover:bg-rose-50 dark:text-rose-400 dark:hover:bg-rose-950/50 disabled:opacity-50"
-                    >
-                      🚪 {signingOut ? t.nav.signingOut : t.nav.signOut}
-                    </button>
-                  </div>
-                )}
               </div>
             )}
           </div>
         </div>
+
+        {/* Panel bay NGANG, và nó phải nằm ở đây - ngoài khối cuộn ngay trên -
+            chứ không cạnh cái nút mở nó.
+
+            Trước đây panel nằm trong luồng và dùng `flex-col-reverse` để bung
+            lên. Nằm trong luồng nghĩa là nó CHIẾM CHỖ: mở menu ra là đẩy cả
+            cụm dưới cùng của sidebar lên, chiều cao nội dung đổi, và với người
+            dùng thì nó hiện ra như thanh bên bị xô đi.
+
+            Không thể chỉ đổi sang `absolute` tại chỗ cũ. Khối bọc ngoài là
+            `overflow-y-auto`, và theo CSS khi một trục khác `visible` thì trục
+            còn lại tự thành `auto` - nên overflow-x cũng cắt, và panel thò
+            sang phải sẽ bị xén đúng mép sidebar. Đưa nó ra ngoài khối cuộn là
+            cách thoát mà không cần portal.
+
+            `<aside>` là `fixed` nên nó đã là containing block; `left-full` đặt
+            panel ngay sau mép phải sidebar, `bottom-4` khớp với `py-4` của khối
+            cuộn để panel thẳng hàng với nút ở đáy. z-50 để nằm trên nội dung
+            trang (aside là z-40).
+
+            Vì panel không còn nằm trong `desktopDropdownRef`, nó cần ref riêng
+            trong phép kiểm click-ra-ngoài - y hệt bản mobile đã phải làm. */}
+        {dropdownOpen && profile && (
+          <div
+            ref={desktopDropdownPanelRef}
+            className="absolute bottom-4 left-full ml-2 w-64 z-50 space-y-1 rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-2 shadow-xl animate-[fadeIn_0.15s_ease-out]"
+          >
+            <button type="button" onClick={() => handleDropdownNavigate("/profile")} className="block w-full rounded-xl px-3 py-2 text-left text-xs font-bold text-stone-800 transition hover:bg-stone-50 dark:text-stone-200 dark:hover:bg-stone-800">
+              {t.nav.menuProfile}
+            </button>
+            <button type="button" onClick={() => handleDropdownNavigate("/ban-be")} className="block w-full rounded-xl px-3 py-2 text-left text-xs font-bold text-stone-800 transition hover:bg-stone-50 dark:text-stone-200 dark:hover:bg-stone-800">
+              {t.nav.menuFriends}
+            </button>
+            <button type="button" onClick={() => handleDropdownNavigate("/settings")} className="block w-full rounded-xl px-3 py-2 text-left text-xs font-bold text-stone-800 transition hover:bg-stone-50 dark:text-stone-200 dark:hover:bg-stone-800">
+              {t.nav.menuSettings}
+            </button>
+            <div className="flex items-center justify-between gap-2 rounded-xl px-3 py-2">
+              <span className="text-xs font-bold text-stone-800 dark:text-stone-200">
+                🌐 {t.language.label}
+              </span>
+              <LanguageSwitcher compact />
+            </div>
+            <button
+              onClick={handleSignOut}
+              disabled={signingOut}
+              className="block w-full rounded-xl px-3 py-2 text-left text-xs font-bold text-rose-600 transition hover:bg-rose-50 dark:text-rose-400 dark:hover:bg-rose-950/50 disabled:opacity-50"
+            >
+              🚪 {signingOut ? t.nav.signingOut : t.nav.signOut}
+            </button>
+          </div>
+        )}
       </aside>
 
       {/* h-14 is load-bearing, not styling. This header is `sticky`, and a

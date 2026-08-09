@@ -17,6 +17,7 @@ export const en: Dictionary = {
     quiz: "Quiz",
     notes: "Notes",
     skillTree: "Skill tree",
+    learningPath: "Learning path",
     studyGroup: "Study groups",
     technicalInterview: "Technical Interview",
     career: "Careers",

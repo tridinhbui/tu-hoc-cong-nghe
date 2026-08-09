@@ -32,6 +32,7 @@ import { gamesVi, gamesEn } from "./games";
 import { interactiveChartsVi, interactiveChartsEn } from "./interactive-charts";
 import { interactiveEconVi, interactiveEconEn } from "./interactive-econ";
 import { interactiveRestVi, interactiveRestEn } from "./interactive-rest";
+import { learningPathVi, learningPathEn } from "./learning-path";
 import { legalChatVi, legalChatEn } from "./legal-chat";
 import { libDataVi, libDataEn } from "./lib-data";
 import { lessonAdminVi, lessonAdminEn } from "./lesson-admin";
@@ -73,6 +74,7 @@ export const viSections = {
   ...interactiveChartsVi,
   ...interactiveEconVi,
   ...interactiveRestVi,
+  ...learningPathVi,
   ...legalChatVi,
   ...libDataVi,
   ...lessonAdminVi,
@@ -115,6 +117,7 @@ export const enSections: typeof viSections = {
   ...interactiveChartsEn,
   ...interactiveEconEn,
   ...interactiveRestEn,
+  ...learningPathEn,
   ...legalChatEn,
   ...libDataEn,
   ...lessonAdminEn,
