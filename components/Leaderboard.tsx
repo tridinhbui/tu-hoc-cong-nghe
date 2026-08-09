@@ -197,213 +197,26 @@ const TABS: {
   { metric: "game", labelKey: "gamer", icon: Gamepad2, format: (v, u) => `${v} ${u.xp}` },
 ];
 
-/* i18n-ignore-start: per-rank honor titles are Vietnamese finance-meme wordplay,
-   not UI labels. Documented as deliberately untranslated in
-   lib/i18n/dictionaries/vi.ts - a literal translation reads as nonsense in
-   English ("Answer Destroyer", "Wall Street Sage"), and a good one is a
-   creative-writing pass, not a dictionary lookup. Kept out of the i18n-scan
-   count so the backlog figure reflects work someone actually intends to do. */
-const LEADERBOARD_TITLES: Record<LeaderboardUiMetric, Record<number, string>> = {
-  composite: { 1: "Học viên toàn diện nhất", 2: "Toàn diện xuất sắc", 3: "Cân bằng và vững vàng", 4: "Nền tảng toàn diện", 5: "Học chắc, học đều" },
-  xp: { 1: "Bậc thầy tài chính", 2: "Chuyên gia đầu tư", 3: "Nhà đầu tư tài năng", 4: "Kiện tướng tích lũy", 5: "Thợ săn XP" },
-  lessons: { 1: "Vua sách giáo khoa", 2: "Thủ kho tri thức", 3: "Máy học không ngừng", 4: "Mọt sách chính hiệu", 5: "Người đọc thông thái" },
-  avg_score: { 1: "Thần chính xác", 2: "Đại sư câu hỏi", 3: "Bậc thầy câu hỏi", 4: "Chiến thần IQ", 5: "Kẻ hủy diệt đáp án" },
-  streak: { 1: "Huyền thoại chuỗi ngày", 2: "Lửa không tắt", 3: "Kiên trì vàng", 4: "Ngọn lửa đam mê", 5: "Học đều mỗi ngày" },
-  badges: { 1: "Bộ sưu tập huy hiệu", 2: "Thợ săn huy hiệu", 3: "Người mở khóa", 4: "Nhà sưu tầm vĩ đại", 5: "Danh hiệu đầy mình" },
-  game: { 1: "Huyền thoại trò chơi", 2: "Đại kiện tướng tài chính", 3: "Cao thủ toàn năng", 4: "Thần bài tài chính", 5: "Kỷ lục gia trò chơi" },
-  career: { 1: "Huyền thoại sự nghiệp", 2: "Lãnh đạo tương lai", 3: "Chuyên gia lộ trình", 4: "Kiến trúc sư sự nghiệp", 5: "Tiên phong ngành" },
-  cfa: { 1: "Chiến thần CFA Level I", 2: "Bậc thầy Flashcard & Formula", 3: "Chuyên gia Ethics & Quant", 4: "Kiện tướng CFA", 5: "Tiên phong Lộ trình CFA" },
-  community: { 1: "Đại sứ Cộng đồng", 2: "Hỗ trợ viên tích cực", 3: "Người truyền cảm hứng", 4: "Chuyên gia chia sẻ", 5: "Thành viên sôi nổi" },
-};
-/* i18n-ignore-end */
-
 const PODIUM_ORDER = [3, 1, 0, 2, 4];
 
-function getLeaderboardTitle(metric: LeaderboardUiMetric, rank: number): string | null {
-  return LEADERBOARD_TITLES[metric]?.[rank] ?? null;
+/** Danh hiệu và biệt danh theo hạng. Dữ liệu nằm ở
+ *  `t.leaderboardHonors` (sections/leaderboard-honors.ts) chứ không phải
+ *  literal trong file này: bảng xếp hạng tiếng Anh trước đây hiện "HUY CHƯƠNG
+ *  BẠC" và "HỌC CHẮC TỪNG BƯỚC" dán trên từng bục. */
+function getLeaderboardTitle(t: Dictionary, metric: LeaderboardUiMetric, rank: number): string | null {
+  return t.leaderboardHonors.titles[metric]?.[rank - 1] ?? null;
 }
 
-function getLeaderboardHonor(metric: LeaderboardUiMetric, rank: number) {
-  const title = getLeaderboardTitle(metric, rank);
-
-  /* i18n-ignore-start: same flavor-text exemption as LEADERBOARD_TITLES above -
-     per-rank badge names and nicknames, not UI labels. */
-  const byMetric: Record<string, Record<number, { badge: string; nickname: string }>> = {
-    composite: {
-      1: { badge: "Vương miện toàn diện", nickname: "🏆 Học Viên Toàn Diện Số 1" },
-      2: { badge: "Huy chương bạc", nickname: "🎯 Cân Bằng Mọi Mặt" },
-      3: { badge: "Huy chương đồng", nickname: "🛡️ Nền Tảng Rất Chắc" },
-      4: { badge: "Top 4", nickname: "📚 Học Chắc Từng Bước" },
-      5: { badge: "Top 5", nickname: "⚖️ Vừa Đều Vừa Sâu" },
-    },
-    xp: {
-      1: { badge: "Vương miện XP", nickname: "Hiền giả Phố Wall" },
-      2: { badge: "Huy chương bạc", nickname: "Chiến lược gia vốn" },
-      3: { badge: "Huy chương đồng", nickname: "Người leo đỉnh thị trường" },
-      4: { badge: "Top 4", nickname: "Người tạo đà" },
-      5: { badge: "Top 5", nickname: "Danh mục thăng hạng" },
-      6: { badge: "Top 6 Cao Cấp", nickname: "💼 Chuyên Viên Đầu Tư" },
-      7: { badge: "Top 7 Đột Phá", nickname: "📊 Bậc Thầy Phân Tích" },
-      8: { badge: "Top 8 Tiềm Năng", nickname: "🏛️ Chiến Binh Phố Wall" },
-      9: { badge: "Top 9 Thợ Săn", nickname: "💎 Thợ Săn Cổ Phiếu" },
-      10: { badge: "Top 10 Danh Giá", nickname: "📈 Chuyên Gia Tài Chính" },
-      11: { badge: "Top 11 Sút Tố", nickname: "🚀 Sói Biển Đầu Tư" },
-      12: { badge: "Top 12 Bản Lĩnh", nickname: "🏆 Huyền Thoại Tích Lũy" },
-      13: { badge: "Top 13 Kiên Cường", nickname: "🎯 Tay Đua Kiến Thức" },
-      14: { badge: "Top 14 Bền Vững", nickname: "🛡️ Hiệp Sĩ An Toàn" },
-      15: { badge: "Top 15 Thần Tốc", nickname: "⚡ Thần Tốc Học Tập" },
-      16: { badge: "Top 16 Tiên Tri", nickname: "🔮 Tiên Tri Thị Trường" },
-      17: { badge: "Top 17 Quản Lý", nickname: "💼 Nhà Quản Lý Quỹ" },
-      18: { badge: "Top 18 Triển Vọng", nickname: "🎓 Thạc Sĩ Tài Chính" },
-      19: { badge: "Top 19 Nỗ Lực", nickname: "🛡️ Bậc Thầy Rủi Rủi" },
-      20: { badge: "Top 20 Vinh Danh", nickname: "🌟 Ngôi Sao Triển Vọng" },
-    },
-    lessons: {
-      1: { badge: "Vương miện bài học", nickname: "Vua bài học" },
-      2: { badge: "Huy chương bạc", nickname: "Người giữ tri thức" },
-      3: { badge: "Huy chương đồng", nickname: "Máy học bền bỉ" },
-      4: { badge: "Top 4", nickname: "Người chạy trang" },
-      5: { badge: "Top 5", nickname: "Độc giả tập trung" },
-      6: { badge: "Top 6 Mọt Sách", nickname: "📚 Học Giả Cần Mẫn" },
-      7: { badge: "Top 7 Đột Phá", nickname: "📖 Thủ Kho Giáo Trình" },
-      8: { badge: "Top 8 Siêu Cấp", nickname: "💡 Bậc Thầy Nhận Thức" },
-      9: { badge: "Top 9 Tích Lũy", nickname: "🎓 Học Viên Siêu Cấp" },
-      10: { badge: "Top 10 Uy Tín", nickname: "🌟 Tiên Phong Học Tập" },
-      11: { badge: "Top 11 Đam Mê", nickname: "✍️ Tay Viết Ghi Chú" },
-      12: { badge: "Top 12 Nhẫn Nại", nickname: "🏆 Chiến Binh Đọc Sách" },
-      13: { badge: "Top 13 Bền Bỉ", nickname: "🔎 Kẻ Tìm Tòi Tri Thức" },
-      14: { badge: "Top 14 Tinh Anh", nickname: "🧠 Bộ Ốc Tài Chính" },
-      15: { badge: "Top 15 Tích Cực", nickname: "⚡ Học Viên Năng Lượng" },
-      16: { badge: "Top 16 Uy Nghiêm", nickname: "📕 Đội Trưởng Kiến Thức" },
-      17: { badge: "Top 17 Vững Vàng", nickname: "💼 Chuyên Viên Nghiên Cứu" },
-      18: { badge: "Top 18 Siêu Tốc", nickname: "🚀 Tên Lửa Tri Thức" },
-      19: { badge: "Top 19 Chăm Chỉ", nickname: "🌟 Tinh Tú Tích Lũy" },
-      20: { badge: "Top 20 Vinh Dự", nickname: "🎖️ Học Viên Tiêu Biểu" },
-    },
-    avg_score: {
-      1: { badge: "Vương miện câu hỏi", nickname: "Nhà tiên tri đáp án" },
-      2: { badge: "Huy chương bạc", nickname: "Nhà phân tích chuẩn xác" },
-      3: { badge: "Huy chương đồng", nickname: "Người giải sắc bén" },
-      4: { badge: "Top 4", nickname: "Người đọc tín hiệu" },
-      5: { badge: "Top 5", nickname: "Thợ săn đáp án" },
-      6: { badge: "Top 6 Chuẩn Xác", nickname: "🎯 Xạ Thủ Quiz" },
-      7: { badge: "Top 7 Sắc Báo", nickname: "🔍 Thấu Thị Đáp Án" },
-      8: { badge: "Top 8 Thông Thái", nickname: "🧠 Thần Đồng Logic" },
-      9: { badge: "Top 9 Đỉnh Cao", nickname: "💎 Bậc Thầy Trắc Nghiệm" },
-      10: { badge: "Top 10 Tuyệt Đối", nickname: "🏆 Kỷ Lục Gia Quiz" },
-      11: { badge: "Top 11 Uy Tín", nickname: "⚡ Phản Xạ Thần Tốc" },
-      12: { badge: "Top 12 Bản Lĩnh", nickname: "🔮 Tiên Tri Đúng 100%" },
-      13: { badge: "Top 13 Vững Vàng", nickname: "🛡️ Khiên Thần Không Sai" },
-      14: { badge: "Top 14 Sáng Tạo", nickname: "💡 Bậc Thầy Phân Tích" },
-      15: { badge: "Top 15 Tinh Anh", nickname: "🎓 Thầy Quiz Phố Wall" },
-      16: { badge: "Top 16 Thần Tốc", nickname: "🚀 Tên Lửa Đáp Án" },
-      17: { badge: "Top 17 Kiên Cường", nickname: "⭐ Ngôi Sao Trắc Nghiệm" },
-      18: { badge: "Top 18 Nhạy Báo", nickname: "🔍 Cảm Nhận Đáp Án" },
-      19: { badge: "Top 19 Sắc Thảo", nickname: "🎯 Bậc Thầy Điểm Tuyệt Đối" },
-      20: { badge: "Top 20 Vinh Danh", nickname: "🎖️ Kiện Tướng Trắc Nghiệm" },
-    },
-    streak: {
-      1: { badge: "Vương miện chuỗi ngày", nickname: "Người khổng lồ bền bỉ" },
-      2: { badge: "Huy chương bạc", nickname: "Người giữ lửa" },
-      3: { badge: "Huy chương đồng", nickname: "Chiến binh mỗi ngày" },
-      4: { badge: "Top 4", nickname: "Người xây nếp học" },
-      5: { badge: "Top 5", nickname: "Người rèn thói quen" },
-      6: { badge: "Top 6 Bền Bỉ", nickname: "🔥 Ngọn Lửa Bất Diệt" },
-      7: { badge: "Top 7 Kiên Trì", nickname: "⚡ Chuỗi Ngày Thần Tốc" },
-      8: { badge: "Top 8 Kỷ Luật", nickname: "🛡️ Kỷ Luật Thép" },
-      9: { badge: "Top 9 Tự Giác", nickname: "🏆 Hiệp Sĩ Mỗi Ngày" },
-      10: { badge: "Top 10 Đẳng Cấp", nickname: "🌟 Chiến Thần Học Đều" },
-      11: { badge: "Top 11 Nỗ Lực", nickname: "💪 Bền Bỉ Không Ngừng" },
-      12: { badge: "Top 12 Dũng Cảm", nickname: "🚀 Tên Lửa Thói Quen" },
-      13: { badge: "Top 13 Đam Mê", nickname: "🔥 Trái Tim Nhiệt Huyết" },
-      14: { badge: "Top 14 Vững Bước", nickname: "🎯 Bậc Thầy Tự Học" },
-      15: { badge: "Top 15 Trung Thành", nickname: "🎓 Học Viên Chăm Chút" },
-      16: { badge: "Top 16 Tiên Phong", nickname: "⭐ Ngôi Sao Kiên Trì" },
-      17: { badge: "Top 17 Vượt Khó", nickname: "🛡️ Bậc Thầy Thói Quen" },
-      18: { badge: "Top 18 Bền Vững", nickname: "🔮 Ngọn Đuốc Tri Thức" },
-      19: { badge: "Top 19 Năng Lượng", nickname: "⚡ Năng Lượng Đỉnh Cao" },
-      20: { badge: "Top 20 Vinh Danh", nickname: "🎖️ Tinh Anh Mỗi Ngày" },
-    },
-    badges: {
-      1: { badge: "Vương miện huy hiệu", nickname: "Hoàng đế huy hiệu" },
-      2: { badge: "Huy chương bạc", nickname: "Bậc thầy mở khóa" },
-      3: { badge: "Huy chương đồng", nickname: "Thợ săn thành tựu" },
-      4: { badge: "Top 4", nickname: "Nhà sưu tầm danh xưng" },
-      5: { badge: "Top 5", nickname: "Người tìm vinh danh" },
-      6: { badge: "Top 6 Sưu Tầm", nickname: "💎 Đại Sưu Tập Huy Hiệu" },
-      7: { badge: "Top 7 Đột Phá", nickname: "🏆 Thợ Săn Huy Chương" },
-      8: { badge: "Top 8 Tinh Anh", nickname: "🌟 Bậc Thầy Thành Tựu" },
-      9: { badge: "Top 9 Uy Tín", nickname: "🛡️ Thủ Kho Huy Hiệu" },
-      10: { badge: "Top 10 Đẳng Cấp", nickname: "🎓 Chuyên Gia Mở Khóa" },
-      11: { badge: "Top 11 Đam Mê", nickname: "⚡ Thần Tốc Sưu Tầm" },
-      12: { badge: "Top 12 Bản Lĩnh", nickname: "🚀 Tên Lửa Thành Tựu" },
-      13: { badge: "Top 13 Vững Vàng", nickname: "🎯 Sạ Thủ Danh Hiệu" },
-      14: { badge: "Top 14 Tích Cực", nickname: "🔥 Ngọn Lửa Vinh Danh" },
-      15: { badge: "Top 15 Khám Phá", nickname: "🔮 Kẻ Mở Khóa Bí Ẩn" },
-      16: { badge: "Top 16 Uy Nghiêm", nickname: "💼 Nhà Quản Lý Huy Chương" },
-      17: { badge: "Top 17 Nỗ Lực", nickname: "⭐ Ngôi Sao Sưu Tầm" },
-      18: { badge: "Top 18 Bền Vững", nickname: "🛡️ Hiệp Sĩ Thành Tựu" },
-      19: { badge: "Top 19 Tiềm Năng", nickname: "⚡ Tinh Anh Mở Khóa" },
-      20: { badge: "Top 20 Vinh Danh", nickname: "🎖️ Danh Hiệu Hoàng Gia" },
-    },
-    game: {
-      1: { badge: "Vương miện trò chơi", nickname: "Huyền thoại vương quốc" },
-      2: { badge: "Huy chương bạc", nickname: "Thợ săn Boss" },
-      3: { badge: "Huy chương đồng", nickname: "Bậc thầy đấu trường" },
-      4: { badge: "Top 4", nickname: "Người phá nhiệm vụ" },
-      5: { badge: "Top 5", nickname: "Kỵ sĩ XP" },
-      6: { badge: "Top 6 Cao Thủ", nickname: "🎮 Kỷ Lục Gia BCTC" },
-      7: { badge: "Top 7 Bản Lĩnh", nickname: "⚡ Thần Tốc Nối Từ" },
-      8: { badge: "Top 8 Siêu Cấp", nickname: "🏛️ Trùm Sàn NYSE" },
-      9: { badge: "Top 9 Chiến Thần", nickname: "🐂 Sát Thủ Bò Tót" },
-      10: { badge: "Top 10 Đẳng Cấp", nickname: "🏆 Chiến Thần PvP 1v1" },
-      11: { badge: "Top 11 Đột Phá", nickname: "🎯 Bậc Thầy Bán Khống" },
-      12: { badge: "Top 12 Thần Tốc", nickname: "🚀 Tay Đua Nến Nhật" },
-      13: { badge: "Top 13 Tinh Anh", nickname: "💼 Sói Bất Động Sản" },
-      14: { badge: "Top 14 Phản Xạ", nickname: "⚡ Bậc Thầy Algo" },
-      15: { badge: "Top 15 Thợ Săn", nickname: "💎 Thợ Săn Thẻ VN30" },
-      16: { badge: "Top 16 Bản Lĩnh", nickname: "🎓 Huyền Thoại Mini Game" },
-      17: { badge: "Top 17 Uy Nghiêm", nickname: "🛡️ Hiệp Sĩ Bảng Lô" },
-      18: { badge: "Top 18 Sáng Tạo", nickname: "🔮 Tiên Tri Đồ Thị" },
-      19: { badge: "Top 19 Tiềm Năng", nickname: "🔥 Ngôi Sao Đấu Trường" },
-      20: { badge: "Top 20 Vinh Danh", nickname: "🎖️ Cao Thủ Phố Wall" },
-    },
-    career: {
-      1: { badge: "Vương miện Sự nghiệp", nickname: "🏆 Huyền Thoại Sự Nghiệp Phố Wall" },
-      2: { badge: "Huy chương bạc", nickname: "💼 Chuyên Viên Phân Tích Kế Thừa" },
-      3: { badge: "Huy chương đồng", nickname: "🏛️ Chuyên Gia Định Giá & M&A" },
-      4: { badge: "Top 4 Lộ Trình", nickname: "📊 Bậc Thầy Phân Tích BCTC" },
-      5: { badge: "Top 5 Định Hướng", nickname: "🚀 Sói Biển Đầu Tư & Quản Lý" },
-      6: { badge: "Top 6 Định Hướng", nickname: "💼 Senior Financial Analyst" },
-      7: { badge: "Top 7 Lộ Trình", nickname: "📈 Portfolio Manager" },
-      8: { badge: "Top 8 Định Hướng", nickname: "🏛️ Investment Banking Analyst" },
-      9: { badge: "Top 9 Bản Lĩnh", nickname: "📊 Chief Accountant Track" },
-      10: { badge: "Top 10 Tinh Anh", nickname: "🎓 CFA Track Candidate" },
-      11: { badge: "Top 11 Đột Phá", nickname: "🛡️ Risk Management Specialist" },
-      12: { badge: "Top 12 Tiềm Năng", nickname: "💎 Private Equity Associate" },
-      13: { badge: "Top 13 Tiên Phong", nickname: "🚀 Head of FP&A Track" },
-      14: { badge: "Top 14 Định Hướng", nickname: "⚡ Quant Researcher" },
-      15: { badge: "Top 15 Tích Cực", nickname: "💼 Corporate Finance Officer" },
-      16: { badge: "Top 16 Uy Nghiêm", nickname: "🏆 Chief Financial Officer (CFO)" },
-      17: { badge: "Top 17 Vững Vàng", nickname: "⭐ Senior Credit Officer" },
-      18: { badge: "Top 18 Nhạy Báo", nickname: "🔍 Valuation Specialist" },
-      19: { badge: "Top 19 Sáng Tạo", nickname: "🎯 Wealth Management Leader" },
-      20: { badge: "Top 20 Vinh Danh", nickname: "🎖️ Tinh Anh Sự Nghiệp" },
-    },
+function getLeaderboardHonor(t: Dictionary, metric: LeaderboardUiMetric, rank: number) {
+  const title = getLeaderboardTitle(t, metric, rank);
+  const table = (t.leaderboardHonors as Record<string, unknown>)[metric] as
+    | Record<number, { badge: string; nickname: string }>
+    | undefined;
+  const honor = table?.[rank] ?? {
+    badge: formatI18n(t.leaderboardHonors.fallbackBadge, { rank }),
+    nickname: formatI18n(t.leaderboardHonors.fallbackNickname, { rank }),
   };
-
-  const dynamicFallback = {
-    badge: `Top #${rank}`,
-    nickname: `Thành Viên Tích Cực #${rank}`,
-  };
-  /* i18n-ignore-end */
-
-  const honor = byMetric[metric]?.[rank] ?? dynamicFallback;
-
-  return {
-    title: title ?? honor.badge,
-    ...honor,
-  };
+  return { title: title ?? honor.badge, ...honor };
 }
 
 function getPodiumHeight(rank: number) {
@@ -749,12 +562,12 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
 
                         {/* Honor Badge Pill */}
                         <div className="mb-1 flex justify-center">
-                          <RankBadgePill rank={rank} badgeText={getLeaderboardHonor(metric, rank).badge} />
+                          <RankBadgePill rank={rank} badgeText={getLeaderboardHonor(t, metric, rank).badge} />
                         </div>
 
                         <p className={`text-xs font-black leading-tight line-clamp-1 break-words ${tone.name}`}>{entry.name}</p>
                         <p className="mt-0.5 text-[8px] font-extrabold uppercase leading-tight text-emerald-600 dark:text-emerald-400 line-clamp-1 break-words">
-                          {entry.careerTitle ? `${entry.careerEmoji || "💼"} ${entry.careerTitle}` : getLeaderboardHonor(metric, rank).nickname}
+                          {entry.careerTitle ? `${entry.careerEmoji || "💼"} ${entry.careerTitle}` : getLeaderboardHonor(t, metric, rank).nickname}
                         </p>
                         <p className={`mt-1 text-[11px] font-black leading-tight ${tone.value}`}>{activeTab.format(entry.value, t.leaderboard.units)}</p>
                       </div>
@@ -784,7 +597,7 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
                 const actualRank = idx + 6;
                 const href = entry.user_id === userId ? "/profile" : `/nguoi-hoc/${entry.user_id}`;
                 const isCurrent = entry.user_id === userId;
-                const honor = getLeaderboardHonor(metric, actualRank);
+                const honor = getLeaderboardHonor(t, metric, actualRank);
 
                 return (
                   <Link
@@ -929,12 +742,12 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
 
                       {/* Badge Pill */}
                       <div className="mb-1.5 flex justify-center">
-                        <RankBadgePill rank={rank} badgeText={getLeaderboardHonor(metric, rank).badge} />
+                        <RankBadgePill rank={rank} badgeText={getLeaderboardHonor(t, metric, rank).badge} />
                       </div>
 
                       <p className="text-sm font-black leading-tight text-stone-900 line-clamp-1 break-words">{entry.name}</p>
                       <p className="mt-1 text-[9px] font-extrabold uppercase leading-tight text-emerald-600 dark:text-emerald-400 line-clamp-1 break-words">
-                        {entry.careerTitle ? `${entry.careerEmoji || "💼"} ${entry.careerTitle}` : getLeaderboardHonor(metric, rank).nickname}
+                        {entry.careerTitle ? `${entry.careerEmoji || "💼"} ${entry.careerTitle}` : getLeaderboardHonor(t, metric, rank).nickname}
                       </p>
                       <p className={`mt-1.5 text-sm font-black ${tone.value}`}>{activeTab.format(entry.value, t.leaderboard.units)}</p>
                     </div>
@@ -966,7 +779,7 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
                 const rank = idx + 6;
                 const href = entry.user_id === userId ? "/profile" : `/nguoi-hoc/${entry.user_id}`;
                 const isCurrent = entry.user_id === userId;
-                const honor = getLeaderboardHonor(metric, rank);
+                const honor = getLeaderboardHonor(t, metric, rank);
 
                 return (
                   <Link

@@ -33,6 +33,7 @@ import { interactiveChartsVi, interactiveChartsEn } from "./interactive-charts";
 import { interactiveEconVi, interactiveEconEn } from "./interactive-econ";
 import { interactiveRestVi, interactiveRestEn } from "./interactive-rest";
 import { learningPathVi, learningPathEn } from "./learning-path";
+import { leaderboardHonorsVi, leaderboardHonorsEn } from "./leaderboard-honors";
 import { legalChatVi, legalChatEn } from "./legal-chat";
 import { libDataVi, libDataEn } from "./lib-data";
 import { lessonAdminVi, lessonAdminEn } from "./lesson-admin";
@@ -48,6 +49,10 @@ import { lobbyLeaderboardsVi, lobbyLeaderboardsEn } from "./lobby-leaderboards";
 import { levelTitlesVi, levelTitlesEn } from "./level-titles";
 import { trackStagesVi, trackStagesEn } from "./track-stages";
 import { motivationVi, motivationEn } from "./motivation";
+import { questsVi, questsEn } from "./quests";
+import { gamesMetaVi, gamesMetaEn } from "./games-meta";
+import { wisdomCardsVi, wisdomCardsEn } from "./wisdom-cards";
+import { quietCornerCopyVi, quietCornerCopyEn } from "./quiet-corner";
 import { rpgStudyRoomVi, rpgStudyRoomEn } from "./rpg-study-room";
 import { valuationSimVi, valuationSimEn } from "./valuation-sim";
 import { worldSpacesVi, worldSpacesEn } from "./world-spaces";
@@ -78,6 +83,7 @@ export const viSections = {
   ...interactiveEconVi,
   ...interactiveRestVi,
   ...learningPathVi,
+  ...leaderboardHonorsVi,
   ...legalChatVi,
   ...libDataVi,
   ...lessonAdminVi,
@@ -93,6 +99,10 @@ export const viSections = {
   ...levelTitlesVi,
   ...trackStagesVi,
   ...motivationVi,
+  ...questsVi,
+  ...gamesMetaVi,
+  ...wisdomCardsVi,
+  ...quietCornerCopyVi,
   ...rpgStudyRoomVi,
   ...valuationSimVi,
   ...worldSpacesVi,
@@ -124,6 +134,7 @@ export const enSections: typeof viSections = {
   ...interactiveEconEn,
   ...interactiveRestEn,
   ...learningPathEn,
+  ...leaderboardHonorsEn,
   ...legalChatEn,
   ...libDataEn,
   ...lessonAdminEn,
@@ -139,6 +150,10 @@ export const enSections: typeof viSections = {
   ...levelTitlesEn,
   ...trackStagesEn,
   ...motivationEn,
+  ...questsEn,
+  ...gamesMetaEn,
+  ...wisdomCardsEn,
+  ...quietCornerCopyEn,
   ...rpgStudyRoomEn,
   ...valuationSimEn,
   ...worldSpacesEn,

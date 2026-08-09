@@ -37,6 +37,13 @@ const INTENTIONALLY_UNTRANSLATED = new Set([
   // is a Vietnamese string union used as a value across the app (see
   // LessonTranslation in lib/lesson-types.ts). The keys are data, not copy.
   "difficulty",
+  // Nhánh "nghề nghiệp" của bảng xếp hạng đặt tên hạng theo CHỨC DANH THẬT
+  // trong ngành, và bản tiếng Việt đã viết chúng bằng tiếng Anh sẵn:
+  // "Senior Financial Analyst", "Portfolio Manager", "Quant Researcher". Đó là
+  // tên gọi của chức danh ở thị trường Việt Nam, không phải một chỗ dịch bị bỏ
+  // quên - dịch ra "Chuyên viên phân tích tài chính cấp cao" sẽ là đổi dữ liệu
+  // chứ không phải dịch giao diện.
+  "leaderboardHonors.career",
   // "Tài Tài" is the name of the study-group admin character. A proper noun
   // stays as it is in every language - the same reason the leaderboard's
   // Vietnamese nicknames are exempted in lib/i18n/dictionaries/vi.ts.
