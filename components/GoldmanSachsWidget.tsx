@@ -29,6 +29,8 @@ function buildMaDeals(t: Dictionary): MACompany[] {
   return [
     {
       id: "tech-corp",
+      /* i18n-ignore-start: tên hai doanh nghiệp hư cấu trong bộ dữ liệu demo
+         của widget. Tên riêng, không dịch - giống guild.clanTitle. */
       name: "TechCloud AI Global",
       ticker: "TCAI",
       revenue: "240M USD",
@@ -40,6 +42,7 @@ function buildMaDeals(t: Dictionary): MACompany[] {
     {
       id: "retail-chain",
       name: "VinMart Retail Chain",
+      /* i18n-ignore-end */
       ticker: "VMR",
       revenue: "850M USD",
       ebitda: "90M USD",

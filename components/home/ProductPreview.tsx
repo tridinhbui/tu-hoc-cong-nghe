@@ -26,8 +26,11 @@ function buildDashboardLessons(t: Dictionary) {
 
 function buildLeaderboard(t: Dictionary) {
   return [
+    /* i18n-ignore-start: hai tên người học minh hoạ trên bảng xếp hạng xem
+       trước. Tên riêng, cùng lý do leaderboardPreview.name1-6 được miễn. */
     { name: "Minh Anh", xp: "2,105" },
     { name: "Đức Huy", xp: "1,940" },
+    /* i18n-ignore-end */
     // `isYou` rather than matching the rendered name: deciding who the learner
     // is by comparing display copy breaks the moment the label is reworded.
     { name: t.productPreview.you, xp: "1,240", isYou: true },

@@ -3,6 +3,8 @@
 import { useMemo } from "react";
 import MockExamClient, { type ExamConfig } from "@/components/MockExamClient";
 import { CFA_EXAM, scoreBySubject } from "@/lib/cfa-exam";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 /** Cấu hình đề CFA Level I cho bộ chạy thi thử dùng chung.
  *
@@ -10,31 +12,40 @@ import { CFA_EXAM, scoreBySubject } from "@/lib/cfa-exam";
  *  câu. Toàn bộ logic đếm giờ, nhảy câu, nộp bài và chấm theo môn nằm ở
  *  `MockExamClient` vì FRM dùng chung. */
 export default function CfaMockExamClient() {
+  const { t } = useI18n();
+  const m = t.mockExam;
   const config = useMemo<ExamConfig>(
     () => ({
-      title: "Thi thử CFA Level I",
-      subtitle: `${CFA_EXAM.totalQuestions} câu · ${CFA_EXAM.sessions} ca × ${CFA_EXAM.minutesPerSession} phút · 3 lựa chọn`,
+      title: m.cfaTitle,
+      subtitle: format(m.cfaSubtitle, {
+        questions: CFA_EXAM.totalQuestions,
+        sessions: CFA_EXAM.sessions,
+        minutes: CFA_EXAM.minutesPerSession,
+      }),
       backHref: "/cfa",
-      backLabel: "Về trang CFA",
-      introHeading: "Thi thử CFA Level I",
-      introBlurb:
-        "Đúng khuôn đề thật, không rút gọn. Ngồi hết được bài này thì ngày thi không còn gì bất ngờ về sức bền.",
+      backLabel: m.cfaBackLabel,
+      introHeading: m.cfaTitle,
+      introBlurb: m.cfaIntroBlurb,
       introFacts: [
-        ["Số câu", `${CFA_EXAM.totalQuestions} câu`],
-        ["Số ca", `${CFA_EXAM.sessions} ca × ${CFA_EXAM.questionsPerSession} câu`],
-        ["Thời gian mỗi ca", `${CFA_EXAM.minutesPerSession} phút`],
-        ["Lựa chọn mỗi câu", "3 phương án"],
+        [m.cfaFactQuestions, format(m.cfaFactQuestionsValue, { count: CFA_EXAM.totalQuestions })],
+        [
+          m.cfaFactSessions,
+          format(m.cfaFactSessionsValue, {
+            sessions: CFA_EXAM.sessions,
+            perSession: CFA_EXAM.questionsPerSession,
+          }),
+        ],
+        [m.cfaFactMinutes, format(m.cfaFactMinutesValue, { minutes: CFA_EXAM.minutesPerSession })],
+        [m.cfaFactChoices, m.cfaFactChoicesValue],
       ],
-      introNote:
-        "Tỷ lệ câu hỏi giữa mười môn lấy đúng trọng số CFA Institute công bố - Ethics nặng nhất, rồi FSA, Equity và Fixed Income. Điểm cuối bài tách theo từng môn, vì tổng điểm chỉ nói đỗ hay trượt còn bảng theo môn mới nói phải học lại cái gì.",
+      introNote: m.cfaIntroNote,
       sessions: Array.from({ length: CFA_EXAM.sessions }, (_, i) => ({
-        label: `Ca ${i + 1}`,
+        label: format(m.cfaSessionLabel, { n: i + 1 }),
         count: CFA_EXAM.questionsPerSession,
         minutes: CFA_EXAM.minutesPerSession,
       })),
       passRatio: CFA_EXAM.passRatio,
-      passNote:
-        "CFA Institute không công bố điểm đỗ; 70% là mốc thận trọng các đơn vị luyện thi dùng, không phải con số chính thức.",
+      passNote: m.cfaPassNote,
       totalQuestions: CFA_EXAM.totalQuestions,
       fetchUrl: `/api/knowledge-challenge?track=cfa&difficulty=tat-ca&count=${CFA_EXAM.totalQuestions}`,
       submitMode: "cfa-mock",
@@ -43,7 +54,7 @@ export default function CfaMockExamClient() {
       // từ lessonId là đủ - khác FRM, nơi một bài có thể nằm ở nhiều môn.
       scoreBySubject: (rows) => scoreBySubject(rows),
     }),
-    []
+    [m]
   );
 
   return <MockExamClient config={config} />;

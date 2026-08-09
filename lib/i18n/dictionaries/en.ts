@@ -21,6 +21,7 @@ export const en: Dictionary = {
     technicalInterview: "Technical Interview",
     career: "Careers",
     stats: "Stats",
+    leaderboard: "Leaderboard",
     openMenu: "Open menu",
     user: "User",
     signOut: "Sign out",
@@ -943,6 +944,12 @@ export const en: Dictionary = {
   },
 
   analytics: {
+    // Nhãn tooltip biểu đồ. Trước là template literal trong thân arrow gọn -
+    // hình dạng mà i18n-coverage chỉ thấy được sau khi thêm rule returned-text.
+    lessonsUnit: "{count} lessons",
+    minutesUnit: "{count} min",
+    weekStarting: "Week starting {label}",
+    hourBucket: "Hour {hour}",
     noData: "No analytics data",
     personal: "Personal",
     currentRhythm: "Your current rhythm",

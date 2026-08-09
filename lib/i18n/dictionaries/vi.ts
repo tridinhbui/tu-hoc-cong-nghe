@@ -27,6 +27,7 @@ export const vi = {
     technicalInterview: "Phỏng vấn kỹ thuật",
     career: "Sự nghiệp",
     stats: "Thống kê",
+    leaderboard: "Bảng xếp hạng",
     openMenu: "Mở menu",
     user: "Người dùng",
     signOut: "Đăng xuất",
@@ -1006,6 +1007,12 @@ export const vi = {
 
   // components/LearningAnalytics.tsx - the /analytics dashboard.
   analytics: {
+    // Nhãn tooltip biểu đồ. Trước là template literal trong thân arrow gọn -
+    // hình dạng mà i18n-coverage chỉ thấy được sau khi thêm rule returned-text.
+    lessonsUnit: "{count} bài",
+    minutesUnit: "{count} phút",
+    weekStarting: "Tuần bắt đầu {label}",
+    hourBucket: "Khung giờ {hour}",
     noData: "Không có dữ liệu analytics",
     personal: "Cá nhân",
     currentRhythm: "Nhịp học hiện tại",

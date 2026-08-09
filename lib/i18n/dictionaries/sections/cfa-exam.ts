@@ -52,6 +52,27 @@ export const cfaExamVi = {
     pronounceUnsupported: "Trình duyệt không hỗ trợ phát âm tự động.",
   },
   mockExam: {
+    // components/CfaMockExamClient.tsx gói cả cấu hình màn hình vào một
+    // useMemo(() => ({ … })), nên không chuỗi nào ở module scope và
+    // i18n-coverage báo 0 cho file này cho tới khi rule returned-data ra đời.
+    cfaTitle: "Thi thử CFA Level I",
+    cfaSubtitle: "{questions} câu · {sessions} ca × {minutes} phút · 3 lựa chọn",
+    cfaBackLabel: "Về trang CFA",
+    cfaIntroBlurb:
+      "Đúng khuôn đề thật, không rút gọn. Ngồi hết được bài này thì ngày thi không còn gì bất ngờ về sức bền.",
+    cfaFactQuestions: "Số câu",
+    cfaFactQuestionsValue: "{count} câu",
+    cfaFactSessions: "Số ca",
+    cfaFactSessionsValue: "{sessions} ca × {perSession} câu",
+    cfaFactMinutes: "Thời gian mỗi ca",
+    cfaFactMinutesValue: "{minutes} phút",
+    cfaFactChoices: "Lựa chọn mỗi câu",
+    cfaFactChoicesValue: "3 phương án",
+    cfaIntroNote:
+      "Tỷ lệ câu hỏi giữa mười môn lấy đúng trọng số CFA Institute công bố - Ethics nặng nhất, rồi FSA, Equity và Fixed Income. Điểm cuối bài tách theo từng môn, vì tổng điểm chỉ nói đỗ hay trượt còn bảng theo môn mới nói phải học lại cái gì.",
+    cfaSessionLabel: "Ca {n}",
+    cfaPassNote:
+      "CFA Institute không công bố điểm đỗ; 70% là mốc thận trọng các đơn vị luyện thi dùng, không phải con số chính thức.",
     preparingExam: "Đang chuẩn bị đề…",
     fetchFailedTitle: "Không mở được đề thi thử.",
     tryAgain: "Thử lại",
@@ -129,6 +150,24 @@ export const cfaExamEn: typeof cfaExamVi = {
     pronounceUnsupported: "Your browser does not support text-to-speech.",
   },
   mockExam: {
+    cfaTitle: "CFA Level I mock exam",
+    cfaSubtitle: "{questions} questions · {sessions} sessions × {minutes} min · 3 choices",
+    cfaBackLabel: "Back to CFA",
+    cfaIntroBlurb:
+      "The real exam's shape, not a shortened version. Sit through this one and exam day holds no surprises about stamina.",
+    cfaFactQuestions: "Questions",
+    cfaFactQuestionsValue: "{count} questions",
+    cfaFactSessions: "Sessions",
+    cfaFactSessionsValue: "{sessions} × {perSession} questions",
+    cfaFactMinutes: "Minutes per session",
+    cfaFactMinutesValue: "{minutes} min",
+    cfaFactChoices: "Choices per question",
+    cfaFactChoicesValue: "3 options",
+    cfaIntroNote:
+      "The split across the ten topics follows the weights CFA Institute publishes - Ethics heaviest, then FSA, Equity and Fixed Income. The final score breaks down by topic, because a total only says pass or fail while the breakdown says what to relearn.",
+    cfaSessionLabel: "Session {n}",
+    cfaPassNote:
+      "CFA Institute does not publish a passing score; 70% is the conservative mark prep providers use, not an official figure.",
     preparingExam: "Preparing the exam…",
     fetchFailedTitle: "Could not open the mock exam.",
     tryAgain: "Try again",

@@ -276,9 +276,9 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
   const difficultyData = useMemo(() => {
     if (!analytics) return [];
     return [
-      { label: "Dễ", value: analytics.lessonsByDifficulty.easy, color: "#10b981" },
-      { label: "Trung bình", value: analytics.lessonsByDifficulty.medium, color: "#f59e0b" },
-      { label: "Khó", value: analytics.lessonsByDifficulty.hard, color: "#78716c" },
+      { label: t.difficulty["Dễ"], value: analytics.lessonsByDifficulty.easy, color: "#10b981" },
+      { label: t.difficulty["Trung bình"], value: analytics.lessonsByDifficulty.medium, color: "#f59e0b" },
+      { label: t.difficulty["Khó"], value: analytics.lessonsByDifficulty.hard, color: "#78716c" },
     ];
   }, [analytics]);
 
@@ -459,11 +459,11 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
                       content={
                         <CustomTooltip
                           formatter={(value: number | string, name?: string) => {
-                            if (name === "lessonsCompleted") return `${value} bài`;
-                            if (name === "minutesSpent") return `${value} phút`;
+                            if (name === "lessonsCompleted") return format(t.analytics.lessonsUnit, { count: value });
+                            if (name === "minutesSpent") return format(t.analytics.minutesUnit, { count: value });
                             return `${value}`;
                           }}
-                          labelFormatter={(label: number | string) => `Tuần bắt đầu ${label}`}
+                          labelFormatter={(label: number | string) => format(t.analytics.weekStarting, { label })}
                         />
                       }
                     />
@@ -506,8 +506,8 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
                       <Tooltip
                         content={
                           <CustomTooltip
-                            formatter={(value: number | string) => `${value} bài`}
-                            labelFormatter={(label: number | string) => `Khung giờ ${formatHour(Number(label))}`}
+                            formatter={(value: number | string) => format(t.analytics.lessonsUnit, { count: value })}
+                            labelFormatter={(label: number | string) => format(t.analytics.hourBucket, { hour: formatHour(Number(label)) })}
                           />
                         }
                       />
@@ -591,7 +591,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
                             <Cell key={entry.name} fill={entry.color} />
                           ))}
                         </Pie>
-                        <Tooltip content={<CustomTooltip formatter={(value: number | string) => `${value} bài`} />} />
+                        <Tooltip content={<CustomTooltip formatter={(value: number | string) => format(t.analytics.lessonsUnit, { count: value })} />} />
                       </PieChart>
                     </ResponsiveContainer>
                     <div className="absolute flex flex-col items-center justify-center">

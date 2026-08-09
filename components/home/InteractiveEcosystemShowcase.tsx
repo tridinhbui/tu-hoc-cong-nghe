@@ -37,6 +37,10 @@ function finsocialPosts(t: Dictionary) {
   return [
   {
     id: "p1",
+    /* i18n-ignore-start: tên người học minh hoạ ở bản xem trước khi chưa đăng
+       nhập, và chức danh nghề đi kèm. Tên riêng là tên riêng ở mọi ngôn ngữ -
+       cùng lý do leaderboardPreview.name1-6 và ecosystem.adminByline nằm trong
+       INTENTIONALLY_UNTRANSLATED của dictionary-parity. */
     author: "Hà Tường Vy",
     avatar: "/avatars/avatar-1.png",
     level: 5,
@@ -57,6 +61,7 @@ function finsocialPosts(t: Dictionary) {
     avatar: "/avatars/avatar-2.png",
     level: 7,
     role: "Financial Planner",
+    /* i18n-ignore-end */
     time: t.ecosystem.post2Time,
     topic: t.ecosystem.post2Topic,
     title: t.ecosystem.post2Title,
