@@ -148,7 +148,7 @@ export default function MockInterviewModal({ onClose, onFinished, userId }: Mock
 
   const q = questions[activeQ];
 
-  const categoryLabel = useMemo(() => q?.lessonTitle?.split("·").pop()?.trim() ?? "Phỏng vấn", [q]);
+  const categoryLabel = useMemo(() => q?.lessonTitle?.split("·").pop()?.trim() ?? t.mockInterview.fallbackCategory, [q, t]);
 
   function choose(optionIndex: number) {
     setPicks((prev) => {

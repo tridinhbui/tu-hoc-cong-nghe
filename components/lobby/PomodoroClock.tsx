@@ -5,6 +5,8 @@ import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { pomodoroTexture } from "./room-textures";
 import { POMODORO_MS } from "@/lib/supabase-lobby";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
 
 /** Đồng hồ treo trên một bàn đang có người ngồi học.
  *
@@ -21,6 +23,7 @@ export default function PomodoroClock({
   startedAt: number;
   seatedCount: number;
 }) {
+  const { t } = useI18n();
   const mesh = useRef<THREE.Mesh>(null);
   // Chỉ đổi mỗi giây, không mỗi frame: vẽ lại canvas 60 lần/giây cho một con
   // số chỉ nhảy mỗi giây là đốt GPU không đổi lấy gì.
@@ -33,8 +36,11 @@ export default function PomodoroClock({
 
   const texture = useMemo(() => {
     const left = POMODORO_MS - (tick * 1000 - startedAt);
-    return pomodoroTexture(left, seatedCount);
-  }, [tick, startedAt, seatedCount]);
+    return pomodoroTexture(left, seatedCount, {
+      done: t.miscUi.pomodoroCanvas.done,
+      studying: format(t.miscUi.pomodoroCanvas.studying, { count: seatedCount }),
+    });
+  }, [tick, startedAt, seatedCount, t]);
 
   useEffect(() => () => texture.dispose(), [texture]);
 

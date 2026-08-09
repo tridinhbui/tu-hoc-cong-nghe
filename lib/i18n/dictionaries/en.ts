@@ -395,6 +395,10 @@ export const en: Dictionary = {
     comingSoon: "Coming soon",
     restart: "↺ Start over",
     questionList: "Questions",
+    guestSaveTitle: "You just finished this lesson 🎉",
+    guestSaveBody:
+      "This progress lives in your browser and disappears when you switch devices. Create a free account to keep it, open every lesson, and start a streak.",
+    guestSaveCta: "Sign up free to save your progress",
   },
 
   worldBoss: {
@@ -2099,6 +2103,9 @@ export const en: Dictionary = {
   },
 
   dashboard: {
+    // Nhãn thời lượng trên thẻ bài học. Trước là template literal trong một
+    // hàm ở module scope, ngoài tầm mọi rule cho tới khi thêm returned-text.
+    minutesShort: "{count} min",
     markedRead: "Marked {count} lessons as done.",
     unmarkedRead: "Unmarked {count} lessons.",
     offlineSynced: "Your offline progress has been synced. 🌟",
@@ -2503,6 +2510,7 @@ export const en: Dictionary = {
   },
   // components/MockInterviewModal.tsx - the timed IB mock interview.
   mockInterview: {
+    fallbackCategory: "Interview",
     saveFailed: "Could not save your interview result, but you can still see the scoring.",
     title: "Mock Interview",
     questionMeta: "Question {index}/{total} · {category}",
@@ -2699,6 +2707,12 @@ export const en: Dictionary = {
     loading: "Loading...",
     empty:
       "Nothing yet. Post or comment on FinSocial and you'll hear about it here when someone responds.",
+    comment: "{actor} commented on your post",
+    reaction: "{actor} reacted {emoji} to your post",
+    reactionFallback: "to",
+    appealApproved: "Your appeal was approved - the lesson now counts as complete.",
+    appealRejected: "Your appeal was not accepted.",
+    aiReportResolved: "Thank you - the passage you flagged has been corrected.",
   },
 
   // components/CareerGoalWidget.tsx

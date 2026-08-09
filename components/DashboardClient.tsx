@@ -49,7 +49,6 @@ import { TRACKS } from "@/lib/tracks";
 import { getChallengePassedLessonIds } from "@/lib/supabase-challenges";
 import { addLessonFlag, getUserLessonFlags, removeLessonFlag } from "@/lib/supabase-lesson-flags";
 import { getUserBookmarks, type LessonBookmark } from "@/lib/supabase-bookmarks";
-import { useRoutePrefetch } from "@/lib/use-route-prefetch";
 import { getPassedMilestones, savePassedMilestone, type MilestoneCompletion } from "@/lib/supabase-milestones";
 import { syncOfflineQueue } from "@/lib/offline-sync";
 import { isValidAvatar } from "@/lib/avatar-utils";
@@ -122,8 +121,13 @@ export interface LessonMeta {
 // varies with how long a lesson really is - 65% of lessons say "6 phút" or
 // "7 phút" regardless of body length, so it carries almost no signal about
 // which lesson is the short one.
-function formatLessonTime(lesson: { totalMinutes?: number; duration: string }): string {
-  return lesson.totalMinutes ? `${lesson.totalMinutes} phút` : lesson.duration;
+// Nhận `minutesLabel` thay vì tự ghép chữ: hàm này ở module scope nên không gọi
+// useI18n() được, và để nguyên chuỗi tiếng Việt ở đây là giữ lỗi ở chỗ khó thấy.
+function formatLessonTime(
+  lesson: { totalMinutes?: number; duration: string },
+  minutesLabel: string
+): string {
+  return lesson.totalMinutes ? format(minutesLabel, { count: lesson.totalMinutes }) : lesson.duration;
 }
 
 // Local fast-path/fallback cache for the onboarding modal's "seen" state -
@@ -335,7 +339,6 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
     };
   }, []);
 
-  useRoutePrefetch(["/analytics", "/ghi-chu", "/kiem-tra", "/tai-lieu", "/ban-be", "/profile", "/settings", "/cfa", "/frm", "/nghe-nghiep-hoc"]);
 
   useEffect(() => {
     if (!manualFlagInfoOpen) return;
@@ -1854,7 +1857,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                               column to the right, which is `hidden sm:flex` -
                                               so on mobile it would never be shown at all
                                               without repeating it here. */}
-                                          <span className="sm:hidden">⏱ {formatLessonTime(lesson)} · </span>
+                                          <span className="sm:hidden">⏱ {formatLessonTime(lesson, t.dashboard.minutesShort)} · </span>
                                           {format(t.dashboard.learnerCount, { count: getIllustrativeCount(lesson.slug, 60, 480) })}
                                         </div>
                                       </Link>
@@ -1880,7 +1883,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                       {/* Meta */}
                                       <div className="hidden sm:flex items-center gap-3 flex-shrink-0">
                                         <span className={`text-sm font-semibold ${isDone ? "text-emerald-700 dark:text-emerald-400" : isFlagged ? "text-sky-700 dark:text-sky-400" : "text-stone-600 dark:text-stone-400"}`}>
-                                          {formatLessonTime(lesson)}
+                                          {formatLessonTime(lesson, t.dashboard.minutesShort)}
                                         </span>
                                         <span className={`text-sm font-bold rounded-lg px-3 py-1 ${
                                           isDone

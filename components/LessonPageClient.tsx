@@ -30,17 +30,38 @@ interface Props {
   nextLesson?: { id: number; slug: string; title: string };
 }
 
-function getMetaphorForLesson(title: string): string {
+/** Chọn ví von cho bài học - trả về ID, không trả câu chữ.
+ *
+ *  Chín câu ví von từng là literal trong thân hàm này, và đó là hình dạng mà
+ *  i18n-coverage chỉ thấy được sau khi thêm rule returned-text: file này báo 0
+ *  chuỗi trong khi mỗi bài học đều hiện một câu ví von tiếng Việt.
+ *
+ *  Danh sách từ khoá thì GIỮ NGUYÊN và không dịch: chúng dò trên tiêu đề bài,
+ *  và mỗi khoá đã có sẵn cả bản tiếng Việt lẫn tiếng Anh ("lãi kép" ||
+ *  "compound"), nên bộ dò vẫn khớp khi bài đã được dịch. Đây là toán hạng so
+ *  sánh, không phải câu chữ. */
+type MetaphorId =
+  | "compound"
+  | "cashFlow"
+  | "interest"
+  | "debt"
+  | "dividend"
+  | "inflation"
+  | "valuation"
+  | "asset"
+  | "fallback";
+
+function getMetaphorForLesson(title: string): MetaphorId {
   const t = title.toLowerCase();
-  if (t.includes("lãi kép") || t.includes("compound")) return "quả cầu tuyết lăn từ đỉnh núi: càng lăn xa càng hút thêm tuyết và phình to khổng lồ";
-  if (t.includes("dòng tiền") || t.includes("cash flow")) return "nguồn nước chảy trong sinh hoạt: dù bể nhà bạn to (tài sản lớn) nhưng nếu đường ống bị tắc (thiếu tiền mặt), bạn vẫn không có nước tắm rửa";
-  if (t.includes("lãi suất") || t.includes("interest")) return "phí thuê một chiếc xe máy: bạn mượn xe người khác đi thì cuối ngày phải trả một số tiền nhỏ gọi là tiền thuê";
-  if (t.includes("nợ") || t.includes("debt") || t.includes("vay")) return "một chiếc ba lô chứa đá: giúp bạn lao dốc nhanh hơn nhờ quán tính nếu mang vừa sức, nhưng sẽ đè bẹp bạn nếu quá nặng";
-  if (t.includes("cổ tức") || t.includes("dividend")) return "vườn táo chung: bạn góp vốn mua cây con, khi cây ra trái ngọt, chủ vườn hái chia đều cho mỗi người vài trái mang về";
-  if (t.includes("lạm phát") || t.includes("inflation")) return "cục nước đá để ngoài nắng: cứ mỗi giờ trôi qua nó lại bị chảy bớt đi một chút giá trị mua sắm";
-  if (t.includes("định giá") || t.includes("valuation")) return "mua một món đồ cũ: bạn phải soi kỹ đường may, chất liệu để xem mức giá người bán nói có bị đắt quá không";
-  if (t.includes("tài sản") || t.includes("asset")) return "con gà đẻ trứng vàng: mỗi ngày nó đẻ ra một quả trứng vàng để bạn đem bán kiếm tiền";
-  return "trò chơi trao đổi sticker ở trường: để đổi được sticker hiếm, bạn phải hiểu rõ giá trị của những tấm sticker mình đang sở hữu";
+  if (t.includes("lãi kép") || t.includes("compound")) return "compound";
+  if (t.includes("dòng tiền") || t.includes("cash flow")) return "cashFlow";
+  if (t.includes("lãi suất") || t.includes("interest")) return "interest";
+  if (t.includes("nợ") || t.includes("debt") || t.includes("vay")) return "debt";
+  if (t.includes("cổ tức") || t.includes("dividend")) return "dividend";
+  if (t.includes("lạm phát") || t.includes("inflation")) return "inflation";
+  if (t.includes("định giá") || t.includes("valuation")) return "valuation";
+  if (t.includes("tài sản") || t.includes("asset")) return "asset";
+  return "fallback";
 }
 
 export default function LessonPageClient({ lesson, nextLesson }: Props) {
@@ -181,7 +202,7 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
             </p>
             <div className="bg-amber-100/60 dark:bg-amber-950/50 p-3.5 rounded-xl border border-amber-200 dark:border-amber-900/60 text-amber-950 dark:text-amber-200 font-bold">
               {t.lessonPage.feynmanMetaphorLeadIn}{" "}
-              <TypingText text={`${getMetaphorForLesson(lesson.title)}.`} onDone={() => setMetaphorTyped(true)} />
+              <TypingText text={`${t.lessonPage.metaphors[getMetaphorForLesson(lesson.title)]}.`} onDone={() => setMetaphorTyped(true)} />
             </div>
             {metaphorTyped && (
               <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} className="space-y-3">

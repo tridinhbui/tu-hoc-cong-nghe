@@ -5,6 +5,17 @@ export const miscUiVi = {
     },
     // "+{count} XP" trong cả hai ngôn ngữ - XP là từ mượn dùng nguyên.
     xpGain: "+{count} XP",
+    // Chữ vẽ lên canvas trong phòng 3D. components/lobby/room-textures.ts là
+    // module thuần, không gọi useI18n() được, nên nó nhận chữ qua tham số và
+    // ba caller lấy từ đây. Không rule nào coi ctx.fillText là vị trí hiển thị
+    // cho tới khi thêm rule canvas.
+    canvasBoard: {
+      empty: "Chưa có gì ở đây",
+    },
+    pomodoroCanvas: {
+      done: "Xong phiên",
+      studying: "{count} người đang học",
+    },
     bookmarkButton: {
       remove: "Bỏ đánh dấu",
       add: "Đánh dấu bài học",
@@ -156,6 +167,13 @@ export const miscUiEn: typeof miscUiVi = {
     },
     // "+{count} XP" trong cả hai ngôn ngữ - XP là từ mượn dùng nguyên.
     xpGain: "+{count} XP",
+    canvasBoard: {
+      empty: "Nothing here yet",
+    },
+    pomodoroCanvas: {
+      done: "Session over",
+      studying: "{count} studying",
+    },
     bookmarkButton: {
       remove: "Remove bookmark",
       add: "Bookmark this lesson",

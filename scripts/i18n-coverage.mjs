@@ -235,6 +235,31 @@ function isNotCopy(text) {
   // phải thành "bn". Đơn vị tiếng Việt là chữ cần dịch, mã tiền tệ thì không.
   if (/^[\d.,]+\s*[KMB]?\s*(USD|VND|EUR|JPY|GBP|CNY)$/i.test(t)) return true;
 
+  // Giá trị CSS không có lời gọi hàm: `${n}vmax ${n}vmax` cho maskSize trong
+  // components/WarmLamps.tsx. Rule CSS ở trên đòi một tên hàm kèm "(", nên
+  // chuỗi chỉ gồm đơn vị lọt qua. Mọi token phải là một đơn vị CSS - một câu
+  // văn không thể thoả.
+  const CSS_UNITS = new Set([
+    "vmax", "vmin", "vh", "vw", "px", "rem", "em", "ch", "ex", "pt", "cm", "mm",
+    "in", "deg", "rad", "turn", "fr", "s", "ms", "auto", "none", "cover", "contain",
+  ]);
+  if (t.split(/\s+/).every((tok) => CSS_UNITS.has(tok.replace(/[\d.,%-]/g, "")) || /^[\d.,%-]+$/.test(tok))) {
+    return true;
+  }
+
+  // Khung định dạng không còn chữ nào để dịch sau khi bỏ dấu câu:
+  // `${i}.  ${name}  —  ${xp} XP` trong components/lobby/RoomFixtures.tsx ghép
+  // lại thành ". — XP". "XP" là đơn vị giữ nguyên ở mọi ngôn ngữ, phần còn lại
+  // là dấu câu, nên ở đây không có việc gì để làm. Kiểm bằng cách bỏ token chỉ
+  // gồm dấu câu rồi áp lại đúng các phép thử một-token ở trên.
+  const worded = t.split(/\s+/).filter((tok) => /[a-zà-ỹ]/i.test(tok));
+  if (
+    worded.length > 0 &&
+    worded.every((tok) => !/[à-ỹ]/i.test(tok) && /^[A-Z][A-Z0-9&.]*$/.test(tok))
+  ) {
+    return true;
+  }
+
   const tokens = t.split(/\s+/);
   if (
     tokens.length > 1 &&
@@ -352,6 +377,12 @@ function walkDataFactory(source, push, kind = "data") {
     // and call rules.
     if (ts.isArrowFunction(n) || ts.isFunctionExpression(n)) return;
     if (ts.isStringLiteral(n) || ts.isNoSubstitutionTemplateLiteral(n)) {
+      // Chuỗi dùng làm KHOÁ TRA: t.difficulty["Dễ"]. Bảng difficulty được keyed
+      // BẰNG chính giá trị tiếng Việt, vì `difficulty` là union tiếng Việt dùng
+      // làm giá trị khắp app - AGENTS.md ghi "The keys are data, not copy", và
+      // dictionary-parity miễn trừ cả section đó vì đúng lý do này. Chuỗi ở vị
+      // trí obj["..."] là khoá, không phải chữ hiện ra.
+      if (n.parent && ts.isElementAccessExpression(n.parent) && n.parent.argumentExpression === n) return;
       if (field && NON_COPY_FIELDS.has(field)) return;
       // A BARE array element - no property name to judge it by - has to look
       // like prose: whitespace or a diacritic. `const QUIZ_OPTION_TYPES =

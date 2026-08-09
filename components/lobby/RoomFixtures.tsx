@@ -7,7 +7,7 @@ import { ROOM } from "./ReadingRoom";
 import { ROTUNDA_Z } from "./room-obstacles";
 import { boardTexture } from "./room-textures";
 import { getCommunityFeed } from "@/lib/supabase-community";
-import { getLeaderboardByMetric } from "@/lib/supabase-user";
+import { getLeaderboardByMetric, type LeaderboardMetric } from "@/lib/supabase-user";
 import { useI18n } from "@/lib/i18n/context";
 import { gatesOf, type GateTarget } from "./gates";
 import type { Dictionary } from "@/lib/i18n";
@@ -19,21 +19,73 @@ import type { Dictionary } from "@/lib/i18n";
  *  realtime: người ta vào đây để gặp nhau, không phải để theo dõi feed, và
  *  một kênh realtime nữa cho mấy dòng chữ trên tường là cái giá sai. */
 
-const BOARD_REFRESH_MS = 120_000;
+/** Mười phút, và bỏ qua khi tab đang ẩn.
+ *
+ *  Trước đây là 2 phút với 2 truy vấn. Giờ có 5 bảng xếp hạng nên mỗi nhịp là
+ *  6 truy vấn Supabase, cho mỗi tab sảnh đang mở - ở nhịp cũ là 180 truy vấn
+ *  mỗi giờ cho một người ngồi yên trong phòng đọc. Nội dung trên tường là bảng
+ *  tin cộng đồng và thứ hạng tuần: không thứ nào đổi trong hai phút, và không
+ *  ai đứng nhìn một tấm bảng gỗ chờ nó nhảy số.
+ *
+ *  Bỏ qua lúc tab ẩn là phần quan trọng hơn con số: một tab sảnh bị bỏ quên
+ *  trong nền vốn chạy mãi, và đó mới là chỗ tiêu nhiều nhất - người dùng không
+ *  nhìn, nhưng hoá đơn vẫn tính. */
+const BOARD_REFRESH_MS = 600_000;
 
-function useBoardData() {
+/** Bốn bảng xếp hạng ngoài XP. XP tách riêng vì nó đã có sẵn từ trước và giữ
+ *  nguyên cách định dạng cũ.
+ *
+ *  Mỗi hạng mục có đơn vị riêng, và đơn vị là thứ nói cho người đọc biết bảng
+ *  này xếp theo cái gì: "87" một mình không phân biệt được điểm quiz với số
+ *  bài đã học. */
+const METRIC_BOARDS: {
+  metric: LeaderboardMetric;
+  title: (t: Dictionary) => string;
+  format: (value: number, t: Dictionary) => string;
+}[] = [
+  {
+    metric: "lessons",
+    title: (t) => t.lobbyLeaderboards.lessonsTitle,
+    format: (v, t) => `${v} ${t.lobbyLeaderboards.unitLessons}`,
+  },
+  {
+    metric: "avg_score",
+    title: (t) => t.lobbyLeaderboards.avgScoreTitle,
+    format: (v) => `${Math.round(v)}%`,
+  },
+  {
+    metric: "streak",
+    title: (t) => t.lobbyLeaderboards.streakTitle,
+    format: (v, t) => `${v} ${t.lobbyLeaderboards.unitStreak}`,
+  },
+  {
+    metric: "badges",
+    title: (t) => t.lobbyLeaderboards.badgesTitle,
+    format: (v, t) => `${v} ${t.lobbyLeaderboards.unitBadges}`,
+  },
+];
+
+function useBoardData(t: Dictionary) {
   const [posts, setPosts] = useState<string[]>([]);
   const [ranking, setRanking] = useState<string[]>([]);
+  /** Bốn bảng còn lại, theo đúng thứ tự METRIC_BOARDS. */
+  const [otherBoards, setOtherBoards] = useState<string[][]>([[], [], [], []]);
 
   useEffect(() => {
     let cancelled = false;
 
     const load = async () => {
-      const [feed, top] = await Promise.all([
+      const [feed, top, ...rest] = await Promise.all([
         getCommunityFeed(undefined, 8).catch(() => []),
         getLeaderboardByMetric("xp", 8).catch(() => []),
+        ...METRIC_BOARDS.map((b) => getLeaderboardByMetric(b.metric, 8).catch(() => [])),
       ]);
       if (cancelled) return;
+      setOtherBoards(
+        rest.map((rows, i) =>
+          rows.map((r, j) => `${j + 1}.  ${r.name}  —  ${METRIC_BOARDS[i].format(r.value, t)}`)
+        )
+      );
       setPosts(
         feed.map((p) => {
           const who = p.user_name || "Người học";
@@ -45,14 +97,16 @@ function useBoardData() {
     };
 
     void load();
-    const timer = window.setInterval(load, BOARD_REFRESH_MS);
+    const timer = window.setInterval(() => {
+      if (document.visibilityState === "visible") void load();
+    }, BOARD_REFRESH_MS);
     return () => {
       cancelled = true;
       window.clearInterval(timer);
     };
   }, []);
 
-  return { posts, ranking };
+  return { posts, ranking, otherBoards };
 }
 
 /** Bảng treo tường: khung gỗ + mặt bảng vẽ bằng canvas. */
@@ -61,6 +115,7 @@ function WallBoard({
   rotation,
   title,
   rows,
+  emptyText,
   accent,
   width = 5.4,
   height = 3.6,
@@ -69,13 +124,19 @@ function WallBoard({
   rotation: [number, number, number];
   title: string;
   rows: string[];
+  /** Chữ hiện khi bảng chưa có hàng nào. Truyền vào chứ không đọc từ điển ở
+   *  đây: `boardTexture` vẽ lên canvas nên nó không phải React, và WallBoard
+   *  cũng không có `t` trong tầm - chỉ nơi gọi mới có. */
+  emptyText: string;
   accent?: string;
   width?: number;
   height?: number;
 }) {
+  // Sub-component, nên có useI18n() riêng.
+  const { t } = useI18n();
   const texture = useMemo(
-    () => boardTexture(title, rows, { accent, width: 768, height: 512 }),
-    [title, rows, accent]
+    () => boardTexture(title, rows, { accent, width: 768, height: 512, emptyText }),
+    [title, rows, accent, emptyText]
   );
   useEffect(() => () => texture.dispose(), [texture]);
 
@@ -187,7 +248,7 @@ export default function RoomFixtures({
   onPortalProximity: (target: GateTarget | null) => void;
 }) {
   const { t } = useI18n();
-  const { posts, ranking } = useBoardData();
+  const { posts, ranking, otherBoards } = useBoardData(t);
   const halfW = ROOM.width / 2;
   const GATE_STUDY = gateStudy(t);
   const GATE_DISTRICT = gateDistrict(t);
@@ -201,19 +262,44 @@ export default function RoomFixtures({
         rotation={[0, Math.PI / 2, 0]}
         title={t.miscUi.roomFixtures.communityBoard}
         rows={posts}
+        emptyText={t.miscUi.canvasBoard.empty}
         accent="#c9a227"
       />
 
-      {/* Bảng xếp hạng - treo trên tầng hai. Đặt ở đây chứ không đối diện bảng
-          tin dưới sàn là có chủ ý: ban công cần một lý do để leo lên, và "muốn
-          xem mình đứng thứ mấy tuần này" là lý do rẻ nhất mà vẫn thật. */}
-      <WallBoard
-        position={[halfW - 0.3, 8.4, 6]}
-        rotation={[0, -Math.PI / 2, 0]}
-        title={t.miscUi.roomFixtures.weeklyLeaderboard}
-        rows={ranking}
-        accent="#e5b567"
-      />
+      {/* Năm bảng xếp hạng, cả năm ở TẦNG TRỆT dọc tường đông.
+      
+          Trước đây chỉ có một bảng (XP) và nó treo trên ban công tầng hai, với
+          lý do là "ban công cần một lý do để leo lên". Lý do ấy không còn: ban
+          công giờ có tám cửa phòng học, mỗi cửa khắc một công thức thật - thừa
+          sức giữ chân người leo lên. Còn bảng xếp hạng thì ngược lại, nó thuộc
+          về chỗ đông người đi qua.
+      
+          Và bốn hạng mục kia trước đây không có đường nào tới được: trang bảng
+          xếp hạng không được nhắc ở bất kỳ đâu trong app - không nav, không
+          link, không router.push. Ai muốn xem hạng theo số bài học hay chuỗi
+          ngày chỉ còn cách gõ thẳng địa chỉ.
+      
+          Cách nhau 9 đơn vị dọc chiều dài 56 của phòng: đủ xa để đứng đọc một
+          bảng thì bảng bên cạnh không chen vào khung hình, đủ gần để đi dọc
+          tường là thấy hết năm cái. */}
+      {[
+        { title: t.lobbyLeaderboards.xpTitle, rows: ranking, accent: "#e5b567" },
+        ...METRIC_BOARDS.map((board, i) => ({
+          title: board.title(t),
+          rows: otherBoards[i] ?? [],
+          accent: ["#7dd3fc", "#86efac", "#fca5a5", "#c4b5fd"][i],
+        })),
+      ].map((board, i) => (
+        <WallBoard
+          key={board.title}
+          position={[halfW - 0.3, 3.5, -18 + i * 9]}
+          rotation={[0, -Math.PI / 2, 0]}
+          title={board.title}
+          emptyText={t.miscUi.canvasBoard.empty}
+          rows={board.rows.length > 0 ? board.rows : [t.lobbyLeaderboards.empty]}
+          accent={board.accent}
+        />
+      ))}
 
       <Gate
         playerRef={playerRef}

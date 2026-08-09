@@ -73,9 +73,11 @@ function TextBoard({
   position: [number, number, number];
   rotation?: [number, number, number];
 }) {
+  // Sub-component, nên có useI18n() riêng.
+  const { t } = useI18n();
   const tex = useMemo(
-    () => boardTexture(title, rows, { accent }),
-    [title, rows, accent]
+    () => boardTexture(title, rows, { accent, emptyText: t.miscUi.canvasBoard.empty }),
+    [title, rows, accent, t]
   );
   useEffect(() => () => tex.dispose(), [tex]);
   return (

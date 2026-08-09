@@ -20,6 +20,7 @@ import {
 } from "./study-room-space";
 import { bookshelfTexture, boardTexture, oakTexture, rugTexture } from "@/components/lobby/room-textures";
 import { useRenderQuality } from "@/components/world-controls/render-quality";
+import { useI18n } from "@/lib/i18n/context";
 
 /** Vỏ phòng và toàn bộ đồ đạc. Không tải model nào: mọi thứ là khối cơ bản với
  *  vân vẽ bằng canvas, cùng cách thư viện đang làm - một phòng nhóm phải mở
@@ -131,6 +132,8 @@ interface Props {
 }
 
 export default function StudyRoomShell({ boardTitle, boardRows, lampColor, daylight }: Props) {
+  // Sub-component, nên có useI18n() riêng.
+  const { t } = useI18n();
   const { reducedMotion } = useRenderQuality();
   const floorTex = useMemo(() => {
     const t = oakTexture(10, 12);
@@ -142,8 +145,8 @@ export default function StudyRoomShell({ boardTitle, boardRows, lampColor, dayli
   // boardTexture dựng canvas mới mỗi lần gọi (không qua cache của room-textures),
   // nên phải tự dọn - nội dung bảng đổi mỗi khi mục tiêu tuần nhích lên.
   const board = useMemo(
-    () => boardTexture(boardTitle, boardRows, { accent: "#34d399" }),
-    [boardTitle, boardRows]
+    () => boardTexture(boardTitle, boardRows, { accent: "#34d399", emptyText: t.miscUi.canvasBoard.empty }),
+    [boardTitle, boardRows, t]
   );
   useEffect(() => () => board.dispose(), [board]);
 

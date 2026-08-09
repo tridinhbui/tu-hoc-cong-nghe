@@ -5,6 +5,27 @@
 
 export const lessonAdminVi = {
   lessonPage: {
+    // Chín câu ví von, tra bằng MetaphorId từ components/LessonPageClient.tsx.
+    // Trước là literal trong thân getMetaphorForLesson() - vị trí mà không phép
+    // đo nào với tới, nên file đó báo 0 chuỗi trong khi mỗi bài học đều hiện một
+    // câu ở đây.
+    metaphors: {
+      compound: "quả cầu tuyết lăn từ đỉnh núi: càng lăn xa càng hút thêm tuyết và phình to khổng lồ",
+      cashFlow:
+        "nguồn nước chảy trong sinh hoạt: dù bể nhà bạn to (tài sản lớn) nhưng nếu đường ống bị tắc (thiếu tiền mặt), bạn vẫn không có nước tắm rửa",
+      interest:
+        "phí thuê một chiếc xe máy: bạn mượn xe người khác đi thì cuối ngày phải trả một số tiền nhỏ gọi là tiền thuê",
+      debt: "một chiếc ba lô chứa đá: giúp bạn lao dốc nhanh hơn nhờ quán tính nếu mang vừa sức, nhưng sẽ đè bẹp bạn nếu quá nặng",
+      dividend:
+        "vườn táo chung: bạn góp vốn mua cây con, khi cây ra trái ngọt, chủ vườn hái chia đều cho mỗi người vài trái mang về",
+      inflation: "cục nước đá để ngoài nắng: cứ mỗi giờ trôi qua nó lại bị chảy bớt đi một chút giá trị mua sắm",
+      valuation:
+        "mua một món đồ cũ: bạn phải soi kỹ đường may, chất liệu để xem mức giá người bán nói có bị đắt quá không",
+      asset: "con gà đẻ trứng vàng: mỗi ngày nó đẻ ra một quả trứng vàng để bạn đem bán kiếm tiền",
+      fallback:
+        "trò chơi trao đổi sticker ở trường: để đổi được sticker hiếm, bạn phải hiểu rõ giá trị của những tấm sticker mình đang sở hữu",
+    },
+
     whyItMattersTitle: "Vì sao bài này quan trọng",
     feynmanTitle: "💡 Chế độ Feynman (Giải thích siêu đơn giản)",
     feynmanSubtitle: "Tài Tài giải thích bài học này theo cách dễ nhớ nhất cho học sinh lớp 5!",
@@ -48,6 +69,23 @@ export const lessonAdminVi = {
 
 export const lessonAdminEn: typeof lessonAdminVi = {
   lessonPage: {
+    metaphors: {
+      compound: "a snowball rolling down a mountain: the further it rolls, the more snow it picks up and the bigger it grows",
+      cashFlow:
+        "the plumbing in your house: the tank on the roof may be huge (plenty of assets), but if the pipe is blocked (no cash), you still cannot take a shower",
+      interest:
+        "the fee for borrowing a motorbike: you ride someone else's bike for the day, and at the end of it you hand over a small amount for the use of it",
+      debt: "a backpack full of rocks: carry a sensible load and momentum takes you downhill faster, carry too much and it flattens you",
+      dividend:
+        "a shared apple orchard: you chip in to buy the saplings, and when the trees fruit the keeper picks the crop and hands everyone a few apples to take home",
+      inflation: "an ice cube left out in the sun: every hour that passes, a little more of its purchasing power melts away",
+      valuation:
+        "buying something second-hand: you check the stitching and the material closely to judge whether the seller's price is too high",
+      asset: "a hen that lays golden eggs: every day it lays one more egg you can sell",
+      fallback:
+        "trading stickers in the schoolyard: to swap for a rare one, you have to know exactly what the stickers you already hold are worth",
+    },
+
     whyItMattersTitle: "Why this lesson matters",
     feynmanTitle: "💡 Feynman mode (super simple explanation)",
     feynmanSubtitle: "Tai Tai explains this lesson the way a 5th grader would remember it best!",

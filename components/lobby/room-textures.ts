@@ -224,7 +224,11 @@ export function nameplateTexture(name: string, status?: NameplateStatus): THREE.
 
 /** Mặt đồng hồ Pomodoro treo trên bàn: thời gian còn lại + số người đang ngồi.
  *  Vẽ lại mỗi giây nên giữ canvas nhỏ và không cache. */
-export function pomodoroTexture(msLeft: number, seatedCount: number): THREE.Texture {
+export function pomodoroTexture(
+  msLeft: number,
+  seatedCount: number,
+  labels: { done: string; studying: string }
+): THREE.Texture {
   const W = 320;
   const H = 160;
   const canvas = document.createElement("canvas");
@@ -253,7 +257,7 @@ export function pomodoroTexture(msLeft: number, seatedCount: number): THREE.Text
   if (done) {
     ctx.fillStyle = "#86efac";
     ctx.font = "700 46px ui-sans-serif, system-ui, sans-serif";
-    ctx.fillText("Xong phiên", W / 2, 62);
+    ctx.fillText(labels.done, W / 2, 62);
   } else {
     ctx.fillStyle = "#f5efe0";
     ctx.font = "700 64px ui-monospace, SFMono-Regular, monospace";
@@ -263,7 +267,7 @@ export function pomodoroTexture(msLeft: number, seatedCount: number): THREE.Text
   ctx.fillStyle = "#a8a29e";
   ctx.font = "500 26px ui-sans-serif, system-ui, sans-serif";
   ctx.fillText(
-    seatedCount === 1 ? "1 người đang học" : `${seatedCount} người đang học`,
+    labels.studying,
     W / 2,
     118
   );
@@ -342,7 +346,11 @@ export function speechBubbleTexture(text: string): { texture: THREE.Texture; asp
 export function boardTexture(
   title: string,
   rows: string[],
-  opts: { width?: number; height?: number; accent?: string } = {}
+  // `emptyText` BẮT BUỘC, không có giá trị mặc định. Chữ vẽ lên canvas không đi
+  // qua từ điển được vì module này không phải React - nên nó phải nhận chữ từ
+  // caller. Để mặc định tiếng Việt là giữ nguyên lỗi ở một chỗ khó thấy hơn;
+  // bắt buộc thì tsc ép cả ba caller truyền vào.
+  opts: { width?: number; height?: number; accent?: string; emptyText: string }
 ): THREE.Texture {
   const W = opts.width ?? 768;
   const H = opts.height ?? 512;
@@ -379,7 +387,7 @@ export function boardTexture(
   if (shown.length === 0) {
     ctx.fillStyle = "rgba(245,239,224,0.5)";
     ctx.textAlign = "center";
-    ctx.fillText("Chưa có gì ở đây", W / 2, H / 2 - 12);
+    ctx.fillText(opts.emptyText, W / 2, H / 2 - 12);
   } else {
     shown.forEach((row, i) => {
       const y = 132 + i * 44;

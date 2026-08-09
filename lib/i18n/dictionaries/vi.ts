@@ -321,7 +321,7 @@ export const vi = {
     newsPendingNote: "(Menu có cảnh báo)",
     // Split around the inline <strong> holding the XP.
     newsBodyPart1: "Trả lời chính xác tình huống tin tức vĩ mô hôm nay để nhận ",
-    newsXp: "+15 XP",
+    newsXp: "+{xp} XP",
     newsBodyPart2: " và giải tỏa biểu tượng cảnh báo 🔴 trên Navbar.",
 
     rightEyebrow: "Bên Phải • Tạo bài kiểm tra tự chọn",
@@ -433,6 +433,13 @@ export const vi = {
     comingSoon: "Sắp ra mắt",
     restart: "↺ Làm lại từ đầu",
     questionList: "Các câu hỏi",
+    // Chỉ hiện cho khách đọc bài xem thử (lib/preview-lessons.ts). Nói thứ họ
+    // vừa có và sắp mất, không nói tính năng - "tiến độ bài này" là thứ duy
+    // nhất người vừa đọc xong đang thực sự cầm trong tay.
+    guestSaveTitle: "Bạn vừa học xong bài này 🎉",
+    guestSaveBody:
+      "Tiến độ này đang nằm trên trình duyệt và sẽ mất khi bạn đổi máy. Tạo tài khoản miễn phí để lưu lại, mở toàn bộ bài học và theo dõi chuỗi ngày học của mình.",
+    guestSaveCta: "Đăng ký miễn phí để lưu tiến độ",
   },
 
   // components/WorldBossRaidWidget.tsx - the weekly server-wide boss raid.
@@ -713,7 +720,7 @@ export const vi = {
     trackPrefix: "Track",
     effortHours: "~{hours} giờ học",
     standardised: "Lộ trình chuẩn hóa 2024",
-    xpPerLesson: "+120 XP / bài",
+    xpPerLesson: "+{xp} XP / bài",
     stagesTitle: "Các chặng kiến thức chính:",
     freeTryCompact: "Miễn phí · Xem thử ngay",
     freeTry: "Miễn phí · Xem thử ngay, không cần đăng nhập",
@@ -1426,7 +1433,7 @@ export const vi = {
     step3Body: "Học đều mỗi ngày để leo hạng",
 
     heroBanner: "🎓 HERO LEARNING BANNER",
-    xpIfNow: "🔥 +30 XP NẾU HỌC NGAY",
+    xpIfNow: "🔥 +{xp} XP NẾU HỌC NGAY",
     trackProgress: "Tiến độ Lộ trình ({done}/{total} bài)",
     continuingLesson: "▶ Bài học đang tiếp tục",
     minutesStudied: "⏱️ Đã học {minutes} phút",
@@ -2239,6 +2246,9 @@ export const vi = {
 
   // components/DashboardClient.tsx
   dashboard: {
+    // Nhãn thời lượng trên thẻ bài học. Trước là template literal trong một
+    // hàm ở module scope, ngoài tầm mọi rule cho tới khi thêm returned-text.
+    minutesShort: "{count} phút",
     markedRead: "Đã đánh dấu {count} bài là bạn đã học.",
     unmarkedRead: "Đã bỏ đánh dấu {count} bài.",
     offlineSynced: "Tiến độ học tập offline đã được đồng bộ thành công! 🌟",
@@ -2675,6 +2685,7 @@ export const vi = {
   },
   // components/MockInterviewModal.tsx - the timed IB mock interview.
   mockInterview: {
+    fallbackCategory: "Phỏng vấn",
     saveFailed: "Không lưu được kết quả phỏng vấn, nhưng bạn vẫn xem được phần chấm điểm.",
     title: "Mock Interview",
     questionMeta: "Câu {index}/{total} · {category}",
@@ -2870,6 +2881,12 @@ export const vi = {
     loading: "Đang tải...",
     empty:
       "Chưa có thông báo nào. Đăng bài hoặc bình luận trên FinSocial để bắt đầu nhận thông báo khi có người tương tác.",
+    comment: "{actor} đã bình luận vào bài viết của bạn",
+    reaction: "{actor} đã thả {emoji} vào bài viết của bạn",
+    reactionFallback: "cảm xúc",
+    appealApproved: "Khiếu nại của bạn đã được duyệt - bài học đã được ghi nhận hoàn thành.",
+    appealRejected: "Khiếu nại của bạn chưa được chấp nhận.",
+    aiReportResolved: "Cảm ơn bạn - đoạn nội dung bạn báo sai đã được sửa.",
   },
 
   // components/CareerGoalWidget.tsx
