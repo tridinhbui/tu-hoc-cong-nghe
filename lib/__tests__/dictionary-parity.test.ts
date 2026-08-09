@@ -78,6 +78,11 @@ const INTENTIONALLY_UNTRANSLATED = new Set([
   "studyGroups.taitaiFailed",
   "chat.admin",
   "chat.taitaiFailed",
+  // Cùng lý do, cho câu luật mà bot đăng vào phòng: cả câu đã là tiếng Anh,
+  // chỉ còn đúng tên riêng "Tài Tài" mang dấu - và tên riêng thì giữ nguyên ở
+  // mọi ngôn ngữ. Miễn trừ đúng khoá này chứ không nới ngưỡng dấu, vì ngưỡng
+  // ấy là thứ bắt được bản dịch copy-paste.
+  "groupChat.botRules",
   // "DCF, comps, precedent transactions, terminal value" - bốn thuật ngữ định
   // giá mà bản tiếng Việt cũng đã viết bằng tiếng Anh, vì đó là tên chúng được
   // gọi trong nghề và là cái người học phải nhận ra trong một buổi phỏng vấn.
@@ -86,6 +91,11 @@ const INTENTIONALLY_UNTRANSLATED = new Set([
   "adminChat.title",
   "groupChat.byAdmin",
   "groupChat.pinnedByAdmin",
+  // Cùng "Tài Tài", lần này mở đầu lời chào khi phòng vừa lập. Tin nhắn bot
+  // giờ lưu dạng sự kiện và dựng câu ở phía người đọc
+  // (lib/study-room-bot-messages.ts), nên chuỗi này LÀ bản tiếng Anh - chỉ có
+  // tên nhân vật giữ nguyên.
+  "groupChat.botRules",
   // Already English: the in-game clan's own name, not copy to translate.
   "guild.clanTitle",
   // The FRM certification's own name and its awarding body. "Financial Risk
