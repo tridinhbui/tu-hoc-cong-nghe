@@ -7,6 +7,7 @@ import { getCommunityFeed, type CommunityFeedPost } from "@/lib/supabase-communi
 import { isValidAvatar } from "@/lib/avatar-utils";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
+import { extractStreakDays } from "@/lib/streak-post-days";
 
 /** Chuỗi ngày học của người khác, một góc nhỏ trên dashboard.
  *
@@ -20,15 +21,6 @@ import { format } from "@/lib/i18n";
  *  góc nhỏ mọc thêm nút bấm sẽ thành một feed thứ hai phải bảo trì song song.
  */
 const MAX_ROWS = 4;
-
-/** Số chuỗi ngày rút từ nội dung bài, để hiện thành huy hiệu thay vì bắt người
- *  đọc dò trong câu. Không tìm thấy thì trả null và dòng đó chỉ hiện tên. */
-function extractStreakDays(content: string | null): number | null {
-  const match = (content ?? "").match(/(\d+)\s*ngày/i);
-  if (!match) return null;
-  const days = Number(match[1]);
-  return Number.isFinite(days) && days > 0 ? days : null;
-}
 
 export default function CommunityStreakWidget() {
   const { t } = useI18n();
@@ -82,7 +74,7 @@ export default function CommunityStreakWidget() {
 
       <ul className="space-y-1.5">
         {posts.map((post) => {
-          const days = extractStreakDays(post.content);
+          const days = extractStreakDays(post);
           return (
             <li key={post.id} className="flex items-center gap-2.5 rounded-xl bg-stone-50 px-2.5 py-2 dark:bg-stone-950/50">
               {isValidAvatar(post.user_avatar) ? (
