@@ -1,4 +1,5 @@
 import { CFA_LEVELS, type CfaLevelSpec } from "@/lib/cfa-levels";
+import { mergeCfaLevels } from "@/lib/cfa-levels-i18n";
 import { getServerLocale } from "@/lib/i18n/server";
 import { getDictionary } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
@@ -116,7 +117,10 @@ function LevelCard({ spec, t }: { spec: CfaLevelSpec; t: Dictionary }) {
 }
 
 export default async function CfaNextLevels() {
-  const t = getDictionary(await getServerLocale());
+  // Server component: locale đọc từ cookie qua getServerLocale, không phải
+  // useI18n. Giữ lại biến thay vì gọi hai lần - lần gọi thứ hai đọc lại cookie.
+  const locale = await getServerLocale();
+  const t = getDictionary(locale);
   return (
     <section className="mt-10">
       <h2 className="text-sm font-black uppercase tracking-wide text-stone-500 dark:text-stone-400">
@@ -127,7 +131,7 @@ export default async function CfaNextLevels() {
       </p>
 
       <div className="mt-5 grid items-stretch gap-4 lg:grid-cols-2">
-        {CFA_LEVELS.map((spec) => (
+        {mergeCfaLevels(CFA_LEVELS, locale).map((spec) => (
           <LevelCard key={spec.level} spec={spec} t={t} />
         ))}
       </div>
