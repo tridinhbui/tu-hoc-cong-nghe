@@ -1,0 +1,179 @@
+{
+  "slug": "cau-truc-von-toi-uu-cho-doanh-nghiep",
+  "title": "CFO & Operations 8: The optimal capital structure",
+  "subtitle": "How much debt is 'just enough' - not too little, not too much",
+  "duration": "7 min",
+  "openingQuestion": "Why is a company that uses no debt at all (100% equity) usually NOT considered to have an optimal capital structure, even though it is completely safe from default?",
+  "openingOptions": [
+    "Because the law requires every company to carry some debt",
+    "It forgoes the tax shield and the ROE lift sensible leverage gives",
+    "Because a company with no debt cannot grow its business at all",
+    "A capital structure of 100% equity is always the absolute optimum"
+  ],
+  "explanation": "An optimal capital structure balances the benefits of debt (the tax shield on deductible interest, and financial leverage amplifying ROE whenever ROIC exceeds the cost of debt) against its costs and risks (rising default risk, and financial distress costs once debt climbs too high). A company with no debt at all is giving up the tax shield unnecessarily, when it could still hold a safe level of borrowing.",
+  "diagram": [
+    {
+      "label": "The benefits of debt: tax shield, amplified ROE"
+    },
+    {
+      "label": "The costs of debt: default risk, financial distress cost"
+    },
+    {
+      "label": "Optimal capital structure: where the two meet"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Capital structures compared across sectors",
+    "description": "Sectors with steady cash flow and large tangible asset bases - property, utilities - typically run far higher debt ratios than sectors with volatile cash flow and mostly intangible assets, such as technology or pharmaceuticals still in research. The gap reflects genuinely different debt capacity across business models."
+  },
+  "quiz": [
+    {
+      "question": "Why do high-growth technology companies typically run much lower debt ratios than property or utility companies?",
+      "options": [
+        "Because regulation bars technology companies from borrowing",
+        "Because their cash flow is volatile and collateral is thin",
+        "Because tech earnings are always below those of property firms",
+        "Because leverage ratios have nothing to do with the industry"
+      ],
+      "explanation": "Debt capacity depends heavily on how steady cash flow is and how much of the asset base can be pledged. A sector with predictable revenue and hard assets can safely carry a far higher debt ratio than one with volatile cash flow and mostly intangible assets. Nothing in regulation blocks a technology company from borrowing, and high-growth software firms frequently out-earn property developers; what they lack is the collateral and the predictability a lender prices off."
+    },
+    {
+      "question": "What is financial distress cost, and why does it limit the optimal level of debt?",
+      "options": [
+        "Simply the interest the company owes the bank in each period",
+        "A cost arising only once bankruptcy has been declared",
+        "The indirect losses that appear once default looks likely",
+        "A fixed charge that is the same for every company alike"
+      ],
+      "explanation": "Financial distress cost is INDIRECT, and it typically starts to appear even before the company actually defaults - it is enough for the market to PERCEIVE that default risk has risen. Customers, suppliers and the strongest staff begin to leave or to demand tougher terms, and that damages enterprise value well before any default occurs. It is not the interest bill, which is direct and contractual, and it is not fixed: it is largest where the firm's value is most fragile."
+    },
+    {
+      "question": "Why does financial distress cost appear before a company actually defaults?",
+      "options": [
+        "Because the tax rate rises once debt passes a threshold",
+        "Because accounting rules force a provision as debt climbs",
+        "Because banks are obliged to disclose a borrower's distress publicly",
+        "Because suspicion alone is enough to change how others behave"
+      ],
+      "explanation": "This is an indirect cost that never shows up as its own line on the financial statements, yet it is the main reason the optimal level of debt sits well below what the pure tax-shield argument would suggest. Tax rates do not step up with leverage, accounting provisions track expected credit losses rather than the borrower's own debt level, and no bank publishes a customer's difficulties - the market infers them, and inference is enough."
+    },
+    {
+      "question": "Why should a technology company whose value is mostly intangible keep leverage low?",
+      "options": [
+        "Because collateral is thin and the value sits in people",
+        "Because banks decline to lend to technology firms at all",
+        "Because the tax shield does not apply to software firms",
+        "Because they always hold enough cash to avoid borrowing"
+      ],
+      "explanation": "When trouble comes, a factory is still there to be sold, but a team of engineers can walk out within a few weeks. Value that evaporates that fast makes financial distress cost far higher. Banks do lend to technology companies, against receivables and recurring revenue; the tax shield applies to any taxpayer's interest expense whatever the sector; and a cash pile is a reason not to need debt, not a reason debt would be dangerous."
+    },
+    {
+      "question": "Why do sectors with steady cash flow, such as utilities, typically borrow more than technology?",
+      "options": [
+        "Because the state guarantees utility assets when those firms borrow",
+        "Because predictable cash flow can carry fixed debt service more safely",
+        "Because technology firms cannot claim the tax shield on interest",
+        "Because tech companies always hold enough cash and never borrow"
+      ],
+      "explanation": "Interest falls due on the date it falls due, whatever the business is doing, so debt capacity depends on how certain the cash flow is. There is a second factor on top of that: a power plant can be pledged, whereas a software company's value sits in its team - something no lender will accept as security. State guarantees on utility borrowing are the exception rather than the rule, and the interest deduction is available to any taxpaying company."
+    }
+  ],
+  "keyTakeaways": [
+    "An optimal capital structure balances the benefits of debt (tax shield, amplified ROE) against its costs (default risk, financial distress cost)",
+    "Debt capacity depends on cash flow stability and pledgeable assets - and it varies enormously across sectors",
+    "Financial distress cost is an indirect cost, and it can appear well before the company actually defaults"
+  ],
+  "practicePrompt": {
+    "question": "A CFO is weighing it up: more debt earns the company a tax shield on the interest, but too much debt raises the risk of financial distress if trading turns down. How does the CFO find the 'optimal' level of borrowing - neither too little nor too much?",
+    "options": [
+      "The optimum balances the tax shield of borrowing against the cost of financial distress",
+      "Borrow as much as possible, because the tax shield always leaves a positive net benefit in every case",
+      "Avoid debt entirely, so as to minimise every financial risk the business could ever face",
+      "The optimal level of debt is the same for every company, whatever its sector or stage"
+    ],
+    "explanation": "The optimal capital structure balances the tax shield of debt against the cost of financial distress. The optimal level differs by sector: a company with steady cash flow (property, utilities) carries more debt safely than a volatile high-growth one (technology)."
+  },
+  "application": {
+    "title": "Test the debt level in a bad scenario, not the plan",
+    "message": "Take the debt ratio you are considering and rerun it with EBITDA down 30%. Check two things: is interest cover still above 2 times, and does anything touch a covenant threshold? The optimal capital structure is the one that still stands in the worst year, not the one that looks best in the plan year.",
+    "secondary": "Compare your debt level with the sector median before concluding anything. A business with long-term contracted cash flow can carry a level of debt that a cyclical business cannot."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A company that uses no debt at all sounds absolutely safe - and yet it is usually not the optimal capital structure."
+    },
+    {
+      "type": "heading",
+      "text": "Balancing the tax shield against financial distress cost"
+    },
+    {
+      "type": "paragraph",
+      "text": "Debt brings a tax shield (interest is deductible) and can amplify ROE, but it also brings default risk and financial distress cost - the indirect cost of customers, suppliers and strong staff walking away out of concern about risk, which typically appears even BEFORE the company actually defaults. Debt capacity depends heavily on cash flow stability and on pledgeable assets, and it varies enormously by sector, from property (which carries high debt comfortably) to growth technology (which should keep leverage low)."
+    },
+    {
+      "type": "list",
+      "items": [
+        "An optimal capital structure balances the tax shield of debt against the cost of financial distress",
+        "Debt capacity depends on cash flow stability and pledgeable assets - and it differs across sectors",
+        "Financial distress cost is indirect, and it can appear even before an actual default"
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "What financial distress actually looks like"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Large customers hesitate to sign long contracts, worried the company will not last until delivery.",
+        "Suppliers tighten payment terms and demand cash up front instead of credit - so working capital needs spike at exactly the worst moment.",
+        "The strongest staff leave first, because they are the ones with the most options.",
+        "Management spends its time negotiating with creditors instead of running the business, and long-term investment is deferred, including the good projects."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The important point is that every one of these costs arrives before the company has actually run out of money to pay - it is enough for the market to start doubting. That is why the optimal level of debt always sits below what pure tax-shield theory would suggest."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Debt capacity differs with the shape of the business",
+      "subtitle": "The same debt ratio does not carry the same risk",
+      "concepts": [
+        {
+          "vi": "Dòng tiền ổn định",
+          "en": "Utilities, water, infrastructure, long-term leasing",
+          "def": "Revenue forecastable years ahead, assets that can be pledged. Carries a materially higher debt ratio than the general run of companies."
+        },
+        {
+          "vi": "Dòng tiền chu kỳ",
+          "en": "Steel, chemicals, property, airlines",
+          "def": "Earnings can fall very sharply in the downswing. Needs a wide buffer, because measured leverage ratios deteriorate fast."
+        },
+        {
+          "vi": "Tài sản vô hình là chính",
+          "en": "Technology, professional services",
+          "def": "Little collateral, and value that sits in people and can evaporate quickly once the business is in trouble. Leverage should stay low."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "The order companies actually reach for capital",
+      "text": "In practice many companies do not target a debt ratio at all; they follow an order - retained earnings first, then borrowing, and issuing shares last. The reason is that an equity issue is usually read by the market as management signalling that the shares look expensive - so it is both costly and sends a message nobody wants to send."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "'No debt' is not the same thing as 'optimal capital structure'.",
+        "The optimal level of debt is the point that balances benefit against risk for that industry and that company's cash flow."
+      ]
+    }
+  ],
+  "summary": {
+    "keyIdea": "An optimal capital structure balances the benefits of debt (tax shield, amplified ROE) against its costs (default risk, financial distress cost)",
+    "commonMistake": "Easy to miss: debt capacity depends on cash flow stability and pledgeable assets - and it varies enormously across sectors",
+    "action": "Financial distress cost is an indirect cost, and it can appear even before the company actually defaults"
+  }
+}
