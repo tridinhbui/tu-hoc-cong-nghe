@@ -1,6 +1,7 @@
 import { createClient } from "@/lib/supabase";
 import { handleSupabaseError } from "@/lib/errors";
 import { uniqueRealtimeTopic } from "@/lib/supabase-realtime-topic";
+import { createCoalescer } from "@/lib/coalesced-refresh";
 
 function isMissingTableError(error: { code?: string } | null): boolean {
   return error?.code === "PGRST205" || error?.code === "42P01" || error?.code === "PGRST202";
@@ -243,28 +244,66 @@ export async function deleteOwnComment(commentId: number): Promise<void> {
 // Same channel-naming/cleanup pattern as subscribeToRoomMessages in
 // lib/supabase-study-rooms.ts, unfiltered since this feed has no single
 // scope id - every signed-in client gets every new post.
+//
+// CHI PHÍ. Ba kênh này là những kênh realtime DUY NHẤT trong repo không có
+// `filter`, và đúng là chúng không thể có: feed là chung. Nhưng cả ba gọi cùng
+// một `onChange()` không mang payload, còn bên nhận thì tải lại TOÀN BỘ feed
+// cộng một truy vấn bình luận cho mỗi thread đang mở. Nên một người thả cảm
+// xúc ở bất kỳ đâu làm MỌI người đang mở /finsocial chạy một truy vấn feed.
+// Phần đắt không phải message realtime mà là số truy vấn và lượng dữ liệu ra.
+//
+// Hai chỗ cắt ở đây, không chỗ nào đổi thứ người dùng nhìn thấy:
+//
+// 1. Bỏ UPDATE trên bảng cảm xúc. Người khác chỉ thấy `reaction_count`; đổi
+//    cảm xúc từ 💡 sang 🔥 là một UPDATE không làm số đó nhúc nhích, nên nó
+//    từng kích hoạt một lần tải lại toàn feed cho mọi người xem để dựng lại
+//    đúng những con số cũ. INSERT và DELETE thì có đổi số đếm nên vẫn giữ.
+//
+//    Bình luận thì GIỮ nguyên `*`: sửa nội dung một bình luận có đổi chữ trong
+//    thread đang mở, và bên nhận có tải lại các thread đó.
+//
+// 2. Gộp và hoãn khi tab bị ẩn - xem lib/coalesced-refresh.ts.
+const FEED_REFRESH_WINDOW_MS = 1200;
+
 export function subscribeToCommunityFeed(onChange: () => void) {
   const supabase = createClient();
+  const coalescer = createCoalescer(onChange, { windowMs: FEED_REFRESH_WINDOW_MS });
+  const fire = () => coalescer.trigger();
+
   const channel = supabase
     .channel(uniqueRealtimeTopic("community_feed_live"))
     .on(
       "postgres_changes",
       { event: "INSERT", schema: "public", table: "community_posts" },
-      () => onChange()
+      fire
     )
     .on(
       "postgres_changes",
-      { event: "*", schema: "public", table: "community_post_reactions" },
-      () => onChange()
+      { event: "INSERT", schema: "public", table: "community_post_reactions" },
+      fire
+    )
+    .on(
+      "postgres_changes",
+      { event: "DELETE", schema: "public", table: "community_post_reactions" },
+      fire
     )
     .on(
       "postgres_changes",
       { event: "*", schema: "public", table: "community_post_comments" },
-      () => onChange()
+      fire
     )
     .subscribe();
 
+  const onVisibility = () => coalescer.onVisible();
+  if (typeof document !== "undefined") {
+    document.addEventListener("visibilitychange", onVisibility);
+  }
+
   return () => {
+    if (typeof document !== "undefined") {
+      document.removeEventListener("visibilitychange", onVisibility);
+    }
+    coalescer.cancel();
     supabase.removeChannel(channel);
   };
 }
