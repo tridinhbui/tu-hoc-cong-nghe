@@ -261,4 +261,254 @@ export const glossaryEn: Record<string, GlossaryTranslation> = {
     definition: "Returning portfolio weights to their targets after market prices have moved them.",
     cfaTip: "It forces you to sell what has risen and buy what has fallen - exactly what instinct resists.",
   },
+
+  "port-007": {
+    definition:
+      "Strategic allocation is the long-run target weighting; tactical is a temporary deviation from it based on a market view.",
+    cfaTip:
+      "Most of the variation in long-run returns comes from the strategic allocation, not from timing.",
+  },
+
+  "port-008": {
+    definition:
+      "The document setting out a portfolio's objectives, constraints, risk appetite and benchmark.",
+    cfaTip: "The IPS is what you write while calm so you can follow it while panicking.",
+  },
+
+  "quant-003": {
+    definition:
+      "Measures the strategy's performance by chaining period returns, independent of when money was paid in or taken out.",
+    cfaTip: "Funds publish TWR because they do not control when investors add or withdraw.",
+  },
+
+  "quant-004": {
+    definition:
+      "The IRR of the whole cash flow stream - what the investor actually experienced.",
+    cfaTip:
+      "Putting a lot of money in just before a fall drags MWRR well below the TWR the fund publishes.",
+  },
+
+  "quant-005": {
+    definition:
+      "Type I is rejecting H0 when it is true; Type II is failing to reject H0 when it is false.",
+    cfaTip:
+      "Cutting Type I by lowering the significance level raises Type II - the two errors trade against each other.",
+  },
+
+  "quant-006": {
+    definition:
+      "The distribution of the sample mean tends to normal as the sample grows, whatever the underlying distribution.",
+    cfaTip: "This is why most statistical tests still work on financial data that is not normal.",
+  },
+
+  "quant-007": {
+    definition:
+      "Skewness measures asymmetry in the distribution; kurtosis measures how heavy the tails are.",
+    cfaTip:
+      "Financial returns are left-skewed with fat tails, so standard deviation always understates the real risk.",
+  },
+
+  "quant-008": {
+    definition: "Error arising when the sample does not represent the population you want to reason about.",
+    cfaTip: "Survivorship bias is the form you meet most often in performance data.",
+    example: "A hedge fund index containing only funds still alive and voluntarily reporting.",
+  },
+
+  "econ-003": {
+    definition:
+      "The swing of output around its long-run trend, through expansion, peak, contraction and trough.",
+    cfaTip:
+      "Each phase favours a different group of sectors - that is the basis of cyclical allocation.",
+  },
+
+  "econ-004": {
+    definition: "An indicator that turns before the economy does, such as PMI or new orders.",
+    cfaTip:
+      "The opposite of a lagging indicator like unemployment, which only confirms what has already happened.",
+  },
+
+  "econ-005": {
+    definition: "Heavy government borrowing pushes rates up and reduces private investment.",
+    cfaTip:
+      "This is the central argument against fiscal expansion when the economy is already near full employment.",
+  },
+
+  "econ-006": {
+    definition: "High inflation alongside stagnant growth, usually from a supply shock.",
+    cfaTip: "The hardest situation for a central bank, because the two objectives pull in opposite directions.",
+  },
+
+  "econ-007": {
+    definition: "The record of all economic transactions between a country and the rest of the world.",
+    cfaTip:
+      "A current account surplus always comes with a capital account deficit - the two offset by definition.",
+  },
+
+  "econ-008": {
+    definition: "Being able to produce a good at a lower opportunity cost than another country.",
+    cfaTip:
+      "Different from absolute advantage: a country worse at everything still has a comparative advantage somewhere.",
+  },
+
+  "der-003": {
+    definition:
+      "The relationship between the underlying price and the strike: in-the-money, at-the-money or out-of-the-money.",
+    cfaTip: "An ATM option carries the most time value, because that is where the uncertainty is greatest.",
+  },
+
+  "der-004": {
+    definition: "How much the option price moves when the underlying moves by one unit.",
+    cfaTip:
+      "Call delta runs between 0 and 1, put delta between -1 and 0 - and it also approximates the probability of finishing in the money.",
+  },
+
+  "der-005": {
+    definition: "How much delta itself moves when the underlying moves - the curvature of the relationship.",
+    cfaTip: "Gamma peaks near the strike and near expiry, exactly when hedging is hardest.",
+  },
+
+  "der-006": {
+    definition: "How sensitive the option price is to a change in implied volatility.",
+    cfaTip: "Buying an option is buying volatility - so the price can rise while the underlying stands still.",
+  },
+
+  "der-007": {
+    definition:
+      "The volatility the market is pricing into an option, backed out from the market price.",
+    cfaTip: "The only Black-Scholes input that cannot be observed directly.",
+  },
+
+  "der-008": {
+    definition: "The risk that the hedging instrument does not move in step with the asset being hedged.",
+    cfaTip: "Imperfect hedges are the norm, and basis risk is what is left over after hedging.",
+    example: "Hedging Brent crude with a WTI contract.",
+  },
+
+  "corp-004": {
+    definition:
+      "The debt-to-equity mix that minimises WACC, balancing the tax shield against the cost of financial distress.",
+    cfaTip: "The tax shield is only worth anything while the business still has profit to deduct against.",
+  },
+
+  "corp-005": {
+    definition: "The cost that arises when managers pursue their own interest instead of shareholders'.",
+    cfaTip: "Debt reduces it, by forcing the business to hand over cash on a schedule.",
+  },
+
+  "corp-006": {
+    definition:
+      "Running inventory, receivables and payables so as little cash as possible is locked up in operations.",
+    cfaTip:
+      "Negative working capital is a strength for retail and subscription models, not a warning sign.",
+  },
+
+  "corp-007": {
+    definition: "The revenue level at which operating profit is exactly zero.",
+    formulaNumerator: "Fixed Costs",
+    formulaDenominator: "Contribution Margin per Unit",
+  },
+
+  "eq-004": {
+    definition:
+      "A durable competitive advantage that lets a business keep ROIC above its cost of capital for years.",
+    cfaTip: "Without a moat, competition drags ROIC down to WACC and growth stops creating value.",
+  },
+
+  "eq-005": {
+    definition:
+      "Cyclicals swing hard with the economy; defensives have steady demand whatever the cycle does.",
+    cfaTip:
+      "A cyclical's lowest P/E usually appears just before earnings turn down.",
+  },
+
+  "eq-006": {
+    definition: "The share of stock actually available to trade, excluding permanently held blocks.",
+    cfaTip: "A low free float makes the price easy to push and makes the index less representative.",
+  },
+
+  "fi-004": {
+    definition: "The relationship between yield and maturity for bonds of the same credit quality.",
+    cfaTip: "An inversion is usually read as the market expecting the economy to slow.",
+  },
+
+  "fi-005": {
+    definition: "The risk of having to reinvest coupons or principal at a lower rate.",
+    cfaTip:
+      "It works against price risk - which is why a zero-coupon bond has no reinvestment risk at all.",
+  },
+
+  "fi-006": {
+    definition:
+      "A callable bond gives the issuer the right to redeem early; a putable bond gives the holder the right to sell back.",
+    cfaTip:
+      "Whoever holds the option gains from it - so a callable bond has to pay a higher yield in compensation.",
+  },
+
+  "eth-006": {
+    definition:
+      "Reaching a material conclusion by assembling many pieces of non-material information is legitimate.",
+    cfaTip: "One piece of material inside information anywhere in the chain destroys the whole defence.",
+  },
+
+  "eth-007": {
+    definition:
+      "Information a reasonable investor would use in a decision, which has not yet been widely released.",
+    cfaTip:
+      "Materiality is measured by the effect on a decision, not by the seniority of whoever holds it.",
+  },
+
+  "eth-008": {
+    definition:
+      "The legal obligation to put the interest of the person you serve ahead of your own.",
+    cfaTip:
+      "A higher bar than suitability: not merely a reasonable product, but the best available choice.",
+  },
+
+  "eth-009": {
+    definition:
+      "Information that would move a security's price if released, and has not been widely disseminated. You may neither trade on it nor pass it on.",
+    cfaTip:
+      "Standard II(A). The materiality test is whether a reasonable investor would want it before deciding. Receiving MNPI by accident binds you exactly as much as seeking it out.",
+  },
+
+  "eth-010": {
+    definition:
+      "A material conclusion assembled from public information and non-material non-public pieces. That conclusion may be traded on.",
+    cfaTip:
+      "This is the legal boundary of analysis. Keep the source record for every piece - when questioned, that is the only thing separating mosaic work from insider dealing.",
+  },
+
+  "eth-011": {
+    definition:
+      "Recommendations and investment actions must be disclosed to all clients fairly with respect to timing.",
+    cfaTip:
+      "Standard III(B). Fair does NOT mean equal - different clients can receive different allocations according to their objectives, as long as nobody is systematically late to the information.",
+  },
+
+  "eth-012": {
+    definition:
+      "Commission generated by client trading belongs to the client, and may only buy research that serves that same client.",
+    cfaTip:
+      "Standard III(A). Using client commission to buy your firm's accounting software is a violation - that is an operating cost, not investment research.",
+  },
+
+  "eth-013": {
+    definition:
+      "The set of all portfolios run to the same investment strategy, used to present performance under GIPS.",
+    cfaTip:
+      "Every actual fee-paying portfolio MUST sit in at least one composite. That rule is precisely what stops a firm showing only its winners.",
+  },
+
+  "quant-009": {
+    definition: "Type I is rejecting H₀ when it is true; Type II is failing to reject H₀ when it is false.",
+    cfaTip:
+      "The significance level α is the probability of a Type I error. Lowering α cuts Type I but raises Type II - there is no way to reduce both except by increasing the sample size.",
+  },
+
+  "quant-010": {
+    definition: "The smallest significance level at which H₀ would still be rejected.",
+    cfaTip:
+      "p is NOT the probability that H₀ is true - that is the most common misreading. It is the probability of seeing data like this IF H₀ were true.",
+    example: "p = 0.03 rejects H₀ at the 5% level but not at the 1% level.",
+  },
 };
