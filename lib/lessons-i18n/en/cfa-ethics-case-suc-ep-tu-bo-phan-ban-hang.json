@@ -6,9 +6,9 @@
   "whyItMatters": "The ethics exam is written around situations rather than around standard names, and the skill being marked is recognising which standards a sequence of conduct touches. This is the form of case that appears most often.",
   "openingQuestion": "You write a Neutral recommendation on a company your firm is about to underwrite. The head of underwriting asks you to raise it to Buy and says the mandate could be lost. What violation has occurred at this point?",
   "openingOptions": [
-    "None yet, until you actually change the recommendation",
+    "None yet, not until you actually change the recommendation",
     "One already: applying pressure to independence breaches I(B)",
-    "Only if the company itself learns of this conversation",
+    "Only if the company itself learns of this conversation later",
     "Only Standard IV(A), on the duty to the employer"
   ],
   "correctOption": 1,
@@ -64,10 +64,21 @@
     }
   ],
   "diagram": [
-    { "label": "I(B): the violation completes when the pressure is transmitted", "arrow": true },
-    { "label": "If the recommendation changes: add V(A) - no reasonable basis", "arrow": true },
-    { "label": "And V(B) - presenting another's opinion as your own", "arrow": true },
-    { "label": "The information barrier should have blocked this conversation" }
+    {
+      "label": "I(B): the violation completes when the pressure is transmitted",
+      "arrow": true
+    },
+    {
+      "label": "If the recommendation changes: add V(A) - no reasonable basis",
+      "arrow": true
+    },
+    {
+      "label": "And V(B) - presenting another's opinion as your own",
+      "arrow": true
+    },
+    {
+      "label": "The information barrier should have blocked this conversation"
+    }
   ],
   "realWorldExample": {
     "company": "Why this is the classic case of a structural conflict",
@@ -87,9 +98,9 @@
     {
       "question": "If the analyst gives in and changes the recommendation, which further violations arise?",
       "options": [
-        "Only V(A), because the recommendation has no analytical basis",
+        "Only V(A), because the recommendation now has no analytical basis at all",
         "V(A) for the lost reasonable basis, and V(B) for misrepresentation",
-        "Only IV(A), for damaging the employer's interests",
+        "Only IV(A), for damaging the employer's commercial interests",
         "None, because I(B) already covers the whole thing"
       ],
       "explanation": "The new recommendation rests on no analysis at all, and it is presented as though it were the analyst's conclusion - two separate violations."
@@ -100,14 +111,14 @@
         "Change the recommendation but note the reason at the end",
         "Resign immediately so as not to be associated with the report",
         "Hold the well-founded conclusion, record it, take it to compliance",
-        "Wait and see whether the underwriting mandate is actually lost"
+        "Wait and see whether the underwriting mandate really does get lost first"
       ],
       "explanation": "These three steps are the proportionate response - resigning is the last resort once every internal channel has closed."
     },
     {
       "question": "Which mechanism should have blocked this conversation from the outset?",
       "options": [
-        "The rule on retaining research records for seven years",
+        "The rule requiring that research records be retained for seven years",
         "The pre-clearance process for staff personal dealing",
         "The restricted list of securities staff may not trade",
         "The information barrier between underwriting and research"
@@ -120,7 +131,7 @@
         "Because underwriting revenue comes from the companies covered",
         "Because the two departments always have personal disputes",
         "Because current rules do not divide responsibility clearly",
-        "Because analysts usually hold less power within the organisation"
+        "Because analysts usually hold less power inside the organisation itself"
       ],
       "explanation": "The conflict is in the business model rather than in an individual, so the solution has to be a mechanism rather than individual willpower."
     }

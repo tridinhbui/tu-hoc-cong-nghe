@@ -36,7 +36,7 @@
       "question": "In a recession that cuts revenue sharply, whose profit suffers more: a SaaS business (high fixed costs) or a contract manufacturer (high variable costs)?",
       "options": [
         "SaaS, because the fixed costs remain payable as revenue falls",
-        "Neither is affected, since a recession only hits the share price",
+        "Neither is affected; a recession only hits the share price",
         "The manufacturer, because variable costs are hard to cut",
         "Both suffer equally, since both lose the same revenue"
       ],

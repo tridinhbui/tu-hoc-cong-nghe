@@ -55,10 +55,10 @@
     {
       "question": "What is the inherent limitation of relative valuation?",
       "options": [
-        "It cannot be used for a business already listed on an exchange",
+        "It cannot be used for a business already listed",
         "It reproduces whatever mispricing the comparable set carries",
         "It always produces a figure below the current market price",
-        "It cannot be computed if the business has any bank borrowings"
+        "It cannot be computed if the business has bank borrowings"
       ],
       "explanation": "The method measures relative value, not intrinsic value. So it needs to sit beside a cash-flow-based method, which is what reveals the stretches where a whole industry has drifted away from fundamentals."
     },

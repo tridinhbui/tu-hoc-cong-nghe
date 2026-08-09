@@ -1,0 +1,137 @@
+{
+  "slug": "actuarial-science-xac-suat-thong-ke",
+  "title": "Actuarial Science: probability and statistics applied to insurance pricing",
+  "subtitle": "Mortality tables, expected present value, and the mathematics behind every life insurance contract",
+  "duration": "8 min",
+  "openingQuestion": "A mortality table says the probability of death at age 45 is 0.3% per year. What does that mean when an actuary prices a life insurance policy?",
+  "openingOptions": [
+    "It means exactly 0.3% of every 1,000 people aged 45 will die within this very year, with no deviation",
+    "It is a statistical probability drawn from large datasets, used to compute the expected present value of the future payout",
+    "The figure is indicative only and is never used in the actual pricing of an insurance premium",
+    "0.3% is the fixed premium rate applied to everyone at age 45"
+  ],
+  "explanation": "The mortality table is the actuary's core statistical instrument: it gives the PROBABILITY (not the certainty) that a person of a given age will die within the year, based on historical data covering millions of lives. The actuary combines that probability with the time value of money to compute the 'expected present value' of the insurer's payout obligation - and that is the scientific basis for setting a premium that is both fair and financially sustainable.",
+  "realWorldExample": {
+    "company": "The CSO mortality table and US life insurance pricing",
+    "description": "The US insurance industry works from a standardised mortality table (the CSO - Commissioners Standard Ordinary Table), built from statistics on tens of millions of policies across many decades and revised periodically as average life expectancy moves with medical progress. As life expectancy has risen decade by decade, insurers have had to restate the table and the premiums that follow from it - which is why life insurance premiums for a given age have tended to fall over time, reflecting a declining probability of death as medicine improves."
+  },
+  "quiz": [
+    {
+      "question": "Why does an actuary need to combine the probability of death WITH the time value of money when pricing life insurance, rather than using probability alone?",
+      "options": [
+        "Because regulation requires pricing off the government bond yield curve",
+        "Because the payout may occur many years later and needs discounting",
+        "Because inflation lifts the nominal claim amount as time passes",
+        "Because the premiums must also cover the sales agent's commission"
+      ],
+      "explanation": "This is why 'expected present value' is the central tool of actuarial science: a life policy can run 20-30 years, and an expected payout far out in the future has to be discounted back to today before a premium can be set against it. The calculation carries both PROBABILITY (how likely the event is) and TIME (when it is likely to happen, and how the value of money changes in between). Commissions and inflation are loadings applied on top of that core figure, not the reason discounting exists."
+    },
+    {
+      "question": "How do life insurance and non-life (general) insurance - motor, property - differ in pricing method?",
+      "options": [
+        "Life is priced by qualified actuaries; non-life is priced by the sales team",
+        "Life is regulated far more tightly; non-life may price however it likes",
+        "Life leans on mortality tables; non-life on loss frequency and severity",
+        "Life is priced by the year; non-life is priced event by event"
+      ],
+      "explanation": "The two main branches of actuarial science use genuinely different methodologies. The life actuary models the probability of living or dying over long horizons using mortality and survival tables. The non-life or P&C (Property & Casualty) actuary models frequency - how often a loss event occurs - and severity - the average loss per event - over much shorter horizons, and has to handle the extra volatility of catastrophe modelling. Both branches are staffed by actuaries and both are regulated."
+    },
+    {
+      "question": "What does a survival curve show in actuarial science?",
+      "options": [
+        "The share of customers who keep their policy in force through each year",
+        "The average number of years of life remaining for a person aged X",
+        "The probability of dying within one year at each individual age",
+        "The probability a person aged X is still alive at each later age"
+      ],
+      "explanation": "The survival table matters most for annuity products, which pay a regular income for as long as the buyer lives and sit at the heart of retirement planning. Here the insurer's risk runs the opposite way to ordinary life cover: the company pays for LONGER the LONGER the person lives. So the actuary has to model the probability of surviving each successive year, not merely the probability of dying in one. Policy persistency is a commercial metric and belongs to a different question entirely."
+    },
+    {
+      "question": "Why must an actuary combine mortality probability with the time value of money when pricing?",
+      "options": [
+        "Because premiums arrive today while the obligation falls due in future",
+        "Because a mortality table is only valid after it is discounted to today",
+        "Because inflation shifts the underlying probability of dying",
+        "Because the regulator requires both figures to be reported"
+      ],
+      "explanation": "A life policy takes premiums now and may pay out thirty years from now, so the obligation has to be brought back to today before it can be compared against the premium. Use probability alone and you price too high and lose customers; discount alone and you have no idea who you are paying or how likely the payment is. Inflation affects the size of the nominal benefit, not the probability of dying, and reporting rules follow the pricing rather than driving it."
+    },
+    {
+      "question": "What is the core difference between life and non-life insurance?",
+      "options": [
+        "Non-life carriers do not have to set aside any claims reserves",
+        "Life runs over long horizons and is priced off mortality tables",
+        "Life insurers are not subject to minimum capital requirements",
+        "Non-life always runs a lower loss ratio than life insurance does"
+      ],
+      "explanation": "A life contract lasts decades, so its dominant risks are longevity and interest rates, both handled through the mortality table. Non-life policies are typically rewritten each year, so the dominant risks are the frequency and the severity of losses. These are two different mathematical problems and they need two different specialisms. Both branches carry reserves and both face minimum capital rules, and loss ratios vary by line rather than by branch."
+    }
+  ],
+  "keyTakeaways": [
+    "A mortality table gives the probability of death by age, drawn from large historical datasets - it is not a prediction about any one individual",
+    "The actuary combines probability AND the time value of money to compute the expected present value of the payout obligation, which is the scientific basis of pricing",
+    "Life actuaries (mortality tables, long-dated contracts) and non-life/P&C actuaries (frequency-severity, catastrophe modelling) work with different methodologies",
+    "Survival tables matter most for annuity and retirement products, where the insurer's risk is the buyer living LONGER than expected - the reverse of ordinary death cover"
+  ],
+  "practicePrompt": {
+    "question": "An insurer sells a retirement annuity paying 50m dong a year for as long as the customer lives, starting at age 60. Average life expectancy in the population is rising thanks to medical progress. How does that affect the risk and the pricing of this product?",
+    "options": [
+      "None at all, since population life expectancy is unrelated to an annuity product",
+      "Longer lives raise the risk: the actuary must update survival tables and raise pricing",
+      "A rising life expectancy is always good news for a company selling annuities",
+      "The insurer need not adjust anything because a signed contract's premium cannot change"
+    ],
+    "explanation": "This is longevity risk, one of the biggest challenges facing the modern annuity and pension industry. As average life expectancy rises - a global trend driven by medical progress - the insurer has to pay the annuity for LONGER than the original pricing, which was built on an older survival table. The actuary must keep updating the model and repricing NEW contracts to reflect it; on contracts already written at a fixed price, the insurer absorbs the extra risk itself."
+  },
+  "summary": {
+    "keyIdea": "Actuarial science combines statistical probability (mortality and survival tables) with the time value of money to compute the expected present value of an insurance obligation - the scientific basis for pricing that is both fair and sustainable.",
+    "commonMistake": "Confusing a statistical probability, which applies to a large group, with a firm prediction about one particular individual",
+    "action": "When analysing an insurance or retirement product, always weigh BOTH probability AND time - a payout far in the future is worth much less today than its nominal figure suggests"
+  },
+  "application": {
+    "title": "Apply it now",
+    "message": "Read up on longevity risk - one of the biggest actuarial challenges of the moment as global life expectancy keeps rising, with consequences for both the insurance industry and national pension systems.",
+    "secondary": "The next lesson moves to the regulatory side: Solvency II and the minimum capital requirements an insurer must meet to guarantee it can pay over the long run."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Behind every life insurance contract sit hundreds of pages of probability and present-value arithmetic - actuarial science is where statistical mathematics meets working finance."
+    },
+    { "type": "heading", "text": "The mortality table - the foundational tool" },
+    {
+      "type": "paragraph",
+      "text": "A mortality table is a statistical table giving the probability that a person of a specific age - usually split by gender, sometimes by health status or smoking - will die in the coming year, built from real observed data on millions of policies over many years. It is not a prediction about ONE individual; it is a statistical probability that holds accurately at the level of a large POPULATION, and that is what lets an actuary compute the insurer's expected payout obligation."
+    },
+    { "type": "heading", "text": "Expected present value - probability and time together" },
+    {
+      "type": "paragraph",
+      "text": "The core formula of actuarial science: Expected present value = Σ [probability the event occurs in year t × the payout × the discount factor back to today for year t]. A simple example: if the probability that a 45-year-old dies in the coming year is 0.3%, the sum insured is 1bn dong and the discount rate is 5%, the actuary can compute the 'expected cost' of that risk for the year, then sum it across the full contract term - perhaps 20-30 years - to arrive at the premium to charge."
+    },
+    { "type": "heading", "text": "Two main branches: life actuary and non-life/P&C actuary" },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Life & Health Actuary",
+        "text": "Mortality and survival tables, long-dated contracts (many years to many decades), focused on the probability of dying or surviving at each age"
+      },
+      "right": {
+        "label": "Non-life/P&C Actuary",
+        "text": "Loss frequency and severity, short-dated contracts (usually one year), plus catastrophe modelling for natural disasters and rare events with very large losses"
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Actuarial science is one of the most demanding fields of applied mathematics in finance - a small error in a probability model can turn into a reserve shortfall of billions of dong many years later.",
+        "It is also why actuaries have to pass a long, rigorous sequence of professional exams (SOA, IFoA and the like) over several years before the industry formally recognises them."
+      ]
+    }
+  ],
+  "diagram": [
+    { "label": "Mortality table - probability at each age" },
+    { "label": "Estimate the expected payout stream over time" },
+    { "label": "Discount to today → expected present value" },
+    { "label": "Add the safety margin and expenses → the premium" }
+  ]
+}

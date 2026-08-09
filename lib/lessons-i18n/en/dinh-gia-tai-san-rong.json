@@ -67,7 +67,7 @@
       "options": [
         "A holding discount, from running costs and tax on selling the assets",
         "The market has mispriced it and this is a clear buying opportunity",
-        "The book value of the assets has been recorded below what they are worth",
+        "The book value of the assets was recorded below their worth",
         "The company is about to issue more shares and dilute the existing value"
       ],
       "explanation": "A 20-40% discount to NAV is ordinary at a holding company: shareholders cannot decide to sell the assets themselves, they carry the cost of the management structure, and an actual sale triggers tax. It may be an opportunity, but by default it is a discount with a reason behind it."

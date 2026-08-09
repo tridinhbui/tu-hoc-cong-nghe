@@ -34,9 +34,9 @@
     {
       "question": "Free cash flow has run well below net income for several consecutive years while the company keeps reporting steady profits. What does that say about earnings quality?",
       "options": [
-        "Normal: FCF is always below profit in every industry",
+        "Normal: FCF is always below profit everywhere",
         "A warning: profit is not converting into real cash",
-        "Positive: the company is investing heavily for growth",
+        "Positive: the company invests heavily for growth",
         "Meaningless: the two measure two different things"
       ],
       "explanation": "A persistent gap between net income and FCF is one of the most important earnings quality signals there is - it suggests reported profit may be inflated by revenue recognised early, provisions released, or working capital absorbing more and more without generating actual cash."

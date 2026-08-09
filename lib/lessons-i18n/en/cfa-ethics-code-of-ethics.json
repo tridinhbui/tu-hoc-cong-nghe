@@ -1,0 +1,146 @@
+{
+  "slug": "cfa-ethics-code-of-ethics",
+  "title": "CFA Ethics 1: Code of Ethics - why this is the heaviest subject in the CFA exam",
+  "subtitle": "The six founding ethical principles every CFA charterholder has to live by",
+  "duration": "8 min",
+  "whyItMatters": "Ethics carries 15-20% of the CFA Level I score - the largest weight of the ten topic areas - and it is the only subject that runs through all three levels. Getting the Code of Ethics right from the start keeps you from losing marks in the part that counts most.",
+  "openingQuestion": "Why does CFA Institute give Ethics the heaviest weight in the Level I exam, rather than a technical subject such as Equity or Fixed Income?",
+  "openingOptions": [
+    "Because Ethics is easy, so a high weight lets candidates score more easily",
+    "Because investor trust rests on the integrity of the person managing money",
+    "Because it is the only subject with no calculations, so it is quick to test",
+    "There is no particular reason; the weights are split randomly across subjects"
+  ],
+  "explanation": "CFA Institute builds the whole curriculum on one premise: an analyst who is technically strong but ethically weak can do far more damage than one who is technically weak but honest. The entire value of the CFA charter - and of the asset management industry with it - rests on the belief that whoever holds investors' money will act in those investors' interest rather than their own.",
+  "summary": {
+    "keyIdea": "The Code of Ethics puts client interests and the integrity of the profession above personal interest - that is the foundation the whole CFA charter stands on.",
+    "commonMistake": "Treating Ethics as a memorise-and-move-on subject rather than understanding the substance. CFA questions are almost always real situations that require applying a principle, not reciting its wording.",
+    "action": "Professional ethics judges the process as well as the result, not only the profit at the end."
+  },
+  "application": {
+    "title": "A quick self-check",
+    "message": "Think of a financial decision you made recently, for yourself or as advice to someone else, and ask: did that decision genuinely put the other person's interest above your own interest or convenience?",
+    "secondary": "That habit of self-questioning is exactly the instinct the Code of Ethics is built to create."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "If you could study only one subject in the entire CFA programme, CFA Institute would pick Ethics - not because it is the hardest technically, but because it is the foundation that gives the whole charter its value."
+    },
+    {
+      "type": "heading",
+      "text": "The Code of Ethics: six founding principles"
+    },
+    {
+      "type": "paragraph",
+      "text": "CFA Institute requires every member and candidate to commit to: (1) act with integrity, competence, diligence and ethics; (2) place the integrity of the investment profession and the interests of clients above their own interests; (3) use reasonable care and exercise independent professional judgment; (4) practise in a professional manner and encourage others to do the same; (5) promote the integrity and long-term viability of capital markets for the benefit of society; (6) maintain and improve their own professional competence and that of others in the profession."
+    },
+    {
+      "type": "heading",
+      "text": "Why the weight on Ethics is so high"
+    },
+    {
+      "type": "paragraph",
+      "text": "Asset management runs on a simple premise: the client hands over money and trust to a manager who has far more expertise and far more decision-making power than the client does. This is the classic agency problem in finance. Without a strong ethical constraint, a client has almost no way of protecting themselves before the damage is already done - they cannot audit every decision the manager takes in real time."
+    },
+    {
+      "type": "callout",
+      "label": "The distinction that matters",
+      "text": "Professional ethics in the CFA framework asks not only whether the result was good but whether the process was right. An investment that earns a high return but got there by hiding risk, using inside information, or failing to disclose a conflict of interest is still a serious breach, whatever the financial outcome looks like."
+    },
+    {
+      "type": "list",
+      "items": [
+        "The Code of Ethics binds candidates still studying as well as charterholders who already hold the charter",
+        "It applies not only at work but to some personal conduct that bears on professional standing",
+        "A serious breach can lead to discipline, suspension, or permanent revocation of the charter",
+        "The six principles of the Code are the compass; the seven Standards of Professional Conduct in the next lesson are the concrete rules that put them into practice"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The Code of Ethics is not a set of slogans to memorise for the exam and forget.",
+        "It is a thinking framework for asking, in every professional decision: whose interest am I actually serving here?",
+        "In the next lesson we go into the seven Standards of Professional Conduct - these same principles turned into concrete rules of behaviour."
+      ]
+    }
+  ],
+  "diagram": [
+    { "label": "Six components of the Code of Ethics" },
+    { "label": "Applies to every CFA charterholder and candidate" },
+    { "label": "A breach can end in revocation of the charter" }
+  ],
+  "realWorldExample": {
+    "company": "CFA charters revoked for ethical breaches",
+    "description": "CFA Institute publishes its disciplinary actions, permanent revocation of the charter included, against charterholders who breach the Code of Ethics - even where the breach has nothing directly to do with financial analysis work, such as falsifying a personal record, using inside information, or failing to disclose a conflict of interest. That tells you the organisation treats ethics as inseparable from professional competence rather than as something alongside it."
+  },
+  "quiz": [
+    {
+      "question": "Who does the CFA Institute Code of Ethics apply to?",
+      "options": [
+        "Only people employed directly by CFA Institute itself",
+        "Only during working hours, and never outside the job",
+        "Only those who already hold the full CFA charter",
+        "Both charterholders and candidates, across a career"
+      ],
+      "explanation": "The Code binds anyone registered to sit a CFA exam as well as anyone who already holds the charter, and it covers professional conduct plus personal conduct that can damage professional standing, so it does not stop at the end of the working day. The option limiting it to CFA Institute staff inverts the point entirely: employees of the institute are not the population the Code governs. Limiting it to full charterholders would leave every candidate free of any obligation while they study, which is precisely when misconduct in an exam room does the most reputational damage."
+    },
+    {
+      "question": "One of the six components of the Code requires members to 'act with integrity, competence, diligence and ethics'. What does that mean in day-to-day work?",
+      "options": [
+        "The process and the competence must both hold, not just the result",
+        "It applies only to large decisions; small trades are exempt from it",
+        "It is a formal slogan only, with no real sanction behind it in practice",
+        "Strong investment results are enough, whatever the process was"
+      ],
+      "explanation": "Professional ethics in the CFA framework judges not only the final outcome but the process that produced it. A highly profitable investment obtained by breaching a duty to the client - concealing risk information, for instance - is still a serious ethical breach. The size threshold in one distractor exists nowhere in the Code: a small trade made with concealed information is the same breach as a large one. And the claim of no sanction is refuted by CFA Institute's published disciplinary record, which reaches as far as permanent revocation of the charter."
+    },
+    {
+      "question": "Why does the Code require members to place 'the integrity of the investment profession and the interests of clients above their own interests'?",
+      "options": [
+        "Because the law in every country requires this of finance professionals",
+        "Because clients cannot defend themselves against the information gap",
+        "Because clients keep full control over every decision the fund makes",
+        "Because it is an internal rule with no clear logic underneath it"
+      ],
+      "explanation": "This is the classic agency problem of asymmetric information and power: the client hands money and information to a manager who has far more knowledge and far more discretion. Without an ethical rule that puts the client first, the client has almost no way to protect themselves until the damage has already happened. The legal-mandate option is factually wrong - regulation differs sharply by jurisdiction, which is exactly why a global professional standard is needed. The control option describes a relationship that does not exist: a discretionary mandate means the client does not see decisions in advance."
+    },
+    {
+      "question": "A candidate preparing for CFA Level I is caught cheating in a university exam unrelated to the CFA exam. Can this affect their standing as a CFA candidate?",
+      "options": [
+        "Never, since CFA Institute only looks at conduct inside the finance industry",
+        "No, because it touches neither the CFA exam nor any finance work",
+        "Possibly - Standard I(D) Misconduct reaches conduct outside the industry",
+        "Only if the conduct was widely reported in the press at the time"
+      ],
+      "explanation": "CFA Institute can consider serious dishonesty outside financial work, because Standard I(D) Misconduct prohibits any conduct bearing on honesty, trustworthiness or professional competence that could damage the standing of the investment profession. The two options that dismiss the matter rely on a boundary the standard does not draw - it is written around the qualities the conduct reveals, not around the industry it happened in. The press-coverage option adds a publicity condition that appears nowhere: it is the conduct that constitutes the breach, not how many people heard about it."
+    },
+    {
+      "question": "Why does the Code reach conduct outside professional work at all?",
+      "options": [
+        "Because members must report all personal activity to an ethics board",
+        "Because every personal activity of a member counts as professional",
+        "Because the certifying body handles civil law breaches",
+        "Because dishonest conduct anywhere lowers trust in the profession"
+      ],
+      "explanation": "Managing other people's money runs on trust, and trust does not partition by context: someone who cheats in a university exam has still told you how they handle temptation. That is why Standard I(D) is not confined to the workplace. The reporting option invents an obligation the Code never creates - there is no duty to file your personal life with a committee. Treating every personal activity as professional overshoots in the other direction, and the Code explicitly does not reach conduct with no bearing on honesty or competence. And a professional body has no jurisdiction over civil law; it disciplines membership, not citizens."
+    }
+  ],
+  "keyTakeaways": [
+    "Ethics carries the heaviest weight in CFA Level I (15-20%) because investor trust is the foundation of the whole asset management industry",
+    "The Code applies to candidates as well as charterholders, at work and in some personal conduct that bears on professional standing",
+    "Professional ethics judges the process as well as the result - a good outcome reached the wrong way is still a breach",
+    "The core principle: always place client interests and the integrity of the profession above your own interest"
+  ],
+  "practicePrompt": {
+    "question": "Which of the following is consistent with this lesson?",
+    "options": [
+      "The Code applies only to full charterholders and not at all to candidates sitting the exam",
+      "Ethics carries the heaviest weight in CFA Level I because investor trust is the industry's foundation",
+      "Professional ethics judges only the final outcome and takes no interest in how it was actually reached",
+      "The Code applies only during official working hours and stops the moment the working day ends"
+    ],
+    "explanation": "Two of the wrong options draw a boundary the Code does not draw - one around who is covered, one around when. Candidates are bound from the moment they register, and the obligation does not switch off outside office hours, because personal conduct bearing on honesty travels with the person. The third describes the results-only view the CFA framework explicitly rejects: a profitable investment reached by concealing risk is still a serious breach, whatever the return."
+  }
+}

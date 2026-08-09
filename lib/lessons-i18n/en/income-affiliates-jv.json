@@ -27,7 +27,7 @@
       "options": [
         "Because it never comes with any cash reaching the parent company",
         "Because equity income is recorded on a cash basis",
-        "Because equity income is always negative at newly formed associates",
+        "Because equity income is always negative at new associates",
         "Because it is a share of profit, not revenue from selling anything"
       ],
       "explanation": "Profit from affiliates and JVs is a share of someone else's profit, not sales revenue from the core business."
@@ -58,7 +58,7 @@
         "The two methods produce identical results on the balance sheet",
         "The equity method also records the associate's revenue",
         "Consolidation brings the subsidiary's whole debt onto the balance sheet",
-        "Consolidation does not record the subsidiary's assets on the balance sheet"
+        "Consolidation leaves the subsidiary's assets off the balance sheet"
       ],
       "explanation": "This is why ownership around the 50% threshold matters so much to an analyst: for the same underlying business, the debt may or may not appear on the consolidated balance sheet."
     },

@@ -1,0 +1,147 @@
+{
+  "slug": "cau-truc-von-du-an-bat-dong-san",
+  "title": "Property Projects 3: Three sources of capital - equity, the construction loan, and buyers' money",
+  "subtitle": "Where each one ranks, the real cost of pre-sale proceeds, and why high leverage bites harder here than elsewhere",
+  "duration": "10 min",
+  "openingQuestion": "Which source of capital for a property project carries the lowest nominal cost?",
+  "openingOptions": [
+    "Progress payments made by home buyers",
+    "A construction loan from a domestic commercial bank",
+    "Equity from the developer and its co-investors",
+    "Privately placed corporate bonds sold to institutions"
+  ],
+  "explanation": "Buyers' money carries no interest, needs no collateral and comes with no financial covenants - on paper it is close to free. But its real cost is not in a rate: it sits in the obligation to hand over on time, in the late-delivery penalties written into the contract, and in the fact that the buyer is the only creditor who cannot protect themselves. The bank holds collateral and can stop drawing down the facility; an equity co-investor has a board seat; the home buyer has a contract and a hope. That asymmetry is why the rules on when a developer may take money from buyers exist, and why they keep tightening.",
+  "diagram": [
+    { "label": "Equity - in first, out last" },
+    { "label": "Construction loan - secured, drawn against progress" },
+    { "label": "Buyers' money - cheapest, but it comes with a delivery date" },
+    { "label": "When the project slips: the buyer carries the largest risk" }
+  ],
+  "realWorldExample": {
+    "company": "Property developer bonds, 2022",
+    "description": "Many developers used privately placed bonds to fund the permitting phase - the phase a bank will not lend into because there is no clear collateral yet. When that channel tightened, a wave of projects stalled at exactly the most expensive stage, before they were allowed to sell anything. Which source funds which phase matters at least as much as how much capital is raised in total."
+  },
+  "quiz": [
+    {
+      "question": "Why do banks lend so little during the permitting phase?",
+      "options": [
+        "Because the rules ban banks from lending at the permitting stage",
+        "Because there is no clear collateral yet and the timeline is undefined",
+        "Because the spending in this phase is small next to construction",
+        "Because interest rates on early-stage project lending are capped by regulation"
+      ],
+      "explanation": "This is the riskiest and least securable phase of the project, so it usually has to be funded with equity or through a more expensive channel such as bonds. Nothing here is prohibited by rule; the spending is far from small, since land and permitting are among the largest single outlays a developer makes; and no cap on early-stage lending rates exists. The bank simply has nothing to foreclose on if the project stalls."
+    },
+    {
+      "question": "Where does the real cost of buyers' progress payments sit?",
+      "options": [
+        "The brokerage commission paid when each contract is signed",
+        "The implicit interest inside the discount given for early payment",
+        "The obligation to hand over on time and the penalty for delay",
+        "The tax due as soon as each progress payment is received"
+      ],
+      "explanation": "The early-payment discount is a real cost too, but it is far smaller than the legal and financial exposure created by a late handover. The commission is paid to a broker out of the sale price and says nothing about the cost of the money itself, and progress payments are not taxed on receipt - they sit as a liability on the developer's balance sheet until the unit is actually delivered."
+    },
+    {
+      "question": "Who carries the largest risk when a project falls behind schedule?",
+      "options": [
+        "The co-investors who put equity in alongside the developer",
+        "The bank that lent against the project's assets",
+        "The contractor currently carrying out the works",
+        "The home buyers who have already paid by instalment"
+      ],
+      "explanation": "The bank holds collateral and can stop drawing down the facility; an equity co-investor has a board seat and access to the books. The contractor can down tools and file a claim over unpaid work. The buyer holds a contract and a claim on an apartment that does not exist yet, and no lever at all to force anything to happen."
+    },
+    {
+      "question": "Why is high leverage more dangerous in a property project than in a manufacturer?",
+      "options": [
+        "Because a project has no cash flow at all until it may legally sell",
+        "Because interest rates on property lending run higher than average",
+        "Because property collateral is inherently hard to value precisely",
+        "Because rules cap the loan share of a project's total investment cost"
+      ],
+      "explanation": "A manufacturer has monthly revenue with which to service its interest. A project that has not opened for sale earns nothing, so every coupon has to be funded out of capital. Property lending rates are not systematically higher; collateral valuation is a pricing question rather than a solvency one; and a regulatory cap limits how much debt can be raised rather than explaining why that debt bites harder here."
+    },
+    {
+      "question": "In what order are losses absorbed when a project fails?",
+      "options": [
+        "Home buyers take the first loss of any party",
+        "Equity absorbs the loss first, secured lenders only after",
+        "Losses are split pro rata across everyone who funded it",
+        "The contractor loses first, having built without being paid"
+      ],
+      "explanation": "In theory equity stands last in line and takes the first loss. In practice, recovery from a half-finished project rarely covers what is owed, so the parties behind equity lose money too. Nothing is split pro rata - the entire point of a capital structure is that claims are ranked - and the contractor's unpaid work ranks ahead of equity but behind the secured lender."
+    }
+  ],
+  "practicePrompt": {
+    "question": "A project raises 1,000bn: 250 equity, a 450 secured construction loan, and 300 in buyer progress payments. The project halts and the unfinished assets sell for 600bn. How much does equity get back?",
+    "options": [
+      "Nothing, because 600 does not even cover the loan and the buyers",
+      "150bn, the amount left over after repaying the 450 construction loan",
+      "60bn, pro rata on a 250 contribution out of the 1,000 raised",
+      "250bn, because equity is repaid ahead of the other providers"
+    ],
+    "explanation": "The order of losses runs opposite to the order of returns. The secured bank stands at the front of the queue and takes its full 450. The home buyers come next with a 300bn claim, but only 150bn is left - they have lost 150bn. Equity stands last and gets nothing. That is precisely why equity is the most expensive source of capital: it demands a high rate of return because it absorbs the whole of the first loss. The option that has equity 'repaid ahead of the other providers' inverts the ranking exactly, and it is the belief that leads many retail co-investors into projects thinking they are safer than the home buyers."
+  },
+  "keyTakeaways": [
+    "Three sources: equity (most expensive, first to lose), the construction loan (secured), and buyers' money (cheapest).",
+    "The permitting phase is the hardest to bank, so it usually leans on equity or bonds.",
+    "The real cost of pre-sale money is the delivery obligation, not an interest rate.",
+    "Leverage bites harder here because a project that has not opened for sale has no cash flow to service it."
+  ],
+  "summary": {
+    "keyIdea": "Buyers' money is the cheapest source in rate terms and the most expensive in obligation terms",
+    "commonMistake": "Booking the cost of pre-sale capital at zero because it pays no interest, ignoring the late-delivery penalties in the contract.",
+    "action": "Rank the three sources by the risk each one bears and write down the condition that triggers each."
+  },
+  "application": {
+    "title": "Put the three sources on a timeline",
+    "message": "Take one project, draw a timeline, and mark which phase runs on equity, which phase a bank will lend into, and when buyers' money starts arriving.",
+    "secondary": "The permitting phase is both the hardest to fund and usually the longest - that is where most projects die."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A property project is funded from three very different sources, and what matters is not the ratio between them but which source funds which phase."
+    },
+    { "type": "heading", "text": "Three sources, three phases" },
+    {
+      "type": "conceptTable",
+      "title": "Who funds what",
+      "concepts": [
+        {
+          "vi": "Vốn chủ sở hữu",
+          "en": "Equity",
+          "def": "Funds the land and the permitting - the phase nobody else will lend into. Takes the first loss, and is paid last."
+        },
+        {
+          "vi": "Vay xây dựng",
+          "en": "Construction loan",
+          "def": "Drawn down against construction progress, secured on assets, and the lender can halt mid-way if the schedule slips."
+        },
+        {
+          "vi": "Tiền người mua",
+          "en": "Pre-sale proceeds",
+          "def": "Only available once the legal conditions for taking buyers' money are met. No interest, no security - but in exchange, a handover date that cannot be moved."
+        }
+      ]
+    },
+    { "type": "heading", "text": "Why leverage behaves differently here" },
+    {
+      "type": "paragraph",
+      "text": "A manufacturer carrying a lot of debt still has monthly revenue with which to pay the interest. A property project before its sales launch has not a single unit of revenue, so the whole interest bill has to be funded out of capital - and if that capital is itself borrowed, interest compounds on interest throughout the longest and least certain phase of the project."
+    },
+    {
+      "type": "callout",
+      "label": "The buyer is the one creditor who cannot protect themselves",
+      "text": "The bank holds collateral and can stop drawing down. An equity co-investor has a board seat and access to the books. The home buyer has a contract, and when the project stops, what they hold is a claim on an apartment that does not exist. The entire body of rules governing when a developer may take money from buyers exists because of that asymmetry."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The right question is not what percentage of the project is debt-funded.",
+        "It is: during the phase with no revenue at all, who is paying the interest, and with whose money."
+      ]
+    }
+  ]
+}

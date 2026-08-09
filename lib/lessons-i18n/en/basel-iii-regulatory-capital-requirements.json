@@ -1,0 +1,177 @@
+{
+  "slug": "basel-iii-regulatory-capital-requirements",
+  "title": "Basel III & capital rules - how banks are kept from failing",
+  "subtitle": "After the 2008 crisis the world decided: banks must hold enough capital to survive the next one.",
+  "duration": "8 min",
+  "openingQuestion": "When Basel III says a bank must have a 'Tier 1 capital ratio of 10.5%', what does that actually mean?",
+  "openingOptions": [
+    "The bank must hold 10.5% in strong equity capital",
+    "The bank may only lend 10.5% of its total capital",
+    "The bank must earn a 10.5% profit every single year",
+    "The bank's return on capital must reach 10.5%"
+  ],
+  "explanation": "The Tier 1 capital ratio is equity capital - the best kind of buffer, the kind that cannot simply walk away - divided by risk-weighted assets. A higher ratio means a safer bank, because it has a bigger cushion to absorb losses before it fails. Basel III sets a 10.5% minimum to protect the financial system.",
+  "realWorldExample": {
+    "company": "Lehman Brothers",
+    "description": "Before the 2008 crisis Lehman Brothers held only around 3% Tier 1 capital - far below what Basel III demands today. When asset values fell, the bank did not have enough capital to absorb the losses and it collapsed. Had Basel III been in force, the story might have run differently."
+  },
+  "quiz": [
+    {
+      "question": "What is the difference between Tier 1 capital and Tier 2 capital?",
+      "options": [
+        "Tier 1 is contributed by shareholders; Tier 2 by the central bank",
+        "Tier 1 is customer deposits; Tier 2 is interbank borrowing",
+        "Tier 1 is equity and retained earnings, and absorbs losses first",
+        "Tier 1 is short-term funding; Tier 2 is funding beyond five years"
+      ],
+      "explanation": "The decisive point is the ORDER in which losses are absorbed. Tier 1 - mostly common equity and retained earnings - takes losses immediately while the bank is still trading normally, which is why it is called going-concern capital. Tier 2 (subordinated debt, convertible bonds and so on) only absorbs losses once the bank has failed and entered resolution: gone-concern capital. Neither is central-bank money, neither is customer deposits, and the split is not about maturity. Because the two serve different moments, they cannot substitute for each other - which is why Basel III sets a separate requirement for Tier 1 rather than only for total capital."
+    },
+    {
+      "question": "What are RWA (risk-weighted assets)?",
+      "options": [
+        "The highest-risk assets sitting in the bank's portfolio",
+        "Total assets less the loan-loss provisions already booked",
+        "Assets remarked to their market value at the period end",
+        "Assets weighted by the risk attaching to each asset class"
+      ],
+      "explanation": "The underlying idea: a dollar lent to a government and a dollar lent unsecured to an individual do not carry the same risk, so they cannot demand the same capital. RWA multiplies each asset by a risk weight and then sums - domestic-currency government bonds usually 0%, corporate loans 100%, some especially risky exposures above 100%. It is not a subset of the portfolio, not a provision netting, and not a mark-to-market exercise. Every capital adequacy ratio uses RWA as its denominator (CAR = capital / RWA), so the weights themselves decide how much capital a bank must hold - which is also where banks have an incentive to 'optimise' into low-weight assets, something supervisors watch closely."
+    },
+    {
+      "question": "If a bank fails to meet its Tier 1 capital ratio requirement, what happens?",
+      "options": [
+        "Forced to raise capital, cut risk assets and stop dividends",
+        "Forced to merge into a larger bank hand-picked by the regulator",
+        "Fined a percentage of the capital shortfall it is carrying",
+        "Its banking licence is revoked within thirty days flat"
+      ],
+      "explanation": "Capital requirements are not recommendations. When the ratio slips below the buffer threshold the bank enters a restricted zone, and Basel III blocks DISTRIBUTIONS first - dividends, bonuses and buybacks are cut, because that is the fastest way to retain capital without raising new money. Alongside it runs a supervised plan to raise capital or shrink risk assets. A forced merger, a fine or a licence withdrawal are not the first-line mechanism: they are last resorts, and only if the bank still cannot fix the shortfall does the regulator intervene directly, up to special administration or resolution."
+    },
+    {
+      "question": "Scenario: a bank holds 100bn of government bonds (0% risk weight) and 100bn of corporate loans (100% weight). What are its RWA?",
+      "options": [
+        "200bn (= straight sum, risk weights ignored)",
+        "100bn (= 100 × 0% + 100 × 100%)",
+        "0bn (= the lowest weight applied to both)",
+        "50bn (= the average of the two weights)"
+      ],
+      "explanation": "RWA multiplies each asset group by its own risk weight before summing: 0 + 100 = 100bn. This is why two banks with the same total assets can be required to hold very different amounts of capital - the composition of the balance sheet decides it, not its size."
+    },
+    {
+      "question": "What is the core difference between Tier 1 and Tier 2 capital?",
+      "options": [
+        "Tier 2 is higher quality and so takes priority",
+        "Tier 1 consists of long-term loans from major shareholders",
+        "Tier 1 absorbs losses while the bank is still trading",
+        "Tier 2 only counts once the bank clears 10.5%"
+      ],
+      "explanation": "Tier 1 is equity and retained earnings - it takes losses while the bank is still operating. Tier 2 is subordinated debt, which only absorbs losses once liquidation has begun, so it is lower quality and its share of total capital is capped. That ordering is what makes Tier 1 the stronger of the two, not Tier 2; a loan from a shareholder is still a liability and is not Tier 1; and Tier 2 counts toward total capital at all times, not only above some threshold."
+    }
+  ],
+  "sections": [
+    { "type": "heading", "text": "What is Basel III?" },
+    {
+      "type": "paragraph",
+      "text": "Basel III is a set of international standards first published in 2010 by the Basel Committee - the banking supervisors of 28 countries - in the wake of the 2008 crisis, to strengthen the health of the global banking system. It sets out the minimum capital a bank must hold, how liquidity is measured, and how risk must be managed."
+    },
+    { "type": "heading", "text": "How did Basel III come about?" },
+    {
+      "type": "paragraph",
+      "text": "The 2008 crisis began at Lehman Brothers - a huge quantity of risk hidden inside complex financial instruments, and when the market broke the bank had nothing like enough capital to absorb the losses. The financial system nearly seized up altogether. Basel III was designed to make sure that does not happen again."
+    },
+    { "type": "heading", "text": "The three pillars of Basel III" },
+    {
+      "type": "paragraph",
+      "text": "Pillar 1 - minimum capital: Tier 1 >= 10.5% of RWA, total capital >= 13.5% of RWA. Pillar 2 - supervisory review: the regulator has to check whether the bank computes VaR, runs stress tests and manages risk properly. Pillar 3 - disclosure: the bank must publish its capital and risk positions regularly so the market itself can keep watch."
+    },
+    { "type": "heading", "text": "Tier 1, Tier 2 - which kind of capital?" },
+    {
+      "type": "paragraph",
+      "text": "Tier 1 (core capital): issued shares, undistributed profit, certain perpetual instruments. This is the capital hardest to lose. Tier 2 (supplementary capital): long-term subordinated instruments and other accumulated reserves. When losses arrive, Tier 1 is consumed first because it is the stronger of the two."
+    },
+    {
+      "type": "heading",
+      "text": "RWA (risk-weighted assets) - why not all assets count equally"
+    },
+    {
+      "type": "paragraph",
+      "text": "Assets are not equally risky. A US government bond is safer than a loan to a first-time founder. Basel III assigns a risk weight to each asset class: government bonds 0%, unsecured personal loans 100%. RWA = the sum of (asset × risk weight). The capital ratio is then Tier 1 capital / RWA."
+    },
+    { "type": "heading", "text": "The Tier 1 capital ratio requirement" },
+    {
+      "type": "paragraph",
+      "text": "Basel III requires a Tier 1 capital ratio of at least 10.5%. That comprises Common Equity Tier 1 (CET1) of at least 7% plus a Tier 1 buffer of at least 3.5%. A bank with $100bn of RWA must therefore hold at least $10.5bn of Tier 1 capital. That is far above Basel II, which asked for 4%, and the increase is the whole point."
+    },
+    { "type": "heading", "text": "Liquidity - the second requirement" },
+    {
+      "type": "paragraph",
+      "text": "Basel III also requires banks to hold enough highly liquid assets - cash, government bonds - to survive 30 days without being able to raise fresh deposits. That is the Liquidity Coverage Ratio (LCR) >= 100%. Before it, banks ran on overnight money and found themselves in crisis the moment funding markets dried up."
+    },
+    { "type": "heading", "text": "Supervision and the cost of non-compliance" },
+    {
+      "type": "paragraph",
+      "text": "Supervisors check periodically whether a bank meets the requirements. If it does not: (1) it is required to raise capital by issuing shares; (2) dividends are cut; (3) management bonuses are cut; (4) new lending is restricted; (5) in the extreme, the regulator intervenes directly or closes the bank."
+    },
+    {
+      "type": "conceptTable",
+      "title": "The three pillars of Basel III",
+      "subtitle": "Only the first pillar is a formula; the other two decide whether that formula is used honestly",
+      "concepts": [
+        {
+          "def": "The mandatory formula: Tier 1 capital divided by risk-weighted assets, at least 10.5% including the capital conservation buffer."
+        },
+        {
+          "def": "The supervisor assesses the risks the pillar-one formula does not cover, and has the power to demand additional capital."
+        },
+        {
+          "def": "Mandatory disclosure, so that investors and counterparties themselves pressure the bank into holding risk at a sensible level."
+        }
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Tier 1 capital",
+        "text": "Equity and retained earnings. Absorbs losses WHILE the bank is still operating - which is what makes it real capital."
+      },
+      "right": {
+        "label": "Tier 2 capital",
+        "text": "Mostly subordinated debt. Only absorbs losses once liquidation begins, so it is lower quality and its share is capped."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Worth remembering",
+      "text": "RWA is why two banks with identical total assets can face very different capital requirements: 100bn of government bonds carries a 0% weight while 100bn of corporate loans carries 100%. Composition decides it, not size."
+    }
+  ],
+  "keyTakeaways": [
+    "Basel III is the international standard born of the 2008 crisis to strengthen the health of the banking system",
+    "A Tier 1 capital ratio >= 10.5% is the minimum; it tells you whether the bank has enough capital to absorb losses",
+    "RWA adjusts assets for how risky they are - riskier assets require more capital behind them",
+    "Basel III also sets liquidity requirements (LCR, NSFR) so a bank has enough cash through a crisis"
+  ],
+  "practicePrompt": {
+    "question": "A bank has $50bn of Tier 1 capital and $400bn of RWA. What is its Tier 1 capital ratio, and does it meet the Basel III minimum of 10.5%?",
+    "options": [
+      "12.5% - meets Basel III, above the 10.5% minimum",
+      "8% - falls short, below the required minimum level",
+      "12.5% - still short, Basel III requires a 15% minimum",
+      "800% - hugely in excess (RWA/Tier 1 inverted by mistake)"
+    ],
+    "explanation": "Tier 1 capital ratio = Tier 1 capital / RWA = 50/400 = 12.5%. Since 12.5% > 10.5% (the Basel III minimum), this bank complies and carries a 2 percentage point safety buffer."
+  },
+  "summary": {
+    "keyIdea": "Basel III is the financial system's defence against banking crises. By demanding more capital, better liquidity and closer supervision, it lowers the probability that one large bank collapses and takes the whole economy down with it."
+  },
+  "application": {
+    "title": "Apply it now",
+    "message": "In risk management or credit analysis you will constantly be checking whether a bank meets its Basel III requirements. It shapes lending decisions (a bank close to its threshold lends less) and valuation (investors demand a higher return from a weaker bank)."
+  },
+  "diagram": [
+    { "label": "Bank assets" },
+    { "label": "Assign risk weights → RWA" },
+    { "label": "Tier 1 + Tier 2 capital divided by RWA" },
+    { "label": "Compared with the minimum plus buffers" },
+    { "label": "Shortfall → dividends restricted, capital raise forced" }
+  ]
+}

@@ -131,7 +131,7 @@
     {
       "question": "Which duty is stated first in the order of steps?",
       "options": [
-        "Reporting to the firm's compliance department",
+        "Reporting to the compliance department",
         "Dissociating yourself from the violation",
         "Notifying the affected clients",
         "Preserving the evidence of the violation"
@@ -143,7 +143,7 @@
       "options": [
         "Not an argument - continuing to perform is participation",
         "A mitigating factor if the instruction can be proved",
-        "A full defence - the person who ordered it is responsible",
+        "A full defence - the person who ordered it is liable",
         "Accepted only if you gained nothing from the violation"
       ],
       "explanation": "Standard I(A) carries no exception for conduct originating with a superior - that is the entire meaning of the duty to dissociate."

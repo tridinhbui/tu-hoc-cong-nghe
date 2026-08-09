@@ -1,0 +1,153 @@
+{
+  "slug": "ab-testing-va-y-nghia-thong-ke",
+  "title": "Data Thinking, Lesson 3: A/B testing - and why stopping early is the most common way to fool yourself",
+  "subtitle": "Control groups, sample size, statistical significance, and the traps that make a result look convincing while being wrong",
+  "duration": "12 min",
+  "openingQuestion": "You are running an A/B test, and after three days group B is clearly ahead of group A. Should you stop and roll it out now?",
+  "openingOptions": [
+    "Yes, the result is already clear, so running it longer only adds cost",
+    "No: stopping early raises the probability of reaching a wrong conclusion",
+    "Yes, provided the gap between the two arms is larger than 10%",
+    "No, because an experiment must always run for at least three months"
+  ],
+  "explanation": "In the first few days the gap between two groups swings wildly because the sample is still small. If you keep watching the numbers and stop the moment they look good, you are almost certain to catch a random fluctuation and mistake it for a real effect. This is called peeking, and it can push the false-conclusion rate from the intended 5% to over 30%. The only defence is to compute the required sample size before you start, then run it out and conclude exactly once.",
+  "diagram": [
+    { "label": "Set the hypothesis and the primary metric" },
+    { "label": "Compute the required sample size before launch" },
+    { "label": "Randomise the split, run the full duration" },
+    { "label": "Conclude once, with no mid-flight peeking" }
+  ],
+  "realWorldExample": {
+    "company": "A sign-up flow experiment at a personal finance app",
+    "description": "A product team tested cutting the sign-up form from eight fields to four. After four days the completion rate on the new version was 18% higher and the team was ready to ship. The sample size computed beforehand called for a two-week run. By day fourteen the gap was down to 3% and no longer statistically significant. The change was kept anyway for other reasons, but that 18% figure - had it been reported upward - would have become the basis for expectations that were never going to materialise."
+  },
+  "quiz": [
+    {
+      "question": "What is the role of the control group in an experiment?",
+      "options": [
+        "It confirms that data is being collected accurately on both sides of the experiment",
+        "It increases the total sample size of the experiment to improve the reliability of the result",
+        "It acts as a fallback in case the treatment arm hits a technical fault and has to be stopped",
+        "It provides the benchmark showing what would have happened had no change been made at all"
+      ],
+      "explanation": "Without a control group you cannot separate the effect of your change from everything else happening at the same time: seasonality, an ad campaign, a market swing. A bigger sample does not help with that - a badly designed experiment run on ten times the data is still badly designed. Nor is the control a spare arm held in reserve; both arms run simultaneously and on the same population, which is precisely what makes the comparison valid."
+    },
+    {
+      "question": "Why must the sample size be computed before the experiment starts?",
+      "options": [
+        "So you know how many observations are needed to detect the effect, and never stop on a whim",
+        "So you can estimate in advance the total operating cost the experiment will run up over its life",
+        "So the two arms of the experiment end up with exactly equal member counts when the split happens",
+        "So the platform assigns users into the groups randomly and without any hidden bias creeping in"
+      ],
+      "explanation": "A sample size fixed in advance turns the stopping point into a commitment rather than a choice, and that is exactly what stops you from calling it a day while the numbers happen to favour you. Random assignment and equal group sizes are handled by the assignment mechanism, not by the sample-size calculation, and cost forecasting is a budgeting question that has no bearing on whether the result you get is trustworthy."
+    },
+    {
+      "question": "What does a p-value of 0.03 mean?",
+      "options": [
+        "The probability that option B really is better than option A is 97% on this test",
+        "If the two options were truly identical, the chance of seeing a gap this large is 3%",
+        "Option B delivers a result about 3% better than option A across the whole sample",
+        "3% of the data in the experiment is corrupt or missing and has to be dropped first"
+      ],
+      "explanation": "This is the single most common misreading of a p-value. It describes the probability of the data assuming the two arms are identical - it says nothing about the probability that either hypothesis is true, and it is not the size of the effect either. Flipping it into '97% chance B is better' quietly converts a statement about the data into a statement about the world, which is the step the arithmetic never licenses."
+    },
+    {
+      "question": "Why does running many experiments at once raise the risk of a wrong conclusion?",
+      "options": [
+        "Because parallel tests share one control group, so the results bleed into each other",
+        "Because the platform cannot assign users randomly across that many groups at once",
+        "Because the more comparisons you run, the higher the chance one looks good by luck",
+        "Because the sample size each test needs grows exponentially when run in parallel"
+      ],
+      "explanation": "At a 5% threshold, roughly one in every twenty comparisons on purely random data will clear significance by chance alone. Run enough of them and you will always find something that looks like a discovery. The shared-control and randomisation objections are engineering concerns that a well-built platform handles; the sample size per test does not grow with parallelism either. The problem is arithmetic, not infrastructure."
+    },
+    {
+      "question": "Why is checking the results every day and stopping when they look good a way of fooling yourself?",
+      "options": [
+        "Because an experiment has to run through at least one full weekly cycle first",
+        "Because the system has not yet fully recorded the data from the first few days",
+        "Because stopping early leaves the control arm with fewer participants than treatment",
+        "Because every extra look is another chance to catch a random fluctuation"
+      ],
+      "explanation": "Small samples swing hard, so if you check twenty times the gap will almost certainly look significant at some point. Stopping exactly then converts noise into a conclusion - which is why both the sample size and the stopping point have to be decided before the experiment runs. Weekly cycles and logging delays are real considerations but neither one is what inflates the error rate, and stopping early shrinks both arms equally rather than unbalancing them."
+    }
+  ],
+  "keyTakeaways": [
+    "The control group is what separates the effect of your change from every other movement happening at the same time",
+    "Compute the sample size before you run, and treat the stopping point as a commitment rather than a choice",
+    "Watching mid-flight and stopping when it looks good can push the error rate from 5% to over 30%",
+    "A p-value describes the probability of the data, not the probability that a hypothesis is true",
+    "The more comparisons you make, the easier it is to catch a good-looking result that is purely random"
+  ],
+  "practicePrompt": {
+    "question": "The experiment ran to its full sample size, and group B came out 0.4% better with p = 0.04. What is the appropriate conclusion?",
+    "options": [
+      "Roll it out immediately because the result has reached statistical significance",
+      "It is significant, but ask next whether 0.4% is worth the cost of rolling out",
+      "Reject the change because a 0.4% gap is far too small to be worth anything",
+      "Run the whole experiment again with a substantially larger sample size"
+    ],
+    "explanation": "Statistical significance and practical significance are two different things, and confusing them is the common error made by people who have already learned the statistics correctly. With a large enough sample, almost any gap clears significance. The business question is still: what is 0.4% worth in money, and what do the rollout cost and the operational risk add up to?"
+  },
+  "summary": {
+    "keyIdea": "Design the experiment before you run it, and conclude exactly once, on the plan you set",
+    "commonMistake": "Checking the numbers daily and stopping the moment they favour your hypothesis",
+    "action": "Before every experiment, write down three things: the primary metric, the sample size needed, and the stop date. Then do not change them."
+  },
+  "application": {
+    "title": "What to do",
+    "message": "Pick a change your company once shipped on gut feel. Redesign it as an experiment: what is the primary metric, who is the control group, how many observations are needed, and what is the smallest improvement that would make shipping worthwhile.",
+    "secondary": "That last question - the smallest improvement worth shipping - is the least asked and the most important."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The Quantitative stage laid the groundwork on hypothesis testing and the p-hacking trap in backtests. This lesson applies that same set of ideas to a situation you meet far more often: comparing two business options."
+    },
+    { "type": "heading", "text": "The four steps of a trustworthy experiment" },
+    {
+      "type": "list",
+      "items": [
+        "Write a specific hypothesis and pick exactly one primary metric - several primary metrics means there is no primary metric",
+        "Compute the sample size you need from the smallest improvement you actually care about",
+        "Randomise the split and run the full planned duration, even when the mid-flight numbers look tempting",
+        "Conclude once, according to the plan, and report the no-difference case too"
+      ]
+    },
+    {
+      "type": "conceptTable",
+      "title": "Three traps that produce wrong results that look convincing",
+      "subtitle": "All three happen while the arithmetic is entirely correct",
+      "concepts": [
+        {
+          "vi": "Nhìn giữa chừng",
+          "en": "Peeking",
+          "def": "Checking repeatedly and stopping when the result looks good. Turns a 5% error threshold into over 30% without anyone noticing."
+        },
+        {
+          "vi": "So sánh nhiều lần",
+          "en": "Multiple comparisons",
+          "def": "Test twenty variants, or slice the data twenty ways, and on average one clears significance by chance alone."
+        },
+        {
+          "vi": "Đổi chỉ số sau khi thấy dữ liệu",
+          "en": "Outcome switching",
+          "def": "The primary metric misses, so a secondary metric with a nicer number gets reported instead. Very common and very hard to spot from outside."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Statistical significance is not business significance",
+      "text": "With a large enough sample, almost any gap, however small, will clear statistical significance. That only says the gap is probably real; it says nothing about whether it is worth acting on. Always convert the improvement into money and set it beside the cost of rolling out before deciding."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "One experiment designed in advance and reported honestly is worth more than ten experiments hunting for a good-looking result.",
+        "The next lesson takes on the most fundamental trap of all: mistaking correlation for causation."
+      ]
+    }
+  ]
+}

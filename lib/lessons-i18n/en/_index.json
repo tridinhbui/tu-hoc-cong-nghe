@@ -4,6 +4,11 @@
     "subtitle": "Revenue → FCF → EV → share price - one connected chain",
     "duration": "10 min"
   },
+  "ab-testing-va-y-nghia-thong-ke": {
+    "title": "Data Thinking, Lesson 3: A/B testing - and why stopping early is the most common way to fool yourself",
+    "subtitle": "Control groups, sample size, statistical significance, and the traps that make a result look convincing while being wrong",
+    "duration": "12 min"
+  },
   "ac-cam-mat-mat-va-hieu-ung-so-huu": {
     "title": "Loss aversion: why losing 1 million hurts more than gaining 1 million pleases",
     "subtitle": "Your brain reacts to a loss about twice as strongly as to an equivalent gain - and that quietly wrecks investment decisions",
@@ -17,6 +22,16 @@
   "active-vs-passive-investing": {
     "title": "Active vs Passive Investing",
     "subtitle": "Trying to beat the market, or simply owning the whole market?"
+  },
+  "actuarial-science-xac-suat-thong-ke": {
+    "title": "Actuarial Science: probability and statistics applied to insurance pricing",
+    "subtitle": "Mortality tables, expected present value, and the mathematics behind every life insurance contract",
+    "duration": "8 min"
+  },
+  "ai-lam-duoc-va-khong-lam-duoc-gi": {
+    "title": "AI in Finance, Lesson 2: what AI can do and what it cannot",
+    "subtitle": "Draw the boundary correctly and you use AI without illusions.",
+    "duration": "12 min"
   },
   "alpha-la-gi": {
     "title": "What is alpha?",
@@ -72,6 +87,11 @@
     "subtitle": "An emergency fund handles small shocks; insurance handles the kind that can wipe out everything",
     "duration": "6 min"
   },
+  "bao-hiem-la-gi-mo-hinh-kinh-doanh": {
+    "title": "What insurance is & the business model: pricing, reserves, solvency",
+    "subtitle": "Why an insurer still makes money even though it pays out on events nobody can foresee",
+    "duration": "7 min"
+  },
   "bao-hiem-nhan-tho-term-vs-whole-life": {
     "title": "Stage 9, Lesson 6: Life insurance - term or whole life?",
     "subtitle": "Two very different philosophies, not one product under two names",
@@ -96,6 +116,11 @@
     "title": "Stage 8, Lesson 6: Protecting your money from financial fraud",
     "subtitle": "The more you have, the more attractive a target you become for the more sophisticated scams.",
     "duration": "6 min"
+  },
+  "basel-iii-regulatory-capital-requirements": {
+    "title": "Basel III & capital rules - how banks are kept from failing",
+    "subtitle": "After the 2008 crisis the world decided: banks must hold enough capital to survive the next one.",
+    "duration": "8 min"
   },
   "bat-dong-san-o-hay-dau-tu": {
     "title": "Track 7, Lesson 8: Property - how buying to live differs from buying to invest",
@@ -262,6 +287,11 @@
     "subtitle": "The three sections of the cash flow statement",
     "duration": "6 min"
   },
+  "cau-truc-von-du-an-bat-dong-san": {
+    "title": "Property Projects 3: Three sources of capital - equity, the construction loan, and buyers' money",
+    "subtitle": "Where each one ranks, the real cost of pre-sale proceeds, and why high leverage bites harder here than elsewhere",
+    "duration": "10 min"
+  },
   "cfa-alt-chien-luoc-hedge-fund": {
     "title": "CFA Alternatives 6: The four hedge fund strategy groups and the risk particular to each",
     "subtitle": "Equity, event, relative value, macro - and why 'hedge fund' is not an asset class",
@@ -286,6 +316,21 @@
     "title": "CFA Alternatives 3: Private debt - direct lending, mezzanine and distressed",
     "subtitle": "The fastest-growing asset group after the crisis, and why the banks gave up the field",
     "duration": "11 min"
+  },
+  "cfa-economics-fx-capital-flows": {
+    "title": "CFA Economics: FX markets & international capital flows",
+    "subtitle": "What sets an exchange rate, and why capital moves between countries",
+    "duration": "8 min"
+  },
+  "cfa-economics-international-trade": {
+    "title": "CFA Economics: International trade",
+    "subtitle": "Comparative advantage, tariffs, and why countries still trade when they could make it themselves",
+    "duration": "7 min"
+  },
+  "cfa-economics-ly-thuyet-doanh-nghiep-chi-phi": {
+    "title": "CFA Economics: Theory of the firm - marginal cost & economies of scale",
+    "subtitle": "Why a firm produces up to the point where marginal revenue equals marginal cost, not up to maximum output",
+    "duration": "8 min"
   },
   "cfa-ethics-case-chuyen-viec-va-khach-hang": {
     "title": "CFA Ethics 46: Case - changing jobs, and what you may take with you",
@@ -312,9 +357,34 @@
     "subtitle": "One situation, four standards, and the order of the steps",
     "duration": "11 min"
   },
+  "cfa-ethics-code-of-ethics": {
+    "title": "CFA Ethics 1: Code of Ethics - why this is the heaviest subject in the CFA exam",
+    "subtitle": "The six founding ethical principles every CFA charterholder has to live by",
+    "duration": "8 min"
+  },
   "cfa-ethics-dung-nghien-cuu-ben-thu-ba": {
     "title": "CFA Ethics 43: Using third-party research - the responsibility stays yours",
     "subtitle": "Vetting the source, understanding the method, and when diligence counts as sufficient",
+    "duration": "10 min"
+  },
+  "cfa-ethics-quy-trinh-xu-ly-ky-luat": {
+    "title": "CFA Ethics 42: What happens when a complaint is made - the CFA Institute disciplinary process",
+    "subtitle": "From how matters surface to the sanctions, and why cooperating with an investigation is a duty in its own right",
+    "duration": "9 min"
+  },
+  "cfa-ethics-standard-1d-hanh-vi-ca-nhan": {
+    "title": "CFA Ethics 41: Standard I(D) - when conduct outside work touches professional standing",
+    "subtitle": "The line between private life and the profession, and three signs that make a private matter a professional one",
+    "duration": "9 min"
+  },
+  "cfa-ethics-standard-2-insider-trading-vn": {
+    "title": "CFA Ethics 9: Standard II - Material Nonpublic Information and Vietnamese securities law",
+    "subtitle": "Why \"knowing first, then buying\" is always the red line, under the CFA standards and under Vietnamese law alike",
+    "duration": "8 min"
+  },
+  "cfa-ethics-standard-2b-thao-tung-thi-truong": {
+    "title": "CFA Ethics 21: Standard II(B) - two kinds of manipulation, and why intent is what decides",
+    "subtitle": "Manipulation through trading and manipulation through information - the same act can be legitimate or not",
     "duration": "10 min"
   },
   "chi-phi-vs-dong-tien-ra": {
@@ -1402,6 +1472,11 @@
     "title": "What Is a Swap?",
     "subtitle": "Two parties exchange future cash flows according to an agreed formula"
   },
+  "synergy-ma": {
+    "title": "Estimating synergy soberly: why most deals fall short",
+    "subtitle": "The number on the slide, the premium paid, and five ways to cut the optimism back",
+    "duration": "8 min"
+  },
   "synergy-trong-ma": {
     "title": "Synergy in M&A",
     "subtitle": "1+1=3 - or just an illusion?",
@@ -1479,6 +1554,11 @@
     "title": "What is Terminal Value?",
     "subtitle": "The single largest share of value in most DCF models",
     "duration": "10 min"
+  },
+  "tesla-cash-flow": {
+    "title": "Tesla Q1 2026 cash flow",
+    "subtitle": "Net income vs operating cash flow - the difference",
+    "duration": "6 min"
   },
   "thanh-khoan-la-gi": {
     "title": "What is liquidity? Assets that sell easily, and assets that don't.",
@@ -1711,8 +1791,8 @@
     "subtitle": "High leverage, complexity, and systemic risk"
   },
   "vingroup-cash-flow": {
-    "title": "Deep-dive case: reading Vingroup's cash flow",
-    "subtitle": "The Q4/2024 cash flow statement - 160 trillion cycling through",
+    "title": "Deep dive: reading Vingroup's cash flow",
+    "subtitle": "Q4/2024 cash flow statement - 160,000bn moving through",
     "duration": "6 min"
   },
   "volatility-bien-dong": {
@@ -1738,6 +1818,11 @@
   "walmart-earnings": {
     "title": "The Walmart earnings story",
     "subtitle": "Reading the CEO/CFO Q&A - the business model behind the numbers",
+    "duration": "6 min"
+  },
+  "wealth-management": {
+    "title": "What is wealth management?",
+    "subtitle": "Net worth, asset allocation and the portfolio you expect",
     "duration": "6 min"
   },
   "working-capital-management": {

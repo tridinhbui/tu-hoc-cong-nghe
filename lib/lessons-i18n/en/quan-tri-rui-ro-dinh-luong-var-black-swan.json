@@ -152,7 +152,7 @@
     {
       "question": "What is stress testing in risk management?",
       "options": [
-        "Measuring the psychological stress on the traders over a whole session",
+        "Measuring the psychological stress on traders in a session",
         "Simulating specific extreme scenarios with no probability attached",
         "Testing how fast the trading system processes under heavy load",
         "Recomputing VaR at a higher confidence level, say 99.9%"

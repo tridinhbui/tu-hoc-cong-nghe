@@ -154,7 +154,7 @@
     {
       "question": "A term sheet shows a pre-money of 4 million USD, an investment of 1 million USD, and requires a 15% option pool set BEFORE the round. What does that mean for the founders?",
       "options": [
-        "The pool is split evenly between founders and the new investor, 7.5% each",
+        "The pool is split evenly between founders and the new investor",
         "The whole 15% pool comes out of existing shareholders, i.e. the founders",
         "The pool comes from unissued shares, so nobody is diluted at all",
         "The investor must put in money beyond the 1 million to buy the pool"

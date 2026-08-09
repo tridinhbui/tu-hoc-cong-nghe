@@ -180,7 +180,7 @@
         "No tax, no issuance fees, no covenant restrictions",
         "Not listed, not transferable, not redeemable",
         "No rating, no adequate collateral, no guarantee",
-        "No fixed coupon, no maturity, no original face value"
+        "No fixed coupon, no maturity, no face value"
       ],
       "explanation": "The three \"withouts\" describe exactly the three layers of protection an ordinary bond investor relies on, all three absent. Unrated means no independent party ever assessed the ability to repay; weak collateral (usually shares in the issuer itself, or property rights in a project without completed legal status) loses value exactly when the business struggles; and no guarantee means no third party stands behind the payment. Decree 65/2022 was written to tighten this group."
     }

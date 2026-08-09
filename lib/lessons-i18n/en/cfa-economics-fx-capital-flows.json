@@ -1,0 +1,133 @@
+{
+  "slug": "cfa-economics-fx-capital-flows",
+  "title": "CFA Economics: FX markets & international capital flows",
+  "subtitle": "What sets an exchange rate, and why capital moves between countries",
+  "duration": "8 min",
+  "openingQuestion": "If the State Bank of Vietnam raises its policy rate substantially while the Fed leaves US rates unchanged, what tends to happen to the VND/USD rate (all else equal)?",
+  "openingOptions": [
+    "VND tends to WEAKEN against USD, because high rates pull investors out of Vietnam",
+    "VND tends to strengthen, because high rates attract capital inflows",
+    "The exchange rate is unaffected by any rate gap between the two countries",
+    "USD automatically strengthens because the US is the larger economy"
+  ],
+  "explanation": "This is basic Interest Rate Parity: when one currency (VND) offers a relatively higher rate, international investment flows - the carry trade - tend to move in looking for the higher yield. That raises DEMAND for the currency, so it APPRECIATES against the lower-yielding one. It is one of the most important links between monetary policy and the FX market in CFA Economics.",
+  "realWorldExample": {
+    "company": "The Japanese yen and a policy of ultra-low rates",
+    "description": "For many years Japan held rates near zero or below while other countries paid far more, which created the classic carry trade: borrow JPY cheaply, convert into a higher-yielding currency such as USD or AUD, and pocket the rate differential. That enormous flow of capital was one of the main reasons the yen weakened so persistently through 2022-2023, as the Japan-US rate gap widened."
+  },
+  "quiz": [
+    {
+      "question": "How does the nominal exchange rate differ from the real exchange rate?",
+      "options": [
+        "The real rate is the nominal rate net of the bank's conversion fee",
+        "The real rate is the rate actually traded on the open market",
+        "The real rate is the one the central bank publishes each day",
+        "The real rate has been adjusted for the inflation differential"
+      ],
+      "explanation": "The nominal rate is the number on the bank's board each morning. The real rate adjusts it for the inflation gap between the two countries, so it tracks purchasing power over actual goods. The bank fee is a transaction cost, not part of either definition. The market-traded rate is simply the nominal rate under another name, and a published central bank rate is a reference or a peg, which again says nothing about inflation. That matters because if Vietnamese inflation runs far above US inflation, VND has lost real purchasing power over US goods even when the headline VND/USD quote has not moved."
+    },
+    {
+      "question": "What does Purchasing Power Parity (PPP) predict about exchange rates in the long run?",
+      "options": [
+        "The rate adjusts until the same basket of goods costs the same",
+        "The rate adjusts to the interest rate gap between the two countries",
+        "The rate adjusts to the trade balance running between the two",
+        "The rate stays flat in the long run if the macro picture is stable"
+      ],
+      "explanation": "PPP is the long-run anchor. If a Big Mac costs 5 USD in the States but converts to only 3 USD in Vietnam, PPP says the rate should drift until the purchasing power lines up - so the higher-inflation country's currency depreciates by roughly the inflation gap. The interest rate gap belongs to Interest Rate Parity, which is the short to medium-term mechanism, not this one. The trade balance moves rates but does not pin down a level. And a stable macro picture does not freeze a rate: two stable economies with different inflation still drift apart steadily."
+    },
+    {
+      "question": "What does the capital account in a country's balance of payments record?",
+      "options": [
+        "Flows of goods and services exported and imported between the two countries",
+        "International investment flows: FDI, portfolio flows, other capital",
+        "Foreign exchange reserves held by the country's central bank",
+        "Remittances and other one-way transfers received from abroad"
+      ],
+      "explanation": "The balance of payments has two main halves. The current account records trade in goods and services plus investment income and transfers - so exported goods and inbound remittances both sit there, not in the capital account. The capital and financial account records FDI, portfolio investment and international borrowing. Official reserves are a separate settlement line the central bank controls rather than a capital flow. In theory the two halves offset: a country running a trade deficit, so a negative current account, is normally financed by foreign capital coming in on the other side."
+    },
+    {
+      "question": "Vietnamese inflation runs 4 percentage points above US inflation every year for many years. Under purchasing power parity, how should VND move against USD?",
+      "options": [
+        "Flat, because the central bank sets the rate, not inflation",
+        "Gradual appreciation, since high inflation comes with higher nominal rates",
+        "Gradual depreciation of about 4% a year, exactly the inflation gap",
+        "Random drift, since inflation has no long-run link to the rate at all"
+      ],
+      "explanation": "PPP says the higher-inflation currency must fall by exactly the gap so that the same basket carries the same price on both sides. It forecasts poorly over a quarter - capital flows dominate there - but holds up reasonably over a run of years."
+    },
+    {
+      "question": "The carry trade means borrowing a low-yielding currency to invest in a high-yielding one. What is its main risk?",
+      "options": [
+        "Currency conversion costs always exceed the entire interest differential earned",
+        "The low-rate country's central bank may ban lending abroad altogether",
+        "The two currencies' rates may converge and leave the trade unprofitable",
+        "The high-rate currency drops suddenly and wipes out the accrued carry"
+      ],
+      "explanation": "The differential accrues in small, even amounts while the devaluation arrives fast and large - so a carry trade earns a little at a time and then loses a great deal at once. Conversion costs are real but tiny beside a multi-point rate gap, so they do not swallow it. A ban on lending abroad is not how modern open economies work. Converging rates would simply end the trade at a small profit rather than destroy the position. This asymmetry is also the mechanism that makes capital flows reverse everywhere at once when global risk appetite turns."
+    }
+  ],
+  "keyTakeaways": [
+    "Interest Rate Parity: a relatively higher rate usually attracts capital and lifts that currency, all else equal",
+    "The real rate (inflation-adjusted) differs from the nominal rate (the market quote) - it reflects true relative purchasing power",
+    "PPP predicts the higher-inflation country's currency depreciates by the gap over the LONG RUN to level purchasing power",
+    "The current account (trade) and the capital account (flows) in the balance of payments normally offset each other"
+  ],
+  "practicePrompt": {
+    "question": "Vietnam has averaged 4% inflation a year while the US has averaged 2% over the past decade. Under PPP, which way should VND tend to move against USD in the long run?",
+    "options": [
+      "VND tends to depreciate about 2% a year, exactly the inflation gap",
+      "VND automatically appreciates because Vietnam's GDP growth is faster",
+      "Inflation has nothing to do with exchange rates under PPP theory at all",
+      "The rate stays completely unchanged whatever the inflation gap is"
+    ],
+    "explanation": "Under PPP the inflation gap between the two countries (Vietnam 4% - US 2% = 2% a year) implies VND depreciating roughly 2% a year against USD over the long run, keeping relative purchasing power in balance. This is why CFA analysts use the inflation differential as a long-run signal for the direction of a currency, even though over shorter horizons the rate is driven by plenty else: interest rates, capital flows, market sentiment, and policy intervention."
+  },
+  "summary": {
+    "keyIdea": "Exchange rates are driven by the interest rate gap (short to medium term, through capital flows) and the inflation gap (long run, through PPP); international capital and goods trade together make up a country's balance of payments.",
+    "commonMistake": "Looking only at the nominal rate and ignoring the real rate (inflation-adjusted) when comparing actual purchasing power between two countries",
+    "action": "When you analyse a country paying higher rates, check whether capital is actually flowing in (currency appreciates) or flowing out on some other risk worry (currency falls anyway despite the high rate)"
+  },
+  "application": {
+    "title": "Applying this in CFA analysis",
+    "message": "Understanding the rate-FX-capital chain is the foundation for Fixed Income (pricing international bonds), Portfolio Management (diversifying across countries and the FX risk that brings), and Corporate Issuers (importers and exporters managing FX exposure).",
+    "secondary": "This is the most important cross-topic theme in CFA Level I - Economics does not stand alone, it feeds directly into asset valuation in the other subjects."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "An exchange rate is not a random number - it is the outcome of supply and demand for foreign currency, driven by interest rates, inflation, and international capital flows."
+    },
+    {
+      "type": "heading",
+      "text": "Three main forces behind an exchange rate"
+    },
+    {
+      "type": "list",
+      "items": [
+        "The interest rate gap (Interest Rate Parity): a higher rate attracts capital and lifts the currency over the short to medium term",
+        "The inflation gap (Purchasing Power Parity): higher inflation pulls the currency down by roughly the same amount over the long run",
+        "Capital flows and the balance of payments: a trade deficit can be financed by foreign investment coming in"
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "The balance of payments - the whole picture"
+    },
+    {
+      "type": "paragraph",
+      "text": "The balance of payments records every economic transaction between a country and the rest of the world, in two main halves: the current account (exports and imports of goods and services, investment income, transfers) and the capital and financial account (direct investment or FDI, portfolio investment in securities, international borrowing). In theory the two offset each other: if a country imports more than it exports, so the current account is negative, the difference has to be funded by foreign capital flowing in, so the capital account is positive."
+    },
+    {
+      "type": "callout",
+      "label": "An important cross-topic link for CFA",
+      "text": "FX and capital flows do not stand alone - this is the direct bridge between Economics and Fixed Income (international bond yields), Portfolio Management (currency risk in a multi-country portfolio), and Corporate Issuers (importers and exporters hedging FX exposure). It is why CFA Institute treats Economics as the foundation subject that ties the others together."
+    }
+  ],
+  "diagram": [
+    { "label": "Interest rate and inflation gaps between two countries" },
+    { "label": "Capital moves in search of yield" },
+    { "label": "Supply and demand for the currency shift, so the rate adjusts" },
+    { "label": "Shows up in the balance of payments" }
+  ]
+}

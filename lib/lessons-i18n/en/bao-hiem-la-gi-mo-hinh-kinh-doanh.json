@@ -1,0 +1,147 @@
+{
+  "slug": "bao-hiem-la-gi-mo-hinh-kinh-doanh",
+  "title": "What insurance is & the business model: pricing, reserves, solvency",
+  "subtitle": "Why an insurer still makes money even though it pays out on events nobody can foresee",
+  "duration": "7 min",
+  "openingQuestion": "A life insurer collects premiums from millions of customers every year, yet only a small fraction of them actually file a claim in any given year. What core principle does this business model rest on?",
+  "openingOptions": [
+    "The insurer always looks for a way to deny claims and keep the money",
+    "Risk sharing - many pay small premiums, the pool pays the unlucky few",
+    "The insurer only profits by investing customers' money in securities",
+    "Insurance works in exactly the same way as an ordinary bank savings account"
+  ],
+  "explanation": "This is the core principle of insurance: risk pooling - many people contribute premiums into a common fund, and although the probability that one specific individual suffers a covered event (early death, an accident, a critical illness) is low and uncertain at the INDIVIDUAL level, it can be predicted quite accurately at the level of a large GROUP thanks to the Law of Large Numbers in statistics. That prediction is exactly the job of the actuary.",
+  "realWorldExample": {
+    "company": "Life insurance and the Law of Large Numbers",
+    "description": "An insurer cannot know WHICH of its 1 million customers will die next year, but using a mortality table built from decades of statistical data it can predict quite accurately that, say, about 0.5% of customers aged 40-50 will die during the year - and from that figure derive a premium high enough to cover those claims while still leaving a margin for profit and operating costs."
+  },
+  "quiz": [
+    {
+      "question": "What are 'technical reserves' (loss reserves) in insurance and why do they matter?",
+      "options": [
+        "An amount set aside to cover future claim obligations",
+        "Retained profit not yet distributed to the company's shareholders",
+        "A provision against investments that have fallen in value",
+        "A mandatory deposit held at a bank under regulation"
+      ],
+      "explanation": "Technical reserves are the backbone of the insurance industry. Because policies often run for many years - decades, in life insurance - the company has to set aside enough today to meet obligations that fall due far in the future, even if new premium income dries up. Retained earnings belong to shareholders and can be paid out; an investment write-down provision sits on the asset side and says nothing about policyholder promises; a regulatory bank deposit is a liquidity rule, not a measure of what is owed. Under-reserving is the single most common route to insurer insolvency in history."
+    },
+    {
+      "question": "What is 'adverse selection' in insurance?",
+      "options": [
+        "An agent sells cover to an unsuitable client to earn commission",
+        "High-risk people tend to buy insurance more than low-risk ones",
+        "Someone who has bought cover then behaves more carelessly",
+        "The insurer screens applicants and accepts only low-risk ones"
+      ],
+      "explanation": "Adverse selection is the classic problem in the economics of insurance, and it comes from asymmetric information: the buyer usually knows far more about their own health and risk profile than the insurer does, so people who know they are high-risk have a much stronger incentive to buy. Mis-selling for commission is an agency problem, not a selection one; behaving more carelessly after buying is moral hazard, which happens later; and an insurer screening applicants is underwriting - the defence against adverse selection, not the phenomenon itself."
+    },
+    {
+      "question": "How does 'moral hazard' differ from adverse selection in insurance?",
+      "options": [
+        "Adverse selection is measurable in data; moral hazard is not",
+        "Adverse selection comes from customers; moral hazard from insurers",
+        "Adverse selection happens before purchase; moral hazard after",
+        "Adverse selection sits in life insurance; moral hazard in non-life"
+      ],
+      "explanation": "The distinction is one of timing. Adverse selection is a SELECTION problem - who chooses to buy - and it occurs BEFORE the contract is signed. Moral hazard is a BEHAVIOUR problem - the insured person acts differently once covered - and it occurs AFTER. Both arise from asymmetric information, and both are measurable; both originate with the customer, not the insurer; and both appear in life and non-life lines alike. What separates them is when they bite, which is why insurers use different tools: careful underwriting against adverse selection, and deductibles and co-payments against moral hazard."
+    },
+    {
+      "question": "Scenario: people who know they have a pre-existing condition actively buy health cover, while healthy people do not. What is this called?",
+      "options": [
+        "Under-reserving, technical provisions set below the true level",
+        "Moral hazard, which arises after the contract is in force",
+        "Risk pooling, the basic mechanism for sharing risk across many",
+        "Adverse selection, which arises before the contract is signed"
+      ],
+      "explanation": "Adverse selection comes from the information gap at the moment of purchase: the buyer knows more about their own health than the insurer does. The consequence is that the pool that actually signs up is riskier than the general population, premiums have to rise, and the healthy leave in greater numbers still. Under-reserving is a balance-sheet failure that has nothing to do with who buys; moral hazard would require the behaviour to change after cover began; and risk pooling is the mechanism the effect is corrupting, not the effect itself."
+    },
+    {
+      "question": "Why is under-reserving such a common cause of failure in the insurance industry?",
+      "options": [
+        "Because claims fall due long after the premium has been spent",
+        "Because the regulator imposes very heavy fines once it finds out",
+        "Because thin reserves cut the credit rating almost immediately",
+        "Because premiums would then have to rise for new customers only"
+      ],
+      "explanation": "Insurance takes the money in first and pays it out later, sometimes decades later, so today's cash flow always looks abundant. Reserve too thinly and the company believes it is profitable while it is in fact spending other people's money, and the bill only arrives once it is far too late to fix. Regulatory fines and rating downgrades are consequences that follow the discovery, not the mechanism that creates the hole; and raising prices on new business does nothing about obligations already written."
+    }
+  ],
+  "keyTakeaways": [
+    "Insurance rests on risk pooling - risk is uncertain for one individual but predictable across a large group thanks to the Law of Large Numbers",
+    "Technical reserves are existential: they guarantee the company can meet future obligations, and under-reserving is a common route to insolvency",
+    "Adverse selection: high-risk people buy more insurance (a problem BEFORE purchase) - insurers control it through underwriting",
+    "Moral hazard: insured people behave more riskily (a problem AFTER purchase) - insurers control it through deductibles and co-payments"
+  ],
+  "practicePrompt": {
+    "question": "A health insurer sees claim frequency spike among new customers on a premium plan that requires no medical exam at signup. What is likely going on, and what is the right fix?",
+    "options": [
+      "This is just random coincidence and needs no adjustment at all",
+      "Adverse selection: with no medical exam, high-risk buyers pile in",
+      "Double the premium for every existing customer immediately",
+      "Stop selling health insurance entirely because the risk is too high"
+    ],
+    "explanation": "This is a textbook case of adverse selection: when the barrier to entry is low (no medical exam), the pool is easily 'selected against' by people who already know they are high-risk. The right response is to improve underwriting - a health declaration, a basic medical check - so risk can be priced accurately before a policy is issued, rather than reacting with an across-the-board price rise (unfair to low-risk customers, and it drives them out, making the pool worse) or abandoning the line altogether."
+  },
+  "summary": {
+    "keyIdea": "Insurance works through risk pooling and the Law of Large Numbers, with technical reserves securing long-run ability to pay; the two core asymmetric-information problems are adverse selection (before purchase) and moral hazard (after).",
+    "commonMistake": "Confusing adverse selection with moral hazard, or under-rating the importance of technical reserves relative to short-term profit",
+    "action": "When you analyse an insurer, always check whether reserves are proportionate to the scale of future obligations - do not stop at the annual profit figure"
+  },
+  "application": {
+    "title": "Apply it now",
+    "message": "Find the financial statements of a listed insurer and locate 'technical reserves' (insurance liabilities) on the balance sheet - then compare their size with the company's total assets.",
+    "secondary": "The next lesson goes into the mathematics behind pricing insurance - actuarial science and the statistical tools used to set premiums accurately."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Insurance is often mistaken for a form of betting - but it is in fact one of humanity's most sophisticated financial inventions: it turns the uncertainty of one individual into a business model that can be predicted."
+    },
+    {
+      "type": "heading",
+      "text": "Risk pooling - the core principle of insurance"
+    },
+    {
+      "type": "paragraph",
+      "text": "Nobody knows for certain whether they will have an accident, fall seriously ill, or die young - that is an UNCERTAIN risk at the individual level. But pool millions of people together and the proportion of them who will suffer that event becomes quite stable and predictable, thanks to the Law of Large Numbers in statistics. That is the foundation that lets an insurer set a price: each person pays a small premium, and the common fund is large enough to pay the few who really do suffer the event."
+    },
+    {
+      "type": "heading",
+      "text": "Technical reserves - the backbone of solvency"
+    },
+    {
+      "type": "paragraph",
+      "text": "Unlike most other industries, insurance has an inverted production cycle: the company RECEIVES THE MONEY (the premium) FIRST and INCURS THE COST (the claim) LATER, sometimes years or even decades later in life insurance. That forces the company to hold large enough technical reserves - it cannot treat the premiums collected as 'profit' straight away, but must retain most of them to guarantee it can meet its obligations in the future."
+    },
+    {
+      "type": "heading",
+      "text": "Two asymmetric-information problems: adverse selection and moral hazard"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Adverse selection",
+        "text": "Happens BEFORE the policy is bought - high-risk people have a stronger incentive to buy because they know their own condition. Controlled through underwriting (medical exams, disclosures)"
+      },
+      "right": {
+        "label": "Moral hazard",
+        "text": "Happens AFTER the policy is bought - the insured behaves more riskily knowing the insurer will pay. Controlled through co-payments and deductibles"
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Understanding risk pooling, technical reserves and these two asymmetric-information problems is the foundation for every other aspect of insurance - from pricing to risk management to regulation.",
+        "It is also why the actuary is one of the most mathematically and statistically demanding roles in all of finance."
+      ]
+    }
+  ],
+  "diagram": [
+    { "label": "Many people pay premiums → risk is pooled" },
+    { "label": "Price set from the expected probability of loss" },
+    { "label": "Technical reserves booked for future obligations" },
+    { "label": "The unused premium is invested (the float)" },
+    { "label": "Claims paid when a covered event occurs" }
+  ]
+}

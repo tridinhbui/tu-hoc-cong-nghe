@@ -1,92 +1,42 @@
 {
   "slug": "vingroup-cash-flow",
-  "title": "Deep-dive case: reading Vingroup's cash flow",
-  "subtitle": "The Q4/2024 cash flow statement - 160 trillion cycling through",
+  "title": "Deep dive: reading Vingroup's cash flow",
+  "subtitle": "Q4/2024 cash flow statement - 160,000bn moving through",
   "duration": "6 min",
   "openingQuestion": "Revenue is rising but operating cash flow is negative. What does that say about the quality of the business?",
   "openingOptions": [
-    "The business is certainly weak",
-    "It may be tied up in working capital, or heavy CapEx",
-    "It is always a good sign",
-    "The two are unrelated"
+    "The business is definitely weak and should be avoided",
+    "It may be tied up in working capital or heavy CapEx",
+    "It is always a good sign for the business",
+    "It is unrelated to business quality"
   ],
-  "explanation": "Reading a diversified group's cash flow is an exercise in separation: which part is cash from genuine operations, which part is borrowed money, and which part is proceeds from selling assets. For a business with a property arm, negative operating cash flow during the build-out phase is normal, because the costs run years ahead of the revenue on handover. What matters is whether it turns positive again as the projects complete.",
+  "explanation": "Reading a diversified group's cash flow is an exercise in separation: how much is money from real operations, how much is borrowed, how much is proceeds from selling assets. For a business with a property arm, negative operating cash flow during the construction phase is normal, because the spending comes years before the revenue on handover. What has to be watched is whether it turns positive once the projects complete.",
   "diagram": [
-    { "label": "Accounting profit", "arrow": true },
-    { "label": "Working capital", "arrow": true },
-    { "label": "CapEx", "arrow": true },
-    { "label": "Operating cash flow", "arrow": false }
+    {
+      "label": "Accounting profit",
+      "arrow": true
+    },
+    {
+      "label": "Working capital",
+      "arrow": true
+    },
+    {
+      "label": "CapEx",
+      "arrow": true
+    },
+    {
+      "label": "Operating cash flow",
+      "arrow": false
+    }
   ],
   "realWorldExample": {
     "company": "Why property and retail so often show a cash flow gap",
-    "description": "At a property business, the money spent on the land bank and construction sits in inventory for years before any revenue is recognised. In retail, every new store needs stock on the shelves before it sells a single item. In both models, a phase of rapid expansion almost always comes with weak operating cash flow, and that in itself is not yet a problem. The problem lies elsewhere: whether that expansion turns into revenue and cash in later periods - and the answer only appears when you track several consecutive periods."
-  },
-  "quiz": [
-    {
-      "question": "What most often makes OCF weaker than net income?",
-      "options": [
-        "Borrowing costs falling",
-        "The gross margin improving",
-        "Revenue growing quickly",
-        "Working capital rising sharply"
-      ],
-      "explanation": "When money has to go into inventory and receivables, OCF can be weak even while accounting profit still looks healthy."
-    },
-    {
-      "question": "If a business consistently shows OCF below net income for several years running, what does that signal?",
-      "options": [
-        "Look hard at earnings quality - profit is not becoming cash",
-        "Nothing to worry about; it is just short-term variation between quarters",
-        "A good sign, because the business is investing very heavily indeed",
-        "The business is certainly falsifying the figures in its reports"
-      ],
-      "explanation": "A few periods out of line is normal, but a gap persisting for years is a warning about earnings quality that needs investigating further - not something to write off automatically as either fraud or a good sign."
-    },
-    {
-      "question": "A property business has negative operating cash flow while building out a large project. What is the right reading?",
-      "options": [
-        "This is always a sign the business is about to become insolvent",
-        "It may be normal; check whether cash arrives on handover",
-        "It does not matter, since property always has negative cash flow",
-        "Compare it directly with a software company to assess it"
-      ],
-      "explanation": "The nature of the industry makes a cash flow gap normal during the investment phase. What matters is whether the cash comes back once the asset starts producing."
-    },
-    {
-      "question": "In converting profit to operating cash flow, why is depreciation added back?",
-      "options": [
-        "Because accounting standards require it to be added back on preparation",
-        "Because the tax authority refunds it at year end",
-        "Because it is a cost deducted that took no cash out in the period",
-        "Because depreciation is a form of other income for the business"
-      ],
-      "explanation": "The money went out when the asset was bought. Depreciation only spreads that cost across periods in the books, so it has to be added back when converting to cash flow."
-    },
-    {
-      "question": "Where does operating cash flow sustainably above net income usually come from?",
-      "options": [
-        "Deferring revenue recognition into the following period",
-        "The business cutting its fixed asset investment",
-        "A one-off gain from selling an asset or disposing of a business line",
-        "Large depreciation, or a model that collects cash before delivering"
-      ],
-      "explanation": "These two sources repeat: depreciation is a cost that takes no cash, and collecting in advance is a feature of the business model. Selling assets or cutting investment also flatters cash flow for one period but does not repeat - telling the two groups apart is the main job when reading earnings quality."
-    }
-  ],
-  "keyTakeaways": [
-    "OCF is what shows the real cash generated by operations",
-    "Working capital and CapEx are the two largest sources of divergence",
-    "Do not value a business on net income alone"
-  ],
-  "summary": {
-    "keyIdea": "Cash flow answers the question of how much money the company genuinely generates.",
-    "commonMistake": "Confusing accounting profit with cash.",
-    "action": "Compare OCF against net income for a company you follow across its last 3 years."
+    "description": "At a property developer, money spent on land bank and construction sits in inventory for years before any revenue is recognised. In retail, every new store needs stock on the shelves before it sells a single item. In both models, a period of heavy expansion almost always comes with weak operating cash flow, and that on its own is not the problem. The problem lies elsewhere: whether that expansion turns into revenue and cash in the following periods - and that answer only appears once you track it across several periods in a row."
   },
   "sections": [
     {
       "type": "lead",
-      "text": "Revenue rises while operating cash flow (OCF) turns negative - a situation that confuses many new investors, and a very common one at large businesses, particularly in property and retail."
+      "text": "Revenue is rising, yet operating cash flow is negative - a situation that confuses many new investors, and a very common one at large companies, particularly in property and retail."
     },
     {
       "type": "heading",
@@ -94,37 +44,37 @@
     },
     {
       "type": "paragraph",
-      "text": "Accrual accounting allows revenue to be recognised before the cash is actually collected. When receivables, inventory or work in progress rise quickly, real cash is locked up in those items even while accounting profit still looks very healthy. This is why investors always read net income against operating cash flow rather than trusting a single number."
+      "text": "Accrual accounting allows revenue to be recognised before the money is actually collected. When receivables, inventory or work in progress grow quickly, real cash gets 'locked' into those items while accounting profit still looks excellent. This is why investors always read net income against operating cash flow rather than trusting a single number."
     },
     {
       "type": "list",
       "items": [
-        "A sharp rise in working capital is the most common reason OCF falls below net income",
-        "A few periods out of line is normal, but a gap persisting for years is a signal to examine earnings quality closely",
-        "OCF is the measure of the real cash a business generates from operations"
+        "A sharp rise in working capital is the most common reason operating cash flow lags net income",
+        "A gap in a few periods is normal, but a gap that persists for years is a signal to examine earnings quality closely",
+        "Operating cash flow is the measure of real money the business generates from operations"
       ]
     },
     {
       "type": "formula",
       "title": "From profit to operating cash flow",
-      "equation": "OCF ≈ profit after tax + depreciation − change in working capital",
+      "equation": "OCF ≈ after-tax profit + depreciation − change in working capital",
       "variables": [
         {
           "symbol": "Depreciation",
-          "name": "A non-cash cost",
-          "description": "Deducted in computing profit but taking no cash out, so it is added back."
+          "name": "Non-cash charge",
+          "description": "Deducted when computing profit but costing no money, so it is added back."
         },
         {
           "symbol": "Change in working capital",
           "name": "Working capital",
-          "description": "Rising receivables and inventory lock cash up; rising payables keep cash in hand longer."
+          "description": "Rising receivables and inventory lock cash up; rising payables let you hold onto cash for longer."
         }
       ],
       "example": {
-        "title": "A worked example",
-        "calculation": "300 billion + 150 billion − 600 billion",
-        "result": "= −150 billion",
-        "explanation": "The business earned 300 billion of profit but receivables and inventory rose by a further 600 billion in the period. The result is operating cash flow of minus 150 billion, even though the income statement looks very positive."
+        "title": "Worked example",
+        "calculation": "300bn + 150bn − 600bn",
+        "result": "= −150bn",
+        "explanation": "The business earns 300bn but receivables and inventory rise by 600bn in the period. The result is operating cash flow of −150bn, even though the income statement looks very healthy."
       }
     },
     {
@@ -134,37 +84,99 @@
     {
       "type": "list",
       "items": [
-        "Healthy: the gap appears during a clearly planned expansion, and narrows in later periods as the assets start producing.",
-        "Worrying: the gap persists for years without narrowing, receivables grow faster than revenue, or inventory rises while revenue is flat.",
-        "Very worrying: the business has to keep borrowing to cover negative operating cash flow, so debt and interest costs rise together."
+        "Healthy: the gap appears during a clearly planned expansion and narrows in later periods as the assets come into use.",
+        "Worrying: the gap runs for years without narrowing, receivables grow faster than revenue, or inventory grows while revenue is flat.",
+        "Very worrying: the company has to keep borrowing to cover negative operating cash flow, so debt and interest cost rise together."
       ]
     },
     {
       "type": "callout",
       "label": "Three cash flows, three questions",
-      "text": "Operating cash flow answers \"do the core operations generate cash\". Investing cash flow answers \"where is the business putting its money\". Financing cash flow answers \"how is the shortfall being covered - more borrowing, or issuing shares\". Only reading all three shows the real funding picture."
+      "text": "Operating cash flow answers 'does the core business generate money'. Investing cash flow answers 'where is the company putting its money'. Financing cash flow answers 'what covers the shortfall - more borrowing or new shares'. Only reading all three shows the real funding picture."
     },
     {
       "type": "closing",
       "lines": [
         "Accounting profit tells one story.",
-        "Operating cash flow tells a truer one about the financial health of the business."
+        "Operating cash flow tells a truer one about the company's financial health."
       ]
     }
   ],
+  "quiz": [
+    {
+      "question": "What usually makes operating cash flow weaker than net income?",
+      "options": [
+        "Borrowing rates falling during the period",
+        "The gross margin improving",
+        "Revenue growing quickly",
+        "Working capital rising sharply"
+      ],
+      "explanation": "When money has to go into inventory and receivables, operating cash flow can be weak while accounting profit still looks fine."
+    },
+    {
+      "question": "If a company's operating cash flow stays below net income for several years running, what does that signal?",
+      "options": [
+        "Earnings quality needs examining - profit is not becoming real cash",
+        "Nothing to worry about, just variation between quarters",
+        "A good sign, because the company is investing very heavily",
+        "The company is certainly falsifying its reported financial figures"
+      ],
+      "explanation": "A gap in a few periods is normal, but a gap that persists for years is a warning about earnings quality that deserves deeper investigation - not something to write off as either fine or fraudulent."
+    },
+    {
+      "question": "A property developer shows negative operating cash flow while building a large project. What is the right reading?",
+      "options": [
+        "It is always a sign the company will soon be insolvent",
+        "It may be normal; the question is whether cash returns on handover",
+        "No need to look, since property always has negative cash flow",
+        "It should be compared directly against a software company"
+      ],
+      "explanation": "The industry's nature makes a cash flow gap normal during the investment phase. What has to be tracked is whether the cash returns once the assets come into use."
+    },
+    {
+      "question": "In the formula from profit to operating cash flow, why is depreciation added back?",
+      "options": [
+        "Because accounting standards require adding it back when preparing the statement",
+        "Because the tax authority refunds depreciation at the financial year end",
+        "Because it is a charge already deducted that cost no money in the period",
+        "Because depreciation is another form of income for the company"
+      ],
+      "explanation": "The cash left when the asset was bought. Depreciation only spreads that cost across periods in the books, so converting back to cash flow means adding it back."
+    },
+    {
+      "question": "Where does sustainably stronger operating cash flow than net income usually come from?",
+      "options": [
+        "Deferring revenue recognition into the following period",
+        "The company cutting its fixed-asset investment during the reporting period",
+        "A one-off gain from selling an asset or disposing of a business line",
+        "Heavy depreciation, or a model that collects cash before delivering"
+      ],
+      "explanation": "Both of these repeat: depreciation is a charge that costs no money, and collecting in advance is a feature of the business model. Selling assets or cutting investment also flatters one period's cash flow but does not repeat - separating those two groups is the main work of reading earnings quality."
+    }
+  ],
   "practicePrompt": {
-    "question": "Reading Vingroup's Q4/2024 cash flow statement, with 160,000 billion dong cycling through it, which factor most accurately reflects the group's financial capacity?",
+    "question": "Reading Vingroup's Q4/2024 cash flow statement with 160,000bn dong moving through it, which factor most accurately reflects the group's financial capacity?",
     "options": [
-      "The balance of OCF and financing cash flow funding the CapEx",
-      "Total accounting revenue as recognised in the income statement",
-      "The number of shares in issue on the exchange",
-      "Retained earnings after tax on the balance sheet"
+      "The balance of operating and financing cash flow funding the CapEx",
+      "Total accounting revenue recognised in the consolidated income statement",
+      "The number of shares outstanding on the exchange",
+      "Undistributed after-tax profit on the balance sheet"
     ],
-    "explanation": "For a large diversified group such as Vingroup, tracking the structure of operating cash flow against financing cash flow (borrowing and issuance) is the key to assessing liquidity and how payment risk is being managed."
+    "explanation": "For a large diversified group such as Vingroup, tracking the structure of operating cash flow against financing cash flow (borrowing and issuance) is the key to assessing liquidity and how payment risk is managed."
+  },
+  "keyTakeaways": [
+    "Operating cash flow is what shows the real money generated by operations",
+    "Working capital and CapEx are the two biggest sources of divergence",
+    "A company should not be valued on net income alone"
+  ],
+  "summary": {
+    "keyIdea": "Cash flow answers the question of how much money the company genuinely produces.",
+    "commonMistake": "Mistaking accounting profit for cash.",
+    "action": "Compare operating cash flow against net income for the company you follow, over the last three years."
   },
   "application": {
-    "title": "In practice: reading Vingroup's cash flow",
-    "message": "Reading Vingroup's Q4/2024 cash flow statement, with 160,000 billion dong cycling through it, which factor most accurately reflects the group's financial capacity?",
-    "secondary": "Having this principle firmly in hand strengthens your professional financial analysis."
+    "title": "In practice: deep dive on Vingroup's cash flow",
+    "message": "Reading Vingroup's Q4/2024 cash flow statement with 160,000bn dong moving through it, which factor most accurately reflects the group's financial capacity?",
+    "secondary": "Grasping this principle raises your professional financial analysis to a higher level."
   }
 }

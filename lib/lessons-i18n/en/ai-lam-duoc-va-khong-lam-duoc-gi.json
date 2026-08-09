@@ -1,0 +1,165 @@
+{
+  "slug": "ai-lam-duoc-va-khong-lam-duoc-gi",
+  "title": "AI in Finance, Lesson 2: what AI can do and what it cannot",
+  "subtitle": "Draw the boundary correctly and you use AI without illusions.",
+  "duration": "12 min",
+  "openingQuestion": "Which statement best describes AI in finance?",
+  "openingOptions": [
+    "AI helps you read, filter and draft; the user still has to verify everything",
+    "AI is always right when it comes to financial figures",
+    "AI can replace the auditor in reviewing an entire set of accounts",
+    "AI automatically knows a company's confidential internal data"
+  ],
+  "explanation": "AI is a supporting tool, not the party that carries responsibility. It is very strong at language work: reading, summarising, organising, turning prose into tables, drafting. It is weak at anything requiring accountability and your own specific context: confirming a figure is right, understanding your risk appetite, and making a buy or sell decision. Drawing that boundary at the outset is the fastest route to using AI both effectively and safely.",
+  "summary": {
+    "keyIdea": "Using AI well starts with knowing the boundary: what you can delegate, and what you must check yourself.",
+    "commonMistake": "Asking a question far too big - 'is this stock a buy?' - and then believing the answer.",
+    "action": "Write a list of 3 things you can hand to AI and 3 things you must decide yourself."
+  },
+  "sections": [
+    { "type": "lead", "text": "AI is powerful, but it is not a financial expert taking responsibility on your behalf." },
+    { "type": "heading", "text": "Three jobs to hand to AI" },
+    {
+      "type": "list",
+      "items": ["Reading fast and summarising", "Turning information into tables", "Suggesting risks and questions worth verifying"]
+    },
+    { "type": "heading", "text": "Three jobs not to hand over entirely" },
+    {
+      "type": "list",
+      "items": [
+        "Making the buy or sell decision",
+        "Confirming for itself that a figure is correct",
+        "Handling confidential or internal data without permission"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "The safety rule",
+      "text": "If the output contains a number, ask: where did this come from, which page, in what unit, for which period?"
+    },
+    { "type": "heading", "text": "A straightforward example" },
+    {
+      "type": "paragraph",
+      "text": "You can ask AI to summarise a steel-sector report. But if it says margins rose 3 percentage points, you have to check that figure in the original report before you use it."
+    },
+    { "type": "heading", "text": "Why is AI strong at one set of jobs and weak at the other?" },
+    {
+      "type": "paragraph",
+      "text": "AI is trained to predict the next plausible stretch of language. That makes it very good at rephrasing, organising and condensing - all of which are language problems. But 'correct' in finance does not mean 'sounds reasonable': a number is only right when it matches the original report, in the right unit and for the right period. That is a data reconciliation problem, not a language problem, and it therefore sits outside what AI can guarantee on its own."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "A useless warning",
+        "text": "\"The company faces liquidity risk.\" That is true of almost any company and points to nothing you could go and check."
+      },
+      "right": {
+        "label": "A usable warning",
+        "text": "\"Receivables rose 42% while revenue rose only 9% (page 47, consolidated FY2024 accounts). Check the ageing profile and customer concentration in note 8.\""
+      }
+    },
+    { "type": "heading", "text": "A checklist before you trust an output" },
+    {
+      "type": "list",
+      "items": [
+        "What document is this conclusion based on? Is there a file name and a page number?",
+        "Does the figure carry a clear unit (bn dong or m dong, consolidated or parent-only)?",
+        "Is the reporting period right (quarter or year to date, fiscal year or calendar year)?",
+        "If you delete the concluding sentence, does the remaining evidence still stand on its own?",
+        "Is the AI speculating anywhere without saying that it is speculating?"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "On internal data",
+      "text": "Before uploading any company document to an AI tool, check your internal policy. Many organisations forbid putting unpublished data, contracts or customer information into an external service - and this is the kind of mistake that is very hard to undo after the fact."
+    },
+    {
+      "type": "closing",
+      "lines": ["AI is an accelerator, not the party who is accountable.", "The clearer the boundary, the safer the use."]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "When AI hands you a financial figure, what should you do?",
+      "options": [
+        "Ask the AI again whether it is really sure about that figure",
+        "Cross-check it against a different AI to be safe",
+        "Ask for the source, page, unit and reporting period",
+        "Just use it if the number sounds plausible enough"
+      ],
+      "explanation": "A number with no source is dangerous in finance, because a wrong figure propagates into every model built on top of it. Asking the model whether it is sure only produces more language - a confident tone is not evidence. Nor does a second model help: two systems trained the same way can be plausibly wrong in the same direction. Only the original document settles the question."
+    },
+    {
+      "question": "Which job should not be delegated entirely to AI?",
+      "options": [
+        "Summarising a long prospectus",
+        "Translating jargon into plain English",
+        "Building a comparison table of two firms",
+        "Making the final buy or sell decision"
+      ],
+      "explanation": "AI supports the analysis, but the final decision belongs to a human, because that is where accountability sits and no professional code makes an exception for 'the AI said so'. The other three are language tasks - condensing, rendering and reorganising - where the model works from material you supply and you can verify the output against the source in minutes."
+    },
+    {
+      "question": "Why can AI write an analysis that reads convincingly and still get the figures wrong?",
+      "options": [
+        "Because AI optimises for plausible language, not for reconciliation",
+        "Because AI deliberately errs so that the user is forced to check it",
+        "Because AI always misses the final page of the source document",
+        "Because AI is only ever trained on English-language material"
+      ],
+      "explanation": "'Sounds reasonable' and 'matches the source' are two different things. AI is strong at the first and the second still has to be reconciled by you, against the original document. There is no deliberate error and no systematic gap at the end of a file; the model is simply producing the most plausible continuation, and a plausible number and a correct number look identical on the page."
+    },
+    {
+      "question": "Which of these is a usable risk warning?",
+      "options": [
+        "This industry faces increasingly fierce competition",
+        "Receivables up 42% while revenue rose 9% (page 47)",
+        "Management should improve its capital efficiency",
+        "The company carries risks that warrant further tracking"
+      ],
+      "explanation": "A good warning carries a number as evidence, a page as a source, and one concrete thing to go and check next. The other three options are true of almost every company in almost every year, so they cannot help you decide anything - they read as analysis without narrowing the field at all, which is exactly what makes them easy to write and worthless to act on."
+    },
+    {
+      "question": "AI is asked to compare two companies but is given the report of only one of them. What is the likely outcome?",
+      "options": [
+        "It presents only the figures for the firm it has a report for, leaving the other blank",
+        "It refuses to answer until the user supplies reports for both companies involved",
+        "It writes the comparison anyway, filling the gap with general knowledge",
+        "It automatically goes and finds the other company's report on the internet"
+      ],
+      "explanation": "The model is optimised to answer rather than to stop, so the missing side gets filled with generic statements or stale figures that still read fluently. This is why a prompt should state explicitly that only the attached data may be used, and that the model must write 'no data' where it is missing. Refusing, leaving a blank, or going and fetching the file are all behaviours you have to ask for; none is the default."
+    }
+  ],
+  "diagram": [
+    { "label": "Language work: read · summarise · tabulate · draft" },
+    { "label": "→ Hand to AI, spot-check the results" },
+    { "label": "Accountable work: confirm figures · judge your own risk · decide" },
+    { "label": "→ You do it yourself; AI only suggests the questions" }
+  ],
+  "realWorldExample": {
+    "company": "Where professional analyst teams draw the line",
+    "description": "At investment firms and banks, AI enters the workflow mainly at the reading and drafting stages: summarising documents, extracting figures into templates, drafting reports. Signing off a recommendation and answering to the client remain human jobs, and professional codes - such as the CFA ethics standard requiring a reasonable basis for a recommendation - make no exception for 'the AI said so'. Put differently, the boundary you are learning here is the boundary the industry already applies."
+  },
+  "keyTakeaways": [
+    "Hand AI the language work; keep for yourself the work tied to accountability and your own context.",
+    "A warning or a conclusion from AI is only worth anything when it comes with numerical evidence and a source.",
+    "Do not put internal or confidential data into an AI tool without permission.",
+    "The final decision - and the responsibility for it - is always yours."
+  ],
+  "practicePrompt": {
+    "question": "Which statement best describes AI in finance?",
+    "options": [
+      "AI helps you read, filter and draft; the user still has to verify",
+      "AI is always right when it comes to financial figures",
+      "AI can fully replace the auditor's review work",
+      "AI automatically knows the company's confidential data"
+    ],
+    "explanation": "AI is a supporting tool. A financial result has to be verified against a source and against your own reasoning before you act on it."
+  },
+  "application": {
+    "title": "Practise it now",
+    "message": "Write a list of 3 things you can hand to AI and 3 things you must decide yourself.",
+    "secondary": "Start small, verify clearly, and only then raise the difficulty."
+  }
+}

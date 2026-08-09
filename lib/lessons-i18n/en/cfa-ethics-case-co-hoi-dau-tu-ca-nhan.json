@@ -101,10 +101,10 @@
     {
       "question": "What is the first question when a private investment opportunity arrives?",
       "options": [
-        "Whether the amount exceeds the declaration threshold",
+        "Whether the amount exceeds the threshold",
         "Whether this opportunity suits any of your clients",
         "Whether the invitation names you or the firm",
-        "Whether you have enough personal capital to take part"
+        "Whether you have the personal capital to take part"
       ],
       "explanation": "This order determines everything that follows - asking it the other way round is how most violations of this kind begin."
     },
@@ -112,7 +112,7 @@
       "question": "Does an invitation naming you personally make the opportunity your own?",
       "options": [
         "Yes, if you use personal money to take part",
-        "Yes, because the invitation was not sent to the firm or to clients",
+        "Yes, because the invitation went to neither firm nor clients",
         "No, because you were invited through your professional position",
         "No, unless you disclose your participation to clients"
       ],

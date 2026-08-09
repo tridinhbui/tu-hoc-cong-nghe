@@ -1,0 +1,143 @@
+{
+  "slug": "cfa-economics-ly-thuyet-doanh-nghiep-chi-phi",
+  "title": "CFA Economics: Theory of the firm - marginal cost & economies of scale",
+  "subtitle": "Why a firm produces up to the point where marginal revenue equals marginal cost, not up to maximum output",
+  "duration": "8 min",
+  "openingQuestion": "A profit-maximising firm picks its output at which point?",
+  "openingOptions": [
+    "The highest output the plant can make, to use full capacity",
+    "The point where marginal revenue equals marginal cost (MR = MC)",
+    "The point of lowest average cost, since that is the most efficient",
+    "The point of highest revenue, since revenue measures scale"
+  ],
+  "explanation": "MR = MC is the pillar of the theory of the firm. As long as marginal revenue - the money brought in by one more unit - exceeds marginal cost - the money that unit costs to make - producing more still adds profit. Once MR falls below MC, that unit destroys profit. The optimum sits where the two are equal: not maximum output, and not maximum revenue either.",
+  "realWorldExample": {
+    "company": "A cement plant running below capacity",
+    "description": "A cement plant with capacity of 2 million tonnes a year runs only 1.4 million. It looks like waste, but to shift the extra 600 thousand tonnes the firm would have to cut the price across its whole output and ship further afield - marginal cost above marginal revenue. Running flat out would lower profit, even though every operating metric would look better."
+  },
+  "quiz": [
+    {
+      "question": "In the short run, when should a firm keep producing even though it is making a loss?",
+      "options": [
+        "When revenue still covers the whole of total cost",
+        "When price still exceeds average fixed cost",
+        "When price still exceeds average variable cost",
+        "When the loss is smaller than the equity on hand"
+      ],
+      "explanation": "Fixed cost in the short run is sunk - payable whether or not you produce. If price clears AVC, each unit sold still contributes something toward the fixed cost, so the loss is smaller than shutting down. If revenue covered total cost there would be no loss to discuss, so that option answers a different question. Comparing price to average fixed cost is meaningless because fixed cost per unit changes with volume. And the size of your equity tells you how long you can survive a loss, not whether producing beats stopping. The short-run shutdown point is where price drops below AVC; in the long run every cost is variable, so the threshold becomes ATC."
+    },
+    {
+      "question": "What do economies of scale actually mean?",
+      "options": [
+        "A big firm always has an advantage over a small one",
+        "Total production cost falls as output is expanded",
+        "Marginal profit rises steadily with the firm's size",
+        "Long-run average cost falls as output rises"
+      ],
+      "explanation": "Economies of scale means long-run AVERAGE cost falling as scale grows, through spreading fixed costs, specialising labour, and buying power with suppliers. Total cost does not fall when you produce more - it rises, just more slowly than output. Size is not automatically an advantage either, because diseconomies of scale are real: past a point the organisation becomes unwieldy, coordination degrades, and average cost turns back up. That is why the long-run average cost curve is drawn as a U."
+    },
+    {
+      "question": "How should a sunk cost be treated in a business decision?",
+      "options": [
+        "Ignore it entirely - it is spent and unrecoverable",
+        "Spread it evenly across the coming production periods",
+        "Add it to total cost to find the project's break-even",
+        "Deduct it from profit before deciding whether to go on"
+      ],
+      "explanation": "A sunk cost is money already spent that cannot be recovered whatever you decide next, so it should have no bearing on the choice. Spreading it forward or folding it into a break-even calculation makes a future decision depend on a past payment, which is exactly the sunk cost fallacy - pouring more money into a failing project because so much has already gone in. The right decision rests only on incremental costs and benefits from here on."
+    },
+    {
+      "question": "A firm is loss-making in the short run. When is continuing to produce still better than shutting down?",
+      "options": [
+        "When price still exceeds the full average cost of one unit produced",
+        "When price still exceeds the average variable cost of each unit",
+        "When the loss per unit is smaller than the fixed cost already spent",
+        "When the firm can still borrow working capital to keep operating"
+      ],
+      "explanation": "The fixed cost is already spent and shutting down will not get it back. As long as price covers variable cost, every unit sold contributes something toward that fixed cost, so the loss is smaller than stopping altogether. Requiring price to clear full average cost sets the bar too high and shuts good plants down early. Comparing the per-unit loss to the fixed cost already spent is the sunk cost fallacy wearing a different hat. And borrowing capacity determines survival, not whether operating beats idling."
+    },
+    {
+      "question": "When do diseconomies of scale appear?",
+      "options": [
+        "When the firm must cut its price to sell the extra output it just added",
+        "When the firm expands production but total cost keeps on rising too",
+        "When average cost starts rising again even as output keeps growing",
+        "When fixed cost takes up a steadily larger share of total production cost"
+      ],
+      "explanation": "Past a certain size, coordination costs, layers of management and information lag start to outweigh the gains from specialisation, and cost per unit turns upward. Note that total cost always rises with output, so that option describes normal production rather than a problem. Cutting price to move extra volume is a demand effect on revenue, not on the cost curve. And a rising share of fixed cost is the signature of economies of scale being exhausted, not of diseconomies. The signal here is strictly cost per unit."
+    }
+  ],
+  "keyTakeaways": [
+    "A profit-maximising firm produces at MR = MC, not at maximum output or maximum revenue",
+    "Short run: keep producing if price clears AVC. Long run: the threshold is ATC, because every cost is variable",
+    "Economies of scale pull long-run average cost down; too much scale brings diseconomies of scale",
+    "Sunk costs must be ignored in every forward-looking decision"
+  ],
+  "practicePrompt": {
+    "question": "A garment workshop has put 20bn into its production line. The current selling price is 90k per item, average variable cost is 75k, and total average cost is 110k. The workshop is loss-making. What should it do in the short run?",
+    "options": [
+      "Stop now, since 90k is below the 110k average cost per unit",
+      "Keep going: 90k still beats variable cost of 75k, adding 15k",
+      "Raise the price to 110k to break even, whatever the market does",
+      "Push output to the maximum so average cost drops below 90k"
+    ],
+    "explanation": "A price of 90k clears AVC of 75k, so each item contributes 15k toward the fixed cost. Shutting down still leaves the full fixed cost payable with no contribution at all - a bigger loss. The 20bn already invested is a sunk cost and should not enter the decision. In the long run, though, if price cannot get above ATC the workshop is not viable and has to restructure or exit."
+  },
+  "summary": {
+    "keyIdea": "Optimal output sits at MR = MC; whether to continue or stop depends on whether price clears average variable cost, and a sunk cost never belongs in the decision.",
+    "commonMistake": "Using total average cost as the short-run decision threshold, which shuts plants down too early when they should keep running to cover fixed cost",
+    "action": "When assessing a loss-making line or business unit, split fixed cost from variable cost before concluding whether to stop or continue"
+  },
+  "application": {
+    "title": "Applying this in CFA analysis",
+    "message": "Cost structure determines operating leverage - a firm carrying heavy fixed costs swings far more sharply in profit for a given move in revenue, which you have to reflect in your model's scenarios.",
+    "secondary": "It is also the foundation for CVP analysis and break-even work in Corporate Issuers."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The theory of the firm answers a question that sounds simple: how much should we produce? The answer is not 'as much as possible'."
+    },
+    {
+      "type": "heading",
+      "text": "The cost types you have to keep apart"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Fixed cost (FC): unchanged by output - factory rent, depreciation on machinery, management salaries",
+        "Variable cost (VC): moves with output - raw materials, production electricity, piece-rate wages",
+        "Marginal cost (MC): the extra cost of producing one more unit - the single most important quantity for an output decision",
+        "Sunk cost: already spent and unrecoverable - must be stripped out of every decision"
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "The MR = MC rule"
+    },
+    {
+      "type": "paragraph",
+      "text": "A firm should keep raising output as long as marginal revenue exceeds marginal cost. Where MR equals MC, profit is at its maximum. Past that point each additional unit pulls profit back down. In perfect competition the firm is a price taker, so MR equals the market price exactly and the optimality condition becomes P = MC. Under monopoly, MR sits below price, because selling more means cutting the price on the whole output."
+    },
+    {
+      "type": "heading",
+      "text": "What separates the short run from the long run"
+    },
+    {
+      "type": "paragraph",
+      "text": "In the short run some inputs are fixed - the factory is already leased, the machine already bought. That fixed cost is sunk, so the threshold for continuing or stopping is average variable cost (AVC). In the long run every contract expires and every asset can be replaced, so there is no genuinely fixed cost left - the survival threshold becomes total average cost (ATC). A firm that cannot cover ATC over the long run leaves the industry."
+    },
+    {
+      "type": "callout",
+      "label": "Watch for this in the CFA exam",
+      "text": "Exam items routinely set up a loss-making firm and ask whether to stop or continue. The key is always comparing price against AVC (short run) or ATC (long run), and never against the money originally invested."
+    }
+  ],
+  "diagram": [
+    { "label": "Separate fixed cost, variable cost and marginal cost" },
+    { "label": "Produce more while marginal revenue still beats marginal cost" },
+    { "label": "Stop where marginal revenue equals marginal cost (MR = MC)" },
+    { "label": "Short run: accept a loss if variable cost is still covered" },
+    { "label": "Long run: economies of scale bring average unit cost down" }
+  ]
+}

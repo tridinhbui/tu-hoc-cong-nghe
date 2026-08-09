@@ -1,0 +1,148 @@
+{
+  "slug": "cfa-economics-international-trade",
+  "title": "CFA Economics: International trade",
+  "subtitle": "Comparative advantage, tariffs, and why countries still trade when they could make it themselves",
+  "duration": "7 min",
+  "openingQuestion": "What does David Ricardo's theory of comparative advantage actually explain?",
+  "openingOptions": [
+    "A country should export only what it makes more cheaply than others in absolute terms",
+    "Both sides gain when each specialises where its relative opportunity cost is lowest",
+    "Countries should make everything themselves so as not to depend on foreigners",
+    "Trade always helps the exporting country and hurts the importing one"
+  ],
+  "explanation": "This is the single most important insight in the theory of comparative advantage: a country does NOT need to be the outright best at something to gain from trade. Even if country A produces EVERYTHING more efficiently than country B, trade still leaves both better off provided each concentrates on the sector where its RELATIVE opportunity cost is LOWEST. That is what separates it from absolute advantage, which is where most people get confused.",
+  "realWorldExample": {
+    "company": "Vietnam, textiles and electronics assembly",
+    "description": "Vietnam may not have the world's highest labour productivity in any single industry, yet it gains substantially from international trade by specialising in labour-intensive sectors - garments, electronics assembly - where its opportunity cost is relatively lower than in high-technology sectors. That is comparative advantage working exactly as described, not absolute advantage."
+  },
+  "quiz": [
+    {
+      "question": "What is a tariff, and who usually bears the largest net loss when a country puts a high tariff on imports?",
+      "options": [
+        "Exporters based in the country whose goods are being taxed",
+        "The state budget, which must refund the tax to importers",
+        "Domestic consumers, who end up paying higher prices",
+        "Domestic producers competing in that same product line"
+      ],
+      "explanation": "A tariff raises the price of imported goods, which shelters weaker domestic firms but leaves domestic consumers paying more for imports and for local goods alike, because the local producer no longer faces price pressure. So domestic producers in that line are the winners, not the losers. Foreign exporters are hurt, but the question asks who inside the tariff-imposing country bears the net loss. And the budget collects tariff revenue rather than refunding it. The deadweight loss analysis shows the total consumer loss usually exceeds the producer gain plus the tax revenue combined."
+    },
+    {
+      "question": "Is a trade surplus always a good sign for an economy?",
+      "options": [
+        "Yes - a surplus always means stronger competitiveness",
+        "No - because a surplus always overvalues the currency",
+        "Yes - rising reserves keep the rate stable long term",
+        "No - it may be weak domestic demand; check the cause"
+      ],
+      "explanation": "The CFA curriculum is firm that a surplus or deficit is not mechanically good or bad. The US has run large trade deficits for years and remains a strong economy, because inbound foreign investment offsets it on the capital account. Meanwhile some surplus countries are running one because domestic consumption and investment are weak, which is a structural problem rather than a strength. The word always is the tell in the first two options: competitiveness sometimes produces a surplus but so does a slump, and currency effects run both ways rather than one."
+    },
+    {
+      "question": "How does an import quota differ from a tariff in the way it works?",
+      "options": [
+        "A tariff raises the price; a quota caps the quantity directly",
+        "Tariffs apply to consumer goods; quotas apply to raw materials",
+        "Tariffs are set by parliament; quotas are set by ministries",
+        "Tariffs run for a fixed term; quotas apply permanently"
+      ],
+      "explanation": "The distinction is mechanical, not administrative. A tariff acts through PRICE: it taxes the good and the import volume then settles wherever supply and demand meet at the new price. A quota acts through QUANTITY: it hard-caps how much may enter, and the price rise follows indirectly from the scarcity that creates. Which product categories they cover, which body signs them, and how long they last all vary country by country and are not part of either definition. Both are protectionist tools, but the different transmission gives them different welfare effects."
+    },
+    {
+      "question": "Vietnam puts a high import tariff on steel. Which domestic group bears the largest net loss?",
+      "options": [
+        "Domestic steel producers, because competition gets much fiercer",
+        "Industries using steel as an input, and the final consumer",
+        "The state budget, because import tax revenue will fall away",
+        "Steel exporters, since the tax lifts their price sold abroad"
+      ],
+      "explanation": "A tariff transfers income from a large dispersed group to a small concentrated one. Domestic steel producers are protected rather than squeezed, so they gain. The budget collects the tariff, so it gains too. An import tariff does not apply to steel leaving the country, so exporters are largely untouched. What is left is construction, engineering and homebuyers, each paying a little more. That dispersion is precisely why the losing side rarely lobbies hard enough to stop it."
+    },
+    {
+      "question": "Why does a country that is less efficient in every industry still gain from trade?",
+      "options": [
+        "Because their labour is always cheaper, so every good is priced lower",
+        "Because developed countries must buy from them under trade commitments",
+        "Because what decides it is relative opportunity cost, not raw productivity",
+        "Because free trade guarantees every participating country gains equally"
+      ],
+      "explanation": "Comparative advantage is about what you give up to make something. Even a country that loses on absolute productivity everywhere still has one industry where the price it pays to produce is lowest, and specialising there and trading leaves both sides better off. Cheap labour is a common source of that edge but not the mechanism, and it is not always present. No treaty forces a country to import. And trade does not split the gains equally - it only guarantees both sides end up ahead of where they started."
+    }
+  ],
+  "keyTakeaways": [
+    "Comparative advantage is not absolute advantage - a country need not be outright best at anything to gain from trade, only to specialise where its relative opportunity cost is lowest",
+    "Tariffs raise prices, and domestic consumers usually bear the largest net loss even though the stated purpose is to protect domestic production",
+    "A trade surplus or deficit is not automatically good or bad - you have to analyse the cause and the economic context behind it",
+    "Tariffs work through price, quotas work through quantity - both create deadweight loss for the economy as a whole"
+  ],
+  "practicePrompt": {
+    "question": "Country A puts a 25% tariff on imported steel to protect its domestic steel industry. The construction and car manufacturing sectors, which buy that steel, object to the policy. Who is right in economic terms?",
+    "options": [
+      "The policy is all upside with nobody harmed - it protects jobs in steel",
+      "Both are right: gains concentrated in steel, costs dispersed - deadweight loss",
+      "Construction and autos are simply wrong: a tariff cannot touch domestic input prices",
+      "Steel gains exactly what the auto industry loses, so the total is unchanged"
+    ],
+    "explanation": "This is the textbook illustration of concentrated benefits and dispersed costs in trade policy: the domestic steel industry is a small group with an obvious stake and lobbies hard, while the steel-consuming industries are a large group each bearing a small loss that adds up to more in total. CFA Economics expects you to see both sides of a protectionist policy, not only the view from the industry being protected."
+  },
+  "summary": {
+    "keyIdea": "Comparative advantage explains why international trade benefits every participant despite differences in productive capacity; tariffs and quotas protect domestic production but impose a net welfare loss on the economy.",
+    "commonMistake": "Confusing comparative advantage with absolute advantage, or judging a trade surplus or deficit purely by its sign without looking at the context",
+    "action": "When analysing a country's trade policy, always identify who gains (concentrated) and who loses (dispersed) so you can judge the net effect"
+  },
+  "application": {
+    "title": "Applying this in CFA analysis",
+    "message": "International trade connects directly to exchange rates, capital flows, and the valuation of importers and exporters - a company dependent on imported inputs carries direct exposure to government tariff policy.",
+    "secondary": "The next lesson on FX markets picks this thread up - international trade and exchange rates are always bound together."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Why do countries still trade when they could make everything themselves? The answer is comparative advantage - one of the most important insights in all of economics."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Absolute advantage vs. comparative advantage",
+      "subtitle": "The two most easily confused concepts in CFA Level I Economics",
+      "concepts": [
+        {
+          "vi": "Lợi thế tuyệt đối",
+          "en": "Absolute Advantage",
+          "def": "The ability to produce ONE UNIT of a good using FEWER RESOURCES than another country - higher productivity in absolute terms"
+        },
+        {
+          "vi": "Lợi thế so sánh",
+          "en": "Comparative Advantage",
+          "def": "The ability to produce a good at a RELATIVELY LOWER OPPORTUNITY COST than another good - this, not the above, is the real basis for mutually beneficial trade"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "The tools of protection: tariffs and quotas"
+    },
+    {
+      "type": "paragraph",
+      "text": "When a country wants to shield domestic industry from foreign competition, the two commonest tools are the tariff (a tax on imported goods) and the quota (a cap on the quantity that may be imported). Both raise the domestic price and protect the local producer, but both also cost consumers and create a deadweight loss - economic value destroyed outright, transferred to nobody, because transactions that would have happened at the natural competitive price no longer happen at all."
+    },
+    {
+      "type": "heading",
+      "text": "The trade balance - not simply 'surplus good, deficit bad'"
+    },
+    {
+      "type": "paragraph",
+      "text": "Trade balance = exports minus imports. Most people assume a surplus is good and a deficit is bad, but serious economic analysis requires looking at the context. A country running a trade deficit because it is attracting heavy foreign investment - to build infrastructure and expand production - may be in a perfectly healthy development phase. Conversely a persistent surplus driven by weak domestic consumption may point to a structural problem in the economy."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "International trade is a field where intuition usually gets it wrong - comparative advantage shows that even the 'weakest' player has a place in global trade.",
+        "CFA Level I expects you to get past the familiar political slogans ('protect jobs', 'a surplus is always good') and analyse the real economic effect with cost-benefit tools."
+      ]
+    }
+  ],
+  "diagram": [
+    { "label": "Comparative advantage leads to specialisation" },
+    { "label": "Trade expands welfare on both sides" },
+    { "label": "Tariffs and quotas shield the domestic industry" },
+    { "label": "The price: higher consumer prices, worse allocation" }
+  ]
+}

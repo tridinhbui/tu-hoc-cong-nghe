@@ -106,10 +106,21 @@
     }
   ],
   "diagram": [
-    { "label": "Administrative preparation: legitimate", "arrow": true },
-    { "label": "Talks with a new employer: legitimate", "arrow": true },
-    { "label": "Copying company property: a violation, complete at the moment of copying", "arrow": true },
-    { "label": "Knowledge travels with you, a file does not" }
+    {
+      "label": "Administrative preparation: legitimate",
+      "arrow": true
+    },
+    {
+      "label": "Talks with a new employer: legitimate",
+      "arrow": true
+    },
+    {
+      "label": "Copying company property: a violation, complete at the moment of copying",
+      "arrow": true
+    },
+    {
+      "label": "Knowledge travels with you, a file does not"
+    }
   ],
   "realWorldExample": {
     "company": "Three months after leaving, the answer changes",
@@ -120,16 +131,16 @@
       "question": "When is the act of copying a client list complete?",
       "options": [
         "When a client actually moves across to follow you",
-        "When you use the list to contact the first client",
+        "When you first use the list to make contact with a client on it",
         "At the moment of copying, not when the list is used",
-        "When the old firm discovers that the copying happened"
+        "When the old firm discovers the copying"
       ],
       "explanation": "If it only counted at the point of use, taking someone else's property would only become a problem once it worked - which cannot be right."
     },
     {
       "question": "Does remembering some client names yourself make the copying legitimate?",
       "options": [
-        "No, unless you delete the file immediately after copying",
+        "No, unless you delete the file right after copying",
         "Yes, because that content was already in your memory",
         "Yes, if you can remember fewer than half of the list",
         "No, knowledge in your head and a file are two different things"
@@ -151,16 +162,16 @@
       "options": [
         "Because clients need time to consider making a move",
         "Because the duty of loyalty exists within the employment relationship",
-        "Because the old firm may retain clients for the first three months",
-        "Because the rules require a three-month wait after leaving"
+        "Because the old firm keeps its clients for three months",
+        "Because the rules require a three-month waiting period after leaving a firm"
       ],
       "explanation": "The whole of Standard IV(A) exists during the period you are still being paid by that party."
     },
     {
       "question": "Can you take a valuation model you built yourself at the old firm?",
       "options": [
-        "Yes, if you built it outside official working hours",
-        "Yes, because it is intellectual work you created yourself",
+        "Yes, provided that you built it entirely outside official working hours",
+        "Yes, because it is work you created yourself",
         "Not the file, but rebuilding it from knowledge is fine",
         "No, and you may not rebuild a similar model either"
       ],
@@ -180,7 +191,7 @@
       "No, because two weeks is too soon after leaving",
       "Yes, provided you were not the one who made contact first",
       "Yes, but you must notify the old firm beforehand",
-      "No, because the client still belongs to the old firm"
+      "No, because that client still belongs to the old firm for a period"
     ],
     "explanation": "Two conditions must both hold, and the first is the one people miss: if you approached them before you left, this call is not genuinely the client's initiative. There is no waiting period in Standard IV(A) - it ends with the employment relationship, so two weeks and two months are no different."
   }

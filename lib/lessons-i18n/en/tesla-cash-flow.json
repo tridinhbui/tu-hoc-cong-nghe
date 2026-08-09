@@ -1,0 +1,153 @@
+{
+  "slug": "tesla-cash-flow",
+  "title": "Tesla Q1 2026 cash flow",
+  "subtitle": "Net income vs operating cash flow - the difference",
+  "duration": "6 min",
+  "openingQuestion": "Why can a company have positive net income and still have weak operating cash flow?",
+  "openingOptions": [
+    "Because the revenue has not been collected in cash",
+    "Because the cash vanished",
+    "Because the accounting figures are wrong",
+    "Because there is no tax"
+  ],
+  "explanation": "Revenue and profit can be recognised before the money actually arrives, particularly when receivables and working capital are rising. At a fast-growing business this gap can persist for several quarters in a row while the company keeps expanding the scale of its operations.",
+  "diagram": [
+    { "label": "Net income", "arrow": true },
+    { "label": "Working capital", "arrow": true },
+    { "label": "CapEx", "arrow": true },
+    { "label": "Operating cash flow", "arrow": false }
+  ],
+  "realWorldExample": {
+    "company": "Three questions when cash flow is negative at a growing business",
+    "description": "Negative operating cash flow at a fast-expanding business is not in itself a bad signal, but it always raises three questions. First, where is the cash locked up - receivables, inventory, or capital spending on assets? Second, does that turn into revenue in later periods, or does it simply keep accumulating? Third, what is the business using to get through this phase - cash on hand, more borrowing, or issuing shares and diluting existing shareholders? A business that can answer all three and is trending better each quarter is investing; a business that cannot is burning cash."
+  },
+  "quiz": [
+    {
+      "question": "When is OCF usually weaker than net income?",
+      "options": [
+        "When the dividend paid increases",
+        "When the gross margin improves",
+        "When borrowing rates fall in the period",
+        "When receivables rise sharply"
+      ],
+      "explanation": "Working capital swelling holds cash inside the business rather than letting it reach the account. The other three do not touch operating cash flow in that way: dividends sit in financing cash flow, an improving margin lifts both figures together, and lower interest rates help profit and cash equally."
+    },
+    {
+      "question": "A fast-growing company has positive net income for several quarters in a row but continuously negative OCF because CapEx and working capital are rising sharply. Is this automatically a bad sign?",
+      "options": [
+        "Not automatically bad - check funding is enough and the investment works",
+        "It does not matter at all, because net income is the only figure to look at",
+        "Yes, this is always bad and you should sell the shares at once",
+        "Only bad if the company is listed in the US under US GAAP"
+      ],
+      "explanation": "Plenty of fast-growing businesses (Tesla in its expansion phase, for instance) have negative OCF for good reason, because they are investing heavily in the future - what matters is whether the company has enough funding to sustain it and whether that investment produces a good ROIC over the long run, not simply the sign in front of the number. The accounting standard makes no difference to any of this."
+    },
+    {
+      "question": "What separates 'investing for growth' from 'burning cash' when operating cash flow is negative?",
+      "options": [
+        "Whether the business reported a positive accounting profit in the same period",
+        "Whether the trapped cash turns into revenue in later periods",
+        "The absolute size of the negative cash flow in the latest period",
+        "Whether the business is listed on a stock exchange yet"
+      ],
+      "explanation": "Both cases produce negative cash flow today. Only what happens in the following periods tells them apart, so you have to follow the trend rather than conclude from a single period. Accounting profit does not separate them either - the whole point is that both cases can show a profit while the cash does not arrive."
+    },
+    {
+      "question": "Why look at operating cash flow summed over four quarters rather than each quarter?",
+      "options": [
+        "Because quarterly reports are unaudited so the figures are unreliable",
+        "Because businesses only publish cash flow once each financial year",
+        "Because working capital swings seasonally, single quarters mislead",
+        "Because four quarters summed always produces a positive figure"
+      ],
+      "explanation": "Many industries have a pronounced peak season: inventory rises before it and falls after. Summing four quarters removes that noise and shows the real trend. It does not guarantee a positive result - a business genuinely burning cash stays negative on a trailing-twelve-month basis, which is exactly what makes the measure useful."
+    },
+    {
+      "question": "How do you tell negative cash flow from expansion apart from negative cash flow from a weak business model?",
+      "options": [
+        "See whether revenue is growing faster than the industry",
+        "See whether the business announced expansion plans in its annual report",
+        "See whether net profit in the period is positive after deducting all costs",
+        "See whether the negative sits in operating or in investing activities"
+      ],
+      "explanation": "Spending on a factory sits in investing cash flow and is a choice that can be stopped. Negative operating cash flow is different: the act of selling is itself consuming cash, and the more you sell the more you run dry - that is the sign of a model that does not yet work. An announced plan is an intention, not evidence."
+    }
+  ],
+  "keyTakeaways": [
+    "Net income is no substitute for cash flow",
+    "Working capital and CapEx are the two big sources of the gap",
+    "Reading the accounts means looking at both profit and cash"
+  ],
+  "practicePrompt": {
+    "question": "When analysing Tesla's Q1 2026 accounts, why can operating cash flow (OCF) diverge so far from net income?",
+    "options": [
+      "Because of depreciation, working capital and share-based compensation",
+      "Because the accountants got the addition and subtraction wrong",
+      "Because Tesla does not pay its electricity and water bills",
+      "Because net income is always exactly equal to OCF"
+    ],
+    "explanation": "Accrual net income differs from OCF because of non-cash charges (depreciation, SBC) and because cash is tied up in working capital."
+  },
+  "summary": {
+    "keyIdea": "Net income is no substitute for cash flow",
+    "commonMistake": "Easy to miss: working capital and CapEx are the two big sources of the gap",
+    "action": "Reading the accounts means looking at both profit and cash"
+  },
+  "application": {
+    "title": "In practice: Tesla Q1 2026 cash flow",
+    "message": "When analysing Tesla's Q1 2026 accounts, why can operating cash flow (OCF) diverge so far from net income?",
+    "secondary": "Getting this principle solid lifts your professional financial analysis."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A company with positive net income for several quarters running while operating cash flow stays weak - this is a common situation at fast-growing businesses."
+    },
+    { "type": "heading", "text": "Revenue booked first, cash later" },
+    {
+      "type": "paragraph",
+      "text": "Revenue and profit can be recognised before the money actually arrives, particularly when receivables and working capital rise as fast as the business expands. This is not automatically a bad sign - you have to look at whether the business is investing properly in future growth, and whether it has enough funding (raised or borrowed) to sustain itself through this phase of negative OCF."
+    },
+    {
+      "type": "list",
+      "items": [
+        "A sharp rise in receivables is the common reason OCF is weaker than net income",
+        "Negative OCF at a fast-growing business can be reasonable if the investment is well directed and there is funding to sustain it",
+        "Net income does not replace following both working capital and CapEx"
+      ]
+    },
+    { "type": "heading", "text": "Four measures to follow together across the quarters" },
+    {
+      "type": "list",
+      "items": [
+        "The growth rate of receivables against the growth rate of revenue - receivables running ahead for several quarters in a row is a sign that credit terms are being loosened.",
+        "Days of inventory - rising means goods are turning over more slowly, even while revenue still grows.",
+        "Operating cash flow summed over four quarters - this smooths the seasonal factor and shows the real trend more clearly than any single quarter.",
+        "The source funding the shortfall - read financing cash flow to see whether the business is borrowing more or issuing shares."
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Investing for growth",
+        "text": "Cash is locked into inventory and fixed assets serving new capacity; revenue in the following quarters rises to match; operating cash flow improves as the capacity comes into use."
+      },
+      "right": {
+        "label": "Burning cash",
+        "text": "Cash is mostly locked into receivables that are hard to collect and slow-moving inventory; revenue does not rise to match; operating cash flow goes deeper into the negative year after year and new capital constantly has to be raised to cover it."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Look at the cumulative figure, not one quarter",
+      "text": "Working capital swings hard with the season, so one quarter of negative cash flow says almost nothing. Four quarters summed, compared against the same period last year, is the view you need before concluding anything about the trend."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Do not rush to a bad conclusion just because OCF is negative.",
+        "The more important question is: does the business have enough funding to sustain this phase, and does that investment create long-term value?"
+      ]
+    }
+  ]
+}

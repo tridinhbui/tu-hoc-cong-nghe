@@ -1,0 +1,161 @@
+{
+  "slug": "cfa-ethics-standard-2b-thao-tung-thi-truong",
+  "title": "CFA Ethics 21: Standard II(B) - two kinds of manipulation, and why intent is what decides",
+  "subtitle": "Manipulation through trading and manipulation through information - the same act can be legitimate or not",
+  "duration": "10 min",
+  "whyItMatters": "This is the standard where outward conduct cannot tell you whether there was a breach. Placing an order and then cancelling it happens millions of times a day and is entirely normal - what turns it into a breach is the purpose behind it, so you have to learn to read purpose from patterns of behaviour.",
+  "openingQuestion": "A trader places large buy orders and cancels them before they fill, repeatedly through the session. What decides whether this is manipulation or ordinary trading?",
+  "openingOptions": [
+    "The number of cancelled orders - past a certain threshold it becomes a breach",
+    "The purpose: creating a false impression of supply and demand, or merely probing the market",
+    "The value of those orders relative to the brokerage's chartered capital",
+    "Whether the trader actually made any money out of the conduct"
+  ],
+  "explanation": "Standard II(B) is one of the few standards where intent sits inside the definition of the breach. Cancelling orders is lawful and necessary: strategies change, prices move, liquidity fails to appear. What creates the breach is placing an order you have no intention of filling, in order to make others believe in demand or supply that does not exist. Because intent cannot be observed directly, regulators read it from the pattern: extremely high cancellation rates, orders resting away from the touch and pulled exactly as price approaches, and a real position pointing the other way from the displayed orders. Actual profit is not a condition - failed manipulation is still manipulation.",
+  "summary": {
+    "keyIdea": "Intent is the deciding element: the same order can be legitimate or manipulative, depending on whether it exists to build a position or to create a false signal.",
+    "commonMistake": "Assuming only trading can manipulate. Spreading false information to move price is the second kind, and it requires placing no order at all."
+  },
+  "application": {
+    "title": "A self-check",
+    "message": "Ask whether you would place this order if nobody could see it. An answer of 'no' is a sign the purpose lies in the signal rather than in the position."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Standard II(B) prohibits market manipulation, and it is one of very few standards where intent sits inside the definition of the breach - the same conduct can be legitimate or not depending on what you meant to do."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Manipulation through trading",
+        "text": "Placing orders, cancelling them, or trading with yourself in order to create a false impression of volume or of price direction."
+      },
+      "right": {
+        "label": "Manipulation through information",
+        "text": "Spreading rumours or making misleading statements to push price in the direction that suits your own position."
+      }
+    },
+    { "type": "heading", "text": "Why cancelling an order is not in itself a breach" },
+    {
+      "type": "paragraph",
+      "text": "Cancelling is lawful and necessary: strategies change, prices move, liquidity fails to appear. What creates the breach is placing an order you have no intention of filling, in order to make others believe in demand or supply that does not exist."
+    },
+    {
+      "type": "callout",
+      "label": "Reading intent from conduct",
+      "text": "Because intent cannot be observed directly, regulators infer it from the pattern: extremely high cancellation rates, orders resting away from the touch and pulled exactly as price approaches, and a real position pointing the other way from the displayed orders."
+    },
+    {
+      "type": "paragraph",
+      "text": "Two things to remember. First, actual profit is not an element of the offence - failed manipulation is still manipulation. Second, a high cancellation rate proves nothing on its own: legitimate market makers cancel at very high rates too, so you have to look at the whole set of signals rather than any one measure."
+    },
+    { "type": "heading", "text": "Reading intent from the traces it leaves" },
+    {
+      "type": "paragraph",
+      "text": "Since nobody can read intent, regulators reconstruct it from the order sequence. The classic shape of trade-based manipulation: place several large buy orders a few ticks below the touch so the book looks like it is carrying strong demand, wait for price to tick up, sell on the other side, then cancel every one of those buy orders within milliseconds of the sale filling. What gives it away is not the high cancellation rate but the ordering: the orders die the moment the real purpose is served, and it repeats thousands of times."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Market making - many cancels, still legitimate",
+        "text": "A market maker quotes two-sided prices continuously and cancels thousands of orders a day as the reference price moves. The cancellation rate can exceed 95%. But their orders sit at the touch and are WILLING to fill - that is precisely the service they sell. Cancelling is a consequence of price moving, not the original purpose."
+      },
+      "right": {
+        "label": "Manipulation - same cancel rate, different purpose",
+        "text": "Orders resting where they are unlikely to fill, unusually large relative to that person's real orders, and vanishing the instant the other side fills. The person placing them never wants them to fill; they exist so that other people see them."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Two things easily misread",
+      "text": "First, failed manipulation is still manipulation: profit is not an element of the offence, so the market not reacting as you hoped is no defence. Second, the information limb does not require the information to be false - spreading a TRUE rumour with the purpose of pushing price in favour of your own position still breaches, because what is prohibited is distorting price formation, not lying."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The same order, the same cancellation.",
+        "What separates them is whether you meant it to fill."
+      ]
+    }
+  ],
+  "diagram": [
+    { "label": "Trade-based manipulation: fake orders, wash trades" },
+    { "label": "Information-based manipulation: false claims to lead price" },
+    { "label": "Intent sits inside the definition of the breach" },
+    { "label": "Read intent from patterns of conduct, not from statements" }
+  ],
+  "realWorldExample": {
+    "company": "The boundary with market making",
+    "description": "Market makers place and cancel orders continuously because that is the job, and their cancellation rates are very high. That is not manipulation, because the purpose is to maintain two-sided quotes and manage inventory risk rather than to create an illusion. This is why a single metric such as a cancellation rate is never enough to conclude anything - it has to be read alongside whether the party has a market-making obligation, and whether those orders serve it."
+  },
+  "quiz": [
+    {
+      "question": "Which element sits inside the definition of a Standard II(B) breach?",
+      "options": [
+        "The level of profit the trader earned from the sequence of conduct",
+        "An intent to distort price or volume in order to mislead the market",
+        "The number of orders cancelled during a particular trading session",
+        "Whether a regulator has already detected it and written it up"
+      ],
+      "explanation": "Because intent is part of the definition, the very same sequence of orders can be legitimate for one party and a breach for another. That is also why the outward measures fail on their own: a cancellation count says nothing about purpose, profit is a consequence rather than an element, and whether a regulator noticed has no bearing on whether the conduct was a breach when it happened."
+    },
+    {
+      "question": "What if the manipulation fails and no profit is made at all?",
+      "options": [
+        "A breach only if another investor can prove they suffered a loss",
+        "No breach, since the market was not actually affected in the end",
+        "Still a breach, because profit is not an element of the offence",
+        "Treated as strategy testing and therefore not pursued at all"
+      ],
+      "explanation": "The test is conduct plus intent, not outcome. If it were measured by results, every clumsy attempt at manipulation would go unpunished, and the traders who most needed stopping would be the ones who escaped. Proven investor loss is likewise not required: the harm the standard names is the distortion of price formation itself, whoever ends up out of pocket."
+    },
+    {
+      "question": "Why does a high order cancellation rate not by itself prove manipulation?",
+      "options": [
+        "Because cancelled orders are not recorded in the exchange's order book",
+        "Because the trading system cancels orders automatically at the close",
+        "Because current rules set no limit on how many orders may be cancelled",
+        "Because market makers cancel orders constantly as part of the job"
+      ],
+      "explanation": "This is why the pattern has to be read in the context of the trading party's role rather than as a single number. A market maker quoting two sides continuously may cancel over 95% of its orders and still be doing exactly what it is paid to do. Cancelled orders are in fact recorded, and the absence of a rule capping cancellations is beside the point - the question is always purpose."
+    },
+    {
+      "question": "How does information-based manipulation differ from trade-based manipulation?",
+      "options": [
+        "It moves price by spreading misleading views rather than orders",
+        "It applies only to bond markets and not to equity markets at all",
+        "It is always carried out by institutions rather than individuals",
+        "It is pursued only when the false claim appears in the mainstream press"
+      ],
+      "explanation": "The two kinds share a purpose and are prohibited together: one distorts the signal through the order book, the other through what gets circulated. Neither is limited by asset class, by the size of the party, or by where the claim was published - a post to a few hundred followers can distort price formation just as a newspaper column can."
+    },
+    {
+      "question": "Is posting a bullish view about a stock you already hold a breach?",
+      "options": [
+        "Yes, every public remark about a stock you own is prohibited",
+        "No, if the view has a real basis and the position is disclosed",
+        "No, because everyone is free to express an investment opinion",
+        "Yes, unless you sell the whole position before posting anything"
+      ],
+      "explanation": "The problem is not speaking well of something you own - that is ordinary, and requiring people to sell first would be perverse. It is a view with no basis behind it, and a position kept hidden from the reader. Free expression is not the issue either: the standard governs conduct that distorts price formation, and disclosure plus a genuine basis is what keeps a post on the right side of it."
+    }
+  ],
+  "keyTakeaways": [
+    "Two kinds: manipulation through trading and manipulation through information",
+    "Intent sits inside the definition, so the same conduct may be legitimate or not",
+    "Profit is not an element - failed manipulation is still manipulation",
+    "Read intent from patterns: cancel rate, timing of the pull, the real position",
+    "A high cancel rate proves nothing on its own - market makers have one too"
+  ],
+  "practicePrompt": {
+    "question": "On the last day of the quarter, a fund manager buys heavily into the very names that already carry the largest weights in the portfolio. Assessment?",
+    "options": [
+      "Legitimate - buying more of assets you already believe in is consistent",
+      "Suspicious as manipulation to mark the portfolio's value up at period end",
+      "A breach only if the fund charges a performance fee on period-end NAV",
+      "Legitimate because the trades happen openly on a centralised exchange"
+    ],
+    "explanation": "This is known as window dressing, and it breaches because the purpose is to move the reference price rather than to build a position. The third option comes close but misplaces the point: a performance fee explains the motive, it is not an element of the offence - a better-looking performance report is benefit enough, even where no fee is attached to it."
+  }
+}
