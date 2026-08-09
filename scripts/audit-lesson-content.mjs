@@ -648,7 +648,17 @@ const OPENING_BUCKETS = [
   { name: "60-90", lo: 60, hi: 90 },
   { name: "90+", lo: 90, hi: Infinity },
 ];
-const MAX_OPENING_BUCKET_Z = 3;
+
+/** Ngưỡng lệch theo nhóm.
+ *
+ *  TÁCH THEO NGÔN NGỮ, cùng lý do với OPENING_BIAS_Z_BY_LOCALE ngay trên: bản
+ *  dịch mang theo văn bản tiếng Anh của riêng nó nên hai kho trôi độc lập. Lần
+ *  hạ ngưỡng chung xuống 3 đã làm đỏ ngay audit:lessons:en, vì kho tiếng Anh
+ *  chưa được viết lại lần nào và cả bốn nhóm ở đó đều vượt: +14,69 / +11,73 /
+ *  +5,31 / −3,43. Một hằng số dùng chung sẽ phải đặt ở mức xấu hơn trong hai,
+ *  tức khoá luôn phần tiến độ vừa làm xong bên tiếng Việt. */
+const OPENING_BUCKET_Z_BY_LOCALE = { vi: 3, en: 14.7 };
+const MAX_OPENING_BUCKET_Z = OPENING_BUCKET_Z_BY_LOCALE[LOCALE] ?? 21.2;
 const openingBuckets = OPENING_BUCKETS.map((b) => ({
   ...b, questions: 0, longest: 0, expLongest: 0, varLongest: 0,
 }));
