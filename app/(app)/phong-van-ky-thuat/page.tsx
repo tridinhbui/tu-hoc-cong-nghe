@@ -14,6 +14,11 @@ import { getCareersCoveredByBank, getTechnicalQuestionsForCareer } from "@/lib/i
 import { FINANCE_CAREERS } from "@/lib/finance-careers";
 import { useI18n } from "@/lib/i18n/context";
 import { format, type Dictionary } from "@/lib/i18n";
+import {
+  groupCoverageByCategory,
+  withoutWholeBankCareers,
+  type CareerCategory,
+} from "@/lib/ib-career-picker";
 
 // Standalone "Technical Interview" drill - split out of /kiem-tra (which
 // stays the general-purpose knowledge-check page) because the 400-question
@@ -102,6 +107,25 @@ export default function TechnicalInterviewPage() {
   }, []);
 
   const uncoveredCount = FINANCE_CAREERS.length - careerCoverage.length;
+
+  // Bỏ nút không lọc được gì, rồi gom theo nhóm nghề. Xem lib/ib-career-picker.ts:
+  // "Ngân hàng Đầu tư · 276" từng đứng cạnh "Tất cả · 276" và cho ra cùng một
+  // tập, vì kho này VỐN là bộ câu hỏi Ngân hàng Đầu tư.
+  const careerGroups = useMemo(
+    () => groupCoverageByCategory(withoutWholeBankCareers(careerCoverage, totalQuestions)),
+    [careerCoverage, totalQuestions]
+  );
+
+  const CATEGORY_LABELS = useMemo(
+    (): Record<CareerCategory, string> => ({
+      investment: t.careerPath.catInvestmentLabel,
+      accounting: t.careerPath.catAccountingLabel,
+      banking: t.careerPath.catBankingLabel,
+      advisory: t.careerPath.catAdvisoryLabel,
+      data: t.careerPath.catDataLabel,
+    }),
+    [t]
+  );
 
   // The section breakdown shown under the drill: scoped to the selected
   // career so it reflects what that person will actually be asked.
@@ -315,12 +339,16 @@ export default function TechnicalInterviewPage() {
                 bank, not hardcoded: an earlier version of this picker
                 advertised 120/95/85/110 questions for tracks that had no
                 questions at all, and clicking them showed an empty drill. */}
-            <div className="rounded-3xl border border-amber-200 dark:border-amber-900/60 bg-amber-50/50 dark:bg-stone-900 p-4 sm:p-6 shadow-xs">
+            {/* Nền trung tính chứ không phải hổ phách. Vàng + viền vàng là
+                ngôn ngữ của cảnh báo hoặc khuyến mãi, và thứ đang đeo nó chỉ
+                là một hộp lọc - trong khi nút bắt đầu thật ở dưới lại nhạt
+                hơn. Trọng lượng thị giác đang ngược với thứ tự việc cần làm. */}
+            <div className="rounded-3xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-4 sm:p-6 shadow-xs">
               <div className="flex flex-wrap items-center justify-between gap-3 mb-1">
                 <h3 className="text-lg font-black text-stone-900 dark:text-stone-100">
                   {t.interview.byRoleTitle}
                 </h3>
-                <span className="inline-flex items-center gap-2 rounded-xl bg-amber-400/10 border border-amber-300/50 dark:border-amber-800 px-3 py-1.5 text-xs font-bold text-amber-800 dark:text-amber-300">
+                <span className="inline-flex items-center gap-2 rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950 px-3 py-1.5 text-xs font-bold text-stone-500 dark:text-stone-400">
                   {t.interview.sourceBadge}
                 </span>
               </div>
@@ -328,44 +356,66 @@ export default function TechnicalInterviewPage() {
                 {t.interview.byRoleBody}
               </p>
 
-              <div className="flex flex-wrap gap-1.5">
-                <button
-                  type="button"
-                  onClick={() => setSelectedCareer(null)}
-                  className={`px-3 py-1.5 rounded-full border text-xs font-bold transition-colors cursor-pointer ${
-                    selectedCareer === null
-                      ? "border-amber-500 bg-amber-400 text-stone-950 font-black"
-                      : "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950 text-stone-600 dark:text-stone-300 hover:border-stone-300"
-                  }`}
-                >
-                  {format(t.interview.allWithCount, { count: totalQuestions })}
-                </button>
-                {careerCoverage.map((c) => {
-                  const active = selectedCareer === c.careerId;
-                  return (
-                    <button
-                      key={c.careerId}
-                      type="button"
-                      onClick={() => setSelectedCareer(active ? null : c.careerId)}
-                      title={c.categories.join(" · ")}
-                      className={`px-3 py-1.5 rounded-full border text-xs font-bold transition-colors cursor-pointer ${
-                        active
-                          ? "border-amber-500 bg-amber-400 text-stone-950 font-black"
-                          : "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950 text-stone-600 dark:text-stone-300 hover:border-stone-300"
-                      }`}
-                    >
-                      {c.title}
-                      <span className={active ? "text-stone-950 font-extrabold" : "text-stone-400 dark:text-stone-500"}>
-                        {" "}· {c.questionCount}
-                      </span>
-                    </button>
-                  );
-                })}
+              <button
+                type="button"
+                onClick={() => setSelectedCareer(null)}
+                className={`mb-3 px-3 py-1.5 rounded-full border text-xs font-bold transition-colors cursor-pointer ${
+                  selectedCareer === null
+                    ? "border-amber-500 bg-amber-400 text-stone-950 font-black"
+                    : "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950 text-stone-600 dark:text-stone-300 hover:border-stone-300"
+                }`}
+              >
+                {format(t.interview.allWithCount, { count: totalQuestions })}
+              </button>
+
+              {/* Gom theo năm nhóm nghề, nhãn nằm CÙNG HÀNG với chip chứ không
+                  thành một dòng tiêu đề riêng: 44 nút xếp thuần theo số câu
+                  không có cấu trúc nào để mắt bám, nhưng thêm năm dòng tiêu đề
+                  lại kéo dài đúng cái panel vốn đã quá cao. Nhãn inline cho
+                  cấu trúc mà gần như không tốn thêm chiều cao. */}
+              <div className="space-y-2.5">
+                {careerGroups.map((group) => (
+                  <div key={group.category} className="sm:grid sm:grid-cols-[8.5rem_1fr] sm:gap-3 sm:items-baseline">
+                    <p className="text-[10px] font-black uppercase tracking-wider text-stone-400 dark:text-stone-500 mb-1.5 sm:mb-0 sm:text-right sm:pt-1">
+                      {CATEGORY_LABELS[group.category]}
+                    </p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {group.careers.map((c) => {
+                        const active = selectedCareer === c.careerId;
+                        return (
+                          <button
+                            key={c.careerId}
+                            type="button"
+                            onClick={() => setSelectedCareer(active ? null : c.careerId)}
+                            title={c.categories.join(" · ")}
+                            className={`px-3 py-1.5 rounded-full border text-xs font-bold transition-colors cursor-pointer ${
+                              active
+                                ? "border-amber-500 bg-amber-400 text-stone-950 font-black"
+                                : "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950 text-stone-600 dark:text-stone-300 hover:border-stone-300"
+                            }`}
+                          >
+                            {c.title}
+                            <span className={active ? "text-stone-950 font-extrabold" : "text-stone-400 dark:text-stone-500"}>
+                              {" "}· {c.questionCount}
+                            </span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                ))}
               </div>
 
-              <p className="mt-3 text-[11px] text-stone-500 dark:text-stone-400 leading-relaxed">
-                {format(t.interview.uncoveredNote, { uncovered: uncoveredCount, total: FINANCE_CAREERS.length })}
-              </p>
+              {/* Chỉ dựng khi CÒN nghề chưa phủ. Trước đây nó dựng vô điều
+                  kiện, và vì cả 44 nghề đều đã có bộ đề nên nó in ra "0 / 44
+                  vị trí khác chưa có bộ câu hỏi riêng" - một câu nói ngược với
+                  sự thật nó định nói, mở đầu bằng một con số trông như bộ đếm
+                  hỏng. */}
+              {uncoveredCount > 0 && (
+                <p className="mt-3 text-[11px] text-stone-500 dark:text-stone-400 leading-relaxed">
+                  {format(t.interview.uncoveredNote, { uncovered: uncoveredCount, total: FINANCE_CAREERS.length })}
+                </p>
+              )}
             </div>
 
             <section className="rounded-3xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 overflow-hidden shadow-sm">

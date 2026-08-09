@@ -8,6 +8,7 @@ import MotivationShareCard from "@/components/MotivationShareCard";
 import { computeDomainCoverage } from "@/lib/career-competency";
 import { getLessonsMeta } from "@/lib/lessons-loader";
 import CareerLearningPathClient from "@/components/CareerLearningPathClient";
+import TechnicalInterviewPage from "@/app/(app)/phong-van-ky-thuat/page";
 
 /* i18n-ignore-start: dev-only preview route, hard-blocked in production
    below via notFound() when NODE_ENV === "production" - never reachable by
@@ -100,6 +101,11 @@ export default async function WorldPreviewPage({
         />
       </div>
     );
+  }
+  if (scene === "interview") {
+    // Bộ chọn vị trí ở /phong-van-ky-thuat. Trang thật nằm sau tường đăng
+    // nhập; phần này dựng từ dữ liệu tĩnh nên vẫn nhìn được không cần phiên.
+    return <TechnicalInterviewPage />;
   }
   if (scene === "lobby-directory") {
     // Bảng chỉ đường của sảnh thư viện. Bản thân nó không cần đăng nhập, nhưng
