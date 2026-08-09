@@ -1,0 +1,137 @@
+{
+  "slug": "cfa-alt-chien-luoc-hedge-fund",
+  "title": "CFA Alternatives 6: The four hedge fund strategy groups and the risk particular to each",
+  "subtitle": "Equity, event, relative value, macro - and why 'hedge fund' is not an asset class",
+  "duration": "11 min",
+  "openingQuestion": "Why is a hedge fund considered a fund structure rather than an asset class?",
+  "openingOptions": [
+    "Because a hedge fund can invest in any asset at all",
+    "Because the only thing they share is structure and fees",
+    "Because hedge funds are not supervised by any regulator",
+    "Because hedge funds always use leverage in every strategy"
+  ],
+  "explanation": "A macro fund bets on the direction of interest rates and exchange rates; a merger arbitrage fund makes money from the gap between the market price and the deal price; a relative value fund exploits mispricing between two related securities. These three strategies gain and lose for entirely different reasons, at entirely different moments. What they share is the form of organisation - a private fund, two tiers of fees, few constraints on instruments - not the source of their returns. So collapsing them into one line of a portfolio allocation table hides exactly the information you need.",
+  "diagram": [
+    { "label": "Equity: long/short by pair or by sector", "arrow": true },
+    { "label": "Event: mergers, restructuring, bankruptcy", "arrow": true },
+    { "label": "Relative value: exploiting mispricing between two securities", "arrow": true },
+    { "label": "Macro: betting on the direction of rates, currencies, commodities" }
+  ],
+  "realWorldExample": {
+    "company": "Why relative value looks safe right up until it isn't",
+    "description": "This strategy earns small, steady gains from price gaps between two securities that ought to move together, and because each gain is small it has to use heavy leverage. The return series therefore looks extremely stable under normal conditions. But when markets come under stress, price relationships that were stable break down all at once, and the leverage turns a small divergence into a wipe-out loss. This is a return profile about which three handsome years say nothing at all."
+  },
+  "quiz": [
+    {
+      "question": "What do hedge funds genuinely have in common?",
+      "options": [
+        "The private fund structure and fee model, not the source of returns",
+        "That they all invest in the same illiquid asset classes",
+        "That they all use leverage at the same high level as each other",
+        "That they all target a positive absolute return in every calendar year"
+      ],
+      "explanation": "This is why 'allocate x% to hedge funds' is not a meaningful allocation decision - it does not tell you what risk you are carrying. Many funds trade highly liquid instruments, leverage ranges from almost none to enormous, and an absolute-return target is a marketing claim of some managers rather than a shared property."
+    },
+    {
+      "question": "Where does a merger arbitrage strategy make its return?",
+      "options": [
+        "From correctly predicting which company will be taken over next",
+        "From the gap between the market price and the announced deal price",
+        "From the interest rate differential between two currencies in a cross-border deal",
+        "From buying the acquirer's shares and shorting the target's shares"
+      ],
+      "explanation": "That gap exists because the deal can fall apart. The return is precisely the compensation for the risk of it falling apart, not a free spread. Guessing the next target is a different strategy with different risk, and the direction of the trade is normally the other way round - long the target, short the acquirer."
+    },
+    {
+      "question": "Why does a relative value strategy have to use heavy leverage?",
+      "options": [
+        "Because leverage lowers risk through diversifying across many positions",
+        "Because regulation obliges the fund to maintain a minimum level of leverage",
+        "Because each mispricing it exploits yields only a very small profit",
+        "Because investors demand a higher return than from an equity fund"
+      ],
+      "explanation": "Leverage here is not a choice to take on more risk; it is the condition for the strategy to make economic sense at all - and that is exactly where the danger sits. Leverage magnifies risk rather than diversifying it away, and no rule anywhere sets a leverage floor."
+    },
+    {
+      "question": "Why is the stable return series of a relative value strategy misleading?",
+      "options": [
+        "Because the cost of leverage has not been deducted from reported returns",
+        "Because returns are smoothed by the appraisal-based valuation mechanism",
+        "Because the fund only reports results in the months with a positive return",
+        "Because the real risk only appears when price relationships break all at once"
+      ],
+      "explanation": "A return profile of this shape - many small gains and one very large loss - makes every measure built on standard deviation useless. The reported figures are usually genuine and net of costs; the problem is not that they are wrong but that they describe a distribution whose risk lives in a tail the measure never sees."
+    },
+    {
+      "question": "Where does a macro fund most clearly differ from the other three groups?",
+      "options": [
+        "It bets on the direction of macro variables, not on price spreads",
+        "It invests only in the government bonds of developed-market countries",
+        "It uses no leverage at all in any position it ever takes",
+        "It always maintains a neutral stance towards the broad market"
+      ],
+      "explanation": "The other three all seek to neutralise market risk and earn from a spread; a macro fund deliberately takes on directional risk. That is the difference. Macro funds trade currencies, commodities and equity indices as well as bonds, and they are typically among the heaviest users of leverage."
+    }
+  ],
+  "keyTakeaways": [
+    "A hedge fund is a fund structure, not an asset class",
+    "Four groups: equity, event, relative value, macro",
+    "Merger arbitrage: the return is compensation for the risk of the deal collapsing",
+    "Relative value needs heavy leverage because each gain is tiny - that is where the danger is",
+    "Many small gains and one very large loss make every standard-deviation measure useless"
+  ],
+  "practicePrompt": {
+    "question": "A relative value fund has a Sharpe ratio of 2.8 over four years and has never lost more than 1% in a month. How should you read that?",
+    "options": [
+      "This is an outstanding risk manager, so allocate a large weighting",
+      "Many small gains and large tail risk: Sharpe measures the wrong sort of risk",
+      "A Sharpe above 2 is evidence the results have been massaged",
+      "Four years is long enough to conclude on the quality of the management"
+    ],
+    "explanation": "Sharpe uses standard deviation, and standard deviation only describes things properly when the return distribution is symmetric. This strategy deliberately creates a skewed distribution: very many months of small gains, losses that are very rare, but very deep when they come. A high Sharpe here is not evidence of good management but a sign that the risk sits in a tail this measure never looks at."
+  },
+  "summary": {
+    "keyIdea": "Saying 'allocate 10% to hedge funds' does not describe what risk is being taken on, because the four strategy groups share almost no source of return with each other.",
+    "commonMistake": "Putting every hedge fund in the same box in an asset allocation. A global macro fund and a merger arbitrage fund have almost nothing in common."
+  },
+  "application": {
+    "title": "The first question",
+    "message": "Where does this strategy make its money, and in what scenario does it lose. Not being able to answer the second means you do not yet understand the strategy."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A hedge fund is a fund structure, not an asset class. Two funds carrying that same name can make their money in two ways that have nothing to do with each other."
+    },
+    { "type": "heading", "text": "The four strategy groups" },
+    {
+      "type": "list",
+      "items": [
+        "Long/short equity: buy the names believed to be good, short the names believed to be bad, take the difference.",
+        "Event-driven: making money from mergers, restructurings and bankruptcies - the return is tied to whether the event happens as expected.",
+        "Relative value: exploiting mispricing between two related securities, with a very small gain each time.",
+        "Macro: betting on the direction of interest rates, exchange rates and basic commodities."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "These four groups gain and lose for different reasons, at different moments. What they share is the form of organisation - a private fund, two tiers of fees, few constraints on instruments - not the source of returns. Collapsing them into one line of a portfolio allocation table hides exactly the information you need."
+    },
+    {
+      "type": "callout",
+      "label": "The most dangerous place",
+      "text": "A relative value strategy gains very little each time, so it has to use heavy leverage to produce a meaningful return. That structure creates a series of many small gains and, occasionally, one very large loss - LTCM is the classic example."
+    },
+    {
+      "type": "paragraph",
+      "text": "That shape of return makes every measure built on standard deviation useless: a steady series of small gains gives a low standard deviation and a very handsome Sharpe, right up until the one loss wipes it all out. For this group you have to look at the deepest drawdown and the level of leverage, not at Sharpe."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The right question is not how much this fund has made.",
+        "It is when this fund will lose money, and how much."
+      ]
+    }
+  ]
+}

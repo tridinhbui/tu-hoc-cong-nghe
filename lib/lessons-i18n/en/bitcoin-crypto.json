@@ -1,0 +1,167 @@
+{
+  "slug": "bitcoin-crypto",
+  "title": "Bitcoin back down to 60k - does crypto have real value?",
+  "subtitle": "Supply and demand, macro, the network effect and market sentiment",
+  "duration": "6 min",
+  "openingQuestion": "Which factor do supporters usually use to explain Bitcoin's value?",
+  "openingOptions": [
+    "Fixed supply and the network effect",
+    "The accounting profit the network generates",
+    "Dividends",
+    "P/B"
+  ],
+  "explanation": "Bitcoin does not rest on conventional cash flow; it is usually seen through scarcity, the network effect and market belief. Because there is no discounted-cash-flow valuation model for it the way there is for a share, the range its price swings through is normally far wider than that of a traditional asset, and the price can move a long way on a change of sentiment alone.",
+  "diagram": [
+    { "label": "Fixed supply", "arrow": true },
+    { "label": "Network effect", "arrow": true },
+    { "label": "Demand", "arrow": true },
+    { "label": "Price", "arrow": false }
+  ],
+  "realWorldExample": {
+    "company": "Crypto market",
+    "description": "Digital assets swing hard because their valuation depends heavily on expectations, liquidity and market sentiment."
+  },
+  "quiz": [
+    {
+      "question": "What makes Bitcoin different from a traditional share?",
+      "options": [
+        "It has no underlying cash flow",
+        "It has no real users at all",
+        "It cannot be traded on an exchange",
+        "It has no price movement at all"
+      ],
+      "explanation": "Valuing crypto generally does not follow the framework of a business generating cash flow the way a share does. The other three options are simply not true of Bitcoin: it has a large user base, it trades on exchanges around the clock, and its price is famously among the most volatile of any traded asset."
+    },
+    {
+      "question": "Why do traditional valuation models like DCF or P/E not work for Bitcoin?",
+      "options": [
+        "Because Bitcoin is too new to have enough history to compute with",
+        "Because the law forbids using DCF to value digital assets",
+        "Because Bitcoin has no cash flow or profit to discount",
+        "Because Bitcoin always rises, so there is no point valuing it"
+      ],
+      "explanation": "DCF discounts the future cash flow of a business; P/E compares profit against the share price - both need a 'business' producing profit or cash. Bitcoin is not a business and produces no cash flow, so its value rests entirely on supply and demand, belief and the network effect rather than on traditional cash-flow models. Its age is not the obstacle: a fifteen-year history would be plenty if there were a cash flow to discount."
+    },
+    {
+      "question": "Why can DCF not be used to value Bitcoin the way it values a business?",
+      "options": [
+        "Because Bitcoin has no value at all in the real economy",
+        "Because Bitcoin's cash flow is too large for the model to handle",
+        "Because DCF only works for companies listed on an exchange",
+        "Because Bitcoin produces no cash flow to discount"
+      ],
+      "explanation": "DCF needs a future cash flow to discount. Bitcoin does not produce cash flow in that sense, so a cash-flow-based valuation tool simply does not apply - not because the tool is wrong. DCF is used on unlisted companies all the time, so listing is not the issue either."
+    },
+    {
+      "question": "Which other asset also produces no cash flow yet has long been recognised by the market as having value, on similar logic to Bitcoin?",
+      "options": [
+        "Gold (a precious metal)",
+        "Shares in a growth company",
+        "Rental property",
+        "Government bonds"
+      ],
+      "explanation": "Gold is valued through scarcity and its role as a store of value rather than through cash flow, the classic example that an asset can have real value without a discounted-cash-flow model. The other three all produce cash: growth shares have earnings, rental property has rent, and a bond pays a coupon."
+    },
+    {
+      "question": "Bitcoin has no cash flow, so it cannot be valued by discounting. What approach is usually used instead?",
+      "options": [
+        "Working out the network's book value from the electricity cost already spent on mining",
+        "Comparing it with other scarce assets and estimating the market it could take",
+        "Using the profit multiples of the largest cryptocurrency exchanges",
+        "Discounting the transaction fees the network collects to present value"
+      ],
+      "explanation": "With no cash flow there is no intrinsic value in the classical sense, so the common approach is to estimate the share of a market it could displace - gold, safe-haven assets - and divide by the supply. That is a reference frame, not a valuation. Mining cost is a cost, not a value; and the exchanges are businesses whose profits say nothing about the asset itself."
+    }
+  ],
+  "keyTakeaways": [
+    "Crypto is usually seen through supply, the network effect and sentiment",
+    "Valuing it is nothing like valuing a share",
+    "Volatility and liquidity are the things to manage"
+  ],
+  "practicePrompt": {
+    "question": "When Bitcoin corrected from 73k to 60k USD, what factors does the macro financial lens use to explain that move?",
+    "options": [
+      "Macro liquidity, ETFs, risk appetite",
+      "Because the Bitcoin source code expired",
+      "Because governments banned the use of the Internet",
+      "Because Bitcoin has no buying or selling at all"
+    ],
+    "explanation": "The crypto price is heavily affected by global macro liquidity, the buying and selling flows of institutional ETFs, and the market's risk appetite."
+  },
+  "summary": {
+    "keyIdea": "Crypto is usually seen through supply, the network effect and sentiment",
+    "commonMistake": "Easy to miss: valuing it is nothing like valuing a share",
+    "action": "Volatility and liquidity are the things to manage"
+  },
+  "application": {
+    "title": "In practice: Bitcoin back down to 60k - does crypto have real value?",
+    "message": "When Bitcoin corrected from 73k to 60k USD, what factors does the macro financial lens use to explain that move?",
+    "secondary": "Getting this principle solid lifts your professional financial analysis."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Bitcoin and other digital assets cannot be valued with DCF or P/E - not because those tools are poor, but because what Bitcoin is differs completely from a business."
+    },
+    {
+      "type": "heading",
+      "text": "Why traditional valuation models do not apply"
+    },
+    {
+      "type": "paragraph",
+      "text": "DCF discounts the future cash flow of a business; P/E compares profit against the share price - both need a 'business' producing profit or cash flow. Bitcoin is not a business and produces no cash flow, so its value depends entirely on fixed scarce supply, the network effect (value rising as more people use it), and market belief - not on traditional cash-flow models."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Bitcoin has no underlying cash flow, so DCF and P/E do not apply",
+        "Value rests on scarcity (fixed supply), the network effect and market belief",
+        "Lacking a traditional valuation anchor, the price swings far more than an asset with cash flow"
+      ]
+    },
+    {
+      "type": "conceptTable",
+      "title": "Three valuation factors standing in for cash flow",
+      "concepts": [
+        {
+          "vi": "Khan hiếm cố định",
+          "en": "Fixed supply",
+          "def": "Total Bitcoin supply is capped by the protocol and cannot be issued at will the way fiat money can - the same scarcity logic as gold."
+        },
+        {
+          "vi": "Hiệu ứng mạng lưới",
+          "en": "Network effect",
+          "def": "The network's value rises as more people use it, more places accept payment in it, and more infrastructure is built around it."
+        },
+        {
+          "vi": "Niềm tin thị trường",
+          "en": "Market sentiment",
+          "def": "With no cash flow anchoring the value, sentiment and market narrative move the price far more than they do for an asset with cash flow."
+        }
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Company shares",
+        "text": "There is cash flow, profit and assets - things that can be discounted to present value with DCF or compared with P/E. The value has an anchor, imperfect as it is."
+      },
+      "right": {
+        "label": "Bitcoin",
+        "text": "No cash flow is produced and there is no 'profit' to compare. Value rests entirely on supply and demand, belief and network utility - with no traditional anchor, so the range of movement is far wider."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "This does not mean 'no value'",
+      "text": "Plenty of assets that produce no cash flow still have real value - gold is the classic example, valued through scarcity and its role as a store of value across thousands of years without any DCF model. Many people see Bitcoin through the same logic, but with a far shorter history, so the uncertainty about its long-term value is far greater too."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "That DCF does not apply does not mean Bitcoin has no value.",
+        "It only means it needs a different frame to assess, not the frame of a business."
+      ]
+    }
+  ]
+}

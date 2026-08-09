@@ -1,0 +1,145 @@
+{
+  "slug": "cfa-alt-dac-diem-chung-tai-san-thay-the",
+  "title": "CFA Alternatives 1: What puts an asset in the 'alternative' group",
+  "subtitle": "Not because it is exotic, but because four characteristics appear together: illiquidity, sparse valuation, leverage, and two tiers of fees",
+  "duration": "10 min",
+  "openingQuestion": "What most fundamentally separates alternative assets from listed equities and bonds?",
+  "openingOptions": [
+    "Alternative assets always have a distinctly higher expected return",
+    "Illiquidity, sparse valuation, and leverage that is usually far higher",
+    "Alternative assets are not supervised by any regulator at all",
+    "Alternative assets are restricted to institutional investors by rule"
+  ],
+  "explanation": "These four characteristics come together and they are causally linked to each other. Illiquidity means there is no continuous market price, so valuation has to rely on periodic appraisal or on a model - and that produces a whole set of performance measurement consequences the next lesson covers. Higher leverage is the norm rather than the exception, because real assets and buyout deals are both financed with debt. The two-tier fee structure - a management fee plus a share of the profits - completely changes the manager's incentives compared with a fund charging a flat fee. A higher expected return is not a defining characteristic; it is what the investor hopes to receive in exchange for the four above.",
+  "diagram": [
+    { "label": "Illiquid: no continuous price", "arrow": true },
+    { "label": "Sparse valuation: periodic appraisal or a model", "arrow": true },
+    { "label": "High leverage is the norm, not the exception", "arrow": true },
+    { "label": "Two tiers of fees change the manager's incentives" }
+  ],
+  "realWorldExample": {
+    "company": "Why the illiquidity premium is not a free lunch",
+    "description": "The usual argument is that an illiquid asset pays an extra premium because the investor has to accept their capital being locked up. That is true, but the premium is payment for a real risk: you cannot get out at the moment you most need to. Every crisis has shown that an investor's need for liquidity and a fund's ability to sell assets deteriorate at the same time - so the premium is not free money, it is the price of an option you have just sold."
+  },
+  "quiz": [
+    {
+      "question": "Which characteristic is NOT a defining feature of the alternative asset group?",
+      "options": [
+        "A fee structure of a management fee plus a share of the profits",
+        "Low liquidity and no continuous traded price",
+        "A higher use of leverage than a traditional fund",
+        "Expected returns always higher than listed equities"
+      ],
+      "explanation": "A higher return is what the investor hopes to get in exchange for the other three characteristics, not a characteristic of the asset group itself. Plenty of alternative funds underperform listed equities for years at a stretch while still being unmistakably alternative, because the other three still hold."
+    },
+    {
+      "question": "Why does valuing an alternative asset have to rely on appraisal or a model?",
+      "options": [
+        "Because there is no continuous trading to produce a market price",
+        "Because regulation forbids publishing traded prices of alternatives",
+        "Because institutional investors require their own valuation method",
+        "Because these values change too slowly to be worth tracking closely"
+      ],
+      "explanation": "This is a direct consequence of illiquidity, and it drags along every performance measurement problem this asset group has. Nothing forbids publishing a price - there simply is not one, because a price needs two parties transacting, and in an illiquid market that happens rarely."
+    },
+    {
+      "question": "What is the illiquidity premium payment for?",
+      "options": [
+        "The appraisal valuation costs the fund has to pay periodically",
+        "The risk of not being able to withdraw when you most need to",
+        "The higher management fee compared with a traditional fund",
+        "Having to accept a large minimum investment size"
+      ],
+      "explanation": "An investor's need for liquidity and a fund's ability to sell assets usually deteriorate at the same moment - the premium is the price of that risk. Fees and minimum sizes are costs and conditions of entry, not risks being compensated: an investor is not paid a return premium for having paid a larger fee."
+    },
+    {
+      "question": "How does the two-tier fee structure affect the manager's incentives?",
+      "options": [
+        "The manager only earns income after the investors have withdrawn all capital",
+        "Both tiers of fees are only charged when the fund has a positive return",
+        "Two tiers reduce the incentive to take risk compared with a flat fee",
+        "The management fee rewards size, the carry rewards the result"
+      ],
+      "explanation": "The two tiers pull in different directions, and that is why the size of a fund and its performance do not always move together. The management fee is charged on assets whether the fund makes money or not, and a share of the upside with no share of the downside increases rather than reduces the appetite for risk."
+    },
+    {
+      "question": "Why is classifying by the four characteristics more useful than memorising a list?",
+      "options": [
+        "Because all four characteristics can be measured with hard numbers",
+        "Because the list of alternative asset types changes every year",
+        "Because regulators use exactly these four criteria to classify",
+        "Because it handles new assets nobody has classified yet"
+      ],
+      "explanation": "Digital assets are the nearest example: they appear on no traditional list, but checking them against the four characteristics settles the question immediately. The traditional list barely changes from year to year - the problem is that new things keep arriving that were never on it."
+    }
+  ],
+  "keyTakeaways": [
+    "Four characteristics: illiquidity, sparse valuation, high leverage, two tiers of fees",
+    "A higher return is the expectation in exchange, not a defining characteristic",
+    "Illiquidity causes sparse valuation, and sparse valuation causes every measurement problem",
+    "The illiquidity premium is the price of the risk of not getting out when you need to",
+    "Classifying by characteristics handles new assets; memorising a list does not"
+  ],
+  "practicePrompt": {
+    "question": "A fund invests in consumer loans through a peer-to-peer lending platform, locks capital for 5 years, and charges 1.5% management and 15% of returns above a hurdle. How is it classified?",
+    "options": [
+      "A bond fund, because the underlying assets are loans",
+      "Alternative: all four characteristics are present even though the underlying asset type sounds familiar",
+      "A money market fund, because the loans are short-dated",
+      "It cannot be classified until the fund's historical returns are known"
+    ],
+    "explanation": "This is exactly the case where a list is no help: consumer loans appear on no traditional list of alternative assets. But check the four characteristics and it is clear - capital locked for five years, no continuous market price, a two-tier fee structure. The last option is wrong in an important way: classification is based on structure, not on results."
+  },
+  "summary": {
+    "keyIdea": "The four characteristics - illiquidity, sparse valuation, high leverage, two tiers of fees - are not classification criteria but four sources of risk that come together.",
+    "commonMistake": "Treating the published return of an alternative asset as comparable with equities. Sparse valuation makes reported volatility artificially low."
+  },
+  "application": {
+    "title": "Before comparing two returns",
+    "message": "Ask whether the asset is valued at a market price or by appraisal. Those two cannot be set side by side."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The alternative asset group is not defined by a list - property, infrastructure, hedge funds, private equity - but by four shared characteristics. Grasp those four and you can classify assets that have never appeared in a textbook."
+    },
+    {
+      "type": "heading",
+      "text": "The four characteristics and the causal chain between them"
+    },
+    {
+      "type": "paragraph",
+      "text": "Illiquidity is the root: there is no continuous trading market, so there is no continuous price. From that comes sparse valuation - the value is only updated each quarter through appraisal or a model. High leverage is the norm rather than the exception, because real assets and buyout deals are both financed with debt. And the two-tier fee structure - a management fee plus a share of the profits - makes the manager's incentives quite different from a fund charging a flat fee."
+    },
+    {
+      "type": "callout",
+      "label": "The easy mistake",
+      "text": "A higher expected return is NOT a defining characteristic. It is what the investor hopes to receive in exchange for the four above - an expectation, not a property."
+    },
+    {
+      "type": "heading",
+      "text": "What the illiquidity premium buys"
+    },
+    {
+      "type": "paragraph",
+      "text": "When you lock capital up for ten years, you give up the right to withdraw at the moment you most need it - usually when markets are bad and you have other obligations to meet. The excess return is the price of that right. The practical question is not whether the premium exists, but whether you can bear not being able to withdraw for the whole of that time."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Four characteristics: illiquidity, sparse valuation, high leverage, two tiers of fees.",
+        "Illiquidity causes sparse valuation, and sparse valuation causes every measurement problem in the next lesson.",
+        "Two tiers of fees change the incentives: a share of the profits rewards large swings, not just returns.",
+        "Classifying by characteristics handles new assets; memorising a list does not."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The alternative group is not a homogeneous asset class.",
+        "It is the set of things that share the same four structural problems.",
+        "Understanding those four problems is understanding the whole group."
+      ]
+    }
+  ]
+}

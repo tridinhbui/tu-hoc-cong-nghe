@@ -132,6 +132,11 @@
     "subtitle": "Why a pay rise never leaves you with less money",
     "duration": "8 min"
   },
+  "bitcoin-crypto": {
+    "title": "Bitcoin back down to 60k - does crypto have real value?",
+    "subtitle": "Supply and demand, macro, the network effect and market sentiment",
+    "duration": "6 min"
+  },
   "bo-3-bao-cao": {
     "title": "What makes up the three financial statements?",
     "subtitle": "Income Statement, Balance Sheet, Cash Flow Statement - three views of one business",
@@ -256,6 +261,16 @@
     "title": "What is the Cash Flow Statement?",
     "subtitle": "The three sections of the cash flow statement",
     "duration": "6 min"
+  },
+  "cfa-alt-chien-luoc-hedge-fund": {
+    "title": "CFA Alternatives 6: The four hedge fund strategy groups and the risk particular to each",
+    "subtitle": "Equity, event, relative value, macro - and why 'hedge fund' is not an asset class",
+    "duration": "11 min"
+  },
+  "cfa-alt-dac-diem-chung-tai-san-thay-the": {
+    "title": "CFA Alternatives 1: What puts an asset in the 'alternative' group",
+    "subtitle": "Not because it is exotic, but because four characteristics appear together: illiquidity, sparse valuation, leverage, and two tiers of fees",
+    "duration": "10 min"
   },
   "chi-phi-vs-dong-tien-ra": {
     "title": "How does an expense differ from cash going out?",
@@ -1164,6 +1179,11 @@
     "subtitle": "The financial strategy that fits at 25 no longer fits at 55 - and that is entirely normal.",
     "duration": "6 min"
   },
+  "quan-tri-rui-ro-dinh-luong-var-black-swan": {
+    "title": "Masterclass 4: Quantitative risk management - VaR and black swan scenario simulation",
+    "subtitle": "VaR, expected shortfall, backtesting and stress testing - and the dangerous limits of every risk model.",
+    "duration": "14 min"
+  },
   "quick-ratio": {
     "title": "Quick Ratio: Acid-Test Liquidity",
     "subtitle": "Excludes inventory - stricter than the Current Ratio",
@@ -1346,6 +1366,11 @@
     "title": "Stage 9, Lesson 8: Money and marriage - joint property and separate property",
     "subtitle": "Talking about money before marriage is not romantic, but it is necessary",
     "duration": "6 min"
+  },
+  "tai-chinh-khoi-nghiep-cap-table-vc-valuation": {
+    "title": "Masterclass 3: Startup finance - the cap table and venture capital valuation",
+    "subtitle": "Pre-money, post-money, dilution, the option pool and liquidation preference - how to read a term sheet properly.",
+    "duration": "15 min"
   },
   "tai-chinh-la-gi": {
     "title": "What is finance? Why finance is not just about money.",
@@ -1550,6 +1575,11 @@
   "trai-phieu-vs-co-phieu": {
     "title": "Bond returns vs. stock returns",
     "subtitle": "Bonds vs stocks return comparison",
+    "duration": "6 min"
+  },
+  "transfer-pricing": {
+    "title": "Transfer Pricing",
+    "subtitle": "The arm's length principle - the Apple Ireland case",
     "duration": "6 min"
   },
   "treasury-bond-la-gi": {
