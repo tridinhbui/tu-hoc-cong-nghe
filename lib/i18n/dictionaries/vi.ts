@@ -304,6 +304,7 @@ export const vi = {
       login: "Đăng nhập / Đăng ký",
       copyright: "© 2026 Tự Học Tài Chính. Tất cả quyền được bảo lưu.",
       tagline: "Học tài chính miễn phí cho người Việt 🇻🇳",
+      sovereignty: "Hoàng Sa & Trường Sa là của Việt Nam!",
     },
   },
 

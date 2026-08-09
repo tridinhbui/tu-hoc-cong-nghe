@@ -896,6 +896,18 @@ export default function HomePage() {
               </div>
             </div>
 
+            {/* Khẩu hiệu chủ quyền. Ngôi sao vẽ bằng SVG chứ không dùng emoji
+                ⭐: emoji sao vàng trên nền đỏ render khác nhau tuỳ hệ điều
+                hành, và trên Windows nó ra màu cam. */}
+            <div className="pt-6 flex justify-center">
+              <p className="inline-flex items-center gap-2 rounded-full border border-red-500/40 bg-gradient-to-r from-red-800 to-red-700 px-4 py-2 text-xs font-bold text-white shadow-lg">
+                <svg viewBox="0 0 24 24" className="w-4 h-4 flex-shrink-0 text-yellow-300" fill="currentColor" aria-hidden="true">
+                  <path d="m12 2 2.9 6.6 7.1.6-5.4 4.7 1.6 7L12 17.2 5.8 20.9l1.6-7L2 9.2l7.1-.6L12 2Z" />
+                </svg>
+                {t.home.footer.sovereignty}
+              </p>
+            </div>
+
             {/* Bottom copyright line */}
             <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-stone-500 font-semibold">
               <p>{t.home.footer.copyright}</p>

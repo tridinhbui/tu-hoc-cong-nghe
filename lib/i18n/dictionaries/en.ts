@@ -272,6 +272,7 @@ export const en: Dictionary = {
       login: "Sign in / Sign up",
       copyright: "© 2026 Self-Taught Finance. All rights reserved.",
       tagline: "Free finance education for Vietnam 🇻🇳",
+      sovereignty: "Hoang Sa & Truong Sa belong to Vietnam!",
     },
   },
 
