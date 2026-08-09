@@ -379,9 +379,36 @@ It also surfaced a category that needs a different fix, not a dictionary:
 the server and sends them to the client. A dictionary section cannot reach that —
 either the route reads the locale, or it returns ids the client resolves.
 
-What the number still does not see: display strings that pass through a local
-variable (`const label = "…"` rendered as `{label}`) inside a component body.
-Expect it to rise again when someone closes that.
+One blind spot was predicted here and then **measured, and it is empty** — so do
+not build the detector for it. The prediction was: display strings that pass
+through a local variable (`const label = "…"` rendered as `{label}`) inside a
+component body, with "expect the number to rise again when someone closes that".
+
+It does not rise. A probe over every `.tsx` in the repo — local `const`/`let`
+whose initializer is a string literal, template literal, ternary or `??`/`||`
+chain of string literals, whose identifier is then referenced anywhere inside a
+JSX expression container, a display attribute, or a `toast`/`alert` argument —
+returns **10 candidates, and all 10 are non-copy**. Not a sample; that is the
+complete list:
+
+| shape | n | example |
+| --- | --- | --- |
+| template building an id, URL, lookup key, coordinate or counter | 6 | `` `${activeTrack}-${stage.label}` `` |
+| Tailwind class list | 2 | `sm:grid-cols-2 lg:grid-cols-4` |
+| hex colour | 1 | `#fbbf24` |
+| CSS transform | 1 | `rotateY(…)` |
+
+The probe was verified against a synthetic fixture carrying four true positives
+(plain literal rendered as `{label}`, literal in a `title=`, ternary, template
+with a substitution) and found all four — so the zero is a property of the
+codebase, not a broken probe. The reason is structural: a component that needs a
+string either writes it inline in JSX or reads `t.x.y`; naming it first buys
+nothing.
+
+Adding the rule anyway would report those 10 every run. AGENTS.md already
+records two detectors thrown away for exactly that ("a noisy gate is a gate
+people learn to ignore"); this is the third, recorded so nobody builds it a
+fourth time.
 
 ### Guard rails
 
