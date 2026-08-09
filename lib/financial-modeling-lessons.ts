@@ -1228,8 +1228,8 @@ export const FINANCIAL_MODELING_LESSONS: Lesson[] = [
     openingQuestion:
       "Trong một thương vụ LBO, ba nguồn tạo ra lợi nhuận chính cho quỹ đầu tư là gì?",
     openingOptions: [
-      "Chỉ có việc bán lại với giá cao hơn",
-      "Trả bớt nợ bằng dòng tiền, cải thiện lợi nhuận hoạt động, và chênh lệch hệ số định giá khi thoái vốn",
+      "Chỉ có mỗi việc bán lại chính công ty đó với giá cao hơn lúc mua vào ban đầu mà thôi",
+      "Trả bớt nợ bằng dòng tiền, cải thiện lợi nhuận, và chênh lệch hệ số khi thoái vốn",
       "Chỉ có cắt giảm chi phí nhân sự",
       "Chỉ có việc phát hành thêm cổ phiếu",
     ],

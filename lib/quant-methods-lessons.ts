@@ -205,7 +205,7 @@ export const QUANT_METHODS_LESSONS: Lesson[] = [
     openingOptions: [
       "Tỷ lệ nghịch với cỡ mẫu n",
       "Tỷ lệ nghịch với căn bậc hai của cỡ mẫu",
-      "Tỷ lệ nghịch với bình phương cỡ mẫu",
+      "Tỷ lệ nghịch với bình phương của cỡ mẫu n",
       "Không phụ thuộc vào cỡ mẫu",
     ],
     correctOption: 1,
