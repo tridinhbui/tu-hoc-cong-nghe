@@ -1,3 +1,5 @@
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
+
 /** Mười ba địa điểm của Thế Giới Game Tài Chính.
  *
  *  Tách khỏi FinancialRpgWorldMap để khu game trong thế giới 3D dựng được từ
@@ -9,12 +11,9 @@
  *  chỉ đọc id, tên, phụ đề, emoji và minLevel. Để nguyên chúng ở đây thay vì
  *  tách làm hai kiểu, vì một danh sách là một danh sách. */
 
-export interface OrganicBuilding {
+export interface OrganicBuildingStruct {
   id: string;
-  name: string;
-  subtitle: string;
   emoji: string;
-  badge: string;
   bgLight: string;
   borderColor: string;
   textColor: string;
@@ -26,14 +25,11 @@ export interface OrganicBuilding {
   minLevel?: number;
 }
 
-export const ORGANIC_BUILDINGS: OrganicBuilding[] = [
+const BUILDING_STRUCT: OrganicBuildingStruct[] = [
   // KHU VỰC 1: SÀN GIAO DỊCH NYSE & TRADING PIT
   {
     id: "world-boss",
-    name: "Sàn NYSE & Boss Phố Wall",
-    subtitle: "Săn Bò Tót Tăng Trưởng 1,000,000 HP",
     emoji: "🐂",
-    badge: "🏛️ NYSE CENTRAL",
     bgLight: "bg-gradient-to-br from-amber-500/15 via-red-500/10 to-amber-500/5",
     borderColor: "border-amber-400 ring-2 ring-amber-400/40 shadow-lg shadow-amber-500/10",
     textColor: "text-amber-700 dark:text-amber-400",
@@ -44,10 +40,7 @@ export const ORGANIC_BUILDINGS: OrganicBuilding[] = [
   },
   {
     id: "pvp",
-    name: "Đấu Trường Kiến Thức Solo",
-    subtitle: "Đánh Boss bằng câu hỏi từ bài bạn đã học",
     emoji: "🧠",
-    badge: "🏛️ NYSE CENTRAL",
     bgLight: "bg-gradient-to-br from-sky-50 via-emerald-50/50 to-sky-100/30",
     borderColor: "border-sky-300 ring-1 ring-sky-400/30",
     textColor: "text-sky-700 dark:text-sky-400",
@@ -59,10 +52,7 @@ export const ORGANIC_BUILDINGS: OrganicBuilding[] = [
   // KHU VỰC 2: TRUNG TÂM LUYỆN TẬP BCTC & KHÁI NIỆM
   {
     id: "arcade",
-    name: "🔥 TỔNG HỢP MINI GAME",
-    subtitle: "Tất Cả Game Phân Loại BCTC & Nối Thuật Ngữ",
     emoji: "🏛️",
-    badge: "🔥 TỔNG HỢP MINI GAME",
     bgLight: "bg-gradient-to-br from-amber-500/25 via-orange-500/20 to-red-500/25",
     borderColor: "border-amber-400 ring-4 ring-amber-500/80 shadow-[0_0_40px_rgba(245,158,11,0.6)]",
     textColor: "text-amber-800 dark:text-amber-300 font-black",
@@ -73,10 +63,7 @@ export const ORGANIC_BUILDINGS: OrganicBuilding[] = [
   },
   {
     id: "weekly-challenge",
-    name: "Quảng Trường Times Square Hub",
-    subtitle: "Case Study Doanh Nghiệp & Bảng Tin Neon Phố Wall",
     emoji: "🏙️",
-    badge: "🏙️ TIMES SQUARE",
     bgLight: "bg-gradient-to-br from-purple-50 via-indigo-50 to-pink-50",
     borderColor: "border-purple-300 ring-1 ring-purple-400/40 shadow-sm",
     textColor: "text-purple-900 font-black",
@@ -89,10 +76,7 @@ export const ORGANIC_BUILDINGS: OrganicBuilding[] = [
   // KHU VỰC 3: QUỸ ĐẦU TƯ & NGÂN HÀNG ĐẦU TƯ
   {
     id: "goldman-sachs",
-    name: "Tập Đoàn Goldman Sachs Investment Bank",
-    subtitle: "Đấu Trường M&A Dealmaking, Định Giá & IPO Pitching",
     emoji: "🏛️",
-    badge: "🏛️ GOLDMAN SACHS WALL ST.",
     bgLight: "bg-gradient-to-br from-slate-50 via-sky-50 to-indigo-50",
     borderColor: "border-sky-400 ring-2 ring-sky-400/40 shadow-lg shadow-sky-500/10",
     textColor: "text-sky-800 dark:text-sky-300 font-black",
@@ -103,10 +87,7 @@ export const ORGANIC_BUILDINGS: OrganicBuilding[] = [
   },
   {
     id: "cards",
-    name: "Bảo Tàng Thẻ VN30",
-    subtitle: "Bộ Sưu Tập 30 Thẻ Doanh Nghiệp 3D",
     emoji: "📇",
-    badge: "🏰 HEDGE FUND QUARTER",
     bgLight: "bg-gradient-to-br from-sky-50 via-cyan-50/50 to-teal-100/30",
     borderColor: "border-sky-400 ring-1 ring-sky-400/30",
     textColor: "text-sky-700 dark:text-sky-400",
@@ -117,10 +98,7 @@ export const ORGANIC_BUILDINGS: OrganicBuilding[] = [
   },
   {
     id: "shop",
-    name: "Tiệm Đồ Executive Wall St.",
-    subtitle: "Trang Bị Dụng Cụ & Tủ Đồ RPG",
     emoji: "💼",
-    badge: "🏰 HEDGE FUND QUARTER",
     bgLight: "bg-gradient-to-br from-amber-50 via-yellow-50/50 to-orange-100/30",
     borderColor: "border-amber-400 ring-1 ring-amber-400/30",
     textColor: "text-amber-700 dark:text-amber-400",
@@ -133,10 +111,7 @@ export const ORGANIC_BUILDINGS: OrganicBuilding[] = [
   // 🏗️ KHU VỰC 4: VÙNG ĐẤT TÀI CHÍNH TOÀN CẦU
   {
     id: "fed-vault",
-    name: "Cục Dự Trữ Liên Bang Fed",
-    subtitle: "Kho Thỏi Vàng & Mô Phỏng Lãi Suất Vĩ Mô",
     emoji: "🏦",
-    badge: "🏛️ US FEDERAL RESERVE",
     bgLight: "bg-gradient-to-br from-amber-50/80 via-yellow-50 to-stone-100",
     borderColor: "border-amber-400 ring-2 ring-amber-400/40 shadow-lg shadow-amber-500/10",
     textColor: "text-amber-800 dark:text-amber-300 font-black",
@@ -147,10 +122,7 @@ export const ORGANIC_BUILDINGS: OrganicBuilding[] = [
   },
   {
     id: "silicon-bay",
-    name: "Đảo Silicon FinTech Bay",
-    subtitle: "Venture Capital & Algo AI Trading",
     emoji: "🌐",
-    badge: "🚀 SILICON BAY",
     bgLight: "bg-gradient-to-br from-cyan-50/80 via-teal-50 to-blue-50",
     borderColor: "border-cyan-400 ring-1 ring-cyan-400/40",
     textColor: "text-cyan-900 font-black",
@@ -161,10 +133,7 @@ export const ORGANIC_BUILDINGS: OrganicBuilding[] = [
   },
   {
     id: "capitol-hill",
-    name: "Tập Đoàn Blackstone Private Equity",
-    subtitle: "Quỹ Đầu Tư Tư Nhân & M&A Bất Động Sản Triệu Đô",
     emoji: "🏬",
-    badge: "🏛️ BLACKSTONE CAPITAL",
     bgLight: "bg-gradient-to-br from-stone-100 via-stone-50 to-stone-200",
     borderColor: "border-stone-400 ring-1 ring-stone-400/40",
     textColor: "text-stone-900 font-black",
@@ -175,10 +144,7 @@ export const ORGANIC_BUILDINGS: OrganicBuilding[] = [
   },
   {
     id: "cme-commodities",
-    name: "Sàn Hàng Hóa Chicago CME",
-    subtitle: "Hợp Đồng Tương Lai Dầu Mỏ & Vàng CME",
     emoji: "🛢️",
-    badge: "🌾 CME COMMODITY",
     bgLight: "bg-gradient-to-br from-emerald-50/80 via-green-50 to-teal-50",
     borderColor: "border-emerald-400 ring-1 ring-emerald-400/40",
     textColor: "text-emerald-900 font-black",
@@ -189,10 +155,7 @@ export const ORGANIC_BUILDINGS: OrganicBuilding[] = [
   },
   {
     id: "swiss-haven",
-    name: "Đại Lộ Thụy Sĩ Wealth Haven",
-    subtitle: "Quản Lý Tài Sản Triệu Đô & Quỹ Gia Tộc",
     emoji: "💎",
-    badge: "💎 SWISS HAVEN",
     bgLight: "bg-gradient-to-br from-rose-50/80 via-pink-50 to-slate-50",
     borderColor: "border-rose-400 ring-1 ring-rose-400/40",
     textColor: "text-rose-900 font-black",
@@ -203,10 +166,7 @@ export const ORGANIC_BUILDINGS: OrganicBuilding[] = [
   },
   {
     id: "singapore-dock",
-    name: "Cảng Thương Mại Singapore",
-    subtitle: "Tài Chính Chuỗi Cung Ứng & Tín Dụng L/C",
     emoji: "🚢",
-    badge: "🚢 SINGAPORE DOCK",
     bgLight: "bg-gradient-to-br from-blue-50/80 via-sky-50 to-indigo-50",
     borderColor: "border-blue-400 ring-1 ring-blue-400/40",
     textColor: "text-blue-900 font-black",
@@ -216,3 +176,28 @@ export const ORGANIC_BUILDINGS: OrganicBuilding[] = [
     imageSrc: "/rpg/singapore_dock.jpg",
   },
 ];
+
+/** Địa điểm kèm chữ hiển thị theo ngôn ngữ đang xem.
+ *
+ *  Chữ nằm ở `t.rpgBuildings`, cấu trúc ở trên. Cùng hình dạng với
+ *  `stationsOf()` và `districtRoomsOf()`: một danh sách là một danh sách, và
+ *  bản chép thứ hai của nó sẽ lệch ngay lần thêm địa điểm đầu tiên. */
+export interface OrganicBuilding extends OrganicBuildingStruct {
+  name: string;
+  subtitle: string;
+  badge: string;
+}
+
+const buildingCache = new WeakMap<Dictionary, OrganicBuilding[]>();
+
+export function organicBuildingsOf(t: Dictionary): OrganicBuilding[] {
+  const cached = buildingCache.get(t);
+  if (cached) return cached;
+  const copy = t.rpgBuildings as Record<string, { name: string; subtitle: string; badge: string }>;
+  const list = BUILDING_STRUCT.map((b) => ({ ...b, ...copy[b.id] }));
+  buildingCache.set(t, list);
+  return list;
+}
+
+/** Số địa điểm - dùng cho hình học và câu chữ đếm, không cần tới bản dịch. */
+export const BUILDING_COUNT = BUILDING_STRUCT.length;

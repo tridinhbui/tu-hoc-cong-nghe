@@ -34,7 +34,7 @@ import {
 import { formulasFor, type WallFormula } from "./district-content";
 import { STATION_IDS } from "@/components/lobby/stations";
 import CivicScene, { isCivicRoom } from "./CivicScenes";
-import { ORGANIC_BUILDINGS } from "@/lib/rpg-buildings";
+import { BUILDING_COUNT } from "@/lib/rpg-buildings";
 import { CAREER_CATEGORY_ORDER, isCareerCategory, type CareerCategory } from "@/lib/career-categories";
 import {
   asphaltTexture,
@@ -384,7 +384,7 @@ function GameHall() {
       <pointLight position={[0, 2.4, 2.4]} intensity={10} distance={12} color="#f472b6" />
       <TextBoard
         title={t.careerDistrict.shell.gameHallTitle}
-        rows={[t.careerDistrict.shell.gameHallRow1, format(t.careerDistrict.shell.gameHallRow2, { n: ORGANIC_BUILDINGS.length })]}
+        rows={[t.careerDistrict.shell.gameHallRow1, format(t.careerDistrict.shell.gameHallRow2, { n: BUILDING_COUNT })]}
         accent="#f472b6"
         width={9.4}
         height={2}

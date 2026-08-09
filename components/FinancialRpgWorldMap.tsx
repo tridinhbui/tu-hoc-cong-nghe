@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
-import { ORGANIC_BUILDINGS, type OrganicBuilding } from "@/lib/rpg-buildings";
+import { organicBuildingsOf, type OrganicBuilding } from "@/lib/rpg-buildings";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, Coins, Zap, Trophy, Lock, Flame, Shield, Sparkles, ShoppingBag, Layers, Activity, Clock, Crown, Compass } from "lucide-react";
@@ -54,10 +54,14 @@ const BUILDING_AVATAR_POSITIONS: Record<string, { x: number; y: number }> = {
   "singapore-dock": { x: 50, y: 92 },
 };
 
-const MAP_BUILDINGS = ORGANIC_BUILDINGS.filter((building) => building.id !== "shop");
+
 
 export default function FinancialRpgWorldMap() {
   const { t } = useI18n();
+  // Danh sách địa điểm giờ mang chữ theo ngôn ngữ đang xem, nên nó không còn
+  // là hằng số ở module scope được nữa.
+  const buildings = useMemo(() => organicBuildingsOf(t), [t]);
+  const MAP_BUILDINGS = useMemo(() => buildings.filter((b) => b.id !== "shop"), [buildings]);
   const searchParams = useSearchParams();
   const initialBuilding = searchParams.get("building");
 
@@ -190,7 +194,7 @@ export default function FinancialRpgWorldMap() {
       }
     }
 
-    const targetBuilding = ORGANIC_BUILDINGS.find((b) => b.id === id);
+    const targetBuilding = buildings.find((b) => b.id === id);
     const reqLevel = targetBuilding?.minLevel ?? getRequiredLevelForBuilding(id);
 
     // Allow pathfinding movement, then check level lock or proceed
@@ -655,7 +659,7 @@ export default function FinancialRpgWorldMap() {
               </button>
               
               <span className="text-[11px] sm:text-xs font-black text-amber-800 uppercase tracking-widest leading-tight">
-                {format(t.worldMap.opening, { name: ORGANIC_BUILDINGS.find((b) => b.id === selectedBuilding)?.name ?? "" })}
+                {format(t.worldMap.opening, { name: buildings.find((b) => b.id === selectedBuilding)?.name ?? "" })}
               </span>
             </div>
 

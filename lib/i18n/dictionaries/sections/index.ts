@@ -34,6 +34,7 @@ import { interactiveEconVi, interactiveEconEn } from "./interactive-econ";
 import { interactiveRestVi, interactiveRestEn } from "./interactive-rest";
 import { learningPathVi, learningPathEn } from "./learning-path";
 import { leaderboardHonorsVi, leaderboardHonorsEn } from "./leaderboard-honors";
+import { rpgBuildingsCopyVi, rpgBuildingsCopyEn } from "./rpg-buildings-copy";
 import { legalChatVi, legalChatEn } from "./legal-chat";
 import { libDataVi, libDataEn } from "./lib-data";
 import { lessonAdminVi, lessonAdminEn } from "./lesson-admin";
@@ -84,6 +85,7 @@ export const viSections = {
   ...interactiveRestVi,
   ...learningPathVi,
   ...leaderboardHonorsVi,
+  ...rpgBuildingsCopyVi,
   ...legalChatVi,
   ...libDataVi,
   ...lessonAdminVi,
@@ -135,6 +137,7 @@ export const enSections: typeof viSections = {
   ...interactiveRestEn,
   ...learningPathEn,
   ...leaderboardHonorsEn,
+  ...rpgBuildingsCopyEn,
   ...legalChatEn,
   ...libDataEn,
   ...lessonAdminEn,

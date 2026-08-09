@@ -7,7 +7,7 @@ import {
   type CareerCategory,
 } from "@/lib/career-categories";
 import { stationsOf, type Station } from "@/components/lobby/stations";
-import { ORGANIC_BUILDINGS } from "@/lib/rpg-buildings";
+import { organicBuildingsOf, BUILDING_COUNT } from "@/lib/rpg-buildings";
 import { BODY_RADIUS, resolveObstacles, type BoxObstacle, type CircleObstacle, type Obstacle } from "@/lib/walkable-space";
 import { format } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
@@ -501,14 +501,14 @@ const PODIUM_ROW_X = 5;
  *  một cách lặng lẽ, vì bục không phải vật cản chắn đường nên không có gì báo.
  *  Đây là lý do test giờ kiểm cả bục nằm trong khung phòng, chứ trước đó nó chỉ
  *  kiểm bàn. */
-const SQUARE_D = Math.max(30, Math.ceil(ORGANIC_BUILDINGS.length / 2) * PODIUM_PITCH + 12);
+const SQUARE_D = Math.max(30, Math.ceil(BUILDING_COUNT / 2) * PODIUM_PITCH + 12);
 
 const GAME_ACCENTS = ["#f472b6", "#facc15", "#60a5fa", "#4ade80", "#c084fc", "#fb923c"];
 
-function buildGameSquare(d: Dictionary["worldSpaces"]["district"]): DistrictRoom {
+function buildGameSquare(d: Dictionary["worldSpaces"]["district"], t: Dictionary): DistrictRoom {
   const halfW = SQUARE_W / 2;
   const halfD = SQUARE_D / 2;
-  const portals: RoomPortal[] = ORGANIC_BUILDINGS.map((b, i) => ({
+  const portals: RoomPortal[] = organicBuildingsOf(t).map((b, i) => ({
     id: `game-${b.id}`,
     x: (i % 2 === 0 ? -1 : 1) * PODIUM_ROW_X,
     z: -halfD + 5 + Math.floor(i / 2) * PODIUM_PITCH,
@@ -1084,7 +1084,7 @@ function buildDistrictRooms(t: Dictionary): Record<string, DistrictRoom> {
     buildStreetRoom(d, civicRooms, labels),
     buildTowerLobby(d),
     buildStageFloor(d),
-    buildGameSquare(d),
+    buildGameSquare(d, t),
     buildParkRoom(d),
     buildCenterRoom(d),
     buildCafeRoom(d),
