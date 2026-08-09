@@ -13,11 +13,21 @@
   ],
   "explanation": "40 / 0.08 = 500 billion. This is valuation by direct capitalisation, and it is how the rental property market genuinely works - nobody values a building by what it cost to build, because a buyer is paying for future cash flow rather than for history. Note the inverse relationship: the cap rate is the yield a buyer demands, so a rising cap rate means a falling price. For the same building with unchanged NOI, a cap rate moving from 8% to 9% drops the value from 500 billion to 444 - an 11% loss with nothing about the building having changed.",
   "diagram": [
-    { "label": "Potential rental revenue (100% occupancy)" },
-    { "label": "− vacancy and bad debt" },
-    { "label": "− operating expenses (management, maintenance, tax, insurance)" },
-    { "label": "= NOI" },
-    { "label": "÷ cap rate = asset value" }
+    {
+      "label": "Potential rental revenue (100% occupancy)"
+    },
+    {
+      "label": "− vacancy and bad debt"
+    },
+    {
+      "label": "− operating expenses (management, maintenance, tax, insurance)"
+    },
+    {
+      "label": "= NOI"
+    },
+    {
+      "label": "÷ cap rate = asset value"
+    }
   ],
   "realWorldExample": {
     "company": "An office building offering memorandum",
@@ -97,7 +107,10 @@
       "type": "lead",
       "text": "A rental building is not valued by what it cost to build. It is valued by the cash flow it produces - and in this industry, that cash flow has a name and a calculation of its own."
     },
-    { "type": "heading", "text": "From rent to NOI" },
+    {
+      "type": "heading",
+      "text": "From rent to NOI"
+    },
     {
       "type": "formula",
       "title": "Net operating income",
@@ -121,7 +134,10 @@
         "explanation": "At a market cap rate of 8%, the estimated value is 500 billion. If actual vacancy is 20% rather than 10%, NOI falls to 34 billion and the value drops to 425 billion."
       }
     },
-    { "type": "heading", "text": "Why interest is not in NOI" },
+    {
+      "type": "heading",
+      "text": "Why interest is not in NOI"
+    },
     {
       "type": "paragraph",
       "text": "NOI measures how the asset itself performs, independently of who owns it and how much they borrowed. Deduct interest and the same building would have different values depending on whether the buyer borrowed a lot or a little - which is nonsense, because the building has not changed. The financing affects the owner's profit, not the value of the asset."
@@ -138,5 +154,15 @@
         "And the way to check it is not in the offering memorandum but in the leases and the last two years of operating invoices."
       ]
     }
-  ]
+  ],
+  "practicePrompt": {
+    "question": "A rental building: contracted revenue of VND 60bn a year, vacancy of 8%, operating costs of VND 14bn, interest of VND 11bn, depreciation of VND 6bn. What is NOI?",
+    "options": [
+      "VND 41.2bn (= 55.2 − 14 of operating cost)",
+      "VND 46bn (= 60 − 14, ignoring vacancy)",
+      "VND 30.2bn (= 41.2 − 11 of interest)",
+      "VND 24.2bn (= deducting both interest and depreciation)"
+    ],
+    "explanation": "Actual revenue is 60 × 92% = VND 55.2bn, less VND 14bn of operating cost leaves VND 41.2bn. Interest and depreciation sit OUTSIDE NOI, and that is the whole point of the measure: it measures the asset rather than the way it is financed, so two identical buildings have the same NOI even though one is 70% borrowed and the other was bought with cash. Deducting interest destroys that comparability. Ignoring the vacancy rate is the most common error when reading an offering memorandum, because the VND 60bn figure is contracted revenue rather than money actually received."
+  }
 }

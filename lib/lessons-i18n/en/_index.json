@@ -2081,6 +2081,21 @@
     "subtitle": "Understanding why a single valuation number is never enough.",
     "duration": "15 min"
   },
+  "kiem-tra-mo-hinh-va-bay-thuong-gap": {
+    "title": "Financial Modelling, Lesson 9: Checking the model and the traps you will meet",
+    "subtitle": "The review checklist to run before you hand a model to anyone else",
+    "duration": "9 min"
+  },
+  "kiem-tra-va-do-loi-mo-hinh-excel": {
+    "title": "Excel, Lesson 4: Checking and debugging - turning a model into something that reports its own errors",
+    "subtitle": "Trace precedents, partial F9, check cells, conditional formatting and the review routine before you send it",
+    "duration": "11 min"
+  },
+  "kpi-tai-chinh-doanh-nghiep-chon-dung-chi-so": {
+    "title": "CFO & Operations, Lesson 4: Corporate financial KPIs - choosing the right metrics to track",
+    "subtitle": "Tracking too many metrics is as dangerous as tracking too few",
+    "duration": "7 min"
+  },
   "ky-quy-va-margin-call": {
     "title": "Margin & Margin Calls - Risk Management Is Priority Number One",
     "subtitle": "Why does a client have to 'hand the money back' the moment the market turns against them?",
@@ -2239,6 +2254,11 @@
     "subtitle": "Poison pill, White Knight, Golden Parachute - the board's defensive weapons when a takeover arrives uninvited",
     "duration": "9 min"
   },
+  "ma-xuyen-bien-gioi": {
+    "title": "Advanced M&A: Legal and cultural barriers in cross-border deals",
+    "subtitle": "Getting the valuation right is only the necessary condition - a cross-border deal still has to clear barriers an Excel model cannot price",
+    "duration": "8 min"
+  },
   "maple-leaf-leverage": {
     "title": "Maple Leaf - Leverage Ratio",
     "subtitle": "Net Debt/EBITDA: how to read debt properly",
@@ -2269,9 +2289,39 @@
     "subtitle": "Why every estimate has to carry an interval, and why 36 months of data is nowhere near enough",
     "duration": "11 min"
   },
+  "mo-hinh-ba-bao-cao-lien-ket": {
+    "title": "Financial Modelling, Lesson 3: the linked three-statement model",
+    "subtitle": "How the P&L, the balance sheet and the cash flow statement fit together",
+    "duration": "10 min"
+  },
+  "mo-hinh-cham-diem-tin-dung-credit-scoring": {
+    "title": "Credit Scoring Models: from data to a lending decision",
+    "subtitle": "The 5C framework is the qualitative approach - a credit scoring model is the systematic quantitative approach the large banks actually run",
+    "duration": "8 min"
+  },
+  "mo-hinh-hoa-do-bien-dong-ewma-garch": {
+    "title": "Market Risk, Lesson 4: modelling volatility - EWMA and GARCH",
+    "subtitle": "Why volatility clusters, how to put decaying weight on old data, and what mean reversion to a long-run level actually means",
+    "duration": "12 min"
+  },
+  "mo-hinh-lbo-don-gian": {
+    "title": "Financial Modelling, Lesson 8: a simple LBO model",
+    "subtitle": "Why leverage creates returns for a private equity fund",
+    "duration": "10 min"
+  },
+  "mo-hinh-tc-nganh-dac-thu": {
+    "title": "Modelling Special Topics: adapting the model for banks and real estate",
+    "subtitle": "Why the standard three-statement model cannot be applied directly to a bank or a property company",
+    "duration": "9 min"
+  },
   "modern-portfolio-theory-la-gi": {
     "title": "What is Modern Portfolio Theory?",
     "subtitle": "Harry Markowitz and turning optimal portfolio construction into math",
+    "duration": "7 min"
+  },
+  "modern-portfolio-theory": {
+    "title": "Modern Portfolio Theory",
+    "subtitle": "Correlation, the efficient frontier and spreading risk",
     "duration": "7 min"
   },
   "modigliani-miller": {
@@ -2298,6 +2348,11 @@
     "title": "What is a Mutual Fund?",
     "subtitle": "A pooled fund - professionally managed, priced once a day"
   },
+  "needs-analysis-tu-van-bao-hiem": {
+    "title": "Needs Analysis in Insurance Advice: pinning down what a client actually needs protecting",
+    "subtitle": "Human Life Value and Capital Needs Analysis - the two ways of working out how much life cover is genuinely required",
+    "duration": "7 min"
+  },
   "net-income-y-nghia": {
     "title": "Net Income: meaning and limits",
     "subtitle": "The final line of the P&L - it doesn't always tell the whole truth",
@@ -2307,6 +2362,41 @@
     "title": "Net Profit Margin",
     "subtitle": "After everything - costs, interest, and tax - how much is left?",
     "duration": "5 min"
+  },
+  "ngan-hang-ngam-shadow-banking": {
+    "title": "FRM Current Issues, Lesson 1: shadow banking and systemic risk off the balance sheet",
+    "subtitle": "When banking functions are performed by institutions that are not supervised like banks",
+    "duration": "9 min"
+  },
+  "ngan-sach-va-du-bao-tai-chinh": {
+    "title": "Budgeting & financial forecasting - planning in order to steer",
+    "subtitle": "From forecast to replanning when reality moves",
+    "duration": "8 min"
+  },
+  "ngang-gia-lai-suat-va-ty-gia-ky-han": {
+    "title": "International finance, part 1: interest rate parity - why a forward rate is not a forecast",
+    "subtitle": "The interest rate gap sets the forward points, and why a high rate does not mean a profit",
+    "duration": "11 min"
+  },
+  "ngang-gia-suc-mua-va-ty-gia-thuc": {
+    "title": "International finance, part 2: purchasing power parity and the real exchange rate - the long-run anchor",
+    "subtitle": "Inflation, the real effective exchange rate, and how to judge whether a currency is expensive or cheap",
+    "duration": "10 min"
+  },
+  "nguon-va-su-dung-von-trong-thuong-vu": {
+    "title": "Deals, part 2: sources and uses - where the money comes from and where it goes",
+    "subtitle": "The sources & uses table, why enterprise value differs from cash required, and the items that get forgotten",
+    "duration": "11 min"
+  },
+  "nguyen-tac-dung-mo-hinh-tai-chinh": {
+    "title": "Financial modelling, part 1: modelling principles - structure before formulas",
+    "subtitle": "Why a broken model is usually a layout problem rather than an arithmetic one",
+    "duration": "8 min"
+  },
+  "nhung-tham-hoa-tai-chinh-kinh-dien": {
+    "title": "FRM Foundations, part 3: the classic financial disasters and their shared pattern",
+    "subtitle": "LTCM, the 2008 crisis and the lesson that keeps repeating: leverage, mispriced correlation, and liquidity risk all arriving at once",
+    "duration": "11 min"
   },
   "no-co-loi-ich-gi": {
     "title": "What benefit does debt provide a business?",
@@ -2328,6 +2418,11 @@
     "subtitle": "Not every debt is bad. What matters is what the debt creates.",
     "duration": "6 min"
   },
+  "no-vay-lai-vay-vong-lap-circularity": {
+    "title": "Financial modelling, part 5: debt, interest and circularity in a model",
+    "subtitle": "Why interest expense creates a circular reference, and how to deal with it",
+    "duration": "9 min"
+  },
   "npv-co-ban": {
     "title": "NPV: Net Present Value",
     "subtitle": "Does the project create value? NPV gives the answer",
@@ -2337,6 +2432,21 @@
     "title": "Why is NPV better than Payback?",
     "subtitle": "Comparing project appraisal methods",
     "duration": "6 min"
+  },
+  "nudge-theory-thiet-ke-san-pham-tai-chinh": {
+    "title": "Nudge theory & choice architecture: designing financial products responsibly",
+    "subtitle": "From auto-enrolment to robo-advisers - how behavioural biases are applied deliberately to help customers make better decisions",
+    "duration": "8 min"
+  },
+  "nvidia-cash-securities": {
+    "title": "NVIDIA Q1/26 - Cash & Marketable Securities",
+    "subtitle": "Treasury vs FP&A: one balance, two ways of reading it",
+    "duration": "7 min"
+  },
+  "oil-gas-business-model": {
+    "title": "The 4 oil & gas business models",
+    "subtitle": "Production, services, transport, refining",
+    "duration": "7 min"
   },
   "on-tap-3-bao-cao": {
     "title": "Review: the three financial statements",
@@ -2361,6 +2471,11 @@
   "on-tap-ke-toan-co-ban": {
     "title": "Review: reading the language of accounting",
     "subtitle": "Connecting assets, liabilities, equity and cash flow together",
+    "duration": "7 min"
+  },
+  "on-tap-npv": {
+    "title": "NPV review - Net Present Value",
+    "subtitle": "The single most important tool in capital budgeting and company valuation",
     "duration": "7 min"
   },
   "on-tap-tai-chinh-doanh-nghiep": {
@@ -2436,10 +2551,70 @@
     "subtitle": "A level cash flow that continues indefinitely",
     "duration": "5 min"
   },
+  "phan-bo-chi-phi-va-loi-nhuan-bo-phan": {
+    "title": "Planning, part 5: cost allocation - why segment profit is always contested",
+    "subtitle": "Direct costs, overheads and the allocation basis: when a number decides whose budget gets cut",
+    "duration": "11 min"
+  },
+  "phan-bo-gia-mua-va-loi-the-thuong-mai": {
+    "title": "Deals, Lesson 3: Purchase price allocation - where goodwill comes from and why it gets written down",
+    "subtitle": "Fair value step-ups, identifiable intangibles, and the amortisation trap that follows a deal",
+    "duration": "12 min"
+  },
+  "phan-phoi-xac-suat-trong-tai-chinh": {
+    "title": "Quant, Lesson 1: Probability distributions in finance - and why the tails are always fatter than you think",
+    "subtitle": "Normal, lognormal, skewness and kurtosis: four numbers that describe a return series",
+    "duration": "11 min"
+  },
+  "phan-tich-bao-cao-theo-ty-trong": {
+    "title": "Common-size analysis - comparing a trillion-dong business with a hundred-billion one",
+    "subtitle": "Restate every line as a percentage of a shared base, before you compare anything at all",
+    "duration": "9 min"
+  },
+  "phan-tich-cam-xuc-tin-tuc-bang-ai": {
+    "title": "AI in Finance, Lesson 8: News sentiment analysis with AI",
+    "subtitle": "Read whether the news is positive or negative, without mistaking mood for value.",
+    "duration": "15 min"
+  },
   "phan-tich-co-phieu": {
     "title": "Case study: Analyzing a stock, step by step",
     "subtitle": "Stock analysis example",
     "duration": "8 min"
+  },
+  "phan-tich-cohort-va-cai-bay-trung-binh": {
+    "title": "Data Thinking, Lesson 2: Cohort analysis - when the average hides the truth",
+    "subtitle": "Why splitting data by start date exposes trends the aggregate keeps buried",
+    "duration": "11 min"
+  },
+  "phan-tich-cvp-va-diem-hoa-von": {
+    "title": "Cost-Volume-Profit (CVP) analysis & the breakeven point",
+    "subtitle": "The core management accounting tool for answering: how much do we have to sell to make money, and what does a change in price do to profit",
+    "duration": "7 min"
+  },
+  "phan-tich-do-nhay-va-kich-ban": {
+    "title": "Financial Modelling, Lesson 7: Sensitivity and scenario analysis",
+    "subtitle": "From a single number to a range that actually means something",
+    "duration": "8 min"
+  },
+  "phan-tich-ky-thuat-cho-moi-gioi": {
+    "title": "Technical analysis for stockbrokers",
+    "subtitle": "Support, resistance and moving averages - the simplest tools for forming a market view",
+    "duration": "7 min"
+  },
+  "phan-tich-variance-thuc-te-vs-ke-hoach": {
+    "title": "CFO & Operations, Lesson 3: Variance analysis - actual against plan",
+    "subtitle": "Missing the plan is not automatically bad - what matters is understanding why",
+    "duration": "7 min"
+  },
+  "phap-ly-du-an-bat-dong-san-va-dong-tien": {
+    "title": "Property Projects, Lesson 1: Permits - why the cash flow starts with a piece of paper",
+    "subtitle": "Four legal milestones decide when money is allowed to flow in, and why slipping one costs more than a construction overrun",
+    "duration": "11 min"
+  },
+  "phi-quan-ly-carry-va-waterfall": {
+    "title": "Private markets, Lesson 2: Management fees, carry and the waterfall - how a fund manager gets paid",
+    "subtitle": "The hurdle rate, the catch-up mechanism and the order in which money is distributed",
+    "duration": "12 min"
   },
   "phi-quan-ly": {
     "title": "Expense ratios: the cost of your portfolio",
@@ -2450,10 +2625,30 @@
     "title": "Fund fees: the hidden cost you're paying",
     "subtitle": "Expense ratio"
   },
+  "phim-tat-excel-va-ky-luat-ban-phim": {
+    "title": "Excel, Lesson 1: Keyboard discipline - why a modelling test bans the mouse",
+    "subtitle": "The core shortcut groups, navigating a data range, and the working habits of a professional modeller",
+    "duration": "10 min"
+  },
   "portfolio-la-gi": {
     "title": "What is a portfolio?",
     "subtitle": "A collection of investments managed as a single whole",
     "duration": "5 min"
+  },
+  "post-ipo-dividend": {
+    "title": "Post-IPO: Should You Pay a Dividend?",
+    "subtitle": "FCF vs net income - when it makes sense to hand cash back to shareholders",
+    "duration": "6 min"
+  },
+  "post-merger-integration-vi-sao-that-bai": {
+    "title": "IB & Analysis, Lesson 9: Post-Merger Integration - why so many M&A deals fail",
+    "subtitle": "Signing the deal is only the start - the hard part begins after the ink dries",
+    "duration": "7 min"
+  },
+  "power-query-lam-sach-du-lieu": {
+    "title": "Excel, Lesson 5: Power Query - clean the data once, reuse it forever",
+    "subtitle": "A repeatable cleaning process instead of copying and hand-fixing every month",
+    "duration": "11 min"
   },
   "precedent-transaction-la-gi": {
     "title": "What is Precedent Transaction analysis?",
@@ -2475,9 +2670,44 @@
     "subtitle": "Investing in unlisted companies to create value",
     "duration": "6 min"
   },
+  "project-doc-mot-tai-lieu-tai-chinh": {
+    "title": "AI in Finance, Lesson 16: A small project - reading one financial document",
+    "subtitle": "Practice, from a real document to a sourced summary.",
+    "duration": "16 min"
+  },
+  "project-tim-rui-ro-va-cau-hoi-kiem-chung": {
+    "title": "AI in Finance, Lesson 17: A small project - finding risks and verification questions",
+    "subtitle": "Turning AI into an assistant that points out where to dig deeper.",
+    "duration": "16 min"
+  },
+  "project-tu-phan-bien-va-kiem-chung": {
+    "title": "AI in Finance, Lesson 19: A small project - self-critique and verification",
+    "subtitle": "Making AI pick holes in its own draft before you use it.",
+    "duration": "16 min"
+  },
+  "project-viet-ban-ghi-nho-mot-trang": {
+    "title": "AI in Finance, Lesson 18: A small project - writing a one-page memo",
+    "subtitle": "From document and risks to a short, readable memo.",
+    "duration": "16 min"
+  },
+  "prospect-theory-khung-ly-thuyet-chinh-thuc": {
+    "title": "Prospect Theory: the formal framework behind every behavioural bias",
+    "subtitle": "The asymmetric value function, the reflection effect, and how Kahneman and Tversky put human irrationality into mathematics",
+    "duration": "8 min"
+  },
+  "put-call-parity-va-nguyen-ly-khong-arbitrage": {
+    "title": "Derivatives, Lesson 1: Put-call parity - pricing options before you have any formula",
+    "subtitle": "The no-arbitrage principle and the binding relationship between calls, puts, stock and bonds",
+    "duration": "11 min"
+  },
   "put-option-la-gi": {
     "title": "What Is a Put Option?",
     "subtitle": "The right to sell an asset at a fixed price - expecting a price drop or wanting to insure a portfolio"
+  },
+  "pvgas-bad-debt": {
+    "title": "PVGas bad debt, Q1/2026",
+    "subtitle": "Receivables, concentration risk and the quality of revenue",
+    "duration": "6 min"
   },
   "qua-tu-tin-va-neo-gia-trong-dau-tu": {
     "title": "Overconfidence and anchoring: why everyone thinks they are above average",
@@ -2494,6 +2724,21 @@
     "subtitle": "Not every debt deserves to be paid off at the same speed",
     "duration": "7 min"
   },
+  "quan-ly-rui-ro-lai-suat-doanh-nghiep": {
+    "title": "CFO & Operations, Lesson 6: Managing corporate interest rate risk",
+    "subtitle": "A heavily borrowed business has to manage rate volatility actively, not just 'wait and see'",
+    "duration": "7 min"
+  },
+  "quan-ly-rui-ro-ty-gia-doanh-nghiep-xnk": {
+    "title": "CFO & Operations, Lesson 7: Managing FX risk for import-export businesses",
+    "subtitle": "An exchange rate move can wipe out the entire margin on a large order",
+    "duration": "7 min"
+  },
+  "quan-ly-tai-san-no-alm-irrbb": {
+    "title": "FRM Liquidity, Lesson 3: Asset-Liability Management (ALM) and interest rate risk in the banking book",
+    "subtitle": "Why a bank can lose heavily without trading at all - purely because the maturity structure of its assets and liabilities do not line up",
+    "duration": "10 min"
+  },
   "quan-ly-tai-san-qua-cac-giai-doan": {
     "title": "Stage 8, Lesson 9: Managing wealth across the stages of life",
     "subtitle": "The financial strategy that fits at 25 no longer fits at 55 - and that is entirely normal.",
@@ -2509,6 +2754,11 @@
     "subtitle": "VaR, expected shortfall, backtesting and stress testing - and the dangerous limits of every risk model.",
     "duration": "14 min"
   },
+  "quant-strategies-momentum-mean-reversion": {
+    "title": "Quant strategies, the basics: momentum, mean reversion and statistical arbitrage",
+    "subtitle": "The three most common families of quantitative strategy - and the mathematical or psychological logic behind each",
+    "duration": "8 min"
+  },
   "quick-ratio": {
     "title": "Quick Ratio: Acid-Test Liquidity",
     "subtitle": "Excludes inventory - stricter than the Current Ratio",
@@ -2522,6 +2772,11 @@
     "title": "Track 1, Lesson 5: The emergency fund - a cushion against every shock",
     "subtitle": "Without an emergency fund, a small shock (job loss, illness) can push you into a spiral of debt.",
     "duration": "5 min"
+  },
+  "quy-mo-etf-noi-va-chung-chi-quy": {
+    "title": "The Vietnamese market, Lesson 7: open-ended funds, domestic ETFs and fund certificates",
+    "subtitle": "How to reach diversification while your capital is still small",
+    "duration": "10 min"
   },
   "quy-tac-4-phan-tram": {
     "title": "The 4% rule: how much you can withdraw in retirement",
@@ -2538,6 +2793,26 @@
     "subtitle": "Bond funds",
     "duration": "6 min"
   },
+  "quy-trinh-dau-tu-quy-tu-thesis-den-portfolio": {
+    "title": "A fund's investment process: from investment thesis to portfolio construction",
+    "subtitle": "A professional fund does not buy shares at random - this is the systematic process behind every decision",
+    "duration": "8 min"
+  },
+  "quy-trinh-hoach-dinh-tai-chinh-6-buoc": {
+    "title": "The six-step financial planning process: the standard framework of every financial advisor",
+    "subtitle": "From gathering information to monitoring the plan - the systematic process behind every piece of professional financial advice",
+    "duration": "8 min"
+  },
+  "quy-trinh-tham-dinh-tin-dung-5c-framework": {
+    "title": "The credit appraisal process: the 5C framework - do not lend bad money",
+    "subtitle": "Before lending, you have to examine the borrower carefully - the 5Cs let you do it systematically.",
+    "duration": "7 min"
+  },
+  "quy-trinh-thuong-vu-va-phe-duyet-canh-tranh": {
+    "title": "Deals, Lesson 5: from the letter of interest to closing day - the process and the gates to pass",
+    "subtitle": "The document milestones, the gap between signing and closing, conditions precedent and competition approval",
+    "duration": "11 min"
+  },
   "quy-tuong-tac": {
     "title": "Active funds: expert management",
     "subtitle": "Managed funds"
@@ -2546,6 +2821,11 @@
     "title": "Tax Track, Lesson 6: The year-end tax finalisation and refunds",
     "subtitle": "When you have to file, and when money comes back to you",
     "duration": "8 min"
+  },
+  "quyet-toan-va-thanh-tra-thue": {
+    "title": "Standards & Tax, Lesson 8: tax finalisation and tax audits",
+    "subtitle": "What happens when the tax authority re-examines what has already been declared",
+    "duration": "9 min"
   },
   "receivables-turnover": {
     "title": "Receivables Turnover",
@@ -2602,9 +2882,19 @@
     "subtitle": "Return on Invested Capital - measuring genuine value creation",
     "duration": "7 min"
   },
+  "room-ngoai-va-nang-hang-thi-truong": {
+    "title": "The Vietnamese market, Lesson 2: foreign ownership room and market reclassification - where foreign capital comes from",
+    "subtitle": "Foreign ownership limits, market classification criteria, and what they mean for valuation",
+    "duration": "11 min"
+  },
   "rui-ro-danh-muc": {
     "title": "Risk of an individual stock vs a portfolio",
     "subtitle": "Risk management"
+  },
+  "rui-ro-du-an-bat-dong-san-va-kich-ban": {
+    "title": "Property projects, Lesson 5: three risks and how they compound on each other",
+    "subtitle": "Permitting delay, cost overrun, a market that turns - and why they never arrive on their own",
+    "duration": "11 min"
   },
   "rui-ro-khi-hau-nhu-rui-ro-tai-chinh": {
     "title": "Climate risk as a financial risk",
@@ -2620,6 +2910,41 @@
     "title": "Interest rate risk: how bond prices change",
     "subtitle": "Interest rate risk",
     "duration": "6 min"
+  },
+  "rui-ro-lien-ket-he-thong-too-interconnected": {
+    "title": "FRM Current Issues, Lesson 2: Interconnection risk - too-interconnected-to-fail",
+    "subtitle": "Why size is not the only measure of how systemically important a financial institution is",
+    "duration": "9 min"
+  },
+  "rui-ro-mo-hinh-va-rui-ro-ben-thu-ba": {
+    "title": "FRM Operational, Lesson 3: Model risk and third-party risk",
+    "subtitle": "When the instrument that measures risk becomes a source of it - and why internal control does not stop at the edge of the organisation",
+    "duration": "9 min"
+  },
+  "rui-ro-tai-tro-va-ke-hoach-tai-tro-du-phong": {
+    "title": "FRM Liquidity, Lesson 2: Funding risk and the Contingency Funding Plan (CFP)",
+    "subtitle": "Measuring liquidity risk is not enough - the playbook has to exist before the crisis does",
+    "duration": "9 min"
+  },
+  "rui-ro-thanh-khoan-ngan-hang-lcr-nsfr": {
+    "title": "FRM Liquidity, Lesson 1: Bank liquidity risk - LCR and NSFR",
+    "subtitle": "The two Basel III ratios written after 2008 to answer: does the bank survive a month of panic, and is its funding structure sustainable over the long run",
+    "duration": "10 min"
+  },
+  "rui-ro-tin-dung-chu-quyen-sovereign-credit-risk": {
+    "title": "FRM Credit Risk, Lesson 4: Sovereign credit risk",
+    "subtitle": "A government cannot be forced into bankruptcy the way a company can - but it can still choose not to pay",
+    "duration": "9 min"
+  },
+  "rui-ro-tin-dung-doi-tac-cva-va-danh-muc": {
+    "title": "FRM Credit Risk, Lesson 3: Counterparty credit risk (CVA) and portfolio credit models",
+    "subtitle": "Why a derivative contract that is worth money to you can still cost you money",
+    "duration": "10 min"
+  },
+  "rui-ro-ty-gia-tren-bao-cao-hop-nhat": {
+    "title": "International Finance, Lesson 4: FX risk in the accounts - transaction, translation and economic",
+    "subtitle": "Three different exposures, and why only one of the three actually costs the business money",
+    "duration": "11 min"
   },
   "rui-ro-vo-no": {
     "title": "Default risk: bond credit ratings",
@@ -2655,6 +2980,16 @@
     "subtitle": "Measuring return earned per unit of risk taken on",
     "duration": "6 min"
   },
+  "so-nhat-ky-so-cai-va-bang-can-doi-thu": {
+    "title": "Bookkeeping, Lesson 2: From journal to statements - the path a transaction takes",
+    "subtitle": "General journal, general ledger, trial balance: three stages that turn thousands of entries into four pages of accounts",
+    "duration": "10 min"
+  },
+  "solvency-ii-quy-dinh-bao-hiem": {
+    "title": "Solvency II and insurance regulation: making sure the insurer is still there",
+    "subtitle": "SCR, MCR, and the framework that keeps the insurance industry from repeating the solvency crises in its own history",
+    "duration": "7 min"
+  },
   "speculation-la-gi": {
     "title": "What Is Speculation?",
     "subtitle": "Using derivatives to bet on price direction for profit - with no underlying risk to protect"
@@ -2664,10 +2999,30 @@
     "subtitle": "The yield gap that reflects perceived risk",
     "duration": "6 min"
   },
+  "sql-co-ban-cho-dan-tai-chinh": {
+    "title": "Excel, Lesson 6: Basic SQL for finance people - getting exactly the data you need",
+    "subtitle": "SELECT, WHERE, GROUP BY, JOIN: enough to query for yourself instead of waiting on the data team",
+    "duration": "12 min"
+  },
+  "sql-nang-cao-join-va-window-function": {
+    "title": "Data, Lesson 6: Advanced SQL - joining tables and computing over windows",
+    "subtitle": "The four kinds of JOIN, the row-duplication trap, and the family of functions that solves ranking and running totals",
+    "duration": "12 min"
+  },
+  "stablecoin-va-rui-ro-he-thong-tai-san-so": {
+    "title": "FRM Current Issues, Lesson 3: Stablecoins and systemic risk from digital assets",
+    "subtitle": "A token that promises a \"1:1 peg\" can still lose that peg within hours - and take a whole ecosystem down with it",
+    "duration": "9 min"
+  },
   "standard-deviation-dau-tu": {
     "title": "Standard deviation in investing",
     "subtitle": "The mathematical tool that precisely measures volatility",
     "duration": "7 min"
+  },
+  "stress-testing-va-kich-ban-nguoc": {
+    "title": "Market Risk, Lesson 6: Stress testing and reverse scenarios - when the model is no longer enough",
+    "subtitle": "Historical and hypothetical scenarios, the reverse stress test, and why stress testing supplements VaR rather than replacing it",
+    "duration": "11 min"
   },
   "strike-price-expiration-date": {
     "title": "Strike Price and Expiration Date",
@@ -2684,13 +3039,18 @@
   },
   "synergy-ma": {
     "title": "Estimating synergy soberly: why most deals fall short",
-    "subtitle": "The number on the slide, the premium paid, and five ways to cut the optimism back",
+    "subtitle": "The number on the slide, the premium paid, and five ways to cut the optimism out",
     "duration": "8 min"
   },
   "synergy-trong-ma": {
     "title": "Synergy in M&A",
     "subtitle": "1+1=3 - or just an illusion?",
     "duration": "9 min"
+  },
+  "tai-bao-hiem-chia-rui-ro": {
+    "title": "Pricing, Lesson 3: Reinsurance - who does an insurer buy insurance from",
+    "subtitle": "Proportional and excess-of-loss reinsurance, the real reason risk gets ceded, and where it stops working",
+    "duration": "10 min"
   },
   "tai-can-bang-danh-muc-ca-nhan": {
     "title": "Track 7, Lesson 6: Rebalancing - holding the risk level you actually chose",
@@ -2760,14 +3120,19 @@
     "title": "Investor psychology: greed and fear",
     "subtitle": "Behavioral finance basics"
   },
+  "tao-tro-ly-ai-rieng-cho-tai-chinh": {
+    "title": "AI in Finance, Lesson 9: Building your own AI assistant for finance",
+    "subtitle": "Set the ground rules so the AI answers the way you want and stops inventing numbers.",
+    "duration": "16 min"
+  },
   "terminal-value-la-gi": {
     "title": "What is Terminal Value?",
     "subtitle": "The single largest share of value in most DCF models",
     "duration": "10 min"
   },
   "tesla-cash-flow": {
-    "title": "Tesla Q1 2026 cash flow",
-    "subtitle": "Net income vs operating cash flow - the difference",
+    "title": "Tesla Q1 2026 Cash Flow",
+    "subtitle": "Net income vs operating cash flow - where the gap comes from",
     "duration": "6 min"
   },
   "thanh-khoan-la-gi": {
@@ -2790,10 +3155,30 @@
     "subtitle": "A financial market is where people with spare capital meet people who need capital, through price.",
     "duration": "7 min"
   },
+  "thien-kien-hanh-vi-trong-phan-tich-equity": {
+    "title": "Behavioural bias in equity research: when the experts are wrong too",
+    "subtitle": "Overconfidence, herding and analyst optimism bias - why professional analysts' forecasts are still systematically skewed",
+    "duration": "8 min"
+  },
+  "thien-kien-hanh-vi-trong-tai-chinh-doanh-nghiep": {
+    "title": "Behavioural bias in corporate finance: M&A, capital budgeting and CEO overconfidence",
+    "subtitle": "Why 70% of M&A deals create no value for the buyer's shareholders - and what that has to do with psychology",
+    "duration": "8 min"
+  },
   "thien-kien-hien-tai-va-tiet-kiem-huu-tri": {
     "title": "Present bias: why we know we should save for retirement and still do not",
     "subtitle": "Your brain values 1 million today far above 1 million in 10 years - even when the future reward is many times larger",
     "duration": "6 min"
+  },
+  "thoai-von-carve-out-va-spin-off": {
+    "title": "Deals, Lesson 4: Divestment - why selling one unit is harder than buying a whole company",
+    "subtitle": "Carve-outs, spin-offs, stranded costs, and financial statements for something that has never existed on its own",
+    "duration": "11 min"
+  },
+  "thoai-von-va-thi-truong-thu-cap": {
+    "title": "Private markets, Lesson 4: Exits and the secondary market - when paper money becomes money",
+    "subtitle": "The four exit routes, fund life pressure, and the role of the market in fund interests",
+    "duration": "11 min"
   },
   "thu-nhap-chi-phi-tiet-kiem": {
     "title": "Income, expenses, saving and investing.",
@@ -2804,10 +3189,25 @@
     "title": "Calculating tax on stock investment profit",
     "subtitle": "Tax implications"
   },
+  "thue-gtgt-va-thue-nha-thau": {
+    "title": "Standards & Tax, Lesson 4: VAT and foreign contractor tax - a cash flow effect, not a profit effect",
+    "subtitle": "Why a business that merely collects a tax on someone else's behalf can still be killed by it",
+    "duration": "10 min"
+  },
+  "thue-hoan-lai-deferred-tax": {
+    "title": "Standards & Tax, Lesson 5: Deferred tax - the hardest line on the balance sheet",
+    "subtitle": "Temporary differences between accounting and tax, and why they tell you about the future",
+    "duration": "11 min"
+  },
   "thue-nha-hay-mua-nha": {
     "title": "Stage 9, Lesson 3: Rent or buy - which calculation is the right one?",
     "subtitle": "There is no single answer that fits everybody",
     "duration": "7 min"
+  },
+  "thue-thu-nhap-doanh-nghiep-cach-tinh": {
+    "title": "Standards & Tax, Lesson 3: Corporate income tax - from accounting profit to tax payable",
+    "subtitle": "Deductible costs, non-deductible costs, loss carry-forward and tax incentives",
+    "duration": "12 min"
   },
   "thue-thu-nhap-ngoai-luong-freelance-cho-thue-nha": {
     "title": "Tax Track, Lesson 7: Income outside your salary - freelancing, renting out property, household businesses",
@@ -2818,6 +3218,11 @@
     "title": "Tax on bond interest income",
     "subtitle": "Bond tax implications",
     "duration": "6 min"
+  },
+  "thuong-vu-lam-tang-hay-giam-eps": {
+    "title": "Deals, Lesson 1: Accretion or dilution - the first calculation of every transaction",
+    "subtitle": "The three costs of a deal, the P/E rule for all-stock transactions, and why it is not a measure of value",
+    "duration": "12 min"
   },
   "tien-huu-tri": {
     "title": "How much money for a comfortable retirement",
@@ -2834,6 +3239,11 @@
     "subtitle": "Cash & equivalents - the safest slice of assets",
     "duration": "5 min"
   },
+  "tim-rui-ro-trong-bctc-bang-ai": {
+    "title": "AI in Finance, Lesson 6: Finding risk in financial statements with AI",
+    "subtitle": "Focus on cash flow, receivables, inventory, borrowings and the notes.",
+    "duration": "16 min"
+  },
   "tinh-npv-du-an": {
     "title": "Case study: Calculating the NPV of a simple project",
     "subtitle": "A practical application: opening a new branch - is it worth it?",
@@ -2844,10 +3254,20 @@
     "subtitle": "Net worth statement",
     "duration": "6 min"
   },
+  "tom-tat-hop-va-dhdcd-bang-ai": {
+    "title": "AI in Finance, Lesson 7: Summarising meetings and the AGM with AI",
+    "subtitle": "Turn a long document into plans, dividends, projects and shareholder questions.",
+    "duration": "14 min"
+  },
   "tong-ket-chang-7-quyet-dinh-tai-chinh-lon": {
     "title": "Stage 9, Lesson 10: Recap - a checklist for the big financial decisions of a life",
     "subtitle": "Housing, credit, insurance, marriage, inheritance - looking back over the whole stage",
     "duration": "7 min"
+  },
+  "tong-ket-chang-ai-trong-tai-chinh": {
+    "title": "AI in Finance, Lesson 20: Wrap-up - an AI workflow in finance for beginners",
+    "subtitle": "Putting it all together into a daily working and learning routine.",
+    "duration": "15 min"
   },
   "tong-ket-hanh-trinh-tai-chinh-ca-nhan": {
     "title": "262-day journey review - building sustainable financial habits",
@@ -2857,6 +3277,11 @@
   "tong-ket-track-ca-nhan-toan-dien": {
     "title": "Stage 8, Lesson 10: Recap of the whole personal finance journey",
     "subtitle": "From knowing where you stand, to building a portfolio, to managing wealth across a lifetime - the whole picture.",
+    "duration": "7 min"
+  },
+  "tong-ket-vai-tro-cfo-hien-dai": {
+    "title": "CFO & Operations, Lesson 9: Wrap-up - the role of the modern CFO",
+    "subtitle": "From bookkeeper to strategic partner of the CEO",
     "duration": "7 min"
   },
   "tong-ket-xay-he-mien-dich-tam-ly-tai-chinh": {
@@ -2907,6 +3332,11 @@
     "subtitle": "Introduction to bonds",
     "duration": "6 min"
   },
+  "trai-phieu-doanh-nghiep-rieng-le-bai-hoc": {
+    "title": "Vietnam Markets, Lesson 3: Privately placed corporate bonds - anatomy of a crisis",
+    "subtitle": "Private placement, professional investors, and the lesson about refinancing risk",
+    "duration": "12 min"
+  },
   "trai-phieu-doanh-nghiep": {
     "title": "Vietnamese corporate bonds",
     "subtitle": "Characteristics, risks, and lessons from Vietnam's bond market",
@@ -2942,6 +3372,26 @@
     "subtitle": "Government bonds - the market's safest reference point",
     "duration": "6 min"
   },
+  "treasury-management-quan-ly-dong-tien": {
+    "title": "CFO & Operations, Lesson 5: Treasury management - running corporate cash flow",
+    "subtitle": "Making sure the company is never short of cash at the moment it matters most",
+    "duration": "7 min"
+  },
+  "trinh-bay-va-phan-bien-truoc-hoi-dong-dau-tu": {
+    "title": "Professional Skills, Lesson 2: Defending your thesis before the investment committee",
+    "subtitle": "Answering hard questions, admitting limits, and telling being challenged apart from being rejected",
+    "duration": "11 min"
+  },
+  "trong-yeu-va-mo-hinh-rui-ro-kiem-toan": {
+    "title": "Audit, Lesson 2: Materiality and risk - deciding what to test",
+    "subtitle": "How materiality is set, the three components of audit risk, and why the risky areas get the deepest testing",
+    "duration": "12 min"
+  },
+  "truc-quan-hoa-va-bieu-do-noi-doi": {
+    "title": "Data, Lesson 4: Visualisation - picking the right chart, and spotting the one that lies",
+    "subtitle": "Four questions that decide the chart type, and the axis tricks that make true numbers tell the wrong story",
+    "duration": "11 min"
+  },
   "tu-do-tai-chinh": {
     "title": "Track review: from safety net to financial freedom",
     "subtitle": "Stage 4 summary",
@@ -2962,10 +3412,45 @@
     "subtitle": "When to hire an advisor",
     "duration": "6 min"
   },
+  "tuong-quan-copula-va-phu-thuoc-duoi": {
+    "title": "Market Risk, Lesson 5: Correlation, copulas and tail dependence",
+    "subtitle": "Why a correlation coefficient does not describe enough, how dependence separates from the marginal distributions, and the lesson of 2008",
+    "duration": "12 min"
+  },
+  "tuong-quan-khong-phai-nhan-qua": {
+    "title": "Data Thinking, Lesson 4: Correlation is not causation - and three ways to be fooled",
+    "subtitle": "Confounding, reverse causality, survivorship bias: three mechanisms that turn real data into a wrong conclusion",
+    "duration": "11 min"
+  },
   "unit-economics": {
     "title": "Unit Economics",
     "subtitle": "Profit per unit - the foundation of every business model",
     "duration": "7 min"
+  },
+  "uu-dai-thue-va-chuyen-gia": {
+    "title": "Standards & Tax, Lesson 7: Tax incentives and related-party transactions",
+    "subtitle": "Two mechanisms that shape the tax burden of a foreign-invested business",
+    "duration": "10 min"
+  },
+  "valuation-report-tinh-hop-ly-dinh-gia": {
+    "title": "Valuation Reports & Reasonableness - Presenting a valuation convincingly",
+    "subtitle": "A valuation is a number, but a valuation report has to explain why that number is reasonable.",
+    "duration": "7 min"
+  },
+  "value-at-risk-var-stress-testing": {
+    "title": "Value at Risk (VaR) & Stress Testing - Measuring the maximum risk",
+    "subtitle": "When you cannot remove risk, the next best thing is to measure it accurately.",
+    "duration": "8 min"
+  },
+  "van-hoa-rui-ro-va-dao-duc-nghe-quan-tri-rui-ro": {
+    "title": "FRM Foundations, Lesson 2: Risk culture - why the right structure can still fail",
+    "subtitle": "Misaligned incentives, behavioural bias, and the GARP Code of Conduct",
+    "duration": "9 min"
+  },
+  "vas-vs-ifrs-khac-biet-nen-tang": {
+    "title": "Standards & Tax, Lesson 1: Where VAS and IFRS differ",
+    "subtitle": "Historical cost versus fair value: one philosophical difference that drags a long list of numerical differences behind it",
+    "duration": "11 min"
   },
   "vay-gia-dinh": {
     "title": "Siblings, friends, family: how to lend money",
@@ -3002,12 +3487,12 @@
   },
   "viet-ban-ghi-nho-tai-chinh-bang-ai": {
     "title": "AI in Finance, Lesson 10: Writing a financial memo with AI",
-    "subtitle": "From scattered data to a memo that is short, clear and carries its risks.",
+    "subtitle": "From scattered data to a memo that is short, clear, and honest about its risks.",
     "duration": "15 min"
   },
   "viet-memo-dau-tu-mot-trang": {
-    "title": "Professional skills, Lesson 1: The one-page investment memo - conclusion first, evidence after",
-    "subtitle": "The pyramid structure, falsifiable arguments, and writing for someone who reads three lines",
+    "title": "Professional Skills, Lesson 1: The one-page investment memo - conclusion first, evidence after",
+    "subtitle": "The pyramid structure, testable claims, and writing for a reader who only gets through three lines",
     "duration": "11 min"
   },
   "vingroup-cash-flow": {
@@ -3042,7 +3527,7 @@
   },
   "wealth-management": {
     "title": "What is wealth management?",
-    "subtitle": "Net worth, asset allocation and the portfolio you expect",
+    "subtitle": "Net worth, asset allocation and the portfolio you should expect",
     "duration": "6 min"
   },
   "working-capital-management": {
@@ -3060,14 +3545,19 @@
     "subtitle": "Combining everything covered: value, growth, the basic ratios, diversification, rebalancing and psychological discipline.",
     "duration": "7 min"
   },
+  "xay-dung-ngan-sach-doanh-nghiep": {
+    "title": "CFO & Operations, Lesson 1: Building a corporate budget",
+    "subtitle": "Top-down, bottom-up, or a mix - each approach carries its own trade-off",
+    "duration": "7 min"
+  },
   "xay-thu-vien-prompt-ca-nhan": {
     "title": "AI in Finance, Lesson 15: Building your own prompt library",
     "subtitle": "Save the prompts you use often so you never write them from scratch again.",
     "duration": "14 min"
   },
   "y-kien-cong-bang-va-nghia-vu-hoi-dong": {
-    "title": "Deals, Lesson 6: The fairness opinion and the board's duties",
-    "subtitle": "Who protects minority shareholders, what the investment bank actually signs, and why the conflict is structural",
+    "title": "Deals, Lesson 6: The fairness opinion and the duties of the board",
+    "subtitle": "Who protects minority shareholders, what the investment bank is actually signing, and why the conflict of interest is structural",
     "duration": "11 min"
   },
   "y-kien-kiem-toan-doc-truoc-tien": {

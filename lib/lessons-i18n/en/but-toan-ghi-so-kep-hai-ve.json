@@ -167,5 +167,15 @@
         "Those two answers are the two sides of the entry."
       ]
     }
-  ]
+  ],
+  "practicePrompt": {
+    "question": "Total assets at the start of the month are VND 800m. During the month: a machine is bought for VND 120m paid immediately, VND 200m is borrowed from the bank, and VND 30m of wages is paid. What are total assets at the end of the month?",
+    "options": [
+      "VND 970m (= 800 + 200 − 30 of wages)",
+      "VND 1,090m (= adding the 120 machine on top)",
+      "VND 850m (= deducting the 120 paid for the machine)",
+      "VND 1,000m (= wages taken out of equity)"
+    ],
+    "explanation": "Three transactions, three different effects. Buying the machine does not change total assets: cash falls 120, the machine rises 120 - the wealth only changes form. Borrowing from the bank raises assets by 200 and liabilities by 200 at the same time, so the equation still balances. Paying wages is a real expense, cutting assets by 30 and equity by 30. 800 + 200 − 30 = 970. The two common errors are both on the machine purchase: either adding the machine while forgetting the cash went out, or deducting the cash while forgetting the machine is still an asset. Both are forgetting that an entry has two sides."
+  }
 }
