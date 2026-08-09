@@ -1,6 +1,7 @@
 import { createClient } from "@/lib/supabase";
 import { handleSupabaseError } from "@/lib/errors";
 import { uniqueRealtimeTopic } from "@/lib/supabase-realtime-topic";
+import { downscaleImage } from "@/lib/downscale-image";
 
 export interface ChatMessage {
   id: number;
@@ -41,13 +42,23 @@ export async function uploadChatImage(userId: string, file: File): Promise<strin
   const invalidReason = isAllowedChatImage(file);
   if (invalidReason) throw new Error(invalidReason);
 
+  // Kiểm tra giới hạn trên tệp GỐC rồi mới thu nhỏ: 8MB là ngưỡng người dùng
+  // được thông báo, và nới nó ngầm bằng cách nén sau khi kiểm sẽ biến một giới
+  // hạn rõ ràng thành một giới hạn tuỳ ảnh.
+  //
+  // Chỗ dựng ảnh này ra là một thẻ <img> cao 160 điểm ảnh, nên lưu bản gốc là
+  // trả tiền hai lần cho thứ không ai nhìn: dung lượng lưu trên Supabase, và
+  // băng thông ra cho từng lượt xem của từng người trong phòng. Xem
+  // lib/downscale-image.ts - nó trả lại chính tệp gốc khi thu không có lợi.
+  const upload = await downscaleImage(file);
+
   const supabase = createClient();
-  const ext = file.name.split(".").pop() || "png";
+  const ext = upload.name.split(".").pop() || "png";
   const path = `${userId}/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
 
   const { error } = await supabase.storage
     .from("chat-images")
-    .upload(path, file, { contentType: file.type || "image/png" });
+    .upload(path, upload, { contentType: upload.type || "image/png" });
   if (error) throw handleSupabaseError(error);
 
   const { data } = supabase.storage.from("chat-images").getPublicUrl(path);
