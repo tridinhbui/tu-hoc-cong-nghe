@@ -2243,7 +2243,15 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
       </div>
 
           {/* Right: Cấp độ/streak/bài học, gợi ý hôm nay, thử thách tin tức, BXH (3 columns on desktop xl+, full width on mobile/tablet) */}
-          <div className={`min-w-0 space-y-6 ${isLessonsView ? "xl:col-span-4 xl:min-h-0 xl:overflow-y-auto xl:pr-1.5" : "xl:space-y-0 xl:col-span-8 xl:min-h-0 xl:grid xl:grid-cols-2 xl:grid-rows-[minmax(0,1fr)_auto] xl:gap-3.5"}`}>
+          {/* Ba hàng, khai báo hẳn ra. Cột này có BỐN khối: phần thưởng
+              (chiếm dọc hai hàng đầu), gợi ý, mục tiêu nghề, và Góc yên tĩnh
+              trải ngang cả hai cột. Với `grid-rows-[minmax(0,1fr)_auto]` thì
+              khối thứ tư không còn chỗ và trình duyệt tự đẻ ra một HÀNG NGẦM
+              thứ ba - hàng đó không nằm trong khai báo nên chiều cao của nó
+              không ai tính, và trước đây `overflow-hidden` ở khối ngoài cùng
+              cắt luôn phần thừa. Đó là tấm thẻ cam bị mất một nửa ở đáy màn
+              hình rộng. */}
+          <div className={`min-w-0 space-y-6 ${isLessonsView ? "xl:col-span-4 xl:min-h-0 xl:overflow-y-auto xl:pr-1.5" : "xl:space-y-0 xl:col-span-8 xl:min-h-0 xl:grid xl:grid-cols-2 xl:grid-rows-[minmax(0,1fr)_auto_auto] xl:gap-3.5"}`}>
             {/* Study aids, beside the lesson list rather than stacked on top of
                 it - see the note in the left column. */}
             {isLessonsView && user?.id && (
