@@ -1,21 +1,54 @@
 /* ─── User Level System ─────────────────────────────────────────── */
 
+/** Thang cấp, đo bằng tổng XP.
+ *
+ *  Cân lại 09/08/2026, và cả hai đầu đều được nới vì cả hai đầu đều hỏng theo
+ *  cùng một cách: thang cũ được thiết kế cho một nền kinh tế XP không tồn tại.
+ *
+ *  ĐẦU VÀO. L2 từng ở 100 XP. Một bài học cộng 10 (XP_PER_LESSON), nên phần
+ *  thưởng đầu tiên của một người mới nằm cách đó MƯỜI bài, khoảng một giờ đọc.
+ *  Người học xong bài đầu tiên nhìn thấy "Level 1 · 10/100" - đúng 10% của bậc
+ *  thấp nhất - và không có gì xảy ra trong cả phiên đầu tiên. Giờ L2 ở 30 XP:
+ *  ba bài, khoảng 18 phút, vẫn phải học thật.
+ *
+ *  ĐẦU RA. Đếm hết những gì nội dung có thể sinh ra: 720 bài × 10 = 7.200, đủ
+ *  bốn chặng Active Recall cho MỌI bài × 30 = 21.600, toàn bộ bài thi chặng
+ *  1.300. Tổng 30.100 XP - trong khi L15 đứng ở 40.000. Nghĩa là một người học
+ *  hết sạch chương trình, không bỏ một chặng ôn nào, dừng ở L13; 9.900 XP còn
+ *  lại chỉ đến từ nhiệm vụ lặp (trần 120/tuần) và quiz (trần 30/ngày), tức
+ *  khoảng 30 tuần điểm danh khi đã không còn gì để học. Bảy bậc trên cùng là
+ *  đồ trang trí. L15 giờ ở 27.000: chạm tới khi hoàn thành ~90% nội dung, còn
+ *  3.100 XP biên cho người bỏ qua vài chặng ôn.
+ *
+ *  MỌI NGƯỠNG MỚI ĐỀU THẤP HƠN NGƯỠNG CŨ, và đó là ràng buộc chứ không phải
+ *  tình cờ. `current_level` được recalculateUserStats tính lại từ tổng XP mỗi
+ *  lần chạy, nên hạ ngưỡng chỉ có thể THĂNG cấp người đang học. Nâng bất kỳ
+ *  ngưỡng nào lên sẽ tụt cấp những người đã đứng ở đó - lấy lại một thứ đã trao
+ *  đi, thứ duy nhất trong hệ thống này không thể xin lỗi cho xong.
+ *
+ *  Ràng buộc đó được lib/__tests__/level-curve.test.ts giữ. */
 export const LEVELS = [
   { level: 1, name: "Tò mò", minXp: 0, color: "stone", emoji: "🌱" },
-  { level: 2, name: "Học viên", minXp: 100, color: "stone", emoji: "🎒" },
-  { level: 3, name: "Nhà đầu tư", minXp: 300, color: "stone", emoji: "💼" },
-  { level: 4, name: "Nhà phân tích", minXp: 600, color: "stone", emoji: "📊" },
-  { level: 5, name: "Cố vấn Tài chính", minXp: 1200, color: "stone", emoji: "🛡️" },
-  { level: 6, name: "Thạo thủ Tài chính", minXp: 2000, color: "emerald", emoji: "👑" },
-  { level: 7, name: "Chuyên gia Tài chính", minXp: 3200, color: "emerald", emoji: "🔥" },
-  { level: 8, name: "Bậc thầy Tài chính", minXp: 5000, color: "amber", emoji: "💎" },
-  { level: 9, name: "Chuyên viên CFA", minXp: 7500, minCfaCompleted: 5, color: "amber", emoji: "🎓" },
-  { level: 10, name: "Huyền thoại Đầu tư", minXp: 10500, color: "rose", emoji: "🦁" },
-  { level: 11, name: "Giám đốc Quỹ Hedge Fund", minXp: 14500, color: "purple", emoji: "🏛️" },
-  { level: 12, name: "Quản lý Danh mục Chiến lược", minXp: 19500, color: "indigo", emoji: "🌐" },
-  { level: 13, name: "Bậc thầy Phân tích Thị trường", minXp: 25500, color: "sky", emoji: "🚀" },
-  { level: 14, name: "Lãnh đạo Tài chính Tối cao", minXp: 32500, color: "teal", emoji: "⚡" },
-  { level: 15, name: "Đại Thuyền trưởng Phố Wall", minXp: 40000, color: "amber", emoji: "🔱" },
+  { level: 2, name: "Học viên", minXp: 30, color: "stone", emoji: "🎒" },
+  { level: 3, name: "Nhà đầu tư", minXp: 100, color: "stone", emoji: "💼" },
+  { level: 4, name: "Nhà phân tích", minXp: 250, color: "stone", emoji: "📊" },
+  { level: 5, name: "Cố vấn Tài chính", minXp: 500, color: "stone", emoji: "🛡️" },
+  { level: 6, name: "Thạo thủ Tài chính", minXp: 900, color: "emerald", emoji: "👑" },
+  { level: 7, name: "Chuyên gia Tài chính", minXp: 1500, color: "emerald", emoji: "🔥" },
+  { level: 8, name: "Bậc thầy Tài chính", minXp: 2400, color: "amber", emoji: "💎" },
+  { level: 9, name: "Chuyên viên CFA", minXp: 3600, minCfaCompleted: 5, color: "amber", emoji: "🎓" },
+  { level: 10, name: "Huyền thoại Đầu tư", minXp: 5200, color: "rose", emoji: "🦁" },
+  { level: 11, name: "Giám đốc Quỹ Hedge Fund", minXp: 7500, color: "purple", emoji: "🏛️" },
+  { level: 12, name: "Quản lý Danh mục Chiến lược", minXp: 10500, color: "indigo", emoji: "🌐" },
+  { level: 13, name: "Bậc thầy Phân tích Thị trường", minXp: 14500, color: "sky", emoji: "🚀" },
+  { level: 14, name: "Lãnh đạo Tài chính Tối cao", minXp: 20000, color: "teal", emoji: "⚡" },
+  { level: 15, name: "Đại Thuyền trưởng Phố Wall", minXp: 27000, color: "amber", emoji: "🔱" },
+];
+
+/** Ngưỡng của thang CŨ, giữ nguyên để bài kiểm chứng minh được rằng lần cân
+ *  này không tụt cấp ai. Không dùng ở đâu khác; xoá nó đi là xoá bằng chứng. */
+export const PREVIOUS_LEVEL_MIN_XP = [
+  0, 100, 300, 600, 1200, 2000, 3200, 5000, 7500, 10500, 14500, 19500, 25500, 32500, 40000,
 ];
 
 /** Mở khóa tất cả mọi công trình Game Kingdom từ Level 1 */

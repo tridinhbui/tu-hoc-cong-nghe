@@ -7,16 +7,24 @@ describe("getLevelByXp", () => {
   });
 
   it("returns the highest level whose minXp is met", () => {
-    expect(getLevelByXp(100).level).toBe(2);
-    expect(getLevelByXp(299).level).toBe(2);
-    expect(getLevelByXp(300).level).toBe(3);
+    // Ngưỡng lấy từ LEVELS chứ không chép số vào đây: thang được cân lại
+    // 09/08/2026 và bài này khoá cứng 100/300/600 nên nó đỏ vì con số đổi, chứ
+    // không phải vì hàm sai. Điều cần kiểm là "trả về bậc CAO NHẤT đã đạt", và
+    // câu đó không phụ thuộc con số nào.
+    for (let i = 1; i < LEVELS.length; i++) {
+      const min = LEVELS[i].minXp;
+      expect(getLevelByXp(min, 99).level, `${min} XP`).toBe(LEVELS[i].level);
+      expect(getLevelByXp(min - 1, 99).level, `${min - 1} XP`).toBe(LEVELS[i - 1].level);
+    }
   });
 
   it("gates level 9 behind minCfaCompleted even with enough XP", () => {
-    // 7000+ XP alone isn't enough - level 9 also requires 5 CFA items done.
-    expect(getLevelByXp(9000, 0).level).toBe(8);
-    expect(getLevelByXp(9000, 4).level).toBe(8);
-    expect(getLevelByXp(9000, 5).level).toBe(9);
+    // Đủ XP cho L9 nhưng chưa đủ 5 mục CFA thì dừng ở L8. Lấy đúng ngưỡng L9
+    // để bài không phụ thuộc vào giá trị cụ thể của thang.
+    const level9Xp = LEVELS.find((l) => l.level === 9)!.minXp;
+    expect(getLevelByXp(level9Xp, 0).level).toBe(8);
+    expect(getLevelByXp(level9Xp, 4).level).toBe(8);
+    expect(getLevelByXp(level9Xp, 5).level).toBe(9);
   });
 
   it("never returns below level 1 for negative/garbage xp", () => {
@@ -55,8 +63,9 @@ describe("getNextLevel", () => {
 
 describe("getXpToNextLevel", () => {
   it("returns the xp gap to the next level's threshold", () => {
-    expect(getXpToNextLevel(0)).toBe(100);
-    expect(getXpToNextLevel(50)).toBe(50);
+    const level2Xp = LEVELS[1].minXp;
+    expect(getXpToNextLevel(0)).toBe(level2Xp);
+    expect(getXpToNextLevel(level2Xp - 10)).toBe(10);
   });
 
   it("returns 0 once at max level (XP alone, ignoring the CFA gate)", () => {
@@ -67,7 +76,7 @@ describe("getXpToNextLevel", () => {
 
 describe("getLevelProgress", () => {
   it("returns 0% right at a level's threshold", () => {
-    expect(getLevelProgress(100)).toBe(0);
+    expect(getLevelProgress(LEVELS[1].minXp)).toBe(0);
   });
 
   it("returns 100% at max level", () => {
@@ -76,12 +85,13 @@ describe("getLevelProgress", () => {
   });
 
   it("returns a proportional percentage mid-level", () => {
-    // Level 1 -> 2 spans 0-100 xp; 50 xp in is 50%.
-    expect(getLevelProgress(50)).toBe(50);
+    // Nửa đường từ L1 lên L2 là 50%, dù ngưỡng L2 bằng bao nhiêu.
+    expect(getLevelProgress(LEVELS[1].minXp / 2)).toBe(50);
   });
 
   it("clamps progress at 100% when XP is past a gated next level", () => {
-    expect(getLevelProgress(9000, 0)).toBe(100);
+    // Thừa XP cho L9 nhưng kẹt ở cổng CFA: thanh tiến độ đầy, không quá 100%.
+    expect(getLevelProgress(LEVELS.find((l) => l.level === 9)!.minXp + 500, 0)).toBe(100);
   });
 });
 
