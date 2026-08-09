@@ -40,6 +40,21 @@ export interface QuizAnswers {
   selected: (number | null)[];
   submitted: boolean[];
   results: boolean[];
+  /**
+   * Kết quả của LẦN TRẢ LỜI ĐẦU TIÊN cho từng câu; `null` là chưa trả lời lần
+   * nào. `results` ở trên là trạng thái hiện tại, tức là sau khi đã bấm "Thử
+   * lại" bao nhiêu lần cũng được - đó là con số để hiển thị, không phải con số
+   * để chấm.
+   *
+   * Tồn tại vì điểm ghi vào `user_progress.quiz_score` từng lấy từ `results`,
+   * nên bất kỳ ai bấm thử lại tới khi đúng đều được lưu 100%. Điểm đó nuôi
+   * `avg_quiz_score`, phần trăm năng lực ở /su-nghiep và cổng mở bài, nên nó
+   * không đo cái gì cả nếu ai cũng ra 100.
+   *
+   * Không bắt buộc: bản ghi cũ trong localStorage không có trường này, và một
+   * bài đang làm dở lúc thay đổi này lên không được phép vỡ.
+   */
+  firstResults?: (boolean | null)[];
 }
 
 const QUIZ_KEY_PREFIX = "thtcdn_quiz_";

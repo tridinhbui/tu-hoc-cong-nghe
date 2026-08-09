@@ -427,6 +427,9 @@ export const vi = {
 
     doneTitle: "Hoàn thành!",
     doneScore: "{score}/{total} câu đúng",
+    firstAttemptScore: "Điểm ghi nhận: {score}/{total} (lần trả lời đầu)",
+    firstAttemptNote:
+      "Số ở trên là kết quả sau khi thử lại. Điểm lưu vào hồ sơ lấy lần trả lời đầu, để phần trăm năng lực ở Sự nghiệp phản ánh đúng những gì bạn đã nắm được.",
     reviewMistakes: "🔄 Ôn Lại Câu Vừa Sai Ngay (Flashcard 3D)",
     dashboard: "Dashboard",
     nextLesson: "Bài tiếp →",
@@ -577,6 +580,11 @@ export const vi = {
 
     cardCounter: "Thẻ {current} / {total} (Cần ôn hôm nay: {due})",
     algorithmActive: "Thuật toán SM-2 Active",
+
+    noneDueTitle: "Hôm nay chưa tới lịch ôn thẻ nào",
+    noneDueBody:
+      "Bạn còn {count} câu sai đang theo dõi, nhưng lịch lặp lại ngắt quãng xếp chúng vào những ngày sau. Ôn sớm hơn lịch thì nhớ kém hơn - đó là toàn bộ lý do có lịch.",
+    reviewAllAnyway: "Vẫn ôn tất cả bây giờ",
 
     doneTitle: "Hoàn Thành Phiên Ôn Tập Spaced Repetition!",
     doneBody:

@@ -389,6 +389,9 @@ export const en: Dictionary = {
 
     doneTitle: "Complete",
     doneScore: "{score}/{total} correct",
+    firstAttemptScore: "Recorded: {score}/{total} (first attempt)",
+    firstAttemptNote:
+      "The figure above is where you ended up after retries. The score saved to your profile is your first attempt, so the readiness percentages on Career reflect what you actually knew.",
     reviewMistakes: "🔄 Review what you just got wrong (3D flashcards)",
     dashboard: "Dashboard",
     nextLesson: "Next lesson →",
@@ -531,6 +534,11 @@ export const en: Dictionary = {
 
     cardCounter: "Card {current} / {total} (due today: {due})",
     algorithmActive: "SM-2 algorithm active",
+
+    noneDueTitle: "No cards are due today",
+    noneDueBody:
+      "You still have {count} mistakes being tracked, but the spacing schedule places them on later days. Reviewing ahead of schedule holds worse - that is the whole point of the schedule.",
+    reviewAllAnyway: "Review everything anyway",
 
     doneTitle: "Spaced repetition session complete.",
     doneBody:

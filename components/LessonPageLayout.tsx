@@ -5,6 +5,7 @@ import Link from "next/link";
 import { toast } from "sonner";
 import { CheckCircle2, Circle, ArrowLeft, ChevronDown, ChevronUp } from "lucide-react";
 import { markLessonComplete, saveQuizAnswers, getQuizAnswers, clearQuizAnswers } from "@/lib/progress";
+import { firstAttemptResults, firstAttemptScore } from "@/lib/quiz-scoring";
 import FloatingContact from "@/components/FloatingChatbot";
 import StageTipsBanner from "@/components/StageTipsBanner";
 import ReadingProgress from "@/components/ReadingProgress";
@@ -141,6 +142,14 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   const [selected, setSelected]   = useState<(number | null)[]>(new Array(quiz.length).fill(null));
   const [submitted, setSubmitted] = useState<boolean[]>(new Array(quiz.length).fill(false));
   const [results, setResults]     = useState<boolean[]>(new Array(quiz.length).fill(false));
+  // Kết quả lần trả lời ĐẦU TIÊN của từng câu - xem QuizAnswers.firstResults.
+  // `results` là trạng thái sau khi thử lại; đây là thứ được chấm.
+  //
+  // Ghi một lần rồi không đổi nữa, kể cả khi người học bấm "Làm lại từ đầu":
+  // xoá nó đi là mở lại đúng lối tắt vừa bịt. Nó cũng được lưu xuống
+  // localStorage cùng các câu trả lời, nên tải lại trang giữa chừng cũng
+  // không rửa được điểm.
+  const [firstResults, setFirstResults] = useState<(boolean | null)[]>(new Array(quiz.length).fill(null));
   const [activeQ, setActiveQ]     = useState(0);
   const [reviewMode, setReviewMode] = useState(false);
   // True only once the learner explicitly moves past the last question's
@@ -289,6 +298,15 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
           setSelected(saved.selected);
           setSubmitted(saved.submitted);
           setResults(saved.results);
+          // Bản ghi cũ (lưu trước khi có firstResults) không có trường này.
+          // Khi đó lấy `results` làm lần đầu: với một bài đã làm xong từ
+          // trước thì đó là dữ liệu tốt nhất còn lại, và nó không tệ hơn
+          // hành vi cũ - vốn chấm thẳng trên `results`.
+          if (saved.firstResults?.length === quiz.length) {
+            setFirstResults(saved.firstResults);
+          } else {
+            setFirstResults(saved.results.map((r, i) => (saved.submitted[i] ? r : null)));
+          }
           if (saved.submitted.every(Boolean)) {
             quizAllSubmittedRef.current = true;
             quizFinalResultsRef.current = saved.results;
@@ -439,6 +457,9 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   const remainMin = Math.max(0, Math.ceil(readingMin * (1 - readPct / 100)));
   const submittedCount = submitted.filter(Boolean).length;
   const score = results.filter(Boolean).length;
+  // Điểm được ghi vào user_progress - cùng một hàm mà chỗ lưu dùng, xem
+  // lib/quiz-scoring.ts.
+  const firstScore = firstAttemptScore(results, firstResults);
   const allDone = submittedCount === quiz.length;
   const pct = quiz.length > 0 ? Math.round((submittedCount / quiz.length) * 100) : 0;
 
@@ -490,7 +511,8 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
     let cancelled = false;
     const RETRY_DELAYS_MS = [1500, 4000, 8000];
     async function attemptSave() {
-      const finalResults = quiz.length > 0 ? results : [];
+      // Chấm trên lần trả lời ĐẦU, không phải trạng thái sau khi thử lại.
+      const finalResults = quiz.length > 0 ? firstAttemptResults(results, firstResults) : [];
       for (let attempt = 0; ; attempt++) {
         if (cancelled) return;
         const result = await completeLessonInSupabase(finalResults);
@@ -525,11 +547,21 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
     const ok = sel === quiz[qi].correct;
     const newResults = [...results]; newResults[qi] = ok;
     const newSubmitted = [...submitted]; newSubmitted[qi] = true;
+    // Chỉ ghi lần đầu. `??=` ở đây là toàn bộ khác biệt giữa một điểm số đo
+    // được và một điểm số ai cũng đạt 100.
+    const newFirst = [...firstResults];
+    if (newFirst[qi] === null || newFirst[qi] === undefined) newFirst[qi] = ok;
     setResults(newResults);
     setSubmitted(newSubmitted);
-    
+    setFirstResults(newFirst);
+
     void recordQuizMistake(persistedLessonId, qi, ok);
-    saveQuizAnswers(persistedLessonId, { selected, submitted: newSubmitted, results: newResults });
+    saveQuizAnswers(persistedLessonId, {
+      selected,
+      submitted: newSubmitted,
+      results: newResults,
+      firstResults: newFirst,
+    });
     if (newSubmitted.every(Boolean)) {
       setReviewMode(false);
       quizAllSubmittedRef.current = true;
@@ -563,7 +595,12 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
     setActiveQ(qi);
     setReviewMode(false);
     setFinished(false);
-    saveQuizAnswers(persistedLessonId, { selected: newSelected, submitted: newSubmitted, results });
+    saveQuizAnswers(persistedLessonId, {
+      selected: newSelected,
+      submitted: newSubmitted,
+      results,
+      firstResults,
+    });
   }
 
   // Opens an already-answered question (right or wrong) read-only, without
@@ -577,6 +614,11 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
 
   // Resets every question back to unanswered, for someone who wants a full
   // redo rather than fixing just the ones they got wrong.
+  //
+  // `firstResults` KHÔNG được xoá ở đây, và đó là chủ ý: nút này để học lại,
+  // không phải để xoá dấu vết. Vì thế cũng không gọi clearQuizAnswers nữa mà
+  // ghi đè bằng một bản ghi rỗng còn giữ lần trả lời đầu - xoá cả khoá đi thì
+  // tải lại trang là bảng điểm sạch trơn.
   function restartQuiz() {
     const freshSelected = new Array(quiz.length).fill(null);
     const freshSubmitted = new Array(quiz.length).fill(false);
@@ -587,7 +629,16 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
     setActiveQ(0);
     setReviewMode(false);
     setFinished(false);
-    clearQuizAnswers(persistedLessonId);
+    if (firstResults.some((r) => r !== null && r !== undefined)) {
+      saveQuizAnswers(persistedLessonId, {
+        selected: freshSelected,
+        submitted: freshSubmitted,
+        results: freshResults,
+        firstResults,
+      });
+    } else {
+      clearQuizAnswers(persistedLessonId);
+    }
   }
 
   // Returns whether the completion (user_progress row - the ONLY thing the
@@ -873,7 +924,14 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                   </p>
                 )}
                 {(() => {
-                  const scrolledFully = readPct >= 95;
+                  // Dùng chung đúng `scrolledFully` mà điều kiện hoàn thành
+                  // dùng, thay vì một biến cùng tên che nó với ngưỡng 95 và
+                  // chỉ đọc readPct. Hai chỗ lệch nhau theo hai hướng: từ 90
+                  // tới 95 thì bài đã lưu xong mà ô vẫn chưa tick, còn cuộn
+                  // ngược lên thì ô tự bỏ tick dù bài đã hoàn thành - vì
+                  // readPct là vị trí hiện tại, maxReachedRef mới là chỗ xa
+                  // nhất đã tới. Đây đúng là họ lỗi "checklist nói một đằng,
+                  // dữ liệu lưu một nẻo" mà comment ở trên nói đã dẹp.
                   const sidebarQuizDone = quiz.length > 0 && submittedCount === quiz.length;
                   const checklistItems: { label: string; done: boolean }[] = [
                     { label: t.lessonLayout.checkReadAll, done: scrolledFully },
@@ -1222,6 +1280,17 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                 <div>
                   <h3 className="font-bold text-stone-900 dark:text-stone-100 text-xl">{t.lessonLayout.doneTitle}</h3>
                   <p className="text-stone-500 dark:text-stone-400 text-sm mt-1">{format(t.lessonLayout.doneScore, { score, total: quiz.length })}</p>
+                  {/* Hai con số, và nói rõ con số nào được ghi lại.
+                      Chỉ hiện khi chúng khác nhau: người làm đúng hết ngay lần
+                      đầu không cần đọc một dòng giải thích về việc thử lại. */}
+                  {firstScore !== score && (
+                    <p className="text-stone-500 dark:text-stone-400 text-xs mt-2 leading-relaxed">
+                      <strong className="text-stone-700 dark:text-stone-200">
+                        {format(t.lessonLayout.firstAttemptScore, { score: firstScore, total: quiz.length })}
+                      </strong>{" "}
+                      {t.lessonLayout.firstAttemptNote}
+                    </p>
+                  )}
                 </div>
                 <div className="flex gap-2 justify-center">
                   {results.map((ok, i) => (
