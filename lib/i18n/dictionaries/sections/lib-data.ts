@@ -1,6 +1,5 @@
 // Display labels that live inside lib/*.ts data modules rather than in a
-// .tsx file - invisible to scripts/i18n-coverage.mjs, which only scores
-// display positions in .tsx. Everything here sits under one top-level
+// .tsx file. Everything here sits under one top-level
 // `libData` key, grouped by the module it labels:
 //
 //   lib/document-categories.ts        -> libData.documentCategories
@@ -10,6 +9,15 @@
 // Keys are the modules' own stable ids (a document category's `value`, a
 // finance card's `id`) so the dictionary lookup and the underlying data never
 // drift apart by position.
+//
+// Câu trên đây từng viết rằng những chuỗi này "vô hình với
+// scripts/i18n-coverage.mjs, vốn chỉ chấm vị trí hiển thị trong .tsx". Điều đó
+// hết đúng từ khi luật `data` được thêm vào bộ đếm để quét cả `const` ở phạm vi
+// module trong lib/ - và chính vì thế ba tệp nguồn ở trên vẫn bị đếm là "chưa
+// dịch" dù đã dịch xong. Chúng được tách khỏi tổng ở OVERLAY_COMPLETE, với điều
+// kiện là lib/__tests__/lib-data-translations.test.ts bắt buộc đủ khoá - vì
+// Record<string, string> nhận mọi khoá, nên thêm một thẻ mới mà quên khoá từ
+// điển thì nó hiện tiếng Việt giữa giao diện tiếng Anh, không có gì báo.
 
 export const libDataVi = {
   libData: {

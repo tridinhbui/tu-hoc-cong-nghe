@@ -116,6 +116,12 @@ const OVERLAY_COMPLETE = new Map([
   ["lib/cfa-formulas-data.ts", "lib/__tests__/cfa-formulas-translations.test.ts"],
   ["lib/frm-formulas-data.ts", "lib/__tests__/frm-formulas-translations.test.ts"],
   ["lib/case-studies-data.ts", "lib/__tests__/case-study-translations.test.ts"],
+  // Ba module dưới đây dịch qua TỪ ĐIỂN (`libData.*`) chứ không qua thư mục
+  // `-i18n/`. Điều kiện để có mặt ở đây vẫn y hệt - một cổng bắt buộc đủ - nên
+  // đường dịch khác nhau không đổi tiêu chuẩn.
+  ["lib/finance-cards.ts", "lib/__tests__/lib-data-translations.test.ts"],
+  ["lib/document-categories.ts", "lib/__tests__/lib-data-translations.test.ts"],
+  ["lib/highlight-stage-grouping.ts", "lib/__tests__/lib-data-translations.test.ts"],
   ["lib/excel-practice-data.ts", "lib/__tests__/excel-practice-i18n.test.ts"],
   ["lib/vn30-stock-data.ts", "lib/__tests__/vn30-i18n.test.ts"],
   ["lib/flashcard-albums.ts", "lib/__tests__/flashcard-albums-i18n.test.ts"],
