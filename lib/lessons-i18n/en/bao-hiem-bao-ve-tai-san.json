@@ -1,0 +1,162 @@
+{
+  "slug": "bao-hiem-bao-ve-tai-san",
+  "title": "Stage 8, Lesson 4: Insurance - the protective layer that comes before investing",
+  "subtitle": "A good portfolio can be destroyed in one night if the basic insurance is missing.",
+  "duration": "6 min",
+  "whyItMatters": "Plenty of people work at optimising investment returns while ignoring the risk that could erase everything in a single event - insurance is the cheapest defence against the most expensive risk.",
+  "openingQuestion": "Why is health and life cover treated as a step to take BEFORE optimising an investment portfolio rather than after?",
+  "openingOptions": [
+    "Because one major medical event can erase years of accumulated wealth",
+    "Because insurance products in general always deliver a considerably higher return than investing directly in the market does",
+    "Because buying insurance earns the policyholder a substantial deduction against the personal income tax payable each year",
+    "Because under the law currently in force every individual is required to hold insurance before being permitted to invest"
+  ],
+  "explanation": "Insurance deals with TAIL RISK - low-probability events with enormous damage (a critical illness, a serious accident, an early death). Without cover, one of those can destroy an entire financial plan however well optimised the portfolio is, which is why basic insurance comes before investing in the order of financial priorities.",
+  "diagram": [
+    {
+      "label": "Low probability, enormous damage"
+    },
+    {
+      "label": "= Tail risk"
+    },
+    {
+      "label": "Insurance first, investing afterwards"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Individuals",
+    "description": "Someone who accumulates 2 billion dong over 15 years of disciplined investing but holds no health cover can lose most or all of it within a few months of treatment when a critical illness brings hospital bills in the billions - a small annual premium would have prevented that outcome."
+  },
+  "quiz": [
+    {
+      "question": "Who is life insurance particularly important for?",
+      "options": [
+        "Single people with nobody financially dependent on them",
+        "Retired people no longer earning a salary",
+        "People with dependants relying on their income",
+        "People with large net worth and no debt at all"
+      ],
+      "explanation": "The purpose of life insurance is to protect the FINANCES of the people who depend on your income, not the buyer (who is gone). Someone with no financial dependants usually needs life cover far less than they need health cover."
+    },
+    {
+      "question": "Scenario: you are weighing 10 million a year on basic health cover against putting the same money into investments to maximise returns. Which is the better choice if you currently hold no health cover at all?",
+      "options": [
+        "Prioritise investing, since the returns will cover the medical costs",
+        "Skip both and build the emergency fund first, then decide later",
+        "Split it: 5 million on insurance and 5 million invested each year",
+        "Prioritise health cover before optimising returns"
+      ],
+      "explanation": "While the basic protective layer is missing (health cover, emergency fund), optimising investment returns belongs behind guarding against the risk that can destroy the whole plan. This is the order of priorities: protect first, optimise second."
+    },
+    {
+      "question": "What kind of risk is insurance designed to handle?",
+      "options": [
+        "Tail risk - low probability but damage large enough to break the plan",
+        "Common risks with small losses, such as home electronics breaking down",
+        "Market risk, when a portfolio falls in value over the short term",
+        "Inflation risk, which erodes the purchasing power of savings over time"
+      ],
+      "explanation": "The rule for choosing cover: insure what you cannot absorb, absorb what you can. Insuring a phone means paying a premium against a risk you are perfectly able to carry yourself."
+    },
+    {
+      "question": "Why is insuring small risks usually not worth it?",
+      "options": [
+        "Because insurers do not pay out on losses below a certain threshold",
+        "Because the premiums over the long run usually exceed the losses you could absorb",
+        "Because the law prohibits selling insurance on assets of very low value",
+        "Because small risks almost never actually happen in real life"
+      ],
+      "explanation": "An insurer has to collect enough to cover claims, running costs and a profit. On small, frequent risks that overhead is a large share of the premium - so you almost certainly pay in more than you get back."
+    },
+    {
+      "question": "What is the sensible order of priority between insurance and investing?",
+      "options": [
+        "Buy an investment-linked policy so that one contract does both jobs at once",
+        "Invest first so wealth grows quickly, and buy insurance once you are rich enough",
+        "Emergency fund, then cover for the large risks, and only then long-term investing",
+        "Insurance and investing should start at the same time with the money split evenly"
+      ],
+      "explanation": "Investing without a protective layer means one event can force you to sell the portfolio at the worst possible moment. Insurance creates no wealth, but it stops the plan from being erased partway through."
+    },
+    {
+      "question": "Why keep protection and investing in separate contracts rather than combining them?",
+      "options": [
+        "Because the investment portion inside an insurance contract cannot be withdrawn before term",
+        "Because the law does not permit one contract to both protect and invest",
+        "Because a combined contract always pays out less cover than a standalone one",
+        "Because combining them hides both the cost and the performance of each part"
+      ],
+      "explanation": "When the two sit together you cannot see how much you are paying for protection and how much for investing, and you cannot compare either against an alternative. Separated, both are transparent and usually cheaper."
+    }
+  ],
+  "keyTakeaways": [
+    "Insurance handles tail risk - low probability, enormous damage, and nothing investing can hedge",
+    "Life insurance protects the people who DEPEND on your income, not you",
+    "The sensible order: basic cover and an emergency fund first, optimising investments second"
+  ],
+  "practicePrompt": {
+    "question": "Phuc, 32, has a wife and a young child, and is putting every spare dong into equities without holding any life or health cover. Why might this be a risky order of priorities?",
+    "options": [
+      "If Phuc faces a medical event or dies early, the family loses its main income with no protection in place",
+      "There is no risk at all, because investing in equities always returns enough to cover any unexpected situation that arises",
+      "The only risk is that Phuc will pay a higher rate of income tax for not holding insurance that would earn him a deduction",
+      "This is the sensible order, because insurance should only be purchased once the investment portfolio is fully optimised"
+    ],
+    "explanation": "Insurance covers tail risk that investing cannot hedge - so it belongs before optimising investments, particularly where dependants such as a spouse and children rely on the income."
+  },
+  "summary": {
+    "keyIdea": "Insurance handles tail risk - low probability, enormous damage, and nothing investing can hedge",
+    "commonMistake": "Reading the idea as a phrase to remember rather than as a principle to apply to a real decision.",
+    "action": "Life insurance protects the people who DEPEND on your income, not you"
+  },
+  "application": {
+    "title": "Check now",
+    "message": "Ask yourself: if something bad happened suddenly (a serious illness, an accident), would your family have enough to manage for 6 months, or would the portfolio have to be sold off?",
+    "secondary": "Basic cover belongs ahead of optimising investments, not the other way round."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "You can invest with discipline for 15 years and build a 2 billion dong portfolio out of effort and patience - then lose most of it within a few months to an uninsured medical event. Insurance is not an unnecessary expense; it is the protective layer that comes before investing."
+    },
+    {
+      "type": "heading",
+      "text": "Insurance handles tail risk; investing does not"
+    },
+    {
+      "type": "paragraph",
+      "text": "Tail risk means a low-probability event with enormous damage: a critical illness, a serious accident, an early death. No amount of diversification protects you against it, because it is not market volatility - it is something that happens to you. However well optimised the portfolio, it is no help at all when hospital bills in the billions arrive with no health cover standing in front of them."
+    },
+    {
+      "type": "heading",
+      "text": "Life insurance protects other people, not you"
+    },
+    {
+      "type": "paragraph",
+      "text": "This is the point most often misread: life insurance does not protect the finances of the buyer - if they die, they no longer need money. It protects THE PEOPLE WHO DEPEND on that income: children, elderly parents, a spouse without independent earnings. Someone single with no financial dependants usually needs life cover far less than health cover - but for the person holding a family up, life cover is close to mandatory."
+    },
+    {
+      "type": "heading",
+      "text": "The order of priorities: protect first, optimise second"
+    },
+    {
+      "type": "paragraph",
+      "text": "If you are weighing 10 million a year on basic health cover against putting it into investments to maximise returns, and you hold no health cover, the answer is almost always: buy the cover first. An uninsured medical risk can cause far more financial damage than the investment return could make up, particularly where the emergency fund is still thin."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Basic health cover - the first priority, with almost no exceptions",
+        "Life cover - required if anyone depends financially on your income",
+        "Accident cover and critical illness cover - consider these based on your line of work and family medical history",
+        "Do not confuse insurance with investing - investment-linked policies usually carry high costs and invest less effectively than investing directly"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Investing builds wealth. Insurance stops that wealth being erased overnight. Both are necessary, but the order is always protection first."
+      ]
+    }
+  ]
+}
