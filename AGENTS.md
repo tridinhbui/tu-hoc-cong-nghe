@@ -163,10 +163,27 @@ separate change from rebalancing the options; don't mix the two.
 an override takes ownership of that lesson's teaching content and whatever
 `lib/lessons.ts` says is silently ignored — no compile error, no failing test,
 `npm run audit:lessons` still green, and the lesson on production does not
-change by a single character. 35 slugs are in that state today; the list and
-the guard are in `lib/__tests__/lesson-override-shadowing.test.ts`. Check it
-before editing a lesson's `sections`, and prefer pulling content back into
-`lib/lessons.ts` over adding another entry.
+change by a single character. 35 slugs were in that state; **all of them have
+been pulled back out**, so `lib/__tests__/lesson-override-shadowing.test.ts` now
+enforces a plain invariant — no override may carry `sections` at all. Write
+teaching content in `lib/lessons.ts`.
+
+How they were pulled out matters, because the obvious move is wrong. Only one
+of the 35 (`wealth-management`) was byte-identical duplication where deleting
+`sections` was safe. The other 34 overrides were each *richer* than their
+`lib/lessons.ts` counterpart — 9–12 blocks against 5 — and every one also
+carried `openingQuestion`, `openingOptions`, `correctOption`, `explanation`,
+`diagram`, `realWorldExample`, `quiz`, `keyTakeaways` and `summary`. Deleting
+just `sections` there would drop those nine keys back to the stale values and
+silently change the lesson. What is provably neutral is replacing the
+`lib/lessons.ts` object with `{ ...lesson, ...override }` and deleting the whole
+override entry.
+
+"Provably" meaning measured, not reasoned: SHA-256 the full
+`applyLessonOverrides(lessons)` output before and after each batch, in a **fresh
+process** each time — an in-process re-import returns the module cache and the
+comparison passes no matter what you did. The digest held at `e44d40f2…` across
+all 34.
 
 IB question bank: `lib/ib-question-overrides.ts`, keyed by numeric id. Same
 rules apply. Note that the delivery route shuffles option order per question,

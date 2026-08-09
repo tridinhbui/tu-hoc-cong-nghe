@@ -5,9 +5,9 @@ import { lessons } from "@/lib/lessons";
 /** Cái bẫy câm nhất trong kho bài học.
  *
  *  AGENTS.md nói override "thay cả mảng `quiz` cho slug đó". Cài đặt thật là
- *  `{ ...lesson, ...override }` - thay MỌI khoá có trong override. 34 override
- *  đang mang theo cả `sections`, tức là nội dung DẠY của những bài đó nằm ở
- *  file override chứ không ở lib/lessons.ts.
+ *  `{ ...lesson, ...override }` - thay MỌI khoá có trong override. Có lúc 34
+ *  override mang theo cả `sections`, tức là nội dung DẠY của những bài đó nằm
+ *  ở file override chứ không ở lib/lessons.ts.
  *
  *  Hệ quả: sửa lib/lessons.ts cho một trong những bài đó không có tác dụng gì.
  *  Không lỗi biên dịch, không test đỏ, `npm run audit:lessons` vẫn xanh - và
@@ -15,60 +15,34 @@ import { lessons } from "@/lib/lessons";
  *  đó: viết lại phần dạy của Modern Portfolio Theory, mọi bước báo thành công,
  *  rồi đo lại thấy bài vẫn nguyên 244 từ.
  *
- *  Test này không cấm chuyện đó - phần lớn 34 bài kia có override ĐẦY ĐỦ HƠN
- *  bản trong lessons.ts, nên override đang làm đúng việc. Nó chỉ khoá danh
- *  sách lại, để người sau biết mình đang sửa file nào cho bài nào.
+ *  Cả 34 slug đã được rút ra, nên danh sách dưới đây RỖNG và test đầu tiên
+ *  giờ là một bất biến thật: không override nào được mang `sections`.
  *
- *  "wealth-management" đã ra khỏi danh sách: 6 khối `sections` của nó trùng
- *  từng byte với 6 khối tương ứng trong lessons.ts, nên override chỉ đang
- *  nhân bản chứ không sở hữu gì. Gỡ khoá đó đi thì lessons.ts sống lại và
- *  bài nhận được phần bổ sung viết cho nó. Đó là cách rút một slug ra. */
+ *  Cách rút, ghi lại vì bản đầu làm sai: KHÔNG phải xoá `sections` khỏi
+ *  override. 0/34 slug là bản nhân đôi - mỗi override đều đầy đủ hơn
+ *  lessons.ts (9-12 khối so với 5) và còn mang theo `openingQuestion`,
+ *  `openingOptions`, `correctOption`, `explanation`, `diagram`,
+ *  `realWorldExample`, `quiz`, `keyTakeaways`, `summary`. Xoá mỗi `sections`
+ *  sẽ thả chín khoá kia về bản cũ trong lessons.ts, tức là ĐỔI bài học. Việc
+ *  đúng là thay hẳn object trong lessons.ts bằng `{ ...lesson, ...override }`
+ *  rồi xoá cả entry override - phép biến đổi đó chứng minh được là không đổi
+ *  kết quả, và đã kiểm bằng cách băm SHA-256 toàn bộ `applyLessonOverrides`
+ *  trước và sau từng mẻ: e44d40f2… giữ nguyên qua cả 34 lần rút.
+ *
+ *  ("wealth-management" ra khỏi danh sách sớm hơn vì nó ĐÚNG là bản nhân đôi
+ *  từng byte - trường hợp duy nhất, và vì vậy là tiền lệ sai để đi theo.) */
 
 const bySlug = new Map(
   (lessons as unknown as Array<Record<string, unknown>>).map((l) => [l.slug as string, l])
 );
 
-/** Những slug mà nội dung dạy do FILE OVERRIDE sở hữu, không phải lessons.ts.
+/** Rỗng, và phải ở lại rỗng.
  *
- *  Muốn sửa phần dạy của một bài trong danh sách này thì sửa
- *  lib/lesson-quiz-overrides.js. Danh sách chỉ nên NGẮN đi: gỡ `sections` khỏi
- *  một override rồi đưa nội dung về lessons.ts là cách đúng để rút nó ra. */
-const SECTIONS_OWNED_BY_OVERRIDE = new Set([
-  "on-tap-wacc",
-  "roic",
-  "roic-phan-2",
-  "finance-as-math",
-  "samsung-ai-finance",
-  "fcf-deep-dive",
-  "bien-so-r-twr-mwrr",
-  "discontinued-operations",
-  "commodity-phan-2",
-  "market-fair-value",
-  "vingroup-cash-flow",
-  "enterprise-value",
-  "cap-rate",
-  "operating-leverage",
-  "income-affiliates-jv",
-  "interim-comprehensive-income",
-  "transfer-pricing",
-  "maple-leaf-leverage",
-  "tesla-cash-flow",
-  "dupont-analysis",
-  "dividend",
-  "walmart-earnings",
-  "inventory-turnover",
-  "post-ipo-dividend",
-  "disney-pixar-ma",
-  "nvidia-cash-securities",
-  "fpt-cfo-cash",
-  "oil-gas-business-model",
-  "bitcoin-crypto",
-  "pvgas-bad-debt",
-  "retail-store-analysis",
-  "bds-business-model",
-  "financial-risk",
-  "hoc-tai-chinh-hanh-trinh",
-]);
+ *  Trước đây đây là danh sách grandfather 34 slug; giờ nội dung dạy của mọi
+ *  bài đều nằm ở lib/lessons.ts. Giữ lại cái Set thay vì xoá hẳn để test thứ
+ *  hai còn chỗ bấu: nếu ai đó thêm slug vào đây để làm xanh một build đỏ,
+ *  diff sẽ nói rõ họ đang nới một bất biến chứ không phải sửa một lỗi. */
+const SECTIONS_OWNED_BY_OVERRIDE = new Set<string>([]);
 
 const overrideEntries = Object.entries(lessonOverrides as Record<string, Record<string, unknown>>);
 
