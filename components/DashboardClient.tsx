@@ -1317,7 +1317,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                 Trước đó nó đứng dưới góc yên tĩnh, và đó là sai thứ tự theo
                 đúng lập luận mà chú thích cũ của góc yên tĩnh tự viết ra: chỗ
                 để đặt xuống không nên đứng trên việc người ta vào đây để làm.
-                Góc yên tĩnh giờ nằm cuối cột phải, dưới phần gợi ý.
+                Góc yên tĩnh nằm ngay dưới thẻ này.
                 Đây là một thẻ liên kết, KHÔNG phải một tab dashboard: chú
                 thích đầu app/(app)/lo-trinh/page.tsx nói rõ vì sao không thêm
                 giá trị nào vào DASHBOARD_TABS nữa. */}
@@ -1342,6 +1342,17 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                 </span>
               </Link>
             )}
+
+            {/* Góc yên tĩnh, ngay DƯỚI thẻ Lộ trình học.
+                Nó từng nằm cuối cột phải và trải ngang cả hai cột, tức là một
+                hàng `auto` không co được trong một lưới có chiều cao cố định:
+                bản đồ cấp độ ở trên cao thêm bao nhiêu thì thẻ này bị đẩy ra
+                khỏi khung bấy nhiêu.
+                Ở đây nó nằm trong một cột CUỘN ĐƯỢC, nên chiều cao của nó
+                không còn phải tranh chỗ với ai. Thứ tự vẫn đúng lập luận cũ
+                của chính nó - chỗ để đặt xuống đứng SAU việc người ta vào đây
+                để làm, và việc đó là thẻ Lộ trình học ngay trên. */}
+            {!isLessonsView && user?.id && <DailyMotivationWidget userId={user.id} />}
 
             {isLessonsView && (
             <>
@@ -2257,7 +2268,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
               nên nó co lại được tới 0, còn hai hàng `auto` ở dưới thì không:
               khi bản đồ cấp độ ở hàng trên cao lên, chỗ còn lại cho cột này
               hụt đúng bằng phần chênh, và phần hụt ấy phải đi đâu đó. */}
-          <div className={`min-w-0 space-y-6 ${isLessonsView ? "xl:col-span-4 xl:min-h-0 xl:overflow-y-auto xl:pr-1.5" : "xl:space-y-0 xl:col-span-8 xl:min-h-0 xl:overflow-y-auto xl:grid xl:grid-cols-2 xl:grid-rows-[minmax(0,1fr)_auto_auto] xl:gap-3.5"}`}>
+          <div className={`min-w-0 space-y-6 ${isLessonsView ? "xl:col-span-4 xl:min-h-0 xl:overflow-y-auto xl:pr-1.5" : "xl:space-y-0 xl:col-span-8 xl:min-h-0 xl:overflow-y-auto xl:grid xl:grid-cols-2 xl:grid-rows-[minmax(0,1fr)_auto] xl:gap-3.5"}`}>
             {/* Study aids, beside the lesson list rather than stacked on top of
                 it - see the note in the left column. */}
             {isLessonsView && user?.id && (
@@ -2282,14 +2293,6 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             )}
             {!isLessonsView && <CareerGoalWidget userId={user?.id} />}
 
-            {/* Góc yên tĩnh, cuối cột phải - dưới "Gợi ý hôm nay" và "Đang hot
-                tuần này". Nó là chỗ để đặt xuống chứ không phải chỗ để bắt
-                đầu, nên nó đứng sau mọi thứ người học vào đây để làm. */}
-            {!isLessonsView && user?.id && (
-              <div className="xl:col-span-2">
-                <DailyMotivationWidget userId={user.id} />
-              </div>
-            )}
           </div>
         </div>
       </div>
