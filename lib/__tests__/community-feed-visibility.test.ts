@@ -47,10 +47,14 @@ describe("phân loại bài", () => {
   });
 });
 
-describe("dòng chính ưu tiên bài người dùng tự viết", () => {
-  it("bài thành tựu không hiện khi đang xem tất cả", () => {
-    expect(isPostVisibleInFeed(streak, "all", "")).toBe(false);
-    expect(isPostVisibleInFeed(tagged, "all", "")).toBe(false);
+describe("dòng chính hiện đủ bài", () => {
+  it("bài thành tựu HIỆN khi đang xem tất cả", () => {
+    // Bản trước trả false ở đây: bài thành tựu bị cất khỏi dòng chính khi xem
+    // "tất cả". Luật đó đã bỏ - xem chú thích của isPostVisibleInFeed. Ca này
+    // giữ nguyên tên biến để đọc song song với lịch sử: cùng hai bài, đảo kết
+    // quả, vì đó đúng là thay đổi duy nhất.
+    expect(isPostVisibleInFeed(streak, "all", "")).toBe(true);
+    expect(isPostVisibleInFeed(tagged, "all", "")).toBe(true);
   });
 
   it("bài chia sẻ thường thì vẫn hiện", () => {
@@ -88,34 +92,30 @@ describe("dòng chính ưu tiên bài người dùng tự viết", () => {
 /** Cộng đồng chỉ toàn bài hệ thống tự sinh.
  *
  *  Đây là trạng thái thật của /finsocial lúc phát hiện: 20 bài, cả 20 đều là
- *  chuỗi ngày học do hệ thống đăng. Quy tắc hạ ưu tiên giấu hết cả 20, và dòng
- *  chính hiện "không có bài nào khớp bộ lọc" - người dùng đọc ra là bài viết
- *  đã mất. Quy tắc sinh ra để bài hệ thống không dìm bài người thật; khi chưa
- *  có bài người thật nào thì nó không còn gì để dìm. */
-describe("dòng chính không được rỗng vì chính quy tắc hạ ưu tiên", () => {
+ *  chuỗi ngày học do hệ thống đăng. Quy tắc hạ ưu tiên giấu hết cả 20, dòng
+ *  chính hiện "không có bài nào khớp bộ lọc", và người dùng đọc ra là bài viết
+ *  đã mất - câu đầu tiên họ hỏi đúng là "tôi bị mất bài rồi à".
+ *
+ *  Nhánh cứu từng được thêm để đỡ chuyện đó, nhưng nó loại trừ bài chuỗi ngày -
+ *  tức loại trừ đúng nhóm chiếm gần hết số bài - nên nó không cứu được chính ca
+ *  nó sinh ra để cứu. Cả luật và nhánh cứu đã bỏ; dòng chính giờ hiện đủ bài.
+ *
+ *  Vấn đề thật mà luật kia nhắm tới - bài hệ thống nhiều hơn bài người viết -
+ *  là vấn đề của NGUỒN bài, và giấu chúng đi không làm ai viết thêm bài nào. */
+describe("cộng đồng chỉ toàn bài hệ thống vẫn hiện đủ ở dòng chính", () => {
   const onlyStreaks = [streak, post({ content: "Đã học 21 ngày liên tiếp", kind: "streak" })];
 
-  it("chỉ toàn chuỗi ngày học thì dòng chính RỖNG", () => {
-    // Nhánh cứu không kéo bài streak lên nữa. Chúng do hệ thống tự đăng mỗi
-    // ngày cho mọi người học, nên "chưa có bài người thật" lại đúng là lúc
-    // chúng đông nhất - và dòng chính khi đó chỉ còn là danh sách "đã học N
-    // ngày liên tiếp". Chỗ của chúng là thẻ Thành tựu ở cột phải, và trạng
-    // thái rỗng có sẵn nút trỏ sang đó.
-    expect(visibleFeedPosts(onlyStreaks, "all", "")).toHaveLength(0);
+  it("chỉ toàn chuỗi ngày học thì dòng chính hiện ĐỦ, không rỗng", () => {
+    expect(visibleFeedPosts(onlyStreaks, "all", "")).toHaveLength(2);
   });
 
-  it("nhưng bài thành tựu do NGƯỜI THẬT viết thì vẫn được cứu", () => {
-    // Đây mới là thứ nhánh cứu sinh ra để bảo vệ: có người ngồi gõ nó.
-    const visible = visibleFeedPosts([...onlyStreaks, tagged], "all", "");
-    expect(visible).toHaveLength(1);
-    expect(visible[0].content).toContain("#ThanhTuu");
+  it("bài thành tựu người thật viết đứng cùng bài hệ thống", () => {
+    expect(visibleFeedPosts([...onlyStreaks, tagged], "all", "")).toHaveLength(3);
   });
 
-  it("có bài người thật thì thành tựu vẫn bị hạ như cũ", () => {
+  it("có bài người thật thì mọi bài cùng hiện, không bài nào bị hạ", () => {
     const mixed = [...onlyStreaks, post()];
-    const visible = visibleFeedPosts(mixed, "all", "");
-    expect(visible).toHaveLength(1);
-    expect(visible[0].kind).toBe("post");
+    expect(visibleFeedPosts(mixed, "all", "")).toHaveLength(3);
   });
 
   it("tìm kiếm không ra kết quả thì vẫn là rỗng, không lấp bằng bài khác", () => {
