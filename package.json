@@ -11,6 +11,8 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
+    "//pretest": "13 bộ kiểm đọc lib/lessons-data, thư mục do generate-lesson-data.mjs sinh ra và nằm trong .gitignore. Không có bước này thì `npm test` trên một bản checkout sạch - tức là mọi lượt chạy CI - fail 13 tệp vì thiếu tệp, không phải vì lỗi. Mất khoảng 2 giây.",
+    "pretest": "node scripts/generate-lesson-data.mjs && node scripts/build-translation-index.mjs",
     "test": "vitest run",
     "test:e2e": "playwright test",
     "check:migrations": "node scripts/check-migrations.mjs",
