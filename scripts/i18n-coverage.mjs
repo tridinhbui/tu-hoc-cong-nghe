@@ -148,6 +148,12 @@ function isNotCopy(text) {
   // real copy - but an undotted single token like "vi" is not worth reporting.
   if (!/\s/.test(t) && t === t.toLowerCase() && !/[à-ỹ]/i.test(t)) return true;
 
+  // A single ALL-CAPS token with no diacritics: một từ viết tắt, không phải câu
+  // chữ. "CFA" và "FRM" là tên chứng chỉ - dịch chúng là gọi tên một bằng cấp
+  // không tồn tại, đúng lý do certPages.frmTitle nằm trong
+  // INTENTIONALLY_UNTRANSLATED của dictionary-parity.
+  if (!/\s/.test(t) && !/[à-ỹ]/i.test(t) && /^[A-Z][A-Z0-9&.]*$/.test(t)) return true;
+
   // A single camelCase or snake_case token with no diacritics: a metric key, a
   // state value, a data field. These reach the jsx-expr rule through equality
   // checks like `item.name === "lessonsCompleted"`, which sit inside a JSX
@@ -180,6 +186,17 @@ function isNotCopy(text) {
     "hidden",
     "contents",
     "truncate",
+    // "shadow", "rounded", "grow" và "shrink" cũng là utility trần. Chúng lọt
+    // qua vì rule Tailwind đòi MỌI token có gạch/gạch chéo/hai chấm, nên một
+    // chuỗi class trả về từ hàm - "… text-white font-black shadow" trong
+    // components/Leaderboard.tsx - bị báo là câu văn chỉ vì token cuối.
+    "shadow",
+    "rounded",
+    "grow",
+    "shrink",
+    "isolate",
+    "invisible",
+    "collapse",
     "italic",
     "underline",
     "uppercase",
@@ -201,6 +218,16 @@ function isNotCopy(text) {
   ) {
     return true;
   }
+
+  // Một con số kèm MÃ TIỀN TỆ: "240M USD", "45M USD". Đây là số liệu, và nó chỉ
+  // lộ ra khi rule returned-data đọc tới bảng dữ liệu demo trong
+  // components/GoldmanSachsWidget.tsx.
+  //
+  // CHỈ mã tiền tệ, KHÔNG gồm "tỷ"/"triệu"/"nghìn". Bản đầu của rule này gộp cả
+  // hai và che mất 13 chuỗi trong các trang bài học - "100 tỷ", "600 triệu".
+  // Khác nhau ở chỗ: USD đọc giống nhau ở mọi ngôn ngữ, còn "tỷ" sang tiếng Anh
+  // phải thành "bn". Đơn vị tiếng Việt là chữ cần dịch, mã tiền tệ thì không.
+  if (/^[\d.,]+\s*[KMB]?\s*(USD|VND|EUR|JPY|GBP|CNY)$/i.test(t)) return true;
 
   const tokens = t.split(/\s+/);
   if (
@@ -295,6 +322,49 @@ function calleeName(expr) {
   return "";
 }
 
+/**
+ * Walks a data literal reporting copy-bearing strings.
+ *
+ * Tách ra khỏi rule module-scope để dùng lại cho object literal ĐƯỢC TRẢ VỀ từ
+ * một hàm. components/CfaMockExamClient.tsx là ví dụ: nó gói cả cấu hình màn
+ * hình vào useMemo(() => ({ title: "Thi thử CFA Level I", backLabel: "Về trang
+ * CFA", ... })), nên không chuỗi nào nằm ở module scope và file báo 0 - trong
+ * khi "Số ca", "Thời gian mỗi ca" và hai đoạn giải thích đều hiện trên màn hình.
+ *
+ * AGENTS.md đã đoán đúng chỗ này: "display strings that pass through a local
+ * variable inside a component body".
+ */
+function walkDataFactory(source, push, kind = "data") {
+  const walkData = (n, field) => {
+    // A module specifier is not copy. `const TABS = [{ Comp: dynamic(() =>
+    // import("@/components/X")) }]` put an import path in a data table and the
+    // first version of this rule reported it, which is the kind of noise that
+    // teaches people to wrap real findings in i18n-ignore.
+    if (ts.isCallExpression(n) && n.expression.kind === ts.SyntaxKind.ImportKeyword) return;
+    // Nor is anything inside a function body: a component or callback living in
+    // a data table is code, and its own strings are already covered by the JSX
+    // and call rules.
+    if (ts.isArrowFunction(n) || ts.isFunctionExpression(n)) return;
+    if (ts.isStringLiteral(n) || ts.isNoSubstitutionTemplateLiteral(n)) {
+      if (field && NON_COPY_FIELDS.has(field)) return;
+      // A BARE array element - no property name to judge it by - has to look
+      // like prose: whitespace or a diacritic. `const QUIZ_OPTION_TYPES =
+      // ["Analytical", "Compliance", ...] as const` is a union type, never
+      // rendered, and reporting it is the noise that gets a gate ignored.
+      if (!field && !/\s/.test(n.text) && !/[à-ỹ]/i.test(n.text)) return;
+      push(kind, n.text, n.getStart(source));
+      return;
+    }
+    if (ts.isPropertyAssignment(n)) {
+      const name = ts.isIdentifier(n.name) || ts.isStringLiteral(n.name) ? n.name.text : "";
+      walkData(n.initializer, name);
+      return;
+    }
+    n.forEachChild((c) => walkData(c, field));
+  };
+  return walkData;
+}
+
 function findingsIn(src, fileName) {
   const source = ts.createSourceFile(
     fileName,
@@ -383,34 +453,7 @@ function findingsIn(src, fileName) {
     if (ts.isVariableStatement(node) && node.parent === source) {
       for (const decl of node.declarationList.declarations) {
         if (!decl.initializer) continue;
-        const walkData = (n, field) => {
-          // A module specifier is not copy. `const TABS = [{ Comp: dynamic(() =>
-          // import("@/components/X")) }]` put an import path in a data table and
-          // the first version of this rule reported it, which is the kind of
-          // noise that teaches people to wrap real findings in i18n-ignore.
-          if (ts.isCallExpression(n) && n.expression.kind === ts.SyntaxKind.ImportKeyword) return;
-          // Nor is anything inside a function body: a component or callback
-          // living in a data table is code, and its own strings are already
-          // covered by the JSX and call rules.
-          if (ts.isArrowFunction(n) || ts.isFunctionExpression(n)) return;
-          if (ts.isStringLiteral(n) || ts.isNoSubstitutionTemplateLiteral(n)) {
-            if (field && NON_COPY_FIELDS.has(field)) return;
-            // A BARE array element - no property name to judge it by - has to
-            // look like prose: whitespace or a diacritic. `const QUIZ_OPTION_TYPES
-            // = ["Analytical", "Compliance", ...] as const` is a union type, never
-            // rendered, and reporting it is the noise that gets a gate ignored.
-            // Copy in a bare array is a sentence; an enum member is one word.
-            if (!field && !/\s/.test(n.text) && !/[à-ỹ]/i.test(n.text)) return;
-            push("data", n.text, n.getStart(source));
-            return;
-          }
-          if (ts.isPropertyAssignment(n)) {
-            const name = ts.isIdentifier(n.name) || ts.isStringLiteral(n.name) ? n.name.text : "";
-            walkData(n.initializer, name);
-            return;
-          }
-          n.forEachChild((c) => walkData(c, field));
-        };
+        const walkData = walkDataFactory(source, push);
         walkData(decl.initializer, "");
       }
     }
@@ -485,6 +528,68 @@ function findingsIn(src, fileName) {
         }
       };
       if (node.expression) collect(node.expression);
+    }
+
+    // Thân arrow function dạng gọn trả thẳng một object literal:
+    // useMemo(() => ({ … })). Không có ReturnStatement nào để bắt, nên phải
+    // nhận riêng - và đây chính là hình dạng của CfaMockExamClient.
+    if (
+      ts.isArrowFunction(node) &&
+      node.body &&
+      (ts.isObjectLiteralExpression(node.body) || ts.isParenthesizedExpression(node.body))
+    ) {
+      const inner = ts.isParenthesizedExpression(node.body) ? node.body.expression : node.body;
+      if (ts.isObjectLiteralExpression(inner) || ts.isArrayLiteralExpression(inner)) {
+        walkDataFactory(source, push, "returned-data")(inner, "");
+      }
+    }
+
+    // Chữ vẽ lên canvas. ctx.fillText("1 người đang học", …) hiện trên biển tên
+    // trong phòng 3D, nhưng không rule nào ở trên coi nó là vị trí hiển thị -
+    // nó không phải JSX, không phải thuộc tính, không phải toast. Đối số đầu của
+    // fillText/strokeText LUÔN là chữ người dùng đọc, nên đây là vị trí hiển thị
+    // chính xác nhất trong cả file này.
+    if (ts.isCallExpression(node)) {
+      const callee = calleeName(node.expression);
+      if (/\.(fillText|strokeText)$/.test(callee) && node.arguments.length > 0) {
+        const hits = [];
+        collectDisplayStrings(node.arguments[0], hits);
+        for (const hit of hits) push("canvas", hit.text, hit.pos);
+      }
+    }
+
+    // Câu văn trả về từ một hàm.
+    //
+    // components/LessonPageClient.tsx có mười bảy ví von dạy học ở đúng hình
+    // dạng này - `return "con gà đẻ trứng vàng: mỗi ngày nó đẻ ra…"` - và chúng
+    // render mỗi ngày. band() trong TopicMasteryWidget cũng vậy: nó trả
+    // "Vững"/"Đang đi"/"Mới bắt đầu" từ thân hàm, và file đó báo 0 chuỗi cả
+    // trước lẫn sau khi tôi dịch nó. Literal trong thân hàm là khoảng mù lớn
+    // nhất còn lại của script này.
+    //
+    // HẸP CÓ CHỦ ĐÍCH, vì `return "..."` cũng trả về id, enum, mã lỗi:
+    //   - chỉ ReturnStatement, không phải mọi literal trong thân hàm
+    //   - phải QUA isNotCopy như mọi rule khác, nên "personal", "high",
+    //     "PGRST116" bị loại sẵn
+    //   - và phải TRÔNG NHƯ CÂU: từ hai chữ trở lên, hoặc một từ có dấu tiếng
+    //     Việt. Một token không dấu trả về từ hàm gần như luôn là giá trị.
+    // KHÔNG bắt: throw new Error("...") - lỗi ném ra là chữ cho người sửa code,
+    // không phải cho người học; và arr.push("...") - `push` dùng cho mọi thứ,
+    // gán nghĩa hiển thị cho nó sẽ báo oan hàng loạt.
+    if (ts.isReturnStatement(node) && node.expression) {
+      // Object/array literal trả về từ hàm: chạy đúng bộ lọc của rule `data`.
+      // useMemo(() => ({ title: "...", backLabel: "..." })) là một bảng dữ liệu
+      // hiển thị, chỉ khác chỗ đứng.
+      if (ts.isObjectLiteralExpression(node.expression) || ts.isArrayLiteralExpression(node.expression)) {
+        walkDataFactory(source, push, "returned-data")(node.expression, "");
+      }
+      const hits = [];
+      collectDisplayStrings(node.expression, hits);
+      for (const hit of hits) {
+        const words = hit.text.trim().split(/\s+/);
+        const sentenceLike = words.length > 1 || /[à-ỹ]/i.test(hit.text);
+        if (sentenceLike) push("returned-text", hit.text, hit.pos);
+      }
     }
 
     ts.forEachChild(node, visit);
