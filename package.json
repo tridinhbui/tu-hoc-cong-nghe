@@ -11,6 +11,8 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
+    "//prepare": "Trỏ git vào .githooks (xem .githooks/pre-push). Chạy tự động sau `npm install`; `|| true` để một bản checkout không phải kho git vẫn cài được.",
+    "prepare": "git config core.hooksPath .githooks || true",
     "//pretest": "13 bộ kiểm đọc lib/lessons-data, thư mục do generate-lesson-data.mjs sinh ra và nằm trong .gitignore. Không có bước này thì `npm test` trên một bản checkout sạch - tức là mọi lượt chạy CI - fail 13 tệp vì thiếu tệp, không phải vì lỗi. Mất khoảng 2 giây.",
     "pretest": "node scripts/generate-lesson-data.mjs && node scripts/build-translation-index.mjs",
     "test": "vitest run",

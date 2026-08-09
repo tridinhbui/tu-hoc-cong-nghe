@@ -1,0 +1,31 @@
+#!/bin/sh
+# Chạy đúng ba bước của CI trước khi đẩy lên.
+#
+# Vì sao cần: từ 30/07 đến 09/08, 400 lượt CI trên main chỉ có 134 lượt xanh và
+# 10 ngày cuối thì đỏ liên tục - không phải vì mã hỏng, mà vì `npm test` chạy
+# trước bước sinh lib/lessons-data. Đỏ thường trực thì không ai đọc nữa, và lúc
+# đó MỌI cổng trong repo cùng mất tác dụng một lượt: audit:lessons,
+# dictionary-parity, ib-question-bank, xp-copy-claims, preview-lessons. Chúng
+# nằm chung một lượt chạy.
+#
+# Kho này là private trên gói free, nên GitHub không cho bật branch protection
+# (API trả 403 "Upgrade to GitHub Pro"). Không chặn được ở phía máy chủ thì chỗ
+# chặn được duy nhất là ở đây, trước khi commit rời khỏi máy.
+#
+# Khoảng 25 giây: typecheck ~13s, test ~10s (đã gồm 2s sinh dữ liệu bài học),
+# audit:lessons ~2s.
+#
+# Cần đẩy gấp và biết mình đang làm gì: `git push --no-verify`.
+
+set -e
+
+printf '\n[pre-push] 1/3 typecheck\n'
+npm run typecheck
+
+printf '\n[pre-push] 2/3 test\n'
+npm test
+
+printf '\n[pre-push] 3/3 audit:lessons\n'
+npm run audit:lessons
+
+printf '\n[pre-push] xanh cả ba, đẩy tiếp.\n'
