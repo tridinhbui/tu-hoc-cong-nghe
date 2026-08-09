@@ -15,6 +15,7 @@
  *  và 12 bài), và lib/__tests__/learning-path-claims.test.ts neo chúng lại. */
 export const learningPathVi = {
   learningPath: {
+    backToDashboard: "Về Dashboard",
     title: "Bắt đầu từ đâu",
     subtitle: "Trang này trả lời ba câu: học gì, mỗi ngày bao lâu, và hôm nay làm gì.",
 
@@ -99,6 +100,7 @@ export const learningPathVi = {
 
 export const learningPathEn: typeof learningPathVi = {
   learningPath: {
+    backToDashboard: "Back to dashboard",
     title: "Where to start",
     subtitle: "This page answers three things: what to learn, how long a day, and what to do today.",
 

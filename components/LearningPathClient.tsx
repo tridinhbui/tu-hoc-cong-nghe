@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, CalendarDays, CheckCircle2, Compass, Flame, HelpCircle, ListChecks } from "lucide-react";
+import { ArrowLeft, ArrowRight, CalendarDays, CheckCircle2, Compass, Flame, HelpCircle, ListChecks } from "lucide-react";
 import { getDashboardGreetingAction } from "@/app/(app)/dashboard/actions";
 import { getLessonShortTitle } from "@/lib/lesson-labels";
 import { useI18n } from "@/lib/i18n/context";
@@ -99,6 +99,17 @@ export default function LearningPathClient({
   return (
     <div className="mx-auto max-w-2xl space-y-4 px-4 py-8">
       <header className="space-y-1.5">
+        {/* Lối ra. Trang này là một trang riêng chứ không phải tab dashboard,
+            nên không có gì đưa người dùng về ngoài nút Back của trình duyệt -
+            mà vào đây bằng cách bấm thẻ trên dashboard thì Back là thao tác
+            người ta phải NGHĨ ra, không phải thao tác nhìn thấy. */}
+        <Link
+          href="/dashboard"
+          className="inline-flex items-center gap-1.5 text-sm font-bold text-stone-600 transition-colors hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          {p.backToDashboard}
+        </Link>
         <h1 className="text-2xl font-black text-stone-900 dark:text-stone-100">{p.title}</h1>
         <p className="text-sm leading-relaxed text-stone-600 dark:text-stone-400">{p.subtitle}</p>
       </header>
