@@ -32,9 +32,21 @@ function isMissingColumnError(error: { code?: string } | null) {
 const IMAGE_MIME_TYPES = new Set(["image/png", "image/jpeg", "image/webp", "image/gif"]);
 const MAX_IMAGE_SIZE = 8 * 1024 * 1024; // 8MB - generous for a screenshot, small enough to not stall the chat
 
-export function isAllowedChatImage(file: File): string | null {
-  if (!IMAGE_MIME_TYPES.has(file.type)) return "Chỉ chấp nhận ảnh PNG, JPG, WEBP hoặc GIF.";
-  if (file.size > MAX_IMAGE_SIZE) return "Ảnh vượt quá giới hạn 8MB.";
+/** Lý do một tệp bị từ chối, dưới dạng MÃ chứ không phải câu.
+ *
+ *  Trước đây hai hàm dưới trả thẳng câu tiếng Việt. Chúng chạy ở bốn chỗ -
+ *  FloatingStudyGroupChat, CommunityFeedClient, ChatWithAdminWidget - và câu
+ *  hiện ra đúng lúc người dùng vừa chọn nhầm tệp, tức lúc họ cần đọc hiểu nhất.
+ *  Trả mã để nơi hiển thị dựng câu bằng ngôn ngữ của người đọc. */
+export type ChatUploadRejection =
+  | "imageType"
+  | "imageTooLarge"
+  | "fileType"
+  | "fileTooLarge";
+
+export function isAllowedChatImage(file: File): ChatUploadRejection | null {
+  if (!IMAGE_MIME_TYPES.has(file.type)) return "imageType";
+  if (file.size > MAX_IMAGE_SIZE) return "imageTooLarge";
   return null;
 }
 
@@ -79,12 +91,12 @@ const FILE_EXTENSION_ALLOWLIST = new Set([
 ]);
 const MAX_FILE_SIZE = 15 * 1024 * 1024; // 15MB - generous for a report/spreadsheet, small enough to not stall the chat
 
-export function isAllowedChatFile(file: File): string | null {
+export function isAllowedChatFile(file: File): ChatUploadRejection | null {
   const ext = file.name.split(".").pop()?.toLowerCase() ?? "";
   if (!FILE_EXTENSION_ALLOWLIST.has(ext)) {
-    return "Chỉ chấp nhận PDF, Word, Excel, PowerPoint, TXT, CSV hoặc ZIP.";
+    return "fileType";
   }
-  if (file.size > MAX_FILE_SIZE) return "Tệp vượt quá giới hạn 15MB.";
+  if (file.size > MAX_FILE_SIZE) return "fileTooLarge";
   return null;
 }
 

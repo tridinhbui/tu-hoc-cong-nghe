@@ -530,7 +530,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
     if (!file) return;
     const invalid = isAllowedChatImage(file);
     if (invalid) {
-      toast.error(invalid);
+      toast.error(t.libData.chatUpload[invalid]);
       return;
     }
     setPendingImage(file);

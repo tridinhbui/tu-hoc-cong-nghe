@@ -96,6 +96,7 @@ export default function StreakReminderManager({
             window.localStorage.getItem(reminderShownKey(kind)) === "1";
 
           const decision = decideReminder({
+            strings: t.libData.reminders,
             streakRisk,
             dueRecallCount,
             alreadyShown,

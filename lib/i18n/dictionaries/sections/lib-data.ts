@@ -77,6 +77,21 @@ export const libDataVi = {
       "🔥 {name} đang giữ phong độ cực tốt với {value} XP tích luỹ được!",
       "⭐ Vinh danh {name} - đã đạt {value} XP nhờ học đều đặn mỗi ngày!",
     ],
+    // lib/supabase-chat.ts - lý do một tệp bị từ chối khi gửi trong chat.
+    chatUpload: {
+      imageType: "Chỉ chấp nhận ảnh PNG, JPG, WEBP hoặc GIF.",
+      imageTooLarge: "Ảnh vượt quá giới hạn 8MB.",
+      fileType: "Chỉ chấp nhận PDF, Word, Excel, PowerPoint, TXT, CSV hoặc ZIP.",
+      fileTooLarge: "Tệp vượt quá giới hạn 15MB.",
+    },
+    // lib/streak-reminders.ts - nội dung thông báo đẩy nhắc học.
+    reminders: {
+      streakTitle: "Sắp hết ngày rồi!",
+      streakBody: "Học 1 bài để giữ streak {days} ngày của bạn nhé.",
+      recallTitle: "Có bài ôn tập đến hạn",
+      recallBodyOne: "Bạn có 1 bài ôn tập đến hạn hôm nay.",
+      recallBodyMany: "Bạn có {count} bài ôn tập đến hạn hôm nay.",
+    },
     documentCategories: {
       "mau-bieu": "Mẫu biểu",
       ebook: "Ebook / Tài liệu đọc",
@@ -217,6 +232,19 @@ export const libDataEn: typeof libDataVi = {
       "🔥 {name} is on great form, {value} XP and counting!",
       "⭐ Hats off to {name} - {value} XP from showing up every day.",
     ],
+    chatUpload: {
+      imageType: "Only PNG, JPG, WEBP or GIF images are accepted.",
+      imageTooLarge: "That image is over the 8MB limit.",
+      fileType: "Only PDF, Word, Excel, PowerPoint, TXT, CSV or ZIP files are accepted.",
+      fileTooLarge: "That file is over the 15MB limit.",
+    },
+    reminders: {
+      streakTitle: "The day is nearly over",
+      streakBody: "One lesson keeps your {days}-day streak alive.",
+      recallTitle: "You have reviews due",
+      recallBodyOne: "You have 1 review due today.",
+      recallBodyMany: "You have {count} reviews due today.",
+    },
     documentCategories: {
       "mau-bieu": "Templates",
       ebook: "Ebook / Reading material",

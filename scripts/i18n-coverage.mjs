@@ -128,6 +128,8 @@ const OVERLAY_COMPLETE = new Map([
   ["lib/weekly-career-mission.ts", "lib/__tests__/lib-data-translations.test.ts"],
   ["lib/study-room-lighting.ts", "lib/__tests__/lib-data-translations.test.ts"],
   ["lib/time-ago.ts", "lib/__tests__/time-ago.test.ts"],
+  ["lib/streak-reminders.ts", "lib/__tests__/streak-reminders.test.ts"],
+  ["lib/supabase-chat.ts", "lib/__tests__/lib-data-translations.test.ts"],
   ["lib/excel-practice-data.ts", "lib/__tests__/excel-practice-i18n.test.ts"],
   ["lib/vn30-stock-data.ts", "lib/__tests__/vn30-i18n.test.ts"],
   ["lib/flashcard-albums.ts", "lib/__tests__/flashcard-albums-i18n.test.ts"],

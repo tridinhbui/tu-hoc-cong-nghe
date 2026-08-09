@@ -88,6 +88,16 @@ export function reminderShownKey(kind: ReminderKind, now: Date = new Date()): st
   return `reminder-shown-${todayDateString(now)}-${kind}`;
 }
 
+export interface ReminderStrings {
+  streakTitle: string;
+  /** Chứa {days}. */
+  streakBody: string;
+  recallTitle: string;
+  recallBodyOne: string;
+  /** Chứa {count}. */
+  recallBodyMany: string;
+}
+
 export interface ReminderDecision {
   kind: ReminderKind;
   title: string;
@@ -108,27 +118,33 @@ export function decideReminder(params: {
    *  một câu (lib/daily-motivation.ts). Bỏ trống thì thông báo giữ nguyên như
    *  cũ - hàm này vẫn thuần và test được mà không cần dựng pool. */
   motivationLine?: string;
+  /** Chữ của thông báo. Nhận vào thay vì viết cứng: hàm này chạy ở client và
+   *  người đọc có thể đang dùng tiếng Anh, còn bản thân nó phải thuần để test
+   *  được mà không dựng cả từ điển. */
+  strings: ReminderStrings;
 }): ReminderDecision | null {
-  const { streakRisk, dueRecallCount, alreadyShown, motivationLine } = params;
+  const { streakRisk, dueRecallCount, alreadyShown, motivationLine, strings } = params;
   const withMotivation = (body: string) =>
     motivationLine ? `${body}\n🔥 ${motivationLine}` : body;
 
   if (streakRisk.isAtRisk && !alreadyShown("streak")) {
     return {
       kind: "streak",
-      title: "Sắp hết ngày rồi!",
-      body: withMotivation(`Học 1 bài để giữ streak ${streakRisk.currentStreak} ngày của bạn nhé.`),
+      title: strings.streakTitle,
+      body: withMotivation(
+        strings.streakBody.replace("{days}", String(streakRisk.currentStreak))
+      ),
     };
   }
 
   if (dueRecallCount > 0 && !alreadyShown("recall")) {
     return {
       kind: "recall",
-      title: "Có bài ôn tập đến hạn",
-      body:
-        dueRecallCount === 1
-          ? "Bạn có 1 bài ôn tập đến hạn hôm nay."
-          : `Bạn có ${dueRecallCount} bài ôn tập đến hạn hôm nay.`,
+      title: strings.recallTitle,
+      body: (dueRecallCount === 1 ? strings.recallBodyOne : strings.recallBodyMany).replace(
+        "{count}",
+        String(dueRecallCount)
+      ),
     };
   }
 

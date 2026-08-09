@@ -266,7 +266,7 @@ export default function ChatWithAdminWidget({
     if (!file) return;
     const invalidReason = isAllowedChatImage(file);
     if (invalidReason) {
-      toast.error(invalidReason);
+      toast.error(t.libData.chatUpload[invalidReason]);
       return;
     }
     setPendingImagePreview((prev) => {

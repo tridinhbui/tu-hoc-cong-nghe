@@ -237,7 +237,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
     if (!file) return;
     const invalidReason = isAllowedChatImage(file);
     if (invalidReason) {
-      toast.error(invalidReason);
+      toast.error(t.libData.chatUpload[invalidReason]);
       return;
     }
     setPendingImagePreview((prev) => {
@@ -260,7 +260,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
     if (!file) return;
     const invalidReason = isAllowedChatFile(file);
     if (invalidReason) {
-      toast.error(invalidReason);
+      toast.error(t.libData.chatUpload[invalidReason]);
       return;
     }
     setPendingFile(file);

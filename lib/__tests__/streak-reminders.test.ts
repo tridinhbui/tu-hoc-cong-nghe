@@ -1,3 +1,4 @@
+import { libDataVi, libDataEn } from "@/lib/i18n/dictionaries/sections/lib-data";
 import { describe, it, expect } from "vitest";
 import {
   todayDateString,
@@ -99,6 +100,7 @@ describe("decideReminder", () => {
 
   it("returns null when nothing is due", () => {
     const result = decideReminder({
+      strings: libDataVi.libData.reminders,
       streakRisk: { hasActiveStreak: false, isAtRisk: false, currentStreak: 0 },
       dueRecallCount: 0,
       alreadyShown: notShownYet,
@@ -108,6 +110,7 @@ describe("decideReminder", () => {
 
   it("prioritizes streak risk over recall due", () => {
     const result = decideReminder({
+      strings: libDataVi.libData.reminders,
       streakRisk: { hasActiveStreak: true, isAtRisk: true, currentStreak: 5 },
       dueRecallCount: 3,
       alreadyShown: notShownYet,
@@ -118,6 +121,7 @@ describe("decideReminder", () => {
 
   it("appends the motivation line to the streak reminder when given one", () => {
     const result = decideReminder({
+      strings: libDataVi.libData.reminders,
       streakRisk: { hasActiveStreak: true, isAtRisk: true, currentStreak: 5 },
       dueRecallCount: 0,
       alreadyShown: notShownYet,
@@ -129,6 +133,7 @@ describe("decideReminder", () => {
 
   it("leaves the body untouched when no motivation line is passed", () => {
     const result = decideReminder({
+      strings: libDataVi.libData.reminders,
       streakRisk: { hasActiveStreak: true, isAtRisk: true, currentStreak: 5 },
       dueRecallCount: 0,
       alreadyShown: notShownYet,
@@ -138,6 +143,7 @@ describe("decideReminder", () => {
 
   it("falls back to recall reminder when streak isn't at risk", () => {
     const result = decideReminder({
+      strings: libDataVi.libData.reminders,
       streakRisk: { hasActiveStreak: false, isAtRisk: false, currentStreak: 0 },
       dueRecallCount: 2,
       alreadyShown: notShownYet,
@@ -148,6 +154,7 @@ describe("decideReminder", () => {
 
   it("uses singular phrasing for exactly 1 due recall item", () => {
     const result = decideReminder({
+      strings: libDataVi.libData.reminders,
       streakRisk: { hasActiveStreak: false, isAtRisk: false, currentStreak: 0 },
       dueRecallCount: 1,
       alreadyShown: notShownYet,
@@ -157,6 +164,7 @@ describe("decideReminder", () => {
 
   it("suppresses a reminder kind already shown today", () => {
     const result = decideReminder({
+      strings: libDataVi.libData.reminders,
       streakRisk: { hasActiveStreak: true, isAtRisk: true, currentStreak: 5 },
       dueRecallCount: 2,
       alreadyShown: alreadyShownAll,
@@ -166,10 +174,35 @@ describe("decideReminder", () => {
 
   it("falls through to recall if only the streak kind was already shown", () => {
     const result = decideReminder({
+      strings: libDataVi.libData.reminders,
       streakRisk: { hasActiveStreak: true, isAtRisk: true, currentStreak: 5 },
       dueRecallCount: 2,
       alreadyShown: (kind) => kind === "streak",
     });
     expect(result?.kind).toBe("recall");
+  });
+});
+
+describe("chữ thông báo nhắc học", () => {
+  it("dựng được ở cả hai ngôn ngữ và không sót placeholder", () => {
+    for (const bag of [libDataVi.libData.reminders, libDataEn.libData.reminders]) {
+      const streak = decideReminder({
+        strings: bag,
+        streakRisk: { hasActiveStreak: true, isAtRisk: true, currentStreak: 7 },
+        dueRecallCount: 0,
+        alreadyShown: () => false,
+      })!;
+      expect(streak.body).toContain("7");
+      expect(streak.body).not.toMatch(/\{\w+\}/);
+
+      const recall = decideReminder({
+        strings: bag,
+        streakRisk: { hasActiveStreak: false, isAtRisk: false, currentStreak: 0 },
+        dueRecallCount: 4,
+        alreadyShown: () => false,
+      })!;
+      expect(recall.body).toContain("4");
+      expect(recall.body).not.toMatch(/\{\w+\}/);
+    }
   });
 });
