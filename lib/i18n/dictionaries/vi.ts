@@ -2411,6 +2411,7 @@ export const vi = {
     libraryPresence: "Thư viện là nơi duy nhất trong app có người khác đang hiện diện",
     libraryEnterCta: "Vào",
 
+    learningPathCardSub: "Bắt đầu từ đâu, mỗi ngày bao nhiêu bài, bao giờ thì xong",
     levelMapTab: "Bản đồ cấp độ",
     learningPathTab: "Lộ trình học",
     learningPathTitle: "Lộ trình học của bạn",

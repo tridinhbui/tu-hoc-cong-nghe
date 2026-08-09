@@ -2257,6 +2257,7 @@ export const en: Dictionary = {
     libraryPresence: "The Library is the only place in the app where other people are actually present",
     libraryEnterCta: "Enter",
 
+    learningPathCardSub: "Where to start, how much a day, and when you finish",
     levelMapTab: "Level map",
     learningPathTab: "Learning path",
     learningPathTitle: "Your learning path",

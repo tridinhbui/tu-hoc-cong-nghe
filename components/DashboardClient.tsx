@@ -7,7 +7,7 @@ import TaiTaiAvatar from "@/components/TaiTaiAvatar";
 import { useRouter, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
-import { CheckCircle2, Lock, CheckCheck, Bookmark, BookOpen, ChevronLeft, ChevronRight, Search, X, Landmark, ArrowRight } from "lucide-react";
+import { CheckCircle2, Lock, CheckCheck, Bookmark, BookOpen, ChevronLeft, ChevronRight, Search, X, Landmark, ArrowRight, Route } from "lucide-react";
 import { useProgress } from "@/lib/client-hooks";
 import { mergeCompletedLessons } from "@/lib/progress";
 import { getIllustrativeCount } from "@/lib/illustrative-stats";
@@ -1300,6 +1300,36 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                 Hai nhánh chỉ có một nhánh chạy tại một thời điểm, nên đây là
                 một instance chứ không phải hai. */}
             {!isLessonsView && user?.id && <DailyMotivationWidget userId={user.id} />}
+
+            {/* Lối vào Lộ trình học, ngay dưới góc yên tĩnh.
+                Trang đó trả lời câu mà dashboard không trả lời: bắt đầu từ
+                đâu, mỗi ngày bao nhiêu, bao giờ thì xong - và trước thẻ này
+                nó chỉ có một dòng trong navbar, tức là ai chưa mở navbar ra
+                thì không biết nó tồn tại.
+                Đây là một thẻ liên kết, KHÔNG phải một tab dashboard: chú
+                thích đầu app/(app)/lo-trinh/page.tsx nói rõ vì sao không thêm
+                giá trị nào vào DASHBOARD_TABS nữa. */}
+            {!isLessonsView && (
+              <Link
+                href="/lo-trinh"
+                className="group flex items-center gap-3.5 rounded-[24px] border border-stone-200/90 dark:border-stone-800 bg-white/95 dark:bg-stone-900 p-4 shadow-sm transition-all hover:border-emerald-400 hover:shadow-md dark:hover:border-emerald-700"
+              >
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600 transition-transform group-hover:scale-105 dark:bg-emerald-950/40 dark:text-emerald-400">
+                  <Route className="h-5 w-5" />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <p className="text-sm font-extrabold text-stone-900 dark:text-stone-100">
+                    {t.nav.learningPath}
+                  </p>
+                  <p className="mt-0.5 text-xs text-stone-500 dark:text-stone-400">
+                    {t.dashboard.learningPathCardSub}
+                  </p>
+                </div>
+                <span className="shrink-0 text-xl font-bold text-stone-300 transition-transform group-hover:translate-x-0.5 group-hover:text-emerald-500 dark:text-stone-600">
+                  ›
+                </span>
+              </Link>
+            )}
 
             {isLessonsView && (
             <>
