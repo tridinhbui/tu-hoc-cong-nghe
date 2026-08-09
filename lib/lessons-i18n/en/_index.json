@@ -295,6 +295,11 @@
     "subtitle": "The power of time and continuous reinvestment",
     "duration": "6 min"
   },
+  "comps-thuc-chien": {
+    "title": "IB & Analysis, Lesson 2: Comps in practice - choosing the right comparable companies",
+    "subtitle": "Comparable company analysis goes wrong at the selection step, not at the arithmetic",
+    "duration": "8 min"
+  },
   "cong-thuc-ke-toan": {
     "title": "Assets = Liabilities + Equity",
     "subtitle": "The basic accounting equation and why it always holds",
@@ -455,6 +460,11 @@
     "title": "Stage 8, Lesson 1: Redefining \"rich\" - what is financial independence?",
     "subtitle": "Financial independence is not having a lot of money. It is no longer working just to stay alive.",
     "duration": "6 min"
+  },
+  "discontinued-operations": {
+    "title": "Deep-dive case: Discontinued Operations",
+    "subtitle": "Don't let Net Income fool you",
+    "duration": "5 min"
   },
   "discount-rate": {
     "title": "Discount Rate",
@@ -1059,6 +1069,11 @@
     "title": "What is Precedent Transaction analysis?",
     "subtitle": "Valuing a company based on prices actually paid in similar past M&A deals",
     "duration": "9 min"
+  },
+  "precedent-transactions-thuc-chien": {
+    "title": "IB & Analysis, Lesson 3: Precedent transactions - valuing from past M&A deals",
+    "subtitle": "Why M&A multiples usually sit above the trading multiples of listed companies in the same industry",
+    "duration": "7 min"
   },
   "present-value": {
     "title": "Present Value",

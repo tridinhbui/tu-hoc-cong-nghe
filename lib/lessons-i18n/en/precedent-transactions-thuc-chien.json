@@ -1,0 +1,163 @@
+{
+  "slug": "precedent-transactions-thuc-chien",
+  "title": "IB & Analysis, Lesson 3: Precedent transactions - valuing from past M&A deals",
+  "subtitle": "Why M&A multiples usually sit above the trading multiples of listed companies in the same industry",
+  "duration": "7 min",
+  "openingQuestion": "The average EV/EBITDA multiple across M&A deals in an industry is usually higher than the trading multiple of listed companies in that same industry. Why?",
+  "openingOptions": [
+    "Because M&A deals are always mispriced",
+    "The buyer pays a control premium for control",
+    "Because the stock market always prices below true value",
+    "There is no systematic difference between the two kinds of multiple"
+  ],
+  "explanation": "Precedent transactions usually carry higher multiples than trading comps because the buyer pays a control premium - compensation for controlling the whole operation, being able to change strategy, and creating synergies (cutting costs, cross-selling revenue) that a minority shareholder buying a few shares on the exchange cannot obtain.",
+  "diagram": [
+    { "label": "Find similar past M&A deals", "arrow": true },
+    { "label": "Compute EV/EBITDA and EV/Revenue at the deal date", "arrow": true },
+    { "label": "These multiples already include the control premium", "arrow": true },
+    { "label": "Apply to the target (usually a higher valuation than comps)" }
+  ],
+  "realWorldExample": {
+    "company": "Valuing an acquisition target",
+    "description": "Advising on an acquisition, investment banks usually present comps and precedent transactions side by side - precedent transactions usually produce the higher range, reflecting what a buyer will actually have to pay to win control, not merely the fair value in the secondary market."
+  },
+  "quiz": [
+    {
+      "question": "Why do precedent transactions go out of date more readily than comparable company analysis?",
+      "options": [
+        "They never go out of date, being based on transactions that really happened",
+        "Because the businesses involved in the older deals no longer exist",
+        "Because regulation prohibits using deal data more than a year old",
+        "Because they reflect the market conditions of their own moment"
+      ],
+      "explanation": "An M&A deal struck in a period of low rates, a lively market and several competing buyers will carry a far higher multiple than a comparable deal struck in a quiet market - which is why analysts have to weigh the timing of each precedent carefully rather than looking only at the type of transaction."
+    },
+    {
+      "question": "A company is acquired at an unusually low price relative to other precedent deals in its industry. What could explain that other than \"the company was undervalued\"?",
+      "options": [
+        "There is no explanation other than the company being undervalued",
+        "It may be a forced sale, few buyers, or a legal problem",
+        "That business certainly had serious accounting errors",
+        "The buyer certainly paid a price that was not fair"
+      ],
+      "explanation": "An M&A price reflects the context of the deal as well as intrinsic value - a company sold under distress, without competing buyers, or carrying a specific problem can go at a far lower price than the fair value a competitive, unhurried auction would have produced."
+    },
+    {
+      "question": "Why are multiples in M&A deals usually higher than trading multiples on the exchange?",
+      "options": [
+        "Because an acquired business is always better than a listed one",
+        "Because the price includes control and the value of synergies",
+        "Because M&A transactions are exempt from transfer tax",
+        "Because buyers almost always miscalculate what a business is worth"
+      ],
+      "explanation": "Buying a whole business lets the buyer change how it is run and capture synergies. That difference is the price of those rights, plus the effect of competition in the auction."
+    },
+    {
+      "question": "A precedent transaction shows a very low multiple. What is the soundest conclusion?",
+      "options": [
+        "Use that multiple straight away as the benchmark for the new valuation",
+        "That business certainly has a very low intrinsic value",
+        "Check the context: was it a forced sale, and how many buyers",
+        "The data on that transaction has certainly been recorded incorrectly"
+      ],
+      "explanation": "A transaction price reflects the circumstances of both parties, not just what the business is worth. A sale made from a position of weakness says little about intrinsic value."
+    },
+    {
+      "question": "Why do multiples from deals struck in a hot market need adjusting before being reused today?",
+      "options": [
+        "Because multiples on older deals are always inflated by the advisers involved",
+        "Because older deals often do not fully disclose the real transaction value",
+        "Because the control premium is fixed by regulation for each phase of the market",
+        "Because the level of interest rates and risk appetite then may differ entirely from now"
+      ],
+      "explanation": "A past multiple carries with it whether capital was cheap or dear at that moment. Reusing the level of a cheap-money year during a high-rate period imports an assumption that no longer holds - so the deal date matters as much as the number."
+    }
+  ],
+  "keyTakeaways": [
+    "Precedent transactions usually carry higher multiples than comps, because they include a control premium",
+    "An M&A multiple reflects the market conditions at the deal date - weigh the timing before applying it",
+    "An unusually low deal price may come from the context (a forced sale, few competing buyers) rather than from low intrinsic value"
+  ],
+  "practicePrompt": {
+    "question": "Comps produce an average EV/EBITDA of 8x, while precedent transactions (based on completed M&A deals in the same industry) produce an average of 11x. Why do the two methods differ so much?",
+    "options": [
+      "Precedent transactions carry higher multiples than comps because they include a control premium",
+      "This is a calculation error; the two methods ought always to produce exactly the same multiple",
+      "Comps are always more accurate than precedent transactions, so the 11x figure should be discarded",
+      "Precedent transactions apply only to cross-border deals and cannot be used domestically at all"
+    ],
+    "explanation": "Precedent transactions usually carry higher multiples than comps because they include a control premium. That is the additional amount paid to win control of the whole company, unlike an ordinary share purchase on the exchange."
+  },
+  "application": {
+    "title": "Write the context beside every multiple",
+    "message": "For each deal in the table, add three columns: the year, the number of bidders, and whether the seller was under pressure to sell. A 12x multiple from 2021 with four competing buyers says nothing about today, and neither does a 5x from a distressed seller.",
+    "secondary": "Drop the deals too far away in the rate cycle before taking the median, rather than including everything and explaining it afterwards."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "M&A multiples usually sit well above the trading multiples of the same industry on the exchange - the reason is a concept called the control premium."
+    },
+    {
+      "type": "heading",
+      "text": "The control premium, and how quickly precedent data dates"
+    },
+    {
+      "type": "paragraph",
+      "text": "The buyer in an M&A deal pays a control premium for control of the whole company and the ability to create synergies - things an investor buying a few shares on the exchange does not get. But precedent transactions date faster than comps, because each deal reflects the market conditions (rates, sentiment, how many buyers were competing) at that exact moment - so the timing needs weighing carefully before applying it."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Precedent transactions usually carry higher multiples than comps, because they include a control premium",
+        "An M&A multiple reflects the market conditions at the deal date - weigh the timing before applying it",
+        "An unusually low deal price may come from the context (a forced sale, few buyers) rather than from low intrinsic value"
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "What the premium over the market price actually consists of"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Control: the buyer decides strategy, capital allocation and dividend policy - none of which a small shareholder has.",
+        "Expected synergies: removing duplicated costs, widening distribution, sharing technology. This is where buyers are most optimistic and most often fall short in practice.",
+        "Competitive pressure in the auction: with several buyers, the price is pushed beyond what the original analysis could justify.",
+        "Market conditions at the deal date: the level of rates and how easily capital can be raised bear directly on what a buyer will pay."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Three questions for every precedent transaction",
+      "text": "When did the deal happen, and what were interest rates then? How many bidders took part - a single buyer, or a contest? And what position was the seller in - choosing their moment, or forced to sell by financial pressure? These three explain most of the spread between precedent multiples."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "An unusually high precedent multiple",
+        "text": "Usually from a multi-party auction, or a buyer expecting very large synergies, or a deal struck in a cheap-money period. Not a benchmark to use where today's context is entirely different."
+      },
+      "right": {
+        "label": "An unusually low precedent multiple",
+        "text": "Usually from a seller forced into a quick sale, a single buyer, or a business with a problem not yet visible in the public numbers. Equally, not a reflection of intrinsic value."
+      }
+    },
+    {
+      "type": "paragraph",
+      "text": "For that reason the method rarely stands alone. Its natural role is to indicate the upper bound of the valuation range - what a strategic buyer might be willing to pay - while relative valuation shows what the market pays for a minority stake, and a cash flow method shows intrinsic value under your own assumptions."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A precedent transaction from 3 years ago may no longer reflect the market as it stands today.",
+        "Always check the market conditions at the moment each deal was struck."
+      ]
+    }
+  ],
+  "summary": {
+    "keyIdea": "Precedent transactions usually carry higher multiples than comps, because they include a control premium",
+    "commonMistake": "Easy to miss: an M&A multiple reflects the market conditions at the deal date - weigh the timing before applying it",
+    "action": "An unusually low deal price may come from the context (a forced sale, few competing buyers) rather than from low intrinsic value"
+  }
+}

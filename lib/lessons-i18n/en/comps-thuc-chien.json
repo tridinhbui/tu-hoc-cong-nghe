@@ -1,0 +1,164 @@
+{
+  "slug": "comps-thuc-chien",
+  "title": "IB & Analysis, Lesson 2: Comps in practice - choosing the right comparable companies",
+  "subtitle": "Comparable company analysis goes wrong at the selection step, not at the arithmetic",
+  "duration": "8 min",
+  "openingQuestion": "When valuing a mid-sized online fashion retailer using comps, why is it not enough to pick companies sharing the same GICS industry code and ignore everything else?",
+  "openingOptions": [
+    "The GICS code is always sufficient to guarantee a suitable comparable set",
+    "The same code still covers very different size, growth and margins",
+    "The GICS code exists only for statistical purposes and has nothing to do with valuation",
+    "You should pick companies in other countries to diversify the comparable sample"
+  ],
+  "explanation": "The industry code is only the first filter. Comps in practice demand a finer screen: comparable revenue size, comparable growth, a similar business model (online versus offline, B2B versus B2C), and margins at a similar level - a company growing 40% a year should not have its multiple compared directly with a same-industry company growing 5% a year.",
+  "diagram": [
+    { "label": "Screen by industry (GICS)", "arrow": true },
+    { "label": "Refine: size, growth, margins, business model", "arrow": true },
+    { "label": "Settle on a genuinely comparable set", "arrow": true },
+    { "label": "Apply the median multiple to the target" }
+  ],
+  "realWorldExample": {
+    "company": "Valuing a high-growth technology company",
+    "description": "When investment banks value a technology startup growing 50% a year, they usually drop the slow-growing big-tech names from the comparable set despite the shared industry, and prefer companies with similar growth even at a far smaller size - because the market prices high growth at an entirely different multiple."
+  },
+  "quiz": [
+    {
+      "question": "Why does the market price a fast-growing company at a far higher P/E or EV/Revenue multiple than a slow-growing company in the same industry?",
+      "options": [
+        "Because a fast-growing business always carries lower risk",
+        "Because a valuation multiple prices future profit",
+        "Because a fast-growing business always borrows considerably less",
+        "There is no sound reason; it is simply a passing crowd sentiment"
+      ],
+      "explanation": "A valuation multiple is fundamentally an expression of expected growth and future profit discounted to today - a faster-growing company will produce far larger future cash flows than a slow-growing one, so it is rational for the market to pay a higher multiple on the same dong of current profit."
+    },
+    {
+      "question": "When you cannot find enough directly comparable companies (a very specialised industry, few listed names), what is a better approach than forcing through a comparable set that is not really comparable?",
+      "options": [
+        "Use the non-comparable set anyway; something beats nothing",
+        "Take a single business as the entire basis for comparison",
+        "Abandon the valuation, since the data is not reliable enough",
+        "Widen to similar models and cross-check against other methods"
+      ],
+      "explanation": "When direct comps are scarce, a good analyst looks for companies sharing the core business characteristics (revenue model, cost structure, growth drivers) even under a different official industry code, and always cross-checks against other valuation methods - rather than leaning entirely on a weak comparable set just because that is the data to hand."
+    },
+    {
+      "question": "Why use the median rather than the mean when aggregating the comparable set's multiples?",
+      "options": [
+        "Because the median is less distorted by an extreme multiple",
+        "Because the median always produces a higher figure than the mean",
+        "Because the mean cannot be computed with an odd number of items",
+        "Because valuation standards make the median mandatory"
+      ],
+      "explanation": "A comparable set usually holds only a handful of businesses, so one unusual multiple can drag the mean badly. The median is far more robust at small sample sizes."
+    },
+    {
+      "question": "What is the inherent limitation of relative valuation?",
+      "options": [
+        "It cannot be used for a business already listed on an exchange",
+        "It reproduces whatever mispricing the comparable set carries",
+        "It always produces a figure below the current market price",
+        "It cannot be computed if the business has any bank borrowings"
+      ],
+      "explanation": "The method measures relative value, not intrinsic value. So it needs to sit beside a cash-flow-based method, which is what reveals the stretches where a whole industry has drifted away from fundamentals."
+    },
+    {
+      "question": "Why should companies in the comparable set have similar capital structures when using a P/E multiple?",
+      "options": [
+        "Because P/E can only be computed for businesses with no long-term borrowings",
+        "Because a heavily borrowed company has a more volatile share price",
+        "Because interest is deducted before profit, so differing leverage distorts P/E",
+        "Because the capital structure sets the effective tax rate the business pays"
+      ],
+      "explanation": "P/E is a multiple of the shareholders' share, struck after interest - so two companies identical in operations but differently borrowed will show different P/Es. To avoid the problem, use EV/EBITDA, which sits above both debt and equity."
+    }
+  ],
+  "keyTakeaways": [
+    "Comps in practice need a finer screen than the industry code: comparable size, growth, margins and business model",
+    "A fast-growing company is rationally priced at a higher multiple, because it reflects larger expected future cash flows",
+    "When direct comps are scarce, cross-check against other valuation methods rather than forcing a weak comparable set"
+  ],
+  "practicePrompt": {
+    "question": "An analyst picks 10 companies under the \"retail\" industry code as comps for the target, and the set contains both slow-growing supermarket chains and fast-growing e-commerce startups. What is wrong with this comparable set?",
+    "options": [
+      "Nothing at all, because they all fall under the same \"retail\" industry code and can therefore be compared directly",
+      "Comps need refining by size, growth and margin, not just the industry code",
+      "You should add still more companies under the same industry code, to make the comparable sample more reliable",
+      "The industry code is always the single sufficient criterion for comparability when building a set of comps"
+    ],
+    "explanation": "Comps in practice need refining by size, growth, margin and business model, not just the industry code. Mixing companies with wildly different business characteristics under one industry label strips the average multiple of any comparative meaning."
+  },
+  "application": {
+    "title": "Eliminate until five are left",
+    "message": "Start from the same-industry list and eliminate on size, growth rate, margin and revenue model until about five companies remain that you can defend one by one. Five genuinely similar companies give a narrower range than twenty sharing an industry code.",
+    "secondary": "If the screen leaves you with two, do not loosen the criteria to fill the count. State plainly that the comps are weak and shift weight to the DCF."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Comparable company analysis sounds simple - find similar companies, compare the multiples - but the step that most often goes wrong is not the arithmetic, it is the selection."
+    },
+    {
+      "type": "heading",
+      "text": "Beyond the industry code: refine on size, growth and business model"
+    },
+    {
+      "type": "paragraph",
+      "text": "Companies sharing an industry code can differ enormously in size, growth rate, margins and business model - and those differences bear heavily on what multiple is reasonable. A fast-growing company is rationally paid a higher multiple, because it reflects far larger expected future cash flows. Where direct comps are scarce, widen the search to companies with similar business characteristics and cross-check against other valuation methods."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Comps in practice need refining on size, growth, margin and business model - not just the industry code",
+        "A fast-growing company is rationally priced at a higher multiple, because it reflects expectations of the future",
+        "When comps are scarce, cross-check against other valuation methods rather than forcing a weak comparable set"
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Five criteria for screening comparable companies"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Business model: whether the way they make money is the same, rather than whether a classification list puts them in one industry.",
+        "Size: a business several times larger usually carries a different multiple, from better share liquidity and lower risk.",
+        "Growth rate: this is the variable explaining most of the multiple spread between businesses in one industry.",
+        "Margins and return on capital: two businesses growing alike but far apart on capital efficiency cannot carry the same multiple.",
+        "Capital structure: where debt levels differ widely, use an enterprise value multiple rather than a multiple on profit after tax."
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "A weak comparable set",
+        "text": "Take every listed business in the industry, average the multiples, and apply that to the company you are valuing. The result is a figure that looks objective while in fact blending several different business models."
+      },
+      "right": {
+        "label": "A good comparable set",
+        "text": "Four to eight businesses genuinely alike in model, size and growth; the median rather than the mean, to limit the effect of outliers; and an explanation for why each business is in the set."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Three common technical errors",
+      "text": "One: using the mean rather than the median, letting one business with an extreme multiple drag the whole set. Two: mixing historical multiples with forward multiples in the same table. Three: comparing P/E across businesses with very different debt levels, instead of using an enterprise value multiple to neutralise capital structure."
+    },
+    {
+      "type": "paragraph",
+      "text": "The last point, and the most important: relative valuation assumes the market is pricing the comparable set correctly. Through a stretch where a whole industry is overvalued or undervalued, this method will lead you to exactly the same error. That is why it always needs checking against a method built on intrinsic cash flow."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Choosing the wrong comparable set ruins the entire valuation, however precise the arithmetic afterwards.",
+        "The selection step deserves more time than anything else in the process."
+      ]
+    }
+  ],
+  "summary": {
+    "keyIdea": "Comps in practice need a finer screen than the industry code: comparable size, growth, margins and business model",
+    "commonMistake": "Easy to miss: a fast-growing company is rationally priced at a higher multiple, because it reflects larger expected future cash flows",
+    "action": "When direct comps are scarce, cross-check against other valuation methods rather than forcing a weak comparable set"
+  }
+}
