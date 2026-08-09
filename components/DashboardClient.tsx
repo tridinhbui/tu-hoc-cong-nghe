@@ -923,7 +923,18 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
   })).filter((g) => g.lessons.length > 0);
 
   return (
-    <div className="min-h-screen xl:h-screen xl:overflow-hidden bg-white dark:bg-stone-950">
+    // xl:overflow-y-auto chứ KHÔNG phải overflow-hidden. Bố cục "một hình chữ
+    // nhật" giả định mọi thứ vừa đúng một màn hình, và mỗi lần thêm một dải
+    // trên đầu - thông báo của admin, rồi lối vào thư viện 3D - là một lần
+    // ngân sách chiều cao bị ăn bớt mà không ai đo lại. Với overflow-hidden,
+    // phần không vừa không phải là "hơi chật": nó BIẾN MẤT, và không có thanh
+    // cuộn nào để lấy lại. Trên màn 1280×720 hoặc khi có banner, đó là mất
+    // hẳn phần dưới của lưới.
+    //
+    // Màn hình đủ cao thì không có gì tràn nên cũng không có thanh cuộn, tức
+    // ý đồ ban đầu vẫn nguyên; chỉ khác ở đúng trường hợp trước đây bị mất
+    // nội dung.
+    <div className="min-h-screen xl:h-screen xl:overflow-y-auto bg-white dark:bg-stone-950">
 
 
       <div className="px-4 py-4 sm:px-5 sm:py-5 xl:h-full xl:flex xl:flex-col xl:min-h-0">
@@ -953,7 +964,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             đầu rồi không tìm lại được. */}
         <Link
           href="/cong-dong"
-          className="group mb-4 flex items-center gap-3 rounded-[20px] border border-violet-200 bg-gradient-to-r from-violet-50 via-white to-white px-4 py-3 shadow-2xs transition-colors hover:border-violet-300 hover:from-violet-100 dark:border-violet-900/70 dark:from-violet-950/40 dark:via-stone-900 dark:to-stone-900 dark:hover:border-violet-800"
+          className="group mx-auto mb-4 flex w-full max-w-[1500px] items-center gap-3 rounded-[20px] border border-violet-200 bg-gradient-to-r from-violet-50 via-white to-white px-4 py-3 shadow-2xs transition-colors hover:border-violet-300 hover:from-violet-100 dark:border-violet-900/70 dark:from-violet-950/40 dark:via-stone-900 dark:to-stone-900 dark:hover:border-violet-800"
         >
           <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-violet-100 text-violet-600 dark:bg-violet-950/60 dark:text-violet-300">
             <Landmark className="h-4.5 w-4.5" />
