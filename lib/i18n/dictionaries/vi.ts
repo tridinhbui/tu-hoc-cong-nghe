@@ -218,7 +218,12 @@ export const vi = {
       freeForever: "miễn phí mãi mãi",
       part2:
         " vì sự phát triển của cộng đồng học tài chính cá nhân, CFA, lập kế hoạch tài chính, đầu tư, và người làm tài chính tại Việt Nam.",
+      // Bản một dòng cho màn hình hẹp - câu đầy đủ chiếm bốn dòng ở 375px,
+      // đẩy hero xuống gần một phần tư màn hình đầu.
+      shortPrefix: "Toàn bộ bài học tại đây ",
+      dismiss: "Đóng thông báo",
       facebook: "Tham gia group Facebook",
+      facebookShort: "Group Facebook",
     },
 
     brand: "Tự Học Tài Chính",

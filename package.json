@@ -18,6 +18,8 @@
     "test": "vitest run",
     "test:e2e": "playwright test",
     "check:migrations": "node scripts/check-migrations.mjs",
+    "//build:routes": "Sinh lại lib/route-segments.json sau khi thêm/xoá một thư mục route cấp một trong app/. Tệp này ĐƯỢC commit (proxy chạy ở edge, không đọc được hệ tệp) và có lib/__tests__/route-segments.test.ts gác không cho lệch.",
+    "build:routes": "node scripts/build-route-segments.mjs",
     "audit:lessons": "node scripts/generate-lesson-data.mjs && node scripts/audit-lesson-content.mjs",
     "audit:lessons:en": "node scripts/generate-lesson-data.mjs && node scripts/build-translation-index.mjs && node scripts/audit-lesson-content.mjs --locale=en"
   },

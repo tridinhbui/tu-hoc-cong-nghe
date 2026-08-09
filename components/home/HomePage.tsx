@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { ArrowRight, PlayCircle } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
+import { ArrowRight, PlayCircle, X } from "lucide-react";
 import { getTotalUserCount, getTotalCompletedLessonsCount } from "@/lib/supabase-user";
 import { animateCountTo } from "@/lib/animate-count";
 import { TRACKS } from "@/lib/tracks";
@@ -18,6 +18,12 @@ import InteractiveEcosystemShowcase from "@/components/home/InteractiveEcosystem
 import ScrollytellingPinnedSection from "@/components/home/ScrollytellingPinnedSection";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
+import {
+  dismissHomeBanner,
+  getHomeBannerDismissed,
+  getHomeBannerDismissedServer,
+  subscribeHomeBannerDismissed,
+} from "@/lib/home-banner-dismissed";
 
 function SoftFadeDivider() {
   return (
@@ -27,10 +33,29 @@ function SoftFadeDivider() {
 
 export default function HomePage() {
   const { t } = useI18n();
+  const reduceMotion = useReducedMotion();
+  // Hiệu ứng vào của hero. Trước đây mỗi khối tự khai initial/animate/transition,
+  // và tổng độ trễ dồn lại thành ~0,9 giây trước khi màn hình đầu đọc được -
+  // chụp hai ảnh liên tiếp lúc tải thì ảnh đầu gần như trắng chữ. Gom về một
+  // chỗ để (1) rút delay xuống còn một nửa và (2) tắt hẳn khi người dùng đã
+  // bật prefers-reduced-motion, thay vì mỗi khối một kiểu.
+  const heroReveal = (delay: number, y = 16) =>
+    reduceMotion
+      ? { initial: false as const, animate: { opacity: 1, y: 0 } }
+      : {
+          initial: { opacity: 0, y },
+          animate: { opacity: 1, y: 0 },
+          transition: { duration: 0.35, ease: "easeOut" as const, delay },
+        };
   const [displayedUserCount, setDisplayedUserCount] = useState(0);
   const [displayedLessonCount, setDisplayedLessonCount] = useState(0);
   const [displayedCompletedCount, setDisplayedCompletedCount] = useState(0);
   const [heroSpotlight, setHeroSpotlight] = useState({ x: 50, y: 35 });
+  const bannerDismissed = useSyncExternalStore(
+    subscribeHomeBannerDismissed,
+    getHomeBannerDismissed,
+    getHomeBannerDismissedServer
+  );
   // Plain (non-animated) rounded-down count for inline copy ("360+ bài
   // học..." in the hero paragraph and pain-point card) - the animated
   // displayedLessonCount above counts up from 0 on load, which reads fine
@@ -300,21 +325,37 @@ export default function HomePage() {
         {/* Top banner - pushed to the very top of the page per request, in
             Vietnamese-flag red/yellow, same commitment message previously
             further down in the Social Proof section (moved here, not
-            duplicated). */}
-        {/* Top banner - pushed to the very top of the page per request, in
-            Vietnamese-flag red/yellow */}
+            duplicated).
+
+            Ở 375×812 bản cũ chiếm ~200px, tức một phần tư màn hình đầu, vì
+            câu cam kết đầy đủ xuống bốn dòng và cụm flex-col xếp thêm liên
+            kết Facebook xuống dòng nữa. Giờ màn hình hẹp đọc bản rút gọn một
+            dòng (`shortPrefix` + "miễn phí mãi mãi"), còn câu đầy đủ giữ
+            nguyên từ breakpoint sm trở lên.
+
+            Nút đóng ghi vào localStorage. Banner vẫn kết xuất phía máy chủ và
+            chỉ ẩn sau khi effect chạy - người đã đóng thấy nó chớp một nhịp,
+            đổi lại người chưa đóng không bị đẩy nội dung xuống sau khi trang
+            đã vẽ. */}
+        {!bannerDismissed && (
         <div className="relative overflow-hidden bg-[#DA251D]">
           <div className="pointer-events-none absolute -top-8 -right-8 text-[100px] leading-none text-[#FFCD00]/10 select-none">
             ★
           </div>
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex flex-col gap-1.5 text-center sm:flex-row sm:items-center sm:justify-center sm:gap-3 sm:text-left">
+          <div className="relative max-w-7xl mx-auto flex items-center gap-2 px-4 sm:px-6 lg:px-8 py-2 sm:gap-3 sm:justify-center">
             <span className="hidden sm:inline text-lg leading-none text-[#FFCD00]" aria-hidden="true">
               ★
             </span>
-            <p className="text-xs sm:text-sm font-semibold text-white/95 leading-relaxed">
-              {t.home.banner.part1}
-              <strong className="text-[#FFCD00]">{t.home.banner.freeForever}</strong>
-              {t.home.banner.part2}
+            <p className="min-w-0 flex-1 truncate text-xs font-semibold text-white/95 sm:flex-none sm:overflow-visible sm:whitespace-normal sm:text-sm sm:leading-relaxed">
+              <span className="sm:hidden">
+                {t.home.banner.shortPrefix}
+                <strong className="text-[#FFCD00]">{t.home.banner.freeForever}</strong>
+              </span>
+              <span className="hidden sm:inline">
+                {t.home.banner.part1}
+                <strong className="text-[#FFCD00]">{t.home.banner.freeForever}</strong>
+                {t.home.banner.part2}
+              </span>
             </p>
             <a
               href="https://www.facebook.com/share/g/1C2jTdsgF5/"
@@ -322,11 +363,24 @@ export default function HomePage() {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-1.5 text-xs sm:text-sm font-black text-white hover:underline whitespace-nowrap shrink-0"
             >
-              {t.home.banner.facebook}
+              {/* Nhãn ngắn ở màn hình hẹp: nhãn đầy đủ chiếm hai phần ba chiều
+                  ngang và cắt cụt đúng cụm "miễn phí mãi mãi" - tức là cắt mất
+                  chính thông điệp của banner. */}
+              <span className="sm:hidden">{t.home.banner.facebookShort}</span>
+              <span className="hidden sm:inline">{t.home.banner.facebook}</span>
               <ArrowRight className="icon-micro w-4 h-4" />
             </a>
+            <button
+              type="button"
+              onClick={dismissHomeBanner}
+              aria-label={t.home.banner.dismiss}
+              className="shrink-0 rounded-full p-1 text-white/80 transition-colors hover:bg-white/15 hover:text-white"
+            >
+              <X className="w-4 h-4" />
+            </button>
           </div>
         </div>
+        )}
 
         {/* ── NAV ── */}
         <header className="sticky top-0 z-40 bg-white/85 dark:bg-stone-950/85 backdrop-blur-md border-b border-stone-100 dark:border-stone-900">
@@ -386,9 +440,7 @@ export default function HomePage() {
             <div className="grid items-center gap-8 lg:gap-12 lg:grid-cols-12">
               <div className="lg:col-span-7 max-w-2xl">
                 <motion.div
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.55, ease: "easeOut" }}
+                  {...heroReveal(0)}
                   className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-emerald-200/80 bg-white/80 px-3.5 py-1 text-[10px] sm:text-[11px] font-black uppercase tracking-[0.14em] text-emerald-700 backdrop-blur-sm dark:border-emerald-900 dark:bg-stone-950/55 dark:text-emerald-300"
                 >
                   <span className="relative flex w-1.5 h-1.5">
@@ -399,9 +451,7 @@ export default function HomePage() {
                 </motion.div>
 
                 <motion.h1
-                  initial={{ opacity: 0, y: 18 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, ease: "easeOut", delay: 0.06 }}
+                  {...heroReveal(0.03, 18)}
                   className="mb-4 text-[2.5rem] sm:text-[3.6rem] lg:text-[3.8rem] xl:text-[4.4rem] font-black leading-[1.02] tracking-tight text-stone-950 dark:text-stone-50"
                 >
                   {t.home.hero.titlePart1}{" "}
@@ -413,18 +463,14 @@ export default function HomePage() {
                 </motion.h1>
 
                 <motion.p
-                  initial={{ opacity: 0, y: 18 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, ease: "easeOut", delay: 0.12 }}
+                  {...heroReveal(0.06, 18)}
                   className="mb-8 max-w-xl text-[15px] leading-7 text-stone-600 [filter:none] dark:text-stone-300 sm:text-lg"
                 >
                   {format(t.home.hero.sub, { count: lessonCountFloor ?? 360 })}
                 </motion.p>
 
                 <motion.div
-                  initial={{ opacity: 0, y: 18 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.55, ease: "easeOut", delay: 0.18 }}
+                  {...heroReveal(0.09, 18)}
                   className="mb-10 flex flex-wrap items-center gap-3 [filter:none]"
                 >
                   <Link
@@ -444,9 +490,7 @@ export default function HomePage() {
                 </motion.div>
 
                 <motion.div
-                  initial={{ opacity: 0, y: 14 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.45, ease: "easeOut", delay: 0.24 }}
+                  {...heroReveal(0.12, 14)}
                   className="w-full rounded-[1.35rem] border border-stone-200/80 bg-white/70 px-4 py-3.5 shadow-[0_22px_44px_-30px_rgba(16,185,129,0.35)] backdrop-blur-sm dark:border-stone-800 dark:bg-stone-950/45 sm:w-fit sm:px-5"
                 >
                   <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-emerald-200/80 bg-white/80 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-emerald-700 dark:border-emerald-900/50 dark:bg-stone-900/60 dark:text-emerald-300">
@@ -474,9 +518,9 @@ export default function HomePage() {
               </div>
 
                 <motion.div
-                  initial={{ opacity: 0, x: 24, scale: 0.96, filter: "blur(10px)" }}
+                  initial={reduceMotion ? false : { opacity: 0, x: 24, scale: 0.96, filter: "blur(10px)" }}
                   animate={{ opacity: 1, x: 0, scale: 1, filter: "blur(0px)" }}
-                  transition={{ duration: 0.7, ease: "easeOut", delay: 0.18 }}
+                  transition={reduceMotion ? { duration: 0 } : { duration: 0.4, ease: "easeOut", delay: 0.09 }}
                   className="lg:col-span-5 relative flex justify-center w-full mt-6 lg:mt-0"
                 >
                 <div className="landing-float relative w-full max-w-[590px] overflow-hidden rounded-[20px] border border-stone-200/80 bg-stone-950 text-white shadow-[0_26px_70px_-34px_rgba(15,23,42,0.58)] dark:border-stone-800 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.01] hover:shadow-[0_30px_78px_-34px_rgba(15,23,42,0.62)]">

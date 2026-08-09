@@ -2,6 +2,7 @@ import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 import { isPreviewLessonPath } from "@/lib/preview-lessons";
 import { hasSupabaseAuthCookie } from "@/lib/has-auth-cookie";
+import routeSegments from "@/lib/route-segments.json";
 
 // Simple in-memory rate limiting for API endpoints
 const rateLimit = new Map<string, { count: number; resetTime: number }>();
@@ -96,6 +97,22 @@ const PUBLIC_PREFIXES = [
   "/api/", // Every route under here has its own auth - see comment above.
 ];
 
+// Đường dẫn KHÔNG ứng với route nào trong app/. Cổng mặc-định-từ-chối phía dưới
+// vốn đá mọi thứ không nằm trong danh sách trắng về /login, nên khách gõ nhầm
+// một URL phải đăng nhập xong mới biết là trang đó không tồn tại. Ở đây thì cho
+// đi tiếp để Next kết xuất app/not-found.tsx - không rò rỉ gì, vì đúng nghĩa là
+// không có trang nào để rò.
+//
+// Danh sách đoạn cấp một do scripts/build-route-segments.mjs sinh từ hệ tệp và
+// có bài test sinh lại để so; đừng sửa tay lib/route-segments.json.
+const ROUTE_SEGMENTS = new Set(routeSegments as string[]);
+
+function isUnknownRoute(pathname: string): boolean {
+  const first = pathname.split("/")[1];
+  if (!first) return false; // "/" luôn tồn tại.
+  return !ROUTE_SEGMENTS.has(first);
+}
+
 function isPublicPath(pathname: string): boolean {
   if (PUBLIC_PATHS.has(pathname)) return true;
   // Bốn bài xem thử. Danh sách trắng theo TỪNG SLUG chứ không phải cả tiền tố
@@ -145,7 +162,7 @@ export async function proxy(request: NextRequest) {
   // Người ĐANG đăng nhập đi nguyên đường cũ bên dưới, nên phần làm mới cookie
   // mà chú thích ở đầu file mô tả không bị đụng tới.
   if (!hasSupabaseAuthCookie(request.cookies.getAll().map((cookie) => cookie.name))) {
-    if (!isPublicPath(pathname)) {
+    if (!isPublicPath(pathname) && !isUnknownRoute(pathname)) {
       const loginUrl = new URL("/login", request.url);
       loginUrl.searchParams.set("next", pathname);
       return NextResponse.redirect(loginUrl);
@@ -196,7 +213,7 @@ export async function proxy(request: NextRequest) {
     return NextResponse.redirect(new URL("/dashboard", request.url));
   }
 
-  if (!user && !isPublicPath(pathname)) {
+  if (!user && !isPublicPath(pathname) && !isUnknownRoute(pathname)) {
     const loginUrl = new URL("/login", request.url);
     loginUrl.searchParams.set("next", pathname);
     return NextResponse.redirect(loginUrl);

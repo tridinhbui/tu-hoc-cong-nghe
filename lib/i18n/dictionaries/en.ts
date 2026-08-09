@@ -183,7 +183,10 @@ export const en: Dictionary = {
       freeForever: "free forever",
       part2:
         ", for the sake of the community learning personal finance, CFA, financial planning, investing, and everyone working in finance in Vietnam.",
+      shortPrefix: "Every lesson here is ",
+      dismiss: "Dismiss notice",
       facebook: "Join the Facebook group",
+      facebookShort: "FB group",
     },
 
     brand: "Self-Taught Finance",
