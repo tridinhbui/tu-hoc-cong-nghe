@@ -26,9 +26,20 @@ export interface TaxSchedule {
   dependentDeduction: number;
 }
 
-/** Biểu 7 bậc đang áp dụng. */
-export const SCHEDULE_CURRENT: TaxSchedule = {
-  label: "7 bậc (hiện hành)",
+/** Biểu 7 bậc áp dụng TRƯỚC kỳ tính thuế 2026.
+ *
+ *  Tên cũ của hằng số này là SCHEDULE_CURRENT và nhãn là "7 bậc (hiện hành)".
+ *  Cả hai đã sai kể từ kỳ tính thuế 2026: giảm trừ gia cảnh lên 15,5 triệu cho
+ *  bản thân và 6,2 triệu mỗi người phụ thuộc (NQ 110/2025/UBTVQH15), còn biểu
+ *  thuế rút xuống 5 bậc (Điều 9 Luật 109/2025/QH15). Bài
+ *  cai-cach-thue-tncn-2026-tu-7-bac-xuong-5-bac trong kho ghi rõ mốc đó.
+ *
+ *  Hậu quả không nằm ở con số mà ở CÁI NHÃN: widget mặc định mở ở biểu này và
+ *  gọi nó là "hiện hành", nên người học tính lương net ra một con số không còn
+ *  đúng, và được nói rằng nó đang đúng. Giữ biểu cũ lại để so sánh trước/sau là
+ *  đúng - đó là nội dung của bài; gọi nó là hiện hành thì không. */
+export const SCHEDULE_PRE_2026: TaxSchedule = {
+  label: "7 bậc (trước 2026)",
   brackets: [
     { upTo: 5, rate: 0.05 },
     { upTo: 10, rate: 0.1 },
@@ -42,9 +53,10 @@ export const SCHEDULE_CURRENT: TaxSchedule = {
   dependentDeduction: 4.4,
 };
 
-/** Biểu 5 bậc theo Luật 109/2025/QH15, áp dụng từ 2026. */
+/** Biểu 5 bậc theo Luật 109/2025/QH15, áp dụng từ kỳ tính thuế 2026 - tức biểu
+ *  ĐANG có hiệu lực. */
 export const SCHEDULE_2026: TaxSchedule = {
-  label: "5 bậc (từ 2026)",
+  label: "5 bậc (hiện hành)",
   brackets: [
     { upTo: 10, rate: 0.05 },
     { upTo: 30, rate: 0.1 },

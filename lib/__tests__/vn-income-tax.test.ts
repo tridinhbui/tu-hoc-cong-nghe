@@ -1,19 +1,19 @@
 import { describe, expect, it } from "vitest";
-import { computeTax, SCHEDULE_2026, SCHEDULE_CURRENT } from "../vn-income-tax";
+import { computeTax, SCHEDULE_2026, SCHEDULE_PRE_2026 } from "../vn-income-tax";
 
 // Đối chiếu với chính những ví dụ đã in trong bài học, để widget và bài học
 // không bao giờ nói hai con số khác nhau cho cùng một hồ sơ.
 
 describe("biểu 7 bậc hiện hành", () => {
   it("lương 30 triệu, độc thân → 1.627.500 đồng (đúng ví dụ trong Chặng Thuế bài 5)", () => {
-    const r = computeTax(30, 0, SCHEDULE_CURRENT);
+    const r = computeTax(30, 0, SCHEDULE_PRE_2026);
     expect(r.insurance).toBeCloseTo(3.15, 6);
     expect(r.taxableIncome).toBeCloseTo(15.85, 6);
     expect(r.tax).toBeCloseTo(1.6275, 4);
   });
 
   it("cắt lát đúng ba bậc cho hồ sơ đó", () => {
-    const r = computeTax(30, 0, SCHEDULE_CURRENT);
+    const r = computeTax(30, 0, SCHEDULE_PRE_2026);
     expect(r.slices.map((s) => s.rate)).toEqual([0.05, 0.1, 0.15]);
     expect(r.slices[2].amount).toBeCloseTo(5.85, 6);
   });
@@ -36,7 +36,7 @@ describe("biểu 5 bậc từ 2026", () => {
   it("nhẹ hơn biểu cũ ở vùng thu nhập phổ biến", () => {
     for (const gross of [20, 30, 45, 60]) {
       expect(computeTax(gross, 0, SCHEDULE_2026).tax).toBeLessThan(
-        computeTax(gross, 0, SCHEDULE_CURRENT).tax
+        computeTax(gross, 0, SCHEDULE_PRE_2026).tax
       );
     }
   });
@@ -44,32 +44,32 @@ describe("biểu 5 bậc từ 2026", () => {
 
 describe("tính chất của thuế luỹ tiến từng phần", () => {
   it("thuế suất hiệu dụng luôn thấp hơn thuế suất biên - đây là cả bài học", () => {
-    const r = computeTax(60, 0, SCHEDULE_CURRENT);
+    const r = computeTax(60, 0, SCHEDULE_PRE_2026);
     expect(r.effectiveRate).toBeLessThan(r.marginalRate);
   });
 
   it("thêm một đồng lương không bao giờ làm thu nhập ròng giảm", () => {
     let prev = -Infinity;
     for (let g = 10; g <= 120; g += 0.5) {
-      const net = computeTax(g, 0, SCHEDULE_CURRENT).netIncome;
+      const net = computeTax(g, 0, SCHEDULE_PRE_2026).netIncome;
       expect(net).toBeGreaterThan(prev);
       prev = net;
     }
   });
 
   it("dưới ngưỡng giảm trừ thì không phải nộp thuế", () => {
-    expect(computeTax(12, 0, SCHEDULE_CURRENT).tax).toBe(0);
-    expect(computeTax(12, 0, SCHEDULE_CURRENT).slices).toHaveLength(0);
+    expect(computeTax(12, 0, SCHEDULE_PRE_2026).tax).toBe(0);
+    expect(computeTax(12, 0, SCHEDULE_PRE_2026).slices).toHaveLength(0);
   });
 
   it("mỗi người phụ thuộc kéo thu nhập tính thuế xuống đúng mức giảm trừ", () => {
-    const a = computeTax(40, 0, SCHEDULE_CURRENT);
-    const b = computeTax(40, 2, SCHEDULE_CURRENT);
-    expect(a.taxableIncome - b.taxableIncome).toBeCloseTo(2 * SCHEDULE_CURRENT.dependentDeduction, 6);
+    const a = computeTax(40, 0, SCHEDULE_PRE_2026);
+    const b = computeTax(40, 2, SCHEDULE_PRE_2026);
+    expect(a.taxableIncome - b.taxableIncome).toBeCloseTo(2 * SCHEDULE_PRE_2026.dependentDeduction, 6);
   });
 
   it("tổng các lát bằng đúng tổng thuế", () => {
-    const r = computeTax(150, 1, SCHEDULE_CURRENT);
+    const r = computeTax(150, 1, SCHEDULE_PRE_2026);
     expect(r.slices.reduce((s, x) => s + x.tax, 0)).toBeCloseTo(r.tax, 9);
   });
 
@@ -77,5 +77,39 @@ describe("tính chất của thuế luỹ tiến từng phần", () => {
     const r = computeTax(0, 0, SCHEDULE_2026);
     expect(r.tax).toBe(0);
     expect(r.effectiveRate).toBe(0);
+  });
+});
+
+// Lỗi này không nằm ở phép tính mà ở CÁI NHÃN.
+//
+// Hằng số cũ tên SCHEDULE_CURRENT, nhãn "7 bậc (hiện hành)", giảm trừ 11 và
+// 4,4 triệu - và widget mặc định mở ở đó. Từ kỳ tính thuế 2026, giảm trừ là
+// 15,5 và 6,2 (NQ 110/2025/UBTVQH15) còn biểu thuế là 5 bậc (Luật
+// 109/2025/QH15), nên người học mở bài ra thấy một mức lương net không còn
+// đúng, kèm một cái nhãn nói rằng nó đang đúng. Phép tính thì vẫn đúng với
+// biểu cũ, nên 11 test ở trên đều xanh suốt.
+//
+// Không có gì buộc cái nhãn phải khớp với lịch. Ba khẳng định dưới đây làm
+// việc đó: nếu sau này luật đổi lần nữa mà ai chỉ thêm một biểu mới rồi quên
+// nhãn, chúng đỏ.
+describe("biểu nào là hiện hành", () => {
+  it("biểu hiện hành mang đúng mức giảm trừ của kỳ tính thuế 2026", () => {
+    expect(SCHEDULE_2026.selfDeduction).toBe(15.5);
+    expect(SCHEDULE_2026.dependentDeduction).toBe(6.2);
+  });
+
+  it("chỉ MỘT biểu được mang nhãn hiện hành, và đó là biểu 2026", () => {
+    const all = [SCHEDULE_PRE_2026, SCHEDULE_2026];
+    const current = all.filter((s) => s.label.includes("hiện hành"));
+    expect(current).toHaveLength(1);
+    expect(current[0]).toBe(SCHEDULE_2026);
+  });
+
+  it("biểu cũ không tự nhận là hiện hành, và giữ nguyên số cũ để so sánh", () => {
+    // Giữ biểu cũ là đúng - bài học so trước/sau bằng chính nó. Cái không được
+    // phép là nó tự gọi mình là đang áp dụng.
+    expect(SCHEDULE_PRE_2026.label).not.toContain("hiện hành");
+    expect(SCHEDULE_PRE_2026.selfDeduction).toBe(11);
+    expect(SCHEDULE_PRE_2026.dependentDeduction).toBe(4.4);
   });
 });

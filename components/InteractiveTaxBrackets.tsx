@@ -5,7 +5,7 @@ import {
   computeTax,
   INSURANCE_RATE,
   SCHEDULE_2026,
-  SCHEDULE_CURRENT,
+  SCHEDULE_PRE_2026,
   type TaxSchedule,
 } from "@/lib/vn-income-tax";
 import { useI18n } from "@/lib/i18n/context";
@@ -48,10 +48,14 @@ export default function InteractiveTaxBrackets() {
   const { t, locale } = useI18n();
   const [gross, setGross] = useState(30);
   const [dependents, setDependents] = useState(0);
-  const [scheduleId, setScheduleId] = useState<"current" | "2026">("current");
+  // Mặc định mở ở biểu ĐANG có hiệu lực. Bản trước mặc định "current" trỏ tới
+  // biểu 7 bậc với giảm trừ 11/4,4 - từ kỳ tính thuế 2026 thì con số đó không
+  // còn đúng, nên người học mở bài ra là thấy một mức lương net sai, kèm cái
+  // nhãn nói rằng nó đang đúng.
+  const [scheduleId, setScheduleId] = useState<"pre2026" | "2026">("2026");
 
-  const schedule: TaxSchedule = scheduleId === "current" ? SCHEDULE_CURRENT : SCHEDULE_2026;
-  const other: TaxSchedule = scheduleId === "current" ? SCHEDULE_2026 : SCHEDULE_CURRENT;
+  const schedule: TaxSchedule = scheduleId === "pre2026" ? SCHEDULE_PRE_2026 : SCHEDULE_2026;
+  const other: TaxSchedule = scheduleId === "pre2026" ? SCHEDULE_2026 : SCHEDULE_PRE_2026;
   const r = computeTax(gross, dependents, schedule);
   const alt = computeTax(gross, dependents, other);
   const diff = alt.tax - r.tax;
@@ -84,7 +88,7 @@ export default function InteractiveTaxBrackets() {
       </div>
 
       <div className="mt-3 flex flex-wrap gap-1.5">
-        {(["current", "2026"] as const).map((id) => (
+        {(["2026", "pre2026"] as const).map((id) => (
           <button
             key={id}
             type="button"
@@ -96,7 +100,7 @@ export default function InteractiveTaxBrackets() {
                 : "bg-stone-100 text-stone-600 hover:bg-stone-200 dark:bg-stone-800 dark:text-stone-300"
             }`}
           >
-            {(id === "current" ? SCHEDULE_CURRENT : SCHEDULE_2026).label}
+            {(id === "pre2026" ? SCHEDULE_PRE_2026 : SCHEDULE_2026).label}
           </button>
         ))}
       </div>
