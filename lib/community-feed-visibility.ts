@@ -112,5 +112,19 @@ export function visibleFeedPosts<T extends ClassifiablePost & { user_name?: stri
   const query = searchQuery.trim();
   if (filter !== "all" || query) return visible;
 
-  return posts.filter((post) => getPostCategory(post) === "thanh-tuu");
+  // Bài CHUỖI NGÀY HỌC không nằm trong nhánh cứu này, dù nó cũng thuộc nhóm
+  // thành tựu.
+  //
+  // Nhánh cứu tồn tại để dòng chính không rỗng khi chưa có bài người thật nào.
+  // Nhưng streak do hệ thống tự đăng mỗi ngày cho mọi người học, nên "chưa có
+  // bài người thật" lại đúng là lúc chúng đông nhất - và kết quả là dòng chính
+  // của một trang cộng đồng gồm hai mươi dòng "đã học 5 ngày liên tiếp" mà
+  // không ai ngồi viết. Chúng đã có chỗ riêng: thẻ Thành tựu ở cột phải, cộng
+  // chip lọc "Thành tựu" cho ai muốn xem hết.
+  //
+  // Bài thành tựu do người thật viết (#ThanhTuu) thì vẫn được cứu: đó là bài
+  // có người ngồi gõ, và giấu nó đi là đúng thứ nhánh này sinh ra để tránh.
+  // Nếu cả kho chỉ toàn streak thì dòng chính rỗng - và trạng thái rỗng đã có
+  // sẵn nút "xem N thành tựu" trỏ sang đúng chỗ chúng nằm.
+  return posts.filter((post) => getPostCategory(post) === "thanh-tuu" && post.kind !== "streak");
 }

@@ -95,8 +95,20 @@ describe("dòng chính ưu tiên bài người dùng tự viết", () => {
 describe("dòng chính không được rỗng vì chính quy tắc hạ ưu tiên", () => {
   const onlyStreaks = [streak, post({ content: "Đã học 21 ngày liên tiếp", kind: "streak" })];
 
-  it("chỉ toàn thành tựu thì vẫn hiện chúng ở dòng chính", () => {
-    expect(visibleFeedPosts(onlyStreaks, "all", "")).toHaveLength(2);
+  it("chỉ toàn chuỗi ngày học thì dòng chính RỖNG", () => {
+    // Nhánh cứu không kéo bài streak lên nữa. Chúng do hệ thống tự đăng mỗi
+    // ngày cho mọi người học, nên "chưa có bài người thật" lại đúng là lúc
+    // chúng đông nhất - và dòng chính khi đó chỉ còn là danh sách "đã học N
+    // ngày liên tiếp". Chỗ của chúng là thẻ Thành tựu ở cột phải, và trạng
+    // thái rỗng có sẵn nút trỏ sang đó.
+    expect(visibleFeedPosts(onlyStreaks, "all", "")).toHaveLength(0);
+  });
+
+  it("nhưng bài thành tựu do NGƯỜI THẬT viết thì vẫn được cứu", () => {
+    // Đây mới là thứ nhánh cứu sinh ra để bảo vệ: có người ngồi gõ nó.
+    const visible = visibleFeedPosts([...onlyStreaks, tagged], "all", "");
+    expect(visible).toHaveLength(1);
+    expect(visible[0].content).toContain("#ThanhTuu");
   });
 
   it("có bài người thật thì thành tựu vẫn bị hạ như cũ", () => {

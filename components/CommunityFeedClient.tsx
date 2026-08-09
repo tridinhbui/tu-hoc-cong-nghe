@@ -892,13 +892,19 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
   const totalReactions = posts.reduce((sum, post) => sum + post.reaction_count, 0);
   const totalComments = posts.reduce((sum, post) => sum + post.comment_count, 0);
   const activeTopics = TOPICS.filter((topic) => posts.some((post) => getPostCategory(post) === topic.id && topic.id !== "all")).length;
-  const featuredStreak = posts.find((post) => post.kind === "streak")?.reaction_count ?? 0;
   const hotPosts = [...posts]
     .sort((a, b) => b.reaction_count + b.comment_count * 2 - (a.reaction_count + a.comment_count * 2))
     .slice(0, 3);
   const questionPost = posts.find((post) => getPostCategory(post) === "hoi-dap");
   const analysisPost = posts.find((post) => getPostCategory(post) === "phan-tich");
-  const achievementPost = posts.find((post) => getPostCategory(post) === "thanh-tuu" || post.kind === "streak");
+  // Thẻ "Nổi bật" nằm ở đầu CỘT CHÍNH, nên nó theo cùng quy tắc với dòng
+  // chính: không kéo bài chuỗi ngày học do hệ thống tự đăng lên. Trước đây
+  // điều kiện còn nhận riêng `kind === "streak"`, mà getPostCategory đã xếp
+  // streak vào "thanh-tuu" từ lâu - nên vế đó chỉ làm đúng một việc là bảo đảm
+  // một bài streak luôn lọt lên đầu trang khi chưa ai viết bài thành tựu nào.
+  const achievementPost = posts.find(
+    (post) => getPostCategory(post) === "thanh-tuu" && post.kind !== "streak"
+  );
   const spotlightItems = [
     questionPost && { label: "Câu hỏi cần trả lời", post: questionPost, icon: HelpCircle },
     analysisPost && { label: "Phân tích đáng đọc", post: analysisPost, icon: BarChart3 },
