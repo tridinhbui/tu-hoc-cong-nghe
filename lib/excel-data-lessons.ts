@@ -888,8 +888,8 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
     openingQuestion:
       "Trong SQL, GROUP BY dùng để làm gì?",
     openingOptions: [
-      "Sắp xếp kết quả theo thứ tự tăng dần",
-      "Gộp các dòng có cùng giá trị ở một hoặc nhiều cột lại, để tính tổng, đếm hoặc trung bình theo từng nhóm",
+      "Sắp xếp toàn bộ kết quả trả về theo thứ tự tăng dần hoặc là giảm dần xuống",
+      "Gộp các dòng cùng giá trị lại để tính tổng, đếm hoặc trung bình theo nhóm",
       "Lọc bỏ các dòng không thỏa điều kiện",
       "Nối hai bảng lại với nhau",
     ],

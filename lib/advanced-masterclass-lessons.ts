@@ -883,7 +883,7 @@ export const ADVANCED_MASTERCLASS_LESSONS: Lesson[] = [
     openingOptions: [
       "Green (Năng lượng xanh)",
       "Governance (Quản trị doanh nghiệp)",
-      "Growth (Tăng trưởng doanh thu)",
+      "Growth (Tăng trưởng doanh thu công ty)",
       "Global (Quy mô toàn cầu)",
     ],
     correctOption: 1,

@@ -28,7 +28,7 @@ export const DERIVATIVES_PRICING_LESSONS: Lesson[] = [
       "Một quyền chọn bán cùng giá thực hiện và cùng ngày đáo hạn",
       "Một hợp đồng tương lai mua",
       "Một trái phiếu chính phủ thuần túy",
-      "Một khoản tiền gửi ngân hàng có kỳ hạn",
+      "Một khoản tiền gửi tại ngân hàng có kỳ hạn cố định từ trước",
     ],
     correctOption: 0,
     explanation:

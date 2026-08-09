@@ -632,15 +632,23 @@ const MAX_OPENING_BIAS_Z = OPENING_BIAS_Z_BY_LOCALE[LOCALE] ?? 37;
  *  ra cấu trúc mà cổng tổng không nhìn thấy. Cổng tổng đo trung bình; trung
  *  bình không phát hiện được túi. Nên đo theo nhóm.
  *
- *  Ngưỡng đặt ở 21,2 vì nhóm tệ nhất đang ở 21,15 - mức kho đang HỎNG, ghi
- *  vào để hiện ra trong CI và hạ dần, không phải để chấp nhận. */
+ *  Ngưỡng khởi đầu ở 21,2 vì nhóm tệ nhất khi đó đang ở 21,15 - mức kho đang
+ *  HỎNG, ghi vào để hiện ra trong CI và hạ dần. Sau sáu đợt viết lại, cả bốn
+ *  nhóm đã vào trong ±3:
+ *
+ *      0-40   +2,57      40-60  −2,31      60-90  −1,97      90+  −0,32
+ *
+ *  nên ngưỡng hạ về 3, ngang MAX_PRACTICE_BIAS_Z và cùng một lý lẽ: ba độ lệch
+ *  chuẩn là mức phân biệt được trôi thật với dao động thường. Biên còn lại
+ *  mỏng (0,43 ở nhóm 0-40), và điều đó là cố ý - kho vẫn đang lớn lên, nên nếu
+ *  một đợt bài mới mang theo cùng khuyết tật thì cổng này phải đỏ. */
 const OPENING_BUCKETS = [
   { name: "0-40", lo: 0, hi: 40 },
   { name: "40-60", lo: 40, hi: 60 },
   { name: "60-90", lo: 60, hi: 90 },
   { name: "90+", lo: 90, hi: Infinity },
 ];
-const MAX_OPENING_BUCKET_Z = 21.2;
+const MAX_OPENING_BUCKET_Z = 3;
 const openingBuckets = OPENING_BUCKETS.map((b) => ({
   ...b, questions: 0, longest: 0, expLongest: 0, varLongest: 0,
 }));
