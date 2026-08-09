@@ -1378,6 +1378,12 @@ export const en: Dictionary = {
     searchPlaceholder: "Search posts, people, topics...",
     refresh: "Refresh",
     feedEmpty: "No posts match this filter.",
+    // Hai trạng thái rỗng KHÁC NHAU, và gộp chúng là chỗ đã làm người dùng
+    // tưởng mất bài: `feedEmpty` nói "không khớp bộ lọc" - đúng khi có bộ lọc
+    // hoặc từ khoá, nhưng khi đang xem tất cả mà không có bài nào thì câu đó
+    // đọc như "bài của bạn đâu rồi". Trường hợp thứ hai cần một lời mời viết.
+    feedEmptyNoPosts: "Nobody has shared anything yet. Want to write the first one?",
+    feedEmptyWrite: "Write the first post",
 
     streak: "Streak",
     edited: "· edited",
@@ -1411,7 +1417,6 @@ export const en: Dictionary = {
     rule3: "• Detailed posts are preferred, with an example or a source that can be checked.",
     achievementsTitle: "Achievements",
     achievementsEmpty: "No achievements shared yet.",
-    achievementsOnlyCta: "View {count} achievements",
     trendingTitle: "Trending",
     trendingEmpty: "Nothing trending yet.",
     promptsTitle: "Post ideas",

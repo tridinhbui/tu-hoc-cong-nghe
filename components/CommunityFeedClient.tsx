@@ -882,13 +882,14 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
   const searchTerm = searchQuery.trim().toLowerCase();
   const achievementPosts = posts.filter((post) => getPostCategory(post) === "thanh-tuu");
   const visiblePosts = visibleFeedPosts(posts, feedFilter, searchQuery);
-  // Chỉ gọi là "đang bị ẩn" khi chúng THẬT SỰ đang bị ẩn. Lúc dòng chính rỗng
-  // và visibleFeedPosts trả lại chính nhóm thành tựu, con số này phải về 0 -
-  // nếu không màn hình vừa hiện chúng vừa mời bấm để xem chúng.
-  const hiddenAchievements =
-    feedFilter === "all" && !searchTerm && visiblePosts.length !== achievementPosts.length
-      ? achievementPosts.length
-      : 0;
+  // `hiddenAchievements` đã bỏ cùng quy tắc hạ ưu tiên: không bài nào bị ẩn khỏi
+  // dòng chính nữa, nên một con số "đang bị ẩn" chỉ có thể sai.
+  //
+  // Thay vào đó là phân biệt hai trạng thái rỗng. Chúng từng dùng chung một câu,
+  // và đó là chỗ làm người dùng tưởng mất bài: "không khớp bộ lọc" đúng khi có
+  // bộ lọc, nhưng khi đang xem tất cả mà chưa có bài nào thì nó đọc như một lời
+  // thông báo mất dữ liệu.
+  const emptyBecauseNoPosts = feedFilter === "all" && !searchTerm;
   const totalReactions = posts.reduce((sum, post) => sum + post.reaction_count, 0);
   const totalComments = posts.reduce((sum, post) => sum + post.comment_count, 0);
   const activeTopics = TOPICS.filter((topic) => posts.some((post) => getPostCategory(post) === topic.id && topic.id !== "all")).length;
@@ -1369,16 +1370,20 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
           <FeedSkeleton />
         ) : visiblePosts.length === 0 ? (
           <div className="py-12 text-center">
-            <p className="text-sm text-stone-400">{t.feed.feedEmpty}</p>
-            {/* Chưa ai viết bài chia sẻ nào, nhưng có thành tựu đang bị lọc ra:
-                nói thẳng ra thay vì để màn hình trông như cộng đồng trống rỗng. */}
-            {hiddenAchievements > 0 && (
+            <p className="text-sm text-stone-500 dark:text-stone-400">
+              {emptyBecauseNoPosts ? t.feed.feedEmptyNoPosts : t.feed.feedEmpty}
+            </p>
+            {/* Chỉ mời viết khi thật sự chưa có bài nào. Lúc đang lọc theo chủ đề
+                hoặc đang tìm kiếm thì "không có gì khớp" là câu trả lời đúng, và
+                một nút soạn bài ở đó chỉ làm người đọc tưởng mình phải viết mới
+                thấy được bài của người khác. */}
+            {emptyBecauseNoPosts && (
               <button
                 type="button"
-                onClick={() => setFeedFilter("thanh-tuu")}
-                className="mt-3 rounded-full border border-amber-200 bg-amber-50 px-4 py-1.5 text-xs font-bold text-amber-700 transition hover:bg-amber-100 dark:border-amber-900 dark:bg-amber-950/30 dark:text-amber-300"
+                onClick={() => setIsComposeModalOpen(true)}
+                className="mt-3 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-xs font-bold text-emerald-700 transition hover:bg-emerald-100 dark:border-emerald-900 dark:bg-emerald-950/30 dark:text-emerald-300"
               >
-                {format(t.feed.achievementsOnlyCta, { count: hiddenAchievements })}
+                {t.feed.feedEmptyWrite}
               </button>
             )}
           </div>

@@ -1464,6 +1464,12 @@ export const vi = {
     searchPlaceholder: "Tìm bài viết, người đăng, chủ đề...",
     refresh: "Làm mới",
     feedEmpty: "Chưa có bài chia sẻ nào phù hợp bộ lọc này.",
+    // Hai trạng thái rỗng KHÁC NHAU, và gộp chúng là chỗ đã làm người dùng
+    // tưởng mất bài: `feedEmpty` nói "không khớp bộ lọc" - đúng khi có bộ lọc
+    // hoặc từ khoá, nhưng khi đang xem tất cả mà không có bài nào thì câu đó
+    // đọc như "bài của bạn đâu rồi". Trường hợp thứ hai cần một lời mời viết.
+    feedEmptyNoPosts: "Chưa ai chia sẻ gì hôm nay. Bạn viết dòng đầu tiên nhé?",
+    feedEmptyWrite: "Viết bài đầu tiên",
 
     // Post card
     streak: "Streak",
@@ -1501,7 +1507,6 @@ export const vi = {
     rule3: "• Ưu tiên bài viết chi tiết, có ví dụ hoặc nguồn cần kiểm chứng.",
     achievementsTitle: "Thành tựu",
     achievementsEmpty: "Chưa có thành tựu nào được chia sẻ.",
-    achievementsOnlyCta: "Xem {count} thành tựu",
     trendingTitle: "Đang nổi bật",
     trendingEmpty: "Chưa có bài nổi bật.",
     promptsTitle: "Gợi ý đăng bài",
