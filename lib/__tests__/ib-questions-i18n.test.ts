@@ -54,10 +54,29 @@ describe("bản dịch ngân hàng câu hỏi kỹ thuật", () => {
     expect(left).toEqual([]);
   });
 
-  it("báo đúng số câu đã dịch trên tổng", () => {
-    // Con số này là tiến độ, không phải cổng: nó sẽ tăng dần theo từng lô.
-    expect(translatedCount("en")).toBeGreaterThan(0);
-    expect(translatedCount("en")).toBeLessThanOrEqual(ALL.length);
+  /** Trước đây phép này chỉ đòi `> 0` vì bản dịch đang chạy theo từng lô. Lô
+   *  cuối đã xong nên nó chuyển thành khẳng định phủ kín - đúng cách bộ kiểm
+   *  đề thi thăng cấp đã chuyển khi cấp cuối cùng dịch xong. */
+  it("mọi câu tiếng Việt trong ngân hàng đều đã có bản dịch", () => {
+    const DIACRITICS = /[àáảãạăằắẳẵặâầấẩẫậèéẻẽẹêềếểễệìíỉĩịòóỏõọôồốổỗộơờớởỡợùúủũụưừứửữựỳýỷỹỵđ]/i;
+    // lib/ib-question-bank.ts là dữ liệu cào về và vốn đã bằng tiếng Anh, nên
+    // chỉ những câu CÓ DẤU mới nằm trong phạm vi cần dịch.
+    const needsTranslation = ALL.filter((q) => DIACRITICS.test(q.question));
+    const missing = needsTranslation.filter((q) => !IB_QUESTIONS_EN[q.id]).map((q) => q.id);
+    expect(missing).toEqual([]);
     expect(translatedCount("vi")).toBe(0);
+  });
+
+  it("không câu nào còn dấu tiếng Việt sau khi merge", () => {
+    const DIACRITICS = /[àáảãạăằắẳẵặâầấẩẫậèéẻẽẹêềếểễệìíỉĩịòóỏõọôồốổỗộơờớởỡợùúủũụưừứửữựỳýỷỹỵđ]/i;
+    const left: string[] = [];
+    for (const raw of ALL) {
+      const q = localizeIbQuestion(raw, "en");
+      if (DIACRITICS.test(q.question)) left.push(`${q.id}: question`);
+      if (DIACRITICS.test(q.explanation)) left.push(`${q.id}: explanation`);
+      if (DIACRITICS.test(q.category)) left.push(`${q.id}: category`);
+      q.options.forEach((o, i) => DIACRITICS.test(o) && left.push(`${q.id}: options[${i}]`));
+    }
+    expect(left).toEqual([]);
   });
 });

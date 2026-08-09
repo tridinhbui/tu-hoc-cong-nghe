@@ -1071,4 +1071,544 @@ export const IB_QUESTIONS_EN: IbQuestionTranslations = {
     explanation:
       "A life contract runs for decades at a roughly level premium while mortality risk rises with age - so the excess premium paid in the early years accumulates to cover the later ones. That accumulation is what creates the surrender value.",
   },
+  5090: {
+    category: "Insurance - Pricing & risk",
+    question: "What is a mortality table used for?",
+    options: [
+      "Estimating the probability of death by age, to set premiums",
+      "Setting the maximum payout for each age group",
+      "Recording the actual number of deaths each year",
+      "Classifying clients by their current health status",
+    ],
+    explanation:
+      "This is the core input to life pricing. The subtlety is that the table must reflect the actual insured group rather than the general population - people who buy life cover have passed underwriting, so they tend to live longer than average.",
+  },
+  5091: {
+    category: "Consumer credit - Scoring & collections",
+    question: "What does a borrower's credit score represent?",
+    options: [
+      "The probability of falling behind on repayments within a given window",
+      "The borrower's monthly income as verified by the bank",
+      "The total value of assets the borrower legally owns",
+      "The maximum the bank is permitted to lend them",
+    ],
+    explanation:
+      "A credit score is a probability mapped onto a scale, not a measure of wealth or income. Someone with a high income and a poor repayment history still scores low - the model predicts behaviour, it does not assess overall financial capacity.",
+  },
+  5092: {
+    category: "Consumer credit - Scoring & collections",
+    question: "What does the debt-to-income ratio measure?",
+    options: [
+      "The share of income already committed to debt repayments",
+      "How many loans the person holds across institutions",
+      "The spread between lending and deposit rates",
+      "The ratio of collateral to total outstanding debt",
+    ],
+    explanation:
+      "DTI answers the cash flow question: after the monthly obligations, how much is left to live on. It complements the credit score - someone who has repaid on time for years can still be borrowing beyond their means.",
+  },
+  5093: {
+    category: "Consumer credit - Scoring & collections",
+    question: "What does group 3 and above mean in Vietnam's loan classification?",
+    options: [
+      "Substandard and worse, meaning it already counts as a bad debt",
+      "Standard, but needing to be watched for a while",
+      "Debt restructured at the client's request",
+      "Debt secured on property",
+    ],
+    explanation:
+      "Group 1 is standard, group 2 needs attention, and from group 3 up it is classified as a bad debt with provisioning rising to 100% at group 5. A bank's published NPL ratio is exactly groups 3-5 over total loans.",
+  },
+  5094: {
+    category: "Consumer credit - Scoring & collections",
+    question: "Why do lenders provision separately for each loan group?",
+    options: [
+      "Because recoverability falls as the arrears get older",
+      "Because regulators want separate reporting per group",
+      "Because each group carries a distinctly different lending rate",
+      "Because tax rules allow provisions to be deducted from income",
+    ],
+    explanation:
+      "A loan 30 days past due and one 360 days past due have completely different recovery prospects, so a single blended rate would over-provide for one and under-provide for the other. Grouping forces the loss to be recognised gradually instead of all in one quarter.",
+  },
+  5095: {
+    category: "Consumer credit - Scoring & collections",
+    question: "What is vintage analysis in consumer credit?",
+    options: [
+      "Comparing bad debt rates by the month each loan was disbursed",
+      "Revaluing collateral at market prices each quarter",
+      "Ranking clients by years of relationship with the bank",
+      "Analysing the maturity structure of the whole loan book",
+    ],
+    explanation:
+      "Group loans by disbursement month, then track each group's bad debt rate by months since origination. This separates the underwriting quality of each period from the effect of portfolio growth - a total NPL ratio is always diluted while new lending grows fast.",
+  },
+  5096: {
+    category: "Consumer credit - Scoring & collections",
+    question: "Why are unsecured consumer loan rates so much higher than mortgage rates?",
+    options: [
+      "Because with no collateral, the loss on default is far larger",
+      "Because assessing an unsecured file costs several times more",
+      "Because unsecured loans always run longer than mortgages",
+      "Because rules impose a separate rate cap on unsecured lending",
+    ],
+    explanation:
+      "Expected loss = probability of default x loss given default. A mortgage has a house to repossess so loss given default is low; an unsecured loan is close to a total write-off. The rate difference compensates for exactly that, not for price gouging.",
+  },
+  5097: {
+    category: "Consumer credit - Scoring & collections",
+    question: "What is the cut-off score in a credit scoring model for?",
+    options: [
+      "Setting the threshold at which an application is accepted or declined",
+      "Determining the preferential rate for loyal customers",
+      "Capping how many files each officer handles per day",
+      "Setting the approval turnaround time",
+    ],
+    explanation:
+      "The model produces a continuous score, but the decision is binary - approve or not. The cut-off is where that line is drawn, and it is a business choice rather than an output of the model.",
+  },
+  5098: {
+    category: "Consumer credit - Scoring & collections",
+    question: "What is the core trade-off in lowering the cut-off score?",
+    options: [
+      "More applications approved, but bad debt rises as well",
+      "Lower funding costs, but higher marketing spend",
+      "Lower operating costs, but slower processing",
+      "Fewer approvals, but a wider margin",
+    ],
+    explanation:
+      "Lowering the threshold chooses loan growth and accepts higher losses. Whether it is right depends on whether the extra interest from the marginal customers covers the extra losses - and the answer changes with the economic cycle.",
+  },
+  5099: {
+    category: "Consumer credit - Scoring & collections",
+    question: "Why must a credit scoring model be recalibrated periodically?",
+    options: [
+      "Because borrower behaviour and the macro environment both change",
+      "Because the scoring software licence expires annually",
+      "Because rules require a new model every twelve months",
+      "Because historical data is deleted by regulation",
+    ],
+    explanation:
+      "The model learned a relationship between application features and repayment behaviour over one specific period. When unemployment rises, rates move, or the customer mix itself changes, that relationship drifts - model drift, which degrades the model quietly with no warning.",
+  },
+  5100: {
+    category: "Personal financial planning",
+    question: "What assumption does the 4% retirement withdrawal rule rest on?",
+    options: [
+      "A stock and bond portfolio returning above inflation",
+      "Bank deposit rates staying flat for thirty years",
+      "The retiree living exactly twenty more years",
+      "All assets being held in cash for safety",
+    ],
+    explanation:
+      "The rule came from US market data with a stock-bond portfolio, where a positive real return covers the withdrawals. Applying it straight to an all-deposit portfolio, or a market with a different history, gives the wrong answer - so 4% is a starting point for the calculation, not a constant.",
+  },
+  5101: {
+    category: "Personal financial planning",
+    question: "How large should an emergency fund be, and where should it sit?",
+    options: [
+      "Three to six months of spending, somewhere it can be withdrawn immediately",
+      "Three to six months of spending, invested in growth stocks",
+      "Two weeks of spending, with the rest in property",
+      "A year of income, in a five-year term deposit",
+    ],
+    explanation:
+      "Two requirements have to hold at once: large enough to survive a period without income, and available immediately. Putting the emergency fund in equities breaks the second requirement at the worst possible moment - a crisis tends to cost the job and knock the share price at the same time.",
+  },
+  5102: {
+    category: "Personal financial planning",
+    question: "Why does clearing credit card debt usually come before investing?",
+    options: [
+      "Because the card rate exceeds the expected investment return",
+      "Because card repayments are deductible against personal income tax",
+      "Because the bank will freeze the investment account while card debt remains",
+      "Because the law forbids investing while a card balance is outstanding",
+    ],
+    explanation:
+      "Paying off debt at 25% a year is an investment returning a guaranteed 25%, tax-free and risk-free - no investment competes with that. It is one of the few personal finance decisions with a near-absolute answer.",
+  },
+  5103: {
+    category: "Personal financial planning",
+    question: "How does unit-linked life insurance differ from term life?",
+    options: [
+      "Unit-linked bundles protection with savings; term is protection only",
+      "Term costs far more because the contract runs longer",
+      "They are the same thing under different company names",
+      "Unit-linked has its principal guaranteed by the state",
+    ],
+    explanation:
+      "Term buys exactly one thing - a payout if the insured dies within the term - so it is far cheaper for the same cover. A unit-linked product bundles protection and savings into one contract: convenient, but it makes the cost of each part hard to compare.",
+  },
+  5104: {
+    category: "Personal financial planning",
+    question: "Why do fixed living costs matter more than income in a financial plan?",
+    options: [
+      "Because they set the minimum you need every month",
+      "Because banks only look at costs when approving a loan",
+      "Because income is always more stable than costs in the long run",
+      "Because the tax authority computes tax from fixed costs",
+    ],
+    explanation:
+      "Income can stop abruptly; rent, school fees and instalments do not. Fixed costs therefore determine how large the emergency fund must be, how much cover to buy, and how quickly a job loss becomes a crisis.",
+  },
+  5105: {
+    category: "Personal financial planning",
+    question: "What is sequence risk for someone who has just retired?",
+    options: [
+      "A heavy loss in the first withdrawal years wrecking the plan",
+      "Inflation outpacing the state pension's increases",
+      "The long-run average return coming in below plan",
+      "The portfolio being too concentrated in a few large names",
+    ],
+    explanation:
+      "Two people with the same thirty-year average return can end up in very different places if the good and bad years arrive in a different order. Withdrawing while the portfolio is down forces more units to be sold, and the capital sold is no longer there to recover with the market.",
+  },
+  5106: {
+    category: "Personal financial planning",
+    question: "Why is periodic rebalancing useful?",
+    options: [
+      "It brings the risk weighting back to the level originally chosen",
+      "It avoids capital gains tax on investments entirely",
+      "It guarantees the portfolio beats the market",
+      "It removes any need to monitor the portfolio during the year",
+    ],
+    explanation:
+      "After a few strong equity years, a portfolio set at 60/40 can have become 80/20 without its owner ever deciding that. Rebalancing restores the risk level actually chosen - and incidentally forces selling what has risen to buy what has fallen.",
+  },
+  5107: {
+    category: "Personal financial planning",
+    question: "How does a family office differ from a personal financial adviser?",
+    options: [
+      "It manages a family's assets, tax and succession as a whole",
+      "It serves only clients whose income is a fixed salary",
+      "It operates as an open-ended fund selling units to the public",
+      "It advises on the portfolio only and never touches tax",
+    ],
+    explanation:
+      "A family office serves one or a few very wealthy families and covers investment, tax structuring, succession, philanthropy and family governance. The asset base is large enough that running a dedicated team costs less than buying each service outside.",
+  },
+  5108: {
+    category: "Personal financial planning",
+    question: "Why does diversification matter for a long-term saver?",
+    options: [
+      "Because nobody knows in advance which asset class will lead",
+      "Because trading costs fall when more asset types are bought",
+      "Because rules require holding at least ten names",
+      "Because diversification guarantees the portfolio never loses",
+    ],
+    explanation:
+      "Diversification does not remove broad market risk and guarantees no gain. What it removes is the risk of betting wrong on one name or one sector - risk the market does not pay you to carry, so bearing it means taking the loss without the compensation.",
+  },
+  5109: {
+    category: "Personal financial planning",
+    question: "What is estate planning for?",
+    options: [
+      "Passing assets on as intended, with less dispute and less tax",
+      "Avoiding every tax obligation the law imposes",
+      "Ensuring assets earn the highest return after death",
+      "Handing everything to the state to administer",
+    ],
+    explanation:
+      "With no plan, the law decides instead - usually slowly, expensively and not as intended. Wills, trusts and beneficiary nominations are the main tools, and they need reviewing after every major family event.",
+  },
+  5110: {
+    category: "Data & BI for finance",
+    question: "Why must financial data be reconciled before it reaches a dashboard?",
+    options: [
+      "Because a wrong number on a dashboard is still believed and acted on",
+      "Because reconciliation reduces warehouse storage",
+      "Because accounting rules forbid displaying unaudited figures",
+      "Because BI tools cannot read unreconciled data",
+    ],
+    explanation:
+      "A number on a dashboard carries an air of precision that a raw spreadsheet does not, so it is trusted more, not less. Reconciling against the ledger before publishing is the only control standing between an ETL bug and a business decision made on it.",
+  },
+  5111: {
+    category: "Data & BI for finance",
+    question: "How does a fact table differ from a dimension table in a star schema?",
+    options: [
+      "Facts hold measures; dimensions hold descriptive attributes",
+      "Facts always have fewer rows than dimensions",
+      "Facts hold old data and dimensions the latest",
+      "Facts are for reporting and dimensions for archiving",
+    ],
+    explanation:
+      "A fact table holds what is measured - revenue, quantity, cost - and is usually very long. Dimensions hold the context those measures are sliced by: which customer, which product, which date. Separating them is why a multi-dimensional query still runs fast.",
+  },
+  5112: {
+    category: "Data & BI for finance",
+    question: "What does a type 2 slowly changing dimension handle?",
+    options: [
+      "Preserving history by adding a new row",
+      "Overwriting the old value so the table always shows the present",
+      "Compressing historical data to save storage",
+      "Deleting old records after a set period",
+    ],
+    explanation:
+      "When a customer moves from one segment to another, type 1 overwrites and every past report changes with it; type 2 adds a new row with its own validity window, so old reports stay put. Choosing the wrong type is why a report rerun a year later gives a different number.",
+  },
+  5113: {
+    category: "Data & BI for finance",
+    question: "Why store effective-date columns rather than only the current value?",
+    options: [
+      "So a report can be reproduced exactly as it stood at a past date",
+      "To reduce the number of tables to maintain",
+      "To speed up queries on large tables",
+      "So the system can auto-delete expired data",
+    ],
+    explanation:
+      "Audit and analysis both need to answer 'what did we see at the time', not 'what does the data say now'. Without validity windows, every historical report is rewritten each time a record is updated.",
+  },
+  5114: {
+    category: "Data & BI for finance",
+    question: "Why does each dashboard metric need one agreed definition?",
+    options: [
+      "Because each department defining its own produces contradictory reports",
+      "Because BI tools accept only one definition per column",
+      "Because auditors require every metric to have an English name",
+      "Because a shared definition makes queries run faster",
+    ],
+    explanation:
+      "Is an 'active customer' thirty days or ninety, and do trial accounts count - each choice gives a different number. When two departments bring two numbers into the same meeting, the discussion moves from the decision to which figure is right.",
+  },
+  5115: {
+    category: "Data & BI for finance",
+    question: "What does idempotency mean in a data pipeline?",
+    options: [
+      "Running it repeatedly produces the same result",
+      "The pipeline restarts automatically when it fails midway",
+      "Each run creates a new version of the data",
+      "The data is compressed to cut transfer costs",
+    ],
+    explanation:
+      "A non-idempotent pipeline rerun after a mid-way failure duplicates part of the data, and with financial data that is revenue counted twice. Idempotency is what makes rerunning safe - and rerunning always happens eventually.",
+  },
+  5116: {
+    category: "Data & BI for finance",
+    question: "What is a backfill in a data pipeline?",
+    options: [
+      "Rerunning the pipeline over a past date range",
+      "Backing up the whole warehouse to another system",
+      "Filling missing cells with the average value",
+      "Deleting old data to free up storage",
+    ],
+    explanation:
+      "When logic changes or a bug is found, historical data has to be recomputed on the new logic - otherwise the same metric breaks exactly on the deployment date. A safe backfill requires an idempotent pipeline, which is why the two concepts always travel together.",
+  },
+  5117: {
+    category: "Data & BI for finance",
+    question: "Why do operational and financial metrics so often disagree?",
+    options: [
+      "Because the two use different cut-off points and definitions",
+      "Because operational systems always record data incorrectly",
+      "Because operational data is not kept beyond thirty days",
+      "Because accounting deliberately adjusts the figures upward",
+    ],
+    explanation:
+      "The operational system counts an order when it is placed, accounting books revenue when it is delivered, and the two close their books at different moments. A gap is therefore normal; what is abnormal is not being able to explain it with a reconciliation.",
+  },
+  5118: {
+    category: "Data & BI for finance",
+    question: "Where is data lineage most useful?",
+    options: [
+      "Tracing a wrong number on a report back to its origin",
+      "Letting several people edit one table at the same time",
+      "Compressing historical data to a smaller size",
+      "Auto-generating charts from an existing table",
+    ],
+    explanation:
+      "When a figure on the board report looks wrong, the first question is which tables and transformations it passed through. Without lineage, tracing back means reading dozens of queries by hand - and that usually takes longer than the time until the next meeting.",
+  },
+  5119: {
+    category: "FinTech - Product economics",
+    question: "What do a fintech product's unit economics measure?",
+    options: [
+      "Profit or loss per customer after the cost of serving them",
+      "The company's valuation at the latest funding round",
+      "Total company revenue for a financial year",
+      "How many new customers arrive each month",
+    ],
+    explanation:
+      "Unit economics asks one very specific question: does one more customer make the company money or lose it. A fast-growing company with negative unit economics is only scaling its losses - growth there is not evidence of a good model.",
+  },
+  5120: {
+    category: "FinTech - Product economics",
+    question: "How do CAC and LTV relate?",
+    options: [
+      "LTV must exceed CAC by a wide enough margin for the model to hold",
+      "CAC must always exceed LTV for fast growth",
+      "LTV equals CAC times the number of years a customer stays",
+      "The two have nothing to do with each other",
+    ],
+    explanation:
+      "The cost of acquiring a customer has to be below the value they bring over their lifetime, with enough of a gap left to cover fixed costs. CAC payback period matters as much as the ratio: a healthy LTV/CAC with a four-year payback can still run the company out of cash.",
+  },
+  5121: {
+    category: "FinTech - Product economics",
+    question: "Why does churn matter more to fintech than to traditional retail?",
+    options: [
+      "Because revenue is recurring, so losing a customer loses all future cash flow",
+      "Because fintechs may not charge a fee when a customer leaves",
+      "Because fintech retention costs are always zero",
+      "Because churn is monitored and published by the regulator",
+    ],
+    explanation:
+      "Retail loses one sale; a recurring model loses that customer's entire remaining revenue stream. Churn therefore multiplies straight into LTV, and one percentage point of monthly churn can erase the effect of an entire growth campaign.",
+  },
+  5122: {
+    category: "FinTech - Product economics",
+    question: "What is a payment platform's take rate?",
+    options: [
+      "The percentage of transaction value the platform keeps",
+      "A fixed monthly fee charged to each merchant",
+      "The share of transactions that fail",
+      "New customers as a share of total visitors",
+    ],
+    explanation:
+      "The take rate decides how much the platform earns on every dong flowing through it. It is usually very thin, so the model only works at scale - and every competitive pressure lands on shaving that very number.",
+  },
+  5123: {
+    category: "FinTech - Product economics",
+    question: "Why must a lending fintech model its losses before scaling fast?",
+    options: [
+      "Because fast growth means bad debt only surfaces several quarters later",
+      "Because investors demand to see the model before funding",
+      "Because the law requires a model before the first loan",
+      "Because a loss model lowers the cost of funding",
+    ],
+    explanation:
+      "New loans have not had time to go bad, so a fast-growing book always shows a flattering NPL ratio - the denominator swells before the numerator can catch up. The real losses appear once growth slows, usually just as the company has scaled to its limit.",
+  },
+  5124: {
+    category: "FinTech - Product economics",
+    question: "What is float in an e-wallet business model?",
+    options: [
+      "Customer balances the wallet holds before they are paid out",
+      "The number of wallets active in a given month",
+      "The accumulated loss accepted to win market share",
+      "The fee the wallet earns on each successful transaction",
+    ],
+    explanation:
+      "The lag between money entering the wallet and money leaving creates a permanent balance the wallet is holding on someone's behalf. It can earn interest, but it is the customer's money - so regulation usually requires it segregated and limits how it may be used.",
+  },
+  5125: {
+    category: "FinTech - Product economics",
+    question: "Why is compliance cost a major barrier to entry in fintech?",
+    options: [
+      "Because it is a fixed cost, which weighs on the smaller player",
+      "Because compliance cost rises in proportion to transactions",
+      "Because regulators bar new companies from the market",
+      "Because large companies are exempt from compliance obligations",
+    ],
+    explanation:
+      "Licences, KYC systems and a compliance function cost roughly the same whether they serve ten thousand customers or ten million. A fixed cost spread over few customers is expensive per unit, so regulation protects users and, incidentally, whoever already has scale.",
+  },
+  5126: {
+    category: "FinTech - Product economics",
+    question: "How does the network effect work on a payments platform?",
+    options: [
+      "More merchants attract more buyers, and the reverse",
+      "More transactions mean a higher fee per transaction",
+      "More capital raised means a higher valuation",
+      "More staff mean faster product delivery",
+    ],
+    explanation:
+      "This is a two-sided network effect, and it explains why the early stage is so expensive: one side has to be subsidised to attract the other. Once the loop is self-sustaining it becomes a hard moat, but before then it is simply a large loss.",
+  },
+  5127: {
+    category: "Foundations - New to the field",
+    question: "How does compound interest differ from simple interest?",
+    options: [
+      "Compound interest earns interest on the interest already generated",
+      "Compound interest always carries a higher rate for the same term",
+      "Compound is only for loans and simple only for deposits",
+      "Simple interest applies only to central bank deposits",
+    ],
+    explanation:
+      "At the same rate, simple interest grows in a straight line and compound grows on a curve - and the gap between the two widens with time. This is why time, not the starting amount, is the strongest variable in long-run accumulation.",
+  },
+  5128: {
+    category: "Foundations - New to the field",
+    question: "What are a company's three main financial statements?",
+    options: [
+      "Income statement, balance sheet, cash flow statement",
+      "Tax return, payroll report and inventory report",
+      "Revenue, costs and after-tax profit for the period",
+      "Annual report, quarterly report and monthly report",
+    ],
+    explanation:
+      "The three answer three different questions: did the business make or lose money over the period, what does it own and owe at a point in time, and how much real cash came in and went out. Reading only two of them means missing a dimension of the picture.",
+  },
+  5129: {
+    category: "Foundations - New to the field",
+    question: "How do assets, liabilities and equity relate?",
+    options: [
+      "Assets equal liabilities plus equity",
+      "Assets equal equity minus liabilities",
+      "Equity equals assets plus liabilities",
+      "Liabilities equal assets plus equity",
+    ],
+    explanation:
+      "The accounting equation says everything the business owns was funded either by borrowing or by the owners. It always balances, and it is because it always balances that every entry has to be recorded on both sides.",
+  },
+  5130: {
+    category: "Foundations - New to the field",
+    question: "How does profit differ from cash flow?",
+    options: [
+      "Profit is recorded on accrual, cash flow on real money moving",
+      "They are the same thing as long as the business is profitable",
+      "Cash flow always exceeds profit at every company",
+      "Profit is quarterly and cash flow monthly",
+    ],
+    explanation:
+      "A credit sale books revenue immediately though nothing has been collected; buying an asset spends the cash at once but is expensed gradually through depreciation. The two measures therefore diverge - and companies go bankrupt from running out of cash, not from running out of profit.",
+  },
+  5131: {
+    category: "Foundations - New to the field",
+    question: "Why does inflation reduce the value of money sitting in an account?",
+    options: [
+      "Because that same amount buys fewer goods than before",
+      "Because the state taxes the account balance each year",
+      "Because deposit rates always fall when inflation rises",
+      "Because the bank deducts an account fee each month",
+    ],
+    explanation:
+      "The number on the statement is unchanged, but what it can be exchanged for shrinks. This is why a deposit rate has to be compared against inflation before calling it a gain - earning 5% while inflation runs at 6% is a loss of purchasing power.",
+  },
+  5132: {
+    category: "Foundations - New to the field",
+    question: "What is the fundamental difference between a share and a bond?",
+    options: [
+      "A share is ownership; a bond is a loan",
+      "A share is always safer than a bond from the same company",
+      "A share has a fixed maturity and a bond does not",
+      "A bond carries voting rights and a share does not",
+    ],
+    explanation:
+      "A bondholder is a creditor: paid a fixed interest and ranked ahead in a bankruptcy. A shareholder is an owner: entitled to whatever is left after the creditors are paid, which is why the upside is larger and so is the risk.",
+  },
+  5133: {
+    category: "Foundations - New to the field",
+    question: "What does portfolio diversification mean?",
+    options: [
+      "Spreading capital across assets that move together as little as possible",
+      "Buying a great many shares in one large company",
+      "Switching the whole portfolio to cash when the market falls",
+      "Investing only in the fastest-growing sector",
+    ],
+    explanation:
+      "The key phrase is MOVE TOGETHER AS LITTLE AS POSSIBLE, not simply many. Holding twenty names in one sector means all twenty fall when that sector struggles - a portfolio that looks diversified but is really a single bet.",
+  },
+  5134: {
+    category: "Foundations - New to the field",
+    question: "Why start investing early even with a small amount?",
+    options: [
+      "Because time is the strongest factor in compounding",
+      "Because beginners always have their trading fees waived",
+      "Because the market always rises, so any entry point profits",
+      "Because small amounts are exempt from investment income tax",
+    ],
+    explanation:
+      "Every year of delay is a year cut off the far end of the compounding curve - the steepest part. A small sum started at twenty-five usually beats a larger one started at thirty-five, even though less money went in.",
+  },
 };
