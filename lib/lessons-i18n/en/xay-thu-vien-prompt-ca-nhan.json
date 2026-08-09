@@ -1,0 +1,200 @@
+{
+  "slug": "xay-thu-vien-prompt-ca-nhan",
+  "title": "AI in Finance, Lesson 15: Building your own prompt library",
+  "subtitle": "Save the prompts you use often so you never write them from scratch again.",
+  "duration": "14 min",
+  "openingQuestion": "What does a prompt library give you?",
+  "openingOptions": [
+    "Reuse of good prompts for the work that repeats",
+    "Freedom from ever having to verify any of the output",
+    "An AI that knows everything",
+    "Permission to skip the data"
+  ],
+  "explanation": "When a prompt produces a good result, do not let it vanish into the chat history. A prompt library is your own notebook, and each entry has five parts: the task name, when to use it, the inputs to prepare, the prompt template, and how to check the output. What separates a useful library from a messy folder is the last part - without a way to check, you are saving a trick rather than building a process.",
+  "summary": {
+    "keyIdea": "A prompt library is a notebook of reusable prompts for reading news, financial statements, risks and memos.",
+    "commonMistake": "Saving lots of prompts without recording when to use them or how to check them.",
+    "action": "Create your first 5 prompts for your own work."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "When a prompt works well, save it so that next time you do not start over."
+    },
+    {
+      "type": "callout",
+      "label": "Terms",
+      "text": "Prompt library: where you keep reusable prompts. Fill-in template: a ready-made frame where you swap in your own information. Version: the improved copy after each round of use."
+    },
+    {
+      "type": "heading",
+      "text": "What should each prompt carry?"
+    },
+    {
+      "type": "list",
+      "items": [
+        "The task name",
+        "When to use it",
+        "The inputs to prepare",
+        "The prompt template",
+        "How to check the output"
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Five prompts worth having"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Summarise a news item",
+        "Extract figures from financial statements",
+        "Find the risks",
+        "Write a memo",
+        "Self-critique and verify"
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Improving a prompt"
+    },
+    {
+      "type": "paragraph",
+      "text": "After each use, note the fault: too long, source missing, units forgotten, risks not stated. Then revise the prompt into a new version."
+    },
+    {
+      "type": "conceptTable",
+      "title": "The five parts of a library entry",
+      "concepts": [
+        {
+          "def": "Name it after the job rather than the tool. \"Extract 5 metrics from the financial statements\" rather than \"Prompt number 3\"."
+        },
+        {
+          "def": "One line describing the situation. It lets you pick the right prompt without rereading the whole library."
+        },
+        {
+          "def": "Which documents, in what format, and what you need to know beforehand. Skipping this step is why a good prompt still produces poor results."
+        },
+        {
+          "def": "Paste it verbatim, leaving blanks such as [file name] and [reporting period] for whatever changes between uses."
+        },
+        {
+          "def": "The specific steps confirming the result is usable: how many figures to reconcile, which section to check. Without this part it is a trick, not yet a process."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "The improvement loop after each use"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Record the specific fault: source missing, wrong units, conclusion stated too strongly, risks omitted, output too long.",
+        "For each fault, add exactly one constraint to the prompt - do not rewrite the whole thing.",
+        "Number the version and note the date and the reason for the change.",
+        "If a constraint is added and the fault persists, the problem is usually the input rather than the prompt."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Two blocks worth reusing in every prompt",
+      "text": "The source-lock block: \"Use only the attached documents; give the page, unit and period for every figure; write 'not found' where it is absent.\" The format block: \"Answer as a table, in English, at most N words, ending with a Missing data section.\" These two barely change between tasks, so keep them separately and paste them in."
+    },
+    {
+      "type": "paragraph",
+      "text": "After a few months your library will differ from anyone else's - because it grew out of the faults you actually hit and the kind of work you actually do. That is why copying someone's ready-made prompt set and stopping there is a mistake: their set reflects their process, not yours."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A prompt library turns AI tricks into a process.",
+        "A good prompt is one that has been used and revised against reality."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "What does a prompt library mean?",
+      "options": [
+        "A list of the errors AI commonly makes",
+        "The assistant's set of system rules",
+        "The assistant's store of source documents",
+        "A store of reusable prompts"
+      ],
+      "explanation": "This is where you keep good prompts for reuse."
+    },
+    {
+      "question": "What should each entry carry besides the prompt itself?",
+      "options": [
+        "The inputs to prepare and how to check the output",
+        "The AI model recommended for use with that prompt",
+        "The author's name and the date the prompt was created",
+        "The number of times used and the success rate"
+      ],
+      "explanation": "Inputs and a checklist are what make a prompt behave consistently."
+    },
+    {
+      "question": "Which part of a library entry is most often forgotten and yet most important?",
+      "options": [
+        "The input data required",
+        "How to check the output",
+        "The content of the prompt",
+        "The name of the prompt"
+      ],
+      "explanation": "Without a checking step you have only saved a trick. With one, it is a process - reusable, and handable to someone else."
+    },
+    {
+      "question": "You added a constraint to the prompt but the fault keeps recurring. Where does the cause usually lie?",
+      "options": [
+        "In the prompt - it needs to be longer and more detailed",
+        "In the output format - it should be switched to a table",
+        "In the input - the document is missing or the wrong period",
+        "In the AI model - a more capable version is needed"
+      ],
+      "explanation": "A prompt controls how something is processed; it cannot create data that does not exist. When the constraint is clear and the fault persists, go back and check the input documents."
+    },
+    {
+      "question": "Why should each library entry carry a way of checking the result?",
+      "options": [
+        "Because each prompt only works on exactly one type of document",
+        "Because this part helps the AI understand the request better and answer far more accurately",
+        "Because without a note you will later forget what the prompt was for",
+        "Because however good a prompt is, the result still has to be reconciled before use"
+      ],
+      "explanation": "The most easily forgotten part is precisely the part that turns a prompt into a process. Without a checking step, the library only helps you produce results faster - not know whether those results are usable."
+    }
+  ],
+  "diagram": [
+    { "label": "A prompt produces a good result" },
+    { "label": "Record all 5 parts, including how to check it" },
+    { "label": "Reuse it - note the faults you find" },
+    { "label": "Revise the prompt, number the version" }
+  ],
+  "realWorldExample": {
+    "company": "The first five prompts worth having",
+    "description": "For someone learning finance, five prompts cover most of the daily work: summarise an article as event - impact - question; extract five basic metrics from the financial statements with page references; scan for warning signs with the evidence; write a one-page memo to the five-part frame; and make the AI critique its own draft. Those five are the five preceding lessons of this stage, and what they share is a source-lock block and an output format block - the two things to keep unchanged when copying to a new task."
+  },
+  "keyTakeaways": [
+    "Each library entry has five parts, of which \"how to check the output\" is the most often dropped and the most important.",
+    "Number the prompt versions and record why they changed - a library is maintained, not archived.",
+    "Two components to keep unchanged on reuse: the source-lock block and the output format block.",
+    "Start with five prompts for the work you do most, rather than trying to build a large library at once."
+  ],
+  "practicePrompt": {
+    "question": "What does a prompt library give you?",
+    "options": [
+      "Reuse of good prompts for the work that repeats",
+      "Freedom from ever having to verify any of the output",
+      "An AI that knows everything",
+      "Permission to skip the data"
+    ],
+    "explanation": "A prompt library standardises the work that repeats."
+  },
+  "application": {
+    "title": "Try it now",
+    "message": "Create your first 5 prompts for your own work.",
+    "secondary": "Start small, verify clearly, and only then raise the difficulty."
+  },
+  "whyItMatters": "This is the step that turns using AI from something resting on memory into an asset that accumulates over time."
+}
