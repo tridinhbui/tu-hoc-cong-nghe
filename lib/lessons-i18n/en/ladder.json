@@ -28,7 +28,6 @@
       "label": "Reinvest that portion at the current rate - risk isn't concentrated at one moment"
     }
   ],
-  "interactiveType": "bond",
   "realWorldExample": {
     "company": "An individual investor building a ladder with government bonds and term deposits",
     "description": "A common way to apply laddering in Vietnam for a beginner, even without access to many types of bonds, is to combine 1, 2, and 3-year government bonds or certificates of deposit at the same time, instead of putting everything into a single 3-year savings account. When the 1-year portion matures, the investor checks the market rate at that time to decide on reinvesting for a new term (usually the longest term in the ladder to keep the structure intact), instead of having to guess future rates from the very start."
@@ -42,7 +41,6 @@
         "Guaranteeing a yield that's always higher than the market level",
         "Fully eliminating the issuer's default risk"
       ],
-      "correct": 0,
       "explanation": "A ladder spreads out maturity dates, so an investor doesn't have to reinvest all their capital at once right when rates happen to be low, while also having a portion of capital mature each year, ready to use if liquidity is needed."
     },
     {
@@ -53,7 +51,6 @@
         "Leave the money idle in the account, without investing it, and this protection only holds for the specific rungs that have not yet reached maturity",
         "Use all the matured money to buy stocks instead"
       ],
-      "correct": 1,
       "explanation": "To keep the ladder structure continuous, when the shortest-term bond matures, an investor usually reinvests that money into a new bond at the longest term in the ladder, keeping the portfolio's rungs evenly spread across time."
     },
     {
@@ -64,7 +61,6 @@
         "100 million per rung, with terms of 1, 2, 3, 4, and 5 years spread evenly",
         "100 million per rung, but all of them mature in year five"
       ],
-      "correct": 2,
       "explanation": "The key point is that the maturity dates are spread evenly, not just the money. After year one, the 1-year rung matures and you buy a new 5-year term - from then on, exactly one rung comes due every year, and the structure sustains itself."
     },
     {
@@ -75,7 +71,6 @@
         "A ladder entirely eliminates default risk by splitting capital across several issuers",
         "A ladder gives steady liquidity and doesn't bet everything on a single rate level"
       ],
-      "correct": 3,
       "explanation": "Concentrating everything into one term means your entire capital is locked to the rate level of a single day - the day you bought. A ladder spreads that decision out over several years, so you're never entirely right, but also never entirely wrong."
     },
     {
@@ -86,7 +81,6 @@
         "The ladder automatically stops and all capital must be withdrawn into cash",
         "The ladder suffers noticeably more than concentrating everything into a short term"
       ],
-      "correct": 0,
       "explanation": "The long rungs, bought at the old rate, keep paying a high coupon for many years, so the ladder's average yield lags the market on the way down. In exchange, when rates rise, the ladder also climbs more slowly - that's the price of stability."
     },
     {
@@ -97,7 +91,6 @@
         "Yes, because the short rungs mature before the issuer can run into financial trouble",
         "No, but that's only true for a ladder with fewer than five different terms"
       ],
-      "correct": 1,
       "explanation": "A ladder addresses interest rate risk and reinvestment risk, not credit risk. If all five rungs are bonds from the same company and that company defaults, you lose all five rungs. To hedge against that, you need to diversify across issuers."
     }
   ],
@@ -114,7 +107,6 @@
       "Use the entire amount to buy another 1-year bond identical to the one that just matured, to keep the original allocation unchanged",
       "Move the entire amount into stocks instead, since current bond rates aren't attractive enough to keep running the ladder"
     ],
-    "correct": 0,
     "explanation": "Reinvesting at the longest term in the ladder keeps the rung structure continuous over time - this is how the strategy is meant to operate."
   },
   "summary": {

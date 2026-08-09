@@ -23,7 +23,6 @@
       "label": "The portfolio always matches the index"
     }
   ],
-  "interactiveType": "fee-drag",
   "realWorldExample": {
     "company": "Open-ended funds like SSI-SCA or VNDAF tracking index baskets",
     "description": "Many fund managers in Vietnam (SSI Asset Management, VinaCapital, Dragon Capital...) run index funds mimicking VN30 or VNDiamond. When HOSE announces the new VN30 list every 6 months (usually removing stocks that no longer meet liquidity/cap standards and adding new ones), these funds automatically rebalance their portfolios accordingly, with no analyst team needed to decide which stock to pick."
@@ -115,7 +114,6 @@
     "message": "The lesson already has a real example with E1VFVN30's factsheet figures (management fee, expense ratio, rebalancing frequency) - see the 'Real example' section above. Now try applying those same 4 items to another index fund you're interested in.",
     "secondary": "Reading a real factsheet once helps you feel much more confident choosing a fund later on."
   },
-  "track": "personal",
   "sections": [
     {
       "type": "lead",

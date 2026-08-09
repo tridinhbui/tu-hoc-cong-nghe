@@ -28,7 +28,6 @@
       "label": "Get FCFE - discount with cost of equity for equity value"
     }
   ],
-  "interactiveType": "profit-calc",
   "realWorldExample": {
     "company": "Valuing a low-debt company",
     "description": "For a company with almost no debt (as with many early-stage tech companies), FCFE and FCFF are nearly identical because there is no meaningful interest expense or borrowing/repayment cash flow."

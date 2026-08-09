@@ -37,7 +37,6 @@
         "The two topics are entirely separate with no notable link",
         "These two topics have no cause-and-effect relationship at all"
       ],
-      "correct": 0,
       "explanation": "This is the core link running through Stage 4: when return expectations are inflated beyond reality, investors are more willing to take on excessive risk (margin, concentrating in one stock, trusting tips) to try to reach that unrealistic level."
     },
     {
@@ -48,7 +47,6 @@
         "DCA only suits an investor with absolutely no emotions at all",
         "The two topics are separate, with no meaningful real-world link"
       ],
-      "correct": 1,
       "explanation": "DCA is a practical tool for dealing with the very psychological problem covered earlier: by automating the buy decision onto a fixed schedule, an investor cuts down the room for greed or fear to control the timing of purchases."
     },
     {
@@ -59,7 +57,6 @@
         "ETFs and open-end funds are ready-made tools for practicing diversification",
         "An ETF always carries higher risk than holding a single stock outright, something worth double-checking in practice"
       ],
-      "correct": 2,
       "explanation": "This is a clear example of how Stage 4's concepts connect to practice: the principle of diversifying to cut unsystematic risk is put into concrete practice through an ETF or open-end fund (a managed account) without having to personally manage dozens of individual stocks."
     },
     {
@@ -70,7 +67,6 @@
         "The timing of the market bottom",
         "All three are equally controllable if you follow the news closely enough"
       ],
-      "correct": 1,
       "explanation": "Fees, taxes, and portfolio turnover are things you decide directly and can know the number of in advance. Nobody controls market returns or the timing of the bottom. That's why a good strategy always starts by cutting the losses that are certain."
     },
     {
@@ -81,7 +77,6 @@
         "Both are tools for forecasting when the market will reverse direction",
         "Both only work for an investor with large capital and a lot of free time"
       ],
-      "correct": 0,
       "explanation": "Diversification shrinks the size of the drawdown, and realistic expectations keep that drawdown from being outside what was anticipated. Both target an individual investor's single biggest risk: selling at the bottom out of panic - an act that destroys long-term returns more than any stock-picking mistake."
     }
   ],
@@ -99,7 +94,6 @@
       "No principle is being violated at all; this is simply a faster, more decisive investing strategy",
       "The whole of Stage 4 revolves around just one principle - realistic return expectations - and the others don't matter"
     ],
-    "correct": 0,
     "explanation": "This friend's plan violates three pillars of Stage 4 at once: risk management (diversification, avoiding leverage) and discipline (not trusting unverified tips)."
   },
   "summary": {

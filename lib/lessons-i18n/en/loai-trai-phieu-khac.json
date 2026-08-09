@@ -28,7 +28,6 @@
       "label": "Read the fees, term, and early-withdrawal conditions of each carefully"
     }
   ],
-  "interactiveType": "bond",
   "realWorldExample": {
     "company": "Certificates of Deposit at Vietnamese commercial banks and investment-linked insurance bonds",
     "description": "Many banks in Vietnam, such as SHB, HDBank, and others, have issued long-term certificates of deposit (18-24 months or more) at a rate higher than ordinary savings, especially attractive when the bank needs to raise long-term capital. In addition, some life insurers (Prudential, Manulife, AIA) offer investment-linked insurance products where part of the premium is allocated into bond funds or balanced funds - this isn't strictly a 'bond' in the true sense but operates on a similar logic: a committed return and a priority on preserving capital, compared with pure equity funds."
@@ -42,7 +41,6 @@
         "A CD can be transferred and its rate is slightly higher than savings",
         "A CD earns no interest at all for the holder"
       ],
-      "correct": 2,
       "explanation": "A certificate of deposit differs from a savings passbook by being transferable as a negotiable instrument, usually coming with a longer fixed term and a slightly higher rate to compensate for lower liquidity (hard to withdraw early without losing interest)."
     },
     {
@@ -53,7 +51,6 @@
         "No insurance product has anything to do with bonds",
         "It combines protection and investment, with extra fees and its own terms"
       ],
-      "correct": 3,
       "explanation": "Investment-linked insurance is a hybrid product, combining financial protection (a payout when a covered risk occurs) with indirect investment in funds (which may include bonds), usually with management fees and contract terms far more complex than buying a specific bond directly."
     },
     {
@@ -64,7 +61,6 @@
         "Because a certificate of deposit is only sold to large institutional investors",
         "Because CD interest is fully tax-exempt"
       ],
-      "correct": 0,
       "explanation": "A bank pays extra in exchange for a more stable, longer-term source of funds, which helps it match its funding with long-term loans. That slightly higher rate is the cost the bank is willing to pay for that certainty."
     },
     {
@@ -75,7 +71,6 @@
         "Because insurance products contain no financial investment component whatsoever",
         "Because bonds and insurance are both managed by the exact same government agency"
       ],
-      "correct": 1,
       "explanation": "You're buying two things in one contract: protection against death risk, and an investment. The insurance charge, fund management fee, and initial fee are deducted before the remainder is invested, so the announced return figure can't be compared directly with a bond's coupon."
     },
     {
@@ -86,7 +81,6 @@
         "It lets the holder convert to shares at a preset ratio, so the coupon is lower",
         "It lets the entire investment be transferred to a different company in the same industry"
       ],
-      "correct": 2,
       "explanation": "The conversion right is a valuable option: if the stock rises sharply, you convert into shares and capture that gain. Because you're given an extra right, the issuer pays a lower coupon - that's how it borrows more cheaply."
     },
     {
@@ -97,7 +91,6 @@
         "Prioritise whichever product the most acquaintances have bought recently instead",
         "Ask clearly who is actually responsible for paying and where the risk lies"
       ],
-      "correct": 3,
       "explanation": "A bank distributing a product doesn't mean the bank is responsible for repaying it - this is exactly the misunderstanding that cost many people money in the 2022 bond incidents. The first question is always: if the issuer doesn't pay, who does?"
     }
   ],
@@ -114,7 +107,6 @@
       "Not accurate, because investment-linked insurance always delivers a far lower return than buying a bond directly in every case",
       "Partly accurate, but only because investment-linked insurance has much lower management fees than buying a bond directly"
     ],
-    "correct": 0,
     "explanation": "Investment-linked insurance is a hybrid product, not a pure bond - the contract needs to be read carefully to understand its fees and terms before comparing it with buying a bond directly."
   },
   "summary": {

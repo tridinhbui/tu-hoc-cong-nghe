@@ -27,7 +27,6 @@
       "label": "The securities company withholds it right when the order matches"
     }
   ],
-  "interactiveType": "profit-calc",
   "realWorldExample": {
     "company": "Automatic tax withholding through securities companies (SSI, VNDirect, VPS...)",
     "description": "When an investor places a sell order through a securities company like SSI, VNDirect or VPS, the system automatically withholds 0.1% personal income tax on the sale value the moment the order matches, plus the securities company's trading fee (usually 0.1%-0.25% depending on company and service tier). The investor receives the sale proceeds already net of tax and fees, with no need to separately declare or pay this tax."
@@ -110,7 +109,6 @@
     "message": "Suppose you sell a block of stock worth VND 50 million, calculate the 0.1% tax owed yourself and compare it to the tax you'd imagine under a US-style percentage-of-profit calculation.",
     "secondary": "Understanding exactly how the tax is calculated helps you avoid surprises when reviewing your trading statement."
   },
-  "track": "personal",
   "sections": [
     {
       "type": "lead",

@@ -23,7 +23,6 @@
       "label": "Reduces unsystematic risk"
     }
   ],
-  "interactiveType": "risk",
   "realWorldExample": {
     "company": "Concentrated sector risk: real-estate stocks 2022-2023",
     "description": "Many investors put most of their portfolio into real-estate stocks during 2021 when the sector was running hot. When Vietnam's corporate-bond market hit a confidence crisis in late 2022, a wave of real-estate stocks fell 60-80% from their peak. Investors who diversified into consumer goods, technology (like FPT), and banking (like VCB) suffered far less damage than those concentrated in a single sector."
@@ -106,7 +105,6 @@
     "message": "List out your current investments, calculate the percentage of your largest ticker relative to your total portfolio - if it exceeds 20-30%, consider whether that concentration risk is intentional.",
     "secondary": "A concrete percentage is far clearer than a vague feeling of 'probably fine'."
   },
-  "track": "personal",
   "sections": [
     {
       "type": "lead",

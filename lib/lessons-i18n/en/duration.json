@@ -28,7 +28,6 @@
       "label": "Multiply by the rate change to estimate the price swing"
     }
   ],
-  "interactiveType": "interest-rate",
   "realWorldExample": {
     "company": "Short-term and long-term bond funds in Vietnam",
     "description": "Bond funds in Vietnam usually publish their portfolio's average term (an approximation of duration). A short-term bond fund (average term under 2 years) usually has a far more stable NAV when rates swing, suited to an investor who wants to preserve capital. Conversely, a long-term bond fund, or one holding many 10-15 year government bonds, will see its NAV swing noticeably more during periods when the State Bank changes its policy rate - which is why these funds usually recommend holding for the long term to avoid selling right when the price has fallen."
@@ -42,7 +41,6 @@
         "The number of years remaining until the bond matures",
         "The coupon interest received each year"
       ],
-      "correct": 1,
       "explanation": "Duration measures how sensitive a bond's price is to interest-rate swings. A bond with a large duration (usually long-term, low coupon) will swing in price more sharply when market rates change than a bond with a small duration."
     },
     {
@@ -53,7 +51,6 @@
         "A short-term bond (low duration)",
         "The longer the term, the lower the risk"
       ],
-      "correct": 2,
       "explanation": "When expecting rates to rise, you should prioritize a short-term bond (low duration), since its price is less affected by rate swings, better preserving your capital's value if you need to sell before maturity."
     },
     {
@@ -64,7 +61,6 @@
         "Falls about 8%, exactly matching that bond's duration figure",
         "Falls about 4%, taking duration multiplied by the rate change"
       ],
-      "correct": 3,
       "explanation": "The rule of thumb: the price change is approximately duration multiplied by the rate change, with the opposite sign. 8 x 0.5% = 4%. This is why duration is used as a practical risk gauge, not just a theoretical concept."
     },
     {
@@ -75,7 +71,6 @@
         "Because duration only counts the time remaining after subtracting the last interest period",
         "Because the term is measured in calendar years while duration is measured in fiscal years"
       ],
-      "correct": 0,
       "explanation": "Duration is the value-weighted average timing of receiving cash. A coupon puts part of the money in your hands early, pulling that average down below the maturity date. Only a zero-coupon bond has a duration exactly equal to its term, because all its money arrives at once on the final day."
     },
     {
@@ -86,7 +81,6 @@
         "To ensure every bond in the portfolio matures on exactly the same date",
         "To calculate exactly the income tax owed on interest over those 12 years"
       ],
-      "correct": 1,
       "explanation": "This is called immunization: when the portfolio's duration exactly matches the time the money is needed, a loss from a price fall is offset by gains from reinvesting at a higher rate, and vice versa. Duration doesn't just measure risk - it's a tool for cancelling that risk out."
     },
     {
@@ -97,7 +91,6 @@
         "That the price-rate relationship is a curve, so duration is off for large rate moves, an effect that becomes visible only once the rate move itself exceeds two full percentage points",
         "That a bond can be called back early if market rates fall too far"
       ],
-      "correct": 2,
       "explanation": "Duration is a linear estimate - accurate for small changes. When rates swing sharply, the real relationship curves: the price rises more than predicted when rates fall, and falls less than predicted when rates rise. Convexity measures exactly that curvature, and it favors the holder."
     }
   ],
@@ -115,7 +108,6 @@
       "Both have exactly the same duration since they share the same 10-year term, and the coupon level has no effect on duration",
       "It's impossible to determine which bond has the higher duration without knowing the exact face value of each"
     ],
-    "correct": 0,
     "explanation": "A lower-coupon bond has a higher duration because most of its value is concentrated at the distant maturity date, while a higher-coupon bond has cash flow arriving sooner, giving it a relatively lower duration."
   },
   "summary": {

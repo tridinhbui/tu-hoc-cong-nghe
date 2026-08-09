@@ -23,7 +23,6 @@
       "label": "Compounded over 20 years → a large gap"
     }
   ],
-  "interactiveType": "fee-drag",
   "realWorldExample": {
     "company": "Comparing management fees of Vietnam's domestic ETFs",
     "description": "Domestic ETFs tracking VN30 in Vietnam usually have an expense ratio of around 0.6%-1%/year, while some active open-ended funds may charge a 1.5%-2%/year management fee plus issuance/redemption fees. Investors rarely notice this fee because it's quietly deducted from the net asset value (NAV) every day, not shown as a clear deduction on a statement."
@@ -115,7 +114,6 @@
     "message": "Take a hypothetical VND 100 million investment, and calculate the balance difference yourself after 20 years between a 0.3%/year fee and a 1.5%/year fee at the same gross return.",
     "secondary": "A concrete number after 20 years is usually more surprising than you'd expect."
   },
-  "track": "personal",
   "sections": [
     {
       "type": "lead",

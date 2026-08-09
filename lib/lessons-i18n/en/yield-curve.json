@@ -28,7 +28,6 @@
       "label": "The market expects rates to fall as the economy weakens"
     }
   ],
-  "interactiveType": "bond",
   "realWorldExample": {
     "company": "The US yield curve, 2022-2023",
     "description": "The US government bond yield curve inverted at its deepest and longest stretch in over 40 years during 2022-2023, as the Fed raised rates sharply to fight inflation - many economists used this signal to forecast the likelihood of a US recession."

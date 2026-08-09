@@ -28,7 +28,6 @@
       "label": "Credit spreads show how worried the market is about default"
     }
   ],
-  "interactiveType": "bond",
   "realWorldExample": {
     "company": "Professional bond funds",
     "description": "Large bond funds around the world manage their portfolios by simultaneously balancing credit risk (credit rating, spread) and interest rate risk (duration, yield curve position) - exactly the two core axes the whole Bonds, Interest Rates and Credit track has built up."

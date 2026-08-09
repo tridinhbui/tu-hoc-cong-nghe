@@ -118,7 +118,6 @@
     "message": "Pick a stock you know, look up its 1-year price history and dividend-payment history, then add the two amounts yourself to estimate the investor's actual total return.",
     "secondary": "Many people only look at the price and forget to add dividends - this calculation will reveal that gap."
   },
-  "track": "personal",
   "sections": [
     {
       "type": "lead",

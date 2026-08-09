@@ -28,7 +28,6 @@
       "label": "Comparing investment channels requires comparing after-tax yields"
     }
   ],
-  "interactiveType": "bond",
   "realWorldExample": {
     "company": "Privately-placed corporate bonds and government bonds in Vietnam",
     "description": "For a corporate bond, when an individual investor receives a coupon, the issuer or paying agent is responsible for withholding 5% personal income tax (capital investment income) before transferring the actual interest into the investor's account. In addition, if an investor sells the bond before maturity and earns a gain from the price difference, that gain may be counted as separate taxable income depending on the nature of the transaction. Government bonds and Treasury bills carry certain separate exemptions or tax incentives that vary by period, so investors should check the current official guidance rather than applying a rule mechanically."
@@ -42,7 +41,6 @@
         "A flat 10% for every type of financial income",
         "5% on the interest received"
       ],
-      "correct": 3,
       "explanation": "Corporate bond interest received by an individual is classified as capital investment income, subject to 5% personal income tax on the actual interest received, usually withheld at source by the paying party before the money reaches the investor."
     },
     {
@@ -53,7 +51,6 @@
         "Tax only arises if the investor proactively files a declaration",
         "It has nothing to do with the investor's own tax obligation"
       ],
-      "correct": 0,
       "explanation": "Withholding at source means the paying party (the issuer or paying agent) is responsible for automatically deducting the 5% tax before transferring the remaining interest into the investor's account, simplifying the individual's tax obligation."
     },
     {
@@ -64,7 +61,6 @@
         "The deposit wins, because savings interest always comes with deposit insurance added on top",
         "The two can't be compared at all, since they're entirely different asset types"
       ],
-      "correct": 1,
       "explanation": "An individual's savings deposit interest is currently exempt from personal income tax, while a corporate bond coupon is taxed 5%. So the bond's 9% becomes about 8.55% after tax, versus the deposit's full 7% - a narrower gap than the advertised numbers suggest."
     },
     {
@@ -75,7 +71,6 @@
         "A tax on the transfer value when reselling the bond before maturity",
         "A 10% value-added tax on the total value of the bond transferred"
       ],
-      "correct": 2,
       "explanation": "Transferring a bond is taxed on the transfer value, similarly to how it applies to securities - meaning you owe tax even if the sale is at a loss. This detail is easy to miss when calculating the real return of an early buy-sell strategy."
     },
     {
@@ -86,7 +81,6 @@
         "Because government bond yields are always higher than corporate bonds of the same term",
         "Because they carry tax incentives and are used as collateral in many transactions"
       ],
-      "correct": 3,
       "explanation": "The yield on paper isn't the whole story: tax incentives, the ability to use them as collateral for interbank loans, and their low risk weighting in capital-adequacy calculations give government bonds real value higher than the suggested yield figure."
     },
     {
@@ -97,7 +91,6 @@
         "The total amount of interest received, without regard for how long it's held",
         "The issuer's credit rating, since it determines the entire return"
       ],
-      "correct": 0,
       "explanation": "A 9% return taxed at 5% in a 4%-inflation environment is only about 4.5% in real terms. The advertised figure is always the pre-tax nominal rate - and the gap between it and what you actually keep is where most bad decisions begin."
     }
   ],
@@ -114,7 +107,6 @@
       "Just pick whichever channel has the higher announced rate, since all interest income in Vietnam is equally fully tax-exempt",
       "No further comparison is needed, since corporate bonds are always better than savings deposits in every case"
     ],
-    "correct": 0,
     "explanation": "Corporate bond coupon interest is withheld 5% personal income tax at source - you need to compare after-tax yields between investment channels rather than just looking at the announced rate."
   },
   "summary": {

@@ -23,7 +23,6 @@
       "label": "Panic-sell even though the business fundamentals haven't changed"
     }
   ],
-  "interactiveType": "prospect",
   "realWorldExample": {
     "company": "The VN-Index sell-offs in April 2025 and March 2020",
     "description": "During the sharp drop from US tariff news in April 2025, the VN-Index had a session where many tickers fell near their floor limit; many individual investors panic-sold at low prices, only for the market to recover strongly a few weeks later. Similarly, in March 2020 when Covid-19 broke out, the VN-Index fell over 30% within a few weeks; those who panic-sold at the bottom completely missed the strong recovery and growth throughout 2020-2021."
@@ -106,7 +105,6 @@
     "message": "Recall the last time you saw an investment's value drop sharply - did you react by selling immediately, or by first reviewing the underlying fundamentals of that asset?",
     "secondary": "Correctly identifying your own emotion is the first step to controlling it."
   },
-  "track": "personal",
   "sections": [
     {
       "type": "lead",

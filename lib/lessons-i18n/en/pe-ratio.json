@@ -114,7 +114,6 @@
     "message": "Take the share price and earnings per share (EPS) of a company you're interested in, calculate the P/E yourself, then compare it to the sector average P/E to see whether it's relatively cheap or expensive.",
     "secondary": "A single P/E number says very little - comparison is what gives it meaning."
   },
-  "track": "personal",
   "sections": [
     {
       "type": "lead",

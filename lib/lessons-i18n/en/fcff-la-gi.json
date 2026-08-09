@@ -28,7 +28,6 @@
       "label": "Get FCFF - discount with WACC for enterprise value"
     }
   ],
-  "interactiveType": "profit-calc",
   "realWorldExample": {
     "company": "A DCF model valuing Enterprise Value",
     "description": "When an investment bank builds a DCF model to value an entire business (not just the equity portion) for an M&A deal, they use FCFF discounted at WACC to arrive directly at Enterprise Value."

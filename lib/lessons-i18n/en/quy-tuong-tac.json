@@ -23,7 +23,6 @@
       "label": "Goal: outperform the benchmark index"
     }
   ],
-  "interactiveType": "fee-drag",
   "realWorldExample": {
     "company": "VESAF fund (VinaCapital) and VEOF fund (VinaCapital)",
     "description": "VESAF is an active open-ended fund focused on promising small- and mid-cap stocks, managed by VinaCapital's analyst team. This team studies financial statements, meets with company leadership, and assesses sector outlook to decide which stocks to buy and at what weighting - completely different from simply replicating an existing index like a VN30 ETF."
@@ -115,7 +114,6 @@
     "message": "The lesson already has a real example comparing VESAF's performance against the VN-Index - see the 'Real example' section above. Now find another active fund yourself and compare it the same way.",
     "secondary": "Don't just trust a fund's own marketing - cross-check the numbers yourself."
   },
-  "track": "personal",
   "sections": [
     {
       "type": "lead",

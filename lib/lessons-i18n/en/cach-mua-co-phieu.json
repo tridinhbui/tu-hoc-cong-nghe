@@ -114,7 +114,6 @@
     "message": "The lesson already has a real example of SSI and VNDirect's fee schedule - see the 'Real example' section above. Now open the app of the securities company you use and check your own account's actual fee schedule against it.",
     "secondary": "Knowing the fees before placing an order helps you avoid unpleasant surprises later."
   },
-  "track": "personal",
   "sections": [
     {
       "type": "lead",

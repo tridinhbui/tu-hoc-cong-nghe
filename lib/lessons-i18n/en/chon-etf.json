@@ -23,7 +23,6 @@
       "label": "Check liquidity before choosing an ETF"
     }
   ],
-  "interactiveType": "fee-drag",
   "realWorldExample": {
     "company": "Comparing domestic ETFs: E1VFVN30, FUEVFVND, FUESSVFL",
     "description": "When choosing between ETFs tracking different index baskets in Vietnam, investors should compare not only the tracked asset (VN30 versus VNDiamond or VNFinlead) but also fund size (assets under management - AUM), daily trading liquidity, and expense ratio. An ETF with large AUM and high liquidity is usually more stable and easier to trade than a small, newly launched ETF."
@@ -105,7 +104,6 @@
     "message": "The lesson already has a real example scoring E1VFVN30 against the 4 criteria - see the 'Real example' section above. Now pick another ETF trading in Vietnam and score it yourself using those same 4 criteria.",
     "secondary": "Getting used to checking these four criteria will help you choose ETFs faster and more confidently."
   },
-  "track": "personal",
   "sections": [
     {
       "type": "lead",

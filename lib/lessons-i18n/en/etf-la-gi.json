@@ -27,7 +27,6 @@
       "label": "Own the whole basket with 1 transaction"
     }
   ],
-  "interactiveType": "fee-drag",
   "realWorldExample": {
     "company": "DCVFM VN30 ETF (ticker E1VFVN30, managed by Dragon Capital)",
     "description": "This is one of the largest domestic ETFs in Vietnam, tracking the VN30 index (the 30 largest-cap companies on HOSE such as VCB, VNM, HPG, VIC...). Buying one E1VFVN30 fund certificate gives you indirect ownership of all 30 stocks in the exact index weighting, with just a single buy order through a regular securities account."
@@ -119,7 +118,6 @@
     "message": "Estimate the trading cost if you bought all 30 tickers in VN30 yourself, then compare it to placing one single E1VFVN30 order - note down the difference you find.",
     "secondary": "A concrete number of the difference is usually more persuasive than any theoretical explanation."
   },
-  "track": "personal",
   "sections": [
     {
       "type": "lead",

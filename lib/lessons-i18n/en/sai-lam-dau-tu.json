@@ -27,7 +27,6 @@
       "label": "= A very high-risk combination"
     }
   ],
-  "interactiveType": "prospect",
   "realWorldExample": {
     "company": "The wave of mass margin calls in 2022",
     "description": "During the sharp market drop in Vietnam in 2022, many individual investors used margin to buy real-estate and securities stocks based on 'tips' from Zalo and Telegram groups. When prices fell sharply, securities firms were forced to force-sell to recover their loans, causing many investors to lose most or all of their capital - a clear demonstration of the consequences of combining leverage with poorly grounded decisions."
@@ -110,7 +109,6 @@
     "message": "Review your current portfolio (if you have one): are you overconcentrated in one ticker, using margin, or holding any position bought purely because of an unverified 'tip'?",
     "secondary": "Self-checking these three mistakes early helps you avoid learning a costly lesson later."
   },
-  "track": "personal",
   "sections": [
     {
       "type": "lead",

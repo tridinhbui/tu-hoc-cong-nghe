@@ -28,7 +28,6 @@
       "label": "The required yield must cover that loss plus an uncertainty premium"
     }
   ],
-  "interactiveType": "bond",
   "realWorldExample": {
     "company": "The Evergrande bond default",
     "description": "When the Chinese real estate group Evergrande defaulted on its international bonds in 2021, bondholders recovered only a very small fraction of the original value - a real-world example of a low recovery rate in highly leveraged real estate corporate defaults."

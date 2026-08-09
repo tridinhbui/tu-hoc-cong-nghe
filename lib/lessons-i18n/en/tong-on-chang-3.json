@@ -28,7 +28,6 @@
       "label": "Choosing a type means choosing a trade-off - there's no absolutely safe type"
     }
   ],
-  "interactiveType": "bond",
   "realWorldExample": {
     "company": "A summary of the bond-learning journey across 20 lessons",
     "description": "Across the stage's 20 lessons, you went from the most basic concept (what is a bond, who issues it, why businesses and the Government need to borrow through bonds) to more advanced ideas (pricing via a discount rate, duration, credit risk, tax, and how to build a practical bond portfolio). This is foundational knowledge that lets anyone, even without a finance background, confidently read a bond or bond fund prospectus and understand what they're actually investing in."
@@ -42,7 +41,6 @@
         "Interest rate risk: a bond's price moves with interest rates",
         "Reinvestment risk: a coupon can't be reinvested at the old level"
       ],
-      "correct": 0,
       "explanation": "Currency risk only arises with international bonds or bonds denominated in a foreign currency. A Vietnamese government bond issued in VND to a domestic investor carries no currency risk - the other three risks (credit, interest rate, reinvestment) are broader and more commonly applicable."
     },
     {
@@ -53,7 +51,6 @@
         "Only one of the two needs to be applied; both aren't necessary",
         "Both are mandatory requirements under securities law"
       ],
-      "correct": 0,
       "explanation": "Ladder is a timing-risk management technique (when to mature, when to reinvest), while identifying a financial goal is the foundational step that decides the right type of bond and risk allocation from the start. These two factors complement each other, rather than replace each other, in a well-managed bond portfolio."
     },
     {
@@ -64,7 +61,6 @@
         "Every kind of risk is recognized at the same time, right from the first investment",
         "Default first, then interest rate, then reinvestment, and finally currency and inflation, a sequence that also holds even for an investor who has never lived through a market downturn"
       ],
-      "correct": 3,
       "explanation": "Default is the most intuitive - everyone understands it right away. Interest rate risk only shows up when forced to sell early; reinvestment risk when a coupon arrives with nowhere obvious to go; and inflation is the quietest of all, eroding purchasing power while the statement still shows a positive number."
     },
     {
@@ -75,7 +71,6 @@
         "Wrong because a corporate bond doesn't allow an investor to hold to maturity",
         "Holding to maturity only eliminates price-swing risk, not default risk"
       ],
-      "correct": 3,
       "explanation": "This is the most common misunderstanding across the whole stage. Holding to maturity makes you immune to price swings - but if the issuer can't pay, no maturity date will save you. That 11% is exactly the market telling you how large that risk is."
     },
     {
@@ -86,7 +81,6 @@
         "There shouldn't be any bonds at all until past age fifty-five",
         "Split exactly half stocks and half bonds at every age"
       ],
-      "correct": 0,
       "explanation": "With 30 years ahead, time is your biggest asset - enough to ride out several down cycles. A portion in bonds is still useful to keep you from panic-selling at the bottom, but keeping most of it in bonds trades away growth for unnecessary peace of mind."
     },
     {
@@ -97,7 +91,6 @@
         "Yield and risk are two independent concepts with no connection to each other",
         "A higher yield only reflects a longer term, not risk"
       ],
-      "correct": 1,
       "explanation": "If a product pays above the market level, there's always a reason - and it's your job to find that reason before putting money down. Not finding the risk doesn't mean it isn't there; it usually just means you haven't looked in the right place yet."
     }
   ],
@@ -115,7 +108,6 @@
       "No, because bonds are actually riskier than stocks in every case, so it's best to avoid them entirely",
       "Yes, just pick the bond with the highest coupon on the market and absolute safety is always guaranteed"
     ],
-    "correct": 0,
     "explanation": "Bonds still carry trade-off risks (credit, interest rate, reinvestment) - choosing the type and allocation needs to be based on a specific financial goal; there's no universal 'absolutely safe' formula."
   },
   "summary": {

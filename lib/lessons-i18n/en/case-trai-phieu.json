@@ -28,7 +28,6 @@
       "label": "The rest: a diversified corporate bond fund"
     }
   ],
-  "interactiveType": "bond",
   "realWorldExample": {
     "company": "A specific case: Mr. Minh's 500-million-dong allocation",
     "description": "Mr. Minh, 40, has a stable job, already has his own emergency fund, and holds part of a stock portfolio. This 500 million is medium-term idle money, expected to be used in 5-7 years to help fund his child's university education. He decides to split it: 300 million (60%) into 5-year government bonds through retail bonds or a government bond fund, prioritizing absolute safety for the most important portion of principal; the remaining 200 million (40%) into a diversified corporate bond fund (holding many bonds from different companies, professionally managed), accepting slightly higher credit risk for an expected 1.5-2 percentage point increase in yield per year."
@@ -42,7 +41,6 @@
         "Because the law caps how much an individual can invest in corporate bonds",
         "Because the money has a specific goal, and part of it needs solid protection"
       ],
-      "correct": 3,
       "explanation": "Because this money has an important specific goal (his child's tuition), Mr. Minh balances between protecting most of the principal (through safe government bonds) and seeking a higher yield on a portion he's willing to accept more credit risk for (through a diversified corporate bond fund)."
     },
     {
@@ -53,7 +51,6 @@
         "Because a corporate bond fund carries no risk at all",
         "Because a fund always yields more than buying directly"
       ],
-      "correct": 0,
       "explanation": "Diversification is a basic risk-management principle: when capital is spread across many bonds from many different companies within a fund, the risk that any one specific company hits a credit problem only affects a small slice of the portfolio, instead of the entire amount as when concentrating everything in a single company's bond."
     },
     {
@@ -64,7 +61,6 @@
         "He's forced to sell the entire amount at a loss before maturity",
         "The bond automatically extends for another 5 years"
       ],
-      "correct": 1,
       "explanation": "This is the core point from earlier lessons: if a bond is held exactly to its maturity date, swings in rates and secondary-market price in the meantime don't matter - the investor still receives the full face value and interest exactly as originally promised."
     },
     {
@@ -75,7 +71,6 @@
         "Whichever has the longer remaining term, regardless of government or corporate",
         "Both equally, since market rates affect every bond the same way"
       ],
-      "correct": 2,
       "explanation": "Rate sensitivity is determined by term (duration), not by who the issuer is. Credit risk is a separate axis: it works through the credit spread, while a broad rate shock hits hardest whichever cash flows sit farthest in the future."
     },
     {
@@ -86,7 +81,6 @@
         "A partial effect, since the issuer will adjust the final periods' coupons to compensate",
         "No effect - he receives the full face value plus all the coupons already earned"
       ],
-      "correct": 3,
       "explanation": "A price swing only becomes a real gain or loss if you sell before maturity. Held to maturity, the cash flow was fixed from the day of purchase. The remaining risk isn't price - it's the issuer failing to pay, and for a bond denominated in the government's own currency, that risk is very low."
     }
   ],
@@ -104,7 +98,6 @@
       "Put all of it into the corporate bond fund since a higher yield will help her reach both goals faster",
       "There's no need to distinguish between the two goals, since every dong invested in bonds should be treated the same way"
     ],
-    "correct": 0,
     "explanation": "Clearly identifying the goal and timing for each amount of money is the first step before deciding the allocation ratio - a short-term goal needs safety, while a long-term goal can accept higher risk."
   },
   "summary": {

@@ -105,7 +105,6 @@
     "message": "Pick a fixed amount you could invest evenly every month, write down a specific date each month you'll place that buy order, regardless of whether the market is up or down.",
     "secondary": "Writing down a specific date turns an intention into a real habit."
   },
-  "track": "personal",
   "sections": [
     {
       "type": "lead",

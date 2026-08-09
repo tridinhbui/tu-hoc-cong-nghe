@@ -27,7 +27,6 @@
       "label": "Comes out to somewhere in the single digits to a bit over ten percent a year"
     }
   ],
-  "interactiveType": "profit-calc",
   "realWorldExample": {
     "company": "The VN-Index from 2000-2024",
     "description": "From its founding in 2000 through 2024, the VN-Index had years of strong gains over 40% (like 2006, 2017, 2021) but also deep drops over 30% (like 2008, 2022). Calculated as a compound annual growth rate (CAGR) over the long run, the actual figure comes out to around 8-10%/year - much lower than the 'everyone's making big money' feeling often heard during euphoric market phases."
@@ -110,7 +109,6 @@
     "message": "If you've been investing for a while, calculate your own portfolio's CAGR (compound average growth rate) and compare it against the market's long-term average of 8-12%/year.",
     "secondary": "Your own real figure matters far more than any story about a 50%/year gain you've heard."
   },
-  "track": "personal",
   "sections": [
     {
       "type": "lead",

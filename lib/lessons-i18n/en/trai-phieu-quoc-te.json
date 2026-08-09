@@ -28,7 +28,6 @@
       "label": "If the currency falls more than the interest earned, you still lose even without a default"
     }
   ],
-  "interactiveType": "bond",
   "realWorldExample": {
     "company": "US Government Bonds (US Treasuries) and USD/VND exchange-rate swings",
     "description": "Many Vietnamese investors with international brokerage accounts are interested in US Treasuries, seen as one of the safest assets in the world. However, the USD/VND exchange rate moves year to year - some periods see the USD strengthen against VND (favoring USD-asset holders), and other periods see the reverse. An investor who buys a US bond paying 4%/year, if VND strengthens sharply against USD during the holding period, will find that converting the return back to VND for spending at home can 'erode' that 4% interest or even turn it into a loss because of an unfavorable exchange rate."
@@ -42,7 +41,6 @@
         "The risk that the converted return is affected by exchange-rate movement",
         "The risk of a bond's price falling because domestic interest rates rise"
       ],
-      "correct": 2,
       "explanation": "Currency risk is a separate risk, distinct from the issuer's credit risk. Even a US government bond - nearly absolutely safe in terms of repayment ability - can still deliver a negative return to a Vietnamese investor if the exchange rate moves unfavorably enough."
     },
     {
@@ -53,7 +51,6 @@
         "No benefit at all, so every foreign-currency asset should be avoided",
         "USD bonds pay low interest, so they aren't worth considering"
       ],
-      "correct": 0,
       "explanation": "Currency risk can be a double-edged sword: if the bond's currency strengthens against your home currency, you gain on top of the coupon rate. This is also why some investors deliberately hold foreign-currency assets as a way to diversify and hedge against their home currency weakening."
     },
     {
@@ -64,7 +61,6 @@
         "About 13% profit, since the coupon plus the exchange-rate move both add up",
         "Can't be determined without knowing who issued the bond"
       ],
-      "correct": 1,
       "explanation": "Your actual return is measured in the currency you spend, not the currency the bond is denominated in. A 5% coupon plus a negative 8% exchange-rate move comes out to roughly negative 3%. This is a third layer of risk, separate from credit risk and interest rate risk."
     },
     {
@@ -75,7 +71,6 @@
         "Use a currency-hedging contract, in exchange for paying a cost",
         "There's no way; currency risk simply must be accepted, a factor that changes the calculation meaningfully"
       ],
-      "correct": 2,
       "explanation": "A forward or option contract can lock in a conversion rate, but the hedging cost usually eats up almost exactly the interest-rate gap between the two currencies - that's not a coincidence, but a consequence of the no-risk-free-arbitrage principle in markets."
     },
     {
@@ -86,7 +81,6 @@
         "Because zero credit risk doesn't erase currency risk and interest rate risk",
         "Because foreign investors must pay a 50% tax on all coupon interest received"
       ],
-      "correct": 2,
       "explanation": "Safety in repayment is only one of three layers of risk. You can still lose money if the USD weakens against VND, or if US rates rise and you have to sell early - both entirely independent of whether the US can repay its debt."
     },
     {
@@ -97,7 +91,6 @@
         "Because the exchange rate always moves in one direction, so the real risk is zero",
         "Because it's a way to spread risk when most of their assets are already in one currency"
       ],
-      "correct": 3,
       "explanation": "If all of your assets, income, and spending are in VND, you're effectively betting everything on one currency - even if you don't think of it as a bet. Holding some foreign-currency assets is a way to reduce that concentration risk, not to chase currency gains."
     }
   ],
@@ -114,7 +107,6 @@
       "Both deliver the same return once converted to VND, since the exchange rate doesn't affect bond yields",
       "It's impossible to determine which is more favorable without knowing the exact face value of each bond"
     ],
-    "correct": 0,
     "explanation": "If the exchange-rate prediction is correct, the 4% interest plus the roughly 8% conversion gain from VND weakening compound together, far exceeding the Vietnamese bond's 6%/year."
   },
   "summary": {

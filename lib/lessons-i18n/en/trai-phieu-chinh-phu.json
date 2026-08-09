@@ -28,7 +28,6 @@
       "label": "A business must pay an extra premium to offset that risk"
     }
   ],
-  "interactiveType": "bond",
   "realWorldExample": {
     "company": "Government bonds (HNX) and the Tan Hoang Minh / Van Thinh Phat cases",
     "description": "Vietnamese government bonds are issued and auctioned by the State Treasury through the Hanoi Stock Exchange (HNX), typically at 2.5-4%/year depending on term. By contrast, the corporate bond market was rocked in 2022 when Tan Hoang Minh had 9 bond lots worth nearly VND 10,000 billion cancelled for false information disclosure, and Van Thinh Phat's bond-issuance violations left tens of thousands of individual investors unable to recover their capital. Both cases make it clear: corporate bonds paying higher interest (some lots once offered 12-13%/year) do so precisely because they carry far more risk than government bonds."
@@ -42,7 +41,6 @@
         "Issued by the State Treasury, with secondary trading on HNX",
         "They cannot be traded again once issued"
       ],
-      "correct": 2,
       "explanation": "The State Treasury is the issuer, and both primary auctions and secondary trading of government bonds take place at the Hanoi Stock Exchange (HNX) - the main channel, distinct from the HOSE exchange used for stocks."
     },
     {
@@ -53,7 +51,6 @@
         "Corporate bonds are not protected by the law at all",
         "An unusually high interest rate usually comes with a matching level of risk"
       ],
-      "correct": 3,
       "explanation": "Many individual investors bought these companies' bonds purely for the attractive rate (10-13%/year) without checking the real repayment capacity, and some were even wrongly told the bonds were 'as safe as a savings deposit'. The lesson is that a high rate always reflects high risk - read the prospectus carefully and examine cash flow and collateral before buying."
     },
     {
@@ -64,7 +61,6 @@
         "Because that rate is fixed by law and therefore never moves with the market",
         "Because buyers of government bonds are refunded if the market goes down, which is not always as straightforward as it seems"
       ],
-      "correct": 0,
       "explanation": "With bonds denominated in its own currency, a government can virtually never become unable to pay in nominal terms. That's why its yield becomes the benchmark: every riskier investment must pay above it, and the gap is the risk premium."
     },
     {
@@ -75,7 +71,6 @@
         "It's extra interest the State subsidizes for private corporate bonds",
         "The gap only reflects a difference in term, not risk at all"
       ],
-      "correct": 1,
       "explanation": "No one pays more interest than they have to. When a company must pay three times what the Government pays, that's the level the market demands to compensate for the chance of losing money - a high rate isn't a gift, it's the price of the risk you're carrying."
     },
     {
@@ -86,7 +81,6 @@
         "The issuer's financial health, its collateral, and the intended use of the funds",
         "How many other investors bought that bond lot before you"
       ],
-      "correct": 2,
       "explanation": "A corporate bond is a loan, so the right questions are a bank's questions: does the borrower have cash flow to repay, what is the money for, and what collateral exists if they fail to pay. Both 2022 cases collapsed on exactly these questions, not on the interest rate itself."
     },
     {
@@ -97,7 +91,6 @@
         "Yes, because the State commits to buy it back at face value whenever you want to sell",
         "No - if market rates rise and you have to sell early, the price has already fallen"
       ],
-      "correct": 3,
       "explanation": "Safety in repayment doesn't mean safety in price. A 10-year bond is highly sensitive to interest rates: a 2% rate rise can push the price down more than 15%. Held to maturity, you still get all your principal and interest - the problem only arises if you're forced to sell partway through."
     }
   ],
@@ -114,7 +107,6 @@
       "Trust the 'absolutely safe' advertising completely, since issuers are always obligated to tell the truth",
       "Avoid every corporate bond from now on entirely and only ever invest in government bonds"
     ],
-    "correct": 0,
     "explanation": "An unusually high rate always comes with matching risk - the lesson from Tan Hoang Minh and Van Thinh Phat is to carefully verify before buying, not to trust advertising or an attractive rate alone."
   },
   "summary": {
