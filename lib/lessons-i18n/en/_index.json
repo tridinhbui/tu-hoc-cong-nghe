@@ -160,6 +160,11 @@
     "subtitle": "Age-based allocation",
     "duration": "7 min"
   },
+  "cap-rate": {
+    "title": "Cap Rate in Property",
+    "subtitle": "Property Value = NOI / Cap Rate",
+    "duration": "6 min"
+  },
   "capex-vs-opex": {
     "title": "CapEx vs OpEx",
     "subtitle": "Capital spending vs operating expense - different effects on the financials",
