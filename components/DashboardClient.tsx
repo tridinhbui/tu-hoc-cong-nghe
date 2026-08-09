@@ -1075,7 +1075,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                         level strip below it centers in the leftover space, so the
                         slack reads as padding around the avatars rather than a
                         void at the bottom of the card. */}
-                    <div className={`relative z-10 xl:flex-1 xl:flex xl:flex-col ${levelCardTab === "map" ? "" : "hidden"}`}>
+                    <div className={`relative z-10 ${levelCardTab === "map" ? "xl:flex-1 xl:flex xl:flex-col" : "hidden"}`}>
                         <div className="w-full h-1 bg-stone-100 dark:bg-stone-800 rounded-full overflow-hidden mb-2.5">
                           <div
                             className="h-full bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full transition-all duration-500"
@@ -1234,7 +1234,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                         Dùng `hidden` chứ không tháo khỏi cây: dải cấp độ bên
                         trên là một vùng cuộn ngang có vị trí cuộn riêng, tháo
                         ra rồi gắn lại là mỗi lần đổi tab nó nhảy về đầu. */}
-                    <div className={`relative z-10 xl:flex-1 xl:flex xl:flex-col ${levelCardTab === "path" ? "" : "hidden"}`}>
+                    <div className={`relative z-10 ${levelCardTab === "path" ? "xl:flex-1 xl:flex xl:flex-col" : "hidden"}`}>
                       <Link
                         href="/hoc-bai"
                         data-tour="hoc-bai-cta"
