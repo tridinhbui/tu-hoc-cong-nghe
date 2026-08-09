@@ -483,4 +483,304 @@ export const IB_QUESTIONS_EN: IbQuestionTranslations = {
     explanation:
       "A coal mine with thirty years of reserves that carbon policy makes uneconomic after ten has to be written down before the end of its life. This is the main channel through which climate risk reaches the balance sheet, and it hits lenders as well as owners.",
   },
+  5041: {
+    category: "ESG - Reporting frameworks & valuation",
+    question: "Why is Scope 3 the hardest emissions category to measure?",
+    options: [
+      "Because it sits in the value chain, outside the company's control",
+      "Because regulators forbid companies from publishing Scope 3 figures",
+      "Because the GHG Protocol has not yet defined Scope 3",
+      "Because Scope 3 is always far smaller than Scopes 1 and 2",
+    ],
+    explanation:
+      "Scopes 1 and 2 come off the company's own fuel and electricity bills. Scope 3 sits with tier-one and tier-two suppliers and in how customers use the product - data the company does not own, so most of it has to be estimated from industry factors.",
+  },
+  5042: {
+    category: "ESG - Reporting frameworks & valuation",
+    question: "How does a green bond differ from an ordinary corporate bond?",
+    options: [
+      "The proceeds are tied to defined green projects",
+      "The interest income is tax-exempt",
+      "Its maturity is always longer than an ordinary corporate bond",
+      "It pays less because the government guarantees repayment",
+    ],
+    explanation:
+      "The constraint is on USE OF PROCEEDS, with an obligation to report the allocation periodically. Credit risk remains the issuer's own - a green bond from a weak company is still a high-risk investment, and the colour does not change that.",
+  },
+  5043: {
+    category: "ESG - Reporting frameworks & valuation",
+    question: "What is say-on-pay in corporate governance?",
+    options: [
+      "Shareholders' right to vote on the executive pay package",
+      "The duty to disclose the median salary across all staff",
+      "Workers' right to bargain over the minimum wage",
+      "A statutory cap on the chief executive's pay",
+    ],
+    explanation:
+      "Say-on-pay puts the executive pay package to a shareholder vote. In many markets the result is only advisory, but a high protest vote is still a governance signal the board finds hard to ignore.",
+  },
+  5044: {
+    category: "ESG - Reporting frameworks & valuation",
+    question: "Why do many large funds choose engagement over divesting from ESG laggards?",
+    options: [
+      "Because selling means losing any ability to influence the company",
+      "Because rules require funds to hold shares for at least five years",
+      "Because divestment is legally restricted for institutions",
+      "Because engagement always returns more in the short run",
+    ],
+    explanation:
+      "Divesting hands the shares to an investor who cares less, and does not cut the company's emissions by a single tonne. Holding keeps the vote, the right to nominate and the right to question - the only tools that produce real change inside the business.",
+  },
+  5045: {
+    category: "ESG - Reporting frameworks & valuation",
+    question: "What was the EU Taxonomy created to do?",
+    options: [
+      "Define, uniformly, which activities count as sustainable",
+      "Set the carbon tax rate for each manufacturing sector",
+      "Certify sustainable investment funds in Europe",
+      "Assign ESG ratings to listed companies",
+    ],
+    explanation:
+      "Before the Taxonomy every party defined 'green' its own way, so two funds both calling themselves sustainable could hold entirely different portfolios. The Taxonomy sets shared technical criteria per economic activity, turning 'green' from a marketing adjective into a verifiable threshold.",
+  },
+  5046: {
+    category: "Fixed income - Trading & rates",
+    question: "What does a bond's duration measure?",
+    options: [
+      "How sensitive the bond's price is to a change in interest rates",
+      "The total coupon interest to be received until maturity",
+      "The period during which the bond may not be resold",
+      "The number of years remaining until maturity",
+    ],
+    explanation:
+      "Duration approximates the percentage price change for a 1% move in yield. It is quoted in years, which invites confusion with remaining maturity, but the two coincide only for a zero-coupon bond - every coupon paid before maturity pulls duration below the term.",
+  },
+  5047: {
+    category: "Fixed income - Trading & rates",
+    question: "What does convexity add that duration cannot say?",
+    options: [
+      "It corrects duration's error when rates move sharply",
+      "It measures the gap between nominal and real yield",
+      "It identifies the best moment to sell the bond on the exchange",
+      "It determines the probability the issuer defaults",
+    ],
+    explanation:
+      "Duration is a linear approximation while the price-yield relationship is curved. For small moves the error is negligible; for a large rate shock, duration understates the price gain when yields fall and overstates the loss when they rise. Positive convexity is therefore a desirable property.",
+  },
+  5048: {
+    category: "Fixed income - Trading & rates",
+    question: "How does the market usually read an inverted yield curve?",
+    options: [
+      "The market expects the economy to slow in the period ahead",
+      "An indicator that bond market liquidity is improving",
+      "A sign the central bank is about to raise its policy rate",
+      "Evidence that inflation will surge over the next twelve months",
+    ],
+    explanation:
+      "Long yields below short ones means the market is pricing rate cuts - something that usually only happens when the economy weakens. It is one of the few recession indicators with a serious historical record, though the lag between signal and recession varies a lot by cycle.",
+  },
+  5049: {
+    category: "Fixed income - Trading & rates",
+    question: "When does a callable bond work against the holder?",
+    options: [
+      "When rates fall and the issuer calls it to refinance more cheaply",
+      "When the market is illiquid and no buyer can be found",
+      "When rates rise and the investor is forced to sell it back",
+      "When the issuer is suddenly downgraded",
+    ],
+    explanation:
+      "The call belongs to the issuer, so they exercise it only when it suits them: rates fall, the old bond is called and a cheaper one is issued. The holder loses exactly the capital gain they should have had, then has to reinvest at the lower prevailing rate.",
+  },
+  5050: {
+    category: "Fixed income - Trading & rates",
+    question: "What is a repo transaction?",
+    options: [
+      "Selling securities with a commitment to buy them back at an agreed price",
+      "Swapping a fixed rate for a floating rate",
+      "Unsecured lending between two commercial banks",
+      "Issuing government bonds to the public",
+    ],
+    explanation:
+      "It looks like a sale and purchase but is in substance a secured loan: the gap between the sale and repurchase price is the interest. It is the main short-term funding source for bond dealers, and the channel through which stress spreads fastest once confidence goes.",
+  },
+  5051: {
+    category: "Fixed income - Trading & rates",
+    question: "What does an unusually wide bid-ask spread on a corporate bond tell you?",
+    options: [
+      "Poor liquidity, so both entering and exiting cost more",
+      "Trading volume in the session is above normal",
+      "The issuer has just been upgraded",
+      "The bond's yield to maturity is rising quickly",
+    ],
+    explanation:
+      "The spread is the price of liquidity: market makers widen it when counterparties are hard to find or inventory risk rises. On a corporate bond, an attractive quoted yield can be entirely consumed by the spread if you need to exit early.",
+  },
+  5052: {
+    category: "Fixed income - Trading & rates",
+    question: "Why is a zero-coupon bond more rate-sensitive than a coupon bond of the same maturity?",
+    options: [
+      "Because all the cash flow lands at maturity, so duration is longer",
+      "Because having no coupon frees it from reinvestment risk",
+      "Because zero-coupon bonds trade over the counter",
+      "Because zero-coupon bonds always carry a lower credit rating",
+    ],
+    explanation:
+      "A coupon bond returns some money early, pulling the centre of gravity of its cash flows closer to today. A zero pays nothing until the final day, so its duration equals its maturity - the longest possible - and its price swings hardest in its maturity bucket.",
+  },
+  5053: {
+    category: "Fixed income - Trading & rates",
+    question: "What does credit spread duration measure?",
+    options: [
+      "Price sensitivity to a change in the credit spread itself",
+      "How long the issuer typically holds its rating",
+      "The maturity gap between corporate and government bonds",
+      "The average days taken to resolve a bad debt",
+    ],
+    explanation:
+      "A corporate bond carries two separate price risks: the risk-free yield moving, and the credit risk premium moving. Ordinary duration measures the first; credit spread duration measures the second - and in a credit crisis the second causes most of the damage.",
+  },
+  5054: {
+    category: "Fixed income - Trading & rates",
+    question: "How does a carry trade work in the bond market?",
+    options: [
+      "Borrow short at a low rate to hold a higher-yielding asset",
+      "Swap local-currency bonds for foreign ones of the same maturity",
+      "Hold bonds to maturity to avoid price risk",
+      "Buy and sell the same bond within one session",
+    ],
+    explanation:
+      "The profit is the rate differential, and it accrues steadily right up until it does not. The risk sits at both ends: short-term funding costs can spike and the asset held can fall - and the two usually happen together, exactly when leverage is highest.",
+  },
+  5055: {
+    category: "Brokerage - Products & clients",
+    question: "How does margin trading change an investor's risk?",
+    options: [
+      "It amplifies both gains and losses on the investor's own capital",
+      "It amplifies only gains, since the firm absorbs the losses",
+      "It leaves risk unchanged, because collateral covers it",
+      "It reduces risk by allowing more names to be held",
+    ],
+    explanation:
+      "Leverage multiplies in both directions: borrowing to hold twice the shares turns a 10% rise into 20% on your own capital, and a 10% fall into 20% as well. Add the interest cost and the risk of being force-sold at the bottom - risks that buying with your own money does not carry.",
+  },
+  5056: {
+    category: "Brokerage - Products & clients",
+    question: "When does a margin call happen?",
+    options: [
+      "When the margin ratio falls below the required maintenance level",
+      "When the stock is put on the exchange's warning list",
+      "When the broker exhausts its margin lending quota",
+      "When the client wants to withdraw cash from the account",
+    ],
+    explanation:
+      "Margin ratio = own equity / asset value. A falling price shrinks the numerator faster than the denominator, so the ratio breaks the maintenance threshold and the broker demands a top-up. Fail to post it and you are force-sold - usually in the worst session, because that is when margin calls arrive in bulk.",
+  },
+  5057: {
+    category: "Brokerage - Products & clients",
+    question: "How does an ATO order differ from a limit order?",
+    options: [
+      "ATO fills at the opening price; a limit order fills only at the price set",
+      "ATO has priority over every other order in the session",
+      "ATO carries a lower commission than a limit order",
+      "ATO is only for institutions and limit orders only for retail",
+    ],
+    explanation:
+      "ATO accepts whatever price the opening auction determines, so it is sure to fill but gives up control of price. A limit order controls price but may not fill. Trading fill certainty against price certainty is the most basic choice in order placement.",
+  },
+  5058: {
+    category: "Brokerage - Products & clients",
+    question: "Why must a broker assess a client's risk tolerance before recommending a product?",
+    options: [
+      "Because a product right for one person can be wrong for another",
+      "Because the commission varies with the client's risk tolerance",
+      "Because the firm needs the data to set the margin limit",
+      "Because rules require every client to hold the same portfolio",
+    ],
+    explanation:
+      "This is the suitability principle: a product is not good or bad in the abstract, only suited or unsuited to a particular person's goals, horizon and capacity for loss. Selling covered warrants to someone about to retire is wrong even though the product is perfectly legal.",
+  },
+  5059: {
+    category: "Brokerage - Products & clients",
+    question: "What is the inherent conflict of interest in per-trade commission?",
+    options: [
+      "Per-trade commission rewards the broker for pushing more trading",
+      "The firm pays a fixed salary unrelated to sales",
+      "Client and firm share one system",
+      "Brokers are not permitted to hold their own shares",
+    ],
+    explanation:
+      "The broker's income rises with how often the client trades, while the client's interest usually lies in trading less. The two incentives are structurally opposed, so professional standards have to compensate with disclosure and limits - goodwill alone cannot be relied on.",
+  },
+  5060: {
+    category: "Brokerage - Products & clients",
+    question: "What does a T+2 settlement cycle mean?",
+    options: [
+      "Securities and cash reach the account two business days later",
+      "The investor must hold for at least two days before selling",
+      "The commission is collected in two instalments two days apart",
+      "An order is only valid for two trading sessions",
+    ],
+    explanation:
+      "The trade matches immediately but the transfer of securities and cash completes two business days later. That lag is why a central depository and settlement margin exist: for those two days the system carries the risk that one side fails to deliver.",
+  },
+  5061: {
+    category: "Brokerage - Products & clients",
+    question: "What particular risk does short selling create that buying does not?",
+    options: [
+      "The loss is theoretically unlimited as the price rises",
+      "Trades can only be executed in the periodic auction",
+      "The investor loses the right to dividends on the shares sold",
+      "The maximum loss equals exactly the capital committed",
+    ],
+    explanation:
+      "Buying a share risks at most everything you paid, because the price cannot go below zero. A short faces a price that can rise without limit, so the loss has no ceiling - and a short squeeze can force the position closed exactly as the price is spiking.",
+  },
+  5062: {
+    category: "Brokerage - Products & clients",
+    question: "Why must client money be segregated from the broker's own accounts?",
+    options: [
+      "So client money cannot be used for the firm's own purposes",
+      "To lower the cost of administering each client account",
+      "So clients earn a higher deposit rate",
+      "So the tax authority can compute investment income tax",
+    ],
+    explanation:
+      "Segregation keeps client money out of the firm's estate when the firm gets into trouble - if it fails, that money is not distributed to its creditors. Most large investor losses begin exactly where this boundary gets blurred.",
+  },
+  5063: {
+    category: "Brokerage - Products & clients",
+    question: "What is churning in the brokerage business?",
+    options: [
+      "Pushing a client to trade far more than necessary just to earn commission",
+      "Bundling several small client orders into one large order",
+      "Moving a client's account to another brokerage",
+      "Filling the firm's own orders ahead of the client's",
+    ],
+    explanation:
+      "Churning is the per-trade conflict of interest carried into abuse: a stream of buy and sell recommendations serving no client strategy, only the commission. The tell is unusually high portfolio turnover while the asset weights barely change.",
+  },
+  5064: {
+    category: "Macro - Policy & cycles",
+    question: "How does core CPI differ from headline CPI?",
+    options: [
+      "It strips out food and energy, which swing violently",
+      "It counts only domestically produced goods, excluding imports",
+      "It is computed quarterly rather than monthly",
+      "It covers only the basket of large urban areas",
+    ],
+    explanation:
+      "Food and energy prices move with weather and geopolitics, which monetary policy cannot touch. Core therefore reflects more durable price pressure - but people live the headline number, so a central bank has to watch both.",
+  },
+  5065: {
+    category: "Macro - Policy & cycles",
+    question: "Through which channel does a policy rate rise reach the economy first?",
+    options: [
+      "Borrowing costs rise, slowing consumption and investment",
+      "Nominal wages rise along with the rate",
+      "Budget revenue rises through higher income tax",
+      "Import prices fall as the exchange rate moves",
+    ],
+    explanation:
+      "The interest rate channel is the most direct: dearer borrowing makes companies postpone projects and households postpone a house or a car. The other channels - exchange rate, asset prices, expectations - are real but slower and more indirect.",
+  },
 };
