@@ -1,0 +1,184 @@
+{
+  "slug": "quan-ly-no-tieu-dung",
+  "title": "Stage 9, Lesson 5: Managing consumer debt - car loans, credit cards, cash loans",
+  "subtitle": "Not every debt deserves to be paid off at the same speed",
+  "duration": "7 min",
+  "openingQuestion": "You hold two debts: a credit card at 35% a year with 20 million outstanding, and a mortgage at 9% a year with 2 billion outstanding. With 20 million spare, which should you pay down first?",
+  "openingOptions": [
+    "The mortgage, because the balance is far larger",
+    "The credit card, because 35% a year dwarfs 9%",
+    "Split it evenly, 10 million each, to be fair",
+    "Neither - put the whole 20 million into investments instead"
+  ],
+  "explanation": "The rule for optimal repayment: clear the HIGHEST interest rate first (the avalanche method), whatever the absolute balances are. Vietnamese credit card rates usually run 20-40% a year - far above almost any safe investment - so paying down a card is nearly always the highest-returning \"investment\" available for spare cash.",
+  "diagram": [
+    {
+      "label": "List every debt with its interest rate"
+    },
+    {
+      "label": "Sort by interest rate, highest first"
+    },
+    {
+      "label": "Pay the minimum on all, put the surplus on the highest rate"
+    },
+    {
+      "label": "Repeat until the high-rate debt is gone"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Credit cards in Vietnam",
+    "description": "Vietnamese credit card rates, where the balance is not cleared within the interest-free window (usually 45-55 days), typically run 20-40% a year - far above savings rates or most investment returns, which makes carrying a card balance one of the most expensive financial decisions available."
+  },
+  "quiz": [
+    {
+      "question": "Why does clearing a credit card balance within the interest-free window matter so much more than with other kinds of borrowing?",
+      "options": [
+        "Because credit card interest is charged daily on the balance outstanding",
+        "Because no interest applies inside the window, and it is very high outside it",
+        "Because paying on time makes the bank raise the card limit",
+        "Because the annual fee is waived if you pay in full each month"
+      ],
+      "explanation": "What makes credit cards distinct is the very high rate (20-40% a year) that applies as soon as the interest-free window closes on an unpaid balance - which is why carrying a card balance is usually far more expensive than a secured loan such as a mortgage or a car loan."
+    },
+    {
+      "question": "How do the \"avalanche\" method (highest rate first) and the \"snowball\" method (smallest balance first) differ, and when is snowball worth choosing even though it costs more interest mathematically?",
+      "options": [
+        "The two methods produce exactly the same outcome",
+        "Snowball optimises interest while avalanche optimises psychology",
+        "Snowball optimises psychology; avalanche optimises interest",
+        "Avalanche can only be used with fewer than three debts"
+      ],
+      "explanation": "Avalanche is mathematically optimal (it saves the most interest), but snowball has a psychological advantage: clearing one small debt gives a visible win that helps some people stay with the overall plan - at the cost of slightly more interest in theory."
+    },
+    {
+      "question": "You have 20 million spare, a credit card balance at 30% a year, and the option of a savings account at 6% a year. Which is better arithmetically?",
+      "options": [
+        "Save it: keeping cash on hand in case of an emergency",
+        "Split it: 10 million on the debt and 10 million into savings",
+        "Save it: because deposit interest is exempt from personal income tax",
+        "Pay down the card: avoid 6 million of interest rather than earn 1.2"
+      ],
+      "explanation": "Avoiding a certain cost of 30% a year beats earning 6% a year by a wide margin. The only real consideration is keeping something back for the emergency fund - not the rate comparison."
+    },
+    {
+      "question": "Why can a 0% instalment plan still be expensive?",
+      "options": [
+        "Because it usually carries a conversion fee charged on the full value",
+        "Because the instalment price is always set higher than the outright cash price",
+        "Because the 0% rate only applies for the first three months",
+        "Because you have to open another credit card to be approved"
+      ],
+      "explanation": "The only reliable check is to reduce it to a total: add up every instalment plus every fee, then compare against the price for paying outright."
+    },
+    {
+      "question": "How does taking cash from a credit card differ from paying for goods with it?",
+      "options": [
+        "The same rate applies, but the interest-free period is cut in half",
+        "Interest runs from the day of withdrawal with no interest-free period, plus a withdrawal fee",
+        "There is no difference, since both sit inside the same credit limit",
+        "It carries a lower rate, because handing over cash is a simpler form of disbursement"
+      ],
+      "explanation": "The interest-free window only applies to purchases. Cash taken from a card is charged interest from day one plus a withdrawal fee of a few per cent - making it one of the most expensive sources of money an individual can reach."
+    }
+  ],
+  "keyTakeaways": [
+    "Clear the highest-rate debt first (avalanche), whatever the absolute balances are",
+    "Vietnamese credit card rates (20-40% a year) are far above most other borrowing - clear the balance inside the interest-free window",
+    "The snowball method (smallest balance first) has a psychological edge and suits people who need the momentum"
+  ],
+  "practicePrompt": {
+    "question": "You have three debts: a credit card of 20 million at 30% a year, a consumer loan of 50 million at 15% a year, and a car loan of 100 million at 9% a year. With another 10 million to put towards debt, which should it go to (avalanche method)?",
+    "options": [
+      "The car loan (100 million) first, because it carries the largest absolute balance of the three",
+      "The highest interest rate first, which is the credit card at 30% a year",
+      "Split the 10 million across all three in proportion to their balances, to be fair between the loans",
+      "The consumer loan (50 million), because it sits in the middle of the three balances"
+    ],
+    "explanation": "Pay the highest interest rate first, whatever the absolute balance is. Vietnamese credit card rates (20-40% a year) are far above most other borrowing - so clear the balance inside the interest-free window."
+  },
+  "application": {
+    "title": "Rank your debts by their real rate",
+    "message": "List everything you are repaying and write the real rate beside it - a 0% instalment through a card still carries a conversion fee, and a consumer loan quoted monthly has to be multiplied up. Sort the list downwards, then put every spare dong on the top line and the minimum on the rest.",
+    "secondary": "If the list is so long you cannot start, clear the smallest one first for momentum. Discipline you can sustain is worth more than a few percentage points computed exactly."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Not every debt deserves the same priority - knowing which one to clear first can save you a great deal of interest."
+    },
+    {
+      "type": "heading",
+      "text": "The avalanche rule: highest interest rate first"
+    },
+    {
+      "type": "paragraph",
+      "text": "Vietnamese credit card rates, on a balance not cleared inside the interest-free window, usually run 20-40% a year - far above most safe investments. The avalanche rule clears the highest rate first, whatever the absolute balances are. The snowball method (smallest balance first) costs more interest mathematically, but carries a psychological advantage that helps keep the repayment going."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Clear the highest-rate debt first (avalanche), whatever the absolute balance",
+        "Vietnamese credit card rates (20-40% a year) are far above most other borrowing",
+        "Snowball (smallest balance first) has a psychological edge for people who need momentum"
+      ]
+    },
+    {
+      "type": "formula",
+      "title": "Why clearing high-rate debt is the best \"investment\" available",
+      "equation": "Benefit of paying down = Amount repaid × That debt's interest rate",
+      "variables": [
+        {
+          "symbol": "That debt's rate",
+          "name": "The rate you are being charged",
+          "description": "Every dong repaid is a dong no longer charged at that rate - a certain benefit, with no risk attached."
+        }
+      ],
+      "example": {
+        "title": "A direct comparison",
+        "calculation": "10 million against a card at 30% a year vs 10 million into savings at 5% a year",
+        "result": "3 million of interest saved a year vs 500 thousand earned a year",
+        "explanation": "Paying the card down returns six times as much, and it is certain and risk-free. This is why there is almost no reason to hold spare cash while carrying a credit card balance."
+      }
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Avalanche - highest rate first",
+        "text": "Sort the debts by interest rate, highest first, and put every spare dong on the top one while paying the minimum on the rest. Mathematically this saves the most interest."
+      },
+      "right": {
+        "label": "Snowball - smallest balance first",
+        "text": "Put the money on the smallest balance to clear it quickly and get a sense of completion. It costs more interest, but it keeps many people going to the end."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "Three traps in consumer debt"
+    },
+    {
+      "type": "list",
+      "items": [
+        "0% instalments: the rate is zero, but there is usually a conversion fee charged on the full value. Reduce it to a total and compare against buying outright.",
+        "Cash from a credit card: a fee applies immediately and interest runs from the day of withdrawal, with none of the interest-free window a purchase gets.",
+        "Paying only the minimum for a long time: the minimum usually covers the interest and a very small slice of principal, so the balance barely moves while the interest keeps running."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "The order to work in with several debts",
+      "text": "One: list every debt with its balance, rate and minimum payment. Two: make sure every minimum is paid on time so nothing slips into a worse debt group. Three: put all the remaining money on a single debt - the highest rate. Four: when that one is cleared, move the whole freed-up amount to the next one rather than raising your spending."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Clearing a credit card on time is nearly always the highest-returning \"investment\" available for spare cash.",
+        "There is no safe investment paying 20-40% a year to compare it against."
+      ]
+    }
+  ],
+  "summary": {
+    "keyIdea": "Clear the highest-rate debt first (avalanche), whatever the absolute balances are",
+    "commonMistake": "Easy to skip: Vietnamese credit card rates (20-40% a year) are far above most other borrowing - clear the balance inside the interest-free window",
+    "action": "The snowball method (smallest balance first) has a psychological edge and suits people who need the momentum"
+  }
+}
