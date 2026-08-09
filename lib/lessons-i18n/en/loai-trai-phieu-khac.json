@@ -71,7 +71,7 @@
       "question": "Why is investment-linked insurance hard to compare directly with a bond?",
       "options": [
         "Because investment-linked insurance always delivers a higher return than every type of bond",
-        "Because insurance fees and benefits are mixed into the investment portion, making the return hard to isolate, and this distinction only matters once the insurance premium itself exceeds a certain threshold",
+        "Because insurance fees and benefits are mixed into the investment portion",
         "Because insurance products contain no financial investment component whatsoever",
         "Because bonds and insurance are both managed by the exact same government agency"
       ],
@@ -83,7 +83,7 @@
       "options": [
         "It lets the investor demand early repayment of principal at any point in time",
         "It lets the issuer switch to a different currency when the exchange rate swings sharply",
-        "It lets the holder convert to shares at a predetermined ratio, so the coupon is usually lower, and this right only becomes valuable once the underlying stock price has already doubled",
+        "It lets the holder convert to shares at a preset ratio, so the coupon is lower",
         "It lets the entire investment be transferred to a different company in the same industry"
       ],
       "correct": 2,
@@ -94,7 +94,7 @@
       "options": [
         "It's enough just to confirm a bank is distributing the product",
         "Choose whichever product has the highest rate",
-        "Prioritize whichever product the most acquaintances have recently bought",
+        "Prioritise whichever product the most acquaintances have bought recently instead",
         "Ask clearly who is actually responsible for paying and where the risk lies"
       ],
       "correct": 3,
