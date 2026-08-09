@@ -107,7 +107,10 @@ export default function WeeklyQuestsWidget({ userId }: WeeklyQuestsWidgetProps) 
       const currentChests = Number(window.localStorage.getItem(chestKey) ?? "0");
       window.localStorage.setItem(chestKey, String(currentChests + 3));
 
-      // Award +100 XP
+      // KHÔNG có +100 XP nào ở đây, dù cái toast từng hứa và dòng chú thích
+      // cũ từng khẳng định. recalculateUserStats TÍNH LẠI tổng từ các sổ cái;
+      // nó không cộng gì cả, và không có sổ cái nào ghi phần thưởng này. Gọi
+      // lại ở đây chỉ để các con số trên màn hình đồng bộ sau khi nhận rương.
       await recalculateUserStats(userId);
 
       // Save claim status

@@ -1,6 +1,7 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 import { isLessonLockedForUser } from "@/lib/lesson-locking";
+import { isPreviewLessonPath } from "@/lib/preview-lessons";
 
 // Simple in-memory rate limiting for API endpoints
 const rateLimit = new Map<string, { count: number; resetTime: number }>();
@@ -124,9 +125,11 @@ const PUBLIC_PATHS = new Set([
   "/dev-world-preview",
   "/dieu-khoan",
   "/chinh-sach-bao-mat",
-  "/sw.js", // Service worker script - the matcher below excludes image assets but
-  // not .js files, so without this the browser's `register("/sw.js")` fetch
-  // got redirected to the /login HTML page instead of the actual script.
+  // Service worker script. Matcher giờ đã loại cả đuôi .js nên dòng này không
+  // còn là thứ giữ cho `register("/sw.js")` không bị đá về /login - nhưng giữ
+  // lại vì nó là hàng rào thứ hai: nếu ai đó nới matcher ra lần nữa, lỗi cũ
+  // (trình duyệt nhận trang HTML /login thay cho tệp script) sẽ không quay lại.
+  "/sw.js",
 ]);
 
 const PUBLIC_PREFIXES = [
@@ -136,6 +139,10 @@ const PUBLIC_PREFIXES = [
 
 function isPublicPath(pathname: string): boolean {
   if (PUBLIC_PATHS.has(pathname)) return true;
+  // Bốn bài xem thử. Danh sách trắng theo TỪNG SLUG chứ không phải cả tiền tố
+  // /bai-hoc/ - xem lib/preview-lessons.ts về lý do, và về việc hai trong bốn
+  // slug không được chọn tuỳ ý.
+  if (isPreviewLessonPath(pathname)) return true;
   return PUBLIC_PREFIXES.some((prefix) => pathname.startsWith(prefix));
 }
 
@@ -218,8 +225,17 @@ export async function proxy(request: NextRequest) {
   return response;
 }
 
+// Mọi request khớp matcher đều chạy `supabase.auth.getUser()` - một vòng mạng
+// ra Supabase. Nên danh sách loại trừ ở đây không phải chuyện gọn gàng mà là
+// chuyện hoá đơn: mỗi phần mở rộng bỏ sót là một lớp tệp tĩnh kéo theo một
+// lần gọi mạng và một lần chạy function cho mỗi lượt tải.
+//
+// Bản trước chỉ loại năm đuôi ảnh, nên `/sw.js`, font, `robots.txt`,
+// `sitemap.xml`, `manifest.webmanifest` và source map đều chạy qua đây. Trình
+// duyệt tải service worker và font ở mọi phiên, còn robots/sitemap thì bot
+// gọi liên tục - đúng nhóm request đông nhất mà không cần biết người dùng là ai.
 export const config = {
   matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
+    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|avif|ico|js|mjs|css|map|txt|xml|json|webmanifest|woff|woff2|ttf|otf|mp3|mp4|webm)$).*)",
   ],
 };

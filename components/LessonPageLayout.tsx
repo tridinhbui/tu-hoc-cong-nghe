@@ -17,6 +17,7 @@ import LessonHighlightsList from "@/components/LessonHighlightsList";
 import { getLessonHighlights, type LessonHighlight } from "@/lib/lesson-highlights";
 import { useLessonHighlightPaint } from "@/lib/hooks/useLessonHighlightPaint";
 import { LessonCompletionContext } from "@/lib/lesson-completion-context";
+import { isPreviewLessonSlug } from "@/lib/preview-lessons";
 import { createClient } from "@/lib/supabase";
 import { markLessonComplete as markLessonCompleteSupabase } from "@/lib/supabase-progress";
 import { getLessonProgress } from "@/lib/supabase-progress";
@@ -151,6 +152,12 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   const [finished, setFinished] = useState(false);
   const [readPct, setReadPct]     = useState(0);
   const [userId, setUserId]       = useState<string | null>(null);
+  // Ba trạng thái chứ không phải `!userId`: lúc mới mount thì vòng
+  // getUser() chưa trả lời, và khách chưa đăng nhập trông y hệt người đã đăng
+  // nhập trong khoảnh khắc đó. Phân biệt được "chưa biết" với "biết là khách"
+  // là điều kiện để không nháy tấm thẻ mời đăng ký vào mặt người đang có
+  // phiên, và để không đi lưu tiến độ cho người không có chỗ nào để lưu.
+  const [authState, setAuthState] = useState<"unknown" | "guest" | "member">("unknown");
   const [recallItems, setRecallItems] = useState<RecallItem[]>([]);
   const [highlights, setHighlights] = useState<LessonHighlight[]>([]);
   // Admin-set video URL lives in its own table (see lib/supabase-lesson-videos.ts)
@@ -232,7 +239,14 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   useEffect(() => {
     const supabase = createClient();
     supabase.auth.getUser().then(async ({ data: { user } }) => {
-      if (!user) return;
+      if (!user) {
+        // Bài xem thử (lib/preview-lessons.ts) dựng được mà không cần phiên.
+        // Mọi thứ bên dưới đều là đọc/ghi tiến độ của một tài khoản, nên
+        // chúng bị bỏ qua - phần đọc bài vẫn chạy đủ.
+        setAuthState("guest");
+        return;
+      }
+      setAuthState("member");
       setUserId(user.id);
 
       getLessonHighlights(user.id, persistedLessonId)
@@ -469,8 +483,11 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
       const finalResults = quiz.length > 0 ? results : [];
       for (let attempt = 0; ; attempt++) {
         if (cancelled) return;
-        const ok = await completeLessonInSupabase(finalResults);
-        if (ok || cancelled) return;
+        const result = await completeLessonInSupabase(finalResults);
+        // Khách xem thử: không có gì để lưu, và thử lại bốn lần cũng không làm
+        // xuất hiện một tài khoản. Tấm thẻ mời đăng ký ở cuối bài là câu trả
+        // lời cho trường hợp này, không phải một cái toast báo lỗi.
+        if (result === "guest" || result === "saved" || cancelled) return;
         if (attempt >= RETRY_DELAYS_MS.length) {
           quizCompletionFiredRef.current = false;
           zeroQuizCompletedRef.current = false;
@@ -565,7 +582,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   // dashboard reads to show a lesson as "Xong") was successfully persisted.
   // Callers use this to reset the fired-guard and retry on failure instead
   // of leaving a lesson permanently unsaved for the session.
-  async function completeLessonInSupabase(finalResults: boolean[]): Promise<boolean> {
+  async function completeLessonInSupabase(finalResults: boolean[]): Promise<"saved" | "failed" | "guest"> {
     // Don't trust the `userId` state here - it's only set once the mount
     // effect's supabase.auth.getUser() round trip resolves, and a fast
     // reader can finish the quiz before that happens. Falling back to
@@ -578,9 +595,17 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
     if (!uid) {
       const supabase = createClient();
       const { data: { user } } = await supabase.auth.getUser();
-      if (!user) return false;
+      // "Không có phiên" KHÁC "ghi hỏng", và trước đây cả hai cùng trả false.
+      // Với bài xem thử thì khách đọc hết là chuyện bình thường, nhưng phía
+      // gọi lại hiểu false là ghi hỏng: nó thử lại bốn lần trong 13,5 giây rồi
+      // báo "Lưu thất bại" - đúng lúc người ta vừa đọc xong bài đầu tiên.
+      if (!user) {
+        setAuthState("guest");
+        return "guest";
+      }
       uid = user.id;
       setUserId(uid);
+      setAuthState("member");
     }
 
     const finalScore =
@@ -622,7 +647,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
     } catch (error) {
       console.error("Error saving lesson completion, queued for offline sync:", error);
       queueOfflineCompletion(uid, persistedLessonId, finalScore, durationMin * 60);
-      return false;
+      return "failed";
     }
 
     // XP/level and streak are enrichment on top of the completion that's
@@ -660,7 +685,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
       window.dispatchEvent(new CustomEvent("thtcdn:xp-gained", { detail: { xp: 10, label: t.miscUi.lessonPageLayout.lessonCompletedLabel } }));
     }
     toast.success(t.lessonLayout.saved);
-    return true;
+    return "saved";
   }
 
   // Pure predicate: are all applicable completion criteria met right now?
@@ -1200,7 +1225,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                   ))}
                 </div>
                 <WisdomCardFlip score={score} total={quiz.length} />
-                {results.some((r) => !r) && (
+                {results.some((r) => !r) && authState !== "guest" && (
                   <Link
                     href="/on-tap-cau-sai"
                     className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-stone-950 text-xs sm:text-sm font-black transition-colors cursor-pointer shadow-sm"
@@ -1208,23 +1233,55 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                     {t.lessonLayout.reviewMistakes}
                   </Link>
                 )}
-                <div className="grid grid-cols-2 gap-3 pt-1">
-                  <Link href="/dashboard" className="py-3.5 rounded-xl border border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-400 text-sm font-bold text-center hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors">
-                    {t.lessonLayout.dashboard}
-                  </Link>
-                  {lesson.nextSlug ? (
-                    <Link href={`/bai-hoc/${lesson.nextSlug}`} className={`py-3.5 rounded-xl text-white text-sm font-bold text-center ${c.btn} transition-colors`}>
-                      {t.lessonLayout.nextLesson}
+                {/* Khách đọc bài xem thử: mọi nút bên dưới đều dẫn vào vùng
+                    phải đăng nhập, nên chúng sẽ bật ngược về /login - đúng cú
+                    cụt mà việc mở bài xem thử sinh ra để tránh. Thay bằng một
+                    lời mời nói thẳng thứ họ sẽ mất nếu bỏ đi: bài vừa đọc.
+                    Bài kế tiếp chỉ hiện khi nó cũng là bài xem thử. */}
+                {authState === "guest" ? (
+                  <div className="rounded-2xl border border-emerald-200 dark:border-emerald-900/60 bg-emerald-50/70 dark:bg-emerald-950/30 p-4 space-y-2.5">
+                    <p className="text-sm font-black text-emerald-800 dark:text-emerald-300">
+                      {t.lessonLayout.guestSaveTitle}
+                    </p>
+                    <p className="text-xs font-medium leading-relaxed text-stone-600 dark:text-stone-400">
+                      {t.lessonLayout.guestSaveBody}
+                    </p>
+                    <Link
+                      href={`/login?mode=signup&next=${encodeURIComponent(`/bai-hoc/${lesson.slug ?? ""}`)}`}
+                      className={`w-full inline-flex items-center justify-center py-3.5 rounded-xl text-white text-sm font-black text-center ${c.btn} transition-colors`}
+                    >
+                      {t.lessonLayout.guestSaveCta}
                     </Link>
-                  ) : (
-                    <div className="py-3.5 rounded-xl bg-stone-100 dark:bg-stone-800 text-stone-500 dark:text-stone-400 text-sm font-bold text-center">{t.lessonLayout.comingSoon}</div>
-                  )}
-                </div>
-                <ShareCompletionButton
-                  lessonSlug={lesson.slug || ""}
-                  lessonTitle={lesson.title}
-                  className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl text-white text-sm font-bold transition-colors cursor-pointer hover:brightness-110"
-                />
+                    {lesson.nextSlug && isPreviewLessonSlug(lesson.nextSlug) && (
+                      <Link
+                        href={`/bai-hoc/${lesson.nextSlug}`}
+                        className="w-full inline-flex items-center justify-center py-3 rounded-xl border border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-400 text-sm font-bold text-center hover:bg-white dark:hover:bg-stone-800 transition-colors"
+                      >
+                        {t.lessonLayout.nextLesson}
+                      </Link>
+                    )}
+                  </div>
+                ) : (
+                  <>
+                    <div className="grid grid-cols-2 gap-3 pt-1">
+                      <Link href="/dashboard" className="py-3.5 rounded-xl border border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-400 text-sm font-bold text-center hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors">
+                        {t.lessonLayout.dashboard}
+                      </Link>
+                      {lesson.nextSlug ? (
+                        <Link href={`/bai-hoc/${lesson.nextSlug}`} className={`py-3.5 rounded-xl text-white text-sm font-bold text-center ${c.btn} transition-colors`}>
+                          {t.lessonLayout.nextLesson}
+                        </Link>
+                      ) : (
+                        <div className="py-3.5 rounded-xl bg-stone-100 dark:bg-stone-800 text-stone-500 dark:text-stone-400 text-sm font-bold text-center">{t.lessonLayout.comingSoon}</div>
+                      )}
+                    </div>
+                    <ShareCompletionButton
+                      lessonSlug={lesson.slug || ""}
+                      lessonTitle={lesson.title}
+                      className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl text-white text-sm font-bold transition-colors cursor-pointer hover:brightness-110"
+                    />
+                  </>
+                )}
                 <button
                   onClick={restartQuiz}
                   className="text-xs font-bold text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 uppercase tracking-wide transition-colors cursor-pointer"

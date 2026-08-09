@@ -132,8 +132,14 @@ export function getLevelProgress(currentXp: number, cfaCompleted: number = 0) {
 
 /* ─── XP Constants (Chống lạm phát XP) ───────────────────────────────── */
 
-export const XP_VALUES = {
-  LESSON_COMPLETED: 40, // Thắt chặt lại 40 XP thay vì 100 XP
-  QUIZ_ANSWERED: 2,     // 2 XP cho mỗi câu quiz đúng
-  QUIZ_PERFECT: 15,     // 15 XP thưởng hoàn thành 100% quiz
-};
+/** XP cho một bài học hoàn thành. Đây là NGUỒN DUY NHẤT của con số đó:
+ *  recalculateUserStats nhân số bài đã xong với nó, và mọi câu chữ hứa hẹn XP
+ *  cho việc học một bài phải nội suy từ đây thay vì viết số vào từ điển.
+ *
+ *  Chỗ này trước là `XP_VALUES = { LESSON_COMPLETED: 40, ... }`, và không một
+ *  dòng mã nào đọc nó: sổ cái nhân với số 10 viết thẳng, còn hằng số thì ghi
+ *  40. Nó đứng đó đủ lâu để giao diện tự bịa ra các con số riêng - trang đăng
+ *  nhập hứa "+120 XP / bài", thẻ học tiếp hứa "+30 XP", quiz tin tức hứa
+ *  "+15 XP" trong khi nhiệm vụ ấy trả 8. Một hằng số không ai đọc còn tệ hơn
+ *  không có hằng số nào, vì nó trông như một nguồn sự thật. */
+export const XP_PER_LESSON = 10;

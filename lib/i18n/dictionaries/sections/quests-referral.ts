@@ -17,7 +17,7 @@ export const questsReferralVi = {
     claiming: "Đang nhận quà...",
     claimButton: "Mở Rương Sử Thi! 🎁",
     locked: "🔒 Rương Sử Thi đang bị khóa",
-    claimSuccessToast: "Chúc mừng! Bạn đã mở khóa Rương Sử Thi: Nhận +3 Rương Quà & +100 XP cực lớn! 🎁🏆👑",
+    claimSuccessToast: "Chúc mừng! Bạn đã mở khóa Rương Sử Thi: nhận +3 Rương Quà! 🎁🏆👑",
     claimErrorToast: "Lỗi khi nhận phần thưởng. Hãy thử lại.",
   },
   seasonPass: {
@@ -128,7 +128,7 @@ export const questsReferralEn: typeof questsReferralVi = {
     claiming: "Claiming reward...",
     claimButton: "Open the Epic Chest! 🎁",
     locked: "🔒 The Epic Chest is locked",
-    claimSuccessToast: "Congrats! You unlocked the Epic Chest: +3 Reward Chests & a massive +100 XP! 🎁🏆👑",
+    claimSuccessToast: "Congrats! You unlocked the Epic Chest: +3 Reward Chests! 🎁🏆👑",
     claimErrorToast: "Error claiming the reward. Please try again.",
   },
   seasonPass: {

@@ -320,7 +320,7 @@ export const vi = {
     newsPendingNote: "(Menu có cảnh báo)",
     // Split around the inline <strong> holding the XP.
     newsBodyPart1: "Trả lời chính xác tình huống tin tức vĩ mô hôm nay để nhận ",
-    newsXp: "+15 XP",
+    newsXp: "+{xp} XP",
     newsBodyPart2: " và giải tỏa biểu tượng cảnh báo 🔴 trên Navbar.",
 
     rightEyebrow: "Bên Phải • Tạo bài kiểm tra tự chọn",
@@ -432,6 +432,13 @@ export const vi = {
     comingSoon: "Sắp ra mắt",
     restart: "↺ Làm lại từ đầu",
     questionList: "Các câu hỏi",
+    // Chỉ hiện cho khách đọc bài xem thử (lib/preview-lessons.ts). Nói thứ họ
+    // vừa có và sắp mất, không nói tính năng - "tiến độ bài này" là thứ duy
+    // nhất người vừa đọc xong đang thực sự cầm trong tay.
+    guestSaveTitle: "Bạn vừa học xong bài này 🎉",
+    guestSaveBody:
+      "Tiến độ này đang nằm trên trình duyệt và sẽ mất khi bạn đổi máy. Tạo tài khoản miễn phí để lưu lại, mở toàn bộ bài học và theo dõi chuỗi ngày học của mình.",
+    guestSaveCta: "Đăng ký miễn phí để lưu tiến độ",
   },
 
   // components/WorldBossRaidWidget.tsx - the weekly server-wide boss raid.
@@ -712,7 +719,7 @@ export const vi = {
     trackPrefix: "Track",
     effortHours: "~{hours} giờ học",
     standardised: "Lộ trình chuẩn hóa 2024",
-    xpPerLesson: "+120 XP / bài",
+    xpPerLesson: "+{xp} XP / bài",
     stagesTitle: "Các chặng kiến thức chính:",
     freeTryCompact: "Miễn phí · Xem thử ngay",
     freeTry: "Miễn phí · Xem thử ngay, không cần đăng nhập",
@@ -1419,7 +1426,7 @@ export const vi = {
     step3Body: "Học đều mỗi ngày để leo hạng",
 
     heroBanner: "🎓 HERO LEARNING BANNER",
-    xpIfNow: "🔥 +30 XP NẾU HỌC NGAY",
+    xpIfNow: "🔥 +{xp} XP NẾU HỌC NGAY",
     trackProgress: "Tiến độ Lộ trình ({done}/{total} bài)",
     continuingLesson: "▶ Bài học đang tiếp tục",
     minutesStudied: "⏱️ Đã học {minutes} phút",

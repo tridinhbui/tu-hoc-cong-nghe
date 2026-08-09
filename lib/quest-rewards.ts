@@ -47,6 +47,18 @@ export const QUEST_XP_REWARDS: Record<string, number> = {
  *  i.e. claimable once per account, not once per day. */
 export const ONCE_ONLY_QUESTS = new Set(["career_assessment"]);
 
+/** Số nhiệm vụ trong ngày phải xong để mở rương tuần.
+ *
+ *  Từng là số 3 viết thẳng vào hai widget, đọc trên một danh sách 7 nhiệm vụ
+ *  mà 2 trong số đó tự hoàn thành ngay khi mở trang ("Đăng nhập mỗi ngày",
+ *  "Khám phá Vương Quốc Game"). Điều kiện thật vì thế chỉ là MỘT việc có thật.
+ *
+ *  Ba nhiệm vụ 0 XP giờ đã bị lọc khỏi danh sách (lib/supabase-quests.ts), nên
+ *  giữ nguyên số 3 sẽ lặng lẽ biến điều kiện thành 3 trên 4 nhiệm vụ thật -
+ *  siết gấp ba mà không ai định làm thế. 2 giữ cái rương ở gần chỗ cũ nhất:
+ *  vẫn phải học thật, nhưng không thành một buổi cày cả bốn nhiệm vụ. */
+export const WEEKLY_CHEST_QUESTS_REQUIRED = 2;
+
 export function getQuestXpReward(questType: string): number | null {
   return Object.prototype.hasOwnProperty.call(QUEST_XP_REWARDS, questType)
     ? QUEST_XP_REWARDS[questType]

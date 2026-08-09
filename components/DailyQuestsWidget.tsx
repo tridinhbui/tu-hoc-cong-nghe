@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { Sparkles, Trophy, Calendar, CheckCircle2, Gift, ChevronDown, ChevronUp, ArrowRight, BookOpen, Gamepad2, Award } from "lucide-react";
 import { getDailyQuests, claimQuestReward, getWeeklyQuestXpBudget, type Quest } from "@/lib/supabase-quests";
+import { WEEKLY_CHEST_QUESTS_REQUIRED } from "@/lib/quest-rewards";
 import { earnChest } from "@/lib/chests";
 import { createClient } from "@/lib/supabase";
 import { useI18n } from "@/lib/i18n/context";
@@ -206,7 +207,7 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
   // reclaiming no longer works) and awards a real chest via lib/chests.ts,
   // whose XP is real and folded into recalculateUserStats.
   const handleWeeklyClaim = async () => {
-    if (weeklyClaimed || completedQuestsCount < 3) return;
+    if (weeklyClaimed || completedQuestsCount < WEEKLY_CHEST_QUESTS_REQUIRED) return;
     const weeklyKey = getWeeklyDayKey();
 
     try {

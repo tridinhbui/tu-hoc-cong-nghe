@@ -141,9 +141,12 @@ function GlossaryTermSpan({ term, en }: { term: string; en: string }) {
         },
       });
 
-      if (typeof window !== "undefined") {
-        window.dispatchEvent(new CustomEvent("thtcdn:xp-gained", { detail: { xp: 5, label: t.glossaryTerm.xpGainedLabel } }));
-      }
+      // KHÔNG bắn "thtcdn:xp-gained" ở đây. Hiệu ứng đó là hoạt ảnh "+5 XP"
+      // bay lên góc màn hình, và lưu một flashcard không ghi dòng nào vào bất
+      // kỳ sổ cái nào mà recalculateUserStats đọc - nên tổng XP không nhúc
+      // nhích, đúng cái khoảng cách giữa lời hứa và sổ sách đã sinh ra phản
+      // hồi "làm mà không có XP". Muốn nó cộng XP thật thì phải có sổ cái
+      // trước, rồi mới tới hoạt ảnh.
       setTimeout(() => setOpen(false), 1200);
     } else {
       setSaveState("error");

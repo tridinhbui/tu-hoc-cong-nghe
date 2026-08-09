@@ -6,6 +6,7 @@ import { PlayCircle, CheckCircle2, Sparkles, Flame } from "lucide-react";
 import { TRACKS, type TrackId } from "@/lib/tracks";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
+import { XP_PER_LESSON } from "@/lib/levels";
 
 const TRACK_IDS = Object.keys(TRACKS) as TrackId[];
 
@@ -97,7 +98,7 @@ export default function TrackPreviewPanel({ previewTrack, setPreviewTrack, compa
             </span>
             <span className="inline-flex items-center gap-1 text-[10px] font-bold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/40 px-2 py-0.5 rounded-full border border-amber-200 dark:border-amber-900/50">
               <Flame className="w-3 h-3 text-amber-500" />
-              {t.trackPanel.xpPerLesson}
+              {format(t.trackPanel.xpPerLesson, { xp: XP_PER_LESSON })}
             </span>
           </div>
 
