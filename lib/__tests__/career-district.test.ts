@@ -14,7 +14,7 @@ import {
   lessonSlugsForCareer,
 } from "@/components/career-district/district-content";
 import { stationsOf } from "@/components/lobby/stations";
-import { ORGANIC_BUILDINGS } from "@/lib/rpg-buildings";
+import { BUILDING_COUNT, organicBuildingsOf } from "@/lib/rpg-buildings";
 import {
   districtRoomsOf,
   STREET_SPAWN,
@@ -395,10 +395,10 @@ describe("hành lang lộ trình", () => {
 
 describe("quảng trường game", () => {
   it("có đúng một bục cho mỗi địa điểm của bản đồ game", () => {
-    // Dựng từ chính ORGANIC_BUILDINGS, nên hai bản đồ không bao giờ lệch nhau.
+    // Dựng từ chính danh sách địa điểm, nên hai bản đồ không bao giờ lệch nhau.
     const square = getRoom("khu-game");
-    expect(square.portals).toHaveLength(ORGANIC_BUILDINGS.length);
-    for (const b of ORGANIC_BUILDINGS) {
+    expect(square.portals).toHaveLength(BUILDING_COUNT);
+    for (const b of organicBuildingsOf(viDict)) {
       const portal = square.portals.find((p) => p.id === `game-${b.id}`);
       expect(portal, `${b.id}: không có bục`).toBeTruthy();
       expect(portal?.href).toBe(`/game?building=${b.id}`);

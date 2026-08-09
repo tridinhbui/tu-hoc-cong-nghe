@@ -44,6 +44,24 @@ const INTENTIONALLY_UNTRANSLATED = new Set([
   // quên - dịch ra "Chuyên viên phân tích tài chính cấp cao" sẽ là đổi dữ liệu
   // chứ không phải dịch giao diện.
   "leaderboardHonors.career",
+  // `badge` của mỗi địa điểm RPG là tên KHU trên bản đồ, và bản tiếng Việt đã
+  // viết bằng tiếng Anh sẵn: "GOLDMAN SACHS WALL ST.", "HEDGE FUND QUARTER",
+  // "US FEDERAL RESERVE". Đó là tên riêng của những nơi có thật, không phải
+  // chỗ dịch bị bỏ quên. Chỉ miễn trừ `badge`; `name` và `subtitle` vẫn bị
+  // chấm như mọi chuỗi khác.
+  "rpgBuildings.world-boss.badge",
+  "rpgBuildings.pvp.badge",
+  "rpgBuildings.arcade.badge",
+  "rpgBuildings.weekly-challenge.badge",
+  "rpgBuildings.goldman-sachs.badge",
+  "rpgBuildings.cards.badge",
+  "rpgBuildings.shop.badge",
+  "rpgBuildings.fed-vault.badge",
+  "rpgBuildings.silicon-bay.badge",
+  "rpgBuildings.capitol-hill.badge",
+  "rpgBuildings.cme-commodities.badge",
+  "rpgBuildings.swiss-haven.badge",
+  "rpgBuildings.singapore-dock.badge",
   // "Tài Tài" is the name of the study-group admin character. A proper noun
   // stays as it is in every language - the same reason the leaderboard's
   // Vietnamese nicknames are exempted in lib/i18n/dictionaries/vi.ts.
