@@ -6,7 +6,7 @@
   "openingQuestion": "IRR = 15%, WACC = 10%. Should you invest?",
   "openingOptions": [
     "Not enough information",
-    "No - the IRR is too high",
+    "No - an IRR that high must surely be a mistake in the calculation somewhere",
     "Depends on the NPV",
     "Yes - IRR > WACC means the project earns more than the cost of capital"
   ],

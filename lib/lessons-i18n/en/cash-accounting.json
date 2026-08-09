@@ -7,7 +7,7 @@
   "openingOptions": [
     "Commercial banks",
     "Small businesses with few credit transactions, wanting simplicity",
-    "Multinational conglomerates",
+    "Multinational conglomerates that have many overseas subsidiaries abroad",
     "Listed companies"
   ],
   "explanation": "Cash accounting only records when cash actually moves in or out, so it's very simple and suits small household businesses. The weakness shows immediately once there's buying or selling on credit: a month collecting a lot of old debt looks like a boom month, while a month prepaying a full year's rent looks like a loss-making month. Because profit jumps around based on the timing of cash flows rather than actual activity, any business past a small scale must move to accrual.",

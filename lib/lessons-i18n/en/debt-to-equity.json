@@ -8,7 +8,7 @@
     "It has no meaning",
     "Assets are twice equity",
     "For every 1 dong of equity, the business has borrowed 2 more dong of debt",
-    "The company has 2x revenue"
+    "The company has twice as much revenue as it had in the financial year before that"
   ],
   "explanation": "D/E compares total debt against shareholders' equity, measuring how much debt each dong of shareholder capital is carrying. Leverage amplifies results in both directions: when ROIC is higher than the interest rate, it pushes ROE up; when it's lower, it pulls ROE down even faster. What level is safe depends on how stable cash flow is - a utility can bear a D/E that would bankrupt a tech startup.",
   "diagram": [

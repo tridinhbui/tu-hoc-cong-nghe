@@ -5,8 +5,8 @@
   "duration": "6 min",
   "openingQuestion": "A business is profitable but still runs out of cash. Why?",
   "openingOptions": [
-    "Working capital is tied up: too much inventory, slow collections, fast payments to suppliers",
-    "The accounting is wrong",
+    "Working capital is tied up: too much inventory, slow collections, fast payments",
+    "The accounting must simply be wrong somewhere in the books of the company itself",
     "It can't happen",
     "Taxes are too high"
   ],

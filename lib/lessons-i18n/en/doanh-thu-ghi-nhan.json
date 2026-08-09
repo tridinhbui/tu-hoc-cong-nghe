@@ -5,7 +5,7 @@
   "duration": "6 min",
   "openingQuestion": "You sell goods on day 1, the customer pays on day 30. When is revenue recognised?",
   "openingOptions": [
-    "Day 30, when the cash is received",
+    "Day 30, when the cash actually arrives",
     "Split evenly across the two days",
     "The day the contract is signed",
     "Day 1, when the goods are delivered"

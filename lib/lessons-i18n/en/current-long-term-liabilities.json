@@ -5,7 +5,7 @@
   "duration": "5 min",
   "openingQuestion": "A company's 5-year bond has 8 months left until maturity. How is it classified?",
   "openingOptions": [
-    "Its classification stays unchanged",
+    "Its classification stays unchanged right up until it matures",
     "Long-term liability",
     "Current liability - because it matures within 12 months",
     "Non-current asset"

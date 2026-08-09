@@ -4,7 +4,7 @@
   "subtitle": "Comparing project appraisal methods",
   "duration": "6 min",
   "openingQuestion": "Project A: Payback 2 years, NPV −50 million. Project B: Payback 4 years, NPV +200 million. Which project should you choose?",
-  "openingOptions": ["Equal", "B - a larger positive NPV creates more value", "A - it pays back faster", "Need more information"],
+  "openingOptions": ["Equal", "B - a larger positive NPV creates more value", "A - because it pays the money back much faster", "Need more information"],
   "explanation": "The two criteria answer two different questions, and only one of them is tied to the goal of maximizing value. NPV measures total value created after accounting for the cost of capital; the payback period only measures how fast money comes back and knows nothing about what happens afterward. As a result, a project with a fast payback can still have a negative NPV. The sensible approach is to decide by NPV, and treat the payback period only as a liquidity constraint.",
   "diagram": [
     { "label": "The same project, scored two different ways", "arrow": true },

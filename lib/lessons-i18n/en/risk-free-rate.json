@@ -8,7 +8,7 @@
     "Because the rate is low",
     "Because it's short-term",
     "Because the US government can print money to pay its debt - default risk is nearly zero",
-    "Because its price doesn't fluctuate"
+    "Because its price doesn't fluctuate at all over the whole life of the instrument itself anyway"
   ],
   "explanation": "The risk-free rate is the return available with essentially no default risk, usually taken from a government bond with the same maturity as the cash flow being valued. The market risk premium is the excess return investors demand to hold stocks rather than government bonds. These two figures are the foundation of every valuation, so picking the wrong maturity or the wrong currency for the risk-free rate throws the entire model off.",
   "diagram": [

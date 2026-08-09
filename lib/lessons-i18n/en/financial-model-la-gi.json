@@ -7,7 +7,7 @@
   "openingOptions": [
     "Forecasting the future: revenue, cost, cash flow to inform investment, M&A, and valuation decisions",
     "Calculating tax",
-    "Recording historical financial data",
+    "Recording only the historical financial data that has already been reported in the earlier annual reports",
     "Auditing financial statements"
   ],
   "explanation": "A financial model is an Excel/Google Sheets spreadsheet that simulates a company's financial operations based on assumptions. Used for: DCF valuation, LBO analysis, M&A accretion/dilution, budget planning. The 3-statement model is the foundation: P&L → Balance Sheet → Cash Flow, all linked together.",

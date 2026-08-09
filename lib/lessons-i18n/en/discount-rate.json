@@ -7,7 +7,7 @@
   "openingOptions": [
     "Zero",
     "High - reflecting higher risk requires a higher expected return",
-    "Low - to make the value higher",
+    "Low - so that the present value of the project comes out looking higher",
     "Equal to the bank savings rate"
   ],
   "explanation": "The discount rate is the minimum return you require to accept the risk of an investment - it is an opportunity cost, not a technical parameter. The higher the risk, the higher that requirement, the stronger the discount, and the lower the present value. Because it sits in the denominator and is raised to a power over time, a small change in this rate shifts a valuation enormously - that's why every DCF model must come with a sensitivity table.",

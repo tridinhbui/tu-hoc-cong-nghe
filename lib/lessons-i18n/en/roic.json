@@ -5,7 +5,7 @@
   "duration": "7 min",
   "openingQuestion": "ROIC = NOPAT / Invested Capital. Why is ROIC better than ROE for assessing performance?",
   "openingOptions": [
-    "ROIC is always higher than ROE",
+    "ROIC is always higher than ROE in practice",
     "ROIC isn't distorted by leverage",
     "ROIC is easier to calculate",
     "ROIC is only used for banks"

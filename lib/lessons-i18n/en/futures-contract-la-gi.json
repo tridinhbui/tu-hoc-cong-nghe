@@ -4,8 +4,8 @@
   "subtitle": "Like a forward but standardized, exchange-traded, and safer",
   "openingQuestion": "Why is a futures contract considered safer than a forward contract despite having a similar nature?",
   "openingOptions": [
-    "Because futures are only for governments",
-    "Because futures trade on a standardized exchange, with a margin mechanism and daily settlement (mark-to-market), sharply reducing counterparty risk",
+    "Because futures are only for governments and large state bodies to trade in freely",
+    "Because futures are exchange-standardized, with margin and daily settlement",
     "Because futures carry no price risk",
     "Because futures require no deposit"
   ],

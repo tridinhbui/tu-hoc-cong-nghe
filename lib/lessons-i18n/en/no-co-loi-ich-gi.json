@@ -7,7 +7,7 @@
   "openingOptions": [
     "80 million",
     "20 million - interest is deducted before tax",
-    "0 - debt doesn't reduce tax",
+    "0 - debt doesn't reduce the tax bill in any way",
     "100 million"
   ],
   "explanation": "The largest and most measurable benefit of debt is the tax shield: interest is deducted before tax is calculated, so every unit of interest paid reduces the tax owed by exactly the tax rate. As a result, the real cost of debt is lower than the rate stated on the contract. Debt has another, less-discussed benefit: the fixed obligation to pay interest forces management to be disciplined with cash flow, rather than spending it on poorly performing projects.",

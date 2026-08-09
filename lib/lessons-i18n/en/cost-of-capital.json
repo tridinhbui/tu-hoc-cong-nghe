@@ -5,8 +5,8 @@
   "duration": "6 min",
   "openingQuestion": "Why is capital never 'free', even when it's your own money?",
   "openingOptions": [
-    "Because of opportunity cost - using this capital means giving up another investment opportunity",
-    "Because of accounting rules",
+    "Because of opportunity cost - using this capital means giving up another option",
+    "Because the accounting rules simply require it to be counted in exactly that way",
     "Because tax must be paid",
     "Because of inflation"
   ],

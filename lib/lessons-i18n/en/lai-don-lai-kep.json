@@ -7,7 +7,7 @@
   "openingOptions": [
     "Simple: 300 million; compound: 672 million",
     "The same either way: 300 million",
-    "Simple: 300 million; compound: 500 million",
+    "Simple: 300 million; compound: about 500 million",
     "Both come to 672 million"
   ],
   "explanation": "Simple interest is always calculated on the original principal; compound interest adds each period's interest to the principal and calculates the next period on the larger figure. It sounds like a small technical difference, but over twenty years at 10% the same 100 million becomes 300 million under simple interest and 672 million under compound. All 372 million of the gap is interest earned on interest, and that share grows as time goes on - which is why the rule of 72 says the years to double equal 72 divided by the rate.",

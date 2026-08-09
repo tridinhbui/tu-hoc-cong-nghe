@@ -6,9 +6,9 @@
   "openingQuestion": "How does YTM differ from the coupon rate?",
   "openingOptions": [
     "No difference",
-    "YTM accounts for both the gap between purchase price/face value and the coupon, reflecting the real return on the bond investment",
+    "YTM includes the gap between purchase price and face value, not just the coupon",
     "YTM only counts interest",
-    "The coupon rate is always higher than YTM"
+    "The coupon rate is always higher than the YTM in absolutely every possible case there is"
   ],
   "explanation": "Yield to Maturity is the true return for someone who buys the bond at today's market price and holds it to the end of its term - it combines both the coupon received and the gain or loss relative to face value. This is therefore the correct number to compare between bonds, not the coupon rate. Buying below face value gives a yield higher than the coupon, buying above face value gives a lower yield, and buying at exactly face value makes the two numbers match.",
   "diagram": [

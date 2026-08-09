@@ -6,7 +6,7 @@
   "openingQuestion": "NPV = −1 billion (initial investment) + PV(future cash flows) = +200 million. Should this project go ahead?",
   "openingOptions": [
     "Yes - a positive NPV means the project creates 200 million of value after discounting",
-    "No - it requires investing 1 billion",
+    "No - it requires investing a full 1 billion of cash up front just to get the thing started",
     "Depends on the tax rate",
     "Not enough information"
   ],

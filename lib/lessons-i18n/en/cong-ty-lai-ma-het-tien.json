@@ -6,7 +6,7 @@
   "openingQuestion": "A company recognises 100 billion in revenue, but the customer pays 90 days later. How much real cash is there this month?",
   "openingOptions": [
     "0 (no cash has come in yet)",
-    "It depends on the tax rate",
+    "It depends on the tax rate applied",
     "100 billion",
     "50 billion"
   ],

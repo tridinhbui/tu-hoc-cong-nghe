@@ -4,7 +4,7 @@
   "subtitle": "The right to buy an asset at a fixed price - expecting the price to rise",
   "openingQuestion": "You buy a call option on stock X with a strike price of VND 50,000, paying a premium of VND 2,000. If the stock rises to VND 60,000 at expiration, how much do you gain?",
   "openingOptions": [
-    "A loss, because you must pay the premium",
+    "A loss, because you must pay the premium up front regardless",
     "VND 60,000",
     "VND 10,000",
     "VND 8,000 (60,000 − 50,000 − 2,000 premium already paid)"

@@ -8,7 +8,7 @@
     "The business is doing well",
     "Goods may be selling slowly or piling up",
     "Profit margin is rising",
-    "It has no particular meaning"
+    "It really has no particular meaning at all"
   ],
   "explanation": "Inventory is an asset on the balance sheet, but it's really cash being held hostage: already paid to the supplier and not yet collected back from a customer. That's why the key figure isn't the inventory level but how fast it turns over. Inventory growing faster than revenue is almost always a sign goods are selling slowly, and for industries like fashion or electronics, goods sitting too long also carry the risk of a forced fire sale.",
   "diagram": [

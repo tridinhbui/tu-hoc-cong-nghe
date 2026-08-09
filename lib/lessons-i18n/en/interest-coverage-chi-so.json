@@ -8,7 +8,7 @@
     "Very safe",
     "Warning - profit only covers interest 1.5 times, a thin safety margin",
     "Completely fine",
-    "Not enough to pay interest"
+    "Not enough to even pay the interest bill that falls due this year at all"
   ],
   "explanation": "The interest coverage ratio shows how many times operating profit covers interest expense. Its value doesn't lie in the current number but in stress-testing it against a bad scenario: a ratio of 2.0 sounds safe until you cut EBIT by thirty percent and watch it drop to 1.4. Since interest must be paid on schedule regardless of how business is going, this is the metric creditors look at before they even check the debt-to-equity ratio.",
   "diagram": [

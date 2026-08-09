@@ -7,7 +7,7 @@
   "openingOptions": [
     "ROIC is easier to calculate",
     "ROIC isn't distorted by financial leverage - it measures the true efficiency of invested capital",
-    "ROIC is always higher than ROE",
+    "ROIC is always higher than ROE, so it always flatters the company that is being examined by an investor",
     "ROIC is only used for banks"
   ],
   "explanation": "ROIC divides after-tax operating profit by invested capital, and its strength is that it doesn't depend on whether the company is financed with debt or equity. Set beside WACC, it answers the most important question in corporate finance: does every dong of capital invested generate more than the cost of raising that dong? An ROIC below WACC means the company is destroying value - even while its reports still show a profit and dividends are still being paid.",

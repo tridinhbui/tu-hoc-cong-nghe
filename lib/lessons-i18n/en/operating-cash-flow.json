@@ -7,7 +7,7 @@
   "openingOptions": [
     "Because accounting rules require it",
     "Because D&A is profit",
-    "Because D&A needs to be reinvested",
+    "Because the D&A amount needs to be reinvested into new equipment in some later year anyway",
     "Because D&A is a non-cash expense - already subtracted from NI but no real cash went out"
   ],
   "explanation": "Operating cash flow is the real cash the business generates, and the common way to calculate it starts from net profit and adjusts for two groups. The first is non-cash expenses like depreciation and provisions, which get added back. The second is the change in working capital: rising inventory and receivables mean cash is being tied up, so they get subtracted. The final number is far harder to distort than profit.",

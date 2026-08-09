@@ -7,7 +7,7 @@
   "openingOptions": [
     "A calculation error",
     "The business has no inventory",
-    "The business is losing money",
+    "The business must be losing money on every single sale that it now makes",
     "The business collects cash before it has to pay out - a big advantage"
   ],
   "explanation": "Working capital is cash tied up in daily operations: goods sitting in the warehouse, cash sitting with customers who haven't paid yet, offset by what the business still owes its suppliers. The cash cycle CCC = DIO + DSO − DPO measures the number of days cash stays tied up that way. A negative CCC - like Amazon or Costco - means the company collects from customers before it has to pay suppliers, essentially getting free financing from its supply chain, and the more it grows, the more cash it has left over.",

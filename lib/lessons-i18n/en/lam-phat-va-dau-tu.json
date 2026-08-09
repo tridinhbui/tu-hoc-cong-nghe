@@ -7,7 +7,7 @@
   "openingOptions": [
     "Purchasing power falls 4% - a real rate of -4% = a genuine loss of money",
     "The money grows 6%",
-    "The bank makes up the shortfall",
+    "The bank makes up the whole shortfall with a compensating inflation bonus payment",
     "No effect"
   ],
   "explanation": "High inflation erodes purchasing power: 1 million today buys less than 1 million did last year. Assets that hedge inflation well: real estate (prices track inflation), stocks (businesses adjust prices), gold, TIPS, commodities. Cash and long-term bonds are the weakest.",

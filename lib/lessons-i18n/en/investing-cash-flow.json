@@ -8,7 +8,7 @@
     "The business is losing money",
     "Negative ICF is always bad",
     "The business is investing in long-term assets (CapEx, M&A) - which is normal",
-    "The business is selling off assets"
+    "The business is selling off its assets to raise the cash that it needs right now"
   ],
   "explanation": "Negative investing cash flow is usually a good sign: money flows out to buy machinery, plants, or acquire other companies - in other words, to build future capacity. What should worry you is the opposite: large positive investing cash flow means the company is selling assets, and if those assets were generating revenue, it has just traded its future for cash today. A company claiming to be growing while CapEx sits near zero is usually a company eating into its old assets.",
   "diagram": [

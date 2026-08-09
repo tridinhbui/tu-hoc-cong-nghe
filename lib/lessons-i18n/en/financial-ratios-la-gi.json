@@ -5,7 +5,7 @@
   "duration": "5 min",
   "openingQuestion": "Company A earns 100 billion in profit, Company B earns 10 billion. Is A better than B?",
   "openingOptions": [
-    "No, B is smaller so it's better",
+    "No, B is smaller so its profit must be worth relatively more than A's own profit",
     "They're equal",
     "Yes, 100 billion > 10 billion",
     "You can't tell yet - you need to know capital, assets, and revenue to compare"

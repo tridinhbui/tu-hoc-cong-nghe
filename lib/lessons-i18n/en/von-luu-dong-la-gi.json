@@ -6,7 +6,7 @@
   "openingQuestion": "Working Capital = ?",
   "openingOptions": [
     "Current Assets − Current Liabilities",
-    "Total Assets − Total Liabilities",
+    "Total Assets − Total Liabilities of the firm",
     "Revenue − Operating Costs",
     "Cash + Short-term Investments"
   ],

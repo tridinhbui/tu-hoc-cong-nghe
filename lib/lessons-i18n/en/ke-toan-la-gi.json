@@ -7,7 +7,7 @@
   "openingOptions": [
     "Ask the CEO",
     "Look at headcount",
-    "Look at the share price",
+    "Look at the share price on the market",
     "Read the financial statements"
   ],
   "explanation": "Accounting is the shared set of conventions for describing a business in numbers, so that investors elsewhere, banks and management all read the same picture. Worth remembering from the start: this is a language with its own rules, and many of those rules don't match ordinary intuition - revenue isn't cash received, an expense isn't cash paid, and profit isn't cash left over.",
