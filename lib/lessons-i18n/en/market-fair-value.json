@@ -1,0 +1,175 @@
+{
+  "slug": "market-fair-value",
+  "title": "Deep-dive case: Market Fair Value",
+  "subtitle": "The P/E multiple and growth companies",
+  "duration": "6 min",
+  "openingQuestion": "The share price is up sharply and the P/E has risen fast with it. How do you tell whether it is still at fair value or already too expensive?",
+  "openingOptions": [
+    "A high price is enough to tell you the stock is expensive",
+    "Just buy whenever the P/E is low",
+    "Compare growth, margins and the discount rate",
+    "There is no way to tell"
+  ],
+  "explanation": "Fair value is a reasonable price range built on expected growth, earnings quality and the cost of capital - not a fixed number. Two analysts working from the same data but different growth assumptions can perfectly well arrive at two different fair value ranges, both of them defensible.",
+  "diagram": [
+    { "label": "Growth" },
+    { "label": "Profit quality" },
+    { "label": "Discount rate" },
+    { "label": "Fair value range" }
+  ],
+  "realWorldExample": {
+    "company": "What a high P/E actually says",
+    "description": "A P/E is not a measure of cheap or expensive, it is a measure of expectation. A business trading at 30x means the market is betting profit will grow substantially for years; if that growth arrives, the price can be entirely reasonable. Conversely, a P/E of 8 is not automatically cheap - it can reflect a market that believes profit is about to fall, or earnings sitting at the top of a cycle. The useful question is not 'what P/E is fair' but 'what is this price assuming about the future, and is that assumption realistic'."
+  },
+  "quiz": [
+    {
+      "question": "When can a high multiple still be reasonable?",
+      "options": [
+        "When the share price has already risen sharply over the past twelve months",
+        "When a lot of brokerages have the company on a buy recommendation",
+        "When growth and ROIC are strong enough to generate future cash",
+        "When the company carries no debt, so its financial risk is low"
+      ],
+      "explanation": "A high multiple can be reasonable if the business can sustain growth and generate strong cash."
+    },
+    {
+      "question": "Two companies in the same sector trade at P/Es that differ by a factor of two. Does that automatically mean the lower-P/E one is cheaper?",
+      "options": [
+        "Yes - a lower P/E always means the stock is cheaper",
+        "Only if the two have the same market cap and debt structure",
+        "P/E can never be compared between two different companies",
+        "No - you have to compare growth and earnings quality too"
+      ],
+      "explanation": "A P/E is one data point. The higher-multiple company may deserve it on faster growth and better earnings quality - comparing multiples while ignoring growth and profit quality leads easily to the wrong conclusion."
+    },
+    {
+      "question": "A cyclical business trades at a very low P/E. Why is that not necessarily a sign it is cheap?",
+      "options": [
+        "Because earnings may be at the top of the cycle, so the denominator is unusually high",
+        "Because a low P/E at a cyclical always reflects accounting fraud in the books",
+        "Because P/E only applies to high-growth technology businesses",
+        "Because cyclicals have to be valued on P/B and are not allowed to use P/E"
+      ],
+      "explanation": "At a cyclical, the lowest P/E usually appears right before earnings turn down, and the highest appears at the bottom. It is the classic trap in relative valuation."
+    },
+    {
+      "question": "What makes 'reading the assumptions back out of the price' useful?",
+      "options": [
+        "It produces a more precise value than a conventional DCF model",
+        "It turns 'cheap or expensive' into a testable assumption",
+        "It removes the need to make any assumptions when valuing",
+        "It only works for businesses that are not yet listed on an exchange"
+      ],
+      "explanation": "It doesn't remove the assumptions, it brings them into the open to be checked against the company's own history and the size of the market - which makes them arguable."
+    },
+    {
+      "question": "What is a sensitivity analysis in valuation for?",
+      "options": [
+        "Removing the assumptions you are uncertain about",
+        "Producing a fair value figure more precise than the initial estimate",
+        "Showing how far the conclusion moves as each assumption changes",
+        "Establishing the probability that the share price reaches a target within twelve months"
+      ],
+      "explanation": "The value of a sensitivity table is not the final number but what it shows about which assumption really drives the conclusion. If moving long-run growth by one percentage point shifts the valuation forty percent, the real work is defending that one assumption."
+    }
+  ],
+  "keyTakeaways": [
+    "Fair value is a range, not a point",
+    "Read a P/E alongside growth and earnings quality",
+    "A margin of safety still matters, even for a good company"
+  ],
+  "summary": {
+    "keyIdea": "A fair price depends on growth and on the quality of the cash flow.",
+    "commonMistake": "Looking at one multiple and concluding cheap or expensive.",
+    "action": "Compare a growth company against two or three sector peers on the same multiple."
+  },
+  "practicePrompt": {
+    "question": "A technology company growing revenue 35% a year trades at a P/E of 45x. Which statement about that multiple is the most accurate?",
+    "options": [
+      "A high P/E can be reasonable when growth is high: PEG = 45/35 = 1.28x",
+      "A P/E of 45x is always a financial bubble, whatever the growth rate",
+      "A P/E of 45x means this stock is cheaper than a bank trading at 8x",
+      "P/E cannot be applied to growth companies"
+    ],
+    "explanation": "For high-growth companies, the PEG ratio - P/E divided by the EPS growth rate - helps assess whether a high P/E is backed by a matching rate of earnings growth."
+  },
+  "application": {
+    "title": "In practice: Market Fair Value",
+    "message": "A technology company growing revenue 35% a year trades at a P/E of 45x. Which statement about that multiple is the most accurate?",
+    "secondary": "Getting this principle straight raises the level of your financial analysis."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A stock rises sharply and its P/E rises with it - how do you tell 'reasonably expensive' from 'expensive beyond reason'? The answer is not a single number."
+    },
+    {
+      "type": "heading",
+      "text": "Fair value is a range, not a point"
+    },
+    {
+      "type": "paragraph",
+      "text": "What a share is worth depends on the expected growth rate, the quality of earnings and the cost of capital - all three of which are assumptions about the future. Two analysts using the same historical data but different growth assumptions can produce two different fair value ranges, and both can be defensible from where they stand."
+    },
+    {
+      "type": "list",
+      "items": [
+        "A high multiple can still be reasonable if growth and ROIC are strong enough to generate large future cash flows",
+        "Comparing P/Es between two companies while ignoring growth rate and earnings quality leads easily to the wrong conclusion",
+        "A margin of safety still matters, even when you are analysing a good company"
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Reading the assumptions back out of the price"
+    },
+    {
+      "type": "paragraph",
+      "text": "Rather than computing a fair value and comparing it against the market price, many analysts work backwards: take the current price, then find what growth rate and margin would make that price reasonable. This turns the vague question 'cheap or expensive' into a testable one: has the business ever achieved that growth, is the market large enough to absorb it, and how will competitors respond."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Comparing P/Es alone",
+        "text": "\"Company A is on 12x, company B on 25x, so A is cheaper.\" This ignores the difference in growth, earnings quality, leverage and position in the cycle - the four things that explain most of the gap between multiples."
+      },
+      "right": {
+        "label": "Comparing with adjustments",
+        "text": "\"A grows 5%, ROIC 9%, heavily indebted; B grows 18%, ROIC 22%, almost debt-free. The gap in multiples reflects a real difference - the question is whether the gap is enough or too much.\""
+      }
+    },
+    {
+      "type": "heading",
+      "text": "Three common distortions in relative valuation"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Earnings at the top or bottom of the cycle: a cyclical usually looks cheapest right as its earnings are about to fall.",
+        "Earnings carrying something unusual: a one-off gain lifts E, pulls the P/E down and creates a false sense of cheapness.",
+        "Ignoring debt: P/E looks only at the equity. Two companies on the same P/E but with very different debt carry very different risk - which is why EV/EBITDA is usually used alongside it."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Margin of safety",
+      "text": "Because fair value is always a range rather than a point, the gap between your purchase price and the bottom of that range is the buffer for being wrong. A good business bought at a price with no margin of safety left can still be a poor investment."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Don't answer 'is this stock cheap or expensive' with a single number.",
+        "Ask instead: is the growth assumption behind this price realistic?"
+      ]
+    },
+    {
+      "type": "list",
+      "items": [
+        "Anchoring on the current price: starting from the market price and building the model around it, so the result only confirms where you started",
+        "A long-run growth rate set above the growth of the whole economy - an assumption no business sustains forever",
+        "A comparable set that isn't genuinely comparable: a different sector, or a different phase of the cycle",
+        "Forgetting the liquidity discount when valuing an unlisted business"
+      ]
+    }
+  ]
+}

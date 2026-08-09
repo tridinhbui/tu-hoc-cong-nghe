@@ -1,0 +1,170 @@
+{
+  "slug": "roic-phan-2",
+  "title": "Deep-dive case: ROIC Part 2 - the link to valuation",
+  "subtitle": "The core driver behind free cash flow and enterprise value",
+  "duration": "6 min",
+  "openingQuestion": "If ROIC rises while growth stays the same, what happens to FCF?",
+  "openingOptions": [
+    "FCF falls",
+    "FCF rises",
+    "FCF is unchanged",
+    "FCF turns negative immediately"
+  ],
+  "explanation": "ROIC connects straight to valuation through one simple relationship: to grow by another percentage point, a business has to reinvest an amount equal to the growth rate divided by ROIC. So the higher the ROIC, the less capital has to be retained to reach the same growth, and the more free cash flow is left for shareholders. This is why growth is only worth having when ROIC exceeds the cost of capital - below it, growing faster destroys more value.",
+  "diagram": [
+    { "label": "ROIC" },
+    { "label": "Less reinvestment needed" },
+    { "label": "FCF rises" },
+    { "label": "Valuation premium" }
+  ],
+  "realWorldExample": {
+    "company": "Growth when ROIC is below the cost of capital",
+    "description": "This is the paradox that confuses many new investors: a business growing revenue 25% a year while its share price falls. If the ROIC on the reinvested capital is below WACC, then every extra dollar put in to grow returns less than it cost to raise - the faster it grows, the more value is destroyed and the more negative free cash flow becomes. That is why growth always has to be read alongside ROIC, never on its own."
+  },
+  "quiz": [
+    {
+      "question": "What is the closest link between ROIC and valuation?",
+      "options": [
+        "High ROIC usually supports higher FCF",
+        "High ROIC makes a business less attractive to own",
+        "ROIC has nothing to do with valuation",
+        "ROIC only matters at banks"
+      ],
+      "explanation": "Reinvestment is g divided by ROIC, so at the same growth rate a higher ROIC leaves more NOPAT over as free cash - and it is that cash the valuation discounts. ROIC does not make a business less attractive, and it is not irrelevant to valuation: it is the variable that decides how much of each year's profit the owner actually gets to keep. Nor is it a banking metric - banks are in fact the one sector where ROIC is awkward, because their capital structure makes invested capital hard to define."
+    },
+    {
+      "question": "When ROIC < WACC and the company still pushes for fast growth, what is the risk?",
+      "options": [
+        "It destroys value",
+        "Value rises automatically",
+        "Value creation",
+        "There is no risk at all"
+      ],
+      "explanation": "Growing below the cost of capital generally drives the value of the business down."
+    },
+    {
+      "question": "A business has ROIC 10%, WACC 12%, and is growing 20% a year. What is the fairest assessment?",
+      "options": [
+        "A low ROIC doesn't matter as long as growth is fast enough",
+        "Fast growth is always good for shareholders",
+        "The growth is destroying value, because each new dollar of capital earns less than it cost to raise",
+        "It needs to grow even faster to make up for the low ROIC"
+      ],
+      "explanation": "When ROIC is below WACC, growth only amplifies the negative gap. Growing faster makes it worse rather than rescuing it."
+    },
+    {
+      "question": "With the same NOPAT and the same 8% growth, why does a 20% ROIC business have so much more free cash flow than a 10% ROIC one?",
+      "options": [
+        "Because the high-ROIC business has larger revenue",
+        "Because the high-ROIC business can borrow at a lower rate",
+        "Because the high-ROIC business pays less tax",
+        "Because it needs less reinvestment to reach the same growth, so more NOPAT is left over"
+      ],
+      "explanation": "The reinvestment rate is g divided by ROIC. The higher the ROIC, the less has to be retained to reach the same g, and what is left over is the free cash flow for investors."
+    },
+    {
+      "question": "A business has ROIC exactly equal to WACC. How much value does additional growth create for shareholders?",
+      "options": [
+        "None, because the return only just covers the cost of capital",
+        "Value in direct proportion to the growth rate achieved",
+        "It destroys value, because growth always demands more reinvestment",
+        "It cannot be determined without knowing the company's dividend payout ratio"
+      ],
+      "explanation": "Growth is only a multiplier on the gap between ROIC and WACC. With a gap of zero, any growth rate multiplied by it is still zero - which is why the first question about a business is not how fast it grows but how well it earns on capital."
+    }
+  ],
+  "keyTakeaways": [
+    "A high ROIC raises FCF",
+    "ROIC < WACC means growth destroys value",
+    "Read ROIC alongside growth and the reinvestment rate"
+  ],
+  "practicePrompt": {
+    "question": "Which of these matches what this lesson covered?",
+    "options": [
+      "High ROIC means less reinvestment, so higher FCF and a valuation premium",
+      "Without an emergency fund, a small shock easily turns into a debt spiral",
+      "A bondholder is a creditor, repaid ahead of shareholders if the company runs into financial trouble",
+      "The foundations: what a bond is, who issues one, the rate-price relationship, credit risk and credit ratings"
+    ],
+    "explanation": "High ROIC = less reinvestment = higher FCF = valuation premium"
+  },
+  "summary": {
+    "keyIdea": "A high ROIC makes every unit of growth cost less capital.",
+    "commonMistake": "Watching only the revenue growth rate and forgetting the quality of that growth.",
+    "action": "Try estimating the reinvestment rate of a company you follow."
+  },
+  "application": {
+    "title": "Work it out now",
+    "message": "Take a fast-growing company, estimate its growth and its ROIC, and see how much it has to reinvest for each unit of growth.",
+    "secondary": "The less capital it has to pump in to grow, the healthier its FCF."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "If a high ROIC helps a business create value, what exactly is the link between ROIC and free cash flow? This is the piece that explains why the market is willing to pay a higher multiple for some businesses."
+    },
+    {
+      "type": "heading",
+      "text": "A high ROIC means less reinvestment to grow"
+    },
+    {
+      "type": "paragraph",
+      "text": "FCF ≈ NOPAT − Reinvestment, and the reinvestment needed to reach a given growth rate is inversely proportional to ROIC (Reinvestment ≈ Growth / ROIC). Put differently, a high-ROIC business only has to commit less capital to reach the same growth in revenue or profit - and the NOPAT left over converts into more FCF."
+    },
+    {
+      "type": "list",
+      "items": [
+        "A high ROIC raises FCF at the same rate of growth",
+        "When ROIC < WACC, growing faster destroys value rather than creating it",
+        "Read ROIC alongside the growth rate and the reinvestment rate, never on its own"
+      ]
+    },
+    {
+      "type": "formula",
+      "title": "The relationship between growth, ROIC and free cash flow",
+      "equation": "FCF = NOPAT × (1 − g ÷ ROIC)",
+      "variables": [
+        {
+          "symbol": "g",
+          "name": "Growth rate",
+          "description": "The growth in NOPAT the business is aiming for."
+        },
+        {
+          "symbol": "g ÷ ROIC",
+          "name": "Reinvestment rate",
+          "description": "The share of NOPAT that has to be retained to fund that growth. The higher the ROIC, the smaller this is."
+        }
+      ],
+      "example": {
+        "title": "The same 8% growth, two levels of ROIC",
+        "calculation": "ROIC 20%: 1 − 8/20 = 60% of NOPAT becomes FCF · ROIC 10%: 1 − 8/10 = 20%",
+        "result": "Three times the free cash flow",
+        "explanation": "With the same NOPAT and the same growth rate, the 20% ROIC business keeps 60% of NOPAT as cash while the 10% ROIC business keeps only 20%. That is exactly why the market pays a higher multiple for high ROIC."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "The three cases for growth"
+    },
+    {
+      "type": "list",
+      "items": [
+        "ROIC > WACC: growth creates value. The faster it grows, the more the business is worth.",
+        "ROIC = WACC: growth is neutral. The business gets bigger while shareholder value barely moves.",
+        "ROIC < WACC: growth destroys value. At that point shrinking and returning cash to shareholders beats expanding."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "The question to ask when you see an expansion plan",
+      "text": "Not \"how much will the business grow\", but \"what does the new capital earn, and does that beat the cost of capital\". A great many impressive growth plans never answer the second question."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Growth is not automatically good.",
+        "Growth is only good when the ROIC on the reinvested capital beats the cost of capital."
+      ]
+    }
+  ]
+}

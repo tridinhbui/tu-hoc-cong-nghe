@@ -25,7 +25,7 @@
     {
       "question": "What most often makes OCF weaker than net income?",
       "options": [
-        "Borrowing costs falling during the period",
+        "Borrowing costs falling",
         "The gross margin improving",
         "Revenue growing quickly",
         "Working capital rising sharply"
@@ -56,7 +56,7 @@
       "question": "In converting profit to operating cash flow, why is depreciation added back?",
       "options": [
         "Because accounting standards require it to be added back on preparation",
-        "Because the tax authority refunds depreciation at the end of the financial year",
+        "Because the tax authority refunds it at year end",
         "Because it is a cost deducted that took no cash out in the period",
         "Because depreciation is a form of other income for the business"
       ],
@@ -66,7 +66,7 @@
       "question": "Where does operating cash flow sustainably above net income usually come from?",
       "options": [
         "Deferring revenue recognition into the following period",
-        "The business cutting its fixed asset investment during the reporting period",
+        "The business cutting its fixed asset investment",
         "A one-off gain from selling an asset or disposing of a business line",
         "Large depreciation, or a model that collects cash before delivering"
       ],

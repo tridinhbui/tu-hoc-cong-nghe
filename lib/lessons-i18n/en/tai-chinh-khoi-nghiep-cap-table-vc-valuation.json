@@ -146,7 +146,7 @@
       "options": [
         "Money now, with the valuation deferred to the next round",
         "It gives the investor a board seat immediately",
-        "It obliges the company to pay the investor fixed annual interest",
+        "It obliges the company to pay fixed annual interest",
         "It guarantees the investor's capital back if the company fails"
       ],
       "explanation": "At the earliest stage a valuation is close to guesswork, and arguing about it can derail a round that needs to happen fast. A SAFE cuts that knot by taking the money now and leaving the valuation to the next round, when there is real data. In return the early investor is compensated with a valuation cap and a discount - and those two terms decide how many shares they get on conversion."

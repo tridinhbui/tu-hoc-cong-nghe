@@ -87,7 +87,7 @@
     {
       "question": "Why is choosing an easy-to-beat benchmark a problem?",
       "options": [
-        "Because the rules mandate one specific index for each individual fund type",
+        "Because the rules mandate one index per fund type",
         "Because it turns an average result into outperformance on paper",
         "Because the benchmark directly determines the performance fee",
         "Because investors have no way of checking that index"
@@ -97,7 +97,7 @@
     {
       "question": "A fund team member has passed all three levels but lacks the required experience. How should that be stated?",
       "options": [
-        "Write \"CFA (pending)\" to indicate that only the final stage remains outstanding",
+        "Write \"CFA (pending)\" to show the final stage",
         "Write \"CFA\", since all the exams have been completed",
         "Describe the actual status, without using the CFA designation",
         "Say nothing at all about progress through the CFA programme"

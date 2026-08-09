@@ -45,7 +45,7 @@
     {
       "question": "Why is cash SUBTRACTED when computing enterprise value?",
       "options": [
-        "Because the cash is already inside the market cap, so it double-counts",
+        "Because the cash is already inside the market cap",
         "Because cash is not regarded as an operating asset of the business",
         "Because the buyer receives that cash, lowering the real cost",
         "Because accounting standards state that cash is outside EV"
@@ -66,7 +66,7 @@
       "question": "Why does a buyer acquiring a whole business care about enterprise value rather than market capitalisation?",
       "options": [
         "Because on completion they carry the debt and receive the cash",
-        "Because market capitalisation moves every session, so it cannot be negotiated on",
+        "Because market capitalisation moves every session",
         "Because enterprise value is always below market cap, which favours the buyer",
         "Because regulators require this figure to be disclosed"
       ],

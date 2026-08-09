@@ -143,8 +143,8 @@
       "question": "What is the BIGGEST limitation of value at risk (VaR)?",
       "options": [
         "VaR says how often losses breach the threshold, not by how much",
-        "VaR always overstates the risk, so it ties up capital that could have been deployed",
-        "VaR is so complex that banks must hire outside consultants",
+        "VaR always overstates risk and ties up capital",
+        "VaR is so complex that banks must hire outside consultants to compute it",
         "VaR applies only to portfolios of listed equities"
       ],
       "explanation": "Two portfolios can share a VaR of 200 million while on the worst day one loses 250 million and the other loses 4 billion - VaR scores them identically. It was this gap that led Basel III to move the market risk standard to expected shortfall, the measure answering \"once the threshold is breached, how much is lost on average\"."
@@ -152,7 +152,7 @@
     {
       "question": "What is stress testing in risk management?",
       "options": [
-        "Measuring the psychological stress on traders during a session",
+        "Measuring the psychological stress on the traders over a whole session",
         "Simulating specific extreme scenarios with no probability attached",
         "Testing how fast the trading system processes under heavy load",
         "Recomputing VaR at a higher confidence level, say 99.9%"
@@ -173,8 +173,8 @@
       "question": "Why did the VaR models at many large banks fail in the 2008 crisis?",
       "options": [
         "Because regulators banned VaR as soon as the crisis broke",
-        "Because the banks did not recompute their VaR often enough over the course of each trading day",
-        "Because the VaR formula was mathematically disproved in 2007",
+        "Because the banks did not recompute VaR often enough",
+        "Because the VaR formula was mathematically disproved back in 2007 by researchers",
         "Because the models learned from quiet data, and correlations jumped to 1"
       ],
       "explanation": "The formula itself was not wrong - the input data simply had never contained a scenario of US house prices falling everywhere at once. This is the core lesson: a risk model knows only what it was given to learn. Worse still is reflexivity - when every institution uses the same model and is forced to cut losses at the same threshold, that simultaneous selling creates the crash the model treated as near-impossible."
@@ -183,7 +183,7 @@
       "question": "How does a reverse stress test differ from an ordinary stress test?",
       "options": [
         "It asks backwards: what would have to happen for us to fail?",
-        "It applies only to bond and corporate credit portfolios",
+        "It applies only to portfolios of bonds and corporate credit exposures",
         "It reruns the model in reverse chronological order",
         "It computes potential profit instead of potential loss"
       ],

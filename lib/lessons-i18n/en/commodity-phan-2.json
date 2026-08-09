@@ -1,0 +1,153 @@
+{
+  "slug": "commodity-phan-2",
+  "title": "Deep-dive case: Commodities Part 2",
+  "subtitle": "Supply, demand, inventory - the three things that price a commodity",
+  "duration": "6 min",
+  "openingQuestion": "When inventories keep building while demand is weak, which way does a commodity price usually go?",
+  "openingOptions": ["Up", "Down", "Unchanged", "Up, then down"],
+  "explanation": "Surplus inventory is the signal that supply is running ahead of demand, and it puts downward pressure on the price. Commodity traders follow the weekly and monthly inventory reports more closely than they follow any company's financial statements, because inventory is the closest thing there is to a real-time reading of the supply-demand balance.",
+  "diagram": [
+    { "label": "Supply" },
+    { "label": "Demand" },
+    { "label": "Inventory" },
+    { "label": "Commodity price" }
+  ],
+  "realWorldExample": {
+    "company": "Why the commodity cycle repeats",
+    "description": "The commodity cycle follows almost the same script every time. High prices encourage producers to expand capacity, but opening a new mine or planting a new crop takes years. By the time that new supply arrives, demand has usually cooled, supply overshoots demand, inventories pile up and the price falls hard. Low prices then push projects back and cut capacity, sowing the seed of the next shortage. The lag between the investment decision and actual output is the structural reason commodities are far more cyclical than most other industries."
+  },
+  "quiz": [
+    {
+      "question": "What is usually the most important short-term indicator for a commodity?",
+      "options": [
+        "Earnings per share (EPS)",
+        "The level of inventory",
+        "The dividend yield",
+        "Book value"
+      ],
+      "explanation": "Inventory shows whether the supply-demand balance is currently in surplus or in deficit."
+    },
+    {
+      "question": "Why are commodities usually more volatile than services?",
+      "options": [
+        "Because the price is set by the international exchanges",
+        "Because demand for commodities changes entirely at random",
+        "Because supply cannot adjust quickly to changes in demand",
+        "Because commodities cannot be stored for long"
+      ],
+      "explanation": "A slow supply cycle, the buffer of storage and the presence of speculative money together make commodity prices swing hard."
+    },
+    {
+      "question": "Why is the commodity sector more cyclical than most other industries?",
+      "options": [
+        "Because commodities cannot be stored, so supply must match demand instantly",
+        "Because commodity demand changes at random with no pattern behind it",
+        "Because commodity prices are fixed in advance by the international exchanges",
+        "Because the investment lag is long, so new supply arrives after demand has cooled"
+      ],
+      "explanation": "Opening a mine or planting a crop takes years. That lag is what creates the loop: high price → heavy investment → oversupply → low price → investment cut → shortage."
+    },
+    {
+      "question": "Inventories are falling fast. Why is that not enough to conclude the price will rise durably?",
+      "options": [
+        "Because you have to separate real consumption from a temporary supply disruption",
+        "Because inventory reflects only supply and says nothing whatever about demand",
+        "Because inventory data is always published several months behind the price",
+        "Because commodity prices mainly depend on the exchange rate of the US dollar"
+      ],
+      "explanation": "Durable demand growth and a temporary supply outage both pull inventories down, but they end very differently: in one the price holds at a new level, in the other it falls back as soon as supply is restored."
+    },
+    {
+      "question": "Why do commodity price cycles usually last years rather than correcting quickly?",
+      "options": [
+        "Because the large producers agree among themselves to hold prices steady over the long run",
+        "Because opening a mine or building a plant takes years, so supply responds very slowly",
+        "Because demand for basic commodities barely changes with the economic cycle",
+        "Because futures contracts lock in the trading price for several years at a time"
+      ],
+      "explanation": "A high price encourages expansion, but the new capacity only reaches the market years later - usually just as demand has cooled, and the surplus then drags on. The lag between the price signal and the supply response is the engine of the cycle."
+    }
+  ],
+  "keyTakeaways": [
+    "Commodities react strongly to supply, demand and inventory",
+    "They are highly cyclical because supply responds with a long lag",
+    "Hedging is risk management, not speculation"
+  ],
+  "practicePrompt": {
+    "question": "Which of these matches what this lesson covered?",
+    "options": [
+      "g must always sit well below WACC or the arithmetic produces a meaningless result",
+      "Merger: a merger of equals; Acquisition: buying and taking control",
+      "A higher return always comes with higher risk, with no exceptions",
+      "3 factors: Supply/Demand, Inventory, Geopolitics"
+    ],
+    "explanation": "3 factors: Supply/Demand, Inventory, Geopolitics"
+  },
+  "summary": {
+    "keyIdea": "Inventory is the fastest signal a commodity gives you.",
+    "commonMistake": "Watching only the current price and ignoring what inventory is saying.",
+    "action": "Look up the inventory data for a commodity you follow and compare it against the last few periods."
+  },
+  "application": {
+    "title": "Look it up now",
+    "message": "Pick a commodity - oil, steel or an agricultural product - check the most recent inventory figure and note whether the trend is up or down.",
+    "secondary": "A turn in inventory usually leads a move in price."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "If the previous lesson introduced commodities as standardised goods, this one goes into the single most important signal for where the price is heading in the short run: inventory."
+    },
+    {
+      "type": "heading",
+      "text": "Inventory - the closest thing to a real-time supply-demand reading"
+    },
+    {
+      "type": "paragraph",
+      "text": "When inventory of a commodity keeps building while demand is weak, that is a clear signal supply is running ahead of demand, and it puts downward pressure on price. The reverse - inventory drawing down fast while demand holds up - usually signals a price rise ahead. Because company financial statements are published slowly, quarterly, while commodity inventory data is updated weekly or monthly, traders treat it as the most important leading indicator they have."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Inventory is the most important short-term indicator in the commodity market",
+        "Commodities are highly cyclical because supply - mining, planting - lags changes in demand by a long way",
+        "Hedging with futures is a risk management tool, not a speculative one"
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Inventory rising, demand weak",
+        "text": "Supply is running ahead of demand. The price is under downward pressure. Producers are hit hardest, because their fixed costs are high and they cannot cut output quickly."
+      },
+      "right": {
+        "label": "Inventory falling fast, demand strong",
+        "text": "Supply is short. The price is under upward pressure. But check whether inventory is falling because of real consumption or because of a temporary supply disruption - the two causes lead to very different outcomes."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "Three layers of information when reading a commodity market"
+    },
+    {
+      "type": "list",
+      "items": [
+        "The supply layer: new capacity about to come on stream, the marginal cost of the most expensive group of producers, and disruption from weather or geopolitics.",
+        "The demand layer: industrial growth in the large consuming countries, seasonality, and how easily buyers can substitute another commodity when the price runs up.",
+        "The financial layer: interest rates and the currency the commodity is priced in, storage costs, and speculative flows - this layer can push the price away from the underlying balance in the short run."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Hedging is not speculation",
+      "text": "A manufacturer using futures to lock in an input price is reducing risk - the gain or loss on the contract offsets the movement in the physical price. Someone with no need for the physical commodity who buys the same contract is taking on risk. One instrument, two opposite purposes."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "With commodities, don't look only at today's price.",
+        "Whether inventory is building or drawing down is the real story behind the move."
+      ]
+    }
+  ]
+}

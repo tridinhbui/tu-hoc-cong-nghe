@@ -97,7 +97,7 @@
     {
       "question": "What is the duty of the person receiving the pressure?",
       "options": [
-        "Change the recommendation but note the reason at the end of the report",
+        "Change the recommendation but note the reason at the end",
         "Resign immediately so as not to be associated with the report",
         "Hold the well-founded conclusion, record it, take it to compliance",
         "Wait and see whether the underwriting mandate is actually lost"
@@ -119,7 +119,7 @@
       "options": [
         "Because underwriting revenue comes from the companies covered",
         "Because the two departments always have personal disputes",
-        "Because current rules do not clearly divide the two sides' responsibilities",
+        "Because current rules do not divide responsibility clearly",
         "Because analysts usually hold less power within the organisation"
       ],
       "explanation": "The conflict is in the business model rather than in an individual, so the solution has to be a mechanism rather than individual willpower."

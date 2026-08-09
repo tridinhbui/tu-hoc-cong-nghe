@@ -1,0 +1,176 @@
+{
+  "slug": "discontinued-operations",
+  "title": "Deep-dive case: Discontinued Operations",
+  "subtitle": "Don't let Net Income fool you",
+  "duration": "5 min",
+  "openingQuestion": "Net Income = 50bn, of which a discontinued ops gain = 80bn. What is Continuing Operations actually?",
+  "openingOptions": [
+    "−30bn",
+    "0bn",
+    "50bn",
+    "130bn (adding the two together)"
+  ],
+  "explanation": "Accounting standards force the results of a segment that has been shut or is about to be sold out of continuing operations, and the reason is entirely practical: only the continuing part still exists in later periods. A business reporting positive net income can perfectly well be losing money in its core operations, with the difference coming from a one-off gain on selling a segment. So the first thing to do when profit jumps is to look for this line in the accounts.",
+  "diagram": [
+    { "label": "Total Net Income" },
+    { "label": "Strip out discontinued ops" },
+    { "label": "Left with continuing operations" },
+    { "label": "Judge the core business on the continuing part alone" }
+  ],
+  "realWorldExample": {
+    "company": "A company divesting one of its segments",
+    "description": "When a group sells a subsidiary outright, the gain on that transaction is booked under Discontinued Operations, not in the results of the core business. If the core lost money that year, total Net Income can still come out positive on the strength of that one-off gain. Analysts therefore read the statement in reverse: start at profit from continuing operations, then see how much the one-off contributed - rather than starting at the bottom line."
+  },
+  "application": {
+    "title": "Read a real set of accounts",
+    "message": "Take the most recent financial statements you can find, locate the continuing versus discontinued operations lines, and mark which is core and which is one-off.",
+    "secondary": "If the one-off is large relative to the core business, don't forecast the future from total Net Income."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A healthy-looking Net Income doesn't always mean the core business is healthy. When a company divests or sells a segment, that one-off gain or loss can make the bottom line look very different from how the business actually runs."
+    },
+    {
+      "type": "heading",
+      "text": "Separating Continuing Operations from Discontinued Operations"
+    },
+    {
+      "type": "paragraph",
+      "text": "A standard income statement reports profit from Continuing Operations separately from the profit or loss of segments that have been discontinued or are about to be. A large gain on selling a segment can push total Net Income very high in one period, while saying nothing at all about how profitable the rest of the company is."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Always separate Continuing Operations before judging the health of the business",
+        "Discontinued ops are one-off; don't use them to forecast the future",
+        "A profit spike that repeats period after period is worth a hard look - it is no longer a 'one-off'"
+      ]
+    },
+    {
+      "type": "formula",
+      "title": "The two parts of the income statement",
+      "equation": "Net Income = Profit from continuing operations + Gain/loss from discontinued operations",
+      "variables": [
+        {
+          "symbol": "Continuing",
+          "name": "Continuing operations",
+          "description": "The part of the business the company keeps - this is what you forecast the future from."
+        },
+        {
+          "symbol": "Discontinued",
+          "name": "Discontinued or held-for-sale operations",
+          "description": "A segment sold or about to close, including the gain or loss on the sale itself."
+        }
+      ],
+      "example": {
+        "title": "A worked example",
+        "calculation": "Net Income 50bn = Continuing + 80bn",
+        "result": "Continuing = −30bn",
+        "explanation": "The company reports a 50bn profit, but all of it comes from an 80bn gain on selling a segment. The core business actually lost 30bn - and that is the number that says what next year looks like."
+      }
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Reading from the bottom line up",
+        "text": "\"Net Income 50bn, up on last year - the business is improving.\" The conclusion is wrong, because the increase came from a transaction that will not repeat."
+      },
+      "right": {
+        "label": "Reading from the core business down",
+        "text": "\"Continuing operations lost 30bn; the 80bn gain came from selling segment X, and it is one-off. The question is whether the core has anything to make that up next year.\""
+      }
+    },
+    {
+      "type": "heading",
+      "text": "Three things to check when the one-off is large"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Is it genuinely one-off - check the last three to five years and see whether the 'one-off' shows up regularly.",
+        "How much revenue and profit did the sold segment used to contribute - what fills that hole next year?",
+        "What the sale proceeds were used for: repaying debt, reinvesting, or paying a dividend. That is a signal about the quality of capital allocation."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The bottom line is only the starting point.",
+        "Always ask: where did this profit come from, and can it happen again?"
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "What should you do first when you see an unusually large profit in a set of accounts?",
+      "options": [
+        "Add it straight into enterprise value when you run the valuation",
+        "Separate continuing from discontinued",
+        "Convert it to a gross margin so you can compare against the sector",
+        "Use it immediately to forecast next year's profit"
+      ],
+      "explanation": "The most important habit is separating core profit from the one-off, so that Net Income doesn't mislead you."
+    },
+    {
+      "question": "If a company has discontinued gains every single year, what does that usually signal?",
+      "options": [
+        "It is the result of accounting recognition lagging across several consecutive periods",
+        "The business is very healthy, since it finds a new source of profit every year",
+        "Look harder at capital allocation and at how durable the profit is",
+        "It is random luck and carries no additional information"
+      ],
+      "explanation": "A one-off that repeats across periods is no longer a 'one-off' - it is a signal to read the business model carefully."
+    },
+    {
+      "question": "A company has shown a gain from discontinued operations in four consecutive years. What does that suggest?",
+      "options": [
+        "Add the whole amount back into core profit so the years are comparable",
+        "This is an ordinary accounting phenomenon at most companies",
+        "The business is very healthy, since it earns extra profit every year",
+        "The company may be selling assets to cover a weak core business"
+      ],
+      "explanation": "The whole nature of a one-off is that it doesn't repeat. When it repeats steadily, the right question is whether the company is living off selling assets or off operating."
+    },
+    {
+      "question": "Analysing a company that has just sold a segment, what is the most important question about the revenue it loses?",
+      "options": [
+        "How much that segment used to contribute, and what fills the gap next year",
+        "Whether the transaction has been fully confirmed by an independent audit",
+        "Whether the sale price was above the segment's book value",
+        "Who the buyer was, and whether they are a related party"
+      ],
+      "explanation": "The gain on the transaction affects one period, but the lost revenue and profit affect every period after it. That is what shapes the picture of the future."
+    },
+    {
+      "question": "Why do accounting standards require discontinued operations to be presented separately from continuing ones?",
+      "options": [
+        "So the company avoids paying tax on the profit of the segment it sold",
+        "So the reader can forecast the part of the business that will still exist",
+        "So the regulator can track how many divestments happened during the year",
+        "So the auditor has grounds to exclude that segment from the year's audit scope"
+      ],
+      "explanation": "The value of an income statement is what it lets you forecast, and a segment that has been sold contributes nothing next year. Separating it tells the reader which part repeats - and that is also why a one-off gain on a sale should not go into a valuation multiple."
+    }
+  ],
+  "practicePrompt": {
+    "question": "Which of these matches what this lesson covered?",
+    "options": [
+      "The risk-free rate is the foundation of every financial valuation model",
+      "Always separate out Continuing Operations when you analyse",
+      "Reading a balance sheet: current assets versus current liabilities first",
+      "Exit Multiple Method: terminal value based on a typical market multiple such as EV/EBITDA"
+    ],
+    "explanation": "Always separate out Continuing Operations when you analyse"
+  },
+  "keyTakeaways": [
+    "Always separate Continuing Operations when you analyse",
+    "Discontinued ops are one-off; don't value the core business on them",
+    "A profit spike that repeats across periods is a red flag"
+  ],
+  "summary": {
+    "keyIdea": "Read core profit before you believe Net Income.",
+    "commonMistake": "Looking at the final profit figure without asking where it came from.",
+    "action": "Open a set of financial statements and compare Net Income against Continuing Operations across the last two or three periods."
+  }
+}

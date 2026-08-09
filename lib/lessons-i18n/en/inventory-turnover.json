@@ -1,0 +1,165 @@
+{
+  "slug": "inventory-turnover",
+  "title": "Inventory",
+  "subtitle": "Inventory turnover, DSI, DOH and the supply chain",
+  "duration": "6 min",
+  "openingQuestion": "What does a sharp fall in inventory turnover usually signal?",
+  "openingOptions": [
+    "Goods are selling more slowly",
+    "Profit is certain to rise",
+    "Cash goes up immediately",
+    "It carries no meaning"
+  ],
+  "explanation": "Inventory turnover divides cost of goods sold by average inventory, showing how many times in a year the business sells through and restocks. Converting it into days of inventory makes it easier to read when comparing. What matters is the direction of travel: a slowing turn means capital is tied up longer and the risk of having to discount rises. But a sudden jump in turnover is worth checking too - it can mean strong selling, or it can mean the warehouse has just been cleared out.",
+  "diagram": [
+    { "label": "COGS" },
+    { "label": "Average inventory" },
+    { "label": "Inventory turnover" },
+    { "label": "Days inventory outstanding" }
+  ],
+  "realWorldExample": {
+    "company": "Zara",
+    "description": "Fast fashion works partly because inventory turns quickly, which cuts the risk of stock going out of style."
+  },
+  "quiz": [
+    {
+      "question": "What does a sharp rise in DIO usually imply?",
+      "options": [
+        "ROIC will automatically rise along with DIO",
+        "Inventory has nothing to do with turnover",
+        "Goods are sold the moment they arrive",
+        "It takes more days to sell through the stock"
+      ],
+      "explanation": "DIO is 365 divided by turnover, so it rises exactly when stock moves more slowly - capital sits in the warehouse for longer before it comes back as cash. It does not lift ROIC; slower-moving stock ties up more invested capital and pushes ROIC the other way. And it is not unrelated to turnover but the same number expressed in days, which is why the two always move in opposite directions."
+    },
+    {
+      "question": "A fashion company's DIO goes from 60 days to 120 days in a year while revenue still edges up. What is most worrying here?",
+      "options": [
+        "The revenue growth may only come from discounting old stock",
+        "Only revenue matters and DIO does not need to be looked at",
+        "A rising DIO is always a good sign in the fashion sector",
+        "There is nothing to worry about while revenue is still growing"
+      ],
+      "explanation": "In a seasonal, fashion-driven sector like apparel, a DIO that doubles is a serious warning: if revenue is only rising because of heavy discounting to move stock, gross margin usually falls with it - DIO has to be read alongside gross margin for the full picture."
+    },
+    {
+      "question": "COGS is 720bn and average inventory 120bn. What is the average number of days of inventory?",
+      "options": [
+        "About 120 days (taking average inventory directly)",
+        "About 61 days (= 365 ÷ 6 turns)",
+        "About 720 days (taking COGS directly as days)",
+        "About 6 days (confusing turns with days)"
+      ],
+      "explanation": "Turnover = 720 ÷ 120 = 6 times. DIO = 365 ÷ 6 ≈ 61 days. That is the average time a batch of stock sits in the warehouse before it is sold."
+    },
+    {
+      "question": "DIO is rising steadily while gross margin is falling steadily. What is the most sensible reading?",
+      "options": [
+        "The business is certainly falsifying its accounting figures",
+        "This is a sign the business is expanding its scale very successfully",
+        "It may be discounting to shift stock that is selling slowly",
+        "The two measures have nothing at all to do with each other"
+      ],
+      "explanation": "Reading the two together separates a DIO rising for strategic reasons from one rising because of a demand problem - a simultaneous fall in margin points to the second."
+    },
+    {
+      "question": "Inventory turnover jumps sharply in one quarter. In which case is that bad news?",
+      "options": [
+        "When gross margin for the quarter improves on the quarter before it",
+        "When revenue in the quarter grows faster than in the same quarter last year",
+        "When the business has just shortened its suppliers' delivery times",
+        "When the business has just cleared the warehouse at a deep discount"
+      ],
+      "explanation": "The same metric rising can come from two opposite stories: selling better, or dumping. The way to tell them apart is to look at gross margin alongside - turnover up while margin drops means the stock was pushed out with discounts rather than pulled out by demand."
+    }
+  ],
+  "keyTakeaways": [
+    "Inventory turnover = COGS / average inventory",
+    "DIO = 365 / turnover",
+    "Inventory is the early warning of a selling problem"
+  ],
+  "summary": {
+    "keyIdea": "Inventory turnover = COGS / average inventory",
+    "commonMistake": "Easy to overlook: DIO = 365 / turnover",
+    "action": "Inventory is the early warning of a selling problem"
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Inventory is not just a line on the balance sheet - how fast it turns is one of the earliest indicators of business health at any company selling physical goods."
+    },
+    {
+      "type": "heading",
+      "text": "Inventory turnover and days inventory outstanding"
+    },
+    {
+      "type": "paragraph",
+      "text": "Inventory turnover = COGS / average inventory, showing how many times in the period the business sells through and replaces its stock. Days inventory outstanding (DIO = 365/turnover) shows how many days on average it takes to sell that stock. A sharp fall in turnover - a rising DIO - usually signals stock backing up or selling slowly, which is especially dangerous in a highly seasonal sector like fashion, where stock risks going out of style before it can be sold."
+    },
+    {
+      "type": "list",
+      "items": [
+        "A sharp fall in inventory turnover usually signals goods are selling more slowly",
+        "A rising DIO means working capital is stuck in the warehouse longer, raising the risk of obsolescence or damage",
+        "In fashion, read DIO alongside gross margin to spot revenue growth that comes only from discounting old stock"
+      ]
+    },
+    {
+      "type": "formula",
+      "title": "Average days of inventory",
+      "equation": "DIO = 365 ÷ Inventory turnover",
+      "example": {
+        "title": "A worked example",
+        "calculation": "COGS 600bn, average inventory 100bn → turnover 6 times",
+        "result": "DIO ≈ 61 days",
+        "explanation": "On average it takes about two months to sell through a batch of stock and replace it. If DIO rises to 85 days the following year while revenue does not rise with it, that is a sign stock is moving more slowly - worth understanding before it shows up in the profit line."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "Why a rising DIO is an early warning"
+    },
+    {
+      "type": "paragraph",
+      "text": "A business usually detects a slow-selling problem through inventory before it becomes visible in the profit statement, because stock has to wait several periods to be recognised as revenue or written down in a clearance. That is why DIO is treated as a leading indicator: it shows a problem accumulating before the effect reaches profit."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "DIO rising through planned expansion",
+        "text": "The business is deliberately building stock ahead of a peak season or ahead of opening a new distribution channel. DIO rises temporarily, but for a clear reason, and is expected to come back down."
+      },
+      "right": {
+        "label": "DIO rising because stock sells slowly",
+        "text": "Demand has weakened but the business has not yet adjusted its production or purchasing plan. DIO drifts up quarter after quarter with no seasonal or strategic explanation."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Read it with gross margin",
+      "text": "If revenue is still rising but gross margin falls at the same time as DIO rises, the business is most likely discounting to shift stock - meaning the attractive revenue figure is being bought with worse profitability rather than genuinely stronger demand."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Inventory turning more slowly is not always bad, but it is always worth asking why.",
+        "It is one of the earliest warnings you get before a problem appears in the profit statement."
+      ]
+    }
+  ],
+  "practicePrompt": {
+    "question": "Days sales of inventory (DSI, or DOH) jumps from 45 days to 90 days. What risk does that flag?",
+    "options": [
+      "Stock backing up, tying up working capital",
+      "The business selling so fast that production cannot keep up",
+      "Supply chain management reaching optimal efficiency",
+      "Next year's revenue being certain to double"
+    ],
+    "explanation": "A sharp rise in DSI/DOH means stock sits in the warehouse longer, costing storage, risking obsolescence and degrading the quality of working capital."
+  },
+  "application": {
+    "title": "In practice: Inventory",
+    "message": "Days sales of inventory (DSI, or DOH) jumps from 45 days to 90 days. What risk does that flag?",
+    "secondary": "Getting this principle straight raises the level of your financial analysis."
+  }
+}

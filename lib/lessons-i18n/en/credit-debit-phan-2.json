@@ -1,0 +1,166 @@
+{
+  "slug": "credit-debit-phan-2",
+  "title": "Journal entries in practice: from the rule to the ledger",
+  "subtitle": "Debits and credits for the transactions you meet every day, and a startup's first month",
+  "duration": "7 min",
+  "openingQuestion": "You sell 200m of goods and the customer will pay next month. Which entry do you book?",
+  "openingOptions": [
+    "Nothing yet - wait for the cash before recognising revenue",
+    "Dr. Receivables 200, Cr. Revenue 200",
+    "Dr. Revenue 200, Cr. Receivables 200",
+    "Dr. Cash 200, Cr. Revenue 200"
+  ],
+  "explanation": "Revenue is recognised when the obligation is fulfilled, not when the cash arrives - that is the accrual principle. The goods have been delivered, so the revenue arises immediately, and because no cash has come in, the other side is a receivable rather than cash. A receivable is an asset, and an asset increasing is a debit; revenue increasing is a credit. Swapping the two sides says revenue fell and receivables fell too, which describes a completely different transaction. Booking it to cash is wrong in a different way: the ledger would report 200m sitting in the bank when not a single dong has arrived.",
+  "diagram": [
+    { "label": "Identify the accounts affected" },
+    { "label": "Classify: asset, liability, equity, revenue or expense" },
+    { "label": "Apply the increase/decrease rule to each type" },
+    { "label": "Debit first, credit second, both sides equal" }
+  ],
+  "realWorldExample": {
+    "company": "A service startup's first month",
+    "description": "The first four transactions of a new company touch all four account types: shareholders putting in capital, rent paid in advance, buying equipment, and selling a service with half the cash collected. Read those four entries and you can read most of a small company's ledger."
+  },
+  "keyTakeaways": [
+    "Three steps: identify the accounts, classify them, then apply the increase/decrease rule",
+    "Revenue is booked when the obligation is met, not when the cash arrives",
+    "Spending cash on an asset creates no expense - it only changes the form of wealth",
+    "Depreciation is a non-cash expense: debit the expense, credit accumulated depreciation"
+  ],
+  "summary": {
+    "keyIdea": "Every transaction is one question: which account did the value move from, and to which",
+    "commonMistake": "Recognising revenue when the cash lands, and treating every payment out as an expense",
+    "action": "Take the five most recent transactions of a business you know and write both sides of each yourself"
+  },
+  "application": {
+    "title": "Keep a month of books yourself",
+    "message": "Take one month of your own spending, treat yourself as a one-person company, and write both sides of every item. Wherever you find it hard to classify is usually the boundary between an asset and an expense.",
+    "secondary": "If the two sides don't balance, the error is almost always a transaction where you only booked one side."
+  },
+  "practicePrompt": {
+    "question": "A company pays 120m in advance for six months of office rent. What is the entry at the moment of payment?",
+    "options": [
+      "Dr. Rent expense 120, Cr. Cash 120",
+      "Dr. Prepaid expenses 120, Cr. Cash 120",
+      "Dr. Cash 120, Cr. Prepaid expenses 120",
+      "Dr. Rent expense 20, Cr. Cash 120"
+    ],
+    "explanation": "At the moment of payment the company has not occupied anything yet - it has bought the right to use the office for the next six months, and that right is an asset. So the debit is a prepayment, not an expense. The expense arises gradually: each month 20m moves from prepayments into rent expense. Booking the whole 120m as an expense at once crams six months into one, making that month's profit falsely low and the next five falsely high. The last option doesn't even balance."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The debit-credit rule is short, but the difficulty is not in the rule: it is in recognising which accounts a transaction actually touches. This part walks through the transactions you meet every day, and through the first month of a new company."
+    },
+    {
+      "type": "callout",
+      "label": "The groundwork is in the previous lesson",
+      "text": "Why every transaction has two sides, the increase/decrease rule for each account type, and why the total always balances - all of that is in the double-entry lesson. Here we only apply it to real work."
+    },
+    {
+      "type": "heading",
+      "text": "Three steps for every transaction"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Identify the accounts affected: cash, inventory, revenue, a loan, and so on",
+        "Classify each one as an asset, a liability, equity, revenue or an expense",
+        "Apply the increase/decrease rule, write the debit first and the credit second, then check the two sides are equal"
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Four worked transactions"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Buying an asset for 500m cash: debit fixed assets, credit cash - two assets swap places and total assets are unchanged",
+        "Selling 200m of goods on credit: debit receivables, credit revenue - the revenue is booked even though no cash has arrived",
+        "Collecting the 200m from the customer: debit cash, credit receivables - a conversion between two assets, with no new revenue",
+        "Depreciation of 50m: debit depreciation expense, credit accumulated depreciation - an expense arises without a single dong leaving"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The middle two are where people slip most often, because the same 200m figure appears twice. The first time it creates revenue, the second time it does not - and booking revenue on both occasions makes the ledger report twice the revenue that actually exists."
+    },
+    {
+      "type": "heading",
+      "text": "A startup's first month"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Shareholders contribute 2bn: debit cash 2bn, credit share capital 2bn",
+        "Six months of rent paid in advance, 120m: debit prepayments 120, credit cash 120",
+        "Buying a laptop for 50m: debit equipment 50, credit cash 50",
+        "Selling 300m of services with half collected immediately: debit cash 150 and debit receivables 150, credit revenue 300"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The last transaction shows that one credit can be matched by two debits. What has to balance is the total of the two sides, not the number of lines: 150 plus 150 is 300."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The ledger can detect its own errors because total debits must equal total credits, so an imbalance almost always means a transaction was booked on one side only.",
+        "But balancing does not mean correct: post the right amount to the wrong account and the ledger still balances."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "You buy 200m of inventory and pay cash. Which entry is correct?",
+      "options": [
+        "Dr. Cash 200M / Cr. Inventory 200M",
+        "Dr. Expense 200M / Cr. Cash 200M",
+        "Dr. Inventory 200M / Cr. Cash 200M",
+        "Dr. Inventory 200M / Cr. Revenue 200M"
+      ],
+      "explanation": "Inventory (an asset) rises → debit inventory. Cash (an asset) falls → credit cash. This is an exchange between two assets."
+    },
+    {
+      "question": "The company borrows 500m from a bank and the money lands in its account. What is the entry?",
+      "options": [
+        "Dr. Loan 500M / Cr. Cash 500M",
+        "Dr. Cash 500M / Cr. Equity 500M",
+        "Dr. Revenue 500M / Cr. Loan Payable 500M",
+        "Dr. Cash 500M / Cr. Loan Payable 500M"
+      ],
+      "explanation": "Cash (an asset) rises → debit cash. Loan payable (a liability) rises → credit loan payable. Debt and assets go up together."
+    },
+    {
+      "question": "You pay 100m of staff salaries in cash. What is the entry?",
+      "options": [
+        "Dr. Salary Expense 100M / Cr. Cash 100M",
+        "Dr. Cash 100M / Cr. Salary Expense 100M",
+        "Dr. Equity 100M / Cr. Cash 100M",
+        "Dr. Salary Payable 100M / Cr. Revenue 100M"
+      ],
+      "explanation": "Salary expense (an expense) rises → debit it. Cash (an asset) falls → credit cash. The expense reduces profit, and so reduces equity."
+    },
+    {
+      "question": "A customer pays a 50m deposit and nothing has been delivered yet. What is the entry?",
+      "options": [
+        "Dr. Cash 50M / Cr. Revenue 50M",
+        "Dr. Cash 50M / Cr. Deferred Revenue 50M",
+        "Dr. Revenue 50M / Cr. Cash 50M",
+        "Dr. Cash 50M / Cr. Equity 50M"
+      ],
+      "explanation": "Nothing delivered means nothing earned. Book deferred revenue (a liability) - the obligation to deliver later. Only on delivery do you post Dr. Deferred Revenue / Cr. Revenue."
+    },
+    {
+      "question": "After the year-end close, what happens to the revenue and expense accounts?",
+      "options": [
+        "Their balances carry forward into the following year",
+        "Their balances are transferred straight onto the balance sheet",
+        "They go to zero, with the profit or loss moved into retained earnings",
+        "They are deleted entirely from the accounting system"
+      ],
+      "explanation": "The closing entries are Dr. Revenue / Cr. Income Summary, then Dr. Income Summary / Cr. Retained Earnings if there is a profit. Revenue and expense are temporary accounts and reset every year."
+    }
+  ]
+}
