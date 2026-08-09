@@ -5,10 +5,10 @@
   "duration": "7 min",
   "openingQuestion": "Why doesn't a buyer acquiring an entire company simply pay exactly its Market Cap?",
   "openingOptions": [
-    "Because Market Cap is always lower than true value",
+    "Because Market Cap is always lower than the true value of a firm",
     "Because an M&A transaction tax must be paid on top",
     "Because the law requires paying an extra fee",
-    "Because the buyer must also take on the company's existing debt (added), but also receives the company's available cash (subtracted) - this is exactly Enterprise Value"
+    "Because the buyer takes on the debt and gets the cash too"
   ],
   "explanation": "Enterprise Value (EV) = Market Cap + Total Debt − Cash and cash equivalents. EV reflects the real cost of 'buying out' a company's entire operating business: paying shareholders (Market Cap), taking on its existing debt, but getting some of that back through the cash the company already holds.",
   "diagram": [

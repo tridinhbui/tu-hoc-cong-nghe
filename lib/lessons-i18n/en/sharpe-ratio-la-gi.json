@@ -5,8 +5,8 @@
   "duration": "6 min",
   "openingQuestion": "Fund A returns 20%/year with 25% volatility. Fund B returns 12%/year with 10% volatility. The risk-free rate is 3%. Which fund has the higher Sharpe Ratio?",
   "openingOptions": [
-    "Fund A, because its absolute return is higher",
-    "Fund B - Sharpe A = (20-3)/25 = 0.68; Sharpe B = (12-3)/10 = 0.9 - B is more efficient per unit of risk despite a lower absolute return",
+    "Fund A, because its absolute return is the higher of the two funds",
+    "Fund B - Sharpe 0.9 versus 0.68, more return per unit of risk",
     "Cannot be calculated without more information",
     "Both are equal"
   ],

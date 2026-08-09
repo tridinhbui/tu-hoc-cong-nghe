@@ -5,9 +5,9 @@
   "duration": "6 min",
   "openingQuestion": "Equity Value and Enterprise Value - which one is bigger for a company with positive net debt (more debt than cash)?",
   "openingOptions": [
-    "Equity Value is always bigger in every case",
+    "Equity Value is always bigger in every single case that you look at",
     "Can't be compared without profit data",
-    "Enterprise Value is bigger than Equity Value when the company has positive net debt - because EV adds on the debt that shareholders don't carry directly but which still affects overall value",
+    "Enterprise Value is bigger when net debt is positive",
     "The two are always equal"
   ],
   "explanation": "Equity Value (= Market Cap for a listed company) is the value that belongs specifically to SHAREHOLDERS. Enterprise Value is the value of the WHOLE operating business, belonging to both shareholders AND creditors. The conversion formula: EV = Equity Value + Net Debt (Debt − Cash). For a company with positive net debt, EV > Equity Value.",

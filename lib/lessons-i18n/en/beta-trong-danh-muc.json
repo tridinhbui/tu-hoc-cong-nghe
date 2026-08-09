@@ -7,8 +7,8 @@
   "openingOptions": [
     "Rise by exactly 10%, matching the market",
     "Fall by 15%",
-    "It has no relationship to market movement at all",
-    "Rise by about 15% (1.5 × 10%) - Beta measures sensitivity to the market, and a Beta above 1 means it swings more than the market in the same direction"
+    "It has no relationship to the market's movement at all whatsoever",
+    "Rise by about 15% (1.5 × 10%) - Beta amplifies market moves"
   ],
   "explanation": "Beta measures how sensitive a portfolio/stock is to the movement of the whole market. Beta = 1: moves exactly with the market. Beta > 1: swings more than the market (amplifying both gains and losses). Beta < 1: swings less than the market (more defensive). Negative beta (rare): moves opposite to the market.",
   "diagram": [

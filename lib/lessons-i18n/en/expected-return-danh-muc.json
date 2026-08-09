@@ -8,7 +8,7 @@
     "12%, taking the asset with the highest return",
     "9.2% (0.6×12% + 0.4×5% = 7.2%+2%=9.2%) - a weighted average by each asset's weight",
     "17%",
-    "8.5% (a simple arithmetic average)"
+    "8.5% (a simple arithmetic average of the 12% and the 5%, ignoring both of their weights)"
   ],
   "explanation": "A portfolio's Expected Return = the sum of (each asset's weight × that asset's expected return). This is a WEIGHTED average, not a simple arithmetic average - an asset with a larger weight has more influence on the overall result, and this is the calculation every asset-allocation decision ultimately rests on.",
   "diagram": [

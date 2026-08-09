@@ -4,9 +4,9 @@
   "subtitle": "Swapping between a fixed interest rate and a floating interest rate",
   "openingQuestion": "A business is borrowing at a floating rate (SOFR + 2%) and worries rates will rise sharply. How can an Interest Rate Swap (IRS) hedge this?",
   "openingOptions": [
-    "Sign an IRS contract: receive floating (to offset the floating leg they're already paying), pay fixed - effectively turning the floating-rate loan into a fixed one",
+    "Sign an IRS: receive floating, pay fixed - locking the cost",
     "Pay off the old debt and take out a new loan",
-    "There is no way except renegotiating with the bank",
+    "There is no way to do this except by renegotiating with the bank",
     "Buy interest-rate insurance from the government"
   ],
   "explanation": "Interest Rate Swap (IRS): the business still pays SOFR+2% to the original lending bank, while also signing an additional IRS contract with a swap dealer: receiving SOFR (offsetting the floating leg), paying a fixed rate (e.g. 5%). Net result: the business pays a total of 5%+2%=7% fixed, no longer worrying about SOFR fluctuations.",

@@ -8,7 +8,7 @@
     "Because its revenue is lower",
     "Because its tax rate is higher",
     "Because interest expense reduces pre-tax profit, cutting Net Income",
-    "Because leveraged companies are less efficient"
+    "Because leveraged companies are simply less efficient operationally overall"
   ],
   "explanation": "The last two lines before net profit reflect two things that don't belong to the business itself: interest comes from a decision about how much to borrow, and tax comes from where the company is registered and what incentives apply. The key point is that interest is subtracted before tax is calculated, so every dong of interest paid also lowers the tax bill - that's the tax shield, and it means the real cost of debt is lower than the rate written on the loan.",
   "diagram": [

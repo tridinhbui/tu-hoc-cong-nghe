@@ -8,7 +8,7 @@
   "openingOptions": [
     "The 30m consumer loan, as the middle amount",
     "The 10m credit card, because it carries the highest rate (30% a year)",
-    "The 50m car finance, as the largest balance",
+    "The 50m car finance, because it is the largest balance of the three debts",
     "All three equally at the same time"
   ],
   "explanation": "There are two ways to order repayments. The avalanche puts spare money into the highest-rate debt first, and it is optimal arithmetically - the least total interest paid. The snowball clears the smallest balance first; it costs more but gives an early sense of winning, so many people stay with it longer. Because the hard part of paying off debt is sustaining it over several years, the method that is optimal on paper is not always optimal in practice.",

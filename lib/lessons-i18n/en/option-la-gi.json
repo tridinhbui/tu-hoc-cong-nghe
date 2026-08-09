@@ -4,10 +4,10 @@
   "subtitle": "A right - not an obligation - to buy or sell an asset",
   "openingQuestion": "What is the core difference between an option and futures/forward?",
   "openingOptions": [
-    "An option gives the buyer a RIGHT (not an obligation) to transact; futures/forward are a binding COMMITMENT that must be performed",
+    "An option is a RIGHT to transact; futures/forward are an obligation",
     "An option is only used for stocks",
     "An option is always cheaper than futures",
-    "There is no difference, just different names"
+    "There is no real difference, just different names for the same one thing"
   ],
   "explanation": "An option grants the buyer a right - but not an obligation - to buy (a call) or sell (a put) an asset at a set price (the strike price) on or before an expiration date. The option buyer pays a fee called the premium for this right; if it isn't favorable, they can simply choose not to exercise it.",
   "diagram": [

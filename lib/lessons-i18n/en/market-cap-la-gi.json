@@ -7,7 +7,7 @@
   "openingOptions": [
     "50,000 billion dong (1 billion shares × 50,000 dong)",
     "1 billion dong",
-    "Can't be calculated without profit information",
+    "Can't be calculated without profit information for the year",
     "50,000 dong"
   ],
   "explanation": "Market Capitalization (market cap) = current share price × total shares outstanding. This is the fastest way to estimate a listed company's size from the market's point of view, commonly used to classify companies: large-cap, mid-cap, small-cap. It only measures the value of the equity slice, though - it says nothing yet about the debt or cash sitting inside the business.",

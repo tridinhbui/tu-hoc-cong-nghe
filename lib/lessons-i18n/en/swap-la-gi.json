@@ -5,9 +5,9 @@
   "openingQuestion": "What is the core concept behind every type of swap?",
   "openingOptions": [
     "It only applies to foreign currency",
-    "Two parties commit to exchanging (swapping) a series of future cash flows with each other according to a formula agreed in advance, usually to convert the type of risk each side is carrying",
+    "Two parties exchange a series of future cash flows",
     "A swap always has a term under 1 year",
-    "Two parties exchange physical assets directly"
+    "Two parties exchange physical assets with each other directly"
   ],
   "explanation": "A swap is a derivative contract in which two parties agree to exchange future cash flows according to a predetermined formula. Most common: an Interest Rate Swap (swapping fixed-rate and floating-rate cash flows) and a Currency Swap (swapping cash flows in two different currencies). A swap lets each side convert the type of risk they carry into the type they'd rather have.",
   "diagram": [

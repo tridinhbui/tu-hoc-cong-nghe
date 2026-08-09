@@ -4,9 +4,9 @@
   "subtitle": "Exchange-traded fund - trades like a stock, diversifies like a fund",
   "openingQuestion": "How does an ETF (Exchange-Traded Fund) differ from buying individual stocks one by one?",
   "openingOptions": [
-    "An ETF is a 'basket' holding many different stocks/assets, traded as a single unit on the exchange - giving instant diversification with just one buy order",
+    "An ETF is a basket of many assets, traded as one unit on the exchange",
     "ETFs are only for institutional investors",
-    "An ETF only ever holds a single type of asset",
+    "An ETF only ever holds one single type of asset in the whole basket at once",
     "There is no meaningful difference"
   ],
   "explanation": "An ETF (Exchange-Traded Fund) is a fund holding a basket of assets (stocks, bonds, commodities...) but traded on the exchange exactly like a single stock - it can be bought or sold at any time during the trading session. An ETF combines the diversification benefit of a fund with the liquidity and flexibility of a stock.",

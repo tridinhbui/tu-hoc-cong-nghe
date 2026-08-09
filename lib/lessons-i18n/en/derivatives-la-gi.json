@@ -4,10 +4,10 @@
   "subtitle": "Instruments whose value depends on another underlying asset",
   "openingQuestion": "Why did Warren Buffett call derivatives 'financial weapons of mass destruction'?",
   "openingOptions": [
-    "Because only central banks are allowed to use them",
+    "Because only the central banks are allowed to use them at all here",
     "Because they are expensive",
     "Because they are illegal in many countries",
-    "Because of extremely high leverage, complexity, and risk that can spread through a chain across the financial system - as CDOs/CDS did in the 2008 crisis"
+    "Because leverage and complexity spread risk down a whole chain"
   ],
   "explanation": "Derivatives are financial instruments whose value depends on an underlying asset: a stock, bond, commodity, exchange rate, or interest rate. Four main types: Forward, Futures, Options, Swaps. Used for hedging (reducing risk) or speculation (betting on price movements) - high leverage means risk multiplies quickly.",
   "diagram": [

@@ -6,8 +6,8 @@
   "openingOptions": [
     "Neither",
     "Hedging, because they're using an option",
-    "Speculation - the trader has no underlying risk to protect, they are simply betting on price direction to profit",
-    "There isn't enough information to determine this"
+    "Speculation - no underlying risk to protect, just a bet on the price",
+    "There isn't enough information given here to determine which one it is"
   ],
   "explanation": "Speculation is using a financial instrument (including derivatives) to deliberately bet on price movement for profit, not to protect an existing business risk. Speculation isn't inherently bad - it supplies liquidity to the market - but the high leverage of derivatives amplifies the risk of loss just as much.",
   "diagram": [

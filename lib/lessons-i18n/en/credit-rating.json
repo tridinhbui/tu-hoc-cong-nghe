@@ -5,8 +5,8 @@
   "duration": "6 min",
   "openingQuestion": "What is the interest rate difference between an AAA bond and a BB bond?",
   "openingOptions": [
-    "BB has to pay a higher rate than AAA - higher default risk → investors demand a higher risk premium",
-    "AAA pays a higher rate because of its reputation",
+    "BB pays a higher rate - higher default risk demands more return",
+    "AAA pays a higher rate because of its very strong reputation alone",
     "The rates are the same",
     "BB pays a lower rate because fewer people buy it"
   ],

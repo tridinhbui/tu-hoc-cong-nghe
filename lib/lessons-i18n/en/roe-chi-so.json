@@ -7,8 +7,8 @@
   "openingOptions": [
     "A 20% dividend",
     "20% capital growth",
-    "For every 100 dong of shareholders' equity, 20 dong of net profit is created",
-    "The company earns 20% of revenue as profit"
+    "For every 100 dong of equity, 20 dong of net profit",
+    "The company earns 20% of its total revenue as profit each year"
   ],
   "explanation": "ROE measures how many dong of profit each dong of shareholders' capital generates, making it the metric closest to shareholders' own interests. But it is also the easiest to distort, since it can be lifted just by borrowing more: a smaller equity denominator makes the ratio look prettier without operations improving at all. That's why ROE must always be decomposed via DuPont into margin, asset turnover, and leverage - to see where the number actually comes from.",
   "diagram": [

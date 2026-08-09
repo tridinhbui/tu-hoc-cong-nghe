@@ -5,8 +5,8 @@
   "duration": "7 min",
   "openingQuestion": "Two stocks have a correlation coefficient of -0.8. What does this mean?",
   "openingOptions": [
-    "The two stocks tend to move in OPPOSITE directions fairly strongly - when one rises, the other tends to fall",
-    "The two stocks always trade at the same price",
+    "The two stocks tend to move in OPPOSITE directions fairly strongly",
+    "The two stocks will always trade at exactly the same price as each other",
     "One of the two stocks is currently falling",
     "The two stocks have no relationship at all"
   ],

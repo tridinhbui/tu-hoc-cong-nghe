@@ -5,10 +5,10 @@
   "duration": "6 min",
   "openingQuestion": "You need 500 million urgently within 24 hours. You hold 600 million in listed stocks and 600 million in a plot of land. Which do you use?",
   "openingOptions": [
-    "The land, because it's worth more than the stocks",
+    "The land, because it is worth a great deal more than the stocks",
     "Neither, because both need more time than that",
     "Either one, since both are worth 600 million",
-    "The stocks, because they can be sold during the trading session and paid out within a few days"
+    "The stocks - they can be sold in session and settle in days"
   ],
   "explanation": "Liquidity is the ability to sell quickly without having to cut the price much. Listed stocks sell within a trading session and the money lands a few days later; a plot of land can take months to find a buyer. This isn't just about convenience: an illiquid asset must pay a higher return to compensate you for being locked in, and its book value is only an estimate until someone actually pays for it.",
   "diagram": [

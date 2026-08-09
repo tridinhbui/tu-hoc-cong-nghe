@@ -4,7 +4,7 @@
   "subtitle": "Real-world application: protecting export revenue from exchange-rate swings",
   "openingQuestion": "A Vietnamese company exports goods to the US and will receive $1 million in 3 months. The current rate is 25,000 VND/USD but it may move. What tool locks in the exchange rate?",
   "openingOptions": [
-    "Wait until the money arrives, then convert to VND",
+    "Wait until the money arrives, then convert it all to VND",
     "Switch to invoicing in VND immediately",
     "No tool can help with this",
     "Sign a forward contract to sell USD at a fixed rate"

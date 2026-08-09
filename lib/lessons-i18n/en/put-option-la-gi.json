@@ -6,8 +6,8 @@
   "openingOptions": [
     "It only helps if the price rises",
     "It doesn't help at all",
-    "If the price falls below VND 95,000, you still have the right to sell at 95,000 - capping your maximum loss, like buying insurance for your portfolio",
-    "You are forced to sell the stock immediately"
+    "It sets a floor: you keep the right to sell at VND 95,000",
+    "You are forced to sell the stock immediately at that very moment"
   ],
   "explanation": "A put option gives the right to sell an asset at a predetermined price, so its value rises when the market falls. Its most common application isn't speculation but insurance: someone holding a stock buys a put option to lock in a floor price for their position. The right way to think about the fee is also like an insurance premium - you pay a certain amount to eliminate an uncertain, but potentially very large, loss.",
   "diagram": [

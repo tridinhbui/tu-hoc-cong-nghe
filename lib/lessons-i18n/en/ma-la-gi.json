@@ -5,10 +5,10 @@
   "duration": "7 min",
   "openingQuestion": "What is the difference between a merger and an acquisition?",
   "openingOptions": [
-    "A merger combines two companies into one; an acquisition is one company buying and taking control of another",
+    "A merger combines two firms into one; an acquisition is one buying another",
     "There is no difference",
     "Acquisitions only happen with small companies",
-    "A merger is always bigger than an acquisition"
+    "A merger is always bigger than an acquisition in terms of the size involved"
   ],
   "explanation": "Mergers and acquisitions differ on paper: one combines two businesses into a new legal entity, the other has the buyer taking control of the other side. In practice the line is blurry, and 'merger of equals' is often just a softer name for what is really an acquisition. What matters more than the label is who ends up holding decision-making power afterward, because that is what determines whether the integration actually works.",
   "diagram": [

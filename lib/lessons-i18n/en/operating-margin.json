@@ -6,8 +6,8 @@
   "openingQuestion": "What does Operating Margin = 15% mean?",
   "openingOptions": [
     "The company has 15% market share",
-    "For every 100 dong of revenue, 15 dong remains as operating profit before interest and tax",
-    "The company earns 15% net profit after tax",
+    "For every 100 dong of revenue, 15 dong is operating profit",
+    "The company earns 15% in net profit after all tax has been paid",
     "Revenue grew 15%"
   ],
   "explanation": "Operating margin divides EBIT by revenue, measuring what remains after both cost of goods sold and operating costs like selling, admin, and R&D. Because it subtracts more, it is always lower than gross margin. The gap between the two margins is the most valuable piece of information: it shows how much of every dong of gross profit the operating machine is consuming, and that gap widening over time is a sign costs are getting out of control.",

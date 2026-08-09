@@ -6,8 +6,8 @@
   "openingQuestion": "Investor A puts 100% of their capital into one stock. Investor B splits it evenly across 20 stocks in different industries. Who bears more risk if one company suddenly hits a scandal?",
   "openingOptions": [
     "Cannot be compared without more information",
-    "A - if that single company hits a scandal, A's entire capital is affected; B only feels the impact on 1/20 of the portfolio",
-    "B, because more stocks means more complexity",
+    "A - a single scandal wipes out all of A's capital; B feels only part",
+    "B, because holding more stocks means more complexity to manage each day",
     "Both bear equal risk"
   ],
   "explanation": "Diversification is a strategy of spreading capital across many different assets to reduce unsystematic risk - the risk specific to a single company or industry. When one holding runs into trouble, the others aren't affected the same way, protecting the portfolio's total value.",

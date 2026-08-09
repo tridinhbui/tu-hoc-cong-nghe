@@ -5,9 +5,9 @@
   "duration": "7 min",
   "openingQuestion": "Under normal conditions, does a 10-year bond yield more or less than a 1-year bond?",
   "openingOptions": [
-    "Less, because a short maturity carries higher risk",
+    "Less, because a shorter maturity carries the higher risk here",
     "There's no pattern at all",
-    "More - investors demand extra compensation for the risk of holding longer (unpredictable swings in rates and inflation)",
+    "More - longer holding demands extra compensation for risk",
     "They're always equal"
   ],
   "explanation": "A yield curve plots yield against maturity for bonds within the same risk group, usually government bonds. An upward slope is normal because holding money longer means bearing more uncertainty about inflation and interest rates, so investors demand more compensation. What makes this curve worth watching is that it isn't anyone's forecast - it's the price the market is actually trading at, meaning real money is behind that expectation.",
