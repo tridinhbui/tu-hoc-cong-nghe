@@ -484,4 +484,370 @@ export const careersEn: Record<string, CareerTranslation> = {
     applicationTips:
       "Build broad knowledge across the investment options (equities, property, open-ended funds), get very good at presenting, and aim for the CFP.",
   },
+
+  quant: {
+    title: "Quantitative Analyst (Quant)",
+    summary:
+      "Builds the mathematical models, automated trading algorithms and pricing systems for complex financial products, in code.",
+    responsibilities: [
+      "Research and develop statistical models that forecast asset prices",
+      "Write algorithmic trading strategies",
+      "Price complex derivatives and measure systemic risk",
+      "Optimise execution speed and backtest the models",
+    ],
+    skills: [
+      "Financial mathematics and statistics",
+      "Python/C++/R",
+      "Trading algorithms",
+      "Machine learning",
+      "Data structures",
+    ],
+    entryLevel: "Junior/Senior - fiercely competitive, with a very high bar in maths and applied computing",
+    salaryHint: "VND 25-50M (Junior Quant) • VND 70-150M+ (Quant Trader / Senior Quant)",
+    searchKeyword: "Quantitative Analyst",
+    dayInLife:
+      "Review yesterday's algorithm performance, write Python to test a new statistical signal on tick data, and shave latency off the execution path.",
+    careerPath: ["Quant Researcher", "Senior Quant Analyst", "Quant Portfolio Manager", "Chief Quant Officer"],
+    requiredTools: ["Python (NumPy/Pandas/Scikit-Learn)", "C++", "SQL", "Bloomberg API", "Git"],
+    certifications: ["CQF (Certificate in Quantitative Finance)", "FRM", "CFA"],
+    pros:
+      "The most technical and mathematical corner of finance, with exceptional pay tied to algorithm PnL and little client-facing pressure.",
+    cons:
+      "The entry bar in maths and computing is severe (a master's or PhD is often expected), and the competition on models and technology never lets up.",
+    applicationTips:
+      "Put a public backtesting project on GitHub, and be ready for probability and algorithm problems in the interview.",
+  },
+
+  "valuation-specialist": {
+    title: "Valuation Specialist",
+    summary:
+      "Establishes what a business, project, property or intangible asset is actually worth, for M&A, tax or audit purposes.",
+    responsibilities: [
+      "Value companies and shareholdings (DCF, multiples, asset-based)",
+      "Value intangibles (brands, patents, goodwill)",
+      "Write the detailed valuation report and defend the reasoning to auditors or clients",
+      "Analyse market transaction data to find the right comparable multiples",
+    ],
+    skills: [
+      "Valuation modelling",
+      "Financial statement analysis",
+      "Knowing valuation law and standards",
+      "Critical thinking",
+      "Deep Excel",
+    ],
+    entryLevel: "Fresh/Junior - hired into Big4 transaction advisory and independent valuation firms",
+    salaryHint: "VND 12-22M (Fresher/Junior) • VND 25-50M+ (Senior/Manager)",
+    searchKeyword: "Asset valuation",
+    dayInLife:
+      "Review the valuation model for a tech company about to merge, check it against comparable M&A deals, and write up the justification for the discount rate you chose.",
+    careerPath: [
+      "Valuation Associate",
+      "Senior Valuation Specialist",
+      "Valuation Manager",
+      "Partner / Director of Advisory",
+    ],
+    requiredTools: ["MS Excel", "Capital IQ", "Bloomberg", "Valuation Databases"],
+    certifications: ["CFA", "Valuer licence (Ministry of Finance)", "ASA (American Society of Appraisers)"],
+    pros:
+      "Deep knowledge of what actually creates value, work at large advisory firms, and exposure to a wide range of businesses.",
+    cons:
+      "Heavy pressure to justify every number when an independent auditor or a regulator questions it, and the documentation load is large.",
+    applicationTips:
+      "Know discounting cold (WACC, CAPM) and how intangibles are valued, and get good at writing a clear justification.",
+  },
+
+  "ir-specialist": {
+    title: "Investor Relations Specialist (IR)",
+    summary:
+      "Runs communication between a listed company and its investors, shareholders, funds and sell-side analysts.",
+    responsibilities: [
+      "Prepare disclosures, investor newsletters and the quarterly results deck",
+      "Run earnings calls, investor meetings and the annual general meeting",
+      "Answer questions from shareholders and analysts about company strategy",
+      "Track the shareholder register, the share price and what the market says about the company",
+    ],
+    skills: [
+      "Corporate finance literacy",
+      "Communication and diplomacy",
+      "Writing press releases",
+      "Professional PowerPoint",
+      "Fluent English",
+    ],
+    entryLevel:
+      "Junior/Senior - usually people with a PR/marketing plus finance background, or former sell-side analysts",
+    salaryHint: "VND 15-28M (Junior/Mid) • VND 30-65M+ (Senior/Manager)",
+    searchKeyword: "Investor relations",
+    dayInLife:
+      "Pull the new quarterly results from finance, write the press release in both Vietnamese and English, and build the deck for this afternoon's call with foreign funds.",
+    careerPath: ["IR Officer", "IR Manager", "IR Director", "Chief Communications Officer / CFO"],
+    requiredTools: ["PowerPoint", "Investor Relations Web Portal", "Excel", "Media monitoring tools"],
+    certifications: ["CIRA (Certified Investor Relations Analyst)", "CFA (Level I or II)"],
+    pros:
+      "You sit exactly between company strategy and the capital markets, meet major global funds, and build an unusually wide financial network.",
+    cons:
+      "Constant pressure on the company's public image, disclosure is legally sensitive (insider trading rules), and AGM season is punishing.",
+    applicationTips:
+      "Get your financial English strong enough to translate both ways, write clearly, and know the disclosure rules for listed companies.",
+  },
+
+  "ma-origination": {
+    title: "M&A Origination & Strategy (Pre-Deal)",
+    summary:
+      "Finds, screens and builds the strategic case for potential M&A deals, before a deal formally starts.",
+    responsibilities: [
+      "Screen the market for target companies that fit the growth strategy",
+      "Build the strategic rationale - why this deal creates value over the long run",
+      "Run a preliminary valuation to estimate a fair price before approaching",
+      "Make the first approach and build the relationship with the owner or the fund holding the target",
+    ],
+    skills: [
+      "Industry and competitor analysis",
+      "Preliminary valuation",
+      "Corporate strategy thinking",
+      "Networking",
+      "Presenting an investment case",
+    ],
+    entryLevel:
+      "Junior to Senior - usually from investment banking or an in-house corporate development team",
+    salaryHint: "VND 20-35M (Junior) • VND 50-90M+ (Senior/Director)",
+    searchKeyword: "M&A Origination",
+    dayInLife:
+      "Screen 30 companies in the sector for a fit, build the strategic case for the board, and prepare the first meeting with the target's owner.",
+    careerPath: [
+      "Corporate Development Analyst",
+      "M&A Origination Associate",
+      "Head of Corporate Development",
+      "Chief Strategy Officer (CSO)",
+    ],
+    requiredTools: ["Capital IQ", "Bloomberg Terminal", "Excel (Screening Models)", "PowerPoint"],
+    certifications: ["CFA", "An MBA is a major advantage"],
+    pros:
+      "You see the strategic picture of a whole sector rather than one deal, build a wide network of owners and funds, and face less deadline pressure than the execution side.",
+    cons:
+      "Most of what you screen never becomes a real deal - the low hit rate wears on you, and the relationship building pays off only over years.",
+    applicationTips:
+      "Show strategic thinking through your own case studies (\"if I ran company X, who would I buy and why\"), get fast at preliminary valuation, and network properly.",
+  },
+
+  "ma-execution": {
+    title: "M&A Execution - DD & Financing (In-Deal)",
+    summary:
+      "Executes the deal itself - due diligence, arranging the financing, and negotiating terms with the other side.",
+    responsibilities: [
+      "Coordinate due diligence (financial, legal, commercial, operational) with auditors and lawyers",
+      "Build the detailed valuation model (DCF, LBO, comps) and the deal structure",
+      "Arrange the financing (debt, bond issuance, equity)",
+      "Negotiate the sale and purchase agreement alongside the legal team",
+    ],
+    skills: [
+      "Financial due diligence",
+      "Advanced valuation (DCF/LBO)",
+      "Deal structuring and financing",
+      "Negotiation",
+      "Working to hard deadlines",
+    ],
+    entryLevel:
+      "Junior - the classic Analyst/Associate seat at investment banks and Big4 transaction advisory",
+    salaryHint: "VND 18-32M (Analyst) • VND 45-85M+ (Associate/VP)",
+    searchKeyword: "M&A Execution",
+    dayInLife:
+      "Reconcile the financial due diligence against the audited accounts, update the LBO model for the latest financing structure, and sit with the lawyers over the SPA before signing.",
+    careerPath: ["M&A Analyst", "M&A Associate", "Vice President (VP)", "Director / Head of M&A"],
+    requiredTools: [
+      "Excel (LBO/DCF Models)",
+      "Bloomberg Terminal",
+      "Capital IQ",
+      "Virtual Data Room (Datasite, Intralinks)",
+    ],
+    certifications: ["CFA (Chartered Financial Analyst)", "MBA"],
+    pros:
+      "You run a billion-dollar deal from start to signing, learn complex deal structures fast, and sit in the middle connecting the buy side and the sell side.",
+    cons:
+      "The most punishing hours in finance (80-100 a week when a deal is closing), and a deal can collapse at the last minute after months of work.",
+    applicationTips:
+      "Get fluent at complex LBO and DCF models, understand the debt/equity mix, and be ready for a high-pressure environment with tight deadlines.",
+  },
+
+  "pmi-specialist": {
+    title: "Post-Merger Integration - PMI (Post-Deal)",
+    summary:
+      "Makes the synergies promised in an M&A deal actually happen, by merging the systems, processes and people of two organisations.",
+    responsibilities: [
+      "Plan the first 100 days after close (Day-1 and 100-day plan)",
+      "Merge the finance and accounting systems, the ERP and the operating processes of both sides",
+      "Track and report synergy delivery against what was committed to the board",
+      "Run change management - handle the culture clash between the two organisations",
+    ],
+    skills: [
+      "Complex project management",
+      "Merging finance/ERP systems",
+      "Change and culture management",
+      "Measuring synergy for real",
+      "Communicating across departments",
+    ],
+    entryLevel:
+      "Senior - usually from management consulting, FP&A, or M&A execution people with operating experience",
+    salaryHint: "VND 25-45M (PMI Manager) • VND 60-110M+ (Head of Integration)",
+    searchKeyword: "Post-Merger Integration",
+    dayInLife:
+      "Sit with the finance heads of both merged companies to agree one ERP, then review cost synergy delivery against the original commitment for the board.",
+    careerPath: ["Integration Analyst", "PMI Manager", "Head of Integration", "Chief Operating Officer (COO)"],
+    requiredTools: [
+      "Project Management Tools (Asana, MS Project)",
+      "ERP Systems (SAP/Oracle)",
+      "Excel (Synergy Tracking)",
+      "PowerPoint",
+    ],
+    certifications: ["PMP (Project Management Professional)", "MBA", "CFA is an advantage"],
+    pros:
+      "A little-known role that decides whether a deal actually worked - most of the synergy promised on paper only lands because PMI did its job - and you learn finance alongside operations and leading people.",
+    cons:
+      "Clearing up after the party gets less attention than the deal team, and you have to handle the culture and internal politics of two just-merged organisations, which is delicate.",
+    applicationTips:
+      "Combine the finance story (reading synergy) with people and change management on your CV - candidates with both are rare, so proving it is a real advantage.",
+  },
+
+  "pe-vc-analyst": {
+    title: "Private Equity / Venture Capital Analyst",
+    summary:
+      "Finds, screens and invests in private companies (PE) or early-stage startups (VC), then supports their growth until exit.",
+    responsibilities: [
+      "Source and screen investment opportunities that fit the fund's strategy",
+      "Run due diligence on the company or startup (commercial, financial, management)",
+      "Build the valuation model and structure the deal (equity stake, board seat, investor protections)",
+      "Work with portfolio companies on growth until exit",
+    ],
+    skills: [
+      "Valuing private companies",
+      "End-to-end due diligence",
+      "Negotiating the term sheet",
+      "Judging the founding and management team",
+      "Patience for a long holding period",
+    ],
+    entryLevel:
+      "Junior to Senior - very competitive, usually from investment banking, consulting, or founders with startup experience",
+    salaryHint: "VND 20-40M (Analyst/Associate) • VND 60-150M+ (Principal/Partner + carried interest)",
+    searchKeyword: "Private Equity Venture Capital",
+    dayInLife:
+      "Meet the founder of a fintech raising a Series A, work through the business model and unit economics, then update the valuation model for the fund's investment committee.",
+    careerPath: ["Analyst", "Associate", "Principal", "Partner / Managing Director"],
+    requiredTools: ["Excel (LBO/VC Models)", "PitchBook / Preqin", "Capital IQ", "Investment CRM (Affinity)"],
+    certifications: ["CFA", "CAIA (Chartered Alternative Investment Analyst)", "MBA"],
+    pros:
+      "Direct contact with founders and the newest business models in the market. Fund size changes everything - under USD 30M, under USD 100M and under USD 300M AUM each demand a different investment strategy and team structure - so the learning is unusually varied, and carried interest pays well if the fund works.",
+    cons:
+      "The cycle is long (5-10 years to exit), portfolio failure rates stay high even after careful diligence, and getting in is fiercely competitive because there are so few seats.",
+    applicationTips:
+      "Write a sample investment memo on a real company or startup to attach to your CV, understand how fund AUM tier shapes investment appetite, and a founder network is a real advantage.",
+  },
+
+  "compliance-officer": {
+    title: "Compliance Officer",
+    summary:
+      "Keeps a bank or securities firm fully within the law, the anti-money-laundering rules, and professional ethics.",
+    responsibilities: [
+      "Write and update compliance policy against the latest central bank and securities commission rules",
+      "Review unusual transactions and run the AML/KYC process",
+      "Train the business staff internally on the compliance rules",
+      "Report breaches and propose remediation to the board",
+    ],
+    skills: [
+      "Banking and financial law",
+      "AML/KYC procedures",
+      "Systems thinking and detailed review",
+      "Delivering internal training",
+      "Professional ethics",
+    ],
+    entryLevel: "Junior to Senior - common at banks, securities firms and funds with foreign ownership",
+    salaryHint: "VND 15-25M (Junior) • VND 35-65M+ (Senior/Manager)",
+    searchKeyword: "Compliance Officer",
+    dayInLife:
+      "Review the day's large transactions for money-laundering signals, update internal policy for the central bank's new circular, and run a compliance session for the sales floor.",
+    careerPath: [
+      "Compliance Analyst",
+      "Senior Compliance Officer",
+      "Compliance Manager",
+      "Chief Compliance Officer (CCO)",
+    ],
+    requiredTools: ["AML Screening Systems", "Excel", "Regulatory Databases", "Case Management Tools"],
+    certifications: ["CAMS (Certified Anti-Money Laundering Specialist)", "CFA (Level I is an advantage)"],
+    pros:
+      "A gatekeeping role that protects the institution from serious legal risk, with stable office hours and none of the sales pressure.",
+    cons:
+      "The business side sometimes treats you as the obstacle to getting a deal done, and the volume of regulation to keep up with can be dull unless you genuinely like the subject.",
+    applicationTips:
+      "Know the current central bank and securities commission circulars, build real attention to detail, and consider the CAMS to stand out.",
+  },
+
+  "internal-audit": {
+    title: "Internal Audit Specialist",
+    summary:
+      "Independently assesses the internal controls, operating processes and risk management of the company you work for.",
+    responsibilities: [
+      "Build the annual internal audit plan from a material risk assessment",
+      "Test each department's operational, financial and compliance processes",
+      "Find the control gaps and propose the fix",
+      "Report findings directly to the Audit Committee or the board",
+    ],
+    skills: [
+      "Assessing internal control",
+      "Process analysis",
+      "Accounting and auditing standards",
+      "Report writing",
+      "Independence and objectivity",
+    ],
+    entryLevel: "Junior to Senior - common at large groups, banks and listed companies",
+    salaryHint: "VND 14-24M (Junior) • VND 35-60M+ (Senior/Manager)",
+    searchKeyword: "Internal audit",
+    dayInLife:
+      "Interview the warehouse manager about inventory controls, check the actual paperwork against the written process, and draft the control-gap report for the Audit Committee.",
+    careerPath: [
+      "Internal Audit Associate",
+      "Senior Internal Auditor",
+      "Internal Audit Manager",
+      "Head of Internal Audit",
+    ],
+    requiredTools: ["ACL / IDEA (Audit Analytics)", "Excel (Advanced)", "ERP Systems", "GRC Software"],
+    certifications: ["CIA (Certified Internal Auditor)", "ACCA", "CPA Việt Nam"],
+    pros:
+      "You see the whole business through a risk lens, with less seasonal crunch than external audit, and a clear path into risk management or corporate governance.",
+    cons:
+      "Departments under audit get defensive, and it takes independence and nerve to report honestly when the finding will not be welcome internally.",
+    applicationTips:
+      "Get good at interviewing and at writing objectively, take the CIA to prove the specialism, and show systematic risk thinking on your CV.",
+  },
+
+  "tax-advisory": {
+    title: "Tax Advisory Specialist",
+    summary:
+      "Advises businesses and individuals on legal tax optimisation, and handles complex filings and settlements.",
+    responsibilities: [
+      "Advise on tax-efficient deal structures (M&A, transfer pricing, restructuring)",
+      "Review and prepare corporate income tax, VAT and capital transfer tax filings",
+      "Represent clients with the tax authority during inspections and settlements",
+      "Track new tax policy and advise on what it changes",
+    ],
+    skills: [
+      "Vietnamese and international tax law",
+      "Transfer pricing",
+      "Financial statement analysis",
+      "Negotiating with the tax authority",
+      "Deep Excel",
+    ],
+    entryLevel:
+      "Fresh/Junior - hired in volume by Big4 tax practices and independent tax advisory firms",
+    salaryHint: "VND 10-20M (Fresher/Junior) • VND 25-55M+ (Senior/Manager)",
+    searchKeyword: "Tax advisory",
+    dayInLife:
+      "Review the transfer pricing file between a parent and its foreign subsidiary, prepare the defence for the coming tax inspection, and advise a client on the tax effect of a restructuring.",
+    careerPath: ["Tax Associate", "Senior Tax Consultant", "Tax Manager", "Tax Partner / Director"],
+    requiredTools: ["Excel (Tax Models)", "E-filing software", "Tax Research Databases"],
+    certifications: ["CPA Việt Nam", "ACCA (F6/P6 Tax)", "Tax Agent Certificate"],
+    pros:
+      "Deep tax knowledge is scarce and always in demand, fees on large deals are attractive, and you work across both domestic and foreign-invested businesses.",
+    cons:
+      "Tax law changes constantly so the reading never stops, year-end settlement season is heavy, and bad advice creates real legal exposure for the client.",
+    applicationTips:
+      "Know the current corporate income tax and VAT law well, go deep on transfer pricing (the live topic for foreign-invested firms), and start the CPA or ACCA route early.",
+  },
 };
