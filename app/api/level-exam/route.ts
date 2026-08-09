@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 import { LEVEL_EXAMS, shuffleArray } from "@/lib/level-exams";
+import { localizeLevelExam } from "@/lib/level-exams-i18n";
+import { getServerLocale } from "@/lib/i18n/server";
 import { signExamAnswerToken } from "@/lib/level-exam-tokens";
 
 // Serves a promotion exam (bài thi thăng cấp). The shuffle happens HERE, not in
@@ -37,10 +39,14 @@ export async function GET(request: NextRequest) {
   }
 
   const level = Number(request.nextUrl.searchParams.get("level"));
-  const config = LEVEL_EXAMS[level];
-  if (!Number.isInteger(level) || !config) {
+  const source = LEVEL_EXAMS[level];
+  if (!Number.isInteger(level) || !source) {
     return NextResponse.json({ error: "Invalid level" }, { status: 400 });
   }
+  // Dịch TRƯỚC bước xáo phương án bên dưới. Thứ tự này quan trọng: chỗ tìm lại
+  // đáp án đúng dùng `options.indexOf(correctText)`, tức so sánh theo chuỗi -
+  // dịch sau khi xáo sẽ làm phép so sánh ấy không khớp gì cả.
+  const config = localizeLevelExam(source, await getServerLocale());
 
   const issuedAt = Date.now();
 
