@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import { getPairConfig, pickPairRound, getDifficultyTimeLimitSeconds, recordGameSession, type GameType, type GameDifficulty } from "@/lib/games";
 import { soundManager } from "@/lib/sounds";
 import { useI18n } from "@/lib/i18n/context";
+import { localizePairConfig } from "@/lib/games-i18n";
 import { format } from "@/lib/i18n";
 
 interface Props {
@@ -29,9 +30,14 @@ function shuffle<T>(arr: T[]): T[] {
 // getPairConfig(gameType) - powers en-vi-terms, term-definition, formula-match
 // and any future pair game from data alone.
 export default function PairGame({ userId, gameType, difficulty = "trung-binh", onFinished }: Props) {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const pg = t.games.pairGame;
-  const config = useMemo(() => getPairConfig(gameType, difficulty), [gameType, difficulty]);
+  // Chỉ NHÃN CỘT và câu hướng dẫn được dịch. `config.pool` giữ nguyên tiếng
+  // Việt: với `en-vi-terms` thì chính vế tiếng Việt là đề bài.
+  const config = useMemo(
+    () => localizePairConfig(getPairConfig(gameType, difficulty), gameType, locale),
+    [gameType, difficulty, locale]
+  );
   const timeLimit = getDifficultyTimeLimitSeconds(difficulty);
   const [round, setRound] = useState<{ left: string; right: string }[]>(() => pickPairRound(gameType, difficulty));
   const [leftOrder, setLeftOrder] = useState<number[]>([]);

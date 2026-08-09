@@ -6,11 +6,12 @@ import { Trophy } from "lucide-react";
 import { getGameLeaderboard, getGameTitle, type GameLeaderboardRow, type GameType } from "@/lib/games";
 import { isValidAvatar } from "@/lib/avatar-utils";
 import { useI18n } from "@/lib/i18n/context";
+import { localizeGameTitle } from "@/lib/games-i18n";
 
 const RANK_MEDAL: Record<number, string> = { 1: "🥇", 2: "🥈", 3: "🥉" };
 
 export default function GameLeaderboard({ gameType }: { gameType: GameType }) {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const gl = t.games.gameLeaderboard;
   const [rows, setRows] = useState<GameLeaderboardRow[]>([]);
   const [loadedKey, setLoadedKey] = useState<string | null>(null);
@@ -51,7 +52,7 @@ export default function GameLeaderboard({ gameType }: { gameType: GameType }) {
     <div className="space-y-2">
       {rows.map((row, i) => {
         const rank = i + 1;
-        const title = getGameTitle(gameType, rank);
+        const title = localizeGameTitle(getGameTitle(gameType, rank), gameType, rank, locale);
         return (
           <div
             key={row.user_id}

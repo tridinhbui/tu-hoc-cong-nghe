@@ -6,6 +6,7 @@ import { Trophy, Gamepad2 } from "lucide-react";
 import { getCombinedGameLeaderboard, getCombinedGameTitle, GAMES, type CombinedLeaderboardRow } from "@/lib/games";
 import { isValidAvatar } from "@/lib/avatar-utils";
 import { useI18n } from "@/lib/i18n/context";
+import { localizeCombinedGameTitle } from "@/lib/games-i18n";
 import { format } from "@/lib/i18n";
 
 const RANK_MEDAL: Record<number, string> = { 1: "🥇", 2: "🥈", 3: "🥉" };
@@ -14,7 +15,7 @@ const RANK_MEDAL: Record<number, string> = { 1: "🥇", 2: "🥈", 3: "🥉" };
 // getCombinedGameXp/get_combined_game_leaderboard) so playing a variety of
 // games pays off, not just grinding one favorite.
 export default function CombinedGameLeaderboard() {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const cl = t.games.combinedGameLeaderboard;
   const [rows, setRows] = useState<CombinedLeaderboardRow[]>([]);
   const [loading, setLoading] = useState(true);
@@ -55,7 +56,7 @@ export default function CombinedGameLeaderboard() {
       </p>
       {rows.map((row, i) => {
         const rank = i + 1;
-        const title = getCombinedGameTitle(rank);
+        const title = localizeCombinedGameTitle(getCombinedGameTitle(rank), rank, locale);
         return (
           <div
             key={row.user_id}

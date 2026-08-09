@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import { getBucketConfig, getDifficultyTimeLimitSeconds, recordGameSession, type GameType, type GameDifficulty } from "@/lib/games";
 import { soundManager } from "@/lib/sounds";
 import { useI18n } from "@/lib/i18n/context";
+import { localizeBucketConfig } from "@/lib/games-i18n";
 import { format } from "@/lib/i18n";
 
 interface BucketGameProps {
@@ -28,9 +29,14 @@ interface RoundItem {
 // getBucketConfig(gameType) - one component powers financial-statement-match,
 // ratio-category, and any future bucket game without code changes.
 export default function BucketGame({ userId, gameType, difficulty = "trung-binh", onFinished }: BucketGameProps) {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const bg = t.games.bucketGame;
-  const config = useMemo(() => getBucketConfig(gameType, difficulty), [gameType, difficulty]);
+  // Dịch NGAY tại đây chứ không lúc vẽ: `config.buckets[].label` là thứ người
+  // chơi thả thẻ vào, và nó cũng đi vào phần so khớp bên dưới.
+  const config = useMemo(
+    () => localizeBucketConfig(getBucketConfig(gameType, difficulty), gameType, locale),
+    [gameType, difficulty, locale]
+  );
   const timeLimit = getDifficultyTimeLimitSeconds(difficulty);
 
   const buildRound = useMemo(

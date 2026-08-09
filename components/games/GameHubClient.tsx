@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Image from "next/image";
 import { toast } from "sonner";
 import { Gamepad2, Trophy, History as HistoryIcon, ArrowLeft, Crown, Volume2, VolumeX, Swords, Building2 } from "lucide-react";
@@ -11,6 +11,7 @@ import { recalculateUserStats } from "@/lib/supabase-user";
 import { getIllustrativeCount } from "@/lib/illustrative-stats";
 import { soundManager } from "@/lib/sounds";
 import { useI18n } from "@/lib/i18n/context";
+import { localizeDifficulties, localizeGameMeta, localizeGames } from "@/lib/games-i18n";
 import { format } from "@/lib/i18n";
 import GameLeaderboard from "@/components/games/GameLeaderboard";
 import GameHistory from "@/components/games/GameHistory";
@@ -88,7 +89,15 @@ const ACCENT: Record<string, { grad: string; ring: string; chip: string; glow: s
 };
 
 export default function GameHubClient() {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
+  // Dịch danh sách trò và danh sách độ khó một lần cho cả màn hình. Không dịch
+  // ở chỗ vẽ: `GAMES` còn được dùng để đếm và để tra, nên hai nơi cùng đọc một
+  // danh sách đã dịch thì mới không lệch nhau.
+  const localizedGames = useMemo(() => localizeGames(GAMES, locale), [locale]);
+  const localizedDifficulties = useMemo(
+    () => localizeDifficulties(GAME_DIFFICULTIES, locale),
+    [locale]
+  );
   const gameHub = t.games.gameHub;
   const { userId, checking } = useAuthGate();
   const [activeGame, setActiveGame] = useState<GameType | null>(null);
@@ -334,7 +343,7 @@ export default function GameHubClient() {
 
               {/* Standard Mini Games Grid */}
               <div className="grid sm:grid-cols-2 gap-4">
-              {GAMES.map((g) => {
+              {localizedGames.map((g) => {
                 const a = ACCENT[g.accent] ?? ACCENT.emerald;
                 return (
                   <button
@@ -418,7 +427,7 @@ export default function GameHubClient() {
     );
   }
 
-  const meta = getGameMeta(activeGame);
+  const meta = localizeGameMeta(getGameMeta(activeGame), locale);
   const a = ACCENT[meta.accent] ?? ACCENT.emerald;
 
   return (
@@ -457,7 +466,7 @@ export default function GameHubClient() {
           <div className="mb-4 sm:mb-6">
             <p className="text-[10px] font-extrabold text-stone-400 uppercase tracking-widest mb-2">{gameHub.difficultyLabel}</p>
             <div className="flex flex-wrap gap-2">
-              {GAME_DIFFICULTIES.map((d) => (
+              {localizedDifficulties.map((d) => (
                 <button
                   key={d.id}
                   onClick={() => setDifficulty(d.id)}
