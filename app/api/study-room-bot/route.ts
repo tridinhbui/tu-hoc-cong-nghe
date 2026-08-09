@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase-admin";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
+import { encodeBotEvent } from "@/lib/study-room-bot-messages";
 import { getLessonsMeta } from "@/lib/lessons-loader";
 import { CFA_LEVEL_1_SUBJECTS } from "@/lib/cfa-track";
 import { isLessonIdInTrack } from "@/lib/track-stages";
@@ -15,18 +16,6 @@ const BOT_COMMANDS = new Set(["/taitai", "/tai", "/bot", "/rules", "/luat"]);
 // lưu lại và cả nhóm cùng đọc một bản. Không thể dịch theo người xem như copy
 // giao diện: hai người trong cùng phòng sẽ thấy hai nội dung khác nhau cho
 // cùng một tin nhắn, và bản đã lưu thì chỉ có một.
-/* i18n-ignore-start: nội dung tin nhắn bot đã lưu vào phòng, cả nhóm đọc chung một bản */
-function buildRulesSummary(topic: StudyRoomTopic, lessonCount: number) {
-  const topicLabel =
-    topic === "personal"
-      ? "Tài chính cá nhân"
-      : topic === "professional"
-        ? "Tài chính chuyên ngành"
-        : "CFA Level I";
-
-  return `Tài Tài đây 👋 Nhóm này đang học theo hướng ${topicLabel}, hiện có khoảng ${lessonCount} bài để cả nhóm cùng cày. Luật ngắn gọn: mỗi người cố giữ nhịp tối thiểu 3 bài/tuần, đạt chỉ tiêu thì nhóm được giữ tiếp, và giữ được 3 tuần liên tiếp thì lên nhóm vĩnh viễn.`;
-}
-/* i18n-ignore-end */
 
 function countLessonsForTopic(topic: StudyRoomTopic, lessonsMeta: Awaited<ReturnType<typeof getLessonsMeta>>) {
   if (topic === "cfa") {
@@ -99,7 +88,12 @@ export async function POST(request: NextRequest) {
 
   const lessonsMeta = await getLessonsMeta();
   const lessonCount = countLessonsForTopic(room.topic as StudyRoomTopic, lessonsMeta);
-  const content = buildRulesSummary(room.topic as StudyRoomTopic, lessonCount);
+  // Sự kiện, không phải câu văn - xem lib/study-room-bot-messages.ts.
+  const content = encodeBotEvent({
+    kind: "rules",
+    topic: room.topic as StudyRoomTopic,
+    lessonCount,
+  });
 
   const { data: inserted, error: insertError } = await admin
     .from("study_room_messages")

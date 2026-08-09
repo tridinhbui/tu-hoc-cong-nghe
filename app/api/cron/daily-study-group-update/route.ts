@@ -11,6 +11,8 @@ import { createAdminClient } from "@/lib/supabase-admin";
 // supabase/migrations/20260720_study_room_bot_messages.sql) via the
 // service-role client, which bypasses study_room_messages' RLS (that
 // policy only ever governs human sends).
+import { encodeBotEvent } from "@/lib/study-room-bot-messages";
+
 export const dynamic = "force-dynamic";
 
 function isAuthorized(request: NextRequest): boolean {
@@ -95,14 +97,19 @@ export async function GET(request: NextRequest) {
     /* i18n-ignore-end */
     const notYetCount = memberList.length - studiedNames.length;
 
-    let content: string;
-    if (studiedNames.length === 0) {
-      content = `Cập nhật hôm nay: chưa ai trong nhóm học bài nào cả 👀 Ai học đầu tiên hôm nay nào?`;
-    } else if (notYetCount === 0) {
-      content = `Cập nhật hôm nay: cả ${studiedNames.length} thành viên đều đã học ít nhất 1 bài! Nhóm đang giữ nhịp rất tốt 🔥`;
-    } else {
-      content = `Cập nhật hôm nay: ${studiedNames.slice(0, 3).join(", ")}${studiedNames.length > 3 ? ` +${studiedNames.length - 3} bạn nữa` : ""} đã học rồi. Còn ${notYetCount} bạn chưa học hôm nay - đừng để mai dồn nhé!`;
-    }
+    // Ghi SỰ KIỆN, không ghi câu văn: một hàng cho cả nhóm nên câu chữ phải
+    // dựng ở phía người đọc. Xem lib/study-room-bot-messages.ts.
+    const content =
+      studiedNames.length === 0
+        ? encodeBotEvent({ kind: "daily-none" })
+        : notYetCount === 0
+          ? encodeBotEvent({ kind: "daily-all", count: studiedNames.length })
+          : encodeBotEvent({
+              kind: "daily-partial",
+              names: studiedNames.slice(0, 3),
+              extra: Math.max(0, studiedNames.length - 3),
+              notYet: notYetCount,
+            });
 
     const { error: insertError } = await supabase.from("study_room_messages").insert({
       room_id: room.id,

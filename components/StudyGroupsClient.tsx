@@ -60,6 +60,7 @@ import { getEquippedGear } from "@/lib/supabase-equipment";
 import { colorForUser } from "@/lib/supabase-lobby";
 import type { CharacterEquipments } from "@/lib/rpg-items";
 import { useI18n } from "@/lib/i18n/context";
+import { renderBotMessage } from "@/lib/study-room-bot-messages";
 import { format } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
@@ -2219,7 +2220,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                       <div key={msg.id} className="flex justify-start">
                         <div className="max-w-[85%] rounded-xl px-3 py-2 bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900">
                           <p className="text-[10px] font-extrabold text-amber-700 dark:text-amber-400 mb-0.5">{t.studyGroups.byAdmin}</p>
-                          <p className="text-sm break-words text-stone-800 dark:text-stone-200">{msg.content}</p>
+                          <p className="text-sm break-words text-stone-800 dark:text-stone-200">{renderBotMessage(msg.content, t.groupChat, format)}</p>
                         </div>
                       </div>
                     );

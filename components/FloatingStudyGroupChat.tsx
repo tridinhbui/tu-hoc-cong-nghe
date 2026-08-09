@@ -15,6 +15,7 @@ import EmojiPicker from "@/components/EmojiPicker";
 import { motion } from "framer-motion";
 import { useDraggablePosition } from "@/lib/hooks/useDraggablePosition";
 import { useI18n } from "@/lib/i18n/context";
+import { renderBotMessage } from "@/lib/study-room-bot-messages";
 import { format, type Dictionary } from "@/lib/i18n";
 import {
   STUDY_ROOM_TOPICS,
@@ -547,7 +548,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                           <TaiTaiAvatar size={16} />
                           <span className="text-[10px] font-extrabold text-amber-700 dark:text-amber-400">{t.groupChat.byAdmin}</span>
                         </div>
-                        <p className="text-[12px] text-stone-800 dark:text-stone-200 leading-relaxed whitespace-pre-wrap">{msg.content}</p>
+                        <p className="text-[12px] text-stone-800 dark:text-stone-200 leading-relaxed whitespace-pre-wrap">{renderBotMessage(msg.content, t.groupChat, format)}</p>
                       </div>
                     </div>
                   );
