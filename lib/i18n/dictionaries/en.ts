@@ -287,7 +287,7 @@ export const en: Dictionary = {
     newsPending: "⚠️ Not done",
     newsPendingNote: "(the menu shows a warning)",
     newsBodyPart1: "Answer today's macro-news scenario correctly to earn ",
-    newsXp: "+15 XP",
+    newsXp: "+{xp} XP",
     newsBodyPart2: " and clear the 🔴 warning icon in the navbar.",
 
     rightEyebrow: "Right • Build your own test",
@@ -670,7 +670,7 @@ export const en: Dictionary = {
     trackPrefix: "Track",
     effortHours: "~{hours} hours",
     standardised: "Standardised 2024 track",
-    xpPerLesson: "+120 XP per lesson",
+    xpPerLesson: "+{xp} XP per lesson",
     stagesTitle: "The main stages:",
     freeTryCompact: "Free · try it now",
     freeTry: "Free · try it now, no sign-in needed",
@@ -1348,7 +1348,7 @@ export const en: Dictionary = {
     step3Body: "Study daily to climb the ranks",
 
     heroBanner: "🎓 HERO LEARNING BANNER",
-    xpIfNow: "🔥 +30 XP IF YOU START NOW",
+    xpIfNow: "🔥 +{xp} XP IF YOU START NOW",
     trackProgress: "Track progress ({done}/{total} lessons)",
     continuingLesson: "▶ The lesson you're on",
     minutesStudied: "⏱️ {minutes} minutes studied",

@@ -11,6 +11,7 @@ import StageSkipExamPanel from "@/components/StageSkipExamPanel";
 import DailyNewsQuizWidget from "@/components/DailyNewsQuizWidget";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
+import { QUEST_XP_REWARDS } from "@/lib/quest-rewards";
 
 interface ChallengeQuestion {
   lessonId: number;
@@ -219,7 +220,7 @@ export default function KiemTraPage() {
 
                   <p className="text-xs text-stone-600 dark:text-stone-400 mb-2.5 leading-snug">
                     {t.quizPage.newsBodyPart1}
-                    <strong>{t.quizPage.newsXp}</strong>
+                    <strong>{format(t.quizPage.newsXp, { xp: QUEST_XP_REWARDS.daily_news_quiz })}</strong>
                     {t.quizPage.newsBodyPart2}
                   </p>
                 </div>

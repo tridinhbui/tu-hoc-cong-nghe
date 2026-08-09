@@ -10,6 +10,7 @@ import { createClient } from "@/lib/supabase";
 import { trackFeatureClick } from "@/lib/feature-events";
 import { getLessonDisplayLabel, getLessonShortTitle } from "@/lib/lesson-labels";
 import { getQuizAnswers } from "@/lib/progress";
+import { XP_PER_LESSON } from "@/lib/levels";
 import RecallCard from "@/components/RecallCard";
 import type { RecallItem } from "@/lib/recall-schedule";
 import type { StageTopicId, TopicAdviceId } from "@/lib/stage-topics";
@@ -328,7 +329,7 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
                 {t.resume.heroBanner}
               </span>
               <span className="text-[10px] font-black text-amber-700 dark:text-amber-300 uppercase tracking-widest bg-amber-50 dark:bg-amber-950/50 border border-amber-200/80 dark:border-amber-800/80 px-2.5 py-0.5 rounded-lg flex items-center gap-1 shadow-2xs">
-                {t.resume.xpIfNow}
+                {format(t.resume.xpIfNow, { xp: XP_PER_LESSON })}
               </span>
             </div>
 

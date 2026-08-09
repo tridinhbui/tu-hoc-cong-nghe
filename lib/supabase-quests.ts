@@ -182,7 +182,23 @@ export async function getDailyQuests(userId: string, dayKey: string): Promise<Qu
     },
     // Lọc bỏ nhiệm vụ không đo được. Hiện tại chỉ có daily_focus rơi vào đây,
     // và chỉ khi migration focus_sessions chưa chạy.
-  ].filter((q) => focusAvailable || q.id !== "daily_focus");
+  ]
+    .filter((q) => focusAvailable || q.id !== "daily_focus")
+    // Và lọc bỏ nhiệm vụ không cộng XP.
+    //
+    // Ba nhiệm vụ - điểm danh học nhóm, đăng nhập, vào Game - bị đặt về 0
+    // trong lib/quest-rewards.ts, có chủ ý: chuyện có mặt không nên đúc ra XP.
+    // Nhưng chúng vẫn nằm trong danh sách với một cái nút "Nhận" bên cạnh, nên
+    // ba trong bảy nhiệm vụ hàng ngày là lời hứa hụt. Người học bấm, được cộng
+    // 0, và kết luận đúng như phản hồi nhận được: "làm nhiệm vụ hàng ngày ko
+    // có XP".
+    //
+    // Lọc ở ĐÂY chứ không ở giao diện: đây là nơi duy nhất dựng danh sách, nên
+    // mọi thứ đếm nhiệm vụ (số đã xong, rương tuần) cùng thấy một danh sách.
+    // Đường NHẬN thưởng không bị đụng tới - hàng đã claim từ trước vẫn hợp lệ,
+    // và đặt lại một mức thưởng > 0 trong quest-rewards.ts là đủ để nhiệm vụ
+    // hiện lại.
+    .filter((q) => q.xpReward > 0);
 }
 
 export interface ClaimQuestResult {

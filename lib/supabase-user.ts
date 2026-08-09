@@ -6,7 +6,7 @@ import { getTotalReferralXp, rewardMyReferralIfPending } from "@/lib/referrals";
 import { getTotalQuestXp } from "@/lib/supabase-quests";
 import { getTotalChestXp } from "@/lib/chests";
 import { getTotalCareerMissionXp } from "@/lib/career-profile";
-import { getLevelByXp } from "@/lib/levels";
+import { getLevelByXp, XP_PER_LESSON } from "@/lib/levels";
 import { CFA_LEVEL_1_SUBJECTS } from "@/lib/cfa-track";
 
 const CFA_LESSON_IDS = new Set(CFA_LEVEL_1_SUBJECTS.flatMap((s) => s.lessonIds));
@@ -711,7 +711,7 @@ export async function recalculateUserStats(userId: string) {
   const xpSpent = Math.max(0, (userStatsRes as { data: { xp_spent: number } | null })?.data?.xp_spent ?? 0);
   const totalXp = Math.max(
     0,
-    (lessonsCompleted + cfaModulesDone) * 10 + quizXp + gameXp + referralXp + gameAcademicBonusXp + questXp + milestoneXp + recallXp + chestXp + careerMissionXp - xpSpent
+    (lessonsCompleted + cfaModulesDone) * XP_PER_LESSON + quizXp + gameXp + referralXp + gameAcademicBonusXp + questXp + milestoneXp + recallXp + chestXp + careerMissionXp - xpSpent
   );
   const quizScores = progress?.filter((p) => p.quiz_score !== null).map((p) => p.quiz_score) || [];
   const avgScore = quizScores.length > 0 ? quizScores.reduce((a, b) => a + b, 0) / quizScores.length : 0;

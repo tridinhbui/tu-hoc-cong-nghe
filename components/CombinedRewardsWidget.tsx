@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import { recalculateUserStats } from "@/lib/supabase-user";
 import { getUserStreak } from "@/lib/supabase-streak";
 import { getUnopenedChestCount, openNextChest, earnChest, type ChestReward } from "@/lib/chests";
+import { WEEKLY_CHEST_QUESTS_REQUIRED } from "@/lib/quest-rewards";
 import { createClient } from "@/lib/supabase";
 import DailyQuestsWidget from "@/components/DailyQuestsWidget";
 import { useIsClient } from "@/lib/use-is-client";
@@ -191,7 +192,7 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
 
   const handleWeeklyClaim = async () => {
     const completedQuestsCount = dailyQuests.filter((q) => q.current >= q.target).length;
-    if (weeklyClaimed || completedQuestsCount < 3) return;
+    if (weeklyClaimed || completedQuestsCount < WEEKLY_CHEST_QUESTS_REQUIRED) return;
 
     try {
       const supabase = createClient();
@@ -380,7 +381,7 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
                   </div>
                   <button
                     onClick={() => void handleWeeklyClaim()}
-                    disabled={weeklyClaimed || dailyQuests.filter((q) => q.current >= q.target).length < 3}
+                    disabled={weeklyClaimed || dailyQuests.filter((q) => q.current >= q.target).length < WEEKLY_CHEST_QUESTS_REQUIRED}
                     className={`px-4 py-2 text-[10px] font-black rounded-xl transition-all duration-200 border shrink-0 flex items-center justify-center gap-1.5 ${
                       weeklyClaimed
                         ? "bg-stone-100 dark:bg-stone-950 text-stone-400 border-stone-200 dark:border-stone-800"
