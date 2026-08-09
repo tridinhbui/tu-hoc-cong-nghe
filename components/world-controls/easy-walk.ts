@@ -122,11 +122,26 @@ export function worldDirection(input: MoveInput, cameraYaw: number): { x: number
   };
 }
 
-/** Góc quay của camera quanh trục đứng, đọc từ chính ma trận của nó. Lấy ở đây
- *  thay vì tự cộng dồn: camera còn được nội suy mỗi khung hình, nên con số tự
- *  cộng sẽ lệch dần khỏi thứ người dùng đang nhìn thấy. */
+/** Góc quay của camera quanh trục đứng, đọc từ chính vị trí của nó. Lấy ở đây
+ *  thay vì dùng `orbit.yaw`: camera được nội suy về vị trí đích mỗi khung hình,
+ *  nên trong lúc người dùng đang kéo góc nhìn thì `orbit.yaw` là chỗ camera SẼ
+ *  tới, còn hàm này là chỗ camera ĐANG ở - và hướng đi phải khớp với thứ đang
+ *  hiện trên màn hình.
+ *
+ *  KHÔNG cộng π vào đây. Bản đầu có `+ Math.PI` và nó làm /loi-nhan đi ngược:
+ *  đẩy tiến thì nhân vật đi về phía máy quay, trái thành phải. `applyFollowCamera`
+ *  đặt camera ở offset `(sin(orbit.yaw), cos(orbit.yaw)) * dist` so với nhân vật
+ *  rồi nhìn vào nhân vật, nên hướng camera đang nhìn là `-offset`, và
+ *  `worldDirection` quy ước tiến = `(-sin(yaw), -cos(yaw))`. Ghép hai cái đó lại
+ *  thì yaw đúng bằng `atan2(dx, dz)`, không cộng gì. Cộng π là quay input 180 độ.
+ *
+ *  Nó sống lâu vì ba thế giới 3D kia truyền `orbit.yaw` trực tiếp và không gọi
+ *  hàm này, còn ở cảnh rừng thì chạm-để-đi che mất lỗi: `inputTowardTarget` là
+ *  hàm nghịch đảo của `worldDirection` với CÙNG một yaw, nên sai số triệt tiêu.
+ *  Chỉ bàn phím và cần điều khiển bị. lib/__tests__/easy-walk-direction.test.ts
+ *  neo vào trục thế giới chứ không neo vào tính đối xứng, đúng vì lý do đó. */
 export function cameraYawOf(camera: THREE.Camera, focusX: number, focusZ: number): number {
-  return Math.atan2(camera.position.x - focusX, camera.position.z - focusZ) + Math.PI;
+  return Math.atan2(camera.position.x - focusX, camera.position.z - focusZ);
 }
 
 /** Quay người mượt về hướng đang đi, theo cung ngắn. */
