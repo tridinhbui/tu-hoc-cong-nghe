@@ -1,21 +1,15 @@
-import { redirect } from "next/navigation";
-import { createServerSupabaseClient } from "@/lib/supabase-server";
 import HomePage from "@/components/home/HomePage";
 
-export const dynamic = "force-dynamic";
-
-// Logged-in visitors go straight to the dashboard. Signed-out visitors get
-// the actual marketing landing page here (not a redirect to /login) - /login
-// is now a dedicated, minimal auth screen, not the site's front door.
-export default async function RootPage() {
-  const supabase = await createServerSupabaseClient();
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
-
-  if (session) {
-    redirect("/dashboard");
-  }
-
+// Trang marketing, kết xuất TĨNH.
+//
+// Trước đây nó `force-dynamic` và gọi getSession() chỉ để chuyển hướng người
+// đã đăng nhập sang /dashboard - nghĩa là mọi lượt xem của khách vãng lai và
+// mọi lượt bot quét đều tốn một lần chạy function cộng một vòng mạng ra
+// Supabase, cho một quyết định gần như luôn là "không chuyển hướng".
+//
+// Phép chuyển hướng đó nay nằm ở proxy.ts, chỗ đã biết sẵn câu trả lời:
+// request không mang cookie phiên thì thoát sớm, request có cookie thì
+// `getUser()` vốn đã chạy. Trang này vì thế không cần biết gì về phiên nữa.
+export default function RootPage() {
   return <HomePage />;
 }

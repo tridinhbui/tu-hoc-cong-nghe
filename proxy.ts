@@ -182,6 +182,20 @@ export async function proxy(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
+  // Người ĐÃ đăng nhập vào "/" thì đi thẳng tới dashboard. Phép chuyển hướng
+  // này trước đây nằm trong app/page.tsx, và để làm được nó trang phải khai
+  // `force-dynamic` cùng một lời gọi getSession() phía máy chủ - tức trang
+  // marketing, thứ mà khách vãng lai và bot tải nhiều nhất, phải chạy một
+  // function và một vòng mạng ra Supabase cho MỌI lượt xem, kể cả khi không
+  // có phiên nào để chuyển hướng.
+  //
+  // Ở đây thì miễn phí: request không mang cookie phiên đã thoát ra ở nhánh
+  // trên và không bao giờ tới dòng này, còn request có cookie thì `getUser()`
+  // vốn đã chạy rồi. Nhờ vậy "/" kết xuất tĩnh được.
+  if (user && pathname === "/") {
+    return NextResponse.redirect(new URL("/dashboard", request.url));
+  }
+
   if (!user && !isPublicPath(pathname)) {
     const loginUrl = new URL("/login", request.url);
     loginUrl.searchParams.set("next", pathname);
