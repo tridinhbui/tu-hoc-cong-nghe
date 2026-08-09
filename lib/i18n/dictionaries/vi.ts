@@ -1083,6 +1083,12 @@ export const vi = {
 
   // components/LearningAnalytics.tsx - the /analytics dashboard.
   analytics: {
+    streakRecordHint: "Kỷ lục {count} ngày liên tiếp",
+    lessons30d: "{count} bài trong 30 ngày qua",
+    avgMinutesPerLesson: "TB {count} phút cho mỗi bài",
+    completionOfStarted: "{percent}% trên {count} bài đã mở",
+    lessonsWithNotes: "{count} bài học có lưu note",
+    minutesValue: "{count} phút",
     // Nhãn tooltip biểu đồ. Trước là template literal trong thân arrow gọn -
     // hình dạng mà i18n-coverage chỉ thấy được sau khi thêm rule returned-text.
     lessonsUnit: "{count} bài",
@@ -1386,11 +1392,14 @@ export const vi = {
     // TOPICS labels. `id`, `tag`, `icon` and `tone` stay in the component: the
     // hashtag is functional - getPostCategory classifies a post by looking for
     // it in the stored content - so it must never be translated.
+    // Nhãn của lựa chọn "không chọn loại nào" trong ô soạn bài. Không dùng
+    // `topics.all` được: ở bộ lọc "Tất cả" nghĩa là xem mọi bài, còn ở ô soạn
+    // bài cùng chữ đó lại đọc thành "đăng vào mục Tất cả", tức một mục có thật.
+    topicNone: "Không phân loại",
     topics: {
       all: { label: "Tất cả", short: "Tất cả" },
       "meo-tai-chinh": { label: "Mẹo tài chính", short: "Mẹo" },
       "phan-tich": { label: "Phân tích", short: "Phân tích" },
-      "thanh-tuu": { label: "Thành tựu", short: "Thành tựu" },
       "hoi-dap": { label: "Hỏi đáp", short: "Hỏi đáp" },
       "tin-nong": { label: "Tin nóng", short: "Tin nóng" },
       "ai-finance": { label: "AI tài chính", short: "AI Finance" },

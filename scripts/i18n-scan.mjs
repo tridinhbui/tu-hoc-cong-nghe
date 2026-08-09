@@ -52,12 +52,21 @@ function walk(dir, out = []) {
 // a few minutes apart and pull opposite ways: counting comments INFLATED the
 // backlog with work that does not exist, and this one DEFLATED it by hiding work
 // that does. Neither is safe to leave in a number people are asked to drive down.
-const PATTERNS = [/"([^"\n]{2,})"/g, /'([^'\n]{2,})'/g, />([^<>]{2,}?)</g];
+// Template literal cũng là câu chữ, và trước đây không có mẫu nào bắt nó.
+// Đó là lý do `hint={`Kỷ lục ${n} ngày liên tiếp`}` và `${n} bài` sống sót qua
+// mọi lần dọn: chúng nằm ở vị trí hiển thị, chỉ khác cặp nháy. Bộ quét in ra
+// số 0 cho components/LearningAnalytics.tsx trong khi màn hình có bốn chuỗi
+// tiếng Việt đập vào mắt.
+//
+// `${...}` bị thay bằng khoảng trắng trước khi thử, giống hệt cách xử lý
+// {expression} trong JSX text, nên phần chữ quanh chỗ chèn vẫn khớp được.
+const PATTERNS = [/"([^"\n]{2,})"/g, /'([^'\n]{2,})'/g, /`([^`]{2,}?)`/g, />([^<>]{2,}?)</g];
 
 /** Strips {expressions} out of a JSX text node so the surrounding prose is still
  *  matched, and collapses the whitespace that wrapping introduced. */
 function normalizeJsxText(text) {
   return text
+    .replace(/\$\{[^{}]*\}/g, " ")
     .replace(/\{[^{}]*\}/g, " ")
     .replace(/\s+/g, " ")
     .trim();

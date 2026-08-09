@@ -1011,6 +1011,12 @@ export const en: Dictionary = {
   },
 
   analytics: {
+    streakRecordHint: "Record: {count} days in a row",
+    lessons30d: "{count} lessons in the last 30 days",
+    avgMinutesPerLesson: "Avg {count} minutes per lesson",
+    completionOfStarted: "{percent}% of {count} lessons opened",
+    lessonsWithNotes: "{count} lessons with saved notes",
+    minutesValue: "{count} minutes",
     // Peak study window: the data layer returns an id, the copy lives here.
     peakWindow: {
       unknown: "Not enough data",
@@ -1305,11 +1311,14 @@ export const en: Dictionary = {
     pollOptionPlaceholder: "Option {index}",
     editedAt: "Edited {when}",
 
+    // Nhãn của lựa chọn "không chọn loại nào" trong ô soạn bài. Không dùng
+    // `topics.all` được: ở bộ lọc "Tất cả" nghĩa là xem mọi bài, còn ở ô soạn
+    // bài cùng chữ đó lại đọc thành "đăng vào mục Tất cả", tức một mục có thật.
+    topicNone: "No category",
     topics: {
       all: { label: "All", short: "All" },
       "meo-tai-chinh": { label: "Money tips", short: "Tips" },
       "phan-tich": { label: "Analysis", short: "Analysis" },
-      "thanh-tuu": { label: "Achievements", short: "Wins" },
       "hoi-dap": { label: "Q&A", short: "Q&A" },
       "tin-nong": { label: "Breaking", short: "Breaking" },
       "ai-finance": { label: "AI in finance", short: "AI Finance" },

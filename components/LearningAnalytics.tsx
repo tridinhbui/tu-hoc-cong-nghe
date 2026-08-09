@@ -396,14 +396,14 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
               icon={<Flame className="h-5 w-5" />}
               label={t.analytics.cardStreak}
               value={`${analytics.streakDays}`}
-              hint={`Kỷ lục ${analytics.longestStreak} ngày liên tiếp`}
+              hint={format(t.analytics.streakRecordHint, { count: analytics.longestStreak })}
               accent="from-orange-500 to-red-600"
               delay={0.02}
             />
             <MetricCard
               icon={<Sparkles className="h-5 w-5" />}
               label={t.analytics.cardWeekRhythm}
-              value={`${analytics.recentMomentum.last7DaysLessons} bài`}
+              value={format(t.analytics.lessonCount, { count: analytics.recentMomentum.last7DaysLessons })}
               hint={format(t.analytics.minutesDone, { count: analytics.recentMomentum.last7DaysMinutes })}
               accent="from-emerald-500 to-teal-500"
               delay={0.06}
@@ -411,7 +411,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
             <MetricCard
               icon={<Clock3 className="h-5 w-5" />}
               label={t.analytics.cardStudyTime}
-              value={`${analytics.totalTimeSpent} phút`}
+              value={format(t.analytics.minutesValue, { count: analytics.totalTimeSpent })}
               hint={`${t.analytics.peakWindow[analytics.peakStudyWindow]} · ${analytics.bestStudyHour !== null ? formatHour(analytics.bestStudyHour) : t.analytics.hourUnknown}`}
               accent="from-sky-400 to-blue-600"
               delay={0.1}
@@ -420,7 +420,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
               icon={<TrendingUp className="h-5 w-5" />}
               label={t.analytics.cardWeekTrend}
               value={`${analytics.recentMomentum.weeklyTrendPercent > 0 ? "+" : ""}${analytics.recentMomentum.weeklyTrendPercent}%`}
-              hint={`${analytics.recentMomentum.last30DaysLessons} bài trong 30 ngày qua`}
+              hint={format(t.analytics.lessons30d, { count: analytics.recentMomentum.last30DaysLessons })}
               accent="from-teal-400 to-emerald-600"
               delay={0.14}
             />
@@ -536,7 +536,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
               icon={<Brain className="h-5 w-5" />}
               label={t.analytics.cardAvgQuiz}
               value={`${analytics.averageQuizScore}%`}
-              hint={`TB ${analytics.averageMinutesPerLesson} phút cho mỗi bài`}
+              hint={format(t.analytics.avgMinutesPerLesson, { count: analytics.averageMinutesPerLesson })}
               accent="from-amber-400 to-orange-500"
               delay={0.02}
             />
@@ -544,7 +544,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
               icon={<Target className="h-5 w-5" />}
               label={t.analytics.cardCompleted}
               value={`${analytics.totalLessonsCompleted}`}
-              hint={`${analytics.completionRate}% trên ${analytics.totalLessonsStarted} bài đã mở`}
+              hint={format(t.analytics.completionOfStarted, { percent: analytics.completionRate, count: analytics.totalLessonsStarted })}
               accent="from-emerald-500 to-teal-500"
               delay={0.06}
             />
@@ -670,14 +670,14 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
               icon={<NotebookPen className="h-5 w-5" />}
               label={t.analytics.cardTotalNotes}
               value={`${analytics.notes.totalNotes} note`}
-              hint={`${analytics.notes.lessonsWithNotes} bài học có lưu note`}
+              hint={format(t.analytics.lessonsWithNotes, { count: analytics.notes.lessonsWithNotes })}
               accent="from-indigo-400 to-purple-600"
               delay={0.02}
             />
             <MetricCard
               icon={<BookMarked className="h-5 w-5" />}
               label={t.analytics.cardManualFlags}
-              value={`${analytics.manualFlags.totalFlags} bài`}
+              value={format(t.analytics.lessonCount, { count: analytics.manualFlags.totalFlags })}
               hint={t.analytics.hintSelfMarked}
               accent="from-cyan-400 to-sky-500"
               delay={0.06}
