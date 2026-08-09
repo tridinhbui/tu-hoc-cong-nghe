@@ -3,9 +3,9 @@
 import { useEffect, useRef, useState, type RefObject } from "react";
 import { toast } from "sonner";
 import { Highlighter, Flag, Check, Sparkles } from "lucide-react";
-import { createClient } from "@/lib/supabase";
 import { createHighlight, type LessonHighlight } from "@/lib/lesson-highlights";
 import { useI18n } from "@/lib/i18n/context";
+import { getCurrentUser } from "@/lib/current-user";
 
 interface TextHighlightMenuProps {
   containerRef: RefObject<HTMLElement | null>;
@@ -133,8 +133,7 @@ export default function TextHighlightMenu({ containerRef, lessonId, lessonSlug, 
     if (!menu || saving) return;
     setSaving(true);
     try {
-      const supabase = createClient();
-      const { data: { user } } = await supabase.auth.getUser();
+      const user = await getCurrentUser();
       if (!user) {
         toast.error(t.textHighlight.needLogin);
         return;

@@ -3,10 +3,10 @@
 import { useEffect, useState } from "react";
 import { CheckCheck, CheckCircle2 } from "lucide-react";
 import { toast } from "sonner";
-import { createClient } from "@/lib/supabase";
 import { getLessonProgress } from "@/lib/supabase-progress";
 import { isLessonFlagged, toggleLessonFlag } from "@/lib/supabase-lesson-flags";
 import { useI18n } from "@/lib/i18n/context";
+import { getCurrentUser } from "@/lib/current-user";
 
 interface ManualLessonFlagButtonProps {
   lessonId: number;
@@ -28,10 +28,7 @@ export default function ManualLessonFlagButton({
   useEffect(() => {
     const load = async () => {
       try {
-        const supabase = createClient();
-        const {
-          data: { user },
-        } = await supabase.auth.getUser();
+        const user = await getCurrentUser();
 
         if (!user) return;
 
@@ -69,10 +66,7 @@ export default function ManualLessonFlagButton({
 
     setToggling(true);
     try {
-      const supabase = createClient();
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
+      const user = await getCurrentUser();
 
       if (!user) {
         toast.error(t.manualLessonFlag.needLogin);

@@ -12,11 +12,11 @@ import {
   readNoteDraft,
   clearNoteDraft,
 } from "@/lib/supabase-notes";
-import { createClient } from "@/lib/supabase";
 import type { LessonNote } from "@/lib/supabase-notes";
 import NoteContent, { hasMathContent } from "@/components/NoteContent";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
+import { getCurrentUser } from "@/lib/current-user";
 
 interface LessonNotesProps {
   lessonId: number;
@@ -41,8 +41,7 @@ export default function LessonNotes({ lessonId, lessonSlug }: LessonNotesProps) 
     let cancelled = false;
     const fetchNotes = async () => {
       try {
-        const supabase = createClient();
-        const { data: { user } } = await supabase.auth.getUser();
+        const user = await getCurrentUser();
         if (cancelled) return;
 
         if (user) {

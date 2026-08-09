@@ -3,9 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { BarChart3 } from "lucide-react";
-import { createClient } from "@/lib/supabase";
 import { getUserAnalytics, type LearningAnalytics } from "@/lib/supabase-analytics";
 import { useI18n } from "@/lib/i18n/context";
+import { getCurrentUser } from "@/lib/current-user";
 
 // Small icon button, same footprint as BookmarkButton next to it - opens a
 // compact stats card on hover (desktop) or tap (mobile) instead of sending
@@ -21,8 +21,7 @@ export default function LessonStatsHover() {
     if (stats || loading) return;
     setLoading(true);
     try {
-      const supabase = createClient();
-      const { data: { user } } = await supabase.auth.getUser();
+      const user = await getCurrentUser();
       if (!user) return;
       const data = await getUserAnalytics(user.id);
       setStats(data);

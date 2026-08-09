@@ -3,8 +3,8 @@
 import { useState, useEffect } from "react";
 import { Bookmark, BookmarkCheck } from "lucide-react";
 import { toggleBookmark, isLessonBookmarked } from "@/lib/supabase-bookmarks";
-import { createClient } from "@/lib/supabase";
 import { useI18n } from "@/lib/i18n/context";
+import { getCurrentUser } from "@/lib/current-user";
 
 interface BookmarkButtonProps {
   lessonId: number;
@@ -21,8 +21,7 @@ export default function BookmarkButton({ lessonId, lessonSlug, lessonTitle }: Bo
   useEffect(() => {
     const checkBookmark = async () => {
       try {
-        const supabase = createClient();
-        const { data: { user } } = await supabase.auth.getUser();
+        const user = await getCurrentUser();
         
         if (user) {
           const isBookmarked = await isLessonBookmarked(user.id, lessonId);
@@ -41,8 +40,7 @@ export default function BookmarkButton({ lessonId, lessonSlug, lessonTitle }: Bo
   const handleToggle = async () => {
     setToggling(true);
     try {
-      const supabase = createClient();
-      const { data: { user } } = await supabase.auth.getUser();
+      const user = await getCurrentUser();
       
       if (user) {
         const result = await toggleBookmark(user.id, lessonId, lessonSlug, lessonTitle);

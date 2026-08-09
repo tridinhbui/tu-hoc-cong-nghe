@@ -18,7 +18,6 @@ import { getLessonHighlights, type LessonHighlight } from "@/lib/lesson-highligh
 import { useLessonHighlightPaint } from "@/lib/hooks/useLessonHighlightPaint";
 import { LessonCompletionContext } from "@/lib/lesson-completion-context";
 import { isPreviewLessonSlug } from "@/lib/preview-lessons";
-import { createClient } from "@/lib/supabase";
 import { markLessonComplete as markLessonCompleteSupabase } from "@/lib/supabase-progress";
 import { getLessonProgress } from "@/lib/supabase-progress";
 import { queueOfflineCompletion, removeOfflineCompletion } from "@/lib/offline-sync";
@@ -43,6 +42,7 @@ import WisdomCardFlip from "@/components/WisdomCardFlip";
 import type { QuizQuestion } from "@/lib/lesson-types";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
+import { getCurrentUser } from "@/lib/current-user";
 
 export type { QuizQuestion };
 
@@ -237,8 +237,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   }, [lesson.recallDay]);
 
   useEffect(() => {
-    const supabase = createClient();
-    supabase.auth.getUser().then(async ({ data: { user } }) => {
+    getCurrentUser().then(async (user) => {
       if (!user) {
         // Bài xem thử (lib/preview-lessons.ts) dựng được mà không cần phiên.
         // Mọi thứ bên dưới đều là đọc/ghi tiến độ của một tài khoản, nên
@@ -454,7 +453,18 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   // the user sees every box checked, completion fires. The refs are still
   // synced here so completeLessonInSupabase persists the right quiz score.
   const quizCriterionMet = quiz.length === 0 || submittedCount === quiz.length;
-  const scrolledFully = readPct >= 90 || maxReachedRef.current >= 90 || quizCriterionMet;
+  // KHÔNG có `|| quizCriterionMet` ở đây, dù nó từng có.
+  //
+  // Với nhánh đó, làm xong quiz là tự thoả mãn luôn tiêu chí "đã đọc hết bài",
+  // nên ba ô trong checklist thực chất chỉ còn hai - và ô tự tick hộ lại đúng
+  // là ô nói với người học rằng họ đã đọc. Comment ngay phía trên (và bản thân
+  // checklist) nói rõ điều kiện là CẢ HAI.
+  //
+  // Bài ngắn không cuộn được vẫn hoàn thành bình thường: hàm onScroll đặt
+  // pct = 100 khi `totalScroll <= 0`, và IntersectionObserver ở cuối bài bắn
+  // ngay khi mốc cuối lọt vào khung nhìn. Nhánh này chỉ chặn đúng trường hợp
+  // nhảy thẳng xuống quiz mà chưa từng đi qua thân bài.
+  const scrolledFully = readPct >= 90 || maxReachedRef.current >= 90;
   const midpointCriterionMet = !hasMidpoint || midpointDone;
   const allCriteriaMet = scrolledFully && quizCriterionMet && midpointCriterionMet;
 
@@ -524,8 +534,10 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
       setReviewMode(false);
       quizAllSubmittedRef.current = true;
       quizFinalResultsRef.current = newResults;
-      maxReachedRef.current = 100;
-      setReadPct(100);
+      // Không đặt readPct = 100 ở đây nữa. Nộp câu cuối không chứng minh được
+      // người học đã đọc thân bài; đây là vế thứ hai của cùng một chỗ tự tick
+      // hộ đã gỡ ở `scrolledFully`, và để lại một mình nó thì cũng đủ để tiêu
+      // chí đọc bài không còn nghĩa gì.
 
       const stillNeedsMidpoint = hasMidpoint && !midpointDone;
       if (stillNeedsMidpoint) {
@@ -584,7 +596,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   // of leaving a lesson permanently unsaved for the session.
   async function completeLessonInSupabase(finalResults: boolean[]): Promise<"saved" | "failed" | "guest"> {
     // Don't trust the `userId` state here - it's only set once the mount
-    // effect's supabase.auth.getUser() round trip resolves, and a fast
+    // effect's getCurrentUser() round trip resolves, and a fast
     // reader can finish the quiz before that happens. Falling back to
     // state left this silently no-op-ing: the quiz still showed as done
     // locally (markLessonComplete above writes to localStorage regardless),
@@ -593,8 +605,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
     // the current user directly instead of relying on state timing.
     let uid = userId;
     if (!uid) {
-      const supabase = createClient();
-      const { data: { user } } = await supabase.auth.getUser();
+      const user = await getCurrentUser();
       // "Không có phiên" KHÁC "ghi hỏng", và trước đây cả hai cùng trả false.
       // Với bài xem thử thì khách đọc hết là chuyện bình thường, nhưng phía
       // gọi lại hiểu false là ghi hỏng: nó thử lại bốn lần trong 13,5 giây rồi
