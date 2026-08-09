@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft, Circle, CheckCircle2 } from "lucide-react";
 import { FINANCE_CAREERS, type FinanceCareer } from "@/lib/finance-careers";
-import { CFA_LEVEL_1_SUBJECTS } from "@/lib/cfa-track";
+import { buildCareerRoadmap, categoryProgress, type LessonIndex } from "@/lib/career-roadmap";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
@@ -78,29 +78,30 @@ export default function CareerLearningPathClient({
   // (relatedLessonSlugs + relatedCfaSubjectIds -> CFA_LEVEL_1_SUBJECTS'
   // lessonIds, which point at the same lib/lessons.ts entries, not a
   // separate CFA content table), deduplicated and resolved to real lessons.
-  const roadmap = useMemo(() => {
-    if (!selected) return [];
-    const seen = new Set<number>();
-    const rows: LessonRef[] = [];
-    for (const slug of selected.relatedLessonSlugs) {
-      const lesson = lessonsBySlug[slug];
-      if (lesson && !seen.has(lesson.id)) {
-        seen.add(lesson.id);
-        rows.push(lesson);
-      }
+  const lessonIndex: LessonIndex = useMemo(
+    () => ({ bySlug: lessonsBySlug, byId: lessonsById }),
+    [lessonsBySlug, lessonsById]
+  );
+
+  const roadmap = useMemo(
+    () => (selected ? buildCareerRoadmap(selected, lessonIndex) : []),
+    [selected, lessonIndex]
+  );
+
+  // Tiến độ của từng nhóm, cho màn hình đầu tiên. Dữ liệu để tính đã nằm sẵn
+  // trong props từ trước; thiếu nó thì năm thẻ ở bước 1 giống hệt nhau và
+  // không thẻ nào nói được vì sao nên chọn nó chứ không phải thẻ bên cạnh.
+  const progressByCategory = useMemo(() => {
+    const out = {} as Record<FinanceCareer["category"], ReturnType<typeof categoryProgress>>;
+    for (const cat of CATEGORY_ORDER) {
+      out[cat] = categoryProgress(
+        entryLevelCareers.filter((c) => c.category === cat),
+        lessonIndex,
+        completedSet
+      );
     }
-    for (const subjectId of selected.relatedCfaSubjectIds ?? []) {
-      const subject = CFA_LEVEL_1_SUBJECTS.find((s) => s.id === subjectId);
-      for (const id of subject?.lessonIds ?? []) {
-        const lesson = lessonsById[id];
-        if (lesson && !seen.has(lesson.id)) {
-          seen.add(lesson.id);
-          rows.push(lesson);
-        }
-      }
-    }
-    return rows;
-  }, [selected, lessonsBySlug, lessonsById]);
+    return out;
+  }, [lessonIndex, completedSet]);
 
   const doneCount = roadmap.filter((l) => completedSet.has(l.id)).length;
   const percent = roadmap.length ? Math.round((doneCount / roadmap.length) * 100) : 0;
@@ -108,7 +109,7 @@ export default function CareerLearningPathClient({
   // Step 1: pick a broad category first.
   if (!selectedCategory) {
     return (
-      <div className="max-w-2xl mx-auto px-6 py-8">
+      <div className="max-w-5xl mx-auto px-6 py-8">
         {!embedded && (
           <Link
             href="/dashboard"
@@ -118,21 +119,26 @@ export default function CareerLearningPathClient({
             {t.careerPath.backLabel}
           </Link>
         )}
-        <h1 className="text-xl font-bold text-stone-900 dark:text-stone-100 mb-1">{t.careerPath.pageTitle}</h1>
+        <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-1">{t.careerPath.pageTitle}</h1>
         <p className="text-sm text-stone-500 dark:text-stone-400 mb-6">
           {t.careerPath.pageSubtitle}
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        {/* Ba cột từ lg trở lên: có đúng năm nhóm, nên lưới hai cột luôn để
+            lại một thẻ mồ côi cạnh một ô trống ở hàng cuối. Ba cột xếp thành
+            3 + 2, và cột rộng hơn (max-w-5xl thay cho max-w-2xl) kéo nội dung
+            phủ hết bề ngang thay vì dồn vào một dải hẹp giữa màn hình. */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {CATEGORY_ORDER.map((cat) => {
             const meta = CATEGORY_META[cat];
             const count = entryLevelCareers.filter((c) => c.category === cat).length;
             const countLabel = format(t.careerPath.careerCount, { count });
+            const progress = progressByCategory[cat];
             return (
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className="group text-left rounded-2xl border-2 border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-4 hover:border-emerald-500 dark:hover:border-emerald-500 hover:shadow-lg transition-all"
+                className="group flex flex-col text-left rounded-2xl border-2 border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-4 hover:border-emerald-500 dark:hover:border-emerald-500 hover:shadow-lg transition-all"
               >
                 <div className="flex items-center gap-3.5 mb-2.5">
                   <div className="relative w-13 h-13 rounded-2xl overflow-hidden shrink-0 shadow-sm border border-stone-100 dark:border-stone-700 group-hover:scale-105 transition-transform duration-300">
@@ -150,9 +156,48 @@ export default function CareerLearningPathClient({
                   </div>
                 </div>
                 <p className="text-xs text-stone-500 dark:text-stone-400 leading-relaxed">{meta.description}</p>
+
+                {/* Phần khiến năm thẻ thôi giống hệt nhau. `mt-auto` giữ nó
+                    dính đáy thẻ để các thanh thẳng hàng dù mô tả dài ngắn
+                    khác nhau. Nhóm chưa có bài nào thì không dựng gì - một
+                    thanh 0% không nói lên điều gì ngoài việc dữ liệu còn
+                    thiếu. */}
+                {progress.total > 0 && (
+                  <div className="mt-auto pt-3">
+                    <div className="flex items-center justify-between mb-1.5">
+                      <span className="text-[10px] font-black uppercase tracking-wider text-stone-400 dark:text-stone-500">
+                        {format(t.careerPath.lessonCount, { done: progress.done, total: progress.total })}
+                      </span>
+                      <span className={`text-[11px] font-black tabular-nums ${progress.done > 0 ? "text-emerald-600 dark:text-emerald-400" : "text-stone-400 dark:text-stone-600"}`}>
+                        {progress.percent}%
+                      </span>
+                    </div>
+                    <div className="h-1.5 rounded-full bg-stone-100 dark:bg-stone-800 overflow-hidden">
+                      <div
+                        className="h-full rounded-full bg-emerald-500 dark:bg-emerald-400 transition-[width] duration-500"
+                        style={{ width: `${progress.percent}%` }}
+                      />
+                    </div>
+                  </div>
+                )}
               </button>
             );
           })}
+
+          {/* Ô thứ sáu của lưới. Chú thích đầu file nói "/su-nghiep stays
+              linked from here", nhưng đường link đó chỉ tồn tại ở bước 3 - sau
+              khi đã chọn xong một nghề. Trên chính màn hình mà câu đó mô tả,
+              lối ra duy nhất là nút Quay lại.
+              Nét đứt và nền chìm để nó không cạnh tranh với năm lựa chọn thật:
+              đây là lối đi khác, không phải nhóm nghề thứ sáu. */}
+          <Link
+            href="/su-nghiep"
+            className="group flex flex-col justify-center rounded-2xl border-2 border-dashed border-stone-200 dark:border-stone-800 bg-stone-50/60 dark:bg-stone-900/40 p-4 hover:border-stone-400 dark:hover:border-stone-600 hover:bg-stone-100/60 dark:hover:bg-stone-900/70 transition-all"
+          >
+            <p className="text-sm font-bold text-stone-600 dark:text-stone-300 group-hover:text-stone-900 dark:group-hover:text-stone-100 leading-snug">
+              {t.careerPath.fullProfileCta}
+            </p>
+          </Link>
         </div>
       </div>
     );

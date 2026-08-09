@@ -6,6 +6,8 @@ import TopicMasteryWidget from "@/components/TopicMasteryWidget";
 import InteractiveBond from "@/components/InteractiveBond";
 import MotivationShareCard from "@/components/MotivationShareCard";
 import { computeDomainCoverage } from "@/lib/career-competency";
+import { getLessonsMeta } from "@/lib/lessons-loader";
+import CareerLearningPathClient from "@/components/CareerLearningPathClient";
 
 /* i18n-ignore-start: dev-only preview route, hard-blocked in production
    below via notFound() when NODE_ENV === "production" - never reachable by
@@ -73,6 +75,29 @@ export default async function WorldPreviewPage({
         <div className="mx-auto max-w-3xl">
           <TopicMasteryWidget coverage={computeDomainCoverage(fake)} />
         </div>
+      </div>
+    );
+  }
+  if (scene === "career") {
+    // Màn hình chọn nhóm nghề ở /nghe-nghiep-hoc. Trang thật nằm sau tường
+    // đăng nhập và tự lấy tiến độ từ Supabase, nên không có lối này thì không
+    // chụp được bố cục của nó - đúng lý do file này tồn tại.
+    //
+    // Tập bài "đã học" giả lập chọn để năm nhóm ra năm mức khác nhau: có nhóm
+    // gần xong, có nhóm mới chớm, có nhóm 0%. Một tập đều nhau sẽ làm cả năm
+    // thanh giống hệt nhau và giấu mất đúng thứ cần nhìn.
+    const meta = await getLessonsMeta();
+    const bySlug = Object.fromEntries(meta.map((l) => [l.slug, l]));
+    const byId = Object.fromEntries(meta.map((l) => [l.id, l]));
+    const fake = meta.filter((_, i) => i % 3 === 0).map((l) => l.id);
+    return (
+      <div className="min-h-screen bg-stone-50 dark:bg-stone-950">
+        <CareerLearningPathClient
+          lessonsBySlug={bySlug}
+          lessonsById={byId}
+          completedLessonIds={fake}
+          embedded
+        />
       </div>
     );
   }
