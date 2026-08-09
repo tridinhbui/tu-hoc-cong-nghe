@@ -1,9 +1,9 @@
+import { Suspense } from "react";
 import { getLessonsMeta } from "@/lib/lessons-loader";
 import { getLessonOverrides } from "@/lib/lesson-overrides";
 import DashboardClient from "@/components/DashboardClient";
 
 // Auth-gated and reads Supabase env vars at render time - never prerender statically.
-export const dynamic = "force-dynamic";
 
 // The dedicated "Học bài" route: the learning path on its own page, so the
 // lesson list has one obvious home instead of being buried in the dashboard
@@ -29,5 +29,14 @@ export default async function HocBai() {
     };
   });
 
-  return <DashboardClient lessonsMeta={merged} view="lessons" />;
+  // Suspense chứ không phải force-dynamic: DashboardClient gọi
+  // useSearchParams(), và Next đòi một ranh giới Suspense quanh nó.
+  // `force-dynamic` trước đây làm im yêu cầu ấy bằng cách bỏ trang khỏi dựng
+  // tĩnh - trả bằng một lần chạy function cho mọi lượt xem, để khỏi viết một
+  // dòng bọc.
+  return (
+    <Suspense fallback={null}>
+      <DashboardClient lessonsMeta={merged} view="lessons" />
+    </Suspense>
+  );
 }

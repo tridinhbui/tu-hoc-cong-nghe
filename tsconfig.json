@@ -30,5 +30,15 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts"
   ],
-  "exclude": ["node_modules", "apps/mobile", "packages"]
+  "exclude": [
+    "node_modules",
+    "apps/mobile",
+    "packages",
+    // Worktree git đặt bên trong chính thư mục dự án. Không loại ra thì type
+    // check đi vào bản sao ấy và đổ ở phần phụ thuộc mà thư mục gốc không cài
+    // (ví dụ expo-router trong wt-xp/apps/mobile) - build hỏng vì một tệp
+    // không thuộc về bản build này.
+    "wt-*",
+    ".claude/worktrees"
+  ]
 }

@@ -1,18 +1,25 @@
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
 import type { Metadata } from "next";
-import { getServerLocale } from "@/lib/i18n/server";
 import { getDictionary, format } from "@/lib/i18n";
+import { DEFAULT_LOCALE } from "@/lib/i18n/locales";
+
+// Trang tĩnh: chữ pháp lý không phụ thuộc người đọc là ai.
+//
+// Trước đây nó gọi `getServerLocale()` để chọn từ điển, và một lần chạm cookie
+// là đủ để route rời CDN - với đúng hai trang mà trình thu thập và người chưa
+// đăng nhập vào nhiều nhất. Đổi lại: nội dung pháp lý luôn hiện ở ngôn ngữ
+// nguồn. Đây là đánh đổi có chủ ý, không phải bỏ sót; bản dịch của hai trang
+// này cần một segment ngôn ngữ trong đường dẫn mới làm được mà vẫn tĩnh.
+export const dynamic = "force-static";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const locale = await getServerLocale();
-  const t = getDictionary(locale);
+  const t = getDictionary(DEFAULT_LOCALE);
   return { title: t.finalTwo.termsPage.metaTitle };
 }
 
 export default async function TermsPage() {
-  const locale = await getServerLocale();
-  const t = getDictionary(locale);
+  const t = getDictionary(DEFAULT_LOCALE);
   const p = t.terms;
 
   return (

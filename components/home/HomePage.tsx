@@ -16,7 +16,6 @@ import PublicLeaderboardPreview from "@/components/login/PublicLeaderboardPrevie
 import InteractiveKingdomPreview from "@/components/home/InteractiveKingdomPreview";
 import InteractiveEcosystemShowcase from "@/components/home/InteractiveEcosystemShowcase";
 import ScrollytellingPinnedSection from "@/components/home/ScrollytellingPinnedSection";
-import { useRoutePrefetch } from "@/lib/use-route-prefetch";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 
@@ -42,7 +41,6 @@ export default function HomePage() {
   const heroParallaxX = (heroSpotlight.x - 50) / 10;
   const heroParallaxY = (heroSpotlight.y - 35) / 10;
 
-  useRoutePrefetch(["/login", "/login?mode=signup", `/bai-hoc/${TRACKS.personal.previewSlug}`], { delayMs: 500 });
 
   useEffect(() => {
     const cancelledRef = { current: false };
@@ -66,14 +64,17 @@ export default function HomePage() {
       }
     };
 
+    // Nạp MỘT lần, không lặp.
+    //
+    // Trước đây chỗ này gọi lại mỗi 30 giây. Đây là trang chủ công khai, nên
+    // mỗi tab để mở - kể cả tab bị bỏ quên và mỗi bot chạy JS - gọi hai RPC
+    // ĐẾM TOÀN BẢNG hai lần mỗi phút, mãi mãi. Con số nó nuôi là một dòng
+    // trang trí ("Hơn X người học đã tham gia") thay đổi vài đơn vị mỗi ngày:
+    // không có câu hỏi nào mà việc làm mới nó sau 30 giây trả lời được.
     void loadUserCount();
-    const intervalId = window.setInterval(() => {
-      void loadUserCount();
-    }, 30000);
 
     return () => {
       cancelledRef.current = true;
-      window.clearInterval(intervalId);
     };
   }, []);
 
@@ -111,14 +112,11 @@ export default function HomePage() {
       }
     };
 
+    // Nạp một lần - xem ghi chú ở phần đếm người học phía trên.
     void loadCompletedCount();
-    const intervalId = window.setInterval(() => {
-      void loadCompletedCount();
-    }, 30000);
 
     return () => {
       cancelledRef.current = true;
-      window.clearInterval(intervalId);
     };
   }, []);
 
@@ -876,7 +874,7 @@ export default function HomePage() {
                     <Link href="/su-nghiep" className="hover:text-emerald-400 transition-colors">{t.home.footer.ecoCareer}</Link>
                   </li>
                   <li>
-                    <Link href="/shop" className="hover:text-emerald-400 transition-colors">{t.home.footer.ecoShop}</Link>
+                    <Link href="/cua-hang" className="hover:text-emerald-400 transition-colors">{t.home.footer.ecoShop}</Link>
                   </li>
                 </ul>
               </div>

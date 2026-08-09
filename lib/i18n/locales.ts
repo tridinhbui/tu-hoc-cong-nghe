@@ -56,3 +56,25 @@ export function isLocale(value: unknown): value is Locale {
 export function resolveLocale(value: unknown): Locale {
   return isLocale(value) ? value : DEFAULT_LOCALE;
 }
+
+/** Đọc cookie ngôn ngữ ở phía trình duyệt.
+ *
+ *  Đối trọng của `getServerLocale()`: cùng một cookie, đọc từ phía không có
+ *  `next/headers`. Có nó thì `app/layout.tsx` không cần chạm `cookies()` nữa,
+ *  và đó là điều kiện duy nhất để mọi route không bị ép thành động. */
+export function readLocaleCookie(): Locale {
+  if (typeof document === "undefined") return DEFAULT_LOCALE;
+  const match = document.cookie.match(
+    new RegExp(`(?:^|;\\s*)${LOCALE_COOKIE}=([^;]*)`)
+  );
+  return resolveLocale(match?.[1]);
+}
+
+/** Đặt thuộc tính `lang` trước khi trang vẽ lần đầu.
+ *
+ *  Cùng khuôn với THEME_INIT_SCRIPT và vì cùng một lý do: HTML đầu tiên giờ
+ *  được dựng sẵn ở mức tĩnh nên nó không biết cookie của người đọc. Script này
+ *  chạy đồng bộ trong <head>, trước khi có gì được vẽ, nên `lang` đúng ngay từ
+ *  khung hình đầu - trình đọc màn hình và trình dịch của trình duyệt đọc thuộc
+ *  tính này chứ không đọc state của React. */
+export const LOCALE_INIT_SCRIPT = `(function(){try{var m=document.cookie.match(/(?:^|;\\s*)${LOCALE_COOKIE}=([^;]*)/);var l=m&&m[1];if(l==="en"||l==="vi"){document.documentElement.lang=l;}}catch(e){}})();`;

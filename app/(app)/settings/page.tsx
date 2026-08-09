@@ -13,7 +13,6 @@ import { format, intlLocale } from "@/lib/i18n";
 import { getNotificationPreferences, saveNotificationPreferences } from "@/lib/notification-preferences";
 import { isPushSupported, subscribeToPush, unsubscribeFromPush } from "@/lib/push-notifications";
 
-export const dynamic = "force-dynamic";
 
 interface CurrentUser {
   id?: string;

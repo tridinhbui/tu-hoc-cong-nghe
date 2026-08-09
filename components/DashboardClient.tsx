@@ -1605,8 +1605,23 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                   const theme = STAGE_THEMES[themeKey] || { emoji: "📖", bg: "bg-stone-100 dark:bg-stone-800", text: "text-stone-900 dark:text-stone-100", barColor: "bg-stone-500" };
                   const percent = stageLessons.length ? (stageDone / stageLessons.length) * 100 : 0;
                   return (
-                    <button
+                    // Hàng chặng là div-có-role chứ không phải <button>, vì nó
+                    // CHỨA một nút khác (nút chứng chỉ bên dưới). <button>
+                    // lồng trong <button> là HTML không hợp lệ, và trình duyệt
+                    // xử lý bằng cách bỏ nút bên trong ra khỏi luồng tiêu điểm
+                    // - nên bản cũ dùng <span role="button"> để lách, đổi lấy
+                    // việc người dùng bàn phím không bao giờ lấy được chứng
+                    // chỉ của chính mình.
+                    <div
+                      role="button"
+                      tabIndex={0}
                       onClick={() => toggleStage(stageKey)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          e.preventDefault();
+                          toggleStage(stageKey);
+                        }
+                      }}
                       className={`w-full flex items-center gap-3 cursor-pointer text-left flex-wrap sm:flex-nowrap transition-all ${
                         isCurrentMilestonePassed
                           ? "bg-emerald-500/[0.04] dark:bg-emerald-500/[0.02] border border-emerald-500/20 px-4 py-3 rounded-2xl mb-4"
@@ -1631,8 +1646,8 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                       <span className="flex items-center gap-1 text-xs font-bold text-stone-600 dark:text-stone-300 shrink-0 bg-stone-100 dark:bg-stone-800 px-2.5 py-1 rounded-lg">
                         {t.dashboard.milestone.passed}
                       </span>
-                          <span
-                            role="button"
+                          <button
+                            type="button"
                             onClick={(e) => {
                               e.stopPropagation();
                               setSelectedCertStage({ label: stage.label, name: stage.name });
@@ -1640,7 +1655,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                             className="flex items-center gap-1 text-[11px] font-black text-white shrink-0 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 px-2.5 py-1 rounded-lg shadow-sm shadow-amber-500/20 active:scale-95 transition-all cursor-pointer"
                           >
                             {t.dashboard.milestone.certificate}
-                          </span>
+                          </button>
                         </div>
                       ) : isStageLockedByMilestone ? (
                         <span className="flex items-center gap-1 text-xs font-bold text-rose-500 dark:text-rose-400 shrink-0">
@@ -1675,7 +1690,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                       } ${stageOpen ? "rotate-180" : ""}`}>
                         {isStageLockedByMilestone ? "🔒" : "▾"}
                       </span>
-                    </button>
+                    </div>
                   );
                 })()}
 

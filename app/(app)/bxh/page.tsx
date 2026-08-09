@@ -7,7 +7,6 @@ import { createClient } from "@/lib/supabase";
 import CommunityFeedClient from "@/components/CommunityFeedClient";
 import { useI18n } from "@/lib/i18n/context";
 
-export const dynamic = "force-dynamic";
 
 export default function LeaderboardPage() {
   const { t } = useI18n();

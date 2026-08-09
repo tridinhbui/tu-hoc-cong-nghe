@@ -6,14 +6,13 @@ import Image from "next/image";
 import { isValidAvatar } from "@/lib/avatar-utils";
 import { usePathname, useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { FileText, BarChart3, StickyNote, GraduationCap, Gamepad2, Menu, X, Briefcase, BriefcaseBusiness, BookOpen, Home, Flame, Users, MessageSquareMore, Search, ChevronDown, Award, ShieldAlert, Route, Landmark, Network, type LucideIcon } from "lucide-react";
+import { FileText, BarChart3, StickyNote, GraduationCap, Gamepad2, Menu, X, Briefcase, BriefcaseBusiness, BookOpen, Home, Flame, Users, MessageSquareMore, Search, ChevronDown, Award, ShieldAlert, Route, Landmark, Network, Trophy, type LucideIcon } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import { format, type Dictionary } from "@/lib/i18n";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { createClient } from "@/lib/supabase";
 import GoldCoinIcon from "@/components/GoldCoinIcon";
 import NotificationBell from "@/components/NotificationBell";
-import { useRoutePrefetch } from "@/lib/use-route-prefetch";
 import Logo from "@/components/Logo";
 import { getUnresolvedMistakeCount } from "@/lib/quiz-mistakes";
 import { claimPendingReferral } from "@/lib/referrals";
@@ -147,7 +146,14 @@ const NAV_SECTIONS: NavSection[] = [
   },
   {
     titleKey: "sectionProgress",
-    links: [{ href: "/analytics", labelKey: "stats", icon: BarChart3 }],
+    links: [
+      { href: "/analytics", labelKey: "stats", icon: BarChart3 },
+      // Bảng xếp hạng: trang này tồn tại với đủ năm hạng mục và thứ hạng của
+      // chính người dùng, nhưng trước đây không có một đường dẫn nào trong app
+      // trỏ tới nó. Nó chỉ "tồn tại" trong mảng prefetch của navbar, và mảng đó
+      // vừa bị gỡ vì lý do hoá đơn - lúc ấy cổng reachability mới lên tiếng.
+      { href: "/bxh", labelKey: "leaderboard", icon: Trophy },
+    ],
   },
   {
     titleKey: "sectionResources",
@@ -206,7 +212,6 @@ export default function AppNavbar() {
   // panel on mousedown before the click ever reached the item.
   const mobileDropdownPanelRef = useRef<HTMLDivElement>(null);
 
-  useRoutePrefetch(["/dashboard", "/hoc-bai", "/analytics", "/bxh", "/profile", "/ban-be", "/nhom-hoc", "/finsocial", "/bang-tin", "/cong-dong", "/su-nghiep", "/ghi-chu", "/cong-cu", "/game", "/settings", "/tai-lieu", "/kiem-tra", "/phong-van-ky-thuat", "/cfa"]);
 
   useEffect(() => {
     // Đọc localStorage NGAY khi gắn, và có chủ ý là trong effect chứ không
@@ -686,7 +691,16 @@ export default function AppNavbar() {
             {!profile ? (
               <div className="h-12 rounded-2xl bg-stone-100 dark:bg-stone-900 animate-pulse" />
             ) : (
-              <div>
+              /* `flex-col-reverse` để menu bung LÊN chứ không xuống.
+                 Khối này nằm trong `mt-auto` ghim đáy sidebar, nên panel mở
+                 xuống chạy thẳng ra ngoài mép dưới màn hình - mục cuối
+                 ("Đăng xuất") bị đẩy sát đáy và nằm dưới cả badge devtools
+                 của Next.js. Đây đúng là tình huống NotificationBell ngay
+                 phía trên đã phải xử lý, và ghi chú của nó mô tả y hệt.
+                 Panel này nằm trong luồng chứ không `absolute`, nên đảo thứ
+                 tự trục dọc là đủ - không cần portal hay tính toạ độ như bên
+                 chuông, vì ở đây không có `overflow-hidden` nào cắt mất nó. */
+              <div className="flex flex-col-reverse">
                 <button
                   onClick={toggleProfileDropdown}
                   className="flex w-full items-center gap-2.5 rounded-2xl border border-stone-200 bg-white px-2.5 py-2.5 text-left transition-colors hover:bg-stone-50 dark:border-stone-800 dark:bg-stone-900 dark:hover:bg-stone-800 cursor-pointer"
@@ -705,7 +719,9 @@ export default function AppNavbar() {
                 </button>
 
                 {dropdownOpen && (
-                  <div className="mt-2 space-y-1 rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50/90 dark:bg-stone-900/90 p-2 shadow-sm animate-[fadeIn_0.15s_ease-out]">
+                  /* mb-2 chứ không mt-2: sau khi đảo trục, khoảng hở phải nằm
+                     giữa panel và nút bên dưới nó. */
+                  <div className="mb-2 space-y-1 rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50/90 dark:bg-stone-900/90 p-2 shadow-sm animate-[fadeIn_0.15s_ease-out]">
                     <button type="button" onClick={() => handleDropdownNavigate("/profile")} className="block w-full rounded-xl px-3 py-2 text-left text-xs font-bold text-stone-800 transition hover:bg-white dark:text-stone-200 dark:hover:bg-stone-800">
                       {t.nav.menuProfile}
                     </button>

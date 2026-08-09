@@ -1,11 +1,12 @@
 "use client";
 
-import { createContext, useCallback, useContext, useMemo, useState, type ReactNode } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 import { useRouter } from "next/navigation";
 import { getDictionary, type Dictionary } from "./index";
 import {
   DEFAULT_LOCALE,
   LOCALE_COOKIE,
+  readLocaleCookie,
   LOCALE_COOKIE_MAX_AGE,
   type Locale,
 } from "./locales";
@@ -21,17 +22,30 @@ interface I18nValue {
 const I18nContext = createContext<I18nValue | null>(null);
 
 export function I18nProvider({
-  initialLocale,
+  initialLocale = DEFAULT_LOCALE,
   children,
 }: {
-  initialLocale: Locale;
+  initialLocale?: Locale;
   children: ReactNode;
 }) {
-  // Seeded from the server-read cookie, so the first client render already
-  // matches the server HTML - no hydration mismatch, no flash of Vietnamese
-  // for an English reader.
+  // Khởi tạo bằng ngôn ngữ mặc định, KHÔNG bằng cookie đọc ở server.
+  //
+  // Đọc cookie trong app/layout.tsx là thứ duy nhất ép toàn bộ 99 route thành
+  // động: một root layout chạm `cookies()` thì mọi trang bên dưới nó không
+  // route nào được dựng sẵn hay nằm trên CDN. Chính lib/i18n/locales.ts đã ghi
+  // lại cái giá đó và ghi luôn cách trả: đưa ngôn ngữ tới provider mà không
+  // qua `cookies()`.
+  //
+  // Cái giá của chiều ngược lại, nói thẳng: người đọc tiếng Anh thấy một nhịp
+  // tiếng Việt ở lần tải đầu, trước khi effect dưới đây kịp chạy. Thuộc tính
+  // `lang` thì không nhấp nháy - LOCALE_INIT_SCRIPT đặt nó trước khi vẽ.
   const [locale, setLocaleState] = useState<Locale>(initialLocale);
   const router = useRouter();
+
+  useEffect(() => {
+    const fromCookie = readLocaleCookie();
+    if (fromCookie !== initialLocale) setLocaleState(fromCookie);
+  }, [initialLocale]);
 
   const setLocale = useCallback(
     (next: Locale) => {

@@ -104,16 +104,16 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
     };
 
     void loadCompletedCount();
-    const intervalId = window.setInterval(() => {
-      void loadCompletedCount();
-    }, 30000);
 
+    // Không có vòng lặp 30 giây ở đây nữa. Hai listener ngay dưới đã làm đúng
+    // việc đó và làm chính xác hơn: chúng chạy khi con số THẬT SỰ đổi, còn
+    // vòng lặp thì gọi một RPC đếm toàn bảng hai lần mỗi phút cho mọi tab
+    // dashboard đang mở, phần lớn là để nhận về đúng con số cũ.
     window.addEventListener("thtcdn:xp-gained", loadCompletedCount);
     window.addEventListener("thtcdn_weekly_quests_updated", loadCompletedCount);
 
     return () => {
       cancelled = true;
-      window.clearInterval(intervalId);
       window.removeEventListener("thtcdn:xp-gained", loadCompletedCount);
       window.removeEventListener("thtcdn_weekly_quests_updated", loadCompletedCount);
     };

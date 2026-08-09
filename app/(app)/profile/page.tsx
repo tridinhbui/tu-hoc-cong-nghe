@@ -44,7 +44,6 @@ import {
 } from "@/lib/track-stages";
 import type { LessonMeta } from "@/lib/lesson-types";
 
-export const dynamic = "force-dynamic";
 
 type TrackId = "personal" | "professional";
 
