@@ -1,0 +1,160 @@
+{
+  "slug": "quality-of-earnings-nang-cao",
+  "title": "IB & Analysis, Lesson 1: Quality of earnings - reading profit like a real analyst",
+  "subtitle": "Two companies can report the same EPS and have very different earnings quality",
+  "duration": "8 min",
+  "openingQuestion": "Company A's net income is up 20%, mostly from releasing bad debt provisions and selling assets; company B's net income is up 15% from higher revenue and an improved gross margin. Which has the better earnings quality?",
+  "openingOptions": [
+    "Company A, because its profit growth is higher",
+    "Company B - profit from the core operating business",
+    "Both are the same, since both grew net income",
+    "You cannot compare without knowing the industry"
+  ],
+  "explanation": "Quality of earnings asks where the profit came from, not just what the final number is. Profit from the core business (rising revenue, improving margins) is repeatable and durable; profit from provision adjustments, asset sales and other one-off items usually does not repeat, and can conceal a weakening core.",
+  "diagram": [
+    { "label": "Reported net income", "arrow": true },
+    { "label": "Separate the recurring core from the non-recurring items", "arrow": true },
+    { "label": "Judge how sustainable the growth is" }
+  ],
+  "realWorldExample": {
+    "company": "Quality of earnings analysis in M&A",
+    "description": "Before any acquisition, the buyer commissions an independent quality of earnings report - a close review of whether the target's profit is genuinely durable, so that nobody pays a high price for profit dressed up with one-off accounting devices."
+  },
+  "quiz": [
+    {
+      "question": "Why should an analyst be especially careful when profit jumps sharply just before an IPO or a sale of the company?",
+      "options": [
+        "Accounting standards change immediately before major events",
+        "Management has an incentive to maximise reported profit",
+        "Auditors usually skip any period containing a special event",
+        "Revenue always spikes in the final quarter of every year"
+      ],
+      "explanation": "This is a classic red flag: the period just before a major valuation event (an IPO, a sale) is exactly when the incentive to dress up the accounts is strongest, because a company is usually valued on a multiple of profit - and higher profit, even unsustainable profit, can lift the sale or IPO price considerably."
+    },
+    {
+      "question": "Free cash flow has run well below net income for several consecutive years while the company keeps reporting steady profits. What does that say about earnings quality?",
+      "options": [
+        "Normal: FCF is always below profit in every industry",
+        "A warning: profit is not converting into real cash",
+        "Positive: the company is investing heavily for growth",
+        "Meaningless: the two measure two different things"
+      ],
+      "explanation": "A persistent gap between net income and FCF is one of the most important earnings quality signals there is - it suggests reported profit may be inflated by revenue recognised early, provisions released, or working capital absorbing more and more without generating actual cash."
+    },
+    {
+      "question": "A company reports 400 billion of profit while operating cash flow is only 90 billion, for three consecutive years. What is the right read?",
+      "options": [
+        "This is the normal gap between the two figures at every business",
+        "The business is growing fast, so it needs more working capital",
+        "Depreciation is large, so accounting cash flow is recorded lower",
+        "Low earnings quality; look hard at receivables and inventory"
+      ],
+      "explanation": "One period out of line is ordinary. A deep gap running three years in a row is a sign that accounting profit is not turning into cash, and the next question is where that difference is sitting."
+    },
+    {
+      "question": "A business sharply reduces its bad debt provisioning while overdue receivables are rising. What is the effect?",
+      "options": [
+        "Profit rises without any additional cash being required",
+        "It shows the quality of the customer base is improving, since fewer debts are now expected to go bad",
+        "It reflects a tightening of the credit policy",
+        "It is a technical adjustment with no effect on profit"
+      ],
+      "explanation": "A provision is a non-cash expense, so reducing it lifts profit immediately. When that trend runs opposite to the actual quality of the receivables, the notes to the accounts are where you need to read very carefully."
+    },
+    {
+      "question": "A business extends the depreciation life of its assets from 10 years to 15. What happens to the statements?",
+      "options": [
+        "Profit is unchanged, because total depreciation over the years is the same",
+        "Both profit and operating cash flow rise by a corresponding amount",
+        "Profit for the period rises while cash flow does not move at all",
+        "Operating cash flow rises while profit for the period falls"
+      ],
+      "explanation": "This is one of the cheapest accounting levers for flattering profit: the annual depreciation charge falls without a single dong moving. So when profit improves, the thing to do is read the accounting policy note before celebrating."
+    }
+  ],
+  "keyTakeaways": [
+    "Quality of earnings asks whether profit comes from a durable core or from one-off items that do not repeat",
+    "Be especially careful with profit that jumps just before a valuation event (an IPO, an M&A deal)",
+    "A persistent gap between net income and FCF is a warning signal on earnings quality"
+  ],
+  "practicePrompt": {
+    "question": "Company A reports profit up 40% year on year, but most of the increase came from selling a non-core division (a one-off gain). Company B's profit is up only 10%, entirely from its core operations. Which does a quality of earnings analyst regard as the more durable prospect?",
+    "options": [
+      "Company B: core profit is more durable than a one-off gain on an asset sale",
+      "Company A, because its rate of profit growth is far higher, regardless of where the gain came from",
+      "Both companies have equal prospects, since both reported positive net income for the year",
+      "It cannot be assessed from net income alone; you would also need the current share price"
+    ],
+    "explanation": "Profit from core operations is more durable than profit from one-off items. Quality of earnings is precisely the assessment of that difference - a gain on selling an asset does not repeat, while profit from core operations reflects genuine earning power going forward."
+  },
+  "application": {
+    "title": "Plot net income and operating cash flow side by side",
+    "message": "Take the last five years of a listed company and put profit after tax next to cash flow from operations. The two lines tracking each other is normal; one rising while the other runs flat for years is a question to answer before valuing anything.",
+    "secondary": "The gap usually sits in receivables and inventory growing faster than revenue. Work out days receivable for each year and you will see it."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Two companies can report the same EPS and have very different earnings quality - telling them apart is one of the most important analytical skills there is."
+    },
+    {
+      "type": "heading",
+      "text": "A durable core, or one-off items that do not repeat"
+    },
+    {
+      "type": "paragraph",
+      "text": "Quality of earnings asks where the profit came from, not just what the final number is. Profit from the core operating business repeats; profit from provision adjustments, asset sales and other one-off items usually does not, and can conceal a weakening core. Be especially careful with profit that jumps just before a major valuation event such as an IPO or an M&A deal, when the incentive to dress up the accounts is strongest."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Profit from core operations is more durable than profit from one-off items",
+        "Be especially careful with profit that jumps before a valuation event (an IPO, an M&A deal)",
+        "A persistent gap between net income and FCF is a warning signal on earnings quality"
+      ]
+    },
+    {
+      "type": "formula",
+      "title": "How much profit turns into cash",
+      "equation": "Cash conversion = Operating cash flow ÷ Profit after tax",
+      "example": {
+        "title": "A worked comparison",
+        "calculation": "Company A: 520 ÷ 500 = 1.04 · Company B: 180 ÷ 500 = 0.36",
+        "result": "The same profit, entirely different quality",
+        "explanation": "Both report 500 billion of profit, but A collected more than 500 billion in actual cash while B collected only 180 billion. B's difference is sitting in receivables, inventory or amounts recognised before any cash arrived - and if that persists for years, B's profit figure means less and less."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "Six places to look when judging earnings quality"
+    },
+    {
+      "type": "list",
+      "items": [
+        "The gap between profit and operating cash flow, tracked over 3-5 consecutive years rather than read off one period.",
+        "Changes in accounting policy: how revenue is recognised, depreciation lives, the threshold for capitalising costs. A policy change in the same year profit improves is where the notes deserve a careful read.",
+        "The level of provisioning: releasing bad debt provisions while overdue receivables rise is a way of flattering profit that costs no cash.",
+        "The share of financial income and profit from associates within total profit - none of it reflects the core business.",
+        "Capitalising costs instead of expensing them: moving cost into assets raises this year's profit but pushes the depreciation burden into later years.",
+        "Revenue bunching unusually into the final quarter - possibly stock pushed onto distributors to hit the plan."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Why IPOs and M&A are the periods needing most caution",
+      "text": "In both events the business is usually valued on the last few reporting periods. That creates a very strong incentive for those periods to look as good as possible - through entirely legitimate accounting choices such as pushing cost into the next period or recognising revenue early. How to check: compare the 2-3 years before the event against the years further back, and look for an unusual step change."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A good EPS figure is where the analysis starts, not where it concludes.",
+        "Always ask: can this profit repeat next year?"
+      ]
+    }
+  ],
+  "summary": {
+    "keyIdea": "Quality of earnings asks whether profit comes from a durable core or from one-off items that do not repeat",
+    "commonMistake": "Easy to miss: be especially careful with profit that jumps just before a valuation event (an IPO, an M&A deal)",
+    "action": "A persistent gap between net income and FCF is a warning signal on earnings quality"
+  }
+}

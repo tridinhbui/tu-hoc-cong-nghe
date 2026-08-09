@@ -1,0 +1,177 @@
+{
+  "slug": "dinh-gia-tai-san-rong",
+  "title": "Valuing a company as if you sold everything and repaid the debt",
+  "subtitle": "Asset-based valuation, NAV and RNAV - the valuation strand, following on from ROIC and Enterprise Value",
+  "duration": "6 min",
+  "openingQuestion": "When does asset-based valuation fit best?",
+  "openingOptions": [
+    "When the assets can be valued and sold individually",
+    "When the company has no tangible assets whatsoever, so nothing on the balance sheet can be priced",
+    "When no reporting is required",
+    "Only for technology companies"
+  ],
+  "explanation": "Net asset valuation suits businesses holding a lot of tangible assets, or a liquidation / NAV / RNAV situation - a property company, a holding company owning several projects, or a business considering winding up. It suits technology and services companies far less, where most of the value comes from intangibles such as the brand or the team, which are hard to value separately.",
+  "diagram": [
+    { "label": "Assets", "arrow": true },
+    { "label": "Liabilities", "arrow": true },
+    { "label": "NAV / RNAV", "arrow": true },
+    { "label": "Equity value", "arrow": false }
+  ],
+  "realWorldExample": {
+    "company": "Property and holding companies",
+    "description": "Companies holding clearly identifiable assets such as land, projects and cash are usually examined on NAV alongside DCF and multiples."
+  },
+  "quiz": [
+    {
+      "question": "What question does NAV usually answer?",
+      "options": [
+        "If every asset were sold and the debt repaid, what is left for shareholders",
+        "What revenue the company expects to achieve over the coming year, taken from its own guidance",
+        "What the gross margin is as a percentage of the company's total revenue",
+        "How fast the number of users of the company's product is growing"
+      ],
+      "explanation": "NAV (net asset value) is a fairly direct view of net assets: value each asset separately at a fair market price, subtract all the debt, and what remains belongs to the shareholders."
+    },
+    {
+      "question": "Why is asset-based valuation usually a poor fit for a fast-growing software (SaaS) company?",
+      "options": [
+        "Because a SaaS company is not required to publish periodic financial statements",
+        "Because the value sits in intangibles that cannot be separated and sold",
+        "Because a SaaS company always carries a negative net asset value by construction",
+        "Because current regulation prohibits the use of NAV in the technology sector"
+      ],
+      "explanation": "Asset-based valuation assumes the assets can be separated and sold individually at a clear market value - true of land, buildings and machinery. A SaaS company creates value mostly through intangibles that resist separate valuation, so DCF or multiples (P/E, EV/Revenue) reflect its real value far better."
+    },
+    {
+      "question": "A holding company has assets worth 6,000 billion at market value and 2,500 billion of borrowings. What is NAV?",
+      "options": [
+        "2,500 billion (taking the liabilities figure on its own)",
+        "8,500 billion (= 6,000 + 2,500, adding instead of subtracting)",
+        "3,500 billion (= 6,000 of assets − 2,500 of borrowings)",
+        "6,000 billion (forgetting to subtract the borrowings at all)"
+      ],
+      "explanation": "NAV = assets − debt = 6,000 − 2,500 = 3,500 billion. That is the value belonging to shareholders if every asset were sold at market value and all the debt repaid."
+    },
+    {
+      "question": "Why does NAV suit a property holding company?",
+      "options": [
+        "Because a holding company has no cash flow, so DCF cannot be applied",
+        "Because holding companies usually carry no bank borrowings at all",
+        "Because property always appreciates over the period it is held",
+        "Because each asset has a clear market price and can be sold separately"
+      ],
+      "explanation": "NAV only holds where separating and selling each asset is a reasonable assumption. A building has a market price you can look up and can be sold on its own; a team of engineers cannot - and that is the entire boundary of the method."
+    },
+    {
+      "question": "A holding company's shares trade 30% below NAV. What is the most common explanation?",
+      "options": [
+        "A holding discount, from running costs and tax on selling the assets",
+        "The market has mispriced it and this is a clear buying opportunity",
+        "The book value of the assets has been recorded below what they are worth",
+        "The company is about to issue more shares and dilute the existing value"
+      ],
+      "explanation": "A 20-40% discount to NAV is ordinary at a holding company: shareholders cannot decide to sell the assets themselves, they carry the cost of the management structure, and an actual sale triggers tax. It may be an opportunity, but by default it is a discount with a reason behind it."
+    }
+  ],
+  "keyTakeaways": [
+    "Asset-based valuation is useful when the assets are clear and separable",
+    "NAV and RNAV are commonly used for property and holding companies",
+    "Do not apply one valuation framework to every business"
+  ],
+  "summary": {
+    "keyIdea": "Asset-based valuation is useful when the assets are clear and separable",
+    "commonMistake": "Easy to miss: NAV and RNAV are commonly used for property and holding companies",
+    "action": "Do not apply one valuation framework to every business"
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Not every business should be valued by the same method - for a company owning a lot of clearly identifiable tangible assets, there is a more direct approach than DCF or multiples."
+    },
+    {
+      "type": "heading",
+      "text": "NAV: sell every asset, repay the debt, and see what is left"
+    },
+    {
+      "type": "paragraph",
+      "text": "Asset-based valuation prices each asset separately at a fair market value and subtracts all the debt - what remains (net asset value) belongs to shareholders. It suits property businesses, holding companies and liquidation situations, but fits technology and services companies poorly, where most of the value comes from intangibles (the team, the technology, the customer base) that cannot be separated and sold the way land or machinery can."
+    },
+    {
+      "type": "list",
+      "items": [
+        "NAV = the market value of the assets less all liabilities",
+        "Fits best where a business holds tangible assets that can be separated and sold individually (property, holding companies)",
+        "Does not fit a company whose value is mostly intangible, such as SaaS - use DCF or multiples instead"
+      ]
+    },
+    {
+      "type": "formula",
+      "title": "NAV and RNAV differ by exactly one step",
+      "equation": "NAV = Assets − Liabilities   |   RNAV = Revalued assets − Liabilities",
+      "variables": [
+        {
+          "symbol": "NAV",
+          "name": "Net asset value at book",
+          "description": "Taken straight off the balance sheet. Fast, but assets are carried at cost less depreciation - not what they would sell for today."
+        },
+        {
+          "symbol": "RNAV",
+          "name": "Net asset value after revaluation",
+          "description": "Replaces book values with each asset's market value. This is the figure used to value a property business or a holding company."
+        }
+      ],
+      "example": {
+        "title": "A property company that bought land in 2010",
+        "calculation": "At book: land 400 billion, other assets 150 billion, debt 300 billion → NAV = 250 billion. Revalued: that land is now worth 1,200 billion → RNAV = 1,200 + 150 − 300",
+        "result": "NAV of 250 billion against RNAV of 1,050 billion - more than four times apart",
+        "explanation": "Accounting records land at cost and does NOT revalue it upwards, so for a business that has held land for years the book value is close to meaningless. This is why property shares often trade at several times book value without being expensive at all."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "Three places the NAV figure lies"
+    },
+    {
+      "type": "paragraph",
+      "text": "First, a liquidation price is not a market price: selling a whole basket of assets in a hurry always takes a discount, and a specialised production line may fetch little more than scrap value. Second, off-balance-sheet obligations - lease commitments, guarantees given for associates, live litigation - do not sit in the \"liabilities\" line and still have to be settled before shareholders receive anything. Third, tax: selling land for 1,200 billion that was bought for 400 billion is taxed on the gain, so the cash actually reaching shareholders is below a raw RNAV."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "When NAV is the right measure",
+        "text": "Property, holding companies owning several projects, investment funds, businesses considering a wind-up, and any case where the value sits in assets that can be sold individually."
+      },
+      "right": {
+        "label": "When NAV is meaningless",
+        "text": "Software, consulting and consumer brand companies. Their value is the team, the codebase, the customer base - no line on the balance sheet carries it, and split apart there is nothing left. For these, use cash flow or multiples."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "NAV is a floor, not a price",
+      "text": "A business trading well is almost always worth more than the sum of its assets - if it were not, the shareholders should sell the assets immediately. So NAV is most useful as a FLOOR: if the share price sits below even the NAV net of tax and liquidation costs, either the market is mispricing it, or the market believes management will destroy still more value."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "There is no single valuation framework that is right for every business.",
+        "Only choosing the method that matches the nature of the assets produces a meaningful answer."
+      ]
+    }
+  ],
+  "practicePrompt": {
+    "question": "Which group of businesses does asset-based / RNAV valuation suit best?",
+    "options": [
+      "Property companies, holding funds, businesses owning a lot of land",
+      "SaaS technology companies with no fixed assets at all",
+      "Fast food restaurant chains",
+      "Early-stage mobile app startups"
+    ],
+    "explanation": "RNAV (revalued net asset value) restates the whole land bank and asset base at current market prices and then subtracts the debt, which fits property businesses and holding companies very well."
+  },
+  "application": {
+    "title": "In practice: valuing a company as if you sold everything and repaid the debt",
+    "message": "Which group of businesses does asset-based / RNAV valuation suit best?",
+    "secondary": "Having this principle firmly in hand strengthens your professional financial analysis."
+  }
+}
