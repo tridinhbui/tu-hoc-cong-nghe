@@ -6,6 +6,9 @@ import { CFA_EXAM, pickCfaWeighted, toThreeOptions } from "@/lib/cfa-exam";
 import { frmLessonIds, pickFrmWeighted, type FrmPart } from "@/lib/frm-exam";
 import { IB_TECHNICAL_QUESTIONS, formatCategoryLabel } from "@/lib/ib-question-bank";
 import { bankCoversCareer, getTechnicalQuestionsForCareer } from "@/lib/ib-question-careers";
+import { localizeIbQuestion } from "@/lib/ib-questions-i18n";
+import { type Locale } from "@/lib/i18n/locales";
+import { getServerLocale } from "@/lib/i18n/server";
 import { signQuestionToken } from "@/lib/quiz-tokens";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -90,7 +93,8 @@ type IbPoolQuestion = Omit<ChallengeQuestion, "lessonSlug" | "token"> & { catego
 function ibQuestionsForDifficulty(
   difficulty: string | null,
   career?: string | null,
-  section?: string | null
+  section?: string | null,
+  locale: Locale = "vi"
 ): IbPoolQuestion[] {
   let base =
     career && bankCoversCareer(career) ? getTechnicalQuestionsForCareer(career) : IB_TECHNICAL_QUESTIONS;
@@ -107,15 +111,21 @@ function ibQuestionsForDifficulty(
       ? base.filter((q) => q.difficulty === difficulty)
       : base;
 
-  return questions.map((q) => ({
-    lessonId: -q.id,
-    lessonTitle: `IB Question Bank · ${q.category}`,
-    category: q.category,
-    question: q.question,
-    options: q.options,
-    correct: q.correct,
-    explanation: q.explanation,
-  }));
+  // Dịch ở đây, sau khi lọc và trước khi cắt lấy năm câu: lọc theo
+  // `q.category` và `q.difficulty` là dữ liệu cấu trúc, còn `correct` đi
+  // nguyên từ bản gốc nên thứ tự dịch không ảnh hưởng tới việc chấm.
+  return questions.map((raw) => {
+    const q = localizeIbQuestion(raw, locale);
+    return {
+      lessonId: -q.id,
+      lessonTitle: `IB Question Bank · ${q.category}`,
+      category: q.category,
+      question: q.question,
+      options: q.options,
+      correct: q.correct,
+      explanation: q.explanation,
+    };
+  });
 }
 
 // How many questions one mock interview run asks. Long enough to feel like
@@ -198,7 +208,7 @@ export async function GET(request: NextRequest) {
   let sourceIds: number[];
 
   if (track === "ib" || track === "mock-interview") {
-    const pool = ibQuestionsForDifficulty(difficulty, career, section);
+    const pool = ibQuestionsForDifficulty(difficulty, career, section, await getServerLocale());
     if (pool.length === 0) {
       return NextResponse.json({ questions: [], totalAvailable: 0 });
     }
