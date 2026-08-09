@@ -2860,6 +2860,22 @@ export const en: Dictionary = {
   },
 
   // components/CareerGoalWidget.tsx
+  jobKeywords: {
+    financialAnalysis: "Financial analysis",
+    accounting: "Accounting",
+    audit: "Audit",
+    investmentBanking: "Investment banking",
+    creditOfficer: "Credit officer",
+    fpa: "FP&A",
+    fundManagement: "Fund management",
+    investmentOfficer: "Investment officer",
+    chiefAccountant: "Chief accountant",
+    riskAnalyst: "Risk analyst",
+    financialPlanning: "Financial planning",
+    quant: "Quantitative Analyst",
+    valuation: "Asset valuation",
+    investorRelations: "Investor relations",
+  },
   connectMenu: {
     title: "Connect",
     open: "Open the connect menu",

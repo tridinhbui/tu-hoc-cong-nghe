@@ -3044,6 +3044,22 @@ export const vi = {
   },
 
   // components/CareerGoalWidget.tsx
+  jobKeywords: {
+    financialAnalysis: "Phân tích tài chính",
+    accounting: "Kế toán",
+    audit: "Kiểm toán",
+    investmentBanking: "Ngân hàng đầu tư",
+    creditOfficer: "Chuyên viên tín dụng",
+    fpa: "FP&A",
+    fundManagement: "Quản lý quỹ đầu tư",
+    investmentOfficer: "Chuyên viên đầu tư",
+    chiefAccountant: "Kế toán trưởng",
+    riskAnalyst: "Chuyên viên phân tích rủi ro",
+    financialPlanning: "Hoạch định tài chính",
+    quant: "Quantitative Analyst",
+    valuation: "Định giá tài sản",
+    investorRelations: "Quan hệ cổ đông",
+  },
   connectMenu: {
     title: "Kết nối",
     open: "Mở menu kết nối",
