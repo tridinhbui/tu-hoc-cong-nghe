@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { List } from "lucide-react";
 import type { LessonSectionBlock } from "@/lib/lesson-types";
 import { useI18n } from "@/lib/i18n/context";
@@ -18,22 +18,19 @@ interface LessonTableOfContentsProps {
 export default function LessonTableOfContents({ sections }: LessonTableOfContentsProps) {
   const { t } = useI18n();
   const [activeId, setActiveId] = useState<string>("");
-  const [tocItems, setTocItems] = useState<TocItem[]>([]);
 
-  useEffect(() => {
-    if (!sections) return;
-
-    const items: TocItem[] = [];
-    sections.forEach((section, index) => {
-      if (section.type === "heading") {
-        items.push({
-          id: `heading-${index}`,
-          text: section.text,
-          level: 1,
-        });
-      }
-    });
-    setTocItems(items);
+  // Suy ra trong lúc render thay vì state + effect: mục lục là một hàm thuần
+  // của `sections`, không có gì bất đồng bộ. Bản cũ vẽ một lượt với mục lục
+  // RỖNG rồi mới điền - và vì `if (tocItems.length < 3) return null` ngay dưới,
+  // lượt đầu tiên đó luôn trả null, nên mục lục nhấp nháy vào chỗ trống ở mỗi
+  // lần mở bài.
+  const tocItems = useMemo<TocItem[]>(() => {
+    if (!sections) return [];
+    return sections.flatMap((section, index) =>
+      section.type === "heading"
+        ? [{ id: `heading-${index}`, text: section.text, level: 1 }]
+        : []
+    );
   }, [sections]);
 
   useEffect(() => {
