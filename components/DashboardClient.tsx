@@ -2248,10 +2248,16 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
               trải ngang cả hai cột. Với `grid-rows-[minmax(0,1fr)_auto]` thì
               khối thứ tư không còn chỗ và trình duyệt tự đẻ ra một HÀNG NGẦM
               thứ ba - hàng đó không nằm trong khai báo nên chiều cao của nó
-              không ai tính, và trước đây `overflow-hidden` ở khối ngoài cùng
-              cắt luôn phần thừa. Đó là tấm thẻ cam bị mất một nửa ở đáy màn
-              hình rộng. */}
-          <div className={`min-w-0 space-y-6 ${isLessonsView ? "xl:col-span-4 xl:min-h-0 xl:overflow-y-auto xl:pr-1.5" : "xl:space-y-0 xl:col-span-8 xl:min-h-0 xl:grid xl:grid-cols-2 xl:grid-rows-[minmax(0,1fr)_auto_auto] xl:gap-3.5"}`}>
+              không ai tính.
+
+              Và cột này phải TỰ CUỘN, như mọi bảng khác trong bố cục này. Bỏ
+              `overflow-hidden` ở khối ngoài cùng làm phần thừa hết bị cắt,
+              nhưng nó không làm phần thừa biến mất - tấm thẻ cam chuyển từ
+              "bị cắt" sang "tràn ra ngoài khung". Hàng đầu là `minmax(0,1fr)`
+              nên nó co lại được tới 0, còn hai hàng `auto` ở dưới thì không:
+              khi bản đồ cấp độ ở hàng trên cao lên, chỗ còn lại cho cột này
+              hụt đúng bằng phần chênh, và phần hụt ấy phải đi đâu đó. */}
+          <div className={`min-w-0 space-y-6 ${isLessonsView ? "xl:col-span-4 xl:min-h-0 xl:overflow-y-auto xl:pr-1.5" : "xl:space-y-0 xl:col-span-8 xl:min-h-0 xl:overflow-y-auto xl:grid xl:grid-cols-2 xl:grid-rows-[minmax(0,1fr)_auto_auto] xl:gap-3.5"}`}>
             {/* Study aids, beside the lesson list rather than stacked on top of
                 it - see the note in the left column. */}
             {isLessonsView && user?.id && (
