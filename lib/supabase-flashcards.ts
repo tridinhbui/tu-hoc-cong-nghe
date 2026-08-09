@@ -329,5 +329,5 @@ export const DEFAULT_FINANCIAL_GLOSSARY: { term: string; definition: string }[] 
   { term: "NPV (Net Present Value)", definition: "Giá trị hiện tại ròng, là tổng dòng tiền thu hồi trong tương lai chiết khấu về hiện tại trừ đi chi phí đầu tư ban đầu." },
   { term: "Cổ tức (Dividend)", definition: "Một phần lợi nhuận sau thuế được doanh nghiệp chia cho các cổ đông bằng tiền mặt hoặc cổ phiếu." },
   { term: "Hàng tồn kho (Inventory)", definition: "Tài sản ngắn hạn của công ty bao gồm nguyên vật liệu, bán thành phẩm và thành phẩm đang chờ tiêu thụ." },
-  { term: "Bản cân đối kế toán (Balance Sheet)", definition: "Báo cáo tài chính phản ánh tổng thể tài sản, nợ phải trả và vốn chủ sở hữu tại một thời điểm nhất định." },
+  { term: "Bảng cân đối kế toán (Balance Sheet)", definition: "Báo cáo tài chính phản ánh tổng thể tài sản, nợ phải trả và vốn chủ sở hữu tại một thời điểm nhất định." },
 ];

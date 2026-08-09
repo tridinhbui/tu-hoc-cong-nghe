@@ -11,7 +11,6 @@ import {
   saveFlashcardsBulk,
   deleteFlashcard,
   calculateSM2,
-  DEFAULT_FINANCIAL_GLOSSARY,
   type Flashcard,
 } from "@/lib/supabase-flashcards";
 import { getUnresolvedMistakeRows } from "@/lib/quiz-mistakes";
@@ -19,6 +18,7 @@ import { trackFeatureClick } from "@/lib/feature-events";
 import { getMistakeFlashcardCandidates } from "@/app/actions/flashcard-actions";
 import FlashcardAlbumsGallery from "@/components/flashcard/FlashcardAlbumsGallery";
 import { useI18n } from "@/lib/i18n/context";
+import { localizedDefaultGlossary } from "@/lib/supabase-flashcards-i18n";
 import { copyToClipboard } from "@/lib/copy-to-clipboard";
 import { format } from "@/lib/i18n";
 
@@ -29,7 +29,7 @@ interface FlashcardClientProps {
 }
 
 export default function FlashcardClient({ userId: propUserId, initialCards, embedded = false }: FlashcardClientProps = {}) {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const authGate = useAuthGate();
   const userId = propUserId || authGate.userId;
   const checking = propUserId ? false : authGate.checking;
@@ -299,19 +299,17 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
   const bootstrapDefaultGlossary = async () => {
     setLoading(true);
     try {
-      let count = 0;
-      for (const item of DEFAULT_FINANCIAL_GLOSSARY) {
-        const card: Flashcard = {
-          term: item.term,
-          definition: item.definition,
-          interval: 1,
-          ease_factor: 2.5,
-          repetitions: 0,
-          next_review_at: new Date().toISOString(),
-        };
-        const ok = await saveFlashcard(userId, card);
-        if (ok) count++;
-      }
+      // `saveFlashcardsBulk` thay cho vòng lặp `saveFlashcard`, và không phải để
+      // tiết kiệm tám lượt gọi. Bộ thẻ mặc định giờ có bản dịch, nên `term` đổi
+      // theo ngôn ngữ - mà `saveFlashcard` upsert theo `(user_id, term)`, tức
+      // tên đã dịch là một khoá KHÁC. Người bấm nút này lúc dùng tiếng Việt rồi
+      // bấm lại sau khi đổi sang tiếng Anh sẽ nhận 16 thẻ trùng nội dung.
+      //
+      // Bản bulk bỏ qua thẻ đã có ở BẤT KỲ ngôn ngữ nào, qua `alsoKnownAs`.
+      const { added: count } = await saveFlashcardsBulk(
+        userId,
+        localizedDefaultGlossary(locale)
+      );
       toast.success(format(t.flashcards.sampleImported, { count }));
       const list = await getFlashcards(userId);
       setCards(list);
