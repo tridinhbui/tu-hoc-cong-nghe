@@ -1078,7 +1078,7 @@ for (const lesson of corpus) {
 // (MIN_EXPLANATION_LEN, MIN_DIAGRAM_NODES, MIN_SECTION_BLOCKS) không áp được:
 // nội dung dạy của những bài này nằm trong JSX chứ không phải mảng `sections`,
 // nên đo chúng bằng thước của dữ liệu sẽ ra kết quả vô nghĩa.
-const handAuthored = readHandAuthoredQuizzes(path.join(__dirname, ".."));
+const handAuthored = readHandAuthoredQuizzes(path.join(__dirname, ".."), LOCALE);
 const handAuthoredTooFew = [];
 /** Trang có MỌI đáp án đúng ở cùng một vị trí.
  *

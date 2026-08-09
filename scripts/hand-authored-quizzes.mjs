@@ -69,19 +69,23 @@ function sliceObject(src, from) {
  *
  *  Cắt hẹp thay vì eval cả từ điển: chỉ lấy mảng `quiz` trong khối của đúng
  *  slug đó, và mảng ấy là literal thuần. Eval cả tệp sẽ vướng import và cast. */
-function readQuizCopy(root, slug) {
+function readQuizCopy(root, slug, locale) {
   const file = `${root}/${DICT_FILE}`;
   if (!existsSync(file)) return null;
   const src = readFileSync(file, "utf8");
   const viStart = src.indexOf("export const bespokeLessonsVi");
   const enStart = src.indexOf("export const bespokeLessonsEn");
   if (viStart < 0) return null;
-  // Chỉ tìm trong phần tiếng Việt: phần tiếng Anh có cùng khoá slug, và lấy
-  // nhầm nó sẽ đo bản dịch trong khi cổng này đo bản gốc.
-  const vi = src.slice(viStart, enStart > viStart ? enStart : undefined);
-  const key = vi.indexOf(`"${slug}": {`);
+  // Cắt theo NGÔN NGỮ được hỏi. Hai phần có cùng khoá slug, nên lấy nhầm phần
+  // là đo sai kho: `--locale=en` mà đọc phần tiếng Việt sẽ báo bản dịch xanh
+  // trong khi chưa ai nhìn nó, và đó đúng là điểm mù mà tệp này ra đời để bịt.
+  const section =
+    locale === "en" && enStart > viStart
+      ? src.slice(enStart)
+      : src.slice(viStart, enStart > viStart ? enStart : undefined);
+  const key = section.indexOf(`"${slug}": {`);
   if (key < 0) return null;
-  const block = sliceObject(vi, key);
+  const block = sliceObject(section, key);
   if (!block) return null;
   const q = block.indexOf("quiz: [");
   if (q < 0) return null;
@@ -95,7 +99,9 @@ function readQuizCopy(root, slug) {
   }
 }
 
-export function readHandAuthoredQuizzes(root = ".") {
+/** @param locale Ngôn ngữ cần đo. Chỉ có tác dụng với những trang lấy chữ từ
+ *  từ điển; trang còn mảng literal trong JSX thì chỉ có một bản. */
+export function readHandAuthoredQuizzes(root = ".", locale = "vi") {
   const dir = `${root}/app/bai-hoc`;
   const lessons = [];
   const skipped = [];
@@ -124,7 +130,7 @@ export function readHandAuthoredQuizzes(root = ".") {
         skipped.push({ slug, reason: `QUIZ_CORRECT: ${e.message.slice(0, 40)}` });
         continue;
       }
-      const copy = readQuizCopy(root, slug);
+      const copy = readQuizCopy(root, slug, locale);
       if (!copy) {
         skipped.push({ slug, reason: "không đọc được quiz trong từ điển" });
         continue;
