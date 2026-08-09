@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
@@ -12,12 +12,17 @@ import GoldCoinIcon from "@/components/GoldCoinIcon";
 import { recordCustomGameSession } from "@/lib/games";
 import ModeLeaderboard from "@/components/games/ModeLeaderboard";
 import { useI18n } from "@/lib/i18n/context";
+import { mergeCaseStudies } from "@/lib/case-studies-i18n";
 import { format } from "@/lib/i18n";
 
 export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
+  // Nội dung case nằm ngoài từ điển UI - xem lib/case-studies-i18n.
+  const cases = useMemo(() => mergeCaseStudies(REAL_CASE_STUDIES, locale), [locale]);
+  // State giữ ID chứ không giữ bản ghi: giữ bản ghi thì nó là ảnh chụp mảng
+  // tiếng Việt lúc mount, và đổi ngôn ngữ sẽ không đổi case đang mở.
   const [activeCaseId, setActiveCaseId] = useState<string>(REAL_CASE_STUDIES[0].id);
-  const activeCase = REAL_CASE_STUDIES.find((c) => c.id === activeCaseId) ?? REAL_CASE_STUDIES[0];
+  const activeCase = cases.find((c) => c.id === activeCaseId) ?? cases[0];
 
   const [gameState, setGameState] = useState<"briefing" | "playing" | "summary">("briefing");
   const [currentQIndex, setCurrentQIndex] = useState(0);
@@ -182,7 +187,7 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
 
       {/* Case Study Selection Carousel */}
       <div className="flex items-center gap-2 overflow-x-auto scrollbar-none pb-2 mb-6">
-        {REAL_CASE_STUDIES.map((c) => {
+        {cases.map((c) => {
           const isCurrent = c.id === activeCaseId;
           return (
             <button

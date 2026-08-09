@@ -115,6 +115,10 @@ const OVERLAY_COMPLETE = new Map([
   ["lib/frm-glossary-terms.ts", "lib/__tests__/frm-glossary-translations.test.ts"],
   ["lib/cfa-formulas-data.ts", "lib/__tests__/cfa-formulas-translations.test.ts"],
   ["lib/frm-formulas-data.ts", "lib/__tests__/frm-formulas-translations.test.ts"],
+  ["lib/case-studies-data.ts", "lib/__tests__/case-study-translations.test.ts"],
+  ["lib/excel-practice-data.ts", "lib/__tests__/excel-practice-i18n.test.ts"],
+  ["lib/vn30-stock-data.ts", "lib/__tests__/vn30-i18n.test.ts"],
+  ["lib/flashcard-albums.ts", "lib/__tests__/flashcard-albums-i18n.test.ts"],
 ]);
 
 for (const [source, gate] of OVERLAY_COMPLETE) {
