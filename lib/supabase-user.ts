@@ -8,8 +8,23 @@ import { getTotalChestXp } from "@/lib/chests";
 import { getTotalCareerMissionXp } from "@/lib/career-profile";
 import { getLevelByXp, XP_PER_LESSON } from "@/lib/levels";
 import { CFA_LEVEL_1_SUBJECTS } from "@/lib/cfa-track";
+import { getDictionary, readLocaleCookie } from "@/lib/i18n";
 
 const CFA_LESSON_IDS = new Set(CFA_LEVEL_1_SUBJECTS.flatMap((s) => s.lessonIds));
+
+/** Tên thay thế cho một người chưa đặt tên hiển thị, trên bảng xếp hạng.
+ *
+ *  Bảy hàm bên dưới đều rơi về đây, và cả bảy đều trả dữ liệu thẳng cho một
+ *  component dựng ra màn hình - nên chuỗi này HIỂN THỊ, dù nó nằm trong lib.
+ *
+ *  Đọc cookie thay vì nhận `t` qua tham số: sáu component gọi những hàm này
+ *  (Leaderboard, DashboardClient, RoomFixtures, PublicLeaderboardPreview,
+ *  CivicPanel, LeaderboardSection), nên thêm một tham số là sửa sáu nơi để
+ *  dịch đúng hai chữ. `readLocaleCookie()` trả về mặc định tiếng Việt khi
+ *  không có `document`, tức là đúng hành vi cũ ở phía máy chủ. */
+function defaultLearnerName(): string {
+  return getDictionary(readLocaleCookie()).miscUi.defaultLearner;
+}
 
 // "Table not found in schema cache" (PostgREST) or "relation does not exist"
 // (raw Postgres) - the leaderboard is a non-critical feature, so a missing
@@ -233,7 +248,7 @@ export async function getLeaderboardByMetric(metric: LeaderboardMetric, limit: n
   return ((data ?? []) as { user_id: string; name: string; value: number; avatar_url: string | null }[]).map((row) => ({
     user_id: row.user_id,
     value: row.value ?? 0,
-    name: row.name || "Người học",
+    name: row.name || defaultLearnerName(),
     avatarUrl: row.avatar_url ?? null,
   }));
 }
@@ -255,7 +270,7 @@ export async function getCompositeLeaderboard(limit: number = 20): Promise<Leade
   return ((data ?? []) as { user_id: string; name: string; value: number; avatar_url: string | null }[]).map((row) => ({
     user_id: row.user_id,
     value: row.value ?? 0,
-    name: row.name || "Người học",
+    name: row.name || defaultLearnerName(),
     avatarUrl: row.avatar_url ?? null,
   }));
 }
@@ -275,7 +290,7 @@ export async function getCommunityContributionLeaderboard(limit: number = 20): P
   return ((data ?? []) as { user_id: string; name: string; value: number; avatar_url: string | null }[]).map((row) => ({
     user_id: row.user_id,
     value: row.value ?? 0,
-    name: row.name || "Người học",
+    name: row.name || defaultLearnerName(),
     avatarUrl: row.avatar_url ?? null,
   }));
 }
@@ -406,7 +421,7 @@ export async function getTrackLeaderboard(track: "personal" | "professional", li
   return ((data ?? []) as { user_id: string; name: string; value: number; avatar_url: string | null }[]).map((row) => ({
     user_id: row.user_id,
     value: row.value ?? 0,
-    name: row.name || "Người học",
+    name: row.name || defaultLearnerName(),
     avatarUrl: row.avatar_url ?? null,
   }));
 }
@@ -438,7 +453,7 @@ export async function getCompetencyLeaderboard(lessonIds: number[], limit: numbe
   return ((data ?? []) as { user_id: string; name: string; value: number; avatar_url: string | null }[]).map((row) => ({
     user_id: row.user_id,
     value: row.value ?? 0,
-    name: row.name || "Người học",
+    name: row.name || defaultLearnerName(),
     avatarUrl: row.avatar_url ?? null,
   }));
 }
@@ -473,7 +488,7 @@ export async function getXpLeaderboardSince(since: Date, limit: number = 10): Pr
   return ((data ?? []) as { user_id: string; name: string; value: number; avatar_url: string | null }[]).map((row) => ({
     user_id: row.user_id,
     value: row.value ?? 0,
-    name: row.name || "Người học",
+    name: row.name || defaultLearnerName(),
     avatarUrl: row.avatar_url ?? null,
   }));
 }
@@ -502,7 +517,7 @@ export async function getFriendsLeaderboard(metric: LeaderboardMetric): Promise<
   return ((data ?? []) as { user_id: string; name: string; value: number; avatar_url: string | null }[]).map((row) => ({
     user_id: row.user_id,
     value: row.value ?? 0,
-    name: row.name || "Người học",
+    name: row.name || defaultLearnerName(),
     avatarUrl: row.avatar_url ?? null,
   }));
 }

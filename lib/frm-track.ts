@@ -30,6 +30,10 @@ export interface FrmSubject {
   lessonIds: number[];
 }
 
+/* i18n-ignore-start: `name` của 10 môn là tên phần CHÍNH THỨC trong đề cương
+   GARP FRM Part I/II. Chúng đã là tiếng Anh và phải giữ nguyên ở cả hai ngôn
+   ngữ - người học đối chiếu chúng với tài liệu GARP, nên một bản dịch tiếng
+   Việt sẽ khiến họ không tra được. Cùng lý do như tên môn CFA. */
 export const FRM_SUBJECTS: FrmSubject[] = [
   // ─── PART I ───
   {
@@ -133,3 +137,4 @@ export const FRM_SUBJECTS: FrmSubject[] = [
     lessonIds: [1328, 1327, 1253, 1025, 1560, 1561, 1563, 1643, 1644, 1645, 1646, 1647, 1648],
   },
 ];
+/* i18n-ignore-end */

@@ -1,0 +1,143 @@
+{
+  "slug": "ke-toan-tam-ly-mental-accounting",
+  "title": "Mental accounting: why 10 million of bonus is spent differently from 10 million of salary",
+  "subtitle": "Your brain files money into invisible drawers - and that makes you overspend in a way that feels perfectly logical, without your noticing",
+  "duration": "6 min",
+  "openingQuestion": "You receive an unexpected 10 million Tet bonus and your usual 10 million monthly salary. Although the amounts are identical, many people spend the bonus far more freely (shopping, travel) than the salary (which goes on bills and savings first). Which psychological phenomenon is this?",
+  "openingOptions": [
+    "Nothing in particular - this is simply a coincidence",
+    "Mental accounting - the brain sorts money by where it came from",
+    "Because bonus money is always worth less than salary",
+    "Because bonuses are taxed less, so they are worth more in real terms"
+  ],
+  "explanation": "This is mental accounting, described by the economist Richard Thaler: although money is fundamentally fungible (one dong substitutes perfectly for another regardless of source), the human brain automatically attaches different labels to money based on where it came from (salary, bonus, lottery, a gift) - and money that arrives unexpectedly or outside the plan is treated as \"easy money\" and spent far more freely than money earned by steady work.",
+  "realWorldExample": {
+    "company": "The \"house money\" effect in gambling and investing",
+    "description": "Behavioural studies of gambling find that players bet far more riskily with money they have JUST WON (\"house money\") than with the stake they arrived with, even though both are equally real money in their pocket at that moment. The same thing happens in investing: people take more risk with the profit they have just made than with their original capital, even though financially there is no difference at all between the two sums."
+  },
+  "quiz": [
+    {
+      "question": "Someone carries credit card debt at 20% a year but keeps 50 million in a savings account paying 5% a year, rather than using the savings to pay the debt down. How can this be a symptom of mental accounting?",
+      "options": [
+        "They want to keep an emergency fund rather than repay debt first",
+        "They do not yet know that card interest exceeds savings interest",
+        "They treat savings and debt as two separate mental accounts",
+        "They fear the bank would close the card if the balance were cleared"
+      ],
+      "explanation": "This is the classic case of mental accounting causing real financial damage: purely arithmetically, holding savings at 5% a year while owing card debt at 20% a year is a net loss of 15% a year - but because the brain treats \"savings\" and \"card debt\" as two separate drawers (one for safety, one to deal with later), many people never see the contradiction."
+    },
+    {
+      "question": "How is envelope budgeting - dividing cash into separate envelopes for each spending category - a POSITIVE application of mental accounting?",
+      "options": [
+        "It helps you spot unusual spending early in the month",
+        "It forces you to use cash, so you avoid the bank's card fees",
+        "It lets you calculate the month's total spending more precisely",
+        "It exploits the labelling instinct to create spending discipline"
+      ],
+      "explanation": "This is the interesting part: mental accounting is not always a thinking error to be eliminated - it can be exploited DELIBERATELY to create financial discipline. By setting up explicit mental accounts (physical envelopes, or separate bank accounts per goal), you use the brain's own natural instinct to control your spending better."
+    },
+    {
+      "question": "Why do many people accept high transaction or conversion charges to withdraw from a pension pot early, and even take consumer loans at far higher rates for short-term spending, rather than simply adjusting their pension contributions?",
+      "options": [
+        "Because they treat retirement money as an untouchable account",
+        "Because changing the contribution rate is too complicated and troublesome",
+        "Because consumer loan interest is actually cheaper than the early-exit fee",
+        "Because contributions are not permitted to be reduced mid-year"
+      ],
+      "explanation": "This is a more elaborate form of mental accounting: the brain psychologically seals the pension pot as an account not to be touched, which creates useful savings discipline in most cases - but occasionally leads to an irrational decision, where someone would rather borrow at a high rate than break that psychological boundary, even where the alternative is cheaper in pure financial cost."
+    },
+    {
+      "question": "Someone receiving a 30 million Tet bonus usually spends far more freely than with 30 million of salary. Why?",
+      "options": [
+        "Because bonuses usually arrive in cash, which makes them harder to track",
+        "Because the brain files an unusual sum into a separate, easier-to-spend account",
+        "Because bonus income is subject to a lower personal income tax rate than monthly salary",
+        "Because bonuses arrive around the holidays, when prices of goods happen to be lower"
+      ],
+      "explanation": "Money substitutes for money: 30 million is 30 million. But the brain labels it by origin - money that feels like a windfall gets spent under different rules from money that felt like sweat. Noticing this is the first step towards treating every dong by the same rule."
+    },
+    {
+      "question": "Mental accounting has a useful side too. Which of these uses it to your benefit?",
+      "options": [
+        "Treating investment profit as house winnings, so it can be risked far harder than the original capital",
+        "Holding savings paying 5% while a credit card balance at 20% remains outstanding",
+        "Moving the emergency fund to a separate account so it is not spent on something else",
+        "Splitting a debt into many small pieces so each one feels easier to pay off"
+      ],
+      "explanation": "The same mechanism, pointed the right way, becomes a tool: putting a psychological fence around money with a purpose keeps it from being spent on something else. The other three are all mental accounting doing damage - especially holding 5% savings alongside 20% debt."
+    }
+  ],
+  "keyTakeaways": [
+    "Mental accounting: the brain automatically sorts money into separate mental accounts by origin, even though money is fundamentally fungible",
+    "The house money effect: people take more risk with money just gained (a bonus, an investment profit) than with their original capital, though both are equally real",
+    "Mental accounting can cause real financial damage (holding low-yield savings while carrying high-rate debt) but can also be exploited POSITIVELY (envelope budgeting) to build spending discipline",
+    "Recognising your own mental drawers makes your financial decisions more consistent, instead of letting the source of money dictate how you spend it"
+  ],
+  "practicePrompt": {
+    "question": "You have just received a 15 million tax refund and are weighing: (A) paying down a car loan at 12% a year, or (B) opening a separate travel fund for a trip at the end of the year. In purely financial terms, which is better, and how is mental accounting shaping the decision?",
+    "options": [
+      "B is always better, because a tax refund is an unexpected windfall and can be spent freely",
+      "Repaying 12% debt is a guaranteed 12%; mental accounting treats the refund as money outside the plan",
+      "The two options are entirely equivalent in financial terms",
+      "Split the money between both purposes without any further analysis"
+    ],
+    "explanation": "This is the lesson applied: recognising mental accounting lets you separate the PURE FINANCIAL DECISION (repaying high-rate debt is worth exactly as much as an investment guaranteed to earn that same rate) from the PSYCHOLOGICAL FEELING about where the money came from (a tax refund feels like a bonus, so it feels easier to spend). Seeing that difference is what lets you make the better decision."
+  },
+  "summary": {
+    "keyIdea": "Mental accounting makes people handle money differently by where it came from, even though financially every dong substitutes for every other - understanding this avoids inconsistent spending and saving decisions, and lets you turn the same tool towards financial discipline.",
+    "commonMistake": "Treating money from different sources (salary, bonus, tax refund, a win) as having different usable value, spending freely from windfalls while staying disciplined with ordinary salary",
+    "action": "Before spending any unexpected money (a bonus, a refund, a win), ask yourself: \"if this were my ordinary salary, would I make the same spending decision?\""
+  },
+  "application": {
+    "title": "Apply it now",
+    "message": "List the mental accounts you are unconsciously keeping (emergency fund, spending money, bonus money…) - is any of them pushing you into a suboptimal decision, such as holding low-yield savings while carrying high-rate debt?",
+    "secondary": "Try running a deliberate drawer-based budget (several sub-accounts, or a goal-based budgeting app) to turn mental accounting into a tool rather than an obstacle."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Money is money - but your brain does not think so. Mental accounting is one of the most interesting findings in behavioural economics, and it explains why people handle identical sums of money in completely different ways."
+    },
+    {
+      "type": "heading",
+      "text": "Fungibility - the principle most often violated"
+    },
+    {
+      "type": "paragraph",
+      "text": "In classical economic theory money is fungible - one dong of salary, one dong of bonus and one dong of lottery winnings have exactly the same value and buying power, with no reason to treat them differently. Behavioural psychology finds people violating this constantly: hard-earned money (the monthly salary) is carefully protected, while easily-arrived money (a bonus, a gift, a win) is spent far more freely."
+    },
+    {
+      "type": "heading",
+      "text": "The house money effect in investing"
+    },
+    {
+      "type": "paragraph",
+      "text": "This is particularly dangerous in investing: after making a profit, many investors take more risk with that profit (treating it as the house's money rather than their own), producing high-risk decisions they would never accept with their original capital. Financially there is no difference between \"original capital\" and \"profit already earned\" - both are equally your real assets."
+    },
+    {
+      "type": "heading",
+      "text": "Exploiting mental accounting positively"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Drawer budgeting: open several sub-accounts, one per goal (emergency fund, travel, buying a home), to create clear psychological boundaries and better spending discipline",
+        "Automate a transfer into the savings account the moment your salary arrives, before you can come to see it as spending money",
+        "Give each savings pot a specific name (rather than a generic \"savings\") to strengthen your psychological commitment to that goal"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Mental accounting is not an enemy to be eliminated - it is a psychological tool that can work against you (making you overspend windfalls, or hold low-yield savings while carrying high-rate debt) or become an ally (when designed deliberately to create financial discipline).",
+        "The important question is not \"how do I get rid of mental accounting\" but \"how do I make it work for me\"."
+      ]
+    }
+  ],
+  "diagram": [
+    { "label": "The brain sorts money into drawers by where it came from", "arrow": true },
+    { "label": "Bonuses and profits get spent more easily than salary", "arrow": true },
+    { "label": "This violates the principle that money is fungible", "arrow": true },
+    { "label": "Use it positively: give every savings pot the name of its goal", "arrow": false }
+  ]
+}

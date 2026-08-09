@@ -1,0 +1,155 @@
+{
+  "slug": "tam-ly-bay-dan-va-fomo-trong-dau-tu",
+  "title": "Herd behaviour and FOMO: why we buy the top and sell the bottom",
+  "subtitle": "When everyone around you is talking about a stock, that is usually the most dangerous moment to buy it",
+  "duration": "6 min",
+  "openingQuestion": "An asset (a stock, a coin, a property) is rising sharply, everyone around you is discussing it and showing off their gains. You feel a fear of missing out and decide to buy despite never having looked into it properly. Which psychological phenomenon is this a textbook case of?",
+  "openingOptions": [
+    "Fundamental analysis - valuing a company from its financial statements",
+    "Herd behaviour combined with FOMO - deciding from the crowd",
+    "A value investing strategy",
+    "Portfolio diversification"
+  ],
+  "explanation": "This is the classic combination of herd behaviour (copying the crowd on the assumption that \"so many people are doing it, it must be right\") and FOMO (the fear of missing out on something others are enjoying). The problem: by the time EVERYONE knows about an investment opportunity and is discussing it, most of the growth is usually already reflected in the price - and the last buyers in are usually buying at the highest prices, just before the correction begins.",
+  "realWorldExample": {
+    "company": "The dotcom bubble (2000) and the GameStop mania (2021)",
+    "description": "During the dotcom bubble of the late 1990s, millions of individual investors piled into technology shares purely because \"everyone was buying\", with no idea what the companies actually did - and many of them collapsed entirely afterwards. The GameStop mania of 2021 followed the same pattern: new investors bought near the peak because social media was saturated with it, and quite a few bought at the 480 USD top and watched the price fall below 50 USD within weeks."
+  },
+  "quiz": [
+    {
+      "question": "Why does herd behaviour so often lead investors to \"buy the top and sell the bottom\" - the exact opposite of the sensible strategy of buying low and selling high?",
+      "options": [
+        "Because brokers recommend buying while the market is lively",
+        "Because acting like the crowd feels safe",
+        "Because information reaches small investors only once it is late",
+        "Because trading systems give priority to large investors' orders"
+      ],
+      "explanation": "The feeling of safety in numbers is a human survival instinct, but it works against you in investing: when the price has already risen sharply and everyone is excited, the market is usually already overheated - near the top. Conversely, when prices fall hard and panic spreads, that may be the best buying opportunity there is - and the herd instinct pushes people to sell at exactly that moment."
+    },
+    {
+      "question": "Warren Buffett famously said: \"Be fearful when others are greedy, and greedy when others are fearful.\" Which principle does this apply against herd behaviour?",
+      "options": [
+        "Always do the opposite of the crowd in every situation",
+        "Wait for institutional investors to act, then follow behind them",
+        "Independent, analytical thinking - not mechanical contrarianism",
+        "Only buy once the market has fallen at least 30% from its high"
+      ],
+      "explanation": "Buffett's line does not mean \"always mechanically do the opposite of the crowd\" - it means recognising that collective emotion (extreme greed or extreme fear) usually pushes asset prices far from their real value, creating opportunities for the investor who can stay clear-headed and analyse independently rather than being swept along by the collective mood."
+    },
+    {
+      "question": "What is a practical way to protect yourself from FOMO when you see a \"hot\" investment being discussed everywhere?",
+      "options": [
+        "Invest a small amount straight away so you do not miss it",
+        "Only follow news from established and reputable outlets",
+        "Ask friends who have already invested in that asset first",
+        "Impose a 48-72 hour wait and research it independently"
+      ],
+      "explanation": "The cooling-off rule is an effective debiasing technique against FOMO: the urge to act immediately usually fades considerably after a few days, letting rational thought regain control of the decision. If after 48-72 hours of independent research the opportunity still looks sensible on fundamentals - not merely because a crowd is buying - that is the point at which to consider joining."
+    },
+    {
+      "question": "Why is an investment opportunity that is already being discussed everywhere usually less attractive than it looks?",
+      "options": [
+        "Because the crowd's expectations are largely reflected in the current price already",
+        "Because exchanges restrict buying volume once a ticker gets too hot",
+        "Because news that many people know is usually news that turns out to be inaccurate",
+        "Because institutional investors are barred from buying shares the media is discussing"
+      ],
+      "explanation": "Price reflects information that has spread. Once everyone has heard the story and bought, there are fewer potential buyers left - future returns have to come from something exceeding the general expectation, not from the very story everybody is already telling."
+    },
+    {
+      "question": "What is the most practical way to resist FOMO when you see an asset running hot?",
+      "options": [
+        "Buy a small amount now to ease the feeling of missing out, then decide later",
+        "Write the allocation rule in advance and do not change it for a price move",
+        "Watch it for a few more sessions and buy if the upward momentum holds up",
+        "Ask the people you know who hold that asset in order to gain more perspective"
+      ],
+      "explanation": "A rule written in advance is the only item on the list that the mania itself did not shape. \"Buy a little\" and \"wait for momentum\" are both FOMO wearing the clothes of a method, and asking existing holders returns nothing but confirmation bias."
+    }
+  ],
+  "keyTakeaways": [
+    "Herd behaviour: the tendency to copy the crowd for the feeling of safety in numbers, even though it usually means buying high and selling low",
+    "FOMO is the main emotional driver pushing investors into \"hot\" assets without proper analysis",
+    "When an opportunity is being discussed WIDELY, most of the growth is usually already in the price - that is a signal for caution, not a signal to buy now",
+    "A 48-72 hour waiting rule before investing in a \"hot\" asset lets the emotion settle and rational thinking return"
+  ],
+  "practicePrompt": {
+    "question": "A new cryptocurrency is up 300% in 2 weeks and every social platform is full of posts showing off gains. You feel a strong fear of missing out. What is the most sensible action?",
+    "options": [
+      "Buy immediately with the whole of your savings so as not to miss the opportunity",
+      "Recognise the herd and the FOMO, apply the waiting rule, and research it independently",
+      "Borrow money to invest more, because the opportunity is too good to miss",
+      "Sell all your other investments and put the entire proceeds into this one opportunity"
+    ],
+    "explanation": "An extremely fast rise (300% in 2 weeks) combined with an explosion of social media discussion is the classic warning combination of herd behaviour plus FOMO, and it usually appears near the top of a speculative run. The wise response is not to avoid it entirely (which can mean missing a genuine opportunity) but to slow the decision down, research independently, and cap the money committed at an amount you could lose completely - never borrowing, and never concentrating everything into one hot opportunity."
+  },
+  "summary": {
+    "keyIdea": "Herd behaviour and FOMO make investors buy after prices have risen (the crowd is excited) and sell after they have fallen (the crowd is panicking) - the exact reverse of buying low and selling high.",
+    "commonMistake": "Reading the popularity and wide discussion of an opportunity as a signal to buy, when it is usually a signal for caution, because the price already reflects most of the good news",
+    "action": "Apply a 48-72 hour waiting rule and research independently before investing in any asset being discussed loudly on social media"
+  },
+  "application": {
+    "title": "Apply it now",
+    "message": "Recall the last time you felt FOMO about an investment - did you buy on the crowd's emotion, or research it independently before deciding?",
+    "secondary": "Herd behaviour is strongest in newer, lightly regulated markets with high social transmission, such as crypto - which is where the most caution is needed."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Humans evolved to feel safe acting like the crowd - a superb survival instinct in nature, and the most dangerous trap there is in financial investing."
+    },
+    {
+      "type": "heading",
+      "text": "Why herd behaviour leads to \"buying the top and selling the bottom\""
+    },
+    {
+      "type": "paragraph",
+      "text": "When an asset's price rises sharply, the media reports it and social feeds fill with success stories - the crowd gets excited and piles in, pushing the price higher still (near the top). Conversely, when the price falls hard and bad news spreads, collective fear drives a panicked sell-off that pushes the price below real value (near the bottom). An investor following the herd always acts AFTER the crowd - buying after the rise, selling after the fall."
+    },
+    {
+      "type": "heading",
+      "text": "FOMO - the fear of missing out in the age of social media"
+    },
+    {
+      "type": "paragraph",
+      "text": "FOMO is powerfully amplified by social media: seeing friends and acquaintances show off investment gains creates strong psychological pressure not to be left behind. The problem is that the boasting posts appear MOST OFTEN once the price has already risen sharply (which is what creates the urge to boast), precisely when the risk of a reversal is highest - producing a dangerous loop: price rises → boasting rises → FOMO rises → buying rises → price rises further (a bubble)."
+    },
+    {
+      "type": "heading",
+      "text": "The contrarian strategy - going against the crowd with a basis for it"
+    },
+    {
+      "type": "paragraph",
+      "text": "Going against the crowd does not mean mechanically doing the opposite; it means retaining the ability to analyse independently while collective emotion is at an extreme. Market sentiment indicators (such as the Fear & Greed Index) can help identify when the market is at an extreme - extreme greed (be careful) or extreme fear (possibly an opportunity, if the fundamentals still hold)."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Following the crowd",
+        "text": "It feels safe because many people are doing the same thing, but the price already reflects that very consensus. Risk does not shrink when it is shared among more people - it just becomes harder to see."
+      },
+      "right": {
+        "label": "Contrarian with a basis",
+        "text": "Being against the crowd is not automatically right. A grounded contrarian position demands a quantified argument for why the price is away from value, and a time horizon by which you will know you were wrong."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "The trap",
+      "text": "FOMO is not measured by whether you bought, but by whether you changed your decision-making process. Buying an asset after analysing it is investing; buying because you saw someone else profit skips exactly the step the process exists to catch."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The most important question when weighing a \"hot\" opportunity: am I buying because I analysed it and believe in the value, or because I am afraid of missing what other people have?",
+        "The difference between those two answers is the line between disciplined investing and speculating on the crowd's emotion."
+      ]
+    }
+  ],
+  "diagram": [
+    { "label": "The crowd buys → the price rises → more buyers are drawn in", "arrow": true },
+    { "label": "FOMO pushes the decision into exactly the high-price zone", "arrow": true },
+    { "label": "When the money flow dries up, the reverse happens faster", "arrow": true },
+    { "label": "The counter: write the argument first, buy to a plan rather than to the news", "arrow": false }
+  ]
+}

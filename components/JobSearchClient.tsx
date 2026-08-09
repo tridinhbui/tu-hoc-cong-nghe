@@ -1637,11 +1637,11 @@ export default function JobSearchClient({ embedded = false }: { embedded?: boole
                           <div className="flex flex-wrap gap-2">
                             {SUGGESTED_JOB_KEYWORDS.map((keyword) => (
                               <button
-                                key={keyword}
-                                onClick={() => window.open(JOB_SEARCH_SITES[0].buildUrl(keyword), "_blank", "noopener,noreferrer")}
+                                key={keyword.key}
+                                onClick={() => window.open(JOB_SEARCH_SITES[0].buildUrl(keyword.term), "_blank", "noopener,noreferrer")}
                                 className="px-3 py-1.5 rounded-full border border-stone-200 dark:border-stone-800 text-[11px] font-bold text-stone-600 dark:text-stone-400 hover:border-emerald-400 dark:hover:border-emerald-700 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors cursor-pointer"
                               >
-                                {keyword}
+                                {t.jobKeywords[keyword.key]}
                               </button>
                             ))}
                           </div>
@@ -2047,11 +2047,11 @@ export default function JobSearchClient({ embedded = false }: { embedded?: boole
                           <div className="flex flex-wrap gap-1.5">
                             {SUGGESTED_JOB_KEYWORDS.map((keyword) => (
                               <button
-                                key={keyword}
-                                onClick={() => window.open(JOB_SEARCH_SITES[0].buildUrl(keyword), "_blank", "noopener,noreferrer")}
+                                key={keyword.key}
+                                onClick={() => window.open(JOB_SEARCH_SITES[0].buildUrl(keyword.term), "_blank", "noopener,noreferrer")}
                                 className="px-2.5 py-1 rounded-full border border-stone-200 dark:border-stone-800 text-[10px] font-bold text-stone-600 dark:text-stone-400 cursor-pointer"
                               >
-                                {keyword}
+                                {t.jobKeywords[keyword.key]}
                               </button>
                             ))}
                           </div>
