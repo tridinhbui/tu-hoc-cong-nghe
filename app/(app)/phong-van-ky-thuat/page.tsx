@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { BriefcaseBusiness, ChevronLeft, CheckCircle2, Clock3, Target, Trophy } from "lucide-react";
+import { BriefcaseBusiness, ChevronLeft, CheckCircle2, Clock3, Target, Trophy, ChevronDown } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import { submitQuizSession, computeQuizXp, type QuizDifficulty, type QuizAnswerSubmission } from "@/lib/supabase-quiz-sessions";
 import { recalculateUserStats } from "@/lib/supabase-user";
@@ -19,6 +19,7 @@ import {
   withoutWholeBankCareers,
   type CareerCategory,
 } from "@/lib/ib-career-picker";
+import { matchesVietnamese } from "@/lib/vn-search";
 
 // Standalone "Technical Interview" drill - split out of /kiem-tra (which
 // stays the general-purpose knowledge-check page) because the 400-question
@@ -108,13 +109,26 @@ export default function TechnicalInterviewPage() {
 
   const uncoveredCount = FINANCE_CAREERS.length - careerCoverage.length;
 
-  // Bỏ nút không lọc được gì, rồi gom theo nhóm nghề. Xem lib/ib-career-picker.ts:
-  // "Ngân hàng Đầu tư · 276" từng đứng cạnh "Tất cả · 276" và cho ra cùng một
-  // tập, vì kho này VỐN là bộ câu hỏi Ngân hàng Đầu tư.
-  const careerGroups = useMemo(
-    () => groupCoverageByCategory(withoutWholeBankCareers(careerCoverage, totalQuestions)),
-    [careerCoverage, totalQuestions]
+  const [rolePickerOpen, setRolePickerOpen] = useState(false);
+  const [roleQuery, setRoleQuery] = useState("");
+
+  // Nhóm sau khi lọc theo ô tìm. Lọc TRƯỚC khi gom nên nhóm không còn nghề nào
+  // khớp sẽ tự biến mất, thay vì để lại một nhãn nhóm trống.
+  const visibleGroups = useMemo(
+    () =>
+      groupCoverageByCategory(
+        withoutWholeBankCareers(careerCoverage, totalQuestions).filter((c) =>
+          matchesVietnamese(c.title, roleQuery)
+        )
+      ),
+    [careerCoverage, totalQuestions, roleQuery]
   );
+
+  const activeRoleLabel = useMemo(() => {
+    if (!selectedCareer) return format(t.interview.allWithCount, { count: totalQuestions });
+    const found = careerCoverage.find((c) => c.careerId === selectedCareer);
+    return found ? `${found.title} · ${found.questionCount}` : format(t.interview.allWithCount, { count: totalQuestions });
+  }, [selectedCareer, careerCoverage, totalQuestions, t]);
 
   const CATEGORY_LABELS = useMemo(
     (): Record<CareerCategory, string> => ({
@@ -339,82 +353,121 @@ export default function TechnicalInterviewPage() {
                 bank, not hardcoded: an earlier version of this picker
                 advertised 120/95/85/110 questions for tracks that had no
                 questions at all, and clicking them showed an empty drill. */}
-            {/* Nền trung tính chứ không phải hổ phách. Vàng + viền vàng là
-                ngôn ngữ của cảnh báo hoặc khuyến mãi, và thứ đang đeo nó chỉ
-                là một hộp lọc - trong khi nút bắt đầu thật ở dưới lại nhạt
-                hơn. Trọng lượng thị giác đang ngược với thứ tự việc cần làm. */}
-            <div className="rounded-3xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-4 sm:p-6 shadow-xs">
-              <div className="flex flex-wrap items-center justify-between gap-3 mb-1">
-                <h3 className="text-lg font-black text-stone-900 dark:text-stone-100">
-                  {t.interview.byRoleTitle}
-                </h3>
-                <span className="inline-flex items-center gap-2 rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950 px-3 py-1.5 text-xs font-bold text-stone-500 dark:text-stone-400">
-                  {t.interview.sourceBadge}
+            {/* MẶC ĐỊNH THU GỌN MỘT DÒNG.
+                Bản trước dựng thẳng 43 nút lọc - đầu tiên là một hàng cuộn
+                không cấu trúc, rồi sau khi gom theo năm nhóm nghề vẫn là 43
+                nút đập vào mắt cùng lúc. Gom nhóm cho cấu trúc nhưng không
+                giảm LƯỢNG, và lượng mới là thứ làm màn hình loạn.
+
+                Thứ này là bộ TINH CHỈNH cho người đã biết mình nhắm nghề gì.
+                Người còn lại bấm Bắt đầu với "Tất cả". Nên mặc định nó phải
+                nhường chỗ, và mở ra khi được hỏi tới.
+
+                Nền trung tính chứ không phải hổ phách: vàng cộng viền vàng là
+                ngôn ngữ cảnh báo, và thứ đeo nó chỉ là một hộp lọc - trong khi
+                nút bắt đầu thật ở dưới lại nhạt hơn. */}
+            <div className="rounded-3xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-4 sm:p-5 shadow-xs">
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+                <span className="text-xs font-black uppercase tracking-wider text-stone-400 dark:text-stone-500">
+                  {t.interview.currentRoleLabel}
                 </span>
+                <span className="inline-flex items-center rounded-full border border-amber-500 bg-amber-400 px-3 py-1.5 text-xs font-black text-stone-950">
+                  {activeRoleLabel}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setRolePickerOpen((open) => !open)}
+                  className="ml-auto inline-flex items-center gap-1 rounded-full border border-stone-200 dark:border-stone-800 px-3 py-1.5 text-xs font-bold text-stone-600 dark:text-stone-300 hover:border-stone-400 dark:hover:border-stone-600 transition-colors cursor-pointer"
+                >
+                  {rolePickerOpen ? t.interview.closeRolePicker : t.interview.changeRole}
+                  <ChevronDown className={`h-3.5 w-3.5 transition-transform ${rolePickerOpen ? "rotate-180" : ""}`} />
+                </button>
               </div>
-              <p className="text-xs text-stone-600 dark:text-stone-400 mb-4 leading-relaxed">
-                {t.interview.byRoleBody}
-              </p>
 
-              <button
-                type="button"
-                onClick={() => setSelectedCareer(null)}
-                className={`mb-3 px-3 py-1.5 rounded-full border text-xs font-bold transition-colors cursor-pointer ${
-                  selectedCareer === null
-                    ? "border-amber-500 bg-amber-400 text-stone-950 font-black"
-                    : "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950 text-stone-600 dark:text-stone-300 hover:border-stone-300"
-                }`}
-              >
-                {format(t.interview.allWithCount, { count: totalQuestions })}
-              </button>
+              {rolePickerOpen && (
+                <div className="mt-4 border-t border-stone-100 dark:border-stone-800 pt-4">
+                  <p className="text-xs text-stone-600 dark:text-stone-400 mb-3 leading-relaxed">
+                    {t.interview.byRoleBody}
+                  </p>
 
-              {/* Gom theo năm nhóm nghề, nhãn nằm CÙNG HÀNG với chip chứ không
-                  thành một dòng tiêu đề riêng: 44 nút xếp thuần theo số câu
-                  không có cấu trúc nào để mắt bám, nhưng thêm năm dòng tiêu đề
-                  lại kéo dài đúng cái panel vốn đã quá cao. Nhãn inline cho
-                  cấu trúc mà gần như không tốn thêm chiều cao. */}
-              <div className="space-y-2.5">
-                {careerGroups.map((group) => (
-                  <div key={group.category} className="sm:grid sm:grid-cols-[8.5rem_1fr] sm:gap-3 sm:items-baseline">
-                    <p className="text-[10px] font-black uppercase tracking-wider text-stone-400 dark:text-stone-500 mb-1.5 sm:mb-0 sm:text-right sm:pt-1">
-                      {CATEGORY_LABELS[group.category]}
-                    </p>
-                    <div className="flex flex-wrap gap-1.5">
-                      {group.careers.map((c) => {
-                        const active = selectedCareer === c.careerId;
-                        return (
-                          <button
-                            key={c.careerId}
-                            type="button"
-                            onClick={() => setSelectedCareer(active ? null : c.careerId)}
-                            title={c.categories.join(" · ")}
-                            className={`px-3 py-1.5 rounded-full border text-xs font-bold transition-colors cursor-pointer ${
-                              active
-                                ? "border-amber-500 bg-amber-400 text-stone-950 font-black"
-                                : "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950 text-stone-600 dark:text-stone-300 hover:border-stone-300"
-                            }`}
-                          >
-                            {c.title}
-                            <span className={active ? "text-stone-950 font-extrabold" : "text-stone-400 dark:text-stone-500"}>
-                              {" "}· {c.questionCount}
-                            </span>
-                          </button>
-                        );
-                      })}
-                    </div>
+                  {/* Ô tìm bỏ dấu - xem lib/vn-search.ts. Với 43 lựa chọn thì
+                      gõ ba chữ nhanh hơn quét mắt, và người Việt gõ nhanh
+                      thường không bỏ dấu. */}
+                  <input
+                    type="search"
+                    value={roleQuery}
+                    onChange={(e) => setRoleQuery(e.target.value)}
+                    placeholder={t.interview.roleSearchPlaceholder}
+                    className="w-full rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950 px-3 py-2 text-sm text-stone-800 dark:text-stone-200 placeholder:text-stone-400 focus:border-stone-400 dark:focus:border-stone-600 focus:outline-none"
+                  />
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSelectedCareer(null);
+                      setRolePickerOpen(false);
+                    }}
+                    className={`mt-3 mb-3 px-3 py-1.5 rounded-full border text-xs font-bold transition-colors cursor-pointer ${
+                      selectedCareer === null
+                        ? "border-amber-500 bg-amber-400 text-stone-950 font-black"
+                        : "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950 text-stone-600 dark:text-stone-300 hover:border-stone-300"
+                    }`}
+                  >
+                    {format(t.interview.allWithCount, { count: totalQuestions })}
+                  </button>
+
+                  <div className="space-y-2.5">
+                    {visibleGroups.map((group) => (
+                      <div key={group.category} className="sm:grid sm:grid-cols-[8.5rem_1fr] sm:gap-3 sm:items-baseline">
+                        <p className="text-[10px] font-black uppercase tracking-wider text-stone-400 dark:text-stone-500 mb-1.5 sm:mb-0 sm:text-right sm:pt-1">
+                          {CATEGORY_LABELS[group.category]}
+                        </p>
+                        <div className="flex flex-wrap gap-1.5">
+                          {group.careers.map((c) => {
+                            const active = selectedCareer === c.careerId;
+                            return (
+                              <button
+                                key={c.careerId}
+                                type="button"
+                                onClick={() => {
+                                  setSelectedCareer(active ? null : c.careerId);
+                                  setRolePickerOpen(false);
+                                }}
+                                title={c.categories.join(" · ")}
+                                className={`px-3 py-1.5 rounded-full border text-xs font-bold transition-colors cursor-pointer ${
+                                  active
+                                    ? "border-amber-500 bg-amber-400 text-stone-950 font-black"
+                                    : "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950 text-stone-600 dark:text-stone-300 hover:border-stone-300"
+                                }`}
+                              >
+                                {c.title}
+                                <span className={active ? "text-stone-950 font-extrabold" : "text-stone-400 dark:text-stone-500"}>
+                                  {" "}· {c.questionCount}
+                                </span>
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
 
-              {/* Chỉ dựng khi CÒN nghề chưa phủ. Trước đây nó dựng vô điều
-                  kiện, và vì cả 44 nghề đều đã có bộ đề nên nó in ra "0 / 44
-                  vị trí khác chưa có bộ câu hỏi riêng" - một câu nói ngược với
-                  sự thật nó định nói, mở đầu bằng một con số trông như bộ đếm
-                  hỏng. */}
-              {uncoveredCount > 0 && (
-                <p className="mt-3 text-[11px] text-stone-500 dark:text-stone-400 leading-relaxed">
-                  {format(t.interview.uncoveredNote, { uncovered: uncoveredCount, total: FINANCE_CAREERS.length })}
-                </p>
+                  {visibleGroups.length === 0 && (
+                    <p className="text-xs text-stone-500 dark:text-stone-400">
+                      {format(t.interview.roleSearchEmpty, { query: roleQuery.trim() })}
+                    </p>
+                  )}
+
+                  {/* Chỉ dựng khi CÒN nghề chưa phủ. Trước đây nó dựng vô điều
+                      kiện, và vì cả 44 nghề đều đã có bộ đề nên nó in ra
+                      "0 / 44 vị trí khác chưa có bộ câu hỏi riêng" - một câu
+                      nói ngược với sự thật nó định nói. */}
+                  {uncoveredCount > 0 && (
+                    <p className="mt-3 text-[11px] text-stone-500 dark:text-stone-400 leading-relaxed">
+                      {format(t.interview.uncoveredNote, { uncovered: uncoveredCount, total: FINANCE_CAREERS.length })}
+                    </p>
+                  )}
+                </div>
               )}
             </div>
 

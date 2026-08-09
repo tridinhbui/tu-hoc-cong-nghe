@@ -940,6 +940,11 @@ export const vi = {
     byRoleBody:
       "Bộ câu hỏi này viết cho Ngân hàng Đầu tư, nhưng phần kế toán, định giá và DCF dùng chung được cho nhiều vị trí phân tích khác. Chọn vị trí để chỉ luyện đúng phần liên quan.",
     allWithCount: "Tất cả · {count}",
+    changeRole: "Đổi vị trí",
+    closeRolePicker: "Thu gọn",
+    roleSearchPlaceholder: "Tìm vị trí (gõ không dấu cũng được)…",
+    roleSearchEmpty: "Không có vị trí nào khớp \"{query}\".",
+    currentRoleLabel: "Đang luyện:",
     uncoveredNote:
       "{uncovered} / {total} vị trí khác chưa có bộ câu hỏi riêng — phần technical của các nghề đó đang được xây dần.",
 
@@ -1375,7 +1380,6 @@ export const vi = {
     voteBearish: "🐻 Biển Đỏ (Bearish - Thận trọng)",
     spotlightQuestion: "Câu hỏi cần trả lời",
     spotlightAnalysis: "Phân tích đáng đọc",
-    spotlightAchievement: "Thành tựu mới",
     anonMember: "Thành viên",
     anonYou: "Bạn",
     sentimentBullish: "🐂 Đã ghi nhận nhận định Biển Xanh Bullish của bạn!",
@@ -1388,14 +1392,19 @@ export const vi = {
     pollOptionPlaceholder: "Lựa chọn {index}",
     editedAt: "Chỉnh sửa {when}",
 
-    // MarketSentimentWidget
-    // TOPICS labels. `id`, `tag`, `icon` and `tone` stay in the component: the
-    // hashtag is functional - getPostCategory classifies a post by looking for
-    // it in the stored content - so it must never be translated.
     // Nhãn của lựa chọn "không chọn loại nào" trong ô soạn bài. Không dùng
     // `topics.all` được: ở bộ lọc "Tất cả" nghĩa là xem mọi bài, còn ở ô soạn
     // bài cùng chữ đó lại đọc thành "đăng vào mục Tất cả", tức một mục có thật.
     topicNone: "Không phân loại",
+
+    // MarketSentimentWidget
+    // TOPICS labels. `id`, `tag`, `icon` and `tone` stay in the component: the
+    // hashtag is functional - getPostCategory classifies a post by looking for
+    // it in the stored content - so it must never be translated.
+    //
+    // Chủ đề Thành tựu đã bỏ khỏi bảng này: nó gần như toàn bộ là bài do hệ
+    // thống tự đăng, nên nó là một luồng máy sinh ra được cho một cái nhãn chứ
+    // không phải một chủ đề người ta viết vào.
     topics: {
       all: { label: "Tất cả", short: "Tất cả" },
       "meo-tai-chinh": { label: "Mẹo tài chính", short: "Mẹo" },
@@ -1515,8 +1524,6 @@ export const vi = {
     rule1: "• Hữu ích, tích cực, tôn trọng nhau.",
     rule2: "• Không khuyến nghị chắc chắn, không chia sẻ dữ liệu mật.",
     rule3: "• Ưu tiên bài viết chi tiết, có ví dụ hoặc nguồn cần kiểm chứng.",
-    achievementsTitle: "Thành tựu",
-    achievementsEmpty: "Chưa có thành tựu nào được chia sẻ.",
     trendingTitle: "Đang nổi bật",
     trendingEmpty: "Chưa có bài nổi bật.",
     promptsTitle: "Gợi ý đăng bài",

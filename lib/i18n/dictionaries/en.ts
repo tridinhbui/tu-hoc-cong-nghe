@@ -878,6 +878,11 @@ export const en: Dictionary = {
     byRoleBody:
       "This question bank was written for investment banking, but the accounting, valuation and DCF sections apply to plenty of other analyst roles. Pick a role to drill only the relevant parts.",
     allWithCount: "All · {count}",
+    changeRole: "Change role",
+    closeRolePicker: "Collapse",
+    roleSearchPlaceholder: "Search roles…",
+    roleSearchEmpty: "No role matches \"{query}\".",
+    currentRoleLabel: "Drilling:",
     uncoveredNote:
       "{uncovered} of {total} other roles don't have their own question set yet — the technical side of those is still being built.",
 
@@ -1298,7 +1303,6 @@ export const en: Dictionary = {
     voteBearish: "🐻 Red Sea (Bearish - cautious)",
     spotlightQuestion: "Questions needing an answer",
     spotlightAnalysis: "Analysis worth reading",
-    spotlightAchievement: "New achievements",
     anonMember: "Member",
     anonYou: "You",
     sentimentBullish: "🐂 Your Blue Sea bullish call has been recorded!",
@@ -1425,8 +1429,6 @@ export const en: Dictionary = {
     rule1: "• Be useful, positive and respectful.",
     rule2: "• No firm recommendations, and no confidential data.",
     rule3: "• Detailed posts are preferred, with an example or a source that can be checked.",
-    achievementsTitle: "Achievements",
-    achievementsEmpty: "No achievements shared yet.",
     trendingTitle: "Trending",
     trendingEmpty: "Nothing trending yet.",
     promptsTitle: "Post ideas",
