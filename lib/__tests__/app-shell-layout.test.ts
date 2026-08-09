@@ -59,4 +59,43 @@ describe("lớp vỏ (app)", () => {
       .filter(Boolean);
     expect(hits).toEqual(["app/(app)/layout.tsx"]);
   });
+
+  /** Thanh bên cao đúng một viewport, và chỉ RUỘT nó cuộn.
+   *
+   *  Bản trước đặt `overflow-y-auto` lên cả cột trong `<aside>`. Khi danh sách
+   *  mục dài hơn màn hình - hiện tại là 13 mục cộng ba nhóm gập lại - thì logo và
+   *  ô tìm kiếm cuộn mất theo, còn thẻ người dùng ở đáy chỉ tới được sau khi cuộn
+   *  hết. Hai thứ đáng lẽ luôn thấy lại là hai thứ trôi đi đầu tiên.
+   *
+   *  Ba lớp dưới đây là cơ chế, không phải trang trí:
+   *    min-h-0 trên cột  - flex item mặc định `min-height: auto`, nên không có nó
+   *                        thì vùng giữa nở ra bằng nội dung và đẩy cả cột cao
+   *                        hơn viewport thay vì tự cuộn. Đây là lớp dễ bị gỡ
+   *                        nhất vì trông như không làm gì.
+   *    flex-1 min-h-0 trên <nav> - vùng cuộn thật.
+   *    shrink-0 ở đầu và đáy     - hai vùng luôn đứng yên.
+   */
+  it("thanh bên: cột không cuộn, chỉ <nav> ở giữa cuộn", () => {
+    const navbar = readFileSync(path.join(repoRoot, "components/AppNavbar.tsx"), "utf8");
+    const aside = navbar.slice(navbar.indexOf("<aside"), navbar.indexOf("</aside>"));
+
+    // `inset-y-0` trên <aside> là thứ khoá chiều cao vào đúng một viewport.
+    expect(aside, "thanh bên phải cao đúng một viewport").toContain("inset-y-0");
+
+    // Tìm <nav> SAU thẻ div, không phải lần xuất hiện đầu tiên trong cả khối:
+    // chú thích trong AppNavbar có nhắc chữ "<nav>", và bản đầu của phép kiểm này
+    // bắt được đúng chữ đó nên slice ra rỗng và đỏ vì lỗi của chính nó.
+    const colStart = aside.indexOf('<div className="flex h-full');
+    const navStart = aside.indexOf("<nav", colStart);
+    expect(colStart, "không tìm được cột trong <aside>").toBeGreaterThan(-1);
+    expect(navStart, "không tìm được <nav> sau cột").toBeGreaterThan(-1);
+    const column = aside.slice(colStart, navStart);
+    expect(column, "cột ngoài không được cuộn - chỉ ruột mới cuộn").not.toContain("overflow-y-auto");
+    expect(column, "cột ngoài thiếu min-h-0, vùng giữa sẽ nở ra thay vì cuộn").toContain("min-h-0");
+
+    const navTag = aside.slice(navStart, aside.indexOf(">", navStart));
+    expect(navTag, "<nav> phải là vùng cuộn").toContain("overflow-y-auto");
+    expect(navTag, "<nav> thiếu flex-1: nó sẽ không chiếm phần cao còn lại").toContain("flex-1");
+    expect(navTag, "<nav> thiếu min-h-0: nó sẽ nở ra bằng nội dung").toContain("min-h-0");
+  });
 });

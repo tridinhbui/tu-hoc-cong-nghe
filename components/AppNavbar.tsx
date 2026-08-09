@@ -675,7 +675,16 @@ export default function AppNavbar() {
   return (
     <>
       <aside className="hidden lg:flex fixed inset-y-0 left-0 z-40 w-64 bg-white/96 dark:bg-stone-950/96 border-r border-stone-200 dark:border-stone-800 backdrop-blur">
-        <div className="flex h-full w-full flex-col px-3.5 py-4 overflow-y-auto scrollbar-none">
+        {/* Cột này KHÔNG cuộn. Trước đây nó mang `overflow-y-auto`, nên khi danh
+            sách mục dài hơn màn hình thì logo và ô tìm kiếm cuộn mất theo, còn
+            thẻ người dùng ở đáy chỉ tới được sau khi cuộn hết - tức hai thứ
+            đáng lẽ luôn thấy lại là hai thứ trôi đi đầu tiên.
+
+            Giờ chia ba vùng: đầu và đáy `shrink-0` nên luôn đứng yên, chỉ `<nav>`
+            ở giữa cuộn. `min-h-0` trên vùng giữa là bắt buộc: mục tiêu mặc định
+            của flex item là `min-height: auto`, nên không có nó thì `<nav>` nở
+            ra bằng nội dung và đẩy cả cột cao hơn viewport thay vì tự cuộn. */}
+        <div className="flex h-full w-full min-h-0 flex-col px-3.5 py-4">
           <Link href="/dashboard" className="flex items-center gap-3 px-3 py-2 rounded-2xl shrink-0">
             <Logo size={30} />
             <span className="text-base font-bold text-stone-900 dark:text-stone-100">{t.nav.brand}</span>
@@ -695,12 +704,12 @@ export default function AppNavbar() {
             </kbd>
           </button>
 
-          <nav className="mt-3 flex flex-col shrink-0">
+          <nav className="mt-3 flex min-h-0 flex-1 flex-col overflow-y-auto scrollbar-none">
             {TOP_LEVEL_LINKS.map((link) => renderNavItem(link))}
             {renderNavSections()}
           </nav>
 
-          <div className="mt-auto pt-4 space-y-2.5 shrink-0" ref={desktopDropdownRef}>
+          <div className="pt-4 space-y-2.5 shrink-0" ref={desktopDropdownRef}>
             {profile && userId && (
               <div className="flex items-center gap-2">
                 <button
