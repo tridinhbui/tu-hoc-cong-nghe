@@ -2,6 +2,7 @@
 
 import { useState, useMemo, useEffect, useRef } from "react";
 import { useI18n } from "@/lib/i18n/context";
+import { careerSubtitle, careerTitle } from "@/lib/career-title";
 import { format } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 import Link from "next/link";
@@ -29,6 +30,7 @@ import {
 , type LucideIcon } from "lucide-react";
 import { toast } from "sonner";
 import { FINANCE_CAREERS, type FinanceCareer } from "@/lib/finance-careers";
+import { mergeCareers } from "@/lib/finance-careers-i18n";
 import { CFA_LEVEL_1_SUBJECTS } from "@/lib/cfa-track";
 import { JOB_SEARCH_SITES } from "@/lib/job-search-links";
 import { createClient } from "@/lib/supabase";
@@ -49,7 +51,7 @@ import { CAREER_GOAL_EVENT, CAREER_GOAL_KEY, CAREER_GOAL_STORAGE_EVENT, CAREER_I
 // Beautiful custom 3D card tilt and glow component
 function CareerAvatar({ career, size = 110, className = "" }: { career?: FinanceCareer | null; size?: number; className?: string }) {
   // Sub-component, nên có useI18n() riêng.
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   if (!career) return null;
   return (
     <div
@@ -79,7 +81,7 @@ function CareerAvatar({ career, size = 110, className = "" }: { career?: Finance
         {career.avatar3d ? (
           <Image
             src={career.avatar3d}
-            alt={career.title || t.jobs.careerAlt}
+            alt={careerTitle(career, locale) || t.jobs.careerAlt}
             width={size}
             height={size}
             className="w-full h-full object-cover select-none relative z-10"
@@ -103,7 +105,7 @@ function CareerAvatar({ career, size = 110, className = "" }: { career?: Finance
 // already done. Renders nothing for a logged-out visitor or a career with
 // no linked lessons yet.
 function RelatedLessonsPanel({ career }: { career: FinanceCareer }) {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const [progress, setProgress] = useState<CareerLessonProgress | null>(null);
   // Suy ra từ nghề nào đã tải xong. Nghề không có bài liên quan thì không có
   // gì để tải, nên cũng không bao giờ ở trạng thái đang tải - bản cũ phải tắt
@@ -278,7 +280,7 @@ function categoriesOf(t: Dictionary) {
 
 // SVG Radar Chart for role traits visualization
 function CareerRadarChart({ traits, color = "#0d9488" }: { traits?: { analytical?: number; compliance?: number; clientFacing?: number; quantitative?: number } | null; color?: string }) {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const safeTraits = {
     analytical: traits?.analytical ?? 3,
     compliance: traits?.compliance ?? 3,
@@ -348,9 +350,12 @@ function ComparisonModal({
   onClose: () => void; 
   careerA: FinanceCareer
 }) {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
+  // Dữ liệu nghề nằm ngoài từ điển UI - xem lib/finance-careers-i18n. Hợp nhất
+  // ở đây chứ không ở module: bản dịch phụ thuộc locale, mà locale là state.
+  const careers = useMemo(() => mergeCareers(FINANCE_CAREERS, locale), [locale]);
   const [careerBId, setCareerBId] = useState<string>("");
-  const careerB = FINANCE_CAREERS.find((c) => c.id === careerBId);
+  const careerB = careers.find((c) => c.id === careerBId);
 
   if (!open) return null;
 
@@ -381,7 +386,7 @@ function ComparisonModal({
               <div className="w-14 h-14 rounded-xl overflow-hidden border border-stone-200 dark:border-stone-800 shadow-sm shrink-0">
                 <Image
                   src={careerA.avatar3d}
-                  alt={careerA.title}
+                  alt={careerTitle(careerA, locale)}
                   width={56}
                   height={56}
                   className="w-full h-full object-cover"
@@ -389,8 +394,10 @@ function ComparisonModal({
               </div>
               <div>
                 <span className="text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400">{t.jobs.current}</span>
-                <h3 className="text-base font-black text-stone-900 dark:text-stone-50 leading-tight mt-0.5">{careerA.title}</h3>
-                <p className="text-xs text-stone-400 dark:text-stone-500 font-bold">{careerA.englishTitle}</p>
+                <h3 className="text-base font-black text-stone-900 dark:text-stone-50 leading-tight mt-0.5">{careerTitle(careerA, locale)}</h3>
+                {careerSubtitle(careerA, locale) && (
+                  <p className="text-xs text-stone-400 dark:text-stone-500 font-bold">{careerSubtitle(careerA, locale)}</p>
+                )}
               </div>
             </div>
             <div className="space-y-4 text-xs">
@@ -445,8 +452,8 @@ function ComparisonModal({
                 className="w-full p-2.5 rounded-xl bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 text-xs font-bold text-stone-800 dark:text-stone-200 focus:outline-none focus:border-indigo-500"
               >
                 <option value="">{t.jobs.pickPlaceholder}</option>
-                {FINANCE_CAREERS.filter(c => c.id !== careerA.id).map(c => (
-                  <option key={c.id} value={c.id}>{c.title}</option>
+                {careers.filter(c => c.id !== careerA.id).map(c => (
+                  <option key={c.id} value={c.id}>{careerTitle(c, locale)}</option>
                 ))}
               </select>
             </div>
@@ -457,15 +464,17 @@ function ComparisonModal({
                   <div className="w-14 h-14 rounded-xl overflow-hidden border border-stone-200 dark:border-stone-800 shadow-sm shrink-0">
                     <Image
                       src={careerB.avatar3d}
-                      alt={careerB.title}
+                      alt={careerTitle(careerB, locale)}
                       width={56}
                       height={56}
                       className="w-full h-full object-cover"
                     />
                   </div>
                   <div>
-                    <h3 className="text-base font-black text-stone-900 dark:text-stone-50 leading-tight">{careerB.title}</h3>
-                    <p className="text-xs text-stone-400 dark:text-stone-500 font-bold">{careerB.englishTitle}</p>
+                    <h3 className="text-base font-black text-stone-900 dark:text-stone-50 leading-tight">{careerTitle(careerB, locale)}</h3>
+                    {careerSubtitle(careerB, locale) && (
+                      <p className="text-xs text-stone-400 dark:text-stone-500 font-bold">{careerSubtitle(careerB, locale)}</p>
+                    )}
                   </div>
                 </div>
                 <p className="text-stone-600 dark:text-stone-300 leading-relaxed font-semibold italic">"{careerB.summary}"</p>
@@ -563,11 +572,11 @@ function ComparisonModal({
               <div className="flex flex-row sm:flex-col gap-4 text-xs font-bold">
                 <div className="flex items-center gap-2">
                   <div className="w-4 h-1.5 rounded" style={{ backgroundColor: careerA.accentTo }} />
-                  <span className="text-stone-700 dark:text-stone-300">{careerA.title}</span>
+                  <span className="text-stone-700 dark:text-stone-300">{careerTitle(careerA, locale)}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-4 h-1.5 rounded bg-indigo-500" />
-                  <span className="text-stone-700 dark:text-stone-300">{careerB.title}</span>
+                  <span className="text-stone-700 dark:text-stone-300">{careerTitle(careerB, locale)}</span>
                 </div>
               </div>
             </div>
@@ -590,10 +599,22 @@ type JobTab = "daily" | "insights" | "path" | "skills" | "profile" | "search";
  *  trang chủ, và "Quay lại dashboard" nằm giữa trang thì trỏ sai chỗ - người
  *  đọc đang ở giữa trang Học theo nghề chứ không phải ở đầu một trang riêng. */
 export default function JobSearchClient({ embedded = false }: { embedded?: boolean } = {}) {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const quizQuestions = useMemo(() => quizQuestionsOf(t), [t]);
   const categories = useMemo(() => categoriesOf(t), [t]);
-  const [selected, setSelected] = useState<FinanceCareer>(FINANCE_CAREERS[0]);
+  // Dữ liệu nghề nằm ngoài từ điển UI - xem lib/finance-careers-i18n. Hợp nhất
+  // ở đây chứ không ở module vì bản dịch phụ thuộc locale, mà locale là state.
+  const careers = useMemo(() => mergeCareers(FINANCE_CAREERS, locale), [locale]);
+  // State giữ ID chứ không giữ cả bản ghi, và đó là điều kiện để đổi ngôn ngữ
+  // ăn vào thẻ đang mở. Giữ bản ghi thì nó là ảnh chụp của mảng lúc khởi tạo -
+  // luôn là tiếng Việt - nên bảng chi tiết bên phải sẽ đứng nguyên tiếng Việt
+  // trong khi danh sách bên trái đã đổi sang tiếng Anh.
+  //
+  // Tên `selected` giữ nguyên: nó xuất hiện 79 chỗ trong tệp này, và đổi tên
+  // hết chỉ để đọc hay hơn là đổi 79 chỗ có thể sai.
+  const [selectedId, setSelectedId] = useState<string>(FINANCE_CAREERS[0].id);
+  const selected = careers.find((c) => c.id === selectedId) ?? careers[0];
+  const setSelected = (career: FinanceCareer) => setSelectedId(career.id);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const categoryTabsRef = useRef<HTMLDivElement>(null);
@@ -783,7 +804,7 @@ export default function JobSearchClient({ embedded = false }: { embedded?: boole
         clientFacing: counts["Client-facing"],
         quantitative: counts.Quantitative,
       };
-      const ranked = [...FINANCE_CAREERS]
+      const ranked = [...careers]
         .map((career) => ({
           career,
           score:
@@ -818,7 +839,7 @@ export default function JobSearchClient({ embedded = false }: { embedded?: boole
     }
   };
 
-  const filteredCareers = FINANCE_CAREERS.filter((c) => {
+  const filteredCareers = careers.filter((c) => {
     const matchesSearch =
       c.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       c.englishTitle.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -899,7 +920,7 @@ export default function JobSearchClient({ embedded = false }: { embedded?: boole
         {/* ── HIGHLIGHTED TARGET CAREER GOAL BANNER AT TOP ───────────────── */}
         {trackedGoal ? (
           (() => {
-            const goalCareer = FINANCE_CAREERS.find((c) => c.id === trackedGoal);
+            const goalCareer = careers.find((c) => c.id === trackedGoal);
             if (!goalCareer) return null;
             return (
               <div className="bg-gradient-to-r from-stone-900 via-stone-900 to-emerald-950 border-2 border-emerald-500/60 rounded-3xl p-6 text-white shadow-xl mb-8 relative overflow-hidden">
@@ -921,7 +942,10 @@ export default function JobSearchClient({ embedded = false }: { embedded?: boole
                         )}
                       </div>
                       <h2 className="text-xl sm:text-2xl font-black text-white mt-2">
-                        {goalCareer.title} <span className="text-stone-400 text-base font-normal">({goalCareer.englishTitle})</span>
+                        {careerTitle(goalCareer, locale)}
+                        {careerSubtitle(goalCareer, locale) && (
+                          <span className="text-stone-400 text-base font-normal"> ({careerSubtitle(goalCareer, locale)})</span>
+                        )}
                       </h2>
                       <p className="text-xs sm:text-sm text-stone-300 mt-1 max-w-2xl leading-relaxed">
                         {goalCareer.summary}
@@ -965,7 +989,7 @@ export default function JobSearchClient({ embedded = false }: { embedded?: boole
           </div>
         )}
 
-        <CareerRoadmapMap careers={FINANCE_CAREERS} onSelectCareer={handleSelectCareer} />
+        <CareerRoadmapMap careers={careers} onSelectCareer={handleSelectCareer} />
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
 
@@ -1031,7 +1055,7 @@ export default function JobSearchClient({ embedded = false }: { embedded?: boole
                   {quizRecommendedCareerIds.length > 0 && (
                     <div className="mt-2.5 space-y-1.5">
                       {quizRecommendedCareerIds
-                        .map((id) => FINANCE_CAREERS.find((c) => c.id === id))
+                        .map((id) => careers.find((c) => c.id === id))
                         .filter((c): c is FinanceCareer => Boolean(c))
                         .map((career) => (
                           <button
@@ -1043,7 +1067,7 @@ export default function JobSearchClient({ embedded = false }: { embedded?: boole
                             className="w-full flex items-center gap-2 px-2.5 py-2 rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950/20 hover:border-emerald-400 dark:hover:border-emerald-700 hover:bg-emerald-50/50 dark:hover:bg-emerald-950/20 transition-colors text-left cursor-pointer"
                           >
                             <span className="text-sm shrink-0">{career.emoji}</span>
-                            <span className="text-[11px] font-bold text-stone-700 dark:text-stone-300 truncate">{career.title}</span>
+                            <span className="text-[11px] font-bold text-stone-700 dark:text-stone-300 truncate">{careerTitle(career, locale)}</span>
                           </button>
                         ))}
                     </div>
@@ -1137,7 +1161,7 @@ export default function JobSearchClient({ embedded = false }: { embedded?: boole
                       <div className="relative shrink-0 w-14 h-14 rounded-xl overflow-hidden border border-stone-200 dark:border-stone-800 shadow-sm">
                         <Image
                           src={career.avatar3d}
-                          alt={career.title}
+                          alt={careerTitle(career, locale)}
                           width={56}
                           height={56}
                           className="w-full h-full object-cover relative z-10"
@@ -1147,9 +1171,11 @@ export default function JobSearchClient({ embedded = false }: { embedded?: boole
                       {/* Info text */}
                       <div className="min-w-0 flex-1">
                         <h3 className="text-sm font-black text-stone-950 dark:text-stone-500 leading-tight flex items-center gap-1.5">
-                          {career.title}
+                          {careerTitle(career, locale)}
                         </h3>
-                        <p className="text-xs text-stone-400 dark:text-stone-500 font-bold mt-0.5">{career.englishTitle}</p>
+                        {careerSubtitle(career, locale) && (
+                          <p className="text-xs text-stone-400 dark:text-stone-500 font-bold mt-0.5">{careerSubtitle(career, locale)}</p>
+                        )}
                         <div className="flex items-center gap-2 mt-2">
                           <span className="text-[10px] font-extrabold px-2 py-0.5 rounded bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 uppercase tracking-wide">
                             {career.salaryHint.split(" • ")[0]}
@@ -1205,9 +1231,11 @@ export default function JobSearchClient({ embedded = false }: { embedded?: boole
                     {t.jobs.salaryDisclaimer}
                   </p>
                   <h2 className="text-2xl font-black text-stone-900 dark:text-stone-50 mt-2 leading-tight">
-                    {selected.title}
+                    {careerTitle(selected, locale)}
                   </h2>
-                  <p className="text-sm text-stone-400 dark:text-stone-500 font-bold mt-0.5">{selected.englishTitle}</p>
+                  {careerSubtitle(selected, locale) && (
+                    <p className="text-sm text-stone-400 dark:text-stone-500 font-bold mt-0.5">{careerSubtitle(selected, locale)}</p>
+                  )}
                   <p className="text-sm text-stone-600 dark:text-stone-300 leading-relaxed mt-4 bg-stone-50/50 dark:bg-stone-950/30 p-3.5 rounded-xl border border-stone-200/40 dark:border-stone-800/30">
                     {selected.summary}
                   </p>
@@ -1676,9 +1704,11 @@ export default function JobSearchClient({ embedded = false }: { embedded?: boole
                     {selected.entryLevel.split(" - ")[0]}
                   </span>
                   <h2 className="text-lg font-black text-stone-950 dark:text-stone-50 leading-snug mt-1">
-                    {selected.title}
+                    {careerTitle(selected, locale)}
                   </h2>
-                  <p className="text-xs text-stone-400 dark:text-stone-500 font-bold">{selected.englishTitle}</p>
+                  {careerSubtitle(selected, locale) && (
+                    <p className="text-xs text-stone-400 dark:text-stone-500 font-bold">{careerSubtitle(selected, locale)}</p>
+                  )}
                 </div>
               </div>
 
