@@ -95,3 +95,33 @@ describe("bắt cửa gần nhất", () => {
     }
   });
 });
+
+/** Cửa trên ban công dẫn vào PHÒNG 3D của trạm, không phải trang 2D của nó.
+ *
+ *  Hai lỗi câm lặng khác nhau ở đây. Một là đường dẫn trỏ vào một phòng không
+ *  tồn tại: `/pho-nghe?phong=tang-abc` không nổ, nó lặng lẽ rơi về phố như thể
+ *  người dùng chưa chọn phòng nào - cửa vẫn bấm được, chỉ là không dẫn tới
+ *  đâu. Hai là `station.href` bị đổi theo cho "nhất quán", làm cái bục TRONG
+ *  phòng cũng trỏ vào chính căn phòng đang đứng. */
+describe("cửa dẫn vào phòng 3D", () => {
+  it("mỗi trạm có một phòng tương ứng trong khu phố nghề", async () => {
+    const { districtRoomsOf } = await import("@/components/career-district/district-space");
+    const rooms = districtRoomsOf(viDict);
+    for (const s of STATIONS) {
+      expect(Object.hasOwn(rooms, `tang-${s.id}`)).toBe(true);
+    }
+  });
+
+  it("đường dẫn của cửa trỏ vào phòng đó", async () => {
+    const { stationRoomHref } = await import("@/components/lobby/stations");
+    for (const s of STATIONS) {
+      expect(stationRoomHref(s)).toBe(`/pho-nghe?phong=tang-${s.id}`);
+    }
+  });
+
+  it("href của trạm vẫn là trang 2D, vì cái bục trong phòng mở nó", () => {
+    for (const s of STATIONS) {
+      expect(s.href.startsWith("/pho-nghe")).toBe(false);
+    }
+  });
+});

@@ -30,6 +30,12 @@ export function isLessonInRange(
   return (lessonId >= range.days[0] && lessonId <= range.days[1]) || !!range.extraLessonIds?.includes(lessonId);
 }
 
+/* i18n-ignore-start: `title`, `subtitle`, `description`, `pillars` và mọi
+   `label`/`name` dưới đây là dữ liệu lộ trình. Giao diện đọc
+   `t.trackStages[track]` theo VỊ TRÍ và chỉ rơi về bản Việt khi từ điển lệch -
+   trường hợp mà lib/__tests__/track-stages-i18n.test.ts bắt được, cả về số
+   lượng lẫn thứ tự. `label` còn là khoá của `lessonsByStageLabel` và của cột
+   `stage_label` đã ghi xuống Supabase, nên nó KHÔNG được dịch tại đây. */
 export const TRACK_PERSONAL = {
   id: "personal",
   title: "Tài chính cá nhân",
@@ -910,6 +916,7 @@ export const TRACK_PROFESSIONAL = {
     },
   ] satisfies Stage[],
 };
+/* i18n-ignore-end */
 
 // A professional stage only renders on the dashboard if some branch lists its
 // label (DashboardClient filters track.stages by the active branch), so every

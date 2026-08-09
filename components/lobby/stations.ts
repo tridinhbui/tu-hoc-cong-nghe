@@ -87,6 +87,25 @@ export function stationsOf(t: Dictionary): Station[] {
   return stations;
 }
 
+/** Đường vào PHÒNG 3D của một trạm, không phải trang 2D của nó.
+ *
+ *  `station.href` vẫn là trang 2D và phải giữ nguyên: nó là thứ cái bục trong
+ *  phòng mở ra (xem `buildFloor` ở career-district/district-space.ts), tức là
+ *  đích cuối cùng chứ không phải cánh cửa.
+ *
+ *  Cửa trên ban công thì trước đây trỏ thẳng vào `href` ấy - bấm "Vào phòng"
+ *  là rời hẳn thế giới 3D và đứng trên một trang. Cả toà nhà trở thành một
+ *  menu có dựng hình, và cánh cửa không dẫn tới đâu cả.
+ *
+ *  Khu phố nghề ĐÃ có sẵn một phòng 3D cho mỗi trạm - `tang-<id>`, dựng từ
+ *  đúng danh sách này bằng `stations.map(buildFloor)` - nên cửa thư viện dẫn
+ *  vào đó thay vì dựng bản thứ hai. Đó cũng là lý do hai nơi cùng đọc một
+ *  danh sách ngay từ đầu: để không bao giờ có chuyện thư viện có tám cửa còn
+ *  toà tháp có bảy tầng. */
+export function stationRoomHref(station: Station): string {
+  return `/pho-nghe?phong=tang-${station.id}`;
+}
+
 /** Cửa nằm trên tường ngoài của ban công. */
 export const STATION_X = 11.92;
 /** Đứng gần hơn khoảng này thì HUD hiện thẻ giới thiệu phòng. */

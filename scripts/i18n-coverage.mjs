@@ -39,8 +39,38 @@ import ts from "typescript";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
 
-const ROOTS = ["components", "app"];
-const SKIP_DIRS = new Set(["node_modules", ".next", "lessons-data", "lessons-i18n"]);
+// `lib` was missing here until it was measured, and the omission was the whole
+// reason this number looked nearly finished while the app still rendered
+// Vietnamese on every screen. The `data` rule below exists to catch copy sitting
+// in a module-scope `const` rather than in a display position - and that is
+// exactly the kind of file that lives in `lib`, not in `components`. The
+// project-wide run reported 501 strings; `lib` alone holds 3,226 the run had
+// never once counted. Passing a path explicitly always worked, which is why the
+// gap survived: every time someone checked a specific file the tool was right.
+const ROOTS = ["components", "app", "lib"];
+const SKIP_DIRS = new Set(["node_modules", ".next", "lessons-data", "lessons-i18n", "__tests__"]);
+
+// Two shapes under `lib` that a dictionary cannot fix, separated so the headline
+// stays a number someone can drive to zero.
+//
+// This is NOT a suppression list. Both groups are reported, on their own lines,
+// with the pipeline that owns them named - because a count that quietly drops
+// work is indistinguishable from work that got done.
+
+/** The dictionary itself. Reporting `vi.ts` as hard-coded is a category error:
+ *  those literals are the translation, not a failure to translate. */
+const IS_DICTIONARY = (rel) => rel.startsWith("lib/i18n/dictionaries/");
+
+/** Teaching and question content. Translated one lesson at a time into
+ *  `lib/lessons-i18n/<locale>/`, audited by `npm run audit:lessons:en`, and
+ *  tracked as "N of 723 lessons" - a different unit of work from a dictionary
+ *  key, on a different pipeline, so mixing it into the same total buries the
+ *  part that a UI translation pass can actually finish. `lessons.ts` alone is
+ *  31,167 strings; left in, it is the only number anyone would ever see. */
+const IS_LESSON_CONTENT = (rel) =>
+  /^lib\/(lessons|.*-lessons|ib-question-bank|ib-question-overrides|cfa-item-sets|level-exams|career-question-bank|recall-schedule)\.ts$/.test(
+    rel
+  );
 
 /** JSX attributes whose string value is rendered or read out to the user. */
 const DISPLAY_ATTRS = new Set([
@@ -655,6 +685,11 @@ function categorize(file) {
   if (file.startsWith("app/api/")) return "api routes";
   if (file.startsWith("app/admin/")) return "admin screens";
   if (file.startsWith("components/games/")) return "games";
+  // Dữ liệu dùng chung: cấp độ, chặng, nhiệm vụ, thẻ chủ đề... Không nằm ở vị
+  // trí hiển thị nào cả - chúng là `const` ở đầu tệp, được component đọc rồi
+  // vẽ ra. Tách riêng vì cách sửa cũng khác: một khoá từ điển cho mỗi phần tử
+  // dữ liệu, chứ không phải thay chuỗi ngay tại chỗ.
+  if (file.startsWith("lib/")) return "shared data (lib/)";
   return "learner-facing UI";
 }
 
@@ -677,12 +712,21 @@ if (target) {
 
 const rows = [];
 let totalExcluded = 0;
+/** Counted, named and printed - just not mixed into the driveable total. */
+const otherPipeline = { lessonContent: 0, lessonFiles: 0 };
 for (const dir of ROOTS) {
   for (const file of walk(path.join(root, dir))) {
     const rel = path.relative(root, file);
+    if (IS_DICTIONARY(rel)) continue;
     const { found, excluded } = findingsIn(readFileSync(file, "utf8"), file);
     totalExcluded += excluded;
-    if (found.length) rows.push({ file: rel, count: found.length, category: categorize(rel) });
+    if (!found.length) continue;
+    if (IS_LESSON_CONTENT(rel)) {
+      otherPipeline.lessonContent += found.length;
+      otherPipeline.lessonFiles += 1;
+      continue;
+    }
+    rows.push({ file: rel, count: found.length, category: categorize(rel) });
   }
 }
 rows.sort((a, b) => b.count - a.count);
@@ -697,7 +741,14 @@ console.log(`${total} hard-coded display strings in ${rows.length} files`);
 if (totalExcluded) {
   console.log(`${totalExcluded} more excluded by i18n-ignore (each carries its reason)`);
 }
-console.log(`(parsed, language-agnostic: counts English and undotted Vietnamese too)\n`);
+console.log(`(parsed, language-agnostic: counts English and undotted Vietnamese too)`);
+if (otherPipeline.lessonContent) {
+  console.log(
+    `${otherPipeline.lessonContent} more in ${otherPipeline.lessonFiles} lesson/question-bank files - ` +
+      `translated per lesson into lib/lessons-i18n/<locale>/, audited by npm run audit:lessons:en`
+  );
+}
+console.log();
 
 const byCategory = new Map();
 for (const row of rows) {
@@ -709,9 +760,12 @@ for (const [category, { count, files }] of [...byCategory].sort((a, b) => b[1].c
   console.log(`  ${String(count).padStart(5)}  ${category}  (${files} files)`);
 }
 
-const learner = rows.filter((r) => r.category === "learner-facing UI");
-console.log("\nHeaviest learner-facing UI:");
-for (const { file, count } of learner.slice(0, 15)) {
+// Ranked across every category rather than within one. The old version listed
+// only `learner-facing UI`, and once `lib` came into scope that category emptied
+// out - the section printed a blank list under a heading while 5,712 strings sat
+// one line above it.
+console.log("\nHeaviest files:");
+for (const { file, count } of rows.slice(0, 15)) {
   console.log(`  ${String(count).padStart(4)}  ${file}`);
 }
-console.log(`\nPer-file detail:  node scripts/i18n-coverage.mjs ${learner[0]?.file ?? "<path>"}`);
+console.log(`\nPer-file detail:  node scripts/i18n-coverage.mjs ${rows[0]?.file ?? "<path>"}`);

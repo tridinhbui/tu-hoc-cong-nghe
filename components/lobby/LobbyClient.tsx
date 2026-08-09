@@ -9,7 +9,7 @@ import { getUserStreak } from "@/lib/supabase-streak";
 import { getEquippedGear } from "@/lib/supabase-equipment";
 import { getResumeLessonAction } from "@/app/(app)/dashboard/actions";
 import { finishFocusSession, getTodayFocusSeconds, startFocusSession } from "@/lib/focus-session";
-import type { Station } from "./stations";
+import { stationRoomHref, type Station } from "./stations";
 import {
   AWAY_MS,
   formatCountdown,
@@ -431,7 +431,7 @@ export default function LobbyClient() {
             <div className="mt-3 flex items-center justify-between gap-3">
               <p className="min-w-0 flex-1 truncate text-xs text-stone-300">{station.blurb}</p>
               <Link
-                href={station.href}
+                href={stationRoomHref(station)}
                 className="shrink-0 rounded-xl px-3.5 py-2 text-xs font-bold text-stone-900 transition hover:brightness-110"
                 style={{ backgroundColor: station.accent }}
               >

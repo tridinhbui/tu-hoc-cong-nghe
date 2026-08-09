@@ -57,15 +57,20 @@ export function getPostCategory(post: ClassifiablePost): FeedTopicId {
 
 /** Bài này có hiện ở dòng chính không.
  *
- *  Quy tắc riêng nằm ở nhánh cuối: khi đang xem "tất cả" và không tìm kiếm gì,
- *  bài thành tựu được cất sang thẻ ở cột phải. Lý do là số lượng - phần lớn
- *  chúng do hệ thống tự sinh, nên trộn chung thì bài do người thật ngồi viết
- *  trở thành phần khó thấy nhất của một trang cộng đồng.
+ *  KHÔNG CÓ QUY TẮC HẠ ƯU TIÊN NỮA. Bản trước bỏ bài thành tựu khỏi dòng chính
+ *  khi đang xem "tất cả", với lý do đúng: phần lớn chúng do hệ thống tự sinh,
+ *  nên trộn chung thì bài người thật viết thành phần khó thấy nhất của trang.
  *
- *  Hai lối ra giữ nó là ưu tiên chứ không phải giấu: chọn chip "Thành tựu" thì
- *  dòng chính hiện đúng chúng, và một truy vấn tìm kiếm vẫn tìm ra chúng. Tìm
- *  tên một người rồi không thấy bài của họ đâu là một lỗi, không phải một lựa
- *  chọn bố cục. */
+ *  Nhưng cái giá thì lớn hơn cái lợi, và nó đo được: một cộng đồng có 20 bài mở
+ *  /finsocial ra thấy dòng chính trống kèm câu "chưa có bài nào phù hợp bộ lọc".
+ *  Người đọc ra là "tôi mất bài rồi" - và đó là cách đọc đúng với thứ họ nhìn
+ *  thấy. Nhánh cứu từng được thêm để đỡ chuyện đó nhưng loại trừ luôn bài chuỗi
+ *  ngày, tức loại trừ đúng nhóm chiếm gần hết số bài, nên nó không đỡ được gì
+ *  trong chính trường hợp nó sinh ra để đỡ.
+ *
+ *  Một dòng chính hiện đủ bài không cần giải thích cho ai. Việc bài hệ thống
+ *  nhiều hơn bài người viết là vấn đề của NGUỒN bài, không phải của bộ lọc -
+ *  giấu chúng đi không làm ai viết thêm bài nào. */
 export function isPostVisibleInFeed(
   post: ClassifiablePost & { user_name?: string | null },
   filter: FeedTopicId,
@@ -79,52 +84,26 @@ export function isPostVisibleInFeed(
     if (!haystack.includes(query)) return false;
   }
   if (filter !== "all") return category === filter;
-  if (!query && category === "thanh-tuu") return false;
   return true;
 }
 
-/** Danh sách bài hiện ở dòng chính, sau khi đã áp quy tắc hạ ưu tiên.
+/** Danh sách bài hiện ở dòng chính.
  *
- *  Vì sao cần hàm này thay vì gọi `isPostVisibleInFeed` trên từng bài: quy tắc
- *  ở trên là hạ ưu tiên, không phải ẩn. Nó tồn tại để bài hệ thống tự sinh
- *  không DÌM bài người thật viết. Khi chưa có bài người thật nào, nó không còn
- *  gì để dìm - và lúc đó việc giấu hết lại biến trang cộng đồng thành dòng chữ
- *  "không có bài nào khớp bộ lọc" bên trên một cộng đồng có hai mươi bài.
+ *  Giữ hàm này dù nó giờ chỉ là một `filter`, vì hai chỗ gọi nó và giữ một điểm
+ *  vào duy nhất nghĩa là luật hiển thị chỉ có một chỗ để đọc.
  *
- *  Đó là thứ đã xảy ra thật: mở /finsocial ở chế độ "tất cả" và dòng chính
- *  rỗng hoàn toàn, trong khi thẻ bên phải nói có 20 thành tựu. Người dùng đọc
- *  ra là "bài viết mất rồi", và đó là cách đọc đúng với thứ họ nhìn thấy.
- *
- *  Nên lối thoát nằm ở đây: nếu hạ ưu tiên xong mà dòng chính không còn gì,
- *  trả lại đúng những bài vừa bị hạ. Một dòng chính toàn thành tựu vẫn tốt hơn
- *  một dòng chính trống. */
+ *  Bản trước có thêm một NHÁNH CỨU: nếu hạ ưu tiên xong mà dòng chính rỗng thì
+ *  trả lại những bài vừa bị hạ. Nhánh đó đi cùng luật hạ ưu tiên, và nó cũng
+ *  cho thấy vì sao luật kia không đứng được: nhánh cứu phải loại trừ bài chuỗi
+ *  ngày để dòng chính không thành hai mươi dòng "đã học N ngày liên tiếp" - mà
+ *  chuỗi ngày lại chiếm gần hết số bài, nên nhánh cứu không cứu được đúng
+ *  trường hợp nó sinh ra để cứu. Sửa một luật bằng một ngoại lệ vô hiệu trong
+ *  chính ca thường gặp nhất thì luật đó nên đi. */
 export function visibleFeedPosts<T extends ClassifiablePost & { user_name?: string | null }>(
   posts: readonly T[],
   filter: FeedTopicId,
   searchQuery: string
 ): T[] {
-  const visible = posts.filter((post) => isPostVisibleInFeed(post, filter, searchQuery));
-  if (visible.length > 0) return visible;
-
-  // Chỉ cứu đúng trường hợp quy tắc hạ ưu tiên tự gây ra. Bộ lọc chủ đề rỗng
-  // hay tìm kiếm không ra kết quả thì "không có gì khớp" là câu trả lời ĐÚNG,
-  // và lấp nó bằng bài không liên quan mới là nói dối.
-  const query = searchQuery.trim();
-  if (filter !== "all" || query) return visible;
-
-  // Bài CHUỖI NGÀY HỌC không nằm trong nhánh cứu này, dù nó cũng thuộc nhóm
-  // thành tựu.
-  //
-  // Nhánh cứu tồn tại để dòng chính không rỗng khi chưa có bài người thật nào.
-  // Nhưng streak do hệ thống tự đăng mỗi ngày cho mọi người học, nên "chưa có
-  // bài người thật" lại đúng là lúc chúng đông nhất - và kết quả là dòng chính
-  // của một trang cộng đồng gồm hai mươi dòng "đã học 5 ngày liên tiếp" mà
-  // không ai ngồi viết. Chúng đã có chỗ riêng: thẻ Thành tựu ở cột phải, cộng
-  // chip lọc "Thành tựu" cho ai muốn xem hết.
-  //
-  // Bài thành tựu do người thật viết (#ThanhTuu) thì vẫn được cứu: đó là bài
-  // có người ngồi gõ, và giấu nó đi là đúng thứ nhánh này sinh ra để tránh.
-  // Nếu cả kho chỉ toàn streak thì dòng chính rỗng - và trạng thái rỗng đã có
-  // sẵn nút "xem N thành tựu" trỏ sang đúng chỗ chúng nằm.
-  return posts.filter((post) => getPostCategory(post) === "thanh-tuu" && post.kind !== "streak");
+  return posts.filter((post) => isPostVisibleInFeed(post, filter, searchQuery));
 }
+

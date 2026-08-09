@@ -45,6 +45,9 @@ import { practicePreviewVi, practicePreviewEn } from "./practice-preview";
 import { questsReferralVi, questsReferralEn } from "./quests-referral";
 import { quietForestVi, quietForestEn } from "./quiet-forest";
 import { lobbyLeaderboardsVi, lobbyLeaderboardsEn } from "./lobby-leaderboards";
+import { levelTitlesVi, levelTitlesEn } from "./level-titles";
+import { trackStagesVi, trackStagesEn } from "./track-stages";
+import { motivationVi, motivationEn } from "./motivation";
 import { rpgStudyRoomVi, rpgStudyRoomEn } from "./rpg-study-room";
 import { valuationSimVi, valuationSimEn } from "./valuation-sim";
 import { worldSpacesVi, worldSpacesEn } from "./world-spaces";
@@ -87,6 +90,9 @@ export const viSections = {
   ...questsReferralVi,
   ...quietForestVi,
   ...lobbyLeaderboardsVi,
+  ...levelTitlesVi,
+  ...trackStagesVi,
+  ...motivationVi,
   ...rpgStudyRoomVi,
   ...valuationSimVi,
   ...worldSpacesVi,
@@ -130,6 +136,9 @@ export const enSections: typeof viSections = {
   ...questsReferralEn,
   ...quietForestEn,
   ...lobbyLeaderboardsEn,
+  ...levelTitlesEn,
+  ...trackStagesEn,
+  ...motivationEn,
   ...rpgStudyRoomEn,
   ...valuationSimEn,
   ...worldSpacesEn,

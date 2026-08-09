@@ -61,8 +61,15 @@ type NavLink =
  * the row leaving the group it belongs to.
  */
 const TOP_LEVEL_LINKS: NavLink[] = [
-  /* i18n-ignore-start: proper nouns / product names, identical in both languages (Dashboard) */
+  /* i18n-ignore-start: proper nouns / product names, identical in both languages (Dashboard, FinSocial) */
   { href: "/dashboard", label: "Dashboard", icon: Home },
+  // FinSocial ra khỏi nhóm "Cộng đồng" để đứng ngay dưới Dashboard.
+  //
+  // Nhóm đó gập lại được, và một mục nằm trong tiêu đề gập thì chỉ tồn tại với
+  // người đã từng bấm mở tiêu đề ấy - cùng lý do đã ghi ở chú thích của nhóm
+  // này. Với một nguồn tin cần người vào đọc thường xuyên thì đứng sau một cú
+  // bấm là quá xa; hai dòng đầu navbar là chỗ duy nhất luôn thấy.
+  { href: "/finsocial", label: "FinSocial", icon: MessageSquareMore },
   /* i18n-ignore-end */
 ];
 
@@ -91,16 +98,6 @@ const NAV_SECTIONS: NavSection[] = [
       // tôi", trang này là "nghề đó thì học bài nào" - và dùng chung icon
       // cặp táp thì đọc như một mục bị lặp.
       { href: "/nghe-nghiep-hoc", dataLabelKey: "hocTheoNghe", icon: Route },
-      // Đặt đầu nhóm vì đây là trang người mới cần TRƯỚC mọi trang khác: chọn
-      // lộ trình, đặt nhịp, rồi mới học. Trước đó việc chọn lộ trình chỉ nằm ở
-      // hai thẻ track trên dashboard, không kèm một chữ hướng dẫn nào - nên
-      // người mới thấy 722 bài và không biết bắt đầu từ đâu.
-      //
-      // KHÔNG làm thành tab dashboard: DASHBOARD_TABS còn bốn giá trị tàn dư từ
-      // lần dải tab bị gỡ ở c3f7ec9, và thêm cái thứ bảy là tạo thêm đúng loại
-      // giá trị lưu được mà không có nút nào chọn lại. Một route riêng cộng một
-      // mục navbar là khuôn /nghe-nghiep-hoc đã dùng.
-      { href: "/lo-trinh", labelKey: "learningPath", icon: Flame },
       // /cfa had no nav entry at all. The only way in was a placement modal
       // that fires once per browser and never again once localStorage records
       // it, so ten subjects, 324 cross-referenced lessons, fourteen
@@ -151,9 +148,6 @@ const NAV_SECTIONS: NavSection[] = [
       // noun; it gets translated.
       { href: "/cong-dong", dataLabelKey: "library", icon: Landmark },
       { href: "/nhom-hoc", labelKey: "studyGroup", icon: Users },
-      /* i18n-ignore-start: proper noun / product name, identical in both languages (FinSocial) */
-      { href: "/finsocial", label: "FinSocial", icon: MessageSquareMore },
-      /* i18n-ignore-end */
     ],
   },
   {

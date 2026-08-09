@@ -72,7 +72,11 @@ export default function DailyMotivationWidget({ userId }: { userId: string }) {
   const { message, tone, warmth } = motivation;
   // Đọc đồng hồ ở đây an toàn: khối này chỉ render sau khi fetch xong ở client
   // nên không có bản HTML từ server để lệch.
-  const lateNight = getLateNightNote(new Date().getHours());
+  // `getLateNightNote` chỉ còn được hỏi CÓ hay KHÔNG - chữ thì lấy từ từ điển.
+  // Nó trả về null ngoài dải 23h-5h, và đó là logic chứ không phải câu chữ.
+  const lateNight = getLateNightNote(new Date().getHours()) ? t.motivationLateNight : null;
+  // Câu tra theo `message.id`: pool được chọn bằng hash nên vị trí không ổn định.
+  const line = t.motivationLines[message.id] ?? message.text;
 
   return (
     <div
@@ -117,10 +121,10 @@ export default function DailyMotivationWidget({ userId }: { userId: string }) {
             </p>
           )}
           <p className="text-[10px] font-bold uppercase tracking-wide text-orange-700 dark:text-orange-300">
-            {MOTIVATION_TONE_LABEL[tone]}
+            {t.motivationToneLabel[tone] ?? MOTIVATION_TONE_LABEL[tone]}
           </p>
           <p className="mt-1.5 text-sm font-semibold leading-relaxed text-stone-800 dark:text-stone-100">
-            {message.text}
+            {line}
           </p>
           <p className="mt-2 text-[11px] font-bold text-orange-600 dark:text-orange-400 group-hover:underline">
             {t.miscUi.dailyMotivationWidget.openQuietCorner}
@@ -129,7 +133,7 @@ export default function DailyMotivationWidget({ userId }: { userId: string }) {
       </Link>
 
       <div className="relative mt-3 pl-[54px]">
-        <MotivationShareCard text={message.text} />
+        <MotivationShareCard text={line} />
       </div>
     </div>
   );

@@ -149,10 +149,15 @@ function isLessonInTrackMeta(lesson: LessonMeta, track: TrackId) {
   return isLessonIdInTrack(lesson.id, track);
 }
 
+// `t` truyền vào chứ không gọi `useI18n()` ở đây: đây là hàm thuần, chạy trong
+// một effect, không phải component - hook sẽ không hợp lệ. Chữ hiển thị của
+// chặng tra theo VỊ TRÍ trong `config.stages`, giống DashboardClient; `label`
+// vẫn giữ nguyên bản Việt ở những chỗ nó là khoá.
 function summarizeTrackProgress(
   lessons: LessonMeta[],
   completedLessonIds: Set<number>,
-  track: TrackId
+  track: TrackId,
+  t: ReturnType<typeof useI18n>["t"]
 ): TrackProgressSummary {
   const config = track === "personal" ? TRACK_PERSONAL : TRACK_PROFESSIONAL;
   const trackLessons = orderLessonsForTrack(
@@ -163,14 +168,15 @@ function summarizeTrackProgress(
   const total = trackLessons.length;
   const completed = trackLessons.filter((lesson) => completedLessonIds.has(lesson.id)).length;
 
-  const stages = config.stages.map((stage) => {
+  const stages = config.stages.map((stage, stageIdx) => {
+    const stageCopy = t.trackStages[track]?.stages[stageIdx];
     const stageLessons = trackLessons.filter(
       (lesson) => trackLessonIds.has(lesson.id) && isLessonInRange(lesson.id, stage)
     );
     const stageCompleted = stageLessons.filter((lesson) => completedLessonIds.has(lesson.id)).length;
     return {
-      label: stage.label,
-      name: stage.name,
+      label: stageCopy?.label ?? stage.label,
+      name: stageCopy?.name ?? stage.name,
       completed: stageCompleted,
       total: stageLessons.length,
       percent: stageLessons.length > 0 ? Math.round((stageCompleted / stageLessons.length) * 100) : 0,
@@ -179,8 +185,8 @@ function summarizeTrackProgress(
 
   return {
     track,
-    title: track === "personal" ? TRACKS.personal.tab : TRACKS.professional.tab,
-    subtitle: track === "personal" ? TRACKS.personal.subtitle : TRACKS.professional.subtitle,
+    title: track === "personal" ? t.tracks.personal.tab : t.tracks.professional.tab,
+    subtitle: track === "personal" ? t.tracks.personal.subtitle : t.tracks.professional.subtitle,
     estimatedHours: track === "personal" ? TRACKS.personal.estimatedHours : TRACKS.professional.estimatedHours,
     completed,
     total,
@@ -379,11 +385,12 @@ export default function ProfilePage() {
           Math.round(progressRows.reduce((sum, row) => sum + (row.time_spent_seconds ?? 0), 0) / 60)
         );
         setTrackProgress([
-          summarizeTrackProgress(lessons, completedLessonIds, preferredTrack),
+          summarizeTrackProgress(lessons, completedLessonIds, preferredTrack, t),
           summarizeTrackProgress(
             lessons,
             completedLessonIds,
-            preferredTrack === "personal" ? "professional" : "personal"
+            preferredTrack === "personal" ? "professional" : "personal",
+            t
           ),
         ]);
         setRecentLessons(
@@ -428,7 +435,7 @@ export default function ProfilePage() {
   const levelProgress = getLevelProgress(profile?.total_xp || 0);
   const xpToNextLevel = getXpToNextLevel(profile?.total_xp || 0);
   const currentTrack = normalizeTrack(profile?.preferred_track);
-  const currentTrackLabel = currentTrack === "personal" ? TRACKS.personal.tab : TRACKS.professional.tab;
+  const currentTrackLabel = currentTrack === "personal" ? t.tracks.personal.tab : t.tracks.professional.tab;
   const initials = (displayName || user?.email || "U")
     .split(" ")
     .map((n) => n[0])

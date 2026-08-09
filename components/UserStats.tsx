@@ -244,7 +244,7 @@ export default function UserStats({
           <h3 className={`font-black text-stone-950 dark:text-white mt-0.5 tracking-tight leading-none truncate ${
             sidebar ? "text-[15px]" : "text-sm sm:text-base"
           }`}>
-            {currentLevel.name}
+            {t.levelTitles[currentLevel.level] ?? currentLevel.name}
           </h3>
           {activeTitle && (
             <span className="text-[9px] font-black text-amber-500 dark:text-amber-400 mt-1 block leading-none truncate">
@@ -276,7 +276,7 @@ export default function UserStats({
               return (
                 <div key={lvl.level} className="flex items-center gap-2 shrink-0">
                   <div
-                    title={format(t.userStats.levelTooltip, { level: lvl.level, name: lvl.name, xp: lvl.minXp })}
+                    title={format(t.userStats.levelTooltip, { level: lvl.level, name: t.levelTitles[lvl.level] ?? lvl.name, xp: lvl.minXp })}
                     className={`flex flex-col items-center gap-1 rounded-xl px-2.5 py-2 border transition-all ${
                       isCurrent
                         ? "border-emerald-500 bg-emerald-50 dark:bg-emerald-950/40 shadow-sm scale-105"
@@ -385,7 +385,7 @@ export default function UserStats({
           <div className="flex items-center justify-between text-[10px] mb-1 font-bold text-stone-500 dark:text-stone-400">
             <span>{format(t.userStats.progressLabel, { level: currentLevel.level })} <span className="text-emerald-600 dark:text-emerald-400">({Math.round(progress)}%)</span></span>
             <span className="inline-flex items-center gap-1 text-stone-600 dark:text-stone-300">
-              {format(t.userStats.nextLevelLabel, { level: nextLevel.level, name: nextLevel.name })} <span>{LEVEL_EMOJIS[nextLevel.level] || "🌱"}</span>
+              {format(t.userStats.nextLevelLabel, { level: nextLevel.level, name: t.levelTitles[nextLevel.level] ?? nextLevel.name })} <span>{LEVEL_EMOJIS[nextLevel.level] || "🌱"}</span>
             </span>
           </div>
           <div className="w-full h-2 bg-stone-100 dark:bg-stone-800/70 rounded-full overflow-hidden relative shadow-inner">
@@ -412,7 +412,7 @@ export default function UserStats({
               <div className="flex items-center gap-2 text-[11px] sm:text-xs font-semibold text-stone-600 dark:text-stone-300">
                 <span className="text-sm shrink-0">🏆</span>
                 <span>
-                  {t.userStats.upcomingTitlePart1} <span className="font-extrabold text-amber-600 dark:text-amber-400">{nextLevel.name}</span>
+                  {t.userStats.upcomingTitlePart1} <span className="font-extrabold text-amber-600 dark:text-amber-400">{t.levelTitles[nextLevel.level] ?? nextLevel.name}</span>
                 </span>
               </div>
               {cfaGateRemaining > 0 && (
@@ -431,7 +431,7 @@ export default function UserStats({
       {!nextLevel && (
         <div className="mt-2.5 pt-2.5 border-t border-stone-100 dark:border-stone-800/80 relative z-10">
           <div className="p-3 bg-amber-50/40 dark:bg-amber-950/10 border border-amber-200/50 dark:border-amber-900/30 rounded-xl flex items-center gap-2 text-xs text-amber-700 dark:text-amber-300 font-bold">
-            <span>👑 {format(t.userStats.maxLevelReached, { name: currentLevel.name })}</span>
+            <span>👑 {format(t.userStats.maxLevelReached, { name: t.levelTitles[currentLevel.level] ?? currentLevel.name })}</span>
           </div>
         </div>
       )}

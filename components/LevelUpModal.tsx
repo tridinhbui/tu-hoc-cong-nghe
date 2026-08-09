@@ -104,7 +104,7 @@ export default function LevelUpModal({ level, userName, onClose }: LevelUpModalP
         blob,
         cardFilename,
         levelInfo
-          ? format(t.levelUp.shareCaptionWithName, { level, name: levelInfo.name })
+          ? format(t.levelUp.shareCaptionWithName, { level, name: t.levelTitles[level] ?? levelInfo.name })
           : format(t.levelUp.shareCaption, { level })
       );
       if (outcome === "shared") toast.success(t.levelUp.toastShared);
@@ -172,7 +172,7 @@ export default function LevelUpModal({ level, userName, onClose }: LevelUpModalP
           {t.levelUp.kicker}
         </p>
         <h2 className="text-2xl font-extrabold text-stone-900 dark:text-stone-100 mb-1">
-          {levelInfo ? format(t.levelUp.headingWithName, { level, name: levelInfo.name }) : format(t.levelUp.heading, { level })}
+          {levelInfo ? format(t.levelUp.headingWithName, { level, name: t.levelTitles[level] ?? levelInfo.name }) : format(t.levelUp.heading, { level })}
         </h2>
         <p className="text-sm text-stone-500 dark:text-stone-400 mb-6">
           {t.levelUp.subtitle}
@@ -261,7 +261,7 @@ export default function LevelUpModal({ level, userName, onClose }: LevelUpModalP
           {format(t.levelUp.svgUserAchieved, { userName })}
         </text>
         <text x="400" y="600" textAnchor="middle" fill="#ffffff" fontSize="30" fontWeight="800" letterSpacing="1">
-          {levelInfo ? format(t.levelUp.svgLevelWithName, { level, name: levelInfo.name }) : format(t.levelUp.svgLevel, { level })}
+          {levelInfo ? format(t.levelUp.svgLevelWithName, { level, name: t.levelTitles[level] ?? levelInfo.name }) : format(t.levelUp.svgLevel, { level })}
         </text>
 
         <line x1="220" y1="650" x2="580" y2="650" stroke="#334155" strokeWidth="0.8" />

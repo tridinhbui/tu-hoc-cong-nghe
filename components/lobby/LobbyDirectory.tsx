@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
-import { stationsOf } from "./stations";
+import { stationsOf, stationRoomHref } from "./stations";
 import { gatesOf } from "./gates";
 
 /** Bảng chỉ đường của sảnh thư viện.
@@ -105,7 +105,7 @@ export default function LobbyDirectory() {
           {stations.map((s) => (
             <li key={s.id}>
               <Link
-                href={s.href}
+                href={stationRoomHref(s)}
                 className="flex items-start gap-2.5 rounded-xl px-2 py-1.5 transition hover:bg-stone-800"
               >
                 <span

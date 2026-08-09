@@ -1111,7 +1111,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                       <div className="w-12 h-12 sm:w-[64px] sm:h-[64px] relative flex items-center justify-center select-none pointer-events-none overflow-hidden rounded-full border border-stone-200/50 dark:border-stone-800/50 bg-stone-50 dark:bg-stone-800 shadow-inner [backface-visibility:hidden] [transform:translateZ(0)]">
                                         <img
                                           src={`/levels/level${lvl.level}.jpg`}
-                                          alt={lvl.name}
+                                          alt={t.levelTitles[lvl.level] ?? lvl.name}
                                           className={`w-full h-full object-cover transform-gpu [backface-visibility:hidden] transition-all duration-300 ${
                                             isReached ? "scale-[1.08] hover:scale-[1.15]" : "grayscale opacity-40 contrast-75"
                                           }`}
@@ -1120,7 +1120,12 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
 
                                       <button
                                         onClick={() => setActiveTooltipLevel((prev) => (prev === lvl.level ? null : lvl.level))}
-                                        className={`relative text-left rounded-xl border p-1.5 w-[84px] h-[88px] shrink-0 bg-white dark:bg-stone-900 transition-all cursor-pointer flex flex-col [backface-visibility:hidden] ${
+                                        // Chiều cao là SÀN, không phải chiều cao cố định. `h-[88px]` được chọn cho
+                                        // tên cấp tiếng Việt; "Financial Advisor" và "Investing Legend"
+                                        // dài hơn, nên dòng XP và huy hiệu số người bị đẩy ra ngoài khung.
+                                        // Hàng cha là `items-stretch`, nên thẻ cao nhất kéo cả hàng theo -
+                                        // chúng vẫn bằng nhau, chỉ là bằng nhau ở chiều cao đủ chứa chữ.
+                                        className={`relative text-left rounded-xl border p-1.5 w-[92px] min-h-[88px] shrink-0 bg-white dark:bg-stone-900 transition-all cursor-pointer flex flex-col [backface-visibility:hidden] ${
                                           isReached
                                             ? `${accent.border} ${isOpen ? `shadow-md scale-[1.02] ${accent.glow}` : isUserCurrent ? `shadow-sm ${accent.glow}` : ""}`
                                             : "border-stone-100 dark:border-stone-800 opacity-60 grayscale hover:opacity-90 hover:grayscale-0"
@@ -1141,7 +1146,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                           )}
                                         </div>
                                         <p className={`text-[10px] font-extrabold mt-0.5 leading-snug line-clamp-2 flex-1 ${isReached ? "text-stone-900 dark:text-stone-100" : "text-stone-500 dark:text-stone-500"}`}>
-                                          {lvl.name}
+                                          {t.levelTitles[lvl.level] ?? lvl.name}
                                         </p>
                                         <p className="text-[9px] text-stone-400 dark:text-stone-500 mt-0.5">{format(t.finalOne.dashboardClient.xpValue, { xp: lvl.minXp })}</p>
                                         <div className={`inline-flex items-center gap-1 text-[8px] font-bold mt-1 px-1.5 py-0.5 rounded-full w-fit ${isReached ? `${accent.bg} ${accent.text}` : "bg-stone-100 dark:bg-stone-800 text-stone-400 dark:text-stone-500"}`}>
@@ -1171,7 +1176,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                               >
                                 <div className={`mt-4 rounded-2xl border-2 ${accent.border} ${accent.bg} p-4`}>
                                   <p className={`text-xs font-black uppercase tracking-wider ${accent.text} mb-3`}>
-                                    {format(t.dashboard.levelMembers, { level: lvl.level, name: lvl.name, count: members.length })}
+                                    {format(t.dashboard.levelMembers, { level: lvl.level, name: t.levelTitles[lvl.level] ?? lvl.name, count: members.length })}
                                   </p>
                                   {members.length > 0 ? (
                                     <div className="grid sm:grid-cols-2 gap-2">
@@ -1293,39 +1298,35 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                 hai của thẻ Bản đồ Cấp độ phía trên, nên cột này giờ bắt đầu
                 bằng góc yên tĩnh. */}
 
-            {/* Góc yên tĩnh nằm DƯỚI lối vào học bài, ở cả hai chế độ.
-                Nó là chỗ để đặt xuống, không phải chỗ để bắt đầu - đứng trên
-                thì thứ đầu tiên người học thấy khi mở dashboard là một lời mời
-                nghỉ ngơi, còn việc họ vào đây để làm thì nằm bên dưới nó.
-                Hai nhánh chỉ có một nhánh chạy tại một thời điểm, nên đây là
-                một instance chứ không phải hai. */}
-            {!isLessonsView && user?.id && <DailyMotivationWidget userId={user.id} />}
-
-            {/* Lối vào Lộ trình học, ngay dưới góc yên tĩnh.
+            {/* Lối vào Lộ trình học, đứng ĐẦU cột trái.
                 Trang đó trả lời câu mà dashboard không trả lời: bắt đầu từ
                 đâu, mỗi ngày bao nhiêu, bao giờ thì xong - và trước thẻ này
                 nó chỉ có một dòng trong navbar, tức là ai chưa mở navbar ra
                 thì không biết nó tồn tại.
+                Trước đó nó đứng dưới góc yên tĩnh, và đó là sai thứ tự theo
+                đúng lập luận mà chú thích cũ của góc yên tĩnh tự viết ra: chỗ
+                để đặt xuống không nên đứng trên việc người ta vào đây để làm.
+                Góc yên tĩnh giờ nằm cuối cột phải, dưới phần gợi ý.
                 Đây là một thẻ liên kết, KHÔNG phải một tab dashboard: chú
                 thích đầu app/(app)/lo-trinh/page.tsx nói rõ vì sao không thêm
                 giá trị nào vào DASHBOARD_TABS nữa. */}
             {!isLessonsView && (
               <Link
                 href="/lo-trinh"
-                className="group flex items-center gap-3.5 rounded-[24px] border border-stone-200/90 dark:border-stone-800 bg-white/95 dark:bg-stone-900 p-4 shadow-sm transition-all hover:border-emerald-400 hover:shadow-md dark:hover:border-emerald-700"
+                className="group flex items-center gap-4 rounded-[28px] border-2 border-emerald-200 bg-gradient-to-br from-emerald-50 via-white to-white p-5 shadow-sm transition-all hover:border-emerald-400 hover:shadow-lg sm:gap-5 sm:p-6 dark:border-emerald-900/60 dark:from-emerald-950/30 dark:via-stone-900 dark:to-stone-900 dark:hover:border-emerald-700"
               >
-                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600 transition-transform group-hover:scale-105 dark:bg-emerald-950/40 dark:text-emerald-400">
-                  <Route className="h-5 w-5" />
+                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-emerald-500 text-white shadow-sm transition-transform group-hover:scale-105 sm:h-16 sm:w-16">
+                  <Route className="h-7 w-7 sm:h-8 sm:w-8" />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <p className="text-sm font-extrabold text-stone-900 dark:text-stone-100">
+                  <p className="text-lg font-black leading-tight tracking-tight text-stone-900 sm:text-xl dark:text-stone-50">
                     {t.nav.learningPath}
                   </p>
-                  <p className="mt-0.5 text-xs text-stone-500 dark:text-stone-400">
+                  <p className="mt-1 text-sm leading-snug text-stone-600 dark:text-stone-300">
                     {t.dashboard.learningPathCardSub}
                   </p>
                 </div>
-                <span className="shrink-0 text-xl font-bold text-stone-300 transition-transform group-hover:translate-x-0.5 group-hover:text-emerald-500 dark:text-stone-600">
+                <span className="shrink-0 text-2xl font-bold text-emerald-500 transition-transform group-hover:translate-x-1 sm:text-3xl">
                   ›
                 </span>
               </Link>
@@ -1341,22 +1342,23 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             {/* Trên /hoc-bai chỗ này là lộ trình, không phải lời chúc.
                 Người đang ở trang học bài đã quyết định học rồi; câu họ còn
                 cần là "còn bao nhiêu, bao lâu nữa xong", không phải một câu
-                động viên. Thẻ chào mừng ở lại trang tổng quan, nơi nó vẫn là
-                thứ đầu tiên người vừa mở app nhìn thấy.
+                động viên. Thẻ chào mừng ở lại trang tổng quan.
+
+                Chỗ này từng là một ternary `isLessonsView ? lộ trình : chào
+                mừng`, và vế else của nó là mã chết: cả khối nằm bên trong
+                `{isLessonsView && (`, nên điều kiện luôn đúng khi tới được
+                đây. Không có lỗi biên dịch nào cho một nhánh không bao giờ
+                chạy, và chú thích ngay trên nó thì mô tả nhánh ấy như thật.
 
                 `done` đếm theo TRACK ĐANG HỌC chứ không phải totalDone ngay
                 dưới đây - totalDone là mọi bài đã học ở cả hai track, đặt cạnh
                 totalLessons (chỉ track hiện tại) sẽ ra tỷ lệ vượt 100% cho ai
                 đã học cả hai. */}
-            {isLessonsView ? (
-              <LearningPathSummary
-                track={activeTrack}
-                done={sorted.filter((l) => completed.includes(l.id)).length}
-                total={sorted.length}
-              />
-            ) : (
-              user?.id && <DailyMotivationWidget userId={user.id} />
-            )}
+            <LearningPathSummary
+              track={activeTrack}
+              done={sorted.filter((l) => completed.includes(l.id)).length}
+              total={sorted.length}
+            />
 
             {/* The recall / mistake / remediation widgets used to sit here, at
                 the top of this column. Now that the column is a fixed-height
@@ -1439,23 +1441,23 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                 <div className="h-0.5 w-full bg-amber-500/70 absolute top-0 left-0 right-0" />
                 <div className="flex items-center gap-2 flex-wrap mt-1">
                   <div className="text-base font-extrabold tracking-tight text-stone-900 dark:text-stone-100">
-                    {TRACK_PERSONAL.title}
+                    {t.trackStages.personal.title}
                   </div>
                 </div>
                 <div className="text-xs mt-1.5 text-stone-500 dark:text-stone-400 font-normal">
                   {format(t.dashboard.foundationHours, { hours: TRACK_PERSONAL.estimatedHours })}
                 </div>
                 <div className="sm:hidden text-xs mt-2 leading-snug text-stone-500 dark:text-stone-400">
-                  {TRACK_PERSONAL.description}
+                  {t.trackStages.personal.description}
                 </div>
               </button>
 
               {/* Hover Tooltip (pointer devices) */}
               <div className="absolute bottom-full left-0 sm:left-1/2 sm:-translate-x-1/2 mb-3 hidden sm:group-hover:block z-50 w-max max-w-xs">
                 <div className="bg-stone-900 dark:bg-stone-800 text-white rounded-xl px-4 py-3 shadow-lg border border-stone-800 dark:border-stone-700">
-                  <p className="text-sm font-bold mb-2">{TRACK_PERSONAL.description}</p>
+                  <p className="text-sm font-bold mb-2">{t.trackStages.personal.description}</p>
                   <div className="space-y-1 text-xs text-stone-300">
-                    {TRACK_PERSONAL.pillars.map((pillar) => (
+                    {t.trackStages.personal.pillars.map((pillar) => (
                       <div key={pillar} className="flex gap-2">
                         <span>•</span>
                         <span>{pillar}</span>
@@ -1481,23 +1483,23 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                 <div className="h-0.5 w-full bg-emerald-500/70 absolute top-0 left-0 right-0" />
                 <div className="flex items-center gap-2 flex-wrap mt-1">
                   <div className="text-base font-extrabold tracking-tight text-stone-900 dark:text-stone-100">
-                    {TRACK_PROFESSIONAL.title}
+                    {t.trackStages.professional.title}
                   </div>
                 </div>
                 <div className="text-xs mt-1.5 text-stone-500 dark:text-stone-400 font-normal">
                   {t.dashboard.advancedLessons}
                 </div>
                 <div className="sm:hidden text-xs mt-2 leading-snug text-stone-500 dark:text-stone-400">
-                  {TRACK_PROFESSIONAL.description}
+                  {t.trackStages.professional.description}
                 </div>
               </button>
 
               {/* Hover Tooltip (pointer devices) */}
               <div className="absolute bottom-full left-0 sm:left-1/2 sm:-translate-x-1/2 mb-3 hidden sm:group-hover:block z-50 w-max max-w-xs">
                 <div className="bg-stone-900 dark:bg-stone-800 text-white rounded-xl px-4 py-3 shadow-lg border border-stone-800 dark:border-stone-700">
-                  <p className="text-sm font-bold mb-2">{TRACK_PROFESSIONAL.description}</p>
+                  <p className="text-sm font-bold mb-2">{t.trackStages.professional.description}</p>
                   <div className="space-y-1 text-xs text-stone-300">
-                    {TRACK_PROFESSIONAL.pillars.map((pillar) => (
+                    {t.trackStages.professional.pillars.map((pillar) => (
                       <div key={pillar} className="flex gap-2">
                         <span>•</span>
                         <span>{pillar}</span>
@@ -1674,6 +1676,12 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             const stageOpen = openStages.has(stageKey) || (isSearchingStages && stageHasSearchMatch);
 
             const stageIdx = track.stages.findIndex((s) => s.label === stage.label);
+            // Chữ hiển thị của chặng. Tra theo VỊ TRÍ trong `track.stages`, còn
+            // `stage.label` thì giữ nguyên tiếng Việt ở mọi chỗ nó là khoá:
+            // `lessonsByStageLabel`, `id={`stage-...`}` và cột `stage_label` đã
+            // ghi xuống Supabase cho mốc đã qua. Dịch khoá là mất tiến độ của
+            // người học, không phải mất một dòng chữ.
+            const stageCopy = t.trackStages[activeTrack]?.stages[stageIdx];
             let isStageLockedByMilestone = false;
             let prevStageLabel = "";
             let prevStageLessonsCount = 0;
@@ -1729,14 +1737,14 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                           ? "bg-emerald-500 text-white"
                           : `${theme.bg} ${theme.text}`
                       }`}>
-                        {stageDisplayLabels.get(stage.label) || stage.label}
+                        {stageDisplayLabels.get(stage.label) || stageCopy?.label || stage.label}
                       </span>
                       {stage.isNew && (
                         <span className="text-[10px] font-black text-white bg-gradient-to-r from-rose-500 to-orange-500 px-2 py-0.5 rounded-full shrink-0 animate-pulse">
                           {t.dashboard.isNew}
                         </span>
                       )}
-                      <span className="text-base sm:text-lg font-extrabold text-stone-900 dark:text-stone-100 flex-1 leading-snug">{stage.name}</span>
+                      <span className="text-base sm:text-lg font-extrabold text-stone-900 dark:text-stone-100 flex-1 leading-snug">{stageCopy?.name ?? stage.name}</span>
                       {isCurrentMilestonePassed ? (
                         <div className="flex items-center gap-2">
                       <span className="flex items-center gap-1 text-xs font-bold text-stone-600 dark:text-stone-300 shrink-0 bg-stone-100 dark:bg-stone-800 px-2.5 py-1 rounded-lg">
@@ -1834,7 +1842,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                 {/* Parts (sub-stages) - each its own collapsible accordion */}
                 {stageOpen && stage.available && stageLessons.length > 0 && !isStageLockedByMilestone && (
                   <div className="space-y-3">
-                    {stage.parts.map((part) => {
+                    {stage.parts.map((part, partIdx) => {
                       const partLessons = lessonsByPartKey.get(`${stage.label}::${part.name}`) ?? [];
                       if (partLessons.length === 0) return null;
                       const partHasSearchMatch = partLessons.some(lessonMatchesSearch);
@@ -1851,7 +1859,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                             onClick={() => togglePart(partKey)}
                             className="w-full flex items-center gap-3 px-5 py-3.5 bg-stone-50 dark:bg-stone-900/50 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors cursor-pointer text-left"
                           >
-                            <span className="font-bold text-stone-800 dark:text-stone-300 text-sm">{part.name}</span>
+                            <span className="font-bold text-stone-800 dark:text-stone-300 text-sm">{stageCopy?.parts[partIdx] ?? part.name}</span>
                             <span className="text-xs text-stone-500 dark:text-stone-400 font-mono">
                               {format(t.dashboard.lessonRange, { from: lessonOrdinal.get(partLessons[0].id) ?? "", to: lessonOrdinal.get(partLessons[partLessons.length - 1].id) ?? "" })}
                             </span>
@@ -2248,6 +2256,15 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
               </div>
             )}
             {!isLessonsView && <CareerGoalWidget userId={user?.id} />}
+
+            {/* Góc yên tĩnh, cuối cột phải - dưới "Gợi ý hôm nay" và "Đang hot
+                tuần này". Nó là chỗ để đặt xuống chứ không phải chỗ để bắt
+                đầu, nên nó đứng sau mọi thứ người học vào đây để làm. */}
+            {!isLessonsView && user?.id && (
+              <div className="xl:col-span-2">
+                <DailyMotivationWidget userId={user.id} />
+              </div>
+            )}
           </div>
         </div>
       </div>

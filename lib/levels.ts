@@ -27,6 +27,11 @@
  *  đi, thứ duy nhất trong hệ thống này không thể xin lỗi cho xong.
  *
  *  Ràng buộc đó được lib/__tests__/level-curve.test.ts giữ. */
+/* i18n-ignore-start: `name` ở đây là dữ liệu, không phải chuỗi hiển thị chưa
+   dịch. Giao diện đọc `t.levelTitles[lvl.level]` và chỉ rơi về `name` khi từ
+   điển thiếu cấp đó - trường hợp mà lib/__tests__/track-stages-i18n.test.ts
+   làm đỏ build. Bỏ dấu này đi thì 15 chuỗi đã dịch xong vẫn bị đếm là việc
+   còn lại, và một con số như thế thì không ai còn tin. */
 export const LEVELS = [
   { level: 1, name: "Tò mò", minXp: 0, color: "stone", emoji: "🌱" },
   { level: 2, name: "Học viên", minXp: 30, color: "stone", emoji: "🎒" },
@@ -47,6 +52,7 @@ export const LEVELS = [
 
 /** Ngưỡng của thang CŨ, giữ nguyên để bài kiểm chứng minh được rằng lần cân
  *  này không tụt cấp ai. Không dùng ở đâu khác; xoá nó đi là xoá bằng chứng. */
+/* i18n-ignore-end */
 export const PREVIOUS_LEVEL_MIN_XP = [
   0, 100, 300, 600, 1200, 2000, 3200, 5000, 7500, 10500, 14500, 19500, 25500, 32500, 40000,
 ];
