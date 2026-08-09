@@ -7,7 +7,7 @@
   "openingOptions": [
     "A conclusion, evidence, risks and what still needs checking",
     "Praise only",
-    "Attractive icons only",
+    "Attractive icons and a clean layout, with nothing else required",
     "No figures at all"
   ],
   "explanation": "A financial memo is a short document letting the reader grasp the conclusion, the evidence and the risks in a few minutes. It is the practical output of a great deal of analytical work, and it is where AI helps most: it produces a structured draft very fast. But an AI draft has an inherent weakness - it writes fluently even where the evidence is thin, so a confident sentence can hide an argument with no figures behind it. Your job is to examine each claim and cut whatever cannot be proved.",
@@ -110,12 +110,12 @@
     {
       "question": "What does memo mean?",
       "options": [
-        "A share price table",
+        "A table of daily share prices",
         "An audit report",
         "A short written note",
         "A loan agreement"
       ],
-      "explanation": "Memo is the term commonly used for a short written note."
+      "explanation": "A memo is a short written note carrying a conclusion and its basis. A price table is raw data with no argument in it, an audit report is a formal document with its own legal standing, and a loan agreement binds two parties - none of the three is what someone means when they ask for a memo."
     },
     {
       "question": "What must you do before sending an AI-written draft?",
@@ -125,7 +125,7 @@
         "Add a chart to illustrate the conclusion section",
         "Check the sources, figures, units and risks"
       ],
-      "explanation": "AI drafts; whoever sends it is responsible for the quality."
+      "explanation": "AI drafts; whoever sends it is responsible for the quality. Asking the AI to check itself repeats the same weakness that produced the draft, polishing the prose makes an unsupported claim read better rather than truer, and a chart cannot substitute for reconciling the figures behind it."
     },
     {
       "question": "Why does a \"missing data\" section make a memo more credible?",
@@ -140,7 +140,7 @@
     {
       "question": "What is the fastest way to spot an unsupported claim in an AI draft?",
       "options": [
-        "Read the draft backwards from the final paragraph to the first",
+        "Read the draft backwards, from the final paragraph up to the very first one",
         "Underline every evaluative adjective and ask which figure supports it",
         "Count how many times the draft mentions the company's name",
         "Ask a different AI to rewrite it and compare the two versions"
@@ -153,7 +153,7 @@
         "Compare its length against the memos written in previous periods",
         "Read it start to finish to check the coherence of the whole argument",
         "Read backwards from the conclusion, asking what evidence each sentence rests on",
-        "Ask the AI to rate the reliability of each section it has just written"
+        "Ask the AI to rate the reliability of each individual section it has just written for you"
       ],
       "explanation": "Reading forwards lets fluent prose carry you along. Reading backwards forces every assertion to stand on its own evidence, and the sentences with nothing underneath them show up immediately."
     }
@@ -179,7 +179,7 @@
     "options": [
       "A conclusion, evidence, risks and what still needs checking",
       "Praise only",
-      "Attractive icons only",
+      "Attractive icons and a clean layout, with nothing else required",
       "No figures at all"
     ],
     "explanation": "A good memo has to let the reader grasp the conclusion and what it rests on."
