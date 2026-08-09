@@ -97,7 +97,7 @@ export async function POST(request: NextRequest) {
     : state.missions.find((m) => m.id === missionId)?.completed === true;
 
   if (!eligible) {
-    return NextResponse.json({ error: "Nhiệm vụ chưa hoàn thành" }, { status: 400 });
+    return NextResponse.json({ code: "questNotComplete" }, { status: 400 });
   }
 
   const admin = createAdminClient();

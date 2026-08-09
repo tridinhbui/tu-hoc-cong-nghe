@@ -8,6 +8,7 @@ import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { toast } from "sonner";
 import { ArrowLeft, ArrowRight, Shuffle, Users, LogOut, Send, CornerUpLeft, Smile, X, MoreVertical, Trash2, Copy, Pin, PinOff, CheckCheck, Pencil } from "lucide-react";
 import { createClient } from "@/lib/supabase";
+import { translateApiError } from "@/lib/api-error-code";
 import {
   STUDY_ROOM_TOPICS,
   addStudyRoomNote,
@@ -1096,7 +1097,9 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
         setEditingMessage(null);
         toast.success(t.chat.edited);
       } catch (error) {
-        toast.error(error instanceof Error ? error.message : t.studyGroups.messageEditFailed);
+        // Ưu tiên mã lỗi: `error.message` là chuỗi server dựng, nên nó luôn
+        // tiếng Việt dù người đọc đang xem tiếng Anh.
+        toast.error(translateApiError(t, error) ?? t.studyGroups.messageEditFailed);
       } finally {
         setSendingMessage(false);
       }
@@ -2391,7 +2394,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                       setMessages((prev) => prev.filter((m) => m.id !== msg.id));
                                       toast.success(t.chat.recalled);
                                     } catch (err) {
-                                      toast.error(t.chat.recallFailed);
+                                      toast.error(translateApiError(t, err) ?? t.chat.recallFailed);
                                     }
                                   }}
                                   className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-xl hover:bg-rose-50 dark:hover:bg-rose-950/40 text-rose-600 dark:text-rose-400 font-bold transition-colors text-left"

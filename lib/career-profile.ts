@@ -2,6 +2,7 @@ import { createClient } from "@/lib/supabase";
 import type { CompetencyScore, SkillDomainId } from "@/lib/career-competency";
 import type { SkillGapResult } from "@/lib/career-skill-gap";
 import type { WeeklyCareerMissionState } from "@/lib/weekly-career-mission";
+import { ApiError, type ApiErrorCode } from "@/lib/api-error-code";
 
 // Client-side surface for the /su-nghiep career profile: one typed wrapper
 // around GET /api/career-profile (which does all the aggregation), plus the
@@ -43,7 +44,7 @@ export async function claimCareerMission(
     body: JSON.stringify({ missionId }),
   });
   const body = await res.json().catch(() => null);
-  if (!res.ok) throw new Error(body?.error ?? "Không nhận được thưởng nhiệm vụ");
+  if (!res.ok) throw new ApiError(body?.error ?? "claim mission failed", body?.code as ApiErrorCode | undefined);
   return body;
 }
 

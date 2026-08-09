@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { ApiError, type ApiErrorCode } from "@/lib/api-error-code";
 import {
   Room,
   RoomEvent,
@@ -34,7 +35,10 @@ export interface StudyRoomVoiceState {
   micEnabled: boolean;
   /** Browser blocked autoplay; the user has to tap once to hear anything. */
   needsAudioUnlock: boolean;
-  error: string | null;
+  /** MÃ lỗi, không phải câu chữ: hook này nằm ở lib nên không có `useI18n()`,
+   *  và một câu tiếng Việt trả về từ đây sẽ hiện nguyên vậy cho người đọc
+   *  tiếng Anh. Component tra mã qua `translateApiError`. */
+  errorCode: ApiErrorCode | null;
   join: () => Promise<void>;
   leave: () => Promise<void>;
   toggleMic: () => Promise<void>;
@@ -47,7 +51,7 @@ export function useStudyRoomVoice(roomId: number | null): StudyRoomVoiceState {
   const [speakingIds, setSpeakingIds] = useState<string[]>([]);
   const [micEnabled, setMicEnabled] = useState(false);
   const [needsAudioUnlock, setNeedsAudioUnlock] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [errorCode, setErrorCode] = useState<ApiErrorCode | null>(null);
 
   const roomRef = useRef<Room | null>(null);
   /** roomRef is only populated once the token round-trip resolves, so it
@@ -88,7 +92,7 @@ export function useStudyRoomVoice(roomId: number | null): StudyRoomVoiceState {
     if (roomId === null || roomRef.current || joiningRef.current) return;
     joiningRef.current = true;
     setStatus("connecting");
-    setError(null);
+    setErrorCode(null);
 
     try {
       const res = await fetch("/api/study-room/voice-token", {
@@ -100,11 +104,11 @@ export function useStudyRoomVoice(roomId: number | null): StudyRoomVoiceState {
 
       if (res.status === 503) {
         setStatus("unavailable");
-        setError(body?.error ?? "Voice chưa được cấu hình");
+        setErrorCode((body?.code as ApiErrorCode | undefined) ?? "voiceNotConfigured");
         return;
       }
       if (!res.ok) {
-        throw new Error(body?.error ?? "Không lấy được quyền vào voice");
+        throw new ApiError(body?.error ?? "voice token failed", body?.code as ApiErrorCode | undefined);
       }
 
       const room = new Room({ adaptiveStream: true, dynacast: true });
@@ -148,7 +152,7 @@ export function useStudyRoomVoice(roomId: number | null): StudyRoomVoiceState {
       console.error("Error joining study room voice:", err);
       await teardown();
       setStatus("error");
-      setError(err instanceof Error ? err.message : "Không vào được voice");
+      setErrorCode(err instanceof ApiError && err.code ? err.code : "voiceJoinFailed");
     } finally {
       joiningRef.current = false;
     }
@@ -169,7 +173,7 @@ export function useStudyRoomVoice(roomId: number | null): StudyRoomVoiceState {
       console.error("Error toggling microphone:", err);
       // Almost always a denied permission prompt - surface it rather than
       // leaving the button looking like it worked.
-      setError(err instanceof Error ? err.message : "Không bật được micro");
+      setErrorCode("micFailed");
     }
   }, [micEnabled]);
 
@@ -200,7 +204,7 @@ export function useStudyRoomVoice(roomId: number | null): StudyRoomVoiceState {
     speakingIds,
     micEnabled,
     needsAudioUnlock,
-    error,
+    errorCode,
     join,
     leave,
     toggleMic,

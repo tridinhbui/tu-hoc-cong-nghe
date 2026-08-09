@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
   if (!url || !apiKey || !apiSecret) {
     // Voice is optional infrastructure: an environment without LiveKit
     // credentials should degrade to "the button is unavailable", not 500.
-    return NextResponse.json({ error: "Voice chưa được cấu hình", configured: false }, { status: 503 });
+    return NextResponse.json({ code: "voiceNotConfigured", configured: false }, { status: 503 });
   }
 
   const supabase = await createServerSupabaseClient();
@@ -65,7 +65,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: membershipError.message }, { status: 500 });
   }
   if (!membership) {
-    return NextResponse.json({ error: "Bạn không ở trong phòng học này" }, { status: 403 });
+    return NextResponse.json({ code: "notInStudyRoom" }, { status: 403 });
   }
 
   const { data: profile } = await supabase

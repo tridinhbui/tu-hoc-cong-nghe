@@ -13,6 +13,19 @@ import { viSections } from "./sections";
 
 export const vi = {
   ...viSections,
+  apiErrors: {
+    voiceJoinFailed: "Không vào được voice",
+    micFailed: "Không bật được micro",
+    notOwnMessageEdit: "Bạn chỉ có thể sửa tin nhắn của mình",
+    notOwnMessageDelete: "Bạn chỉ có thể thu hồi tin nhắn của mình",
+    notInGroup: "Bạn không còn trong nhóm này",
+    systemMessageNotEditable: "Không thể chỉnh sửa tin nhắn hệ thống",
+    messageLength: "Tin nhắn phải dài từ 1 đến 2000 ký tự",
+    notInStudyRoom: "Bạn không ở trong phòng học này",
+    voiceNotConfigured: "Voice chưa được cấu hình",
+    questNotComplete: "Nhiệm vụ chưa hoàn thành",
+  },
+
   nav: {
     students: "Học viên",
     sectionLearn: "Học tập",

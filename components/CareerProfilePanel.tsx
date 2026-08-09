@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { toast } from "sonner";
+import { translateApiError } from "@/lib/api-error-code";
 import {
   Award,
   CheckCircle2,
@@ -111,7 +112,7 @@ export default function CareerProfilePanel({ userId, careerId }: CareerProfilePa
       }
       await load();
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : t.careerProfile.claimFailed);
+      toast.error(translateApiError(t, error) ?? t.careerProfile.claimFailed);
     }
     setClaimingId(null);
   }

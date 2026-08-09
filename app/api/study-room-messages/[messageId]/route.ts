@@ -41,7 +41,7 @@ export async function DELETE(request: NextRequest) {
   }
 
   if (message.is_bot || message.sender_id !== user.id) {
-    return NextResponse.json({ error: "Bạn chỉ có thể thu hồi tin nhắn của mình" }, { status: 403 });
+    return NextResponse.json({ code: "notOwnMessageDelete" }, { status: 403 });
   }
 
   const { data: membership, error: membershipError } = await admin
@@ -57,7 +57,7 @@ export async function DELETE(request: NextRequest) {
   }
 
   if (!membership) {
-    return NextResponse.json({ error: "Bạn không còn trong nhóm này" }, { status: 403 });
+    return NextResponse.json({ code: "notInGroup" }, { status: 403 });
   }
 
   const { error: deleteError } = await admin
@@ -111,7 +111,7 @@ export async function PATCH(request: NextRequest) {
   }
 
   if (message.is_bot) {
-    return NextResponse.json({ error: "Không thể chỉnh sửa tin nhắn hệ thống" }, { status: 403 });
+    return NextResponse.json({ code: "systemMessageNotEditable" }, { status: 403 });
   }
 
   const { data: membership, error: membershipError } = await admin
@@ -127,18 +127,18 @@ export async function PATCH(request: NextRequest) {
   }
 
   if (!membership) {
-    return NextResponse.json({ error: "Bạn không còn trong nhóm này" }, { status: 403 });
+    return NextResponse.json({ code: "notInGroup" }, { status: 403 });
   }
 
   const updatePayload: { content?: string; is_pinned?: boolean } = {};
 
   if (wantsContentUpdate) {
     if (message.sender_id !== user.id) {
-      return NextResponse.json({ error: "Bạn chỉ có thể sửa tin nhắn của mình" }, { status: 403 });
+      return NextResponse.json({ code: "notOwnMessageEdit" }, { status: 403 });
     }
     const content = (body.content as string).trim();
     if (content.length < 1 || content.length > 2000) {
-      return NextResponse.json({ error: "Tin nhắn phải dài từ 1 đến 2000 ký tự" }, { status: 400 });
+      return NextResponse.json({ code: "messageLength" }, { status: 400 });
     }
     updatePayload.content = content;
   }

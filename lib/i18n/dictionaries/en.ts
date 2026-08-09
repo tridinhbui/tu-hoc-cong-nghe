@@ -7,6 +7,19 @@ import { enSections } from "./sections";
 
 export const en: Dictionary = {
   ...enSections,
+  apiErrors: {
+    voiceJoinFailed: "Could not join voice",
+    micFailed: "Could not turn on the microphone",
+    notOwnMessageEdit: "You can only edit your own messages",
+    notOwnMessageDelete: "You can only delete your own messages",
+    notInGroup: "You are no longer in this group",
+    systemMessageNotEditable: "System messages cannot be edited",
+    messageLength: "A message must be between 1 and 2000 characters",
+    notInStudyRoom: "You are not in this study room",
+    voiceNotConfigured: "Voice is not configured",
+    questNotComplete: "This quest is not complete yet",
+  },
+
   nav: {
     students: "Learners",
     sectionLearn: "Learn",

@@ -1,6 +1,7 @@
 import { createClient } from "@/lib/supabase";
 import { handleSupabaseError } from "@/lib/errors";
 import { uniqueRealtimeTopic } from "@/lib/supabase-realtime-topic";
+import { ApiError, type ApiErrorCode } from "@/lib/api-error-code";
 
 
 export type StudyRoomTopic = "personal" | "professional" | "cfa";
@@ -477,9 +478,9 @@ export async function deleteRoomMessage(messageId: number): Promise<boolean> {
     method: "DELETE",
   });
 
-  const payload = (await response.json().catch(() => null)) as { error?: string } | null;
+  const payload = (await response.json().catch(() => null)) as { error?: string; code?: ApiErrorCode } | null;
   if (!response.ok) {
-    throw new Error(payload?.error || "Không thu hồi được tin nhắn");
+    throw new ApiError(payload?.error || "delete message failed", payload?.code);
   }
 
   return true;
@@ -492,9 +493,13 @@ export async function updateRoomMessage(messageId: number, content: string): Pro
     body: JSON.stringify({ content }),
   });
 
-  const payload = (await response.json().catch(() => null)) as { message?: StudyRoomMessage; error?: string } | null;
+  const payload = (await response.json().catch(() => null)) as {
+    message?: StudyRoomMessage;
+    error?: string;
+    code?: ApiErrorCode;
+  } | null;
   if (!response.ok || !payload?.message) {
-    throw new Error(payload?.error || "Không sửa được tin nhắn");
+    throw new ApiError(payload?.error || "edit message failed", payload?.code);
   }
 
   return payload.message;
