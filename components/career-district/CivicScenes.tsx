@@ -6,6 +6,7 @@ import { CIVIC_ROOM_IDS, type DistrictRoom } from "./district-space";
 import { inputsFor } from "@/lib/cash-cycle";
 import { BONDS, RHO_CASE_DEFS, STOCKS, mix } from "@/lib/portfolio-risk";
 import { bookshelfTexture, oakTexture } from "@/components/lobby/room-textures";
+import { useI18n } from "@/lib/i18n/context";
 
 /** Nội thất sáu căn nhà dân sự: cửa hàng, bảng vàng, phòng thi, căn hộ, bảo
  *  tàng, khu nhà bạn bè.
@@ -325,12 +326,14 @@ function FriendsInterior({ room }: { room: DistrictRoom }) {
  *  học - đứng giữa mà quay một vòng là thấy đủ ba, thứ một trang giấy không
  *  làm được. */
 function ThreeStatementInterior({ room }: { room: DistrictRoom }) {
+  // Sub-component, nên có useI18n() riêng.
+  const { t } = useI18n();
   const halfW = room.size.width / 2;
   const halfD = room.size.depth / 2;
   const walls: Array<{ pos: [number, number, number]; ry: number; color: string; label: string }> = [
-    { pos: [0, 2.6, -halfD + 0.2], ry: 0, color: "#67e8f9", label: "KQKD" },
-    { pos: [-halfW + 0.2, 2.6, 0], ry: Math.PI / 2, color: "#86efac", label: "LCTT" },
-    { pos: [halfW - 0.2, 2.6, 0], ry: -Math.PI / 2, color: "#fcd34d", label: "BCĐKT" },
+    { pos: [0, 2.6, -halfD + 0.2], ry: 0, color: "#67e8f9", label: t.careerDistrict.civic.wallIncomeStatement },
+    { pos: [-halfW + 0.2, 2.6, 0], ry: Math.PI / 2, color: "#86efac", label: t.careerDistrict.civic.wallCashFlow },
+    { pos: [halfW - 0.2, 2.6, 0], ry: -Math.PI / 2, color: "#fcd34d", label: t.careerDistrict.civic.wallBalanceSheet },
   ];
   return (
     <>

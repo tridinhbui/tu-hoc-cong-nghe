@@ -46,6 +46,9 @@ export const careerDistrictVi = {
       balanceCheck: "Hai vế lệch nhau: {n} ✓",
     },
     civic: {
+      wallIncomeStatement: "KQKD",
+      wallCashFlow: "LCTT",
+      wallBalanceSheet: "BCĐKT",
       levelShort: "Lv.{level}",
       minimapAria: "Bản đồ nhỏ của {room}, hiện vị trí của bạn và những người đang ở cùng phòng",
       close: "đóng",
@@ -326,6 +329,9 @@ export const careerDistrictEn: typeof careerDistrictVi = {
       balanceCheck: "Both sides differ by: {n} ✓",
     },
     civic: {
+      wallIncomeStatement: "Income statement",
+      wallCashFlow: "Cash flow",
+      wallBalanceSheet: "Balance sheet",
       levelShort: "Lv.{level}",
       minimapAria: "Minimap of {room}, showing you and everyone else in the room",
       close: "close",

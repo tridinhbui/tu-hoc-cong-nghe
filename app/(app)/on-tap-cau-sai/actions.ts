@@ -7,8 +7,7 @@ import { IB_QUESTION_BANK, formatCategoryLabel } from "@/lib/ib-question-bank";
 import { ALL_TECHNICAL_QUESTIONS } from "@/lib/ib-question-careers";
 import { CAREER_TECHNICAL_QUESTIONS } from "@/lib/career-question-bank";
 import { questionFingerprint } from "@/lib/stable-hash";
-import { getServerLocale } from "@/lib/i18n/server";
-import { getDictionary } from "@/lib/i18n";
+import { getServerDictionary } from "@/lib/i18n/server";
 
 export interface QuizMistakeReviewItem {
   lessonId: number;
@@ -119,7 +118,7 @@ export async function getQuizMistakesReviewAction(userId: string): Promise<QuizM
         // The career bank covers fund management, treasury, ESG and the rest;
         // labelling those "IB Interview" would tell a compliance candidate
         // they got a banking question wrong.
-        lessonLabel: careerQuestionIds.has(question.id) ? getDictionary(await getServerLocale()).miscUi.careerQuestionLabel : "IB Interview",
+        lessonLabel: careerQuestionIds.has(question.id) ? (await getServerDictionary()).miscUi.careerQuestionLabel : "IB Interview",
         lessonTitle: formatCategoryLabel(question.category),
         questionIndex: row.question_index,
         question: question.question,
