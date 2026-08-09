@@ -2349,6 +2349,9 @@ export const en: Dictionary = {
     libraryEnterCta: "Enter",
 
     learningPathCardSub: "Where to start, how much a day, and when you finish",
+    streakFeedTitle: "Streaks today",
+    streakFeedSub: "Other learners keeping the rhythm",
+    streakFeedDays: "{days} days",
     lessonProgressLabel: "Lessons · {done}/{total}",
     levelMapTab: "Level map",
     learningPathTab: "Learning path",
