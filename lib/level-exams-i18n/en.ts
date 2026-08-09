@@ -454,4 +454,454 @@ export const LEVEL_EXAMS_EN: LevelExamTranslations = {
       },
     },
   },
+  4: {
+    title: "Advanced Exam - Level 4: Financial Analyst",
+    questions: {
+      l4_q1: {
+        question: "In a DCF model, what role does WACC play?",
+        options: [
+          "The discount rate that brings future cash flows back to today",
+          "The long-term growth rate used for the terminal value",
+          "The target margin the business needs to hit",
+          "The return shareholders actually received in the period",
+        ],
+        explanation:
+          "WACC is the blended cost of both debt and equity, so it is the right discount rate for cash flows that belong to the whole firm.",
+      },
+      l4_q2: {
+        question: "What does an ROE of 25% tell you?",
+        options: [
+          "The company retains 25% of profit for reinvestment",
+          "Every 100 dong of equity produces 25 dong of net profit",
+          "Revenue grew 25% against the same period last year",
+          "The net margin on net revenue reached 25%",
+        ],
+        explanation:
+          "ROE = net profit / shareholders' equity. It measures how well the capital belonging to shareholders is being used.",
+      },
+      l4_q3: {
+        question: "What does a beta of 1.5 mean?",
+        options: [
+          "The stock moves the same way as the market, but harder",
+          "The stock is certain to beat the market by 50% a year",
+          "The stock moves in the opposite direction to the index",
+          "The company's specific risk is 1.5x the industry average",
+        ],
+        explanation:
+          "Beta measures sensitivity to the market: when the index moves 1%, the stock tends to move about 1.5% the same way. It promises nothing about returns.",
+      },
+      l4_q4: {
+        question: "How does FCFF differ from FCFE?",
+        options: [
+          "FCFF belongs to lenders and shareholders both; FCFE only to shareholders",
+          "FCFF is measured before depreciation and FCFE after it",
+          "FCFF is for listed companies, FCFE for unlisted ones",
+          "FCFF is always smaller than FCFE, having deducted all interest",
+        ],
+        explanation:
+          "FCFF is the cash flow to every capital provider, so it is discounted at WACC. FCFE has already met the debt obligations, so it is discounted at the cost of equity.",
+      },
+      l4_q5: {
+        question: "What does a current ratio below 1.0 warn about?",
+        options: [
+          "The company is losing money in its main operations",
+          "Current assets do not cover the current liabilities coming due",
+          "The company uses far less leverage than its industry",
+          "Inventory makes up too large a share of total assets",
+        ],
+        explanation:
+          "Current ratio = current assets / current liabilities. Below 1 means the obligations of the next 12 months exceed the resources on hand to meet them.",
+      },
+      l4_q6: {
+        question: "What share of a DCF's value does the terminal value usually carry?",
+        options: [
+          "Under 10%, since it is only the remainder after the forecast period",
+          "Usually more than half, so its assumptions dominate the result",
+          "Exactly the same as the discounted cash flows of the forecast period",
+          "Negligible, if the forecast period runs five years or more",
+        ],
+        explanation:
+          "This is why a small change to the long-term growth rate or the exit multiple moves the valuation so violently.",
+      },
+      l4_q7: {
+        question: "What is the relationship between enterprise value and equity value?",
+        options: [
+          "Enterprise value equals equity plus debt minus cash",
+          "Enterprise value equals equity plus all current assets",
+          "The two are equal for any listed company",
+          "Equity value equals enterprise value plus debt",
+        ],
+        explanation:
+          "A buyer of the whole business pays the shareholders and takes on the debt, but gets back the cash sitting on the balance sheet.",
+      },
+      l4_q8: {
+        question: "Which item does EBITDA leave out, in a way that can mislead?",
+        options: [
+          "Selling expenses and general administrative expenses for the period",
+          "The capital spending needed to keep the business running",
+          "Financial income and one-off, non-recurring gains",
+          "The cost of every product sold during the period",
+        ],
+        explanation:
+          "EBITDA adds depreciation back, so for a capital-intensive business it hides the money that has to be spent again and again just to keep the assets working.",
+      },
+      l4_q9: {
+        question: "Inventory turnover has risen sharply year on year. What does that usually show?",
+        options: [
+          "Goods are selling faster, so less capital is stuck in the warehouse",
+          "The company is stocking up ahead of the peak season",
+          "The cost of goods sold has fallen considerably from before",
+          "The company is stretching out payments to its suppliers",
+        ],
+        explanation:
+          "Read it with context: turnover can also rise because stock is being cleared at a discount, so check the gross margin alongside it.",
+      },
+      l4_q10: {
+        question: "How does a higher depreciation charge affect cash flow?",
+        options: [
+          "It lowers cash flow by exactly the extra depreciation",
+          "It raises cash flow, through the tax it saves",
+          "No effect, because it is a non-cash item",
+          "It lowers cash flow, as after-tax profit falls by the same amount",
+        ],
+        explanation:
+          "Depreciation is a non-cash charge but it is deductible for tax, so it creates a tax shield and actual cash flow goes up.",
+      },
+      l4_q11: {
+        question: "What is the problem with comparing P/E across two companies with very different leverage?",
+        options: [
+          "No problem, since P/E is already normalised by earnings",
+          "P/E is affected by interest expense, so it is hard to compare directly",
+          "P/E only works for companies that carry no debt at all",
+          "The P/E of a heavily borrowed company is systematically higher",
+        ],
+        explanation:
+          "Net profit sits below interest expense, so leverage distorts the denominator. Across two different capital structures, EV/EBITDA is the fairer comparison.",
+      },
+      l4_q12: {
+        question: "How does CAPM determine the cost of equity?",
+        options: [
+          "The risk-free rate plus beta times the market risk premium",
+          "After-tax profit divided by the book value of equity",
+          "The dividend payout ratio plus expected revenue growth",
+          "The average lending rate of the large commercial banks",
+        ],
+        explanation:
+          "CAPM sets the cost of equity at the risk-free rate plus a risk premium scaled by beta. It is the minimum return shareholders demand for taking on the company's systematic risk.",
+      },
+      l4_q13: {
+        question: "How is net working capital calculated?",
+        options: [
+          "Current assets minus current liabilities",
+          "Total assets minus all liabilities of the company",
+          "Cash plus financial investments that can be sold immediately",
+          "Inventory plus receivables minus payables to suppliers",
+        ],
+        explanation:
+          "Net working capital = current assets - current liabilities, measuring the long-term capital tied up in day-to-day operations. The last option is the operating working-capital cycle, a narrower measure.",
+      },
+      l4_q14: {
+        question: "Why is depreciation added back when computing operating cash flow?",
+        options: [
+          "Because it is an accounting charge that moves no money out of the company",
+          "Because it is already deducted for tax, so it need not be counted twice",
+          "Because it is always offset by new capital spending in the same period",
+          "Because accounting standards require depreciation to be shown under investing",
+        ],
+        explanation:
+          "Depreciation reduces accounting profit, but the money left when the asset was bought. Going from profit to cash flow means adding this non-cash item back.",
+      },
+      l4_q15: {
+        question: "Gross margin is falling while revenue is still growing. What does that usually reflect?",
+        options: [
+          "Input costs are rising faster than selling prices",
+          "The company has sharply cut selling and administrative expenses",
+          "The company has just booked a large one-off financial gain",
+          "The number of shares outstanding has just been increased",
+        ],
+        explanation:
+          "Gross margin depends on revenue and cost of goods sold alone. Revenue up with the margin squeezed means the company is sacrificing price, or absorbing higher input costs, to keep growing.",
+      },
+      l4_q16: {
+        question: "In a DCF, how does raising the long-term growth assumption affect the valuation?",
+        options: [
+          "It lifts the terminal value and with it the whole enterprise value",
+          "It lowers the terminal value, because cash flows are discounted harder",
+          "No effect, because the terminal value is fixed from the start",
+          "It only affects the forecast-period cash flows, not the terminal value",
+        ],
+        explanation:
+          "Terminal value usually comes from the Gordon formula, whose denominator is WACC minus the growth rate. Raising g shrinks the denominator and the terminal value swells fast - it is the model's most sensitive assumption.",
+      },
+      l4_q17: {
+        question: "What does a high receivables turnover ratio mean?",
+        options: [
+          "The company collects from customers quickly, with little capital tied up",
+          "The company is selling more on credit to push revenue",
+          "The company has an unusually high rate of bad customer debt",
+          "The company is stockpiling inventory while it waits for prices to rise",
+        ],
+        explanation:
+          "Receivables turnover is revenue divided by average receivables. A high figure means a short collection cycle - good for cash flow, though an extreme one can mean credit terms so tight they cost you customers.",
+      },
+      l4_q18: {
+        question: "Why should accounting profit not stand in for cash flow when appraising a project?",
+        options: [
+          "Because profit is shaped by accounting estimates and non-cash items",
+          "Because accounting profit is always smaller than actual cash flow, in every case",
+          "Because accounting standards forbid using profit in project appraisal models",
+          "Because profit is only determined at the financial year end, too late to decide",
+        ],
+        explanation:
+          "Depreciation, provisions and the timing of revenue recognition are all accounting choices that pull profit away from real money. A project is paid for in cash, so NPV has to rest on cash flow.",
+      },
+      l4_q19: {
+        question: "Through what mechanism does financial leverage amplify ROE?",
+        options: [
+          "Debt replaces equity, shrinking the denominator while the profit still belongs to shareholders",
+          "It lowers interest expense, because banks give better rates on large loans",
+          "It raises revenue, because there is more capital to expand the business with",
+          "It cuts corporate income tax to the lowest rate the rules allow",
+        ],
+        explanation:
+          "Borrowing in place of equity shrinks the ROE denominator. If the return on assets beats the borrowing rate, the whole difference accrues to shareholders - but the same mechanism amplifies losses too.",
+      },
+      l4_q20: {
+        question: "Comparing two companies in one industry, why look at EV/EBIT alongside EV/EBITDA?",
+        options: [
+          "Because EBIT keeps depreciation in, exposing the business that eats fixed assets",
+          "Because EBIT always gives a lower multiple, making cheap stocks easier to find",
+          "Because EBITDA is not recognised as an official measure by accounting standards",
+          "Because EV/EBIT removes the effect of capital structure on valuation entirely",
+        ],
+        explanation:
+          "EBITDA adds depreciation back, treating a software company and a steel mill the same by accident. EBIT keeps it in, which exposes who has to reinvest heavily just to keep operating.",
+      },
+    },
+  },
+  5: {
+    title: "Rigorous Exam - Level 5: Seasoned Financial Adviser",
+    questions: {
+      l5_q1: {
+        question: "What are the three sections of a cash flow statement?",
+        options: [
+          "Cash flow from operating, from investing and from financing",
+          "Short-term, medium-term and long-term cash flow",
+          "Cash flow from revenue, from costs and from tax payable",
+          "Cash received, cash paid and the closing balance",
+        ],
+        explanation:
+          "Three core activities: operating, investing and financing. The split tells you whether the money came from running the business or from borrowing.",
+      },
+      l5_q2: {
+        question: "What is the central bank's main purpose in raising its policy rate?",
+        options: [
+          "Making borrowing dearer and cooling demand to hold inflation down",
+          "Encouraging companies to expand investment and production",
+          "Weakening the local currency to support exports",
+          "Pumping more liquidity into the commercial banking system",
+        ],
+        explanation:
+          "Higher rates make borrowing dearer and saving more attractive, so consumption and investment fall and price pressure eases.",
+      },
+      l5_q3: {
+        question: "The three-factor DuPont model breaks ROE into which components?",
+        options: [
+          "Net margin, asset turnover and financial leverage",
+          "Revenue, operating costs and corporate income tax",
+          "Current assets, non-current assets and total equity",
+          "Revenue growth, gross margin and interest expense",
+        ],
+        explanation:
+          "The decomposition says whether a high ROE comes from selling profitably, from using assets well, or simply from borrowing a lot - three very different causes.",
+      },
+      l5_q4: {
+        question: "When does a margin call happen?",
+        options: [
+          "When the margin ratio drops below the required maintenance level",
+          "When the investor asks for a higher margin borrowing limit",
+          "When the broker lowers its margin lending rate",
+          "When a stock in the portfolio is put under a warning notice",
+        ],
+        explanation:
+          "A falling price shrinks your own equity in the position. Once the margin ratio breaks the maintenance threshold, the broker demands more cash or force-sells.",
+      },
+      l5_q5: {
+        question: "What does a positive NPV on a project mean?",
+        options: [
+          "The project pays back sooner than originally expected",
+          "The present value of cash inflows exceeds the capital invested",
+          "The project is certain to be profitable in every market scenario",
+          "The project's internal rate of return is above inflation",
+        ],
+        explanation:
+          "NPV > 0 means the project adds value after fully charging for the opportunity cost of capital through the discount rate.",
+      },
+      l5_q6: {
+        question: "What is IRR's main weakness against NPV?",
+        options: [
+          "IRR cannot be computed for projects lasting over ten years",
+          "IRR can have several solutions when cash flows change sign repeatedly",
+          "IRR always comes out lower than NPV, so it is too conservative",
+          "IRR only applies to projects investing in tangible fixed assets",
+        ],
+        explanation:
+          "IRR also implicitly assumes cash flows are reinvested at the IRR itself, which is usually unrealistic. NPV adds value up, so it ranks projects more reliably.",
+      },
+      l5_q7: {
+        question: "What does a bond's duration measure?",
+        options: [
+          "The number of years left until the bond matures",
+          "How sensitive the bond's price is to a change in interest rates",
+          "The total coupon interest received until maturity",
+          "The probability that the issuer defaults on the principal",
+        ],
+        explanation:
+          "The higher the duration, the more the price moves with rates. It equals the remaining term only for a zero-coupon bond.",
+      },
+      l5_q8: {
+        question: "What does the Sharpe ratio measure?",
+        options: [
+          "Excess return per unit of risk taken on",
+          "The absolute return the portfolio achieved in a year",
+          "The weight of stocks against bonds in the portfolio",
+          "The gap between the portfolio's return and the risk-free rate",
+        ],
+        explanation:
+          "Sharpe = (portfolio return - risk-free rate) / standard deviation. The last option is only the numerator, with nothing dividing by risk.",
+      },
+      l5_q9: {
+        question: "What is the effect of combining two negatively correlated assets in a portfolio?",
+        options: [
+          "Total risk falls below the average of the two assets",
+          "Expected return rises above either asset on its own",
+          "Portfolio risk equals exactly the average risk of the two",
+          "Both assets will rise and fall in the same rhythm",
+        ],
+        explanation:
+          "Negative correlation means one asset tends to rise when the other falls, so the swings of the combined portfolio are smoothed out.",
+      },
+      l5_q10: {
+        question: "What does periodic portfolio rebalancing achieve?",
+        options: [
+          "It returns weights to target, meaning you trim what has run up",
+          "It guarantees the portfolio beats its benchmark index",
+          "It removes market risk from the portfolio entirely",
+          "It cuts trading costs by reducing the number of trades a year",
+        ],
+        explanation:
+          "Rebalancing keeps risk at the level you actually chose. It promises no outperformance and it cannot erase market risk.",
+      },
+      l5_q11: {
+        question: "What does the opportunity cost of capital mean in project appraisal?",
+        options: [
+          "The bank rate currently charged on the company's borrowing",
+          "The return on the best alternative that was passed over",
+          "All the money actually spent to get the project running",
+          "Expected inflation over the life of the project",
+        ],
+        explanation:
+          "Capital always has an alternative use. The discount rate has to reflect that return, or the project will look better than it is.",
+      },
+      l5_q12: {
+        question: "What is the payback period's basic weakness against NPV?",
+        options: [
+          "It ignores every cash flow arising after the payback point",
+          "It cannot be computed for projects with very large upfront capital",
+          "It always contradicts NPV, for every kind of project",
+          "It only works for projects with identical cash flows each year",
+        ],
+        explanation:
+          "Payback stops counting the moment the capital is recovered, so a project that earns heavily later is rated the same as one that dies right after. It also does not discount cash flows for time.",
+      },
+      l5_q13: {
+        question: "When two mutually exclusive projects give conflicting NPV and IRR answers, which do you follow?",
+        options: [
+          "NPV, because it measures the absolute value added to the owners directly",
+          "IRR, because it shows the return earned on each dong invested",
+          "The project with the shorter payback, to cut liquidity risk",
+          "The project needing less capital, to preserve resources",
+        ],
+        explanation:
+          "NPV wins when the two conflict, because the goal is maximising value, not maximising a rate. IRR also assumes cash flows are reinvested at the IRR itself, which is rarely realistic.",
+      },
+      l5_q14: {
+        question: "How does the depreciation tax shield create value?",
+        options: [
+          "Depreciation lowers taxable income, so less tax is paid in actual cash",
+          "Depreciation is refunded directly from the state budget at year end",
+          "Depreciation raises the carrying value of fixed assets on the balance sheet",
+          "Depreciation lets the company defer principal repayments to the bank",
+        ],
+        explanation:
+          "Depreciation costs no cash but is deductible for tax, so it keeps real money inside the company. The shield is worth roughly depreciation times the tax rate.",
+      },
+      l5_q15: {
+        question: "How does the quick ratio differ from the current ratio?",
+        options: [
+          "The quick ratio takes inventory out of the numerator",
+          "The quick ratio counts only debts due within three months",
+          "The quick ratio uses total assets instead of current assets",
+          "The quick ratio is computed on the market value of assets",
+        ],
+        explanation:
+          "Inventory is the hardest current asset to turn into cash quickly, especially when the business is struggling. Removing it gives a harsher picture of short-term solvency.",
+      },
+      l5_q16: {
+        question: "What does prolonged high inflation do to the holder of a fixed-rate bond?",
+        options: [
+          "It erodes the real value of the coupons and the principal received later",
+          "It raises the real value of the coupons, as the issuer must compensate for inflation",
+          "No effect, because the coupon was fixed at the moment of issue",
+          "It forces the issuer to redeem the bond early under the rules",
+        ],
+        explanation:
+          "The coupon is fixed in nominal terms while inflation eats the purchasing power of every dong received. This is why long-dated fixed-rate bonds suffer worst in an inflationary environment.",
+      },
+      l5_q17: {
+        question: "Why can a fast-growing company still be desperately short of cash?",
+        options: [
+          "Because inventory and receivables have to swell before the money comes in",
+          "Because fast-growing companies are legally restricted from bank borrowing",
+          "Because revenue growth always drags the gross margin below zero",
+          "Because accounting standards force revenue to be recognised later than the cash arrives",
+        ],
+        explanation:
+          "Selling more means holding more stock and extending more credit - the money goes out first and comes back later. This is why many companies with handsome profits die of an empty bank account.",
+      },
+      l5_q18: {
+        question: "What does the efficient frontier show in portfolio theory?",
+        options: [
+          "The set of portfolios with the highest expected return at each level of risk",
+          "The list of assets whose beta is close to one in the market",
+          "The maximum loss a portfolio can suffer in a single session",
+          "The asset weights the regulator recommends for pension funds",
+        ],
+        explanation:
+          "Every point on the frontier is a portfolio that cannot be improved: a higher return demands accepting higher risk. Any portfolio below the frontier is inefficient.",
+      },
+      l5_q19: {
+        question: "In what situation does a bond's reinvestment risk arise?",
+        options: [
+          "When the coupons received have to be reinvested at a lower rate than before",
+          "When the issuer becomes unable to repay the principal at maturity",
+          "When the bond is downgraded partway through the holding period",
+          "When there is no buyer for the bond on the secondary market",
+        ],
+        explanation:
+          "Yield to maturity implicitly assumes every coupon is reinvested at that same rate. Falling rates break the assumption, so the realised total return comes in below the original YTM.",
+      },
+      l5_q20: {
+        question: "Why is asset allocation usually considered a bigger decision than picking individual stocks?",
+        options: [
+          "Because the weights between asset classes drive most of the variation in returns",
+          "Because picking individual stocks is legally restricted for retail investors",
+          "Because asset classes always return more than individual stocks, in every period",
+          "Because asset allocation incurs no trading costs while stock picking does",
+        ],
+        explanation:
+          "Empirical work shows the stock-bond-cash mix drives most of the variation in returns over time, far more than which particular name was chosen inside each class.",
+      },
+    },
+  },
 };
