@@ -1017,6 +1017,7 @@ export const vi = {
   // preview of the three ecosystem surfaces. All of its content is illustrative:
   // the learners, the posts and the quiz are a demo, not live data.
   ecosystem: {
+    cheerAll: "{emoji} Cổ vũ cả nhóm học tốt!",
     cheerYou: "Bạn",
     livePreview: "● Đang xem Live Preview",
     tapToTry: "Bấm để xem thử",
@@ -1203,6 +1204,8 @@ export const vi = {
 
   // components/flashcard/FlashcardClient.tsx - the SM2 flashcard box.
   flashcards: {
+    mistakeTerm: "[Lỗi sai: {title}] {question}",
+    mistakeDefinition: "Đáp án đúng: {answer}. Giải thích: {explanation}",
     noMistakesFound:
       "Không tìm thấy câu trắc nghiệm làm sai chưa giải quyết nào! 🌟 Hãy tiếp tục học bài nhé.",
     mistakesAlreadyMade: "Tất cả câu lỗi sai đã được tạo thẻ trước đó.",
@@ -1305,6 +1308,12 @@ export const vi = {
 
   // components/FinancialGuildWidget.tsx - the VN30 fund simulator.
   guild: {
+    stopLossTitle: "🛡️ Bài Học Nguyên Tắc Cắt Lỗ Stop-Loss ({ticker} {percent}%)",
+    stopLossDesc:
+      "Mã {ticker} đã vi phạm mốc cắt lỗ chuẩn -8%. Bài học: Kỷ luật cắt lỗ sớm giúp bảo vệ quy mô vốn Quỹ để tái cơ cấu vào các cơ hội mới tốt hơn!",
+    takeProfitTitle: "🎉 Bài Học Chốt Lời Take-Profit ({ticker} +{percent}%)",
+    takeProfitDesc:
+      "Mã {ticker} đang đạt mức sinh lời ấn tượng! Bài học: Chốt lời từng phần (Scaling Out) giúp hiện thực hóa lợi nhuận thực tế thay vì chỉ nắm giữ lãi trên giấy.",
     concentrationTitle: "⚠️ Cảnh Báo Tập Trung Vốn (Concentration Risk)",
     concentrationDesc:
       "Bạn đang dồn hơn 80% giá trị danh mục vào duy nhất 1 mã cổ phiếu. Bài học: Đa dạng hóa danh mục (Diversification) giúp giảm thiểu rủi ro phi hệ thống khi doanh nghiệp gặp tin xấu!",
@@ -1381,6 +1390,7 @@ export const vi = {
 
   // components/CommunityFeedClient.tsx - the FinSocial feed (/finsocial).
   feed: {
+    sentimentPost: "#PhanTich #MarketSentiment Hôm nay mình nhận định thị trường {view}. Khảo sát cộng đồng: {bull}% Bullish · {bear}% Bearish.",
     voteBullish: "🐂 Biển Xanh (Bullish - Tăng trưởng)",
     voteBearish: "🐻 Biển Đỏ (Bearish - Thận trọng)",
     spotlightQuestion: "Câu hỏi cần trả lời",
@@ -1540,6 +1550,10 @@ export const vi = {
 
   // components/ResumeLearningButton.tsx - the "continue learning" hero card.
   resume: {
+    greeting1: "Chào{name}! Sách đã mở, kiến thức đã sẵn sàng. Cùng chinh phục bài tiếp theo để nhận XP nào! 🔥",
+    greeting2: "Tuyệt vời{name}! Bạn đã hoàn thành {count} bài học. Cùng duy trì đà tiến bộ này ngay nhé! 🌟",
+    greeting3: "Chào{name}! Hôm nay mục tiêu là lên cấp tiếp theo. Học ngay bài học dưới đây thôi nào! 🏆",
+    greeting4: "Năng lượng lên nào{name}! Thêm một bài học là thêm một phần kiến thức thực chiến vững chắc! 💪",
     criteriaQuizLeft: "{count} câu Kiểm tra nhanh",
     criteriaReadAll: "đọc hết bài",
     congrats: "Chúc mừng{name}!",
@@ -1664,6 +1678,7 @@ export const vi = {
 
   // components/RigorousLevelExamModal.tsx - the level-up exam.
   levelExam: {
+    shareText: "🏆 Tôi vừa xuất sắc vượt qua Bài Thi Thăng Cấp Khắt Khe - Cấp độ {level}: {name} với điểm số {percent}%! 🔥 #LevelUp",
     loadFailed: "Không tải được đề thi.",
     passedToast: "Chúc mừng! Bạn đã thi đỗ xuất sắc Cấp độ {level} ({percent}%)!",
     timedOutToast: "Đã quá thời gian làm bài nên kết quả không được tính. Bạn có thể thi lại.",
@@ -1991,6 +2006,18 @@ export const vi = {
     closeAria: "Đóng",
     pinnedByAdmin: "Tài Tài • Quản lý nhóm • Đã ghim",
     byAdmin: "Tài Tài • Quản lý nhóm",
+
+    // Tin nhắn bot: lưu dưới dạng SỰ KIỆN trong study_room_messages.content
+    // (xem lib/study-room-bot-messages.ts) rồi dựng câu ở đây, nên mỗi người
+    // đọc thấy tiếng của mình kể cả với dòng ghi trước khi họ đổi ngôn ngữ.
+    botDailyNone: "Cập nhật hôm nay: chưa ai trong nhóm học bài nào cả 👀 Ai học đầu tiên hôm nay nào?",
+    botDailyAll: "Cập nhật hôm nay: cả {count} thành viên đều đã học ít nhất 1 bài! Nhóm đang giữ nhịp rất tốt 🔥",
+    botDailyPartial: "Cập nhật hôm nay: {names} đã học rồi. Còn {notYet} bạn chưa học hôm nay - đừng để mai dồn nhé!",
+    botDailyExtra: " +{extra} bạn nữa",
+    botRules: "Tài Tài đây 👋 Nhóm này đang học theo hướng {topic}, hiện có khoảng {count} bài để cả nhóm cùng cày. Luật ngắn gọn: mỗi người cố giữ nhịp tối thiểu 3 bài/tuần, đạt chỉ tiêu thì nhóm được giữ tiếp, và giữ được 3 tuần liên tiếp thì lên nhóm vĩnh viễn.",
+    botTopicPersonal: "Tài chính cá nhân",
+    botTopicProfessional: "Tài chính chuyên ngành",
+    botTopicCfa: "CFA Level I",
     dropImage: "Thả ảnh vào đây để gửi 📂",
     emptyPart1: "Chưa có tin nhắn nào.",
     emptyPart2: "Nhắn gì đó chào các bạn trong nhóm nhé!",
@@ -2395,6 +2422,7 @@ export const vi = {
 
   // components/DashboardClient.tsx
   dashboard: {
+    stageLabel: "Chặng {n}",
     // Nhãn thời lượng trên thẻ bài học. Trước là template literal trong một
     // hàm ở module scope, ngoài tầm mọi rule cho tới khi thêm returned-text.
     minutesShort: "{count} phút",

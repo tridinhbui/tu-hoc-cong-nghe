@@ -471,7 +471,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
 
     let n = 0;
     branchStages.forEach((stage, displayIdx) => {
-      const customLabel = `Chặng ${displayIdx + 1}`;
+      const customLabel = format(t.dashboard.stageLabel, { n: displayIdx + 1 });
       stageLabelsMap.set(stage.label, customLabel);
 
       byStage.set(

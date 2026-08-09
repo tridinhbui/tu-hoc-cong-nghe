@@ -1,5 +1,8 @@
 export const careerDistrictVi = {
   careerDistrict: {
+    shopAllDone: "★ Bạn đã học xong cả {total} bài của nhóm này",
+    shopInProgress: "Đang học · {done}/{total} bài",
+    shopNotStarted: "{count} nghề · chưa học bài nào ở đây",
     // components/career-district/DistrictShell.tsx - biển hiệu trên mái hiên.
     // Tên NGẮN, không phải tên đầy đủ của nhóm ngành: tên đầy đủ dài quá thì
     // chữ trên biển bé lại đến mức đứng dưới đường không đọc được.
@@ -283,6 +286,9 @@ export const careerDistrictVi = {
 
 export const careerDistrictEn: typeof careerDistrictVi = {
   careerDistrict: {
+    shopAllDone: "★ You have finished all {total} lessons in this group",
+    shopInProgress: "In progress · {done}/{total} lessons",
+    shopNotStarted: "{count} careers · nothing studied here yet",
     // components/career-district/DistrictShell.tsx - the shopfront signs.
     // SHORT names, not the full category titles: the full ones shrink the
     // lettering until it cannot be read from the pavement.

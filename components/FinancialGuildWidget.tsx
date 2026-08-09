@@ -138,14 +138,14 @@ export default function FinancialGuildWidget({ userId }: { userId: string }) {
         const lossPercent = ((stock.currentPrice - pos.avgPrice) / pos.avgPrice) * 100;
         if (lossPercent <= -8) {
           newLessons.push({
-            title: `🛡️ Bài Học Nguyên Tắc Cắt Lỗ Stop-Loss (${pos.ticker} ${lossPercent.toFixed(1)}%)`,
-            desc: `Mã ${pos.ticker} đã vi phạm mốc cắt lỗ chuẩn -8%. Bài học: Kỷ luật cắt lỗ sớm giúp bảo vệ quy mô vốn Quỹ để tái cơ cấu vào các cơ hội mới tốt hơn!`,
+            title: format(t.guild.stopLossTitle, { ticker: pos.ticker, percent: lossPercent.toFixed(1) }),
+            desc: format(t.guild.stopLossDesc, { ticker: pos.ticker }),
             type: "risk",
           });
         } else if (lossPercent >= 15) {
           newLessons.push({
-            title: `🎉 Bài Học Chốt Lời Take-Profit (${pos.ticker} +${lossPercent.toFixed(1)}%)`,
-            desc: `Mã ${pos.ticker} đang đạt mức sinh lời ấn tượng! Bài học: Chốt lời từng phần (Scaling Out) giúp hiện thực hóa lợi nhuận thực tế thay vì chỉ nắm giữ lãi trên giấy.`,
+            title: format(t.guild.takeProfitTitle, { ticker: pos.ticker, percent: lossPercent.toFixed(1) }),
+            desc: format(t.guild.takeProfitDesc, { ticker: pos.ticker }),
             type: "profit",
           });
         }

@@ -286,7 +286,11 @@ export default function RigorousLevelExamModal({
                           const { createManualPost } = await import("@/lib/supabase-community");
                           await createManualPost(
                             userId,
-                            `🏆 Tôi vừa xuất sắc vượt qua Bài Thi Thăng Cấp Khắt Khe - Cấp độ ${levelToTest}: ${levelMeta.name} với điểm số ${scorePercentage}%! 🔥 #LevelUp`,
+                            format(t.levelExam.shareText, {
+                              level: levelToTest,
+                              name: levelMeta.name,
+                              percent: scorePercentage,
+                            }),
                             undefined,
                             {
                               type: "level_up_achievement",

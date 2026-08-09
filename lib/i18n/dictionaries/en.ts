@@ -947,6 +947,7 @@ export const en: Dictionary = {
   },
 
   ecosystem: {
+    cheerAll: "{emoji} Cheering the whole group on!",
     cheerYou: "You",
     livePreview: "● Viewing the live preview",
     tapToTry: "Tap to try it",
@@ -1127,6 +1128,8 @@ export const en: Dictionary = {
   },
 
   flashcards: {
+    mistakeTerm: "[Mistake: {title}] {question}",
+    mistakeDefinition: "Correct answer: {answer}. Explanation: {explanation}",
     noMistakesFound:
       "No unresolved wrong answers found. 🌟 Keep working through the lessons.",
     mistakesAlreadyMade: "Cards have already been created for every wrong answer.",
@@ -1229,6 +1232,12 @@ export const en: Dictionary = {
   },
 
   guild: {
+    stopLossTitle: "🛡️ Stop-Loss Discipline Lesson ({ticker} {percent}%)",
+    stopLossDesc:
+      "{ticker} has broken the standard -8% stop. The lesson: cutting a loss early protects the fund's capital so it can be redeployed into better opportunities.",
+    takeProfitTitle: "🎉 Take-Profit Lesson ({ticker} +{percent}%)",
+    takeProfitDesc:
+      "{ticker} is showing an impressive gain. The lesson: scaling out turns part of a paper profit into a real one instead of only holding it on screen.",
     concentrationTitle: "⚠️ Concentration Risk warning",
     concentrationDesc:
       "You have more than 80% of your portfolio value in a single stock. The lesson: diversification cuts the unsystematic risk you carry when one company hits bad news.",
@@ -1302,6 +1311,7 @@ export const en: Dictionary = {
   },
 
   feed: {
+    sentimentPost: "#Analysis #MarketSentiment My read on the market today is {view}. Community poll: {bull}% bullish · {bear}% bearish.",
     voteBullish: "🐂 Blue Sea (Bullish - growth)",
     voteBearish: "🐻 Red Sea (Bearish - cautious)",
     spotlightQuestion: "Questions needing an answer",
@@ -1442,6 +1452,10 @@ export const en: Dictionary = {
   },
 
   resume: {
+    greeting1: "Hello{name}! The book is open and the knowledge is ready. Let's take the next lesson and earn some XP. 🔥",
+    greeting2: "Excellent{name}! You have finished {count} lessons. Let's keep that momentum going. 🌟",
+    greeting3: "Hello{name}! Today's goal is the next level. Start the lesson below. 🏆",
+    greeting4: "Energy up{name}! One more lesson is one more piece of knowledge you can actually use. 💪",
     criteriaQuizLeft: "{count} quick-check questions",
     criteriaReadAll: "read the whole lesson",
     congrats: "Congratulations{name}!",
@@ -1555,6 +1569,7 @@ export const en: Dictionary = {
   },
 
   levelExam: {
+    shareText: "🏆 I just passed the Rigorous Promotion Exam - Level {level}: {name} with a score of {percent}%! 🔥 #LevelUp",
     loadFailed: "We could not load the exam.",
     passedToast: "Congratulations - you passed level {level} with {percent}%.",
     timedOutToast: "The time ran out, so this attempt doesn't count. You can retake it.",
@@ -1862,6 +1877,15 @@ export const en: Dictionary = {
     closeAria: "Close",
     pinnedByAdmin: "Tài Tài • group admin • pinned",
     byAdmin: "Tài Tài • group admin",
+
+    botDailyNone: "Today's update: nobody in the group has studied yet 👀 Who goes first?",
+    botDailyAll: "Today's update: all {count} members have done at least one lesson. The group is holding its rhythm 🔥",
+    botDailyPartial: "Today's update: {names} have studied. {notYet} still haven't today - don't let it pile up.",
+    botDailyExtra: " +{extra} more",
+    botRules: "Tài Tài here 👋 This group is studying {topic}, with around {count} lessons to work through together. The rules, briefly: keep to at least 3 lessons a week each, hit the target and the group carries on, and hold it for 3 weeks running to become a permanent group.",
+    botTopicPersonal: "Personal finance",
+    botTopicProfessional: "Professional finance",
+    botTopicCfa: "CFA Level I",
     dropImage: "Drop an image here to send it 📂",
     emptyPart1: "No messages yet.",
     emptyPart2: "Say hello to the group.",
@@ -2240,6 +2264,7 @@ export const en: Dictionary = {
   },
 
   dashboard: {
+    stageLabel: "Stage {n}",
     // Nhãn thời lượng trên thẻ bài học. Trước là template literal trong một
     // hàm ở module scope, ngoài tầm mọi rule cho tới khi thêm returned-text.
     minutesShort: "{count} min",

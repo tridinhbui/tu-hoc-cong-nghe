@@ -294,10 +294,10 @@ function Shophouse({ category, progress }: { category: CareerCategory; progress:
           // căn chưa động tới phải thấy khác nhau, nếu không cả dãy phố trông
           // y hệt nhau suốt cả trăm bài học.
           progress.total > 0 && progress.done >= progress.total
-            ? `★ Bạn đã học xong cả ${progress.total} bài của nhóm này`
+            ? format(t.careerDistrict.shopAllDone, { total: progress.total })
             : progress.done > 0
-            ? `Đang học · ${progress.done}/${progress.total} bài`
-            : `${count} nghề · chưa học bài nào ở đây`,
+            ? format(t.careerDistrict.shopInProgress, { done: progress.done, total: progress.total })
+            : format(t.careerDistrict.shopNotStarted, { count }),
         ]}
         accent={SHOP_ACCENT[category]}
         width={8.2}

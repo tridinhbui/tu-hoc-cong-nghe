@@ -119,7 +119,7 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
   const totalMinutes = greeting?.totalMinutes ?? 0;
   const firstName = greeting?.firstName ?? null;
   const trackProgress = greeting?.trackProgress ?? null;
-  const nextLessonLabel = nextLesson ? getLessonDisplayLabel({ id: nextLesson.id, title: nextLesson.title, track: undefined }) : null;
+  const nextLessonLabel = nextLesson ? getLessonDisplayLabel({ id: nextLesson.id, title: nextLesson.title, track: undefined }, t.lessonLabel) : null;
   const nextLessonShortTitle = nextLesson ? getLessonShortTitle({ title: nextLesson.title }) : null;
   const topicGapSummary = greeting?.topicGapSummary ?? [];
   const criticalMistake = greeting?.criticalMistake ?? null;
@@ -163,10 +163,10 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
   const getEnergeticGreeting = () => {
     const nameStr = firstName ? ` ${firstName}` : "";
     const messages = [
-      `Chào${nameStr}! Sách đã mở, kiến thức đã sẵn sàng. Cùng chinh phục bài tiếp theo để nhận XP nào! 🔥`,
-      `Tuyệt vời${nameStr}! Bạn đã hoàn thành ${completedCount} bài học. Cùng duy trì đà tiến bộ này ngay nhé! 🌟`,
-      `Chào${nameStr}! Hôm nay mục tiêu là lên cấp tiếp theo. Học ngay bài học dưới đây thôi nào! 🏆`,
-      `Năng lượng lên nào${nameStr}! Thêm một bài học là thêm một phần kiến thức thực chiến vững chắc! 💪`
+      format(t.resume.greeting1, { name: nameStr }),
+      format(t.resume.greeting2, { name: nameStr, count: completedCount }),
+      format(t.resume.greeting3, { name: nameStr }),
+      format(t.resume.greeting4, { name: nameStr }),
     ];
     return messages[completedCount % messages.length];
   };

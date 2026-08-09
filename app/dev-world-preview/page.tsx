@@ -56,7 +56,11 @@ export default async function WorldPreviewPage({
   if (scene === "motivation") {
     return (
       <div className="min-h-screen bg-stone-100 p-6">
+        {/* i18n-ignore-start: cùng lý do với metadata ở đầu file - đây là chuỗi
+            mẫu để xem THẺ trông ra sao, trên một route chỉ tồn tại ở dev. Câu
+            thật mà người học đọc nằm trong t.dailyMotivation. */}
         <MotivationShareCard text="Không ai chấm điểm quãng nghỉ của bạn. Cái được tính là bạn đang ngồi đây." size="lg" />
+        {/* i18n-ignore-end */}
       </div>
     );
   }

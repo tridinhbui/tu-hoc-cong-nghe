@@ -376,7 +376,7 @@ export default function InteractiveEcosystemShowcase() {
                     {["👋", "❤️", "🔔", "🔥"].map((emoji) => (
                       <button
                         key={emoji}
-                        onClick={() => handleQuickCheer(`${emoji} Cổ vũ cả nhóm học tốt!`)}
+                        onClick={() => handleQuickCheer(format(t.ecosystem.cheerAll, { emoji }))}
                         className="hover:scale-130 transition-transform p-1 text-xs cursor-pointer"
                       >
                         {emoji}

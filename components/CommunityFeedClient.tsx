@@ -337,9 +337,11 @@ function MarketSentimentWidget({ onShareSentiment }: { onShareSentiment?: (text:
           <button
             type="button"
             onClick={() => {
-              const text = `#PhanTich #MarketSentiment Hôm nay mình nhận định thị trường ${
-                votedOption === "bullish" ? t.feed.voteBullish : t.feed.voteBearish
-              }. Khảo sát cộng đồng hiện đạt ${bullishPct}% Bullish vs ${bearishPct}% Bearish!`;
+              const text = format(t.feed.sentimentPost, {
+                view: votedOption === "bullish" ? t.feed.voteBullish : t.feed.voteBearish,
+                bull: bullishPct,
+                bear: bearishPct,
+              });
               onShareSentiment(text);
             }}
             className="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-black text-xs transition-all cursor-pointer shrink-0 shadow-sm"
