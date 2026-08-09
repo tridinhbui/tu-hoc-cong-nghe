@@ -61,6 +61,7 @@ import BossBattleModal from "@/components/BossBattleModal";
 import PvpDuelModal from "@/components/PvpDuelModal";
 import DashboardStreakWidget from "@/components/DashboardStreakWidget";
 import DailyMotivationWidget from "@/components/DailyMotivationWidget";
+import CommunityStreakWidget from "@/components/CommunityStreakWidget";
 import LearningPathSummary from "@/components/LearningPathSummary";
 import { useI18n } from "@/lib/i18n/context";
 import { format, intlLocale } from "@/lib/i18n";
@@ -916,6 +917,9 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
   // cases (e.g. a new valuation case landing after every non-valuation one).
   const bonusGroups = BONUS_CATEGORY_ORDER.map((category) => ({
     category,
+    // Nhãn hiển thị tra theo giá trị tiếng Việt; phép LỌC vẫn so bằng giá trị
+    // gốc, vì `BONUS_CATEGORIES` ánh xạ slug sang chính chuỗi tiếng Việt đó.
+    label: t.bonusCategories[category] ?? category,
     lessons: bonusLessons.filter((l) => (BONUS_CATEGORIES[l.slug] ?? t.dashboard.bonusOther) === category),
   })).filter((g) => g.lessons.length > 0);
 
@@ -1235,6 +1239,15 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             {/* Thẻ "Vào Học bài" từng đứng ở đây. Nó chuyển thành tab thứ
                 hai của thẻ Bản đồ Cấp độ phía trên, nên cột này giờ bắt đầu
                 bằng góc yên tĩnh. */}
+
+            {/* Chuỗi ngày học của người khác, đưa lại theo yêu cầu sau khi
+                bị gỡ ở 30bca5b. Nó CHỒNG với CommunityLearningNow ở cột phải -
+                cả hai đều liệt kê người kèm số ngày - và đó là lý do nó từng
+                bị gỡ. Khác nhau ở hình dạng: cái này là danh sách dọc gọn
+                trong cột trái, cái kia là băng chuyền ngang kèm bài vừa học.
+                Giữ cả hai là một quyết định có người nhìn thấy, không phải
+                một lần sót. */}
+            {!isLessonsView && <CommunityStreakWidget />}
 
             {/* Lối vào Lộ trình học, đứng ĐẦU cột trái.
                 Trang đó trả lời câu mà dashboard không trả lời: bắt đầu từ
@@ -2065,7 +2078,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                   {bonusGroups.map((group) => (
                   <div key={group.category} className="space-y-2">
                     <div className="text-xs font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-widest px-1">
-                      {group.category}
+                      {group.label}
                     </div>
                   {group.lessons.map((lesson) => {
                     const isDone = completed.includes(lesson.id);
@@ -2221,7 +2234,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             )}
             {user?.id && (
               <div className={isLessonsView ? undefined : "xl:min-h-0 xl:overflow-y-auto"}>
-                <DashboardRecommendations lessonsMeta={lessonsMeta} completed={completed} userId={user.id} />
+                <DashboardRecommendations />
                 {/* Người thật, dưới phần gợi ý. Cố ý đặt SAU băng chuyền bài
                     học: thứ tự đó nói rằng đây là bằng chứng cho những gợi ý
                     trên, không phải một mục để lướt qua trước khi học. */}
