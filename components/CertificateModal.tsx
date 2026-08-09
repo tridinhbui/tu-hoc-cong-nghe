@@ -7,24 +7,47 @@ import { svgToPngBlob, shareOrDownloadImage } from "@/lib/share-image";
 import { useI18n } from "@/lib/i18n/context";
 import { format, intlLocale } from "@/lib/i18n";
 
+/** Băm một chuỗi thành 8 ký tự base36 - đủ để hai tài khoản bất kỳ không đụng
+ *  nhau trên thực tế, và ngắn để in vừa một dòng dưới chân tấm chứng chỉ.
+ *  FNV-1a: không phải hàm băm mật mã, nhưng ở đây không cần - mã này để tra
+ *  cứu và để trông có căn cứ, không phải để chống giả mạo. */
+function hashToBase36(input: string): string {
+  let hash = 0x811c9dc5;
+  for (let i = 0; i < input.length; i++) {
+    hash ^= input.charCodeAt(i);
+    hash = Math.imul(hash, 0x01000193) >>> 0;
+  }
+  return hash.toString(36).toUpperCase().padStart(7, "0");
+}
+
 interface CertificateModalProps {
   stageLabel: string;
   stageName: string;
   userName: string;
+  /** Nguồn duy nhất cho mã chứng chỉ - xem certId bên dưới. */
+  userId: string;
   onClose: () => void;
 }
 
-export default function CertificateModal({ stageLabel, stageName, userName, onClose }: CertificateModalProps) {
+export default function CertificateModal({ stageLabel, stageName, userName, userId, onClose }: CertificateModalProps) {
   const { t, locale } = useI18n();
   const [downloading, setDownloading] = useState(false);
   const [downloaded, setDownloaded] = useState(false);
   const [sharing, setSharing] = useState(false);
   const svgRef = useRef<SVGSVGElement | null>(null);
 
-  // Generate unique certificate ID hash
-  const certId = `CERT-${stageLabel.toUpperCase()}-${Math.abs(
-    userName.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0)
-  ).toString(16).toUpperCase()}-${new Date().getFullYear()}`;
+  // Mã chứng chỉ, dựng từ userId chứ không phải từ TÊN.
+  //
+  // Bản cũ cộng mã ký tự của `userName` rồi đổi sang hệ 16, kèm năm hiện tại.
+  // Ba hệ quả, và cả ba đều mâu thuẫn với chữ "duy nhất" mà nó tự nhận:
+  // hai người trùng tên nhận cùng một mã, hai cái tên đảo chữ cũng vậy
+  // ("An Bùi" và "Bùi An" cộng ra đúng một số); và mã của CÙNG một người đổi
+  // khi họ sửa tên trong hồ sơ hoặc khi sang năm mới - nên hai tấm chứng chỉ
+  // in cách nhau một tuần qua giao thừa mang hai mã khác nhau.
+  //
+  // userId là uuid, ổn định suốt đời tài khoản và không phụ thuộc vào bất cứ
+  // thứ gì người dùng sửa được.
+  const certId = `CERT-${stageLabel.toUpperCase()}-${hashToBase36(`${userId}:${stageLabel}`)}`;
 
   const todayStr = new Date().toLocaleDateString(intlLocale(locale), {
     day: "numeric",

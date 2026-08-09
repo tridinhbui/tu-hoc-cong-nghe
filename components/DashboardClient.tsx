@@ -2201,6 +2201,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
           stageLabel={selectedCertStage.label}
           stageName={selectedCertStage.name}
           userName={user?.user_metadata?.full_name || user?.email || t.dashboard.defaultUserName}
+          userId={user.id}
           onClose={() => setSelectedCertStage(null)}
         />
       )}
