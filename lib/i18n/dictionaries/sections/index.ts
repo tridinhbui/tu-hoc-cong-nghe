@@ -43,6 +43,7 @@ import { placementFocusVi, placementFocusEn } from "./placement-focus";
 import { practicePreviewVi, practicePreviewEn } from "./practice-preview";
 import { questsReferralVi, questsReferralEn } from "./quests-referral";
 import { quietForestVi, quietForestEn } from "./quiet-forest";
+import { lobbyLeaderboardsVi, lobbyLeaderboardsEn } from "./lobby-leaderboards";
 import { rpgStudyRoomVi, rpgStudyRoomEn } from "./rpg-study-room";
 import { valuationSimVi, valuationSimEn } from "./valuation-sim";
 import { worldSpacesVi, worldSpacesEn } from "./world-spaces";
@@ -83,6 +84,7 @@ export const viSections = {
   ...practicePreviewVi,
   ...questsReferralVi,
   ...quietForestVi,
+  ...lobbyLeaderboardsVi,
   ...rpgStudyRoomVi,
   ...valuationSimVi,
   ...worldSpacesVi,
@@ -124,6 +126,7 @@ export const enSections: typeof viSections = {
   ...practicePreviewEn,
   ...questsReferralEn,
   ...quietForestEn,
+  ...lobbyLeaderboardsEn,
   ...rpgStudyRoomEn,
   ...valuationSimEn,
   ...worldSpacesEn,
