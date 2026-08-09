@@ -90,4 +90,23 @@ describe("bản dịch nghề (en)", () => {
     const source = FINANCE_CAREERS[0];
     expect(mergeCareer(source, "vi")).toBe(source);
   });
+
+  /** Cổng này chỉ dựng được SAU KHI đủ 44/44, và đó là lý do nó ở đây chứ
+   *  không có từ đầu: một cổng "phải đủ 100%" đặt lúc mới dịch 4 bài thì đỏ
+   *  suốt cả chục lô, và một cổng đỏ thường trực là cổng người ta học cách phớt
+   *  lờ - đúng điều AGENTS.md ghi.
+   *
+   *  Giờ kho đã đủ, nên nó chuyển vai: không phải để đo tiến độ nữa mà để chặn
+   *  một nghề MỚI thêm vào lib/finance-careers.ts mà quên bản dịch. Không có
+   *  nó thì nghề mới hiện tiếng Việt giữa trang tiếng Anh, im lặng hoàn toàn -
+   *  mergeCareer trả về bản gốc khi không tìm thấy patch, đúng như thiết kế. */
+  it("mọi nghề đều có bản dịch - thêm nghề mới thì phải dịch kèm", () => {
+    const missing = FINANCE_CAREERS.filter((c) => !careersEn[c.id]).map((c) => c.id);
+    expect(
+      missing,
+      `chưa dịch: ${missing.join(", ")}\n` +
+        `Thêm vào lib/finance-careers-i18n/en.ts. Thiếu thì nghề này hiện tiếng Việt ` +
+        `giữa giao diện tiếng Anh mà không có gì báo.`
+    ).toEqual([]);
+  });
 });

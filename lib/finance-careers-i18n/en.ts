@@ -1210,4 +1210,359 @@ export const careersEn: Record<string, CareerTranslation> = {
     applicationTips:
       "Be able to explain the differences between policy types transparently, practise listening for the need rather than closing, and build credibility on honesty.",
   },
+
+  "household-finance-planner": {
+    title: "Household Finance Planner",
+    summary:
+      "Helps households budget, balance income against spending, and plan for the big goals (a home, children's education, retirement) over the long run.",
+    responsibilities: [
+      "Review the household's whole cash flow, assets and debts",
+      "Build a workable budget for the life stage they are in",
+      "Plan long term for the big goals (home, education, retirement)",
+      "Advise on the balance between paying down debt, saving and investing",
+    ],
+    skills: [
+      "Household budgeting",
+      "Long-term financial advice",
+      "Excel / planning tools",
+      "Talking to several generations of one family",
+      "Patience",
+    ],
+    entryLevel: "Junior/Senior - needs deep personal finance knowledge and family advisory skills",
+    salaryHint: "VND 10-18M (Junior) • VND 22-40M+ (Senior)",
+    searchKeyword: "Household financial planning",
+    dayInLife:
+      "Sit with a young family to build the monthly budget, work out how much they need to save each month for a home in seven years, and set up an education fund for the children.",
+    careerPath: [
+      "Junior Planner",
+      "Senior Household Planner",
+      "Head of Family Advisory",
+      "Independent financial planner",
+    ],
+    requiredTools: ["Advanced Excel", "Personal financial planning software", "Financial calculator (TVM)"],
+    certifications: ["CFP (Certified Financial Planner)"],
+    pros:
+      "The work touches real family life directly, needs no advanced maths, and demand keeps growing as the middle class expands.",
+    cons:
+      "Money is a sensitive subject inside a family and needs handling carefully, family members often want different things, and income grows slowly at first.",
+    applicationTips:
+      "Build a sample household plan as a case study, and practise talking about money tactfully.",
+  },
+
+  "equity-research-analyst": {
+    title: "Equity Research Analyst",
+    summary:
+      "Researches listed companies in depth, works through the actual statements, and issues buy/sell/hold calls for investors.",
+    responsibilities: [
+      "Read and analyse the financial and annual reports of listed companies",
+      "Build valuation models (DCF, P/E and P/B comparables) for the stocks you cover",
+      "Write company and sector research with a specific recommendation",
+      "Follow the news and quarterly results, and update the call",
+    ],
+    skills: [
+      "Reading real company statements",
+      "Equity valuation (DCF, comparables)",
+      "Writing research",
+      "Excel / financial modelling",
+      "Following market news",
+    ],
+    entryLevel: "Fresh/Junior - needs solid financial analysis and statement literacy",
+    salaryHint: "VND 12-22M (Junior) • VND 30-60M+ (Senior)",
+    searchKeyword: "Equity research analyst",
+    dayInLife:
+      "Read the quarterly results just published by a company you cover, update the DCF, and send the investment team a short note on the change to your recommendation.",
+    careerPath: ["Junior Equity Analyst", "Senior Analyst", "Head of Research", "Portfolio Manager"],
+    requiredTools: ["Bloomberg/FiinPro Terminal", "Excel (Advanced)", "DCF valuation tools", "PowerPoint"],
+    certifications: ["CFA (Chartered Financial Analyst)", "Financial analysis practice licence"],
+    pros:
+      "You go deep on many different companies and sectors, your calls move real investment decisions, and the path to Portfolio Manager is clear.",
+    cons:
+      "Heavy pressure on accuracy because the market reacts fast to a wrong call, the reading volume never lets up, and good seats at the large firms are competitive.",
+    applicationTips:
+      "Write a sample equity research report on a real listed company from public filings as your portfolio piece, and get genuinely fluent at valuation in Excel.",
+  },
+
+  "portfolio-analyst": {
+    title: "Portfolio Analyst",
+    summary:
+      "Analyses and optimises portfolio structure - weights, risk, correlation - so the Portfolio Manager can decide how to allocate.",
+    responsibilities: [
+      "Track the performance and risk of the current portfolio",
+      "Analyse correlation and diversification across the holdings",
+      "Produce the periodic performance attribution report",
+      "Propose rebalancing as the market moves and the risk appetite changes",
+    ],
+    skills: [
+      "Modern portfolio theory",
+      "Risk and correlation analysis",
+      "Excel/Python for quantitative work",
+      "Reading market data",
+      "Writing performance reports",
+    ],
+    entryLevel: "Junior/Senior - needs solid statistics and portfolio theory",
+    salaryHint: "VND 15-25M (Junior) • VND 35-70M+ (Senior/Portfolio Manager)",
+    searchKeyword: "Portfolio Analyst",
+    dayInLife:
+      "Re-run the correlation analysis across the holdings after a market move, update the monthly attribution report, and propose weight changes to the Portfolio Manager.",
+    careerPath: ["Junior Portfolio Analyst", "Senior Analyst", "Portfolio Manager", "Chief Investment Officer"],
+    requiredTools: ["Excel/Python (quantitative analysis)", "Bloomberg Terminal", "Portfolio management systems"],
+    certifications: ["CFA (Chartered Financial Analyst)", "FRM is an advantage"],
+    pros:
+      "You think at the level of the whole portfolio rather than single stocks, the path to Portfolio Manager is clear, and fund environments are professional.",
+    cons:
+      "It needs real statistical grounding, risk monitoring continues when the market moves outside hours, and performance is measured in plain numbers.",
+    applicationTips:
+      "Build and analyse a simulated 3-5 asset portfolio in Excel to internalise risk and correlation, and learn modern portfolio theory properly.",
+  },
+
+  "etf-fund-specialist": {
+    title: "Open-Ended Fund & ETF Specialist",
+    summary:
+      "Runs, distributes and promotes fund and ETF products - the bridge between the asset manager and retail investors who want passive, diversified exposure.",
+    responsibilities: [
+      "Track the performance and holdings of the ETFs and funds under management",
+      "Build the product materials for retail and institutional investors",
+      "Work with sales to distribute fund certificates through each channel (app, bank)",
+      "Track fund flows in and out, and report periodically",
+    ],
+    skills: [
+      "Knowing open-ended funds and ETFs",
+      "Fund performance analysis",
+      "Building product materials",
+      "Talking to investors",
+      "Excel",
+    ],
+    entryLevel:
+      "Fresh/Junior - suits people interested in passive investing and financial product distribution",
+    salaryHint: "VND 12-20M (Junior) • VND 28-50M+ (Senior)",
+    searchKeyword: "ETF fund specialist",
+    dayInLife:
+      "Update the performance report for a VN30 tracker, write the new fund's introduction material for the sales team, and answer investor questions about the management fee.",
+    careerPath: [
+      "Fund Specialist",
+      "Senior Fund Specialist",
+      "Product Manager (Funds)",
+      "Head of Fund Product Development",
+    ],
+    requiredTools: ["Excel", "Fund performance platforms", "Bloomberg/FiinPro"],
+    certifications: ["Fund management practice licence", "CFA is an advantage"],
+    pros:
+      "Passive investing is growing fast in Vietnam, the work mixes analysis with communication and sales, and asset managers are professional places to work.",
+    cons:
+      "You need both the product knowledge and the selling - it is not pure analysis - inflows depend on the market overall, and there is competition from every other channel.",
+    applicationTips:
+      "Compare the ETFs listed in Vietnam (fees, performance, index tracked) as a case study, and practise explaining the case for passive investing simply.",
+  },
+
+  "fixed-income-trader": {
+    title: "Fixed Income Trader",
+    summary:
+      "Trades bonds - government and corporate - pricing them off rates, maturity and credit risk.",
+    responsibilities: [
+      "Watch rate moves and the yield curve daily",
+      "Price bonds and calculate YTM and credit spreads for each trade",
+      "Execute buy and sell orders according to the fund's or bank's strategy",
+      "Manage the interest rate and credit risk of the bond book",
+    ],
+    skills: [
+      "Bond pricing (YTM, duration)",
+      "Reading the yield curve",
+      "Credit risk analysis",
+      "Excel/Bloomberg",
+      "Deciding fast under pressure",
+    ],
+    entryLevel: "Junior/Senior - needs financial mathematics and a real grasp of the bond market",
+    salaryHint: "VND 15-28M (Junior) • VND 40-90M+ (Senior Trader)",
+    searchKeyword: "Fixed Income Trader",
+    dayInLife:
+      "Watch the policy rate first thing, reprice the corporate bond book you hold, and buy the 5-year government bond the strategy calls for.",
+    careerPath: ["Junior Trader", "Senior Trader", "Head of Fixed Income Trading", "Chief Investment Officer"],
+    requiredTools: ["Bloomberg Terminal", "Bond trading systems (Bloomberg/Reuters)", "Excel (Advanced)"],
+    certifications: ["CFA (Chartered Financial Analyst)", "Bond trading practice licence"],
+    pros:
+      "Very high senior earnings tied to trading performance, a fast professional environment at large banks and funds, and it sharpens your thinking on rates and risk.",
+    cons:
+      "You have to decide fast and be right, Vietnam's bond market is less liquid than equities, and following rate moves keeps the hours tense.",
+    applicationTips:
+      "Know bond pricing cold (YTM, duration) and be able to do it by hand and in Excel, and follow government issuance and policy rate moves closely.",
+  },
+
+  "consumer-credit-analyst": {
+    title: "Consumer Credit Analyst",
+    summary:
+      "Assesses repayment capacity and credit risk for individual borrowers (consumer loans, credit cards, home and car loans) - unlike the credit officer role, which leans corporate.",
+    responsibilities: [
+      "Appraise consumer loan and credit card applications from individuals",
+      "Analyse the applicant's credit score and credit history",
+      "Build the consumer credit risk scorecard",
+      "Track the bad debt ratio and propose changes to lending policy",
+    ],
+    skills: [
+      "Individual credit analysis",
+      "Risk scorecards",
+      "Excel/SQL",
+      "Reading credit bureau history",
+      "Lending compliance",
+    ],
+    entryLevel:
+      "Fresh/Junior - needs finance or statistics grounding, and sits at banks and consumer finance companies",
+    salaryHint: "VND 9-16M (Junior) • VND 20-35M+ (Senior/Team Lead)",
+    searchKeyword: "Consumer credit analyst",
+    dayInLife:
+      "Work through the day's new consumer loan applications, pull the credit bureau history on the ones that look risky, and update the weekly bad-debt report for your manager.",
+    careerPath: [
+      "Junior Credit Analyst",
+      "Senior Analyst",
+      "Head of Credit Appraisal",
+      "Director of Consumer Credit Risk",
+    ],
+    requiredTools: ["Excel/SQL", "In-house credit scoring systems", "National Credit Information Centre (CIC)"],
+    certifications: ["Credit analysis certificates", "FRM is an advantage for senior roles"],
+    pros:
+      "Steady hiring at banks and consumer finance companies, a clear process that is easy to learn, and a route into broader risk management.",
+    cons:
+      "The daily file volume is large and repetitive, you are always balancing approval speed against bad debt, and turning applications down is uncomfortable.",
+    applicationTips:
+      "Learn how credit scoring actually works, and get fast and accurate at reading an individual or household's financial position.",
+  },
+
+  "management-accountant": {
+    title: "Management Accountant",
+    summary:
+      "Supplies internal cost figures and analysis so leadership can decide - product costing, budgets, operating efficiency - as opposed to statutory accounting, which reports outward.",
+    responsibilities: [
+      "Cost products and services, and analyse the cost structure",
+      "Build and track each department's operating budget",
+      "Run cost-volume-profit analysis",
+      "Prepare the internal management reporting that decisions are made on",
+    ],
+    skills: [
+      "Cost and product accounting",
+      "Building and controlling budgets",
+      "CVP analysis",
+      "Advanced Excel",
+      "Understanding how the business actually runs",
+    ],
+    entryLevel:
+      "Fresh/Junior - needs solid accounting or finance grounding, and suits people who like real operating numbers",
+    salaryHint: "VND 10-18M (Junior) • VND 25-45M+ (Senior/Chief Accountant)",
+    searchKeyword: "Management accounting",
+    dayInLife:
+      "Recost a product line after raw material prices rose, update the budget-versus-actual report for the production department, and take a cost reduction proposal to the board.",
+    careerPath: [
+      "Junior Management Accountant",
+      "Senior Accountant",
+      "Chief Accountant",
+      "Chief Financial Officer (CFO)",
+    ],
+    requiredTools: ["Excel (Advanced)", "ERP software (SAP, Oracle)", "Budgeting tools"],
+    certifications: ["CMA (Certified Management Accountant)", "ACCA/CPA is an advantage"],
+    pros:
+      "You understand how the business really operates rather than just the ledger, the role sits next to strategic decisions, and the path to CFO is clear.",
+    cons:
+      "Getting numbers out of other departments takes time, budget and quarter-end deadlines bite, and you need both the accounting and the operations.",
+    applicationTips:
+      "Practise CVP analysis on a simple case study, and learn how a real ERP moves data so you understand where management figures come from.",
+  },
+
+  "data-analyst": {
+    title: "Data Analyst",
+    summary:
+      "Turns raw data into answers for business decisions: picks what to measure, finds the reason behind the number, and presents it so somebody acts.",
+    responsibilities: [
+      "Pull and clean data from several systems with SQL and Python",
+      "Build the reports and dashboards departments decide on regularly",
+      "Design and read A/B tests, cohort analysis and customer behaviour",
+      "Present findings with a recommendation, to people who are not data specialists",
+    ],
+    skills: ["SQL", "Python (pandas)", "Data visualisation", "Applied statistics", "Telling the story in the data"],
+    entryLevel:
+      "Fresh/Junior - needs solid SQL and basic statistical thinking, no computer science degree required",
+    salaryHint: "VND 12-22M (Junior) • VND 30-55M+ (Senior)",
+    searchKeyword: "Data Analyst",
+    dayInLife:
+      "Re-run the queries behind the weekly dashboard in the morning, sit with product at midday to read an A/B test that has just reached sample size, and spend the afternoon digging into why retention dropped and writing up the recommendation.",
+    careerPath: ["Junior Data Analyst", "Senior Data Analyst", "Analytics Lead", "Head of Analytics"],
+    requiredTools: ["SQL", "Python (pandas)", "Power BI / Tableau / Looker", "Excel (Advanced)", "Git"],
+    certifications: ["Google Data Analytics Certificate", "Microsoft Power BI Data Analyst"],
+    pros:
+      "Demand is wide across almost every industry rather than just finance, the door is relatively open to career changers with solid SQL, and the work sits close enough to decisions that the impact is visible.",
+    cons:
+      "Most of the real time goes on pulling and cleaning data rather than analysing it, you often have to chase the data across departments, and the role slides into being a report-request desk unless you shape it.",
+    applicationTips:
+      "Do one real project end to end on public data: ask the question, pull it with SQL, clean it, analyse it, and write a one-page conclusion. One complete project persuades more than several certificates.",
+  },
+
+  "bi-analyst": {
+    title: "Business Intelligence Analyst",
+    summary:
+      "Builds the reporting the whole organisation shares: standardises what each metric means, models the data behind the reports, and makes sure every department reads the same number.",
+    responsibilities: [
+      "Design and maintain the shared dashboards departments use",
+      "Standardise metric definitions so two teams do not compute two different numbers",
+      "Build the data model behind the reporting (fact and dimension tables)",
+      "Train business users to pull their own reports instead of raising a request",
+    ],
+    skills: [
+      "Power BI / Tableau",
+      "SQL",
+      "Data modelling for reporting",
+      "Designing KPIs",
+      "Working with business departments",
+    ],
+    entryLevel:
+      "Junior - needs SQL and one BI tool, and people who understand finance or operations are preferred",
+    salaryHint: "VND 13-24M (Junior) • VND 30-55M+ (Senior)",
+    searchKeyword: "Business Intelligence Analyst",
+    dayInLife:
+      "Fix a sales dashboard that went wrong after the source system changed shape, agree with accounting on how recognised revenue is calculated, and show a team lead how to filter the report by region themselves.",
+    careerPath: [
+      "BI Analyst",
+      "Senior BI Analyst",
+      "BI Lead",
+      "Head of Data / Analytics Engineering Manager",
+    ],
+    requiredTools: ["Power BI", "Tableau", "SQL", "dbt", "Excel (Advanced)"],
+    certifications: ["Microsoft Power BI Data Analyst", "Tableau Desktop Specialist"],
+    pros:
+      "What you build gets used across the organisation every day so the impact is obvious, there is less sudden deadline pressure than other analytics roles, and no one sees the whole operating picture more clearly.",
+    cons:
+      "Most dashboard arguments are really arguments about metric definitions between departments, maintaining old reports takes more time than building new ones, and the function gets treated as support rather than analysis.",
+    applicationTips:
+      "Build one complete dashboard from public data and write the definition of every metric alongside it. The definitions - not the visuals - are what separate a real BI person from someone who can drive the tool.",
+  },
+
+  "data-engineer": {
+    title: "Data Engineer",
+    summary:
+      "Builds and runs the systems that move data from source into the warehouse reliably - the infrastructure every report and model behind it depends on.",
+    responsibilities: [
+      "Build and maintain the pipelines from source systems into the warehouse",
+      "Design the warehouse structure and the data model several teams will use",
+      "Monitor data quality and fix pipelines when they break or the numbers drift",
+      "Optimise storage cost and query speed as the data volume grows",
+    ],
+    skills: [
+      "Advanced SQL",
+      "Python",
+      "Data warehousing",
+      "Pipeline orchestration",
+      "Data quality control",
+    ],
+    entryLevel:
+      "Junior - needs stronger programming than the other two data roles, and usually hires from a computing background",
+    salaryHint: "VND 16-28M (Junior) • VND 40-80M+ (Senior)",
+    searchKeyword: "Data Engineer",
+    dayInLife:
+      "Check the overnight pipelines in the morning and fix the one that broke when a source system changed its date format, then redesign a table that queries slowly and add automated data quality checks.",
+    careerPath: ["Junior Data Engineer", "Data Engineer", "Senior Data Engineer", "Data Platform Lead"],
+    requiredTools: ["SQL", "Python", "Airflow", "dbt", "Snowflake / BigQuery", "Git"],
+    certifications: ["Google Professional Data Engineer", "AWS Certified Data Engineer"],
+    pros:
+      "The best paid of the three data roles with demand outstripping supply, purely technical skills that transfer between industries, and clearer standards of right and wrong than analysis.",
+    cons:
+      "You are on call when pipelines break outside hours, the work is invisible until something fails, and the programming bar makes it a harder entry point for career changers.",
+    applicationTips:
+      "Build one small but complete pipeline: pull from a public source on a schedule, clean it, load it into a database, with quality checks and alerting. The completeness matters more than the scale.",
+  },
 };
