@@ -47,6 +47,11 @@
     "subtitle": "Double-entry bookkeeping and the logic behind every number",
     "duration": "5 min"
   },
+  "bang-can-doi-ke-toan": {
+    "title": "Reading a Balance Sheet",
+    "subtitle": "What the business owns, and where the money came from",
+    "duration": "8 min"
+  },
   "bao-hiem-co-ban-cho-nguoi-moi": {
     "title": "Track 1, Lesson 9: Basic insurance - the layer behind the emergency fund",
     "subtitle": "An emergency fund handles small shocks; insurance handles the kind that can wipe out everything",
@@ -216,6 +221,11 @@
     "title": "Monetary policy and interest rates",
     "subtitle": "How do the Fed and the State Bank steer the economy through interest rates?",
     "duration": "7 min"
+  },
+  "cho-vay-muon-tien-nguoi-than": {
+    "title": "Stage 9, Lesson 9: Lending to family - the rules that keep the relationship",
+    "subtitle": "Money and affection are the two things most capable of damaging each other once they are mixed",
+    "duration": "6 min"
   },
   "chon-etf": {
     "title": "How to choose the right ETF for you",
@@ -1021,6 +1031,11 @@
   "quy-tac-4-phan-tram": {
     "title": "The 4% rule: how much you can withdraw in retirement",
     "subtitle": "Safe withdrawal rate - use caution applying it in Vietnam",
+    "duration": "7 min"
+  },
+  "quy-tac-rut-4-phan-tram": {
+    "title": "Stage 8, Lesson 3: The 4% rule - how much to draw from a retirement pot without running out",
+    "subtitle": "A classic rule for estimating how much you can withdraw each year in retirement without running dry halfway through.",
     "duration": "7 min"
   },
   "quy-trai-phieu": {
