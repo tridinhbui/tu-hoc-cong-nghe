@@ -256,6 +256,11 @@
     "subtitle": "\"How do you choose the valuation method?\" - the interview question with a trap in it",
     "duration": "7 min"
   },
+  "chuyen-giao-tai-san-nang-cao": {
+    "title": "Stage 9, Lesson 7: Advanced estate transfer - beyond a basic will",
+    "subtitle": "Once the estate is large or complicated, an ordinary will may not be enough",
+    "duration": "6 min"
+  },
   "co-phieu-la-gi-day121": {
     "title": "What is a stock?",
     "subtitle": "A certificate of ownership in part of a business",
@@ -703,6 +708,11 @@
     "subtitle": "Why every financial decision needs accounting",
     "duration": "5 min"
   },
+  "ke-toan-tam-ly-mental-accounting": {
+    "title": "Mental accounting: why 10 million of bonus is spent differently from 10 million of salary",
+    "subtitle": "Your brain files money into invisible drawers - and that makes you overspend in a way that feels perfectly logical, without your noticing",
+    "duration": "6 min"
+  },
   "ket-noi-tat-ca-tai-chinh": {
     "title": "Connecting it all - Financial statements, Valuation, Risk, Markets",
     "subtitle": "Looking back at the whole journey as one tightly linked system"
@@ -730,6 +740,11 @@
   "khi-nao-ban-co-phieu": {
     "title": "When should you sell a stock?",
     "subtitle": "Exit strategy"
+  },
+  "khi-nao-can-tu-van-tai-chinh": {
+    "title": "Stage 8, Lesson 8: When you need professional financial advice",
+    "subtitle": "Teaching yourself finance is excellent, but some situations are complicated enough that an expert can save you from a costly mistake.",
+    "duration": "5 min"
   },
   "khoan-phai-thu-la-gi": {
     "title": "What are accounts receivable?",
@@ -1266,6 +1281,11 @@
     "subtitle": "Current assets, non-current assets, and how they create value",
     "duration": "6 min"
   },
+  "tam-ly-bay-dan-va-fomo-trong-dau-tu": {
+    "title": "Herd behaviour and FOMO: why we buy the top and sell the bottom",
+    "subtitle": "When everyone around you is talking about a stock, that is usually the most dangerous moment to buy it",
+    "duration": "6 min"
+  },
   "tam-ly-dau-tu": {
     "title": "Investor psychology: greed and fear",
     "subtitle": "Behavioral finance basics"
@@ -1294,6 +1314,11 @@
     "title": "What is a financial market?",
     "subtitle": "A financial market is where people with spare capital meet people who need capital, through price.",
     "duration": "7 min"
+  },
+  "thien-kien-hien-tai-va-tiet-kiem-huu-tri": {
+    "title": "Present bias: why we know we should save for retirement and still do not",
+    "subtitle": "Your brain values 1 million today far above 1 million in 10 years - even when the future reward is many times larger",
+    "duration": "6 min"
   },
   "thu-nhap-chi-phi-tiet-kiem": {
     "title": "Income, expenses, saving and investing.",
@@ -1344,10 +1369,25 @@
     "subtitle": "Net worth statement",
     "duration": "6 min"
   },
+  "tong-ket-chang-7-quyet-dinh-tai-chinh-lon": {
+    "title": "Stage 9, Lesson 10: Recap - a checklist for the big financial decisions of a life",
+    "subtitle": "Housing, credit, insurance, marriage, inheritance - looking back over the whole stage",
+    "duration": "7 min"
+  },
   "tong-ket-hanh-trinh-tai-chinh-ca-nhan": {
     "title": "262-day journey review - building sustainable financial habits",
     "subtitle": "From money mindset to portfolios and retirement: looking back at the whole program",
     "duration": "9 min"
+  },
+  "tong-ket-track-ca-nhan-toan-dien": {
+    "title": "Stage 8, Lesson 10: Recap of the whole personal finance journey",
+    "subtitle": "From knowing where you stand, to building a portfolio, to managing wealth across a lifetime - the whole picture.",
+    "duration": "7 min"
+  },
+  "tong-ket-xay-he-mien-dich-tam-ly-tai-chinh": {
+    "title": "Recap: building a psychological immune system for financial decisions",
+    "subtitle": "The 5 biases covered, and the self-check questions to run before every important money decision",
+    "duration": "7 min"
   },
   "tong-on-chang-2": {
     "title": "Stage 4 review: fundamentals of stock investing",
