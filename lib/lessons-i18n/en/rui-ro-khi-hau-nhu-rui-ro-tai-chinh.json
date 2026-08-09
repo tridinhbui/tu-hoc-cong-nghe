@@ -1,0 +1,140 @@
+{
+  "slug": "rui-ro-khi-hau-nhu-rui-ro-tai-chinh",
+  "title": "Climate risk as a financial risk",
+  "subtitle": "Physical risk, transition risk and stranded assets - how to quantify instead of just worrying",
+  "duration": "9 min",
+  "openingQuestion": "A coal mining company carries large reserves on its balance sheet. What is the biggest climate risk to the value of that business?",
+  "openingOptions": [
+    "Storms and floods damaging the mining equipment",
+    "Transition risk: the reserves become stranded assets",
+    "Rising temperatures making work harder for miners",
+    "No material risk, because demand for coal still exists"
+  ],
+  "explanation": "Transition risk is usually far larger than physical risk for carbon-intensive businesses. Coal reserves are valued on the assumption that they will be extracted and sold. If a carbon tax rises or solar power becomes cheaper than coal power, part of those reserves will never be profitable to extract - their value goes to zero even though the physical asset is entirely intact. That is the definition of a stranded asset.",
+  "diagram": [
+    { "label": "Physical risk - direct damage from disasters and long-term change", "arrow": true },
+    { "label": "Transition risk - from policy, technology, markets, reputation", "arrow": true },
+    { "label": "Reduce to the impact on cash flow and asset value", "arrow": true },
+    { "label": "Stranded assets: losing value before the economic life is up", "arrow": true },
+    { "label": "Quantify through scenarios instead of a vague qualitative view", "arrow": false }
+  ],
+  "realWorldExample": {
+    "company": "Coal power and the write-downs of 2018-2023",
+    "description": "Several European utilities had to write down billions of euros of coal power plant value, not because the plants broke down but because the carbon price in the EU ETS rose until running them was no longer profitable. The plant is still standing and still able to run, but the economic value has evaporated. That is a stranded asset in practice, not in theory."
+  },
+  "quiz": [
+    {
+      "question": "Physical risk is divided into which two types?",
+      "options": [
+        "Acute (storms, floods) and chronic (sea level, temperature)",
+        "Risk to tangible assets and risk to intangible assets",
+        "Risk within national borders and cross-border risk",
+        "Risk already insured and risk not yet insured"
+      ],
+      "explanation": "Acute risk is discrete events whose frequency and intensity are rising - a flood inundating a plant. Chronic risk is a slow but irreversible shift - sea level rise gradually destroying the value of a coastal industrial zone over decades. The two need different modelling: acute suits probability analysis and insurance, chronic suits long-horizon scenario analysis."
+    },
+    {
+      "question": "Why can transition risk appear suddenly even though the transition itself is slow?",
+      "options": [
+        "Because new clean technology always appears entirely unexpectedly",
+        "Because the market reprices immediately on policy expectations",
+        "Transition risk is never sudden, it always happens gradually",
+        "Because regulators always issue rules without any warning"
+      ],
+      "explanation": "This is the most important point in assessing climate risk financially. An asset is valued on expected future cash flow. When the market changes its expectations about carbon policy or the speed of clean technology adoption, the price adjusts at once rather than waiting for the physical impact. The Bank of England calls this a 'climate Minsky moment' - the possibility of a sudden, simultaneous repricing."
+    },
+    {
+      "question": "How does climate scenario analysis differ from an ordinary forecast?",
+      "options": [
+        "It relies entirely on past data to extrapolate the future",
+        "No different from a forecast, just another name for it",
+        "It tests resilience across many futures, it does not predict one",
+        "It only applies to businesses in the energy sector"
+      ],
+      "explanation": "The crucial point is that past data is useless here - there is no precedent to extrapolate from. Scenario analysis instead asks: if the world takes path A, what happens to the business, and what if it takes path B? The interesting paradox is that the two scenarios do damage in opposite ways: a fast transition means high transition risk but low physical risk; a slow transition means the reverse. The business has to withstand both."
+    },
+    {
+      "question": "What is a stranded asset in the context of climate risk?",
+      "options": [
+        "An asset the business cannot sell because it is pledged as collateral",
+        "An asset in a flood-prone area so it cannot be transferred",
+        "An asset fully depreciated that the business still uses to produce",
+        "An asset that loses most of its value before its economic life ends"
+      ],
+      "explanation": "A coal mine and a coal power plant are valued on the assumption of operating out their full life. A carbon tax, new regulation or cheaper renewable power can end that life early, and the remaining book value evaporates. Being pledged or being fully depreciated are ordinary accounting and financing situations, not a loss of economic value."
+    },
+    {
+      "question": "Why can a gradual transition still produce a sudden valuation shock?",
+      "options": [
+        "Because the market reprices once when expectations turn",
+        "Because climate rules always take effect immediately when issued",
+        "Because businesses do not disclose emissions until they are forced to",
+        "Because the physical impact happens faster than science forecast"
+      ],
+      "explanation": "Asset prices reflect expectations about the future, and expectations move in steps: one policy decision, one technology cost threshold crossed. The physical process is slow, while the market's acknowledgement of it takes place over a few sessions. Rules usually come with long lead times - it is the anticipation, not the effective date, that moves the price."
+    }
+  ],
+  "keyTakeaways": [
+    "Physical risk splits into acute (storms, floods) and chronic (sea level rise, rising temperature)",
+    "Transition risk comes from policy, technology, markets and reputation - usually larger than physical risk for carbon-intensive sectors",
+    "Stranded assets: assets that lose economic value while physically intact, because they can no longer be worked profitably",
+    "Transition risk can materialise abruptly, because markets price on expectations rather than waiting for the actual impact"
+  ],
+  "practicePrompt": {
+    "question": "You are appraising a 10-year loan to a cement plant. Which is the most sensible way to bring climate risk into the credit analysis?",
+    "options": [
+      "Ignore it, climate is next century's problem, beyond the loan term",
+      "Run a carbon price scenario on margins and check flood risk",
+      "Refuse to lend to any high-emitting industry as a matter of principle",
+      "Just require a written commitment from the business to cut emissions"
+    ],
+    "explanation": "A 10-year term sits squarely inside the window in which transition risk materialises - CBAM has been charging since 2026. Cement is one of the most directly affected industries. The right approach is neither refusal nor dismissal but quantification: how do different carbon price levels affect the ability to repay, and what physical risk does the plant carry given its location. A written commitment has no analytical value without numbers behind it."
+  },
+  "summary": {
+    "keyIdea": "Climate risk is a quantifiable financial risk, split into physical risk and transition risk, and for many sectors the transition risk arrives much sooner.",
+    "commonMistake": "Treating climate risk as a long-term matter beyond the reach of analysis - while the market reprices on expectations rather than waiting for the physical impact",
+    "action": "For any investment or loan running beyond 5 years in a high-emitting sector, run at least two carbon price scenarios"
+  },
+  "application": {
+    "title": "Applying it to valuation and credit",
+    "message": "Climate risk enters the model through three routes: cash flow (carbon costs, adaptation costs), asset value (the possibility of a write-down), and cost of capital (investors demanding a higher risk premium).",
+    "secondary": "For corporate bonds, the credit rating agencies have started building climate factors into their rating methodologies."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The question is not 'do you believe in climate change'. The question is: if carbon policy tightens over the next ten years, can this business still make money?"
+    },
+    {
+      "type": "heading",
+      "text": "Two kinds of risk, two entirely different mechanisms"
+    },
+    {
+      "type": "paragraph",
+      "text": "Physical risk is damage caused by the climate phenomenon itself: a flooded plant, a failed harvest, a supply chain broken by a storm. It splits into acute (extreme events) and chronic (long-term shifts). Transition risk is damage caused by society's own move to a low-carbon economy: carbon taxes, prohibitions, cheaper substitute technology, customers changing behaviour, and investors withdrawing capital. The paradox is that these two run in opposite directions - if the world acts decisively, physical risk falls but transition risk jumps, and vice versa."
+    },
+    { "type": "heading", "text": "Four sources of transition risk" },
+    {
+      "type": "list",
+      "items": [
+        "Policy and law: carbon taxes, emission quotas, prohibitions, and the risk of being sued for damages",
+        "Technology: cheaper clean solutions leaving the old technology uncompetitive - solar panels against coal power is an example that has already happened",
+        "Markets: customers and partners changing their choices, weakening demand for high-emission products",
+        "Reputation: losing customers, struggling to recruit good people, or being excluded from investors' portfolios"
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Stranded assets - a term worth understanding precisely"
+    },
+    {
+      "type": "paragraph",
+      "text": "A stranded asset is not a destroyed asset. It is an asset that loses its economic value ahead of the expected date, because of an unanticipated change in regulation, technology or markets. The coal mine still holds coal, the power plant still runs, the rig is still intact - but if working it is no longer profitable, the book value has to be written down. For an analyst, the practical question is: what percentage of the business's value depends on assets at risk of stranding, and where is the break-even point?"
+    },
+    {
+      "type": "callout",
+      "label": "How to do it in practice",
+      "text": "You do not need a complex climate model. Start with a simple question: if the carbon price is USD 50 a tonne, what margin does this business have left? What if it is USD 100? A two-way sensitivity table is already enough to show which businesses are fragile."
+    }
+  ]
+}
