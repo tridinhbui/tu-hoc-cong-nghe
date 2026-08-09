@@ -1,0 +1,187 @@
+{
+  "slug": "cfa-ethics-case-chuyen-viec-va-khach-hang",
+  "title": "CFA Ethics 46: Case - changing jobs, and what you may take with you",
+  "subtitle": "A chain of decisions across three months, and which standard fires at each step",
+  "duration": "11 min",
+  "whyItMatters": "Changing jobs is a chain of decisions rather than one decision, and each step has a different answer - which is why it is the exam's favourite form of case.",
+  "openingQuestion": "In the three months before you leave, which of your actions is a violation?",
+  "openingOptions": [
+    "Registering a new company and renting an office",
+    "Copying the client list onto your own computer",
+    "Discussing the opportunity with a prospective employer",
+    "Preparing your own CV to send out"
+  ],
+  "correctOption": 1,
+  "explanation": "The other three are all lawful preparation for an ordinary career move. Copying the client list is different in kind: it is the employer's property, and taking it serves the purpose of competing with them. The subtle point is that the act is complete at the moment of copying, not when you use the list - just as being able to remember some client names yourself does not make the copying legitimate. Knowledge in your head travels with you; a file does not, even where you could have reconstructed its contents from memory.",
+  "summary": {
+    "keyIdea": "Administrative preparation for leaving and talks with a new employer are both legitimate - what is not legitimate is using the old firm's property to start the new one.",
+    "commonMistake": "Taking the client records because \"I built those relationships myself\". The relationships may be yours; the list and the data are not."
+  },
+  "application": {
+    "title": "After you have left",
+    "message": "Contacting former clients using publicly available information is fine. The line lies in the source of the information you use, not in whether you make contact at all."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Changing jobs is a normal part of the profession. But the stretch between deciding to go and formally leaving is where Standard IV(A) on loyalty to employers is most often breached."
+    },
+    {
+      "type": "heading",
+      "text": "What you may do while still employed"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Complete the formalities of setting up your own business, outside working hours.",
+        "Discuss terms and a start date with a new employer.",
+        "Rent an office, open accounts, and do administrative work that uses none of the current firm's resources."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "All three are lawful preparation for an ordinary career move. The line is crossed when you use your current employer's resources or relationships to compete with them - contacting clients in advance, or copying data."
+    },
+    {
+      "type": "callout",
+      "label": "The subtlest point",
+      "text": "Copying the client list completes the violation at the moment of copying, not when you use it. And being able to remember some client names yourself does not make the copying legitimate."
+    },
+    {
+      "type": "paragraph",
+      "text": "The cleanest way to draw the line: knowledge in your head travels with you, a file does not - even where you could have reconstructed its contents from memory. Once you have left, the duty under Standard IV(A) ends; what still binds you at that point is only whatever separate agreements you signed, if any."
+    },
+    {
+      "type": "heading",
+      "text": "Those three months, in sequence"
+    },
+    {
+      "type": "conceptTable",
+      "title": "One person changing jobs, six actions",
+      "subtitle": "The standards fire at the moment the action happens, not when the consequence appears",
+      "concepts": [
+        {
+          "vi": "Tháng 1 - đăng ký thành lập công ty riêng, làm ngoài giờ",
+          "en": "Month 1 - registering your own company, outside working hours: permitted",
+          "def": "Preparation for an ordinary career move, using your own time and resources. Standard IV(A) does not forbid you planning to leave."
+        },
+        {
+          "vi": "Tháng 1 - thương lượng điều kiện với nhà tuyển dụng mới",
+          "en": "Month 1 - negotiating terms with a new employer: permitted",
+          "def": "No duty obliges you to tell your current employer in advance that you are looking."
+        },
+        {
+          "vi": "Tháng 2 - chép danh sách khách hàng sang ổ cứng cá nhân",
+          "en": "Month 2 - copying the client list to a personal drive: a violation at the moment of copying",
+          "def": "This is the subtlest point in the whole lesson: the violation completes when you copy, not when you come to use it. Deleting the file afterwards undoes nothing."
+        },
+        {
+          "vi": "Tháng 2 - dùng email công ty gọi khách trước ngày nghỉ",
+          "en": "Month 2 - using company email to approach clients before you leave: a violation",
+          "def": "Using resources and time the employer is paying for to build a competing business. This is the clearest possible breach of the duty of loyalty."
+        },
+        {
+          "vi": "Tháng 3 - sau khi nghỉ, liên hệ khách cũ bằng trí nhớ",
+          "en": "Month 3 - after leaving, contacting former clients from memory: permitted by the standards",
+          "def": "Knowledge in your head travels with you. Remembering client names does not make the earlier copying legitimate - and conversely, without a file, memory is not prohibited."
+        },
+        {
+          "vi": "Tháng 3 - liên hệ khách cũ trong khi có điều khoản không lôi kéo",
+          "en": "Month 3 - contacting former clients while bound by a non-solicit: a contractual matter",
+          "def": "The standards do not forbid it, but the employment contract may. These are two separate systems - complying with the standards does not release you from a contract, and vice versa."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "The cleanest dividing line",
+      "text": "Knowledge in your head travels with you; a file does not - even where you created the file yourself and could reconstruct it from memory. The reason is ownership rather than secrecy: records, models and client lists made while the employer was paying you are their property. A valuation model you wrote yourself at the old firm falls in this group, and this is the kind of violation people commit while feeling entirely blameless."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Preparing to leave is your right.",
+        "Using the property of the person paying you to do it is not."
+      ]
+    }
+  ],
+  "diagram": [
+    { "label": "Administrative preparation: legitimate", "arrow": true },
+    { "label": "Talks with a new employer: legitimate", "arrow": true },
+    { "label": "Copying company property: a violation, complete at the moment of copying", "arrow": true },
+    { "label": "Knowledge travels with you, a file does not" }
+  ],
+  "realWorldExample": {
+    "company": "Three months after leaving, the answer changes",
+    "description": "Once the employment relationship ends, the duty under Standard IV(A) ends with it. Contacting former clients using publicly available information - a directory, a professional network, or the client approaching you - is legitimate. What still binds you is only whatever separate agreements exist: a non-compete, a non-solicit, or a confidentiality undertaking. This is why the same action - phoning a former client - is a violation in month three and legitimate in month four."
+  },
+  "quiz": [
+    {
+      "question": "When is the act of copying a client list complete?",
+      "options": [
+        "When a client actually moves across to follow you",
+        "When you use the list to contact the first client",
+        "At the moment of copying, not when the list is used",
+        "When the old firm discovers that the copying happened"
+      ],
+      "explanation": "If it only counted at the point of use, taking someone else's property would only become a problem once it worked - which cannot be right."
+    },
+    {
+      "question": "Does remembering some client names yourself make the copying legitimate?",
+      "options": [
+        "No, unless you delete the file immediately after copying",
+        "Yes, because that content was already in your memory",
+        "Yes, if you can remember fewer than half of the list",
+        "No, knowledge in your head and a file are two different things"
+      ],
+      "explanation": "This is the practical line most widely used, and it does not depend on how much you can remember."
+    },
+    {
+      "question": "After leaving, what about contacting former clients using publicly available information?",
+      "options": [
+        "Legitimate, unless a separate agreement binds you",
+        "A violation, because clients belong to the old firm permanently",
+        "Only legitimate once six months have passed since leaving",
+        "Only legitimate if the old firm agrees in writing"
+      ],
+      "explanation": "The duty under IV(A) ends with the employment relationship; what remains is any separate contractual undertaking."
+    },
+    {
+      "question": "Why is the same phone call different in month three and month four?",
+      "options": [
+        "Because clients need time to consider making a move",
+        "Because the duty of loyalty exists within the employment relationship",
+        "Because the old firm may retain clients for the first three months",
+        "Because the rules require a three-month wait after leaving"
+      ],
+      "explanation": "The whole of Standard IV(A) exists during the period you are still being paid by that party."
+    },
+    {
+      "question": "Can you take a valuation model you built yourself at the old firm?",
+      "options": [
+        "Yes, if you built it outside official working hours",
+        "Yes, because it is intellectual work you created yourself",
+        "Not the file, but rebuilding it from knowledge is fine",
+        "No, and you may not rebuild a similar model either"
+      ],
+      "explanation": "The line is the medium carrying the information rather than the content - and this is also where Standard V(A) requires you to rebuild your own basis."
+    }
+  ],
+  "keyTakeaways": [
+    "Administrative preparation and talks with a new employer are both legitimate",
+    "Copying company property is a violation at the moment of copying",
+    "Remembering the contents does not make the copying legitimate",
+    "After leaving, IV(A) ends - only separate agreements remain, if any",
+    "Knowledge travels with you, a file does not"
+  ],
+  "practicePrompt": {
+    "question": "A former client rings you two weeks after you left, asking to move their assets to your new firm. May you accept?",
+    "options": [
+      "No, because two weeks is too soon after leaving",
+      "Yes, provided you were not the one who made contact first",
+      "Yes, but you must notify the old firm beforehand",
+      "No, because the client still belongs to the old firm"
+    ],
+    "explanation": "Two conditions must both hold, and the first is the one people miss: if you approached them before you left, this call is not genuinely the client's initiative. There is no waiting period in Standard IV(A) - it ends with the employment relationship, so two weeks and two months are no different."
+  }
+}

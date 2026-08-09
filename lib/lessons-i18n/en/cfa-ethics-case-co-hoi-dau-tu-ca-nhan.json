@@ -1,0 +1,169 @@
+{
+  "slug": "cfa-ethics-case-co-hoi-dau-tu-ca-nhan",
+  "title": "CFA Ethics 45: Case - an investment opportunity reaches you before it reaches your clients",
+  "subtitle": "Allocation, priority and disclosure - three standards touching one decision",
+  "duration": "10 min",
+  "whyItMatters": "This is the kind of situation where the first instinct is almost always wrong, because a private invitation feels like a personal privilege when it is really an opportunity belonging to clients.",
+  "openingQuestion": "A fund invites you personally into a small, restricted funding round with no room for clients. May you take part?",
+  "openingOptions": [
+    "Yes, because the invitation is to you personally, not to the firm",
+    "First consider whether the opportunity suits any of your clients",
+    "Yes, provided you disclose your participation to clients",
+    "No, never, because this is a conflict of interest"
+  ],
+  "correctOption": 1,
+  "explanation": "The first question is not whether you may take part, but whether this opportunity belongs to clients. If it fits the investment objectives of one or more clients you serve, Standard VI(B) puts them ahead of you - even where the invitation names you personally, because you received it through your professional position rather than in a personal capacity. Small size is no reason to exclude clients: the correct handling is pro rata allocation under the existing process, not concluding that because there is not enough to go round you may as well take it. Only where the opportunity genuinely suits no client at all does your turn come - and even then it must be disclosed under VI(A) if it could affect your later recommendations.",
+  "summary": {
+    "keyIdea": "The first question is not whether you may buy, but whether this opportunity belongs to clients.",
+    "commonMistake": "Starting from whether you have a conflict. If the opportunity suits clients, it must reach them first - the conflict is only the second question."
+  },
+  "application": {
+    "title": "The right order",
+    "message": "Establish who the opportunity belongs to, and only then turn to disclosure and consent. Reversing the order skips the more important question."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "An attractive investment opportunity reaches you before it reaches your clients. The first question is not whether you may take part, but whether the opportunity belongs to clients."
+    },
+    {
+      "type": "heading",
+      "text": "The order in which to ask"
+    },
+    {
+      "type": "paragraph",
+      "text": "If the opportunity fits the investment objectives of one or more clients you serve, Standard VI(B) puts them ahead of you. That holds even where the invitation names you personally - because you received it through your professional position rather than in a personal capacity."
+    },
+    {
+      "type": "callout",
+      "label": "The argument most often misused",
+      "text": "\"It is too small, there is not enough to split\" is no reason to exclude clients. The correct handling is pro rata allocation under the process already in place."
+    },
+    {
+      "type": "heading",
+      "text": "When your turn actually comes"
+    },
+    {
+      "type": "paragraph",
+      "text": "Only where the opportunity genuinely suits no client - wrong asset class, wrong risk level, wrong horizon. And even then, if this personal investment could influence your later recommendations, Standard VI(A) still requires disclosure."
+    },
+    {
+      "type": "list",
+      "items": [
+        "VI(B) - priority of transactions: clients first, then the firm, then the individual.",
+        "III(B) - fair dealing: allocate under the published process, not at discretion.",
+        "VI(A) - disclosure of conflicts: if a personal holding could colour your advice."
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Small size excludes nobody - it only divides more finely"
+    },
+    {
+      "type": "paragraph",
+      "text": "Suppose you are offered 100 units in a deal, and three clients with suitable objectives want 250 between them: A wants 125, B wants 75, C wants 50. The argument that it is too small to split does not hold - the correct handling is allocation pro rata to demand: A gets 50, B gets 30, C gets 20. What each receives may be small enough to sound pointless, but the alternative - you taking that portion yourself - is what Standard VI(B) directly prohibits."
+    },
+    {
+      "type": "callout",
+      "label": "An order of questions, not one question",
+      "text": "The first is not whether you may take part, but whether this opportunity suits any client you serve. Only when the answer is no for EVERY one of them - wrong asset class, wrong risk level, wrong horizon for each - does your turn come. And even then two steps remain: prior permission under Standard VI(A) on disclosing conflicts, and compliance with the firm's personal dealing rules. Reversing this order is where most real cases begin."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Three standards touching one decision",
+        "text": "VI(B) decides the ORDER: clients, then the firm, then the individual. III(B) decides HOW to split between suitable clients: pro rata, on the same terms. VI(A) decides what must be SAID: disclose the personal interest before recommending, not after."
+      },
+      "right": {
+        "label": "Why the three get merged into one",
+        "text": "Because in a specific decision they arise almost simultaneously. But they fail in three different ways: taking your share ahead of clients breaks VI(B); giving favoured clients more breaks III(B); doing both correctly while staying silent about your own stake breaks VI(A)."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The opportunity reached you because of your job.",
+        "So it belongs to the job first, and to you second."
+      ]
+    }
+  ],
+  "diagram": [
+    { "label": "Question 1: does this opportunity belong to clients", "arrow": true },
+    { "label": "If so: VI(B) puts clients ahead of you", "arrow": true },
+    { "label": "Small size means pro rata allocation, not exclusion", "arrow": true },
+    { "label": "If it suits no client: your turn comes, with disclosure" }
+  ],
+  "realWorldExample": {
+    "company": "Why \"the invitation named me personally\" is not an argument",
+    "description": "You received the invitation because you manage other people's money - that is what makes you worth inviting. An opportunity arriving through the professional door belongs to the professional role, not to the individual. This is also the logic of Standard IV(A) on business opportunities: an opportunity reaching you through your position at a firm must be offered to the firm first, not kept for yourself."
+  },
+  "quiz": [
+    {
+      "question": "What is the first question when a private investment opportunity arrives?",
+      "options": [
+        "Whether the amount exceeds the declaration threshold",
+        "Whether this opportunity suits any of your clients",
+        "Whether the invitation names you or the firm",
+        "Whether you have enough personal capital to take part"
+      ],
+      "explanation": "This order determines everything that follows - asking it the other way round is how most violations of this kind begin."
+    },
+    {
+      "question": "Does an invitation naming you personally make the opportunity your own?",
+      "options": [
+        "Yes, if you use personal money to take part",
+        "Yes, because the invitation was not sent to the firm or to clients",
+        "No, because you were invited through your professional position",
+        "No, unless you disclose your participation to clients"
+      ],
+      "explanation": "An opportunity arriving through the professional door belongs to the professional role - the same logic as Standard IV(A) on business opportunities."
+    },
+    {
+      "question": "How do you handle an allocation too small to go round every client?",
+      "options": [
+        "Pass on the opportunity to avoid any allocation dispute",
+        "Keep it for the personal account, since it will not divide",
+        "Give priority to the clients with the largest assets",
+        "Allocate pro rata under the process established in advance"
+      ],
+      "explanation": "This is exactly the situation Standard III(B) was written for, and the process has to exist before anyone knows who benefits."
+    },
+    {
+      "question": "When may you take part for your own account?",
+      "options": [
+        "When the opportunity suits no client at all",
+        "Once you have disclosed your intention to participate to clients",
+        "Once clients have declined after being offered it",
+        "When the amount is below your own materiality threshold"
+      ],
+      "explanation": "And even then the disclosure duty under VI(A) remains if it could affect your later recommendations."
+    },
+    {
+      "question": "Which three standards touch this situation?",
+      "options": [
+        "I(B) independence, V(A) reasonable basis, V(C) record retention",
+        "VI(B) priority, III(B) fair dealing, VI(A) disclosure",
+        "IV(A) loyalty, IV(B) additional compensation, IV(C) supervision",
+        "III(A) loyalty, III(C) suitability, III(E) confidentiality"
+      ],
+      "explanation": "Recognising a situation that touches several standards at once is exactly the skill this form of case is training."
+    }
+  ],
+  "keyTakeaways": [
+    "Ask first: does this opportunity belong to clients",
+    "A personally addressed invitation does not make the opportunity your own",
+    "Small size means pro rata allocation, not a reason to exclude clients",
+    "Only where it suits no client does your turn come",
+    "Three standards touch it at once: VI(B), III(B) and VI(A)"
+  ],
+  "practicePrompt": {
+    "question": "After allocating to clients, a small portion remains and you would like to take it. May you?",
+    "options": [
+      "No, the remainder must be returned to the offering party",
+      "Yes, provided clients were fully allocated and you disclose it",
+      "Yes, with no disclosure needed since you only take the remainder",
+      "No, because investing alongside clients is always a conflict"
+    ],
+    "explanation": "Both negative options overreach: the standards do not forbid you investing alongside clients, they require clients to come first. Once that order has been respected and evidenced, the remainder is legitimate - but the disclosure duty under VI(A) does not disappear simply because your share is what was left over."
+  }
+}
