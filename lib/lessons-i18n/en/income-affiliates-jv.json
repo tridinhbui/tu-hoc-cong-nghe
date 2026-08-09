@@ -1,0 +1,175 @@
+{
+  "slug": "income-affiliates-jv",
+  "title": "Income from affiliates and joint ventures",
+  "subtitle": "Equity method (20-50%) versus consolidation (>50%)",
+  "duration": "6 min",
+  "openingQuestion": "When is an investment accounted for under the equity method rather than consolidated?",
+  "openingOptions": [
+    "When ownership is 0-5%",
+    "When ownership is 20-50%, or there is significant influence",
+    "Only when 100% of the company's charter capital is owned",
+    "Never"
+  ],
+  "explanation": "A company with significant influence is usually accounted for under the equity method; majority control is what triggers consolidation into the financial statements. The 20-50% ownership band is the accounting convention for significant influence - above 50% is normally treated as control and requires the subsidiary's full financial statements to be consolidated.",
+  "diagram": [
+    { "label": "Significant ownership", "arrow": true },
+    { "label": "Equity method", "arrow": true },
+    { "label": "Control", "arrow": true },
+    { "label": "Consolidation", "arrow": false }
+  ],
+  "realWorldExample": {
+    "company": "Profit recorded, cash not necessarily received",
+    "description": "This is the most easily missed feature of the equity method. When an associate reports a profit, the parent records its proportional share in profit for that period - but the cash only actually arrives when the associate decides to pay a dividend, and the parent cannot control that decision because it holds under 50%. The result is that a business can record hundreds of billions of associate profit over several years while the cash actually received is a small fraction of it. Comparing profit against operating cash flow, this is often one of the causes of the gap."
+  },
+  "quiz": [
+    {
+      "question": "Why is equity income not quite the same as core operating revenue?",
+      "options": [
+        "Because it never comes with any cash reaching the parent company",
+        "Because equity income is recorded on a cash basis rather than accruals",
+        "Because equity income is always negative at newly formed associates",
+        "Because it is a share of profit, not revenue from selling anything"
+      ],
+      "explanation": "Profit from affiliates and JVs is a share of someone else's profit, not sales revenue from the core business."
+    },
+    {
+      "question": "A company's net income has risen sharply, mostly from a one-off jump in equity income at a large joint venture. What should an investor do?",
+      "options": [
+        "Separate the equity income and ask whether the growth repeats",
+        "Treat this as a sign the core business is growing sustainably",
+        "Conclude the company is dressing up the numbers to lift the share price",
+        "Ignore it, since equity income is always a very small proportion"
+      ],
+      "explanation": "Equity income depends on the associate's own operations, can swing unpredictably, and does not reflect the health of the main business - separating it out lets an investor judge how durable the profit really is."
+    },
+    {
+      "question": "Why can profit recorded under the equity method come with no cash at all?",
+      "options": [
+        "Because the associate always retains all its profit to reinvest",
+        "Because the cash only arrives when the associate declares a dividend",
+        "Because accounting does not permit recording cash from an associate",
+        "Because this profit is taxed twice before it can be received"
+      ],
+      "explanation": "Recording profit in proportion to ownership is a bookkeeping entry. Cash only arises on a dividend, and at under 50% ownership the parent cannot decide that itself."
+    },
+    {
+      "question": "What is the biggest difference between consolidation and the equity method on the balance sheet?",
+      "options": [
+        "The two methods produce identical results on the balance sheet",
+        "The equity method also records the associate's revenue",
+        "Consolidation brings the subsidiary's whole debt onto the balance sheet",
+        "Consolidation does not record the subsidiary's assets on the balance sheet"
+      ],
+      "explanation": "This is why ownership around the 50% threshold matters so much to an analyst: for the same underlying business, the debt may or may not appear on the consolidated balance sheet."
+    },
+    {
+      "question": "Why should profit from associates not be included in EBITDA for valuation?",
+      "options": [
+        "Because it is already after tax, so including it double-counts the tax",
+        "Because accounting standards forbid adding any third-party profit into EBITDA",
+        "Because this item is always one-off and never repeats in later periods",
+        "Because it does not come from operations the business itself runs"
+      ],
+      "explanation": "EBITDA measures the operations the business controls, while associate profit comes from another company and usually brings no cash until a dividend is paid. The clean treatment is to exclude it from EBITDA and value that shareholding separately."
+    }
+  ],
+  "keyTakeaways": [
+    "20-50% usually indicates significant influence",
+    "Above 50% usually moves to consolidation",
+    "Equity income needs reading separately from core operating profit"
+  ],
+  "summary": {
+    "keyIdea": "20-50% usually indicates significant influence",
+    "commonMistake": "Easy to miss: above 50% usually moves to consolidation",
+    "action": "Equity income needs reading separately from core operating profit"
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "When a group owns part of another company (a joint venture, an associate), the profit received from it is recorded quite differently from ordinary sales revenue."
+    },
+    {
+      "type": "heading",
+      "text": "The equity method - significant influence without control"
+    },
+    {
+      "type": "paragraph",
+      "text": "Where 20-50% of another company is owned (the accounting convention for significant influence), the investment is usually accounted for under the equity method - the parent records its proportional share of profit, known as equity income. Above 50% ownership (control), the subsidiary's whole financial statements must be consolidated, not merely its share of profit recorded."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Equity income is a share of an associate's profit, not sales revenue from core operations",
+        "20-50% ownership usually corresponds to significant influence (equity method); above 50% usually moves to consolidation",
+        "If net income rises sharply mostly on a jump in equity income, separate it out to judge how durable the profit is"
+      ]
+    },
+    {
+      "type": "conceptTable",
+      "title": "Three ownership levels, three treatments",
+      "subtitle": "The thresholds are an accounting convention; the substance is the degree of influence and control",
+      "concepts": [
+        {
+          "vi": "Dưới 20%",
+          "en": "Below 20% - a financial investment",
+          "def": "Usually carried at cost or fair value. Income is recorded only on receiving a dividend or on sale."
+        },
+        {
+          "vi": "20% - 50%",
+          "en": "20-50% - the equity method",
+          "def": "Records the proportional share of profit in the income statement, with the carrying value of the investment on the balance sheet moving accordingly."
+        },
+        {
+          "vi": "Trên 50%",
+          "en": "Above 50% - consolidation",
+          "def": "Brings the subsidiary's entire revenue, costs, assets and liabilities into the consolidated statements, then strips out the portion not owned as minority interest."
+        }
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "The equity method",
+        "text": "The associate's revenue does NOT appear in the parent's revenue. Only a single line of profit is recorded. The associate's debt is likewise absent from the consolidated balance sheet."
+      },
+      "right": {
+        "label": "Consolidation",
+        "text": "The subsidiary's entire revenue, costs, assets and DEBT enter the consolidated statements, even where the parent owns only 51%. The unowned portion is separated out as minority interest."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "Three questions when associate profit is large"
+    },
+    {
+      "type": "list",
+      "items": [
+        "What percentage of profit after tax is it? Above 20-30% and the core operations are no longer the main story.",
+        "Is it stable across the years, or does it come from a one-off event at the associate?",
+        "How much dividend was actually received from the associates against the profit recorded? A large and persistent gap needs explaining."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Not every dong of profit comes from the main business.",
+        "Separating out equity income gives you an accurate view of the core business's health."
+      ]
+    }
+  ],
+  "practicePrompt": {
+    "question": "Business A holds 35% of the voting shares in company B. Which accounting method must A apply in its financial statements?",
+    "options": [
+      "The equity method",
+      "Full consolidation of 100% of B's assets and liabilities into A",
+      "No recording of any item until B declares a dividend",
+      "Recording B as a short-term savings deposit"
+    ],
+    "explanation": "Where 20% to 50% of the shares are owned (an associate or joint venture), the business applies the equity method. Only above 50% does consolidation apply."
+  },
+  "application": {
+    "title": "In practice: income from affiliates and JVs",
+    "message": "Business A holds 35% of the voting shares in company B. Which accounting method must A apply in its financial statements?",
+    "secondary": "Having this principle firmly in hand strengthens your professional financial analysis."
+  }
+}

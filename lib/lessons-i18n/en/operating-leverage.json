@@ -1,0 +1,171 @@
+{
+  "slug": "operating-leverage",
+  "title": "Operating leverage",
+  "subtitle": "SaaS versus airlines - fixed costs and margin expansion",
+  "duration": "6 min",
+  "openingQuestion": "Why can a SaaS company grow profit faster than an airline when revenue rises?",
+  "openingOptions": [
+    "Because SaaS has no costs",
+    "Because high fixed costs create operating leverage",
+    "Because an airline ticket is many times cheaper than software",
+    "Because SaaS needs no customers"
+  ],
+  "explanation": "When fixed costs are large, each additional dong of revenue falls through to profit faster, because most of the cost base is already absorbed and does not rise with sales - that is operating leverage. It works in both directions: revenue rising lifts profit quickly, but revenue falling cuts profit just as quickly, since the fixed costs stay payable whatever happens.",
+  "diagram": [
+    { "label": "Fixed costs", "arrow": true },
+    { "label": "Revenue rises", "arrow": true },
+    { "label": "Margins expand", "arrow": true },
+    { "label": "Operating leverage", "arrow": false }
+  ],
+  "realWorldExample": {
+    "company": "The same 20% revenue fall, two outcomes",
+    "description": "Business A has 80% of its costs fixed; business B has 80% variable. Both have revenue of 100 and total costs of 90, so profit of 10. When revenue falls 20% to 80: A only saves the variable portion, so costs stay around 86 and it loses 6. B's costs fall roughly in proportion to revenue, to around 76, so it still earns 4. The same revenue shock, one side in loss and the other still profitable - and the difference lies entirely in the cost structure, not in the quality of management."
+  },
+  "quiz": [
+    {
+      "question": "What does high operating leverage usually do?",
+      "options": [
+        "Reduce revenue in the very first period",
+        "Turn the gross margin permanently negative",
+        "Make profit more sensitive to revenue",
+        "Reduce borrowings gradually over time"
+      ],
+      "explanation": "A small rise in revenue can lift profit sharply once the fixed costs have been absorbed."
+    },
+    {
+      "question": "In a recession that cuts revenue sharply, whose profit suffers more: a SaaS business (high fixed costs) or a contract manufacturer (high variable costs)?",
+      "options": [
+        "SaaS, because the fixed costs remain payable as revenue falls",
+        "Neither is affected, since a recession only hits the share price",
+        "The manufacturer, because variable costs are very hard to cut quickly",
+        "Both suffer equally, since both lose the same revenue"
+      ],
+      "explanation": "High operating leverage is a double-edged sword: it magnifies profit when revenue grows and magnifies losses when revenue falls, because the fixed costs are payable whatever the revenue - which is why SaaS shares are usually more volatile in a downturn."
+    },
+    {
+      "question": "A business has a DOL of 3. If revenue falls 10%, what happens to operating profit?",
+      "options": [
+        "It falls about 30% (= 10% of revenue × DOL of 3)",
+        "It falls about 10%, since profit moves in proportion to revenue",
+        "It does not change, since fixed costs do not depend on revenue",
+        "It falls about 3.3% (= 10% ÷ 3, dividing instead of multiplying)"
+      ],
+      "explanation": "Fixed costs do not fall with revenue, so the revenue lost comes straight out of profit. That is why the amplification bites hardest exactly when the business most needs a buffer."
+    },
+    {
+      "question": "Which combination is the riskiest?",
+      "options": [
+        "High operating leverage + stable revenue + no borrowings",
+        "High operating leverage + cyclical revenue + heavy borrowings",
+        "High variable costs + stable revenue + very heavy borrowings",
+        "High variable costs + cyclical revenue + heavy borrowings"
+      ],
+      "explanation": "These three factors amplify one another: a fall in revenue cuts profit far harder, while the interest obligation stays exactly where it was. This is the formula for financial distress in a downturn."
+    },
+    {
+      "question": "Why are businesses with high operating leverage usually advised to limit their borrowing?",
+      "options": [
+        "Because high fixed costs mean the business gets no tax deduction for interest",
+        "Because banks usually refuse to lend to businesses with large fixed costs",
+        "Because the two leverages compound, so profit swings violently on a revenue shortfall",
+        "Because high operating leverage means the business has no growth headroom left"
+      ],
+      "explanation": "Fixed operating costs amplify a revenue shock into an EBIT shock, and interest then amplifies the EBIT shock into a net profit shock. Stack the two layers and even a moderate revenue shortfall is enough to push the business towards being unable to service its debt."
+    }
+  ],
+  "keyTakeaways": [
+    "Large fixed costs make profit and loss more sensitive to revenue",
+    "High operating leverage is both an opportunity and a risk",
+    "It has to be read alongside the revenue cycle"
+  ],
+  "summary": {
+    "keyIdea": "Large fixed costs make profit and loss more sensitive to revenue",
+    "commonMistake": "Easy to miss: high operating leverage is both an opportunity and a risk",
+    "action": "It has to be read alongside the revenue cycle"
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Why can a SaaS software company grow profit so much faster than an airline, when both grow revenue by the same percentage?"
+    },
+    {
+      "type": "heading",
+      "text": "Fixed costs are the key to operating leverage"
+    },
+    {
+      "type": "paragraph",
+      "text": "When fixed costs make up a large share of the cost base, each additional dong of revenue falls through to profit far faster - because most of the cost is already absorbed and does not rise with revenue. But operating leverage cuts both ways: it magnifies the profit when revenue grows and the loss when revenue falls, because the fixed costs are payable whatever the results."
+    },
+    {
+      "type": "list",
+      "items": [
+        "High operating leverage makes profit far more sensitive to revenue swings, in both directions",
+        "SaaS (high fixed cost) usually suffers a harder hit to profit in a downturn than a high variable cost business",
+        "Read operating leverage alongside the industry's revenue cycle, never on its own"
+      ]
+    },
+    {
+      "type": "formula",
+      "title": "Measuring the degree of operating leverage",
+      "equation": "DOL = % change in operating profit ÷ % change in revenue",
+      "variables": [
+        {
+          "symbol": "DOL",
+          "name": "Degree of operating leverage",
+          "description": "A DOL of 3 means a 1% rise in revenue lifts operating profit about 3% - and a 1% fall cuts it about 3%."
+        }
+      ],
+      "example": {
+        "title": "A worked example",
+        "calculation": "Revenue +10% → operating profit +32%",
+        "result": "DOL ≈ 3.2",
+        "explanation": "That amplification is very attractive during a growth phase, but it is also what makes profit evaporate when revenue turns. A high DOL means a wide swing in profit in both directions."
+      }
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "High fixed costs",
+        "text": "Software, telecoms, airlines, cement. The break-even point is high, but once past it nearly every additional dong of revenue runs straight to profit. The risk concentrates in the phase where revenue falls."
+      },
+      "right": {
+        "label": "High variable costs",
+        "text": "Trading, distribution, contract manufacturing. Margins are thin but steadier through the cycle, because costs shrink with revenue. Rarely a spectacular profit, and rarely a heavy loss."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "Read operating leverage alongside three other factors"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Revenue stability: high leverage plus cyclical revenue is the riskiest combination there is.",
+        "Financial leverage: a business with both high fixed costs and heavy borrowings stacks two layers of amplification.",
+        "Position relative to break-even: revenue just above break-even needs only a small fall to turn a loss; revenue at twice break-even has a far thicker buffer."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Large fixed costs are not automatically good or bad.",
+        "They amplify whatever happens to revenue - in both directions."
+      ]
+    }
+  ],
+  "practicePrompt": {
+    "question": "What financial advantage does the high operating leverage of SaaS technology companies produce as revenue grows?",
+    "options": [
+      "High fixed costs mean the EBIT margin expands very quickly",
+      "It removes competitive risk in the market entirely",
+      "It means the business never has to pay corporate income tax",
+      "It reduces the need to hire sales staff"
+    ],
+    "explanation": "A company with high operating leverage has a large proportion of fixed costs. Once past break-even, each additional dong of revenue contributes almost entirely to operating profit - margin expansion."
+  },
+  "application": {
+    "title": "In practice: operating leverage",
+    "message": "What financial advantage does the high operating leverage of SaaS technology companies produce as revenue grows?",
+    "secondary": "Having this principle firmly in hand strengthens your professional financial analysis."
+  }
+}
