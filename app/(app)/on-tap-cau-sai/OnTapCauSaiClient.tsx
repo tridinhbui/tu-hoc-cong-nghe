@@ -140,11 +140,14 @@ export default function OnTapCauSaiClient() {
       } catch (e) {}
     }
 
+    // Bốn câu này từng nằm thẳng trong file bằng tiếng Việt, trong khi cả
+    // phần còn lại của trang đã đi qua từ điển - nên người đọc bản tiếng Anh
+    // chấm một thẻ là nhận lại một dòng tiếng Việt.
     const messages = {
-      forget: "🔴 Cần ôn lại vào ngày mai (+1 ngày)",
-      hard: "🟡 Đã ghi nhận (+3 ngày)",
-      good: "🟢 Nhớ tốt! Lên lịch ôn sau 7 ngày",
-      mastered: "🚀 Thành thục! Đưa vào bộ nhớ vĩnh viễn (+30 ngày)",
+      forget: t.mistakeReview.ratedForget,
+      hard: t.mistakeReview.ratedHard,
+      good: t.mistakeReview.ratedGood,
+      mastered: t.mistakeReview.ratedMastered,
     };
     toast.success(messages[quality]);
 
