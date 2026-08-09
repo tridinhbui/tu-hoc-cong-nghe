@@ -232,6 +232,46 @@ console.log(`Total failing at least one check: ${total}`);
 // next ordinary edit red with nothing having regressed.
 const MAX_TELL_SHARE = 0.26;
 
+/**
+ * Độ dài tối thiểu của `explanation` trong một câu quiz, ký tự.
+ *
+ * VÌ SAO TRƯỜNG NÀY CẦN CỔNG. Rule 1 của AGENTS.md dời toàn bộ lập luận RA
+ * KHỎI phương án và VÀO `explanation` - phương án chỉ còn nêu mệnh đề, phần
+ * "vì sao" nằm ở đây, và người học đọc nó ngay sau khi trả lời. Nói cách khác
+ * chính quy tắc ấy đã biến `explanation` thành mặt dạy học chính của quiz. Nó
+ * là trường duy nhất chưa từng được đo: bốn cổng nội dung đo số câu, phần giải
+ * thích cấp BÀI, số node sơ đồ và số khối `sections`, không cái nào chạm tới
+ * đây.
+ *
+ * Đo ra: trung vị 197 ký tự, ngắn nhất 25, và 143 câu dưới 80. Ví dụ điển hình
+ * là `von-luu-dong-la-gi` Q4 - cả phần giải thích là "Cả ba cách đều làm WC
+ * tăng.", tức nhắc lại đáp án chứ không nói vì sao ba phương án kia sai.
+ *
+ * 80 chứ không cao hơn: đây là sàn cho một câu có nội dung, không phải mục
+ * tiêu. Trung vị đã gấp 2,5 lần mức này, nên nó chỉ chặn phần đáy.
+ */
+const MIN_QUIZ_EXPLANATION_LEN = 80;
+
+/**
+ * Giải thích có mang phép tính thì được miễn trừ độ dài.
+ *
+ * `enterprise-value` Q1 giải thích trọn vẹn bằng 25 ký tự: "EV = 100 + 30 − 10
+ * = 120." Không thiếu gì cả - phép tính TỰ NÓ là lời giải thích, và bắt nó dài
+ * 80 ký tự chỉ đẻ ra một câu đệm quanh một dòng vốn đã đủ. Miễn trừ này là lý
+ * do con số phải chặn giảm từ 143 xuống 95: gần một phần ba nhóm "ngắn" không
+ * phải nợ.
+ *
+ * Điều kiện hẹp có chủ ý - phải có chữ số đứng cạnh một toán tử, hoặc một dấu
+ * bằng giữa hai vế. Một câu văn suông có nhắc "20%" thì không lọt.
+ */
+function explanationCarriesArithmetic(text) {
+  const t = String(text ?? "");
+  return /\d\s*[+\-−×÷*/=]|[+\-−×÷*/=]\s*\d/.test(t);
+}
+
+/** Câu có `explanation` mỏng: dưới sàn và không mang phép tính. */
+const thinExplanations = [];
+
 /** The same ceiling for the opposite direction, added after the rewrite of the
  *  last 47 grandfathered lessons drove the longest share to 20% - past chance,
  *  which is not a win. Measuring only one direction let the correct option
@@ -348,6 +388,16 @@ const MIN_QUESTIONS_FOR_TELL_CHECK = 2;
 const baselinePath = isSourceLocale
   ? path.join(__dirname, "lesson-quiz-tell-baseline.json")
   : path.join(__dirname, `lesson-quiz-tell-baseline.${LOCALE}.json`);
+/** Baseline riêng cho cổng `explanation` mỏng. Tách khỏi baseline tell vì hai
+ *  cái đo hai thứ khác nhau và sẽ co lại theo hai nhịp khác nhau; gộp chung thì
+ *  gỡ được một bài khỏi cái này lại vô tình miễn trừ nó khỏi cái kia. */
+const thinBaselinePath = isSourceLocale
+  ? path.join(__dirname, "thin-explanation-baseline.json")
+  : path.join(__dirname, `thin-explanation-baseline.${LOCALE}.json`);
+const thinBaseline = new Set(
+  existsSync(thinBaselinePath) ? JSON.parse(readFileSync(thinBaselinePath, "utf8")).lessons : []
+);
+
 const baseline = new Set(
   existsSync(baselinePath) ? JSON.parse(readFileSync(baselinePath, "utf8")).lessons : []
 );
@@ -711,15 +761,32 @@ for (const lesson of corpus) {
         correct: question.correct,
       };
       letterRefs.push(row);
-      // Điều kiện chỉ là "chữ cái trỏ vào đáp án đúng", KHÔNG cần câu văn mang
-      // nghĩa phủ định. Bản đầu bắt buộc phải có một trong các từ
-      // lỗi/sai/nhầm/bẫy quanh đó, và nó lọt đúng hai ca: credit-spread Q3 viết
-      // "Phương án D mô tả độ dốc đường cong" và present-value Q3 viết "Phương
-      // án D chính là Future Value" - cả hai đều đang gọi đáp án đúng là một
-      // khái niệm khác, không dùng chữ "sai" nào cả.
+      // Điều kiện chỉ còn "chữ cái trỏ vào đáp án đúng", KHÔNG cần câu văn
+      // mang nghĩa phủ định nữa.
+      //
+      // Bản đầu bắt buộc phải có một trong các từ lỗi/sai/nhầm/bẫy quanh chỗ
+      // nhắc tới, và nó lọt đúng hai ca: credit-spread Q3 viết "Phương án D mô
+      // tả độ dốc đường cong" và present-value Q3 viết "Phương án D chính là
+      // Future Value" - cả hai đều đang gọi đáp án đúng là một khái niệm khác,
+      // không dùng chữ "sai" nào cả. Đọc tay mới thấy.
+      //
+      // Không cần điều kiện đó: một giải thích gọi tên đáp án ĐÚNG bằng chữ
+      // cái thì hoặc là đang mô tả nó thành thứ khác, hoặc là thừa. Đã rà cả
+      // corpus, không có ca hợp lệ nào rơi vào đây.
       if (ref.index === question.correct) {
         contradictoryLetterRefs.push({ ...row, context: ref.context.trim() });
       }
+    }
+
+    const explanation = String(question.explanation ?? "").trim();
+    if (explanation.length < MIN_QUIZ_EXPLANATION_LEN && !explanationCarriesArithmetic(explanation)) {
+      thinExplanations.push({
+        slug: lesson.slug,
+        id: lesson.id,
+        question: String(question.question ?? "").slice(0, 60),
+        length: explanation.length,
+        explanation,
+      });
     }
 
     if (isHollowCorrectAnswer(lengths.length ? (question.options ?? [])[question.correct] : null)) {
@@ -966,6 +1033,41 @@ if (hollowDistractors.length > MAX_HOLLOW_DISTRACTORS) {
   );
 }
 
+// ── Cổng: phần giải thích quiz quá mỏng ───────────────────────────────────
+const thinBySlug = new Map();
+for (const row of thinExplanations) {
+  if (!thinBySlug.has(row.slug)) thinBySlug.set(row.slug, []);
+  thinBySlug.get(row.slug).push(row);
+}
+const thinUnbaselined = [...thinBySlug.keys()].filter((slug) => !thinBaseline.has(slug)).sort();
+const thinFixedButStillBaselined = [...thinBaseline].filter((slug) => !thinBySlug.has(slug)).sort();
+
+console.log(
+  `\nThin quiz explanations (<${MIN_QUIZ_EXPLANATION_LEN} chars, no arithmetic): ` +
+    `${thinExplanations.length} question(s) in ${thinBySlug.size} lesson(s)  ·  ` +
+    `${thinBaseline.size} grandfathered  ·  ${thinUnbaselined.length} not baselined  ·  ` +
+    `${thinFixedButStillBaselined.length} fixed but still listed`
+);
+
+if (thinUnbaselined.length > 0) {
+  tellFailures.push(
+    `${thinUnbaselined.length} lesson(s) có câu quiz với phần giải thích mỏng và chưa được ` +
+      `grandfather trong ${path.basename(thinBaselinePath)}:\n` +
+      thinUnbaselined
+        .slice(0, 15)
+        .map((slug) => {
+          const rows = thinBySlug.get(slug);
+          const first = rows[0];
+          return `    ${slug} (${rows.length} câu) - "${first.question}" → ${first.length} ký tự: "${first.explanation}"`;
+        })
+        .join("\n") +
+      (thinUnbaselined.length > 15 ? `\n    ... và ${thinUnbaselined.length - 15} bài nữa` : "") +
+      `\n  Rule 1 của AGENTS.md dời lập luận vào chính trường này, nên nó là phần dạy học` +
+      ` chứ không phải chú thích. Viết vì sao các phương án kia SAI, đừng nhắc lại đáp án.` +
+      ` Câu mang phép tính được miễn trừ tự động.`
+  );
+}
+
 console.log(
   `\nOption-letter refs in explanations: ${letterRefs.length} total, ` +
     `${contradictoryLetterRefs.length} contradicting the keyed answer`
@@ -1057,6 +1159,46 @@ if (unbaselined.length > 0) {
   );
 }
 
+// Gieo baseline giải thích mỏng - CHẠY ĐÚNG MỘT LẦN, và tự chặn lần thứ hai.
+//
+// Baseline phải sinh ra từ chính vòng đo ở trên chứ không phải một script rời:
+// hai bộ dò viết riêng sẽ lệch nhau, và lúc đó danh sách grandfather sẽ không
+// khớp với thứ mà cổng đang bắt.
+//
+// Nhưng một lệnh "ghi cả danh sách hiện tại" thì phá đúng tính chất khiến
+// baseline có giá trị - nó sẽ thành cách rửa sạch mọi bài mới viết ẩu. Nên nó
+// từ chối chạy khi file đã tồn tại: gieo được một lần, sau đó chỉ còn
+// --write-baseline, thứ chỉ biết bớt đi.
+if (process.argv.includes("--seed-thin-baseline")) {
+  if (existsSync(thinBaselinePath)) {
+    console.error(
+      `\n${path.basename(thinBaselinePath)} đã tồn tại. Baseline chỉ được gieo một lần; ` +
+        `từ đây chỉ dùng --write-baseline để bớt bài đã sửa xong.`
+    );
+    process.exit(1);
+  }
+  const seeded = [...thinBySlug.keys()].sort();
+  writeFileSync(
+    thinBaselinePath,
+    `${JSON.stringify(
+      {
+        _comment:
+          "Nợ tồn của cổng giải thích quiz mỏng trong scripts/audit-lesson-content.mjs. " +
+          "Bài nằm trong danh sách này có ít nhất một câu quiz mà phần giải thích ngắn hơn " +
+          "MIN_QUIZ_EXPLANATION_LEN và không mang phép tính - tức là nó nhắc lại đáp án chứ " +
+          "không nói vì sao các phương án kia sai. Danh sách CHỈ được co lại: bài không nằm " +
+          "ở đây bắt buộc phải qua cổng, nên một bài mới viết không thể thêm vào nợ này. " +
+          "Sửa xong một bài thì chạy `node scripts/audit-lesson-content.mjs --write-baseline` để bỏ nó ra.",
+        lessons: seeded,
+      },
+      null,
+      2
+    )}\n`
+  );
+  console.log(`\nĐã gieo baseline giải thích mỏng: ${seeded.length} bài.`);
+  process.exit(0);
+}
+
 // Shrinking the baseline is the routine follow-up to a rewrite batch, so it
 // gets a flag rather than a hand edit of 437 entries. It only ever removes
 // slugs: anything that still fails stays, and anything not already listed is
@@ -1068,6 +1210,17 @@ if (process.argv.includes("--write-baseline")) {
   console.log(
     `\nBaseline rewritten: ${baseline.size} -> ${kept.length} lessons ` +
       `(removed ${fixedButStillBaselined.length}).`
+  );
+
+  // Cùng quy tắc cho baseline giải thích mỏng: chỉ bớt, không bao giờ thêm.
+  const thinKept = [...thinBaseline].filter((slug) => !thinFixedButStillBaselined.includes(slug)).sort();
+  const thinCurrent = existsSync(thinBaselinePath)
+    ? JSON.parse(readFileSync(thinBaselinePath, "utf8"))
+    : {};
+  writeFileSync(thinBaselinePath, `${JSON.stringify({ ...thinCurrent, lessons: thinKept }, null, 2)}\n`);
+  console.log(
+    `Thin-explanation baseline rewritten: ${thinBaseline.size} -> ${thinKept.length} lessons ` +
+      `(removed ${thinFixedButStillBaselined.length}).`
   );
   process.exit(0);
 }
