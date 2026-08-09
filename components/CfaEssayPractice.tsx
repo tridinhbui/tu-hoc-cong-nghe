@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { CFA_ESSAYS, essayMaxPoints, type CfaEssay } from "@/lib/cfa-essays";
 import { useI18n } from "@/lib/i18n/context";
+import { mergeCfaEssays } from "@/lib/cfa-essays-i18n";
 import { format } from "@/lib/i18n";
 
 /**
@@ -100,7 +101,9 @@ function EssayCard({ essay }: { essay: CfaEssay }) {
 }
 
 export default function CfaEssayPractice() {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
+  // Nội dung đề nằm ngoài từ điển UI - xem lib/cfa-essays-i18n.
+  const essays = useMemo(() => mergeCfaEssays(CFA_ESSAYS, locale), [locale]);
   return (
     <section className="mt-6 rounded-[24px] border border-stone-200 bg-white p-5 dark:border-stone-800 dark:bg-stone-900">
       <h3 className="text-base font-extrabold text-stone-900 dark:text-stone-100">
@@ -110,7 +113,7 @@ export default function CfaEssayPractice() {
         {t.cfaEssay.sectionBlurb}
       </p>
       <div className="mt-4 grid gap-3 lg:grid-cols-2">
-        {CFA_ESSAYS.map((essay) => (
+        {essays.map((essay) => (
           <EssayCard key={essay.id} essay={essay} />
         ))}
       </div>

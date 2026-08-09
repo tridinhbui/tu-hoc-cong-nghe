@@ -118,6 +118,7 @@ const OVERLAY_COMPLETE = new Map([
   ["lib/case-studies-data.ts", "lib/__tests__/case-study-translations.test.ts"],
   ["lib/cfa-levels.ts", "lib/__tests__/cfa-levels-translations.test.ts"],
   ["lib/lesson-room-links.ts", "lib/__tests__/lesson-room-links-translations.test.ts"],
+  ["lib/cfa-essays.ts", "lib/__tests__/cfa-essays-translations.test.ts"],
   // Ba module dưới đây dịch qua TỪ ĐIỂN (`libData.*`) chứ không qua thư mục
   // `-i18n/`. Điều kiện để có mặt ở đây vẫn y hệt - một cổng bắt buộc đủ - nên
   // đường dịch khác nhau không đổi tiêu chuẩn.
