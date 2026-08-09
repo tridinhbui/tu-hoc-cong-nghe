@@ -95,15 +95,15 @@ export const FRM_CREDIT_CURRENT_LESSONS: Lesson[] = [
       },
     
     {
-      "question": "Điều gì xảy ra với bên bán bảo vệ khi tổ chức tham chiếu xảy ra sự kiện tín dụng?",
+      "question": "Trái phiếu tham chiếu mệnh giá 10 tỷ đồng, sau sự kiện tín dụng thu hồi được 40% mệnh giá. Bên bán bảo vệ phải trả bao nhiêu?",
       "options": [
-        "Phải bù phần chênh giữa mệnh giá và giá trị còn lại của trái phiếu",
-        "Phải hoàn lại toàn bộ số phí đã nhận cho bên mua bảo vệ",
-        "Phải mua lại toàn bộ trái phiếu của tổ chức tham chiếu theo mệnh giá gốc",
-        "Không phải làm gì nếu bên mua bảo vệ không nắm giữ trái phiếu tham chiếu"
+        "6 tỷ đồng (= 10 × (1 − 40%), đúng phần tổn thất)",
+        "4 tỷ đồng (= 10 × 40%, lấy nhầm phần thu hồi được)",
+        "10 tỷ đồng (= toàn bộ mệnh giá, bỏ qua phần thu hồi)",
+        "3,6 tỷ đồng (= 6 × 60%, trừ tỷ lệ thu hồi hai lần)"
       ],
       "correct": 0,
-      "explanation": "Khoản bồi thường bằng phần tổn thất, tức mệnh giá trừ tỷ lệ thu hồi. Đáng chú ý là phương án cuối cùng sai một cách quan trọng: hợp đồng không đòi bên mua phải sở hữu tài sản tham chiếu, và chính điều đó cho phép dùng nó để đầu cơ."
+      "explanation": "Khoản bồi thường bằng tổn thất thực: mệnh giá trừ giá trị thu hồi, tức 10 − 4 = 6 tỷ. Tỷ lệ thu hồi vì thế quyết định trực tiếp số tiền bên bán phải trả, mà nó chỉ xác định được sau khi sự kiện tín dụng đã xảy ra - lúc ký hợp đồng không ai biết con số này là bao nhiêu."
     }
     ],
     practicePrompt: {

@@ -906,15 +906,15 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
       "explanation": "Với trái phiếu có quyền mua lại hay quyền bán lại, dòng tiền tương lai thay đổi theo lãi suất - nên công thức dựa trên dòng tiền cố định không dùng được. Cách duy nhất là dịch lãi suất lên xuống rồi định giá lại, và đó chính là duration hiệu dụng."
     },
     {
-      "question": "Hạn chế chung của cả duration và convexity là gì?",
+      "question": "Một bàn giao dịch có vị thế mua DV01 18 triệu đồng và vị thế bán DV01 7 triệu đồng. Đường cong dịch song song lên 10 điểm cơ bản thì bàn lãi hay lỗ bao nhiêu?",
       "options": [
-        "Chúng giả định đường cong dịch chuyển song song",
-        "Chúng chỉ đúng với trái phiếu có kỳ hạn dưới mười năm",
-        "Chúng không tính được cho danh mục có nhiều loại trái phiếu khác nhau",
-        "Chúng đòi hỏi phải biết trước hướng thay đổi của lãi suất"
+        "Lỗ 110 triệu đồng (= (18 − 7) × 10 điểm cơ bản)",
+        "Lỗ 11 triệu đồng (= 18 − 7, quên nhân số điểm cơ bản)",
+        "Lỗ 250 triệu đồng (= (18 + 7) × 10, cộng cả vị thế bán)",
+        "Lãi 110 triệu đồng (= (18 − 7) × 10, đảo dấu khi lãi suất tăng)"
       ],
       "correct": 0,
-      "explanation": "Đường cong hiếm khi dịch song song - phần lớn biến động thật là đổi độ dốc và độ cong. Đó là lý do người quản lý danh mục trái phiếu phải bổ sung đo lường theo từng điểm kỳ hạn thay vì chỉ nhìn một con số duration."
+      "explanation": "DV01 quy độ nhạy về tiền cho mỗi điểm cơ bản, nên vị thế mua và vị thế bán cộng trừ thẳng được với nhau: 18 − 7 = 11 triệu mỗi điểm, nhân 10 điểm ra 110 triệu. Duration thì không cộng thẳng như vậy được vì nó là tỷ lệ phần trăm trên từng giá trị vị thế khác nhau."
     }
     ],
     practicePrompt: {
@@ -1076,26 +1076,26 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
       }
     ,
     {
-      "question": "Vì sao dựa hoàn toàn vào xếp hạng bên ngoài là rủi ro với một định chế?",
+      "question": "Hai trái phiếu cùng được xếp hạng BBB ở hai thời điểm cách nhau mười năm có cùng xác suất vỡ nợ không?",
       "options": [
-        "Vì xếp hạng phản ứng chậm và nhiều bên cùng bán khi nó bị hạ",
-        "Vì tổ chức xếp hạng không chịu trách nhiệm pháp lý",
-        "Vì xếp hạng bên ngoài không có sẵn cho phần lớn doanh nghiệp niêm yết",
-        "Vì phí trả cho tổ chức xếp hạng thường cao hơn chi phí xây mô hình nội bộ"
+        "Không, vì hạng là thứ tự tương đối chứ không gắn cứng vào một xác suất",
+        "Có, vì mỗi bậc xếp hạng được định nghĩa bằng đúng một xác suất cố định",
+        "Có, nếu hai trái phiếu cùng kỳ hạn và cùng ngành thì xác suất trùng nhau",
+        "Không, vì tổ chức xếp hạng phải công bố lại toàn bộ thang bậc mỗi năm"
       ],
       "correct": 0,
-      "explanation": "Xếp hạng thường đổi sau khi thị trường đã đổi, nên nó ít giá trị cảnh báo sớm. Tệ hơn, vì nhiều điều lệ quỹ gắn với ngưỡng xếp hạng, một lần hạ bậc kích hoạt bán tháo đồng loạt - biến đánh giá thành một cú sốc thanh khoản."
+      "explanation": "Thang xếp hạng sắp các tổ chức phát hành theo thứ tự rủi ro chứ không cam kết một con số tuyệt đối - tỷ lệ vỡ nợ thực tế của cùng một bậc thay đổi mạnh theo chu kỳ kinh tế. Đó chính là lý do ngân hàng phải ánh xạ từng hạng sang một PD ước lượng của riêng mình trước khi đưa vào mô hình vốn."
     },
     {
-      "question": "Trần quốc gia trong xếp hạng tín nhiệm nghĩa là gì?",
+      "question": "Doanh nghiệp muốn được xếp hạng vượt trần quốc gia thường phải chứng minh điều gì?",
       "options": [
-        "Doanh nghiệp thường không được xếp cao hơn xếp hạng của chính quốc gia đó",
-        "Mỗi quốc gia chỉ được cấp một số lượng xếp hạng bậc cao nhất định",
-        "Xếp hạng quốc gia là mức trần của lãi suất mà doanh nghiệp trong nước phải trả",
-        "Doanh nghiệp nước ngoài không được xếp hạng cao hơn doanh nghiệp trong nước"
+        "Nguồn thu và tài sản nằm ngoài lãnh thổ nên không bị chặn khi chuyển tiền",
+        "Vốn hoá của nó lớn hơn phần lớn doanh nghiệp trong nước cùng ngành",
+        "Đã được một tổ chức xếp hạng thứ hai đánh giá và cho cùng kết quả",
+        "Chỉ vay bằng nội tệ nên hoàn toàn không chịu rủi ro tỷ giá nào"
       ],
       "correct": 0,
-      "explanation": "Lập luận đằng sau là rủi ro chuyển đổi và chuyển tiền: chính phủ gặp khó có thể hạn chế chuyển ngoại tệ ra ngoài, và khi đó doanh nghiệp khoẻ mạnh vẫn không trả được nợ ngoại tệ. Có ngoại lệ, nhưng phải chứng minh nguồn thu nằm ngoài lãnh thổ."
+      "explanation": "Lập luận đằng sau trần quốc gia là rủi ro chuyển đổi và chuyển tiền: chính phủ gặp khó có thể hạn chế chuyển ngoại tệ ra ngoài, và khi đó doanh nghiệp khoẻ mạnh vẫn không trả được nợ ngoại tệ. Ngoại lệ tồn tại, nhưng phải chứng minh được dòng thu nằm ngoài tầm với của biện pháp đó."
     }
     ],
     practicePrompt: {
@@ -1461,15 +1461,15 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
       }
     ,
     {
-      "question": "Kiểm định sức chịu đựng khí hậu khác kiểm định truyền thống ở điểm nào?",
+      "question": "Nhà máy nằm trong vùng ngập lụt và nhà máy nhiệt điện than sắp chịu thuế carbon - hai khoản này thuộc loại rủi ro nào?",
       "options": [
-        "Chân trời thời gian dài hàng chục năm nên không thể giữ nguyên bảng cân đối hiện tại",
-        "Nó chỉ áp dụng cho danh mục cho vay chứ không cho danh mục đầu tư",
-        "Kết quả của nó không được dùng để xác định mức vốn phải trích lập",
-        "Nó dùng dữ liệu lịch sử về thiên tai trong nhiều thập kỷ thay vì dùng kịch bản giả định"
+        "Cái đầu là rủi ro vật lý, cái sau là rủi ro chuyển đổi",
+        "Cả hai đều là rủi ro vật lý vì cùng bắt nguồn từ khí hậu",
+        "Cái đầu là rủi ro chuyển đổi, cái sau là rủi ro vật lý",
+        "Cả hai đều là rủi ro chuyển đổi vì đều do chính sách gây ra"
       ],
       "correct": 0,
-      "explanation": "Kiểm định thông thường giả định bảng cân đối đứng yên trong một cú sốc vài quý - hợp lý ở khung thời gian đó. Với ba mươi năm, giả định đó vô nghĩa: cả danh mục lẫn mô hình kinh doanh của khách hàng đều sẽ khác, nên phải mô hình cả phản ứng thích nghi."
+      "explanation": "Rủi ro vật lý là thiệt hại do chính hiện tượng thời tiết gây ra - ngập, bão, hạn. Rủi ro chuyển đổi đến từ phản ứng của con người với khí hậu: thuế, quy định, công nghệ thay thế, thay đổi thị hiếu. Tách hai loại là bước đầu tiên vì chúng đánh vào những tài sản khác nhau và theo những nhịp khác nhau."
     },
     {
       "question": "Vì sao rủi ro chuyển đổi có thể xuất hiện đột ngột dù quá trình chuyển đổi diễn ra chậm?",
@@ -1657,26 +1657,26 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
       }
     ,
     {
-      "question": "Vì sao lãi suất tham chiếu mới cần khoản chênh lệch điều chỉnh khi thay cho LIBOR?",
+      "question": "Vì sao khoản chênh lệch điều chỉnh được chốt cứng một lần thay vì thả nổi theo thị trường?",
       "options": [
-        "Vì LIBOR chứa phần bù rủi ro tín dụng, lãi suất mới thì không",
-        "Vì lãi suất mới được công bố theo ngày còn LIBOR công bố theo kỳ hạn",
-        "Vì hợp đồng cũ ghi bằng LIBOR nên phải quy đổi theo tỷ giá tại ngày chuyển",
-        "Vì cơ quan quản lý yêu cầu mọi hợp đồng chuyển đổi phải có khoản bù cho bên vay"
+        "Vì một khoản bù thả nổi sẽ tái tạo lại đúng thứ vừa bị loại bỏ",
+        "Vì trung vị năm năm luôn cho kết quả cao hơn mọi cách tính khác",
+        "Vì cơ quan quản lý cấm mọi chỉ số tài chính thay đổi sau ngày công bố",
+        "Vì các bên trong hợp đồng cũ đã thoả thuận trước mức bù ngay từ ngày ký"
       ],
       "correct": 0,
-      "explanation": "LIBOR là lãi suất vay không bảo đảm giữa các ngân hàng, nên nó gồm cả rủi ro tín dụng của chính ngân hàng. Lãi suất tham chiếu mới dựa trên giao dịch có bảo đảm nên gần như phi rủi ro - chuyển thẳng không có khoản bù thì một bên trong mọi hợp đồng cũ sẽ thiệt."
+      "explanation": "Khoản bù được tính bằng trung vị chênh lệch lịch sử năm năm rồi chốt cứng vào tháng 3/2021 - với kỳ hạn ba tháng, con số đó vào khoảng 26 điểm cơ bản. Để nó chạy theo thị trường thì hợp đồng lại treo vào một con số ước tính biến động, đúng thứ mà cuộc chuyển đổi này sinh ra để bỏ đi."
     },
     {
-      "question": "Bài học chung của cuộc chuyển đổi này với quản trị rủi ro là gì?",
+      "question": "Khi LIBOR ngừng công bố vĩnh viễn, nhóm hợp đồng nào chịu rủi ro lớn nhất?",
       "options": [
-        "Một chỉ số hạ tầng dùng chung có thể trở thành rủi ro hệ thống khi nền của nó rỗng dần",
-        "Các hợp đồng tài chính nên tránh dùng lãi suất thả nổi để không phải chuyển đổi",
-        "Cơ quan quản lý nên tự công bố lãi suất tham chiếu thay vì để thị trường tự hình thành",
-        "Rủi ro chuyển đổi chỉ ảnh hưởng tới hợp đồng phái sinh, không tới hợp đồng vay"
+        "Hợp đồng dài hạn chỉ có điều khoản dự phòng viết cho gián đoạn vài ngày",
+        "Hợp đồng phái sinh mới ký sau khi lãi suất tham chiếu mới đã có hiệu lực",
+        "Hợp đồng vay ngắn hạn đáo hạn trước ngày LIBOR chính thức ngừng công bố",
+        "Hợp đồng ghi lãi suất cố định suốt kỳ hạn nên không tham chiếu chỉ số nào"
       ],
       "correct": 0,
-      "explanation": "LIBOR chống đỡ hàng trăm nghìn tỷ đô hợp đồng trong khi thị trường thật đằng sau nó teo lại gần như không còn giao dịch. Không ai sở hữu rủi ro đó, và nó chỉ lộ ra khi bê bối thao túng buộc phải nhìn kỹ."
+      "explanation": "Điều khoản dự phòng của phần lớn hợp đồng cũ được viết cho tình huống LIBOR gián đoạn vài ngày, không phải cho việc nó biến mất hẳn. Không sửa kịp thì hợp đồng hoặc bị cố định lãi ở mức công bố cuối cùng, hoặc không xác định được lãi - và cả hai đều là tranh chấp."
     }
     ],
     practicePrompt: {
@@ -2226,15 +2226,15 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
       "explanation": "Phân loại giữ đến đáo hạn cho phép không ghi nhận biến động giá - hợp lý nếu thật sự giữ được tới cuối. Nhưng khi người gửi rút hàng loạt, ngân hàng buộc bán trước hạn, và phân loại kế toán không cứu được điều đó."
     },
     {
-      "question": "Bài học về tốc độ mà đợt bất ổn 2023 để lại là gì?",
+      "question": "Danh mục trái phiếu 100.000 tỷ có duration 6. Lãi suất tăng 300 điểm cơ bản thì lỗ chưa thực hiện xấp xỉ bao nhiêu?",
       "options": [
-        "Giả định dòng rút trải ba mươi ngày đã lỗi thời",
-        "Cơ quan quản lý cần ba ngày để can thiệp",
-        "Tin lan trên mạng xã hội chỉ hại các ngân hàng nhỏ",
-        "Ngân hàng cần tăng vốn để bù tốc độ rút"
+        "18.000 tỷ (= 100.000 × 6 × 3%, quy tắc duration)",
+        "6.000 tỷ (= 100.000 × 6%, dùng duration thành phần trăm)",
+        "1.800 tỷ (= 100.000 × 6 × 0,3%, đọc nhầm điểm cơ bản)",
+        "3.000 tỷ (= 100.000 × 3%, bỏ qua duration của danh mục)"
       ],
       "correct": 0,
-      "explanation": "Chuẩn thanh khoản được xây trên hình dung về hàng người xếp trước quầy. Khi chuyển tiền chỉ mất vài thao tác và tin lan trong vài giờ, cả tháng đệm bị nén thành một buổi chiều - và không lượng tài sản thanh khoản nào bán kịp."
+      "explanation": "Duration nhân với mức thay đổi lãi suất cho phần trăm mất giá: 6 × 3% = 18%, tức 18.000 tỷ trên danh mục 100.000 tỷ. Con số này không cần một khoản nợ xấu nào để xuất hiện - đó chính là điểm khác 2008, và cũng là lý do soi chất lượng tín dụng của danh mục sẽ không thấy gì bất thường."
     }
     ],
     practicePrompt: {

@@ -96,15 +96,15 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
       },
     
     {
-      "question": "Rủi ro lớn nhất khi chuyển sang lập kế hoạch theo yếu tố dẫn dắt là gì?",
+      "question": "Doanh thu tách thành số cửa hàng × lượt khách mỗi cửa hàng × giá trị đơn. Lượt khách giảm 5%, giá trị đơn tăng 4%, số cửa hàng giữ nguyên - doanh thu đổi bao nhiêu?",
       "options": [
-        "Tách quá nhiều tầng làm mô hình cồng kềnh mà không thêm thông tin",
-        "Các yếu tố dẫn dắt thay đổi theo mùa nên kế hoạch phải lập lại hằng quý",
-        "Cách này đòi hỏi phần mềm chuyên dụng mà doanh nghiệp nhỏ không có",
-        "Kết quả thường lệch xa hơn cách cũ"
+        "Giảm 1,2% (= 0,95 × 1,04 − 1, nhân hai tỷ lệ)",
+        "Giảm 1% (= 5% − 4%, trừ thẳng hai tỷ lệ)",
+        "Giảm 9% (= 5% + 4%, cộng hai thay đổi lại)",
+        "Tăng 1,2% (= 0,95 × 1,04 − 1, đảo dấu kết quả)"
       ],
       "correct": 0,
-      "explanation": "Mục đích của việc tách là để chất vấn được từng vế. Tách tới tầng thứ năm thì không ai còn kiểm chứng nổi biến nào, và bạn quay lại đúng chỗ xuất phát - chỉ khác là mất thêm ba ngày dựng bảng."
+      "explanation": "Các yếu tố dẫn dắt nhân với nhau chứ không cộng, nên phần trăm cũng phải nhân: 0,95 × 1,04 = 0,988, tức giảm 1,2%. Đây cũng là chỗ cách lập kế hoạch này trả công: biết doanh thu hụt 1,2% là vì lượt khách chứ không phải vì giá, nên biết phải sửa cái gì."
     }
     ],
     keyTakeaways: [
@@ -800,15 +800,15 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
       },
     
     {
-      "question": "Vì sao nên báo cáo lợi nhuận bộ phận cả trước và sau khi phân bổ chi phí chung?",
+      "question": "Vì sao nên công khai tiêu thức phân bổ cho các bộ phận thay vì chỉ gửi con số cuối cùng?",
       "options": [
-        "Vì phần trước phân bổ mới đo được điều bộ phận thực sự kiểm soát",
-        "Vì chuẩn mực kế toán yêu cầu trình bày hai mức lợi nhuận cho mỗi bộ phận",
-        "Vì con số sau phân bổ luôn thấp hơn nên không dùng để so sánh được",
-        "Vì hai con số dùng cho hai kỳ khác nhau"
+        "Vì phần lớn tranh cãi đến từ chỗ không ai biết con số được tính ra sao",
+        "Vì chuẩn mực kế toán bắt buộc thuyết minh tiêu thức cho từng bộ phận",
+        "Vì công khai tiêu thức sẽ làm tổng chi phí chung được phân bổ giảm xuống",
+        "Vì mỗi bộ phận có quyền chọn tiêu thức có lợi nhất cho chính mình"
       ],
       "correct": 0,
-      "explanation": "Người phụ trách một mảng không quyết được tiền thuê trụ sở hay chi phí phòng pháp chế. Chấm họ trên con số đã gánh những khoản đó là chấm trên thứ họ không đổi được - còn bỏ hẳn phần phân bổ thì lại không ai thấy chi phí chung đang phình ra."
+      "explanation": "Người phụ trách một mảng phản đối con số phân bổ không phải vì con số to, mà vì họ không kiểm tra được nó đến từ đâu. Đưa tiêu thức ra thì tranh luận chuyển từ \"tôi không chịu\" sang \"số mét vuông này tính sai\" - loại tranh luận giải quyết được, và đôi khi phát hiện tiêu thức sai thật."
     }
     ],
     keyTakeaways: [

@@ -293,10 +293,10 @@ export const MA_EXECUTION_LESSONS: Lesson[] = [
       question:
         "Giá mua vốn chủ 300 tỷ, nợ cũ phải trả 100 tỷ, phí 15 tỷ. Bên bán có 40 tỷ tiền mặt. Bên mua vay được 250 tỷ. Cần góp thêm bao nhiêu vốn?",
       options: [
-        "125 tỷ",
-        "125 tỷ",
-        "165 tỷ",
-        "50 tỷ",
+        "110 tỷ (= 400 − 290, quên cộng phí 15 tỷ vào cột sử dụng)",
+        "125 tỷ (= 415 − 250 nợ vay − 40 tiền mặt của bên bán)",
+        "165 tỷ (= 415 − 250, quên mất 40 tỷ tiền mặt sẵn có)",
+        "50 tỷ (= 300 − 250, chỉ đối ứng giá mua với nợ vay mới)",
       ],
       correct: 1,
       explanation:
@@ -616,15 +616,15 @@ export const MA_EXECUTION_LESSONS: Lesson[] = [
       },
     
     {
-      "question": "Vì sao bộ báo cáo tài chính lập cho một mảng sắp bán được coi là ước tính chứ không phải lịch sử?",
+      "question": "Mảng đang được phân bổ 30 tỷ chi phí chung mỗi năm, nhưng tự vận hành các chức năng đó tốn 45 tỷ. EBITDA đứng riêng của mảng ra sao?",
       "options": [
-        "Vì phải giả định chi phí của mảng đó nếu nó từng đứng riêng",
-        "Vì số liệu của mảng đó chưa từng được kiểm toán độc lập trước đây",
-        "Vì doanh thu nội bộ giữa các mảng không được ghi nhận trong tập đoàn",
-        "Vì kỳ báo cáo của mảng đó không trùng với kỳ báo cáo của tập đoàn"
+        "Thấp hơn con số nội bộ khoảng 15 tỷ mỗi năm",
+        "Cao hơn con số nội bộ khoảng 15 tỷ mỗi năm nhờ tự chủ",
+        "Không đổi vì phân bổ chỉ là bút toán nội bộ giữa các mảng",
+        "Thấp hơn đúng 45 tỷ vì phần phân bổ cũ không còn được tính"
       ],
       "correct": 0,
-      "explanation": "Mảng đó chưa bao giờ tự trả tiền cho phòng nhân sự, hệ thống công nghệ hay quan hệ ngân hàng - nó dùng ké của tập đoàn. Dựng lại chi phí độc lập là một chuỗi giả định, và bên mua sẽ chất vấn từng giả định một."
+      "explanation": "Chi phí đứng riêng gần như luôn cao hơn chi phí phân bổ nội bộ: mảng đó chưa bao giờ tự trả tiền cho phòng nhân sự, hệ thống công nghệ hay quan hệ ngân hàng. Chênh lệch 45 − 30 = 15 tỷ là phần bên mua sẽ trừ thẳng vào định giá, và cũng là phần bị chất vấn kỹ nhất trong thẩm định."
     }
     ],
     keyTakeaways: [
@@ -945,15 +945,15 @@ export const MA_EXECUTION_LESSONS: Lesson[] = [
       },
     
     {
-      "question": "Giới hạn quan trọng nhất của một ý kiến về tính công bằng là gì?",
+      "question": "Có ý kiến về tính công bằng thì hội đồng quản trị có được miễn trách nhiệm khi bị cổ đông kiện không?",
       "options": [
-        "Nó chỉ nói giá nằm trong khoảng hợp lý, không nói đây là giá tốt nhất",
-        "Nó chỉ có hiệu lực trong vòng ba mươi ngày kể từ ngày phát hành",
-        "Nó không được công bố cho cổ đông mà chỉ dành cho hội đồng quản trị",
-        "Nó chỉ đánh giá phần thanh toán bằng tiền mặt"
+        "Không, nó là bằng chứng về quy trình cẩn trọng chứ không phải lá chắn",
+        "Có, nếu ý kiến được phát hành trước ngày hội đồng chính thức bỏ phiếu",
+        "Có, vì trách nhiệm được chuyển sang tổ chức phát hành ý kiến đó",
+        "Không, vì cổ đông không có quyền kiện quyết định của hội đồng"
       ],
       "correct": 0,
-      "explanation": "Văn bản này hay bị hiểu quá lên. Nó không khẳng định thương vụ nên làm, không khẳng định không còn bên nào trả cao hơn, và không thay cho thẩm định - nó chỉ nói mức giá này nằm trong khoảng hợp lý xét về tài chính, tại thời điểm đó."
+      "explanation": "Nghĩa vụ cẩn trọng của hội đồng vẫn là của hội đồng - một tờ ý kiến không mua đứt được nó. Thứ được xem xét là cả quy trình: có chào mời bên khác không, có xử lý xung đột lợi ích của tư vấn không, có cân nhắc các phương án ngoài thương vụ này không. Ý kiến công bằng là một mắt xích trong đó."
     }
     ],
     keyTakeaways: [

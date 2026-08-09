@@ -93,15 +93,15 @@ export const PRIVATE_MARKETS_LESSONS: Lesson[] = [
       },
     
     {
-      "question": "Vì sao thẩm định nhà quản lý quỹ lại quan trọng hơn thẩm định một thương vụ cụ thể?",
+      "question": "Ngày kết thúc xác định của quỹ ảnh hưởng thế nào tới giá bán các khoản đầu tư cuối vòng đời?",
       "options": [
-        "Vì nhà đầu tư cam kết vốn trước khi biết quỹ sẽ mua những gì",
-        "Vì nhà đầu tư có quyền phủ quyết từng thương vụ trong suốt vòng đời quỹ",
-        "Vì các thương vụ đầu tiên thường quyết định toàn bộ hiệu suất của quỹ",
-        "Vì nhà quản lý quỹ chịu trách nhiệm pháp lý"
+        "Bên mua biết quỹ buộc phải bán nên có lợi thế đàm phán giá",
+        "Quỹ được quyền gia hạn vô thời hạn nên áp lực giá gần như không có",
+        "Giá thường cao hơn vì quỹ đã có nhiều năm cải thiện doanh nghiệp",
+        "Không ảnh hưởng vì giá bán chỉ phụ thuộc kết quả kinh doanh của mảng"
       ],
       "correct": 0,
-      "explanation": "Bạn ký cam kết mười năm cho một danh mục chưa tồn tại. Thứ duy nhất thẩm định được tại thời điểm đó là con người: cách họ tìm thương vụ, cách họ xử lý khoản đầu tư hỏng, và mức độ nhất quán giữa chiến lược đã nói với những gì họ thực sự làm ở quỹ trước."
+      "explanation": "Vòng đời cố định biến quỹ thành người bán theo lịch chứ không theo cơ hội, và điều đó không giấu được: đối tác đọc năm thành lập là biết cửa sổ còn lại bao lâu. Đây là mặt trái của chính cấu trúc tạo kỷ luật thoái vốn - nó cũng tạo ra một thời điểm mà bên kia bàn biết bạn phải bán."
     }
     ],
     keyTakeaways: [

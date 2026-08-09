@@ -3020,15 +3020,15 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       "explanation": "Mức chiết khấu là ước lượng về phần giá có thể mất trong khoảng từ lúc bên vay vỡ nợ tới lúc bán xong. Hai bên cho vay khác nhau về kinh nghiệm thanh lý, về khả năng giữ tài sản chờ giá, nên ra hai con số khác nhau cho cùng một tài sản."
     },
     {
-      "question": "Vì sao tái sử dụng tài sản bảo đảm làm tăng rủi ro hệ thống?",
+      "question": "Danh mục trái phiếu 500 tỷ đang được vay với haircut 8%. Haircut bị nâng lên 15%, bên vay phải nộp thêm bao nhiêu tài sản bảo đảm?",
       "options": [
-        "Vì cùng một tài sản đứng sau nhiều nghĩa vụ, nên một mắt xích đứt kéo cả chuỗi",
-        "Vì tài sản được tái sử dụng sẽ mất tư cách là tài sản thanh khoản chất lượng cao",
-        "Vì việc tái sử dụng làm tăng mức chiết khấu áp cho toàn bộ thị trường",
-        "Vì bên sở hữu gốc mất quyền đòi lại tài sản khi có tranh chấp xảy ra"
+        "35 tỷ (= 500 × (15% − 8%), phần chiết khấu tăng thêm)",
+        "7 tỷ (= 15% − 8%, đọc chênh lệch phần trăm thành tiền)",
+        "75 tỷ (= 500 × 15%, tính lại toàn bộ mức chiết khấu mới)",
+        "115 tỷ (= 500 × (15% + 8%), cộng dồn hai mức haircut)"
       ],
       "correct": 0,
-      "explanation": "Một trái phiếu được thế chấp, rồi bên nhận đem thế chấp tiếp, tạo ra một chuỗi các bên cùng tin rằng mình có tài sản bảo đảm. Chuỗi càng dài thì việc lần ra ai thực sự nắm gì càng chậm - và trong khủng hoảng, sự chậm đó là chính vấn đề."
+      "explanation": "Với haircut 8%, 500 tỷ tài sản chỉ vay được 460 tỷ; ở mức 15% thì chỉ còn 425 tỷ. Muốn giữ nguyên khoản vay, bên vay phải nộp thêm 35 tỷ - đúng vào lúc thị trường căng thẳng và tài sản chưa bị ràng buộc đang ít nhất. Đó là cơ chế biến một tham số kỹ thuật thành vòng khuếch đại tự củng cố."
     }
     ],
     practicePrompt: {
@@ -3566,15 +3566,15 @@ export const FRM_CORE_GAPS_LESSONS: Lesson[] = [
       "explanation": "Toàn bộ phần quyết định mức vốn nằm ở vùng có ít quan sát nhất - đó là nghịch lý trung tâm của đo lường rủi ro. Một sự kiện cực đoan mới xuất hiện có thể đổi hẳn tham số, và điều đó không phải lỗi của phương pháp mà là bản chất của dữ liệu."
     },
     {
-      "question": "Kiểm định độ khớp sau khi ước lượng tham số cần chú ý nhất điều gì trong ứng dụng rủi ro?",
+      "question": "Ước lượng hợp lý cực đại chọn bộ tham số theo tiêu chí nào?",
       "options": [
-        "Mức khớp ở vùng đuôi, vì đó là vùng quyết định kết quả đo rủi ro",
-        "Mức khớp ở vùng thân, vì phần lớn quan sát nằm ở đó",
-        "Giá trị của hàm hợp lý tại điểm cực đại so với các mô hình khác",
-        "Số tham số của mô hình, vì mô hình ít tham số luôn đáng tin hơn"
+        "Bộ làm cho chính dữ liệu đã quan sát trở nên dễ xảy ra nhất",
+        "Bộ làm cho sai số bình phương giữa mô hình và dữ liệu nhỏ nhất",
+        "Bộ khiến moment lý thuyết bằng đúng moment tính từ mẫu quan sát",
+        "Bộ nằm giữa khoảng tin cậy 95% của mọi tham số được thử qua"
       ],
       "correct": 0,
-      "explanation": "Một phân phối khớp rất đẹp ở vùng thân vẫn có thể sai hoàn toàn ở vùng đuôi, và các kiểm định tổng quát bị vùng thân đông đảo chi phối nên không phát hiện điều đó. Với mục đích đo rủi ro, phần khớp duy nhất đáng quan tâm lại là phần ít dữ liệu nhất."
+      "explanation": "MLE lật ngược câu hỏi: thay vì hỏi dữ liệu nói gì về tham số, nó hỏi bộ tham số nào làm cho đúng chuỗi số này trở nên ít bất ngờ nhất. Phương án thứ ba mô tả phương pháp moment - một cách khác, cho kết quả khác, và thường lệch nhiều nhất đúng ở vùng đuôi."
     }
     ],
     practicePrompt: {

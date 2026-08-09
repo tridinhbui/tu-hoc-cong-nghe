@@ -267,15 +267,15 @@ export const DATA_TOOLS_LESSONS: Lesson[] = [
       },
     
     {
-      "question": "Ghép hai bảng theo khóa chung có rủi ro nào mà bảng tính không cảnh báo?",
+      "question": "Cột ngày bị đọc thành chuỗi ký tự thay vì kiểu ngày. Lỗi biểu hiện ra sao?",
       "options": [
-        "Khóa bị lặp ở bảng bên phải làm số dòng nhân lên",
-        "Hai bảng có số dòng khác nhau nên phần dư sẽ bị cắt bỏ",
-        "Các cột trùng tên giữa hai bảng sẽ bị ghi đè lên nhau",
-        "Thứ tự các dòng sau khi ghép không còn giống bảng gốc"
+        "Sắp xếp và lọc chạy theo thứ tự chữ chứ không theo thứ tự thời gian",
+        "Chương trình dừng lại và báo lỗi kiểu dữ liệu ngay khi đọc tệp vào",
+        "Toàn bộ cột bị thay bằng giá trị rỗng nên nhìn qua là phát hiện được",
+        "Chỉ phép tính khoảng cách giữa hai ngày bị sai, còn sắp xếp vẫn đúng"
       ],
       "correct": 0,
-      "explanation": "Đây là lỗi im lặng kinh điển: kết quả vẫn ra một bảng trông bình thường, chỉ có tổng doanh thu bỗng lớn hơn thực tế. Cách kiểm tra rẻ nhất là đếm số dòng trước và sau khi ghép - lệch là có nhân bản."
+      "explanation": "So chuỗi là so từng ký tự từ trái sang, nên \"02/01/2023\" đứng trước \"11/12/2019\" - đúng thứ tự chữ, sai thứ tự thời gian. Không có thông báo lỗi nào vì với máy thì đây là một phép so hợp lệ trên hai chuỗi, và mọi thứ tính tiếp sau đó đều kế thừa cái sai im lặng ấy."
     }
     ],
     keyTakeaways: [
@@ -426,15 +426,15 @@ export const DATA_TOOLS_LESSONS: Lesson[] = [
       },
     
     {
-      "question": "Vì sao điền giá trị trung bình vào các ô thiếu lại là cách xử lý rủi ro?",
+      "question": "Cột thu nhập bị trống chủ yếu ở nhóm khách hàng thu nhập cao. Xoá các dòng đó gây hậu quả gì?",
       "options": [
-        "Vì nó làm giảm độ phân tán và tạo cảm giác dữ liệu chắc chắn hơn thực tế",
-        "Vì giá trị trung bình thay đổi mỗi khi có thêm dòng dữ liệu mới",
-        "Vì cách này chỉ áp dụng được cho các cột chứa số chứ không cho cột văn bản",
-        "Vì sau đó không phân biệt được ô nào là gốc"
+        "Mẫu còn lại lệch xuống dưới, nên mọi kết luận rút ra đều lệch theo",
+        "Chỉ làm giảm cỡ mẫu, còn hình dạng phân phối thu nhập giữ nguyên",
+        "Làm tăng độ phân tán giả tạo vì phần đuôi trên bị nhân thêm trọng số",
+        "Không đổi kết luận nếu số dòng bị xoá dưới 5% tổng số quan sát"
       ],
       "correct": 0,
-      "explanation": "Điền trung bình kéo mọi ô thiếu về đúng tâm, nên độ lệch chuẩn co lại và mọi khoảng tin cậy tính sau đó đều hẹp hơn sự thật. Câu hỏi phải trả lời trước là dữ liệu thiếu ngẫu nhiên hay thiếu có hệ thống - hai trường hợp đòi hai cách xử lý khác hẳn."
+      "explanation": "Đây là khác biệt giữa thiếu ngẫu nhiên và thiếu có hệ thống. Thiếu ngẫu nhiên thì xoá đi chỉ mất cỡ mẫu; thiếu có hệ thống thì việc xoá chính là việc lọc bỏ một nhóm - ở đây là nhóm thu nhập cao, nên thu nhập trung bình tính ra thấp hơn thực tế và không có dấu hiệu nào trong dữ liệu báo cho biết điều đó."
     }
     ],
     keyTakeaways: [

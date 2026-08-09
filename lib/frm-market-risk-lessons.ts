@@ -99,15 +99,15 @@ export const FRM_MARKET_RISK_LESSONS: Lesson[] = [
       },
     
     {
-      "question": "Cửa sổ dữ liệu dài hơn ảnh hưởng thế nào tới VaR tính bằng mô phỏng lịch sử?",
+      "question": "Cùng một danh mục, ba phương pháp VaR cho ba con số khác nhau. Nên đọc điều đó thế nào?",
       "options": [
-        "Ước lượng ổn định hơn nhưng phản ứng chậm hơn với biến động mới",
-        "Ước lượng nhạy hơn với các cú sốc vừa xảy ra trong thị trường",
-        "Ước lượng luôn cho ra mức rủi ro cao hơn so với cửa sổ ngắn",
-        "Ước lượng không đổi vì mô phỏng lịch sử không phụ thuộc độ dài cửa sổ"
+        "Mỗi con số là hệ quả của giả định riêng, nên phải nói rõ đang dùng cách nào",
+        "Con số cao nhất là con số đúng, hai con số kia đã bỏ sót phần rủi ro",
+        "Trung bình của ba con số là ước lượng đáng tin nhất cho danh mục đó",
+        "Chênh lệch chỉ đến từ sai số tính toán nên chọn cách nào cũng như nhau"
       ],
       "correct": 0,
-      "explanation": "Đây là đánh đổi cơ bản của mọi ước lượng dựa trên cửa sổ trượt. Cửa sổ dài làm con số ít nhảy nhưng cũng làm mô hình chậm nhận ra thị trường vừa đổi chế độ - và cửa sổ ngắn thì ngược lại, nhạy nhưng ồn."
+      "explanation": "Không có con số nào là VaR \"thật\" để hai con số kia sai lệch so với nó. Tham số giả định phân phối chuẩn, mô phỏng lịch sử giả định tương lai giống cửa sổ dữ liệu, Monte Carlo giả định phân phối do người dựng chọn. Báo cáo một con số VaR mà không kèm phương pháp là báo cáo một nửa thông tin."
     }
     ],
     keyTakeaways: [
@@ -437,15 +437,15 @@ export const FRM_MARKET_RISK_LESSONS: Lesson[] = [
       },
     
     {
-      "question": "Nhược điểm chính của Expected Shortfall so với VaR là gì?",
+      "question": "Trong 100 kịch bản, năm kịch bản lỗ nặng nhất lần lượt là 8, 9, 10, 12 và 21 tỷ đồng. VaR 95% và ES 95% bằng bao nhiêu?",
       "options": [
-        "Nó khó kiểm định hậu nghiệm hơn vì phụ thuộc vào vùng đuôi ít quan sát",
-        "Nó không đo được mức lỗ trong các kịch bản cực đoan của thị trường",
-        "Nó vi phạm tính cộng gộp nên không dùng được cho danh mục lớn",
-        "Nó chỉ áp dụng được cho danh mục cổ phiếu chứ không cho phái sinh"
+        "VaR 8 tỷ và ES 12 tỷ (trung bình của năm kịch bản đuôi)",
+        "VaR 21 tỷ và ES 12 tỷ (lấy kịch bản xấu nhất làm VaR)",
+        "VaR 8 tỷ và ES 21 tỷ (lấy lỗ lớn nhất thay cho trung bình)",
+        "VaR 12 tỷ và ES 8 tỷ (đảo vai trò của hai thước đo)"
       ],
       "correct": 0,
-      "explanation": "VaR chỉ cần đếm số lần bị vượt nên kiểm định rất gọn. Expected Shortfall là trung bình của phần đuôi, mà phần đuôi thì theo định nghĩa có rất ít quan sát - nên đánh giá xem con số đó đúng hay sai khó hơn hẳn."
+      "explanation": "VaR 95% là ngưỡng bị vượt trong 5% kịch bản xấu nhất, tức 8 tỷ. ES 95% là trung bình của chính năm kịch bản đó: (8 + 9 + 10 + 12 + 21) / 5 = 12 tỷ. Hai danh mục có thể cùng VaR 8 tỷ trong khi ES chênh nhau rất xa - phần chênh đó nằm đúng ở chỗ VaR không nhìn tới."
     }
     ],
     keyTakeaways: [
@@ -607,15 +607,15 @@ export const FRM_MARKET_RISK_LESSONS: Lesson[] = [
       },
     
     {
-      "question": "Vì sao dự báo biến động nhiều kỳ của mô hình GARCH hội tụ về một mức cố định?",
+      "question": "Biến động một ngày ước lượng 1,2%. Quy ra mười ngày bằng quy tắc căn bậc hai cho kết quả nào?",
       "options": [
-        "Vì mô hình có thành phần kéo biến động về mức trung bình dài hạn",
-        "Vì sai số dự báo tích lũy làm mọi kịch bản trở nên giống nhau",
-        "Vì tham số của mô hình được ước lượng lại sau mỗi kỳ dự báo",
-        "Vì biến động thực tế của thị trường luôn ổn định trong dài hạn"
+        "3,8% (= 1,2 × √10), nhưng sai khi biến động đang lệch xa mức dài hạn",
+        "12% (= 1,2 × 10, nhân thẳng số ngày thay vì nhân với căn)",
+        "0,38% (= 1,2 / √10, chia thay vì nhân với căn số ngày)",
+        "3,8% (= 1,2 × √10), và luôn dùng được vì quy tắc không kèm giả định"
       ],
       "correct": 0,
-      "explanation": "Đây chính là điểm GARCH khác EWMA: nó có một mức biến động dài hạn được ước lượng từ dữ liệu, và mọi dự báo đều bị kéo dần về đó. EWMA không có neo này nên dự báo nhiều kỳ của nó phẳng ở mức hiện tại."
+      "explanation": "Quy tắc căn bậc hai giả định biến động mỗi ngày độc lập và dao động quanh một mức ổn định. Ngay sau một cú sốc, biến động hôm nay cao hơn hẳn mức dài hạn và sẽ tự kéo về - nhân thẳng với căn mười lúc đó là phóng đại. Chính GARCH cho biết mức dài hạn ấy ở đâu, nên nó cũng là công cụ để biết khi nào quy tắc này còn dùng được."
     }
     ],
     keyTakeaways: [

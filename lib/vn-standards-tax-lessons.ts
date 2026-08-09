@@ -266,15 +266,15 @@ export const VN_STANDARDS_TAX_LESSONS: Lesson[] = [
       },
     
     {
-      "question": "Doanh nghiệp báo lợi nhuận tăng vọt trong năm chuyển đổi chuẩn mực. Cách đọc đúng là gì?",
+      "question": "Hai doanh nghiệp cùng ngành, một đã áp dụng IFRS còn một vẫn theo VAS. So sánh hệ số định giá của họ thế nào?",
       "options": [
-        "Kiểm tra bảng đối chiếu xem phần tăng đến từ thay đổi ghi nhận hay từ kinh doanh",
-        "Coi đây là tín hiệu tích cực vì chuẩn mực mới phản ánh đúng giá trị hơn",
-        "Bỏ qua năm chuyển đổi và chỉ so sánh từ năm thứ hai trở đi",
-        "Điều chỉnh lợi nhuận về mức trung bình của ba năm trước khi chuyển đổi"
+        "Phải trình bày lại một bên theo cùng chuẩn trước khi đặt cạnh nhau",
+        "So trực tiếp được vì cả hai đều phản ánh cùng một hoạt động kinh doanh",
+        "Lấy trung bình hai hệ số để triệt tiêu khác biệt giữa hai chuẩn mực",
+        "Chỉ so được các hệ số dựa trên dòng tiền, còn hệ số trên lợi nhuận thì không"
       ],
       "correct": 0,
-      "explanation": "Chuyển đổi chuẩn mực không tạo ra một đồng tiền nào, nó chỉ đổi cách ghi. Bảng đối chiếu bắt buộc phải công bố chính là nơi tách phần do ghi nhận khỏi phần do hoạt động - và đó là tài liệu giá trị nhất của cả năm chuyển đổi."
+      "explanation": "Nợ thuê nằm trên bảng cân đối của bên này mà không nằm trên bảng của bên kia, nên EV, EBITDA và tỷ lệ đòn bẩy của hai bên đang đo hai thứ khác nhau. Phương án cuối gần đúng nhưng vẫn sai: hoạt động kinh doanh giống nhau, còn cách ghi thì không - và chính cách ghi là thứ đi vào mọi hệ số."
     }
     ],
     keyTakeaways: [

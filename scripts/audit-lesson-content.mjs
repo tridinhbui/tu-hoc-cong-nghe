@@ -467,6 +467,50 @@ const hollowDistractors = [];
 /** Câu mà ĐÁP ÁN ĐÚNG là khoảng trống - xem isHollowCorrectAnswer. */
 const hollowCorrect = [];
 
+// ── Hai câu hỏi giống nhau trong CÙNG một bài ──────────────────────────────
+//
+// Tìm ra bằng cách đọc, không bằng bộ kiểm: bảy bài hỏi đúng một câu hai lần
+// với hai bộ phương án khác nhau. Dấu vết trong source nói rõ vì sao - các
+// câu trùng đều được NỐI THÊM vào cuối mảng bằng cú pháp JSON ("question":)
+// khác hẳn phần gốc (question:), tức một lô bổ sung cho đủ MIN_QUIZ_COUNT mà
+// không đọc lại bài đã hỏi gì.
+//
+// Vì sao đáng gác: quiz bài học phần lớn đúng 5 câu - bằng sàn. Một câu lặp
+// kéo số câu THẬT xuống 4, và ở frm-xep-hang-tin-nhiem-noi-bo-va-ben-ngoai là
+// xuống 3. Người học trả lời cùng một ý hai lần rồi nhận một điểm số nói rằng
+// họ đã được kiểm tra năm lần.
+//
+// Hai phép đo, hai mức xử lý khác nhau, và sự khác nhau đó là có chủ ý:
+//
+//   - TRÙNG TUYỆT ĐỐI (sau khi bỏ dấu câu và gộp khoảng trắng) là cổng cứng ở
+//     0. Không có dương tính giả nào có thể xảy ra: hai chuỗi bằng nhau thì
+//     bằng nhau.
+//   - GẦN TRÙNG (Jaccard trên tập từ >= 0.85) chỉ CẢNH BÁO. Đo trên toàn kho
+//     thì nó bắt được 22 cặp, trong đó 2 cặp là dương tính giả và cả hai đều
+//     là cùng một hình dạng: hai câu đối nhau về nghĩa nhưng gần trùng về từ
+//     ("Current Assets là gì?" / "Non-current Assets là gì?", và một cặp
+//     HỢP LÝ / KHÔNG phải là hợp lý). Loại chúng đi cần một danh sách từ phủ
+//     định tiếng Việt - đúng loại thứ ngừng chạy khi kho tiếng Anh lớn lên,
+//     và AGENTS.md đã ghi lại một lần bị như vậy rồi. Nên nó in ra để người
+//     viết tự đọc, chứ không chặn build.
+const DUPLICATE_SIMILARITY = 0.85;
+const duplicateQuestions = [];
+const nearDuplicateQuestions = [];
+
+function normalizeQuestion(text) {
+  return String(text ?? "")
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}\s]/gu, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function jaccard(a, b) {
+  let shared = 0;
+  for (const token of a) if (b.has(token)) shared++;
+  return shared / (a.size + b.size - shared);
+}
+
 // ── Giải thích gọi phương án bằng CHỮ CÁI ──────────────────────────────────
 //
 // "Phương án D là lỗi phổ biến nhất" là một câu không thể đúng lâu trong repo
@@ -691,6 +735,29 @@ for (const lesson of corpus) {
   if (!lesson.summary) missingSummary.push(lesson.slug);
   if (!lesson.application) missingApplication.push(lesson.slug);
   if (!lesson.practicePrompt) missingPractice.push(lesson.slug);
+
+  const normalized = questions.map((question) => normalizeQuestion(question.question));
+  const tokenSets = normalized.map((text) => new Set(text.split(" ").filter(Boolean)));
+  for (let i = 0; i < normalized.length; i++) {
+    for (let j = i + 1; j < normalized.length; j++) {
+      if (!normalized[i] || !normalized[j]) continue;
+      if (normalized[i] === normalized[j]) {
+        duplicateQuestions.push({ slug: lesson.slug, i, j, question: questions[i].question });
+        continue;
+      }
+      const similarity = jaccard(tokenSets[i], tokenSets[j]);
+      if (similarity >= DUPLICATE_SIMILARITY) {
+        nearDuplicateQuestions.push({
+          slug: lesson.slug,
+          i,
+          j,
+          similarity,
+          a: questions[i].question,
+          b: questions[j].question,
+        });
+      }
+    }
+  }
 
   // practicePrompt là một câu trắc nghiệm y hệt một câu quiz, nhưng suốt cả
   // đời bộ kiểm này nó chỉ được ĐẾM XEM CÓ TỒN TẠI KHÔNG. Không ai nhìn vào
@@ -1135,6 +1202,34 @@ console.log(
 );
 
 const tellFailures = [];
+
+console.log(
+  `\nCâu hỏi lặp trong cùng một bài: ${duplicateQuestions.length} trùng tuyệt đối (cổng 0)  ·  ` +
+    `${nearDuplicateQuestions.length} gần trùng >= ${DUPLICATE_SIMILARITY} (cảnh báo)`
+);
+if (nearDuplicateQuestions.length > 0) {
+  for (const row of nearDuplicateQuestions.sort((a, b) => b.similarity - a.similarity)) {
+    console.log(`  ${row.similarity.toFixed(2)} ${row.slug} q${row.i}/q${row.j}`);
+    console.log(`      A: ${row.a}`);
+    console.log(`      B: ${row.b}`);
+  }
+  console.log(
+    "  Đọc từng cặp: hai câu đối nhau về nghĩa cũng gần trùng về từ, nên danh sách này\n" +
+      "  có dương tính giả. Cặp nào thật thì viết lại một câu sang khía cạnh chưa được hỏi."
+  );
+}
+
+if (duplicateQuestions.length > 0) {
+  tellFailures.push(
+    `${duplicateQuestions.length} câu hỏi bị lặp NGUYÊN VĂN trong cùng một bài - ` +
+      `quiz phần lớn chỉ có 5 câu, nên mỗi câu lặp là một phần năm bài kiểm tra biến mất:\n` +
+      duplicateQuestions
+        .map((row) => `    ${row.slug} q${row.i} = q${row.j} - "${row.question}"`)
+        .join("\n") +
+      `\n  Viết lại một trong hai sang khía cạnh chưa được hỏi của chính bài đó, ` +
+      `đừng xoá bớt: MIN_QUIZ_COUNT vẫn là ${MIN_QUIZ_COUNT}.`
+  );
+}
 
 if (hollowDistractors.length > MAX_HOLLOW_DISTRACTORS) {
   tellFailures.push(
