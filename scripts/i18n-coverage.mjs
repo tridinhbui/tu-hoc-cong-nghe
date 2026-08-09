@@ -154,6 +154,12 @@ function isNotCopy(text) {
   // INTENTIONALLY_UNTRANSLATED của dictionary-parity.
   if (!/\s/.test(t) && !/[à-ỹ]/i.test(t) && /^[A-Z][A-Z0-9&.]*$/.test(t)) return true;
 
+  // Một hashtag: "#CashFlow", "#QuyTac503020". Không phải câu chữ mà là thứ có
+  // chức năng - AGENTS.md ghi rằng getPostCategory phân loại bài viết bằng cách
+  // tìm đúng hashtag trong nội dung đã lưu và so bằng ===, nên dịch nó là làm
+  // mất phân loại của mọi bài viết cũ.
+  if (/^#[\p{L}\p{N}_]+$/u.test(t)) return true;
+
   // A single camelCase or snake_case token with no diacritics: a metric key, a
   // state value, a data field. These reach the jsx-expr rule through equality
   // checks like `item.name === "lessonsCompleted"`, which sit inside a JSX
@@ -541,6 +547,21 @@ function findingsIn(src, fileName) {
       const inner = ts.isParenthesizedExpression(node.body) ? node.body.expression : node.body;
       if (ts.isObjectLiteralExpression(inner) || ts.isArrayLiteralExpression(inner)) {
         walkDataFactory(source, push, "returned-data")(inner, "");
+      }
+    }
+
+    // Thân arrow gọn trả về CHUỖI, không phải object:
+    // `labelFormatter={(label) => `Tuần bắt đầu ${label}`}`. Rule returned-text
+    // ở dưới chỉ nhận ReturnStatement, và rule ngay trên chỉ nhận object/array -
+    // nên hình dạng này lọt qua cả hai. Tìm ra khi đối chiếu bằng tay chỗ
+    // components/LearningAnalytics.tsx báo "bài" và "phút" mà bỏ dòng ngay
+    // sau chúng.
+    if (ts.isArrowFunction(node) && node.body && !ts.isBlock(node.body)) {
+      const hits = [];
+      collectDisplayStrings(node.body, hits);
+      for (const hit of hits) {
+        const words = hit.text.trim().split(/\s+/);
+        if (words.length > 1 || /[à-ỹ]/i.test(hit.text)) push("returned-text", hit.text, hit.pos);
       }
     }
 
