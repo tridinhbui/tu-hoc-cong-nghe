@@ -20,6 +20,7 @@ import {
   STUDY_ROOM_TOPICS,
   getMyStudyRoom,
   getRoomMessages,
+  getUnreadRoomMessageCount,
   getStudyRoomMembers,
   isStudyRoomBotCommand,
   requestStudyRoomBot,
@@ -111,44 +112,78 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
   const fileInputRef = useRef<HTMLInputElement>(null);
   const docInputRef = useRef<HTMLInputElement>(null);
 
+  // Widget này nằm trong layout gốc, nên effect dưới đây chạy ở MỌI lượt mở
+  // trang của mọi người đã đăng nhập. Trước đây nó làm bốn vòng mạng - getUser,
+  // phòng, danh sách thành viên, và một trang 50 tin đầy đủ - để rồi trong đa
+  // số trường hợp chỉ dựng ra một nút tròn có con số.
+  //
+  // Giờ nó làm hai: phòng (cần cho cả huy hiệu lẫn kênh realtime) và một phép
+  // đếm không tải hàng nào. Thành viên và tin nhắn chỉ dùng bên trong panel đã
+  // mở, nên chúng chuyển sang effect bên dưới, chạy lần đầu người dùng mở.
+  //
+  // getSession() thay cho getUser(): getUser() đi hỏi máy chủ Supabase mỗi lần,
+  // còn getSession() đọc phiên đã lưu sẵn. Với một huy hiệu ở phía client thì
+  // thế là đủ, và GlobalChatWrapper - component bọc chính widget này - đã dùng
+  // đúng getSession() từ trước.
   useEffect(() => {
     const init = async () => {
       const supabase = createClient();
       const {
-        data: { user },
-      } = await supabase.auth.getUser();
-      if (!user) return;
-      setUserId(user.id);
+        data: { session },
+      } = await supabase.auth.getSession();
+      if (!session?.user) return;
+      setUserId(session.user.id);
 
       try {
         const myRoom = await getMyStudyRoom();
         if (!myRoom) return;
         setRoom(myRoom);
 
-        const roomMembers = await getStudyRoomMembers(myRoom.room_id);
-        setMembers(new Map(roomMembers.map((m) => [m.user_id, m])));
-
         const lastSeenRoomId = window.localStorage.getItem(LAST_SEEN_ROOM_KEY);
         const isNewRoom = lastSeenRoomId !== String(myRoom.room_id);
         window.localStorage.setItem(LAST_SEEN_ROOM_KEY, String(myRoom.room_id));
 
-        const msgs = await getRoomMessages(myRoom.room_id);
-        setMessages(msgs);
-
         if (isNewRoom) {
           toast.success(format(t.groupChat.matchedToast, { topic: topicLabel(myRoom.topic, t) }));
           setOpen(true);
-        } else {
-          const lastReadAt = window.localStorage.getItem(LAST_READ_AT_KEY_PREFIX + myRoom.room_id);
-          const unread = lastReadAt ? msgs.filter((m) => m.created_at > lastReadAt).length : msgs.length;
-          setUnreadCount(unread);
+          return;
         }
+
+        const lastReadAt = window.localStorage.getItem(LAST_READ_AT_KEY_PREFIX + myRoom.room_id);
+        setUnreadCount(await getUnreadRoomMessageCount(myRoom.room_id, lastReadAt));
       } catch (error) {
         console.error("Error loading study room for floating chat:", error);
       }
     };
     void init();
   }, []);
+
+  // Nội dung phòng, tải lần đầu người dùng mở panel. Không tải lại ở những lần
+  // mở sau: kênh realtime đã giữ `messages` đúng suốt thời gian widget sống.
+  //
+  // Chốt "đã tải" để trong ref chứ không trong state: nó không dựng lại gì trên
+  // màn hình, và đặt state ngay trong thân effect là đúng thứ quy tắc
+  // react-hooks/set-state-in-effect của repo này chặn.
+  const contentLoadedRef = useRef(false);
+  useEffect(() => {
+    if (!open || !room || contentLoadedRef.current) return;
+    contentLoadedRef.current = true;
+    void (async () => {
+      try {
+        const [roomMembers, msgs] = await Promise.all([
+          getStudyRoomMembers(room.room_id),
+          getRoomMessages(room.room_id),
+        ]);
+        setMembers(new Map(roomMembers.map((m) => [m.user_id, m])));
+        setMessages(msgs);
+      } catch (error) {
+        console.error("Error loading study room content:", error);
+        // Cho lần mở sau thử lại; nếu không thì một lần hỏng mạng làm panel
+        // rỗng vĩnh viễn cho tới khi tải lại trang.
+        contentLoadedRef.current = false;
+      }
+    })();
+  }, [open, room]);
 
   useEffect(() => {
     if (!room) return;

@@ -172,6 +172,34 @@ export const ROOM_MESSAGE_PAGE_SIZE = 50;
  *  limit, so an active room re-downloaded thousands of rows on every mount.
  *  Pass `beforeId` to walk backwards through history (see the "load older"
  *  handler in StudyGroupsClient). */
+/** Đếm tin chưa đọc mà KHÔNG tải về hàng nào.
+ *
+ *  FloatingStudyGroupChat nằm trong layout gốc, nên nó chạy ở mọi lượt mở
+ *  trang của mọi người đã đăng nhập - và trước đây nó gọi `getRoomMessages`,
+ *  tức kéo về một trang 50 tin đầy đủ (`select("*")`, có cả nội dung và
+ *  metadata tệp đính kèm) chỉ để lấy ra một con số hiện trên huy hiệu.
+ *
+ *  `head: true` bảo PostgREST trả về đúng phần đếm, không kèm thân phản hồi.
+ *
+ *  `sinceIso` là lần đọc cuối, lấy từ localStorage. Chưa từng đọc thì đếm tất -
+ *  giống hệt cách cũ, vốn lấy `msgs.length` khi không có mốc nào. */
+export async function getUnreadRoomMessageCount(
+  roomId: number,
+  sinceIso: string | null
+): Promise<number> {
+  const supabase = createClient();
+  let query = supabase
+    .from("study_room_messages")
+    .select("id", { count: "exact", head: true })
+    .eq("room_id", roomId);
+
+  if (sinceIso) query = query.gt("created_at", sinceIso);
+
+  const { count, error } = await query;
+  if (error) throw handleSupabaseError(error);
+  return count ?? 0;
+}
+
 export async function getRoomMessages(
   roomId: number,
   beforeId?: number,
