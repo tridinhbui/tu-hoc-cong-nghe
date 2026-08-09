@@ -120,10 +120,15 @@ export function pickFrmWeighted<T extends { lessonId: number }>(
  *
  *  Giữ nguyên con số thật. Bốn tiếng là một phần lớn của bài thi FRM, và biết
  *  mình gãy ở câu bao nhiêu chính là thứ một bài thi thử rút gọn không nói được. */
+/* i18n-ignore-start: "FRM Part I/II" là tên chính thức của hai phần thi trong
+   tài liệu GARP. Đã là tiếng Anh và giữ nguyên ở cả hai ngôn ngữ, cùng lý do
+   như FRM_SUBJECTS trong lib/frm-track.ts: người học đối chiếu với tài liệu
+   gốc, dịch sang tiếng Việt là làm họ tra không ra. */
 export const FRM_EXAM: Record<FrmPart, { questions: number; minutes: number; label: string }> = {
   I: { questions: 100, minutes: 240, label: "FRM Part I" },
   II: { questions: 80, minutes: 240, label: "FRM Part II" },
 };
+/* i18n-ignore-end */
 
 /** Đề FRM giữ bốn lựa chọn - đúng bằng kho câu hỏi, nên không cắt bớt gì. */
 export const FRM_OPTION_COUNT = 4;

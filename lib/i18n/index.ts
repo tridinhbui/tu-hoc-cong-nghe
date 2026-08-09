@@ -39,10 +39,13 @@ export function format(template: string, vars: Record<string, string | number>):
  * day is in - "03/04" meaning two different dates depending on the UI language
  * is the kind of bug nobody reports and everyone misreads.
  */
+/* i18n-ignore-start: thẻ BCP 47 truyền cho Intl, không phải chữ hiện ra màn
+   hình. Dịch chúng thì `new Intl.DateTimeFormat()` ném lỗi. */
 export const INTL_LOCALE: Record<Locale, string> = {
   vi: "vi-VN",
   en: "en-GB",
 };
+/* i18n-ignore-end */
 
 /** `Intl` tag for the given UI locale, falling back rather than throwing. */
 export function intlLocale(locale: Locale): string {
