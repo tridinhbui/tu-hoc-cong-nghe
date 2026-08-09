@@ -62,6 +62,21 @@ export const libDataVi = {
       },
     },
 
+    timeAgo: {
+      justNow: "Vừa xong",
+      minutes: "{n} phút trước",
+      hours: "{n} giờ trước",
+      days: "{n} ngày trước",
+    },
+    // lib/supabase-user.ts - câu vinh danh học viên trong lời chào của trợ lý.
+    // Bốn biến thể để không lặp lại y hệt mỗi lần mở; hàm ở tầng dữ liệu chỉ
+    // chọn CHỈ SỐ biến thể, câu dựng ở phía người đọc.
+    shoutouts: [
+      "🎉 {name} vừa đạt {value} XP - một trong những học viên chăm chỉ nhất cộng đồng!",
+      "👏 Chúc mừng {name} đã tích luỹ {value} XP - hành trình học tập rất ấn tượng!",
+      "🔥 {name} đang giữ phong độ cực tốt với {value} XP tích luỹ được!",
+      "⭐ Vinh danh {name} - đã đạt {value} XP nhờ học đều đặn mỗi ngày!",
+    ],
     documentCategories: {
       "mau-bieu": "Mẫu biểu",
       ebook: "Ebook / Tài liệu đọc",
@@ -190,6 +205,18 @@ export const libDataEn: typeof libDataVi = {
       },
     },
 
+    timeAgo: {
+      justNow: "Just now",
+      minutes: "{n}m ago",
+      hours: "{n}h ago",
+      days: "{n}d ago",
+    },
+    shoutouts: [
+      "🎉 {name} just hit {value} XP - one of the hardest-working learners here!",
+      "👏 Congratulations {name} on {value} XP - a genuinely impressive run.",
+      "🔥 {name} is on great form, {value} XP and counting!",
+      "⭐ Hats off to {name} - {value} XP from showing up every day.",
+    ],
     documentCategories: {
       "mau-bieu": "Templates",
       ebook: "Ebook / Reading material",

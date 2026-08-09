@@ -25,7 +25,7 @@ import Logo from "@/components/Logo";
 import EmojiPicker from "@/components/EmojiPicker";
 import { announceWidgetOpened, onOtherWidgetOpened } from "@/lib/floating-widget-coordinator";
 import { useDraggablePosition } from "@/lib/hooks/useDraggablePosition";
-import { getRandomCommunityShoutout } from "@/lib/supabase-user";
+import { getRandomCommunityShoutout, type CommunityShoutout } from "@/lib/supabase-user";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 import {
@@ -105,7 +105,7 @@ export default function ChatWithAdminWidget({
   const [input, setInput] = useState("");
   const [sending, setSending] = useState(false);
   const [loadingHistory, setLoadingHistory] = useState(false);
-  const [shoutout, setShoutout] = useState<string | null>(null);
+  const [shoutout, setShoutout] = useState<CommunityShoutout | null>(null);
   const [pendingImage, setPendingImage] = useState<File | null>(null);
   const [pendingImagePreview, setPendingImagePreview] = useState<string | null>(null);
   const [uploadingImage, setUploadingImage] = useState(false);
@@ -515,7 +515,11 @@ export default function ChatWithAdminWidget({
             {/* Community shoutout */}
             {shoutout && (
               <div className="shrink-0 px-4 py-2 bg-emerald-50/60 dark:bg-emerald-950/20 border-b border-emerald-100/50 dark:border-emerald-900/30 text-[11px] text-emerald-800 dark:text-emerald-300 font-bold leading-relaxed flex items-center gap-1.5">
-                <span className="text-xs">💡</span> {shoutout}
+                <span className="text-xs">💡</span>{" "}
+                {format(t.libData.shoutouts[shoutout.variant] ?? t.libData.shoutouts[0], {
+                  name: shoutout.name,
+                  value: shoutout.value,
+                })}
               </div>
             )}
 

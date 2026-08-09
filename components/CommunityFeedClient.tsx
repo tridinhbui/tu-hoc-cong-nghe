@@ -1452,14 +1452,14 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                       )}
                       <span className="flex items-center gap-1 text-xs text-stone-400 dark:text-stone-500">
                         <Clock3 className="h-3 w-3" />
-                        {timeAgo(post.created_at)}
+                        {timeAgo(post.created_at, t.libData.timeAgo)}
                       </span>
                       {post.edited_at && (
                         // Readers who already reacted deserve to know the text
                         // moved after they did.
                         <span
                           className="text-xs text-stone-400 dark:text-stone-500"
-                          title={format(t.feed.editedAt, { when: timeAgo(post.edited_at) })}
+                          title={format(t.feed.editedAt, { when: timeAgo(post.edited_at, t.libData.timeAgo) })}
                         >
                           {t.feed.edited}
                         </span>
@@ -1743,9 +1743,9 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                                 <div className="min-w-0 flex-1">
                                   <div className="flex items-center gap-2 flex-wrap">
                                     <span className="text-sm font-black text-stone-900 dark:text-stone-100">{comment.user_name}</span>
-                                    <span className="text-xs text-stone-400">{timeAgo(comment.created_at)}</span>
+                                    <span className="text-xs text-stone-400">{timeAgo(comment.created_at, t.libData.timeAgo)}</span>
                                     {comment.edited_at && (
-                                      <span className="text-xs text-stone-400" title={format(t.feed.editedAt, { when: timeAgo(comment.edited_at) })}>
+                                      <span className="text-xs text-stone-400" title={format(t.feed.editedAt, { when: timeAgo(comment.edited_at, t.libData.timeAgo) })}>
                                         {t.feed.edited}
                                       </span>
                                     )}

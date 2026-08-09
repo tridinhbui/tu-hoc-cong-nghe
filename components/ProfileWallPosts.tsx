@@ -73,7 +73,7 @@ export default function ProfileWallPosts({ userId }: { userId: string }) {
             />
           )}
           <div className="mt-2 flex items-center gap-3 text-xs text-stone-400 dark:text-stone-500">
-            <span>{timeAgo(post.created_at)}</span>
+            <span>{timeAgo(post.created_at, t.libData.timeAgo)}</span>
             <span className="inline-flex items-center gap-1">
               <Heart className="h-3 w-3" /> {post.reaction_count}
             </span>

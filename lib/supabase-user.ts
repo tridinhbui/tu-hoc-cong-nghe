@@ -338,24 +338,35 @@ export async function getMyCompositeRank(userId: string): Promise<CompositeRank 
   };
 }
 
-const SHOUTOUT_TEMPLATES = [
-  (name: string, value: number) => `🎉 ${name} vừa đạt ${value} XP - một trong những học viên chăm chỉ nhất cộng đồng!`,
-  (name: string, value: number) => `👏 Chúc mừng ${name} đã tích luỹ ${value} XP - hành trình học tập rất ấn tượng!`,
-  (name: string, value: number) => `🔥 ${name} đang giữ phong độ cực tốt với ${value} XP tích luỹ được!`,
-  (name: string, value: number) => `⭐ Vinh danh ${name} - đã đạt ${value} XP nhờ học đều đặn mỗi ngày!`,
-] as const;
 
 /** A random "shoutout" celebrating a real top learner, for the admin
  *  chatbot's greeting - pulls from the top of the real XP leaderboard so
  *  it's never a made-up name, and picks both a random learner and a random
  *  phrasing so it doesn't feel like the same canned message every time. */
-export async function getRandomCommunityShoutout(): Promise<string | null> {
+/** Số biến thể câu vinh danh. Phải khớp độ dài t.libData.shoutouts, và
+ *  lib/__tests__/lib-data-translations.test.ts giữ hai bên bằng nhau - lệch thì
+ *  một biến thể không bao giờ xuất hiện, hoặc tra ra undefined. */
+export const SHOUTOUT_VARIANTS = 4;
+
+export interface CommunityShoutout {
+  name: string;
+  value: number;
+  /** Chỉ số biến thể câu, để phía hiển thị tra vào t.libData.shoutouts. */
+  variant: number;
+}
+
+/** Trả DỮ LIỆU chứ không trả câu: tầng này không biết người đọc đang dùng ngôn
+ *  ngữ nào, và một chuỗi dựng sẵn ở đây sẽ khoá cứng tiếng Việt vào lời chào. */
+export async function getRandomCommunityShoutout(): Promise<CommunityShoutout | null> {
   const top = await getLeaderboardByMetric("xp", 15);
   if (top.length === 0) return null;
 
   const learner = top[Math.floor(Math.random() * top.length)];
-  const template = SHOUTOUT_TEMPLATES[Math.floor(Math.random() * SHOUTOUT_TEMPLATES.length)];
-  return template(learner.name, learner.value);
+  return {
+    name: learner.name,
+    value: learner.value,
+    variant: Math.floor(Math.random() * SHOUTOUT_VARIANTS),
+  };
 }
 
 // Where the current user stands on one leaderboard category, even if they're

@@ -279,7 +279,7 @@ export default function NotificationBell({ userId }: { userId: string }) {
                         {n.detail}
                       </p>
                     )}
-                    <p className="mt-0.5 text-[10px] text-stone-400">{timeAgo(n.created_at)}</p>
+                    <p className="mt-0.5 text-[10px] text-stone-400">{timeAgo(n.created_at, t.libData.timeAgo)}</p>
                   </div>
                   {!n.read_at && <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-emerald-500" />}
                 </button>

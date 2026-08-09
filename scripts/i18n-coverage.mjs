@@ -125,9 +125,13 @@ const OVERLAY_COMPLETE = new Map([
   ["lib/finance-cards.ts", "lib/__tests__/lib-data-translations.test.ts"],
   ["lib/document-categories.ts", "lib/__tests__/lib-data-translations.test.ts"],
   ["lib/highlight-stage-grouping.ts", "lib/__tests__/lib-data-translations.test.ts"],
+  ["lib/weekly-career-mission.ts", "lib/__tests__/lib-data-translations.test.ts"],
+  ["lib/study-room-lighting.ts", "lib/__tests__/lib-data-translations.test.ts"],
+  ["lib/time-ago.ts", "lib/__tests__/time-ago.test.ts"],
   ["lib/excel-practice-data.ts", "lib/__tests__/excel-practice-i18n.test.ts"],
   ["lib/vn30-stock-data.ts", "lib/__tests__/vn30-i18n.test.ts"],
   ["lib/flashcard-albums.ts", "lib/__tests__/flashcard-albums-i18n.test.ts"],
+  ["lib/supabase-flashcards.ts", "lib/__tests__/default-glossary-i18n.test.ts"],
 ]);
 
 for (const [source, gate] of OVERLAY_COMPLETE) {

@@ -3,6 +3,7 @@ import { libDataVi, libDataEn } from "@/lib/i18n/dictionaries/sections/lib-data"
 import { FINANCE_CARDS } from "@/lib/finance-cards";
 import { DOCUMENT_CATEGORIES } from "@/lib/document-categories";
 import { WEEKLY_CAREER_MISSIONS } from "@/lib/weekly-career-mission";
+import { SHOUTOUT_VARIANTS } from "@/lib/supabase-user";
 
 /** Ba module dữ liệu được dịch qua TỪ ĐIỂN chứ không qua thư mục `-i18n/`:
  *  lib/finance-cards.ts, lib/document-categories.ts và
@@ -18,8 +19,10 @@ import { WEEKLY_CAREER_MISSIONS } from "@/lib/weekly-career-mission";
  *  scripts/i18n-coverage.mjs - xem OVERLAY_COMPLETE ở đó. Tách ra là lời khẳng
  *  định đã xong, nên phải có cổng trước. */
 
-const en = libDataEn.libData as Record<string, Record<string, unknown>>;
-const vi = libDataVi.libData as Record<string, Record<string, unknown>>;
+// `unknown` ở giữa vì libData giờ chứa cả object khoá-theo-id lẫn MẢNG
+// (`shoutouts`), nên một chữ ký Record<string, Record<...>> không còn phủ hết.
+const en = libDataEn.libData as unknown as Record<string, any>;
+const vi = libDataVi.libData as unknown as Record<string, any>;
 
 describe("libData: module dữ liệu dịch qua từ điển", () => {
   it("mọi thẻ tài chính đều có khoá trong cả hai ngôn ngữ", () => {
@@ -62,6 +65,14 @@ describe("libData: module dữ liệu dịch qua từ điển", () => {
     const phases = ["dawn", "morning", "afternoon", "dusk", "night", "lateNight"];
     for (const bag of [vi, en]) {
       expect(Object.keys(bag.roomTimeOfDay ?? {}).sort()).toEqual([...phases].sort());
+    }
+  });
+
+  it("số biến thể câu vinh danh khớp SHOUTOUT_VARIANTS ở cả hai ngôn ngữ", () => {
+    // Lệch thì hoặc một biến thể không bao giờ được chọn, hoặc tra ra undefined
+    // và lời chào mất câu - cả hai đều im lặng.
+    for (const bag of [vi, en]) {
+      expect(bag.shoutouts?.length).toBe(SHOUTOUT_VARIANTS);
     }
   });
 
