@@ -31,7 +31,7 @@
 // dependency, so this walks a real syntax tree instead - JsxText nodes and
 // string-literal JSX attributes are exact, with no guessing about punctuation.
 
-import { readFileSync, readdirSync, statSync } from "fs";
+import { existsSync, readFileSync, readdirSync, statSync } from "fs";
 import { fileURLToPath } from "url";
 import path from "path";
 import ts from "typescript";
@@ -48,7 +48,23 @@ const root = path.resolve(__dirname, "..");
 // never once counted. Passing a path explicitly always worked, which is why the
 // gap survived: every time someone checked a specific file the tool was right.
 const ROOTS = ["components", "app", "lib"];
-const SKIP_DIRS = new Set(["node_modules", ".next", "lessons-data", "lessons-i18n", "__tests__"]);
+const SKIP_DIRS = new Set(["node_modules", ".next", "lessons-data", "__tests__"]);
+
+/** Mọi thư mục lớp phủ dịch, khớp theo MẪU chứ không theo danh sách tên.
+ *
+ *  `lessons-i18n` từng được liệt kê thẳng trong SKIP_DIRS, và điều đó đúng cho
+ *  tới khi có bộ thứ hai. `finance-careers-i18n/en.ts` ra đời và bị đếm là
+ *  1.195 chuỗi "chưa dịch" - đứng thứ hai toàn kho - trong khi nó CHÍNH LÀ bản
+ *  dịch. Tổng số đi từ 5.951 lên 6.985 sau một lượt dịch xong 44 nghề.
+ *
+ *  Một thước đo tăng lên khi người ta làm đúng việc thì tệ hơn là không có
+ *  thước đo: nó dạy người đọc rằng con số không có nghĩa. Và lỗi này sẽ lặp
+ *  lại ở mọi bộ sau (`cfa-glossary-i18n`, và cái kế tiếp), nên chữa bằng cách
+ *  thêm tên thứ ba vào danh sách là chữa nhầm chỗ.
+ *
+ *  Quy ước đặt tên `<gì đó>-i18n/` giờ là hợp đồng: thư mục nào tên như vậy
+ *  thì nội dung bên trong là bản dịch, không phải chuỗi cần dịch. */
+const IS_TRANSLATION_DIR = (name) => name.endsWith("-i18n");
 
 // Two shapes under `lib` that a dictionary cannot fix, separated so the headline
 // stays a number someone can drive to zero.
@@ -71,6 +87,37 @@ const IS_LESSON_CONTENT = (rel) =>
   /^lib\/(lessons|.*-lessons|ib-question-bank|ib-question-overrides|cfa-item-sets|level-exams|career-question-bank|recall-schedule)\.ts$/.test(
     rel
   );
+
+/** Tệp dữ liệu đã có lớp phủ dịch riêng, phát hiện bằng cách nhìn xem có thư
+ *  mục `<tên>-i18n/` nằm cạnh nó không - không phải bằng một danh sách viết tay.
+ *
+ *  VÌ SAO CẦN. `lib/finance-careers.ts` là 1.239 chuỗi tiếng Việt, và sau khi
+ *  dịch xong đủ 44/44 nghề sang `lib/finance-careers-i18n/` thì nó VẪN bị đếm
+ *  đủ 1.239 - đứng đầu bảng "nặng nhất". Con số ấy nói rằng chưa ai động vào,
+ *  trong khi việc đã xong và có cổng giữ.
+ *
+ *  Đây cùng một lỗi phân loại với việc đếm `vi.ts` là chuỗi chưa dịch: những
+ *  literal đó là NGUỒN của một quy trình dịch, không phải chỗ hỏng. Nên chúng
+ *  được tách ra và in riêng kèm tên quy trình sở hữu, đúng cách nội dung bài
+ *  học đang được xử lý - báo cáo, chứ không giấu đi.
+ *
+ *  Cặp tệp/thư mục nhận ra nhau qua tên: `lib/x.ts` với `lib/x-i18n/`. Quy ước
+ *  ấy giờ là hợp đồng, và IS_TRANSLATION_DIR ở trên dựa vào đúng nó.
+ *
+ *  TÁCH RA LÀ MỘT LỜI KHẲNG ĐỊNH ĐÃ XONG, nên chỉ đặt tên thư mục theo tệp
+ *  SAU KHI cổng đi kèm bắt buộc đủ 100%. `lib/finance-careers.ts` đủ điều kiện:
+ *  44/44 nghề, và career-translations.test.ts đỏ nếu thêm nghề mà quên dịch.
+ *
+ *  `lib/cfa-glossary-terms.ts` thì KHÔNG, và nó vẫn nằm trong tổng - đúng, vì
+ *  mới dịch 10/118. Nhưng hôm nay nó thoát khỏi luật này vì lý do sai: thư mục
+ *  của nó tên `cfa-glossary-i18n` chứ không phải `cfa-glossary-terms-i18n`, do
+ *  nó phục vụ CẢ `frm-glossary-terms.ts`. Đừng đổi tên thư mục cho "khớp quy
+ *  ước" trước khi cổng đủ-100% có mặt: làm thế là giấu 108 thuật ngữ chưa dịch
+ *  sau một dòng chữ nói rằng chúng đã xong. */
+const HAS_OVERLAY = (rel) => {
+  const m = /^lib\/([^/]+)\.ts$/.exec(rel);
+  return m ? existsSync(path.join(root, "lib", `${m[1]}-i18n`)) : false;
+};
 
 /** JSX attributes whose string value is rendered or read out to the user. */
 const DISPLAY_ATTRS = new Set([
@@ -310,7 +357,7 @@ function isNotCopy(text) {
 
 function walk(dir, out = []) {
   for (const entry of readdirSync(dir)) {
-    if (SKIP_DIRS.has(entry)) continue;
+    if (SKIP_DIRS.has(entry) || IS_TRANSLATION_DIR(entry)) continue;
     const full = path.join(dir, entry);
     if (statSync(full).isDirectory()) walk(full, out);
     else if ([".tsx", ".ts"].includes(path.extname(full))) out.push(full);
@@ -713,7 +760,7 @@ if (target) {
 const rows = [];
 let totalExcluded = 0;
 /** Counted, named and printed - just not mixed into the driveable total. */
-const otherPipeline = { lessonContent: 0, lessonFiles: 0 };
+const otherPipeline = { lessonContent: 0, lessonFiles: 0, overlay: 0, overlayFiles: 0 };
 for (const dir of ROOTS) {
   for (const file of walk(path.join(root, dir))) {
     const rel = path.relative(root, file);
@@ -724,6 +771,11 @@ for (const dir of ROOTS) {
     if (IS_LESSON_CONTENT(rel)) {
       otherPipeline.lessonContent += found.length;
       otherPipeline.lessonFiles += 1;
+      continue;
+    }
+    if (HAS_OVERLAY(rel)) {
+      otherPipeline.overlay += found.length;
+      otherPipeline.overlayFiles += 1;
       continue;
     }
     rows.push({ file: rel, count: found.length, category: categorize(rel) });
@@ -746,6 +798,12 @@ if (otherPipeline.lessonContent) {
   console.log(
     `${otherPipeline.lessonContent} more in ${otherPipeline.lessonFiles} lesson/question-bank files - ` +
       `translated per lesson into lib/lessons-i18n/<locale>/, audited by npm run audit:lessons:en`
+  );
+}
+if (otherPipeline.overlay) {
+  console.log(
+    `${otherPipeline.overlay} more in ${otherPipeline.overlayFiles} data file(s) with a translation ` +
+      `overlay in lib/<name>-i18n/ - completeness gated by the matching test in lib/__tests__/`
   );
 }
 console.log();
