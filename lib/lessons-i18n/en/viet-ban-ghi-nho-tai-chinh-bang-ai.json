@@ -1,0 +1,193 @@
+{
+  "slug": "viet-ban-ghi-nho-tai-chinh-bang-ai",
+  "title": "AI in Finance, Lesson 10: Writing a financial memo with AI",
+  "subtitle": "From scattered data to a memo that is short, clear and carries its risks.",
+  "duration": "15 min",
+  "openingQuestion": "What does a good financial memo need?",
+  "openingOptions": [
+    "A conclusion, evidence, risks and what still needs checking",
+    "Praise only",
+    "Attractive icons only",
+    "No figures at all"
+  ],
+  "explanation": "A financial memo is a short document letting the reader grasp the conclusion, the evidence and the risks in a few minutes. It is the practical output of a great deal of analytical work, and it is where AI helps most: it produces a structured draft very fast. But an AI draft has an inherent weakness - it writes fluently even where the evidence is thin, so a confident sentence can hide an argument with no figures behind it. Your job is to examine each claim and cut whatever cannot be proved.",
+  "summary": {
+    "keyIdea": "AI writes the draft, but you must check the figures and the risks before sending it.",
+    "commonMistake": "Sending the AI's draft as written, without checking sources or tone.",
+    "action": "Ask AI to write a one-page memo from an article or a set of accounts, then verify 3 figures yourself."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A memo is a short note letting the reader make a decision, or know what to check next."
+    },
+    {
+      "type": "callout",
+      "label": "Terms",
+      "text": "Memo: a short note. One-pager: a single-page document. Investment thesis: the central argument for why to invest or not."
+    },
+    {
+      "type": "heading",
+      "text": "The five-part structure"
+    },
+    {
+      "type": "list",
+      "items": [
+        "A short conclusion",
+        "3 key pieces of evidence",
+        "The largest risk",
+        "What data is missing",
+        "What to do next"
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "A prompt template"
+    },
+    {
+      "type": "paragraph",
+      "text": "From the information below, write a one-page memo. Include: conclusion, evidence, risks, missing data, questions to verify. Do not invent figures."
+    },
+    {
+      "type": "heading",
+      "text": "Before you send it"
+    },
+    {
+      "type": "paragraph",
+      "text": "Check the sources of the figures, the units, the risks and the tone. What goes out is your responsibility, not the AI's."
+    },
+    {
+      "type": "conceptTable",
+      "title": "The five-part frame and what counts as done",
+      "concepts": [
+        {
+          "def": "At most 2-3 sentences, stating plainly what you believe and how confident you are. If the reader has 2 minutes, this part has to be enough."
+        },
+        {
+          "def": "Three main claims, each with figures and a source. Without a number it is an opinion rather than evidence."
+        },
+        {
+          "def": "The two largest risks, specific enough that the reader knows what to watch. Avoid generic risks such as \"market volatility\"."
+        },
+        {
+          "def": "The information you needed and do not have. This part makes the memo more credible rather than weaker."
+        },
+        {
+          "def": "Specific actions: which note to look up, whom to ask, which metric to watch next quarter."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "A full prompt to reuse",
+      "text": "\"Using only the data I provide below, write a memo of at most 500 words in exactly 5 sections: Conclusion (2-3 sentences), Evidence (3 claims, each one required to carry figures and a source), Risks (2 specific risks), Missing data, Next steps. Do not use evaluative adjectives without figures alongside. Do not give a buy or sell recommendation. Where a section lacks data, say so rather than writing generically.\""
+    },
+    {
+      "type": "heading",
+      "text": "Three review passes before sending"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Pass 1 - the figures: reopen the source, reconcile each number, check the units and the reporting period.",
+        "Pass 2 - the claims: underline every evaluative adjective, ask \"which number proves this?\", and cut whatever cannot answer.",
+        "Pass 3 - the reader: give it to someone who knows nothing about the business, let them read for 2 minutes, and ask them to restate the conclusion and the risks."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "If the reader in pass 3 restates it wrongly, the problem is the memo rather than the reader. A good memo is not the best written one but the one hardest to misread."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "AI drafts fast; you make it trustworthy.",
+        "A good memo is one that leaves the reader knowing what to ask next."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "What does memo mean?",
+      "options": [
+        "A share price table",
+        "An audit report",
+        "A short written note",
+        "A loan agreement"
+      ],
+      "explanation": "Memo is the term commonly used for a short written note."
+    },
+    {
+      "question": "What must you do before sending an AI-written draft?",
+      "options": [
+        "Ask the AI whether the draft is rigorous enough",
+        "Polish the prose so it reads more smoothly still",
+        "Add a chart to illustrate the conclusion section",
+        "Check the sources, figures, units and risks"
+      ],
+      "explanation": "AI drafts; whoever sends it is responsible for the quality."
+    },
+    {
+      "question": "Why does a \"missing data\" section make a memo more credible?",
+      "options": [
+        "Because it tells the reader the boundary of the conclusion",
+        "Because it proves you read every source document",
+        "Because it makes the memo longer and more complete",
+        "Because it is a mandatory section under reporting standards"
+      ],
+      "explanation": "A conclusion stating what it rests on and what it does not know is checkable. A conclusion that looks completely certain has usually hidden the unknown part."
+    },
+    {
+      "question": "What is the fastest way to spot an unsupported claim in an AI draft?",
+      "options": [
+        "Read the draft backwards from the final paragraph to the first",
+        "Underline every evaluative adjective and ask which figure supports it",
+        "Count how many times the draft mentions the company's name",
+        "Ask a different AI to rewrite it and compare the two versions"
+      ],
+      "explanation": "Evaluative adjectives - \"positive\", \"leading\", \"improving\", \"sustainable\" - are exactly where judgment slips in among the facts. Keep them where a number exists; cut them where none does."
+    },
+    {
+      "question": "What is the quick way to check a memo written by AI?",
+      "options": [
+        "Compare its length against the memos written in previous periods",
+        "Read it start to finish to check the coherence of the whole argument",
+        "Read backwards from the conclusion, asking what evidence each sentence rests on",
+        "Ask the AI to rate the reliability of each section it has just written"
+      ],
+      "explanation": "Reading forwards lets fluent prose carry you along. Reading backwards forces every assertion to stand on its own evidence, and the sentences with nothing underneath them show up immediately."
+    }
+  ],
+  "diagram": [
+    { "label": "Data plus a verified risk table" },
+    { "label": "AI drafts to the five-part frame" },
+    { "label": "You examine each claim: is there evidence yet?" },
+    { "label": "Cut what cannot be proved → the version you send" }
+  ],
+  "realWorldExample": {
+    "company": "A confident sentence hiding a weak claim",
+    "description": "One sentence pattern appears constantly in AI drafts: \"With its leading industry position and improving margins, the business has a positive growth outlook over the medium term.\" It reads smoothly and contains three unsupported assertions: leading on what criterion and from what data, margins improving from what level to what level, and how long \"medium term\" is. A simple test: underline every evaluative adjective in the draft, and for each one ask \"which figure proves this?\". Any sentence that cannot answer either gets a number added or gets deleted."
+  },
+  "keyTakeaways": [
+    "The five-part frame: conclusion, evidence, risks, missing data, next steps.",
+    "The \"missing data\" section is what earns credibility - do not drop it to make the memo look more certain.",
+    "Underline every evaluative adjective and demand a figure; where there is none, cut it.",
+    "Reconcile the draft's figures against the source before sending - the responsibility is yours."
+  ],
+  "practicePrompt": {
+    "question": "What does a good financial memo need?",
+    "options": [
+      "A conclusion, evidence, risks and what still needs checking",
+      "Praise only",
+      "Attractive icons only",
+      "No figures at all"
+    ],
+    "explanation": "A good memo has to let the reader grasp the conclusion and what it rests on."
+  },
+  "application": {
+    "title": "Try it now",
+    "message": "Ask AI to write a one-page memo from an article or a set of accounts, then verify 3 figures yourself.",
+    "secondary": "Start small, verify clearly, and only then raise the difficulty."
+  },
+  "whyItMatters": "A memo is what other people read and decide on - your name is on it, not the AI's."
+}
