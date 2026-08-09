@@ -85,6 +85,8 @@ export const SKILL_DOMAINS: SkillDomain[] = [
       1050,
       // 1051 (khau-hao): ba phương pháp và đường đi qua ba báo cáo.
       1051,
+      // 1053 (bao-cao-luu-chuyen-tien-te): đọc chất lượng lợi nhuận.
+      1053,
     ],
   },
   {
