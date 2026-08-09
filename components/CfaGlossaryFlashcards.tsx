@@ -26,6 +26,7 @@ import FormulaBlock from "@/components/FormulaBlock";
 const LEARNED_CHANGED_EVENT = "thtcdn:cfa-glossary-learned";
 import { useLocalStorageValue, writeLocalStorageValue } from "@/lib/use-local-storage-value";
 import { useI18n } from "@/lib/i18n/context";
+import { glossaryPatch } from "@/lib/cfa-glossary-i18n";
 import { format } from "@/lib/i18n";
 
 /**
@@ -46,7 +47,6 @@ export interface GlossaryTerm {
   termVi: string;
   subjectId: string;
   definitionVi: string;
-  definitionEn?: string;
   formula?: { equation?: string; numerator?: string; denominator?: string; multiplier?: string };
   example?: string;
   cfaTip?: string;
@@ -76,7 +76,7 @@ export default function CfaGlossaryFlashcards({
   allLabel,
   learnedToastText,
 }: GlossaryDeckProps = {}) {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const resolvedBadgeLabel = badgeLabel ?? t.cfaGlossary.badgeLabel;
   const resolvedTipLabel = tipLabel ?? t.cfaGlossary.tipLabel;
   const resolvedAllLabel = allLabel ?? t.cfaGlossary.allLabel;
@@ -109,6 +109,11 @@ export default function CfaGlossaryFlashcards({
   });
 
   const currentTerm: GlossaryTerm | undefined = filteredTerms[currentIndex];
+  // Bản dịch nằm ngoài tệp dữ liệu - xem lib/cfa-glossary-i18n. Chỉ mặt thẻ
+  // đang mở mới cần, nên tra theo id thay vì hợp nhất cả 118 mục mỗi lần render.
+  // `?? bản tiếng Việt` ở từng chỗ dùng: mục chưa dịch vẫn hiện đủ chữ thay vì
+  // để trống, và đó là lý do cổng đếm tiến độ nằm ở test chứ không ở màn hình.
+  const patch = currentTerm ? glossaryPatch(currentTerm.id, locale) : null;
 
   const handleNext = () => {
     setIsFlipped(false);
@@ -300,7 +305,7 @@ export default function CfaGlossaryFlashcards({
 
                 <div className="my-4 space-y-4">
                   <p className="text-base sm:text-lg leading-relaxed text-stone-200 font-medium">
-                    {currentTerm.definitionVi}
+                    {patch?.definition ?? currentTerm.definitionVi}
                   </p>
 
                   {currentTerm.formula && (
@@ -311,8 +316,8 @@ export default function CfaGlossaryFlashcards({
                       {currentTerm.formula.numerator && currentTerm.formula.denominator ? (
                         <div className="flex items-center justify-center gap-2 text-sm font-serif font-bold text-amber-200">
                           <div className="flex flex-col items-center">
-                            <span className="border-b border-amber-400 px-2">{currentTerm.formula.numerator}</span>
-                            <span className="px-2">{currentTerm.formula.denominator}</span>
+                            <span className="border-b border-amber-400 px-2">{patch?.formulaNumerator ?? currentTerm.formula.numerator}</span>
+                            <span className="px-2">{patch?.formulaDenominator ?? currentTerm.formula.denominator}</span>
                           </div>
                           {currentTerm.formula.multiplier && (
                             <span>× {currentTerm.formula.multiplier}</span>
@@ -326,7 +331,7 @@ export default function CfaGlossaryFlashcards({
 
                   {(currentTerm.cfaTip ?? currentTerm.frmTip) && (
                     <p className="text-xs text-amber-300 bg-amber-950/60 p-3 rounded-xl border border-amber-500/30">
-                      💡 <strong>{resolvedTipLabel}:</strong> {currentTerm.cfaTip ?? currentTerm.frmTip}
+                      💡 <strong>{resolvedTipLabel}:</strong> {patch?.cfaTip ?? currentTerm.cfaTip ?? currentTerm.frmTip}
                     </p>
                   )}
                 </div>

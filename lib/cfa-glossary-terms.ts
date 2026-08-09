@@ -5,7 +5,6 @@ export interface CfaGlossaryTerm {
   termVi: string;
   subjectId: CfaSubjectId;
   definitionVi: string;
-  definitionEn?: string;
   formula?: {
     numerator?: string;
     denominator?: string;
@@ -24,7 +23,6 @@ export const CFA_GLOSSARY_TERMS: CfaGlossaryTerm[] = [
     termVi: "Tỷ suất lợi nhuận trên vốn chủ sở hữu",
     subjectId: "fsa",
     definitionVi: "Đo lường mức độ hiệu quả của doanh nghiệp trong việc sử dụng vốn của cổ đông để tạo ra lợi nhuận ròng.",
-    definitionEn: "Measures a corporation's profitability by revealing how much profit a company generates with the money shareholders have invested.",
     formula: {
       numerator: "Lợi nhuận ròng (Net Income)",
       denominator: "Vốn chủ sở hữu bình quân (Average Equity)",
