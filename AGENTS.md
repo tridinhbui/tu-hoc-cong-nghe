@@ -164,9 +164,17 @@ an override takes ownership of that lesson's teaching content and whatever
 `lib/lessons.ts` says is silently ignored — no compile error, no failing test,
 `npm run audit:lessons` still green, and the lesson on production does not
 change by a single character. 35 slugs were in that state; **all of them have
-been pulled back out**, so `lib/__tests__/lesson-override-shadowing.test.ts` now
-enforces a plain invariant — no override may carry `sections` at all. Write
-teaching content in `lib/lessons.ts`.
+been pulled back out**, and with the backlog gone the guard in
+`lib/__tests__/lesson-override-shadowing.test.ts` was set where it belongs:
+**an override may carry `quiz` and nothing else.** All 447 entries already meet
+that, so there is no grandfather list. Write teaching content in
+`lib/lessons.ts`.
+
+Banning only `sections` would have stopped at the symptom that happened to be
+visible. `explanation`, `keyTakeaways`, `summary`, `diagram`, `openingQuestion`,
+`realWorldExample` and `application` are teaching content too, and an override
+carrying them shadows `lib/lessons.ts` exactly the same way, exactly as
+silently.
 
 How they were pulled out matters, because the obvious move is wrong. Only one
 of the 35 (`wealth-management`) was byte-identical duplication where deleting
@@ -184,6 +192,14 @@ override entry.
 process** each time — an in-process re-import returns the module cache and the
 comparison passes no matter what you did. The digest held at `e44d40f2…` across
 all 34.
+
+The two slugs pulled out *before* this — `wealth-management` and
+`modern-portfolio-theory` — were done the other way, by deleting the `sections`
+key, and that left nine keys per slug copied verbatim from `lib/lessons.ts`.
+They changed nothing, so nothing complained; they were also a live version of
+the same trap, armed for whoever next edited one of those nine fields. A second
+test now fails on any override key that equals its `lib/lessons.ts` counterpart:
+a patch that patches nothing is a trap waiting, not dead weight.
 
 IB question bank: `lib/ib-question-overrides.ts`, keyed by numeric id. Same
 rules apply. Note that the delivery route shuffles option order per question,

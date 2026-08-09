@@ -36,33 +36,51 @@ const bySlug = new Map(
   (lessons as unknown as Array<Record<string, unknown>>).map((l) => [l.slug as string, l])
 );
 
-/** Rỗng, và phải ở lại rỗng.
+/** Khoá DUY NHẤT một override được phép mang.
  *
- *  Trước đây đây là danh sách grandfather 34 slug; giờ nội dung dạy của mọi
- *  bài đều nằm ở lib/lessons.ts. Giữ lại cái Set thay vì xoá hẳn để test thứ
- *  hai còn chỗ bấu: nếu ai đó thêm slug vào đây để làm xanh một build đỏ,
- *  diff sẽ nói rõ họ đang nới một bất biến chứ không phải sửa một lỗi. */
-const SECTIONS_OWNED_BY_OVERRIDE = new Set<string>([]);
+ *  Cổng này chặt hơn hẳn bản trước, vốn chỉ cấm `sections`. Cấm mỗi `sections`
+ *  là dừng lại ở triệu chứng đã nhìn thấy: `explanation`, `keyTakeaways`,
+ *  `summary`, `diagram`, `openingQuestion`, `realWorldExample`, `application`
+ *  cũng là nội dung dạy, và một override mang chúng che khuất lib/lessons.ts
+ *  đúng cách ấy, im lặng đúng như vậy.
+ *
+ *  Đặt ở mức kho HIỆN ĐANG đạt, không phải mức mong muốn: sau khi rút 34 slug
+ *  và gỡ 19 khoá vô tác dụng, cả 447 entry đều chỉ còn `quiz` - đúng như
+ *  AGENTS.md vẫn mô tả file này. Không có món nợ nào phải grandfather, nên
+ *  không có danh sách miễn trừ. */
+const ALLOWED_OVERRIDE_KEYS = new Set(["quiz"]);
 
 const overrideEntries = Object.entries(lessonOverrides as Record<string, Record<string, unknown>>);
 
 describe("override che khuất nội dung trong lessons.ts", () => {
-  it("không slug nào mới mang thêm `sections` vào override", () => {
-    const carrying = overrideEntries.filter(([, o]) => Array.isArray(o.sections)).map(([slug]) => slug);
-    const unexpected = carrying.filter((slug) => !SECTIONS_OWNED_BY_OVERRIDE.has(slug));
+  it("override chỉ được mang `quiz`, không mang nội dung dạy", () => {
+    const offenders = overrideEntries.flatMap(([slug, o]) =>
+      Object.keys(o)
+        .filter((k) => !ALLOWED_OVERRIDE_KEYS.has(k))
+        .map((k) => `${slug}.${k}`)
+    );
     expect(
-      unexpected,
-      "Thêm `sections` vào override nghĩa là phần dạy của bài đó rời khỏi lib/lessons.ts " +
-        "và mọi sửa đổi ở đó sẽ bị bỏ qua trong im lặng. Viết vào lib/lessons.ts thay vì vào đây."
+      offenders,
+      "`applyLessonOverrides` là `{ ...lesson, ...override }`, nên mọi khoá ở đây thay hẳn " +
+        "khoá cùng tên trong lib/lessons.ts. Thêm một khoá nội dung dạy vào đây nghĩa là mọi " +
+        "sửa đổi ở lib/lessons.ts cho bài đó bị bỏ qua trong im lặng. Viết vào lib/lessons.ts."
     ).toEqual([]);
   });
 
-  it("danh sách không chứa slug đã được rút ra - chỉ ngắn đi, không dài ra", () => {
-    const carrying = new Set(
-      overrideEntries.filter(([, o]) => Array.isArray(o.sections)).map(([slug]) => slug)
-    );
-    const stale = [...SECTIONS_OWNED_BY_OVERRIDE].filter((slug) => !carrying.has(slug));
-    expect(stale, "Đã gỡ `sections` khỏi những override này - xoá chúng khỏi danh sách trên").toEqual([]);
+  it("không override nào trùng khít lessons.ts - vá mà không đổi gì là bẫy nằm chờ", () => {
+    // 19 khoá đã ở trạng thái này: `wealth-management` và
+    // `modern-portfolio-theory` được rút `sections` ra bằng cách xoá đúng khoá
+    // đó, để lại chín khoá chép y nguyên lessons.ts. Chúng không đổi gì HÔM
+    // NAY, nên không cổng nào kêu - và sửa lessons.ts cho một trong chín
+    // trường đó ngày mai sẽ không có tác dụng.
+    const noop = overrideEntries.flatMap(([slug, o]) => {
+      const src = bySlug.get(slug) as Record<string, unknown> | undefined;
+      if (!src) return [];
+      return Object.entries(o)
+        .filter(([k, v]) => JSON.stringify(v) === JSON.stringify(src[k]))
+        .map(([k]) => `${slug}.${k}`);
+    });
+    expect(noop, "Khoá override trùng khít bản trong lessons.ts - xoá nó đi").toEqual([]);
   });
 
   it("mọi slug trong override đều tồn tại thật trong kho bài", () => {
