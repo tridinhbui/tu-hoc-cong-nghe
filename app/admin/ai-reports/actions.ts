@@ -15,7 +15,12 @@ export async function ignoreAiReportAction(id: number) {
     revalidatePath("/admin/appeals");
     return { success: true };
   } catch (error) {
+    /* i18n-ignore-start: chỗ dự phòng khi một giá trị ném ra không phải Error
+       và không có `message` để đọc. Chuỗi này về tới màn hình quản trị, cạnh
+       thông báo lỗi thô của Supabase - dịch nó không làm câu bên cạnh dễ đọc
+       hơn. */
     return { success: false, error: error instanceof Error ? error.message : "Lỗi không xác định" };
+    /* i18n-ignore-end */
   }
 }
 
@@ -26,6 +31,11 @@ export async function resolveAiReportsForLessonAction(lessonId: number) {
     revalidatePath("/admin/appeals");
     return { success: true };
   } catch (error) {
+    /* i18n-ignore-start: chỗ dự phòng khi một giá trị ném ra không phải Error
+       và không có `message` để đọc. Chuỗi này về tới màn hình quản trị, cạnh
+       thông báo lỗi thô của Supabase - dịch nó không làm câu bên cạnh dễ đọc
+       hơn. */
     return { success: false, error: error instanceof Error ? error.message : "Lỗi không xác định" };
+    /* i18n-ignore-end */
   }
 }

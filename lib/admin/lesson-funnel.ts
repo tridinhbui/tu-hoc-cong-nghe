@@ -115,10 +115,16 @@ export async function getLessonFunnel(days = 30): Promise<LessonFunnel> {
     // sẽ không có một dòng nào.
     return {
       ...empty,
+      /* i18n-ignore-start: thông báo vận hành cho quản trị viên, giải thích vì
+         sao bảng trống - nó nói về việc triển khai (`lesson_open` là sự kiện
+         mới, chưa có số cho tới khi bản mới lên production), không phải chữ
+         người học đọc. Cùng loại với "Bảng focus_sessions chưa tồn tại" ở
+         lib/admin/world-usage.ts. */
       reason:
         "Chưa có lượt `lesson_open` nào trong khoảng thời gian này. Sự kiện mới " +
         "được thêm - bảng này chỉ có số sau khi bản mới lên production và có " +
         "người mở một bài học.",
+      /* i18n-ignore-end */
     };
   }
 

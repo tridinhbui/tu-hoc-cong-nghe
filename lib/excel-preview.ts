@@ -11,7 +11,12 @@ export function isExcelFileName(fileName: string): boolean {
 // diacritics (ă, ố, ộ, ...) render as tofu boxes since the fallback font has
 // no Vietnamese glyphs. Registered once per process (module-level, guarded)
 // rather than per-call.
+/* i18n-ignore-start: tên phông chữ đã đăng ký với canvas, không phải chữ hiển thị. */
+/* i18n-ignore-start: tên một font chữ đã đăng ký, không phải chữ hiển thị -
+   dịch nó là trỏ vào một font không tồn tại. */
 const FONT_FAMILY = "Noto Sans THTC";
+/* i18n-ignore-end */
+/* i18n-ignore-end */
 let fontRegistered = false;
 function ensureFontRegistered() {
   if (fontRegistered) return;

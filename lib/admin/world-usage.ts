@@ -44,8 +44,11 @@ export async function getWorldUsage(days = 30): Promise<WorldUsage> {
     const missing = error.code === "PGRST205" || /Could not find the table/i.test(error.message);
     return {
       available: false,
+      /* i18n-ignore-start: thông báo vận hành - nó bảo quản trị viên chạy một
+         tệp migration cụ thể. Dịch tên tệp SQL là làm hướng dẫn sai. */
       reason: missing
         ? "Bảng focus_sessions chưa tồn tại - chạy supabase/migrations/20260824_focus_sessions.sql"
+      /* i18n-ignore-end */
         : error.message,
       rows: [],
       totalMinutes: 0,

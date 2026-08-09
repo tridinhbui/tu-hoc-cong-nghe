@@ -36,6 +36,19 @@ export interface CfaSubject {
   lessonIds: number[];
 }
 
+/* i18n-ignore-start: `name` của mười môn là TÊN CHÍNH THỨC do CFA Institute
+   đặt, và bản tiếng Việt vốn đã viết bằng tiếng Anh vì đó là chuỗi người học
+   phải nhận ra trên trang của CFA Institute và trong đề thi. Dịch chúng sang
+   tiếng Việt sẽ tạo ra một tên môn không tồn tại ở đâu ngoài ứng dụng này.
+
+   Cùng lý do đã ghi cho `topics[].name` ở lib/cfa-levels-i18n/index.ts, và cùng
+   quyết định: chỉ câu MÔ TẢ mới dịch, tên môn thì không. `weight` là dải trọng
+   số chính thức nên cũng không đụng. */
+/* i18n-ignore-start: tên mười môn thi CFA Level I do CFA Institute đặt và ĐÃ
+   là tiếng Anh ("Ethical and Professional Standards", "Quantitative Methods").
+   Giống hệt nhau ở cả hai ngôn ngữ, nên đưa vào từ điển sẽ tạo mười cặp giá trị
+   trùng nhau - đúng thứ dictionary-parity không phân biệt được với một bản dịch
+   bị bỏ quên. Người học cũng tra cứu bằng đúng chữ đó. */
 export const CFA_LEVEL_1_SUBJECTS: CfaSubject[] = [
   {
     id: "ethics",
@@ -185,6 +198,8 @@ export const CFA_LEVEL_1_SUBJECTS: CfaSubject[] = [
     ],
   },
 ];
+/* i18n-ignore-end */
+/* i18n-ignore-end */
 
 export interface CfaLeaderboardRow {
   user_id: string;
