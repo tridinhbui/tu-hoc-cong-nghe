@@ -1,0 +1,173 @@
+{
+  "slug": "cfa-ethics-standard-1d-hanh-vi-ca-nhan",
+  "title": "CFA Ethics 41: Standard I(D) - when conduct outside work touches professional standing",
+  "subtitle": "The line between private life and the profession, and three signs that make a private matter a professional one",
+  "duration": "9 min",
+  "whyItMatters": "This is the only standard reaching conduct outside the scope of work, so it is also where misunderstanding runs in both directions: either assuming private life is entirely out of scope, or assuming every personal failing is caught.",
+  "openingQuestion": "Which conduct outside work does Standard I(D) apply to?",
+  "openingOptions": [
+    "All personal conduct, because CFA members must set an example",
+    "Conduct bearing on honesty and professional competence",
+    "None, because private life sits outside the standards",
+    "Only conduct already convicted by a court in a final judgment"
+  ],
+  "correctOption": 1,
+  "explanation": "Standard I(D) is not a code of personal morality in general. It draws a circle around three things bearing directly on whether you deserve to be trusted with other people's money: honesty, trustworthiness, and professional competence. Cheating in a university exam, falsifying an application, or defrauding someone in a private transaction all fall within scope - not because they are bad in general but because they say something about how this person behaves when there is an opportunity and nobody is watching. An ordinary civil dispute or a traffic incident, by contrast, does not.",
+  "summary": {
+    "keyIdea": "Three criteria - honesty, trustworthiness, professional competence - apply to conduct outside work as well, whenever that conduct says something about those three qualities.",
+    "commonMistake": "Assuming private matters are irrelevant. Personal tax fraud goes straight to the honesty criterion, even though it happens outside working hours."
+  },
+  "application": {
+    "title": "The boundary",
+    "message": "Not every personal failing falls in scope. The question is whether the conduct says anything about others' ability to entrust money to you."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Standard I(D) extends professional ethics beyond working hours - but not as far as many people assume, and knowing its boundary matters as much as knowing its content."
+    },
+    {
+      "type": "heading",
+      "text": "Three criteria that define the scope"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Honesty.",
+        "Trustworthiness.",
+        "Professional competence."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Conduct outside work falls in scope only where it says something about those three. Cheating in a university exam, falsifying an application, defrauding someone in a private transaction all qualify - not because they are bad in general, but because they show how this person behaves when there is an opportunity and nobody is watching."
+    },
+    {
+      "type": "callout",
+      "label": "Outside the scope",
+      "text": "An ordinary civil dispute, a traffic incident, or personal lifestyle choices unrelated to those three criteria. Standard I(D) is not a general code of personal morality."
+    },
+    {
+      "type": "paragraph",
+      "text": "Two points are often misunderstood. First, no criminal conviction is needed for a violation - evidence of the conduct is enough. Second, the logic underneath the standard is that behaviour in one context predicts behaviour in another, so the final question always reduces to one thing: should other people's money be entrusted to this person."
+    },
+    {
+      "type": "conceptTable",
+      "title": "The same kind of private matter, differing in what it says",
+      "subtitle": "The criterion is honesty, trustworthiness and professional competence - not how serious it sounds",
+      "concepts": [
+        {
+          "vi": "Khai man bằng cấp trong hồ sơ xin việc ở một ngành khác",
+          "en": "Falsifying qualifications on a job application in another industry: in scope",
+          "def": "Nothing to do with investment work, but it speaks directly to honesty. It falls under Standard I(D) wherever it happened."
+        },
+        {
+          "vi": "Một tranh chấp hợp đồng dân sự với hàng xóm",
+          "en": "A civil contract dispute with a neighbour: out of scope",
+          "def": "It may be noisy and prolonged, but it says nothing about honesty or professional competence. Standard I(D) is not a general reputation clause."
+        },
+        {
+          "vi": "Vỡ nợ cá nhân do rủi ro kinh doanh",
+          "en": "Personal insolvency from business risk: usually out of scope",
+          "def": "A business failure is not dishonesty. But where it comes with concealing assets or misstating things to creditors, that concealment is the violation."
+        },
+        {
+          "vi": "Gian lận trong một kỳ thi bất kỳ",
+          "en": "Cheating in any examination: in scope",
+          "def": "It touches both honesty and competence - and if it is the CFA exam, it breaches Standard VII(A) at the same time."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "No conviction required",
+      "text": "Standard I(D) does not wait for the justice system. Evidence of the conduct is enough to constitute a violation, because the duty here is to the profession rather than to the state. That also means the reverse holds: an acquittal in a criminal case does not automatically clear the matter, if the evidence of the conduct remains."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "This profession cannot separate the person from the title.",
+        "Because what the client is buying is that person."
+      ]
+    }
+  ],
+  "diagram": [
+    { "label": "Three criteria: honesty, trustworthiness, professional competence", "arrow": true },
+    { "label": "Not a general code of personal morality", "arrow": true },
+    { "label": "No criminal conviction is needed for a violation", "arrow": true },
+    { "label": "The question: what does this conduct say about entrusting money to them" }
+  ],
+  "realWorldExample": {
+    "company": "Why alcohol or substance misuse can fall in scope",
+    "description": "On its own it does not. It falls under Standard I(D) when it affects professional competence - making investment decisions while impaired, or letting the condition compromise duties to clients. This is the clearest illustration of the standard's general principle: it does not judge a lifestyle, it asks whether the conduct leaves you unable to perform your professional duties."
+  },
+  "quiz": [
+    {
+      "question": "Which three criteria does Standard I(D) draw its circle around?",
+      "options": [
+        "Honesty, obeying the law, and community contribution",
+        "Honesty, trustworthiness, and professional competence",
+        "Professional competence, seniority, and investment results",
+        "Obeying the law, confidentiality, and avoiding conflicts"
+      ],
+      "explanation": "All three bear directly on whether other people's money should be entrusted to this person."
+    },
+    {
+      "question": "Is a court conviction required for a Standard I(D) violation?",
+      "options": [
+        "Yes, or at least a formal decision to prosecute by investigators",
+        "Yes, a judgment in force is needed before anything can be done",
+        "No, the conduct is enough without any criminal conviction",
+        "No, but a formal complaint from the injured party is required"
+      ],
+      "explanation": "The professional standard and the criminal standard differ - conduct can fall short of an offence and still show dishonesty."
+    },
+    {
+      "question": "Does an ordinary civil dispute fall under Standard I(D)?",
+      "options": [
+        "No, because Standard I(D) applies only to criminal conduct",
+        "Yes, because every legal dispute affects professional standing",
+        "Yes, if the amount in dispute exceeds a certain threshold",
+        "No, unless it says something about honesty or competence"
+      ],
+      "explanation": "The standard does not judge the existence of a dispute; it examines whether conduct within it shows dishonesty."
+    },
+    {
+      "question": "Why does cheating in a university exam fall in scope?",
+      "options": [
+        "Because it shows how someone behaves given an opportunity unobserved",
+        "Because all cheating is treated identically by the law",
+        "Because academic results form part of a professional record",
+        "Because CFA Institute requires a full academic history to be declared"
+      ],
+      "explanation": "This is the logic of the whole standard: behaviour in one context predicts behaviour in another where the structure of temptation is the same."
+    },
+    {
+      "question": "When does substance misuse fall in scope?",
+      "options": [
+        "In every case, since it is conduct falling below standards",
+        "When it affects the capacity to perform professional duties",
+        "Only when an authority has imposed an administrative penalty",
+        "Never, since it is entirely a matter of private life"
+      ],
+      "explanation": "The standard does not judge a lifestyle - it asks whether the conduct leaves you unable to perform your duties."
+    }
+  ],
+  "keyTakeaways": [
+    "Three criteria: honesty, trustworthiness, professional competence",
+    "Not a general code of personal morality",
+    "No criminal conviction is needed for a violation",
+    "The logic: behaviour in one context predicts behaviour in another",
+    "The final question is always: should other people's money go to this person"
+  ],
+  "practicePrompt": {
+    "question": "A colleague is found to have falsified qualifications on a job application ten years ago. The matter has nothing to do with their current work. Does Standard I(D) apply?",
+    "options": [
+      "No, it was too long ago and does not affect their current work",
+      "Yes: falsified qualifications belong to the honesty group, and the standard sets no limitation period",
+      "Only if the current firm suffered harm as a result",
+      "No, this is a matter between that person and their former employer"
+    ],
+    "explanation": "Both negative options rest on criteria the standard does not use: how much time has passed, and whether harm resulted. The real criterion is the nature of the conduct - falsified qualifications sit squarely in the honesty group. That it happened at a different employer changes nothing either, because Standard I(D) is not limited to the current employment relationship."
+  }
+}
