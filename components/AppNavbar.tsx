@@ -6,7 +6,7 @@ import Image from "next/image";
 import { isValidAvatar } from "@/lib/avatar-utils";
 import { usePathname, useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { FileText, BarChart3, StickyNote, GraduationCap, Gamepad2, Menu, X, Briefcase, BriefcaseBusiness, BookOpen, Home, Flame, Users, MessageSquareMore, Search, ChevronDown, Award, ShieldAlert, Route, Landmark, Trophy, type LucideIcon } from "lucide-react";
+import { FileText, BarChart3, StickyNote, GraduationCap, Gamepad2, Menu, X, Briefcase, BriefcaseBusiness, BookOpen, Home, Flame, Users, MessageSquareMore, Search, ChevronDown, Award, ShieldAlert, Route, Landmark, Trophy, User, Settings, Globe, LogOut, type LucideIcon } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import { format, type Dictionary } from "@/lib/i18n";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
@@ -47,14 +47,12 @@ type NavLink =
   | { href: string; dataLabelKey: keyof Dictionary["dataRest"]["appNavbar"]; label?: never; labelKey?: never; icon: LucideIcon };
 
 /**
- * Above the sections, ungrouped, always visible.
+ * Above the sections, ungrouped, always visible. Chỉ còn Dashboard: nó là
+ * đường quay về tổng quan chứ không phải một đích đến ngang hàng với những
+ * đích khác.
  *
- * Dashboard, because it is the way back to the overview rather than one
- * destination among several. Then the three community entries, which have no
- * group of their own: a collapsible header over exactly three rows costs more
- * room than it hides, and "Cộng đồng" adds nothing the three labels do not
- * already say. Thư viện leads them - it is the newest room and the only one
- * that opens a space rather than a page.
+ * Ba lối vào cộng đồng từng đứng ở đây. Chúng đã xuống thành nhóm "Cộng đồng"
+ * gập được, đặt ngay sau "Học tập" - xem NAV_SECTIONS bên dưới.
  *
  * Kiểm tra stays in Học tập rather than joining this list. It carries a live
  * "Tin mới" badge, which is what once justified lifting it out, but
@@ -67,35 +65,6 @@ const TOP_LEVEL_LINKS: NavLink[] = [
   { href: "/dashboard", label: "Dashboard", icon: Home },
   /* i18n-ignore-end */
 ];
-
-/** Ba lối vào cộng đồng, render NGAY SAU nhóm "Học tập" chứ không ở đầu nav.
- *
- *  Chúng từng nằm chung TOP_LEVEL_LINKS với Dashboard, tức đứng TRÊN mọi nhóm
- *  học. Thứ tự đó đặt ba phòng sinh hoạt lên trước việc chính người học mở app
- *  ra để làm. Học tập lên đầu; cộng đồng đứng ngay sau nó.
- *
- *  Vẫn KHÔNG gói thành một section riêng, giữ nguyên lý lẽ cũ: một tiêu đề gập
- *  được đặt trên đúng ba dòng tốn nhiều chỗ hơn phần nó giấu đi, và chữ "Cộng
- *  đồng" không nói thêm gì mà ba cái nhãn kia chưa nói. Chúng render phẳng,
- *  cùng kiểu với Dashboard.
- *
- *  Kéo theo: ALL_SECTION_KEYS và forcedOpenKeys chỉ biết tới NAV_SECTIONS, nên
- *  cụm này không gập được và không bao giờ bị ẩn - đúng ý định, vì không có
- *  tiêu đề nào để bấm. */
-const COMMUNITY_LINKS: NavLink[] = [
-  // "Thư viện" was hardcoded here as the 3D space's own name, like FinSocial.
-  // But the room's own header is translated (t.lobby.title, "Library · Saigon
-  // Reading Room"), so the nav and the page it opens named the same room two
-  // different ways in English. It is a common noun; it gets translated.
-  { href: "/cong-dong", dataLabelKey: "library", icon: Landmark },
-  { href: "/nhom-hoc", labelKey: "studyGroup", icon: Users },
-  /* i18n-ignore-start: proper noun / product name, identical in both languages (FinSocial) */
-  { href: "/finsocial", label: "FinSocial", icon: MessageSquareMore },
-  /* i18n-ignore-end */
-];
-
-/** Nhóm mà cụm cộng đồng bám ngay phía sau. */
-const COMMUNITY_AFTER_SECTION: NavSection["titleKey"] = "sectionLearn";
 
 /** The nav is grouped by what the reader is trying to *do*, not by feature
  *  age. Eleven flat entries gave no hint which of them belonged together, so
@@ -151,9 +120,42 @@ const NAV_SECTIONS: NavSection[] = [
       // hai dòng menu cho hai nửa của cùng một câu hỏi rút còn một.
     ],
   },
-  // Không còn nhóm Cộng đồng. Ba lối vào đó lên thẳng TOP_LEVEL_LINKS: một
-  // tiêu đề gập được đặt trên đúng ba dòng tốn nhiều chỗ hơn phần nó giấu đi,
-  // và "Cộng đồng" không nói thêm gì mà ba cái nhãn kia chưa nói.
+  // Nhóm Cộng đồng quay lại, và đây là lần đảo chiều thứ hai của cùng một
+  // quyết định - ghi lại để lần sau ai đó định gỡ nó thì biết đã có hai vòng.
+  //
+  // 9e182fa gỡ nhóm này với lý lẽ: một tiêu đề gập được đặt trên đúng ba dòng
+  // tốn nhiều chỗ hơn phần nó giấu đi, và chữ "Cộng đồng" không nói thêm gì mà
+  // ba cái nhãn kia chưa nói. Lý lẽ đó đúng về mặt tiết kiệm chỗ, nhưng nó bỏ
+  // qua thứ người dùng thật sự muốn: gập được. Ba dòng này là ba phòng sinh
+  // hoạt, không phải việc học - ai đang tập trung học muốn giấu chúng đi, và
+  // trước đây không có cách nào vì chúng nằm phẳng ở TOP_LEVEL_LINKS.
+  //
+  // `sectionCommunity` vẫn còn nguyên trong cả vi.ts lẫn en.ts từ vòng trước,
+  // nên lần này không phải thêm khoá từ điển nào.
+  //
+  // Đặt sau Học tập chứ không đầu nav: học trước, sinh hoạt sau.
+  //
+  // Người dùng CŨ sẽ thấy nhóm này MỞ SẴN, người mới thấy nó đóng - và đó là
+  // kết quả đúng chứ không phải chỗ cần sửa cho đồng nhất. Effect đọc
+  // localStorage thay nguyên danh sách gập bằng danh sách đã lưu, mà danh sách
+  // ấy được ghi từ trước khi nhóm này tồn tại nên không chứa khoá của nó. Hệ
+  // quả: ai đang quen thấy ba dòng này phẳng ở đầu nav thì không bị chúng biến
+  // mất sau một tiêu đề gập họ chưa từng bấm.
+  {
+    titleKey: "sectionCommunity",
+    links: [
+      // "Thư viện" was hardcoded here as the 3D space's own name, like
+      // FinSocial. But the room's own header is translated (t.lobby.title,
+      // "Library · Saigon Reading Room"), so the nav and the page it opens
+      // named the same room two different ways in English. It is a common
+      // noun; it gets translated.
+      { href: "/cong-dong", dataLabelKey: "library", icon: Landmark },
+      { href: "/nhom-hoc", labelKey: "studyGroup", icon: Users },
+      /* i18n-ignore-start: proper noun / product name, identical in both languages (FinSocial) */
+      { href: "/finsocial", label: "FinSocial", icon: MessageSquareMore },
+      /* i18n-ignore-end */
+    ],
+  },
   {
     titleKey: "sectionPractice",
     links: [
@@ -666,14 +668,6 @@ export default function AppNavbar() {
               </div>
             </div>
           </div>
-          {/* Cụm cộng đồng nằm NGOÀI khối gập ở trên - nó bám sau nhóm này,
-              không thuộc vào nhóm này, nên gập "Học tập" lại không được giấu
-              nó đi. */}
-          {section.titleKey === COMMUNITY_AFTER_SECTION && (
-            <div className="mt-2.5 flex flex-col gap-1">
-              {COMMUNITY_LINKS.map((link) => renderNavItem(link, onNavigate))}
-            </div>
-          )}
         </div>
       );
     });
@@ -777,27 +771,32 @@ export default function AppNavbar() {
             ref={desktopDropdownPanelRef}
             className="absolute bottom-4 left-full ml-2 w-64 z-50 space-y-1 rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-2 shadow-xl animate-[fadeIn_0.15s_ease-out]"
           >
-            <button type="button" onClick={() => handleDropdownNavigate("/profile")} className="block w-full rounded-xl px-3 py-2 text-left text-xs font-bold text-stone-800 transition hover:bg-stone-50 dark:text-stone-200 dark:hover:bg-stone-800">
+            <button type="button" onClick={() => handleDropdownNavigate("/profile")} className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-left text-xs font-bold transition text-stone-800 hover:bg-stone-50 dark:text-stone-200 dark:hover:bg-stone-800">
+              <User className="h-4 w-4 shrink-0 text-stone-500 dark:text-stone-400" />
               {t.nav.menuProfile}
             </button>
-            <button type="button" onClick={() => handleDropdownNavigate("/ban-be")} className="block w-full rounded-xl px-3 py-2 text-left text-xs font-bold text-stone-800 transition hover:bg-stone-50 dark:text-stone-200 dark:hover:bg-stone-800">
+            <button type="button" onClick={() => handleDropdownNavigate("/ban-be")} className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-left text-xs font-bold transition text-stone-800 hover:bg-stone-50 dark:text-stone-200 dark:hover:bg-stone-800">
+              <Users className="h-4 w-4 shrink-0 text-stone-500 dark:text-stone-400" />
               {t.nav.menuFriends}
             </button>
-            <button type="button" onClick={() => handleDropdownNavigate("/settings")} className="block w-full rounded-xl px-3 py-2 text-left text-xs font-bold text-stone-800 transition hover:bg-stone-50 dark:text-stone-200 dark:hover:bg-stone-800">
+            <button type="button" onClick={() => handleDropdownNavigate("/settings")} className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-left text-xs font-bold transition text-stone-800 hover:bg-stone-50 dark:text-stone-200 dark:hover:bg-stone-800">
+              <Settings className="h-4 w-4 shrink-0 text-stone-500 dark:text-stone-400" />
               {t.nav.menuSettings}
             </button>
             <div className="flex items-center justify-between gap-2 rounded-xl px-3 py-2">
-              <span className="text-xs font-bold text-stone-800 dark:text-stone-200">
-                🌐 {t.language.label}
+              <span className="flex items-center gap-2.5 text-xs font-bold text-stone-800 dark:text-stone-200">
+                <Globe className="h-4 w-4 shrink-0 text-stone-500 dark:text-stone-400" />
+                {t.language.label}
               </span>
               <LanguageSwitcher compact />
             </div>
             <button
               onClick={handleSignOut}
               disabled={signingOut}
-              className="block w-full rounded-xl px-3 py-2 text-left text-xs font-bold text-rose-600 transition hover:bg-rose-50 dark:text-rose-400 dark:hover:bg-rose-950/50 disabled:opacity-50"
+              className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-left text-xs font-bold transition text-rose-600 hover:bg-rose-50 dark:text-rose-400 dark:hover:bg-rose-950/50 disabled:opacity-50"
             >
-              🚪 {signingOut ? t.nav.signingOut : t.nav.signOut}
+              <LogOut className="h-4 w-4 shrink-0" />
+              {signingOut ? t.nav.signingOut : t.nav.signOut}
             </button>
           </div>
         )}
@@ -906,13 +905,16 @@ export default function AppNavbar() {
             </div>
 
             <div className="space-y-1 mb-2">
-              <button type="button" onClick={() => handleDropdownNavigate("/profile")} className="block w-full rounded-lg px-3 py-1.5 text-left text-xs font-semibold text-stone-900 transition hover:bg-stone-50 dark:text-stone-100 dark:hover:bg-stone-800">
+              <button type="button" onClick={() => handleDropdownNavigate("/profile")} className="flex w-full items-center gap-2 rounded-lg px-3 py-1.5 text-left text-xs font-semibold transition text-stone-900 hover:bg-stone-50 dark:text-stone-100 dark:hover:bg-stone-800">
+                <User className="h-3.5 w-3.5 shrink-0 text-stone-500 dark:text-stone-400" />
                 {t.nav.menuProfileShort}
               </button>
-              <button type="button" onClick={() => handleDropdownNavigate("/ban-be")} className="block w-full rounded-lg px-3 py-1.5 text-left text-xs font-semibold text-stone-900 transition hover:bg-stone-50 dark:text-stone-100 dark:hover:bg-stone-800">
+              <button type="button" onClick={() => handleDropdownNavigate("/ban-be")} className="flex w-full items-center gap-2 rounded-lg px-3 py-1.5 text-left text-xs font-semibold transition text-stone-900 hover:bg-stone-50 dark:text-stone-100 dark:hover:bg-stone-800">
+                <Users className="h-3.5 w-3.5 shrink-0 text-stone-500 dark:text-stone-400" />
                 {t.nav.menuFriendsShort}
               </button>
-              <button type="button" onClick={() => handleDropdownNavigate("/settings")} className="block w-full rounded-lg px-3 py-1.5 text-left text-xs font-semibold text-stone-900 transition hover:bg-stone-50 dark:text-stone-100 dark:hover:bg-stone-800">
+              <button type="button" onClick={() => handleDropdownNavigate("/settings")} className="flex w-full items-center gap-2 rounded-lg px-3 py-1.5 text-left text-xs font-semibold transition text-stone-900 hover:bg-stone-50 dark:text-stone-100 dark:hover:bg-stone-800">
+                <Settings className="h-3.5 w-3.5 shrink-0 text-stone-500 dark:text-stone-400" />
                 {t.nav.menuSettingsShort}
               </button>
             </div>
@@ -920,8 +922,9 @@ export default function AppNavbar() {
             <button
               onClick={handleSignOut}
               disabled={signingOut}
-              className="w-full px-3 py-1.5 text-xs font-bold text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/50 rounded-lg transition disabled:opacity-50 text-left"
+              className="flex w-full items-center gap-2 rounded-lg px-3 py-1.5 text-left text-xs font-semibold transition text-rose-600 hover:bg-rose-50 dark:text-rose-400 dark:hover:bg-rose-950/50 disabled:opacity-50"
             >
+              <LogOut className="h-3.5 w-3.5 shrink-0" />
               {signingOut ? t.nav.signingOut : t.nav.signOut}
             </button>
           </div>

@@ -13,7 +13,31 @@ import { viSections } from "./sections";
 
 export const vi = {
   ...viSections,
+  emails: {
+    milestoneMessage: "Chào {name}! 🎉 Bạn vừa đạt chuỗi {days} ngày học liên tục - cảm ơn bạn rất nhiều vì đã kiên trì đồng hành cùng nền tảng. Consistent is key to success - cứ giữ nhịp độ này, thành quả sẽ đến sớm thôi. Đội ngũ luôn ở đây nếu bạn cần hỗ trợ gì nhé! 💪",
+    morningReviewTitle: "{count} câu ôn buổi sáng",
+    digestSubject: "Tổng kết tuần học tập của bạn",
+    digestGreeting: "Chào {name}, đây là tổng kết tuần vừa qua của bạn:",
+    digestLessons: "<b>{count}</b> bài học hoàn thành",
+    digestXp: "<b>{count}</b> XP tích lũy",
+    digestStreak: "Streak hiện tại: <b>{days} ngày</b> (kỷ lục: {record} ngày)",
+    digestKeepGoing: "Tiếp tục phát huy nhé!",
+    digestNoActivity:
+      "Tuần này bạn chưa học bài nào cả - streak hiện tại: <b>{days} ngày</b>. Quay lại học tiếp để không bị gián đoạn nhé!",
+    fallbackName: "bạn",
+    fallbackMember: "Một thành viên",
+    fallbackLearner: "Một bạn học",
+    streakAtRiskSubject: "Đừng để mất streak học tập của bạn!",
+    streakAtRiskBody: "Streak học tập của bạn sắp bị mất nếu hôm nay không học. Quay lại ngay nhé!",
+    streakAtRiskEmail: "Chào {name}, streak học tập của bạn sắp bị mất nếu hôm nay không học. Quay lại ngay nhé!",
+    comebackEmail: "Chào {name}, đã vài ngày rồi bạn chưa học bài mới. Quay lại tiếp tục lộ trình của bạn nhé!",
+    comebackSubject: "Đã lâu rồi bạn chưa quay lại học tài chính",
+    comebackBody: "Đã vài ngày rồi bạn chưa học bài mới. Quay lại tiếp tục lộ trình của bạn nhé!",
+    morningReviewBody: "Khoảng 90 giây. Toàn câu bạn từng làm sai, trộn từ nhiều bài.",
+  },
+
   apiErrors: {
+    bossDamageNotRecorded: "Không ghi được sát thương",
     voiceJoinFailed: "Không vào được voice",
     micFailed: "Không bật được micro",
     notOwnMessageEdit: "Bạn chỉ có thể sửa tin nhắn của mình",
@@ -56,10 +80,16 @@ export const vi = {
     badgeNews: "Tin mới",
     badgeCheckin: "Check-in",
     badgeNoGoal: "Chưa chọn",
-    // Menu người dùng: bản desktop có emoji, bản mobile gọn hơn.
-    menuProfile: "👤 Hồ sơ cá nhân",
-    menuFriends: "👥 Bạn bè & Kết nối",
-    menuSettings: "⚙️ Cài đặt tài khoản",
+    // Menu người dùng: desktop dùng nhãn dài, mobile dùng nhãn gọn.
+    //
+    // KHÔNG nhồi emoji vào chuỗi. Ba nhãn này từng mở đầu bằng 👤/👥/⚙️ và
+    // hàng Ngôn ngữ với Đăng xuất mang 🌐/🚪 viết thẳng trong JSX. Emoji nằm
+    // trong chuỗi thì không căn được theo dòng chữ, không nhận màu của mục, và
+    // mỗi hệ máy vẽ một kiểu - nên menu trông lạc khỏi navbar, nơi mọi mục đều
+    // dùng icon lucide. Icon giờ do component đặt, chuỗi chỉ còn chữ.
+    menuProfile: "Hồ sơ cá nhân",
+    menuFriends: "Bạn bè & Kết nối",
+    menuSettings: "Cài đặt tài khoản",
     menuProfileShort: "Hồ sơ",
     menuFriendsShort: "Bạn bè",
     menuSettingsShort: "Cài đặt",
