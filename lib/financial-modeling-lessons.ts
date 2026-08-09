@@ -709,8 +709,8 @@ export const FINANCIAL_MODELING_LESSONS: Lesson[] = [
     openingQuestion:
       "Vì sao tính lãi vay trên số dư nợ bình quân lại tạo ra vòng lặp (circular reference)?",
     openingOptions: [
-      "Vì Excel không xử lý được phép chia",
-      "Vì lãi vay ảnh hưởng lợi nhuận → ảnh hưởng tiền mặt → ảnh hưởng số dư nợ cuối kỳ → lại ảnh hưởng ngược về chính lãi vay",
+      "Vì bản thân Excel không xử lý nổi một phép chia có tham chiếu vòng như thế được cả",
+      "Vì lãi vay ảnh hưởng lợi nhuận → tiền mặt → số dư nợ → lại quay về chính lãi vay",
       "Vì số dư nợ luôn âm",
       "Vì lãi suất thay đổi theo thời gian",
     ],
