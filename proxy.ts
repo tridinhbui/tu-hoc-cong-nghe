@@ -1,5 +1,7 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
+import { hasSupabaseAuthCookie } from "@/lib/has-auth-cookie";
+import { isPreviewLessonPath } from "@/lib/preview-lessons";
 
 // Simple in-memory rate limiting for API endpoints
 const rateLimit = new Map<string, { count: number; resetTime: number }>();
@@ -94,6 +96,10 @@ const PUBLIC_PREFIXES = [
 
 function isPublicPath(pathname: string): boolean {
   if (PUBLIC_PATHS.has(pathname)) return true;
+  // Bốn bài xem thử. Danh sách trắng theo TỪNG SLUG chứ không phải cả tiền tố
+  // /bai-hoc/ - xem lib/preview-lessons.ts về lý do và về việc slug nào được
+  // chọn không tuỳ ý.
+  if (isPreviewLessonPath(pathname)) return true;
   return PUBLIC_PREFIXES.some((prefix) => pathname.startsWith(prefix));
 }
 
@@ -125,6 +131,26 @@ export async function proxy(request: NextRequest) {
     }
   }
   
+  // Không mang cookie phiên nào thì không có phiên để làm mới, và câu trả lời
+  // của getUser() chắc chắn là null - biết trước mà không phải hỏi Supabase.
+  //
+  // Đây là nhóm request đông nhất và rẻ nhất để cắt: mọi lượt vào `/`,
+  // `/login`, `/dieu-khoan`, `/chinh-sach-bao-mat` của khách chưa đăng nhập,
+  // mọi lượt bot quét, và cả 31 route `/api/*` - trước đây mỗi lượt đều tốn
+  // một vòng mạng ra Supabase trước khi proxy kịp biết đường dẫn có công khai
+  // hay không. Matcher không loại được chúng: chúng là HTML và JSON thật.
+  //
+  // Người ĐANG đăng nhập đi nguyên đường cũ bên dưới, nên phần làm mới cookie
+  // mà chú thích ở đầu file mô tả không bị đụng tới.
+  if (!hasSupabaseAuthCookie(request.cookies.getAll().map((cookie) => cookie.name))) {
+    if (!isPublicPath(pathname)) {
+      const loginUrl = new URL("/login", request.url);
+      loginUrl.searchParams.set("next", pathname);
+      return NextResponse.redirect(loginUrl);
+    }
+    return NextResponse.next({ request });
+  }
+
   let response = NextResponse.next({ request });
 
   const supabase = createServerClient(
