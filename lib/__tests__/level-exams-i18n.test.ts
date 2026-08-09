@@ -46,10 +46,37 @@ describe("bản dịch đề thi thăng cấp", () => {
     }
   });
 
-  it("cấp chưa dịch thì rơi về tiếng Việt chứ không rỗng", () => {
-    const untranslated = Object.values(LEVEL_EXAMS).find((c) => !LEVEL_EXAMS_EN[c.level]);
-    expect(untranslated, "mọi cấp đã dịch - đổi bộ kiểm này thành khẳng định đã xong").toBeTruthy();
-    const en = localizeLevelExam(untranslated!, "en");
-    expect(en.questions[0].question).toBe(untranslated!.questions[0].question);
+  /** Bộ kiểm này trước đây tìm một cấp CHƯA dịch để thử đường fallback, kèm
+   *  lời nhắn tự huỷ khi không còn cấp nào như thế. Nó đã đỏ đúng lúc cấp cuối
+   *  cùng được dịch xong - nên giờ nó khẳng định điều ngược lại. */
+  it("mọi cấp trong LEVEL_EXAMS đều đã có bản dịch", () => {
+    const missing = Object.values(LEVEL_EXAMS)
+      .filter((c) => !LEVEL_EXAMS_EN[c.level])
+      .map((c) => c.level);
+    expect(missing).toEqual([]);
+  });
+
+  it("mọi câu trong mọi cấp đều được dịch, không câu nào rơi lại tiếng Việt", () => {
+    const DIACRITICS = /[àáảãạăằắẳẵặâầấẩẫậèéẻẽẹêềếểễệìíỉĩịòóỏõọôồốổỗộơờớởỡợùúủũụưừứửữựỳýỷỹỵđ]/i;
+    const leftInVietnamese: string[] = [];
+    for (const config of Object.values(LEVEL_EXAMS)) {
+      for (const q of localizeLevelExam(config, "en").questions) {
+        if (DIACRITICS.test(q.question)) leftInVietnamese.push(`${q.id}: question`);
+        q.options.forEach((o, i) => {
+          if (DIACRITICS.test(o)) leftInVietnamese.push(`${q.id}: options[${i}]`);
+        });
+        if (DIACRITICS.test(q.explanation)) leftInVietnamese.push(`${q.id}: explanation`);
+      }
+    }
+    expect(leftInVietnamese).toEqual([]);
+  });
+
+  it("một cấp không có trong file dịch vẫn rơi về tiếng Việt chứ không rỗng", () => {
+    // Đường fallback vẫn phải chạy được: nó là thứ giữ cho một cấp mới thêm
+    // vào hiện ra bằng tiếng Việt thay vì hiện ra trống trơn.
+    const source = LEVEL_EXAMS[2];
+    const fake = { ...source, level: 999 };
+    const en = localizeLevelExam(fake, "en");
+    expect(en.questions[0].question).toBe(source.questions[0].question);
   });
 });

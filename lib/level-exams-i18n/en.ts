@@ -2254,4 +2254,904 @@ export const LEVEL_EXAMS_EN: LevelExamTranslations = {
       },
     },
   },
+  12: {
+    title: "Strategic Portfolio Management Exam (Level 12)",
+    questions: {
+      l12_q1: {
+        question: "How does strategic asset allocation differ from tactical?",
+        options: [
+          "Strategic is the long-run weighting; tactical is a temporary tilt around it",
+          "Strategic applies to equities and tactical to bonds",
+          "Strategic is set by the investor and tactical by the regulator",
+          "Strategic is reviewed quarterly while tactical is fixed for the year",
+        ],
+        explanation:
+          "Research shows most of the long-run variation in returns comes from the strategic weights, not from tactical adjustments.",
+      },
+      l12_q2: {
+        question: "What does liability-driven investing put first?",
+        options: [
+          "Matching the cash flows and rate sensitivity of assets to future obligations",
+          "Maximising the portfolio's absolute return each financial year",
+          "Cutting management costs to the lowest among comparable funds",
+          "Tracking a chosen benchmark index as closely as possible",
+        ],
+        explanation:
+          "For a pension fund or insurer, the real risk is the gap between assets and liabilities, not the volatility of the assets on their own.",
+      },
+      l12_q3: {
+        question: "What advantage does threshold rebalancing have over calendar rebalancing?",
+        options: [
+          "It only trades when weights have genuinely drifted far, so it costs less",
+          "It keeps the portfolio exactly on target weights at every moment",
+          "It removes any need to monitor the portfolio between review dates",
+          "It ensures the portfolio outperforms its benchmark over the long run",
+        ],
+        explanation:
+          "Calendar rebalancing can trade when nothing needs trading, or miss a large drift between two dates. A threshold ties the action to the actual drift.",
+      },
+      l12_q4: {
+        question: "What does a portfolio's tracking error measure?",
+        options: [
+          "The standard deviation of the return difference against the benchmark",
+          "The absolute distance between portfolio return and the risk-free rate",
+          "How often the portfolio has to be rebalanced in a year",
+          "The gap between the portfolio's book value and its market value",
+        ],
+        explanation:
+          "Low tracking error means the portfolio hugs the index. It says nothing about whether the portfolio is good - only how far it differs.",
+      },
+      l12_q5: {
+        question: "How does the information ratio differ from the Sharpe ratio?",
+        options: [
+          "It measures excess return over the index against tracking error, not total risk",
+          "It leaves risk out of the calculation entirely",
+          "It applies only to passive index portfolios",
+          "It uses pre-fee returns while Sharpe uses post-fee returns",
+        ],
+        explanation:
+          "Sharpe asks whether the portfolio was worth it against a deposit. The information ratio asks whether the active manager was worth it against simply buying the index.",
+      },
+      l12_q6: {
+        question: "On what principle does a risk parity strategy allocate capital?",
+        options: [
+          "Each asset class contributes an equal share of the portfolio's risk",
+          "Each asset class receives an equal share of capital by value",
+          "Absolute priority goes to the class with the highest expected return",
+          "Weights follow each class's market capitalisation",
+        ],
+        explanation:
+          "A traditional 60/40 looks balanced by capital while almost all its risk comes from equities. Risk parity fixes exactly that, usually by levering the bonds.",
+      },
+      l12_q7: {
+        question: "Where does the liquidity premium in private investing come from?",
+        options: [
+          "Investors demand a higher return for having capital locked up for years",
+          "Unlisted companies always grow faster than listed ones",
+          "Private funds are exempt from most tax on investment gains",
+          "Private assets are marked to market every day",
+        ],
+        explanation:
+          "Part of the apparent excess return on private assets is also a statistical illusion: infrequent valuation makes measured volatility artificially low.",
+      },
+      l12_q8: {
+        question: "What should the currency hedging decision for an international portfolio rest on?",
+        options: [
+          "Whether the currency adds risk without a matching expected return",
+          "The research team's forecast for the exchange rate next year",
+          "The hedging cost the counterparty bank is quoting on forwards",
+          "Whether foreign assets have passed half the portfolio",
+        ],
+        explanation:
+          "For foreign bonds, currency moves usually exceed the yield itself, so hedging is close to mandatory; for equities the argument is far weaker.",
+      },
+      l12_q9: {
+        question: "What question does performance attribution answer?",
+        options: [
+          "Whether the excess return came from sector choice, stock choice or another factor",
+          "Whether the portfolio hit the absolute return promised to investors",
+          "What share of assets went to trading costs in the period",
+          "Whether the manager complied with the mandate's investment limits",
+        ],
+        explanation:
+          "Without attribution you cannot separate a manager who is good at picking stocks from one who simply happened to be overweight the sector that won.",
+      },
+      l12_q10: {
+        question: "How does a pension glide path work over the life of the plan?",
+        options: [
+          "Equity weight is reduced steadily as retirement approaches",
+          "Equity weight is raised steadily to recover returns lost earlier",
+          "Asset class weights are held constant for the plan's whole life",
+          "Everything moves to cash once the member turns fifty",
+        ],
+        explanation:
+          "Someone with many working years left can absorb volatility because they have time to recover and income still coming in. Someone near retirement has neither.",
+      },
+      l12_q11: {
+        question: "What does tax-loss harvesting achieve?",
+        options: [
+          "Realising a loss to offset against taxable capital gains in the period",
+          "Reducing the management fee the investor pays the fund company",
+          "Raising the portfolio's pre-tax return by restructuring losing positions",
+          "Eliminating capital gains tax entirely over the long run",
+        ],
+        explanation:
+          "This is deferral, not forgiveness: the new cost basis is lower, so the tax comes back when the position is finally sold.",
+      },
+      l12_q12: {
+        question: "Why does picking the right benchmark matter so much?",
+        options: [
+          "The wrong index makes measured alpha reflect style drift rather than skill",
+          "The index sets the maximum management fee the fund may charge",
+          "The index determines the list of assets the fund must hold",
+          "The index directly affects the end investor's tax liability",
+        ],
+        explanation:
+          "A small-cap fund measured against a large-cap index will look like it has alpha through every stretch that small caps win, with no skill involved at all.",
+      },
+      l12_q13: {
+        question: "Besides the number of holdings, where does concentration risk show up?",
+        options: [
+          "Different names all exposed to the same underlying risk factor",
+          "How many trades the portfolio makes each month",
+          "The cash weight routinely held in the portfolio",
+          "The bid-ask spread on the assets held",
+        ],
+        explanation:
+          "Thirty stocks all sensitive to interest rates are no more diversified than five. Diversification has to be counted in risk factors, not in tickers.",
+      },
+      l12_q14: {
+        question: "Why is an investor's return usually below the return of the fund they own?",
+        options: [
+          "Because money flows in and out at the wrong times: buying after rises, selling after falls",
+          "Because the fund deducts its management fee before publishing the return",
+          "Because fund returns are always pre-tax while investors are taxed",
+          "Because retail investors pay higher trading costs than institutions",
+        ],
+        explanation:
+          "This gap has been measured many times and usually runs to several percentage points a year - it is the cost of behaviour, not of the product.",
+      },
+      l12_q15: {
+        question: "How should past performance be used when selecting a fund manager?",
+        options: [
+          "As a fact that the process must be able to explain, not as proof of skill",
+          "As the single most important criterion, since it proves demonstrated ability",
+          "Ignored completely, since past performance carries no information at all",
+          "Only when the evaluation window is shorter than the last three years",
+        ],
+        explanation:
+          "Given how noisy markets are, separating skill from luck takes many years of data. Understanding the process that produced the result gets you there far faster.",
+      },
+      l12_q16: {
+        question: "In an allocation framework, what role is a defensive asset expected to play?",
+        options: [
+          "Holding value or rising when risk assets fall hard, softening the drawdown",
+          "Producing the highest expected return of any class in the portfolio",
+          "Removing any chance of a negative annual return",
+          "Replacing the need to hold cash for short-term spending",
+        ],
+        explanation:
+          "A defensive asset's value is not in its expected return but in when it pays: exactly while the rest of the portfolio is taking its heaviest damage.",
+      },
+      l12_q17: {
+        question: "Why can the correlation between equities and government bonds flip from negative to positive?",
+        options: [
+          "Because when inflation dominates, rising rates hit both at once",
+          "Because regulators adjust the maximum holdings funds may carry",
+          "Because government bonds lose their top credit rating",
+          "Because government bond issuance exceeds the equity market's capitalisation",
+        ],
+        explanation:
+          "In a growth-dominated regime, bad economic news pushes equities down and bonds up. When inflation dominates, rising rates hit both at once - the diversification shield fails exactly when it is needed most.",
+      },
+      l12_q18: {
+        question: "What is implementation slippage in trade execution?",
+        options: [
+          "The gap between the price expected at the decision and the price actually filled",
+          "The fixed brokerage commission charged on each order",
+          "The income tax arising when a profitable asset is sold",
+          "The gap between today's close and tomorrow's open",
+        ],
+        explanation:
+          "Slippage is hidden but usually exceeds commission on large orders, because the act of trading itself pushes the price the wrong way.",
+      },
+      l12_q19: {
+        question: "Why does a fund with long-dated obligations favour long-dated bonds?",
+        options: [
+          "Because the assets' duration then matches the liabilities' duration",
+          "Because long bonds always yield more, guaranteeing enough to pay out",
+          "Because long bonds are less price-volatile than short ones",
+          "Because the law forbids pension funds from holding assets under five years",
+        ],
+        explanation:
+          "A pension obligation far in the future is as rate-sensitive as a long bond. Matching duration on both sides means a rate move does not tear open the gap between assets and liabilities.",
+      },
+      l12_q20: {
+        question: "Why distinguish time-weighted from money-weighted return?",
+        options: [
+          "Because time-weighted measures skill, money-weighted measures the actual experience",
+          "Because time-weighted applies to open-ended funds and money-weighted to closed-ended",
+          "Because the two always give identical answers when there are no cash flows",
+          "Because international standards recognise only money-weighted return in reports",
+        ],
+        explanation:
+          "A manager does not control when investors put money in or take it out, so time-weighted is the fair measure of skill. Money-weighted includes the effect of that timing, which is what the investor actually received.",
+      },
+    },
+  },
+  13: {
+    title: "Market Mastery Exam (Level 13)",
+    questions: {
+      l13_q1: {
+        question: "What cost does the bid-ask spread on the order book represent?",
+        options: [
+          "The immediate cost of demanding a fill right now",
+          "The brokerage commission charged on each trade",
+          "The income tax owed on the gain when securities are sold",
+          "The custody fee charged on the portfolio held",
+        ],
+        explanation:
+          "Whoever sends a market order pays that spread to the market maker; whoever posts a limit order earns it, at the price of not being sure of a fill.",
+      },
+      l13_q2: {
+        question: "What is a market maker's inventory risk?",
+        options: [
+          "The price moving against them while they hold a position from filling clients",
+          "Clients cancelling orders before they reach the book",
+          "The rising cost of colocated server infrastructure",
+          "Regulators requiring full disclosure of positions held",
+        ],
+        explanation:
+          "This is why spreads widen as volatility rises: the maker demands more compensation for carrying inventory in a market that is hard to read.",
+      },
+      l13_q3: {
+        question: "What does the volatility surface reveal that Black-Scholes does not assume?",
+        options: [
+          "Implied volatility varies by strike and by maturity",
+          "Option prices always exceed intrinsic value at every moment",
+          "The risk-free rate moves continuously over the contract's life",
+          "The underlying pays no dividend while the option is held",
+        ],
+        explanation:
+          "The model assumes a single volatility. The market instead prices far-from-the-money options higher, producing the volatility smile - evidence of fat tails.",
+      },
+      l13_q4: {
+        question: "Buying a call and a put at the same strike is a bet on what?",
+        options: [
+          "A large price move, in either direction",
+          "The price rising steadily throughout the holding period",
+          "The price staying nearly still until expiry",
+          "Implied volatility falling below realised volatility",
+        ],
+        explanation:
+          "The position wins when the price travels far either way, and loses when it stands still, because the time value of both options decays together.",
+      },
+      l13_q5: {
+        question: "Where does gamma scalping make its money?",
+        options: [
+          "Rebalancing continuously to harvest the underlying's oscillation",
+          "Holding options to expiry to collect the full intrinsic value",
+          "The price gap for one option listed on two different exchanges",
+          "The premium collected from writing contracts to other investors",
+        ],
+        explanation:
+          "An option buyer is long gamma, so every rebalance buys low and sells high. That gain has to exceed the time value lost each day.",
+      },
+      l13_q6: {
+        question: "Why do correlations between asset classes shift with the market regime?",
+        options: [
+          "In a crisis, the need for cash drives prices more than each asset's own character",
+          "Exchanges adjust price limits when markets turn volatile",
+          "Institutions are required to hold the same basket of assets",
+          "Benchmarks are recomputed on new weights each quarter",
+        ],
+        explanation:
+          "When the reason for selling has nothing to do with the asset itself, everything gets sold - and diversification disappears exactly when it is needed.",
+      },
+      l13_q7: {
+        question: "When does a short squeeze occur?",
+        options: [
+          "Short sellers are forced to buy back, and that buying pushes the price higher still",
+          "The company issues new shares, diluting existing ownership",
+          "The regulator suspends short selling across the whole market",
+          "Institutions sell in unison and liquidity dries up fast",
+        ],
+        explanation:
+          "A short position has unlimited loss, so the pressure to close creates a positive feedback loop that carries the price far from any fundamental value.",
+      },
+      l13_q8: {
+        question: "Why do stocks often move sharply around index rebalancing dates?",
+        options: [
+          "Index funds must buy and sell to the new weights at the same moment",
+          "Companies usually publish results on exactly that day",
+          "The exchange widens price limits during the rebalancing session",
+          "Retail investors tend to trade more at quarter end",
+        ],
+        explanation:
+          "The demand comes from a constraint, not from a view on value, so it creates temporary price pressure that other funds try to exploit.",
+      },
+      l13_q9: {
+        question: "What underlying assumption separates momentum investing from value investing?",
+        options: [
+          "Momentum assumes trends persist; value assumes prices revert to fair",
+          "Momentum applies only to equities and value only to corporate bonds",
+          "Momentum rests on financial statements and value on past price data",
+          "Momentum requires long holding periods and value requires frequent trading",
+        ],
+        explanation:
+          "The two assumptions contradict each other yet both have empirical support, and they tend to win in different periods - which is why many funds hold both.",
+      },
+      l13_q10: {
+        question: "What is a market circuit breaker for?",
+        options: [
+          "Pausing trading so participants have time to reassess the information",
+          "Ensuring share prices never fall below the company's book value",
+          "Stopping foreign investors from net selling beyond a set share",
+          "Forcing funds to disclose their positions during the session",
+        ],
+        explanation:
+          "The argument for it is that it stops a panic-driven selling spiral; the argument against is that it merely pushes the selling into the next session and worsens liquidity.",
+      },
+      l13_q11: {
+        question: "What risk does market positioning crowded on one side create?",
+        options: [
+          "Even a small contrary headline can trigger a wave of simultaneous unwinding",
+          "Liquidity increases and spreads narrow",
+          "The cost of borrowing stock to short falls unusually low",
+          "Implied volatility drops far below realised volatility",
+        ],
+        explanation:
+          "Once everyone is on the same side there are no new buyers left, and any move the other way is amplified by the exit itself.",
+      },
+      l13_q12: {
+        question: "What does an upward-sloping implied volatility term structure say?",
+        options: [
+          "The market expects higher volatility at longer maturities",
+          "Short-dated options are priced above long-dated ones",
+          "The underlying will rise over the remaining life of the contract",
+          "The risk-free rate is expected to fall across future maturities",
+        ],
+        explanation:
+          "This is the normal shape in calm markets. It inverts in a crisis, when short-dated volatility spikes above the long end.",
+      },
+      l13_q13: {
+        question: "Why does macro liquidity affect the valuation of every asset class?",
+        options: [
+          "It changes the discount rate and the risk appetite of the whole market",
+          "It directly affects the accounting profit of listed companies",
+          "It determines the sector weights index funds must hold",
+          "It sets the minimum bid-ask spread allowed on exchanges",
+        ],
+        explanation:
+          "The same future cash flow is worth something quite different once rates and the risk premium move, and that applies across every asset class at once.",
+      },
+      l13_q14: {
+        question: "What is the trade-off between a limit order and a market order?",
+        options: [
+          "Certainty about price, but no certainty of being filled",
+          "Certainty of a fill, but at a higher trading fee",
+          "Priority ahead of every other order at the same price",
+          "Validity only in the opening and closing auctions",
+        ],
+        explanation:
+          "Non-execution risk is real and expensive: missing a large move usually costs far more than the spread the limit order saved.",
+      },
+      l13_q15: {
+        question: "Why does implied volatility usually exceed the volatility that follows?",
+        options: [
+          "Option sellers demand a premium for the risk they carry for the buyer",
+          "Option pricing models have a systematic one-directional error",
+          "Retail investors always estimate volatility above institutions",
+          "Exchanges set a minimum volatility when listing options",
+        ],
+        explanation:
+          "This is the volatility risk premium, and it is why option-selling strategies have positive expectancy - paid for with rare but very deep losses.",
+      },
+      l13_q16: {
+        question: "Why does market liquidity tend to evaporate exactly as volatility spikes?",
+        options: [
+          "Because market makers widen spreads and shrink their quoted size",
+          "Because exchanges shorten the trading session during volatile periods",
+          "Because limit orders are automatically cancelled once volatility crosses a threshold",
+          "Because retail investors are restricted from placing orders in volatile sessions",
+        ],
+        explanation:
+          "Market makers earn the spread but carry inventory risk. High volatility makes that risk jump, so they pull depth and widen quotes - liquidity thins exactly when it is needed most.",
+      },
+      l13_q17: {
+        question: "What does the volatility smile in the options market show?",
+        options: [
+          "Options far from the current strike carry higher implied volatility than at-the-money ones",
+          "Implied volatility is identical at every strike, exactly as Black-Scholes assumes",
+          "Implied volatility always declines as the contract's maturity lengthens",
+          "Option prices do not depend on the strike chosen",
+        ],
+        explanation:
+          "The market prices extreme moves as more probable than a normal distribution allows, so options at both ends are relatively dear. It is empirical evidence that the Black-Scholes assumption does not match reality.",
+      },
+      l13_q18: {
+        question: "Buying out-of-the-money options on both sides is a bet on what?",
+        options: [
+          "A very large move in the underlying, direction irrelevant",
+          "The underlying trading sideways until expiry",
+          "Implied volatility falling below realised volatility",
+          "The issuer paying a higher dividend than expected",
+        ],
+        explanation:
+          "The position is cheaper than buying at the money but needs a bigger move to pay. Its enemies are time and calm - time value erodes both legs if the market does not move.",
+      },
+      l13_q19: {
+        question: "Why can the growing share of passive money affect the market's price structure?",
+        options: [
+          "Because buying to index weights allocates capital regardless of valuation",
+          "Because passive funds are legally barred from holding small caps",
+          "Because passive funds always trade more frequently than active ones",
+          "Because passive funds may only buy and never sell",
+        ],
+        explanation:
+          "Index flows allocate by market-cap weight rather than by valuation, so large stocks receive more money simply for being large. The worry is that price discovery weakens once the passive share gets high enough.",
+      },
+      l13_q20: {
+        question: "What problem does gap risk create for a stop-loss order?",
+        options: [
+          "The price can jump straight past the stop and fill far below it",
+          "The exchange automatically cancels stop orders when the market gaps",
+          "Stop orders only trigger after the session has closed",
+          "Stop orders cannot be used on highly liquid stocks",
+        ],
+        explanation:
+          "A stop is a trigger instruction, not a guarantee of price. Bad news overnight opens the market far below the stop, and the market order fills right there.",
+      },
+    },
+  },
+  14: {
+    title: "Supreme Financial Leadership Exam (Level 14)",
+    questions: {
+      l14_q1: {
+        question: "What is the founding principle of corporate capital allocation?",
+        options: [
+          "Capital flows to wherever the return most exceeds the cost of capital",
+          "Split evenly across divisions to keep things fair internally",
+          "Absolute priority to whichever division brings in the most revenue",
+          "Keep last year's split, to maintain stability",
+        ],
+        explanation:
+          "Allocating by history or by internal political weight is the most common way a company destroys value without anyone noticing.",
+      },
+      l14_q2: {
+        question: "When does a buyback create more value than a dividend?",
+        options: [
+          "When the shares trade below management's estimate of intrinsic value",
+          "When the company wants to signal a commitment to steady payouts",
+          "When the company needs to retain cash to expand production",
+          "When a major shareholder's stake must be held at its current level",
+        ],
+        explanation:
+          "Buying back above intrinsic value transfers value from the shareholders who stay to the ones who sell - which happens often, because companies tend to buy when cash is plentiful.",
+      },
+      l14_q3: {
+        question: "What does a company targeting a particular credit rating give up?",
+        options: [
+          "Part of the tax shield, in exchange for cheaper debt and reliable market access",
+          "A higher cost of equity, in exchange for a lower debt level",
+          "Its dividend payout, reduced to the minimum for years",
+          "Any ability to pursue mergers and acquisitions",
+        ],
+        explanation:
+          "The theoretically optimal capital structure usually implies more debt than a safe rating allows - this is a deliberate trade-off, not a mistake.",
+      },
+      l14_q4: {
+        question: "Why do internal hurdle rates usually sit above WACC?",
+        options: [
+          "To offset the systematic optimism in the proposing division's forecasts",
+          "Because regulators require a minimum discount rate",
+          "Because WACC only applies to tangible fixed-asset projects",
+          "To ensure every project pays back within three years",
+        ],
+        explanation:
+          "Setting the hurdle too high then kills good projects. The cleaner fix is repairing the forecasting process rather than compensating with an arbitrary number.",
+      },
+      l14_q5: {
+        question: "What should a company whose ROIC sits below its WACC do?",
+        options: [
+          "Shrink rather than grow, because growth destroys more value",
+          "Push revenue growth to gain scale and improve margins",
+          "Borrow cheaply to pull the blended cost of capital below ROIC",
+          "Pay out all profit and stop investing entirely",
+        ],
+        explanation:
+          "Every extra dong invested in an activity returning less than the cost of capital leaves shareholders poorer, so growth here destroys value faster.",
+      },
+      l14_q6: {
+        question: "Why is working capital an underrated financial lever?",
+        options: [
+          "Improving it releases cash without raising a single dong externally",
+          "It does not appear in the financial statements, so investors do not examine it",
+          "The tax authority allows it to be fully deducted from taxable income",
+          "It grows automatically with revenue without any intervention",
+        ],
+        explanation:
+          "Shortening collection days and lengthening payment days can free up as much as a funding round - with no interest and no dilution.",
+      },
+      l14_q7: {
+        question: "What should a corporate FX hedging policy start from?",
+        options: [
+          "The genuine cash flow exposure and the tolerance for volatility",
+          "Treasury's forecast for the exchange rate over the next twelve months",
+          "The price the counterparty bank is quoting on forward contracts",
+          "The hedging convention peers in the industry are following",
+        ],
+        explanation:
+          "Hedging based on an exchange-rate forecast is organised speculation. Good policy starts from how much volatility the business can actually absorb.",
+      },
+      l14_q8: {
+        question: "Why does managing loan covenants matter so much?",
+        options: [
+          "Breaching one covenant can make the entire loan fall due immediately",
+          "Covenants determine the interest rate the company pays",
+          "They let the bank sit directly on the board",
+          "They set the order of repayment in a bankruptcy",
+        ],
+        explanation:
+          "Cross-default clauses between agreements mean a small breach on one loan can pull the entire debt structure due at the same moment.",
+      },
+      l14_q9: {
+        question: "Where does discipline in M&A show up most clearly?",
+        options: [
+          "Willingness to walk away once the price passes what the thesis can support",
+          "Completing the deal on the timetable promised to the market",
+          "Hiring the most reputable financial adviser available",
+          "Ensuring the deal is accretive to earnings per share in year one",
+        ],
+        explanation:
+          "The sunk cost of due diligence and the pressure of a public announcement make walking away psychologically very hard - which is exactly when discipline is worth the most.",
+      },
+      l14_q10: {
+        question: "How should investor relations handle bad news?",
+        options: [
+          "Disclose early and fully, with a concrete plan to address it",
+          "Wait until there is enough information to present a complete picture",
+          "Release it alongside good news to balance the market's reaction",
+          "Brief the largest shareholders privately before disclosing widely",
+        ],
+        explanation:
+          "The last option also breaches fair disclosure. Credibility is built over years and lost the moment the market discovers something was withheld.",
+      },
+      l14_q11: {
+        question: "What is the risk of tying executive pay to EPS?",
+        options: [
+          "It encourages buybacks and borrowing instead of creating real value",
+          "It makes management too cautious and costs them growth opportunities",
+          "It pushes compensation beyond what the company can afford",
+          "It forces the company to report quarterly instead of annually",
+        ],
+        explanation:
+          "EPS can be lifted by shrinking the denominator or borrowing cheaply, with no improvement in the business. Tying pay to ROIC or economic value added is far harder to game.",
+      },
+      l14_q12: {
+        question: "How does scenario planning differ from point forecasting?",
+        options: [
+          "It prepares for several futures instead of betting on one number",
+          "It uses more historical data, so its results are more accurate",
+          "It applies only to plans beyond five years, not to budgets",
+          "It removes the need to make any assumptions about the future",
+        ],
+        explanation:
+          "The value lies in having the response to each scenario ready in advance, so decisions are made before time pressure and emotion arrive.",
+      },
+      l14_q13: {
+        question: "What is the board's core role in corporate governance?",
+        options: [
+          "Overseeing management on the shareholders' behalf, not managing for them",
+          "Taking part directly in the company's day-to-day operating decisions",
+          "Representing the interests of the largest shareholder bloc",
+          "Approving every contract above an internal threshold",
+        ],
+        explanation:
+          "A board that drifts into managing loses the ability to oversee itself. Independent directors exist precisely to defend that boundary.",
+      },
+      l14_q14: {
+        question: "How should the cost of capital be set for a project outside the core business?",
+        options: [
+          "On the risk of that field itself, not on the company's WACC",
+          "On the company's WACC, since that is the cost actually being borne",
+          "On the bank rate charged for the loan funding the project",
+          "On the average return the company has achieved historically",
+        ],
+        explanation:
+          "Using one blended WACC accepts every high-risk project and rejects every low-risk one - a bias that accumulates into a portfolio nobody intended.",
+      },
+      l14_q15: {
+        question: "What must a group's cash policy balance?",
+        options: [
+          "Resilience to shocks against the opportunity cost of idle cash",
+          "Short-term deposit yields against the tax owed on that interest",
+          "The cash balance against inventory value at each quarter end",
+          "Cash as a share of equity, against the industry convention",
+        ],
+        explanation:
+          "Holding too much cash is punished by investors because it returns less than the cost of capital; holding too little means one liquidity shock can end the company.",
+      },
+      l14_q16: {
+        question: "Which metric best evaluates management over the long run?",
+        options: [
+          "Return on invested capital against the cost of capital, across cycles",
+          "Revenue growth achieved against industry peers",
+          "The share price at the end of each financial year",
+          "Earnings per share as reported in the quarterly statements",
+        ],
+        explanation:
+          "The share price is driven largely by the market as a whole, and both revenue and EPS can rise without value being created. The ROIC-to-WACC gap cannot be gamed.",
+      },
+      l14_q17: {
+        question: "Why should a company review its business portfolio periodically?",
+        options: [
+          "Because each arm must be tested for whether it still earns above the cost of capital",
+          "Because accounting standards require every business line to be revalued annually",
+          "Because competition regulators cap how many industries one company may enter",
+          "Because divesting always creates more value than continuing to operate",
+        ],
+        explanation:
+          "Capital sitting in a business that earns below its cost of capital is capital being destroyed. A periodic review forces the hard question: if we did not own this today, would we buy it?",
+      },
+      l14_q18: {
+        question: "Why does a steady dividend signal something different from a buyback?",
+        options: [
+          "Because cutting a dividend is punished heavily, so maintaining one is a commitment",
+          "Because the law allows buybacks only once a year",
+          "Because dividends are untaxed while buybacks are not",
+          "Because buybacks do not change the number of shares outstanding",
+        ],
+        explanation:
+          "Management knows a dividend cut provokes a fierce reaction, so they only raise the dividend when they believe the cash flow will last. A buyback is flexible, and therefore carries far less commitment.",
+      },
+      l14_q19: {
+        question: "When a company weighs issuing new shares, which factor deserves the closest scrutiny?",
+        options: [
+          "The dilution against the return on the project the money will fund",
+          "How many brokerages are willing to underwrite the issue",
+          "Whether the issue clashes with the reporting season",
+          "The par value printed on the share certificate",
+        ],
+        explanation:
+          "An equity issue only creates value if the project it funds returns more than the existing shareholders give up in dilution. Selling shares cheaply to fund a mediocre project is the fastest way to destroy value.",
+      },
+      l14_q20: {
+        question: "Why should management be careful about making revenue growth the headline target?",
+        options: [
+          "Because revenue can be bought by sacrificing margin",
+          "Because revenue is the one figure independent auditors do not verify",
+          "Because the tax authority taxes the incremental revenue directly",
+          "Because revenue growth cannot be measured objectively",
+        ],
+        explanation:
+          "Revenue is easy to buy with discounts, looser credit terms or expensive acquisitions. Growth only means something when it comes with a return on invested capital above the cost of capital.",
+      },
+    },
+  },
+  15: {
+    title: "Wall Street Grand Captain Exam (Level 15)",
+    questions: {
+      l15_q1: {
+        question: "What is systemic risk in the financial-stability sense?",
+        options: [
+          "One institution's failure spreading until the whole system seizes up",
+          "Broad market risk that diversification cannot remove",
+          "The risk of one company failing to pay its debts as they fall due",
+          "The risk of rate moves changing the value of a bond portfolio",
+        ],
+        explanation:
+          "This is one of the most confused pairs of terms: systematic risk in portfolio theory is the second option, an entirely different idea from this one.",
+      },
+      l15_q2: {
+        question: "What is Tier 1 capital in the Basel framework for?",
+        options: [
+          "Absorbing losses while the bank keeps operating normally",
+          "Paying depositors if the bank goes bankrupt",
+          "Ensuring the bank can always meet short-term withdrawals",
+          "Funding the bank's long-term lending",
+        ],
+        explanation:
+          "An important distinction: capital absorbs losses while the bank is alive, while the third option describes the liquidity ratios - two tools for two different problems.",
+      },
+      l15_q3: {
+        question: "Why are banks structurally fragile?",
+        options: [
+          "They fund short and lend long, creating an inherent maturity mismatch",
+          "Regulators cap the deposit rate they may offer",
+          "They must hold a high share of government bonds in total assets",
+          "They are not permitted to use derivatives to hedge",
+        ],
+        explanation:
+          "Maturity transformation is a bank's economic function, not a flaw. But it also means a perfectly sound bank can still collapse from a loss of confidence.",
+      },
+      l15_q4: {
+        question: "What does central clearing do to counterparty risk in derivatives?",
+        options: [
+          "Concentrates it in one node, at the cost of making that node critical",
+          "Removes counterparty risk from the financial system entirely",
+          "Transfers the risk onto the state regulator",
+          "Spreads the risk evenly across every market participant",
+        ],
+        explanation:
+          "A clearing house cuts the tangled web of bilateral obligations, but it becomes the point whose failure would have consequences nobody can model.",
+      },
+      l15_q5: {
+        question: "Why is shadow banking a concern?",
+        options: [
+          "It performs bank-like functions outside the supervisory perimeter",
+          "It lends at rates far above commercial banks",
+          "It serves only low-credit-quality borrowers",
+          "It operates mainly in countries with weak legal systems",
+        ],
+        explanation:
+          "Maturity transformation and leverage still happen, but without deposit insurance, without a lender of last resort, and usually without capital requirements.",
+      },
+      l15_q6: {
+        question: "How does the balance-sheet contagion channel work?",
+        options: [
+          "One institution fire-sells assets, the price falls, and another's balance sheet worsens",
+          "One bank fails and depositors run on a different bank",
+          "Regulators tighten rules across the board after one institution stumbles",
+          "Institutions hold cross-shareholdings in one another",
+        ],
+        explanation:
+          "This is contagion needing no contractual link between the two: it is enough that they hold the same kind of asset and both mark it to market.",
+      },
+      l15_q7: {
+        question: "On what principle should the lender-of-last-resort role be exercised?",
+        options: [
+          "Lend freely at a penalty rate, against good collateral",
+          "Lend without limit at favourable rates to any institution in difficulty",
+          "Lend only to the largest banks in the system",
+          "Buy up all the bad assets of the institution in trouble",
+        ],
+        explanation:
+          "Bagehot's principle separates illiquidity from insolvency: support the first and let the second fail - a distinction that is very hard to draw in a crisis.",
+      },
+      l15_q8: {
+        question: "How does moral hazard show up in financial bailouts?",
+        options: [
+          "Institutions take more risk because they expect to be rescued",
+          "Management hides unfavourable information from the regulator",
+          "Depositors withdraw en masse on hearing a rumour about their bank",
+          "Shareholders dump the stock at the first sign of trouble",
+        ],
+        explanation:
+          "This is the long-run cost of every bailout, and the reason modern resolution frameworks try to force creditors to take the loss instead of taxpayers.",
+      },
+      l15_q9: {
+        question: "How does macroprudential policy differ from microprudential?",
+        options: [
+          "It targets the stability of the whole system, not each institution alone",
+          "It applies only to the largest banks in the economy",
+          "It is issued by the central bank while microprudential comes from the finance ministry",
+          "It focuses on liquidity risk while microprudential focuses on credit risk",
+        ],
+        explanation:
+          "Behaviour that is sensible for one bank can be disastrous for the system: every bank selling assets to repair its capital ratio collapses the price for all of them.",
+      },
+      l15_q10: {
+        question: "On what principle does a countercyclical capital buffer work?",
+        options: [
+          "Build capital in the good years so it can be released in the downturn",
+          "Raise capital requirements in a downturn to protect depositors better",
+          "Hold capital flat through every phase of the cycle, for stability",
+          "Let banks set their own capital level from internal models",
+        ],
+        explanation:
+          "It works against credit's natural tendency to boom in good times and contract in bad ones - which deepens the cycle in both directions.",
+      },
+      l15_q11: {
+        question: "What inherent weakness does stress test design carry?",
+        options: [
+          "Banks can optimise to pass exactly the scenario that was published",
+          "Results are not made public, so they lack deterrent effect",
+          "It covers only credit risk and ignores market risk",
+          "It is so costly it can only be run every few years",
+        ],
+        explanation:
+          "This is Goodhart's law at system level: once the scenario becomes the target, it stops measuring genuine resilience.",
+      },
+      l15_q12: {
+        question: "What role does the repo market play in the financial system?",
+        options: [
+          "It is the secured short-term funding channel for most large institutions",
+          "It is where central banks issue base money into the economy",
+          "It is the primary market in which governments raise debt",
+          "It is the clearing mechanism for listed securities trades",
+        ],
+        explanation:
+          "It is modern finance's plumbing: nearly invisible until it blocks, and when it blocks everything above it stops at once.",
+      },
+      l15_q13: {
+        question: "What risk does a chain of collateral rehypothecation create?",
+        options: [
+          "One asset backs several obligations, so one break spreads down the chain",
+          "Collateral is valued below its true market price",
+          "The original owner loses any right to reclaim the asset",
+          "Regulators cannot determine who legally owns the asset",
+        ],
+        explanation:
+          "The chain raises capital efficiency in calm times and turns into a contagion channel in a crisis, when everyone demands their collateral back at once.",
+      },
+      l15_q14: {
+        question: "What does regulatory arbitrage between markets lead to?",
+        options: [
+          "Risk migrating to wherever supervision is lightest, rather than disappearing",
+          "Countries being forced to adopt one identical rulebook",
+          "Compliance costs rising for institutions in every market",
+          "Retail investors being better protected through competition between countries",
+        ],
+        explanation:
+          "This is why international coordination is a precondition for regulation to bite, and also why it is so hard to reach when national interests diverge.",
+      },
+      l15_q15: {
+        question: "What does a modern resolution regime aim for?",
+        options: [
+          "Letting the institution fail without interrupting its critical services",
+          "Ensuring every large institution is rescued to prevent market panic",
+          "Transferring all the institution's assets into state ownership",
+          "Compensating shareholders and creditors in full",
+        ],
+        explanation:
+          "The idea is to separate the critical services from the shareholders and creditors: the operations keep running while those who took the risk take the loss.",
+      },
+      l15_q16: {
+        question: "What is the core trade-off in financial regulation?",
+        options: [
+          "System stability against the capacity to allocate capital and take risk",
+          "Protecting small investors against the profits of large institutions",
+          "Information transparency against transaction processing speed",
+          "Compliance costs against lower taxes for the financial sector",
+        ],
+        explanation:
+          "A system that never fails is also a system that never funds risk worth taking. The real question is always how much of the trade-off, not whether.",
+      },
+      l15_q17: {
+        question: "Why is the maturity mismatch between assets and funding the root of bank liquidity risk?",
+        options: [
+          "Because banks fund short-term and lend long-term",
+          "Because short-term funding rates always exceed long-term lending rates",
+          "Because long-term loans are not counted as risk-weighted assets",
+          "Because banks are barred from holding assets longer-dated than their funding",
+        ],
+        explanation:
+          "Maturity transformation is a bank's core economic function and also its structural weakness: assets cannot be turned into cash as fast as depositors can withdraw once confidence wavers.",
+      },
+      l15_q18: {
+        question: "What does the Basel liquidity coverage ratio require of a bank?",
+        options: [
+          "Holding enough high-quality liquid assets to survive thirty days of stress",
+          "Keeping equity over total assets above a minimum level",
+          "Capping exposure to one customer below a share of own funds",
+          "Provisioning for credit risk by classified loan category",
+        ],
+        explanation:
+          "The liquidity coverage ratio is a liquidity standard, not a capital one: it forces the bank to hold immediately sellable assets sufficient to live through a month of crisis rather than depending on the interbank market.",
+      },
+      l15_q19: {
+        question: "Why does herding behaviour among financial institutions amplify systemic risk?",
+        options: [
+          "Because many institutions holding the same position will sell at the same moment",
+          "Because the law obliges institutions to follow the same investment strategy",
+          "Because regulators can only supervise one institution at a time",
+          "Because identical behaviour reduces secondary market volume",
+        ],
+        explanation:
+          "When risk models, regulations and benchmarks are the same, institutions are pushed towards the same exit. Individually rational action produces a collectively catastrophic outcome - the core paradox of macroprudential policy.",
+      },
+      l15_q20: {
+        question: "Why were credit rating agencies criticised after the global financial crisis?",
+        options: [
+          "Because the agencies are paid by the very issuers they rate",
+          "Because ratings may not be published to retail investors",
+          "Because agencies rate only government bonds and ignore corporate ones",
+          "Because rules forbid using ratings in investment decisions",
+        ],
+        explanation:
+          "The issuer-pays model creates a plain conflict of interest: the agency has an incentive to keep the client. Combined with structured-product models built on wrong correlation assumptions, the result was a wave of collapsing AAA ratings.",
+      },
+    },
+  },
 };

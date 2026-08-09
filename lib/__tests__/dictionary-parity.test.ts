@@ -44,6 +44,11 @@ const INTENTIONALLY_UNTRANSLATED = new Set([
   // quên - dịch ra "Chuyên viên phân tích tài chính cấp cao" sẽ là đổi dữ liệu
   // chứ không phải dịch giao diện.
   "leaderboardHonors.career",
+  // "Quantitative Analyst" là tên chức danh mà bản tiếng Việt cũng viết bằng
+  // tiếng Anh - cùng lý do với nhánh nghề nghiệp ở trên. Chỉ miễn trừ đúng
+  // khoá này; các khoá khác trong `jobKeywords` đều đã dịch thật ("Kế toán" →
+  // "Accounting") nên chúng vẫn phải bị chấm.
+  "jobKeywords.quant",
   // `badge` của mỗi địa điểm RPG là tên KHU trên bản đồ, và bản tiếng Việt đã
   // viết bằng tiếng Anh sẵn: "GOLDMAN SACHS WALL ST.", "HEDGE FUND QUARTER",
   // "US FEDERAL RESERVE". Đó là tên riêng của những nơi có thật, không phải
