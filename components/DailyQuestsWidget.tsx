@@ -278,7 +278,13 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
       </div>
       )}
 
-      <div className="space-y-2.5 relative z-10 max-h-[205px] overflow-y-auto pr-1 custom-scrollbar">
+      {/* Không cắt ở 205px rồi cuộn bên trong nữa. Cột chứa thẻ này đã là
+          một vùng cuộn - chú thích trong CombinedRewardsWidget đã nêu đúng lý
+          do đó khi gỡ vùng cuộn ở lớp bọc, nhưng danh sách này vẫn còn một
+          cái. Hai vùng cuộn lồng nhau dưới cùng một con trỏ thì lăn chuột
+          không đoán được cái nào chạy, và ở đây nó còn giấu bớt nhiệm vụ
+          trong khi thẻ vẫn chừa một khoảng trắng ngay dưới. */}
+      <div className="space-y-2.5 relative z-10">
         <style>{`
           @keyframes pulseGlow {
             0%, 100% { box-shadow: 0 0 8px rgba(245, 158, 11, 0.05); }

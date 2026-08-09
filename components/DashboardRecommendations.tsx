@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { Sparkles, Flame, TrendingUp, Target, BookOpen, Gamepad2, ChevronDown, ChevronUp, ChevronLeft, ChevronRight, Radio } from "lucide-react";
+import { Sparkles, Gamepad2, ChevronLeft, ChevronRight, Radio } from "lucide-react";
 import type { LessonMeta } from "./DashboardClient";
 import { GAMES } from "@/lib/games";
 import { getWeekSeed, pickRotatingWindow } from "@/lib/content-rotation";
@@ -11,7 +11,6 @@ import { useLocalStorageValue } from "@/lib/use-local-storage-value";
 import { GOAL_UPDATED_EVENT } from "@/components/GoalSelectionBanner";
 import { useI18n } from "@/lib/i18n/context";
 import { format, intlLocale } from "@/lib/i18n";
-import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
 interface DashboardRecommendationsProps {
   lessonsMeta: LessonMeta[];
@@ -22,34 +21,6 @@ interface DashboardRecommendationsProps {
 // Topic titles are copy, slugs/icons/colors are structure - so these are
 // built from `t` rather than kept as a static module-scope array. See
 // lib/i18n/dictionaries/sections/quests-referral.ts (`recommendations`).
-function getDefaultTopics(t: Dictionary) {
-  return [
-    {
-      id: "newbie",
-      title: t.recommendations.topicNewbie,
-      icon: BookOpen,
-      color: "text-blue-500",
-      bg: "bg-blue-50 dark:bg-blue-950/30",
-      slugs: ["tai-chinh-la-gi", "tien-la-gi", "thu-nhap-chi-phi-tiet-kiem"],
-    },
-    {
-      id: "investing",
-      title: t.recommendations.topicInvesting,
-      icon: TrendingUp,
-      color: "text-emerald-500",
-      bg: "bg-emerald-50 dark:bg-emerald-950/30",
-      slugs: ["lai-suat-la-gi", "rui-ro-la-gi", "loi-nhuan-ky-vong"],
-    },
-    {
-      id: "accounting",
-      title: t.recommendations.topicAccounting,
-      icon: Target,
-      color: "text-purple-500",
-      bg: "bg-purple-50 dark:bg-purple-950/30",
-      slugs: ["ke-toan-la-gi", "doanh-thu-ghi-nhan", "cong-thuc-ke-toan"],
-    },
-  ];
-}
 
 // Pools are intentionally larger than what's shown at once - "Đang hot tuần
 // này" picks a rotating 4-item window out of each pool (see
@@ -123,76 +94,21 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
   // seeded once per render off the current ISO week, not randomized per
   // visitor, so everyone sees the same "hot this week" set.
   const weekSeed = getWeekSeed();
-  let activeTopics = getDefaultTopics(t);
   let activeTrendingSlugs = pickRotatingWindow(DEFAULT_TRENDING_POOL, 4, weekSeed);
 
   if (selectedGoal === "personal-finance") {
-    activeTopics = [
-      {
-        id: "pf-basic",
-        title: t.recommendations.topicPfBasic,
-        icon: BookOpen,
-        color: "text-blue-500",
-        bg: "bg-blue-50 dark:bg-blue-950/30",
-        slugs: ["tai-chinh-la-gi", "thu-nhap-chi-phi-tiet-kiem", "tai-san-tieu-san"],
-      },
-      {
-        id: "pf-debt",
-        title: t.recommendations.topicPfDebt,
-        icon: Target,
-        color: "text-rose-500",
-        bg: "bg-rose-50 dark:bg-rose-950/30",
-        slugs: ["no-tot-no-xau", "vay-tien-giau-hay-pha-san", "tra-no-thong-minh-snowball-avalanche"],
-      }
-    ];
     activeTrendingSlugs = pickRotatingWindow(
       ["tai-san-tieu-san", "no-tot-no-xau", "vay-tien-giau-hay-pha-san", "thu-nhap-chi-phi-tiet-kiem", "wealth-management", "credit-rating", "credit-spread"],
       4,
       weekSeed
     );
   } else if (selectedGoal === "basic-investing") {
-    activeTopics = [
-      {
-        id: "bi-save",
-        title: t.recommendations.topicBiSave,
-        icon: TrendingUp,
-        color: "text-emerald-500",
-        bg: "bg-emerald-50 dark:bg-emerald-950/30",
-        slugs: ["lai-don-lai-kep", "suc-manh-thoi-gian", "thanh-khoan-la-gi"],
-      },
-      {
-        id: "bi-risk",
-        title: t.recommendations.topicBiRisk,
-        icon: BookOpen,
-        color: "text-amber-500",
-        bg: "bg-amber-50 dark:bg-amber-950/30",
-        slugs: ["lam-phat-la-gi", "rui-ro-la-gi", "loi-nhuan-ky-vong"],
-      }
-    ];
     activeTrendingSlugs = pickRotatingWindow(
       ["lai-don-lai-kep", "lam-phat-la-gi", "suc-manh-thoi-gian", "thanh-khoan-la-gi", "rui-ro-la-gi", "loi-nhuan-ky-vong", "modern-portfolio-theory", "gia-tri-thoi-gian-cua-tien"],
       4,
       weekSeed
     );
   } else if (selectedGoal === "corporate-finance") {
-    activeTopics = [
-      {
-        id: "cf-reports",
-        title: t.recommendations.topicCfReports,
-        icon: Target,
-        color: "text-purple-500",
-        bg: "bg-purple-50 dark:bg-purple-950/30",
-        slugs: ["bang-can-doi-can-bang", "cash-flow-statement-la-gi", "dupont-analysis"],
-      },
-      {
-        id: "cf-valuation",
-        title: t.recommendations.topicCfValuation,
-        icon: TrendingUp,
-        color: "text-indigo-500",
-        bg: "bg-indigo-50 dark:bg-indigo-950/30",
-        slugs: ["roic", "enterprise-value", "fcf-deep-dive"],
-      }
-    ];
     activeTrendingSlugs = pickRotatingWindow(
       ["dupont-analysis", "roic", "enterprise-value", "fcf-deep-dive", "free-cash-flow-co-ban", "operating-leverage", "roic-phan-2", "operating-cash-flow"],
       4,
@@ -200,15 +116,17 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
     );
   }
 
-  // Recommendations
-  const topicRecs = activeTopics.map((topic) => {
-    const topicLessons = lessonsMeta.filter((l) => topic.slugs.includes(l.slug));
-    if (topicLessons.length === 0) return null;
-    const incomplete = topicLessons.filter((l) => !completed.includes(l.id));
-    const lesson = incomplete.length > 0 ? incomplete[0] : topicLessons[0];
-    return { type: "topic" as const, topic, lesson };
-  }).filter((item): item is NonNullable<typeof item> => item !== null);
-
+  // Thẻ chủ đề ("Tài chính cá nhân", "Tín dụng & nợ"...) đã bỏ khỏi băng
+  // chuyền. Chúng là nhóm rộng nhất trong đó - mỗi thẻ một tiêu đề, một dòng
+  // mô tả và một khối biểu tượng - và chúng lặp lại đúng thứ mà danh sách
+  // chặng bên cột trái đã bày ra, chỉ khác cách gọi tên. Thẻ này giờ còn đúng
+  // phần không trùng: bộ đếm LIVE, một gợi ý trò chơi, và danh sách bài đang
+  // nổi ở dưới.
+  //
+  // Cả `getDefaultTopics`, các nhánh gán `activeTopics` và `topicRecs` xoá
+  // theo, chứ không giữ lại sau một `void`: mã chết mà vẫn biên dịch được thì
+  // lần đọc sau không phân biệt được nó với mã đang chạy. Muốn dựng lại thì
+  // xem git history của file này.
   // Trending
   const allTrendingLessons = lessonsMeta.filter((l) => activeTrendingSlugs.includes(l.slug));
   const incompleteTrending = allTrendingLessons.filter((l) => !completed.includes(l.id));
@@ -223,7 +141,8 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
   const gameIndex = new Date().getDay() % GAMES.length;
   const suggestedGame = GAMES[gameIndex];
   const gameItem = suggestedGame ? [{ type: "game" as const, game: suggestedGame }] : [];
-  const primaryItems = [...topicRecs, ...gameItem].slice(0, 5);
+
+  const primaryItems = [...gameItem].slice(0, 5);
   const hotItems = trendingItems;
 
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
@@ -335,41 +254,6 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
                   className="flex gap-3 overflow-x-auto pb-2 snap-x scrollbar-none"
                 >
                   {primaryItems.map((item, idx) => {
-                    if (item.type === "topic") {
-                      const { topic, lesson } = item;
-                      const isDone = completed.includes(lesson.id);
-                      const Icon = topic.icon;
-                      return (
-                        <Link
-                          key={`topic-${topic.id}`}
-                          href={`/bai-hoc/${lesson.slug}`}
-                          style={{ animationDelay: `${idx * 60}ms` }}
-                          className="rec-card group flex flex-col justify-between rounded-xl border border-stone-200/60 dark:border-stone-800 bg-gradient-to-b from-stone-50/50 to-stone-100/10 dark:from-stone-900/60 dark:to-stone-950/20 px-3.5 py-3 hover:border-emerald-300 dark:hover:border-emerald-700 hover:shadow-md hover:shadow-emerald-500/5 hover:-translate-y-0.5 active:scale-[0.98] transition-all duration-300 min-w-[205px] w-[205px] shrink-0 snap-start"
-                        >
-                          <div>
-                            <div className="flex items-center gap-1.5 mb-2">
-                              <div className={`w-5.5 h-5.5 rounded-lg flex items-center justify-center ${topic.bg} ${topic.color} transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}>
-                                <Icon className="w-3 h-3" />
-                              </div>
-                              <span className="text-[10px] font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-wider">
-                                {topic.title}
-                              </span>
-                              {isDone && (
-                              <span className="ml-auto text-[9px] font-extrabold text-emerald-700 bg-emerald-50/70 dark:bg-emerald-950/40 px-1 py-0.5 rounded-sm">
-                                  {t.recommendations.done}
-                              </span>
-                              )}
-                            </div>
-                            <h3 className="text-xs font-bold text-stone-900 dark:text-stone-100 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors line-clamp-2 leading-tight">
-                              {lesson.title}
-                            </h3>
-                          </div>
-                          <p className="text-[10px] text-stone-400 dark:text-stone-500 mt-2.5 line-clamp-1">
-                            {lesson.subtitle}
-                          </p>
-                        </Link>
-                      );
-                    }
 
                     // game Suggestion
                     const { game } = item;
