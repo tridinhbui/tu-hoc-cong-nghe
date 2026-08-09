@@ -2,6 +2,9 @@
 
 import { useState } from "react";
 import LessonPageLayout, { QuizQuestion, LessonMeta } from "@/components/LessonPageLayout";
+import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
+import type { DebtLessonCopy } from "@/lib/i18n/dictionaries/sections/bespoke-lessons";
 
 const LESSON: LessonMeta = {
   // Id tổng hợp, KHÔNG phải id trong corpus. Trang này chưa có bài tương ứng
@@ -15,75 +18,46 @@ const LESSON: LessonMeta = {
   nextSlug: "bao-cao-luu-chuyen-tien-te", nextTitle: "Day 6: Báo Cáo LCTT",
 };
 
-const QUIZ: QuizQuestion[] = [
-  {
-    question: "Tại sao Secured Debt có lãi suất thấp hơn Unsecured Debt?",
-    options: [
-      "Vì ngân hàng thích công ty lớn hơn",
-      "Vì có tài sản đảm bảo - nếu vỡ nợ, chủ nợ có thể thu hồi tài sản → rủi ro thấp hơn → lãi thấp hơn",
-      "Vì ngân hàng được nhà nước hỗ trợ lãi suất",
-      "Vì secured debt có kỳ hạn ngắn hơn",
-    ],
-    correct: 1,
-    explanation: "Risk-return luôn tỷ lệ thuận. Secured debt có tài sản đảm bảo → rủi ro thu hồi thấp → người cho vay chấp nhận lãi thấp hơn. Đây là nguyên tắc cốt lõi của tín dụng.",
-  },
-  {
-    question: "Trong capital structure waterfall, thứ tự ưu tiên đúng là:",
-    options: [
-      "Equity → Senior Secured → Senior Unsecured → Subordinated",
-      "Senior Secured → Senior Unsecured → Subordinated → Equity",
-      "Subordinated → Senior → Equity → Secured",
-      "Equity → Mezzanine → Senior → Secured",
-    ],
-    correct: 1,
-    explanation: "Khi phá sản, Senior Secured được trả trước (có tài sản đảm bảo + ưu tiên cao), sau đó Senior Unsecured, rồi Subordinated/Mezz, cuối cùng mới đến Equity (cổ đông). Thứ tự này quyết định lãi suất của từng lớp.",
-  },
-  {
-    question: "Revolving Credit Facility (Revolver) khác Term Loan ở điểm gì?",
-    options: [
-      "Revolver có lãi suất cố định, Term Loan lãi suất thả nổi",
-      "Revolver là hạn mức quay vòng (rút ra trả lại rút tiếp), Term Loan là khoản vay một lần không rút lại được",
-      "Revolver chỉ dành cho doanh nghiệp nhà nước",
-      "Term Loan không tính lãi, Revolver có tính lãi",
-    ],
-    correct: 1,
-    explanation: "Revolver giống thẻ tín dụng doanh nghiệp - có hạn mức tối đa, rút khi cần, trả lại rồi rút tiếp. Linh hoạt, dùng cho vốn lưu động. Term Loan là khoản vay một lần, trả dần theo lịch cố định.",
-  },
-  {
-    question: "Convertible Note trong startup có đặc điểm gì?",
-    options: [
-      "Là khoản nợ không có lãi suất",
-      "Là khoản vay có thể chuyển đổi thành cổ phần ở vòng huy động vốn tiếp theo",
-      "Là trái phiếu chính phủ đặc biệt",
-      "Là hình thức equity không có quyền biểu quyết",
-    ],
-    correct: 1,
-    explanation: "Convertible note là debt có thể convert thành equity ở vòng sau (thường với discount 20%). Win-win: startup vay được tiền lãi thấp hơn, investor được upside nếu startup tăng trưởng mạnh.",
-  },
-  {
-    question: "Mezzanine Debt phù hợp nhất trong tình huống nào?",
-    options: [
-      "Doanh nghiệp muốn vay lãi suất thấp nhất",
-      "Khi ngân hàng không cho vay thêm nhưng PE muốn 'lấp chỗ trống' giữa senior debt và equity trong LBO",
-      "Khi startup cần seed funding",
-      "Khi chính phủ phát hành trái phiếu",
-    ],
-    correct: 1,
-    explanation: "Mezzanine lấp khoảng trống trong capital structure của LBO. Ngân hàng chỉ cho vay đến một mức nhất định (senior debt). Phần còn lại muốn dùng debt thay equity → mezz với lãi 15-20% và thường có equity kicker (warrants).",
-  },
+/* i18n-ignore-start: `correct` là chỉ số vào mảng options và LessonPageLayout
+   ghi `quiz_score` xuống Supabase - để nó trong từ điển là để một bản dịch sửa
+   được đáp án. Câu hỏi, phương án và lời giải nằm ở
+   lib/i18n/dictionaries/sections/bespoke-lessons.ts. */
+const QUIZ_CORRECT = [1, 1, 1, 1, 1];
+/* i18n-ignore-end */
+
+/* i18n-ignore-start: `name` của chín loại nợ vốn ĐÃ là tiếng Anh trong bản gốc
+   ("Secured Debt", "Mezzanine Debt") - chúng là thuật ngữ ngành, giống nhau ở
+   cả hai ngôn ngữ, nên không thuộc về một từ điển hai ngôn ngữ. `risk` và
+   `rate` là số vẽ thanh trượt; `emoji` không dịch. Phần chữ - `tag`, `desc`,
+   `eg` - nằm trong `debtTypes` của từ điển, khớp THEO VỊ TRÍ với mảng này. */
+const DEBT_TYPES = [
+  { id: "secured", emoji: "🔒", name: "Secured Debt", risk: 10, rate: 5 },
+  { id: "unsecured", emoji: "🔓", name: "Unsecured Debt", risk: 30, rate: 8 },
+  { id: "senior", emoji: "👑", name: "Senior Debt", risk: 15, rate: 6 },
+  { id: "sub", emoji: "", name: "Subordinated Debt", risk: 50, rate: 12 },
+  { id: "revolver", emoji: "🔄", name: "Revolving Credit (Revolver)", risk: 20, rate: 7 },
+  { id: "term", emoji: "📅", name: "Term Loan", risk: 25, rate: 7 },
+  { id: "conv", emoji: "🔀", name: "Convertible Debt", risk: 45, rate: 6 },
+  { id: "bond", emoji: "🏛️", name: "Bond", risk: 25, rate: 9 },
+  { id: "mezz", emoji: "🔶", name: "Mezzanine Debt", risk: 65, rate: 18 },
 ];
 
-const DEBT_TYPES = [
-  { id: "secured", emoji: "🔒", name: "Secured Debt", tag: "Có tài sản đảm bảo", risk: 10, rate: 5, color: "text-stone-700 bg-stone-50 border-stone-200", desc: "Người vay thế chấp tài sản cụ thể (nhà máy, bất động sản, phải thu). Nếu không trả được, chủ nợ thu hồi tài sản đó. Rủi ro thấp → lãi suất thấp nhất trong cấu trúc vốn.", eg: "Vay ngân hàng thế chấp sổ đỏ, vay mua ô tô thế chấp xe" },
-  { id: "unsecured", emoji: "🔓", name: "Unsecured Debt", tag: "Không tài sản đảm bảo", risk: 30, rate: 8, color: "text-stone-700 bg-stone-50 border-stone-200", desc: "Không có tài sản cụ thể làm đảm bảo. Nếu vỡ nợ, chủ nợ phải xếp hàng tranh chấp tài sản còn lại. Rủi ro cao hơn → lãi cao hơn.", eg: "Thẻ tín dụng, trái phiếu doanh nghiệp không có tài sản đảm bảo" },
-  { id: "senior", emoji: "👑", name: "Senior Debt", tag: "Ưu tiên trả trước", risk: 15, rate: 6, color: "text-stone-700 bg-stone-50 border-stone-200", desc: "Được ưu tiên thanh toán trước tất cả trong thứ tự phân phối khi phá sản. Không nhất thiết có tài sản đảm bảo - senior đề cập đến thứ tự ưu tiên, không phải loại đảm bảo.", eg: "Term loan từ ngân hàng thường là senior secured - vừa có tài sản vừa ưu tiên" },
-  { id: "sub", emoji: "", name: "Subordinated Debt", tag: "Đứng sau senior", risk: 50, rate: 12, color: "text-stone-700 bg-stone-50 border-stone-200", desc: "Chỉ được thanh toán sau khi senior debt đã được trả đầy đủ. Trong LBO, thường là junior bonds hoặc PIK notes. Rủi ro thực sự cao hơn → spread 3-5% so với senior.", eg: "Junior bonds, PIK notes, second-lien loans trong LBO" },
-  { id: "revolver", emoji: "🔄", name: "Revolving Credit (Revolver)", tag: "Hạn mức quay vòng", risk: 20, rate: 7, color: "text-stone-700 bg-stone-50 border-stone-200", desc: "Như thẻ tín dụng cho doanh nghiệp. Có hạn mức tối đa, rút ra khi cần, trả lại rồi có thể rút tiếp. Linh hoạt nhất trong các loại debt, thường dùng cho vốn lưu động.", eg: "Retailer dùng revolver nhập hàng trước Tết, sau bán xong trả lại" },
-  { id: "term", emoji: "📅", name: "Term Loan", tag: "Vay có kỳ hạn cố định", risk: 25, rate: 7, color: "text-stone-700 bg-stone-50 border-stone-200", desc: "Vay một lần, trả dần theo lịch định sẵn (monthly/quarterly). Không rút lại được sau khi trả. Dùng để mua tài sản cố định hoặc tài trợ M&A.", eg: "Vay 5 năm mua dây chuyền sản xuất, trả gốc + lãi mỗi quý" },
-  { id: "conv", emoji: "🔀", name: "Convertible Debt", tag: "Chuyển được thành cổ phần", risk: 45, rate: 6, color: "text-stone-700 bg-stone-50 border-stone-200", desc: "Người cho vay có quyền chuyển khoản nợ thành cổ phần. Lãi thấp hơn debt thông thường nhưng investor được upside. Phổ biến ở startup vì tránh định giá sớm.", eg: "Startup huy động $1M convertible note, lãi 6%, convert ở Series A với 20% discount" },
-  { id: "bond", emoji: "🏛️", name: "Bond (Trái phiếu)", tag: "Vay từ thị trường vốn", risk: 25, rate: 9, color: "text-stone-700 bg-stone-50 border-stone-200", desc: "Doanh nghiệp/chính phủ phát hành ra thị trường, nhiều nhà đầu tư mua. Lãi coupon cố định, hoàn gốc khi đáo hạn. Phân tán rủi ro, không cần qua ngân hàng.", eg: "Vingroup phát hành trái phiếu 3,000 tỷ lãi 10%/năm kỳ hạn 3 năm" },
-  { id: "mezz", emoji: "🔶", name: "Mezzanine Debt", tag: "Lai giữa nợ và vốn", risk: 65, rate: 18, color: "text-stone-700 bg-stone-50 border-stone-200", desc: "Đứng giữa senior debt và equity. Lãi suất rất cao (15-25%) hoặc có equity kicker (warrants). Phổ biến trong LBO để 'lấp chỗ trống' khi ngân hàng không cho vay thêm.", eg: "PE dùng mezz trong LBO: senior 50% + mezz 20% + equity 30%" },
+/** Tên bốn tầng trong waterfall và trong bảng LBO. Cùng lý do với `name` ở
+ *  trên: chúng là tên tầng vốn bằng tiếng Anh trong cả hai bản. */
+const WATERFALL_LAYERS = [
+  { name: "Senior Secured", amount: 200 },
+  { name: "Senior Unsecured / Bond", amount: 150 },
+  { name: "Subordinated / Mezz", amount: 100 },
+  { name: "Equity", amount: 50 },
 ];
+
+const LBO_ROWS = [
+  { layer: "Senior Secured (Term Loan)", pct: "50%", rate: "SOFR+300bps" },
+  { layer: "Senior Unsecured Bond", pct: "20%", rate: "~8%" },
+  { layer: "Mezzanine / PIK", pct: "10%", rate: "15-20%" },
+  { layer: "Equity (PE Fund)", pct: "20%", rate: "" },
+];
+/* i18n-ignore-end */
 
 function CapitalStructureAnimation() {
   const [scenario, setScenario] = useState<"normal" | "distress">("normal");

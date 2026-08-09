@@ -11,11 +11,22 @@
 /** Hashtag nhận diện chủ đề, KHÔNG bao giờ dịch.
  *
  *  Chúng được so khớp với nội dung bài ĐÃ LƯU trong cơ sở dữ liệu, nên đổi một
- *  chuỗi ở đây là làm mồ côi mọi bài đã nằm dưới chủ đề đó. */
+ *  chuỗi ở đây là làm mồ côi mọi bài đã nằm dưới chủ đề đó.
+ *
+ *  `meo-tai-chinh` có một lần bị bỏ khỏi bảng này rồi đưa lại, và lý do bỏ vẫn
+ *  đúng nhưng nhắm sai chỗ: nó là giá trị MẶC ĐỊNH của ô soạn bài, nên bài của
+ *  người chưa từng mở hộp chọn đều ra đời dưới nhãn "Mẹo tài chính". Cái sai là
+ *  cái mặc định, không phải cái chủ đề - và bỏ chủ đề đi thì mọi bài từng được
+ *  gắn nhãn ấy MỘT CÁCH CÓ Ý cũng mất nhãn theo. Cái mặc định đã sửa ở
+ *  CommunityFeedClient; chủ đề thì ở lại.
+ *
+ *  `thanh-tuu` thì ĐI THẬT, và đi vì lý do khác: nó gần như toàn bộ là bài do
+ *  hệ thống tự đăng, nên nó không phải một chủ đề người ta viết vào mà là một
+ *  luồng máy sinh ra được cho một cái nhãn. Bài cũ dưới nó trở thành không loại
+ *  nào và VẪN HIỆN đủ ở dòng chính - đây là bỏ một cái nhãn, không phải ẩn bài. */
 export const FEED_TOPIC_TAGS = [
   { id: "meo-tai-chinh", tag: "#MeoTaiChinh" },
   { id: "phan-tich", tag: "#PhanTich" },
-  { id: "thanh-tuu", tag: "#ThanhTuu" },
   { id: "hoi-dap", tag: "#HoiDap" },
   { id: "tin-nong", tag: "#TinNong" },
   { id: "ai-finance", tag: "#AITaiChinh" },
@@ -49,9 +60,10 @@ export function getPostCategory(post: ClassifiablePost): FeedTopicId {
   for (const topic of FEED_TOPIC_TAGS) {
     if (content.includes(topic.tag)) return topic.id;
   }
-  // Chuỗi ngày học do hệ thống tự đăng: không mang hashtag nào nhưng vẫn là
-  // thành tựu, và chính chúng là phần đông của nhóm này.
-  if (post.kind === "streak") return "thanh-tuu";
+  // Bài chuỗi ngày học do hệ thống tự đăng KHÔNG còn được xếp loại. Trước đây
+  // chúng vào "thanh-tuu", và chính chúng là gần hết nhóm ấy - tức cái nhãn đó
+  // đếm được một việc máy làm chứ không phải một việc ai viết. Giờ chúng là bài
+  // không loại nào, hiện đủ ở dòng chính như mọi bài khác.
   return "all";
 }
 

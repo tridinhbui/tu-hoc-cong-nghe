@@ -9,6 +9,7 @@ import { FINANCE_CAREERS } from "@/lib/finance-careers";
 import { useLocalStorageValue } from "@/lib/use-local-storage-value";
 import { CAREER_GOAL_KEY, CAREER_GOAL_STORAGE_EVENT } from "@/lib/career-goal-storage";
 import { useI18n } from "@/lib/i18n/context";
+import { mergeCareer } from "@/lib/finance-careers-i18n";
 import { format } from "@/lib/i18n";
 
 // Dashboard-side half of "Đặt Mục tiêu Sự nghiệp" (set on /su-nghiep, see
@@ -22,7 +23,7 @@ import { format } from "@/lib/i18n";
  *  của một thẻ đứng riêng, và một thẻ lồng trong thẻ khác mà to giọng hơn cái
  *  bọc nó thì đọc ra là hai thẻ chồng lên nhau. */
 export default function CareerGoalWidget({ userId, compact = false }: { userId?: string; compact?: boolean }) {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   // Đọc thẳng localStorage thay vì chép vào state lúc mount. Widget này nằm
   // ở dashboard trong khi mục tiêu được đặt ở trang Sự nghiệp; trước đây nó
   // KHÔNG nghe kênh báo đổi nào, nên đổi mục tiêu xong quay lại dashboard vẫn
@@ -81,7 +82,7 @@ export default function CareerGoalWidget({ userId, compact = false }: { userId?:
           {t.careerGoalWidget.title}
         </p>
       </div>
-      <p className="text-sm font-bold text-stone-900 dark:text-stone-100">{career.title}</p>
+      <p className="text-sm font-bold text-stone-900 dark:text-stone-100">{mergeCareer(career, locale).title}</p>
       <div className="flex items-center justify-between text-xs font-semibold text-stone-500 dark:text-stone-400 mt-2 mb-1.5">
         <span>{format(t.careerGoalWidget.progress, { completed, total })}</span>
         <span>{percent}%</span>

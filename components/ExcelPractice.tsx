@@ -12,6 +12,7 @@ import {
 import { evaluateCell, formatValue, isError, normalizeRef, type Sheet } from "@/lib/mini-spreadsheet";
 import { runQuery, type QueryResult } from "@/lib/mini-sql";
 import { useI18n } from "@/lib/i18n/context";
+import { mergeExcelPracticeSet } from "@/lib/excel-practice-data-i18n";
 import { format } from "@/lib/i18n";
 
 // Bảng tính thật, gõ được, ngay trong bài học.
@@ -55,7 +56,12 @@ function buildSheet(base: Sheet, edits: Record<string, string>): Sheet {
 }
 
 export default function ExcelPractice({ setKey }: Props) {
-  const set = EXCEL_PRACTICE_SETS[setKey];
+  const { locale } = useI18n();
+  const raw = EXCEL_PRACTICE_SETS[setKey];
+  // Đúng MỘT chỗ áp bản dịch, ngay sau chỗ đọc bộ bài tập và trước khi phân
+  // nhánh theo `kind`. Ba component con phía dưới nhận `set` đã dịch nên không
+  // cần biết gì về i18n - nếu áp trong từng nhánh thì có ba chỗ phải nhớ.
+  const set = raw ? mergeExcelPracticeSet(setKey, raw, locale) : raw;
   if (!set) return null;
   if (set.kind === "grid") return <GridPractice set={set} />;
   if (set.kind === "sql") return <SqlPractice set={set} />;

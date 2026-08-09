@@ -190,7 +190,7 @@ export default function CharacterCustomizerModal({
                       className="bg-stone-800 hover:bg-stone-800 border border-stone-700 hover:border-amber-400 text-stone-200 text-[10px] font-bold p-2 rounded-xl text-center transition-all flex flex-col items-center gap-1"
                     >
                       <span className="text-base">{p.icon}</span>
-                      <span className="truncate w-full">{p.name}</span>
+                      <span className="truncate w-full">{t.avatarPresets[p.name] ?? p.name}</span>
                     </button>
                   ))}
                 </div>
@@ -266,7 +266,7 @@ export default function CharacterCustomizerModal({
                                 isSelected ? "border-amber-400 scale-110 shadow-lg" : "border-stone-800 hover:scale-105"
                               }`}
                               style={{ backgroundColor: tone.hex }}
-                              title={tone.label}
+                              title={t.avatarOptions[tone.id] ?? tone.label}
                             >
                               {isSelected && <Check className="w-4 h-4 text-stone-900 font-black" />}
                             </button>
@@ -318,7 +318,7 @@ export default function CharacterCustomizerModal({
                                 isSelected ? "border-amber-400 scale-110 shadow-lg" : "border-stone-800 hover:scale-105"
                               }`}
                               style={{ backgroundColor: c.hex }}
-                              title={c.label}
+                              title={t.avatarOptions[c.id] ?? c.label}
                             >
                               {isSelected && <Check className="w-4 h-4 text-white font-black" />}
                             </button>
@@ -347,7 +347,7 @@ export default function CharacterCustomizerModal({
                             }`}
                           >
                             <span>{f.iconEmoji}</span>
-                            <span>{f.label}</span>
+                            <span>{t.avatarOptions[f.id] ?? f.label}</span>
                           </button>
                         ))}
                       </div>
@@ -453,7 +453,7 @@ export default function CharacterCustomizerModal({
                             >
                               <div className="flex items-center gap-2">
                                 <span className="text-lg">{o.iconEmoji}</span>
-                                <span>{o.label}</span>
+                                <span>{t.avatarOptions[o.id] ?? o.label}</span>
                               </div>
                               {isLocked && <Lock className="w-4 h-4 text-stone-500 shrink-0" />}
                             </button>
@@ -476,7 +476,7 @@ export default function CharacterCustomizerModal({
                                 isSelected ? "border-amber-400 scale-110 shadow-lg" : "border-stone-800 hover:scale-105"
                               }`}
                               style={{ backgroundColor: c.hex }}
-                              title={c.label}
+                              title={t.avatarOptions[c.id] ?? c.label}
                             >
                               {isSelected && <Check className="w-4 h-4 text-white font-black" />}
                             </button>
@@ -510,7 +510,7 @@ export default function CharacterCustomizerModal({
                             >
                               <div className="flex items-center gap-2">
                                 <span className="text-lg">{a.iconEmoji}</span>
-                                <span>{a.label}</span>
+                                <span>{t.avatarOptions[a.id] ?? a.label}</span>
                               </div>
                               {isLocked && <span className="text-[10px] font-bold text-amber-500">{format(t.characterCustomizer.unlockAtLevel, { level: a.requiredLevel ?? 0 })}</span>}
                             </button>
@@ -544,7 +544,7 @@ export default function CharacterCustomizerModal({
                             >
                               <div className="flex items-center gap-2">
                                 <span className="text-lg">{bg.iconEmoji}</span>
-                                <span>{bg.label}</span>
+                                <span>{t.avatarOptions[bg.id] ?? bg.label}</span>
                               </div>
                               {isLocked && <span className="text-[10px] font-bold text-amber-500">{format(t.characterCustomizer.unlockAtLevel, { level: bg.requiredLevel ?? 0 })}</span>}
                             </button>

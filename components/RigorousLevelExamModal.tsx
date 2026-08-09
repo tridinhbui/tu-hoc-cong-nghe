@@ -286,7 +286,7 @@ export default function RigorousLevelExamModal({
                           const { createManualPost } = await import("@/lib/supabase-community");
                           await createManualPost(
                             userId,
-                            `🏆 Tôi vừa xuất sắc vượt qua Bài Thi Thăng Cấp Khắt Khe - Cấp độ ${levelToTest}: ${levelMeta.name} với điểm số ${scorePercentage}%! 🔥 #ThanhTuu #LevelUp`,
+                            `🏆 Tôi vừa xuất sắc vượt qua Bài Thi Thăng Cấp Khắt Khe - Cấp độ ${levelToTest}: ${levelMeta.name} với điểm số ${scorePercentage}%! 🔥 #LevelUp`,
                             undefined,
                             {
                               type: "level_up_achievement",

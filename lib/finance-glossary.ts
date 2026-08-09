@@ -8,6 +8,14 @@
 // only wraps the first occurrence of each term across a lesson (see
 // highlightGlossaryTerms), so repeated use of a term in one lesson doesn't
 // get noisy.
+/* i18n-ignore-start: bảng này CHÍNH LÀ một bản dịch, không phải chuỗi chờ
+   dịch. Khoá là cụm tiếng Việt xuất hiện trong bài học, giá trị là thuật ngữ
+   tiếng Anh hiện ra khi rê chuột (components/GlossaryTerm.tsx). Dịch khoá sang
+   tiếng Anh thì `highlightGlossaryTerms` không còn khớp chữ nào trong bài
+   tiếng Việt, và tính năng biến mất - không lỗi, không cảnh báo.
+
+   Cùng bảng này còn làm bể ghép cặp cho game `en-vi-terms`, nơi trò chơi chính
+   là ghép hai cột với nhau; dịch cột trái là làm hai cột giống hệt nhau. */
 export const FINANCE_GLOSSARY: Record<string, string> = {
   "chi phí cơ hội": "Opportunity Cost",
   "dòng tiền": "Cash Flow",
@@ -121,3 +129,5 @@ export function findGlossaryMatches(text: string, seen: Set<string>): GlossaryMa
   filtered.forEach((m) => seen.add(m.term));
   return filtered;
 }
+
+/* i18n-ignore-end */

@@ -922,6 +922,13 @@ export const TRACK_PROFESSIONAL = {
 // label (DashboardClient filters track.stages by the active branch), so every
 // stage added above must appear in exactly one branch here or it is invisible
 // to learners - which is what had silently happened to Chặng 14, 15 and 16.
+/* i18n-ignore-start: `label` và `subtitle` đã có lớp phủ trong
+   lib/i18n/dictionaries/sections/track-stages.ts, còn `stageLabels` thì KHÔNG
+   PHẢI chữ hiển thị - chúng so khớp với `stage.label` để lọc chặng theo nhánh
+   nghề. Dịch chúng sang "Stage 1" thì bộ lọc không khớp gì và mọi nhánh rỗng:
+   không lỗi, không cảnh báo, chỉ là một dashboard trống.
+   lib/__tests__/track-stages-i18n.test.ts giữ cả ba: bản Việt khớp từng chữ,
+   bản Anh không còn dấu, và mọi `stageLabels` trỏ tới chặng có thật. */
 export const PROFESSIONAL_BRANCHES = [
   {
     id: "corporate",
@@ -993,6 +1000,8 @@ export const PROFESSIONAL_BRANCHES = [
     stageLabels: ["Chặng 13"],
   },
 ] as const;
+
+/* i18n-ignore-end */
 
 export type ProfessionalBranchId = (typeof PROFESSIONAL_BRANCHES)[number]["id"];
 

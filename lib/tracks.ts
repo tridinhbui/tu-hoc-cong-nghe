@@ -1,3 +1,9 @@
+/* i18n-ignore-start: `tab`, `subtitle`, `description`, `stages` và
+   `previewLabel` đã có lớp phủ trong mục `tracks` của
+   lib/i18n/dictionaries/dictionaries (vi.ts / en.ts) từ trước lượt dịch này;
+   components/login/TrackPreviewPanel.tsx và app/(app)/profile/page.tsx đọc
+   `t.tracks[id]`, không đọc thẳng tệp này. `estimatedHours` và `previewSlug`
+   là số và khoá định tuyến. */
 export const TRACKS = {
   personal: {
     tab: "Tài chính cá nhân",
@@ -71,3 +77,5 @@ export const TRACKS = {
 } as const;
 
 export type TrackId = keyof typeof TRACKS;
+
+/* i18n-ignore-end */

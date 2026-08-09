@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Printer, Search } from "lucide-react";
 import { FRM_FORMULAS_DATA } from "@/lib/frm-formulas-data";
 import { FRM_SUBJECTS } from "@/lib/frm-track";
 import FormulaBlock from "@/components/FormulaBlock";
 import { useI18n } from "@/lib/i18n/context";
+import { mergeFormulas } from "@/lib/frm-formulas-i18n";
 import { format } from "@/lib/i18n";
 
 // Sổ tay công thức FRM. Cùng khuôn với CfaFormulaCheatSheet, khác một điểm có
@@ -17,12 +18,17 @@ import { format } from "@/lib/i18n";
 // chiếu thẳng với FRM_SUBJECTS thay vì với một danh sách tự khai.
 
 export default function FrmFormulaCheatSheet() {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const [selectedSubject, setSelectedSubject] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState("");
 
+  // Hợp nhất TRƯỚC khi lọc, không phải lúc render: ô tìm kiếm so khớp
+  // `item.title` và `variables[].name`, nên nếu chỉ dịch ở bước vẽ thì người
+  // đọc tiếng Anh gõ "Sharpe" vẫn phải trúng chữ tiếng Việt mới ra kết quả.
+  const localized = useMemo(() => mergeFormulas(FRM_FORMULAS_DATA, locale), [locale]);
+
   const query = searchQuery.trim().toLowerCase();
-  const filtered = FRM_FORMULAS_DATA.filter((item) => {
+  const filtered = localized.filter((item) => {
     const matchesSubject = selectedSubject === "all" || item.subjectId === selectedSubject;
     const matchesSearch =
       !query ||

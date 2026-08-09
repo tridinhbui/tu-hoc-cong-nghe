@@ -30,6 +30,12 @@ export interface FrmGlossaryTerm {
   frmTip?: string;
 }
 
+/* i18n-ignore-start: `definitionVi`, `frmTip`, `example` và nhãn công thức là
+   bản gốc tiếng Việt, đã có lớp phủ đủ 92/92 trong
+   lib/cfa-glossary-i18n/frm-en.ts. CfaGlossaryFlashcards đọc
+   `glossaryPatch(id, locale)` trước rồi mới rơi về đây.
+   lib/__tests__/frm-glossary-translations.test.ts làm đỏ build khi thêm thẻ mà
+   quên bản Anh, khi bỏ mất `frmTip` lúc dịch, và khi thừa khoá. */
 export const FRM_GLOSSARY_TERMS: FrmGlossaryTerm[] = [
   // --- Foundations of Risk Management ---
   {
@@ -985,3 +991,5 @@ export const FRM_GLOSSARY_TERMS: FrmGlossaryTerm[] = [
       "Rủi ro hệ thống lớn nhất là phi trung gian hoá: trong khủng hoảng, người gửi có thể chuyển thẳng sang CBDC, làm rút tiền khỏi ngân hàng thương mại nhanh hơn bao giờ hết.",
   },
 ];
+
+/* i18n-ignore-end */

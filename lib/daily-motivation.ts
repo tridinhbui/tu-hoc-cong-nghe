@@ -42,6 +42,11 @@ export interface MotivationMessage {
 // Mỗi tone cần đủ câu để một người dùng đều đặn không gặp lại câu cũ trong
 // vài tuần. Tone càng "lạnh" thì pool càng phải dày, vì đó là lúc người học
 // dễ bỏ cuộc nhất và lặp lại câu cũ sẽ nghe như máy trả lời tự động.
+/* i18n-ignore-start: `text` ở đây là bản gốc tiếng Việt của pool, không phải
+   chuỗi chưa dịch. Widget đọc `t.motivationLines[message.id]` và chỉ rơi về
+   `text` khi từ điển thiếu id đó - trường hợp mà
+   lib/__tests__/motivation-i18n.test.ts làm đỏ build, cả khi thiếu lẫn khi
+   thừa khoá. */
 export const MOTIVATION_MESSAGES: MotivationMessage[] = [
   // --- rekindle: streak vừa đứt -------------------------------------------
   { id: "mv-rk-01", tone: "rekindle", text: "Chuỗi ngày đứt không xoá được thứ bạn đã học. Kiến thức không có streak - nó nằm lại trong bạn." },
@@ -121,6 +126,8 @@ export const MOTIVATION_MESSAGES: MotivationMessage[] = [
   { id: "mv-st-15", tone: "steady", text: "Danh mục tốt là danh mục bạn ngủ ngon, không phải danh mục lãi cao nhất trên giấy." },
 ];
 
+/* i18n-ignore-end */
+
 /** Các mốc streak được coi là đáng ăn mừng. */
 const MILESTONES = [3, 7, 14, 30, 50, 100, 200, 365];
 
@@ -198,6 +205,7 @@ export function warmthFor(tone: MotivationTone): number {
 }
 
 /** Nhãn hiển thị của từng giọng - dùng chung giữa card dashboard và trang riêng. */
+/* i18n-ignore-start: nhãn gốc; giao diện đọc `t.motivationToneLabel[tone]`. */
 export const MOTIVATION_TONE_LABEL: Record<MotivationTone, string> = {
   rekindle: "Nhóm lại ngọn lửa",
   return: "Chào mừng quay lại",
@@ -205,6 +213,7 @@ export const MOTIVATION_TONE_LABEL: Record<MotivationTone, string> = {
   keep: "Giữ lửa hôm nay",
   steady: "Lời nhắn hôm nay",
 };
+/* i18n-ignore-end */
 
 export interface DailyMotivation {
   message: MotivationMessage;

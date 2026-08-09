@@ -1,5 +1,6 @@
 import type { Locale } from "@/lib/i18n";
 import { glossaryEn } from "./en";
+import { frmGlossaryEn } from "./frm-en";
 
 /**
  * Bản dịch 118 thuật ngữ CFA trong lib/cfa-glossary-terms.ts.
@@ -33,6 +34,10 @@ export interface GlossaryTranslation {
   definition?: string;
   /** Mẹo làm bài CFA. 92/118 mục có. */
   cfaTip?: string;
+  /** Mẹo làm bài FRM. Tên trường khác vì tệp gốc đặt tên khác
+   *  (`cfaTip` với `frmTip`), và giữ đúng tên gốc thì người dịch không phải
+   *  nhớ rằng thẻ FRM lại điền vào một khoá mang chữ "cfa". */
+  frmTip?: string;
   /** Ví dụ số. 7/118 mục có. */
   example?: string;
   /** Tử và mẫu của công thức. 11/118 mục có. */
@@ -40,8 +45,11 @@ export interface GlossaryTranslation {
   formulaDenominator?: string;
 }
 
+// Hai bộ thẻ, một map. Id rời nhau (`frm-*` với `fsa-*`/`eth-*`/…) nên
+// `glossaryPatch` không cần biết thẻ thuộc bộ nào; tách tệp là để hai người
+// dịch song song mà không đụng nhau.
 const BY_LOCALE: Record<string, Record<string, GlossaryTranslation>> = {
-  en: glossaryEn,
+  en: { ...glossaryEn, ...frmGlossaryEn },
 };
 
 export function glossaryPatch(id: string, locale: Locale): GlossaryTranslation | null {

@@ -21,7 +21,7 @@ import {
   QUIET_CORNER_QUESTIONS,
   type WorryReframe,
   WORRY_SET_DOWN,
-  getQuietGreeting,
+  getQuietGreetingKey,
 } from "@/lib/quiet-corner";
 import MotivationShareCard from "@/components/MotivationShareCard";
 import BreathingCircle from "@/components/BreathingCircle";
@@ -154,10 +154,10 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
                   transition={{ duration: 1.8, ease: "easeOut" }}
                 />
                 <span className="block text-xs font-semibold text-stone-400 line-through decoration-stone-300 dark:text-stone-500 dark:decoration-stone-600">
-                  “{item.worry}”
+                  “{t.worryReframes[item.id]?.worry ?? item.worry}”
                 </span>
                 <span className="mt-0.5 block text-[11px] leading-relaxed text-stone-400 dark:text-stone-500">
-                  {WORRY_SET_DOWN.done}
+                  {t.worrySetDown.done}
                 </span>
               </motion.button>
             </li>
@@ -176,7 +176,7 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
                   : "border-stone-200 bg-stone-50 text-stone-700 hover:bg-stone-100 dark:border-stone-800 dark:bg-stone-800/50 dark:text-stone-300 dark:hover:bg-stone-800"
               }`}
             >
-              “{item.worry}”
+              “{t.worryReframes[item.id]?.worry ?? item.worry}”
             </button>
             {open && (
               <motion.div
@@ -185,7 +185,7 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
                 className="mt-2 rounded-2xl bg-gradient-to-br from-amber-50 to-orange-50 px-4 py-3.5 dark:from-stone-800 dark:to-stone-800/60"
               >
                 <p className="text-sm leading-relaxed text-stone-700 dark:text-stone-300">
-                  {item.reframe}
+                  {t.worryReframes[item.id]?.reframe ?? item.reframe}
                 </p>
                 <div className="mt-3 flex justify-end">
                   <button
@@ -196,7 +196,7 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
                     }}
                     className="rounded-full border border-orange-200 px-3.5 py-1.5 text-[11px] font-bold text-orange-700 transition-colors hover:bg-orange-100/60 dark:border-orange-900 dark:text-orange-300 dark:hover:bg-orange-950/40"
                   >
-                    {WORRY_SET_DOWN.action}
+                    {t.worrySetDown.action}
                   </button>
                 </div>
               </motion.div>
@@ -272,7 +272,7 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
                   key="greeting"
                   className="text-xs font-semibold leading-relaxed text-stone-500 dark:text-stone-400"
                 >
-                  {getQuietGreeting(new Date().getHours())}
+                  {t.quietGreeting[getQuietGreetingKey(new Date().getHours())]}
                 </p>,
                 <p
                   key="tone"
@@ -391,10 +391,10 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
           cho nỗi lo không nằm trong danh sách nào - phần lớn trường hợp thật. */}
       <section className="mt-6 rounded-[28px] border border-stone-200 bg-white px-5 py-7 dark:border-stone-800 dark:bg-stone-900">
         <h2 className="text-center text-base font-extrabold text-stone-800 dark:text-stone-100">
-          {QUIET_CORNER_QUESTIONS.title}
+          {t.quietQuestions.title}
         </h2>
         <p className="mx-auto mt-1.5 max-w-md text-center text-xs leading-relaxed text-stone-500 dark:text-stone-400">
-          {QUIET_CORNER_QUESTIONS.intro}
+          {t.quietQuestions.intro}
         </p>
         <ol className="mt-5 grid gap-3 sm:grid-cols-3">
           {QUIET_CORNER_QUESTIONS.items.map((item, i) => (
@@ -406,10 +406,10 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
                 {String(i + 1).padStart(2, "0")}
               </span>
               <p className="mt-1 text-sm font-bold leading-snug text-stone-800 dark:text-stone-100">
-                {item.question}
+                {t.quietQuestionItems[item.id]?.question ?? item.question}
               </p>
               <p className="mt-2 text-xs leading-relaxed text-stone-500 dark:text-stone-400">
-                {item.note}
+                {t.quietQuestionItems[item.id]?.note ?? item.note}
               </p>
             </li>
           ))}
@@ -423,9 +423,9 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
           cảnh báo. */}
       <section className="mt-10 px-6 text-center">
         <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-stone-400 dark:text-stone-500">
-          {QUIET_CORNER_CLOSING.title}
+          {t.quietClosing.title}
         </p>
-        {QUIET_CORNER_CLOSING.lines.map((line) => (
+        {[t.quietClosing.line1, t.quietClosing.line2].map((line) => (
           <p
             key={line}
             className="mx-auto mt-2.5 max-w-md text-sm leading-relaxed text-stone-600 dark:text-stone-300"
@@ -443,10 +443,10 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
           <Info className="mt-0.5 h-4 w-4 shrink-0 text-stone-400" />
           <div>
             <h2 className="text-sm font-extrabold text-stone-700 dark:text-stone-200">
-              {QUIET_CORNER_LIMITS.title}
+              {t.quietLimits.title}
             </h2>
             <p className="mt-1.5 text-xs leading-relaxed text-stone-500 dark:text-stone-400">
-              {QUIET_CORNER_LIMITS.body}
+              {t.quietLimits.body}
             </p>
           </div>
         </div>

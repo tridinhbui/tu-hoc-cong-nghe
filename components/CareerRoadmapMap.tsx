@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { trackFeatureClick } from "@/lib/feature-events";
 import type { FinanceCareer } from "@/lib/finance-careers";
 import { useI18n } from "@/lib/i18n/context";
+import { mergeCareer } from "@/lib/finance-careers-i18n";
 import { format } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
@@ -48,7 +49,7 @@ export default function CareerRoadmapMap({
   careers: FinanceCareer[];
   onSelectCareer: (career: FinanceCareer) => void;
 }) {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const CATEGORY_META = useMemo(() => categoryMeta(t), [t]);
   const [expanded, setExpanded] = useState(true);
   const [view, setView] = useState({ x: 0, y: 0, scale: 1 });
@@ -221,7 +222,7 @@ export default function CareerRoadmapMap({
                               className="inline-flex items-center gap-1.5 rounded-full border border-stone-200 dark:border-stone-700 bg-stone-50 dark:bg-stone-950/40 px-2.5 py-1.5 text-[11px] font-bold text-stone-700 dark:text-stone-300 hover:border-stone-900 dark:hover:border-stone-100 hover:bg-white dark:hover:bg-stone-900 transition-colors cursor-pointer"
                             >
                               <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: meta.color }} />
-                              <span>{career.title}</span>
+                              <span>{mergeCareer(career, locale).title}</span>
                             </button>
                           ))}
                         </div>

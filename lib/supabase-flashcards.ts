@@ -210,20 +210,37 @@ export interface BulkImportResult {
  *  this user is skipped rather than overwritten, so re-pasting a list that
  *  happens to include a card you've already been reviewing can't silently
  *  wipe its accumulated SM2 interval/repetitions back to a fresh card. */
-export async function saveFlashcardsBulk(userId: string, cards: { term: string; definition: string }[]): Promise<BulkImportResult> {
+/** `alsoKnownAs` là tên của cùng thẻ đó ở ngôn ngữ KHÁC.
+ *
+ *  Album thẻ có bản dịch (lib/flashcard-albums-i18n), nên cùng một thẻ đến đây
+ *  với tên "Tài sản (Assets)" hay "Assets" tuỳ ngôn ngữ người học đang dùng. Chỉ
+ *  so `term` thì người đã nhập album lúc dùng tiếng Việt, sang tiếng Anh nhập
+ *  lại, sẽ nhận một bộ thẻ trùng nội dung hoàn toàn với bộ họ đang có - đúng
+ *  điều chú thích ở FlashcardAlbumsGallery.tsx hứa không bao giờ xảy ra.
+ *
+ *  Danh sách này KHÔNG được lưu. Nó chỉ dùng để quyết định bỏ qua hay không, nên
+ *  không có cột nào phải thêm và không có dữ liệu cũ nào phải sửa. */
+export async function saveFlashcardsBulk(
+  userId: string,
+  cards: { term: string; definition: string; alsoKnownAs?: string[] }[]
+): Promise<BulkImportResult> {
   if (cards.length === 0) return { added: 0, skipped: 0 };
   const supabase = createClient();
 
-  const dedup = new Map<string, { term: string; definition: string }>();
+  const dedup = new Map<string, { term: string; definition: string; alsoKnownAs?: string[] }>();
   for (const c of cards) dedup.set(c.term, c);
 
   const existing = await getFlashcards(userId);
   const existingTerms = new Set(existing.map((c) => c.term));
+  const isNew = (c: { term: string; alsoKnownAs?: string[] }) =>
+    !existingTerms.has(c.term) && !(c.alsoKnownAs ?? []).some((alias) => existingTerms.has(alias));
 
-  const toInsert = Array.from(dedup.values()).filter((c) => !existingTerms.has(c.term));
+  const toInsert = Array.from(dedup.values()).filter(isNew);
   const skipped = dedup.size - toInsert.length;
   if (toInsert.length === 0) return { added: 0, skipped };
 
+  // Chỉ `term` và `definition` được ghi. `alsoKnownAs` là dữ liệu tạm để quyết
+  // định bỏ qua, không phải một cột.
   const rows = toInsert.map((c) => ({
     user_id: userId,
     term: c.term,
@@ -243,8 +260,14 @@ export async function saveFlashcardsBulk(userId: string, cards: { term: string; 
     if (typeof window !== "undefined") {
       try {
         const list = await getFlashcards(userId);
-        const existingTerms = new Set(list.map((c) => c.term));
-        const toInsertLocal = Array.from(dedup.values()).filter((c) => !existingTerms.has(c.term));
+        const localTerms = new Set(list.map((c) => c.term));
+        // Cùng phép kiểm với nhánh Supabase ở trên, kể cả `alsoKnownAs`. Hai
+        // nhánh lệch luật nghĩa là chống trùng chỉ hoạt động khi có mạng.
+        const toInsertLocal = Array.from(dedup.values()).filter(
+          (c) =>
+            !localTerms.has(c.term) &&
+            !(c.alsoKnownAs ?? []).some((alias) => localTerms.has(alias))
+        );
         const skippedLocal = dedup.size - toInsertLocal.length;
 
         if (toInsertLocal.length === 0) return { added: 0, skipped: skippedLocal };

@@ -21,6 +21,37 @@
 // Xem AGENTS.md, mục "Translating the UI".
 
 export const trackStagesVi = {
+  professionalBranches: {
+    corporate: {
+      label: "Tài chính doanh nghiệp",
+      subtitle: "Kế toán, báo cáo tài chính, định giá, vận hành vốn & mô hình tài chính",
+    },
+    investment: {
+      label: "Tài chính đầu tư",
+      subtitle: "Cổ phiếu, trái phiếu, danh mục, phái sinh, kinh tế học & quy trình buy-side",
+    },
+    banking: {
+      label: "Ngân hàng, bảo hiểm & tư vấn",
+      subtitle: "Đọc và định giá ngân hàng, tín dụng, tuân thủ, quản lý gia sản & bảo hiểm",
+    },
+    quant: {
+      label: "Định lượng & dữ liệu",
+      subtitle: "Thống kê, hồi quy, chuỗi thời gian, Excel và SQL cho phân tích",
+    },
+    data: {
+      label: "Phân tích dữ liệu",
+      subtitle:
+        "Python, làm sạch dữ liệu, dashboard, chọn chỉ số, thử nghiệm A/B và đạo đức dữ liệu",
+    },
+    craft: {
+      label: "Kỹ năng nghề",
+      subtitle: "Viết memo, bảo vệ luận điểm, bài kiểm tra dựng mô hình và lộ trình nghề nghiệp",
+    },
+    ai: {
+      label: "AI trong tài chính",
+      subtitle: "Dùng ChatGPT/Claude để đọc báo cáo, phân tích tin và viết memo",
+    },
+  } as Record<string, { label: string; subtitle: string }>,
   trackStages: {
     personal: {
       title: "Tài chính cá nhân",
@@ -436,6 +467,37 @@ export const trackStagesVi = {
 };
 
 export const trackStagesEn: typeof trackStagesVi = {
+  professionalBranches: {
+    corporate: {
+      label: "Corporate finance",
+      subtitle: "Accounting, financial statements, valuation, capital operations & financial modelling",
+    },
+    investment: {
+      label: "Investment finance",
+      subtitle: "Equities, bonds, portfolios, derivatives, economics & the buy-side process",
+    },
+    banking: {
+      label: "Banking, insurance & advisory",
+      subtitle: "Reading and valuing a bank, credit, compliance, wealth management & insurance",
+    },
+    quant: {
+      label: "Quantitative & data",
+      subtitle: "Statistics, regression, time series, Excel and SQL for analysis",
+    },
+    data: {
+      label: "Data analysis",
+      subtitle:
+        "Python, data cleaning, dashboards, choosing metrics, A/B testing and data ethics",
+    },
+    craft: {
+      label: "The craft",
+      subtitle: "Writing memos, defending a thesis, the modelling test and the career path",
+    },
+    ai: {
+      label: "AI in finance",
+      subtitle: "Using ChatGPT/Claude to read filings, analyse news and draft memos",
+    },
+  },
   trackStages: {
     personal: {
       title: "Personal Finance",

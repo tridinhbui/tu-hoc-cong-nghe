@@ -7,10 +7,16 @@
 // clusters bonus lessons by topic so the section can render sub-headers
 // instead. Does not affect lesson ids, unlock logic, or the day-numbered
 // Personal/Professional tracks - display grouping only.
+/* i18n-ignore-start: giá trị của bảng này vừa là NHÃN hiển thị vừa là KHOÁ
+   nhóm - DashboardClient lọc bài theo `BONUS_CATEGORIES[slug] === category`.
+   Nên chúng không được dịch tại chỗ; nhãn hiển thị tra qua
+   `t.bonusCategories[category]` còn phép lọc vẫn so bằng chuỗi gốc. Dịch ở đây
+   sẽ làm mọi nhóm rỗng mà không có lỗi nào. */
 export const BONUS_CATEGORIES: Record<string, string> = {
   "on-tap-wacc": "Định giá doanh nghiệp",
   roic: "Định giá doanh nghiệp",
   "roic-phan-2": "Định giá doanh nghiệp",
+  "10-cong-thuc-finance": "Định giá doanh nghiệp",
   "market-fair-value": "Định giá doanh nghiệp",
   "enterprise-value": "Định giá doanh nghiệp",
   "dupont-analysis": "Định giá doanh nghiệp",
@@ -62,3 +68,5 @@ export const BONUS_CATEGORY_ORDER = [
   "Đầu tư & danh mục",
   "Khác",
 ];
+
+/* i18n-ignore-end */

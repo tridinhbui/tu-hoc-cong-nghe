@@ -1,0 +1,148 @@
+{
+  "slug": "lai-kep-huu-tri-bat-dau-som",
+  "title": "Stage 8, Lesson 2: Compounding in retirement saving - why the first ten years matter most",
+  "subtitle": "Starting to save for retirement at 25 instead of 35 makes a far bigger difference than most people expect, even while paying in less.",
+  "duration": "6 min",
+  "whyItMatters": "Understanding compounding properly shows you why starting 5-10 years earlier beats trying to pay in more later - the most practical reason there is to act today rather than put it off.",
+  "openingQuestion": "Person A invests 3 million a month from age 25 to 35 (10 years) and then stops entirely. Person B invests 3 million a month from age 35 to 60 (25 years). Who has more at 60 (assume the same 8% a year)?",
+  "openingOptions": [
+    "There is no way to work out a specific result without further detailed information about the investment",
+    "The two will end up with exactly the same amount at 60, because the same 8% a year applies to both of them",
+    "A can still be ahead, because those first ten years get 25 extra years of growth",
+    "B will certainly have considerably more, having paid in continuously for 25 years against A's 10 years"
+  ],
+  "explanation": "This is the classic illustration of what time does inside compounding: A pays in 360 million in total (3m × 120 months) but has 35 years for compounding to work; B pays in 900 million (3m × 300 months) but only has 25 years. At 8% a year, A usually ends up level with or ahead of B while paying in 60% less.",
+  "diagram": [
+    { "label": "Start contributing steadily, early" },
+    { "label": "Stop contributing but leave the money invested" },
+    { "label": "The remaining years keep compounding" },
+    { "label": "A later starter paying in more still struggles to catch up" }
+  ],
+  "realWorldExample": {
+    "company": "The classic personal finance example",
+    "description": "This is one of the most widely used illustrations of compounding: the length of time invested matters far more than money added later - which is why advisers stress \"start early\" rather than \"pay in more\"."
+  },
+  "quiz": [
+    {
+      "question": "Why do the first ten years of retirement saving matter so much more than the last ten, even when the amounts paid in are the same?",
+      "options": [
+        "Because money paid in early has more time for compounding to work",
+        "Because pension fund management fees fall the longer you stay in",
+        "Because the rate applied in the first ten years is always higher",
+        "Because income in those first ten years is usually higher than later"
+      ],
+      "explanation": "Compounding is exponential in time, not linear. Over a long horizon the number of growth years matters more than the size of the principal, which is why a dong invested at 25 is usually worth several times a dong invested at 45 at the same rate."
+    },
+    {
+      "question": "For a 25-year-old wondering whether to start retirement investing now or wait for a bigger salary, what is the practical lesson of the \"A vs B\" example?",
+      "options": [
+        "Wait for a bigger salary and catch up later; the result is about the same",
+        "Start now even with a small amount, because time cannot be bought back",
+        "Wait until you have at least 100 million saved before starting",
+        "Clear every debt first, including the low-interest ones"
+      ],
+      "explanation": "Time is the one resource in retirement investing that cannot be repurchased. Starting small at 25 usually beats starting large at 35 - which is why \"start now, however little\" beats \"wait until there is more money\"."
+    },
+    {
+      "question": "A pays in 3 million a month for 10 years and stops; B starts afterwards and pays in for 25 years. Who usually ends up with more?",
+      "options": [
+        "They come out level, because the same rate of return applies to both",
+        "B, because the total amount paid in is far larger than A's",
+        "A, because their money gets ten extra years of compounding",
+        "There is no comparing them without knowing what assets each one holds"
+      ],
+      "explanation": "A pays in 360 million and B pays in 900 million - but A's money starts earning ten years sooner. In compounding, time usually beats the amount."
+    },
+    {
+      "question": "Why do the first ten years matter more than the last ten?",
+      "options": [
+        "Because the stock market always rises fastest during the first decade of investing",
+        "Because the rate of return applied in the early years is always higher than later on",
+        "Because fund management fees over the first ten years are far lower than afterwards",
+        "Because each dong put in early gets more cycles to multiply before it is needed"
+      ],
+      "explanation": "A dong put in at 25 has 35 years to multiply; a dong put in at 55 has 5. The same amount, results several times apart - and no amount of paying in more later makes it up."
+    },
+    {
+      "question": "At 10% a year, how long does money take to double?",
+      "options": [
+        "About 20 years, because compounding only does its work over the very long run",
+        "Exactly 10 years, because it grows 10% a year so ten years makes it double",
+        "About 7 years, by the rule of 72 divided by the annual rate",
+        "It cannot be determined because rates vary from one year to the next"
+      ],
+      "explanation": "72 divided by 10 is 7.2 years. The rule lets you do it in your head: at 10%, money doubles in 7 years, quadruples in 14, and is eight times over in 21 - and that is the whole power of starting early."
+    },
+    {
+      "question": "What is the most common mistake young people make with compounding?",
+      "options": [
+        "Investing too much at the start, leaving too little for monthly living costs",
+        "Waiting for a higher income to start, which costs them the most valuable years",
+        "Choosing assets whose return is too low for the risk they could actually take",
+        "Checking the portfolio too often and so missing the effect of compounding"
+      ],
+      "explanation": "A small amount invested early usually beats a large amount invested late. Waiting for things to \"settle down\" is the most expensive decision a 25-year-old can make without noticing they made it."
+    }
+  ],
+  "keyTakeaways": [
+    "Time invested matters more than the amount contributed once compounding runs long",
+    "Starting ten years earlier can match or beat paying in more but starting late",
+    "Delaying retirement investing is an opportunity cost that money later cannot repair"
+  ],
+  "practicePrompt": {
+    "question": "You are 26, newly graduated, and on a low salary, so you can only set aside 500,000 a month for retirement. A friend says \"that's too little to bother with, wait until your salary is higher and invest properly then\". Based on the lesson about compounding and time, how should you answer?",
+    "options": [
+      "Start now even with a small amount, because the time for compounding to work cannot be bought back",
+      "Agree with the friend and wait until the salary is higher before starting, to avoid wasting effort on such a small amount",
+      "It makes no difference either way, because the total amount contributed is the only thing that decides the result at retirement",
+      "Borrow money in order to invest a much larger sum than 500,000 a month and shorten the accumulation period"
+    ],
+    "explanation": "Money paid in early has more time for compounding to work - delaying a few years to pay in more later usually does not make up for the growth years lost."
+  },
+  "summary": {
+    "keyIdea": "Time invested matters more than the amount contributed once compounding runs long",
+    "commonMistake": "Reading the idea as a phrase to remember rather than as a principle to apply to a real decision.",
+    "action": "Starting ten years earlier can match or beat paying in more but starting late"
+  },
+  "application": {
+    "title": "Work it out now",
+    "message": "If you are under 30 and have not started saving for retirement, work out how much a month you would need to put in starting now to hit your target, against waiting another ten years to begin.",
+    "secondary": "The gap between those two numbers is usually larger than you expect."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "There is a counter-intuitive fact in retirement saving: the person who starts early but pays in less usually ends up with more than the person who starts late and pays in considerably more. The secret is not the amount. It is the number of years compounding has to work with."
+    },
+    {
+      "type": "heading",
+      "text": "Person A and person B - same return, different time"
+    },
+    {
+      "type": "paragraph",
+      "text": "A starts at 25, pays in 3 million a month for exactly 10 years (120 months), then stops contributing but leaves the money to keep earning until 60 - 360 million paid in, with 35 years for compounding to work. B starts later, paying in 3 million a month steadily for 25 years (300 months) until 60 - 900 million paid in, 2.5 times A's total, but only 25 years of growth. At 8% a year, A usually ends up level with or ahead of B while paying in 60% less."
+    },
+    {
+      "type": "heading",
+      "text": "Why the first ten years beat the last ten"
+    },
+    {
+      "type": "paragraph",
+      "text": "Compounding is exponential in time, not linear. A dong paid in at 25 has 35 years to multiply through many rounds of interest-on-interest; a dong paid in at 45 has 15. The difference is not twice as many years - it is the difference between two exponents, so the real gap is far wider than people expect. This is why advisers keep saying \"start early\" matters more than \"pay in more\": time is the one resource in investing that money cannot buy back."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Starting now with a small amount, even 1-2 million a month, beats waiting for a higher salary to begin",
+        "Every year of delay is a compounding year lost for good - doubling the contribution later does not recover it",
+        "Automate the monthly retirement contribution so it does not depend on willpower each time"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The question that matters is not \"how much do I have to invest for retirement\", but \"have I started\"."
+      ]
+    }
+  ]
+}

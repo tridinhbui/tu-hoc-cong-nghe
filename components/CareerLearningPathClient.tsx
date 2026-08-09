@@ -8,6 +8,7 @@ import { FINANCE_CAREERS, type FinanceCareer } from "@/lib/finance-careers";
 import JobSearchClient from "@/components/JobSearchClient";
 import { buildCareerRoadmap, categoryProgress, type LessonIndex } from "@/lib/career-roadmap";
 import { useI18n } from "@/lib/i18n/context";
+import { mergeCareers } from "@/lib/finance-careers-i18n";
 import { format } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
@@ -66,14 +67,17 @@ export default function CareerLearningPathClient({
   completedLessonIds,
   embedded = false,
 }: CareerLearningPathClientProps) {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const CATEGORY_META = useMemo(() => categoryMeta(t), [t]);
+  // Dữ liệu nghề nằm ngoài từ điển UI - xem lib/finance-careers-i18n. Hợp nhất
+  // ở đây chứ không ở module vì bản dịch phụ thuộc locale, mà locale là state.
+  const careers = useMemo(() => mergeCareers(entryLevelCareers, locale), [locale]);
   const [selectedCategory, setSelectedCategory] = useState<FinanceCareer["category"] | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const completedSet = useMemo(() => new Set(completedLessonIds), [completedLessonIds]);
 
-  const selected = selectedId ? entryLevelCareers.find((c) => c.id === selectedId) ?? null : null;
-  const careersInCategory = selectedCategory ? entryLevelCareers.filter((c) => c.category === selectedCategory) : [];
+  const selected = selectedId ? careers.find((c) => c.id === selectedId) ?? null : null;
+  const careersInCategory = selectedCategory ? careers.filter((c) => c.category === selectedCategory) : [];
 
   // Same lesson list a career already builds on /su-nghiep's study-plan tab
   // (relatedLessonSlugs + relatedCfaSubjectIds -> CFA_LEVEL_1_SUBJECTS'

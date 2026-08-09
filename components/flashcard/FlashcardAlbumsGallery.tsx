@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { toast } from "sonner";
 import { Download, ArrowLeft } from "lucide-react";
 import { FLASHCARD_ALBUMS, type FlashcardAlbum } from "@/lib/flashcard-albums";
 import { saveFlashcardsBulk } from "@/lib/supabase-flashcards";
 import { useI18n } from "@/lib/i18n/context";
+import { mergeFlashcardAlbums } from "@/lib/flashcard-albums-i18n";
 import { format } from "@/lib/i18n";
 
 interface FlashcardAlbumsGalleryProps {
@@ -21,8 +22,14 @@ interface FlashcardAlbumsGalleryProps {
 // an album that overlaps with cards you already added yourself) never
 // overwrites anything you're already reviewing.
 export default function FlashcardAlbumsGallery({ userId, onImported }: FlashcardAlbumsGalleryProps) {
-  const { t } = useI18n();
-  const [openAlbum, setOpenAlbum] = useState<FlashcardAlbum | null>(null);
+  const { t, locale } = useI18n();
+  // Album đã dịch. Thẻ mang thêm `alsoKnownAs` là tên tiếng Việt của chính nó,
+  // để đường nhập nhận ra thẻ người học đã có từ trước khi họ đổi ngôn ngữ.
+  const albums = useMemo(() => mergeFlashcardAlbums(FLASHCARD_ALBUMS, locale), [locale]);
+  const [openAlbumId, setOpenAlbumId] = useState<string | null>(null);
+  // Giữ `id` trong state, không giữ cả object: giữ object thì đổi ngôn ngữ lúc
+  // đang mở một album sẽ để lại bản tiếng Việt trên màn hình cho tới khi đóng.
+  const openAlbum = openAlbumId ? (albums.find((a) => a.id === openAlbumId) ?? null) : null;
   const [importing, setImporting] = useState(false);
 
   async function handleImport(album: FlashcardAlbum) {
@@ -35,7 +42,7 @@ export default function FlashcardAlbumsGallery({ userId, onImported }: Flashcard
             (skipped > 0 ? format(t.flashcards.albumSkippedSuffix, { skipped }) : "")
         );
         onImported();
-        setOpenAlbum(null);
+        setOpenAlbumId(null);
       } else {
         toast.info(format(t.flashcards.albumAllExisted, { skipped, title: album.title }));
       }
@@ -49,7 +56,7 @@ export default function FlashcardAlbumsGallery({ userId, onImported }: Flashcard
       <div className="mb-6 rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 shadow-sm overflow-hidden animate-[fadeIn_0.2s_ease-out]">
         <div className={`bg-gradient-to-br ${openAlbum.gradient} p-5 text-white relative`}>
           <button
-            onClick={() => setOpenAlbum(null)}
+            onClick={() => setOpenAlbumId(null)}
             className="inline-flex items-center gap-1.5 text-xs font-bold text-white/90 hover:text-white mb-3"
           >
             <ArrowLeft className="w-3.5 h-3.5" /> {t.flashcards.albumBack}
@@ -92,10 +99,10 @@ export default function FlashcardAlbumsGallery({ userId, onImported }: Flashcard
   return (
     <div className="mb-6">
       <div className="grid sm:grid-cols-2 gap-3">
-        {FLASHCARD_ALBUMS.map((album) => (
+        {albums.map((album) => (
           <button
             key={album.id}
-            onClick={() => setOpenAlbum(album)}
+            onClick={() => setOpenAlbumId(album.id)}
             className="group text-left rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 overflow-hidden hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
           >
             <div className={`bg-gradient-to-br ${album.gradient} h-20 flex items-center justify-center relative overflow-hidden`}>

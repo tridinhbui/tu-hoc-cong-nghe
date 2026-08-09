@@ -12,6 +12,15 @@
 // bao giờ chứa chữ "lãi suất" nhưng widget lãi suất là widget đúng của nó, nên
 // "chiết khấu", "npv", "wacc" đều nằm trong danh sách.
 
+/* i18n-ignore-start: đây KHÔNG phải chữ hiển thị. Đó là từ khoá được so khớp
+   (`content.includes(term)`, xem `widgetMatchesTopic` ngay dưới) với tiêu đề và
+   nội dung bài học tiếng Việt để chọn widget tương tác đúng chủ đề. Không một
+   chuỗi nào ở đây được vẽ ra màn hình - `grep -rn WIDGET_TOPIC_TERMS` chỉ ra
+   chính tệp này và bộ kiểm của nó.
+
+   Dịch chúng sang tiếng Anh sẽ làm mọi phép so khớp trượt, và triệu chứng đúng
+   bằng lỗi mà chú thích đầu tệp mô tả: bài về GARCH hiện ra biểu đồ lãi kép,
+   không lỗi, không cảnh báo. */
 export const WIDGET_TOPIC_TERMS: Record<string, string[]> = {
   chart: ["lãi kép", "lãi đơn", "compound", "kép", "tăng trưởng", "dài hạn"],
   "profit-calc": ["lợi nhuận", "dòng tiền", "tiền mặt", "doanh thu", "chi phí", "ebitda", "biên", "expense", "net income", "free cash flow", "lỗ", "tồn kho", "cổ tức", "oci", "affiliate"],
@@ -68,6 +77,8 @@ export function topicHaystack(lesson: {
  * Trả `true` cho loại widget chưa có trong bảng - bảng thiếu mục là việc phải
  * sửa ở bảng, không phải cái cớ để chặn một bài học.
  */
+/* i18n-ignore-end */
+
 export function widgetMatchesTopic(
   type: string,
   lesson: { title: string; subtitle?: string; whyItMatters?: string; keyTakeaways?: string[] },

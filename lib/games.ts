@@ -44,6 +44,25 @@ export interface SpecialGameMeta {
   accent: "emerald" | "sky" | "amber" | "violet" | "rose" | "indigo" | "teal" | "cyan";
 }
 
+/* i18n-ignore-start: mọi chuỗi hiển thị trong phần dữ liệu của tệp này đã có
+   lớp phủ trong lib/i18n/dictionaries/sections/games-meta.ts - tên game, mô tả,
+   ba mức độ khó, nhãn ô, 47 khoản mục báo cáo, ba bộ kéo-thả còn lại, nhãn và
+   gợi ý của game ghép cặp, và danh hiệu hạng 1-2-3. Component đắp qua
+   `localizeBucketConfig`/`localizePairConfig` (lib/games-i18n.ts).
+
+   BA THỨ CỐ Ý KHÔNG DỊCH, và đây là lý do:
+   - `TICKER_PAIRS` ghép tên doanh nghiệp với mã cổ phiếu (Vinamilk ↔ VNM). Cả
+     hai vế là danh từ riêng.
+   - Vế trái của mọi game ghép cặp: ký hiệu chỉ số (ROE, P/E), tên doanh nghiệp,
+     hoặc thuật ngữ vốn đã là tiếng Anh.
+   - `en-vi-terms` và phần glossary của `random-mix` ĐÃ song ngữ sẵn - trò chơi
+     chính là ghép thuật ngữ Anh với thuật ngữ Việt. Dịch vế Việt sang Anh thì
+     hai cột giống hệt nhau và trò chơi biến mất.
+
+   lib/__tests__/games-content-i18n.test.ts làm đỏ build khi mảng dịch lệch độ
+   dài - ở đây điều đó nghiêm trọng hơn chỗ khác, vì `bucket` của mỗi thẻ quyết
+   định ĐÁP ÁN: lệch một phần tử là thẻ mang nhãn của thẻ bên cạnh và ô đúng
+   thành ô sai. */
 export const SPECIAL_GAMES: SpecialGameMeta[] = [
   {
     id: "wall-street-millionaire",
@@ -775,6 +794,8 @@ export function getGameTitle(gameType: GameType, rank: number): string | null {
 }
 
 const COMBINED_TITLES: [string, string, string] = ["Huyền Thoại Mini Game", "Đại Kiện Tướng Tài Chính", "Cao Thủ Toàn Năng"];
+
+/* i18n-ignore-end */
 
 /** Rank is 1-based. Returns null for rank 4+. For the cross-game combined leaderboard. */
 export function getCombinedGameTitle(rank: number): string | null {

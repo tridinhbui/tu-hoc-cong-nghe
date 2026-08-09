@@ -26,6 +26,13 @@ export interface FrmFormulaItem {
   example?: FormulaExample;
 }
 
+/* i18n-ignore-start: `title`, `badge`, phần tử/mẫu viết bằng lời, tên biến và
+   `example` là bản gốc tiếng Việt, đã có lớp phủ đủ 92/92 trong
+   lib/frm-formulas-i18n/en.ts. FrmFormulaCheatSheet gọi
+   `mergeFormulas(FRM_FORMULAS_DATA, locale)` TRƯỚC bộ lọc tìm kiếm.
+   lib/__tests__/frm-formulas-translations.test.ts làm đỏ build khi thêm công
+   thức mà quên bản Anh, khi thiếu `title`, khi mảng `variables` lệch độ dài, và
+   khi thừa khoá. */
 export const FRM_FORMULAS_DATA: FrmFormulaItem[] = [
   // ─── FOUNDATIONS OF RISK MANAGEMENT ──────────────────────────────────
   {
@@ -1594,3 +1601,5 @@ export const FRM_FORMULAS_DATA: FrmFormulaItem[] = [
     },
   },
 ];
+
+/* i18n-ignore-end */

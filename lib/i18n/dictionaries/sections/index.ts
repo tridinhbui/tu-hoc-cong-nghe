@@ -18,6 +18,7 @@ import { careerFrmVi, careerFrmEn } from "./career-frm";
 import { certificateQuestsVi, certificateQuestsEn } from "./certificate-quests";
 import { cfaCalculatorsVi, cfaCalculatorsEn } from "./cfa-calculators";
 import { cfaExamVi, cfaExamEn } from "./cfa-exam";
+import { communityLearningVi, communityLearningEn } from "./community-learning";
 import { cosmeticsDuelVi, cosmeticsDuelEn } from "./cosmetics-duel";
 import { dataRestVi, dataRestEn } from "./data-rest";
 import { dataTablesVi, dataTablesEn } from "./data-tables";
@@ -52,6 +53,9 @@ import { trackStagesVi, trackStagesEn } from "./track-stages";
 import { motivationVi, motivationEn } from "./motivation";
 import { questsVi, questsEn } from "./quests";
 import { gamesMetaVi, gamesMetaEn } from "./games-meta";
+import { avatarOptionsVi, avatarOptionsEn } from "./avatar-options";
+import { bespokeLessonsVi, bespokeLessonsEn } from "./bespoke-lessons";
+import { badgesCompetencyVi, badgesCompetencyEn } from "./badges-competency";
 import { wisdomCardsVi, wisdomCardsEn } from "./wisdom-cards";
 import { quietCornerCopyVi, quietCornerCopyEn } from "./quiet-corner";
 import { rpgStudyRoomVi, rpgStudyRoomEn } from "./rpg-study-room";
@@ -103,11 +107,15 @@ export const viSections = {
   ...motivationVi,
   ...questsVi,
   ...gamesMetaVi,
+  ...avatarOptionsVi,
+  ...bespokeLessonsVi,
+  ...badgesCompetencyVi,
   ...wisdomCardsVi,
   ...quietCornerCopyVi,
   ...rpgStudyRoomVi,
   ...valuationSimVi,
   ...worldSpacesVi,
+  ...communityLearningVi,
   ...searchUploadVi,
 };
 
@@ -155,10 +163,14 @@ export const enSections: typeof viSections = {
   ...motivationEn,
   ...questsEn,
   ...gamesMetaEn,
+  ...avatarOptionsEn,
+  ...bespokeLessonsEn,
+  ...badgesCompetencyEn,
   ...wisdomCardsEn,
   ...quietCornerCopyEn,
   ...rpgStudyRoomEn,
   ...valuationSimEn,
   ...worldSpacesEn,
+  ...communityLearningEn,
   ...searchUploadEn,
 };

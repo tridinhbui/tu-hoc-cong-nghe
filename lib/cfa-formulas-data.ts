@@ -15,6 +15,13 @@ export interface CfaFormulaItem {
   example?: FormulaExample;
 }
 
+/* i18n-ignore-start: `title`, `badge`, tử/mẫu viết bằng lời, tên biến và
+   `example` là bản gốc tiếng Việt, đã có lớp phủ đủ 98/98 trong
+   lib/cfa-formulas-i18n/en.ts. CfaFormulaCheatSheet gọi
+   `mergeCfaFormulas(CFA_FORMULAS_DATA, locale)` TRƯỚC bộ lọc tìm kiếm.
+   lib/__tests__/cfa-formulas-translations.test.ts làm đỏ build khi thêm công
+   thức mà quên bản Anh, khi thiếu `title`, khi mảng `variables` lệch độ dài, và
+   khi thừa khoá. */
 export const CFA_FORMULAS_DATA: CfaFormulaItem[] = [
   // 1. QUANTITATIVE METHODS
   {
@@ -1621,3 +1628,5 @@ export const CFA_FORMULAS_DATA: CfaFormulaItem[] = [
     },
   },
 ];
+
+/* i18n-ignore-end */

@@ -198,13 +198,6 @@ export const glossaryEn: Record<string, GlossaryTranslation> = {
       "The LP does not control the timing, so liquidity has to be held against the uncalled commitment.",
   },
 
-  "alt-004": {
-    definition:
-      "The characteristic PE return shape: negative in the early years because fees and costs come before returns, then turning positive as exits arrive.",
-    cfaTip:
-      "A PE fund's IRR in year three is almost always poor, and that says nothing about how it finishes.",
-  },
-
   "alt-005": {
     definition:
       "The GP's share of profit once LPs have received their capital back plus the preferred return - typically 20%.",
@@ -236,11 +229,6 @@ export const glossaryEn: Record<string, GlossaryTranslation> = {
       "Commodity funds have to roll contracts continually, so sustained contango erodes returns even when spot never moves.",
   },
 
-  "port-002": {
-    definition: "The set of portfolios giving the highest return available at each level of risk.",
-    cfaTip: "Any portfolio below this line can be improved without taking on any more risk.",
-  },
-
   "port-003": {
     definition: "Whole-market risk, which diversification cannot remove.",
     cfaTip: "Only systematic risk is compensated by the market - that is the entire argument of CAPM.",
@@ -257,24 +245,6 @@ export const glossaryEn: Record<string, GlossaryTranslation> = {
     cfaTip: "When the risky portfolio is the market portfolio, this line becomes the Capital Market Line.",
   },
 
-  "port-006": {
-    definition: "Returning portfolio weights to their targets after market prices have moved them.",
-    cfaTip: "It forces you to sell what has risen and buy what has fallen - exactly what instinct resists.",
-  },
-
-  "port-007": {
-    definition:
-      "Strategic allocation is the long-run target weighting; tactical is a temporary deviation from it based on a market view.",
-    cfaTip:
-      "Most of the variation in long-run returns comes from the strategic allocation, not from timing.",
-  },
-
-  "port-008": {
-    definition:
-      "The document setting out a portfolio's objectives, constraints, risk appetite and benchmark.",
-    cfaTip: "The IPS is what you write while calm so you can follow it while panicking.",
-  },
-
   "quant-003": {
     definition:
       "Measures the strategy's performance by chaining period returns, independent of when money was paid in or taken out.",
@@ -286,19 +256,6 @@ export const glossaryEn: Record<string, GlossaryTranslation> = {
       "The IRR of the whole cash flow stream - what the investor actually experienced.",
     cfaTip:
       "Putting a lot of money in just before a fall drags MWRR well below the TWR the fund publishes.",
-  },
-
-  "quant-005": {
-    definition:
-      "Type I is rejecting H0 when it is true; Type II is failing to reject H0 when it is false.",
-    cfaTip:
-      "Cutting Type I by lowering the significance level raises Type II - the two errors trade against each other.",
-  },
-
-  "quant-006": {
-    definition:
-      "The distribution of the sample mean tends to normal as the sample grows, whatever the underlying distribution.",
-    cfaTip: "This is why most statistical tests still work on financial data that is not normal.",
   },
 
   "quant-007": {
@@ -327,12 +284,6 @@ export const glossaryEn: Record<string, GlossaryTranslation> = {
       "The opposite of a lagging indicator like unemployment, which only confirms what has already happened.",
   },
 
-  "econ-005": {
-    definition: "Heavy government borrowing pushes rates up and reduces private investment.",
-    cfaTip:
-      "This is the central argument against fiscal expansion when the economy is already near full employment.",
-  },
-
   "econ-006": {
     definition: "High inflation alongside stagnant growth, usually from a supply shock.",
     cfaTip: "The hardest situation for a central bank, because the two objectives pull in opposite directions.",
@@ -342,18 +293,6 @@ export const glossaryEn: Record<string, GlossaryTranslation> = {
     definition: "The record of all economic transactions between a country and the rest of the world.",
     cfaTip:
       "A current account surplus always comes with a capital account deficit - the two offset by definition.",
-  },
-
-  "econ-008": {
-    definition: "Being able to produce a good at a lower opportunity cost than another country.",
-    cfaTip:
-      "Different from absolute advantage: a country worse at everything still has a comparative advantage somewhere.",
-  },
-
-  "der-003": {
-    definition:
-      "The relationship between the underlying price and the strike: in-the-money, at-the-money or out-of-the-money.",
-    cfaTip: "An ATM option carries the most time value, because that is where the uncertainty is greatest.",
   },
 
   "der-004": {
@@ -421,40 +360,10 @@ export const glossaryEn: Record<string, GlossaryTranslation> = {
       "A cyclical's lowest P/E usually appears just before earnings turn down.",
   },
 
-  "eq-006": {
-    definition: "The share of stock actually available to trade, excluding permanently held blocks.",
-    cfaTip: "A low free float makes the price easy to push and makes the index less representative.",
-  },
-
-  "fi-004": {
-    definition: "The relationship between yield and maturity for bonds of the same credit quality.",
-    cfaTip: "An inversion is usually read as the market expecting the economy to slow.",
-  },
-
   "fi-005": {
     definition: "The risk of having to reinvest coupons or principal at a lower rate.",
     cfaTip:
       "It works against price risk - which is why a zero-coupon bond has no reinvestment risk at all.",
-  },
-
-  "fi-006": {
-    definition:
-      "A callable bond gives the issuer the right to redeem early; a putable bond gives the holder the right to sell back.",
-    cfaTip:
-      "Whoever holds the option gains from it - so a callable bond has to pay a higher yield in compensation.",
-  },
-
-  "eth-006": {
-    definition:
-      "Reaching a material conclusion by assembling many pieces of non-material information is legitimate.",
-    cfaTip: "One piece of material inside information anywhere in the chain destroys the whole defence.",
-  },
-
-  "eth-007": {
-    definition:
-      "Information a reasonable investor would use in a decision, which has not yet been widely released.",
-    cfaTip:
-      "Materiality is measured by the effect on a decision, not by the seniority of whoever holds it.",
   },
 
   "eth-008": {

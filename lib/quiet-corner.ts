@@ -69,6 +69,26 @@ export interface WorryReframe {
  * sáng là một trải nghiệm rất cụ thể, và việc trang *biết* lúc đó là mấy giờ
  * đã là một nửa lời an ủi. Hàm thuần theo giờ địa phương, không lưu gì.
  */
+/** Khung giờ, tách khỏi câu chữ. Component tra `t.quietGreeting[key]`; hàm
+ *  `getQuietGreeting` bên dưới giữ nguyên chữ tiếng Việt cho bộ kiểm và cho
+ *  bất kỳ chỗ nào chưa có từ điển trong tay. */
+export type QuietGreetingKey = "lateNight" | "morning" | "afternoon" | "evening" | "night";
+
+export function getQuietGreetingKey(hour: number): QuietGreetingKey {
+  if (hour < 5) return "lateNight";
+  if (hour < 12) return "morning";
+  if (hour < 18) return "afternoon";
+  if (hour < 22) return "evening";
+  return "night";
+}
+
+/* i18n-ignore-start: mọi chuỗi từ đây tới hết tệp đã có lớp phủ dịch, khoá
+   theo `id` (nỗi lo, câu hỏi) hoặc theo khung giờ. QuietCornerClient đọc
+   `t.worryReframes`, `t.quietQuestionItems`, `t.quietGreeting`, `t.quietClosing`
+   và `t.quietLimits`; `getQuietGreeting` chỉ còn phục vụ bộ kiểm.
+   lib/__tests__/quiet-corner-i18n.test.ts giữ cả hai bản khớp nhau, và kiểm
+   riêng rằng phần ranh giới bản Anh vẫn chỉ ra ngoài ứng dụng thay vì bị làm
+   mềm đi trong lúc dịch. */
 export function getQuietGreeting(hour: number): string {
   if (hour < 5) {
     return "Đã quá nửa đêm. Nỗi lo nào cũng nghe to hơn vào giờ này - chúng sẽ nhỏ lại dưới ánh sáng ban ngày.";
@@ -273,3 +293,5 @@ export const QUIET_CORNER_LIMITS = {
   body:
     "Đây là một góc để dừng lại một phút, không phải tư vấn tâm lý và cũng không phải tư vấn tài chính cá nhân. Nếu sự lo lắng kéo dài, ảnh hưởng tới giấc ngủ, công việc hay các mối quan hệ của bạn, hãy nói chuyện với một người bạn tin tưởng hoặc tìm tới chuyên gia sức khoẻ tâm thần. Việc đó không phải là yếu đuối - nó cũng giống như đi khám khi cơ thể có vấn đề vậy.",
 } as const;
+
+/* i18n-ignore-end */

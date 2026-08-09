@@ -331,7 +331,7 @@ export default function CfaGlossaryFlashcards({
 
                   {(currentTerm.cfaTip ?? currentTerm.frmTip) && (
                     <p className="text-xs text-amber-300 bg-amber-950/60 p-3 rounded-xl border border-amber-500/30">
-                      💡 <strong>{resolvedTipLabel}:</strong> {patch?.cfaTip ?? currentTerm.cfaTip ?? currentTerm.frmTip}
+                      💡 <strong>{resolvedTipLabel}:</strong> {patch?.cfaTip ?? patch?.frmTip ?? currentTerm.cfaTip ?? currentTerm.frmTip}
                     </p>
                   )}
                 </div>

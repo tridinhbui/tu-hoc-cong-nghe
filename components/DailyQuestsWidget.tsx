@@ -350,13 +350,13 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
                       ? "text-amber-600 dark:text-amber-400" 
                       : "text-stone-900 dark:text-stone-100 group-hover/item:text-emerald-600 dark:group-hover/item:text-emerald-400"
                   }`}>
-                    {quest.title}
+                    {t.questCopy[quest.id]?.title ?? quest.title}
                   </p>
                   <p className={`text-[10px] mt-0.5 leading-snug transition-colors duration-250 line-clamp-1 ${
                     quest.claimed
                       ? "text-stone-400"
                       : "text-stone-500 dark:text-stone-400 group-hover/item:text-stone-700 dark:group-hover/item:text-stone-300"
-                  }`}>{quest.description}</p>
+                  }`}>{t.questCopy[quest.id]?.description ?? quest.description}</p>
                 </div>
               </div>
 

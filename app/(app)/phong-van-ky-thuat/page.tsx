@@ -13,6 +13,7 @@ import { recordQuizMistake } from "@/lib/quiz-mistakes";
 import { getCareersCoveredByBank, getTechnicalQuestionsForCareer } from "@/lib/ib-question-careers";
 import { FINANCE_CAREERS } from "@/lib/finance-careers";
 import { useI18n } from "@/lib/i18n/context";
+import { mergeCareer } from "@/lib/finance-careers-i18n";
 import { format, type Dictionary } from "@/lib/i18n";
 import {
   groupCoverageByCategory,
@@ -67,7 +68,7 @@ type Stage = "setup" | "loading" | "empty" | "error" | "ready" | "done";
 type Mode = "technical" | "behavioral";
 
 export default function TechnicalInterviewPage() {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const IB_DIFFICULTY_COPY = ibDifficultyCopy(t);
   const supabase = createClient();
   const [userId, setUserId] = useState<string | null>(null);
@@ -101,7 +102,7 @@ export default function TechnicalInterviewPage() {
   // questions themselves. Titles come from FINANCE_CAREERS so the picker and
   // the career pages can't drift apart.
   const careerCoverage = useMemo(() => {
-    const titles = new Map(FINANCE_CAREERS.map((c) => [c.id, c.title]));
+    const titles = new Map(FINANCE_CAREERS.map((c) => [c.id, mergeCareer(c, locale).title]));
     return getCareersCoveredByBank()
       .filter((c) => titles.has(c.careerId))
       .map((c) => ({ ...c, title: titles.get(c.careerId)! }));

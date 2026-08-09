@@ -25,6 +25,9 @@ export interface WisdomCard {
   tone?: WisdomTone;
 }
 
+/* i18n-ignore-start: `text` là bản gốc tiếng Việt, đã có lớp phủ. Component
+   đọc `t.wisdomCards[card.id]`. lib/__tests__/wisdom-cards-i18n.test.ts làm đỏ
+   build khi thiếu hoặc thừa khoá, ở cả hai mảng. */
 export const WISDOM_CARDS: WisdomCard[] = [
   { id: "wc-001", text: "Chi tiêu ít hơn số tiền kiếm được là quy tắc đầu tiên - không có công cụ đầu tư nào cứu được một người luôn tiêu nhiều hơn thu." },
   { id: "wc-002", text: "Quỹ khẩn cấp không phải để sinh lời - nó tồn tại để bạn không phải bán tài sản tốt vào đúng lúc giá đang xấu." },
@@ -91,6 +94,8 @@ export const WISDOM_TONE_CARDS: WisdomCard[] = [
   { id: "wc-en-06", tone: "encourage", text: "Cứ ôn lại đúng những câu vừa sai - đó là cách học nhanh nhất, và cũng ít người chịu làm nhất." },
   { id: "wc-en-07", tone: "encourage", text: "Chỗ bạn thấy khó chính là chỗ đáng học nhất. Phần dễ thì ai cũng qua được." },
 ];
+
+/* i18n-ignore-end */
 
 const ALL_WISDOM_CARDS = [...WISDOM_CARDS, ...WISDOM_TONE_CARDS];
 

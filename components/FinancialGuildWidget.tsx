@@ -15,6 +15,7 @@ import { recalculateUserStats } from "@/lib/supabase-user";
 import { recordCustomGameSession } from "@/lib/games";
 import ModeLeaderboard from "@/components/games/ModeLeaderboard";
 import { useI18n } from "@/lib/i18n/context";
+import { mergeVn30Stocks, mergeVn30News } from "@/lib/vn30-stock-data-i18n";
 import { format } from "@/lib/i18n";
 
 interface PortfolioPosition {
@@ -24,10 +25,21 @@ interface PortfolioPosition {
 }
 
 export default function FinancialGuildWidget({ userId }: { userId: string }) {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const INITIAL_CASH = 1000000000; // 1 Tỷ VNĐ vốn ban đầu
 
-  const [stocks, setStocks] = useState<StockItem[]>(INITIAL_VN30_STOCKS);
+  // Dữ liệu đã dịch, dựng MỘT lần cho mỗi ngôn ngữ. Hai bể này phải đi qua cùng
+  // một lớp phủ: `sector` của cổ phiếu và `affectedSectors` của tin được ghép
+  // bằng so chuỗi trong lib/market-sim.ts, nên dịch lệch nhau là tin thị trường
+  // mất tác dụng mà không có lỗi nào.
+  const localizedStocks = useMemo(() => mergeVn30Stocks(INITIAL_VN30_STOCKS, locale), [locale]);
+  const localizedNews = useMemo(() => mergeVn30News(MARKET_NEWS_POOL, locale), [locale]);
+
+  // Giá và vị thế nằm trong state, nên đổi ngôn ngữ GIỮA phiên không dịch lại
+  // bảng đang chơi - nó chỉ đổi từ lần đặt lại quỹ. Đó là lựa chọn có ý: đồng bộ
+  // lại ở đây nghĩa là ghi đè giá đang mô phỏng bằng giá gốc, tức xoá sạch lãi
+  // lỗ của người đang chơi chỉ vì họ bấm đổi ngôn ngữ.
+  const [stocks, setStocks] = useState<StockItem[]>(localizedStocks);
   const [cash, setCash] = useState<number>(INITIAL_CASH);
   const [positions, setPositions] = useState<Record<string, PortfolioPosition>>({});
   const [simulatedDay, setSimulatedDay] = useState(1);
@@ -47,9 +59,11 @@ export default function FinancialGuildWidget({ userId }: { userId: string }) {
   // Unique Sectors
   const sectors = useMemo(() => {
     const set = new Set<string>();
-    INITIAL_VN30_STOCKS.forEach((s) => set.add(s.sector));
+    // Đọc từ bể ĐÃ DỊCH: danh sách lọc so sánh với `stock.sector` đang hiển thị,
+    // nên lấy từ bể gốc sẽ ra một bộ lọc không khớp bất cứ cổ phiếu nào.
+    localizedStocks.forEach((s) => set.add(s.sector));
     return ["all", ...Array.from(set)];
-  }, []);
+  }, [localizedStocks]);
 
   // Total Portfolio Value
   const stockValue = useMemo(() => {
@@ -92,7 +106,7 @@ export default function FinancialGuildWidget({ userId }: { userId: string }) {
   // Math.random() ở đây bị chặn dù nó chỉ chạy từ onClick - và quan trọng
   // hơn, ở ngoài đó nó kiểm được bằng test với nguồn ngẫu nhiên ghim sẵn.
   function advanceDays(numDays: number) {
-    const { stocks: newStocks, news } = advanceMarket(stocks, numDays, MARKET_NEWS_POOL);
+    const { stocks: newStocks, news } = advanceMarket(stocks, numDays, localizedNews);
     setCurrentNews(news);
     setStocks(newStocks);
     const nextDay = simulatedDay + numDays;
@@ -224,7 +238,7 @@ export default function FinancialGuildWidget({ userId }: { userId: string }) {
   function resetPortfolio() {
     setCash(INITIAL_CASH);
     setPositions({});
-    setStocks(INITIAL_VN30_STOCKS);
+    setStocks(localizedStocks);
     setSimulatedDay(1);
     setLearnedLessons([]);
     toast.message(t.guild.rebalanced);

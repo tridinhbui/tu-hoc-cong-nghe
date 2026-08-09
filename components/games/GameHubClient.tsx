@@ -365,12 +365,12 @@ export default function GameHubClient() {
                       </span>
                       <div className="min-w-0 flex-1">
                         <div className="flex items-center justify-between gap-2">
-                          <p className="font-extrabold text-stone-900 group-hover:text-stone-950 transition-colors">{g.title}</p>
+                          <p className="font-extrabold text-stone-900 group-hover:text-stone-950 transition-colors">{t.gameMeta[g.id]?.title ?? g.title}</p>
                           <span className="text-[9px] font-extrabold uppercase tracking-wider text-stone-400 shrink-0 bg-stone-50 px-1.5 py-0.5 rounded">
                             {g.mechanic === "bucket" ? gameHub.bucketMechanic : gameHub.pairMechanic}
                           </span>
                         </div>
-                        <p className="text-xs text-stone-500 mt-1.5 leading-relaxed">{g.description}</p>
+                        <p className="text-xs text-stone-500 mt-1.5 leading-relaxed">{t.gameMeta[g.id]?.description ?? g.description}</p>
                         <div className="flex items-center gap-2 mt-2">
                           <span className="text-[10px] font-extrabold text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full">
                             {gameHub.xpBadge}
@@ -445,7 +445,7 @@ export default function GameHubClient() {
             <span className={`w-10 h-10 rounded-2xl bg-gradient-to-br ${a.grad} text-white text-xl flex items-center justify-center flex-shrink-0`}>
               {meta.emoji}
             </span>
-            <h1 className="text-lg sm:text-xl font-bold text-stone-900">{meta.title}</h1>
+            <h1 className="text-lg sm:text-xl font-bold text-stone-900">{t.gameMeta[meta.id]?.title ?? meta.title}</h1>
           </div>
           <button
             onClick={() => {
@@ -470,14 +470,14 @@ export default function GameHubClient() {
                 <button
                   key={d.id}
                   onClick={() => setDifficulty(d.id)}
-                  title={d.hint}
+                  title={t.gameDifficulties[d.id]?.hint ?? d.hint}
                   className={`text-xs font-bold px-3 py-2 rounded-xl border-2 transition-all ${
                     difficulty === d.id
                       ? "border-stone-900 bg-stone-900 text-white"
                       : "border-stone-200 text-stone-600 hover:border-stone-400"
                   }`}
                 >
-                  {d.label}
+                  {t.gameDifficulties[d.id]?.label ?? d.label}
                 </button>
               ))}
             </div>

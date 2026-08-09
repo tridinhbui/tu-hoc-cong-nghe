@@ -84,7 +84,7 @@ export default function WisdomCardFlip({
             >
               <Lightbulb className={`w-5 h-5 ${style.icon} flex-shrink-0`} />
               <p className="text-sm font-semibold text-stone-800 dark:text-stone-200 text-center leading-relaxed">
-                {card.text}
+                {t.wisdomCards[card.id] ?? card.text}
               </p>
             </div>
           </motion.div>

@@ -33,6 +33,7 @@ import { getUserLessonFlags } from "@/lib/supabase-lesson-flags";
 import { getUserBookmarks, type LessonBookmark } from "@/lib/supabase-bookmarks";
 import { TRACKS } from "@/lib/tracks";
 import { useI18n } from "@/lib/i18n/context";
+import { badgeDescription, badgeName } from "@/lib/badge-label";
 import { format, intlLocale } from "@/lib/i18n";
 import { toast } from "sonner";
 import {
@@ -773,12 +774,12 @@ export default function ProfilePage() {
                   {badges.map((badge) => (
                     <div
                       key={badge.id}
-                      title={badge.badge_description}
+                      title={badgeDescription(badge, t)}
                       className="flex flex-col items-center text-center gap-1 p-2.5 rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-900/30"
                     >
                       <span className="text-2xl">{badge.badge_icon}</span>
                       <span className="text-[9px] font-extrabold text-stone-900 dark:text-stone-200 leading-tight truncate w-full">
-                        {badge.badge_name}
+                        {badgeName(badge, t)}
                       </span>
                     </div>
                   ))}

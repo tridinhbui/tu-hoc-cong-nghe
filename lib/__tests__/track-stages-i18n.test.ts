@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { TRACK_PERSONAL, TRACK_PROFESSIONAL } from "@/lib/track-stages";
+import { TRACK_PERSONAL, TRACK_PROFESSIONAL, PROFESSIONAL_BRANCHES } from "@/lib/track-stages";
 import { trackStagesVi, trackStagesEn } from "@/lib/i18n/dictionaries/sections/track-stages";
 import { LEVELS } from "@/lib/levels";
 import { levelTitlesVi, levelTitlesEn } from "@/lib/i18n/dictionaries/sections/level-titles";
@@ -77,6 +77,46 @@ describe("bản dịch tên cấp", () => {
       const en = levelTitlesEn.levelTitles[lvl.level];
       expect(en, `cấp ${lvl.level} thiếu bản Anh`).toBeTruthy();
       expect(diacritics.test(en), `cấp ${lvl.level}: "${en}"`).toBe(false);
+    }
+  });
+});
+
+// Bảy nhánh nghề của lộ trình chuyên ngành. Chúng bị bỏ sót ở lượt dịch chặng
+// vì `PROFESSIONAL_BRANCHES` nằm NGOÀI khối `i18n-ignore` bọc hai hằng số lộ
+// trình - dịch xong 53 chặng mà quên đúng bộ lọc đứng ngay cạnh chúng trên
+// dashboard.
+describe("bản dịch nhánh nghề chuyên ngành", () => {
+  const DIACRITICS =
+    /[àáảãạăằắẳẵặâầấẩẫậèéẻẽẹêềếểễệìíỉĩịòóỏõọôồốổỗộơờớởỡợùúủũụưừứửữựỳýỷỹỵđ]/i;
+
+  it("bản Việt khớp từng chữ với PROFESSIONAL_BRANCHES", () => {
+    for (const branch of PROFESSIONAL_BRANCHES) {
+      const vi = trackStagesVi.professionalBranches[branch.id];
+      expect(vi, `thiếu ${branch.id}`).toBeTruthy();
+      expect(vi.label).toBe(branch.label);
+      expect(vi.subtitle).toBe(branch.subtitle);
+    }
+  });
+
+  it("mọi nhánh đều có bản Anh không còn dấu tiếng Việt", () => {
+    for (const branch of PROFESSIONAL_BRANCHES) {
+      const en = trackStagesEn.professionalBranches[branch.id];
+      expect(en, `${branch.id} thiếu bản Anh`).toBeTruthy();
+      expect(DIACRITICS.test(en.label), `${branch.id}: "${en.label}"`).toBe(false);
+      expect(DIACRITICS.test(en.subtitle), `${branch.id}: "${en.subtitle}"`).toBe(false);
+    }
+  });
+
+  it("stageLabels KHÔNG được dịch - chúng là khoá tra chặng", () => {
+    // `stageLabels` so khớp với `stage.label` để lọc chặng theo nhánh. Dịch
+    // chúng sang "Stage 1" thì bộ lọc không khớp gì cả và nhánh nào cũng rỗng -
+    // không lỗi, không cảnh báo, chỉ là một dashboard trống. Ca này giữ chúng
+    // ở lại phía dữ liệu, và giữ chúng trỏ tới chặng có thật.
+    const realLabels = new Set(TRACK_PROFESSIONAL.stages.map((s) => s.label));
+    for (const branch of PROFESSIONAL_BRANCHES) {
+      for (const label of branch.stageLabels) {
+        expect(realLabels.has(label), `${branch.id} trỏ tới "${label}" không tồn tại`).toBe(true);
+      }
     }
   });
 });

@@ -38,6 +38,11 @@ export const DEFAULT_AVATAR_CONFIG: AvatarConfig = {
   background: "wallstreet-trading-floor",
 };
 
+/* i18n-ignore-start: mọi `label` từ đây tới hết danh sách bộ dựng sẵn đã có
+   lớp phủ trong lib/i18n/dictionaries/sections/avatar-options.ts, khoá theo
+   `id` - và `id` ở đây được GHI XUỐNG cấu hình avatar của người dùng, nên nó
+   ổn định hơn mọi khoá khác trong repo. `hex` và `config` là dữ liệu đã lưu,
+   không phải chữ. */
 export const SKIN_TONES: { id: string; hex: string; label: string }[] = [
   { id: "fair", hex: "#FFE5D9", label: "Trắng Hồng" },
   { id: "natural", hex: "#FCD5CE", label: "Tự Nhiên" },
@@ -198,3 +203,5 @@ export const AVATAR_PRESETS: { name: string; icon: string; config: AvatarConfig 
     },
   },
 ];
+
+/* i18n-ignore-end */

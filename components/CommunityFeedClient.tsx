@@ -23,7 +23,6 @@ import {
   ShieldCheck,
   SmilePlus,
   Sparkles,
-  Target,
   Trash2,
   TrendingUp,
   X,
@@ -163,13 +162,23 @@ const TOPICS = [
   { id: "all", icon: Newspaper, tone: "stone" },
   { id: "meo-tai-chinh", icon: Sparkles, tone: "emerald" },
   { id: "phan-tich", icon: BarChart3, tone: "sky" },
-  { id: "thanh-tuu", icon: Target, tone: "amber" },
   { id: "hoi-dap", icon: HelpCircle, tone: "orange" },
   { id: "tin-nong", icon: Flame, tone: "red" },
   { id: "ai-finance", icon: Zap, tone: "violet" },
 ] as const;
 
 type TopicId = FeedTopicId;
+
+/** Chủ đề người viết được chọn trong ô soạn bài: mọi chủ đề thật.
+ *
+ *  Chỉ "all" bị loại, và nó không phải chủ đề - nó là bộ lọc "xem mọi bài", nên
+ *  đứng trong ô soạn bài thì đọc thành một mục có tên "Tất cả". Chỗ "không chọn
+ *  loại nào" là một mục riêng, dùng `t.feed.topicNone`.
+ *
+ *  Hằng số này từng phải loại thêm chủ đề Thành tựu; chủ đề ấy không còn tồn
+ *  tại nên không có gì để loại. Giữ hằng số thay vì lọc ngay tại chỗ hiển thị,
+ *  để danh sách chọn được có đúng một chỗ để đọc. */
+const COMPOSER_TOPICS = TOPICS.filter((topic) => topic.id !== "all");
 
 function getTopicMeta(topicId: TopicId) {
   return TOPICS.find((topic) => topic.id === topicId) ?? TOPICS[0];
@@ -485,7 +494,10 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
   const [content, setContent] = useState("");
   const [pendingImage, setPendingImage] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
-  const [selectedTopic, setSelectedTopic] = useState<TopicId>("meo-tai-chinh");
+  // Mặc định là KHÔNG loại nào. Trước đây mặc định là "meo-tai-chinh", nên bài
+  // của người chưa từng mở hộp chọn vẫn ra đời với nhãn "Mẹo tài chính" - một
+  // câu hỏi hay một dòng tâm sự đứng dưới nhãn "Mẹo", do phần mềm đoán hộ.
+  const [selectedTopic, setSelectedTopic] = useState<TopicId>("all");
   const [feedFilter, setFeedFilter] = useState<TopicId>("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [posting, setPosting] = useState(false);
@@ -624,7 +636,10 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
         : null;
 
       await createManualPost(user.id, content, imageUrl, {
-        category: selectedTopic,
+        // Không chọn loại thì KHÔNG ghi khoá `category` vào metadata, thay vì
+        // ghi "all". "all" là bộ lọc, không phải chủ đề; lưu nó lại là để dành
+        // sẵn một chủ đề tên "Tất cả" cho lần sau ai đó đọc cột này.
+        ...(selectedTopic === "all" ? {} : { category: selectedTopic }),
         ...(pollData ? pollData : {}),
       });
 
@@ -880,7 +895,6 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
   // dữ liệu từ Supabase sau tường đăng nhập, nên đó là chỗ duy nhất kiểm được
   // nó mà không cần một phiên đăng nhập thật và vài chục bài dựng sẵn.
   const searchTerm = searchQuery.trim().toLowerCase();
-  const achievementPosts = posts.filter((post) => getPostCategory(post) === "thanh-tuu");
   const visiblePosts = visibleFeedPosts(posts, feedFilter, searchQuery);
   // `hiddenAchievements` đã bỏ cùng quy tắc hạ ưu tiên: không bài nào bị ẩn khỏi
   // dòng chính nữa, nên một con số "đang bị ẩn" chỉ có thể sai.
@@ -898,18 +912,12 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
     .slice(0, 3);
   const questionPost = posts.find((post) => getPostCategory(post) === "hoi-dap");
   const analysisPost = posts.find((post) => getPostCategory(post) === "phan-tich");
-  // Thẻ "Nổi bật" nằm ở đầu CỘT CHÍNH, nên nó theo cùng quy tắc với dòng
-  // chính: không kéo bài chuỗi ngày học do hệ thống tự đăng lên. Trước đây
-  // điều kiện còn nhận riêng `kind === "streak"`, mà getPostCategory đã xếp
-  // streak vào "thanh-tuu" từ lâu - nên vế đó chỉ làm đúng một việc là bảo đảm
-  // một bài streak luôn lọt lên đầu trang khi chưa ai viết bài thành tựu nào.
-  const achievementPost = posts.find(
-    (post) => getPostCategory(post) === "thanh-tuu" && post.kind !== "streak"
-  );
+  // Thẻ "Nổi bật" từng có ô thứ ba cho bài thành tựu. Chủ đề đó không còn, nên
+  // ô ấy đi theo - hai ô còn lại là hỏi đáp và phân tích, cả hai đều là bài do
+  // người thật viết, đúng thứ mà một thẻ "nổi bật" nên chỉ tới.
   const spotlightItems = [
     questionPost && { label: t.feed.spotlightQuestion, post: questionPost, icon: HelpCircle },
     analysisPost && { label: t.feed.spotlightAnalysis, post: analysisPost, icon: BarChart3 },
-    achievementPost && { label: t.feed.spotlightAchievement, post: achievementPost, icon: Target },
   ].filter((item): item is { label: string; post: CommunityFeedPost; icon: typeof HelpCircle } => Boolean(item));
   const shellClass = embedded ? "" : "min-h-screen bg-stone-50 dark:bg-stone-950";
 
@@ -1191,7 +1199,11 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                                 onClick={() => setTopicMenuOpen((open) => !open)}
                                 className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-[11px] font-extrabold text-stone-700 dark:text-stone-300 border border-stone-200 dark:border-stone-700 hover:bg-stone-200 dark:hover:bg-stone-700 transition-colors cursor-pointer"
                               >
-                                <span>💡 {t.feed.topics[selectedTopic].label}</span>
+                                <span>
+                                  {selectedTopic === "all"
+                                    ? t.feed.topicNone
+                                    : t.feed.topics[selectedTopic].label}
+                                </span>
                                 <ChevronDown className="w-3 h-3 opacity-60" />
                               </button>
                               <AnimatePresence>
@@ -1202,7 +1214,21 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                                     exit={{ opacity: 0, y: 4, scale: 0.98 }}
                                     className="absolute left-0 top-full z-40 mt-1 w-52 rounded-xl bg-white p-1 shadow-lg ring-1 ring-stone-200 dark:bg-stone-900 dark:ring-stone-800"
                                   >
-                                    {TOPICS.filter((item) => item.id !== "all").map((item) => (
+                                    {/* "Không phân loại" đứng ĐẦU danh sách vì nó
+                                        là mặc định: một người mở hộp ra để xem
+                                        có gì phải tránh cần thấy ngay là mình
+                                        không buộc phải chọn gì cả. */}
+                                    <button
+                                      type="button"
+                                      onClick={() => {
+                                        setSelectedTopic("all");
+                                        setTopicMenuOpen(false);
+                                      }}
+                                      className="flex w-full items-center gap-2 rounded-lg px-2.5 py-1.5 text-xs font-bold text-stone-500 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-800"
+                                    >
+                                      {t.feed.topicNone}
+                                    </button>
+                                    {COMPOSER_TOPICS.map((item) => (
                                       <button
                                         key={item.id}
                                         type="button"
@@ -1843,53 +1869,6 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                   </motion.div>
                 )}
               </AnimatePresence>
-            </div>
-
-            {/* Thành tựu: gọn, cuộn trong chính nó, không đẩy phần còn lại của
-                cột xuống. max-h cố định là điểm mấu chốt - danh sách này dài
-                theo số ngày học của cả cộng đồng, nên để nó tự do cao lên là
-                đưa đúng vấn đề vừa dọn khỏi dòng chính sang cột bên. */}
-            <div className="rounded-[22px] bg-white p-4.5 shadow-[0_14px_30px_-26px_rgba(15,23,42,0.18)] ring-1 ring-stone-100/70 dark:bg-stone-900/80 dark:ring-stone-800/60">
-              <div className="mb-3 flex items-center justify-between gap-2">
-                <div className="flex items-center gap-2">
-                  <Target className="h-5 w-5 text-amber-500" />
-                  <h2 className="text-sm font-black uppercase tracking-[0.14em] text-stone-900 dark:text-stone-100">{t.feed.achievementsTitle}</h2>
-                </div>
-                {achievementPosts.length > 0 && (
-                  <span className="rounded-full bg-amber-50 px-2 py-0.5 text-[11px] font-black text-amber-700 dark:bg-amber-950/40 dark:text-amber-300">
-                    {achievementPosts.length}
-                  </span>
-                )}
-              </div>
-              {achievementPosts.length === 0 ? (
-                <p className="text-sm text-stone-400">{t.feed.achievementsEmpty}</p>
-              ) : (
-                <div className="max-h-[16rem] space-y-2 overflow-y-auto pr-1">
-                  {achievementPosts.map((post) => (
-                    <button
-                      key={post.id}
-                      type="button"
-                      onClick={() => {
-                        setFeedFilter("thanh-tuu");
-                        requestAnimationFrame(() => {
-                          document
-                            .getElementById(`community-post-${post.id}`)
-                            ?.scrollIntoView({ behavior: "smooth", block: "center" });
-                        });
-                      }}
-                      className="w-full rounded-[16px] bg-stone-50 p-2.5 text-left transition hover:bg-amber-50 dark:bg-stone-950/60 dark:hover:bg-amber-950/20"
-                    >
-                      <p className="truncate text-xs font-bold text-stone-900 dark:text-stone-100">{post.user_name}</p>
-                      <p className="mt-1 line-clamp-2 text-[11px] font-medium leading-relaxed text-stone-500 dark:text-stone-400">
-                        {post.content || t.feed.postWithImage}
-                      </p>
-                      <p className="mt-1 text-[10px] font-bold text-stone-400">
-                        {post.reaction_count} {t.feed.reactionsSuffix}
-                      </p>
-                    </button>
-                  ))}
-                </div>
-              )}
             </div>
 
             <div className="rounded-[22px] bg-white p-4.5 shadow-[0_14px_30px_-26px_rgba(15,23,42,0.18)] ring-1 ring-stone-100/70 dark:bg-stone-900/80 dark:ring-stone-800/60">

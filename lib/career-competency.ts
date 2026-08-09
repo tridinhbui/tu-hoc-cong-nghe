@@ -95,6 +95,9 @@ export const SKILL_DOMAINS: SkillDomain[] = [
       77, 78, 79,
       ...range(121, 140),
       803, 1002, 1003, 1004, 1006, 1008, 1009, 1036, 1047, 1102, 1103, 1105, 1219, 1220, 1271,
+      // 1054: chuỗi Revenue → FCF → EV → giá cổ phiếu, và vì sao EV/EBITDA
+      // trung lập với đòn bẩy còn P/E thì không.
+      1054,
       // Định giá ngân hàng (P/B, thu nhập thặng dư), REIT (FFO/AFFO), xuyên
       // biên giới, và ESG đưa vào WACC - đều là biến thể của cùng một việc.
       // 1481/1482 là viết và bảo vệ luận điểm định giá, nên đi kèm ở đây.

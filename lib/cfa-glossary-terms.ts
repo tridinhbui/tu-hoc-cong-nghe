@@ -330,14 +330,6 @@ export const CFA_GLOSSARY_TERMS: CfaGlossaryTerm[] = [
     cfaTip: "LP không kiểm soát thời điểm, nên phải giữ sẵn thanh khoản cho phần cam kết chưa gọi.",
   },
   {
-    id: "alt-004",
-    termEn: "J-Curve",
-    termVi: "Đường cong chữ J",
-    subjectId: "alternatives",
-    definitionVi: "Mô hình lợi nhuận đặc trưng của quỹ PE: âm ở những năm đầu vì phí và chi phí đi trước lợi nhuận, rồi dương dần khi thoái vốn.",
-    cfaTip: "IRR của một quỹ PE ở năm thứ ba gần như luôn xấu, và điều đó không nói gì về kết quả cuối.",
-  },
-  {
     id: "alt-005",
     termEn: "Carried Interest",
     termVi: "Phần chia lợi nhuận",
@@ -380,14 +372,6 @@ export const CFA_GLOSSARY_TERMS: CfaGlossaryTerm[] = [
 
   // ── PORTFOLIO MANAGEMENT ─────────────────────────────────────────────────
   {
-    id: "port-002",
-    termEn: "Efficient Frontier",
-    termVi: "Đường biên hiệu quả",
-    subjectId: "portfolio",
-    definitionVi: "Tập hợp các danh mục cho lợi nhuận cao nhất ứng với mỗi mức rủi ro.",
-    cfaTip: "Mọi danh mục nằm dưới đường này đều có thể cải thiện mà không cần gánh thêm rủi ro.",
-  },
-  {
     id: "port-003",
     termEn: "Systematic Risk",
     termVi: "Rủi ro hệ thống",
@@ -411,30 +395,6 @@ export const CFA_GLOSSARY_TERMS: CfaGlossaryTerm[] = [
     definitionVi: "Đường nối tài sản phi rủi ro với một danh mục rủi ro, thể hiện mọi tổ hợp có thể của hai thứ đó.",
     cfaTip: "Khi danh mục rủi ro là danh mục thị trường thì đường này thành Capital Market Line.",
   },
-  {
-    id: "port-006",
-    termEn: "Rebalancing",
-    termVi: "Tái cân bằng",
-    subjectId: "portfolio",
-    definitionVi: "Đưa tỷ trọng danh mục về mức mục tiêu sau khi giá thị trường làm nó lệch đi.",
-    cfaTip: "Nó buộc bán phần đã tăng và mua phần đã giảm - đúng điều tâm lý phản đối.",
-  },
-  {
-    id: "port-007",
-    termEn: "Strategic vs Tactical Asset Allocation",
-    termVi: "Phân bổ chiến lược và chiến thuật",
-    subjectId: "portfolio",
-    definitionVi: "Chiến lược là tỷ trọng dài hạn theo mục tiêu; chiến thuật là lệch tạm thời khỏi mức đó theo nhận định thị trường.",
-    cfaTip: "Phần lớn biến động lợi nhuận dài hạn đến từ phân bổ chiến lược, không từ chọn thời điểm.",
-  },
-  {
-    id: "port-008",
-    termEn: "Investment Policy Statement (IPS)",
-    termVi: "Bản tuyên bố chính sách đầu tư",
-    subjectId: "portfolio",
-    definitionVi: "Tài liệu ghi mục tiêu, ràng buộc, khẩu vị rủi ro và chuẩn tham chiếu của một danh mục.",
-    cfaTip: "IPS là thứ được viết lúc bình tĩnh để tuân theo lúc hoảng loạn.",
-  },
 
   // ── QUANTITATIVE METHODS ─────────────────────────────────────────────────
   {
@@ -452,22 +412,6 @@ export const CFA_GLOSSARY_TERMS: CfaGlossaryTerm[] = [
     subjectId: "quant",
     definitionVi: "Chính là IRR của toàn bộ dòng tiền, phản ánh trải nghiệm thực tế của nhà đầu tư.",
     cfaTip: "Nạp nhiều tiền ngay trước một đợt giảm sẽ kéo MWRR xuống thấp hơn hẳn TWR quỹ công bố.",
-  },
-  {
-    id: "quant-005",
-    termEn: "Type I và Type II Error",
-    termVi: "Sai lầm loại I và loại II",
-    subjectId: "quant",
-    definitionVi: "Loại I là bác bỏ giả thuyết H0 khi nó đúng; loại II là không bác bỏ H0 khi nó sai.",
-    cfaTip: "Giảm loại I bằng cách hạ mức ý nghĩa sẽ làm tăng loại II - hai sai lầm đánh đổi nhau.",
-  },
-  {
-    id: "quant-006",
-    termEn: "Central Limit Theorem",
-    termVi: "Định lý giới hạn trung tâm",
-    subjectId: "quant",
-    definitionVi: "Phân phối của trung bình mẫu tiến về phân phối chuẩn khi cỡ mẫu đủ lớn, bất kể phân phối gốc.",
-    cfaTip: "Đây là lý do phần lớn kiểm định thống kê dùng được cho dữ liệu tài chính không chuẩn.",
   },
   {
     id: "quant-007",
@@ -505,14 +449,6 @@ export const CFA_GLOSSARY_TERMS: CfaGlossaryTerm[] = [
     cfaTip: "Đối lập với chỉ báo trễ như thất nghiệp, vốn chỉ xác nhận sau khi mọi chuyện đã xảy ra.",
   },
   {
-    id: "econ-005",
-    termEn: "Crowding Out",
-    termVi: "Hiệu ứng lấn át",
-    subjectId: "economics",
-    definitionVi: "Việc chính phủ vay nhiều đẩy lãi suất lên và làm giảm đầu tư tư nhân.",
-    cfaTip: "Đây là lập luận chính chống lại việc mở rộng tài khóa khi nền kinh tế đã gần toàn dụng.",
-  },
-  {
     id: "econ-006",
     termEn: "Stagflation",
     termVi: "Đình lạm",
@@ -528,24 +464,8 @@ export const CFA_GLOSSARY_TERMS: CfaGlossaryTerm[] = [
     definitionVi: "Ghi chép toàn bộ giao dịch kinh tế giữa một nước với phần còn lại của thế giới.",
     cfaTip: "Thặng dư tài khoản vãng lai luôn đi kèm thâm hụt tài khoản vốn - hai vế bù nhau theo định nghĩa.",
   },
-  {
-    id: "econ-008",
-    termEn: "Comparative Advantage",
-    termVi: "Lợi thế so sánh",
-    subjectId: "economics",
-    definitionVi: "Khả năng sản xuất một hàng hóa với chi phí cơ hội thấp hơn nước khác.",
-    cfaTip: "Khác lợi thế tuyệt đối: một nước kém hơn ở mọi mặt vẫn có lợi thế so sánh ở đâu đó.",
-  },
 
   // ── DERIVATIVES ──────────────────────────────────────────────────────────
-  {
-    id: "der-003",
-    termEn: "Moneyness",
-    termVi: "Trạng thái giá thực hiện",
-    subjectId: "derivatives",
-    definitionVi: "Quan hệ giữa giá cơ sở và giá thực hiện: in-the-money, at-the-money hay out-of-the-money.",
-    cfaTip: "Quyền chọn ATM có giá trị thời gian lớn nhất, vì đó là chỗ bất định nhất.",
-  },
   {
     id: "der-004",
     termEn: "Delta",
@@ -641,52 +561,12 @@ export const CFA_GLOSSARY_TERMS: CfaGlossaryTerm[] = [
     cfaTip: "P/E thấp nhất của cổ phiếu chu kỳ thường xuất hiện ngay trước khi lợi nhuận đảo chiều xuống.",
   },
   {
-    id: "eq-006",
-    termEn: "Free Float",
-    termVi: "Tỷ lệ cổ phiếu tự do chuyển nhượng",
-    subjectId: "equity",
-    definitionVi: "Phần cổ phiếu thực sự giao dịch được trên thị trường, không bị nắm giữ cố định.",
-    cfaTip: "Free float thấp làm giá dễ bị đẩy và làm chỉ số kém đại diện.",
-  },
-  {
-    id: "fi-004",
-    termEn: "Yield Curve",
-    termVi: "Đường cong lợi suất",
-    subjectId: "fixedIncome",
-    definitionVi: "Quan hệ giữa lợi suất và kỳ hạn của trái phiếu cùng chất lượng tín dụng.",
-    cfaTip: "Đảo ngược thường được đọc là tín hiệu thị trường kỳ vọng kinh tế giảm tốc.",
-  },
-  {
     id: "fi-005",
     termEn: "Reinvestment Risk",
     termVi: "Rủi ro tái đầu tư",
     subjectId: "fixedIncome",
     definitionVi: "Rủi ro phải tái đầu tư coupon hoặc vốn gốc ở mức lãi suất thấp hơn.",
     cfaTip: "Ngược chiều với rủi ro giá - đó là lý do trái phiếu zero-coupon không có rủi ro tái đầu tư.",
-  },
-  {
-    id: "fi-006",
-    termEn: "Callable và Putable Bond",
-    termVi: "Trái phiếu có quyền mua lại và quyền bán lại",
-    subjectId: "fixedIncome",
-    definitionVi: "Callable cho bên phát hành quyền mua lại sớm; putable cho trái chủ quyền bán lại.",
-    cfaTip: "Quyền nằm trong tay ai thì bên đó có lợi - nên callable phải trả lợi suất cao hơn để bù.",
-  },
-  {
-    id: "eth-006",
-    termEn: "Mosaic Theory",
-    termVi: "Lý thuyết ghép mảnh",
-    subjectId: "ethics",
-    definitionVi: "Kết luận trọng yếu rút ra từ việc ghép nhiều mảnh thông tin không trọng yếu là hợp pháp.",
-    cfaTip: "Chỉ cần một mảnh là thông tin nội bộ trọng yếu thì cả chuỗi mất tính hợp pháp.",
-  },
-  {
-    id: "eth-007",
-    termEn: "Material Nonpublic Information",
-    termVi: "Thông tin trọng yếu chưa công bố",
-    subjectId: "ethics",
-    definitionVi: "Thông tin mà nhà đầu tư hợp lý sẽ dùng để ra quyết định và chưa được công bố rộng rãi.",
-    cfaTip: "Trọng yếu đo bằng ảnh hưởng tới quyết định, không bằng cấp bậc người nắm thông tin.",
   },
   {
     id: "eth-008",

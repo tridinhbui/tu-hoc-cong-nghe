@@ -30,6 +30,7 @@ import {
 import { recalculateUserStats } from "@/lib/supabase-user";
 import MockInterviewModal from "@/components/MockInterviewModal";
 import { useI18n } from "@/lib/i18n/context";
+import { mergeCareer } from "@/lib/finance-careers-i18n";
 import { format } from "@/lib/i18n";
 
 // The three /su-nghiep career surfaces in one panel, because all three read
@@ -63,7 +64,7 @@ function Bar({ percent, color }: { percent: number; color: string }) {
 }
 
 export default function CareerProfilePanel({ userId, careerId }: CareerProfilePanelProps) {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const [data, setData] = useState<CareerProfileResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [failed, setFailed] = useState(false);
@@ -207,14 +208,14 @@ export default function CareerProfilePanel({ userId, careerId }: CareerProfilePa
               >
                 <div className="flex items-baseline justify-between gap-2">
                   <span className="text-sm font-black text-stone-900 dark:text-stone-100">
-                    {competency.label}
+                    {t.competencies[competency.id]?.label ?? competency.label}
                   </span>
                   <span className="text-lg font-black tabular-nums" style={{ color: competency.color }}>
                     {score?.score ?? 0}%
                   </span>
                 </div>
                 <p className="mt-1 text-[11px] text-stone-500 dark:text-stone-400 leading-relaxed">
-                  {competency.blurb}
+                  {t.competencies[competency.id]?.blurb ?? competency.blurb}
                 </p>
                 <div className="mt-2.5">
                   <Bar percent={score?.score ?? 0} color={competency.color} />
@@ -230,7 +231,7 @@ export default function CareerProfilePanel({ userId, careerId }: CareerProfilePa
                   href={competency.actionHref}
                   className="inline-block mt-3 text-[11px] font-black text-emerald-600 dark:text-emerald-400 hover:underline"
                 >
-                  {competency.actionLabel} →
+                  {t.competencies[competency.id]?.actionLabel ?? competency.actionLabel} →
                 </Link>
               </div>
             );
@@ -268,7 +269,7 @@ export default function CareerProfilePanel({ userId, careerId }: CareerProfilePa
             <optgroup label={t.careerProfile.groupCareers}>
               {FINANCE_CAREERS.map((career) => (
                 <option key={career.id} value={career.id}>
-                  {career.emoji} {career.title}
+                  {career.emoji} {mergeCareer(career, locale).title}
                 </option>
               ))}
             </optgroup>

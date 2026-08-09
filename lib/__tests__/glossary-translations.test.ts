@@ -81,3 +81,51 @@ describe("bản dịch thuật ngữ CFA (en)", () => {
     ).toEqual([]);
   });
 });
+
+/** Hai thẻ cho CÙNG một khái niệm trong cùng một môn.
+ *
+ *  Tìm ra khi đang dịch: `eth-006` và `eth-010` đều là Mosaic Theory. Nghĩ là
+ *  ba cặp, viết bộ dò thì ra MƯỜI SÁU - 32 trong 118 thẻ, 27% bộ bài. Bằng mắt
+ *  không thấy được, vì hai thẻ cùng khái niệm nằm cách nhau vài chục vị trí và
+ *  câu chữ khác nhau nên không đọc ra là bản sao.
+ *
+ *  VÌ SAO ĐÁNG SỬA chứ không chỉ là dư thừa: bộ thẻ chạy lặp lại ngắt quãng và
+ *  đếm mỗi id là một khái niệm độc lập, nên 16 khái niệm này bị xếp lịch ôn gấp
+ *  đôi. Người học tưởng mình đang ôn 118 thứ, thực ra là 102 thứ với 16 cái
+ *  chiếm chỗ hai lần.
+ *
+ *  15 cặp cùng môn đã gộp, giữ bản viết đầy đủ hơn - và trong cả 16 cặp thì
+ *  bản viết sau luôn là bản đầy đủ hơn, không có ngoại lệ.
+ *
+ *  CẶP KHÁC MÔN THÌ KHÔNG GỘP: `alt-009` (alternatives) và `der-010`
+ *  (derivatives) cùng là contango/backwardation, nhưng giao diện lọc thẻ theo
+ *  môn (`selectedSubject`), nên gỡ một cái là bộ thẻ môn kia mất bài. Đó là
+ *  dạy chéo có chủ đích, không phải lỗi. */
+describe("thẻ trùng khái niệm", () => {
+  const normalise = (term: string) =>
+    term
+      .toLowerCase()
+      .replace(/\([^)]*\)/g, " ") // "(MNPI)" - viết tắt trong ngoặc không tạo khái niệm mới
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "") // bỏ dấu: "và" -> "va"
+      .replace(/\bva\b/g, "and") // rồi "va" -> "and", để "Type I và II" khớp "Type I and II"
+      .replace(/[^a-z0-9]+/g, " ")
+      .trim();
+
+  it("không có hai thẻ cùng khái niệm trong cùng một môn", () => {
+    const seen = new Map<string, string[]>();
+    for (const t of CFA_GLOSSARY_TERMS) {
+      const key = `${t.subjectId}::${normalise(t.termEn)}`;
+      if (!seen.has(key)) seen.set(key, []);
+      seen.get(key)!.push(t.id);
+    }
+    const dups = [...seen]
+      .filter(([, ids]) => ids.length > 1)
+      .map(([key, ids]) => `${ids.join(" / ")} -> ${key}`);
+    expect(
+      dups,
+      `Hai thẻ cùng khái niệm trong một môn thì lịch ôn của khái niệm đó bị nhân đôi.\n` +
+        `Gộp lại, giữ bản viết đầy đủ hơn:\n${dups.join("\n")}`
+    ).toEqual([]);
+  });
+});
