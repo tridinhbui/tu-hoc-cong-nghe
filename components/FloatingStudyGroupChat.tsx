@@ -70,6 +70,11 @@ interface FloatingStudyGroupChatProps {
   isOpen?: boolean;
   onOpenChange?: (open: boolean) => void;
   hideTrigger?: boolean;
+  /** Số tin chưa đọc, báo ra ngoài cho huy hiệu của nút Kết nối.
+   *  Widget này là nơi DUY NHẤT biết con số đó - nó so mốc đọc cuối trong
+   *  localStorage với tin đến qua realtime - nên nút gộp ở ngoài không tự
+   *  tính lại được mà phải nhận. */
+  onUnreadChange?: (count: number) => void;
 }
 
 // Floating widget for the caller's active weekly study-group chat, mounted
@@ -78,7 +83,7 @@ interface FloatingStudyGroupChatProps {
 // (or "Tài Tài"'s daily progress recap, see
 // app/api/cron/daily-study-group-update/route.ts) is visible without
 // leaving the dashboard. Renders nothing if the caller has no active room.
-export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpenChange, hideTrigger }: FloatingStudyGroupChatProps = {}) {
+export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpenChange, hideTrigger, onUnreadChange }: FloatingStudyGroupChatProps = {}) {
   const { t } = useI18n();
   const [userId, setUserId] = useState<string | null>(null);
   const [room, setRoom] = useState<StudyRoomSummary | null>(null);
@@ -102,6 +107,13 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
   /** Resolves reply_to_id against the loaded window - see the quote block below. */
   const messageById = useMemo(() => new Map(messages.map((m) => [m.id, m])), [messages]);
   const [unreadCount, setUnreadCount] = useState(0);
+
+  // Đẩy số ra ngoài mỗi lần nó đổi. Effect chứ không gọi thẳng trong setState:
+  // bên nhận là một component khác, và gọi setState của nó giữa lúc component
+  // này đang render là đúng thứ quy tắc react-hooks của repo chặn.
+  useEffect(() => {
+    onUnreadChange?.(unreadCount);
+  }, [unreadCount, onUnreadChange]);
   const [input, setInput] = useState("");
   const [sending, setSending] = useState(false);
   const [pendingImage, setPendingImage] = useState<File | null>(null);

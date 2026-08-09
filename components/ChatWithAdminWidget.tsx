@@ -42,6 +42,7 @@ import {
   type ChatMessage,
   type ChatReactionMap,
 } from "@/lib/supabase-chat";
+import { useResizablePanel } from "@/lib/use-resizable-panel";
 
 const REACTION_EMOJIS = ["👍", "❤️", "🔥", "🚀", "💡", "😂"];
 
@@ -75,6 +76,13 @@ export default function ChatWithAdminWidget({
   const [internalIsOpen, setInternalIsOpen] = useState(false);
   const isOpen = controlledIsOpen !== undefined ? controlledIsOpen : internalIsOpen;
   const [isExpanded, setIsExpanded] = useState(false);
+  // Nút phóng to cũ chỉ có hai nấc và nấc rộng vẫn chặn ở max-w-2xl (672px) -
+  // người dùng báo "phóng to hết rồi mà vẫn bị khuyết". Giờ bề rộng kéo được
+  // và nhớ lại; nút phóng to giữ nguyên vì nó còn đổi cả chiều cao.
+  const { width: panelWidth, dragging, handleProps } = useResizablePanel(
+    "thtcdn_feedback_panel_width",
+    isExpanded ? 672 : 384
+  );
   const [isWidgetDragging, setIsWidgetDragging] = useState(false);
   const bubbleRef = useRef<HTMLButtonElement>(null);
   const bubbleDrag = useDraggablePosition("thtcdn_admin_chat_bubble_pos", bubbleRef);
@@ -419,12 +427,34 @@ export default function ChatWithAdminWidget({
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className={`fixed inset-x-4 top-4 bottom-4 z-50 bg-white dark:bg-stone-900 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.35)] border border-stone-100 dark:border-stone-800/80 flex flex-col overflow-hidden transition-all duration-300 ${
+            // `transition-all` tắt trong lúc kéo: nó làm bề rộng đuổi theo con
+            // trỏ chậm một nhịp, và cảm giác là panel dính chứ không phải mượt.
+            className={`fixed inset-x-4 top-4 bottom-4 z-50 bg-white dark:bg-stone-900 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.35)] border border-stone-100 dark:border-stone-800/80 flex flex-col overflow-hidden ${
+              dragging ? "" : "transition-all duration-300"
+            } ${
+              // Bề rộng đọc từ biến CSS nên nó chỉ áp từ sm trở lên; dưới
+              // sm panel vẫn chiếm trọn bề ngang như cũ. Giá trị dự phòng là
+              // đúng hai cỡ thiết kế cũ, dùng cho lần dựng đầu trước khi hook
+              // đọc xong localStorage.
               isExpanded
-                ? "sm:inset-x-auto sm:top-6 sm:bottom-6 sm:right-6 sm:w-[calc(100vw-3rem)] sm:max-w-2xl max-h-[calc(100dvh-2rem)] sm:max-h-[calc(100dvh-3rem)]"
-                : "sm:inset-x-auto sm:top-auto sm:bottom-6 sm:right-6 sm:w-96 max-h-[calc(100dvh-2rem)] sm:max-h-[480px]"
+                ? "sm:inset-x-auto sm:top-6 sm:bottom-6 sm:right-6 sm:w-[var(--chat-w,42rem)] max-h-[calc(100dvh-2rem)] sm:max-h-[calc(100dvh-3rem)]"
+                : "sm:inset-x-auto sm:top-auto sm:bottom-6 sm:right-6 sm:w-[var(--chat-w,24rem)] max-h-[calc(100dvh-2rem)] sm:max-h-[480px]"
             }`}
+            // Bề rộng kéo tay chỉ áp từ sm trở lên; dưới đó panel chiếm trọn
+            // bề ngang và một cạnh kéo 6px trên cảm ứng là bẫy chứ không phải
+            // điều khiển.
+            style={panelWidth !== null ? ({ "--chat-w": `${panelWidth}px` } as React.CSSProperties) : undefined}
           >
+            {/* Cạnh kéo. Chỉ hiện từ sm trở lên, cùng lý do trên. */}
+            <div
+              {...handleProps}
+              role="separator"
+              aria-orientation="vertical"
+              aria-label={t.adminChat.resizeHandle}
+              className="absolute inset-y-0 left-0 z-10 hidden w-1.5 cursor-col-resize sm:block group/resize"
+            >
+              <span className="absolute inset-y-0 left-0 w-px bg-stone-200 transition-colors group-hover/resize:bg-emerald-400 dark:bg-stone-800 dark:group-hover/resize:bg-emerald-500" />
+            </div>
             {/* Header */}
             <div className="bg-gradient-to-r from-stone-950 via-stone-900 to-stone-950 text-white px-4.5 py-4 flex items-center gap-3 border-b border-stone-100/10 shadow-sm shrink-0">
               <div className="relative flex-shrink-0">

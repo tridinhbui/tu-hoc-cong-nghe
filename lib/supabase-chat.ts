@@ -123,6 +123,32 @@ export async function getChatHistory(userId: string) {
   return data as ChatMessage[];
 }
 
+/** Đếm tin admin trả lời mà người dùng chưa đọc, KHÔNG tải về hàng nào.
+ *
+ *  Nút Kết nối ở góc phải dưới cần con số này để dựng huy hiệu, và nó chạy
+ *  trên mọi trang - nên nó phải là một phép đếm, không phải `getChatHistory`
+ *  rồi lọc trong bộ nhớ. Lịch sử một luồng góp ý dài có thể vài trăm hàng đầy
+ *  đủ, kể cả ảnh đính kèm.
+ *
+ *  Chỉ đếm `sender = "admin"`: tin của chính mình thì mình đã đọc rồi. */
+export async function getUnreadAdminReplyCount(userId: string): Promise<number> {
+  const supabase = createClient();
+  const { count, error } = await supabase
+    .from("chat_messages")
+    .select("id", { count: "exact", head: true })
+    .eq("user_id", userId)
+    .eq("sender", "admin")
+    .eq("read", false);
+
+  if (error) {
+    // Bảng chưa migrate trên môi trường này thì coi như không có gì chờ, chứ
+    // không làm cả huy hiệu hỏng theo.
+    if (isMissingTableError(error) || isMissingColumnError(error)) return 0;
+    throw handleSupabaseError(error);
+  }
+  return count ?? 0;
+}
+
 export async function sendMessage(
   userId: string,
   sender: "user" | "admin",

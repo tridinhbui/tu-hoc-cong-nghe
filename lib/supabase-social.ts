@@ -77,6 +77,19 @@ export async function getMySocialGraph(): Promise<SocialConnection[]> {
   return (data ?? []) as SocialConnection[];
 }
 
+/** Số lời mời kết bạn đang chờ MÌNH trả lời.
+ *
+ *  Đây là con số chưa từng hiện ở đâu trên giao diện. Trang Bạn bè chỉ tới
+ *  được từ menu, và không nút nổi nào ở góc nói rằng có người vừa gửi lời
+ *  mời - nên nó im lặng theo đúng nghĩa đen, và đó là lỗi người dùng báo.
+ *
+ *  Chỉ đếm chiều "incoming": lời mời mình gửi đi thì mình biết rồi, và đếm cả
+ *  hai chiều sẽ báo một việc mà người dùng mở ra không làm gì được. */
+export async function getPendingFriendRequestCount(): Promise<number> {
+  const connections = await getMySocialGraph();
+  return connections.filter((c) => c.status === "pending" && c.direction === "incoming").length;
+}
+
 export async function sendFriendRequest(currentUserId: string, targetUserId: string) {
   const supabase = createClient();
   const pair = canonicalizePair(currentUserId, targetUserId);

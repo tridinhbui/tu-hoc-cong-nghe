@@ -942,7 +942,9 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             changes) - shown above the streak/recall reminders since these
             are typically more time-sensitive. ── */}
         {user?.id && <AnnouncementBanner userId={user.id} />}
-        {user?.id && <ReferralPromptModal />}
+        {/* ReferralPromptModal chuyển sang GlobalChatWrapper cùng hai widget
+            nổi kia - lối vào giờ là dòng "Mời bạn" trong menu Kết nối. Gắn ở
+            cả hai chỗ sẽ dựng hai bản trên chính trang dashboard. */}
 
         {user?.id && (
           <StreakReminderManager

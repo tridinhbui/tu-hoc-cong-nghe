@@ -1830,6 +1830,7 @@ export const en: Dictionary = {
   adminChat: {
     openAria: "Admin chatbot",
     dragTitle: "Admin chatbot (drag to move)",
+    resizeHandle: "Drag to resize",
     collapseChat: "Collapse chat",
     expandChat: "Expand chat",
     inputPlaceholder: "Type a message, paste an image...",
@@ -2859,6 +2860,19 @@ export const en: Dictionary = {
   },
 
   // components/CareerGoalWidget.tsx
+  connectMenu: {
+    title: "Connect",
+    open: "Open the connect menu",
+    close: "Close",
+    friends: "Friends & connections",
+    friendsSub: "Requests and direct messages",
+    invite: "Invite a friend",
+    inviteSub: "Earn a reward when they join",
+    group: "Study group",
+    groupSub: "Chat with your group",
+    feedback: "Feedback",
+    feedbackSub: "Message the team directly",
+  },
   careerGoalWidget: {
     title: "Career goal",
     progress: "{completed} of {total} related lessons done",

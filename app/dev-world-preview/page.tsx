@@ -11,6 +11,7 @@ import CareerLearningPathClient from "@/components/CareerLearningPathClient";
 import TechnicalInterviewPage from "@/app/(app)/phong-van-ky-thuat/page";
 import DailyMotivationWidget from "@/components/DailyMotivationWidget";
 import CareerGoalWidget from "@/components/CareerGoalWidget";
+import ConnectMenuPreview from "./ConnectMenuPreview";
 
 /* i18n-ignore-start: dev-only preview route, hard-blocked in production
    below via notFound() when NODE_ENV === "production" - never reachable by
@@ -127,6 +128,18 @@ export default async function WorldPreviewPage({
             <CareerGoalWidget userId="00000000-0000-4000-8000-000000000000" compact />
           </div>
         </div>
+      </div>
+    );
+  }
+  if (scene === "connect") {
+    // Menu Kết nối ở góc phải dưới. Nó chỉ dựng cho người đã đăng nhập nên
+    // trang thật không chụp được; ở đây truyền một UUID hợp lệ nhưng không tồn
+    // tại, nên ba phép đếm đều trả 0 và huy hiệu không hiện - đủ để soát bố
+    // cục menu và thao tác mở/đóng, KHÔNG soát được huy hiệu.
+    return (
+      <div className="min-h-screen bg-stone-100 p-6 dark:bg-stone-950">
+        <p className="text-sm font-bold text-stone-500">Menu Kết nối ở góc phải dưới →</p>
+        <ConnectMenuPreview />
       </div>
     );
   }

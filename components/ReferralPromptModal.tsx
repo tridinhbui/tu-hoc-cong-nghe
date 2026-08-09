@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
@@ -21,9 +21,29 @@ import { getCurrentUser } from "@/lib/current-user";
 // row only pops it open on the first of those five.
 const AUTO_OPEN_KEY = "thtcdn_referral_auto_opened";
 
-export default function ReferralPromptModal() {
+/** `hideTrigger` để nút tròn riêng của nó biến mất khi lối vào đã chuyển vào
+ *  menu Kết nối; `isOpen`/`onOpenChange` để menu mở được nó từ ngoài. Giữ
+ *  nguyên hành vi tự bật của chính widget khi không ai điều khiển. */
+export default function ReferralPromptModal({
+  isOpen: controlledOpen,
+  onOpenChange,
+  hideTrigger,
+}: {
+  isOpen?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  hideTrigger?: boolean;
+} = {}) {
   const { t } = useI18n();
-  const [open, setOpen] = useState(false);
+  const [uncontrolledOpen, setUncontrolledOpen] = useState(false);
+  const open = controlledOpen ?? uncontrolledOpen;
+  const setOpen = useCallback(
+    (next: boolean | ((prev: boolean) => boolean)) => {
+      const value = typeof next === "function" ? next(open) : next;
+      setUncontrolledOpen(value);
+      onOpenChange?.(value);
+    },
+    [open, onOpenChange]
+  );
   const [userId, setUserId] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
 
@@ -65,7 +85,7 @@ export default function ReferralPromptModal() {
     <>
       {/* Floating round toggle button */}
       <AnimatePresence>
-        {!open && (
+        {!open && !hideTrigger && (
           <motion.button
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}

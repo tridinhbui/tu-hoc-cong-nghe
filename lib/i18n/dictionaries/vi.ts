@@ -1956,6 +1956,7 @@ export const vi = {
   adminChat: {
     openAria: "Admin Chatbot",
     dragTitle: "Admin Chatbot (Kéo thả để di chuyển)",
+    resizeHandle: "Kéo để đổi bề rộng",
     collapseChat: "Thu nhỏ chat",
     expandChat: "Phóng to chat",
     inputPlaceholder: "Nhập tin nhắn, dán ảnh...",
@@ -3043,6 +3044,19 @@ export const vi = {
   },
 
   // components/CareerGoalWidget.tsx
+  connectMenu: {
+    title: "Kết nối",
+    open: "Mở menu kết nối",
+    close: "Đóng",
+    friends: "Bạn bè & kết nối",
+    friendsSub: "Lời mời, tin nhắn riêng",
+    invite: "Mời bạn",
+    inviteSub: "Nhận thưởng khi bạn bè tham gia",
+    group: "Nhóm học",
+    groupSub: "Trò chuyện với nhóm của bạn",
+    feedback: "Góp ý",
+    feedbackSub: "Nhắn thẳng cho đội ngũ",
+  },
   careerGoalWidget: {
     title: "Mục tiêu sự nghiệp",
     progress: "Đã học {completed}/{total} bài liên quan",
