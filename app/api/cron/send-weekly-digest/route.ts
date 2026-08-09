@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase-admin";
 import { sendEmail } from "@/lib/send-email";
 import { isAuthorizedCronRequest } from "@/lib/cron-auth";
+import { getDictionary } from "@/lib/i18n";
+import { format } from "@/lib/i18n";
+import { resolveLocale } from "@/lib/i18n/locales";
 
 // Vercel Cron hits this via GET (see vercel.json: "0 12 * * 1" = Monday
 // 19:00 giờ Việt Nam). Opt-in weekly summary of the PAST week: lessons
@@ -52,24 +55,31 @@ async function getWeeklyStats(
   };
 }
 
-function buildDigestEmail(name: string, stats: Awaited<ReturnType<typeof getWeeklyStats>>) {
+// `locale` đến từ `user_profiles.preferred_locale`, không phải cookie: cron
+// chạy khi người dùng không có mặt nên không có cookie nào để đọc.
+function buildDigestEmail(
+  name: string,
+  stats: Awaited<ReturnType<typeof getWeeklyStats>>,
+  locale: string | null | undefined
+) {
+  const t = getDictionary(resolveLocale(locale));
   const hasActivity = stats.lessonsCompleted > 0 || stats.xpThisWeek > 0;
-  const greeting = `Chào ${name}, đây là tổng kết tuần vừa qua của bạn:`;
+  const greeting = format(t.emails.digestGreeting, { name });
   const body = hasActivity
     ? `
       <p>${greeting}</p>
       <ul>
-        <li>📚 <b>${stats.lessonsCompleted}</b> bài học hoàn thành</li>
-        <li>⭐ <b>${stats.xpThisWeek}</b> XP tích lũy</li>
-        <li>🔥 Streak hiện tại: <b>${stats.currentStreak} ngày</b> (kỷ lục: ${stats.longestStreak} ngày)</li>
+        <li>📚 ${format(t.emails.digestLessons, { count: stats.lessonsCompleted })}</li>
+        <li>⭐ ${format(t.emails.digestXp, { count: stats.xpThisWeek })}</li>
+        <li>🔥 ${format(t.emails.digestStreak, { days: stats.currentStreak, record: stats.longestStreak })}</li>
       </ul>
-      <p>Tiếp tục phát huy nhé!</p>
+      <p>${t.emails.digestKeepGoing}</p>
     `
     : `
       <p>${greeting}</p>
-      <p>Tuần này bạn chưa học bài nào cả - streak hiện tại: <b>${stats.currentStreak} ngày</b>. Quay lại học tiếp để không bị gián đoạn nhé!</p>
+      <p>${format(t.emails.digestNoActivity, { days: stats.currentStreak })}</p>
     `;
-  return { subject: "Tổng kết tuần học tập của bạn", html: body };
+  return { subject: t.emails.digestSubject, html: body };
 }
 
 export async function GET(request: NextRequest) {
@@ -106,14 +116,15 @@ export async function GET(request: NextRequest) {
 
     const { data: profile } = await supabase
       .from("user_profiles")
-      .select("email, full_name")
+      .select("email, full_name, preferred_locale")
       .eq("id", candidate.user_id)
       .maybeSingle();
 
     if (!profile?.email) continue;
 
     const stats = await getWeeklyStats(supabase, candidate.user_id, weekStart);
-    const { subject, html } = buildDigestEmail(profile.full_name || "bạn", stats);
+    const t = getDictionary(resolveLocale(profile.preferred_locale));
+    const { subject, html } = buildDigestEmail(profile.full_name || t.emails.fallbackName, stats, profile.preferred_locale);
 
     const result = await sendEmail(profile.email, subject, html);
     if (result.sent) sent += 1;

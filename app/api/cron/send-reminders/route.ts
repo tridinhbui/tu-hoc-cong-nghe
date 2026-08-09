@@ -6,6 +6,8 @@ import { sendPushNotification } from "@/lib/web-push";
 import { isAuthorizedCronRequest } from "@/lib/cron-auth";
 import { getMotivationLine } from "@/lib/daily-motivation";
 import type { UserStreak } from "@/lib/supabase-streak";
+import { getDictionary, format } from "@/lib/i18n";
+import { resolveLocale } from "@/lib/i18n/locales";
 
 // Vercel Cron hits this route via GET (see vercel.json: "0 12 * * *" = 19:00
 // giờ Việt Nam). It opt-in emails learners who are about to lose their
@@ -118,14 +120,14 @@ export async function GET(request: NextRequest) {
 
   const [{ data: profileRows }, { data: subscriptionRows }] = await Promise.all([
     emailUserIds.length
-      ? supabase.from("user_profiles").select("id, email, full_name").in("id", emailUserIds)
+      ? supabase.from("user_profiles").select("id, email, full_name, preferred_locale").in("id", emailUserIds)
       : Promise.resolve({ data: [] }),
     pushUserIds.length
       ? supabase.from("push_subscriptions").select("id, user_id, endpoint, p256dh, auth").in("user_id", pushUserIds)
       : Promise.resolve({ data: [] }),
   ]);
   const profileByUser = new Map(
-    ((profileRows ?? []) as { id: string; email: string | null; full_name: string | null }[]).map((p) => [p.id, p])
+    ((profileRows ?? []) as { id: string; email: string | null; full_name: string | null; preferred_locale: string | null }[]).map((p) => [p.id, p])
   );
   const subscriptionsByUser = new Map<string, { id: number; endpoint: string; p256dh: string; auth: string }[]>();
   for (const sub of (subscriptionRows ?? []) as { id: number; user_id: string; endpoint: string; p256dh: string; auth: string }[]) {
@@ -138,10 +140,12 @@ export async function GET(request: NextRequest) {
 
   for (const { candidate, decision } of needyCandidates) {
     const { reason } = decision;
+    // Ngôn ngữ lấy từ hồ sơ, không phải cookie: cron chạy khi người dùng
+    // không có mặt. Thiếu hồ sơ (chỉ bật push, chưa có email) thì rơi về
+    // DEFAULT_LOCALE qua resolveLocale, đúng như khách mới vào web.
+    const t = getDictionary(resolveLocale(profileByUser.get(candidate.user_id)?.preferred_locale));
     const title =
-      reason === "streak_at_risk"
-        ? "Đừng để mất streak học tập của bạn!"
-        : "Đã lâu rồi bạn chưa quay lại học tài chính";
+      reason === "streak_at_risk" ? t.emails.streakAtRiskSubject : t.emails.comebackSubject;
 
     // Cùng pool "ngọn lửa đinh hoả" với widget dashboard, nên hai kênh nói
     // cùng một giọng: "sắp mất streak" -> giữ lửa, "vắng 3 ngày" -> kéo về.
@@ -156,10 +160,11 @@ export async function GET(request: NextRequest) {
     if (candidate.email_reminders_enabled) {
       const profile = profileByUser.get(candidate.user_id);
       if (profile?.email) {
-        const body =
-          reason === "streak_at_risk"
-            ? `Chào ${profile.full_name || "bạn"}, streak học tập của bạn sắp bị mất nếu hôm nay không học. Quay lại ngay nhé!`
-            : `Chào ${profile.full_name || "bạn"}, đã vài ngày rồi bạn chưa học bài mới. Quay lại tiếp tục lộ trình của bạn nhé!`;
+        const name = profile.full_name || t.emails.fallbackName;
+        const body = format(
+          reason === "streak_at_risk" ? t.emails.streakAtRiskEmail : t.emails.comebackEmail,
+          { name }
+        );
 
         const result = await sendReminderEmail(profile.email, title, [body, `🔥 ${motivation}`]);
         if (result.sent) {
@@ -171,10 +176,7 @@ export async function GET(request: NextRequest) {
     }
 
     if (candidate.browser_reminders_enabled) {
-      const pushBody =
-        reason === "streak_at_risk"
-          ? "Streak học tập của bạn sắp bị mất nếu hôm nay không học. Quay lại ngay nhé!"
-          : "Đã vài ngày rồi bạn chưa học bài mới. Quay lại tiếp tục lộ trình của bạn nhé!";
+      const pushBody = reason === "streak_at_risk" ? t.emails.streakAtRiskBody : t.emails.comebackBody;
       // Push chỉ hiện được vài dòng, nên lời nhắn đứng trước câu nhắc việc.
       const pushBodyWithMotivation = `🔥 ${motivation}\n${pushBody}`;
 

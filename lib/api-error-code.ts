@@ -21,7 +21,8 @@ export type ApiErrorCode =
   | "voiceNotConfigured"
   | "questNotComplete"
   | "voiceJoinFailed"
-  | "micFailed";
+  | "micFailed"
+  | "bossDamageNotRecorded";
 
 /** Lỗi kèm mã, để component tra ra câu chữ theo ngôn ngữ đang xem. */
 export class ApiError extends Error {

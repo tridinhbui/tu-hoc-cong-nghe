@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase-admin";
 import { isAuthorizedCronRequest } from "@/lib/cron-auth";
+import { getDictionary, format } from "@/lib/i18n";
+import { resolveLocale } from "@/lib/i18n/locales";
 
 // Vercel Cron hits this route daily (see vercel.json). Sends a personal
 // "chúc mừng" DM (via the same chat_messages/ChatWithAdminWidget channel
@@ -11,15 +13,21 @@ export const dynamic = "force-dynamic";
 
 const MILESTONES = [7, 14, 21, 28] as const;
 
-function milestoneMessage(name: string, days: number): string {
-  const label = name && name.trim() ? name.trim() : "bạn";
-  return `Chào ${label}! 🎉 Bạn vừa đạt chuỗi ${days} ngày học liên tục - cảm ơn bạn rất nhiều vì đã kiên trì đồng hành cùng nền tảng. Consistent is key to success - cứ giữ nhịp độ này, thành quả sẽ đến sớm thôi. Đội ngũ luôn ở đây nếu bạn cần hỗ trợ gì nhé! 💪`;
+// Tin nhắn RIÊNG gửi cho một người, nên dịch theo ngôn ngữ của chính họ.
+function milestoneMessage(name: string, days: number, locale: string | null | undefined): string {
+  const t = getDictionary(resolveLocale(locale));
+  const label = name && name.trim() ? name.trim() : t.emails.fallbackName;
+  return format(t.emails.milestoneMessage, { name: label, days });
 }
 
+// Bài đăng lên TƯỜNG CHUNG: một bản lưu, cả cộng đồng đọc. Không dịch theo
+// người xem được - hai người sẽ thấy hai nội dung cho cùng một bài đăng.
+/* i18n-ignore-start: nội dung bài đăng đã lưu, cả cộng đồng đọc chung một bản */
 function feedPostContent(name: string, days: number): string {
   const label = name && name.trim() ? name.trim() : "Một bạn học";
   return `${label} vừa đạt chuỗi ${days} ngày học liên tục! 🔥`;
 }
+/* i18n-ignore-end */
 
 interface StreakRow {
   user_id: string;
@@ -63,14 +71,14 @@ export async function GET(request: NextRequest) {
 
     const { data: profile } = await supabase
       .from("user_profiles")
-      .select("full_name")
+      .select("full_name, preferred_locale")
       .eq("id", row.user_id)
       .maybeSingle();
 
     const { error: insertError } = await supabase.from("chat_messages").insert({
       user_id: row.user_id,
       sender: "admin",
-      content: milestoneMessage(profile?.full_name ?? "", row.current_streak),
+      content: milestoneMessage(profile?.full_name ?? "", row.current_streak, profile?.preferred_locale),
     });
 
     if (insertError) {

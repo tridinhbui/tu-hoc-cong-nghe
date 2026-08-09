@@ -10,6 +10,7 @@ import {
   LOCALE_COOKIE_MAX_AGE,
   type Locale,
 } from "./locales";
+import { persistPreferredLocale } from "./persist-locale";
 
 interface I18nValue {
   locale: Locale;
@@ -56,6 +57,11 @@ export function I18nProvider({
       // the writer. SameSite=Lax so it survives normal navigation.
       document.cookie = `${LOCALE_COOKIE}=${next}; path=/; max-age=${LOCALE_COOKIE_MAX_AGE}; samesite=lax`;
       document.documentElement.lang = next;
+      // Bản sao bền của cookie, chỉ dùng cho những thứ chạy khi người dùng
+      // không có mặt: email cron không đọc được cookie của trình duyệt nào
+      // cả, nên trước đây chúng gửi tiếng Việt cho cả người đã chuyển sang
+      // tiếng Anh. Không chặn UI: đổi ngôn ngữ vẫn tức thì dù ghi hỏng.
+      void persistPreferredLocale(next);
       // Re-renders server components with the new cookie, so any server-rendered
       // strings catch up too. Client components already re-rendered via state.
       router.refresh();

@@ -88,7 +88,11 @@ export async function GET(request: NextRequest) {
       .gte("completed_at", todayStart.toISOString());
 
     const activeToday = new Set((todayProgress ?? []).map((r: { user_id: string }) => r.user_id));
+    // Tin nhắn đăng vào phòng chung, một bản cho cả nhóm - không dịch theo
+    // người xem được, cùng lý do với bot ở app/api/study-room-bot.
+    /* i18n-ignore-start: nội dung tin nhắn đã lưu vào phòng, cả nhóm đọc chung một bản */
     const studiedNames = memberList.filter((m) => activeToday.has(m.user_id)).map((m) => m.full_name || "Một thành viên");
+    /* i18n-ignore-end */
     const notYetCount = memberList.length - studiedNames.length;
 
     let content: string;

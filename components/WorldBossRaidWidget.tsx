@@ -10,6 +10,7 @@ import { recalculateUserStats } from "@/lib/supabase-user";
 import { DAMAGE_PER_CORRECT, bossHpPercent } from "@/lib/world-boss";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
+import { translateApiError, ApiError } from "@/lib/api-error-code";
 
 interface BossQuestion {
   prompt: string;
@@ -169,7 +170,9 @@ export default function WorldBossRaidWidget({
             // Im lặng ở đây là lý do lỗi cũ sống lâu: đánh xong, được chúc
             // mừng, và không có gì thay đổi.
             const detail = await res.json().catch(() => null);
-            toast.error(detail?.error ?? t.miscUi.worldBossRaidWidget.submitFailedError);
+            toast.error(
+              translateApiError(t, new ApiError("", detail?.code)) ?? t.miscUi.worldBossRaidWidget.submitFailedError
+            );
           } else {
             const result = await res.json();
             window.dispatchEvent(new CustomEvent("thtcdn:coin-updated", { detail: { coins: result.newCoins } }));

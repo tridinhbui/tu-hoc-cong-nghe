@@ -3,6 +3,8 @@ import { createAdminClient } from "@/lib/supabase-admin";
 import { sendPushNotification } from "@/lib/web-push";
 import { isAuthorizedCronRequest } from "@/lib/cron-auth";
 import { MORNING_REVIEW_SIZE } from "@/lib/morning-review";
+import { getDictionary, format } from "@/lib/i18n";
+import { resolveLocale } from "@/lib/i18n/locales";
 
 // Vercel Cron hits this via GET (see vercel.json: "30 0 * * *" = 07:30 giờ
 // Việt Nam). Sends opted-in learners one push a day pointing straight into a
@@ -98,6 +100,16 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ processed, pushSent: 0, skippedTooFewItems, pushSkippedNoVapidKeys: 0 });
   }
 
+  // Push là thông báo riêng cho từng người, nên đọc ngôn ngữ của chính họ.
+  // Cron không có cookie nào để đọc - xem migration 20260902.
+  const { data: localeRows } = await supabase
+    .from("user_profiles")
+    .select("id, preferred_locale")
+    .in("id", notifiableIds);
+  const localeByUser = new Map(
+    ((localeRows ?? []) as { id: string; preferred_locale: string | null }[]).map((r) => [r.id, r.preferred_locale])
+  );
+
   const { data: subscriptionRows } = await supabase
     .from("push_subscriptions")
     .select("id, user_id, endpoint, p256dh, auth")
@@ -133,9 +145,10 @@ export async function GET(request: NextRequest) {
     let reachedThisUser = false;
 
     for (const sub of subscriptions) {
+      const t = getDictionary(resolveLocale(localeByUser.get(userId)));
       const result = await sendPushNotification(sub, {
-        title: `${sessionSize} câu ôn buổi sáng`,
-        body: "Khoảng 90 giây. Toàn câu bạn từng làm sai, trộn từ nhiều bài.",
+        title: format(t.emails.morningReviewTitle, { count: sessionSize }),
+        body: t.emails.morningReviewBody,
         url: "/on-tap-cau-sai?phien=sang",
       });
 

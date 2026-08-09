@@ -163,7 +163,11 @@ export async function POST(request: NextRequest) {
     // Nói thẳng thay vì trả success: im lặng ở đây chính là lý do lỗi này sống
     // được lâu - người chơi đánh xong, được chúc mừng, và không có gì thay đổi.
     return NextResponse.json(
+      // Câu này nói với người VẬN HÀNH, không phải người học: nó chỉ xuất
+      // hiện khi bảng boss rỗng, và cách sửa là chạy migration.
+      /* i18n-ignore-start: thông báo vận hành, chỉ hiện khi thiếu dữ liệu seed */
       { error: "Chưa có world boss nào đang hoạt động - chạy migration 20260825 để tạo." },
+      /* i18n-ignore-end */
       { status: 503 }
     );
   }
@@ -177,7 +181,7 @@ export async function POST(request: NextRequest) {
 
   if (rpcError || !hit) {
     return NextResponse.json(
-      { error: rpcError?.message ?? "Không ghi được sát thương" },
+      { error: rpcError?.message, code: "bossDamageNotRecorded" },
       { status: 500 }
     );
   }
