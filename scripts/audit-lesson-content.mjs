@@ -569,27 +569,16 @@ function jaccard(a, b) {
 // gắn với thứ tự lúc soạn, còn người học đọc thứ tự sau khi xáo - hai thứ khác
 // nhau, và không gì buộc chúng khớp.
 //
-// Nên mọi tham chiếu theo chữ cái đều hỏng; chỉ khác là hỏng lộ hay hỏng ngầm.
 // Trường hợp lộ nhất - và là cái người học báo lại - là chữ cái trôi đúng vào
-// ĐÁP ÁN ĐÚNG trong một câu đang gọi nó là lỗi sai: học viên chọn đúng, được
-// chấm đúng, rồi đọc ngay bên dưới rằng lựa chọn đó là "lỗi phổ biến nhất".
-// Đã xảy ra ở wacc-co-ban Q3 và tinh-npv-du-an Q3.
+// ĐÁP ÁN ĐÚNG: học viên chọn đúng, được chấm đúng, rồi đọc ngay bên dưới rằng
+// lựa chọn đó là "lỗi phổ biến nhất". Đã xảy ra ở bốn câu.
 //
-// Gate chặn ở mức chứng minh được (chữ cái = đáp án đúng + câu văn mang nghĩa
-// phủ định); tổng số tham chiếu vẫn được in ra vì tất cả đều là nợ, chỉ chưa
-// chứng minh được từng cái một.
-// `(?![\p{L}\p{M}])` chứ không phải `\b`, và cần cờ `u`.
-//
-// Bản đầu của biểu thức này dùng `\b` với cờ `i`, và nó đếm sai gần gấp ba:
-// `\b` trong JS chỉ biết mặt chữ ASCII, nên trong "ba phương án còn lại" nó
-// thấy chữ "c" của "còn" là một từ trọn vẹn (vì "ò" không phải ký tự từ theo
-// ASCII) và báo đây là tham chiếu tới phương án C. 44 câu bị gắn cờ, phần lớn
-// là những câu viết đúng chuẩn - gọi "ba phương án còn lại" thay vì gọi tên
-// chữ cái. Đúng loại gate mà AGENTS.md nói là sẽ bị người ta học cách phớt lờ.
-//
-// Điều kiện thật là: chữ cái phải đứng một mình, không được có chữ nào bám
-// theo sau - kể cả nguyên âm có dấu, thứ mà lớp \p{L}/\p{M} bắt được còn \b
-// thì không.
+// `(?![\p{L}\p{M}])` chứ không phải `\b`, và cần cờ `u`. Bản đầu dùng `\b`
+// với cờ `i`, và `\b` trong JS chỉ biết mặt chữ ASCII, nên trong "ba phương án
+// còn lại" nó thấy chữ "c" của "còn" là một từ trọn vẹn (vì "ò" không phải ký
+// tự từ theo ASCII) và báo đây là tham chiếu tới phương án C. 44 câu bị gắn cờ
+// khi con số thật là 13, phần lớn là những câu viết đúng chuẩn. Đúng loại gate
+// mà AGENTS.md nói là sẽ bị người ta học cách phớt lờ.
 const OPTION_LETTER_RE = /(phương án|đáp án|lựa chọn|option|câu trả lời)\s*["']?([A-D])(?![\p{L}\p{M}])/giu;
 
 function findOptionLetterRefs(question) {
@@ -680,7 +669,7 @@ const duplicateAnswers = [];
 
 /** Mọi tham chiếu chữ cái - nợ tiềm ẩn, chỉ báo cáo. */
 const letterRefs = [];
-/** Chữ cái trỏ đúng vào đáp án đúng trong câu gọi nó là lỗi - gate ở đây. */
+/** Chữ cái trỏ đúng vào đáp án đúng - gate ở đây. */
 const contradictoryLetterRefs = [];
 /** Baselined lessons that now pass, so the baseline must shrink. */
 const fixedButStillBaselined = [];
