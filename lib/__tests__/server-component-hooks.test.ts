@@ -5,7 +5,8 @@ import { describe, expect, it } from "vitest";
 // Một hook React trong server component: lỗi chỉ lộ ra khi mở trang thật.
 //
 // components/TopicMasteryWidget.tsx gọi useI18n() - hook đọc React Context -
-// mà không có "use client". Nó throw ngay khi render, nên /cay-ky-nang không mở
+// mà không có "use client". Nó throw ngay khi render, nên trang mount nó lúc đó
+// (/cay-ky-nang, route nay đã xoá cùng tính năng cây kỹ năng) không mở
 // được: "An error occurred in the Server Components render", và production ẩn
 // thông điệp nên console không nói gì hơn.
 //

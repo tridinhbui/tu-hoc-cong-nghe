@@ -18,8 +18,8 @@ export const dynamic = "force-dynamic";
  * KHÔNG làm thành tab dashboard. DASHBOARD_TABS còn bốn giá trị tàn dư từ lần
  * dải tab bị gỡ (c3f7ec9) - lưu được vào localStorage mà không nút nào chọn
  * lại - nên thêm cái thứ bảy là tạo thêm đúng loại bẫy đó. Một route riêng cộng
- * một mục navbar là khuôn /nghe-nghiep-hoc và /cay-ky-nang đã dùng, và comment
- * ở đầu cay-ky-nang/page.tsx nói thẳng: "mọi lối học song song nằm ở navbar".
+ * một mục navbar là khuôn /nghe-nghiep-hoc đã dùng: mọi lối học song song nằm
+ * ở navbar, dashboard chỉ giữ hai track đánh số theo ngày.
  *
  * Số bài mỗi track đếm tại đây chứ không viết cứng: hai con số đó xuất hiện
  * trong hướng dẫn ("khoảng bao lâu thì xong"), và một hằng số viết cứng sẽ lệch

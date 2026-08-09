@@ -21,15 +21,21 @@ import { format } from "@/lib/i18n";
  * KHÔNG trùng với panel khoảng trống kỹ năng ở /su-nghiep, dù dùng chung dữ
  * liệu: panel kia chỉ hiện khi người học đã ghim một nghề mục tiêu và luôn đo
  * theo yêu cầu của nghề đó. Bảng này trả lời một câu hỏi không cần mục tiêu
- * nào - "tôi đang mạnh yếu ở đâu" - nên nó đứng cạnh cây kỹ năng.
+ * nào - "tôi đang mạnh yếu ở đâu".
+ *
+ * KHÔNG CÒN TRANG NÀO MOUNT NÓ TRONG SẢN PHẨM. Nó từng đứng cạnh cây kỹ năng
+ * ở /cay-ky-nang; route đó đã bị xoá cùng cả tính năng, và chỗ dựng còn lại
+ * duy nhất là app/dev-world-preview - trang tự 404 ở production. Giữ lại vì
+ * bảng này đo một thứ có thật (độ phủ theo mảng kiến thức) và chỉ thiếu một
+ * chỗ đứng; xoá hay tìm cho nó một trang là việc còn phải quyết.
  *
  * Là server component: dữ liệu tới từ trang đã fetch sẵn, không có tương tác
  * nào, nên không cần đẩy gì vào bundle client.
  *
  * VÀ VÌ THẾ CÂU CHỮ PHẢI ĐỌC BẰNG getServerDictionary(), KHÔNG PHẢI useI18n().
  * Bản trước gọi useI18n() ở đây - một hook React đọc Context - trong một
- * component không có "use client". Nó throw ngay khi render, nên /cay-ky-nang
- * không mở được: "An error occurred in the Server Components render", và trong
+ * component không có "use client". Nó throw ngay khi render, nên trang mount nó
+ * lúc đó (/cay-ky-nang, nay đã xoá) không mở được: "An error occurred in the Server Components render", và trong
  * production thì thông điệp bị ẩn nên console chỉ còn lại đúng câu đó.
  *
  * Không có gì bắt được nó trước khi lên live: tsc không mô hình hoá ranh giới

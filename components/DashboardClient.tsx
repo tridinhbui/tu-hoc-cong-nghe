@@ -52,9 +52,9 @@ import { getUserBookmarks, type LessonBookmark } from "@/lib/supabase-bookmarks"
 import { getPassedMilestones, savePassedMilestone, type MilestoneCompletion } from "@/lib/supabase-milestones";
 import { syncOfflineQueue } from "@/lib/offline-sync";
 import { isValidAvatar } from "@/lib/avatar-utils";
-// SkillTreeWidget/CosmeticStore/FinanceCardCollection/WeeklyChallengeWidget
-// không còn import ở đây: bốn nhánh render của chúng đã bỏ cùng bốn giá trị tab
-// không ai chọn được. Cây kỹ năng giờ ở /cay-ky-nang, ba cái còn lại ở RPG hub.
+// CosmeticStore/FinanceCardCollection/WeeklyChallengeWidget không còn import ở
+// đây: các nhánh render của chúng đã bỏ cùng những giá trị tab không ai chọn
+// được. Ba widget đó sống ở RPG hub.
 import FinanceCharacterAvatar, { CharacterEquipments } from "@/components/FinanceCharacterAvatar";
 import BossBattleModal from "@/components/BossBattleModal";
 import PvpDuelModal from "@/components/PvpDuelModal";
@@ -150,7 +150,12 @@ let cachedLessonState: LessonState | null = null;
 // in one place - the accordion depends on nearly all of it.
 export type DashboardView = "overview" | "lessons";
 
-const DASHBOARD_TABS = ["personal", "professional", "skill-tree", "weekly-challenge", "cards", "cosmetics"] as const;
+// "skill-tree" từng nằm trong danh sách này. Nó ở lại sau khi dải tab bị gỡ
+// (c3f7ec9) để isDashboardTab còn nhận ra giá trị cũ trong localStorage và
+// isTrackTab từ chối nó tử tế. Cây kỹ năng giờ đã bị xoá khỏi sản phẩm, nên
+// giá trị đó rơi thẳng về mặc định ở isDashboardTab - cùng kết quả, ít hơn
+// một dòng phải giải thích.
+const DASHBOARD_TABS = ["personal", "professional", "weekly-challenge", "cards", "cosmetics"] as const;
 type DashboardTab = (typeof DASHBOARD_TABS)[number];
 
 /** Giá trị đọc từ localStorage là string bất kỳ - hàm này thu hẹp nó lại thay
@@ -163,14 +168,14 @@ function isDashboardTab(value: string | null): value is DashboardTab {
  * Whether a tab is one the learner can actually get back to.
  *
  * Only "personal" and "professional" have a control that selects them (the two
- * track cards). The other four are leftovers: their tab strip was removed when
- * the career path moved to /nghe-nghiep-hoc (c3f7ec9), and three of the four
- * widgets now live in the RPG hub instead. Nothing in the app has set those
+ * track cards). The other three are leftovers: their tab strip was removed when
+ * the career path moved to /nghe-nghiep-hoc (c3f7ec9), and those widgets now
+ * live in the RPG hub instead. Nothing in the app has set those
  * values since - but they were persisted, so a learner whose last visit before
  * that commit ended on one still has it in localStorage, and restoring it opens
  * the dashboard on a widget with no lesson list below it and no track card
  * selected. That is the same stale-tab trap c3f7ec9 fixed for "career" and the
- * CFA/FRM commit fixed before it; these four were just left in the union.
+ * CFA/FRM commit fixed before it; these were just left in the union.
  */
 function isTrackTab(tab: DashboardTab): tab is "personal" | "professional" {
   return tab === "personal" || tab === "professional";
@@ -1456,12 +1461,11 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             </div>
           )}
 
-          {/* Bốn nhánh render theo tab widget (skill-tree, weekly-challenge,
-              cards, cosmetics) đã bỏ: isTrackTab chặn bốn giá trị đó ngay ở chỗ
-              đọc localStorage, nên activeDashboardTab không thể mang chúng nữa.
-              Cây kỹ năng có route riêng /cay-ky-nang; ba widget còn lại vẫn ở
-              RPG hub. Đây là bước còn thiếu của c3f7ec9 - commit đó gỡ dải tab
-              nhưng để lại phần render mà dải tab từng mở. */}
+          {/* Các nhánh render theo tab widget (weekly-challenge, cards,
+              cosmetics) đã bỏ: isTrackTab chặn những giá trị đó ngay ở chỗ đọc
+              localStorage, nên activeDashboardTab không thể mang chúng nữa. Ba
+              widget đó vẫn ở RPG hub. Đây là bước còn thiếu của c3f7ec9 -
+              commit đó gỡ dải tab nhưng để lại phần render mà dải tab từng mở. */}
           <>
           {/* ── Search Bar (Compact Left) + Flag Mode Controls (Right) ── */}
           <div className="mt-8 flex flex-col sm:flex-row sm:items-center justify-between gap-3">

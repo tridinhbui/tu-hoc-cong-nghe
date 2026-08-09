@@ -101,7 +101,7 @@ export const finalTwoVi = {
     gamePage: {
       metaTitle: "Thế Giới Game Tài Chính | TuHocTaiChinh.org",
       metaDescription:
-        "Bản đồ thị trấn RPG Tài chính nhập vai với các chế độ Săn Boss Server, Cây kỹ năng, Bang Hội và Đấu Trường 1v1 PvP.",
+        "Bản đồ thị trấn RPG Tài chính nhập vai với các chế độ Săn Boss Server, Bang Hội và Đấu Trường 1v1 PvP.",
       loading: "Đang tải Thế Giới Game...",
     },
     ghiChuPage: {
@@ -240,7 +240,7 @@ export const finalTwoEn: typeof finalTwoVi = {
     gamePage: {
       metaTitle: "Financial Game World | TuHocTaiChinh.org",
       metaDescription:
-        "An RPG town map with Server Boss Hunt, Skill Tree, Guild, and 1v1 PvP Arena modes for finance role-play.",
+        "An RPG town map with Server Boss Hunt, Guild, and 1v1 PvP Arena modes for finance role-play.",
       loading: "Loading the Game World...",
     },
     ghiChuPage: {
