@@ -8,6 +8,7 @@ import { ArrowLeft, BarChart3, CheckCircle2, MessageCircleMore, ShieldCheck, Spa
 import { createClient } from "@/lib/supabase";
 import { translateAuthError } from "@/lib/auth-error-messages";
 import { stashReferralCodeFromUrl } from "@/lib/referrals";
+import { safeNextPath } from "@/lib/safe-next-path";
 import Logo from "@/components/Logo";
 import TrackPreviewPanel from "@/components/login/TrackPreviewPanel";
 import { type TrackId } from "@/lib/tracks";
@@ -32,17 +33,6 @@ export default function LoginPage() {
   );
 }
 
-// The gate middleware (middleware.ts) appends ?next=<original path> when it
-// redirects a signed-out visitor here, so they land back where they meant
-// to go instead of always on /dashboard. Only accept a same-site relative
-// path - a bare "/x" is safe, but "//evil.com" or "https://evil.com" would
-// have the browser treat it as protocol-relative/absolute and navigate off
-// this site, so anything not starting with exactly one "/" is rejected.
-function safeNextPath(raw: string | null): string {
-  if (!raw) return "/dashboard";
-  if (!raw.startsWith("/") || raw.startsWith("//")) return "/dashboard";
-  return raw;
-}
 
 function LoginForm() {
   const { t } = useI18n();
@@ -54,7 +44,15 @@ function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  // Khởi tạo từ `?error=`, KHÔNG để rỗng rồi chờ một effect đổ vào.
+  //
+  // app/auth/callback/route.ts đá người dùng về đây kèm mô tả lỗi mỗi khi
+  // đổi mã OAuth thất bại - Google bị huỷ giữa chừng, mã hết hạn, tài khoản
+  // bị từ chối. Trước đây trang này chỉ đọc `next` và `mode`, nên tham số ấy
+  // rơi vào hư không: người dùng quay lại đúng cái form trắng vừa rời đi,
+  // không một dòng nào nói vì sao. Lỗi duy nhất mà họ thấy được là lỗi do
+  // chính họ gõ sai mật khẩu.
+  const [error, setError] = useState(() => searchParams.get("error") ?? "");
   // Homepage CTAs link here with ?mode=signup so "Bắt đầu học miễn phí"
   // lands directly on the signup form instead of login.
   const [mode, setMode] = useState<"login" | "signup" | "forgot">(
@@ -259,7 +257,13 @@ function LoginForm() {
       const { error } = await supabase.auth.signInWithOAuth({
         provider: "google",
         options: {
-          redirectTo: `${window.location.origin}/auth/callback`,
+          // `next` phải đi vòng qua Google rồi quay lại: callback là một route
+          // handler chạy trên server, nó không thấy được `?next=` của trang này.
+          // Thiếu đoạn này thì đăng nhập bằng email tôn trọng đích đến còn đăng
+          // nhập bằng Google thì không - mọi liên kết sâu (bài học được chia sẻ,
+          // thông báo đẩy) đều đổ về /dashboard, và người bấm vào không bao giờ
+          // tới được thứ họ bấm.
+          redirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(nextPath)}`,
           // Without this, Google silently reuses whichever account is
           // already active in the browser session instead of showing the
           // account chooser - a problem on shared/multi-account devices

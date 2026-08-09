@@ -1,6 +1,7 @@
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
+import { safeNextPath } from "@/lib/safe-next-path";
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
@@ -9,9 +10,12 @@ export async function GET(request: NextRequest) {
   const error_description = searchParams.get("error_description");
 
   if (error) {
-    return NextResponse.redirect(
-      new URL(`/login?error=${encodeURIComponent(error_description || error)}`, request.url)
-    );
+    // Giữ luôn `next` trên nhánh lỗi: người dùng sẽ thử lại ngay tại form đó,
+    // và lần thử thứ hai không có lý do gì phải quên mất họ định đi đâu.
+    const back = new URL("/login", request.url);
+    back.searchParams.set("error", error_description || error);
+    back.searchParams.set("next", safeNextPath(searchParams.get("next")));
+    return NextResponse.redirect(back);
   }
 
   if (code) {
@@ -40,7 +44,10 @@ export async function GET(request: NextRequest) {
     const { error: exchangeError } = await supabase.auth.exchangeCodeForSession(code);
 
     if (!exchangeError) {
-      return NextResponse.redirect(new URL("/dashboard", request.url));
+      // Đích đến do /login gửi kèm lúc mở OAuth. Vẫn lọc lại ở đây chứ không
+      // tin tham số: nó đi qua Google và quay lại, nên bất kỳ ai cũng dựng
+      // được một URL callback với `next` tuỳ ý.
+      return NextResponse.redirect(new URL(safeNextPath(searchParams.get("next")), request.url));
     }
   }
 

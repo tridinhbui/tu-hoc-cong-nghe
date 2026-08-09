@@ -33,7 +33,21 @@ const nextConfig: NextConfig = {
     // production doesn't, so keep dev-only leniency out of the shipped build.
     const csp = [
       "default-src 'self'",
-      `script-src 'self' 'unsafe-inline' ${isDev ? "'unsafe-eval'" : ""}`,
+      // `https://va.vercel-scripts.com` là nơi @vercel/analytics và
+      // @vercel/speed-insights nạp script của chúng. Cả hai component được
+      // mount trong app/layout.tsx từ lâu, nhưng `'self'` chặn đúng máy chủ
+      // đó nên KHÔNG cái nào từng chạy - ở cả dev lẫn production, vì nhánh
+      // isDev chỉ thêm 'unsafe-eval'. Hai bảng số liệu đó rỗng không phải vì
+      // không có lượt truy cập.
+      //
+      // Cùng hình dạng với lỗi thiếu `blob:` được mô tả ngay bên dưới: chỉ lộ
+      // ra trong console, không có triệu chứng nào khác trên giao diện. Nếu
+      // thực ra không muốn dùng Vercel Analytics thì cách sửa đúng là gỡ hai
+      // component khỏi layout, chứ không phải để chúng nằm đó và bị chặn.
+      //
+      // Beacon dữ liệu đi về `/_vercel/insights/*` cùng origin nên
+      // `connect-src` không cần nới thêm.
+      `script-src 'self' 'unsafe-inline' https://va.vercel-scripts.com ${isDev ? "'unsafe-eval'" : ""}`,
       "style-src 'self' 'unsafe-inline'",
       // `blob:` là bắt buộc, không phải nới lỏng cho tiện.
       //
