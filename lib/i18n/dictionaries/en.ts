@@ -1319,6 +1319,7 @@ export const en: Dictionary = {
       all: { label: "All", short: "All" },
       "meo-tai-chinh": { label: "Money tips", short: "Tips" },
       "phan-tich": { label: "Analysis", short: "Analysis" },
+      "thanh-tuu": { label: "Achievements", short: "Wins" },
       "hoi-dap": { label: "Q&A", short: "Q&A" },
       "tin-nong": { label: "Breaking", short: "Breaking" },
       "ai-finance": { label: "AI in finance", short: "AI Finance" },

@@ -1400,6 +1400,7 @@ export const vi = {
       all: { label: "Tất cả", short: "Tất cả" },
       "meo-tai-chinh": { label: "Mẹo tài chính", short: "Mẹo" },
       "phan-tich": { label: "Phân tích", short: "Phân tích" },
+      "thanh-tuu": { label: "Thành tựu", short: "Thành tựu" },
       "hoi-dap": { label: "Hỏi đáp", short: "Hỏi đáp" },
       "tin-nong": { label: "Tin nóng", short: "Tin nóng" },
       "ai-finance": { label: "AI tài chính", short: "AI Finance" },

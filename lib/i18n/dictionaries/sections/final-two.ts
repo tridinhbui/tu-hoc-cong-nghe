@@ -83,8 +83,11 @@ export const finalTwoVi = {
     },
     bxhPage: {
       loading: "Đang tải...",
-      finSocialTitle: "FinSocial",
-      finSocialDesc: "FinSocial là khu vực riêng để mọi người chia sẻ bản tin, câu hỏi và phân tích ngắn.",
+      // Trang này từng render FinSocial - xem chú thích trong
+      // app/(app)/bxh/page.tsx. Ba khoá FinSocial cũ đã bỏ; giữ lại sẽ là ba
+      // chuỗi không ai dùng mà `tsc` không phát hiện được.
+      title: "Bảng xếp hạng",
+      desc: "Ai đang đi xa nhất, theo từng cách đo khác nhau - không chỉ mỗi XP.",
       communityBadge: "Cộng đồng trong hệ học",
     },
     phongVanKyThuatDifficulty: {
@@ -222,9 +225,9 @@ export const finalTwoEn: typeof finalTwoVi = {
     },
     bxhPage: {
       loading: "Loading...",
-      finSocialTitle: "FinSocial",
-      finSocialDesc: "FinSocial is a dedicated space for people to share updates, questions, and short analyses.",
-      communityBadge: "Community within the learning system",
+      title: "Leaderboard",
+      desc: "Who is furthest along, by each way of measuring it - not XP alone.",
+      communityBadge: "Community inside the learning system",
     },
     phongVanKyThuatDifficulty: {
       fullMixedDrill: "Full mixed drill",
