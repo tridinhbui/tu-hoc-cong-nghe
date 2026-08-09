@@ -4,6 +4,11 @@
     "subtitle": "Revenue → FCF → EV → share price - one connected chain",
     "duration": "10 min"
   },
+  "ac-cam-mat-mat-va-hieu-ung-so-huu": {
+    "title": "Loss aversion: why losing 1 million hurts more than gaining 1 million pleases",
+    "subtitle": "Your brain reacts to a loss about twice as strongly as to an equivalent gain - and that quietly wrecks investment decisions",
+    "duration": "6 min"
+  },
   "accrual-accounting": {
     "title": "What is accrual accounting?",
     "subtitle": "Recognised by economic obligation, not by cash flow",
@@ -71,6 +76,11 @@
     "title": "Financial security: protecting your money from fraud",
     "subtitle": "Financial security",
     "duration": "7 min"
+  },
+  "bao-ve-tai-san-khoi-lam-phat": {
+    "title": "Stage 8, Lesson 7: Protecting wealth from long-run inflation",
+    "subtitle": "Inflation is the quiet enemy - it does not take your money overnight, it erodes your purchasing power across decades.",
+    "duration": "6 min"
   },
   "bao-ve-tai-san-khoi-lua-dao": {
     "title": "Stage 8, Lesson 6: Protecting your money from financial fraud",
@@ -692,6 +702,11 @@
     "title": "Connecting it all - Financial statements, Valuation, Risk, Markets",
     "subtitle": "Looking back at the whole journey as one tightly linked system"
   },
+  "kha-nang-chi-tra-mua-nha": {
+    "title": "Stage 9, Lesson 2: How much borrowing is safe? The DTI rule",
+    "subtitle": "Debt-to-income - the ratio the bank uses, and the one you should set yourself",
+    "duration": "6 min"
+  },
   "khau-hao-co-ban": {
     "title": "What is depreciation?",
     "subtitle": "Why buying a 1-billion machine doesn't cut profit by 1 billion right away",
@@ -1029,6 +1044,11 @@
     "title": "What Is a Put Option?",
     "subtitle": "The right to sell an asset at a fixed price - expecting a price drop or wanting to insure a portfolio"
   },
+  "qua-tu-tin-va-neo-gia-trong-dau-tu": {
+    "title": "Overconfidence and anchoring: why everyone thinks they are above average",
+    "subtitle": "93% of drivers are confident they drive better than average - and investors make the same mistake with their money",
+    "duration": "6 min"
+  },
   "quan-ly-no-tieu-dung": {
     "title": "Stage 9, Lesson 5: Managing consumer debt - car loans, credit cards, cash loans",
     "subtitle": "Not every debt deserves to be paid off at the same speed",
@@ -1202,6 +1222,11 @@
     "subtitle": "Portfolio rebalancing",
     "duration": "6 min"
   },
+  "tai-chinh-khi-ket-hon": {
+    "title": "Stage 9, Lesson 8: Money and marriage - joint property and separate property",
+    "subtitle": "Talking about money before marriage is not romantic, but it is necessary",
+    "duration": "6 min"
+  },
   "tai-chinh-la-gi": {
     "title": "What is finance? Why finance is not just about money.",
     "subtitle": "Finance is the science of allocating scarce resources across time under uncertainty.",
@@ -1268,6 +1293,11 @@
   "thue-co-phieu": {
     "title": "Calculating tax on stock investment profit",
     "subtitle": "Tax implications"
+  },
+  "thue-nha-hay-mua-nha": {
+    "title": "Stage 9, Lesson 3: Rent or buy - which calculation is the right one?",
+    "subtitle": "There is no single answer that fits everybody",
+    "duration": "7 min"
   },
   "thue-thu-nhap-ngoai-luong-freelance-cho-thue-nha": {
     "title": "Tax Track, Lesson 7: Income outside your salary - freelancing, renting out property, household businesses",

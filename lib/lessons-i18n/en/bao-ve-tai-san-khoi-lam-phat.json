@@ -1,0 +1,165 @@
+{
+  "slug": "bao-ve-tai-san-khoi-lam-phat",
+  "title": "Stage 8, Lesson 7: Protecting wealth from long-run inflation",
+  "subtitle": "Inflation is the quiet enemy - it does not take your money overnight, it erodes your purchasing power across decades.",
+  "duration": "6 min",
+  "whyItMatters": "A retirement plan calculated correctly but blind to inflation can leave you seriously short after 20-30 years - understanding how to defend purchasing power is what makes a long-term plan actually hold.",
+  "openingQuestion": "If you keep the whole of a 2 billion dong retirement pot in cash earning nothing for 20 years, at 4% average inflation, what happens to its real purchasing power?",
+  "openingOptions": [
+    "Real purchasing power only falls if the money is held in a country other than Vietnam",
+    "It falls considerably - after 20 years only about 900 million is left",
+    "Real purchasing power does not change at all, because the nominal figure is still 2 billion dong",
+    "Real purchasing power rises, because money always tends to gain value automatically over time"
+  ],
+  "explanation": "At 4% inflation over 20 years, purchasing power falls by (1/1.04)^20 ≈ 0.456 - meaning 2 billion held as cash buys, after 20 years, roughly what 912 million buys at today's prices, even though the number in the savings book never fell by a single dong. This is why pure cash is NOT a way of preserving wealth over the long run.",
+  "diagram": [
+    {
+      "label": "Hold cash: the balance does not change"
+    },
+    {
+      "label": "Prices rise a few per cent every year"
+    },
+    {
+      "label": "After two decades purchasing power is under half"
+    },
+    {
+      "label": "Holding real value means holding assets that rise with prices"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Comparing prices across decades",
+    "description": "The price of a bowl of pho, a tael of gold, or a square metre of land in Vietnam has risen substantially over 20-30 years - concrete evidence that holding pure cash for the long run erodes purchasing power badly against investing in assets that grow with or ahead of inflation."
+  },
+  "quiz": [
+    {
+      "question": "Which kind of asset is generally regarded as a good defence against long-run inflation?",
+      "options": [
+        "Long-term deposits at a rate fixed from the very outset",
+        "Equity in firms that can raise prices, and property",
+        "Cash held at home so it is always ready to use",
+        "Fixed-coupon bonds with a term over 10 years"
+      ],
+      "explanation": "Equity in firms able to raise their selling prices with inflation, property, and certain purpose-built financial instruments tend to grow with or ahead of inflation over the long run - while pure cash always loses purchasing power over time."
+    },
+    {
+      "question": "Why is inflation particularly dangerous for retirees compared with people still working?",
+      "options": [
+        "Because state pensions are cut when inflation runs high",
+        "Because inflation only affects people over the age of sixty",
+        "Because they no longer have a salary to make up the difference",
+        "Because retirees spend more than working people do"
+      ],
+      "explanation": "People still working usually see pay rise over time (imperfectly, but it happens), which is a natural buffer against inflation. Retirees living off accumulated assets have no such buffer - which is why a retirement portfolio needs a growth component (not only cash and bonds) to hold up across a long retirement."
+    },
+    {
+      "question": "At 4% inflation a year, what is 2 billion dong worth in purchasing power after 20 years?",
+      "options": [
+        "About 400 million, because inflation compounds extremely quickly",
+        "Still exactly 2 billion, because the face value of the money is unchanged",
+        "About 1.6 billion, because inflation only erodes around 20% of the value",
+        "About 912 million, that is under half of today's level"
+      ],
+      "explanation": "2 billion × (1/1.04) to the power of 20 comes to about 912 million. This is why holding an entire retirement pot in cash is a risky decision, even though it is the one that feels safest."
+    },
+    {
+      "question": "Which assets tend to protect purchasing power over the long run?",
+      "options": [
+        "Equities and rental property, because selling prices and rents rise with the price level",
+        "Demand deposits, because the interest rate is adjusted flexibly every day",
+        "Fixed-coupon bonds with a twenty-year term, because the interest is paid steadily each period",
+        "Cash kept at home, because it carries no risk of a bank suddenly failing"
+      ],
+      "explanation": "Real assets and businesses have pricing power - as the general price level rises, so do nominal revenues and rents. A fixed coupon does the opposite: inflation eats into it every year."
+    },
+    {
+      "question": "Why is inflation more dangerous for a retiree than for someone still working?",
+      "options": [
+        "Because retirees pay personal income tax at a considerably higher rate",
+        "Because a working person's pay still rises over time, while a portfolio does not rise on its own",
+        "Because inflation only affects the categories of goods that older people tend to buy most often",
+        "Because retirees are not permitted to hold assets that defend against inflation"
+      ],
+      "explanation": "Someone working has a natural shield: pay usually rises with the price level. A retiree lives on a fixed amount, so the whole of the inflation lands on their standard of living."
+    },
+    {
+      "question": "What is the most practical way to protect wealth from long-run inflation?",
+      "options": [
+        "Withdraw every deposit and keep hard currency in a safe at home",
+        "Move everything into gold, because gold always rises by exactly the inflation rate",
+        "Hold part of the portfolio in assets capable of growing ahead of inflation",
+        "Spend all your income immediately so the money cannot lose value first"
+      ],
+      "explanation": "The whole portfolio does not need to fight inflation - only enough growth for the total to stay ahead of the price level. This is why even a conservative retirement portfolio keeps some equity weighting."
+    }
+  ],
+  "keyTakeaways": [
+    "Inflation erodes the purchasing power of pure cash over time - the longer it is held, the more real value it loses",
+    "Equities, property and certain purpose-built instruments can grow with or ahead of inflation over the long run",
+    "Retirees are particularly exposed to inflation because they no longer have a salary to compensate"
+  ],
+  "practicePrompt": {
+    "question": "Mrs Lien, 68 and retired, has kept the whole of her 3 billion dong retirement savings in a demand deposit for the past 10 years. Why is this riskier for her than for a 30-year-old still working who holds the same amount the same way?",
+    "options": [
+      "Because Mrs Lien no longer has a salary to compensate as the purchasing power of the savings falls",
+      "There is no real difference at all, because inflation affects the value of money identically at every age",
+      "Because Mrs Lien has to pay personal income tax at a considerably higher rate than someone of working age",
+      "Because demand deposits held by retirees are required by regulation to pay a lower rate than those of working people"
+    ],
+    "explanation": "A retiree has no salary to compensate for purchasing power eroded by inflation, and must live entirely on savings already accumulated - which is why inflation is particularly dangerous for this group."
+  },
+  "summary": {
+    "keyIdea": "Inflation erodes the purchasing power of pure cash over time - the longer it is held, the more real value it loses",
+    "commonMistake": "Reading the idea as a phrase to remember rather than as a principle to apply to a real decision.",
+    "action": "Equities, property and certain purpose-built instruments can grow with or ahead of inflation over the long run"
+  },
+  "application": {
+    "title": "Work it out now",
+    "message": "Take whatever you hold in pure cash and estimate its purchasing power in 20 years at 4% inflation by multiplying by roughly 0.46.",
+    "secondary": "That reduced figure is why cash is not a way of preserving wealth over the long run."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Inflation is the quietest enemy in personal finance. It does not take your money overnight the way a fraud or a market crash does - it erodes your purchasing power across decades, so quietly that many people do not notice until it is too late."
+    },
+    {
+      "type": "heading",
+      "text": "The actual number: what 2 billion today is worth in 20 years"
+    },
+    {
+      "type": "paragraph",
+      "text": "At an average of 4% inflation over 20 years, purchasing power falls by (1/1.04)^20 ≈ 0.456. So 2 billion dong held as cash buys, after 20 years, roughly what 912 million buys today - nearly 55% of the purchasing power gone, even though the number in the savings book never fell. This is why pure cash is NOT a way of preserving wealth over the long run, however \"safe\" it feels for a balance that can never go negative."
+    },
+    {
+      "type": "heading",
+      "text": "Which assets stand up to inflation"
+    },
+    {
+      "type": "paragraph",
+      "text": "Equity in firms able to raise selling prices with inflation, property, and certain instruments designed to track inflation tend to grow with or ahead of the price level over the long run. The price of a bowl of pho, a tael of gold, or a square metre of land in Vietnam over 20-30 years is the concrete evidence: holding pure cash for a long stretch always falls well behind investing in assets capable of growth."
+    },
+    {
+      "type": "heading",
+      "text": "Why retirees are more exposed"
+    },
+    {
+      "type": "paragraph",
+      "text": "People still working usually see pay adjusted upwards over time, an imperfect but real buffer against inflation. Retirees have no such buffer - they live entirely on the savings and investments already accumulated. If that pot does not grow fast enough to keep up, purchasing power falls steadily with no new income to make it up. This is why a retirement portfolio always needs a growth component (equities, not only cash and bonds), including after retirement has started."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Do not hold all long-term wealth as cash or short-dated deposits",
+        "Keep a sensible weighting in equities and property as a defensive layer against inflation",
+        "In a retirement portfolio, keep the growth component rather than shifting 100% into bonds and cash the moment you retire",
+        "Track inflation periodically to judge whether your assets are genuinely growing faster than the price level"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The question is not \"are my assets growing\" but \"are my assets growing faster than inflation\" - that is the real measure of purchasing power."
+      ]
+    }
+  ]
+}

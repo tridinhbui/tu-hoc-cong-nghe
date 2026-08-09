@@ -1,0 +1,189 @@
+{
+  "slug": "chon-phuong-phap-dinh-gia",
+  "title": "Choosing a Valuation Method",
+  "subtitle": "\"How do you choose the valuation method?\" - the interview question with a trap in it",
+  "duration": "7 min",
+  "openingQuestion": "You are valuing a SaaS startup: ARR growing 80% a year but still loss-making. Which method fits LEAST well?",
+  "openingOptions": [
+    "Asset-based, meaning book value",
+    "EV/Revenue against listed SaaS peers",
+    "A DCF where the terminal value carries most of the value",
+    "Precedent transactions from recent SaaS deals"
+  ],
+  "explanation": "A SaaS business is worth its recurring revenue, its retention and its growth rate - not its tangible assets. The balance sheet holds little more than cash and some laptops, so book value tells you nothing. The other three all work, to different degrees: EV/Revenue is the usual pick because there is no profit to divide into; a DCF still runs but the terminal value will carry most of the answer, so the result is very sensitive to assumptions; precedent transactions help if the sector has seen a recent deal.",
+  "diagram": [
+    { "label": "What the business looks like" },
+    { "label": "Pick the method" },
+    { "label": "Say why" },
+    { "label": "Cross-check" }
+  ],
+  "realWorldExample": {
+    "company": "An IB interview",
+    "description": "\"How do you choose your valuation method?\" comes up almost every time, and the interviewer is not waiting for a definition. They are watching whether the candidate reasons from the business to the method, or recites a list of methods they memorised."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "This is the question everyone prepares for in the wrong direction. The interviewer is not asking what the three valuation methods are - they already know. They are asking to see whether you pick a tool to fit the situation, or pick whichever one you know best."
+    },
+    {
+      "type": "paragraph",
+      "text": "The difference is which way the answer runs. Starting from \"there are three main methods, and their pros and cons are...\" is reciting a textbook. Starting from \"this business has stable cash flows, so I would lead with a DCF\" is how someone who does the job actually talks."
+    },
+    { "type": "heading", "text": "Four steps so the answer is not a recital" },
+    {
+      "type": "list",
+      "items": [
+        "Context - what is this business actually like: stable cash flows or no profit yet, asset-heavy or intangible-heavy, listed peers available or not.",
+        "Method - pick the tool that matches that, and pick only one as the primary.",
+        "Why - say in one sentence why that tool fits.",
+        "Cross-check - compare against a second method, and be able to explain any gap between them."
+      ]
+    },
+    { "type": "heading", "text": "Four methods, and when each one fits" },
+    {
+      "type": "conceptTable",
+      "title": "Choose by the business, not by habit",
+      "subtitle": "Every method has a weakness, and knowing the weakness is the part being assessed",
+      "concepts": [
+        {
+          "def": "Use it when cash flows are stable and forecastable - mature businesses like utilities, consumer staples, manufacturing. Gives intrinsic value, independent of market mood. Weakness: extremely sensitive to the discount rate and the terminal value assumption."
+        },
+        {
+          "def": "Use it when you want to reflect what the market is currently paying for a similar business. Works for any company with listed peers. Weakness: it inherits market sentiment, and no peer is ever a perfect match."
+        },
+        {
+          "def": "Use it when the sector has seen recent M&A and you need to understand the premium paid for control. Especially useful when the target is privately held. Weakness: the data is old and conditions may have changed; a small sector has too few deals to work from."
+        },
+        {
+          "def": "Use it when tangible assets are where the value sits, or when the business is being wound up - real estate, holding companies. Gives a floor based on assets that could be sold. Weakness: it ignores earning power and intangibles, so it usually undervalues a growing business."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "What \"I triangulate\" does and does not mean",
+      "text": "It is NOT averaging three numbers. It is cross-checking the logic: if the DCF says 100bn, comps say 80bn and precedents say 120bn, all three converge on a sensible range. But if the DCF says 500bn while comps say 80bn, the job is to go back through the DCF assumptions - not to report 290bn."
+    },
+    { "type": "heading", "text": "Three common mistakes, and the fix" },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Only defining each method",
+        "text": "\"A DCF discounts future cash flows back to today...\" - correct, and not an answer to the question asked."
+      },
+      "right": {
+        "label": "Attach \"when to use it\" immediately",
+        "text": "\"A DCF suits a business with forecastable cash flows, say a mature utility.\""
+      }
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Never naming a type of business",
+        "text": "\"I use all three methods in every situation to make sure it is accurate.\" - sounds safe, reads as never having had to choose."
+      },
+      "right": {
+        "label": "Start from the situation",
+        "text": "\"For a SaaS startup, EV/Revenue usually fits better than a DCF, because there is no positive cash flow yet to discount.\""
+      }
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Never mentioning a trade-off",
+        "text": "\"A DCF is best because it gives intrinsic value.\" - a claim with no weakness attached to it."
+      },
+      "right": {
+        "label": "Name the weakness before you are asked",
+        "text": "\"A DCF gives intrinsic value but is very sensitive to the discount rate - which is why I always cross-check against comps.\""
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "DCF for intrinsic value, comps for the market view, precedent transactions for deal context.",
+        "And always close with: no single method is perfect, so I cross-check to sanity-check myself.",
+        "Choose by the business, not by habit."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "An interviewer asks \"How do you choose your valuation method?\". Which answer shows the best thinking?",
+      "options": [
+        "Choose based on what this particular business is like",
+        "Name the three main methods and give the pros and cons of each",
+        "Use all three methods in every situation to make sure it is accurate",
+        "A DCF is always best, because it reflects intrinsic value"
+      ],
+      "explanation": "The interviewer already knows what the three methods are. They are asking to see whether you reason from the situation to the tool, or from a memorised list. Naming them and listing pros and cons is reciting a textbook - right content, wrong question."
+    },
+    {
+      "question": "Why do precedent transactions usually imply a higher value than trading comps?",
+      "options": [
+        "Because precedent data is always older, so it is out of date",
+        "Because it already includes the premium paid for control",
+        "Because trading comps use forward multiples while precedents use trailing ones",
+        "There is no systematic reason - it is just noise in the data sample"
+      ],
+      "explanation": "The premium paid for control is usually 20-40% above the market price. When a buyer pays that, every multiple in the deal comes out above the multiple the same business trades at in small lots on an exchange. That is why precedent transactions usually form the ceiling of a football-field chart."
+    },
+    {
+      "question": "\"No single method is perfect, so I triangulate.\" What does that mean?",
+      "options": [
+        "Use several methods and average them to land on a number in the middle",
+        "No method is right, so it makes no difference which one you pick",
+        "Where they agree, trust it; where they differ, you have to know why",
+        "Use three methods so the client is convinced by the result"
+      ],
+      "explanation": "Triangulating is checking the logic, not taking a mean. A DCF at 100bn, comps at 80bn and precedents at 120bn are three converging numbers - reasonable. But a DCF at 500bn next to comps at 80bn means going back through the DCF assumptions, not reporting the average of the two."
+    },
+    {
+      "question": "When should you use asset-based valuation?",
+      "options": [
+        "For every business, to have a floor for reference",
+        "For a startup with no revenue at all yet",
+        "Whenever you cannot find any comparable company",
+        "For holding companies, real estate, or a business being wound up"
+      ],
+      "explanation": "It fits when value sits in tangible assets - real estate, holding companies - or when the business is being liquidated. It does not fit a business that creates value from brand, intellectual property or its people, because none of that appears on the balance sheet."
+    },
+    {
+      "question": "What is the biggest weakness of a DCF?",
+      "options": [
+        "The result is very sensitive to the discount rate and the terminal value",
+        "It depends on market sentiment at the moment of valuation",
+        "It cannot be used for a mature business",
+        "It ignores intangibles such as brand and intellectual property"
+      ],
+      "explanation": "Terminal value usually carries 70-80% of the total in a DCF, so moving the long-run growth rate by one percentage point can move the answer by tens of percent. Depending on market sentiment is the weakness of comps, not of a DCF - a DCF is independent of the market, which is both its strength and where it is easiest to fool yourself."
+    }
+  ],
+  "practicePrompt": {
+    "question": "You are valuing a real estate holding company: it owns several rental buildings, rental cash flow is stable, and no listed company is a genuine peer. How should you choose?",
+    "options": [
+      "Asset-based as the primary, with a DCF on the rental flows to cross-check",
+      "Trading comps as the primary, because multiples are the fastest route",
+      "Precedent transactions as the primary, even though the sector has had no recent deals",
+      "A DCF only, since the rental cash flow is stable enough on its own"
+    ],
+    "explanation": "The value sits in the buildings themselves, so asset-based is the primary, and stable rental flows make a DCF available as the cross-check - one primary, one check. Trading comps are unusable with no genuine peer; precedent transactions are unusable with no deals. Using a single method throws away the cross-check step entirely."
+  },
+  "keyTakeaways": [
+    "Answer in this direction: what the business is like → the method → why → the cross-check. Do not start by naming methods.",
+    "DCF for intrinsic value, comps for the market view, precedent transactions for deal context.",
+    "Precedent transactions usually exceed comps because they already include the premium paid for control.",
+    "Cross-checking means understanding why methods differ, not averaging them."
+  ],
+  "summary": {
+    "keyIdea": "This question measures whether you pick a tool to fit the situation, not how many methods you can name.",
+    "formula": "Context → Method → Why → Cross-check",
+    "commonMistake": "Naming three methods with their pros and cons, and saying \"I use all three in every situation\".",
+    "action": "Pick a business you know and say the answer out loud in thirty seconds, following the four steps - with a timer."
+  },
+  "application": {
+    "message": "Practise answering this in thirty seconds for three different businesses: a mature utility, a loss-making SaaS startup, and a real estate holding company.",
+    "secondary": "In real work this is the opening paragraph of every valuation memo: why this method, and what it was checked against."
+  }
+}

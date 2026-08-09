@@ -1,0 +1,182 @@
+{
+  "slug": "thue-nha-hay-mua-nha",
+  "title": "Stage 9, Lesson 3: Rent or buy - which calculation is the right one?",
+  "subtitle": "There is no single answer that fits everybody",
+  "duration": "7 min",
+  "openingQuestion": "An apartment costs 3 billion; an equivalent one rents for 12 million a month. If you only compare \"rent versus mortgage payment\" and ignore the other costs of owning, is the conclusion complete?",
+  "openingOptions": [
+    "Yes, those are the only two numbers worth comparing",
+    "No - owning also brings tax, maintenance and opportunity cost",
+    "It does not matter, because buying always beats renting in the long run",
+    "It does not matter, because renting always beats buying in the long run"
+  ],
+  "explanation": "A full comparison has to include: the opportunity cost of the deposit (what it would earn invested instead), tax, maintenance and management fees while you own, property price movements, and the value of flexibility (moving is easy when you rent). No single formula is right for everyone - it depends on how long you expect to stay, the local market, and your own financial goals.",
+  "diagram": [
+    { "label": "Estimate how many years you expect to stay" },
+    { "label": "Add up the full cost of owning: interest, tax, fees, maintenance" },
+    { "label": "Compare against rent plus what the deposit would earn invested" },
+    { "label": "For a short stay, transaction costs usually favour renting" }
+  ],
+  "realWorldExample": {
+    "company": "Major urban property markets in Vietnam",
+    "description": "In the large cities, where house prices have risen far faster than incomes, the price-to-rent ratio can be very high - meaning that in purely financial terms, renting and investing the difference can pay better than buying, even though owning still carries non-financial value (stability, not depending on a landlord)."
+  },
+  "quiz": [
+    {
+      "question": "What does a high price-to-rent ratio (price divided by annual rent) mean?",
+      "options": [
+        "Buying is more attractive because rents are rising quickly",
+        "Rents are unusually high relative to incomes generally",
+        "The property market is currently undervalued",
+        "Buying is less attractive than renting and investing the difference"
+      ],
+      "explanation": "A high price-to-rent ratio means the property is expensive relative to what you would pay to rent it - so in purely financial terms it takes longer for buying to break even against renting and investing the difference."
+    },
+    {
+      "question": "A young couple expects to stay in their current city for only 2-3 more years before relocating for work. How does that affect the rent-or-buy decision?",
+      "options": [
+        "It favours renting, because transaction costs on a purchase are large",
+        "It favours buying, because the mortgage payment is below the monthly rent",
+        "It favours buying, because prices will rise over the next 2-3 years",
+        "It makes no difference, because length of stay is irrelevant here"
+      ],
+      "explanation": "Transaction costs on buying and selling property - agent fees, registration tax, notary fees - usually run to several per cent of the value, and it takes years of not paying rent to earn them back. A short expected stay raises the risk of a loss even if prices hold steady."
+    },
+    {
+      "question": "An apartment costs 3.6 billion and an equivalent one rents for 12 million a month. What is the price-to-annual-rent ratio?",
+      "options": [
+        "30 times",
+        "25 times",
+        "12 times",
+        "300 times"
+      ],
+      "explanation": "Annual rent = 12 × 12 = 144 million. 3,600 ÷ 144 = 25 times. The higher the ratio, the less attractive buying looks against renting in purely financial terms."
+    },
+    {
+      "question": "Which cost of buying is most often left out when comparing against renting?",
+      "options": [
+        "The interest payable across the whole life of the loan",
+        "Notary and title transfer fees on completing the purchase",
+        "The opportunity cost of the deposit if it were invested",
+        "Annual maintenance and repair costs on the property"
+      ],
+      "explanation": "The other three are always visible, so everybody counts them. Opportunity cost is invisible - but on a deposit of hundreds of millions to several billion it is usually the largest item left off the spreadsheet."
+    },
+    {
+      "question": "In Vietnam, the price-to-annual-rent ratio in large cities tends to be high. What does that say about the rent-or-buy decision?",
+      "options": [
+        "Renting is only cheaper where this ratio is below the average seen in other countries",
+        "Buying is always better, since high prices prove the demand for ownership is enormous",
+        "This ratio has nothing to do with an individual's decision on whether to rent or buy",
+        "Renting is cheaper on cash flow, so buying is mostly a bet on the price"
+      ],
+      "explanation": "A high ratio means each dong spent on ownership buys back only a little saved rent. At that point the gain from buying rests mainly on prices rising - an expectation, not a reliable cash flow."
+    }
+  ],
+  "keyTakeaways": [
+    "A full rent-versus-buy comparison counts opportunity cost, tax and maintenance, price movements, and the value of flexibility",
+    "A high price-to-rent ratio means buying is less attractive in purely financial terms",
+    "A short expected stay favours renting, because transaction costs take years to earn back"
+  ],
+  "practicePrompt": {
+    "question": "Apartment A sells for 3 billion and rents for the equivalent of 120 million a year (ratio = 25). Apartment B sells for 2 billion and rents for 180 million a year (ratio = 11.1). Purely financially, which is more attractive to buy rather than rent?",
+    "options": [
+      "Apartment A is more attractive to buy because its absolute price is higher, which reflects better value in the market",
+      "Apartment B: a ratio of 11.1 against 25, so the purchase price is cheap relative to the rent",
+      "Both apartments are equally attractive, because rents everywhere correspond to sale prices at the general market ratio",
+      "The price-to-rent ratio means nothing when comparing a decision to buy against a decision to rent"
+    ],
+    "explanation": "A high price-to-rent ratio means buying is less attractive than renting in purely financial terms. Apartment B has the lower ratio, so it is the more attractive one to buy rather than rent."
+  },
+  "application": {
+    "title": "Work out the break-even in years",
+    "message": "Add up every one-off transaction cost of buying and later selling - tax, notary, agent, initial repairs - and divide by the annual difference between owning and renting. The answer is how many years you must stay to break even. Stay less than that and renting was cheaper, whatever \"paying the landlord\" feels like.",
+    "secondary": "Count what the deposit and the rental bond would earn if deposited or invested - that is the opportunity cost, and it is usually larger than the maintenance."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Rent or buy is one of the biggest financial questions of a lifetime - and the answer is not the same for everybody."
+    },
+    {
+      "type": "heading",
+      "text": "A fuller comparison than \"rent versus mortgage payment\""
+    },
+    {
+      "type": "paragraph",
+      "text": "Buying also carries tax, maintenance charges, management fees, and the opportunity cost of the deposit (what it would earn invested instead of going into the property). The higher the price-to-rent ratio (price divided by annual rent), the less attractive buying looks in purely financial terms against renting and investing the difference. A short expected stay also favours renting, because the transaction costs of buying and selling take years to earn back."
+    },
+    {
+      "type": "list",
+      "items": [
+        "A full comparison counts tax, maintenance and opportunity cost - not just rent against the mortgage payment",
+        "A high price-to-rent ratio means buying is less attractive than renting in purely financial terms",
+        "A short expected stay favours renting, because transaction costs take years to earn back"
+      ]
+    },
+    {
+      "type": "formula",
+      "title": "The price-to-annual-rent ratio",
+      "equation": "Price-to-rent = Property price ÷ (Monthly rent × 12)",
+      "variables": [
+        {
+          "symbol": "Property price",
+          "name": "Purchase price",
+          "description": "The real purchase price, including transfer taxes, fees and fit-out costs."
+        },
+        {
+          "symbol": "Annual rent",
+          "name": "Annual rent",
+          "description": "The rent on an equivalent place in the same area, not on an idealised one."
+        }
+      ],
+      "example": {
+        "title": "A worked example",
+        "calculation": "A 3 billion apartment renting for the equivalent of 10 million a month → 3,000 ÷ 120",
+        "result": "= 25 times",
+        "explanation": "A ratio of 25 means it takes 25 years of rent to equal the purchase price. The higher the ratio, the better renting looks in purely financial terms, because the difference between the rent and the full cost of owning can be invested elsewhere."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "The costs of owning that get forgotten"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Building management and maintenance charges - a steady monthly cost that rises over time.",
+        "Repairs and replacements: paintwork, plumbing and electrics, furniture wearing out. In a house rather than an apartment this is larger still.",
+        "Taxes and fees on buying and selling: registration tax, income tax on the sale, agent fees - together usually equal to several years of rent.",
+        "The opportunity cost of the deposit: 900 million as a deposit, invested at 7% a year, would produce about 63 million a year - and that disappears once it goes into the property."
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Leaning towards renting",
+        "text": "A very high price-to-rent ratio; expecting to stay under 5-7 years; a job that could move; no solid emergency fund yet; wanting to keep capital free for other opportunities."
+      },
+      "right": {
+        "label": "Leaning towards buying",
+        "text": "A low price-to-rent ratio; settled for the long term; stable income with an emergency fund already in place; valuing a settled home over depending on a landlord's decisions."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "The part that does not convert into money",
+      "text": "This question is not purely arithmetic. Owning brings a sense of stability, the freedom to alter the place, and no obligation to move on someone else's say-so - all genuinely valuable to many people even though none of it appears in a spreadsheet. Renting, in return, buys flexibility. The calculation's job is to tell you the price of each choice, not to make the choice for you."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "There is no single right answer for everybody.",
+        "The answer depends on how long you plan to stay, the local market, and your own financial goals."
+      ]
+    }
+  ],
+  "summary": {
+    "keyIdea": "A full rent-versus-buy comparison counts opportunity cost, tax and maintenance, price movements, and the value of flexibility",
+    "commonMistake": "Easy to skip: a high price-to-rent ratio means buying is less attractive in purely financial terms",
+    "action": "A short expected stay favours renting, because transaction costs take years to earn back"
+  }
+}

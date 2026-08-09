@@ -1,0 +1,145 @@
+{
+  "slug": "ac-cam-mat-mat-va-hieu-ung-so-huu",
+  "title": "Loss aversion: why losing 1 million hurts more than gaining 1 million pleases",
+  "subtitle": "Your brain reacts to a loss about twice as strongly as to an equivalent gain - and that quietly wrecks investment decisions",
+  "duration": "6 min",
+  "openingQuestion": "You are offered two choices: (A) 5 million for certain, or (B) a 50% chance of 11 million and a 50% chance of nothing. Mathematically B has the higher expected value (5.5 million), yet most people still pick A. Why?",
+  "openingOptions": [
+    "Because most people cannot do basic probability arithmetic",
+    "Because loss aversion makes avoiding a loss matter more",
+    "Because 5 million is a better number than 11 million in every case",
+    "Because people always prefer high risk when a big win is possible"
+  ],
+  "explanation": "This is loss aversion, the effect Kahneman and Tversky identified: people feel the pain of LOSING an amount roughly 2-2.5 times as strongly as the pleasure of GAINING the same amount. So even though B has the higher expected value mathematically, the brain still prefers the safety of A to avoid the risk of \"getting nothing\".",
+  "realWorldExample": {
+    "company": "Individual investors holding losing stocks far too long",
+    "description": "A classic study of brokerage accounts found that individual investors sell WINNING stocks much faster than LOSING ones - they \"take profits\" early to enjoy the win, but hold losers waiting to \"get back to break-even\" because they cannot face admitting the loss (selling = making the loss real). The result: a portfolio slowly fills up with the worst holdings while the good gains are sold far too soon."
+  },
+  "quiz": [
+    {
+      "question": "What is the \"disposition effect\" in investing?",
+      "options": [
+        "Selling the whole portfolio the moment the market gives a bad signal",
+        "Selling losing stocks far too early and holding winners far too long",
+        "Only buying stocks that have risen sharply in the recent past",
+        "Selling winning stocks too early and holding losing ones too long"
+      ],
+      "explanation": "The disposition effect is loss aversion showing up directly in investing: selling a losing stock means formally \"locking in\" that loss - psychologically far more painful than merely watching the account balance fall on paper. So investors delay selling losers, hoping for a recovery, while rushing to sell winners for the immediate feeling of a win."
+    },
+    {
+      "question": "Why does loss aversion make many people hold too much cash rather than invest, even knowing inflation will erode it?",
+      "options": [
+        "Because a visible loss frightens people more than invisible inflation",
+        "Because deposit rates are usually above even the real returns from investing",
+        "Because cash is not subject to income tax the way investing is",
+        "Because they do not yet understand how to open a brokerage account"
+      ],
+      "explanation": "This is a subtle variant of loss aversion: a \"visible\" loss (the investment balance falling in a market correction) hurts more psychologically than an \"invisible\" one (purchasing power eroding through inflation while the cash balance stays put) - even though over the long run, 4-5% inflation a year can erode more wealth than short-term market swings."
+    },
+    {
+      "question": "What is the most effective way to reduce the influence of loss aversion on investment decisions?",
+      "options": [
+        "Check the portfolio more often to get used to the volatility",
+        "Set buy and sell rules before investing, then follow them",
+        "Pick the lowest-volatility assets available under all circumstances",
+        "Invest only small amounts so falls in the market are not frightening"
+      ],
+      "explanation": "Setting explicit rules in advance (pre-commitment) is the widely recommended debiasing strategy: deciding beforehand that \"I sell if it falls 20%\" or \"I rebalance every quarter\" removes emotion from the moment the market moves hardest - exactly when loss aversion is at its strongest."
+    },
+    {
+      "question": "How does the endowment effect change what people think an asset is worth?",
+      "options": [
+        "The same either way, because the value of an asset is objective",
+        "Lower once they own it, having grown used to it and lost interest",
+        "Considerably higher once they own it than while merely considering buying the same thing",
+        "Higher while considering a purchase, because attention is on its merits at that moment"
+      ],
+      "explanation": "Kahneman's mug experiment found that people just given a mug demanded about twice what others were willing to pay for it. Giving up something you hold registers as a loss, and losses hurt twice as much - the same loss aversion seen from another angle."
+    },
+    {
+      "question": "What helps reduce the pull of loss aversion when deciding whether to hold or sell a losing investment?",
+      "options": [
+        "Buying more of it to bring the average cost down to a level that is easier to recover from",
+        "Deciding to sell only once the price returns to exactly what was originally paid",
+        "Watching the price more frequently so as not to miss the moment it recovers",
+        "Asking whether, if you did not already own it, you would buy it at this price today"
+      ],
+      "explanation": "That question cuts out the purchase price - the one piece of information that creates the sense of loss while saying nothing about the future. The other three all use the purchase price as the reference point, which lets a number from the past drive today's decision."
+    }
+  ],
+  "keyTakeaways": [
+    "Loss aversion: the brain feels the pain of losing money 2-2.5 times as strongly as the pleasure of gaining the same amount",
+    "The disposition effect: selling winners too early and holding losers too long - a direct consequence of loss aversion",
+    "Loss aversion makes many people hold too much cash, fearing visible risk more than invisible risk like inflation",
+    "Setting clear investment rules before the market moves is the most effective way to neutralise this bias"
+  ],
+  "practicePrompt": {
+    "question": "You bought a stock at 100 and it now trades at 70 (down 30%). You believe the company has fundamentally changed for the worse, but you still do not want to sell because you are \"waiting to get back to break-even\". Which bias is this, and what is the right way to handle it?",
+    "options": [
+      "This is a rational decision; you should always wait for the price to recover before selling any stock",
+      "The disposition effect: look at the future prospects, not the price you originally paid",
+      "You should buy more to bring the average cost down, whatever the company's prospects are",
+      "The original purchase price is always the most important factor in a decision to sell"
+    ],
+    "explanation": "This is the core lesson in getting past loss aversion: the purchase price is a sunk cost - already spent, unchangeable, and in theory it should not drive a financial decision at all. The right question is \"if I did NOT already own this, would I buy it today given its current prospects?\" - and if the answer is no, sell, whatever percentage up or down it currently shows."
+  },
+  "summary": {
+    "keyIdea": "Loss aversion makes people feel the pain of losing money far more strongly than the pleasure of an equivalent gain, which leads to irrational decisions such as holding losing stocks too long or holding too much cash.",
+    "commonMistake": "Making a hold-or-sell decision from the original purchase price (a sunk cost) rather than from the investment's real future prospects",
+    "action": "Write down clear buy and sell rules before investing, and ask \"if I did not already own this, would I buy it at this price?\" whenever you are weighing whether to hold a losing position"
+  },
+  "application": {
+    "title": "Apply it now",
+    "message": "Look through your current portfolio - is there anything you are holding only because you \"do not want to take the loss\", despite no longer believing in its prospects? Write down what you would actually do if you ignored the price you paid.",
+    "secondary": "Loss aversion is not confined to investing - it also keeps people in unsuitable jobs and unhealthy relationships purely because they have already \"invested\" so much time."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "In 1979 two psychologists, Daniel Kahneman and Amos Tversky, published a finding that changed economics: people do not decide by pure reason the way traditional economic models assumed - and loss aversion was the first brick of that theory."
+    },
+    {
+      "type": "heading",
+      "text": "Prospect theory - the foundation of behavioural finance"
+    },
+    {
+      "type": "paragraph",
+      "text": "Kahneman and Tversky built prospect theory on the observation that people weigh gains and losses asymmetrically. A loss of 1 million causes roughly 2-2.5 times the psychological pain of the pleasure from an equivalent 1 million gain. The finding earned Kahneman the Nobel Prize in Economics in 2002 and became the foundation of the whole field of behavioural finance."
+    },
+    {
+      "type": "heading",
+      "text": "The disposition effect - loss aversion in real investing"
+    },
+    {
+      "type": "paragraph",
+      "text": "In investing, loss aversion shows up most clearly as the disposition effect: investors tend to sell WINNING positions too early (to \"lock in\" the feeling of a win) while holding LOSING positions too long (because selling means formally admitting the failure). The result is a portfolio that gradually fills with the worst holdings while the best ones were sold before they could grow into their potential."
+    },
+    {
+      "type": "heading",
+      "text": "The sunk cost fallacy - loss aversion's travelling companion"
+    },
+    {
+      "type": "paragraph",
+      "text": "A sunk cost is money, time or effort already spent that CANNOT BE RECOVERED, whatever you decide next. In theory a sunk cost should not affect a future decision - but loss aversion keeps people pouring more money into bad investments purely to avoid feeling that the effort already spent was wasted. The right question is always: given the information and the prospects available NOW, is this still a good decision - regardless of how much has already gone in?"
+    },
+    {
+      "type": "callout",
+      "label": "The practical lesson",
+      "text": "The next time you hesitate to sell a losing investment, ask: \"if I did not already own this today, would I buy it with the information I have now?\" If the answer is no, the price you originally paid no longer matters - that is the moment to sell."
+    }
+  ],
+  "diagram": [
+    {
+      "label": "A loss hurts roughly twice as much as an equivalent gain pleases"
+    },
+    {
+      "label": "So losses are left unrealised and gains are taken too early"
+    },
+    {
+      "label": "Add the sunk cost fallacy on top"
+    },
+    {
+      "label": "The counter: set stop-loss and take-profit rules in advance"
+    }
+  ]
+}

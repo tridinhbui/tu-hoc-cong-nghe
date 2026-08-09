@@ -1,0 +1,144 @@
+{
+  "slug": "qua-tu-tin-va-neo-gia-trong-dau-tu",
+  "title": "Overconfidence and anchoring: why everyone thinks they are above average",
+  "subtitle": "93% of drivers are confident they drive better than average - and investors make the same mistake with their money",
+  "duration": "6 min",
+  "openingQuestion": "You buy a stock at 50,000. The price rises to 80,000 and you think \"I'll buy more when it comes back to 50,000\". It never returns to 50,000 and you miss the next stretch of growth. Which bias is this?",
+  "openingOptions": [
+    "Confirmation bias",
+    "Anchoring - you are anchored to the original 50,000",
+    "Loss aversion",
+    "This is not a psychological bias at all, just an ordinary investment decision"
+  ],
+  "explanation": "This is textbook anchoring: the original 50,000 becomes a psychological anchor, so you judge every later price by its distance from that number instead of assessing the stock's real value independently today. The share price does not \"know\" or \"care\" what you paid - that figure exists only in your head.",
+  "realWorldExample": {
+    "company": "Investors who missed Bitcoin, Apple and Amazon through anchoring",
+    "description": "Plenty of people said \"Bitcoin is already at 1,000 USD, far too expensive to buy\" - and then missed it at 60,000. The same happened with Apple and Amazon shares: investors anchored to a price they once saw as \"cheap\" and refused to buy as the price rose, even as the companies' prospects improved. A past share price is not a measure of fair value today."
+  },
+  "quiz": [
+    {
+      "question": "What mistake does overconfidence bias most commonly produce in individual investors?",
+      "options": [
+        "Trading far too often, believing they can time the market",
+        "Concentrating the entire portfolio into just one single holding",
+        "Never entering the market at all for fear of a serious mistake",
+        "Only following a broker's recommendations without thinking"
+      ],
+      "explanation": "Academic work (Barber & Odean among others) found that the individual investors who trade most have significantly LOWER average returns than those who trade least - largely from overconfidence in their ability to \"call\" the moment to buy or sell, which produces too many trades, too much cost, and frequently poor timing."
+    },
+    {
+      "question": "In a salary negotiation, why does the first number named - by either side - tend to shape the final outcome so strongly?",
+      "options": [
+        "Because whoever names the first number usually holds more power",
+        "Because every later proposal is judged relative to the first",
+        "Because the first number is usually written into the minutes",
+        "Because labour law sets a minimum starting salary"
+      ],
+      "explanation": "Anchoring is not confined to investing - it appears wherever there are numbers: salary negotiations, haggling over a house, buying a car. The first number named becomes the psychological anchor, and later proposals from either side tend to be pulled towards it rather than assessed independently on their merits."
+    },
+    {
+      "question": "What is an effective way to reduce overconfidence when investing?",
+      "options": [
+        "Invest less each time so that a mistake costs less overall",
+        "Consult at least three experts before making any purchase",
+        "Write down the reason for each investment, then review it later",
+        "Only invest in the field where you already have most experience"
+      ],
+      "explanation": "Keeping an investment journal - the reason for buying, the expectation, and later a comparison against what actually happened - is a widely recommended debiasing technique. It forces you to face how many of your predictions were genuinely right, usually far fewer than the initial confidence suggested, and to adjust trading behaviour accordingly."
+    },
+    {
+      "question": "What did Barber and Odean find about the individual investors who traded most?",
+      "options": [
+        "Better in rising markets but worse by exactly the same margin when markets fell",
+        "Better, because they captured more short-term opportunities over the same period",
+        "About the same, because trading costs are tiny relative to market movements",
+        "Considerably worse than those who traded least, after fees and tax on each turn"
+      ],
+      "explanation": "Overconfidence turns into a concrete action: more trading. Every turn costs fees and tax while providing no informational edge, so the costs eat into returns. The study also found the effect was stronger among male investors."
+    },
+    {
+      "question": "Why is knowing about anchoring not enough to avoid it?",
+      "options": [
+        "Because an anchor pulls even when you know the number is irrelevant",
+        "Because anchoring only happens to people who have never had financial training",
+        "Because each person is only ever affected by exactly one anchor in a whole process",
+        "Because anchors only appear in negotiation, never when valuing an asset"
+      ],
+      "explanation": "Experiments show that even entirely random numbers pull participants' estimates towards them, including when they are warned in advance. A more effective defence is procedural: value it independently first, and only then look at the market price."
+    }
+  ],
+  "keyTakeaways": [
+    "Overconfidence makes investors trade too often, believing they can time the market - usually producing lower returns than a long-term buy-and-hold strategy",
+    "Anchoring: an initial number (the purchase price, a level you once saw) becomes a psychological reference point shaping every later judgment, even when it no longer relates to real value",
+    "Anchoring appears everywhere: salary negotiations, haggling over a house or a car, not just in the stock market",
+    "Keeping an investment journal and checking predictions against outcomes is the most effective way to recalibrate overconfidence"
+  ],
+  "practicePrompt": {
+    "question": "You are considering an apartment priced at 3 billion dong. The seller first asks 3.5 billion, then \"drops\" to 3 billion and calls it a special offer. Three billion feels like a bargain. What may be happening psychologically?",
+    "options": [
+      "3 billion is definitely a bargain, because it has come down from the original price",
+      "An anchoring tactic: the opening 3.5 billion makes 3 billion look like a bargain",
+      "The seller had no motive at all in opening with a higher price",
+      "The price has come down 500 million, so it now reflects true market value"
+    ],
+    "explanation": "This is the classic anchoring tactic in negotiation and sales: open with a high number, even one nobody expects to get, so later \"discounts\" feel attractive in relative terms. The right defence is always to value it independently - against comparable apartments recently transacted in the area - BEFORE hearing any price from the seller, so their number cannot anchor you."
+  },
+  "summary": {
+    "keyIdea": "Overconfidence makes investors trade too much and trust their market timing wrongly; anchoring lets past numbers, no longer relevant, keep steering today's decisions.",
+    "commonMistake": "Judging a price as \"cheap\" or \"expensive\" against an anchor from the past rather than valuing it independently on what it is worth today",
+    "action": "Before negotiating anything - a salary, a house, a car - research and set your own fair price INDEPENDENTLY before hearing any number from the other side"
+  },
+  "application": {
+    "title": "Apply it now",
+    "message": "Look back at your last 3 financial decisions - was any of them driven by a number you had seen in the past (an old purchase price, an old salary, a house price you once saw) rather than by what it was actually worth at the time?",
+    "secondary": "Spotting anchors is particularly useful in salary negotiations, buying a home, or buying a car - large transactions where a single anchoring mistake can cost you a great deal."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A well-known study asked drivers to rate their own driving against other people - 93% said they were better than average, which cannot be true for everyone at once. Investors make the same mistake with money."
+    },
+    {
+      "type": "heading",
+      "text": "Overconfidence bias - when confidence turns into the enemy"
+    },
+    {
+      "type": "paragraph",
+      "text": "Overconfidence in investing shows up as: (1) believing you can call when the market rises or falls; (2) overrating the accuracy of your own information and analysis; (3) trading too often because every decision feels right. Academic work finds the investors who trade most usually earn least - not for lack of knowledge, but because overconfidence produces excessive action."
+    },
+    {
+      "type": "heading",
+      "text": "The anchoring effect - the power of the first number"
+    },
+    {
+      "type": "paragraph",
+      "text": "Anchoring happens when a number, whether random or irrelevant, becomes the reference point shaping every later judgment. In investing that is usually the original purchase price, or the highest or lowest level you have seen. In negotiation it is the first number named. What makes it dangerous is that the brain processes an anchor unconsciously - even knowing about the effect, people struggle to escape it entirely."
+    },
+    {
+      "type": "heading",
+      "text": "Defending against both biases"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Keep an investment journal: the reason for buying, the expectation, then a comparison against the outcome to recalibrate how confident you should be",
+        "Value it independently BEFORE hearing any number from the seller or the other side, so their figure cannot become your anchor",
+        "Cap how often you trade with an explicit rule (rebalance quarterly, say) rather than reacting on feeling every day",
+        "Actively look for information and views that CONTRADICT your current position, to balance out excess confidence"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Overconfidence and anchoring are not signs of ignorance - they are mental shortcuts the brain uses to process information faster, at an occasional cost in accuracy.",
+        "Knowing about the biases is the first step; building a process and the discipline to work against them is the step that matters."
+      ]
+    }
+  ],
+  "diagram": [
+    { "label": "Overconfidence → more trading, less diversification" },
+    { "label": "Anchoring → stuck on the purchase price or the first number heard" },
+    { "label": "Both narrow the range of your estimates" },
+    { "label": "The counter: record forecasts, argue against yourself, use a range not a point" }
+  ]
+}

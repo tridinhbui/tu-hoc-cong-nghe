@@ -1,0 +1,175 @@
+{
+  "slug": "tai-chinh-khi-ket-hon",
+  "title": "Stage 9, Lesson 8: Money and marriage - joint property and separate property",
+  "subtitle": "Talking about money before marriage is not romantic, but it is necessary",
+  "duration": "6 min",
+  "openingQuestion": "Someone owns an apartment before marrying. After the wedding, how is that apartment usually treated under the common principle in many legal systems, Vietnam included?",
+  "openingOptions": [
+    "It automatically becomes joint property on the wedding day",
+    "It remains separate property, acquired before the marriage",
+    "It belongs to the other person in the couple",
+    "It cannot be determined without going to court"
+  ],
+  "explanation": "Under Vietnam's Law on Marriage and Family, property acquired before the marriage is generally treated as separate property, unless the couple agrees to merge it into joint property. Property formed DURING the marriage (income, and assets bought with joint income) is generally joint property, unless a prenuptial agreement says otherwise.",
+  "diagram": [
+    { "label": "Property before marriage → usually separate property" },
+    { "label": "Property and income during marriage → usually joint property" },
+    { "label": "Both can be varied by agreement" }
+  ],
+  "realWorldExample": {
+    "company": "Prenuptial property agreements",
+    "description": "Although not yet as common in Vietnam as in the West, agreements on a couple's property regime are legally recognised - particularly useful where one side holds a business or an inheritance that needs clear protection, so there is no dispute if something goes wrong later."
+  },
+  "quiz": [
+    {
+      "question": "Why should couples be open about their financial situation (debts, income, spending habits) before marrying rather than discussing it afterwards?",
+      "options": [
+        "Because income and some obligations become a shared matter",
+        "Because marriage law requires an asset declaration before the wedding",
+        "Because all accounts have to be merged into a single joint account",
+        "Because the bank needs details on both to approve a loan"
+      ],
+      "explanation": "After marriage two people's finances are usually tied together far more closely (shared spending, shared goals, possibly shared debt) - discovering a large debt or an incompatible spending habit AFTER the wedding is much harder to handle than discussing it plainly beforehand."
+    },
+    {
+      "question": "A couple's incomes are very different. Which approach to sharing joint living costs is usually seen as fairer than an absolute 50/50 split?",
+      "options": [
+        "The higher earner covers the whole of the costs",
+        "Split in proportion to each person's income",
+        "Each pays for the share they personally used",
+        "Split evenly for absolute fairness between them"
+      ],
+      "explanation": "An absolute 50/50 split where incomes differ widely can force the lower earner to give up a much larger share of what they earn - splitting by percentage of income keeps the burden proportionate between the two, though this is a personal choice rather than a rule."
+    },
+    {
+      "question": "Incomes of 45 and 15 million, with 24 million a month of shared costs. Splitting in proportion to income, how much does each contribute?",
+      "options": [
+        "12 million each, splitting the shared costs evenly",
+        "The 45 million earner pays the whole 24 million of shared costs",
+        "About 18 and 6 million, because shared costs are 40% of the total",
+        "About 20 and 4 million, in the ratio of 45 to 15"
+      ],
+      "explanation": "24 ÷ 60 = 40%. Each contributes 40% of their own income: 45 × 40% = 18 and 15 × 40% = 6. This leaves both with the same share of their income for personal goals."
+    },
+    {
+      "question": "Why agree in advance on a spending threshold that requires a joint decision?",
+      "options": [
+        "Because the bank needs both signatures on any large payment",
+        "Because the law requires spouses to agree on large transactions",
+        "Because doing so reduces the household's total spending",
+        "Because it turns a recurring argument into an agreed rule"
+      ],
+      "explanation": "Financial conflict in a marriage rarely comes from one large purchase. It comes from having to renegotiate from scratch every time. A clear threshold removes most of that ambiguity."
+    },
+    {
+      "question": "A couple use joint income to pay the mortgage on a home one of them bought before the marriage. What usually happens to the ownership?",
+      "options": [
+        "The value built up out of joint income can be treated as joint property",
+        "The whole home immediately becomes the joint property of both spouses",
+        "The home stays entirely separate property because it predates the marriage",
+        "The other spouse is refunded only what they contributed, not a share of the value"
+      ],
+      "explanation": "The source of the money decides it, not the date of purchase. Payments made from income earned during the marriage create a joint contribution, and disputes usually turn on quantifying exactly that - which makes keeping the payment records a very practical habit."
+    }
+  ],
+  "keyTakeaways": [
+    "Property before marriage is usually separate; property and income during marriage is usually joint under Vietnamese law, absent an agreement otherwise",
+    "Being open about debts, income and spending habits before marrying heads off conflict later",
+    "Where incomes differ, splitting costs in proportion to income is usually fairer than an even split"
+  ],
+  "practicePrompt": {
+    "question": "Before marrying, you owned an apartment bought with your own savings. After the wedding, does that apartment automatically become the joint property of both spouses?",
+    "options": [
+      "Yes, all property automatically becomes joint the moment the marriage is registered, whether acquired before or after",
+      "No - property acquired before marriage is usually separate property under Vietnam's Law on Marriage and Family, absent an agreement otherwise",
+      "This depends entirely on a decision by the local authority where the marriage was registered",
+      "The apartment becomes joint property exactly 5 years after the wedding under the regulations in force"
+    ],
+    "explanation": "Property acquired before marriage is usually separate property under Vietnam's Law on Marriage and Family, absent an agreement otherwise. Being open about finances before marrying heads off conflict later."
+  },
+  "summary": {
+    "keyIdea": "Property before marriage is usually separate; property and income during marriage is usually joint under Vietnamese law, absent an agreement otherwise",
+    "commonMistake": "Easy to skip: being open about debts, income and spending habits before marrying heads off conflict later",
+    "action": "Where incomes differ, splitting costs in proportion to income is usually fairer than an even split"
+  },
+  "application": {
+    "title": "One conversation, three questions",
+    "message": "Before the wedding, sit down and answer three questions plainly: how much does each of you owe, what is each real income, and which spending does one of you consider worth it while the other considers it waste. The third predicts future conflict more accurately than the first two.",
+    "secondary": "A prenuptial property agreement is legally valid in Vietnam when notarised in writing - worth considering where one side brings a business or property into the marriage."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Talking about money before marriage is not romantic, but it is one of the most important conversations a couple can have."
+    },
+    {
+      "type": "heading",
+      "text": "Separate property, joint property, and being open"
+    },
+    {
+      "type": "paragraph",
+      "text": "Under Vietnam's Law on Marriage and Family, property acquired before the marriage is usually separate property; property and income formed during the marriage is usually joint, absent an agreement otherwise. Being open about debts, income and spending habits before marrying heads off conflict later - particularly where one side carries significant debt they have never mentioned. Where incomes differ widely, splitting living costs in proportion to income is usually fairer than splitting them evenly."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Property before marriage is usually separate; property during marriage is usually joint",
+        "Being open about finances before marrying avoids surprises and conflict later",
+        "Splitting costs in proportion to income is usually fairer than an even split where incomes differ widely"
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Five questions to ask each other before the wedding"
+    },
+    {
+      "type": "list",
+      "items": [
+        "What debts does each of you hold right now, how much is outstanding, and at what interest rate?",
+        "What does each of you actually earn, and how stable is it?",
+        "Is there a financial obligation to anyone else - supporting parents, a younger sibling, a loan guaranteed for someone?",
+        "What are each person's financial goals for the next 5 years, and do they conflict?",
+        "Above what amount does a spending decision need to be discussed together - can you set a specific threshold rather than leaving it vague?"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The last question sounds small but prevents the most conflict. Setting a specific threshold - every purchase above a certain amount is decided together - turns a recurring argument about spending into a rule agreed in advance, instead of a negotiation that starts from scratch every time."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "An even split",
+        "text": "Incomes of 40 and 15 million with 20 million of shared costs, 10 million each. The lower earner gives up two-thirds of their income and has almost nothing left to save separately."
+      },
+      "right": {
+        "label": "Split in proportion to income",
+        "text": "Total income of 55 million and shared costs of 20 million, so 36%. Each contributes 36% of their income: about 14.5 and 5.5 million. Both keep the same share of what is left for their own goals."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "Three ways couples manage money"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Fully merged: all income into one pot, all spending out of it. The simplest, but it needs a very high level of agreement about spending habits.",
+        "Fully separate: each keeps their own accounts and they split the shared costs. It preserves independence, but long-term shared goals are easily missed without a plan specifically for them.",
+        "A combination: a joint pot for living costs and shared goals, with each person keeping a portion to spend freely. Most couples find this the best-balanced arrangement."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Debt from before the marriage",
+      "text": "A debt taken on before the marriage is in principle a separate obligation, but in practice it still affects the household's shared cash flow, because the repayments come out of one of the two incomes. So it is information to state clearly beforehand - not to be judged on, but so the plan can account for it."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A frank conversation about money before the wedding costs a few awkward hours.",
+        "That is far cheaper than financial conflict running through the whole marriage."
+      ]
+    }
+  ]
+}

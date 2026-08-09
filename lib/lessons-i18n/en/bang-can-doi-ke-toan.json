@@ -1,0 +1,182 @@
+{
+  "slug": "bang-can-doi-ke-toan",
+  "title": "Reading a Balance Sheet",
+  "subtitle": "What the business owns, and where the money came from",
+  "duration": "8 min",
+  "openingQuestion": "A business has total assets of 390bn and equity of 240bn. What are its liabilities?",
+  "openingOptions": [
+    "150bn",
+    "630bn (= 390 + 240, adding both sides together)",
+    "Cannot be worked out without the revenue figure",
+    "390bn, because every asset is funded by debt"
+  ],
+  "explanation": "Assets = Liabilities + Equity, so Liabilities = 390 − 240 = 150bn. That equation is not an arbitrary convention: every unit of assets has to come from somewhere - either someone lent it, or shareholders put it in, or the business earned it and kept it. That is why the sheet always balances, and why a sheet that does not balance points at the bookkeeper rather than at the business. Adding both sides to 630bn confuses funding with assets - they are two columns of the same sheet, not two amounts to sum.",
+  "diagram": [
+    { "label": "Assets" },
+    { "label": "Liabilities" },
+    { "label": "Equity" },
+    { "label": "Both sides always equal" }
+  ],
+  "realWorldExample": {
+    "company": "Masan Group",
+    "description": "Total assets around 120,000bn, liabilities around 80,000bn and equity around 40,000bn - a D/E of about 2.0x. Within that, goodwill and intangibles run to about 30,000bn, nearly the whole of equity, and come from M&A deals."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "If the income statement is the footage of what happened over a period, the balance sheet is a photograph taken at one instant: what the business owns right now, and where the money that bought it came from."
+    },
+    {
+      "type": "paragraph",
+      "text": "The founding equation is Assets = Liabilities + Equity, and it always has to balance - that is what \"balance\" in the name refers to. Every unit of assets has a source: someone lent it, shareholders contributed it, or the business earned it and kept it."
+    },
+    { "type": "heading", "text": "The three parts of a balance sheet" },
+    {
+      "type": "conceptTable",
+      "title": "Reading top to bottom",
+      "subtitle": "Each part answers a different question",
+      "concepts": [
+        {
+          "def": "What the business owns. Current means cash, receivables, inventory - things that turn into cash within 12 months. Non-current means property, plant and equipment, intangibles, goodwill, long-term investments."
+        },
+        {
+          "def": "Who the business owes. Current means payables to suppliers, short-term borrowings, deferred revenue. Non-current means long-term borrowings, bonds, pension obligations."
+        },
+        {
+          "def": "What is left once every liability is subtracted, and it belongs to shareholders. Made up of paid-in capital from issued shares plus retained earnings accumulated over the years."
+        }
+      ]
+    },
+    { "type": "heading", "text": "One balance sheet, in numbers" },
+    {
+      "type": "formula",
+      "title": "The two columns have to match",
+      "equation": "Assets = Liabilities + Equity",
+      "example": {
+        "title": "Assets on one side, funding on the other",
+        "calculation": "Cash 50 + Receivables 80 + Inventory 60 + PP&E 200 = 390bn",
+        "result": "390bn = 150bn of liabilities + 240bn of equity",
+        "explanation": "The two columns are not two amounts to add. They are the same money seen from two directions: on the left, where the money is sitting; on the right, who it came from."
+      }
+    },
+    { "type": "heading", "text": "Three questions to ask of a balance sheet" },
+    {
+      "type": "list",
+      "items": [
+        "Is there enough liquidity? Current Ratio = current assets / current liabilities. Above 1.5 is comfortable; below 1.0 means more debt falls due than there are assets that could be sold to pay it.",
+        "How much leverage? D/E = total debt / equity. Below 1.0 is usually safe; above 2.0 is high leverage - ROE is amplified, and so are losses.",
+        "Is the asset quality good? Look at goodwill and intangibles as a share of total assets, along with the provision for bad debt. Very large goodwill is write-down risk."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "A high current ratio is not automatically good",
+      "text": "A business with a current ratio of 4.0 because inventory is piling up and customers are not paying has a problem, not a cushion. That number has to be read alongside inventory turnover and days sales outstanding - never on its own."
+    },
+    { "type": "heading", "text": "Masan Group - leverage and goodwill" },
+    {
+      "type": "paragraph",
+      "text": "Masan is a holding company across several businesses - Masan Consumer, WinCommerce, Masan MEATLife - and its balance sheet shows clearly how a group uses leverage to expand quickly."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Total assets: around 120,000bn",
+        "Liabilities: around 80,000bn, a D/E of about 2.0x",
+        "Equity: around 40,000bn",
+        "Goodwill and intangibles: around 30,000bn, mostly from M&A deals"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "What to watch",
+      "text": "Goodwill of about 30,000bn against equity of 40,000bn means three quarters of the shareholders' stake sits in a figure that cannot be sold. If the deals fall short of expectations, a single goodwill write-down makes profit look terrible while the operating business has not changed at all."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Assets = Liabilities + Equity, always balanced - the two columns are one amount seen from two directions.",
+        "A current ratio above 1.5 and D/E below 2.0 are the first two readings, but they have to be read alongside asset quality.",
+        "Large goodwill forces you back through the M&A history."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "What is the fundamental accounting equation?",
+      "options": [
+        "Liabilities = Assets + Equity",
+        "Equity = Assets × Leverage",
+        "Assets = Revenue − Costs for the period",
+        "Assets = Liabilities + Equity"
+      ],
+      "explanation": "Assets = Liabilities + Equity. This is the basis of double-entry accounting: every transaction posts two entries that leave the equation intact. Rearranging it into Liabilities = Assets + Equity is a common slip, and it inflates liabilities to the whole of assets plus equity."
+    },
+    {
+      "question": "What counts as a current asset?",
+      "options": [
+        "Cash, receivables, inventory - things that become cash within 12 months",
+        "Brands, patents and goodwill arising from M&A deals",
+        "Factories, machinery, and long-term investment property",
+        "Long-term investments in associates and subsidiaries"
+      ],
+      "explanation": "Current assets are what is expected to become cash within 12 months: cash and equivalents, receivables, inventory, prepaid expenses. Factories, brands and goodwill are all non-current - they generate cash over many years and cannot be liquidated within a year without breaking the business."
+    },
+    {
+      "question": "What does a debt-to-equity ratio of 3.0 mean?",
+      "options": [
+        "There are 3 units of equity for every unit of debt (numerator and denominator swapped)",
+        "There are 3 units of debt for every unit of equity",
+        "Total debt equals 300% of the year's revenue",
+        "The business has made losses three years running"
+      ],
+      "explanation": "D/E = total debt / equity, so 3.0 means three units of debt for every one of equity. High leverage amplifies ROE when trading is good and amplifies losses when it is not. Swapping numerator and denominator gives 0.33 - the same business, read as three times less debt instead of three times more."
+    },
+    {
+      "question": "When does goodwill appear on a balance sheet?",
+      "options": [
+        "When the company's brand becomes well known in the market",
+        "When the share price rises above book value per share",
+        "When a business is acquired above the value of its net assets",
+        "When the business earns high profits for several years running"
+      ],
+      "explanation": "Goodwill = the price paid in an M&A deal − the fair value of the net assets received. It records the premium paid for the brand, the customer base, the team. A brand built in-house is NOT recognised - which is why a famous company that has never acquired anyone can carry no goodwill at all."
+    },
+    {
+      "question": "What does a current ratio of 0.6 tell you?",
+      "options": [
+        "Current assets are double current liabilities, so it is very safe",
+        "The business is in a high-growth phase and needs capital",
+        "The current ratio says nothing about financial health",
+        "Current liabilities exceed current assets - a liquidity risk"
+      ],
+      "explanation": "Current Ratio = current assets / current liabilities, so 0.6 means every unit of debt falling due has only 0.6 of current assets behind it. Below 1.0 does not always mean imminent default - retail chains that collect cash immediately and pay suppliers later sit here routinely - but it is a number you must keep reading, not one to pass over."
+    }
+  ],
+  "practicePrompt": {
+    "question": "A business has current assets of 140bn, current liabilities of 200bn, total debt of 500bn and equity of 250bn. Which reading is correct?",
+    "options": [
+      "Current ratio 0.7 and D/E 2.0 - both liquidity and leverage are concerning",
+      "Current ratio 1.4 and D/E 2.0 - liquidity is fine, only leverage is high",
+      "Current ratio 0.7 and D/E 0.5 - weak liquidity but low debt",
+      "Not enough information without the revenue and profit figures"
+    ],
+    "explanation": "Current Ratio = 140 / 200 = 0.7 and D/E = 500 / 250 = 2.0. Both sit on the wrong side of the first threshold. The 1.4 option swaps the current ratio's numerator and denominator; the 0.5 option swaps D/E's. Same set of numbers, one inverted division, opposite conclusion."
+  },
+  "keyTakeaways": [
+    "Assets = Liabilities + Equity, and it always balances: the two columns are the same money seen from two directions.",
+    "Current assets are what becomes cash within 12 months - factories and goodwill are not among them.",
+    "A current ratio above 1.5 and D/E below 2.0 are the first two readings, not the final verdict.",
+    "Goodwill only arises from M&A. A brand built in-house is never recognised, and large goodwill is write-down risk."
+  ],
+  "summary": {
+    "keyIdea": "A balance sheet is a photograph at one instant: on the left where the money sits, on the right who it came from.",
+    "formula": "Assets = Liabilities + Equity;  Current Ratio = current assets / current liabilities;  D/E = total debt / equity",
+    "commonMistake": "Inverting the current ratio or D/E, and treating a high current ratio as good news without asking why it is high.",
+    "action": "Open the balance sheet of a company you follow, compute its current ratio and D/E, then find goodwill as a share of total assets."
+  },
+  "application": {
+    "message": "Next time you open a report, compute these two numbers before you read a single line of commentary: current ratio and D/E. They tell you what attitude to read the rest with.",
+    "secondary": "In real work these are the first two numbers every credit file and every deal appraisal computes."
+  }
+}
