@@ -12,10 +12,21 @@
   ],
   "explanation": "A pension fund has payment obligations stretching across thirty to fifty years, and the real value of those obligations rises with inflation. Very few assets have cash flow of the same duration and the same inflation link. Infrastructure does: a road toll concession, a power purchase agreement or a public service tariff framework usually carries a clause indexing it to prices, and the asset operates for decades. This is why an allocation to infrastructure is driven by matching obligations rather than only by an expected return - and it is also why illiquidity troubles this group of investors less than others.",
   "diagram": [
-    { "label": "Long-dated payment obligations, rising with inflation", "arrow": true },
-    { "label": "Infrastructure: long-dated cash flow tied to a price index", "arrow": true },
-    { "label": "Matching duration and matching inflation at the same time", "arrow": true },
-    { "label": "Illiquidity troubles a long-term investor less" }
+    {
+      "label": "Long-dated payment obligations, rising with inflation",
+      "arrow": true
+    },
+    {
+      "label": "Infrastructure: long-dated cash flow tied to a price index",
+      "arrow": true
+    },
+    {
+      "label": "Matching duration and matching inflation at the same time",
+      "arrow": true
+    },
+    {
+      "label": "Illiquidity troubles a long-term investor less"
+    }
   ],
   "realWorldExample": {
     "company": "Where brownfield and greenfield differ",
@@ -47,7 +58,7 @@
       "options": [
         "Because revenue depends on the tariff framework and contracts the state sets",
         "Because infrastructure assets are usually located in developing countries",
-        "Because foreign investors are restricted from owning infrastructure assets outright",
+        "Because foreign investors cannot own infrastructure assets",
         "Because infrastructure contracts always run for under ten years"
       ],
       "explanation": "A decision to revise the tariff framework can wipe out most of a project's value without the asset ever being seized - a form of risk that cannot be hedged with a financial instrument. It applies just as much in developed markets, where toll and utility tariffs are reviewed by regulators, and concessions typically run for decades rather than under ten years."
@@ -55,7 +66,7 @@
     {
       "question": "Why does illiquidity trouble a pension fund less?",
       "options": [
-        "Because a pension fund is permitted to withdraw from a project at any time it chooses",
+        "Because a pension fund can withdraw from a project at any time",
         "Because their payment obligations are known in advance and span many years",
         "Because the rules let a pension fund value its assets at original cost",
         "Because pension funds do not have to report performance each quarter"
@@ -103,7 +114,10 @@
       "type": "lead",
       "text": "Infrastructure - toll roads, power plants, ports, transmission networks - is the longest-dated asset group in a portfolio, and that is precisely its reason for existing."
     },
-    { "type": "heading", "text": "Matching obligations, not just seeking a return" },
+    {
+      "type": "heading",
+      "text": "Matching obligations, not just seeking a return"
+    },
     {
       "type": "paragraph",
       "text": "A pension fund has payment obligations stretching across thirty to fifty years, and the real value of those obligations rises with inflation. Very few assets have cash flow of the same duration and the same inflation link. Infrastructure does: a road toll concession, a power purchase agreement or a public service tariff framework usually comes with a clause indexing it to prices."

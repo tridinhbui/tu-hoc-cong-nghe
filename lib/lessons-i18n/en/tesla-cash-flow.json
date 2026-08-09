@@ -12,10 +12,22 @@
   ],
   "explanation": "Revenue and profit can be recognised before the money actually arrives, particularly when receivables and working capital are rising. At a fast-growing business this gap can persist for several quarters in a row while the company keeps expanding the scale of its operations.",
   "diagram": [
-    { "label": "Net income", "arrow": true },
-    { "label": "Working capital", "arrow": true },
-    { "label": "CapEx", "arrow": true },
-    { "label": "Operating cash flow", "arrow": false }
+    {
+      "label": "Net income",
+      "arrow": true
+    },
+    {
+      "label": "Working capital",
+      "arrow": true
+    },
+    {
+      "label": "CapEx",
+      "arrow": true
+    },
+    {
+      "label": "Operating cash flow",
+      "arrow": false
+    }
   ],
   "realWorldExample": {
     "company": "Three questions when cash flow is negative at a growing business",
@@ -67,7 +79,7 @@
       "options": [
         "See whether revenue is growing faster than the industry",
         "See whether the business announced expansion plans in its annual report",
-        "See whether net profit in the period is positive after deducting all costs",
+        "See whether net profit in the period is positive",
         "See whether the negative sits in operating or in investing activities"
       ],
       "explanation": "Spending on a factory sits in investing cash flow and is a choice that can be stopped. Negative operating cash flow is different: the act of selling is itself consuming cash, and the more you sell the more you run dry - that is the sign of a model that does not yet work. An announced plan is an intention, not evidence."
@@ -103,7 +115,10 @@
       "type": "lead",
       "text": "A company with positive net income for several quarters running while operating cash flow stays weak - this is a common situation at fast-growing businesses."
     },
-    { "type": "heading", "text": "Revenue booked first, cash later" },
+    {
+      "type": "heading",
+      "text": "Revenue booked first, cash later"
+    },
     {
       "type": "paragraph",
       "text": "Revenue and profit can be recognised before the money actually arrives, particularly when receivables and working capital rise as fast as the business expands. This is not automatically a bad sign - you have to look at whether the business is investing properly in future growth, and whether it has enough funding (raised or borrowed) to sustain itself through this phase of negative OCF."
@@ -116,7 +131,10 @@
         "Net income does not replace following both working capital and CapEx"
       ]
     },
-    { "type": "heading", "text": "Four measures to follow together across the quarters" },
+    {
+      "type": "heading",
+      "text": "Four measures to follow together across the quarters"
+    },
     {
       "type": "list",
       "items": [

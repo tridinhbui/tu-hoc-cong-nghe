@@ -12,10 +12,22 @@
   ],
   "explanation": "There are two ways to measure return and they answer two different questions. The time-weighted return strips out the effect of money being paid in and taken out, so it measures the skill of whoever manages the portfolio. The money-weighted return counts the timing of those flows, so it measures what one particular investor actually experienced. The gap between the two figures is the price of putting money in while the market is euphoric and taking it out in a panic.",
   "diagram": [
-    { "label": "Time-weighted return", "arrow": true },
-    { "label": "Money-weighted return", "arrow": true },
-    { "label": "Cash in and out", "arrow": true },
-    { "label": "Read the performance correctly", "arrow": false }
+    {
+      "label": "Time-weighted return",
+      "arrow": true
+    },
+    {
+      "label": "Money-weighted return",
+      "arrow": true
+    },
+    {
+      "label": "Cash in and out",
+      "arrow": true
+    },
+    {
+      "label": "Read the performance correctly",
+      "arrow": false
+    }
   ],
   "realWorldExample": {
     "company": "Investment funds",
@@ -46,7 +58,7 @@
       "question": "A fund publishes an impressive TWR of 15% a year, but one particular investor has an MWRR of only a few percent. What is the most plausible cause?",
       "options": [
         "That investor picked the wrong class of fund unit to buy",
-        "The fund miscalculated the performance figure it published to the market",
+        "The fund miscalculated the performance figure it published",
         "The fund's management fee is higher than the level it disclosed",
         "They put most of their capital in just before the market fell"
       ],
@@ -56,7 +68,7 @@
       "question": "Why do funds usually publish TWR rather than MWRR when they report on their management?",
       "options": [
         "Because TWR is not affected by paying-in and taking-out decisions",
-        "Because TWR always gives the higher number, which makes the fund easier to sell",
+        "Because TWR always gives the higher number, so it sells better",
         "Because TWR is the only measure the law permits them to publish",
         "Because TWR is far easier to calculate than MWRR ever is"
       ],

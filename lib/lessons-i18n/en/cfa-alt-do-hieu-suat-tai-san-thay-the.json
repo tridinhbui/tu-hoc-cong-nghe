@@ -12,10 +12,21 @@
   ],
   "explanation": "The asset is appraised each quarter, and the appraiser takes their reference from the previous valuation plus a few recent comparable transactions. The result is that the reported series of values moves slowly even when the real market has swung hard - the phenomenon called return smoothing. The measurement consequences are very specific: standard deviation is understated, correlation with other asset groups is understated, so the Sharpe ratio and the apparent diversification benefit both look better than reality. This is not fraud - it is a structural consequence of there being no continuous market price.",
   "diagram": [
-    { "label": "No continuous price → periodic appraisal", "arrow": true },
-    { "label": "Reported value moves slowly: smoothing", "arrow": true },
-    { "label": "Standard deviation and correlation understated", "arrow": true },
-    { "label": "Sharpe and the diversification benefit look better than reality" }
+    {
+      "label": "No continuous price → periodic appraisal",
+      "arrow": true
+    },
+    {
+      "label": "Reported value moves slowly: smoothing",
+      "arrow": true
+    },
+    {
+      "label": "Standard deviation and correlation understated",
+      "arrow": true
+    },
+    {
+      "label": "Sharpe and the diversification benefit look better than reality"
+    }
   ],
   "realWorldExample": {
     "company": "The three biases of a hedge fund index",
@@ -38,7 +49,7 @@
         "Standard deviation is overstated while correlation is understated",
         "Both standard deviation and correlation are understated",
         "It only affects the average return, not the risk",
-        "No effect at all if the data series is long enough to compute with"
+        "No effect at all if the data series is long enough"
       ],
       "explanation": "Both measures are pulled down, so the Sharpe ratio and the diversification benefit are exaggerated at the same time. Length of series does not cure it: smoothing is a bias, not noise, so more observations make the wrong number more precise rather than more correct."
     },
@@ -103,7 +114,10 @@
       "type": "lead",
       "text": "The Sharpe ratio, standard deviation and correlation coefficient all assume a trustworthy series of market prices. In the alternative asset group that assumption does not hold - and every measure built on it is skewed in the same direction: flattering."
     },
-    { "type": "heading", "text": "Return smoothing" },
+    {
+      "type": "heading",
+      "text": "Return smoothing"
+    },
     {
       "type": "paragraph",
       "text": "The asset is appraised each quarter, and the appraiser takes their reference from the previous valuation plus a few recent comparable transactions. The result is that the reported series of values moves slowly even when the real market has swung hard. This is not fraud - it is a structural consequence of there being no continuous price."
@@ -113,7 +127,10 @@
       "label": "The measurement consequence",
       "text": "Standard deviation is understated and correlation with other groups is understated too. These two errors point the same way, so the Sharpe ratio is exaggerated AND the diversification benefit looks larger than it really is."
     },
-    { "type": "heading", "text": "The three biases of a hedge fund index" },
+    {
+      "type": "heading",
+      "text": "The three biases of a hedge fund index"
+    },
     {
       "type": "list",
       "items": [

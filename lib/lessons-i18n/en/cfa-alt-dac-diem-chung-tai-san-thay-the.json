@@ -12,10 +12,21 @@
   ],
   "explanation": "These four characteristics come together and they are causally linked to each other. Illiquidity means there is no continuous market price, so valuation has to rely on periodic appraisal or on a model - and that produces a whole set of performance measurement consequences the next lesson covers. Higher leverage is the norm rather than the exception, because real assets and buyout deals are both financed with debt. The two-tier fee structure - a management fee plus a share of the profits - completely changes the manager's incentives compared with a fund charging a flat fee. A higher expected return is not a defining characteristic; it is what the investor hopes to receive in exchange for the four above.",
   "diagram": [
-    { "label": "Illiquid: no continuous price", "arrow": true },
-    { "label": "Sparse valuation: periodic appraisal or a model", "arrow": true },
-    { "label": "High leverage is the norm, not the exception", "arrow": true },
-    { "label": "Two tiers of fees change the manager's incentives" }
+    {
+      "label": "Illiquid: no continuous price",
+      "arrow": true
+    },
+    {
+      "label": "Sparse valuation: periodic appraisal or a model",
+      "arrow": true
+    },
+    {
+      "label": "High leverage is the norm, not the exception",
+      "arrow": true
+    },
+    {
+      "label": "Two tiers of fees change the manager's incentives"
+    }
   ],
   "realWorldExample": {
     "company": "Why the illiquidity premium is not a free lunch",
@@ -25,7 +36,7 @@
     {
       "question": "Which characteristic is NOT a defining feature of the alternative asset group?",
       "options": [
-        "A fee structure of a management fee plus a share of the profits",
+        "A management fee plus a share of the profits",
         "Low liquidity and no continuous traded price",
         "A higher use of leverage than a traditional fund",
         "Expected returns always higher than listed equities"

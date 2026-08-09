@@ -12,10 +12,22 @@
   ],
   "explanation": "Bitcoin does not rest on conventional cash flow; it is usually seen through scarcity, the network effect and market belief. Because there is no discounted-cash-flow valuation model for it the way there is for a share, the range its price swings through is normally far wider than that of a traditional asset, and the price can move a long way on a change of sentiment alone.",
   "diagram": [
-    { "label": "Fixed supply", "arrow": true },
-    { "label": "Network effect", "arrow": true },
-    { "label": "Demand", "arrow": true },
-    { "label": "Price", "arrow": false }
+    {
+      "label": "Fixed supply",
+      "arrow": true
+    },
+    {
+      "label": "Network effect",
+      "arrow": true
+    },
+    {
+      "label": "Demand",
+      "arrow": true
+    },
+    {
+      "label": "Price",
+      "arrow": false
+    }
   ],
   "realWorldExample": {
     "company": "Crypto market",
@@ -65,7 +77,7 @@
     {
       "question": "Bitcoin has no cash flow, so it cannot be valued by discounting. What approach is usually used instead?",
       "options": [
-        "Working out the network's book value from the electricity cost already spent on mining",
+        "Working out the network's book value from the mining electricity cost",
         "Comparing it with other scarce assets and estimating the market it could take",
         "Using the profit multiples of the largest cryptocurrency exchanges",
         "Discounting the transaction fees the network collects to present value"

@@ -40,14 +40,14 @@
         "It falls by exactly the amount the cap rate fell",
         "It rises, because the cap rate is the denominator",
         "It is unchanged, because NOI is what sets the price",
-        "It falls, because a lower yield drags the price down"
+        "It falls, as a lower yield drags the price down"
       ],
       "explanation": "Value = NOI / cap rate, so the cap rate sits in the denominator and moves against the price: a lower rate raises the value. It does not fall by the same proportion the rate fell - the relationship is a division, not a subtraction - and NOI alone does not set the price, because the same income is worth different amounts at different required yields."
     },
     {
       "question": "Why is the cap rate on a downtown office usually lower than on a suburban warehouse?",
       "options": [
-        "Because a suburban warehouse always has higher NOI than an office",
+        "Because a suburban warehouse always has higher NOI",
         "Because cap rates are not applied to downtown property",
         "Because the risk is lower, so investors accept a lower yield",
         "Because the cap rate is worked out from the floor area"

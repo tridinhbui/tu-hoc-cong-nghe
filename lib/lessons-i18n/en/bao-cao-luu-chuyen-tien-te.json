@@ -12,10 +12,22 @@
   ],
   "explanation": "The two numbers differing is normal, but a gap of three times has to be explainable. There are only a few possible sources: depreciation and other non-cash items, changes in working capital, and one-off items. Depreciation is added back, which makes cash flow HIGHER than profit, so it cannot explain a shortfall in this direction. A shortfall almost always sits in working capital - receivables swelling because more was sold on credit, or inventory rising because goods are not moving. That is not yet fraud, but it is a question you have to answer before you trust the profit figure.",
   "diagram": [
-    { "label": "Net profit", "arrow": true },
-    { "label": "Add back depreciation and non-cash items", "arrow": true },
-    { "label": "Adjust for working capital", "arrow": true },
-    { "label": "Gives operating cash flow", "arrow": false }
+    {
+      "label": "Net profit",
+      "arrow": true
+    },
+    {
+      "label": "Add back depreciation and non-cash items",
+      "arrow": true
+    },
+    {
+      "label": "Adjust for working capital",
+      "arrow": true
+    },
+    {
+      "label": "Gives operating cash flow",
+      "arrow": false
+    }
   ],
   "realWorldExample": {
     "company": "A construction contractor",
@@ -36,7 +48,7 @@
       "question": "Why is depreciation added back when working from net profit to operating cash flow?",
       "options": [
         "Because depreciation is income, not an expense",
-        "Because depreciation is only a bookkeeping entry, always ignored",
+        "Because depreciation is only a bookkeeping entry",
         "Because it reduces profit without any cash going out",
         "To offset the cash spent buying the fixed assets"
       ],
@@ -45,7 +57,7 @@
     {
       "question": "Receivables rise by VND 50bn during the period. How does that affect operating cash flow?",
       "options": [
-        "+VND 50bn: receivables rose, so operating cash flow rose with them",
+        "+VND 50bn: receivables rose, so cash flow rose too",
         "+VND 25bn: only half the increase is counted",
         "No effect on operating cash flow this period",
         "−VND 50bn: the revenue is booked, the cash has not arrived"
@@ -65,7 +77,7 @@
     {
       "question": "What does negative financing cash flow usually mean?",
       "options": [
-        "The company is loss-making and is slowly draining the cash in its reserves",
+        "The company is loss-making and draining its cash reserves",
         "The company is repaying debt, buying back shares or paying dividends",
         "The company cannot raise any capital from outside investors",
         "The company is heading for bankruptcy within the short term"
@@ -105,7 +117,10 @@
       "type": "lead",
       "text": "The three sections of the cash flow statement and why they are kept apart - that is covered in the lesson on what a cash flow statement is. This one is about using it: working from net profit down to operating cash flow, then reading the gap between the two numbers."
     },
-    { "type": "heading", "text": "The four adjusting lines" },
+    {
+      "type": "heading",
+      "text": "The four adjusting lines"
+    },
     {
       "type": "list",
       "items": [
@@ -119,7 +134,10 @@
       "type": "paragraph",
       "text": "The two middle lines are where the gap usually sits. A growing business almost always has receivables and inventory swelling along with revenue, so cash runs a beat behind profit - that is normal. What is not normal is revenue standing still while those two keep rising."
     },
-    { "type": "heading", "text": "The cash-flow-to-profit ratio" },
+    {
+      "type": "heading",
+      "text": "The cash-flow-to-profit ratio"
+    },
     {
       "type": "list",
       "items": [

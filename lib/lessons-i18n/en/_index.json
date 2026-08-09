@@ -33,10 +33,20 @@
     "subtitle": "Draw the boundary correctly and you use AI without illusions.",
     "duration": "12 min"
   },
+  "ai-trong-tai-chinh-bat-dau-tu-dau": {
+    "title": "AI in Finance, Lesson 1: AI in finance - where do you start?",
+    "subtitle": "Understand what AI does for a finance learner, with no programming required.",
+    "duration": "12 min"
+  },
   "alpha-la-gi": {
     "title": "What is alpha?",
     "subtitle": "The excess return a fund manager generates over the market",
     "duration": "6 min"
+  },
+  "aml-kyc-la-gi": {
+    "title": "What AML and KYC are: the foundation of a compliance officer's work",
+    "subtitle": "Why a bank has to know exactly who its customer is before it accepts their money",
+    "duration": "9 min"
   },
   "annuity": {
     "title": "Annuity: level cash flows",
@@ -132,6 +142,11 @@
     "subtitle": "Housing development, industrial parks, property leasing and brokerage",
     "duration": "7 min"
   },
+  "behavioral-portfolio-management-checklist": {
+    "title": "Behavioral portfolio management: building a system against the portfolio manager's own biases",
+    "subtitle": "Checklists, pre-mortems and the structural rules professional fund managers use to protect decisions from emotion",
+    "duration": "8 min"
+  },
   "beta-la-gi": {
     "title": "What is Beta in finance?",
     "subtitle": "Measuring a stock's sensitivity to the broader market",
@@ -162,10 +177,20 @@
     "subtitle": "Supply and demand, macro, the network effect and market sentiment",
     "duration": "6 min"
   },
+  "black-scholes-hieu-cong-thuc-thay-vi-hoc-thuoc": {
+    "title": "Derivatives, lesson 2: Black-Scholes - understand the formula instead of memorising it",
+    "subtitle": "Five inputs, one idea about dynamic hedging, and the assumptions that make the model wrong in a crisis",
+    "duration": "13 min"
+  },
   "bo-3-bao-cao": {
     "title": "What makes up the three financial statements?",
     "subtitle": "Income Statement, Balance Sheet, Cash Flow Statement - three views of one business",
     "duration": "5 min"
+  },
+  "bo-bao-cao-quan-tri-hang-thang": {
+    "title": "Planning, lesson 6: the FP&A monthly rhythm - close, explain, and sit with the business",
+    "subtitle": "What goes into a management reporting pack, how to write the commentary, and why most of the value lies outside the numbers",
+    "duration": "11 min"
   },
   "burn-rate-runway": {
     "title": "Burn Rate and Runway",
@@ -292,6 +317,11 @@
     "subtitle": "Where each one ranks, the real cost of pre-sale proceeds, and why high leverage bites harder here than elsewhere",
     "duration": "10 min"
   },
+  "cau-truc-von-toi-uu-cho-doanh-nghiep": {
+    "title": "CFO & Operations 8: The optimal capital structure",
+    "subtitle": "How much debt is 'just enough' - not too little, not too much",
+    "duration": "7 min"
+  },
   "cfa-alt-chien-luoc-hedge-fund": {
     "title": "CFA Alternatives 6: The four hedge fund strategy groups and the risk particular to each",
     "subtitle": "Equity, event, relative value, macro - and why 'hedge fund' is not an asset class",
@@ -317,6 +347,11 @@
     "subtitle": "The fastest-growing asset group after the crisis, and why the banks gave up the field",
     "duration": "11 min"
   },
+  "cfa-alt-tai-nguyen-nong-lam-nghiep": {
+    "title": "CFA Alternatives 5: Farmland and timberland - two assets that both yield and appreciate",
+    "subtitle": "A compound source of return, the ability to defer the harvest, and why they correlate so little with equities",
+    "duration": "10 min"
+  },
   "cfa-economics-fx-capital-flows": {
     "title": "CFA Economics: FX markets & international capital flows",
     "subtitle": "What sets an exchange rate, and why capital moves between countries",
@@ -330,6 +365,16 @@
   "cfa-economics-ly-thuyet-doanh-nghiep-chi-phi": {
     "title": "CFA Economics: Theory of the firm - marginal cost & economies of scale",
     "subtitle": "Why a firm produces up to the point where marginal revenue equals marginal cost, not up to maximum output",
+    "duration": "8 min"
+  },
+  "cfa-economics-market-structures": {
+    "title": "CFA Economics: Market structures",
+    "subtitle": "From perfect competition to monopoly - market structure decides how much pricing power a firm has",
+    "duration": "7 min"
+  },
+  "cfa-economics-tang-truong-kinh-te-nang-suat": {
+    "title": "CFA Economics: Economic growth & productivity",
+    "subtitle": "Why, over the long run, only productivity makes a country richer",
     "duration": "8 min"
   },
   "cfa-ethics-case-chuyen-viec-va-khach-hang": {
@@ -367,10 +412,60 @@
     "subtitle": "Vetting the source, understanding the method, and when diligence counts as sufficient",
     "duration": "10 min"
   },
+  "cfa-ethics-gips-esg-greenwashing": {
+    "title": "CFA Ethics 13: GIPS extended - ESG ethics and the risk of greenwashing",
+    "subtitle": "When \"sustainable investing\" becomes a marketing device rather than a real commitment",
+    "duration": "8 min"
+  },
+  "cfa-ethics-gips-kiem-chung-va-composite": {
+    "title": "CFA Ethics 35: GIPS at the operating level - who may claim compliance, and what verification actually is",
+    "subtitle": "Compliance at firm level, the rules for building a composite, and the difference between verification and a performance examination",
+    "duration": "10 min"
+  },
+  "cfa-ethics-gips-standards": {
+    "title": "CFA Ethics 4: GIPS Standards - the rules for presenting investment performance",
+    "subtitle": "Why an advertised \"30% average annual return\" is almost always worth a second look",
+    "duration": "8 min"
+  },
+  "cfa-ethics-khung-ra-quyet-dinh-dao-duc": {
+    "title": "CFA Ethics 15: The ethical decision-making framework - the tool for when no Standard is obvious yet",
+    "subtitle": "The exam gives you a situation it has never shown before, not the name of a Standard - this framework is where you start",
+    "duration": "10 min"
+  },
+  "cfa-ethics-mosaic-theory": {
+    "title": "CFA Ethics 20: Mosaic theory - the line between excellent analysis and insider dealing",
+    "subtitle": "Why assembling many non-material pieces is lawful, while a single material one is not",
+    "duration": "11 min"
+  },
+  "cfa-ethics-niem-tin-trong-nganh-dau-tu": {
+    "title": "CFA Ethics 16: Why the investment industry depends on trust more than any other",
+    "subtitle": "The product is a promise about the future, and the buyer has almost no way to verify it",
+    "duration": "9 min"
+  },
   "cfa-ethics-quy-trinh-xu-ly-ky-luat": {
     "title": "CFA Ethics 42: What happens when a complaint is made - the CFA Institute disciplinary process",
     "subtitle": "From how matters surface to the sanctions, and why cooperating with an investigation is a duty in its own right",
     "duration": "9 min"
+  },
+  "cfa-ethics-standard-1-whistleblowing": {
+    "title": "CFA Ethics 11: Standard I(D) - Misconduct and what you owe when you spot wrongdoing",
+    "subtitle": "Staying silent in the face of wrongdoing is also a choice, and it carries ethical consequences",
+    "duration": "7 min"
+  },
+  "cfa-ethics-standard-1a-knowledge-of-the-law": {
+    "title": "CFA Ethics 17: Standard I(A) - when local law is looser than the Code of Ethics",
+    "subtitle": "The rule that picks the stricter side, and the duty to dissociate from a violation",
+    "duration": "10 min"
+  },
+  "cfa-ethics-standard-1b-doc-lap-khach-quan": {
+    "title": "CFA Ethics 18: Standard I(B) - where the pressure that bends analysis comes from",
+    "subtitle": "Gifts, issuer-paid research, and the pressure coming from the sell side itself",
+    "duration": "11 min"
+  },
+  "cfa-ethics-standard-1c-trinh-bay-sai-lech": {
+    "title": "CFA Ethics 19: Standard I(C) - plagiarism, attribution and AI-generated content",
+    "subtitle": "Misrepresentation does not need an intent to deceive before it becomes a violation",
+    "duration": "10 min"
   },
   "cfa-ethics-standard-1d-hanh-vi-ca-nhan": {
     "title": "CFA Ethics 41: Standard I(D) - when conduct outside work touches professional standing",
@@ -385,6 +480,21 @@
   "cfa-ethics-standard-2b-thao-tung-thi-truong": {
     "title": "CFA Ethics 21: Standard II(B) - two kinds of manipulation, and why intent is what decides",
     "subtitle": "Manipulation through trading and manipulation through information - the same act can be legitimate or not",
+    "duration": "10 min"
+  },
+  "cfa-ethics-standard-3-fiduciary-duty": {
+    "title": "CFA Ethics 10: Standard III - Duties to Clients and the fiduciary duty",
+    "subtitle": "Why \"put the client's interest above your own\" is easy to say and the hardest thing to apply",
+    "duration": "8 min"
+  },
+  "cfa-ethics-standard-3a-long-trung-thanh-than-trong": {
+    "title": "CFA Ethics 27: Standard III(A) - who the client is, and whose money soft dollars spend",
+    "subtitle": "Identifying the party you actually serve, and the limits of commissions traded for research",
+    "duration": "11 min"
+  },
+  "cfa-ethics-standard-3b-doi-xu-cong-bang": {
+    "title": "CFA Ethics 22: Standard III(B) - fair does not mean identical",
+    "subtitle": "Trade allocation, report distribution, and the right to different service levels for different fees",
     "duration": "10 min"
   },
   "chi-phi-vs-dong-tien-ra": {

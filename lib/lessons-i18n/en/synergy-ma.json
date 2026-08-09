@@ -12,10 +12,22 @@
   ],
   "explanation": "The premium over the market price goes straight to the seller's shareholders, so the buyer has only the synergy left to make it back. If the present value of the synergy is smaller than the premium already paid, value transfers from the buyer's shareholders to the seller's - the deal still completes, the business is still larger, and the buyer's shareholders are poorer. Combined revenue being larger is a given when you add two companies together and says nothing about value. A rise in earnings per share is not conclusive either, because it depends on whether the deal is paid in cash or in shares rather than on whether the deal is worth doing.",
   "diagram": [
-    { "label": "Market price of the target", "arrow": true },
-    { "label": "Add the premium of 20-40%", "arrow": true },
-    { "label": "Compare against the present value of the synergy", "arrow": true },
-    { "label": "Only synergy larger than that creates value", "arrow": false }
+    {
+      "label": "Market price of the target",
+      "arrow": true
+    },
+    {
+      "label": "Add the premium of 20-40%",
+      "arrow": true
+    },
+    {
+      "label": "Compare against the present value of the synergy",
+      "arrow": true
+    },
+    {
+      "label": "Only synergy larger than that creates value",
+      "arrow": false
+    }
   ],
   "realWorldExample": {
     "company": "A bank merger",
@@ -26,7 +38,7 @@
       "question": "How do cost synergy and revenue synergy differ in how certain they are?",
       "options": [
         "Cost synergy is the more certain of the two",
-        "Revenue synergy is more certain, it is easier to compute",
+        "Revenue synergy is easier to compute",
         "The two are equally certain",
         "It depends on the industry and its kind of synergy"
       ],
@@ -104,12 +116,18 @@
       "type": "lead",
       "text": "The two kinds of synergy, and why the revenue part has to be discounted hard - that is covered in the lesson on synergy in M&A. Here is the next question: where the number on the slide comes from, why it is almost always optimistic, and how to cut it back to something usable."
     },
-    { "type": "heading", "text": "The premium is the measuring stick" },
+    {
+      "type": "heading",
+      "text": "The premium is the measuring stick"
+    },
     {
       "type": "paragraph",
       "text": "A buyer usually pays 20-40% above the market price. That goes straight to the seller's shareholders, so the buyer has only synergy left to make it back. The neat rule: the present value of the synergy has to exceed the premium, otherwise the deal transfers value from the buyer's shareholders to the seller's. That is the right way to read the often-quoted figure that most mergers fall short of expectations - they do not collapse, they simply overpay."
     },
-    { "type": "heading", "text": "Three reasons the number is always optimistic" },
+    {
+      "type": "heading",
+      "text": "Three reasons the number is always optimistic"
+    },
     {
       "type": "list",
       "items": [
@@ -118,7 +136,10 @@
         "Integration always takes longer than planned - cultural differences, information systems to be joined, and customers who may leave while it happens"
       ]
     },
-    { "type": "heading", "text": "Five ways to cut the optimism back" },
+    {
+      "type": "heading",
+      "text": "Five ways to cut the optimism back"
+    },
     {
       "type": "list",
       "items": [
