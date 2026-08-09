@@ -21,6 +21,20 @@ import { readFileSync, readdirSync, existsSync } from "node:fs";
 
 const MARKER = /const quiz: QuizQuestion\[\]\s*=\s*/;
 
+/** Trang dựng quiz từ TỪ ĐIỂN thay vì từ một mảng literal.
+ *
+ *  Hai trang còn lại đã chuyển sang hình dạng này khi được dịch tại chỗ: chữ
+ *  (question/options/explanation) nằm ở
+ *  lib/i18n/dictionaries/sections/bespoke-lessons.ts, còn `correct` ở lại trong
+ *  trang dưới dạng `const QUIZ_CORRECT = [...]` - cố ý, vì một bản dịch sửa
+ *  được `correct` là một bản dịch sửa được đáp án.
+ *
+ *  Bộ đọc cũ chỉ biết mảng literal, nên nó báo "i is not defined" và ĐẾM hai
+ *  trang vào `skipped`. Đếm thì có, nhưng mười câu có chấm điểm đã rơi ra khỏi
+ *  mọi phép đo - đúng điểm mù mà chính file này ra đời để bịt. */
+const DICT_MARKER = /const QUIZ_CORRECT\s*=\s*(\[[^\]]*\])/;
+const DICT_FILE = "lib/i18n/dictionaries/sections/bespoke-lessons.ts";
+
 /** Cắt đúng mảng cân ngoặc bắt đầu tại `from`. */
 function sliceArray(src, from) {
   const start = src.indexOf("[", from);
@@ -36,6 +50,51 @@ function sliceArray(src, from) {
   return null;
 }
 
+/** Cắt đúng khối cân ngoặc nhọn bắt đầu tại `from`. */
+function sliceObject(src, from) {
+  const start = src.indexOf("{", from);
+  if (start < 0) return null;
+  let depth = 0;
+  for (let i = start; i < src.length; i++) {
+    if (src[i] === "{") depth++;
+    else if (src[i] === "}") {
+      depth--;
+      if (depth === 0) return src.slice(start, i + 1);
+    }
+  }
+  return null;
+}
+
+/** Chữ của quiz cho một slug, đọc từ phần TIẾNG VIỆT của từ điển.
+ *
+ *  Cắt hẹp thay vì eval cả từ điển: chỉ lấy mảng `quiz` trong khối của đúng
+ *  slug đó, và mảng ấy là literal thuần. Eval cả tệp sẽ vướng import và cast. */
+function readQuizCopy(root, slug) {
+  const file = `${root}/${DICT_FILE}`;
+  if (!existsSync(file)) return null;
+  const src = readFileSync(file, "utf8");
+  const viStart = src.indexOf("export const bespokeLessonsVi");
+  const enStart = src.indexOf("export const bespokeLessonsEn");
+  if (viStart < 0) return null;
+  // Chỉ tìm trong phần tiếng Việt: phần tiếng Anh có cùng khoá slug, và lấy
+  // nhầm nó sẽ đo bản dịch trong khi cổng này đo bản gốc.
+  const vi = src.slice(viStart, enStart > viStart ? enStart : undefined);
+  const key = vi.indexOf(`"${slug}": {`);
+  if (key < 0) return null;
+  const block = sliceObject(vi, key);
+  if (!block) return null;
+  const q = block.indexOf("quiz: [");
+  if (q < 0) return null;
+  const text = sliceArray(block, q);
+  if (!text) return null;
+  try {
+    const arr = eval(text);
+    return Array.isArray(arr) && arr.length ? arr : null;
+  } catch {
+    return null;
+  }
+}
+
 export function readHandAuthoredQuizzes(root = ".") {
   const dir = `${root}/app/bai-hoc`;
   const lessons = [];
@@ -49,8 +108,42 @@ export function readHandAuthoredQuizzes(root = ".") {
     if (existsSync(`${root}/lib/lessons-data/${slug}.json`)) continue;
 
     const src = readFileSync(page, "utf8");
-    const m = src.match(MARKER);
-    if (!m) continue;
+    // Hình dạng TỪ ĐIỂN xét TRƯỚC, và thứ tự đó là bắt buộc: hai trang ấy vẫn
+    // khai `const quiz: QuizQuestion[] =` nhưng vế phải là `c.quiz.map(...)`,
+    // nên MARKER vẫn khớp và sliceArray cắt trúng `QUIZ_CORRECT[i]` ở dưới -
+    // eval ra đúng lỗi "i is not defined" từng làm cả hai trang rơi ra khỏi
+    // phép đo. Sự hiện diện của QUIZ_CORRECT là dấu hiệu chắc chắn hơn.
+    const cm = src.match(DICT_MARKER);
+    const m = cm ? null : src.match(MARKER);
+    if (!m) {
+      if (!cm) continue;
+      let correct;
+      try {
+        correct = eval(cm[1]);
+      } catch (e) {
+        skipped.push({ slug, reason: `QUIZ_CORRECT: ${e.message.slice(0, 40)}` });
+        continue;
+      }
+      const copy = readQuizCopy(root, slug);
+      if (!copy) {
+        skipped.push({ slug, reason: "không đọc được quiz trong từ điển" });
+        continue;
+      }
+      if (copy.length !== correct.length) {
+        // Lệch độ dài nghĩa là `correct` đang trỏ vào mảng options của câu KHÁC.
+        skipped.push({
+          slug,
+          reason: `QUIZ_CORRECT ${correct.length} câu vs từ điển ${copy.length} câu`,
+        });
+        continue;
+      }
+      lessons.push({
+        slug,
+        page,
+        quiz: copy.map((q, i) => ({ ...q, correct: correct[i] })),
+      });
+      continue;
+    }
 
     // `QuizQuestion[]` cũng chứa một cặp ngoặc vuông; phải tìm từ sau dấu `=`,
     // nếu không sẽ cắt trúng nó và eval ra mảng rỗng. Bản đầu của phép đo này

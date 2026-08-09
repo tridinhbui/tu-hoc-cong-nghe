@@ -32,6 +32,12 @@ const eslintConfig = defineConfig([
     // above are relative to the repo root and never matched a subdirectory.
     "**/.next/**",
     "**/out/**",
+    // Script dùng một lần của các lần di trú nội dung tháng 7 - không ai import
+    // và chúng không chạy trong sản phẩm. Chúng đóng góp một phần trong 376
+    // cảnh báo, và một danh sách cảnh báo dài là danh sách người ta thôi đọc.
+    // KHÔNG xoá tệp: chúng là lịch sử của việc kho nội dung đã được dựng thế
+    // nào, và đó là quyết định của người sở hữu chúng, không phải của linter.
+    "scratch/**",
   ]),
 ]);
 

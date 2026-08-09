@@ -1,5 +1,6 @@
 import type { FinanceCareer } from "@/lib/finance-careers";
 import type { Locale } from "@/lib/i18n";
+import { overlayFor } from "@/lib/i18n/overlay";
 import { careersEn } from "./en";
 
 /**
@@ -61,8 +62,7 @@ function mergeArray(source: string[], translated: string[] | undefined): string[
 }
 
 export function mergeCareer(career: FinanceCareer, locale: Locale): FinanceCareer {
-  if (locale === "vi") return career;
-  const patch = BY_LOCALE[locale]?.[career.id];
+  const patch = overlayFor(BY_LOCALE, locale)?.[career.id];
   if (!patch) return career;
   return {
     ...career,

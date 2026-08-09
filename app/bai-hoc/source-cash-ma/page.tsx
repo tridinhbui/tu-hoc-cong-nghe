@@ -109,7 +109,7 @@ function FundingStructure({ c }: { c: SourceCashLessonCopy }) {
 // `correct` đọc từ đây, KHÔNG từ từ điển: nó là chỉ số vào mảng options và
 // LessonPageLayout ghi `quiz_score` xuống Supabase. Một bản dịch đổi được nó là
 // một bản dịch đổi được đáp án.
-const QUIZ_CORRECT = [1, 1, 1, 1, 1];
+const QUIZ_CORRECT = [3, 0, 2, 1, 0];
 
 export default function Page() {
   const { t } = useI18n();

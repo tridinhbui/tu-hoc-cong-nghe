@@ -1080,8 +1080,27 @@ for (const lesson of corpus) {
 // nên đo chúng bằng thước của dữ liệu sẽ ra kết quả vô nghĩa.
 const handAuthored = readHandAuthoredQuizzes(path.join(__dirname, ".."));
 const handAuthoredTooFew = [];
+/** Trang có MỌI đáp án đúng ở cùng một vị trí.
+ *
+ *  Kho dữ liệu không cần cổng này: lib/lesson-quiz-balance.js đảo lại thứ tự
+ *  phương án lúc sinh dữ liệu, nên mẹo vị trí bị dọn cơ học. Nhưng nó chạy trên
+ *  lib/lessons-data, và những trang này KHÔNG đi qua đó - chúng dựng quiz trong
+ *  chính trang, nên chúng vượt qua phép đảo ấy mà không ai để ý.
+ *
+ *  Lúc thêm cổng này, cả hai trang còn lại đều khai QUIZ_CORRECT = [1,1,1,1,1]:
+ *  mười câu CÓ CHẤM ĐIỂM, đáp án đúng ở vị trí 1 cả mười. Ai luôn chọn phương
+ *  án thứ hai được 10/10 mà không cần biết gì về nợ hay M&A.
+ *
+ *  Ngưỡng là "mọi câu cùng một vị trí", không phải một tỷ lệ: với 5 câu một
+ *  trang thì mọi tỷ lệ đều nhiễu, còn 5/5 cùng vị trí thì không phải ngẫu
+ *  nhiên - đó là dấu hiệu của việc gõ tay theo thói quen. */
+const handAuthoredSamePosition = [];
 for (const { slug, quiz } of handAuthored.lessons) {
   if (quiz.length < MIN_QUIZ_COUNT) handAuthoredTooFew.push({ slug, count: quiz.length });
+  const positions = new Set(quiz.map((q) => q.correct));
+  if (quiz.length >= MIN_QUIZ_COUNT && positions.size === 1) {
+    handAuthoredSamePosition.push({ slug, count: quiz.length, index: [...positions][0] });
+  }
   const stats = quizStats.handAuthored;
   for (const question of quiz) {
     const options = question.options ?? [];
@@ -1609,6 +1628,19 @@ if (handAuthoredTooFew.length > 0 && !process.argv.includes("--warn-only")) {
       handAuthoredTooFew.map((x) => `  ${x.slug}: ${x.count} câu`).join("\n") +
       `\n\n  Quiz của chúng nằm thẳng trong app/bai-hoc/<slug>/page.tsx và VẪN được\n` +
       `  chấm vào avg_quiz_score, nên chúng chịu cùng ngưỡng với mọi bài khác.`
+  );
+  process.exit(1);
+}
+
+if (handAuthoredSamePosition.length > 0 && !process.argv.includes("--warn-only")) {
+  console.error(
+    `\n${handAuthoredSamePosition.length} trang bài học viết tay có MỌI đáp án ở cùng một vị trí:\n` +
+      handAuthoredSamePosition
+        .map((x) => `  ${x.slug}: ${x.count}/${x.count} câu đáp án ở vị trí ${x.index}`)
+        .join("\n") +
+      `\n\n  Chọn mãi một vị trí là đúng hết mà không cần biết gì. Kho dữ liệu được\n` +
+      `  lib/lesson-quiz-balance.js đảo thứ tự tự động, nhưng những trang này không\n` +
+      `  đi qua đó - phải rải tay: đổi thứ tự options rồi sửa QUIZ_CORRECT cho khớp.`
   );
   process.exit(1);
 }

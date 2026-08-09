@@ -1,5 +1,6 @@
 import type { Locale } from "@/lib/i18n";
 import type { CfaFormulaItem } from "@/lib/cfa-formulas-data";
+import { mergePositional, overlayFor } from "@/lib/i18n/overlay";
 import { cfaFormulasEn } from "./en";
 
 /**
@@ -56,18 +57,19 @@ const BY_LOCALE: Record<string, Record<string, FormulaTranslation>> = {
 };
 
 export function mergeFormula(item: CfaFormulaItem, locale: Locale): CfaFormulaItem {
-  const patch = locale === "vi" ? null : BY_LOCALE[locale]?.[item.id];
+  const patch = overlayFor(BY_LOCALE, locale)?.[item.id];
   if (!patch) return item;
 
   // Mảng chỉ được dùng khi cùng độ dài với bản gốc - xem chú thích đầu tệp.
+  // mergePositional giữ bộ chắn độ dài ở đúng một chỗ - xem lib/i18n/overlay.ts.
   const variables =
-    patch.variables && item.variables && patch.variables.length === item.variables.length
-      ? item.variables.map((v, i) => ({
-          ...v,
-          name: patch.variables![i].name,
-          description: patch.variables![i].description ?? v.description,
-        }))
-      : item.variables;
+    (item.variables &&
+      mergePositional(item.variables, patch.variables, (v, t) => ({
+        ...v,
+        name: t.name,
+        description: t.description ?? v.description,
+      }))) ??
+    item.variables;
 
   return {
     ...item,
