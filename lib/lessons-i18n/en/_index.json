@@ -112,6 +112,11 @@
     "subtitle": "The second-largest deduction on your payslip, and what you get for it",
     "duration": "8 min"
   },
+  "bien-so-r-twr-mwrr": {
+    "title": "The variable r: TWR vs MWRR in valuation and investing",
+    "subtitle": "IRR, discount rate and YTM are all r - and why fund performance needs both the TWR and the MWRR lens",
+    "duration": "8 min"
+  },
   "bieu-thue-luy-tien-tung-phan-5-bac": {
     "title": "Tax Track, Lesson 2: The progressive tax bands - what 'moving up a band' really means",
     "subtitle": "Why a pay rise never leaves you with less money",
@@ -189,6 +194,11 @@
     "title": "Mini case - Valuing a company with P/E and a simple DCF",
     "subtitle": "Practical application: combining relative and absolute methods to make a decision",
     "duration": "9 min"
+  },
+  "case-dinh-gia-tong-hop-nhieu-phuong-phap": {
+    "title": "IB & Analysis, Lesson 5: A combined case - valuing one company by several methods",
+    "subtitle": "DCF, comps and precedent transactions give three different numbers - so which do you believe?",
+    "duration": "8 min"
   },
   "case-doc-duong-cong-loi-suat": {
     "title": "Mini case - reading the yield curve",
@@ -348,6 +358,11 @@
     "title": "Cost of Equity",
     "subtitle": "The return shareholders expect - no interest paid, but not free",
     "duration": "7 min"
+  },
+  "credit-analysis-co-ban-cho-nha-phan-tich": {
+    "title": "IB & Analysis, Lesson 4: Credit analysis basics for the credit analyst",
+    "subtitle": "Assessing the ability to repay is an entirely different job from assessing a share's growth potential",
+    "duration": "8 min"
   },
   "credit-rating": {
     "title": "Credit Rating",
@@ -884,6 +899,11 @@
     "subtitle": "The total market value of all a company's shares outstanding",
     "duration": "5 min"
   },
+  "market-fair-value": {
+    "title": "Deep-dive case: Market Fair Value",
+    "subtitle": "The P/E multiple and growth companies",
+    "duration": "6 min"
+  },
   "modern-portfolio-theory-la-gi": {
     "title": "What is Modern Portfolio Theory?",
     "subtitle": "Harry Markowitz and turning optimal portfolio construction into math",
@@ -1186,6 +1206,11 @@
     "title": "ROIC: Return on Invested Capital",
     "subtitle": "The best metric for judging the quality of a business",
     "duration": "7 min"
+  },
+  "roic-phan-2": {
+    "title": "Deep-dive case: ROIC Part 2 - the link to valuation",
+    "subtitle": "The core driver behind free cash flow and enterprise value",
+    "duration": "6 min"
   },
   "roic": {
     "title": "Deep-dive case: ROIC",

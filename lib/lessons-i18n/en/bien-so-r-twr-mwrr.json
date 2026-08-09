@@ -1,0 +1,162 @@
+{
+  "slug": "bien-so-r-twr-mwrr",
+  "title": "The variable r: TWR vs MWRR in valuation and investing",
+  "subtitle": "IRR, discount rate and YTM are all r - and why fund performance needs both the TWR and the MWRR lens",
+  "duration": "8 min",
+  "openingQuestion": "What is the most important difference between TWR and MWRR?",
+  "openingOptions": [
+    "TWR measures portfolio performance; MWRR is affected by the timing of cash flows",
+    "MWRR is always higher than TWR because it counts when money goes in and out",
+    "TWR applies only to bonds",
+    "They are the same thing"
+  ],
+  "explanation": "There are two ways to measure return and they answer two different questions. The time-weighted return strips out the effect of money being paid in and taken out, so it measures the skill of whoever manages the portfolio. The money-weighted return counts the timing of those flows, so it measures what one particular investor actually experienced. The gap between the two figures is the price of putting money in while the market is euphoric and taking it out in a panic.",
+  "diagram": [
+    { "label": "Time-weighted return", "arrow": true },
+    { "label": "Money-weighted return", "arrow": true },
+    { "label": "Cash in and out", "arrow": true },
+    { "label": "Read the performance correctly", "arrow": false }
+  ],
+  "realWorldExample": {
+    "company": "Investment funds",
+    "description": "A fund with a handsome TWR but a poor MWRR may simply be one whose investors put their money in at the wrong moment."
+  },
+  "quiz": [
+    {
+      "question": "When is MWRR more easily distorted than TWR?",
+      "options": [
+        "When the portfolio holds only one single asset class",
+        "When there are many uneven contributions and withdrawals",
+        "When the measurement period runs longer than ten years",
+        "When the market moves sideways for the whole period"
+      ],
+      "explanation": "MWRR is sensitive to when money is paid in and taken out, so it can differ from TWR by a wide margin. The number of asset classes, the length of the window and the direction of the market all change the return itself, but none of them opens a gap between the two measures - only the cash flows do."
+    },
+    {
+      "question": "A fund publishes an impressive TWR of 15% a year, but most of its investors added the bulk of their money just before a sharp market fall. What will the actual return experience (MWRR) of most of those investors be?",
+      "options": [
+        "Usually below 15%, because the large capital arrived just before the fall",
+        "Still exactly 15%, because that is the performance of the fund itself",
+        "Usually above 15%, because the new capital compounds on top",
+        "They cannot be compared at all, because the two figures measure different things"
+      ],
+      "explanation": "This is the classic gap between TWR and MWRR: TWR measures the performance of the strategy regardless of money moving in and out, while MWRR - weighted by the timing and the size of each flow - reflects what the investor actually lived through. If most of the capital went in just as the market was about to fall, the average investor's MWRR ends up below the TWR the fund published."
+    },
+    {
+      "question": "A fund publishes an impressive TWR of 15% a year, but one particular investor has an MWRR of only a few percent. What is the most plausible cause?",
+      "options": [
+        "That investor picked the wrong class of fund unit to buy",
+        "The fund miscalculated the performance figure it published to the market",
+        "The fund's management fee is higher than the level it disclosed",
+        "They put most of their capital in just before the market fell"
+      ],
+      "explanation": "This is what MWRR is: it is weighted by the timing of the cash flows, so an unlucky moment of buying in can drag the lived experience far below the performance the fund publishes. A wrong unit class or an undisclosed fee would move the figure by a fraction of a percent, not from 15% down to a few percent."
+    },
+    {
+      "question": "Why do funds usually publish TWR rather than MWRR when they report on their management?",
+      "options": [
+        "Because TWR is not affected by paying-in and taking-out decisions",
+        "Because TWR always gives the higher number, which makes the fund easier to sell",
+        "Because TWR is the only measure the law permits them to publish",
+        "Because TWR is far easier to calculate than MWRR ever is"
+      ],
+      "explanation": "A fund manager has no control over when an investor pays money in or takes it out, so judging their skill on TWR is the fairer test - MWRR is the better fit for measuring one person's experience. TWR is not systematically higher either: an investor who happened to buy the dips will have an MWRR above the fund's published TWR."
+    },
+    {
+      "question": "When will the time-weighted and money-weighted returns of the same portfolio be equal?",
+      "options": [
+        "When the portfolio returns a positive figure in every single sub-period",
+        "When there are no contributions or withdrawals during the period",
+        "When contributions are made steadily every month",
+        "When the measurement window runs longer than five years, so the gap averages out"
+      ],
+      "explanation": "The two measures differ only because money moving in and out changes how much capital is exposed to each stretch of return. With no cash flows there is nothing left to create a difference - and that is also why the time-weighted return is the one used to score a fund manager. Steady monthly contributions do not fix it either: they still weight the later periods more heavily."
+    }
+  ],
+  "keyTakeaways": [
+    "TWR judges the strategy; MWRR judges what the real money experienced",
+    "The timing of cash flows can push MWRR a long way from TWR",
+    "Fund performance should be read through both lenses"
+  ],
+  "practicePrompt": {
+    "question": "What is the core difference between the Time-Weighted Rate of Return (TWR) and the Money-Weighted Rate of Return (MWRR/IRR) when assessing fund performance?",
+    "options": [
+      "TWR strips out the timing of cash flows; MWRR does not",
+      "TWR is always exactly equal to MWRR, in every case",
+      "MWRR only applies to investments in government bonds",
+      "TWR cannot be worked out on a computer"
+    ],
+    "explanation": "TWR (Time-Weighted Rate of Return) measures the fund manager's stock-picking skill accurately. MWRR (Money-Weighted Rate of Return) depends on whether the investor added money right at the top or pulled it out right at the bottom."
+  },
+  "summary": {
+    "keyIdea": "TWR judges the strategy; MWRR judges what the real money experienced",
+    "commonMistake": "Easy to miss: the timing of cash flows can push MWRR a long way from TWR",
+    "action": "Fund performance should be read through both lenses"
+  },
+  "application": {
+    "title": "In practice: the variable r, TWR vs MWRR",
+    "message": "What is the core difference between the Time-Weighted Rate of Return (TWR) and the Money-Weighted Rate of Return (MWRR/IRR) when assessing fund performance?",
+    "secondary": "Getting this principle solid lifts your professional financial analysis."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A fund publishes an impressive 15% a year - but is that the return most of the investors in it actually lived through? The answer depends on which measure you are using."
+    },
+    {
+      "type": "heading",
+      "text": "TWR measures the strategy, MWRR measures the real experience"
+    },
+    {
+      "type": "paragraph",
+      "text": "Time-Weighted Return (TWR) measures the performance of the investment strategy, unaffected by when money moves in or out. Money-Weighted Return (MWRR) is weighted by the timing and the size of each flow, so it reflects what the investor actually experienced - if most of the capital went in just as the market was about to fall, the average investor's MWRR will be well below the TWR the fund published."
+    },
+    {
+      "type": "list",
+      "items": [
+        "TWR measures the performance of the strategy; MWRR measures the return an investor really got",
+        "MWRR is more easily distorted when there are many uneven flows in and out",
+        "A fund with a handsome TWR can still leave most of its investors with a poor MWRR if they bought in at the wrong time"
+      ]
+    },
+    {
+      "type": "conceptTable",
+      "title": "Two measures, two different questions",
+      "concepts": [
+        {
+          "vi": "Hiệu suất theo thời gian",
+          "en": "TWR - Time-Weighted Return",
+          "def": "Removes the effect of the timing and size of cash flows entirely, measuring the performance of the strategy or the fund manager itself."
+        },
+        {
+          "vi": "Hiệu suất theo dòng tiền",
+          "en": "MWRR - Money-Weighted Return",
+          "def": "Weighted by the timing and size of each payment in or out, reflecting the return one particular investor actually received."
+        }
+      ]
+    },
+    {
+      "type": "formula",
+      "title": "An example of why the two can diverge so far",
+      "equation": "MWRR = the rate that solves the equation so the present value of every cash flow in and out comes to zero",
+      "example": {
+        "title": "An investor adds money just as the market is about to fall",
+        "calculation": "A fund with TWR of 15% a year over 2 years; the investor puts most of their capital in right before the market falls 20%",
+        "result": "That investor's own MWRR may be only a few percent, or negative",
+        "explanation": "The fund's strategy itself was still good (TWR 15%) - the problem was when the investor paid in, not how the fund was managed. This is why funds publish TWR, which judges the manager fairly, while each investor's real experience measured by MWRR can be very different."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Why both measures are needed, and neither is 'more correct'",
+      "text": "TWR is the fair way to assess a fund manager's skill, because it is not affected by the paying-in and taking-out decisions of individual investors - decisions the manager does not control. MWRR is honest about the individual experience, telling you exactly what that investor earned on the money they actually committed. Reading a fund performance report without distinguishing the two easily leads to the wrong expectations."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The published 'fund performance' is not always 'the performance you actually receive'.",
+        "When you pay in and take out matters as much as picking the right fund."
+      ]
+    }
+  ]
+}
