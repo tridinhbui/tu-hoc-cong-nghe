@@ -1,21 +1,28 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import Link from "next/link";
 import { Search, Printer, Bookmark, Sparkles, Filter, Calculator } from "lucide-react";
 import { toast } from "sonner";
 import { CFA_FORMULAS_DATA, type CfaFormulaItem } from "@/lib/cfa-formulas-data";
+import { mergeFormulas } from "@/lib/cfa-formulas-i18n";
 import { CFA_LEVEL_1_SUBJECTS } from "@/lib/cfa-track";
 import FormulaBlock from "@/components/FormulaBlock";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 
 export default function CfaFormulaCheatSheet() {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const [selectedSubject, setSelectedSubject] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState("");
 
-  const filteredFormulas = CFA_FORMULAS_DATA.filter((item) => {
+  // Hợp nhất TRƯỚC khi lọc, không phải lúc vẽ - cùng lý do đã ghi ở
+  // FrmFormulaCheatSheet: ô tìm kiếm so khớp `item.title` và `variables[].name`,
+  // nên nếu chỉ dịch ở bước vẽ thì người đọc tiếng Anh gõ "Sharpe" vẫn phải
+  // trúng chữ tiếng Việt mới ra kết quả.
+  const localized = useMemo(() => mergeFormulas(CFA_FORMULAS_DATA, locale), [locale]);
+
+  const filteredFormulas = localized.filter((item) => {
     const matchesSubject = selectedSubject === "all" || item.subjectId === selectedSubject;
     const matchesSearch =
       item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
