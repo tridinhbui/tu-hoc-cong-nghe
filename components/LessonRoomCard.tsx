@@ -4,6 +4,7 @@ import Link from "next/link";
 import { linkForLesson, roomHref } from "@/lib/lesson-room-links";
 import { civicRoomsOf } from "@/components/career-district/district-space";
 import { useI18n } from "@/lib/i18n/context";
+import { mergeLessonRoomLink } from "@/lib/lesson-room-links-i18n";
 import { format } from "@/lib/i18n";
 
 /** Đường dẫn từ một bài học sang căn phòng 3D dạy đúng điều đó.
@@ -20,8 +21,11 @@ import { format } from "@/lib/i18n";
  *  Bài nào không có trong bảng thì không dựng gì cả - đa số bài không có, và
  *  gắn một cái nút vào mọi bài sẽ khiến nó thành thứ ai cũng lướt qua. */
 export default function LessonRoomCard({ slug }: { slug: string }) {
-  const { t } = useI18n();
-  const link = linkForLesson(slug);
+  const { t, locale } = useI18n();
+  const raw = linkForLesson(slug);
+  // Chữ trên nút nằm ngoài từ điển UI - xem lib/lesson-room-links-i18n. `room`
+  // không đi qua lớp phủ nên nút vẫn dẫn đúng phòng ở mọi ngôn ngữ.
+  const link = raw ? mergeLessonRoomLink(slug, raw, locale) : raw;
   if (!link) return null;
 
   // Màu nhấn lấy từ chính căn phòng, không gõ lại: tấm thẻ và cánh cửa phải
