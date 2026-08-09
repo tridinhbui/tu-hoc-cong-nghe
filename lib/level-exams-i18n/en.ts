@@ -1804,4 +1804,454 @@ export const LEVEL_EXAMS_EN: LevelExamTranslations = {
       },
     },
   },
+  10: {
+    title: "Legend Exam - Level 10: Investing Legend",
+    questions: {
+      l10_q1: {
+        question: "Beyond the market factor, which two factors does the Fama-French three-factor model add?",
+        options: [
+          "Company size and valuation against book value",
+          "Expected inflation and exchange-rate volatility",
+          "The world crude oil price and the international gold price",
+          "The dividend yield and the prevailing policy rate",
+        ],
+        explanation:
+          "Fama-French adds a size factor and a value factor to the market risk premium of the original single-factor model.",
+      },
+      l10_q2: {
+        question: "A credit default swap works like which product?",
+        options: [
+          "An insurance contract against a bond defaulting",
+          "A mortgage secured on property you already own",
+          "Preferred shares paying a fixed annual dividend",
+          "A term deposit at a commercial bank",
+        ],
+        explanation:
+          "The buyer pays a periodic fee and is compensated if the issuer defaults. Unlike insurance, the buyer does not need to own the bond at all.",
+      },
+      l10_q3: {
+        question: "What characterises a black swan event, in Nassim Taleb's sense?",
+        options: [
+          "Very rare, enormous impact, and only sounds reasonable after it happened",
+          "Predictable precisely, on a regular repeating cycle",
+          "Occurring only in emerging and developing economies",
+          "Causing violent price moves without creating real financial risk",
+        ],
+        explanation:
+          "The third element is the sharp one: after the event, everyone can build a story that makes it look inevitable, and that story hides the fact that nobody saw it coming.",
+      },
+      l10_q4: {
+        question: "Which set of portfolios does the Markowitz efficient frontier represent?",
+        options: [
+          "Those with the highest return at each defined level of risk",
+          "Those allocated entirely to the highest-risk equities",
+          "Those holding only cash and other risk-free assets",
+          "Those with equal weights across every asset class",
+        ],
+        explanation:
+          "Every portfolio below the frontier is dominated: there is always another offering a higher return at the same level of risk.",
+      },
+      l10_q5: {
+        question: "What is a currency carry trade?",
+        options: [
+          "Borrowing a low-rate currency to invest in a high-rate one",
+          "Trading physical gold between markets in different countries",
+          "Borrowing short-term to invest in rental property",
+          "Sending remittances home through official banking channels",
+        ],
+        explanation:
+          "The profit comes from the rate differential and the risk sits in the exchange rate: one currency move can wipe out years of accumulated carry.",
+      },
+      l10_q6: {
+        question: "How does the Treynor ratio's denominator differ from Sharpe's?",
+        options: [
+          "It uses beta instead of the portfolio's standard deviation",
+          "It uses the portfolio's revenue instead of its profit",
+          "It removes risk from the calculation entirely",
+          "It counts only the dividends received in the period",
+        ],
+        explanation:
+          "Sharpe measures against total risk, Treynor only against systematic risk - which makes Treynor the right one when the portfolio is part of a larger whole.",
+      },
+      l10_q7: {
+        question: "What does bearish RSI divergence warn of?",
+        options: [
+          "Price is making new highs while the momentum behind it fades",
+          "Price is about to enter a stronger, more decisive rally",
+          "The current uptrend is being confirmed and will run for a long time",
+          "The market will trade sideways in a narrow range for a long stretch",
+        ],
+        explanation:
+          "Divergence is a warning, not an entry signal: momentum can fade for a long time before the price actually turns.",
+      },
+      l10_q8: {
+        question: "How does the Fama-French three-factor model challenge CAPM?",
+        options: [
+          "Beta alone does not explain the return differences between stocks",
+          "The risk-free rate does not exist in practice, so the model is meaningless",
+          "Investors in practice pay no attention to risk when deciding",
+          "Markets are always efficient, so every pricing model gives the same answer",
+        ],
+        explanation:
+          "Empirical data shows small-cap and value stocks return more than beta predicts, which means more factors are needed.",
+      },
+      l10_q9: {
+        question: "Where does a portfolio's liquidity risk show up most clearly?",
+        options: [
+          "The cost and time it takes to exit a position when you must sell fast",
+          "The daily price volatility of the assets in the portfolio",
+          "The cash weight the portfolio holds at each month end",
+          "How many different assets the portfolio is spread across",
+        ],
+        explanation:
+          "An asset can be marked at a very high value and still be unsellable at that price, and the gap only reveals itself exactly when markets are tight.",
+      },
+      l10_q10: {
+        question: "Why is the geometric average return lower than the arithmetic average?",
+        options: [
+          "Because volatility erodes accumulated value across consecutive periods",
+          "Because the geometric average already deducts trading costs",
+          "Because the arithmetic average counts dividends and the geometric does not",
+          "Because the geometric average only applies to periods with positive returns",
+        ],
+        explanation:
+          "Losing 50% then gaining 50% averages arithmetically to zero, while you are actually down 25%. The more volatile the series, the wider the gap between the two figures.",
+      },
+      l10_q11: {
+        question: "What characterises a protective put hedging strategy?",
+        options: [
+          "It caps the maximum loss but the premium must be paid up front",
+          "It removes all risk at no cost whatsoever",
+          "It raises profit when the market rises, through the option's leverage",
+          "It transfers all risk to the seller without capping the upside",
+        ],
+        explanation:
+          "This is portfolio insurance: the premium is the insurance cost, and it drags on returns through every stretch in which the market does not fall.",
+      },
+      l10_q12: {
+        question: "How does survivorship bias affect fund performance statistics?",
+        options: [
+          "It flatters the average, because the poor funds have disappeared",
+          "It worsens the average, because good funds tend to close earlier",
+          "No effect, as long as the sample contains enough funds",
+          "It only affects venture funds, not ordinary open-ended funds",
+        ],
+        explanation:
+          "Funds that perform badly are closed or merged away and leave the database, so the remaining sample is only the survivors - the difference is often over a percentage point a year.",
+      },
+      l10_q13: {
+        question: "What is the largest hidden trading cost on a large order?",
+        options: [
+          "Market impact: your own order pushing the price against you",
+          "The brokerage commission charged on each fill",
+          "The tax owed on the capital gain when you sell",
+          "The custody fee charged on the value of assets held",
+        ],
+        explanation:
+          "Commissions and tax both appear on the statement. Market impact appears nowhere, and for a large fund it usually exceeds both.",
+      },
+      l10_q14: {
+        question: "Why can rebalancing a portfolio produce additional return?",
+        options: [
+          "Because it forces you to trim what has risen and add to what has fallen",
+          "Because it lowers the total trading cost incurred over the year",
+          "Because it keeps the portfolio closely tracking the chosen benchmark",
+          "Because it lets the investor avoid tax on realised capital gains",
+        ],
+        explanation:
+          "The effect only appears when assets tend to revert to a mean. For assets that trend persistently, rebalancing reduces returns instead.",
+      },
+      l10_q15: {
+        question: "In factor investing, the quality factor is usually measured by which group of metrics?",
+        options: [
+          "Stable profitability, low leverage and low earnings volatility",
+          "How far the share price has risen over the last twelve months",
+          "Market capitalisation against the median of the whole exchange",
+          "Trading volume against the number of shares outstanding",
+        ],
+        explanation:
+          "The quality factor captures businesses with durable foundations: high and stable ROE, low debt, earnings that do not swing. The second option is momentum, the third is size.",
+      },
+      l10_q16: {
+        question: "Why is a strategy built on historical data prone to data mining?",
+        options: [
+          "Because testing enough rules on one dataset is certain to find one that fits by chance",
+          "Because historical market data may not legally be used commercially",
+          "Because the longer the data, the more statistical reliability decays exponentially",
+          "Because exchanges only keep historical data for a maximum of five years",
+        ],
+        explanation:
+          "This is the multiple-comparisons problem: test thousands of rules against one price series and a few will look excellent purely by luck. Validating out of sample is the minimum defence.",
+      },
+      l10_q17: {
+        question: "What does a portfolio's tail risk refer to?",
+        options: [
+          "The chance of an extreme loss at low probability, far beyond the normal distribution",
+          "The risk of the portfolio being liquidated in the last sessions of the year",
+          "The return lost to trading costs on small odd-lot orders",
+          "The risk of the fund manager leaving at the end of the evaluation period",
+        ],
+        explanation:
+          "Financial returns have fatter tails than the normal distribution, so severe crashes happen more often than the model predicts. This is the inherent weakness of VaR built on a normality assumption.",
+      },
+      l10_q18: {
+        question: "How is the Calmar ratio calculated?",
+        options: [
+          "Average annual return divided by the portfolio's maximum drawdown",
+          "Excess return divided by the standard deviation of negative returns",
+          "Return against the benchmark divided by tracking error",
+          "Portfolio return divided by beta against the broad market",
+        ],
+        explanation:
+          "Calmar sets return against the worst pain the investor had to sit through. It fits when maximum drawdown, not standard deviation, is what makes people quit.",
+      },
+      l10_q19: {
+        question: "Why does even a small management fee matter so much to long-run results?",
+        options: [
+          "Because the slice taken each year no longer compounds afterwards",
+          "Because management fees are charged progressively on the investor's assets",
+          "Because the tax authority treats management fees as taxable income",
+          "Because management fees always double every ten years of holding",
+        ],
+        explanation:
+          "One percent a year sounds small, but over thirty years it eats roughly a quarter of the final value - because every dong taken in fees also takes away all the compounding that dong would have produced.",
+      },
+      l10_q20: {
+        question: "How does anchoring bias show up in investment decisions?",
+        options: [
+          "Clinging to an initial reference number, such as your purchase price",
+          "Seeking only information that supports a view you already hold",
+          "Overrating the probability of an event that has been all over the news",
+          "Selling winners too early and holding losers far too long",
+        ],
+        explanation:
+          "Anchoring turns your purchase price into the yardstick, even though the market does not care what you paid. The other three are confirmation bias, availability bias and loss aversion.",
+      },
+    },
+  },
+  11: {
+    title: "Hedge Fund Manager Exam (Level 11)",
+    questions: {
+      l11_q1: {
+        question: "How does a market-neutral strategy keep the portfolio positioned?",
+        options: [
+          "Balancing long and short positions so portfolio beta sits near zero",
+          "Holding only long positions with the fund's entire capital",
+          "Trading only derivatives on gold and precious metals",
+          "Holding everything in cash and opening no positions at all",
+        ],
+        explanation:
+          "Cancelling beta leaves profit coming only from the spread between the longs and the shorts - from selection skill, not from market direction.",
+      },
+      l11_q2: {
+        question: "How does the Black-Litterman model improve on modern portfolio theory?",
+        options: [
+          "It blends the market's equilibrium allocation with the manager's own views",
+          "It removes risk from the optimisation problem entirely",
+          "It applies only to portfolios of cryptocurrencies",
+          "It always allocates everything to long-dated government bonds",
+        ],
+        explanation:
+          "Pure Markowitz is hypersensitive to the expected returns you feed it and spits out extreme weights. Anchoring on the market equilibrium makes the result far more stable.",
+      },
+      l11_q3: {
+        question: "What is central bank yield curve control?",
+        options: [
+          "Buying and selling bonds to pin a target maturity's yield at a set level",
+          "Raising property taxes to cool the real estate market",
+          "Banning trading in bank stocks during volatile periods",
+          "Fixing the domestic gold price at a level the state announces",
+        ],
+        explanation:
+          "Unlike quantitative easing, which fixes the quantity purchased, yield curve control fixes the price and buys however much the market demands.",
+      },
+      l11_q4: {
+        question: "What does a positive Jensen's alpha say about a fund manager?",
+        options: [
+          "The fund returned more than its systematic risk can explain",
+          "The fund is losing money against its benchmark index",
+          "The fund is using leverage beyond its mandate",
+          "The fund charges investors no management fee at all",
+        ],
+        explanation:
+          "Alpha is what remains after subtracting the return that would have come from simply accepting market risk, which makes it a genuine measure of skill.",
+      },
+      l11_q5: {
+        question: "What advantage does high-frequency trading exploit?",
+        options: [
+          "Execution speed in microseconds, and automated algorithms",
+          "Deep fundamental analysis of a company over many years",
+          "Reading and synthesising the daily financial press",
+          "Hand-drawing and analysing candlestick patterns on charts",
+        ],
+        explanation:
+          "The edge is infrastructure, not insight: servers colocated at the exchange, dedicated lines, and algorithms reacting before a human can even see the price.",
+      },
+      l11_q6: {
+        question: "What does a global macro strategy focus on?",
+        options: [
+          "Forecasting global macro shifts and trading them across asset classes",
+          "Buying only domestic retail companies' shares",
+          "Analysing one single company's financial statements very deeply",
+          "Short-term trading of very low-priced stocks",
+        ],
+        explanation:
+          "Rates, currencies, commodities and politics are all variables, and the fund expresses its view through whichever instrument reflects it most cheaply.",
+      },
+      l11_q7: {
+        question: "What does maximum drawdown measure?",
+        options: [
+          "The deepest peak-to-trough fall over a period",
+          "The highest return the fund has ever achieved",
+          "How many investors withdrew in the latest reporting period",
+          "Total operating costs the fund paid in a financial year",
+        ],
+        explanation:
+          "It measures real pain: it answers how much someone who bought exactly at the top had to endure before recovering.",
+      },
+      l11_q8: {
+        question: "How do a long/short fund's gross and net exposure differ?",
+        options: [
+          "Gross adds both sides together, net is the difference between long and short",
+          "Gross is at market value, net at original cost",
+          "Gross counts only longs, net counts only shorts",
+          "The two are always equal for a fund using leverage",
+        ],
+        explanation:
+          "Net exposure says how much directional market risk is carried; gross exposure says how much leverage is really in place. A fund at zero net can still be very risky.",
+      },
+      l11_q9: {
+        question: "What is the biggest risk in a pairs trading strategy?",
+        options: [
+          "The historical relationship between the two names can break permanently",
+          "Trading costs rise because two offsetting positions must be opened",
+          "Profit is capped at the spread between the two names at entry",
+          "It cannot be applied to stocks listed on the same exchange",
+        ],
+        explanation:
+          "The strategy bets the spread will narrow again. When one of the two businesses changes in nature, the spread can widen forever.",
+      },
+      l11_q10: {
+        question: "What does a high-water mark clause in a fee structure achieve?",
+        options: [
+          "It stops the fund charging performance fees twice on the same gain",
+          "It guarantees investors a minimum promised return",
+          "It caps the total management fee chargeable in a year",
+          "It lets the manager withdraw their own capital ahead of investors",
+        ],
+        explanation:
+          "After a losing year the fund has to climb back to its old peak before performance fees resume, otherwise investors pay twice for the same profit.",
+      },
+      l11_q11: {
+        question: "Why does a successful strategy usually run into a capacity limit?",
+        options: [
+          "The larger the capital, the more market impact on entry and exit erodes the return",
+          "Regulators cap the assets a single fund may raise",
+          "Operating costs rise exponentially once the fund passes a size threshold",
+          "Institutional investors may not place more than a set share in one fund",
+        ],
+        explanation:
+          "Opportunities in the market have a finite size. This is why many good funds close to new money rather than take more and get worse.",
+      },
+      l11_q12: {
+        question: "How does a margin spiral work in a crisis?",
+        options: [
+          "Falling prices force liquidation, and the selling drives prices lower still",
+          "Banks cut margin lending rates in unison to support the market",
+          "Investors post more margin, so market liquidity rises",
+          "Regulators halt trading until prices return to previous levels",
+        ],
+        explanation:
+          "This is the positive feedback loop that turns an ordinary fall into a collapse, and it is why leverage raises risk non-linearly rather than proportionally.",
+      },
+      l11_q13: {
+        question: "Where does an event-driven strategy make its money?",
+        options: [
+          "Price gaps around corporate events such as mergers or restructurings",
+          "The long-run trend of the whole equity market over many years",
+          "Interest rate differences between countries with different policies",
+          "Seasonal cycles in basic commodity prices",
+        ],
+        explanation:
+          "The main risk is not market direction but deal breakage: if the transaction is blocked, the spread that was narrowing blows straight back out.",
+      },
+      l11_q14: {
+        question: "Why must a hedge fund care about its prime brokerage terms?",
+        options: [
+          "The prime broker can change margin terms at the tightest possible moment",
+          "The prime broker decides which strategies the fund may run",
+          "The prime broker compensates the fund for losses beyond a threshold",
+          "The prime broker is the only party permitted to value the fund's assets",
+        ],
+        explanation:
+          "Funding can be pulled exactly when it is needed most. Many funds collapse not because the bet was wrong but because the financing vanished before the thesis had time to be right.",
+      },
+      l11_q15: {
+        question: "Which two positions does convertible arbitrage usually combine?",
+        options: [
+          "Buying the convertible bond and shorting the matching underlying stock",
+          "Buying preferred shares and shorting government bonds of the same maturity",
+          "Buying a call and selling a put on the same underlying",
+          "Buying corporate bonds and selling index futures",
+        ],
+        explanation:
+          "A convertible bond contains an embedded call. Shorting the underlying neutralises the directional risk, leaving the fund with the option's mispricing and the coupon stream.",
+      },
+      l11_q16: {
+        question: "Why do hedge funds impose lock-up and redemption restrictions?",
+        options: [
+          "To stop a rush of withdrawals forcing fire sales of illiquid assets",
+          "To guarantee investors the minimum return promised in the contract",
+          "To avoid periodic disclosure obligations to the regulator",
+          "To allow management fees above the regulatory cap",
+        ],
+        explanation:
+          "Lock-ups solve a liquidity mismatch: the assets need time to exit while investors want out now. Without them, a panicked redemption wave manufactures the very loss everyone fears.",
+      },
+      l11_q17: {
+        question: "Why does leverage raise the risk of ruin even when a strategy has positive expected return?",
+        options: [
+          "Because a temporary losing streak can trigger margin calls and force positions closed",
+          "Because leverage cuts the strategy's expected return below the risk-free rate",
+          "Because current rules forbid funds from leveraging beyond twice their capital",
+          "Because the interest cost of leverage always exceeds the strategy's gross profit",
+        ],
+        explanation:
+          "This is path-dependent ruin: a long-run expectation cannot save a position closed out midway. Leverage shortens the distance between an ordinary swing and the point where the position can no longer be held.",
+      },
+      l11_q18: {
+        question: "Why should hedge fund returns be quoted on survivorship-adjusted data?",
+        options: [
+          "Because funds that closed after losses have vanished from the database",
+          "Because regulators require every fund to publish inflation-adjusted data",
+          "Because unadjusted data misstates management and performance fees",
+          "Because new funds lack the history to compare against a benchmark",
+        ],
+        explanation:
+          "Industry indices aggregate only the funds still alive, so the failures have been erased from the sample. The average performance observed is therefore higher than what investors actually lived through.",
+      },
+      l11_q19: {
+        question: "When does basis risk arise in a hedged position?",
+        options: [
+          "When the hedging instrument and the asset being protected do not move in lockstep",
+          "When the hedge contract size exceeds the underlying holding",
+          "When the hedge expires on the same day the underlying is sold",
+          "When the hedge counterparty is downgraded",
+        ],
+        explanation:
+          "Hedges are rarely perfect: using Brent futures to protect a different crude, or a sector index to protect one stock. Whatever difference remains is basis risk.",
+      },
+      l11_q20: {
+        question: "Why can a two-and-twenty fee structure encourage excessive risk-taking?",
+        options: [
+          "Because the manager takes a large share of the gains but none of the losses",
+          "Because a two percent management fee forces the fund to target a very high return",
+          "Because performance fees are only paid after ten continuous years of operation",
+          "Because investors can demand fees back if the fund loses money in a year",
+        ],
+        explanation:
+          "A performance fee is structured like a call option granted to the manager: the upside is theirs, the downside is not. A high-water mark and personal capital alongside investors are the two usual ways to soften that misalignment.",
+      },
+    },
+  },
 };
