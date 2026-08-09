@@ -82,3 +82,35 @@ export function isPostVisibleInFeed(
   if (!query && category === "thanh-tuu") return false;
   return true;
 }
+
+/** Danh sách bài hiện ở dòng chính, sau khi đã áp quy tắc hạ ưu tiên.
+ *
+ *  Vì sao cần hàm này thay vì gọi `isPostVisibleInFeed` trên từng bài: quy tắc
+ *  ở trên là hạ ưu tiên, không phải ẩn. Nó tồn tại để bài hệ thống tự sinh
+ *  không DÌM bài người thật viết. Khi chưa có bài người thật nào, nó không còn
+ *  gì để dìm - và lúc đó việc giấu hết lại biến trang cộng đồng thành dòng chữ
+ *  "không có bài nào khớp bộ lọc" bên trên một cộng đồng có hai mươi bài.
+ *
+ *  Đó là thứ đã xảy ra thật: mở /finsocial ở chế độ "tất cả" và dòng chính
+ *  rỗng hoàn toàn, trong khi thẻ bên phải nói có 20 thành tựu. Người dùng đọc
+ *  ra là "bài viết mất rồi", và đó là cách đọc đúng với thứ họ nhìn thấy.
+ *
+ *  Nên lối thoát nằm ở đây: nếu hạ ưu tiên xong mà dòng chính không còn gì,
+ *  trả lại đúng những bài vừa bị hạ. Một dòng chính toàn thành tựu vẫn tốt hơn
+ *  một dòng chính trống. */
+export function visibleFeedPosts<T extends ClassifiablePost & { user_name?: string | null }>(
+  posts: readonly T[],
+  filter: FeedTopicId,
+  searchQuery: string
+): T[] {
+  const visible = posts.filter((post) => isPostVisibleInFeed(post, filter, searchQuery));
+  if (visible.length > 0) return visible;
+
+  // Chỉ cứu đúng trường hợp quy tắc hạ ưu tiên tự gây ra. Bộ lọc chủ đề rỗng
+  // hay tìm kiếm không ra kết quả thì "không có gì khớp" là câu trả lời ĐÚNG,
+  // và lấp nó bằng bài không liên quan mới là nói dối.
+  const query = searchQuery.trim();
+  if (filter !== "all" || query) return visible;
+
+  return posts.filter((post) => getPostCategory(post) === "thanh-tuu");
+}

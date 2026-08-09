@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   getPostCategory,
   isPostVisibleInFeed,
+  visibleFeedPosts,
   type ClassifiablePost,
 } from "@/lib/community-feed-visibility";
 
@@ -81,5 +82,36 @@ describe("dòng chính ưu tiên bài người dùng tự viết", () => {
     const imageOnly = post({ content: null });
     expect(isPostVisibleInFeed(imageOnly, "all", "")).toBe(true);
     expect(isPostVisibleInFeed(imageOnly, "all", "Minh")).toBe(true);
+  });
+});
+
+/** Cộng đồng chỉ toàn bài hệ thống tự sinh.
+ *
+ *  Đây là trạng thái thật của /finsocial lúc phát hiện: 20 bài, cả 20 đều là
+ *  chuỗi ngày học do hệ thống đăng. Quy tắc hạ ưu tiên giấu hết cả 20, và dòng
+ *  chính hiện "không có bài nào khớp bộ lọc" - người dùng đọc ra là bài viết
+ *  đã mất. Quy tắc sinh ra để bài hệ thống không dìm bài người thật; khi chưa
+ *  có bài người thật nào thì nó không còn gì để dìm. */
+describe("dòng chính không được rỗng vì chính quy tắc hạ ưu tiên", () => {
+  const onlyStreaks = [streak, post({ content: "Đã học 21 ngày liên tiếp", kind: "streak" })];
+
+  it("chỉ toàn thành tựu thì vẫn hiện chúng ở dòng chính", () => {
+    expect(visibleFeedPosts(onlyStreaks, "all", "")).toHaveLength(2);
+  });
+
+  it("có bài người thật thì thành tựu vẫn bị hạ như cũ", () => {
+    const mixed = [...onlyStreaks, post()];
+    const visible = visibleFeedPosts(mixed, "all", "");
+    expect(visible).toHaveLength(1);
+    expect(visible[0].kind).toBe("post");
+  });
+
+  it("tìm kiếm không ra kết quả thì vẫn là rỗng, không lấp bằng bài khác", () => {
+    // "Không có gì khớp" là câu trả lời đúng ở đây; lấp nó mới là nói dối.
+    expect(visibleFeedPosts(onlyStreaks, "all", "wacc")).toHaveLength(0);
+  });
+
+  it("bộ lọc chủ đề rỗng thì vẫn là rỗng", () => {
+    expect(visibleFeedPosts(onlyStreaks, "hoi-dap", "")).toHaveLength(0);
   });
 });
