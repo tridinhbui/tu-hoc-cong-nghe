@@ -62,6 +62,7 @@ import PvpDuelModal from "@/components/PvpDuelModal";
 import DashboardStreakWidget from "@/components/DashboardStreakWidget";
 import DailyMotivationWidget from "@/components/DailyMotivationWidget";
 import LearningPathSummary from "@/components/LearningPathSummary";
+import CommunityStreakWidget from "@/components/CommunityStreakWidget";
 import { useI18n } from "@/lib/i18n/context";
 import { format, intlLocale } from "@/lib/i18n";
 
@@ -1247,7 +1248,10 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                 bị gỡ. Khác nhau ở hình dạng: cái này là danh sách dọc gọn
                 trong cột trái, cái kia là băng chuyền ngang kèm bài vừa học.
                 Giữ cả hai là một quyết định có người nhìn thấy, không phải
-                một lần sót. */}
+                một lần sót - và nó đã được nói lại lần thứ ba, sau khi widget
+                bị gỡ ở 85b0f34 với lý do trùng lặp. Đừng gỡ lần nữa nếu không
+                có yêu cầu mới. */}
+            {!isLessonsView && <CommunityStreakWidget />}
 
             {/* Lối vào Lộ trình học, đứng ĐẦU cột trái.
                 Trang đó trả lời câu mà dashboard không trả lời: bắt đầu từ

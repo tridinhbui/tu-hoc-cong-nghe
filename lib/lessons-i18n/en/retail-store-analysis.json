@@ -1,0 +1,162 @@
+{
+  "slug": "retail-store-analysis",
+  "title": "Analysing a retail business",
+  "subtitle": "Store productivity, same-store sales growth and payback period",
+  "duration": "6 min",
+  "openingQuestion": "When analysing a retail business, which KPI should you look at first?",
+  "openingOptions": [
+    "Store productivity, same-store sales growth and payback period",
+    "Just looking at EPS and P/E is quite enough to judge the whole thing",
+    "The number of employees",
+    "The USD exchange rate"
+  ],
+  "explanation": "Analysing a retail chain means splitting growth into two parts: the part from opening more outlets and the part from the existing stores themselves. Total revenue up thirty percent because stores were opened while the old stores stood still is an entirely different story from growth that came from efficiency. The third measure to look at is the payback period on each new outlet - if it is lengthening over the years, the expansion model is running out of room.",
+  "diagram": [
+    { "label": "Store productivity", "arrow": true },
+    { "label": "Same-store sales", "arrow": true },
+    { "label": "Payback period", "arrow": true },
+    { "label": "Expanding the chain", "arrow": false }
+  ],
+  "realWorldExample": {
+    "company": "A retail chain",
+    "description": "A chain can open very fast, but if revenue per store and the payback period are not attractive, that growth is not necessarily good."
+  },
+  "quiz": [
+    {
+      "question": "What does same-store sales growth tell you?",
+      "options": [
+        "Sales through the online channel",
+        "The net profit of the whole chain",
+        "The headcount across the whole chain",
+        "Whether sales at the existing stores are rising or falling"
+      ],
+      "explanation": "Same-store sales growth measures the health of the existing stores, undistorted by new openings. The other three all mix in the new stores or describe something else entirely - which is precisely the distortion this measure exists to strip out."
+    },
+    {
+      "question": "What does a long payback period usually imply?",
+      "options": [
+        "Opening a new store is less attractive",
+        "It does not matter when assessing a chain",
+        "The store recovers its capital very quickly",
+        "The risk of expanding has gone down"
+      ],
+      "explanation": "If it takes too long to recover the capital, the pace of expansion may not create the value expected. A longer payback means capital is tied up for longer before it can be reinvested, which makes the risk of expansion higher rather than lower."
+    },
+    {
+      "question": "Two stores both have 200m² of floor space; store A has revenue of VND 20bn, store B has VND 12bn. How far apart is their revenue per square metre?",
+      "options": [
+        "The two stores are equally efficient because the floor area is the same",
+        "A is about 1.67 times B (VND 100m against 60m per m²)",
+        "They cannot be compared without knowing the headcount at each",
+        "B is higher because it reaches that revenue on the same floor area"
+      ],
+      "explanation": "VND 100m per m² against VND 60m per m², so A is about 1.67 times more efficient per unit of area - this is the key measure for deciding which model to replicate when expanding. Equal floor area is exactly what makes the two comparable, not what makes them equal."
+    },
+    {
+      "question": "A retail chain's payback period on new stores is much longer than the industry average. What does that suggest?",
+      "options": [
+        "This is always a positive sign because it is a long-term investment",
+        "It has nothing to do with the quality of the chain's expansion",
+        "It may be opening in poor locations or at too high an investment cost",
+        "This only reflects the accounting policy on depreciation"
+      ],
+      "explanation": "A payback longer than the industry is a warning sign about the effectiveness of the expansion, worth investigating before replicating the model further. Depreciation policy affects reported profit but not the cash payback, and calling it 'long-term investment' assumes the answer the measure is asking about."
+    },
+    {
+      "question": "Sales at the existing stores are falling while the chain keeps opening new ones. What is the main risk here?",
+      "options": [
+        "Falling sales at existing stores is an inevitable rule for every retail chain",
+        "Rent at the existing stores will rise in line with the number of new stores",
+        "New stores will not count in consolidated revenue in their first year",
+        "The new stores may be taking customers from the nearby existing ones"
+      ],
+      "explanation": "This is cannibalisation: total growth still looks handsome while the efficiency of each outlet declines, and the store count drags along real fixed costs. Same-store sales is the measure that separates those two things. New stores do count in consolidated revenue from the day they open, which is exactly why the headline figure hides the problem."
+    }
+  ],
+  "keyTakeaways": [
+    "Retail has to be read at store-level economics",
+    "SSS growth is the health indicator of the existing stores",
+    "The payback period decides whether opening more is worth it"
+  ],
+  "practicePrompt": {
+    "question": "What does the Same-Store Sales Growth (SSSG) measure reflect in retail chain analysis (chains like Thế Giới Di Động, FPT Shop, Bách Hóa Xanh)?",
+    "options": [
+      "Revenue growth at stores open more than 1 year",
+      "The total number of new stores opened in the year",
+      "The average floor area of each store",
+      "The monthly rent on the premises"
+    ],
+    "explanation": "SSSG lets an analyst see whether the retail business is growing through effective demand at the existing stores or simply swelling by opening new ones."
+  },
+  "summary": {
+    "keyIdea": "Retail has to be read at store-level economics",
+    "commonMistake": "Easy to miss: SSS growth is the health indicator of the existing stores",
+    "action": "The payback period decides whether opening more is worth it"
+  },
+  "application": {
+    "title": "In practice: analysing a retail business",
+    "message": "What does the Same-Store Sales Growth (SSSG) measure reflect in retail chain analysis (chains like Thế Giới Di Động, FPT Shop, Bách Hóa Xanh)?",
+    "secondary": "Getting this principle solid lifts your professional financial analysis."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "This lesson is not only about reading a retail chain's revenue. The aim is to know whether a store is genuinely worth opening."
+    },
+    { "type": "heading", "text": "Three core KPIs" },
+    {
+      "type": "list",
+      "items": [
+        "Store productivity: revenue or profit per store",
+        "Same-store sales growth: growth at the existing stores",
+        "Payback period: how long it takes to recover the cost of opening"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "For example: a chain opens 50 new stores in the year and total revenue rises 30% - which sounds impressive. But if same-store sales growth (sales at the older stores) is only 1%, nearly all of that growth came from opening stores, not from the core business getting stronger. And if the payback period on a new store reaches 5-6 years while the industry averages 2-3, the chain is expanding with a slower recovery of capital than normal - a signal to be careful about, even though total revenue still rises handsomely in the report."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Fast expansion",
+        "text": "If store productivity is weak, opening more stores only makes revenue look bigger; it does not necessarily make value bigger."
+      },
+      "right": {
+        "label": "Healthy expansion",
+        "text": "When new stores pay back quickly and sales at the existing stores are still rising, the chain has a better base to scale from."
+      }
+    },
+    {
+      "type": "formula",
+      "title": "Revenue per square metre",
+      "equation": "Store productivity = Store revenue ÷ Floor area",
+      "example": {
+        "title": "Comparing two stores of the same size",
+        "calculation": "Store A: 20bn ÷ 200m² · Store B: 12bn ÷ 200m²",
+        "result": "VND 100m/m² against VND 60m/m²",
+        "explanation": "With the same floor area and comparable rent, store A produces 1.67 times the revenue. When expanding the chain, replicating store A's location model and way of operating is far more effective than opening indiscriminately."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "What the payback period on a new store tells you"
+    },
+    {
+      "type": "paragraph",
+      "text": "The payback period says how long the accumulated profit of a new store takes to cover the initial investment - the premises, the fit-out, the opening inventory. The shorter the payback, the faster each dong spent on expansion earns its way back to be reinvested. If the payback runs much longer than the industry average, the chain may be expanding into poor locations, or at an investment cost too high for the revenue potential."
+    },
+    {
+      "type": "callout",
+      "label": "Three measures to read together when assessing an expansion plan",
+      "text": "Store productivity says how efficiently the existing stores run. Same-store sales growth says whether demand at the existing stores is strengthening. The payback period says whether the capital spent on opening comes back quickly. An expansion plan only really creates value when all three support it, not just because total revenue is rising."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Chain revenue does not tell the whole story.",
+        "The store that pays for itself is the one worth replicating."
+      ]
+    }
+  ]
+}

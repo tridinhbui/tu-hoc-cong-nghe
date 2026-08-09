@@ -1723,6 +1723,16 @@
     "subtitle": "Regressing two non-stationary series gives a beautiful R² and a meaningless conclusion",
     "duration": "10 min"
   },
+  "frm-uoc-luong-hop-ly-cuc-dai": {
+    "title": "FRM Quant, Lesson 5: Maximum likelihood estimation and the method of moments",
+    "subtitle": "Two ways to pick the parameters of a distribution, and why that choice decides the final risk number",
+    "duration": "9 min"
+  },
+  "frm-von-cho-rui-ro-hoat-dong-sma": {
+    "title": "FRM Operational, Lesson 13: Operational risk capital and the standardised measurement approach",
+    "subtitle": "Why Basel abandoned internal models and went back to one standard formula for everyone",
+    "duration": "9 min"
+  },
   "frm-xac-suat-va-dinh-ly-bayes": {
     "title": "FRM Quant, Lesson 4: Conditional probability and Bayes' theorem in risk management",
     "subtitle": "Why a warning system that is 99% accurate can still be wrong almost every time it fires",
@@ -2061,6 +2071,16 @@
     "subtitle": "The four types of opinion, the line between management and auditor, and the most common misreading",
     "duration": "11 min"
   },
+  "kiem-toan-noi-bo-va-ba-tuyen-phong-ve": {
+    "title": "Audit, Lesson 6: Internal audit and the three lines of defence - who guards what",
+    "subtitle": "How it differs from external audit, why it reports straight to the audit committee, and the three lines model",
+    "duration": "11 min"
+  },
+  "kiem-tra-gia-dinh-va-bang-nhay-cam": {
+    "title": "AI in Finance, Lesson 12: Testing assumptions and the sensitivity table",
+    "subtitle": "Understanding why a single valuation number is never enough.",
+    "duration": "15 min"
+  },
   "ky-quy-va-margin-call": {
     "title": "Margin & Margin Calls - Risk Management Is Priority Number One",
     "subtitle": "Why does a client have to 'hand the money back' the moment the market turns against them?",
@@ -2199,10 +2219,25 @@
     "subtitle": "From the number on the contract to the money in your account",
     "duration": "7 min"
   },
+  "luu-vet-khi-dung-ai": {
+    "title": "AI in Finance, Lesson 14: Keeping an audit trail when you use AI",
+    "subtitle": "Keep the prompts, the sources and the edited versions so you can trace it back when you need to.",
+    "duration": "13 min"
+  },
+  "ma-cau-truc-earnout": {
+    "title": "Advanced M&A: The earnout structure in deal valuation",
+    "subtitle": "When buyer and seller cannot agree on what the company is worth, an earnout is the way to \"pay later, based on actual results\"",
+    "duration": "8 min"
+  },
   "ma-la-gi": {
     "title": "What is M&A?",
     "subtitle": "Buying and merging companies",
     "duration": "7 min"
+  },
+  "ma-phong-thu-thau-tom-thu-dich": {
+    "title": "Advanced M&A: Defensive tactics against a hostile takeover",
+    "subtitle": "Poison pill, White Knight, Golden Parachute - the board's defensive weapons when a takeover arrives uninvited",
+    "duration": "9 min"
   },
   "maple-leaf-leverage": {
     "title": "Maple Leaf - Leverage Ratio",
@@ -2223,6 +2258,16 @@
     "title": "Deep-dive case: Market Fair Value",
     "subtitle": "The P/E multiple and growth companies",
     "duration": "6 min"
+  },
+  "masan-wincommerce-case-study": {
+    "title": "IB & Analysis, Lesson 10: Masan buys WinCommerce - why this chain?",
+    "subtitle": "The stock swap, retail coverage and the strategic logic behind a real M&A deal",
+    "duration": "8 min"
+  },
+  "mau-sai-so-chuan-va-khoang-tin-cay": {
+    "title": "Quant, Lesson 2: Samples, standard errors and confidence intervals - how precise is your number really",
+    "subtitle": "Why every estimate has to carry an interval, and why 36 months of data is nowhere near enough",
+    "duration": "11 min"
   },
   "modern-portfolio-theory-la-gi": {
     "title": "What is Modern Portfolio Theory?",
@@ -2454,6 +2499,11 @@
     "subtitle": "The financial strategy that fits at 25 no longer fits at 55 - and that is entirely normal.",
     "duration": "6 min"
   },
+  "quan-tri-doanh-nghiep-g-trong-esg": {
+    "title": "Corporate governance (G): the least discussed pillar, and the most important",
+    "subtitle": "The board, shareholder rights, related-party transactions - reading the signs before the money evaporates",
+    "duration": "9 min"
+  },
   "quan-tri-rui-ro-dinh-luong-var-black-swan": {
     "title": "Masterclass 4: Quantitative risk management - VaR and black swan scenario simulation",
     "subtitle": "VaR, expected shortfall, backtesting and stress testing - and the dangerous limits of every risk model.",
@@ -2501,6 +2551,11 @@
     "title": "Receivables Turnover",
     "subtitle": "Collecting cash from customers fast or slow?",
     "duration": "5 min"
+  },
+  "retail-store-analysis": {
+    "title": "Analysing a retail business",
+    "subtitle": "Store productivity, same-store sales growth and payback period",
+    "duration": "6 min"
   },
   "revenue-cogs-gross-profit": {
     "title": "Revenue, COGS, and Gross Profit",

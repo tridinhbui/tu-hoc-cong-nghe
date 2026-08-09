@@ -1,0 +1,140 @@
+{
+  "slug": "quan-tri-doanh-nghiep-g-trong-esg",
+  "title": "Corporate governance (G): the least discussed pillar, and the most important",
+  "subtitle": "The board, shareholder rights, related-party transactions - reading the signs before the money evaporates",
+  "duration": "9 min",
+  "openingQuestion": "Why does the G (Governance) pillar usually show the clearest correlation with long-term financial performance of the three ESG pillars?",
+  "openingOptions": [
+    "Because governance is easier to measure than environment and social",
+    "Weak governance lets value be extracted from minority shareholders",
+    "Because regulators only examine the governance factor",
+    "Because investors care about governance more than the other two"
+  ],
+  "explanation": "E and S affect the finances through several intermediate steps and usually over the long run. G acts directly: a weak board fails to stop a value-destroying M&A deal, a controlling shareholder can move benefits out through related-party transactions, and loose internal controls create the conditions for fraud. Each of these mechanisms reduces the cash flow belonging to minority shareholders immediately.",
+  "diagram": [
+    { "label": "Board structure - independence and professional capability", "arrow": true },
+    { "label": "Executive pay structure - tied to which measures, over what horizon", "arrow": true },
+    { "label": "Shareholder rights and ownership structure - who really controls decisions", "arrow": true },
+    { "label": "Related-party transactions - where value most easily moves out", "arrow": true },
+    { "label": "Read these signs before the risk shows up in the accounts", "arrow": false }
+  ],
+  "realWorldExample": {
+    "company": "Delistings and illiquid shares on the Vietnamese market",
+    "description": "Many cases of a share losing most of its value on the Vietnamese market share a common governance pattern: a large shareholder who is also the executive, a board without genuinely independent members, cash flowing through related companies that the published accounts do not clearly explain, and a qualified audit opinion several years running. All of these signs appear before the share price collapses."
+  },
+  "quiz": [
+    {
+      "question": "What does an 'independent' board member mean under good governance standards?",
+      "options": [
+        "Someone who owns no shares at all in the company itself",
+        "Someone nominated to the board by the largest shareholder group",
+        "Someone with no material relationship with the company beyond the board seat",
+        "Someone with at least ten consecutive years of experience in the industry"
+      ],
+      "explanation": "The essence of independence is the ability to say no. A board member who depends on the company for income, business contracts or family ties will struggle to oppose a bad proposal from the executive. The important point in analysis: do not just count the members labelled 'independent' in the annual report, read their biographies to see whether they really are - this is where form and substance diverge most often."
+    },
+    {
+      "question": "What is the agency problem in corporate governance?",
+      "options": [
+        "A dispute between the company and the agents distributing its products",
+        "A business hiring too many sales agents and driving up its costs",
+        "The company having to pay fees to financial intermediaries",
+        "The conflict when the manager is not the owner"
+      ],
+      "explanation": "The agency problem is the theoretical foundation of the whole field of corporate governance. When ownership separates from management, the manager has more information and different incentives from the owner. The governance mechanisms - an independent board, pay tied to long-term performance, an independent audit, shareholder voting rights - are all tools for narrowing that gap. In a market with concentrated controlling shareholders, the main form of the conflict shifts to controlling shareholder against minority shareholder."
+    },
+    {
+      "question": "Why are related-party transactions a sign to watch particularly closely?",
+      "options": [
+        "Because the price can deviate from market, moving value out of the company",
+        "Because all related-party transactions are prohibited by current law",
+        "Because they are not recorded in the consolidated financial statements",
+        "Because they always increase the annual independent audit cost"
+      ],
+      "explanation": "Related-party transactions are not always bad - many groups have legitimate operating reasons for them. The problem is that they lack a market mechanism to verify the price. If a listed company buys materials from the chairman's private company above market price, value flows out while everything stays legal and fully disclosed. So read the related-party note carefully, look at its size against revenue and its trend over the years."
+    },
+    {
+      "question": "What governance risk does a dual-class share structure create?",
+      "options": [
+        "Minority shareholders do not receive dividends equal to the founder group",
+        "The group holding voting rights far beyond the capital they actually contributed",
+        "The business is not permitted to issue further shares to new investors",
+        "Every member of the board is required to be an insider of the company"
+      ],
+      "explanation": "Voting rights separate from economic interest: the person deciding is not the person bearing most of the financial consequence. It helps leadership pursue a long-term vision free of short-term pressure, but it also leaves shareholders with almost no way to correct a mistake. Dividends are paid per share regardless of class, so that is not where the asymmetry sits."
+    },
+    {
+      "question": "Why are related-party transactions a point to examine closely when analysing a business?",
+      "options": [
+        "Because these transactions are always recorded outside the consolidated accounts",
+        "Because company law entirely forbids any transaction between a company and a related party",
+        "Because this is the easiest channel for moving value out of minority shareholders' hands",
+        "Because they raise the audit cost and lengthen the time to publish the accounts"
+      ],
+      "explanation": "Selling cheaply to a relative's company, renting an asset at a high price, lending without interest - each transaction can be legal and fully disclosed, but together they are a flow of value leaving the public company. What has to be checked is the size, the frequency and the pricing terms. They are disclosed in the notes, not hidden outside the accounts."
+    }
+  ],
+  "keyTakeaways": [
+    "G affects cash flow more directly and faster than E and S, so it shows the clearest correlation with financial performance",
+    "A board member's independence lies in the ability to push back, not in a label in the annual report",
+    "Agency problem: the conflict between manager and owner, or between controlling and minority shareholders",
+    "Related-party transactions are a channel for moving value that is legal in form - read the notes and track the size across the years"
+  ],
+  "practicePrompt": {
+    "question": "You are analysing a listed company where: the chairman is also the chief executive, 2 of the 7 board members are the chairman's relatives, 30% of revenue comes from companies owned by the chairman's family, and the auditor has changed for the second year running. How do you assess it?",
+    "options": [
+      "Normal - a family business model is common and there is nothing wrong with it",
+      "Four weak-governance signs appearing together, forming a worrying pattern",
+      "Only the auditor change matters, the other three factors are unimportant",
+      "It cannot be assessed without looking at the financial ratios first"
+    ],
+    "explanation": "Each sign on its own may have an acceptable explanation, but all four appearing at once forms a very worrying pattern. Holding both roles means the person being supervised also chairs the supervising body. Two family members plus the chairman can dominate a board of seven. Revenue of 30% from related parties is a level that cannot be verified against market prices. And changing auditor two years running usually happens when the auditor disagrees with some accounting treatment. This is exactly the kind of G analysis that financial figures alone will not find."
+  },
+  "summary": {
+    "keyIdea": "Governance is the ESG pillar with the most direct financial impact, and most of its warning signs can be read from the annual report before they appear in the numbers.",
+    "commonMistake": "Assessing governance by counting items on a formal checklist, instead of reading whether the oversight mechanism actually works",
+    "action": "For every share you hold, read the related-party transaction note and the biographies of the independent board members in the latest annual report"
+  },
+  "application": {
+    "title": "Applying it to investment analysis",
+    "message": "Weak governance does not reduce returns steadily each year - it creates tail risk, a small probability of a very large loss. So it affects position size more than it affects a point valuation.",
+    "secondary": "In a market with concentrated controlling shareholders like Vietnam, the main conflict is not between executives and shareholders, but between large and small shareholders."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Of the three letters in ESG, G is mentioned least in marketing reports - and yet it is the letter that loses investors money fastest when something is wrong with it."
+    },
+    { "type": "heading", "text": "Board structure" },
+    {
+      "type": "list",
+      "items": [
+        "Separating the chairman and chief executive roles: if one person holds both, the mechanism for supervising the executive is essentially void",
+        "The proportion and quality of independent members: read the biographies rather than counting labels, and check whether they have any business or family relationship",
+        "Specialist committees: audit, nomination and remuneration - do they exist in substance and are they chaired by independent members, or only on paper",
+        "Meeting frequency and attendance: a board that meets twice a year can hardly supervise anything"
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Executive pay - read the structure, not the number"
+    },
+    {
+      "type": "paragraph",
+      "text": "A high level of pay is not in itself the problem. The problem is the structure: what measures the pay is tied to, and over what time frame. A bonus on short-term revenue growth encourages the executive to expand at any cost, including value-destroying deals. A bonus on return on invested capital over several years, with a clawback if the results are later restated, creates the opposite incentive. When reading the report, ask: if I were the chief executive with this pay structure, what would I be rewarded for doing?"
+    },
+    {
+      "type": "heading",
+      "text": "Shareholder rights and ownership structure"
+    },
+    {
+      "type": "paragraph",
+      "text": "A dual-class share structure lets a founding group keep control with a small economic stake - legal, but it means outside shareholders contribute most of the money with almost no voice. Anti-takeover provisions protect the executive from market pressure. In a market with concentrated ownership like Vietnam, the central question is not 'does the executive serve the shareholders' but 'does the controlling shareholder treat minority shareholders fairly' - and the answer is usually in the related-party transaction note."
+    },
+    {
+      "type": "callout",
+      "label": "Four signs readable from the annual report",
+      "text": "Chairman and chief executive held by one person; related-party transactions taking a large and growing share; the auditor or finance director changing repeatedly; and a repeated qualified audit opinion. None of these on its own concludes anything, but three or four together are enough to pass on the investment."
+    }
+  ]
+}

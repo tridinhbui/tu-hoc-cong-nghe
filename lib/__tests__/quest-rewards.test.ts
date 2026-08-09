@@ -60,9 +60,9 @@ describe("getQuestXpReward", () => {
     // quests that simply don't pay, so they must stay distinguishable.
     expect(getQuestXpReward("daily_4")).toBe(0);
     expect(getQuestXpReward("daily_game")).toBe(0);
-    // daily_study_group về 0 khi daily_focus thay chỗ nó: nó vẫn là nhiệm vụ
-    // hợp lệ, chỉ là không trả XP nữa.
-    expect(getQuestXpReward("daily_study_group")).toBe(0);
+    // daily_study_group từng là ví dụ thứ ba ở đây, hồi nó về 0 để nhường chỗ
+    // cho daily_focus. Nó đã được trả lại mức 5, nên nó không còn minh hoạ
+    // được điều mà phép kiểm này nói - hai cái trên vẫn là 0 và vẫn đủ.
   });
 
   it("returns null for unknown quests so the route can reject them", () => {
@@ -84,8 +84,17 @@ describe("XP economy invariants", () => {
   it("keeps a full day of dailies below a single lesson-heavy session", () => {
     // A lesson is 10 XP. Dailies were 55/day pre-rebalance; the point of the
     // change is that grinding chores can't out-earn actually studying.
-    expect(MAX_DAILY_QUEST_XP).toBe(27);
-    expect(MAX_DAILY_QUEST_XP).toBeLessThan(30);
+    //
+    // 2026-08-09: 27 -> 35. daily_study_group (0 -> 5) và daily_3 (2 -> 5)
+    // được trả lại theo quyết định của chủ dự án. Con số này là một HẰNG SỐ
+    // ĐƯỢC KHOÁ chứ không phải trần: nó ở đây để một lần thêm nhiệm vụ mới
+    // làm ngân sách trôi lên sẽ đỏ và phải nói ra, đúng cách nó vừa đỏ lần
+    // này. Ngưỡng < 30 cũ đã bỏ vì nó chính là thứ vừa được quyết định lại;
+    // giữ nó lại rồi nới thành < 40 thì nó không còn nói lên điều gì.
+    //
+    // Tỷ lệ vẫn giữ được ý ban đầu: một ngày làm hết việc vặt = 3,5 bài học,
+    // so với 5,5 bài trước lần cân lại năm ngoái.
+    expect(MAX_DAILY_QUEST_XP).toBe(35);
   });
 
   it("makes the weekly cap actually bind", () => {
