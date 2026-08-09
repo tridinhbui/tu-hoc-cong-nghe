@@ -6,7 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowLeft, BarChart3, CheckCircle2, MessageCircleMore, ShieldCheck, Sparkles, Star, Users2 } from "lucide-react";
 import { createClient } from "@/lib/supabase";
-import { translateAuthError } from "@/lib/auth-error-messages";
+import { translateAuthError, isUnconfirmedEmailError } from "@/lib/auth-error-messages";
 import { stashReferralCodeFromUrl } from "@/lib/referrals";
 import { safeNextPath } from "@/lib/safe-next-path";
 import Logo from "@/components/Logo";
@@ -60,6 +60,12 @@ function LoginForm() {
   );
   const [name, setName] = useState("");
   const [resetSent, setResetSent] = useState(false);
+  // Tài khoản đã tồn tại nhưng chưa bấm link trong hộp thư. Trạng thái riêng
+  // chứ không phải một chuỗi trong `error`, vì nó cần một NÚT đi kèm - và câu
+  // thông báo trong lib/auth-error-messages.ts đã hứa cái nút đó từ đầu ("hoặc
+  // gửi lại email xác nhận bên dưới") trong khi không có gì ở dưới cả.
+  const [needsEmailConfirm, setNeedsEmailConfirm] = useState(false);
+  const [confirmResent, setConfirmResent] = useState(false);
 
   const [cooldownUntil, setCooldownUntil] = useState<number | null>(null);
   const [cooldownLeft, setCooldownLeft] = useState(0);
@@ -181,7 +187,16 @@ function LoginForm() {
         });
 
         if (loginError) {
-          setError("Đã tạo tài khoản nhưng không thể tự động đăng nhập. Vui lòng đăng nhập thủ công.");
+          // Nếu dự án bật xác nhận email thì bước tự đăng nhập này LUÔN hỏng,
+          // và lời khuyên cũ - "vui lòng đăng nhập thủ công" - dẫn người mới
+          // đăng ký thẳng vào một lần thất bại nữa với đúng lý do đó. Phân
+          // biệt ra để nói đúng việc cần làm: mở hộp thư.
+          if (isUnconfirmedEmailError(loginError.message)) {
+            setNeedsEmailConfirm(true);
+            setError("");
+          } else {
+            setError("Đã tạo tài khoản nhưng không thể tự động đăng nhập. Vui lòng đăng nhập thủ công.");
+          }
           setLoading(false);
           return;
         }
@@ -203,8 +218,16 @@ function LoginForm() {
         });
 
         if (loginError) {
-          registerFailedAttempt();
-          setError(translateAuthError(loginError.message));
+          // Email chưa xác nhận KHÔNG phải một lần đăng nhập sai, nên nó
+          // không tính vào bộ đếm khoá 5 lần: gõ đúng mật khẩu mà bị khoá vì
+          // chưa bấm link trong hộp thư là phạt nhầm người.
+          if (isUnconfirmedEmailError(loginError.message)) {
+            setNeedsEmailConfirm(true);
+            setError("");
+          } else {
+            registerFailedAttempt();
+            setError(translateAuthError(loginError.message));
+          }
           setLoading(false);
           return;
         }
@@ -214,6 +237,30 @@ function LoginForm() {
       }
     } catch {
       setError("Có lỗi xảy ra. Vui lòng thử lại.");
+      setLoading(false);
+    }
+  }
+
+  // Gửi lại email xác nhận đăng ký. Dùng đúng emailRedirectTo như lúc đăng ký,
+  // nếu không thì link trong thư thứ hai đưa người dùng về một nơi khác thư
+  // thứ nhất.
+  async function handleResendConfirmation() {
+    if (!email.trim() || loading) return;
+    setLoading(true);
+    try {
+      const { error: resendError } = await supabase.auth.resend({
+        type: "signup",
+        email: email.toLowerCase().trim(),
+        options: { emailRedirectTo: `${window.location.origin}/auth/callback` },
+      });
+      if (resendError) {
+        setError(translateAuthError(resendError.message));
+      } else {
+        setConfirmResent(true);
+      }
+    } catch {
+      setError("Có lỗi xảy ra. Vui lòng thử lại.");
+    } finally {
       setLoading(false);
     }
   }
@@ -517,6 +564,24 @@ function LoginForm() {
                     {error && (
                       <div className="bg-red-50 dark:bg-red-950/50 border border-red-200 dark:border-red-900 text-red-700 dark:text-red-400 text-xs font-semibold rounded-xl px-3 py-2">
                         <p>{error}</p>
+                      </div>
+                    )}
+
+                    {needsEmailConfirm && (
+                      <div className="bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900 text-amber-800 dark:text-amber-300 text-xs font-semibold rounded-xl px-3 py-2.5 space-y-2">
+                        <p>{t.login.emailNotConfirmed}</p>
+                        {confirmResent ? (
+                          <p className="font-bold">{t.login.confirmResent}</p>
+                        ) : (
+                          <button
+                            type="button"
+                            onClick={handleResendConfirmation}
+                            disabled={loading}
+                            className="underline font-black disabled:opacity-60 cursor-pointer"
+                          >
+                            {t.login.resendConfirm}
+                          </button>
+                        )}
                       </div>
                     )}
 

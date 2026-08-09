@@ -540,6 +540,10 @@ export const en: Dictionary = {
     noneDueBody:
       "You still have {count} mistakes being tracked, but the spacing schedule places them on later days. Reviewing ahead of schedule holds worse - that is the whole point of the schedule.",
     reviewAllAnyway: "Review everything anyway",
+    ratedForget: "🔴 Back tomorrow (+1 day)",
+    ratedHard: "🟡 Noted (+3 days)",
+    ratedGood: "🟢 Held well - scheduled in 7 days",
+    ratedMastered: "🚀 Mastered - back in 30 days",
 
     doneTitle: "Spaced repetition session complete.",
     doneBody:
@@ -720,6 +724,10 @@ export const en: Dictionary = {
     emailLabel: "Email address",
     sending: "Sending...",
     sendReset: "Send the password reset email",
+    emailNotConfirmed:
+      "The account exists but its email has not been confirmed yet. Open your inbox, click the link in the activation email, then sign in again.",
+    resendConfirm: "Resend the confirmation email",
+    confirmResent: "Sent again. Check your spam folder if nothing arrives in a few minutes.",
     nameLabel: "Your name",
     namePlaceholder: "Jane Smith",
     passwordLabel: "Password",

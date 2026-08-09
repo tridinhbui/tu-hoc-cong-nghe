@@ -586,6 +586,10 @@ export const vi = {
     noneDueBody:
       "Bạn còn {count} câu sai đang theo dõi, nhưng lịch lặp lại ngắt quãng xếp chúng vào những ngày sau. Ôn sớm hơn lịch thì nhớ kém hơn - đó là toàn bộ lý do có lịch.",
     reviewAllAnyway: "Vẫn ôn tất cả bây giờ",
+    ratedForget: "🔴 Cần ôn lại vào ngày mai (+1 ngày)",
+    ratedHard: "🟡 Đã ghi nhận (+3 ngày)",
+    ratedGood: "🟢 Nhớ tốt! Lên lịch ôn sau 7 ngày",
+    ratedMastered: "🚀 Thành thục! Đưa vào bộ nhớ vĩnh viễn (+30 ngày)",
 
     doneTitle: "Hoàn Thành Phiên Ôn Tập Spaced Repetition!",
     doneBody:
@@ -773,6 +777,10 @@ export const vi = {
     emailLabel: "Địa chỉ email",
     sending: "Đang gửi...",
     sendReset: "Gửi email đặt lại mật khẩu",
+    emailNotConfirmed:
+      "Tài khoản đã được tạo nhưng email chưa được xác nhận. Mở hộp thư và bấm vào link trong email kích hoạt, rồi quay lại đăng nhập.",
+    resendConfirm: "Gửi lại email xác nhận",
+    confirmResent: "Đã gửi lại. Kiểm tra cả mục spam nếu vài phút nữa vẫn chưa thấy.",
     nameLabel: "Tên của bạn",
     namePlaceholder: "Nguyễn Văn A",
     passwordLabel: "Mật khẩu",
