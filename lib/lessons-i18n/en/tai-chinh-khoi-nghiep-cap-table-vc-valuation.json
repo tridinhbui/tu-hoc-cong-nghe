@@ -1,0 +1,208 @@
+{
+  "slug": "tai-chinh-khoi-nghiep-cap-table-vc-valuation",
+  "title": "Masterclass 3: Startup finance - the cap table and venture capital valuation",
+  "subtitle": "Pre-money, post-money, dilution, the option pool and liquidation preference - how to read a term sheet properly.",
+  "whyItMatters": "Founders negotiate hard over the valuation and then sign the rest of the term sheet quickly. But where the option pool sits and which kind of liquidation preference applies can take more money from you than several million dollars of valuation difference. This lesson shows you exactly where.",
+  "duration": "15 min",
+  "openingQuestion": "A VC fund values a startup at a pre-money of 4 million USD and invests 1 million USD. What is the post-money value and the fund's ownership?",
+  "openingOptions": [
+    "Post-money = 3 million USD; the fund owns 33%",
+    "Post-money = 4 million USD; the fund owns 25%",
+    "Post-money = 5 million USD; the fund owns 25%",
+    "Post-money = 5 million USD; the fund owns 20%"
+  ],
+  "explanation": "The cap table records who owns what percentage after each round, and the easiest place to go wrong is telling the valuation before the money from the valuation after it. A new investor's percentage is always computed on the post-money value, because their money is inside the company at that point. Beyond the percentage you also have to read the accompanying terms - liquidation preference and anti-dilution - because they decide who receives what when the company is sold.",
+  "diagram": [
+    { "label": "Pre-money", "arrow": true },
+    { "label": "Add the new capital", "arrow": true },
+    { "label": "Post-money", "arrow": true },
+    { "label": "Fund's share = new capital / post-money" }
+  ],
+  "realWorldExample": {
+    "company": "Funding rounds at Vietnamese technology startups",
+    "description": "Startups such as MoMo, VNPay and Tiki all went through several Seed, Series A, B and C rounds before reaching scale. After four or five rounds the founding team's ownership typically falls from 100% to around 15-25% - which is normal and not alarming, as long as the smaller slice sits on a far larger pie."
+  },
+  "application": {
+    "title": "Three exit scenarios before you sign",
+    "message": "Build the payout table for three exit levels - below the capital raised, around twice it, and the optimistic case - and see what the founders actually receive at each. With a 1x participating preference, the low exit scenario can return almost nothing to the common shares however attractive the round's headline valuation sounded.",
+    "secondary": "When comparing two term sheets, restate both on the same basis: the same option pool position, the same preference type. Only then are the valuation numbers comparable at all."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Two founders receive two term sheets. Sheet A values the company at 10 million USD, sheet B at 8 million. Everyone assumes A is the obvious choice. But A carries a 15% option pool set before the round and a 2x participating liquidation preference, while B has a 10% pool after the round and 1x non-participating. Across most realistic exit scenarios, the founders take home more money with B."
+    },
+    {
+      "type": "heading",
+      "text": "1. Pre-money, post-money, and the division people get wrong"
+    },
+    {
+      "type": "formula",
+      "title": "The arithmetic underneath every funding round",
+      "equation": "Post-money = pre-money + new investment",
+      "variables": [
+        {
+          "symbol": "Pre-money",
+          "name": "The valuation before the money arrives",
+          "description": "The number the two sides negotiate"
+        },
+        {
+          "symbol": "Post-money",
+          "name": "The valuation after the money arrives",
+          "description": "The denominator for every ownership percentage"
+        }
+      ],
+      "example": {
+        "title": "A Series A round",
+        "calculation": "Pre of 4 million + investment of 1 million = post of 5 million · fund's share = 1/5",
+        "result": "The fund owns 20%",
+        "explanation": "Always divide by the post-money. The intuition: immediately after signing, the company is worth 5 million and exactly 1 million of that is the fund's money. Dividing by the pre-money gives 25% - a number that appears on no cap table anywhere."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "2. Dilution across several rounds"
+    },
+    {
+      "type": "paragraph",
+      "text": "Every funding round issues new shares, so existing shareholders' percentages fall - that is dilution, and it is the unavoidable price of raising capital. The important point is that dilution does not automatically mean losing out: if the new round is valued far above the last one, the absolute value of your holding rises even as the percentage falls."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Founders start at 100%. After Seed sells 20%, 80% remains.",
+        "Series A sells a further 25% of the company: 80% × 75% = 60%.",
+        "Series B sells 20%: 60% × 80% = 48%.",
+        "The rule: multiply the (1 minus the percentage sold) factors across rounds, do not subtract percentages directly.",
+        "The right question is not \"what percentage do I have left\", but \"what is that percentage times the new valuation, compared with before\"."
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "3. The option pool - the trap is in the word \"before\""
+    },
+    {
+      "type": "paragraph",
+      "text": "Funds usually require an employee option pool (ESOP) for hiring, say 15% of the company. The decisive question is whether that pool is created BEFORE or AFTER the valuation is struck. Market convention puts it before the round, and that means the entire 15% comes out of the existing shareholders - the founders - rather than being shared with the new investor."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Pool set BEFORE the round (pre-money)",
+        "text": "The 4 million pre-money already includes the 15% pool. The effective valuation of the operating company is only about 3.4 million. The founders absorb the whole of the pool's dilution."
+      },
+      "right": {
+        "label": "Pool set AFTER the round (post-money)",
+        "text": "The pool is created once the money is in, so founders and the new investor are diluted proportionately. Rarer, but very much worth negotiating for."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "The real valuation after the option pool",
+      "text": "A 4 million pre-money with a 15% pool set before is equivalent to a pre-money of about 3.4 million with no pool. Before comparing two term sheets, restate both on the same basis - otherwise you are comparing two numbers measured in different units."
+    },
+    {
+      "type": "heading",
+      "text": "4. SAFEs and convertible notes"
+    },
+    {
+      "type": "paragraph",
+      "text": "At the very earliest stage, valuing a company is close to guesswork. A SAFE (simple agreement for future equity) lets money arrive now and defers the valuation to the next priced round, when there is something to value it on. In exchange, the early investor is protected by two terms: a valuation cap and a discount to the later round's price - and those two decide how many shares they receive when the SAFE converts."
+    },
+    {
+      "type": "callout",
+      "label": "Do not forget SAFEs accumulate",
+      "text": "Many founders sign several SAFEs in succession without building a conversion model. At the Series A they all convert at once, usually at the low cap, and the founders' remaining stake is far below what they had pictured."
+    },
+    {
+      "type": "heading",
+      "text": "5. Liquidation preference - who gets paid first"
+    },
+    {
+      "type": "paragraph",
+      "text": "This is the term deciding how the money is split when the company is sold. \"1x non-participating\" means the investor picks one of two: take back exactly the capital they put in, or convert to common shares and split pro rata - whichever pays them more. \"1x participating\" means they take their capital back FIRST and THEN still share the remainder pro rata. In mid-sized exits, the difference between these two is usually far larger than the few million dollars of valuation the two sides spent weeks haggling over."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The valuation is the number spoken loudest in the negotiating room, and rarely the most important term in it.",
+        "Before signing, build the payout table across three exit scenarios - low, medium, high - and see what you actually receive in each."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "When does equity dilution occur?",
+      "options": [
+        "When the company loses money for several quarters, reducing equity",
+        "When the company pays a cash dividend to its existing shareholders",
+        "When the market share price falls below the issue price",
+        "When the company issues new shares to an investor"
+      ],
+      "explanation": "Dilution is a matter of the DENOMINATOR: the total share count rises so your percentage shrinks, entirely unrelated to whether the company is profitable. The key point is that dilution does not mean losing out - if the new round is valued far higher, 48% of a 50 million USD company beats 80% of a 5 million USD one by a wide margin."
+    },
+    {
+      "question": "What is the main advantage of a SAFE (simple agreement for future equity)?",
+      "options": [
+        "Money now, with the valuation deferred to the next round",
+        "It gives the investor a board seat immediately",
+        "It obliges the company to pay the investor fixed annual interest",
+        "It guarantees the investor's capital back if the company fails"
+      ],
+      "explanation": "At the earliest stage a valuation is close to guesswork, and arguing about it can derail a round that needs to happen fast. A SAFE cuts that knot by taking the money now and leaving the valuation to the next round, when there is real data. In return the early investor is compensated with a valuation cap and a discount - and those two terms decide how many shares they get on conversion."
+    },
+    {
+      "question": "A term sheet shows a pre-money of 4 million USD, an investment of 1 million USD, and requires a 15% option pool set BEFORE the round. What does that mean for the founders?",
+      "options": [
+        "The pool is split evenly between founders and the new investor, 7.5% each",
+        "The whole 15% pool comes out of existing shareholders, i.e. the founders",
+        "The pool comes from unissued shares, so nobody is diluted at all",
+        "The investor must put in money beyond the 1 million to buy the pool"
+      ],
+      "explanation": "The word \"before\" (pre-money) is the whole issue: the pool is created before the valuation is struck, so it sits inside the 4 million and comes out of the existing shareholders - the founders - rather than being shared with the new investor. This is why two term sheets have to be restated on the same basis before comparison; otherwise you are comparing numbers in different units."
+    },
+    {
+      "question": "Founders start at 100%. Seed sells 20%, Series A sells 25%, Series B sells 20%. What do the founders have left?",
+      "options": [
+        "40% (= 100% × 0.8 × 0.5, using the wrong Series A figure)",
+        "35% (= 100% − 20% − 25% − 20%, subtracting percentages directly)",
+        "48% (= 100% × 0.8 × 0.75 × 0.8)",
+        "60% (counting only the first two rounds, 0.8 × 0.75)"
+      ],
+      "explanation": "You have to MULTIPLY the factors rather than subtract percentages, because each round sells a share of the company as it stands then, not of the original company: 100% × 0.8 × 0.75 × 0.8 = 48%. Subtracting straight through gives 35%, which is wrong. And again, the number to look at is not the 48% but what 48% of the current valuation is worth."
+    },
+    {
+      "question": "What is the difference between a \"1x non-participating\" and a \"1x participating\" liquidation preference?",
+      "options": [
+        "Participating pays double the capital, non-participating pays it once",
+        "Participating applies only on an IPO, non-participating on an acquisition",
+        "Non-participating means the investor receives nothing on an exit",
+        "Participating takes the capital back and still shares; non-participating picks one"
+      ],
+      "explanation": "Participating lets the investor eat twice from the same deal, so it takes a substantial slice from the founders, particularly in mid-sized exits - the scenario that occurs most often in practice. This is why a term sheet with a high valuation and 2x participating can be far worse than one with a lower valuation and 1x non-participating, and why the payout table has to be built by scenario before signing."
+    }
+  ],
+  "practicePrompt": {
+    "question": "The company sells for 20 million USD. The fund invested 5 million for 25%, with a 1x participating preference. What does the fund receive?",
+    "options": [
+      "5 million USD",
+      "8.75 million USD",
+      "10 million USD",
+      "6.25 million USD"
+    ],
+    "explanation": "Participating means the fund takes its capital back first and still shares afterwards: 5 million of principal, then 25% of the remaining 15 million, a further 3.75 million - 8.75 million in total. Had the term been 1x NON-participating, the fund would have to choose: either 5 million of principal, or 25% × 20 = 5 million, receiving 5 million. That 3.75 million gap comes straight out of the founders' pockets - because of one word in the term sheet."
+  },
+  "keyTakeaways": [
+    "Post-money = pre-money + new capital, and every ownership percentage divides by the post-money.",
+    "Dilution across rounds is computed by multiplying the factors, not by subtracting percentages.",
+    "An option pool set before the round is carried entirely by the founders - restate two term sheets on the same basis before comparing them.",
+    "SAFEs defer the valuation but accumulate; build the conversion model before signing the next one.",
+    "The liquidation preference usually decides how much money reaches you more than the valuation does."
+  ],
+  "summary": {
+    "keyIdea": "The valuation is the term argued about loudest and rarely the most important - the option pool and the liquidation preference are where the money actually changes hands.",
+    "formula": "Post = pre + new capital · Share = new capital / post · Remaining = product of (1 − percentage sold) across rounds",
+    "commonMistake": "Dividing the investment by the pre-money to get the percentage, and ignoring where the option pool sits.",
+    "action": "Build the payout table across three exit scenarios - low, medium, high - before signing any term sheet."
+  }
+}

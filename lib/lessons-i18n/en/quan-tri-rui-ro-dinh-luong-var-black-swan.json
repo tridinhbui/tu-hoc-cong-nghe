@@ -1,0 +1,216 @@
+{
+  "slug": "quan-tri-rui-ro-dinh-luong-var-black-swan",
+  "title": "Masterclass 4: Quantitative risk management - VaR and black swan scenario simulation",
+  "subtitle": "VaR, expected shortfall, backtesting and stress testing - and the dangerous limits of every risk model.",
+  "whyItMatters": "VaR is the most widely used risk number in finance, and also the most widely misunderstood. Understanding what it says - and above all what it does NOT say - is the line between real risk management and a false sense of safety.",
+  "duration": "14 min",
+  "openingQuestion": "A 10 billion VND portfolio has a \"daily 95% VaR of 200 million VND\". What does that number mean?",
+  "openingOptions": [
+    "The expected rate of return is 95% a year",
+    "The portfolio will certainly lose 200 million VND every day",
+    "On 95% of days, the loss does not exceed 200 million",
+    "There is a 5% chance the portfolio gains 200 million VND"
+  ],
+  "explanation": "VaR is a threshold attached to a probability, not a forecast. The correct reading: on roughly 1 trading day in 20, the portfolio will lose more than 200 million. With 250 trading days in a year that is around 12-13 breaches a year - and that is normal, not a sign the model is wrong.",
+  "diagram": [
+    { "label": "The return distribution", "arrow": true },
+    { "label": "Pick the 95% confidence level", "arrow": true },
+    { "label": "VaR = the loss threshold there", "arrow": true },
+    { "label": "The remaining tail: expected shortfall" }
+  ],
+  "realWorldExample": {
+    "company": "Lessons from the 2008 crisis",
+    "description": "Before 2008, the VaR models at many large banks reported low risk, because they were calibrated on data from quiet years and assumed house prices across the whole United States could not fall at once. When that happened, correlations between assets jumped towards 1 and every diversification estimate collapsed simultaneously. The formula itself was not wrong - the historical data simply had never contained that scenario."
+  },
+  "application": {
+    "title": "Two questions for every VaR number",
+    "message": "Next time you see a risk report, ask what the expected shortfall is, and how many times the backtest breached the threshold last year. At a 99% confidence level, about four breaches in 250 trading days is within tolerance; ten means the model is wrong, not that the market is being strange.",
+    "secondary": "If the person presenting cannot answer those two, the number they gave is not yet a statement about risk - it is only the output of a model."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "In the risk meeting, somebody says \"our VaR is 200 million, still inside the limit\". The question that has to follow immediately is: \"and on the days we breach it, how much do we lose?\". A great many institutions have collapsed because nobody asked the second question."
+    },
+    {
+      "type": "heading",
+      "text": "1. Reading a VaR number properly"
+    },
+    {
+      "type": "paragraph",
+      "text": "A complete VaR statement always has three components: a time horizon (1 day, 10 days), a confidence level (95%, 99%) and an amount. Missing any one of them makes the number meaningless. \"1-day VaR at 95% is 200 million\" means: in market conditions similar to those the model has learned from, roughly 5% of days will lose more than 200 million."
+    },
+    {
+      "type": "callout",
+      "label": "Two VaR numbers cannot be ranked against each other",
+      "text": "For the same portfolio, VaR always RISES as the confidence level rises - cutting deeper into the tail means a larger threshold. So \"95% VaR = 3 billion\" and \"99% VaR = 5 billion\" are two consistent points on the same distribution, not two levels of risk to compare."
+    },
+    {
+      "type": "heading",
+      "text": "2. Three ways to compute it, three sets of assumptions"
+    },
+    {
+      "type": "conceptTable",
+      "title": "Methods for computing VaR",
+      "subtitle": "The same portfolio can produce three different numbers - knowing why they differ is the important part",
+      "concepts": [
+        {
+          "vi": "Mô phỏng lịch sử",
+          "en": "Historical simulation",
+          "def": "Replay the moves that actually happened in the past against today's portfolio. It assumes no shape for the distribution, but it only knows what has already occurred."
+        },
+        {
+          "vi": "Tham số",
+          "en": "Parametric / variance-covariance",
+          "def": "Assumes normally distributed returns, computed from standard deviations and correlations. Fast and compact, but the normal distribution badly understates the probability of large shocks."
+        },
+        {
+          "vi": "Mô phỏng Monte Carlo",
+          "en": "Monte Carlo simulation",
+          "def": "Generates tens of thousands of random scenarios under a chosen model. The most flexible, but the result is only as good as the model you fed in."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "3. What VaR does not tell you - and what that costs"
+    },
+    {
+      "type": "paragraph",
+      "text": "This is the most important limitation and the most often ignored: VaR tells you how OFTEN losses exceed the threshold, and is entirely silent on how FAR they exceed it. Two portfolios can share a VaR of 200 million, while on its worst day the first loses 250 million and the second loses 4 billion. VaR gives them the same score."
+    },
+    {
+      "type": "formula",
+      "title": "The complementary measure for the tail",
+      "equation": "Expected shortfall = the average loss across the cases that breached VaR",
+      "variables": [
+        {
+          "symbol": "VaR",
+          "name": "The loss threshold",
+          "description": "Answers: how often the threshold is breached"
+        },
+        {
+          "symbol": "ES",
+          "name": "Expected shortfall / CVaR",
+          "description": "Answers: once breached, how much is lost on average"
+        }
+      ],
+      "example": {
+        "title": "Why Basel moved to ES",
+        "calculation": "95% VaR = 200 million, but 95% ES = 850 million",
+        "result": "A far fatter tail than the threshold suggested",
+        "explanation": "It was precisely this gap that led Basel III to move the market risk standard from VaR to expected shortfall. ES also has better mathematical properties: it always rewards diversification, while VaR in some cases penalises it."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "4. Backtesting and stress testing"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Backtesting - checking the model",
+        "text": "Count the days on which the actual loss exceeded VaR and compare with expectation. For 95% VaR over 250 days, expect around 12-13 breaches. Thirty breaches means the model understates risk; two breaches is equally suspicious, usually meaning the model is too conservative and is tying up capital pointlessly."
+      },
+      "right": {
+        "label": "Stress testing - dropping probability entirely",
+        "text": "It does not ask \"how likely\" but \"if this scenario happened, how much would we lose\": a repeat of September 2008, the dong falling 15% in a week, rates rising 300 basis points. This is how you see risks that never appear in the data."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Reverse stress testing - the most frightening and most useful question",
+      "text": "Instead of asking \"how much damage does scenario X cause\", ask it backwards: \"what would have to happen for us to go bankrupt?\". That question forces people to name the implicit assumptions nobody had thought about - and in most large failures, what killed the institution sat in exactly that group."
+    },
+    {
+      "type": "heading",
+      "text": "5. Black swans and the limits of models"
+    },
+    {
+      "type": "paragraph",
+      "text": "Nassim Taleb pointed out that every model built on historical data is blind to events without precedent. Worse, financial risk is reflexive: when every institution uses the same model and is forced to cut losses at the same threshold, that simultaneous selling creates the very crash the model treated as near-impossible. The model does not merely measure the market - it participates in shaping it."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "VaR is a good torch, but it only lights the area you have pointed it at.",
+        "Use VaR to set daily limits, expected shortfall to understand the tail, and stress tests to see the things historical data has never contained."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "What is the BIGGEST limitation of value at risk (VaR)?",
+      "options": [
+        "VaR says how often losses breach the threshold, not by how much",
+        "VaR always overstates the risk, so it ties up capital that could have been deployed",
+        "VaR is so complex that banks must hire outside consultants",
+        "VaR applies only to portfolios of listed equities"
+      ],
+      "explanation": "Two portfolios can share a VaR of 200 million while on the worst day one loses 250 million and the other loses 4 billion - VaR scores them identically. It was this gap that led Basel III to move the market risk standard to expected shortfall, the measure answering \"once the threshold is breached, how much is lost on average\"."
+    },
+    {
+      "question": "What is stress testing in risk management?",
+      "options": [
+        "Measuring the psychological stress on traders during a session",
+        "Simulating specific extreme scenarios with no probability attached",
+        "Testing how fast the trading system processes under heavy load",
+        "Recomputing VaR at a higher confidence level, say 99.9%"
+      ],
+      "explanation": "A stress test deliberately DROPS probability and asks a different question from VaR: \"if this specific scenario occurred, how much would we lose\". That lets you see risks that never appeared in the historical data - exactly the group VaR is blindest to, and exactly the group that has caused the major crises."
+    },
+    {
+      "question": "Backtesting a 95% VaR model over 250 trading days shows 30 days where the loss exceeded VaR. What do you conclude?",
+      "options": [
+        "The model works, since 30 days is still under the 5% allowance",
+        "You cannot conclude without knowing the portfolio's return for the year",
+        "The model UNDERSTATES risk - 12-13 days was the expectation",
+        "The model overstates risk, so the threshold should be widened"
+      ],
+      "explanation": "95% VaR by definition allows about 5% of days to breach, i.e. 12-13 days out of 250. Recording 30 breaches means the model is systematically understating risk and needs recalibrating. What few people notice: only 2 breaches is also a bad sign - an over-conservative model ties up capital for nothing."
+    },
+    {
+      "question": "Why did the VaR models at many large banks fail in the 2008 crisis?",
+      "options": [
+        "Because regulators banned VaR as soon as the crisis broke",
+        "Because the banks did not recompute their VaR often enough over the course of each trading day",
+        "Because the VaR formula was mathematically disproved in 2007",
+        "Because the models learned from quiet data, and correlations jumped to 1"
+      ],
+      "explanation": "The formula itself was not wrong - the input data simply had never contained a scenario of US house prices falling everywhere at once. This is the core lesson: a risk model knows only what it was given to learn. Worse still is reflexivity - when every institution uses the same model and is forced to cut losses at the same threshold, that simultaneous selling creates the crash the model treated as near-impossible."
+    },
+    {
+      "question": "How does a reverse stress test differ from an ordinary stress test?",
+      "options": [
+        "It asks backwards: what would have to happen for us to fail?",
+        "It applies only to bond and corporate credit portfolios",
+        "It reruns the model in reverse chronological order",
+        "It computes potential profit instead of potential loss"
+      ],
+      "explanation": "An ordinary stress test starts from a scenario you thought of - so it only lights up the risks you could already imagine. A reverse stress test works back from the failure outcome to its causes, and that is precisely why it forces people to name the implicit assumptions nobody had questioned. In most large failures, what killed the institution sat among the assumptions nobody thought needed checking."
+    }
+  ],
+  "practicePrompt": {
+    "question": "Portfolios A and B both have a 1-day 95% VaR of 1 billion. But A's 95% ES is 1.2 billion and B's is 6 billion. Which is riskier?",
+    "options": [
+      "Equally risky, since the VaR figures are the same",
+      "A is riskier, because its ES is closer to its VaR",
+      "B is far riskier: once the threshold is breached, B loses 6 billion on average against A's 1.2 billion",
+      "They cannot be compared at all without first knowing the size of each of the two portfolios"
+    ],
+    "explanation": "This is the illustration of VaR's gap: two portfolios utterly different in how dangerous they are, scored identically. Expected shortfall exposes the difference - B's tail is five times fatter. A portfolio like B typically appears where there are sold options, high leverage, or illiquid assets: calm most of the time, and very severe when it does break."
+  },
+  "keyTakeaways": [
+    "A VaR statement means something only with all three parts: horizon, confidence level and amount.",
+    "For one portfolio, VaR always rises with the confidence level - two numbers at two levels cannot be ranked against each other.",
+    "VaR gives the frequency of breaches, not their severity; expected shortfall fills exactly that gap and is the Basel III standard.",
+    "Backtesting checks whether the model is right; stress testing looks at scenarios the historical data never contained.",
+    "A risk model knows only what it was given to learn - and when everyone uses the same model, it helps create the crash."
+  ],
+  "summary": {
+    "keyIdea": "VaR answers \"how often is the threshold breached\", not \"by how much\" - and that gap is where crises happen.",
+    "formula": "VaR = the loss threshold at confidence level X · ES = the average loss across the cases that breached VaR",
+    "commonMistake": "Reading VaR as the maximum possible loss rather than as a threshold attached to a probability.",
+    "action": "Every time you see a VaR number, ask two questions immediately: what is the expected shortfall, and how many backtest breaches were there last year."
+  }
+}
