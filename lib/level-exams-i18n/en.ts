@@ -1354,4 +1354,454 @@ export const LEVEL_EXAMS_EN: LevelExamTranslations = {
       },
     },
   },
+  8: {
+    title: "Master Exam - Level 8: Finance Master",
+    questions: {
+      l8_q1: {
+        question: "Which measure captures a bond's price sensitivity to interest rates?",
+        options: [
+          "Duration, the weighted average life of the cash flows",
+          "The yield to maturity at the moment the investor bought",
+          "The coupon rate fixed in the contract at issue",
+          "The credit rating published by an independent agency",
+        ],
+        explanation:
+          "Duration says how many percent the price moves when rates move one percentage point. The other three describe different properties of a bond.",
+      },
+      l8_q2: {
+        question: "What characterises a leveraged buyout?",
+        options: [
+          "Most of the price is funded with debt, secured on the target's own assets",
+          "The fund buys only a small share stake on the exchange",
+          "The whole price is paid from the investors' own cash",
+          "It targets only newly founded technology companies with no revenue",
+        ],
+        explanation:
+          "The target's own cash flow services the debt, so the ideal target is a business with steady cash flow and modest reinvestment needs.",
+      },
+      l8_q3: {
+        question: "What characterises unsystematic risk?",
+        options: [
+          "Most of it can be removed by diversifying the portfolio",
+          "It cannot be removed no matter how many stocks are held",
+          "It is driven mainly by the monetary policy of large economies",
+          "It hits every listed stock on the market at the same time",
+        ],
+        explanation:
+          "Company-specific risks cancel each other out once a portfolio is broad enough. The other three all describe systematic risk.",
+      },
+      l8_q4: {
+        question: "In an interest rate swap, what do the two parties exchange?",
+        options: [
+          "A fixed interest stream for a floating interest stream",
+          "Ownership of shares in two different companies",
+          "Government bonds for physical gold at market prices",
+          "The principal repayment obligations of two loans of equal remaining term",
+        ],
+        explanation:
+          "Only the interest streams are swapped; the principal stays where it is. It is a tool for changing the interest structure without restructuring the loan.",
+      },
+      l8_q5: {
+        question: "What is a company's economic moat?",
+        options: [
+          "A durable competitive advantage that stops rivals eroding the margin",
+          "A large cash pile that carries the company through hard times",
+          "A short-term debt ratio well below the industry average",
+          "A patent portfolio whose protection expires in a few years",
+        ],
+        explanation:
+          "A moat can come from brand, network effects, switching costs or a cost advantage. What they share is durability - not a passing advantage.",
+      },
+      l8_q6: {
+        question: "What is the Blume adjustment to beta for?",
+        options: [
+          "Pulling the historical beta back towards the market average of one",
+          "Doubling beta to reflect risk more conservatively",
+          "Removing the effect of beta from the valuation model entirely",
+          "Estimating the cost of debt in place of the cost of equity",
+        ],
+        explanation:
+          "A company's beta tends to drift towards one over time, so a raw historical beta usually overstates how far it sits from the market.",
+      },
+      l8_q7: {
+        question: "How is enterprise value calculated?",
+        options: [
+          "Market capitalisation plus total debt, minus cash",
+          "Market capitalisation minus all the debt on the balance sheet",
+          "Net revenue for the period multiplied by the price-earnings ratio",
+          "Shareholders' equity plus closing inventory",
+        ],
+        explanation:
+          "It is the real cost of buying the business outright: pay the shareholders, assume the debt, but receive the cash already sitting on the balance sheet.",
+      },
+      l8_q8: {
+        question: "What does convexity add that duration cannot capture?",
+        options: [
+          "That the price-rate relationship is a curve, not a straight line",
+          "The probability that the issuer defaults when rates rise",
+          "The effect of expected inflation on the bond's real yield",
+          "The gap between the bid and the offer in the market",
+        ],
+        explanation:
+          "Duration is a linear approximation, so its error grows as rates move further. Convexity is the second-order term that corrects for it.",
+      },
+      l8_q9: {
+        question: "In an LBO, which source of return does NOT depend on operational improvement?",
+        options: [
+          "Paying debt down with cash flow, so the equity slice grows",
+          "Cutting operating costs and slimming the management structure",
+          "Expanding revenue into new markets and customer groups",
+          "Improving gross margin by renegotiating with suppliers",
+        ],
+        explanation:
+          "Debt repayment shifts value from lenders to owners without the business having to get any better. The other three all require operations to genuinely improve.",
+      },
+      l8_q10: {
+        question: "How should a sunk cost be treated in an investment decision?",
+        options: [
+          "Ignored entirely, since it does not change with the decision ahead",
+          "Added to total capital, to get the project's return right",
+          "Spread evenly across the remaining years of the project",
+          "Deducted from the first year's cash flow in the appraisal",
+        ],
+        explanation:
+          "Money already spent cannot be recovered whichever option you pick, so it does not belong in the comparison. Including it is the sunk cost fallacy.",
+      },
+      l8_q11: {
+        question: "How does a futures contract differ from a forward?",
+        options: [
+          "Futures are standardised, exchange-listed and settled daily",
+          "Futures require no initial margin from the participants",
+          "Forwards always have deeper liquidity on the secondary market",
+          "Forwards are guaranteed by a central clearing house",
+        ],
+        explanation:
+          "Daily settlement and a clearing house standing in the middle make counterparty risk nearly vanish - the price is losing flexibility in the terms.",
+      },
+      l8_q12: {
+        question: "What is the limitation of valuing a company on its industry peers' multiples?",
+        options: [
+          "It assumes the market is pricing the comparable group correctly",
+          "It requires a detailed cash flow forecast for at least five years",
+          "It only applies to companies not yet listed on the market",
+          "It ignores the revenue size of the company being valued",
+        ],
+        explanation:
+          "Relative valuation tells you whether a company is cheap or dear against its peers; it cannot tell you whether the whole peer group is mispriced.",
+      },
+      l8_q13: {
+        question: "How does the interest tax shield create value?",
+        options: [
+          "Interest is deductible for tax, so the company pays less tax",
+          "Interest lowers accounting profit, so shareholders demand less dividend",
+          "Debt always carries a lower headline cost than equity",
+          "Lenders take on part of the business risk on behalf of shareholders",
+        ],
+        explanation:
+          "The value comes from the tax saved, not from debt being cheaper than equity. The benefit is capped by the cost of financial distress once borrowing goes too far.",
+      },
+      l8_q14: {
+        question: "In a sum-of-the-parts valuation, how is the company's value determined?",
+        options: [
+          "Value each business line on its own suitable multiple, add them up and deduct net debt",
+          "Take market capitalisation and add all fixed assets at book value",
+          "Multiply consolidated revenue by the average multiple of the whole market",
+          "Add up the last five years of after-tax profit and discount it to today",
+        ],
+        explanation:
+          "The method is useful for conglomerates, where a single blended multiple hides how differently each arm is worth. The result usually exceeds the market price, and the gap is called the conglomerate discount.",
+      },
+      l8_q15: {
+        question: "What purpose do financial covenants serve for the lender?",
+        options: [
+          "An early warning, and the right to step in when the borrower deteriorates",
+          "Fixing the lending rate for the whole life of the loan",
+          "Giving the lender voting rights at the shareholders' meeting",
+          "Excusing the borrower from providing security for the loan",
+        ],
+        explanation:
+          "Covenants set thresholds on ratios such as debt to EBITDA or interest cover. Breaching one triggers the right to renegotiate or call the loan early - before things get bad enough to lose the money.",
+      },
+      l8_q16: {
+        question: "In an M&A deal, why are cost synergies usually more reliable than revenue synergies?",
+        options: [
+          "Because cutting duplication is within the acquirer's own control",
+          "Because cost synergies are always larger in absolute terms",
+          "Because accounting standards only allow cost synergies into goodwill",
+          "Because competition regulators forbid revenue synergies in deal valuation",
+        ],
+        explanation:
+          "Closing a duplicate head office is an internal decision that can simply be executed. Cross-selling into the other side's customer base depends on outsiders' behaviour, so it usually runs late and lands short.",
+      },
+      l8_q17: {
+        question: "Why does free cash flow matter more than accounting profit in an LBO model?",
+        options: [
+          "Because cash flow sets the pace of debt repayment, the key driver of the fund's return",
+          "Because banks funding the deal do not accept accounting profit",
+          "Because an LBO model does not use the income statement at all",
+          "Because accounting profit in the acquired company is always negative after the deal",
+        ],
+        explanation:
+          "The LBO structure bets on using the company's cash flow to work down a large debt. Every dong of debt repaid is a dong of value transferred to the fund's equity - accounting profit says nothing about that capacity.",
+      },
+      l8_q18: {
+        question: "What is model risk in financial risk management?",
+        options: [
+          "The risk of loss because the model rests on wrong assumptions",
+          "The risk that the computer running the model fails or loses power",
+          "The risk that the staff who built the model leave without documentation",
+          "The risk that a competitor copies the proprietary valuation model",
+        ],
+        explanation:
+          "A model is always a simplification of reality. The risk appears when its founding assumptions stop holding - for instance assuming normally distributed returns while the market has fat tails.",
+      },
+      l8_q19: {
+        question: "Why does goodwill arise in a business combination?",
+        options: [
+          "Because the price paid exceeds the fair value of the identifiable net assets acquired",
+          "Because the acquirer must capitalise all deal advisory fees as a long-term asset",
+          "Because the acquired company has been profitable for several years running",
+          "Because accounting standards require a provision against consolidation risk",
+        ],
+        explanation:
+          "Goodwill is the gap between what was paid and the fair value of identifiable net assets - it stands for brand, customer relationships and expected synergies. It has to be tested for impairment every year.",
+      },
+      l8_q20: {
+        question: "What is a natural hedge for an exporting company?",
+        options: [
+          "Creating costs in the same currency as the revenue, so inflows and outflows offset",
+          "Buying FX put options for the same volume as export revenue",
+          "Converting all foreign revenue into local currency the day it arrives",
+          "Selling in local currency and leaving the customer to handle the exchange rate",
+        ],
+        explanation:
+          "A natural hedge needs no derivative: borrowing in the foreign currency, or putting a plant in the export market, creates an outflow in the same currency as the inflow, so most of the FX movement cancels itself out.",
+      },
+    },
+  },
+  9: {
+    title: "CFA Exam - Level 9: CFA Candidate",
+    questions: {
+      l9_q1: {
+        question: "What does the Fair Dealing standard in the CFA Code require?",
+        options: [
+          "Dealing fairly with all clients when making investment recommendations",
+          "Filling orders for the largest-asset client group first",
+          "Filling an analyst's personal orders ahead of client orders",
+          "Offering discounted management fees to family members",
+        ],
+        explanation:
+          "Fair does not mean identical: service tiers are allowed, but no tier may profit ahead of another from the same recommendation.",
+      },
+      l9_q2: {
+        question: "The semi-strong form of market efficiency says prices already reflect what?",
+        options: [
+          "All past data and every piece of publicly disclosed information",
+          "Past price and trading volume data alone",
+          "Everything, including inside information not yet disclosed",
+          "No category of information, in any reliable way",
+        ],
+        explanation:
+          "The practical consequence: fundamental analysis of public information rarely gives a durable edge, while inside information still would.",
+      },
+      l9_q3: {
+        question: "Which variable dominates an option's price in the Black-Scholes model?",
+        options: [
+          "The volatility of the underlying over the remaining life",
+          "The number of existing shareholders in the issuing company",
+          "The inflation target the central bank is pursuing",
+          "The net revenue the company booked in the latest quarter",
+        ],
+        explanation:
+          "Volatility is the one input in the model that cannot be observed directly, which makes it both the most important and the most argued-over.",
+      },
+      l9_q4: {
+        question: "What does a one-day VaR of $10 million at 95% confidence mean?",
+        options: [
+          "On 5% of days, the loss will exceed $10 million",
+          "The portfolio's maximum loss in a day is $10 million",
+          "The portfolio will certainly gain $10 million on the other 95% of days",
+          "There is a 95% chance the loss lands exactly at $10 million",
+        ],
+        explanation:
+          "VaR is a threshold, not a ceiling. It says nothing at all about how deep the loss goes once the threshold is breached - that is what Expected Shortfall is for.",
+      },
+      l9_q5: {
+        question: "Where does a cash-and-carry arbitrage make its profit?",
+        options: [
+          "A temporary mispricing between the spot market and the futures contract",
+          "Correctly predicting the market's short-term direction",
+          "Holding growth stocks over a long enough horizon",
+          "Buying shares just before the cash dividend record date",
+        ],
+        explanation:
+          "Buying spot and selling the future at the same moment locks the gap in, so the profit does not depend on which way the price goes.",
+      },
+      l9_q6: {
+        question: "What does unlevered beta strip out?",
+        options: [
+          "The debt structure within the company's funding",
+          "The gross margin the company achieved in the reporting period",
+          "The prevailing lending rate of the commercial banking system",
+          "The headcount and organisational structure of the company",
+        ],
+        explanation:
+          "Taking leverage out leaves pure business risk, which is what lets you compare betas across companies with very different capital structures.",
+      },
+      l9_q7: {
+        question: "What does it mean for a commodity market to be in contango?",
+        options: [
+          "The futures price sits above the current spot price",
+          "The futures price sits below the current spot price",
+          "Futures and spot prices are exactly equal",
+          "Trading is suspended because prices moved too far",
+        ],
+        explanation:
+          "Contango reflects storage costs and the cost of capital tied up in holding the goods. Commodity funds bleed return when they have to roll contracts in this state.",
+      },
+      l9_q8: {
+        question: "What does the standard on material non-public information require of whoever holds it?",
+        options: [
+          "Do not trade on it, and do not tip anyone else to trade",
+          "Trading is allowed if compliance has been notified beforehand",
+          "Trading is allowed once the information is more than seven days old",
+          "Only disclose the personal holding in the year-end report",
+        ],
+        explanation:
+          "Tipping breaches the standard exactly as trading does. The right course is to urge the issuer to disclose the information to the market.",
+      },
+      l9_q9: {
+        question: "Which performance measure fits when a portfolio is only one part of the investor's total wealth?",
+        options: [
+          "The Treynor ratio, because it divides by beta rather than standard deviation",
+          "The Sharpe ratio, because it uses the portfolio's total risk",
+          "The absolute return achieved over the evaluation period",
+          "The largest drawdown the portfolio has ever suffered",
+        ],
+        explanation:
+          "When the portfolio is only a part, specific risk has already been diversified away at the total level, so only systematic risk counts - that is, beta.",
+      },
+      l9_q10: {
+        question: "What does the efficient frontier represent in portfolio theory?",
+        options: [
+          "The set of portfolios with the highest return at each level of risk",
+          "The set of portfolios with the lowest risk the investor can accept",
+          "The relationship between the risk-free rate and the holding period",
+          "The boundary between equity portfolios and bond portfolios",
+        ],
+        explanation:
+          "Every portfolio below the frontier is dominated: there is always another portfolio offering a higher return at the same level of risk.",
+      },
+      l9_q11: {
+        question: "In GIPS, what behaviour does the composite requirement prevent?",
+        options: [
+          "Showing only the portfolios that performed well and hiding the rest",
+          "Charging a higher management fee than the contract promised",
+          "Changing investment strategy without telling clients first",
+          "Using leverage beyond the limit set in the fund prospectus",
+        ],
+        explanation:
+          "Every portfolio run on the same strategy must sit in the same composite, so a firm cannot cherry-pick its best results to display.",
+      },
+      l9_q12: {
+        question: "Why is an American option never worth less than an otherwise identical European one?",
+        options: [
+          "Because it grants the extra right of early exercise with no added obligation",
+          "Because it always has a longer time to expiry",
+          "Because it trades on markets with deeper liquidity",
+          "Because it requires no initial margin from the buyer",
+        ],
+        explanation:
+          "Adding a right without adding an obligation cannot reduce value. For a call on a non-dividend-paying asset, though, that right is rarely worth using.",
+      },
+      l9_q13: {
+        question: "What does the suitability rule require of an adviser before recommending an investment?",
+        options: [
+          "Understanding the client's finances, objectives and risk tolerance",
+          "Giving every client the same recommendation, to be fair",
+          "Favouring products issued by the adviser's own firm",
+          "Guaranteeing a return above the bank deposit rate",
+        ],
+        explanation:
+          "A recommendation that is right for one person can be entirely wrong for another, so the client profile has to come before the recommendation, not after.",
+      },
+      l9_q14: {
+        question: "Whose interests does the Loyalty, Prudence and Care standard put first?",
+        options: [
+          "The client's, ahead of the firm's and your own",
+          "The employer's, since it pays the salary",
+          "The firm's shareholders', since they carry the greatest capital risk",
+          "The market regulator's, since it holds the power to sanction",
+        ],
+        explanation:
+          "The order of priority in the Code is explicit: client first, then employer, and personal interest last. This is what separates a fiduciary duty from an ordinary commercial relationship.",
+      },
+      l9_q15: {
+        question: "Under international standards, what is the effect of capitalising development costs?",
+        options: [
+          "Assets and current-period profit rise, but amortisation rises in later periods",
+          "Both assets and profit fall in the period the cost is incurred",
+          "No effect on the financial statements, as this is only a note disclosure",
+          "Operating cash flow rises while profit stays unchanged",
+        ],
+        explanation:
+          "Capitalising puts the cost on the balance sheet instead of straight against profit, so this period looks better and later ones worse through amortisation. It also moves the cash outflow from operating into investing.",
+      },
+      l9_q16: {
+        question: "The capital asset pricing model assumes investors are compensated for which risk only?",
+        options: [
+          "Systematic risk, the part diversification cannot remove",
+          "The entire risk of each individual asset in the portfolio",
+          "The asset's liquidity risk on the secondary market",
+          "The credit risk of whoever issued the asset",
+        ],
+        explanation:
+          "The core logic of CAPM: the market does not pay for risk an investor could have removed for free. Only the undiversifiable part, measured by beta, earns compensation.",
+      },
+      l9_q17: {
+        question: "Why does a callable bond usually yield more than a straight bond?",
+        options: [
+          "Because the issuer can call it in exactly when rates fall",
+          "Because callable bonds always carry a lower credit rating",
+          "Because callable bonds always have a longer maturity",
+          "Because this type of bond may not be traded on the secondary market",
+        ],
+        explanation:
+          "The call is an option belonging to the issuer, and they will use it at the worst moment for the investor - when rates fall and the bond is appreciating. The higher yield is the price of that option.",
+      },
+      l9_q18: {
+        question: "What is the Independence and Objectivity standard aimed at preventing?",
+        options: [
+          "Gifts, hospitality or outside pressure distorting professional judgement",
+          "A professional working for two financial firms at the same time",
+          "An analyst issuing a recommendation that differs from market consensus",
+          "The use of third-party analysis software at work",
+        ],
+        explanation:
+          "The focus is protecting the objectivity of judgement. A recommendation against the crowd is entirely legitimate if it is well founded - the problem only arises when judgement is swayed by interests outside the analysis.",
+      },
+      l9_q19: {
+        question: "In portfolio theory, how does the capital market line differ from the security market line?",
+        options: [
+          "The capital market line measures risk by standard deviation, the other by beta",
+          "The capital market line applies only to bonds and the other only to equities",
+          "The capital market line slopes downward while the security market line slopes up",
+          "The capital market line is built from past data and the other from forecasts",
+        ],
+        explanation:
+          "The capital market line describes efficient portfolios combining the risk-free asset with the market portfolio, measuring total risk by standard deviation. The security market line applies to any asset and measures systematic risk only.",
+      },
+      l9_q20: {
+        question: "Why is yield to maturity not the return actually realised in most cases?",
+        options: [
+          "Because it assumes holding to maturity and reinvesting coupons at that same rate",
+          "Because it is stated before the tax the investor owes on the interest",
+          "Because it is computed on par value rather than the actual market price",
+          "Because it applies only to bonds that pay no periodic coupon",
+        ],
+        explanation:
+          "Both implicit assumptions rarely hold: the investor may sell early, and reinvestment rates move with the market. The gap between YTM and the realised return is precisely reinvestment risk.",
+      },
+    },
+  },
 };
