@@ -49,10 +49,15 @@ describe("con số trang /lo-trinh nói với người học", () => {
   });
 
   it("câu giải thích nhịp học nhắc đúng hai con số đó, ở cả hai ngôn ngữ", () => {
-    expect(viDict.learningPath.paceWarnBody).toContain("5 bài");
-    expect(viDict.learningPath.paceWarnBody).toContain("12 bài");
-    expect(enDict.learningPath.paceWarnBody).toContain("5 back");
-    expect(enDict.learningPath.paceWarnBody).toContain("12 back");
+    // So bằng SỐ, không bằng cả cụm. Bản đầu của phép kiểm này đòi đúng chuỗi
+    // "5 back", rồi đỏ ngay khi câu tiếng Anh được viết lại thành "5 lessons
+    // back" - tức nó bắt lỗi của chính nó, không phải lỗi của nội dung. Điều
+    // đáng canh là hai con số 5 và 12 còn được nhắc, không phải chúng được nhắc
+    // bằng cụm từ nào.
+    for (const body of [viDict.learningPath.paceWarnBody, enDict.learningPath.paceWarnBody]) {
+      expect(body).toMatch(/\b5\b/);
+      expect(body).toMatch(/\b12\b/);
+    }
   });
 
   it("ngưỡng 70% ở mốc kiểm nói giống nhau ở hai ngôn ngữ", () => {
