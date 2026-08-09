@@ -6,7 +6,6 @@ import Image from "next/image";
 import TaiTaiAvatar from "@/components/TaiTaiAvatar";
 import { ArrowRight, BookOpen, ChevronDown, ChevronUp, Map } from "lucide-react";
 import { getDashboardGreetingAction } from "@/app/(app)/dashboard/actions";
-import { createClient } from "@/lib/supabase";
 import { trackFeatureClick } from "@/lib/feature-events";
 import { getLessonDisplayLabel, getLessonShortTitle } from "@/lib/lesson-labels";
 import { getQuizAnswers } from "@/lib/progress";
@@ -17,6 +16,7 @@ import type { StageTopicId, TopicAdviceId } from "@/lib/stage-topics";
 import { useLocalStorageValue, writeLocalStorageValue } from "@/lib/use-local-storage-value";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
+import { getCurrentUser } from "@/lib/current-user";
 
 interface ResumeLearningButtonProps {
   activeTrack: "personal" | "professional";
@@ -74,8 +74,7 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
   useEffect(() => {
     const fetchGreeting = async () => {
       try {
-        const supabase = createClient();
-        const { data: { user } } = await supabase.auth.getUser();
+        const user = await getCurrentUser();
 
         if (user) {
           const result = await getDashboardGreetingAction(user.id, activeTrack);

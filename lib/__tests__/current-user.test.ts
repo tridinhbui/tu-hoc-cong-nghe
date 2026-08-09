@@ -119,3 +119,35 @@ describe("không cắt nhầm", () => {
     expect(getSession).toHaveBeenCalledTimes(2);
   });
 });
+
+describe("đọc user_metadata", () => {
+  it("trả về chuỗi khi có", async () => {
+    const { metadataString } = await freshModule();
+    const u = { id: "u1", email: null, user_metadata: { full_name: "Trí" } };
+    expect(metadataString(u, "full_name")).toBe("Trí");
+  });
+
+  it("trường thiếu, người chưa đăng nhập, hay metadata rỗng đều ra null", async () => {
+    const { metadataString } = await freshModule();
+    expect(metadataString(null, "full_name")).toBeNull();
+    expect(metadataString({ id: "u1", email: null, user_metadata: undefined }, "full_name")).toBeNull();
+    expect(metadataString({ id: "u1", email: null, user_metadata: {} }, "full_name")).toBeNull();
+  });
+
+  it("trường có kiểu khác thì ra null chứ không ép bừa", async () => {
+    // Không có phần này thì một số hay một object lọt xuống thành "[object
+    // Object]" hiện trên màn hình hồ sơ.
+    const { metadataString } = await freshModule();
+    const u = (v: unknown) => ({ id: "u1", email: null, user_metadata: { full_name: v } });
+    for (const bad of [42, true, {}, [], null]) {
+      expect(metadataString(u(bad), "full_name")).toBeNull();
+    }
+  });
+
+  it("chuỗi rỗng hoặc chỉ khoảng trắng cũng là null", async () => {
+    const { metadataString } = await freshModule();
+    const u = (v: string) => ({ id: "u1", email: null, user_metadata: { full_name: v } });
+    expect(metadataString(u(""), "full_name")).toBeNull();
+    expect(metadataString(u("   "), "full_name")).toBeNull();
+  });
+});

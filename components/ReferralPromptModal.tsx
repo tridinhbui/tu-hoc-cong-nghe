@@ -5,11 +5,11 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
 import { Gift, Copy, Check, X } from "lucide-react";
-import { createClient } from "@/lib/supabase";
 import { REFERRER_BONUS_XP, REFERRED_BONUS_XP } from "@/lib/referrals";
 import { useI18n } from "@/lib/i18n/context";
 import { copyToClipboard } from "@/lib/copy-to-clipboard";
 import { format } from "@/lib/i18n";
+import { getCurrentUser } from "@/lib/current-user";
 
 // Referral is fully wired end-to-end (lib/referrals.ts). It's a permanent
 // floating round button (mirrors ChatWithAdminWidget's bottom-right chat
@@ -28,8 +28,7 @@ export default function ReferralPromptModal() {
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
-    const supabase = createClient();
-    supabase.auth.getUser().then(({ data: { user } }) => {
+    getCurrentUser().then((user) => {
       if (user) setUserId(user.id);
     });
   }, []);

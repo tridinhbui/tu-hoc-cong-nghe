@@ -27,7 +27,15 @@ import { createClient } from "@/lib/supabase";
  *  `getUser()` trên một server client, như proxy.ts và các route handler đang
  *  làm. */
 
-type CachedUser = { id: string; email: string | null } | null;
+export type CachedUser = {
+  id: string;
+  email: string | null;
+  /** Dữ liệu do nhà cung cấp đăng nhập gắn kèm - `full_name`, `avatar_url` từ
+   *  Google. UserProfile dùng nó làm hồ sơ dự phòng khi bảng `user_profiles`
+   *  chưa có hàng cho người này. Giữ nguyên kiểu lỏng của Supabase vì nội dung
+   *  phụ thuộc nhà cung cấp; đây không phải chỗ để siết nó. */
+  user_metadata: Record<string, unknown> | undefined;
+} | null;
 
 let cached: { value: CachedUser } | null = null;
 let inflight: Promise<CachedUser> | null = null;
@@ -60,7 +68,11 @@ export async function getCurrentUser(): Promise<CachedUser> {
         data: { session },
       } = await createClient().auth.getSession();
       const value: CachedUser = session?.user
-        ? { id: session.user.id, email: session.user.email ?? null }
+        ? {
+            id: session.user.id,
+            email: session.user.email ?? null,
+            user_metadata: session.user.user_metadata,
+          }
         : null;
       cached = { value };
       return value;
@@ -75,4 +87,17 @@ export async function getCurrentUser(): Promise<CachedUser> {
 /** Lối tắt cho phần lớn chỗ gọi, vốn chỉ cần id. */
 export async function getCurrentUserId(): Promise<string | null> {
   return (await getCurrentUser())?.id ?? null;
+}
+
+/** Đọc một trường chuỗi trong `user_metadata`.
+ *
+ *  `user_metadata` là `Record<string, unknown>` vì nội dung do nhà cung cấp
+ *  đăng nhập quyết định - đó là kiểu trung thực, và cái giá của nó là chỗ gọi
+ *  phải tự ép kiểu. Hàm này nêu tên phép ép đó đúng một lần, và trả null cho
+ *  cả trường thiếu lẫn trường có kiểu khác, thay vì để một `String(undefined)`
+ *  lọt xuống thành chuỗi "undefined" hiện trên màn hình.
+ */
+export function metadataString(user: CachedUser, key: string): string | null {
+  const value = user?.user_metadata?.[key];
+  return typeof value === "string" && value.trim() !== "" ? value : null;
 }

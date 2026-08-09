@@ -3,11 +3,11 @@
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { Gift, Copy, Check } from "lucide-react";
-import { createClient } from "@/lib/supabase";
 import { getMyReferralStats, REFERRER_BONUS_XP, REFERRED_BONUS_XP, type MyReferralStats } from "@/lib/referrals";
 import { useI18n } from "@/lib/i18n/context";
 import { copyToClipboard } from "@/lib/copy-to-clipboard";
 import { format } from "@/lib/i18n";
+import { getCurrentUser } from "@/lib/current-user";
 
 // "Mời bạn học cùng" - both sides get a one-time XP bonus once the invited
 // person completes their first lesson (see lib/referrals.ts for the
@@ -19,8 +19,7 @@ export default function ReferralCard() {
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
-    const supabase = createClient();
-    supabase.auth.getUser().then(({ data: { user } }) => {
+    getCurrentUser().then((user) => {
       if (!user) return;
       setUserId(user.id);
       getMyReferralStats(user.id)

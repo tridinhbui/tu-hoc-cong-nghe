@@ -7,6 +7,7 @@ import Link from "next/link";
 import { isValidAvatar } from "@/lib/avatar-utils";
 import CharacterCustomizerModal from "@/components/CharacterCustomizerModal";
 import { useI18n } from "@/lib/i18n/context";
+import { getCurrentUser, metadataString } from "@/lib/current-user";
 
 interface Profile {
   id: string;
@@ -36,7 +37,7 @@ export default function UserProfile() {
     const fetchProfile = async () => {
       const supabase = createClient();
 
-      const { data: { user } } = await supabase.auth.getUser();
+      const user = await getCurrentUser();
       if (!user) {
         setLoading(false);
         return;
@@ -47,8 +48,8 @@ export default function UserProfile() {
       const fallback: Profile = {
         id: user.id,
         email: user.email || "",
-        full_name: user.user_metadata?.full_name || null,
-        avatar_url: user.user_metadata?.avatar_url || null,
+        full_name: metadataString(user, "full_name"),
+        avatar_url: metadataString(user, "avatar_url"),
         total_xp: 0,
         current_level: 1,
         lessons_completed: 0,

@@ -40,6 +40,7 @@ import LeaderboardSection from "@/components/analytics/LeaderboardSection";
 import CompetencyStatsSection from "@/components/analytics/CompetencyStatsSection";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
+import { getCurrentUser } from "@/lib/current-user";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 18 },
@@ -240,9 +241,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
     const fetchAnalytics = async () => {
       try {
         const supabase = createClient();
-        const {
-          data: { user },
-        } = await supabase.auth.getUser();
+        const user = await getCurrentUser();
 
         if (user) {
           setUserId(user.id);
