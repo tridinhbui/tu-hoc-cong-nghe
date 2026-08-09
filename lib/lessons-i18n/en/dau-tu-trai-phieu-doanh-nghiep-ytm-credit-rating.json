@@ -1,0 +1,211 @@
+{
+  "slug": "dau-tu-trai-phieu-doanh-nghiep-ytm-credit-rating",
+  "title": "Masterclass 2: Corporate bonds - pricing with YTM and managing default risk",
+  "subtitle": "YTM, credit spread, credit ratings and covenants - how to read a corporate bond before buying it.",
+  "whyItMatters": "In 2020-2021, hundreds of thousands of individual Vietnamese investors bought corporate bonds for one reason: 11% a year against 6% on a savings account. Very few asked what that 5 percentage point difference was payment for. This lesson teaches you to ask that question properly.",
+  "duration": "14 min",
+  "openingQuestion": "When market interest rates rise from 6% to 8%, what happens to the price of a corporate bond with a fixed coupon?",
+  "openingOptions": [
+    "The bond price falls",
+    "The bond price rises",
+    "The bond price stays exactly where it was",
+    "The bond automatically converts into shares"
+  ],
+  "explanation": "Pricing a corporate bond comes down to two jobs: discounting the coupon stream and the principal back to today, then asking whether that discount rate compensates the risk. The first is pure arithmetic and explains why price moves opposite to interest rates. The second is where the analysis lives: the yield above government bonds has to cover the probability of default multiplied by the portion not recovered, plus a premium for poor liquidity.",
+  "diagram": [
+    { "label": "Market interest rates rise", "arrow": true },
+    { "label": "The older bond becomes less attractive", "arrow": true },
+    { "label": "Its price has to fall", "arrow": true },
+    { "label": "YTM rises to the new market level" }
+  ],
+  "realWorldExample": {
+    "company": "Vietnam's corporate bond crisis of 2022",
+    "description": "After the Tan Hoang Minh and Van Thinh Phat affairs, the market in privately placed corporate bonds all but froze. Many property bond tranches sold to individual investors at 11-13% belonged to the group commonly called \"the three withouts\": without a credit rating, without collateral of adequate quality, without a payment guarantee. Decree 65/2022 subsequently tightened both the issuance conditions and the professional investor standard."
+  },
+  "application": {
+    "title": "Read the spread, not the big number",
+    "message": "For the most recent bond tranche you were offered, look up the government bond yield at the same maturity and subtract it. What remains is the price the market puts on this business failing to pay. Then open the accounts and check whether cash flow from operations covers the interest bill.",
+    "secondary": "If the spread is unusually wide and you cannot say what it is wide because of, then the thing you do not know is exactly the thing you are being paid to carry."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A bond pays 11% a year while the bank pays 6%. The right question is not \"can a yield that high be real\", but \"who is paying me an extra 5 percentage points, and what are they buying from me with it\". The answer is always the same: you have just sold them your capacity to absorb a total loss."
+    },
+    {
+      "type": "heading",
+      "text": "1. Three \"yield\" numbers, and why only one is trustworthy"
+    },
+    {
+      "type": "conceptTable",
+      "title": "Do not confuse these three",
+      "concepts": [
+        {
+          "vi": "Lãi danh nghĩa",
+          "en": "Coupon rate",
+          "def": "The percentage printed on the bond, applied to the face value. Fixed for the bond's life, and it says nothing about the price you paid for it."
+        },
+        {
+          "vi": "Lợi suất hiện hành",
+          "en": "Current yield",
+          "def": "The coupon divided by the CURRENT MARKET PRICE. Better than the coupon, but it ignores the gain or loss as the bond pulls back to face value at maturity."
+        },
+        {
+          "vi": "Lợi suất đáo hạn",
+          "en": "Yield to maturity (YTM)",
+          "def": "The discount rate that makes the present value of all future cash flows equal the price you pay today. This is the number for comparing bonds."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "YTM is the most complete measure because it captures all three sources of money: the coupon payments, the difference between the purchase price and the face value repaid at maturity, and the effect of time. But it carries two assumptions that are usually glossed over - that you hold to maturity, and that every coupon received is reinvested at exactly that same YTM. Sell early, or let rates turn, and the realised yield will differ from the figure on the offer document."
+    },
+    {
+      "type": "heading",
+      "text": "2. Decomposing the yield: which risks are you being paid for"
+    },
+    {
+      "type": "formula",
+      "title": "The structure of a corporate bond yield",
+      "equation": "YTM = risk-free rate + credit spread",
+      "variables": [
+        {
+          "symbol": "Risk-free rate",
+          "name": "Government bonds at the same maturity",
+          "description": "The price of time, carrying no default risk"
+        },
+        {
+          "symbol": "Credit spread",
+          "name": "The credit risk premium",
+          "description": "Compensation for default risk and liquidity risk"
+        }
+      ],
+      "example": {
+        "title": "A property developer's bond",
+        "calculation": "11.5% − 4.5% (3-year government bond)",
+        "result": "A spread of 7.0%",
+        "explanation": "A 7 percentage point spread is the market pricing a very material probability of default, not handing out a gift. A rough self-check: the spread is roughly the annual default probability multiplied by the loss given default. A 7% spread assuming a 60% loss implies a default probability of around 11-12% a year."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "How to read a high-yield tranche",
+      "text": "Do not ask \"is 12% a high yield\". Ask \"what is the government bond at this maturity paying, and is the remaining difference proportionate to this particular business's risk\". If you cannot quantify that risk, you cannot price the bond - and when you cannot price it, a high yield is a reason to stay away rather than a reason to buy."
+    },
+    {
+      "type": "heading",
+      "text": "3. Credit ratings and collateral"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Investment grade (BBB-/Baa3 and above): low default probability, thin spreads, good liquidity.",
+        "High yield, or \"junk\" (below BBB-): fat spreads, sharp moves through the economic cycle, and liquidity that usually disappears exactly when you need to sell.",
+        "Unrated: most privately placed bonds in Vietnam in 2020-2021 fell here - meaning no independent third party ever assessed the ability to repay.",
+        "Collateral is worth exactly what it can actually be sold for. Shares in the issuer itself, or property rights in a project without completed legal status, tend to lose value at precisely the moment the business runs into trouble."
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "4. Covenants - the bondholder's fence"
+    },
+    {
+      "type": "paragraph",
+      "text": "Covenants are commitments binding the business throughout the bond's life. A clause such as \"debt-to-equity not to exceed 3.0x\" is not there to run the company for it, but to block the company taking on new debt - because new debt dilutes the ability to repay you, who lent first. Breaching a covenant usually triggers a right to demand early redemption, and that is the only tool a bondholder has before things have gone too far."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Interest rate risk",
+        "text": "The price moves as the general level of rates changes. Measured by duration: a duration of 4 means a 1 percentage point rise in rates costs roughly 4% of the price. This risk disappears if you hold to maturity."
+      },
+      "right": {
+        "label": "Credit risk",
+        "text": "The business cannot pay. This risk does NOT disappear by holding to maturity - holding longer only keeps you exposed to it longer. This is the risk that wiped out the capital of many Vietnamese bond investors."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A bond is a loan. Before buying, ask the question every credit officer has to ask: where does this business get the cash flow to pay me, rather than what its assets are worth on paper.",
+        "A high yield has never been a reward. It is the market's invoice to you, itemising the risk you have just taken on."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "What does yield to maturity (YTM) represent?",
+      "options": [
+        "The coupon rate divided by the bond's market price",
+        "How much the bond's price rose over the last twelve months",
+        "The total return if held to maturity, coupons plus capital gain or loss",
+        "The policy interest rate announced by the central bank"
+      ],
+      "explanation": "YTM is the discount rate making the present value of all future cash flows equal the price you pay today, so it captures both the coupons and the capital gain or loss as the bond returns to face value. Two assumptions come with it: that you hold to maturity, and that every coupon is reinvested at that same YTM - sell early or let rates turn and the realised yield will differ from this number."
+    },
+    {
+      "question": "What is the purpose of a \"debt-to-equity < 3.0x\" covenant in a bond agreement?",
+      "options": [
+        "Setting the maximum dividend the business may pay out",
+        "Ensuring the business is profitable in every single year",
+        "Providing that the coupon adjusts with market interest rates",
+        "Stopping the business borrowing more and diluting its capacity to repay"
+      ],
+      "explanation": "A covenant is not there to manage the business but to protect the priority of whoever lent first. Every new borrowing shares the same repayment cash flow, so a leverage ceiling keeps your slice from being cut smaller. Breaching a covenant usually triggers a right to demand early redemption - the only early intervention tool a bondholder has."
+    },
+    {
+      "question": "A corporate bond yields 11.5% while the government bond at the same maturity yields 4.5%. What does the 7% credit spread tell you?",
+      "options": [
+        "The market demands 7 points for default and liquidity risk",
+        "This business earns 7 percentage points more than the government does",
+        "This bond is safer than the government bond at the same maturity",
+        "Expected inflation over the bond's term is 7% a year"
+      ],
+      "explanation": "The spread is the price of risk, not a reward for being sharp. A rough self-check: the spread is roughly the annual default probability multiplied by the loss given default. With a 7% spread and an assumed 60% loss, the market is implying a default probability of around 11-12% a year - so statistically, of every nine tranches like this, one is expected to fail within a year."
+    },
+    {
+      "question": "An investor says: \"I hold my bonds to maturity, so I do not worry about risk\". Where is that wrong?",
+      "options": [
+        "It is wrong because corporate bonds have no maturity date",
+        "It removes interest rate risk only, not credit risk",
+        "It is right - holding to maturity eliminates all of the risk",
+        "It is wrong because a bond's coupon declines over time"
+      ],
+      "explanation": "The two risks behave entirely differently over time. Interest rate risk is price movement along the way - hold to maturity and you receive the full face value, so that movement stops mattering. But credit risk is the business failing to pay, and holding longer simply means staying exposed to it longer. This is precisely the misconception that cost so many Vietnamese property bond investors their capital in 2022."
+    },
+    {
+      "question": "What did the \"three withouts\" private placement bonds, widespread in Vietnam in 2020-2021, actually lack?",
+      "options": [
+        "No tax, no issuance fees, no covenant restrictions",
+        "Not listed, not transferable, not redeemable",
+        "No rating, no adequate collateral, no guarantee",
+        "No fixed coupon, no maturity, no original face value"
+      ],
+      "explanation": "The three \"withouts\" describe exactly the three layers of protection an ordinary bond investor relies on, all three absent. Unrated means no independent party ever assessed the ability to repay; weak collateral (usually shares in the issuer itself, or property rights in a project without completed legal status) loses value exactly when the business struggles; and no guarantee means no third party stands behind the payment. Decree 65/2022 was written to tighten this group."
+    }
+  ],
+  "practicePrompt": {
+    "question": "A bond has a face value of 100 million, a coupon of 8% a year, 3 years to maturity, and is being offered at 92 million. Compared with the 8% coupon, what will the YTM be?",
+    "options": [
+      "Below 8%, because buying cheaply lowers the yield",
+      "Exactly 8%, because the coupon has not changed",
+      "Above 8%, because the discount adds a capital gain at maturity",
+      "Impossible to determine without knowing the bank deposit rate"
+    ],
+    "explanation": "Buying below face value (at a discount) gives you two sources of return: 8 million of coupon a year, plus 8 million of capital gain when the full 100 million comes back at maturity. YTM therefore has to exceed the coupon, here about 11.2%. The quick rule: priced below face value, YTM > coupon; above face value, YTM < coupon; at face value, YTM = coupon."
+  },
+  "keyTakeaways": [
+    "Bond prices and yields always move in opposite directions - the coupon is fixed, so only the price can adjust.",
+    "YTM is the most complete measure, but it assumes you hold to maturity and reinvest the coupons at the YTM itself.",
+    "YTM = risk-free rate + credit spread; the spread is the invoice for risk, not a reward.",
+    "Holding to maturity removes interest rate risk but does nothing at all about default risk.",
+    "Collateral is worth only what it can genuinely be sold for at the moment the business is in trouble."
+  ],
+  "summary": {
+    "keyIdea": "Buying a bond is lending, so the central question is always where the business gets the cash flow to pay you - a high yield is only the market quoting you a price for risk.",
+    "formula": "YTM = risk-free rate + credit spread · Spread ≈ default probability × loss given default",
+    "commonMistake": "Comparing a bond yield with a savings rate and concluding the bond \"pays better\", without asking what the difference is paying for.",
+    "action": "For every bond tranche, look up the government bond yield at the same maturity and compute the credit spread yourself before reading the offer document."
+  }
+}

@@ -1,0 +1,211 @@
+{
+  "slug": "tai-chinh-bat-dong-san-cap-rate-noi-rental-yield",
+  "title": "Masterclass 1: Real estate finance - cash flow modelling and the capitalisation rate",
+  "subtitle": "Analysing NOI, cap rate, rental yield and bank leverage when investing in income-producing property.",
+  "whyItMatters": "Most buy-to-let buyers in Vietnam work out the yield by dividing the rent by the purchase price - and that figure is almost always 1.5 to 2 percentage points better than reality. This lesson teaches you to compute it properly, and to recognise when borrowing to buy a rental flat is quietly making you poorer.",
+  "duration": "14 min",
+  "openingQuestion": "A serviced apartment worth 5 billion VND produces 300 million VND a year after operating costs (NOI). What is the capitalisation rate?",
+  "openingOptions": ["5.0%", "6.0%", "10.0%", "15.0%"],
+  "explanation": "The capitalisation rate divides net operating income by the value of the property, giving the yield before any account is taken of how much was borrowed. By excluding leverage it lets you compare assets on one measure. The thing to remember is that it moves inversely with price: a low cap rate reflects a market that regards the cash flow as more certain and therefore pays more for each dong of income - it does not mean the asset is poor.",
+  "diagram": [
+    { "label": "Gross rent", "arrow": true },
+    { "label": "Less vacancy and operating costs", "arrow": true },
+    { "label": "NOI", "arrow": true },
+    { "label": "Divided by the purchase price", "arrow": true },
+    { "label": "Cap rate" }
+  ],
+  "realWorldExample": {
+    "company": "Serviced apartments in Ho Chi Minh City",
+    "description": "Cap rates on rental apartments in the central districts of Ho Chi Minh City have sat around 4-6% for years, while floating mortgage rates after the introductory period are typically 10-12%. So every dong borrowed to buy a rental apartment pushes the cash flow further into the red - the buyer is really betting on land prices rising, not on the rent."
+  },
+  "application": {
+    "title": "One apartment, three numbers",
+    "message": "Take any real rental listing on the market today and work out, in order: the gross yield; the cap rate after deducting 1.5 months of vacancy plus management fees and a furnishing reserve; and the cash-on-cash return if you borrow 60% at the floating rate in year three. These three usually sit so far apart that the seller and the buyer are describing two different assets.",
+    "secondary": "If the cap rate comes out below the borrowing rate, write it as a sentence: this only makes money if land prices rise by at least X% a year. That is the bet you are actually placing."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Two people buy the same 5 billion apartment. The first boasts \"it rents for 25 million a month, a 6% yield\". The second says \"my real yield is 3.8%\". Both are being honest - they are simply computing two different things, and only one of the two numbers can be used to make a decision."
+    },
+    {
+      "type": "heading",
+      "text": "1. NOI - the one number in property worth trusting"
+    },
+    {
+      "type": "paragraph",
+      "text": "NOI (net operating income) is the rent actually received in the year after every cost needed to keep the asset running, but BEFORE interest, income tax and depreciation. That boundary is not arbitrary: it separates how the asset itself performs from how the owner chose to finance it. For the same apartment, a cash buyer and someone borrowing 70% have identical NOI - and that is exactly what makes NOI comparable."
+    },
+    {
+      "type": "list",
+      "items": [
+        "DEDUCTED from NOI: building management fees, maintenance and repairs, property-related taxes and charges, insurance, letting agent fees, and the shortfall from vacancy",
+        "NOT deducted from NOI: mortgage interest, principal repayments, personal income tax, depreciation",
+        "The item most often forgotten: the replacement reserve (CapEx reserve) for air conditioning, furniture and repainting - certain to be spent, just not spent evenly every month"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "The most common error",
+      "text": "Assuming 12 months out of 12 are let. A serviced apartment in practice rarely exceeds 10-11 tenanted months a year. Ignoring one vacant month already inflates NOI by around 8% - enough to make a bad deal look like a reasonable one."
+    },
+    {
+      "type": "heading",
+      "text": "2. The cap rate and its inverse relationship with price"
+    },
+    {
+      "type": "formula",
+      "title": "The capitalisation rate",
+      "equation": "Cap rate = NOI / property value",
+      "variables": [
+        {
+          "symbol": "NOI",
+          "name": "Annual net operating income",
+          "description": "After operating costs, before interest and tax"
+        },
+        {
+          "symbol": "Value",
+          "name": "Purchase price or current market value",
+          "description": "Use the price actually paid, including transfer taxes and fees"
+        }
+      ],
+      "example": {
+        "title": "A 5 billion apartment",
+        "calculation": "300 million / 5,000 million",
+        "result": "6.0%",
+        "explanation": "Reading it backwards is equally valid and far more useful: value = NOI / cap rate. If the market demands a 7% cap rate rather than 6%, the same 300 million of NOI is worth only 4.29 billion - 14% of the value gone without the rent changing by a single dong."
+      }
+    },
+    {
+      "type": "paragraph",
+      "text": "That inverse relationship is exactly why rental property falls in value when interest rates rise. Investors demand a higher yield to compensate for savings accounts now paying well, market cap rates are pushed up, and the larger denominator drags valuations down - even though the building is as full of tenants as it ever was."
+    },
+    {
+      "type": "heading",
+      "text": "3. Three measures that get confused with each other"
+    },
+    {
+      "type": "conceptTable",
+      "title": "Telling the three yields apart",
+      "subtitle": "The same apartment can be advertised using all three - ask which one you are being shown",
+      "concepts": [
+        {
+          "vi": "Lợi suất gộp",
+          "en": "Gross rental yield",
+          "def": "A full year of gross rent divided by the purchase price. It ignores all costs and all vacancy, so it is always the prettiest number and the most useless."
+        },
+        {
+          "vi": "Tỷ suất vốn hoá",
+          "en": "Cap rate",
+          "def": "NOI divided by the purchase price. Operating costs deducted, borrowing not yet considered. This is the measure for comparing one asset against another."
+        },
+        {
+          "vi": "Lợi suất trên vốn tự có",
+          "en": "Cash-on-cash return",
+          "def": "(NOI less the year's debt payments) divided by the equity you put in. This is the one that reaches your pocket once there is a mortgage."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "4. Leverage: when borrowing makes you poorer"
+    },
+    {
+      "type": "paragraph",
+      "text": "An LTV (loan-to-value) of 70% on a 3 billion property means the bank lends 2.1 billion and you put in 900 million. Leverage magnifies the outcome in both directions, and which direction wins comes down to one comparison: the cap rate against the borrowing rate."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Positive leverage (cap rate > borrowing rate)",
+        "text": "A cap rate of 9% against a borrowing rate of 7%. Every dong borrowed produces more than the interest it costs, so the more you borrow the higher the return on your own equity. This is the scenario in the American textbooks."
+      },
+      "right": {
+        "label": "Negative leverage (cap rate < borrowing rate)",
+        "text": "A cap rate of 5% against a borrowing rate of 11% - the common situation in Vietnam. Every dong borrowed produces less than the interest it costs, monthly cash flow is negative, and you top it up from your salary. The deal only makes money if land prices rise fast enough."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "The mandatory check before borrowing",
+      "text": "DSCR = NOI / total annual debt service. Below 1.0 means the rent does not cover the bank, and you reach into your own pocket every month. Project lenders usually require at least 1.2 - you should hold yourself to the same standard."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The cap rate measures the quality of the asset. Cash-on-cash measures the quality of the deal you just signed.",
+        "In a market where cap rates sit below borrowing rates, buying a rental property with debt is not cash flow investing - it is a bet on land prices, and it should be called that."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "How is a property's net operating income (NOI) calculated?",
+      "options": [
+        "Total contract value of the sale − agent fees and taxes",
+        "Rental revenue − operating costs, before interest",
+        "Rental revenue − operating costs − mortgage interest",
+        "Rental revenue − mortgage interest − personal income tax"
+      ],
+      "explanation": "NOI deducts only the costs of keeping the asset running, and does NOT deduct interest or income tax. That boundary has a clear purpose: it separates how the property itself performs from how the owner financed it, so two identical apartments have identical NOI even where one buyer paid cash and the other borrowed 70%."
+    },
+    {
+      "question": "What does an LTV (loan-to-value) of 70% on a 3 billion dong purchase mean?",
+      "options": [
+        "Equity of 2.1 billion and a loan of 900 million",
+        "The bank lends the whole 3 billion and the buyer needs no equity",
+        "A bank loan of 2.1 billion and equity of 900 million",
+        "A 2.1 billion loan with 70% repayable during the first year"
+      ],
+      "explanation": "LTV is the loan as a proportion of the asset's VALUE, so 70% of 3 billion is a 2.1 billion loan and 900 million of equity. Note one practical trap: banks compute LTV on THEIR OWN valuation, usually below the price you actually paid - so the cash you need to have ready is almost always more than the 30% on paper."
+    },
+    {
+      "question": "A building produces NOI of 700 million a year. If the market cap rate rises from 6% to 7% because interest rates rose, what happens to the building's value?",
+      "options": [
+        "It falls by exactly 1%, matching the rise in the cap rate",
+        "It rises about 14%, since a higher cap rate means a better asset",
+        "Nothing, because NOI is unchanged so the value is unchanged",
+        "It falls about 14%, from 11.67 billion to 10 billion"
+      ],
+      "explanation": "Value = NOI / cap rate, so the cap rate sits in the DENOMINATOR and the relationship is inverse: 700/0.06 = 11.67 billion, while 700/0.07 = 10 billion, a fall of about 14.3%. This is exactly the mechanism that drives rental property down in a rising rate cycle even with the building fully let - investors demand a higher yield because other assets now pay better too."
+    },
+    {
+      "question": "An apartment has a cap rate of 5% and you borrow at 11% a year to buy it. What happens to your cash flow?",
+      "options": [
+        "Negative leverage: monthly cash flow is negative and topped up elsewhere",
+        "No effect, since interest does not appear in the NOI calculation",
+        "Positive cash flow, because leverage always magnifies the profit earned",
+        "Positive cash flow, because rents rise in line with inflation"
+      ],
+      "explanation": "Leverage only magnifies the return where the cap rate is ABOVE the borrowing rate. Here the asset produces 5% while the money costs 11%, so every additional dong borrowed makes the cash flow worse - exactly the situation that has prevailed in Vietnam for years. The deal only makes money if land prices rise enough to cover the cash flow loss, and at that point it is a bet on price, not a cash flow investment."
+    },
+    {
+      "question": "What does a DSCR of 0.85 mean for a rental property?",
+      "options": [
+        "The asset is returning 85% of what the owner originally expected",
+        "NOI covers only 85% of the year's debt obligations",
+        "The bank has lent 85% of the value of the property",
+        "The building's occupancy rate reached 85% for the year"
+      ],
+      "explanation": "DSCR (debt service coverage ratio) = NOI / total annual debt service. Below 1.0 means the asset cannot support its own loan. Project lenders usually require at least 1.2 for a safety buffer, and an individual investor should hold to the same standard - because when a job is lost or the flat sits empty for three months, that buffer decides whether you keep the asset or sell it in distress."
+    }
+  ],
+  "practicePrompt": {
+    "question": "An apartment costs 4 billion, rents for 22 million a month, has operating costs of 3 million a month, and is expected to sit empty 1.5 months a year. Roughly what is the cap rate?",
+    "options": ["6.6%", "5.7%", "4.8%", "4.1%"],
+    "explanation": "Rent actually received = 22 million × 10.5 months = 231 million. Operating costs = 3 million × 12 = 36 million (still payable while empty). NOI = 231 − 36 = 195 million. Cap rate = 195/4,000 = 4.9%, so 4.8-4.9%. Compare that with the familiar advertised figure of 22 × 12 / 4,000 = 6.6% to see the gap of nearly 1.8 percentage points between gross yield and the real cap rate."
+  },
+  "keyTakeaways": [
+    "NOI deducts operating costs and vacancy but not interest - which is what makes it comparable across assets whatever anyone borrowed.",
+    "Value = NOI / cap rate, so a 1 percentage point rise in the market cap rate can erase 14% of value while the rent stays the same.",
+    "Gross yield measures the asset on paper, the cap rate measures the real asset, cash-on-cash measures your particular deal.",
+    "Leverage only helps where the cap rate is above the borrowing rate; in Vietnam it is usually the other way round, so a mortgaged rental is a bet on land prices.",
+    "A DSCR below 1.0 means the asset cannot support its own loan."
+  ],
+  "summary": {
+    "keyIdea": "The cap rate measures the quality of the asset, cash-on-cash the quality of the deal - and the gap between the cap rate and the borrowing rate decides whether leverage helps you or hurts you.",
+    "formula": "Cap rate = NOI / value · Value = NOI / cap rate · DSCR = NOI / annual debt service",
+    "commonMistake": "Computing the yield as gross rent divided by the purchase price, assuming 12 months out of 12 are let, and ignoring the furnishing replacement reserve.",
+    "action": "Before committing, compute NOI assuming 1.5 months of vacancy, then check whether the DSCR reaches 1.2."
+  }
+}
