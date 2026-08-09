@@ -1,0 +1,162 @@
+{
+  "slug": "ke-hoach-thua-ke-co-ban",
+  "title": "Stage 8, Lesson 5: Basic estate planning - what you leave behind",
+  "subtitle": "Not making an estate plan does not avoid the problem. It hands the problem to your family at the moment they are grieving hardest.",
+  "duration": "6 min",
+  "whyItMatters": "Even while you are young and your assets are modest, understanding the basics of estate planning keeps you from leaving your family unnecessary legal trouble and disputes at the moment they can least handle them.",
+  "openingQuestion": "What usually happens when someone dies without leaving a clear will?",
+  "openingOptions": [
+    "Nothing changes at all - every question about the assets is settled amicably among the family members on its own",
+    "The whole of that person's estate immediately becomes state property under the rules in force",
+    "The assets are divided equally among all family members automatically, with no dispute arising whatsoever",
+    "It is divided by statute rather than by their wishes, and it is usually complicated"
+  ],
+  "explanation": "With no will, the estate is divided under the inheritance law in force, which may not reflect what the deceased actually wanted - and the legal process is usually slow, expensive, and sometimes sets family members against each other at exactly the point they are grieving hardest.",
+  "diagram": [
+    {
+      "label": "No will"
+    },
+    {
+      "label": "Divided under the inheritance law in force"
+    },
+    {
+      "label": "May not match their wishes; slow and expensive"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Individuals",
+    "description": "Many families end up in property disputes that run for years purely because the person who died left no clear will - when one simple, valid will could have prevented most of the conflict and made the transfer far smoother."
+  },
+  "quiz": [
+    {
+      "question": "What should a basic estate plan include, at a minimum?",
+      "options": [
+        "Just a list of the bank accounts currently open",
+        "Just a handwritten will with a witness present",
+        "A life insurance policy with a payout large enough to cover everyone",
+        "A list of assets, a will, and contact details for the accounts"
+      ],
+      "explanation": "Even with modest assets, a clear written record - what you own, where it is, and a will setting out your wishes - saves your family from searching blindly while grieving, and cuts the chance of an avoidable dispute considerably."
+    },
+    {
+      "question": "Why revisit an estate plan or will periodically rather than writing it once and leaving it?",
+      "options": [
+        "Because life circumstances change and make an old will out of date",
+        "Because a will is only legally valid for five years from the day it is signed",
+        "Because inheritance law is amended once a year",
+        "Because notaries require a periodic update"
+      ],
+      "explanation": "Big life events - marriage, divorce, a child, a significant change in assets - are all good reasons to review and update an estate plan. A will drafted years ago may no longer fit either the circumstances or the wishes you hold now."
+    },
+    {
+      "question": "What basic conditions does a valid will have to meet?",
+      "options": [
+        "It has to be notarised abroad before it carries full legal weight",
+        "The person is of sound mind, acting freely, and the document follows the form the law requires",
+        "It must carry the signatures of every person who stands to inherit anything under it",
+        "It has to be rewritten once a year for its legal force to survive"
+      ],
+      "explanation": "Those three conditions are the core. A handwritten will with no witness can still be valid if the form is right, but notarisation cuts the risk of a later challenge substantially."
+    },
+    {
+      "question": "Why check the named beneficiaries on insurance policies periodically?",
+      "options": [
+        "Because an old beneficiary name automatically lapses five years after the policy is signed",
+        "Because insurers require beneficiary details to be updated every year",
+        "Because the policy pays the name written on it, even where the will says otherwise",
+        "Because premiums are recalculated according to how many beneficiaries are named"
+      ],
+      "explanation": "A name left over from before a divorce, or from before a child was born, can override the entire intent of a will - because that money is paid directly and never passes through probate."
+    },
+    {
+      "question": "Besides dividing assets, what else can a will set out that matters?",
+      "options": [
+        "The income tax an heir has to pay on what they receive",
+        "The pension a family member will draw from social insurance",
+        "How the family business must be run over the next ten years",
+        "A guardian for minor children if both parents die"
+      ],
+      "explanation": "For a family with small children this clause usually matters more than the division of assets - and it is also the one most often forgotten when people think about writing a will."
+    },
+    {
+      "question": "Why should estate planning start early rather than waiting for old age?",
+      "options": [
+        "Because risk does not wait for age, and the people left behind carry the consequences",
+        "Because the notary fee for a will rises with the age of the person writing it",
+        "Because the law only recognises a will drawn up before the person turns fifty",
+        "Because assets can only be distributed to heirs at least ten years after the will is written"
+      ],
+      "explanation": "Nobody writes a will because they think the end is near - they write one because they do not want to leave a mess to the people they love. That is why age is not the qualifying condition."
+    }
+  ],
+  "keyTakeaways": [
+    "Skipping a will does not avoid the problem - it hands the division to the law, which is usually slower and more prone to dispute",
+    "A basic estate plan: a clear list of assets, a valid will, and contact details for the important accounts",
+    "Update it as major life changes happen, rather than writing it once and forgetting it"
+  ],
+  "practicePrompt": {
+    "question": "Mr Tam has three children, owns two homes and a savings book, and never wrote a will because he assumed \"the children will sort it out between themselves\". He has just died suddenly. What happens to the estate?",
+    "options": [
+      "It is divided under statute rather than his wishes, which easily sets the three children against each other",
+      "Nothing changes; everything settles itself amicably and exactly as Mr Tam would have wanted while he was alive",
+      "The entire estate immediately becomes state property, because Mr Tam left no will of any kind behind",
+      "The estate is split automatically into three equal shares for the three children with no dispute arising at all"
+    ],
+    "explanation": "Skipping a will does not avoid the problem - it hands the division to the law, which is usually slower and more prone to dispute, especially with assets like property that cannot be split evenly."
+  },
+  "summary": {
+    "keyIdea": "Skipping a will does not avoid the problem - it hands the division to the law, which is usually slower and more prone to dispute",
+    "commonMistake": "Reading the idea as a phrase to remember rather than as a principle to apply to a real decision.",
+    "action": "A basic estate plan: a clear list of assets, a valid will, and contact details for the important accounts"
+  },
+  "application": {
+    "title": "Ask yourself now",
+    "message": "Write a quick list: the assets that matter that you hold today, and who should receive them if something unexpected happens to you.",
+    "secondary": "Even one simple page beats nothing at all."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Many people avoid the subject of inheritance because it points at death. But not planning does not avoid the problem - it hands the problem to your family at the moment they are grieving hardest, usually with a dispute and a long legal bill attached."
+    },
+    {
+      "type": "heading",
+      "text": "With no will, the law decides in your place"
+    },
+    {
+      "type": "paragraph",
+      "text": "If someone dies without leaving a will, the estate is divided under the inheritance law in force - a general formula that does not reflect what the person actually wanted, such as leaving more to a child who is struggling, or leaving a share to a charity. Intestate proceedings tend to be slow and expensive, and they sometimes set family members against each other who had no quarrel at all beforehand."
+    },
+    {
+      "type": "heading",
+      "text": "What a basic estate plan contains"
+    },
+    {
+      "type": "paragraph",
+      "text": "It does not need to be complicated to start. Three minimum pieces: a clear list of what you own (the asset audit from Stage 1 is exactly this), a valid will setting out how you want things divided, and the contact details for bank accounts, insurance policies and property deeds so your family can reach them when they need to instead of searching blindly."
+    },
+    {
+      "type": "heading",
+      "text": "A will is not written once and left alone"
+    },
+    {
+      "type": "paragraph",
+      "text": "Circumstances keep moving: marriage, divorce, children, assets rising or falling significantly. A will drafted years ago may no longer reflect what you want now, and can even create legal confusion if it names assets you no longer hold or leaves out family members who arrived since. Review the plan whenever a major life event happens, rather than waiting until it is too late."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Draw up a clear list of assets - bank accounts, property, insurance, investments, debts owed",
+        "Write a valid will that sets out how you actually want things divided",
+        "Share the important contact details with at least one family member you trust",
+        "Update after each major event: marriage, divorce, a child, a significant change in assets"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A simple, valid will is one of the quietest gifts you can leave the people close to you."
+      ]
+    }
+  ]
+}

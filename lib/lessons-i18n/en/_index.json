@@ -1,4 +1,9 @@
 {
+  "10-cong-thuc-finance": {
+    "title": "10 Finance Interview Formulas",
+    "subtitle": "Revenue → FCF → EV → share price - one connected chain",
+    "duration": "10 min"
+  },
   "accrual-accounting": {
     "title": "What is accrual accounting?",
     "subtitle": "Recognised by economic obligation, not by cash flow",
@@ -386,6 +391,11 @@
     "title": "What Are Derivatives?",
     "subtitle": "Instruments whose value depends on another underlying asset"
   },
+  "dinh-nghia-lai-tu-do-tai-chinh": {
+    "title": "Stage 8, Lesson 1: Redefining \"rich\" - what is financial independence?",
+    "subtitle": "Financial independence is not having a lot of money. It is no longer working just to stay alive.",
+    "duration": "6 min"
+  },
   "discount-rate": {
     "title": "Discount Rate",
     "subtitle": "The discount rate reflects risk and opportunity cost",
@@ -632,6 +642,11 @@
     "title": "IRR: Internal Rate of Return",
     "subtitle": "The discount rate that makes NPV = 0 - measuring a project's true return",
     "duration": "7 min"
+  },
+  "ke-hoach-thua-ke-co-ban": {
+    "title": "Stage 8, Lesson 5: Basic estate planning - what you leave behind",
+    "subtitle": "Not making an estate plan does not avoid the problem. It hands the problem to your family at the moment they are grieving hardest.",
+    "duration": "6 min"
   },
   "ke-hoach-thua-ke": {
     "title": "Estate planning: what to leave your children",
