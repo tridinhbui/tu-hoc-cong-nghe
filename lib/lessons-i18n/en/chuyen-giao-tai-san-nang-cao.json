@@ -1,0 +1,174 @@
+{
+  "slug": "chuyen-giao-tai-san-nang-cao",
+  "title": "Stage 9, Lesson 7: Advanced estate transfer - beyond a basic will",
+  "subtitle": "Once the estate is large or complicated, an ordinary will may not be enough",
+  "duration": "6 min",
+  "openingQuestion": "Someone owns property in several provinces and shares in a family business. Why might a simple will alone not be enough for the estate to transfer smoothly?",
+  "openingOptions": [
+    "Because a will is always fully effective for every kind of asset, with nothing else needed",
+    "Complex assets need their own legal process, and disputes arise easily later",
+    "Because a will only applies to cash and cannot apply to real property",
+    "Because the law prohibits leaving several kinds of asset in one will"
+  ],
+  "explanation": "For a simple estate (one home, one savings account) a basic will is usually enough. But a complex estate - several properties, company shares, assets in several places - may need more: an explicit split by each asset, a named interim administrator, or specialist legal advice, to avoid disputes and keep a family business (if there is one) running.",
+  "diagram": [
+    { "label": "List each asset and whose name it is registered in" },
+    { "label": "Simple assets: a basic will is enough" },
+    { "label": "Several properties or company shares: a separate plan is needed" },
+    { "label": "Name the administrator and the split to avoid a long dispute" }
+  ],
+  "realWorldExample": {
+    "company": "Family businesses passing to the next generation",
+    "description": "Many family businesses struggle when the founder dies with no clear succession plan - disputes between the children over control, and unclear shareholdings, can interrupt trading and in some cases force the business to wind up."
+  },
+  "quiz": [
+    {
+      "question": "Why does a family business need its own transfer plan, more complex than ordinary personal assets?",
+      "options": [
+        "Because the value of a business is hard to determine precisely",
+        "Because the law requires a separate will for a shareholding",
+        "Because family businesses face a high rate of inheritance tax",
+        "Because it also involves control and continuity of operations"
+      ],
+      "explanation": "A business is not only an \"asset\" but a working entity with staff, customers and partners - a dispute over control between heirs (not only over money) can interrupt operations and affect many people outside the family, which is why it needs its own clearer plan."
+    },
+    {
+      "question": "Someone owns property in 3 different provinces. Why can writing only \"I leave all my property to my children\" cause more trouble than naming each asset?",
+      "options": [
+        "A general description complicates the transfer in each locality",
+        "A general description forces the heirs to sell some of the assets",
+        "A general description makes the will legally invalid",
+        "A general description raises the registration tax on transfer"
+      ],
+      "explanation": "Naming each asset specifically (address, land parcel number) with the corresponding heir makes the legal process in each locality far clearer, and reduces the chance of a dispute between several heirs when there is nobody left to ask what was actually meant."
+    },
+    {
+      "question": "With a family business, what is usually the hardest part of the handover?",
+      "options": [
+        "Valuing the shareholding fairly between the children",
+        "Separating the economic benefit from the right to run it",
+        "Finding a successor with the capability to run it",
+        "Completing the legal formalities to transfer the shareholding"
+      ],
+      "explanation": "Splitting the shares evenly without saying who decides is the most common reason a family business seizes up after a handover. This is a governance problem, not a valuation problem."
+    },
+    {
+      "question": "Why name each individual property rather than describing them generally?",
+      "options": [
+        "Because notaries refuse a will with a general description",
+        "Because the law requires the certificate number in the will",
+        "Because a specific description eases the process and reduces disputes",
+        "Because a specific description lowers the income tax on the inheritance"
+      ],
+      "explanation": "Most inheritance disputes over property do not come from bad faith but from ambiguity in how the asset was described. The more specific it is, the less room there is for two readings."
+    },
+    {
+      "question": "Why do assets with a named beneficiary, such as a life insurance policy, need a separate review when planning an estate?",
+      "options": [
+        "Because the notary requires these assets to be separated out from the estate",
+        "Because this type of asset must be listed again in full inside the will",
+        "Because an insurance policy always lapses the moment the buyer dies",
+        "Because the beneficiary designation governs, and a will cannot override it"
+      ],
+      "explanation": "That money goes directly to the name written on the policy. A designation made ten years ago - before a divorce, before a child - still stands, and a will written afterwards cannot change it. The policy itself has to be reviewed."
+    }
+  ],
+  "keyTakeaways": [
+    "A complex estate (several properties, company shares) needs a more detailed transfer plan than a basic will",
+    "A family business needs its own plan because control and continuity are involved, not only asset value",
+    "Naming each asset specifically in the will reduces the risk of dispute and eases the legal process"
+  ],
+  "practicePrompt": {
+    "question": "A family business owner writes only \"company XYZ to be divided equally among my children\" with no other plan. After his death the children argue bitterly over who runs it, even though the will is clear about the split. Where is the problem?",
+    "options": [
+      "There is no problem; dividing the assets equally in the will is enough to prevent any later dispute",
+      "A family business needs its own transfer plan because control is involved",
+      "The problem is that the will was not notarised as the law in force requires",
+      "This dispute has nothing whatsoever to do with the content of the will that was written"
+    ],
+    "explanation": "A family business needs its own transfer plan because control and continuity of operations are involved, not only the value of the asset."
+  },
+  "summary": {
+    "keyIdea": "A complex estate (several properties, company shares) needs a more detailed transfer plan than a basic will",
+    "commonMistake": "Easy to skip: a family business needs its own plan because control and continuity are involved, not only asset value",
+    "action": "Naming each asset specifically in the will reduces the risk of dispute and eases the legal process"
+  },
+  "application": {
+    "title": "Inventory the assets before writing the will",
+    "message": "Write out each asset with enough identifying paperwork: certificate number, account number, percentage shareholding, and where the originals are kept. Most inheritance disputes begin with heirs not knowing where the assets are, rather than with them disagreeing.",
+    "secondary": "For company shares, read the company's articles first - many restrict transfers to heirs, and a will cannot override that."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "For a simple estate, a basic will is usually enough. But once the assets are more complex - several properties, shares in a company - it stops being that simple."
+    },
+    {
+      "type": "heading",
+      "text": "A family business needs its own plan"
+    },
+    {
+      "type": "paragraph",
+      "text": "A business is not only an \"asset\" but a working entity with control rights, staff and partners - a dispute between heirs can interrupt trading, not merely divide money. With property in several localities, naming each asset specifically in the will (rather than describing it generally) makes the legal process smoother and cuts the risk of dispute."
+    },
+    {
+      "type": "list",
+      "items": [
+        "A complex estate (several properties, company shares) needs a more detailed plan than a basic will",
+        "A family business needs its own plan because control is involved, not only asset value",
+        "Naming each asset specifically reduces the risk of dispute and eases the legal process"
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Four types of asset, four different kinds of trouble"
+    },
+    {
+      "type": "conceptTable",
+      "title": "Each type of asset needs its own preparation",
+      "concepts": [
+        {
+          "vi": "Bất động sản",
+          "en": "Property - several places, several sets of papers",
+          "def": "Each parcel and each unit needs naming with its certificate number. A general phrase such as \"all my property\" easily leads to a dispute over which asset belongs to whom."
+        },
+        {
+          "vi": "Cổ phần doanh nghiệp",
+          "en": "Company shares - ownership plus control",
+          "def": "Splitting shares evenly between children without saying who runs the business is a formula for governance deadlock. Separate the economic benefit from the right to decide."
+        },
+        {
+          "vi": "Tài khoản tài chính",
+          "en": "Financial accounts - banks, brokerages, funds",
+          "def": "Relatives usually do not know these accounts exist. An updated list, kept where someone trusted knows to find it, is the simplest and most effective step there is."
+        },
+        {
+          "vi": "Nghĩa vụ nợ",
+          "en": "Debt obligations - bank loans, guarantees",
+          "def": "Debt does not die with a person. Record which asset secures which loan, so an heir does not receive an asset without knowing the obligation attached to it."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "With a family business, the hardest part is almost never what percentage goes to whom - it is who gets to decide. A child capable of running it but holding a minority stake will be blocked on every major decision; conversely, giving control to someone who takes no part in operations paralyses the business. Preparing early means stating two separate things clearly: who receives the economic benefit, and who is responsible for running it."
+    },
+    {
+      "type": "callout",
+      "label": "Three things you can do now, at no cost",
+      "text": "One: list every asset and debt obligation with where the paperwork is kept, and tell at least one trusted person where that list lives. Two: check which assets are held jointly and which separately - many disputes start exactly there. Three: update it after every major change such as buying or selling an asset, marriage, or a child."
+    },
+    {
+      "type": "callout",
+      "label": "On the legal side",
+      "text": "This lesson sets out general principles so you know what to prepare. Inheritance rules, the valid forms of a will and the notarisation process carry a great deal of binding detail, so for a large or complex estate, work with a lawyer or a notary rather than drafting from a template found online."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Transferring a complex estate is not something to \"deal with later\".",
+        "The earlier and clearer the preparation, the less risk of a dispute for the people left behind."
+      ]
+    }
+  ]
+}
