@@ -882,8 +882,8 @@ export const QUANT_METHODS_LESSONS: Lesson[] = [
     openingQuestion:
       "Vì sao không nên chạy hồi quy trực tiếp trên chuỗi giá cổ phiếu mà nên dùng chuỗi lợi suất?",
     openingOptions: [
-      "Vì chuỗi giá có quá nhiều số liệu",
-      "Vì chuỗi giá không dừng - trung bình và phương sai thay đổi theo thời gian, dẫn tới hồi quy giả tạo giữa hai chuỗi không liên quan",
+      "Vì chuỗi giá thường có quá nhiều điểm dữ liệu để phần mềm xử lý cùng lúc được hết",
+      "Vì chuỗi giá không dừng, dẫn tới hồi quy giả tạo giữa hai chuỗi không liên quan",
       "Vì chuỗi giá luôn có giá trị âm",
       "Vì phần mềm không xử lý được chuỗi giá",
     ],
