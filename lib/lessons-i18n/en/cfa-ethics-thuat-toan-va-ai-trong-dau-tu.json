@@ -1,0 +1,161 @@
+{
+  "slug": "cfa-ethics-thuat-toan-va-ai-trong-dau-tu",
+  "title": "CFA Ethics 37: When an algorithm decides - who is responsible",
+  "subtitle": "Reasonable basis for a model, bias in the data, and the duty to explain it to clients",
+  "duration": "11 min",
+  "whyItMatters": "The standards were written for humans making decisions, and they apply unchanged when a model decides instead - but how they apply has to be rethought. This is the fastest-growing part of the curriculum.",
+  "openingQuestion": "A machine learning model produces an investment recommendation whose internal workings you cannot explain. How does Standard V(A) apply?",
+  "openingOptions": [
+    "It does not, since the model made the decision rather than you",
+    "It applies unchanged: you must understand the data, assumptions and limits",
+    "Only if the model was built by your own firm",
+    "It applies more lightly, since a model is more objective than a person"
+  ],
+  "correctOption": 1,
+  "explanation": "Standard V(A) requires a reasonable basis for every recommendation, and a recommendation coming from a model creates no exception. What changes is the content of \"understanding it well enough\": for a model that means knowing where the training data came from and what bias it carries, knowing what objective the model was optimised for, knowing the conditions in which it performs poorly, and having a way to detect when it starts drifting away from the conditions it learned. Not being able to explain each internal weight is acceptable; not knowing where the model will break is not.",
+  "summary": {
+    "keyIdea": "Standard V(A) applies unchanged to a recommendation from a model - responsibility for the reasonable basis belongs to whoever issues the recommendation and cannot be transferred to an algorithm.",
+    "commonMistake": "Treating the model as an objective third party. It is a tool whose data and training a person chose, so every bias in it is the user's bias."
+  },
+  "application": {
+    "title": "What must be explainable",
+    "message": "Why the model produced this recommendation. Not being able to explain it means there is no reasonable basis in the sense V(A) intends."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "When an investment recommendation comes from a model, the first question is who is responsible. The standards' answer is short: still whoever signs the recommendation."
+    },
+    {
+      "type": "heading",
+      "text": "Standard V(A) applies unchanged"
+    },
+    {
+      "type": "paragraph",
+      "text": "The requirement for a reasonable basis has no exception for machine-generated recommendations. What changes is the content of understanding it well enough."
+    },
+    {
+      "type": "callout",
+      "label": "What understanding a model well enough means",
+      "text": "Knowing where the training data came from and what bias it carries. Knowing what objective the model was optimised for. Knowing the conditions in which it performs poorly. And having a way to detect when the market has drifted away from the conditions it learned."
+    },
+    {
+      "type": "paragraph",
+      "text": "Not being able to explain each internal weight is acceptable - most modern models are like that. Not knowing where the model will break is not, because at that point you have no basis for saying whether this recommendation is still trustworthy."
+    },
+    {
+      "type": "heading",
+      "text": "A risk particular to machine output"
+    },
+    {
+      "type": "paragraph",
+      "text": "A figure produced by a model looks more objective than a person's opinion, so users question it less. That effect raises the risk rather than lowering it. Standard V(B) therefore comes into play too: clients must know a model is involved in the decision and know its limits."
+    },
+    {
+      "type": "heading",
+      "text": "The boundary of understanding it well enough"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Sufficient reasonable basis",
+        "text": "You cannot explain why the model put a weight of 0.31 on a variable - and you do not need to. But you know it was trained on 2010-2020 data, a period with no significant interest rate shock; you know it optimises for 12-month return rather than for maximum drawdown; and you know it degrades badly when liquidity is thin. You can say where it will break."
+      },
+      "right": {
+        "label": "Insufficient reasonable basis",
+        "text": "The model has a good backtest record and you use its output, but you do not know what period the training data covers, what objective it optimises for, or what conditions make it wrong. A past record does not substitute for understanding the model - and that is precisely where Standard V(A) grants machines no exception."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "A number looks more objective than an opinion, and that is a risk rather than a reassurance",
+      "text": "A recommendation written in prose invites challenge: the reader sees at once that it is one person's view. The same recommendation presented as a score of 7.4/10 is rarely questioned, even though it rests on the same assumptions. The consequence for the duty to explain: you must state that this is a model's output and what the model rests on, rather than letting the number manufacture a certainty it does not have."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A model cannot bear responsibility.",
+        "So responsibility stays exactly where it was."
+      ]
+    }
+  ],
+  "diagram": [
+    { "label": "V(A) applies unchanged to a recommendation from a model", "arrow": true },
+    { "label": "Understanding enough: the data, the objective, the breaking conditions", "arrow": true },
+    { "label": "Bias in the training data becomes bias in the recommendation", "arrow": true },
+    { "label": "V(B): clients must know a model is involved in the decision" }
+  ],
+  "realWorldExample": {
+    "company": "Data bias does not vanish because the model is a machine",
+    "description": "A model trained on data from a rising market learns that risk is always rewarded, and it will keep believing that until it meets a different period. What is dangerous is that the model states that conclusion with the confidence of an arithmetic result rather than the hesitancy of a judgment. This is why Standard V(A) applies to models more strictly rather than less: output that looks objective is questioned less."
+  },
+  "quiz": [
+    {
+      "question": "How does Standard V(A) apply to a recommendation from a model?",
+      "options": [
+        "It does not apply, since a human did not make the decision",
+        "Unchanged - whoever issues it still needs a reasonable basis",
+        "More lightly, since a model is more objective than a person",
+        "Only if the firm built the model itself"
+      ],
+      "explanation": "The tool changes, the duty does not. What changes is the specific content of understanding it well enough."
+    },
+    {
+      "question": "What does \"understanding the model well enough\" mean here?",
+      "options": [
+        "Being able to rebuild that model from scratch with your own tools",
+        "Being able to explain every weight and parameter inside the model",
+        "Knowing the data, the optimisation objective, and when it breaks",
+        "Holding a professional qualification in machine learning and data science"
+      ],
+      "explanation": "Not being able to explain each weight is acceptable; not knowing where the model will break is not."
+    },
+    {
+      "question": "Why is bias in the training data particularly dangerous?",
+      "options": [
+        "Because regulators prohibit using historical data for training",
+        "Because training data is always deleted once the model is finished",
+        "Because bias makes the model run more slowly than it needs to",
+        "Because the model states its conclusion with the confidence of arithmetic"
+      ],
+      "explanation": "Output that looks objective is questioned less - so the same distortion does more damage coming from a machine."
+    },
+    {
+      "question": "What does Standard V(B) require when a model takes part in an investment decision?",
+      "options": [
+        "Clients must know the model is involved and know its limits",
+        "The model's source code must be provided to clients for review",
+        "Clients must choose between the model and human judgment",
+        "Nothing further, since the process is an internal matter"
+      ],
+      "explanation": "This is V(B)'s \"describe the process\" element: clients chose you on the basis of a process, so a change in that process has to be told."
+    },
+    {
+      "question": "What does model drift mean in the context of Standard V(A)?",
+      "options": [
+        "The model runs progressively slower as the data volume grows",
+        "The relationship it learned drifts from reality, with no error raised",
+        "The model suffers a technical fault and stops returning results",
+        "Users gradually stop believing the model's results"
+      ],
+      "explanation": "The danger is that it raises no error - the model keeps returning normal-looking figures while the basis underneath them has lapsed."
+    }
+  ],
+  "keyTakeaways": [
+    "Standard V(A) applies unchanged to a recommendation from a model",
+    "Understanding enough = knowing the data, the objective, and the breaking conditions",
+    "Not explaining each weight is fine; not knowing where it breaks is not",
+    "Output that looks objective is questioned less - so the risk is higher",
+    "V(B): clients must know a model is involved and know its limits"
+  ],
+  "practicePrompt": {
+    "question": "Your firm's asset allocation model has worked well for five years. Results have deteriorated recently but nobody has re-examined it. What is your duty?",
+    "options": [
+      "Wait for more data, since five good years is strong enough evidence",
+      "Review whether the market still matches the training data",
+      "Stop using the model and revert to manual judgment",
+      "Pass responsibility to the team that built the model"
+    ],
+    "explanation": "Five good years is exactly what makes people wait, and that is the trap - a model that has drifted from the conditions it learned keeps returning normal-looking figures while the basis underneath them has lapsed. Two standards fire at once: V(A) demands a reasonable basis for the recommendation you are issuing today, and V(B) demands telling clients if the investment process has changed."
+  }
+}
