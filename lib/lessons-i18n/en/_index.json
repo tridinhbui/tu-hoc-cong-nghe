@@ -57,6 +57,11 @@
     "subtitle": "What the business owns, and where the money came from",
     "duration": "8 min"
   },
+  "bao-cao-luu-chuyen-tien-te": {
+    "title": "From profit to cash: reading the quality of earnings",
+    "subtitle": "Four adjusting lines, and the ratio that says whether profit turns into money",
+    "duration": "8 min"
+  },
   "bao-hiem-bao-ve-tai-san": {
     "title": "Stage 8, Lesson 4: Insurance - the protective layer that comes before investing",
     "subtitle": "A good portfolio can be destroyed in one night if the basic insurance is missing.",
@@ -95,6 +100,11 @@
   "bat-dong-san-o-hay-dau-tu": {
     "title": "Track 7, Lesson 8: Property - how buying to live differs from buying to invest",
     "subtitle": "Many people confuse 'buying a home to live in' with 'investing in property' - two entirely different financial decisions.",
+    "duration": "7 min"
+  },
+  "bds-business-model": {
+    "title": "Four property business models in Vietnam",
+    "subtitle": "Housing development, industrial parks, property leasing and brokerage",
     "duration": "7 min"
   },
   "beta-la-gi": {
@@ -290,6 +300,11 @@
     "subtitle": "Pay a dividend or retain earnings for reinvestment?",
     "duration": "6 min"
   },
+  "commodity-phan-2": {
+    "title": "Deep-dive case: Commodities Part 2",
+    "subtitle": "Supply, demand, inventory - the three things that price a commodity",
+    "duration": "6 min"
+  },
   "commodity": {
     "title": "What is a commodity?",
     "subtitle": "Standardized goods - the cost driver of the entire economy",
@@ -364,6 +379,11 @@
     "subtitle": "Assessing the ability to repay is an entirely different job from assessing a share's growth potential",
     "duration": "8 min"
   },
+  "credit-debit-phan-2": {
+    "title": "Journal entries in practice: from the rule to the ledger",
+    "subtitle": "Debits and credits for the transactions you meet every day, and a startup's first month",
+    "duration": "7 min"
+  },
   "credit-rating": {
     "title": "Credit Rating",
     "subtitle": "How do Moody's, S&P, and Fitch assess default risk?",
@@ -427,6 +447,11 @@
     "title": "Track 7, Lesson 2: Growth investing - betting on the future instead of today's value",
     "subtitle": "Unlike value investing, growth investing accepts a high price today in exchange for rapid growth tomorrow.",
     "duration": "6 min"
+  },
+  "dau-tu-trai-phieu-doanh-nghiep-ytm-credit-rating": {
+    "title": "Masterclass 2: Corporate bonds - pricing with YTM and managing default risk",
+    "subtitle": "YTM, credit spread, credit ratings and covenants - how to read a corporate bond before buying it.",
+    "duration": "14 min"
   },
   "dca-nang-cao-khi-nao-nen-dung": {
     "title": "Track 7, Lesson 5: DCA in depth - when to invest in instalments and when not to",
@@ -589,6 +614,11 @@
     "subtitle": "A portfolio's expected return is the weighted average of its components",
     "duration": "6 min"
   },
+  "fcf-deep-dive": {
+    "title": "Free Cash Flow - a closer reading",
+    "subtitle": "FCF = OCF − CapEx, NOPAT and working capital",
+    "duration": "7 min"
+  },
   "fcfe-la-gi": {
     "title": "What is FCFE?",
     "subtitle": "Free cash flow reserved for shareholders alone, after debt obligations are paid",
@@ -712,6 +742,11 @@
     "title": "Inventory Turnover: how fast stock moves",
     "subtitle": "Whether goods sell fast or slow - a signal of operating efficiency",
     "duration": "5 min"
+  },
+  "inventory-turnover": {
+    "title": "Inventory",
+    "subtitle": "Inventory turnover, DSI, DOH and the supply chain",
+    "duration": "6 min"
   },
   "investing-cash-flow": {
     "title": "What is Investing Cash Flow?",
@@ -1302,6 +1337,11 @@
     "subtitle": "Portfolio rebalancing",
     "duration": "6 min"
   },
+  "tai-chinh-bat-dong-san-cap-rate-noi-rental-yield": {
+    "title": "Masterclass 1: Real estate finance - cash flow modelling and the capitalisation rate",
+    "subtitle": "Analysing NOI, cap rate, rental yield and bank leverage when investing in income-producing property.",
+    "duration": "14 min"
+  },
   "tai-chinh-khi-ket-hon": {
     "title": "Stage 9, Lesson 8: Money and marriage - joint property and separate property",
     "subtitle": "Talking about money before marriage is not romantic, but it is necessary",
@@ -1527,6 +1567,11 @@
     "subtitle": "Why a correct budget still collapses, and how to fix it with mechanism rather than resolve",
     "duration": "6 min"
   },
+  "tu-duy-tai-chinh": {
+    "title": "Financial thinking",
+    "subtitle": "Knowledge is not the missing part - how you think is",
+    "duration": "6 min"
+  },
   "tu-van-tai-chinh": {
     "title": "When you need a professional financial advisor",
     "subtitle": "When to hire an advisor",
@@ -1589,6 +1634,11 @@
     "title": "What is WACC?",
     "subtitle": "Weighted average cost of capital - the discount rate in DCF",
     "duration": "10 min"
+  },
+  "walmart-earnings": {
+    "title": "The Walmart earnings story",
+    "subtitle": "Reading the CEO/CFO Q&A - the business model behind the numbers",
+    "duration": "6 min"
   },
   "working-capital-management": {
     "title": "Working Capital Management",
