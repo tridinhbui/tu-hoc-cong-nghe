@@ -40,9 +40,15 @@ export const DEFAULT_AVATAR_CONFIG: AvatarConfig = {
 
 /* i18n-ignore-start: mọi `label` từ đây tới hết danh sách bộ dựng sẵn đã có
    lớp phủ trong lib/i18n/dictionaries/sections/avatar-options.ts, khoá theo
-   `id` - và `id` ở đây được GHI XUỐNG cấu hình avatar của người dùng, nên nó
-   ổn định hơn mọi khoá khác trong repo. `hex` và `config` là dữ liệu đã lưu,
-   không phải chữ. */
+   `id` TRONG TỪNG NHÓM - và `id` ở đây được GHI XUỐNG cấu hình avatar của
+   người dùng, nên nó ổn định hơn mọi khoá khác trong repo. `hex` và `config`
+   là dữ liệu đã lưu, không phải chữ.
+
+   Lời khai này từng SAI mà không có gì bắt được: lớp phủ có đúng 71 khoá cho
+   71 lựa chọn nên đếm thì thấy đủ, nhưng khoá được bịa từ nhãn chứ không chép
+   từ `id` ("Đen Tuyền" -> `jet-black`, trong khi `id` thật là `black`). Giờ
+   lib/__tests__/avatar-options-i18n.test.ts gác hai chiều - thiếu khoá VÀ
+   khoá thừa - nên nó là lời khai kiểm được, không còn là lời hứa. */
 export const SKIN_TONES: { id: string; hex: string; label: string }[] = [
   { id: "fair", hex: "#FFE5D9", label: "Trắng Hồng" },
   { id: "natural", hex: "#FCD5CE", label: "Tự Nhiên" },

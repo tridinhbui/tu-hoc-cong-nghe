@@ -266,7 +266,7 @@ export default function CharacterCustomizerModal({
                                 isSelected ? "border-amber-400 scale-110 shadow-lg" : "border-stone-800 hover:scale-105"
                               }`}
                               style={{ backgroundColor: tone.hex }}
-                              title={t.avatarOptions[tone.id] ?? tone.label}
+                              title={t.avatarOptions.skinTones[tone.id] ?? tone.label}
                             >
                               {isSelected && <Check className="w-4 h-4 text-stone-900 font-black" />}
                             </button>
@@ -297,7 +297,7 @@ export default function CharacterCustomizerModal({
                               }`}
                             >
                               <span className="text-base">{h.iconEmoji}</span>
-                              <span className="truncate">{h.label}</span>
+                              <span className="truncate">{t.avatarOptions.hairStyles[h.id] ?? h.label}</span>
                             </button>
                           );
                         })}
@@ -318,7 +318,7 @@ export default function CharacterCustomizerModal({
                                 isSelected ? "border-amber-400 scale-110 shadow-lg" : "border-stone-800 hover:scale-105"
                               }`}
                               style={{ backgroundColor: c.hex }}
-                              title={t.avatarOptions[c.id] ?? c.label}
+                              title={t.avatarOptions.hairColors[c.id] ?? c.label}
                             >
                               {isSelected && <Check className="w-4 h-4 text-white font-black" />}
                             </button>
@@ -347,7 +347,7 @@ export default function CharacterCustomizerModal({
                             }`}
                           >
                             <span>{f.iconEmoji}</span>
-                            <span>{t.avatarOptions[f.id] ?? f.label}</span>
+                            <span>{t.avatarOptions.faceShapes[f.id] ?? f.label}</span>
                           </button>
                         ))}
                       </div>
@@ -368,7 +368,7 @@ export default function CharacterCustomizerModal({
                             }`}
                           >
                             <span>{e.iconEmoji}</span>
-                            <span className="truncate">{e.label}</span>
+                            <span className="truncate">{t.avatarOptions.eyeExpressions[e.id] ?? e.label}</span>
                           </button>
                         ))}
                       </div>
@@ -395,7 +395,7 @@ export default function CharacterCustomizerModal({
                             >
                               <div className="flex items-center gap-2 truncate">
                                 <span>{g.iconEmoji}</span>
-                                <span className="truncate">{g.label}</span>
+                                <span className="truncate">{t.avatarOptions.glasses[g.id] ?? g.label}</span>
                               </div>
                               {isLocked && <Lock className="w-3.5 h-3.5 text-stone-500 shrink-0" />}
                             </button>
@@ -420,7 +420,7 @@ export default function CharacterCustomizerModal({
                               }`}
                             >
                               <span>{b.iconEmoji}</span>
-                              <span className="truncate">{b.label}</span>
+                              <span className="truncate">{t.avatarOptions.beards[b.id] ?? b.label}</span>
                             </button>
                           ))}
                         </div>
@@ -453,7 +453,7 @@ export default function CharacterCustomizerModal({
                             >
                               <div className="flex items-center gap-2">
                                 <span className="text-lg">{o.iconEmoji}</span>
-                                <span>{t.avatarOptions[o.id] ?? o.label}</span>
+                                <span>{t.avatarOptions.outfitStyles[o.id] ?? o.label}</span>
                               </div>
                               {isLocked && <Lock className="w-4 h-4 text-stone-500 shrink-0" />}
                             </button>
@@ -476,7 +476,7 @@ export default function CharacterCustomizerModal({
                                 isSelected ? "border-amber-400 scale-110 shadow-lg" : "border-stone-800 hover:scale-105"
                               }`}
                               style={{ backgroundColor: c.hex }}
-                              title={t.avatarOptions[c.id] ?? c.label}
+                              title={t.avatarOptions.outfitColors[c.id] ?? c.label}
                             >
                               {isSelected && <Check className="w-4 h-4 text-white font-black" />}
                             </button>
@@ -510,7 +510,7 @@ export default function CharacterCustomizerModal({
                             >
                               <div className="flex items-center gap-2">
                                 <span className="text-lg">{a.iconEmoji}</span>
-                                <span>{t.avatarOptions[a.id] ?? a.label}</span>
+                                <span>{t.avatarOptions.accessories[a.id] ?? a.label}</span>
                               </div>
                               {isLocked && <span className="text-[10px] font-bold text-amber-500">{format(t.characterCustomizer.unlockAtLevel, { level: a.requiredLevel ?? 0 })}</span>}
                             </button>
@@ -544,7 +544,7 @@ export default function CharacterCustomizerModal({
                             >
                               <div className="flex items-center gap-2">
                                 <span className="text-lg">{bg.iconEmoji}</span>
-                                <span>{t.avatarOptions[bg.id] ?? bg.label}</span>
+                                <span>{t.avatarOptions.backgrounds[bg.id] ?? bg.label}</span>
                               </div>
                               {isLocked && <span className="text-[10px] font-bold text-amber-500">{format(t.characterCustomizer.unlockAtLevel, { level: bg.requiredLevel ?? 0 })}</span>}
                             </button>
