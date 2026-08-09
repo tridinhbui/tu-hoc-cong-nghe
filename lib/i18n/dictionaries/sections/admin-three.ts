@@ -190,6 +190,7 @@ export const adminThreeVi = {
       reasonLabel: "Lý do:",
     },
     videosAdminClient: {
+      errNoUrl: "URL video không được để trống",
       updateSuccess: "Đã cập nhật video thành công",
       updateFailed: "Không thể lưu video",
       deleteConfirm: "Bạn chắc chắn muốn xoá video này?",
@@ -237,6 +238,8 @@ export const adminThreeVi = {
       cancel: "Huỷ",
     },
     usersTable: {
+      errSelfDemote: "Không thể tự hạ quyền admin của chính mình",
+      errSelfLock: "Không thể tự khóa tài khoản của chính mình",
       roleChanged: "Đã đổi vai trò của {name} thành {role}",
       genericError: "Có lỗi xảy ra",
       accountDisabled: "Đã khóa tài khoản",
@@ -499,6 +502,7 @@ export const adminThreeEn: typeof adminThreeVi = {
       reasonLabel: "Reason:",
     },
     videosAdminClient: {
+      errNoUrl: "The video URL cannot be empty",
       updateSuccess: "Video updated successfully",
       updateFailed: "Could not save the video",
       deleteConfirm: "Are you sure you want to delete this video?",
@@ -546,6 +550,8 @@ export const adminThreeEn: typeof adminThreeVi = {
       cancel: "Cancel",
     },
     usersTable: {
+      errSelfDemote: "You cannot remove your own admin rights",
+      errSelfLock: "You cannot lock your own account",
       roleChanged: "Changed {name}'s role to {role}",
       genericError: "Something went wrong",
       accountDisabled: "Account disabled",

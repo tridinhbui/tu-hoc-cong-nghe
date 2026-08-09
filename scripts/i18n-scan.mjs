@@ -172,7 +172,12 @@ if (target) {
 // backlog is not the same KIND of work. Lesson content in a hand-authored page
 // is a lesson-translation job (see AGENTS.md "Translating lessons"), an API
 // route has to return a key for the client to translate rather than a sentence,
-// and an admin screen is read by staff who already read Vietnamese. Reporting
+// and an admin screen is read by staff. That last justification has since gone
+// stale and is kept only as a category, not as an excuse: 18 files under
+// app/admin/ call useI18n() and three dictionary sections exist for them
+// (adminOne/Two/Three), so the admin UI IS translated. What was left when this
+// note was written were six server-action error strings, and they were left
+// because the category sounded like a decision rather than a backlog. Reporting
 // them together made the learner-facing figure look nearly twice its real size.
 function categorize(file) {
   if (file.startsWith("app/bai-hoc/")) return "lesson content (hand-authored pages)";

@@ -3,20 +3,23 @@
 import { revalidatePath } from "next/cache";
 import { requireAdmin } from "@/lib/admin-auth";
 import { updateUserRole, setUserDisabled, resyncAllUserStats } from "@/lib/admin/users";
+import { getServerDictionary } from "@/lib/i18n/server";
 
 export async function updateUserRoleAction(userId: string, role: "user" | "admin") {
+  const t = (await getServerDictionary()).adminThree.usersTable;
   const session = await requireAdmin();
   if (session.userId === userId && role !== "admin") {
-    throw new Error("Không thể tự hạ quyền admin của chính mình");
+    throw new Error(t.errSelfDemote);
   }
   await updateUserRole(userId, role);
   revalidatePath("/admin/users");
 }
 
 export async function setUserDisabledAction(userId: string, isDisabled: boolean) {
+  const t = (await getServerDictionary()).adminThree.usersTable;
   const session = await requireAdmin();
   if (session.userId === userId && isDisabled) {
-    throw new Error("Không thể tự khóa tài khoản của chính mình");
+    throw new Error(t.errSelfLock);
   }
   await setUserDisabled(userId, isDisabled);
   revalidatePath("/admin/users");

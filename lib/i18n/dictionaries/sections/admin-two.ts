@@ -1,6 +1,9 @@
 export const adminTwoVi = {
   adminTwo: {
     documentsManager: {
+      errNoTitle: "Vui lòng nhập tiêu đề tài liệu",
+      errNoFile: "Vui lòng chọn một tệp để tải lên",
+      errTooLarge: "Tệp vượt quá giới hạn 25MB",
       uploadSuccess: "Đã tải lên tài liệu",
       uploadError: "Không tải lên được tài liệu",
       saveSuccess: "Đã lưu thay đổi",
@@ -227,6 +230,9 @@ export const adminTwoVi = {
 export const adminTwoEn: typeof adminTwoVi = {
   adminTwo: {
     documentsManager: {
+      errNoTitle: "Please enter a document title",
+      errNoFile: "Please choose a file to upload",
+      errTooLarge: "The file is over the 25MB limit",
       uploadSuccess: "Document uploaded",
       uploadError: "Could not upload the document",
       saveSuccess: "Changes saved",
