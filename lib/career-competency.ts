@@ -87,6 +87,9 @@ export const SKILL_DOMAINS: SkillDomain[] = [
       1051,
       // 1053 (bao-cao-luu-chuyen-tien-te): đọc chất lượng lợi nhuận.
       1053,
+      // 1055 (bang-can-doi-ke-toan): Current Ratio, D/E và goodwill - đọc
+      // sức khoẻ tài chính từ bảng cân đối.
+      1055,
     ],
   },
   {
@@ -98,6 +101,8 @@ export const SKILL_DOMAINS: SkillDomain[] = [
       // 1054: chuỗi Revenue → FCF → EV → giá cổ phiếu, và vì sao EV/EBITDA
       // trung lập với đòn bẩy còn P/E thì không.
       1054,
+      // 1056: chọn phương pháp định giá theo hoàn cảnh, và đối chiếu chéo.
+      1056,
       // Định giá ngân hàng (P/B, thu nhập thặng dư), REIT (FFO/AFFO), xuyên
       // biên giới, và ESG đưa vào WACC - đều là biến thể của cùng một việc.
       // 1481/1482 là viết và bảo vệ luận điểm định giá, nên đi kèm ở đây.

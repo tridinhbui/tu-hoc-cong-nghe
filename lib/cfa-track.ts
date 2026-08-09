@@ -92,6 +92,9 @@ export const CFA_LEVEL_1_SUBJECTS: CfaSubject[] = [
       1051,
       // 1053 (bao-cao-luu-chuyen-tien-te): bổ trợ của 52, cùng subject FSA.
       1053,
+      // 1055 (bang-can-doi-ke-toan): phương trình kế toán, thanh khoản, đòn bẩy
+      // và goodwill - đọc bảng cân đối, nên cùng subject FSA.
+      1055,
       21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43,
       44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66,
       67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 80, 271, 1001, 1007, 1010, 1011, 1012, 1013, 1015,
@@ -124,6 +127,9 @@ export const CFA_LEVEL_1_SUBJECTS: CfaSubject[] = [
       219, 220, 269, 270, 1003, 1004, 1006, 1008, 1036,
       // 1054: mười công thức từ Revenue tới giá cổ phiếu - EV, P/E, EV/EBITDA.
       1054,
+      // 1056: chọn phương pháp định giá theo đặc điểm doanh nghiệp - DCF,
+      // comps, precedent transactions, asset-based.
+      1056,
       // Tổ chức thị trường và phân loại thị trường (1451, 1452), định giá
       // định chế tài chính (1402) và chi phí vốn xuyên biên giới (1463).
       1402, 1451, 1452, 1463,

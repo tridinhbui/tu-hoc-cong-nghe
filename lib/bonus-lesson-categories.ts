@@ -16,6 +16,8 @@ export const BONUS_CATEGORIES: Record<string, string> = {
   "on-tap-wacc": "Định giá doanh nghiệp",
   roic: "Định giá doanh nghiệp",
   "roic-phan-2": "Định giá doanh nghiệp",
+  "chon-phuong-phap-dinh-gia": "Định giá doanh nghiệp",
+  "bang-can-doi-ke-toan": "Đọc báo cáo tài chính",
   "10-cong-thuc-finance": "Định giá doanh nghiệp",
   "market-fair-value": "Định giá doanh nghiệp",
   "enterprise-value": "Định giá doanh nghiệp",
