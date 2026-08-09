@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { VIETNAMESE_DIACRITICS } from "./vietnamese-diacritics";
 import { INITIAL_VN30_STOCKS, MARKET_NEWS_POOL } from "@/lib/vn30-stock-data";
 import { vn30En } from "@/lib/vn30-stock-data-i18n/en";
 import { mergeVn30Stocks, mergeVn30News } from "@/lib/vn30-stock-data-i18n";
@@ -15,8 +16,7 @@ import { mergeVn30Stocks, mergeVn30News } from "@/lib/vn30-stock-data-i18n";
  *  xảy ra ở tệp gốc khi ai đó sửa tên một ngành ở một chỗ. */
 
 const LOCALES = ["vi", "en"] as const;
-const VN = /[àáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]/i;
-
+const VN = VIETNAMESE_DIACRITICS;
 describe("khoá ghép ngành còn nguyên ở mọi ngôn ngữ", () => {
   for (const locale of LOCALES) {
     it(`${locale}: mọi affectedSectors đều khớp một ngành có thật`, () => {

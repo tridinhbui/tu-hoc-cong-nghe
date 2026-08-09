@@ -1,4 +1,5 @@
 import type { Locale } from "@/lib/i18n";
+import { mergePositional, overlayFor } from "@/lib/i18n/overlay";
 import type { StockItem, MarketNewsEvent } from "@/lib/vn30-stock-data";
 import { vn30En } from "./en";
 
@@ -31,9 +32,7 @@ export interface Vn30Translation {
 
 const BY_LOCALE: Record<string, Vn30Translation> = { en: vn30En };
 
-function patchFor(locale: Locale): Vn30Translation | null {
-  return locale === "vi" ? null : (BY_LOCALE[locale] ?? null);
-}
+const patchFor = (locale: Locale) => overlayFor(BY_LOCALE, locale);
 
 export function mergeVn30Stocks(stocks: readonly StockItem[], locale: Locale): StockItem[] {
   const patch = patchFor(locale);
@@ -55,20 +54,18 @@ export function mergeVn30News(
 ): MarketNewsEvent[] {
   const patch = patchFor(locale);
   if (!patch) return pool as MarketNewsEvent[];
-  // Lệch độ dài thì bỏ nguyên phần dịch tin và giữ tiếng Việt. Ghép theo vị trí
-  // khi độ dài lệch sẽ gán lời giải thích của tin này cho tiêu đề của tin khác.
-  const useNews = patch.news.length === pool.length;
-  return pool.map((news, i) => ({
+  // Chữ của tin ghép THEO VỊ TRÍ, nên lệch độ dài là bỏ nguyên phần dịch chữ -
+  // ghép lệch sẽ gán lời giải thích của tin này cho tiêu đề của tin khác.
+  // `affectedSectors` thì KHÁC: nó không theo vị trí, nó đi qua cùng bảng
+  // `sectors` với stock.sector, và đó là dòng giữ cho phép ghép của market-sim
+  // còn đúng - nên nó nằm ngoài bộ chắn độ dài.
+  const translatedText = mergePositional(pool, patch.news, (news, t) => ({
     ...news,
-    headline: (useNews ? patch.news[i].headline : undefined) ?? news.headline,
-    explanation: (useNews ? patch.news[i].explanation : undefined) ?? news.explanation,
-    // Đi qua CÙNG bảng `sectors` với stock.sector ở trên. Đây là dòng giữ cho
-    // phép ghép của market-sim còn đúng.
+    headline: t.headline ?? news.headline,
+    explanation: t.explanation ?? news.explanation,
+  }));
+  return (translatedText ?? pool).map((news) => ({
+    ...news,
     affectedSectors: news.affectedSectors.map((s) => patch.sectors[s] ?? s),
   }));
-}
-
-/** Ngành đã dịch, để widget dựng danh sách lọc bằng đúng chuỗi đang hiển thị. */
-export function translateVn30Sector(sector: string, locale: Locale): string {
-  return patchFor(locale)?.sectors[sector] ?? sector;
 }

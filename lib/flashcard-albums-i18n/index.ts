@@ -1,4 +1,5 @@
 import type { Locale } from "@/lib/i18n";
+import { mergePositional, overlayFor } from "@/lib/i18n/overlay";
 import type { FlashcardAlbum } from "@/lib/flashcard-albums";
 import { flashcardAlbumsEn } from "./en";
 
@@ -52,29 +53,28 @@ export function mergeFlashcardAlbum(
   album: FlashcardAlbum,
   locale: Locale
 ): LocalizedFlashcardAlbum {
-  const patch = locale === "vi" ? null : BY_LOCALE[locale]?.[album.id];
+  const patch = overlayFor(BY_LOCALE, locale)?.[album.id];
   if (!patch) return album as LocalizedFlashcardAlbum;
 
-  // Lệch độ dài thì bỏ nguyên phần dịch thẻ và giữ tiếng Việt. Ghép theo vị trí
-  // khi lệch sẽ gắn định nghĩa của thẻ này lên tên của thẻ khác - một thẻ dạy
-  // sai thì tệ hơn một thẻ chưa dịch.
-  const useCards = patch.cards && patch.cards.length === album.cards.length;
+  // Ghép thẻ THEO VỊ TRÍ. Lệch độ dài thì mergePositional trả null và cả mảng
+  // giữ tiếng Việt - ghép lệch sẽ gắn định nghĩa của thẻ này lên tên của thẻ
+  // khác, và một thẻ dạy sai tệ hơn một thẻ chưa dịch.
+  const cards = mergePositional(album.cards, patch.cards, (card, c) => {
+    const term = c.term ?? card.term;
+    return {
+      term,
+      definition: c.definition ?? card.definition,
+      // Chỉ ghi khi tên thật sự đổi. `alsoKnownAs: ["Sharpe Ratio"]` cho một
+      // thẻ vẫn tên "Sharpe Ratio" là dữ liệu vô nghĩa đi qua cả đường nhập.
+      ...(term !== card.term ? { alsoKnownAs: [card.term] } : {}),
+    };
+  });
 
   return {
     ...album,
     title: patch.title ?? album.title,
     description: patch.description ?? album.description,
-    cards: album.cards.map((card, i) => {
-      const c = useCards ? patch.cards![i] : undefined;
-      const term = c?.term ?? card.term;
-      return {
-        term,
-        definition: c?.definition ?? card.definition,
-        // Chỉ ghi khi tên thật sự đổi. `alsoKnownAs: ["Sharpe Ratio"]` cho một
-        // thẻ vẫn tên "Sharpe Ratio" là dữ liệu vô nghĩa đi qua cả đường nhập.
-        ...(term !== card.term ? { alsoKnownAs: [card.term] } : {}),
-      };
-    }),
+    cards: cards ?? album.cards,
   };
 }
 

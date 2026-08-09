@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { VIETNAMESE_DIACRITICS } from "./vietnamese-diacritics";
 import { EXCEL_PRACTICE_SETS } from "@/lib/excel-practice-data";
 import { excelPracticeEn } from "@/lib/excel-practice-data-i18n/en";
 import { mergeExcelPracticeSet, NOT_COPY_CELLS } from "@/lib/excel-practice-data-i18n";
@@ -15,8 +16,7 @@ import { mergeExcelPracticeSet, NOT_COPY_CELLS } from "@/lib/excel-practice-data
  *  Nên cổng này phải đỏ khi ai đó THÊM một bộ bài tập, một nhiệm vụ, hay một ô
  *  chữ mới mà không dịch. Đó là toàn bộ lý do nó tồn tại. */
 
-const VN = /[àáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]/i;
-
+const VN = VIETNAMESE_DIACRITICS;
 describe("mọi bộ bài tập đều có bản tiếng Anh", () => {
   it("không thiếu bộ nào", () => {
     const missing = Object.keys(EXCEL_PRACTICE_SETS).filter((key) => !excelPracticeEn[key]);

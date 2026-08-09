@@ -230,7 +230,7 @@ console.log(`Total failing at least one check: ${total}`);
 // questions of room on 3,754. Not 0.25, for the reason recorded below about
 // MAX_LENGTH_BIAS_Z - a ceiling half a point above the measurement turns the
 // next ordinary edit red with nothing having regressed.
-const MAX_TELL_SHARE = 0.26;
+const MAX_TELL_SHARE = 0.25;
 
 /**
  * Độ dài tối thiểu của `explanation` trong một câu quiz, ký tự.
@@ -441,7 +441,7 @@ const baseline = new Set(
 // học của luật 1 cộng luật 3, và đóng nốt nó chỉ còn hai đường, cả hai đều làm
 // hỏng câu hỏi: nhồi chữ vào đáp án đúng, hoặc rút phép tính khỏi phương án
 // nhiễu. Con số này là cái chặn đợt MỚI trôi, không phải cái đích phải chạm.
-const MAX_LENGTH_BIAS_Z = 3.4;
+const MAX_LENGTH_BIAS_Z = 3.2;
 
 /** Cổng cho chiều thứ ba: đáp án đúng nằm ở GIỮA, không dài nhất mà cũng không
  *  ngắn nhất. Đặt cùng bậc với MAX_LENGTH_BIAS_Z vì nó khai thác được y như
@@ -451,7 +451,7 @@ const MAX_LENGTH_BIAS_Z = 3.4;
  *  cổng kia đều xanh (longest 24%, shortest 20%). Đó là hệ quả trực tiếp của
  *  việc chữa "đừng để đáp án đúng dài nhất" bằng cách cắt bớt đáp án đúng: nó
  *  không thành ngắn nhất, nó thành ở giữa. */
-const MAX_MIDDLE_BIAS_Z = 3.4;
+const MAX_MIDDLE_BIAS_Z = 3.0;
 
 /**
  * Below this many questions, the corpus-wide SHARE gates are reported but not

@@ -1,5 +1,6 @@
 import type { Locale } from "@/lib/i18n";
-import type { ExcelPracticeSet } from "@/lib/excel-practice-data";
+import { mergePositional, overlayFor } from "@/lib/i18n/overlay";
+import type { ExcelPracticeSet, ExcelTask, SqlTask } from "@/lib/excel-practice-data";
 import { excelPracticeEn } from "./en";
 
 /**
@@ -96,7 +97,7 @@ export function mergeExcelPracticeSet(
   set: ExcelPracticeSet,
   locale: Locale
 ): ExcelPracticeSet {
-  const patch = locale === "vi" ? null : BY_LOCALE[locale]?.[key];
+  const patch = overlayFor(BY_LOCALE, locale)?.[key];
   if (!patch) return set;
 
   const base = {
@@ -108,10 +109,14 @@ export function mergeExcelPracticeSet(
     return { ...set, ...base, task: mergeTask(set.task, patch.task) };
   }
 
+  // Tham số kiểu ghi rõ vì `set.tasks` ở đây là `ExcelTask[] | SqlTask[]` - một
+  // union hai mảng, không tự hợp nhất thành mảng của union khi suy diễn.
   const tasks =
-    patch.tasks && patch.tasks.length === set.tasks.length
-      ? set.tasks.map((task, i) => mergeTask(task, patch.tasks![i]))
-      : set.tasks;
+    mergePositional<ExcelTask | SqlTask, ExcelTaskTranslation>(
+      set.tasks,
+      patch.tasks,
+      mergeTask
+    ) ?? set.tasks;
 
   if (set.kind === "sql") return { ...set, ...base, tasks: tasks as typeof set.tasks };
 

@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { VIETNAMESE_DIACRITICS } from "./vietnamese-diacritics";
 import { FLASHCARD_ALBUMS } from "@/lib/flashcard-albums";
 import { flashcardAlbumsEn } from "@/lib/flashcard-albums-i18n/en";
 import { mergeFlashcardAlbum, mergeFlashcardAlbums } from "@/lib/flashcard-albums-i18n";
@@ -12,8 +13,7 @@ import { mergeFlashcardAlbum, mergeFlashcardAlbums } from "@/lib/flashcard-album
  *  thẻ trùng nội dung hoàn toàn - và chú thích ở đầu FlashcardAlbumsGallery.tsx
  *  hứa đúng điều ngược lại. */
 
-const VN = /[àáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]/i;
-
+const VN = VIETNAMESE_DIACRITICS;
 describe("bản dịch đủ", () => {
   it("mọi album đều có bản tiếng Anh, không có bản mồ côi", () => {
     const ids = new Set(FLASHCARD_ALBUMS.map((a) => a.id));

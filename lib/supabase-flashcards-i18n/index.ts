@@ -1,4 +1,5 @@
 import type { Locale } from "@/lib/i18n";
+import { overlayFor } from "@/lib/i18n/overlay";
 import { DEFAULT_FINANCIAL_GLOSSARY } from "@/lib/supabase-flashcards";
 import type { ImportableCard } from "@/lib/flashcard-albums-i18n";
 import { defaultGlossaryEn } from "./en";
@@ -25,7 +26,7 @@ export type GlossaryTranslation = Record<string, { term: string; definition: str
 const BY_LOCALE: Record<string, GlossaryTranslation> = { en: defaultGlossaryEn };
 
 export function localizedDefaultGlossary(locale: Locale): ImportableCard[] {
-  const patch = locale === "vi" ? null : BY_LOCALE[locale];
+  const patch = overlayFor(BY_LOCALE, locale);
   return DEFAULT_FINANCIAL_GLOSSARY.map((card) => {
     const t = patch?.[card.term];
     if (!t) return { term: card.term, definition: card.definition };

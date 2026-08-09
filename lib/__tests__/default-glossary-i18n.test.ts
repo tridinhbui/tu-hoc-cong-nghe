@@ -1,5 +1,6 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
+import { VIETNAMESE_DIACRITICS } from "./vietnamese-diacritics";
 import { DEFAULT_FINANCIAL_GLOSSARY } from "@/lib/supabase-flashcards";
 import { defaultGlossaryEn } from "@/lib/supabase-flashcards-i18n/en";
 import { localizedDefaultGlossary } from "@/lib/supabase-flashcards-i18n";
@@ -12,7 +13,7 @@ import { localizedDefaultGlossary } from "@/lib/supabase-flashcards-i18n";
  *  cập nhật hàng cũ - nhưng một `term` đã dịch là khoá KHÁC, nên nó tạo hàng
  *  mới. Người bấm "nạp bộ mẫu" ở hai ngôn ngữ sẽ có 16 thẻ trùng nội dung. */
 
-const VN = /[àáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]/i;
+const VN = VIETNAMESE_DIACRITICS;
 const CLIENT = readFileSync(
   new URL("../../components/flashcard/FlashcardClient.tsx", import.meta.url),
   "utf-8"
