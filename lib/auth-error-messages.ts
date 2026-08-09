@@ -1,21 +1,37 @@
-// Supabase Auth returns raw English error messages. This maps the common ones
-// to Vietnamese so the login/signup form never mixes languages mid-sentence.
-const KNOWN_PATTERNS: Array<[RegExp, string]> = [
-  [/email .*invalid/i, "Địa chỉ email không hợp lệ. Vui lòng kiểm tra lại."],
-  [/email not confirmed/i, "Email chưa được xác nhận. Kiểm tra hộp thư của bạn hoặc gửi lại email xác nhận bên dưới."],
-  [/invalid login credentials/i, "Email hoặc mật khẩu không đúng."],
-  [/user already registered/i, "Email này đã có tài khoản. Hãy đăng nhập thay vì đăng ký."],
-  [/password should be at least/i, "Mật khẩu phải có ít nhất 6 ký tự."],
-  [/rate limit/i, "Bạn đã thử quá nhiều lần. Vui lòng đợi một chút rồi thử lại."],
-  [/network/i, "Không thể kết nối. Vui lòng kiểm tra mạng và thử lại."],
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
+
+/** Supabase Auth trả về thông báo lỗi tiếng Anh thô. Bảng này ánh xạ những
+ *  lỗi hay gặp sang câu của người dùng, để form đăng nhập/đăng ký không trộn
+ *  hai ngôn ngữ giữa một câu.
+ *
+ *  Trước đây câu trả về là chuỗi tiếng Việt viết cứng ngay trong bảng, nên một
+ *  người đang đọc giao diện tiếng Anh gõ sai mật khẩu vẫn nhận một câu tiếng
+ *  Việt. Đây là màn hình đầu tiên của bất kỳ ai chưa vào được ứng dụng, tức
+ *  chỗ tệ nhất để lộ ra rằng bản dịch chưa xong.
+ *
+ *  Chuỗi nằm ở lib/i18n/dictionaries/sections/misc-data.ts, do phiên chạy song
+ *  song dựng sẵn cùng lập luận vì sao bản tiếng Anh KHÔNG phải chuỗi thô của
+ *  Supabase mà là câu đã viết lại. File này chỉ nối dây, không dựng khoá mới.
+ *
+ *  MẪU KHỚP GIỮ NGUYÊN TIẾNG ANH và không dịch: chúng khớp với thông báo do
+ *  Supabase sinh ra, không phải với chữ người dùng nhìn thấy. Dịch chúng là
+ *  làm mọi phép khớp trượt hết và ai cũng nhận câu chung chung. */
+const KNOWN_PATTERNS: Array<[RegExp, keyof Dictionary["authErrors"]]> = [
+  [/email .*invalid/i, "invalidEmail"],
+  [/email not confirmed/i, "notConfirmed"],
+  [/invalid login credentials/i, "badCredentials"],
+  [/user already registered/i, "alreadyRegistered"],
+  [/password should be at least/i, "passwordTooShort"],
+  [/rate limit/i, "rateLimit"],
+  [/network/i, "network"],
 ];
 
-export function translateAuthError(message: string | undefined | null): string {
-  if (!message) return "Có lỗi xảy ra. Vui lòng thử lại.";
-  for (const [pattern, vi] of KNOWN_PATTERNS) {
-    if (pattern.test(message)) return vi;
+export function translateAuthError(message: string | undefined | null, t: Dictionary): string {
+  if (!message) return t.authErrors.generic;
+  for (const [pattern, key] of KNOWN_PATTERNS) {
+    if (pattern.test(message)) return t.authErrors[key];
   }
-  return "Có lỗi xảy ra. Vui lòng thử lại.";
+  return t.authErrors.generic;
 }
 
 export function isUnconfirmedEmailError(message: string | undefined | null): boolean {

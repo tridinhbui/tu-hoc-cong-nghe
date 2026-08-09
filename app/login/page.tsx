@@ -175,7 +175,7 @@ function LoginForm() {
 
         if (signupError) {
           registerFailedAttempt();
-          setError(translateAuthError(signupError.message));
+          setError(translateAuthError(signupError.message, t));
           setLoading(false);
           return;
         }
@@ -226,7 +226,7 @@ function LoginForm() {
             setError("");
           } else {
             registerFailedAttempt();
-            setError(translateAuthError(loginError.message));
+            setError(translateAuthError(loginError.message, t));
           }
           setLoading(false);
           return;
@@ -254,7 +254,7 @@ function LoginForm() {
         options: { emailRedirectTo: `${window.location.origin}/auth/callback` },
       });
       if (resendError) {
-        setError(translateAuthError(resendError.message));
+        setError(translateAuthError(resendError.message, t));
       } else {
         setConfirmResent(true);
       }
@@ -282,7 +282,7 @@ function LoginForm() {
       });
 
       if (resetError) {
-        setError(translateAuthError(resetError.message));
+        setError(translateAuthError(resetError.message, t));
         setLoading(false);
         return;
       }
@@ -320,7 +320,7 @@ function LoginForm() {
       });
 
       if (error) {
-        setError(translateAuthError(error.message));
+        setError(translateAuthError(error.message, t));
         setLoading(false);
       }
     } catch {
