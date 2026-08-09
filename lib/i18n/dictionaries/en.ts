@@ -30,6 +30,27 @@ export const en: Dictionary = {
     morningReviewBody: "About 90 seconds. All questions you got wrong before, mixed across lessons.",
   },
 
+  weeklyChallenge: {
+    // Weekly challenge content. This is NOT fallback data despite the code
+    // calling it a mock: no migration seeds the `weekly_challenges` table on
+    // Supabase and nothing in the repo writes to it, so this branch is what
+    // every user actually sees.
+    mockTitle: "FPT Corporation SOTP Valuation",
+    mockDescription:
+      "Value each of FPT's segments - Technology, Telecoms and Education - to arrive at a fair value for the whole.",
+    q1Prompt: "Which segment contributed the largest share of FPT's revenue in 2025?",
+    q1Options: ["Technology", "Telecoms", "Education"],
+    q2Prompt: "What is the trend in the gross margin of FPT's Technology segment?",
+    q2Options: ["Rising steadily", "Flat", "Slightly declining"],
+    q3Prompt:
+      "What regional average P/E should be applied to the Education segment in the SOTP model?",
+    q3Options: ["10x", "18x", "25x"],
+    q4Prompt: "What state was FPT's operating cash flow (CFO) in over the past year?",
+    q4Options: ["Strongly positive", "Slightly negative on inventory", "Unchanged"],
+    q5Prompt: "Roughly what fair value does the SOTP give for FPT shares?",
+    q5Options: ["VND 120,000 - 130,000/share", "VND 150,000 - 160,000/share", "VND 180,000 - 190,000/share"],
+  },
+
   apiErrors: {
     bossDamageNotRecorded: "Damage could not be recorded",
     voiceJoinFailed: "Could not join voice",

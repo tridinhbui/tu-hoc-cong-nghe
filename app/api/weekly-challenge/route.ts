@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
+import { getServerDictionary } from "@/lib/i18n/server";
 
 // GET active challenge for the week
 export async function GET(request: NextRequest) {
@@ -25,20 +26,28 @@ export async function GET(request: NextRequest) {
   }
 
   if (!challenge) {
-    // Trả về mock data nếu chưa có challenge trong DB
+    // Mã cũ gọi đây là "mock data", nhưng nó KHÔNG phải dữ liệu dự phòng:
+    // bảng `weekly_challenges` không có migration nào seed và không chỗ nào
+    // trong repo ghi vào, nên nhánh này là thứ mọi người dùng thực sự thấy.
+    // Vì vậy câu chữ của nó phải đi qua từ điển như mọi câu chữ khác.
+    //
+    // `correct` ở lại đây, không vào từ điển: nó là chỉ số vào mảng `options`,
+    // và một bản dịch xếp sai thứ tự sẽ chấm sai người học.
+    const t = await getServerDictionary();
+    const c = t.weeklyChallenge;
     const mockChallenge = {
       id: "fpt-mock-challenge-uuid",
       week_start_date: monday.toISOString().split("T")[0],
-      title: "Định giá SOTP Tập đoàn FPT",
-      description: "Thực hiện định giá từng cấu phần của FPT bao gồm mảng Công nghệ, Viễn thông và Giáo dục để tìm ra giá trị hợp lý.",
+      title: c.mockTitle,
+      description: c.mockDescription,
       difficulty: "gold",
       case_study_url: "https://example.com/fpt-bctc-2025.pdf",
       questions: [
-        { prompt: "Mảng nào đóng góp tỷ trọng doanh thu cao nhất cho FPT năm 2025?", options: ["Công nghệ", "Viễn thông", "Giáo dục"], correct: 0 },
-        { prompt: "Biên lợi nhuận gộp mảng Công nghệ của FPT có xu hướng như thế nào?", options: ["Tăng trưởng liên tục", "Đi ngang", "Suy giảm nhẹ"], correct: 0 },
-        { prompt: "P/E hợp lý áp dụng cho mảng Giáo dục trong mô hình SOTP nên lấy theo mức trung bình khu vực là bao nhiêu?", options: ["10x", "18x", "25x"], correct: 1 },
-        { prompt: "Dòng tiền thuần hoạt động kinh doanh (CFO) của FPT năm qua đạt trạng thái nào?", options: ["Dương mạnh", "Âm nhẹ do tồn kho", "Không đổi"], correct: 0 },
-        { prompt: "Định giá trị hợp lý của cổ phiếu FPT theo SOTP khoảng bao nhiêu?", options: ["120,000 - 130,000 đ/cp", "150,000 - 160,000 đ/cp", "180,000 - 190,000 đ/cp"], correct: 1 },
+        { prompt: c.q1Prompt, options: c.q1Options, correct: 0 },
+        { prompt: c.q2Prompt, options: c.q2Options, correct: 0 },
+        { prompt: c.q3Prompt, options: c.q3Options, correct: 1 },
+        { prompt: c.q4Prompt, options: c.q4Options, correct: 0 },
+        { prompt: c.q5Prompt, options: c.q5Options, correct: 1 },
       ],
       xp_reward: 800,
       coin_reward: 100,
@@ -46,6 +55,11 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(mockChallenge);
   }
 
+  // Thử thách lấy từ Supabase thì KHÔNG có đường dịch nào. Nội dung nằm trong
+  // cơ sở dữ liệu, giống quiz module CFA mà AGENTS.md đã ghi: không script
+  // tĩnh nào với tới được, và chỗ duy nhất chặn được là đường ghi. Hiện chưa
+  // có đường ghi nào, nên chưa có gì để chặn - ghi lại để lần đầu ai đó thêm
+  // một hàng vào bảng ấy thì biết là mình vừa tạo ra nội dung không dịch được.
   return NextResponse.json(challenge);
 }
 

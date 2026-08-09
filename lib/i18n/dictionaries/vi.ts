@@ -36,6 +36,27 @@ export const vi = {
     morningReviewBody: "Khoảng 90 giây. Toàn câu bạn từng làm sai, trộn từ nhiều bài.",
   },
 
+  weeklyChallenge: {
+    // Nội dung thử thách tuần. Đây KHÔNG phải dữ liệu dự phòng dù mã gọi nó là
+    // mock: bảng `weekly_challenges` trên Supabase không có migration nào seed
+    // và không chỗ nào trong repo ghi vào, nên nhánh này là thứ mọi người dùng
+    // thực sự thấy.
+    mockTitle: "Định giá SOTP Tập đoàn FPT",
+    mockDescription:
+      "Thực hiện định giá từng cấu phần của FPT bao gồm mảng Công nghệ, Viễn thông và Giáo dục để tìm ra giá trị hợp lý.",
+    q1Prompt: "Mảng nào đóng góp tỷ trọng doanh thu cao nhất cho FPT năm 2025?",
+    q1Options: ["Công nghệ", "Viễn thông", "Giáo dục"],
+    q2Prompt: "Biên lợi nhuận gộp mảng Công nghệ của FPT có xu hướng như thế nào?",
+    q2Options: ["Tăng trưởng liên tục", "Đi ngang", "Suy giảm nhẹ"],
+    q3Prompt:
+      "P/E hợp lý áp dụng cho mảng Giáo dục trong mô hình SOTP nên lấy theo mức trung bình khu vực là bao nhiêu?",
+    q3Options: ["10x", "18x", "25x"],
+    q4Prompt: "Dòng tiền thuần hoạt động kinh doanh (CFO) của FPT năm qua đạt trạng thái nào?",
+    q4Options: ["Dương mạnh", "Âm nhẹ do tồn kho", "Không đổi"],
+    q5Prompt: "Định giá trị hợp lý của cổ phiếu FPT theo SOTP khoảng bao nhiêu?",
+    q5Options: ["120,000 - 130,000 đ/cp", "150,000 - 160,000 đ/cp", "180,000 - 190,000 đ/cp"],
+  },
+
   apiErrors: {
     bossDamageNotRecorded: "Không ghi được sát thương",
     voiceJoinFailed: "Không vào được voice",
