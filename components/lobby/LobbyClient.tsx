@@ -78,7 +78,13 @@ export default function LobbyClient() {
   const [station, setStation] = useState<Station | null>(null);
   const [seatedTable, setSeatedTable] = useState<number | null>(null);
   const [seatStartedAt, setSeatStartedAt] = useState<number | null>(null);
-  const [nowTick, setNowTick] = useState(Date.now());
+  // Khởi tạo 0 chứ không phải Date.now(): component này vẫn được render phía
+  // server, nên đọc đồng hồ lúc render cho ra hai giá trị khác nhau ở hai phía
+  // và gây lệch hydration. Effect bên dưới (setInterval mỗi giây) đặt giá trị
+  // thật ngay khi mount, nên số 0 không bao giờ kịp hiển thị - và
+  // isSessionComplete() với now=0 cho ra khoảng thời gian âm, tức là không
+  // đời nào kích nhầm chuông hết giờ.
+  const [nowTick, setNowTick] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
   /** Ý định di chuyển, sở hữu ở đây chứ không trong cảnh: cần điều khiển nằm
    *  ngoài Canvas nên nó phải ghi được vào cùng một vector mà vòng lặp vẽ đọc. */

@@ -1,0 +1,147 @@
+{
+  "slug": "muc-tieu-tai-chinh-sinking-fund",
+  "title": "Track 1, Lesson 7: Saving towards a goal - a sinking fund for costs you can see coming",
+  "subtitle": "A large cost you know about in advance (repairs, school fees, travel) should never become an unexpected debt.",
+  "duration": "6 min",
+  "whyItMatters": "This closes the foundation of Track 1 - after it you have everything you need (net worth, risk tolerance, a budget, an emergency fund, a repayment strategy) to start the next track making financial decisions on evidence rather than guesswork.",
+  "openingQuestion": "You know that in 6 months you will owe 24 million in school fees for your child. What is the best way to prepare?",
+  "openingOptions": [
+    "No preparation is needed at all, because these school fees come round every year in just the same way",
+    "Open a separate sinking fund and set aside 4 million a month for 6 months",
+    "Use a credit card to spread the payment at a high rate of interest when the fees eventually fall due",
+    "Wait until the fees are almost due and then borrow at short notice so the payment is made on time"
+  ],
+  "explanation": "A sinking fund is money set aside for a large cost whose date and amount you already know: school fees, vehicle insurance, periodic home repairs. The idea is simple - divide the amount by the months remaining and save steadily - but it addresses the real reason many people end up borrowing: not the unexpected cost, but the expected one that was never prepared for.",
+  "diagram": [
+    { "label": "A large, foreseeable cost (school fees, repairs)", "arrow": true },
+    { "label": "Broken into regular monthly saving", "arrow": true },
+    { "label": "= A sinking fund (never an unexpected debt)" }
+  ],
+  "realWorldExample": {
+    "company": "An individual",
+    "description": "A family that knows Tet costs about 15 million each year often opens a separate \"Tet fund\", saving steadily from January rather than scrambling or borrowing as the holiday approaches - turning one large cost into many small manageable ones."
+  },
+  "quiz": [
+    {
+      "question": "How does a sinking fund differ from an emergency fund?",
+      "options": [
+        "A sinking fund is for known costs; an emergency fund is for accidents",
+        "A sinking fund is for sudden accidents; an emergency fund is for known costs",
+        "A sinking fund goes in a bank, an emergency fund is held as cash",
+        "They are the same thing, named differently in different books"
+      ],
+      "explanation": "The two serve different purposes: an emergency fund covers the unexpected (unknown amount, unknown timing), while a sinking fund covers a cost known in both amount and date - which lets you break it up and save gradually instead of piling the pressure onto the final moment."
+    },
+    {
+      "question": "Having finished Track 1 (audit, risk tolerance, budget, emergency fund, debt, goals), what is the most sensible next step?",
+      "options": [
+        "Start buying shares straight away, since the foundation is in place",
+        "Move on to the next track and learn how to think about money",
+        "Jump straight to the professional track to move faster",
+        "Repeat Track 1 once more to be on the safe side"
+      ],
+      "explanation": "Track 1 builds a practical foundation (knowing your own numbers, your risk tolerance, having a budget and an emergency fund) - the precondition for the deeper financial ideas in later tracks. Investing before you have an emergency fund is a dangerous bet."
+    },
+    {
+      "question": "You want 60 million for a trip in 12 months' time. How much should go into the sinking fund each month (ignoring interest)?",
+      "options": [
+        "6 million a month over 10 months",
+        "5 million a month over 10 months (2 short)",
+        "5 million a month over 12 months",
+        "60 million in the very first month"
+      ],
+      "explanation": "60 million ÷ 12 months = 5 million a month. Splitting it evenly and saving steadily is the surest way to hit the goal on time without the pressure bunching up at the end - which is exactly what a sinking fund is."
+    },
+    {
+      "question": "School fees of 36 million fall due in 9 months. How much should you set aside each month?",
+      "options": [
+        "9 million (= 36 ÷ 4, with the numerator and denominator swapped)",
+        "3 million (= 36 ÷ 12, dividing by the year rather than the deadline)",
+        "36 million (putting it all in month one and then splitting it up)",
+        "4 million (= 36 million ÷ 9 months, split evenly to the deadline)"
+      ],
+      "explanation": "The formula is the amount needed ÷ the months left until it is due: 36 ÷ 9 = 4 million. Dividing by the year (36 ÷ 12) leaves you with only 27 million by month 9, still 9 million short exactly when payment is due."
+    },
+    {
+      "question": "Why shouldn't a large foreseeable cost be left to the emergency fund?",
+      "options": [
+        "Because it is predictable, so it deserves its own fund prepared in advance",
+        "Because an emergency fund may only be drawn on twice a year at most",
+        "Because drawing on an emergency fund forfeits all the interest accrued",
+        "Because a foreseeable cost is usually larger than the emergency fund"
+      ],
+      "explanation": "An emergency fund is for shocks you could not foresee. Using it for Tet or school fees means that when a real accident does happen, the cushion has thinned - and a predictable cost always leaves enough time to accumulate through a sinking fund."
+    }
+  ],
+  "keyTakeaways": [
+    "A sinking fund breaks a large FORESEEABLE cost into small monthly amounts - a predictable cost should never become a debt",
+    "A complete Track 1 means: knowing your net worth and risk tolerance, having a budget, an emergency fund, a repayment strategy, and a sinking fund for large goals",
+    "This is the mandatory foundation before learning to invest - skipping Track 1 leaves later decisions without a real basis"
+  ],
+  "practicePrompt": {
+    "question": "You have completed Track 1: you know your net worth, your risk tolerance, and you have a budget and an emergency fund. Now you know that in 8 months you will need 40 million for home repairs. How should you handle it?",
+    "options": [
+      "Open a separate sinking fund and set aside 5 million steadily each month for 8 months towards this known cost",
+      "Simply use the existing emergency fund to pay for it, since a sinking fund and an emergency fund really serve exactly the same purpose",
+      "Wait until close to the date and then take out a high-interest consumer loan to pay for the repairs on time",
+      "No preparation is needed, because a 40 million cost can be covered out of monthly income at the point it is needed"
+    ],
+    "explanation": "A sinking fund is for a large known cost (such as repairs), unlike an emergency fund which is for the unforeseen - splitting it into 5 million a month means the money is there on time without borrowing."
+  },
+  "summary": {
+    "keyIdea": "A sinking fund breaks a large FORESEEABLE cost into small monthly amounts - a predictable cost should never become a debt",
+    "commonMistake": "Reading the idea as a phrase to remember rather than a principle to apply to real decisions.",
+    "action": "A complete Track 1 means: knowing your net worth and risk tolerance, having a budget, an emergency fund, a repayment strategy, and a sinking fund for large goals"
+  },
+  "application": {
+    "title": "Start the fund now",
+    "message": "Think of one large cost you know is coming this year (repairs, school fees, travel), divide it by the months remaining, and start setting that aside this month.",
+    "secondary": "A cost you can see coming should never turn into an unexpected debt."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "School fees at the start of the year, periodic vehicle repairs, the summer trip, the money spent at Tet - these are all large costs you know about COMPLETELY in advance. So why do they still become last-minute financial pressure? Because there is no sinking fund - money saved separately for one large known cost, broken into regular instalments."
+    },
+    {
+      "type": "heading",
+      "text": "How a sinking fund differs from an emergency fund"
+    },
+    {
+      "type": "paragraph",
+      "text": "The two are easily confused but serve entirely different purposes. An emergency fund is for the UNFORESEEN - job loss, sudden illness, with neither the amount nor the timing known in advance. A sinking fund is for a LARGE cost you already KNOW about - school fees, scheduled repairs, the annual holiday - where both the amount and the date are clear. Precisely because it is known, you can break it up and save gradually, instead of letting it build into debt pressure at the last minute."
+    },
+    {
+      "type": "heading",
+      "text": "The simple calculation: divide evenly over the time"
+    },
+    {
+      "type": "paragraph",
+      "text": "The basic formula: the amount needed ÷ the months remaining = the amount to save each month. For example, to have 60 million for a trip in 12 months: 60 million ÷ 12 months = 5 million a month. Splitting it evenly and saving steadily is the surest way to hit the goal on time without the pressure bunching up at the end. A family that knows Tet costs around 15 million each year can open a separate \"Tet fund\" and save steadily from January, rather than scrambling or borrowing as the holiday approaches."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Establish both the amount needed and the date it is needed before you start saving",
+        "Open a separate account or line for each large goal, rather than mixing it with day-to-day money",
+        "Divide the amount by the months remaining and save steadily, instead of leaving it to the end",
+        "Don't draw on a sinking fund for anything else - if you do, the original goal arrives late or short"
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Wrapping up the foundation"
+    },
+    {
+      "type": "paragraph",
+      "text": "After six lessons you have: your real net worth (Lesson 2), your own risk tolerance (Lesson 3), a clear budget framework (Lesson 4), an emergency fund as a cushion (Lesson 5), a repayment strategy that fits the person you are (Lesson 6), and a way to save for large known goals (Lesson 7). This is a foundation of real numbers rather than theory - the precondition for moving on to Track 3 and the deeper ideas about money and finance. Investing without an emergency fund, or planning without knowing your net worth, is a dangerous bet."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Track 1 is not a warm-up before the real work - it IS the foundation that decides whether every later track holds.",
+        "You now have your own real numbers. Time to move on."
+      ]
+    }
+  ]
+}

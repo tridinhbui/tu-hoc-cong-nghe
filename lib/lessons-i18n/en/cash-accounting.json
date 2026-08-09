@@ -41,7 +41,7 @@
         "When the contract takes effect",
         "When cash actually moves in or out"
       ],
-      "explanation": "Cash basis: cash in = revenue, cash out = expense."
+      "explanation": "Issuing an invoice, incurring an obligation and signing a contract are all accrual triggers - each recognises the event before any money moves. Cash basis ignores all three and waits for the bank balance to change."
     },
     {
       "question": "Who uses Cash Accounting?",
@@ -61,7 +61,7 @@
         "It's trusted by institutional investors",
         "It's comparable across companies"
       ],
-      "explanation": "Cash in/out = a clear fact. No need to understand complex accounting."
+      "explanation": "The other three are accrual's advantages, not cash basis's: institutional investors and cross-company comparison both need matching, which cash basis does not provide. Its one real strength is that a bank statement is hard to dispute."
     },
     {
       "question": "A problem with Cash Accounting is:",
@@ -71,7 +71,7 @@
         "Credit sales aren't recognised as revenue",
         "Depreciation expense gets double-counted"
       ],
-      "explanation": "Example: selling 1,000 on credit, no cash → cash basis = 0 revenue (wrong!)."
+      "explanation": "Cash basis records the bank balance accurately - that is its whole point - and tax authorities accept it for small businesses. Depreciation never enters cash basis at all, so it cannot be double-counted. What it misses is the credit sale: goods delivered, revenue unrecorded."
     },
     {
       "question": "A small company on cash basis shows 10 million profit. In reality:",
@@ -81,7 +81,7 @@
         "Always higher than 10 million due to depreciation",
         "Could differ, depending on AR, AP and CapEx"
       ],
-      "explanation": "If AR rises → cash < accrual. If CapEx is large → cash < accrual."
+      "explanation": "Neither direction is guaranteed. Rising receivables push cash profit below accrual profit, while unpaid supplier bills push it above; depreciation does not enter cash basis at all, so it cannot force the figure higher."
     },
     {
       "question": "Why doesn't everyone use accrual?",
@@ -91,7 +91,7 @@
         "Accrual raises the corporate tax owed",
         "Accrual is only for foreign companies"
       ],
-      "explanation": "Cost > benefit. For a 100m-revenue company: cash basis is enough."
+      "explanation": "Accrual is not restricted in scope, nor reserved for foreign companies - it is the global standard. Nor does it change the tax eventually owed, only the period the profit lands in. What stops a small business adopting it is the bookkeeping cost."
     },
     {
       "question": "A small company borrowing from a bank should prepare:",
@@ -101,7 +101,7 @@
         "Both books at once so the bank can cross-check itself",
         "No preparation needed, the bank only checks bank statements"
       ],
-      "explanation": "A bank won't trust cash basis → accrual is required to get the loan."
+      "explanation": "Cash basis is not more honest, only more literal - it leaves out the receivables and obligations a lender has to see. Keeping two sets of books invites exactly the inconsistency banks screen for, and bank statements alone show no profitability."
     }
   ],
   "keyTakeaways": [

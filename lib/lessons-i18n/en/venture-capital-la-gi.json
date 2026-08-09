@@ -5,10 +5,10 @@
   "duration": "6 min",
   "openingQuestion": "Why do VCs accept losing money on 90% of their portfolio?",
   "openingOptions": [
-    "Because they have no other choice",
-    "Because startups fail easily",
-    "The 10% that succeeds (unicorns) generates enough return to cover the entire portfolio - power law distribution",
-    "Because they don't analyze carefully"
+    "Because they have no other choice once committed",
+    "Because startups fail easily and that is priced in",
+    "The 10% that succeeds covers the whole portfolio - power law",
+    "Because they do not analyse each individual deal carefully enough"
   ],
   "explanation": "Venture capital funds early-stage businesses, where most investments will be lost entirely. That isn't the model failing - it's the model itself: returns follow a power law, where one or two big wins produce nearly the entire fund's result. The consequence for decision-making is very different from ordinary investing - the question isn't whether this bet is safe, but if it's right, how big can it get.",
   "diagram": [

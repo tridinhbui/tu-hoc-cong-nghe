@@ -37,7 +37,7 @@
         "Interest rate: below or above 10%/year",
         "Term: under or over 12 months"
       ],
-      "explanation": "The classification is based on the time until it must be paid."
+      "explanation": "Neither size, counterparty nor interest rate enters the classification: a one-billion supplier balance due next month is current, while a small bank loan running five years is long-term. Only time to settlement decides."
     },
     {
       "question": "A company borrows 1,000 billion over 10 years, paying 100 billion in year 1. How is it recorded?",
@@ -57,7 +57,7 @@
         "The dividend payout ratio",
         "Gross margin"
       ],
-      "explanation": "D/E and the Debt Ratio ↑ = higher leverage = higher risk."
+      "explanation": "Inventory turnover and gross margin are operating measures untouched by how the company is financed, and the dividend payout ratio follows from profit, not debt. Long-term borrowing enlarges the D in D/E directly."
     },
     {
       "question": "When interest rates rise, a company borrows long-term to:",

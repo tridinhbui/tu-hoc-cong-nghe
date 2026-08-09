@@ -114,6 +114,7 @@ describe("every app route is reachable", () => {
   // Routes that legitimately have no menu entry, with the reason.
   const EXEMPT: Record<string, string> = {
     "cua-hang": "redirect stub -> /game?building=shop",
+    "bang-tin": "redirect stub -> /finsocial",
     rpg: "redirect stub -> /game?building=shop",
     "nguoi-hoc": "dynamic [userId], linked from Leaderboard rows",
     "bai-hoc": "dynamic [slug], linked from every lesson list",

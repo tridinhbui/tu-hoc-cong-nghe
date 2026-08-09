@@ -120,7 +120,7 @@ export default function OnTapCauSaiClient() {
 
     const correct = optionIndex === item.correct;
     setCardAnswers((prev) => ({ ...prev, [k]: { picked: optionIndex, resolved: correct } }));
-    void recordQuizMistake(item.lessonId, item.questionIndex, correct);
+    void recordQuizMistake(item.lessonId, item.questionIndex, correct, item.question);
 
     // Auto flip card to back side to show explanation
     setIsFlipped(true);

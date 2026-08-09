@@ -98,7 +98,7 @@
       "options": [
         "Cash Flow first, because cash is the most important thing",
         "Notes to the financial statements first, since they explain every other number",
-        "Balance Sheet first, to check its financial health",
+        "Balance Sheet first, to check its financial health and solvency",
         "Income Statement first, to understand profitability"
       ],
       "explanation": "Investors typically look at the P&L first to understand earning power, then the Balance Sheet (debt), then Cash Flow (real cash)."

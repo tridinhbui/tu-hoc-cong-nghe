@@ -1,0 +1,162 @@
+{
+  "slug": "da-dang-hoa-dia-ly-quoc-te",
+  "title": "Track 7, Lesson 7: Investing internationally - don't bet on one market alone",
+  "subtitle": "Vietnam's market is only a very small part of the global economic picture.",
+  "duration": "6 min",
+  "whyItMatters": "Investing only at home means betting your entire wealth on the fortunes of a single economy. Understanding geographic diversification helps you reduce single-country concentration risk, even though cost and complexity rise.",
+  "openingQuestion": "Why should a Vietnamese investor consider putting part of their money into international markets?",
+  "openingOptions": [
+    "Because international markets always grow distinctly faster than the domestic Vietnamese stock market does",
+    "Because under current law every Vietnamese investor is required to invest into international markets",
+    "Because investing in international markets carries absolutely no currency risk that needs worrying about",
+    "Because it reduces concentration risk in a single economy"
+  ],
+  "explanation": "Geographic diversification addresses a risk that sector diversification never touches: your entire wealth depending on one economy, one currency and one policy regime. The point to weigh is that it introduces a new risk in the exchange rate, and that correlations between markets rise during a crisis - exactly when you need them low. Even so, your income and your home are already entirely inside the country.",
+  "diagram": [
+    {
+      "label": "100% of assets at home",
+      "arrow": true
+    },
+    {
+      "label": "Concentration risk in one economy",
+      "arrow": true
+    },
+    {
+      "label": "Allocate part of it internationally",
+      "arrow": true
+    },
+    {
+      "label": "Concentration risk reduced"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Investors globalising a portfolio",
+    "description": "Many retail investors in emerging markets place part of their portfolio (20-30%, say) into ETFs tracking the US or global markets, so as not to depend entirely on the swings of a single economy."
+  },
+  "quiz": [
+    {
+      "question": "Which risk is specific to international investing and absent at home?",
+      "options": [
+        "Interest rate risk, which does not exist domestically",
+        "Inflation risk, which only affects foreign assets",
+        "Liquidity risk, since international markets are smaller",
+        "Currency risk when converting returns back into VND"
+      ],
+      "explanation": "When you invest in assets priced in a foreign currency, the real return (converted into VND) depends on the asset's performance AND the exchange rate. A currency falling against the dong can cut the return even when the asset itself performed well."
+    },
+    {
+      "question": "You invest 10,000 USD in a US ETF and it rises 10% over the year. But over that year the dollar falls 5% against the dong. Roughly what is your real return in VND?",
+      "options": [
+        "About 4.5% (1.10 × 0.95 − 1)",
+        "Exactly 10% - the exchange rate has no effect",
+        "About 15% (10% plus a further 5%)",
+        "About 5% (10% with 5% simply taken off)"
+      ],
+      "explanation": "Converted return = (1 + asset return) × (1 + currency move) − 1 = 1.10 × 0.95 − 1 ≈ 0.045 = 4.5%. A concrete example of how currency moves can eat a substantial part of an international investment's headline return."
+    },
+    {
+      "question": "Which kind of concentration risk does international investing reduce?",
+      "options": [
+        "The risk of global rates rising together across every major market",
+        "The risk of everything resting on one economy, currency and legal system",
+        "The risk of an individual company in the portfolio going bankrupt",
+        "The risk of global inflation eroding every currency's purchasing power at once"
+      ],
+      "explanation": "A Vietnamese person lives on dong, works in Vietnam and owns a home in Vietnam - and if the portfolio is also entirely Vietnamese shares, everything depends on one economy. Geographic diversification unpicks some of that overlap."
+    },
+    {
+      "question": "What new risk appears when investing abroad?",
+      "options": [
+        "Legal risk, since Vietnamese retail investors are banned from owning foreign assets",
+        "Liquidity risk, since foreign markets trade less actively than the domestic one",
+        "Currency risk - the return in dong depends on how that currency moves",
+        "Information risk, since foreign companies publish no financial statements"
+      ],
+      "explanation": "A US portfolio up 10% while the dollar falls 12% against the dong still leaves you down. This is the extra layer of risk - in exchange for no longer depending on a single economy."
+    },
+    {
+      "question": "How do Vietnamese retail investors most commonly reach international markets?",
+      "options": [
+        "Transferring money abroad freely to invest, with no procedure required",
+        "Opening an account directly on the New York Stock Exchange with no intermediary at all",
+        "Buying foreign shares directly through a domestic brokerage account",
+        "Through a domestic fund or fund certificate that invests abroad on their behalf"
+      ],
+      "explanation": "Foreign exchange rules limit how much capital an individual can move abroad, so the common route is a domestic fund with a mandate to invest overseas. Checking that a channel is legal before transferring money is a step not to skip."
+    },
+    {
+      "question": "What international weighting is reasonable for a Vietnamese retail investor?",
+      "options": [
+        "There is no single right figure; weigh cost, tax and how well you understand it",
+        "Exactly fifty percent of the portfolio, to balance the two markets equally",
+        "The whole portfolio should sit in developed markets, where risk is lower",
+        "None of it should go abroad, since currency risk always outweighs the benefit"
+      ],
+      "explanation": "Access costs, tax and whether you actually understand the market are all real constraints. A small but genuine allocation beats an ideal weighting on paper that you cannot sustain."
+    }
+  ],
+  "keyTakeaways": [
+    "International investing reduces concentration risk in a single economy and currency",
+    "Currency risk is the distinctive factor: the real return combines the asset's performance with the currency move",
+    "The whole portfolio does not need to go abroad - a moderate weighting (20-30%, say) already cuts concentration risk substantially"
+  ],
+  "practicePrompt": {
+    "question": "You invest 5,000 USD in a European ETF and it rises 12% over the year. But over that year the euro strengthens 3% against the dong. What happens to your real return in VND?",
+    "options": [
+      "Higher than 12%, at about 15.4% (1.12 × 1.03 − 1), thanks to the euro strengthening against the dong",
+      "Exactly 12%, because the ETF's return has nothing whatsoever to do with movements in the euro-dong exchange rate",
+      "Lower than 12%, because a euro strengthening against the dong always reduces the converted return correspondingly",
+      "Impossible to calculate without knowing exactly what the original principal was in dong before converting to dollars"
+    ],
+    "explanation": "The converted return combines the asset's performance with the currency move - here both work in your favour, compounding to more than the asset's own 12%."
+  },
+  "summary": {
+    "keyIdea": "International investing reduces concentration risk in a single economy and currency",
+    "commonMistake": "Reading the idea as a phrase to remember rather than a principle to apply to real decisions.",
+    "action": "Currency risk is the distinctive factor: the real return combines the asset's performance with the currency move"
+  },
+  "application": {
+    "title": "Check it now",
+    "message": "Look at your current portfolio and work out what percentage sits entirely in the Vietnamese market - if it is near 100%, consider setting a small part aside for international assets.",
+    "secondary": "There is no need to overturn everything at once; even a moderate weighting cuts concentration risk."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Vietnam's stock market is a very small piece of the global economic picture. If 100% of your invested assets are domestic, every economic or policy shock at home hits all of them at once, with nothing to offset it."
+    },
+    {
+      "type": "heading",
+      "text": "Geographic diversification reduces concentration risk"
+    },
+    {
+      "type": "paragraph",
+      "text": "International investing reduces concentration risk in a single economy, a single currency and a single policy regime. Many retail investors in emerging markets place part of their portfolio, 20-30% say, into ETFs tracking the US or global markets - not to maximise returns, but to avoid depending entirely on the swings of one economy."
+    },
+    {
+      "type": "heading",
+      "text": "Currency risk - the factor unique to investing abroad"
+    },
+    {
+      "type": "paragraph",
+      "text": "When you invest in assets priced in a foreign currency, the real return in dong depends on the asset's performance AND the currency move - two entirely independent factors. **Example:** you invest 10,000 USD in a US ETF and it rises 10% over the year. But over that year the dollar falls 5% against the dong. The converted return = (1 + 10%) × (1 − 5%) − 1 = 1.10 × 0.95 − 1 ≈ 4.5% - far below the 10% on the fund's own report, because the dollar's fall ate a substantial part of the headline gain."
+    },
+    {
+      "type": "heading",
+      "text": "The whole portfolio does not need to go abroad"
+    },
+    {
+      "type": "paragraph",
+      "text": "The aim of international investing is not to move everything overseas, but to reduce how much depends on one market. A moderate weighting, 20-30% of the portfolio say, already cuts concentration risk substantially while leaving most of your assets where you understand them best and where you will be spending in dong in future."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Consider an international index ETF (tracking the S&P 500, MSCI World and so on) as the simplest starting point",
+        "Understand that the converted return combines the asset's performance with the currency move, rather than adding them",
+        "Start with a small weighting (10-20%) and raise it once you are used to the currency swings",
+        "You don't need to understand individual foreign companies - an international index fund is already diversified inside itself"
+      ]
+    }
+  ]
+}

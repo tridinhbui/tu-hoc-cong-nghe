@@ -1,0 +1,161 @@
+{
+  "slug": "da-dang-hoa-danh-muc-theo-nganh",
+  "title": "Track 7, Lesson 4: Diversifying across sectors - don't put the eggs in one basket",
+  "subtitle": "A portfolio of 10 different technology shares is still not real diversification.",
+  "duration": "6 min",
+  "whyItMatters": "Many people believe they have diversified because they hold many tickers, but if all of them sit in one sector a single shock still sweeps the whole portfolio. This lesson shows you how to diversify properly, not just numerically.",
+  "openingQuestion": "Your portfolio holds 8 shares, but all 8 are technology companies. Is that good diversification?",
+  "openingOptions": [
+    "It has no bearing at all, because diversification is measured purely on the number of tickers being held",
+    "Yes, because the technology sector always grows distinctly faster than every other line of business on the market",
+    "Not really - the whole technology sector can struggle together",
+    "Yes, because owning as many as 8 different tickers is by itself enough to count as a well-diversified portfolio"
+  ],
+  "explanation": "Real diversification reduces unsystematic risk by combining assets with low correlation - assets that do not rise and fall for the same reason. Several tickers in one sector still share that sector's risk, so the count of names says nothing on its own: eight technology shares are eight versions of the same bet, and one sector-wide shock carries all of them off together.",
+  "diagram": [
+    {
+      "label": "10 shares all in technology",
+      "arrow": true
+    },
+    {
+      "label": "High correlation, rising and falling together",
+      "arrow": true
+    },
+    {
+      "label": "Combine assets with low correlation",
+      "arrow": true
+    },
+    {
+      "label": "= Real diversification"
+    }
+  ],
+  "realWorldExample": {
+    "company": "A technology sell-off",
+    "description": "During periods of sharply rising rates, most growth technology shares (valued heavily on future cash flows) fall together, whether the investor holds 3 tickers in the sector or 15 - clear evidence that diversifying within one sector protects very little."
+  },
+  "quiz": [
+    {
+      "question": "How should effective diversification combine assets?",
+      "options": [
+        "Assets that have low correlation with one another",
+        "Highly correlated assets so they rise together",
+        "As many tickers as possible, ignoring correlation",
+        "Many tickers within the one sector you understand"
+      ],
+      "explanation": "Low correlation is the key to real diversification. Combining shares, bonds, different sectors, even different international markets keeps a portfolio steadier, because not everything reacts the same way to a single event."
+    },
+    {
+      "question": "You have 100 million, of which 90 million sits in bank shares (5 different tickers). What is the most sensible diversification advice?",
+      "options": [
+        "Sell all the shares and move everything into a savings deposit",
+        "Reduce the banking weight, add other sectors and some bonds",
+        "Buy 5 more bank tickers so you hold 10 different ones",
+        "Leave it, since 5 tickers is already diversification enough"
+      ],
+      "explanation": "90% concentrated in one sector (even across 5 tickers) is very high sector concentration risk. Sensible diversification means reallocating into sectors with low correlation to banking, and considering another asset class (bonds) to reduce overall volatility."
+    },
+    {
+      "question": "Which kind of risk does sector diversification reduce?",
+      "options": [
+        "Inflation risk eroding the purchasing power of the whole portfolio over time",
+        "Systematic risk - a recession hitting the entire market at the same time",
+        "Unsystematic risk - the risk that is specific to one sector or business",
+        "Currency risk arising when an investor holds assets in a foreign currency"
+      ],
+      "explanation": "Spreading capital across sectors removes the part of the risk specific to each one. What remains - recession, interest rates, a crisis - hits everything, and no diversification removes it."
+    },
+    {
+      "question": "Is a portfolio of banking, insurance and brokerage shares diversified?",
+      "options": [
+        "No, but only because the total number of tickers is still below ten",
+        "Yes, because these three are classified as three separate sectors on the exchange",
+        "Yes, as long as each of those sectors holds at least two different tickers",
+        "No - all three are financials and all move with interest rates"
+      ],
+      "explanation": "Three different names, one underlying driver: interest rates, the credit cycle, sector regulation. When rates rise sharply all three react - you hold three tickers but really have one bet."
+    },
+    {
+      "question": "How many sectors are enough for a retail investor to be reasonably diversified?",
+      "options": [
+        "Around five to seven sectors with different drivers removes most of the risk",
+        "As many as possible - you should hold shares across every sector on the exchange",
+        "Exactly three sectors, since that is the optimum under modern portfolio theory",
+        "The single sector you understand best is enough to keep the risk controlled"
+      ],
+      "explanation": "The benefit of each extra sector drops away quickly: going from 1 to 5 removes most of the specific risk, while going from 15 to 30 adds almost nothing. Spreading too thin also leaves you unable to follow what you own."
+    },
+    {
+      "question": "Why is an index ETF the simplest way to diversify across sectors with a small amount of capital?",
+      "options": [
+        "Because ETFs are state-guaranteed and so carry no sector risk at all",
+        "Because a single purchase indirectly owns shares across many sectors at once",
+        "Because ETFs only invest in the fastest-growing sectors on the market",
+        "Because ETFs let investors set the weight of each sector however they wish"
+      ],
+      "explanation": "Buying enough shares across 5-7 sectors yourself takes substantial capital and many rounds of trading fees. One index ETF unit solves both - which is why it is usually the most sensible first step."
+    }
+  ],
+  "keyTakeaways": [
+    "Real diversification rests on low CORRELATION between assets, not on the number of tickers",
+    "Several tickers in one sector still share that sector's risk - and provide no real protection",
+    "A good portfolio combines sectors, and may add bonds and international markets to reduce overall volatility"
+  ],
+  "practicePrompt": {
+    "question": "You hold 12 tickers, but on closer inspection 10 of the 12 are in property and construction. Is that a well-diversified portfolio?",
+    "options": [
+      "Not really - across 12 different tickers, most still share the same risk in the property and construction sectors",
+      "Yes, because holding as many as 12 tickers is already enough to count as an effectively diversified portfolio by normal standards",
+      "Yes, because property and construction are always regarded as the sectors with the steadiest growth rate on the market",
+      "It is unrelated to the idea of diversification, because classifying by sector is only indicative and not really important"
+    ],
+    "explanation": "Real diversification rests on low correlation between assets, not on the number of tickers - 10 of 12 in one sector still share the same risk and provide no real protection."
+  },
+  "summary": {
+    "keyIdea": "Real diversification rests on low CORRELATION between assets, not on the number of tickers",
+    "commonMistake": "Reading the idea as a phrase to remember rather than a principle to apply to real decisions.",
+    "action": "Several tickers in one sector still share that sector's risk - and provide no real protection"
+  },
+  "application": {
+    "title": "Check it now",
+    "message": "Open your current portfolio and list each ticker by sector - if more than half of it sits in 1-2 sectors, that is not real diversification.",
+    "secondary": "The number of tickers matters far less than whether they share the same sector risk."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Owning 10 tickers sounds diversified, but if all 10 are technology shares you have not diversified at all - you have simply made a larger bet on one sector."
+    },
+    {
+      "type": "heading",
+      "text": "Real diversification rests on correlation, not count"
+    },
+    {
+      "type": "paragraph",
+      "text": "Effective diversification means combining assets with low correlation - assets that do not rise and fall for the same reason. During periods of sharply rising rates, most growth technology shares (valued on future cash flows, which are discounted more heavily when rates are high) fall together - whether the investor holds 3 tickers in the sector or 15. The sector risk is still entirely there, merely spread across more names."
+    },
+    {
+      "type": "heading",
+      "text": "When 90% of a portfolio sits in one sector"
+    },
+    {
+      "type": "paragraph",
+      "text": "Suppose you have 100 million, of which 90 million sits across 5 different bank shares. Five tickers or not, you carry extremely high sector concentration risk: if banking takes a shock (bad debt rising, credit policy tightening), 90% of your assets are hit at once. Sensible diversification means cutting the banking weight, adding shares in other sectors (consumer, technology, manufacturing), and considering bonds to reduce overall volatility."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Count sectors, not just tickers, when judging how diversified you are",
+        "Add asset classes beyond shares (bonds, deposits) to lower overall correlation",
+        "Consider international markets if the entire portfolio currently sits in Vietnam",
+        "Be wary when one sector exceeds 30-40% of the portfolio, however many tickers it holds",
+        "Don't mistake 'familiar' (investing only in the sector you work in) for 'safe'"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The number of tickers says nothing about how safe a portfolio is - the correlation between them is what decides it."
+      ]
+    }
+  ]
+}

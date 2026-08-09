@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { X, Download, Eye } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
@@ -15,14 +15,19 @@ export default function FilePreviewModal({ open, file, onClose }: FilePreviewMod
   const { t } = useI18n();
   const tp = t.adminOne.filePreview;
   const [previewUrl, setPreviewUrl] = useState<string>("");
-  const [fileInfo, setFileInfo] = useState<{ type: string; size: string } | null>(null);
+  // Kiểu và cỡ tệp là hàm thuần của `file`, nên suy ra trong lúc render. Nằm
+  // chung effect với phần tạo object URL bên dưới chỉ vì cả hai cùng đọc
+  // `file`, và cái giá là một lượt render đầu tiên không có thông tin tệp -
+  // hộp xem trước hiện ra trống rồi mới điền.
+  const fileInfo = useMemo(
+    () => (file ? { type: file.type, size: `${(file.size / 1024 / 1024).toFixed(2)} MB` } : null),
+    [file]
+  );
 
   useEffect(() => {
     if (!file) return;
 
     const type = file.type;
-    const size = `${(file.size / 1024 / 1024).toFixed(2)} MB`;
-    setFileInfo({ type, size });
 
     // Create preview URL for images and PDFs
     if (type.startsWith("image/")) {

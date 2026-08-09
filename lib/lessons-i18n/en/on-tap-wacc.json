@@ -12,10 +12,18 @@
   ],
   "explanation": "WACC is the average cost of all the capital a business is using, weighted by each source, with the debt portion reduced by the tax shield. It is both the minimum threshold every project has to clear and the discount rate used in valuation models. Two things commonly go wrong when applying it: taking the weights from book values rather than market values, and applying the whole company's WACC to a project whose risk is nothing like that of the core business.",
   "diagram": [
-    { "label": "Cost of equity" },
-    { "label": "After-tax cost of debt" },
-    { "label": "Capital weights" },
-    { "label": "Gives WACC" }
+    {
+      "label": "Cost of equity"
+    },
+    {
+      "label": "After-tax cost of debt"
+    },
+    {
+      "label": "Capital weights"
+    },
+    {
+      "label": "Gives WACC"
+    }
   ],
   "realWorldExample": {
     "company": "Why you can't borrow your way to a lower WACC forever",
@@ -30,7 +38,7 @@
         "A minimum hurdle rate",
         "The gross profit margin"
       ],
-      "explanation": "WACC is the minimum return a project has to clear in order to create value."
+      "explanation": "WACC is a floor, not a ceiling, so it is not a profit target to be achieved. It blends the cost of debt and of equity, so it is not simply the bank rate, and it has nothing to do with gross margin, an operating measure."
     },
     {
       "question": "Which of these could push WACC up?",
@@ -103,7 +111,10 @@
       "type": "lead",
       "text": "WACC (Weighted Average Cost of Capital) is one of the most important figures in corporate finance - and also the most frequently misunderstood."
     },
-    { "type": "heading", "text": "Why the cost of debt is multiplied by (1−t)" },
+    {
+      "type": "heading",
+      "text": "Why the cost of debt is multiplied by (1−t)"
+    },
     {
       "type": "paragraph",
       "text": "Interest is deducted before corporate income tax, which creates a 'tax shield' - the state indirectly shares part of the interest cost with the business. So the REAL cost of debt is always below the nominal rate written into the loan agreement, and the WACC formula has to multiply by (1−t) to reflect that after-tax cost properly."
@@ -131,7 +142,11 @@
           "name": "Cost of equity",
           "description": "The return shareholders demand, usually estimated with CAPM."
         },
-        { "symbol": "D/V", "name": "Debt weighting", "description": "Debt value divided by total capital." },
+        {
+          "symbol": "D/V",
+          "name": "Debt weighting",
+          "description": "Debt value divided by total capital."
+        },
         {
           "symbol": "Rd",
           "name": "Cost of debt",
@@ -150,7 +165,10 @@
         "explanation": "A business 60% equity-funded and 40% debt-funded; shareholders demand 14%, borrowing costs 9%, tax is 20%. The after-tax cost of debt is only 7.2% rather than 9% - and that difference is the tax shield."
       }
     },
-    { "type": "heading", "text": "Four common errors in calculating and using WACC" },
+    {
+      "type": "heading",
+      "text": "Four common errors in calculating and using WACC"
+    },
     {
       "type": "list",
       "items": [

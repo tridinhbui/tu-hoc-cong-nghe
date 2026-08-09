@@ -194,7 +194,11 @@ const MOMENTUM_STOP_VELOCITY = 0.02;
 const ARRIVAL_HIGHLIGHT_MS = 2600;
 /** Roster poll interval - see the live-roster effect for why it exists
  *  alongside the realtime subscription. */
-const ROSTER_POLL_MS = 25_000;
+// 60 giây, không phải 25. Đây chỉ là SÀN cho lúc realtime không bật (bảng
+// chưa nằm trong publication supabase_realtime); khi realtime chạy thì danh
+// sách đã cập nhật tức thì và mọi lần poll đều thừa. Danh sách thành viên một
+// phòng học không cần tươi hơn một phút.
+const ROSTER_POLL_MS = 60_000;
 
 const clamp = (value: number, min: number, max: number) => Math.max(min, Math.min(max, value));
 

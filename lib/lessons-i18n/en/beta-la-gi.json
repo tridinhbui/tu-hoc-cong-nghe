@@ -39,8 +39,8 @@
     {
       "question": "Beta = 1.5, market falls 10%. How is the stock expected to move?",
       "options": [
-        "Falls about 11.5% (= 10% + 1.5 percentage points)",
-        "Falls about 6.7% (= 10% ÷ 1.5, dividing instead of multiplying)",
+        "Falls about 11.5% (= 10% + 1.5 percentage points, treating beta as an add-on)",
+        "Falls about 6.7% (= 10% ÷ 1.5, dividing by beta instead of multiplying)",
         "Falls about 15% (= 10% × beta 1.5, amplified in both directions)",
         "Falls exactly 10% because beta only applies when the market rises"
       ],

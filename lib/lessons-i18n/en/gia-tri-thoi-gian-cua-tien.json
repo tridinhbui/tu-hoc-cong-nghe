@@ -145,6 +145,11 @@
       "lines": [
         "Mastering PV/FV is the key to accurately comparing any financial choice that involves time - from a lottery decision to a trillion-dong investment call."
       ]
+    },
+    {
+      "type": "callout",
+      "label": "Three common mistakes when applying the formula",
+      "text": "Using the nominal rate when the problem involves inflation - convert to the real rate, roughly nominal minus inflation. Forgetting to match frequency: 12% a year is not 12% a month, so always bring the rate and the number of periods to the same unit before calculating. And picking a discount rate that is too low: every missing percentage point inflates the present value, so a business looks cheap only because its cost of capital was set wrong."
     }
   ]
 }

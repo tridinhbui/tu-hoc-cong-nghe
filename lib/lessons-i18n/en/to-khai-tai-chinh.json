@@ -5,9 +5,9 @@
   "duration": "6 min",
   "openingQuestion": "Mai wants to know exactly where her finances stand, but only looks at her bank account balance (150 million VND) and thinks that's her entire 'wealth', while she also has 300 million VND still owed on a car loan, a 200-million-VND savings book, and a 100-million-VND brokerage account. Which tool gives her the fullest, most accurate financial picture?",
   "openingOptions": [
-    "Just checking the balance shown in her bank account every day is enough to fully understand her personal financial situation, nothing else needed",
-    "Just adding up her total monthly income is enough, with no need to consider Mai's current debts at all",
-    "No calculation tool is needed at all - relying on her own subjective feeling is accurate enough to assess it",
+    "Checking the bank balance each day is enough to know where she stands",
+    "Adding up monthly income is enough, with no need to count her debts",
+    "No tool needed - her own sense of it is accurate enough to judge",
     "Draw up a net worth statement: list every asset and subtract every debt"
   ],
   "explanation": "A personal net worth statement is a snapshot of your entire financial situation at a point in time, calculated as: Net worth = Total assets - Total debts. For Mai: total assets = 150 (cash) + 200 (savings) + 100 (stocks) = 450 million; total debt = 300 million (car loan); actual net worth = 450 - 300 = 150 million VND. Looking only at the bank balance risks misjudging the situation - the 150-million balance in the account doesn't reflect the 300-million debt hanging over it. A financial statement gives an honest, complete view, and is a mandatory starting point before drawing up any financial plan.",

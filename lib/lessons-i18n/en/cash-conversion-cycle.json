@@ -5,10 +5,10 @@
   "duration": "6 min",
   "openingQuestion": "CCC = DIO + DSO − DPO. Why is DPO subtracted?",
   "openingOptions": [
-    "Because DPO has no effect",
-    "Because DPO is time spent using the supplier's money - the longer you delay paying, the longer you hold cash",
-    "Because DPO is cash going out",
-    "Because the formula just says so"
+    "Because DPO has no effect on the cash cycle at all",
+    "Because DPO is time spent using the supplier's money",
+    "Because DPO measures cash going out of the business",
+    "Because the formula is defined that way by convention"
   ],
   "explanation": "The cash conversion cycle measures how many days your cash is tied up between paying suppliers and collecting from customers. Paying suppliers slower (a high DPO) shortens that cycle, because you're using their capital for longer - for free. When the cycle drops below zero, as with Amazon or Costco, customers pay you before you even have to pay your suppliers: the business can expand without raising extra working capital, and that's a real competitive advantage.",
   "diagram": [

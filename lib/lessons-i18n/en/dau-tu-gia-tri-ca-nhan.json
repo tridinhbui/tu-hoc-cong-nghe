@@ -1,0 +1,166 @@
+{
+  "slug": "dau-tu-gia-tri-ca-nhan",
+  "title": "Track 7, Lesson 1: Value investing - finding shares priced below what they are worth",
+  "subtitle": "The school that made Warren Buffett famous: buying good businesses for less than they are actually worth.",
+  "duration": "7 min",
+  "whyItMatters": "Understanding value investing stops you buying a share simply because it is \"hot\", and shows you how to spot when a good company is being priced by the market below its real worth - the opportunity patient investors tend to capture.",
+  "openingQuestion": "What does value investing fundamentally involve?",
+  "openingOptions": [
+    "Buying any share that has fallen sharply on the market, without analysing any other factor at all",
+    "Finding businesses whose real worth exceeds their market price",
+    "Buying only shares in the traditional sectors labelled 'value industries', such as banking and property",
+    "Buying only shares with a small market capitalisation, whatever their finances or actual valuation"
+  ],
+  "explanation": "Value investing looks for the gap between PRICE - what the market is paying - and VALUE - what the business is genuinely worth on its assets, earnings and cash flow. When the price sits well below the value (the margin of safety), that is the moment to buy.",
+  "diagram": [
+    {
+      "label": "Price: what the market is paying",
+      "arrow": true
+    },
+    {
+      "label": "Value: what the business is really worth",
+      "arrow": true
+    },
+    {
+      "label": "Price below value → a value opportunity"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Warren Buffett / Berkshire Hathaway",
+    "description": "Buffett is known for buying businesses with strong fundamentals (powerful brands, steady profits) when the market temporarily marks them down out of short-term panic, then holding for years while the real value works its way into the share price."
+  },
+  "quiz": [
+    {
+      "question": "What does 'margin of safety' mean in value investing?",
+      "options": [
+        "The cash you always keep back in case the market falls",
+        "The gap between estimated intrinsic value and the price paid",
+        "The maximum loss an investor accepts before cutting",
+        "The gap between the purchase price and the expected sale price"
+      ],
+      "explanation": "The margin of safety is the buffer protecting the investor: if you estimate real value at 100 but buy at 70, then even when the estimate is partly wrong you still have room before losing badly."
+    },
+    {
+      "question": "Company X trades at 50,000 VND. You estimate its real value on assets and earnings at 80,000 VND. Is that a good value opportunity?",
+      "options": [
+        "Possibly, but you need to know why the market is marking it down",
+        "Only if the price falls further, below 40,000 VND",
+        "No, because the market price is always the right price for a share",
+        "Definitely, since the margin of safety reaches 37.5%"
+      ],
+      "explanation": "A large gap between price and estimated value is worth noticing, but a value investor always asks a further question: does the low price reflect a real risk (the company genuinely being in trouble) or a temporary overreaction? Not every cheap share is a good opportunity."
+    },
+    {
+      "question": "Value investing looks for the gap between which two things?",
+      "options": [
+        "The price you pay and the price large funds paid earlier",
+        "Today's price and the price of that same share a year ago",
+        "A share's price and the average price across its sector",
+        "The market price and the intrinsic value of that business"
+      ],
+      "explanation": "Price is what you pay, value is what you get. Value investors wait for the two to diverge far enough to cover the part they may have estimated wrongly."
+    },
+    {
+      "question": "What is a 'value trap'?",
+      "options": [
+        "A share that is cheap because the business really is dying, not misunderstood",
+        "A share rising so fast that investors cannot buy in at the right moment",
+        "A share on a high P/E whose earnings grow fast enough to justify that price",
+        "A share suspended from trading so investors cannot exit in time"
+      ],
+      "explanation": "Cheap and worth buying are two different things. A traditional taxi firm in 2015 had a very low P/E - and it was low because the market was right about that industry's future, not because it was wrong."
+    },
+    {
+      "question": "Why does value investing demand more patience than other approaches?",
+      "options": [
+        "Because the law requires shares bought this way to be held for at least three years",
+        "Because the market can take years to recognise the value you have already seen",
+        "Because trading fees on value shares are higher than on growth shares",
+        "Because value shares may only be sold at the end of each financial year"
+      ],
+      "explanation": "As Keynes put it, the market can stay irrational longer than you can stay solvent. Buying correctly and selling early out of impatience is a common way to turn a right decision into a loss."
+    },
+    {
+      "question": "How did Warren Buffett change Benjamin Graham's approach to value?",
+      "options": [
+        "He moved to short-term trading to exploit the price swings within a single session",
+        "He switched entirely to growth investing and abandoned intrinsic value",
+        "He moved from buying mediocre companies very cheaply to good ones at fair prices",
+        "He moved to buying only corporate bonds instead of listed shares"
+      ],
+      "explanation": "Graham hunted for the 'cigar butt with one puff left' - cheap enough to be worth picking up despite a mediocre business. Buffett, under Charlie Munger's influence, moved to paying a fair price for a business with a durable advantage."
+    }
+  ],
+  "keyTakeaways": [
+    "Value investing looks for the gap between market price and a business's real worth",
+    "The margin of safety protects the investor against error in the value estimate",
+    "Cheap is not automatically an opportunity - separate 'cheap because overlooked' from 'cheap because genuinely troubled'"
+  ],
+  "practicePrompt": {
+    "question": "Company Y trades at 60,000 VND and you estimate its real value on assets and earnings at 90,000 VND. Before deciding to buy, which step should you not skip?",
+    "options": [
+      "Find out why the market prices it below your estimate, before calling it an opportunity",
+      "There is nothing further to check at all - a positive margin of safety is already sufficient grounds to buy immediately",
+      "Buy the largest quantity you possibly can before the price rises back to the value you have estimated",
+      "Skip this share entirely, because a price below your estimate is always a sign the company is in serious trouble"
+    ],
+    "explanation": "Cheap is not automatically an opportunity - separate 'cheap because overlooked' from 'cheap because genuinely troubled' before concluding, however attractive the calculated margin of safety looks."
+  },
+  "summary": {
+    "keyIdea": "Value investing looks for the gap between market price and a business's real worth",
+    "commonMistake": "Reading the idea as a phrase to remember rather than a principle to apply to real decisions.",
+    "action": "The margin of safety protects the investor against error in the value estimate"
+  },
+  "application": {
+    "title": "Try the analysis",
+    "message": "Pick a share you follow, look up its P/E, and compare it with the value you estimate yourself from the company's earnings and assets - is the gap wide enough to call a margin of safety?",
+    "secondary": "Cheap is not necessarily good - ask yourself why it is cheap."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Value investing rests on a simple observation: the share price on the board and the real worth of the business behind it are two different numbers. Sometimes the market prices things correctly, sometimes it panics or gets carried away - and that gap is what creates the opportunity for a patient investor."
+    },
+    {
+      "type": "heading",
+      "text": "Price and value are not the same thing"
+    },
+    {
+      "type": "paragraph",
+      "text": "Price is the number investors are paying on the exchange right now - it reflects crowd sentiment more than company fundamentals. Value is an estimate built from net assets, earnings, and the cash the company will generate over the coming years. A share trading at 50,000 VND when you calculate a real value of around 80,000 VND from its earnings and assets is worth noticing - the 30,000 VND gap is precisely what the market is 'pricing wrongly'."
+    },
+    {
+      "type": "heading",
+      "text": "Margin of safety - a cushion against error"
+    },
+    {
+      "type": "paragraph",
+      "text": "Nobody estimates a company's value with perfect accuracy - there is always error. The margin of safety is the buffer you deliberately leave: if you estimate real value at 80,000 VND, you don't buy at 79,000 but wait to buy at 50,000, a margin of about 37.5%. Even if your estimate was too optimistic and the real value is only 65,000, you are still ahead rather than behind."
+    },
+    {
+      "type": "heading",
+      "text": "Cheap because overlooked, or cheap because something is wrong?"
+    },
+    {
+      "type": "paragraph",
+      "text": "This is the mandatory question before buying. A sharp fall has two entirely different explanations: (1) the market overreacting to short-term news that does not touch the company's long-term foundations, or (2) the company genuinely deteriorating - losing market share, bad debt rising, problems in management. Only the first is a real value opportunity."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Read 3-5 years of financial statements to understand the business before looking at the price",
+        "Estimate value by several methods (assets, earnings, cash flow) rather than settling on one number",
+        "Always ask 'why is the market pricing this lower' before calling it an opportunity",
+        "Buy with a wide enough margin of safety - don't buy close to your estimated value",
+        "Don't confuse 'cheap price' with 'good value' - a share down 50% can still be expensive if the business has permanently deteriorated"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Value investing is not buying cheap things - it is buying good things for less than they are worth.",
+        "A margin of safety does not guarantee you are right, but it does guarantee that being wrong hurts less."
+      ]
+    }
+  ]
+}

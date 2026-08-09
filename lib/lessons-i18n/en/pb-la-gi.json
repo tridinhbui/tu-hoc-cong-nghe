@@ -5,10 +5,10 @@
   "duration": "5 min",
   "openingQuestion": "P/B = 0.8. What does that mean?",
   "openingOptions": [
-    "A good price to buy",
-    "A good stock",
-    "The market is valuing the stock below book value - it may be undervalued or the industry may be struggling",
-    "The company is about to go bankrupt"
+    "A good price to buy, since it is below book",
+    "A good stock, because the ratio is under one",
+    "The market values the stock below its book value",
+    "The company is about to go bankrupt, hence the discount"
   ],
   "explanation": "P/B compares market capitalization against the book value of shareholders' equity - the price the market pays versus what accounting records. Below one means the market is valuing a business below its net assets on the books - sometimes an opportunity, but more often the market is saying those assets earn poorly or aren't worth as much as the books claim. So P/B only means something when read alongside ROE, and only fits industries where book value is close to real value.",
   "diagram": [

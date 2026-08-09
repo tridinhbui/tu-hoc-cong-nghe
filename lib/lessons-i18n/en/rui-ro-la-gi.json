@@ -6,9 +6,9 @@
   "openingQuestion": "Why do small companies' bonds usually pay a higher interest rate than government bonds?",
   "openingOptions": [
     "Because small companies want to attract more investors",
-    "Because their probability of default is higher, and investors need to be compensated for that risk",
-    "Because the government can print money to pay its debts, while a company can't",
-    "Both B and C are correct"
+    "Because their default risk is higher and investors want compensating",
+    "Because the government can print money to pay, a company cannot",
+    "Both: higher default risk, and the government can print money"
   ],
   "explanation": "In finance, risk doesn't mean losing money; it means an outcome that isn't certain - one that can go either way. Investors don't avoid risk, they demand extra payment to bear it, and that extra payment is called the risk premium. This is why government bonds pay less than corporate bonds, and it is the foundation underneath every valuation method that follows: an asset's price is its cash flow discounted for its level of risk.",
   "diagram": [

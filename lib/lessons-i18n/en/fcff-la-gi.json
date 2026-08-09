@@ -5,17 +5,28 @@
   "duration": "7 min",
   "openingQuestion": "Who does FCFF (Free Cash Flow to Firm) belong to?",
   "openingOptions": [
-    "Only to company management",
-    "Only to creditors, not shareholders",
-    "To ALL capital providers of the company - both shareholders AND creditors (bondholders, lending banks) - because FCFF is calculated BEFORE deducting interest expense",
-    "Only to common shareholders"
+    "Only to company management, as the operating decision-maker",
+    "Only to creditors, since interest is paid before dividends",
+    "To all capital providers: shareholders and creditors alike",
+    "Only to common shareholders, after all debt is serviced"
   ],
   "explanation": "FCFF (Free Cash Flow to Firm) = after-tax operating cash flow, before deducting interest expense, after deducting CapEx and the change in working capital. Because it is calculated before interest, FCFF represents the cash flow available to ALL capital providers - both creditors and shareholders. Discounting FCFF using WACC gives Enterprise Value.",
   "diagram": [
-    { "label": "After-tax operating profit", "arrow": true },
-    { "label": "Add back depreciation", "arrow": true },
-    { "label": "Subtract capex and the increase in working capital", "arrow": true },
-    { "label": "Get FCFF - discount with WACC for enterprise value" }
+    {
+      "label": "After-tax operating profit",
+      "arrow": true
+    },
+    {
+      "label": "Add back depreciation",
+      "arrow": true
+    },
+    {
+      "label": "Subtract capex and the increase in working capital",
+      "arrow": true
+    },
+    {
+      "label": "Get FCFF - discount with WACC for enterprise value"
+    }
   ],
   "interactiveType": "profit-calc",
   "realWorldExample": {
@@ -104,12 +115,18 @@
       "type": "lead",
       "text": "To run a DCF model, the first question is: which cash flow gets discounted? FCFF is the choice when you want to value the entire business - not just the equity portion."
     },
-    { "type": "heading", "text": "The FCFF formula" },
+    {
+      "type": "heading",
+      "text": "The FCFF formula"
+    },
     {
       "type": "paragraph",
       "text": "FCFF (Free Cash Flow to Firm) = NOPAT + D&A - CapEx - ΔNWC (or equivalently: CFO + Interest expense × (1-Tax rate) - CapEx). Because it is calculated before deducting interest expense, FCFF represents the cash flow available to ALL capital providers - both creditors and shareholders, without distinguishing who gets paid first."
     },
-    { "type": "heading", "text": "Discounting FCFF gives Enterprise Value" },
+    {
+      "type": "heading",
+      "text": "Discounting FCFF gives Enterprise Value"
+    },
     {
       "type": "paragraph",
       "text": "The consistency principle in valuation: whoever the cash flow belongs to, discount at that group's cost of capital. FCFF belongs to both creditors and shareholders → discount at WACC (combining both cost of debt and cost of equity) → the result is Enterprise Value. When an investment bank values an entire business for an M&A deal, they use FCFF discounted at WACC to calculate EV directly."
@@ -128,6 +145,11 @@
       "lines": [
         "FCFF answers the question: how much cash does the core business generate, before considering who gets which portion of it."
       ]
+    },
+    {
+      "type": "callout",
+      "label": "Negative free cash flow is not bad in itself",
+      "text": "Negative because the company is investing to expand, and negative because the business is weak, are two entirely different things. In the first case operating cash flow is still positive but capital spending is larger - acceptable, provided that spending produces better cash flow later. In the second, operating cash flow is already negative and investment still has to be funded, which means the company is burning money. Look at a single year and the two cases appear identical; look at three to five and they do not."
     }
   ]
 }

@@ -4,7 +4,7 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react
 import { createPortal } from "react-dom";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { Bell } from "lucide-react";
+import { Bell, CheckCircle2, ShieldQuestion, Sparkles } from "lucide-react";
 import {
   getNotifications,
   getUnreadNotificationCount,
@@ -15,10 +15,38 @@ import {
 import { isValidAvatar } from "@/lib/avatar-utils";
 import { timeAgo } from "@/lib/time-ago";
 import { useI18n } from "@/lib/i18n/context";
+import { format } from "@/lib/i18n";
+import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
-function notificationText(n: CommunityNotification): string {
-  if (n.type === "comment") return `${n.actor_name} đã bình luận vào bài viết của bạn`;
-  return `${n.actor_name} đã thả ${n.emoji ?? "cảm xúc"} vào bài viết của bạn`;
+/** Nhận `t` thay vì tự nội suy chuỗi: hai dòng này trước đây là tiếng Việt
+ *  cứng trong mã, nên chuông vẫn nói tiếng Việt với người đọc bản tiếng Anh
+ *  dù mọi nhãn xung quanh nó đã dịch. */
+function notificationText(n: CommunityNotification, t: Dictionary): string {
+  switch (n.type) {
+    case "comment":
+      return format(t.notifications.comment, { actor: n.actor_name });
+    case "reaction":
+      return format(t.notifications.reaction, {
+        actor: n.actor_name,
+        emoji: n.emoji ?? t.notifications.reactionFallback,
+      });
+    case "appeal_approved":
+      return t.notifications.appealApproved;
+    case "appeal_rejected":
+      return t.notifications.appealRejected;
+    case "ai_report_resolved":
+      return t.notifications.aiReportResolved;
+  }
+}
+
+/** Thông báo do admin gây ra không có `actor_id` - cố ý, xem migration
+ *  20260901: danh tính người duyệt không phải thứ người học cần thấy. Nên
+ *  chúng lấy biểu tượng theo loại thay vì chữ cái đầu của một cái tên. */
+function systemIcon(type: CommunityNotification["type"]) {
+  if (type === "appeal_approved") return { Icon: CheckCircle2, tone: "bg-emerald-500" };
+  if (type === "appeal_rejected") return { Icon: ShieldQuestion, tone: "bg-amber-500" };
+  if (type === "ai_report_resolved") return { Icon: Sparkles, tone: "bg-sky-500" };
+  return null;
 }
 
 /** Bell icon for FinSocial's comment/reaction notifications (see
@@ -131,7 +159,14 @@ export default function NotificationBell({ userId }: { userId: string }) {
 
   const handleItemClick = async (n: CommunityNotification) => {
     setOpen(false);
-    router.push(`/finsocial?post=${n.post_id}`);
+    // Ba loại mới trỏ về chính bài học đang nói tới chứ không phải FinSocial.
+    // Bấm vào "khiếu nại đã được duyệt" mà rơi vào `/finsocial?post=null` là
+    // đúng cái luồng cụt mà thay đổi này đang chữa.
+    if (n.lesson_slug) {
+      router.push(`/bai-hoc/${n.lesson_slug}`);
+    } else if (n.post_id !== null) {
+      router.push(`/finsocial?post=${n.post_id}`);
+    }
     if (!n.read_at) {
       setUnreadCount((prev) => Math.max(0, prev - 1));
       setNotifications((prev) =>
@@ -210,21 +245,40 @@ export default function NotificationBell({ userId }: { userId: string }) {
                     !n.read_at ? "bg-emerald-50/60 dark:bg-emerald-950/20" : ""
                   }`}
                 >
-                  {isValidAvatar(n.actor_avatar) ? (
-                    <Image
-                      src={n.actor_avatar!}
-                      alt={n.actor_name}
-                      width={32}
-                      height={32}
-                      className="w-8 h-8 rounded-full object-cover shrink-0"
-                    />
-                  ) : (
-                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-xs font-bold text-white">
-                      {n.actor_name.charAt(0).toUpperCase()}
-                    </div>
-                  )}
+                  {(() => {
+                    const system = systemIcon(n.type);
+                    if (system) {
+                      const { Icon, tone } = system;
+                      return (
+                        <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full ${tone}`}>
+                          <Icon className="h-4 w-4 text-white" aria-hidden />
+                        </div>
+                      );
+                    }
+                    return isValidAvatar(n.actor_avatar) ? (
+                      <Image
+                        src={n.actor_avatar!}
+                        alt={n.actor_name}
+                        width={32}
+                        height={32}
+                        className="w-8 h-8 rounded-full object-cover shrink-0"
+                      />
+                    ) : (
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-xs font-bold text-white">
+                        {n.actor_name.charAt(0).toUpperCase()}
+                      </div>
+                    );
+                  })()}
                   <div className="min-w-0 flex-1">
-                    <p className="text-xs font-semibold text-stone-800 dark:text-stone-200 leading-snug">{notificationText(n)}</p>
+                    <p className="text-xs font-semibold text-stone-800 dark:text-stone-200 leading-snug">{notificationText(n, t)}</p>
+                    {/* Lý do từ chối. Đây là toàn bộ lý do tồn tại của thay đổi
+                        này: ô ghi chú admin gõ vào trước đây không có đường
+                        nào đến được người đọc nó. */}
+                    {n.detail && (
+                      <p className="mt-1 rounded-lg bg-stone-100 dark:bg-stone-800 px-2 py-1 text-[11px] font-medium text-stone-600 dark:text-stone-300 leading-snug whitespace-pre-wrap">
+                        {n.detail}
+                      </p>
+                    )}
                     <p className="mt-0.5 text-[10px] text-stone-400">{timeAgo(n.created_at)}</p>
                   </div>
                   {!n.read_at && <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-emerald-500" />}

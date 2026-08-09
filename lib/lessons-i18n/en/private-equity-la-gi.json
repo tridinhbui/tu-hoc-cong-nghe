@@ -5,10 +5,10 @@
   "duration": "6 min",
   "openingQuestion": "What is the main difference between PE and VC?",
   "openingOptions": [
-    "PE uses more debt",
-    "PE invests in companies that already have stable revenue/profit, usually via LBO; VC invests earlier in startups",
-    "PE only invests in real estate",
-    "PE is bigger than VC"
+    "PE simply uses more debt, but both target the same stage",
+    "PE buys mature companies via LBO; VC funds early startups",
+    "PE only invests in real estate and physical infrastructure",
+    "PE is just a bigger version of VC, with the same strategy"
   ],
   "explanation": "Private equity buys stakes in unlisted companies, usually buying outright to take control. The core difference from venture capital lies in the stage and how returns are generated: buyout funds target mature businesses with stable cash flow and use leverage, while venture funds put in pure equity capital into young businesses and accept that most investments will be lost.",
   "diagram": [

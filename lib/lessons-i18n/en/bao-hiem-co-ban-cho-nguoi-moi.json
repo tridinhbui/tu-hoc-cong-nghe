@@ -1,0 +1,140 @@
+{
+  "slug": "bao-hiem-co-ban-cho-nguoi-moi",
+  "title": "Track 1, Lesson 9: Basic insurance - the layer behind the emergency fund",
+  "subtitle": "An emergency fund handles small shocks; insurance handles the kind that can wipe out everything",
+  "duration": "6 min",
+  "whyItMatters": "A financial plan built over years can be erased by a single event an emergency fund cannot carry. Knowing which risks to transfer and which to bear yourself is the protection every earlier step depends on.",
+  "openingQuestion": "How does insurance differ from an emergency fund?",
+  "openingOptions": [
+    "Insurance returns more, so it can replace an emergency fund",
+    "Insurance covers large rare risks; the fund covers small ones",
+    "Insurance is only for people with high incomes and large assets",
+    "They serve the same purpose, so having one of them is enough"
+  ],
+  "explanation": "The two solve different problems and cannot substitute for each other. An emergency fund handles shocks you can absorb yourself: a broken vehicle, a few months out of work, a short illness. Insurance handles shocks you cannot absorb however much you have saved: a long course of treatment, an accident that ends your ability to work, or the main earner dying while the children are young. The rule for choosing is simple: transfer the risks that are rare but large enough to destroy everything, and carry the rest yourself.",
+  "diagram": [
+    { "label": "Small risks, frequent", "arrow": true },
+    { "label": "Carried by the emergency fund", "arrow": true },
+    { "label": "Large risks, rare", "arrow": true },
+    { "label": "Transferred through insurance" }
+  ],
+  "realWorldExample": {
+    "company": "A prolonged medical shock",
+    "description": "A family holds six months of spending in an emergency fund - enough to feel secure against most situations. Then the main earner falls ill and needs long-term treatment: income stops while medical and living costs continue. The six-month fund runs dry within half a year and the family starts borrowing. This is precisely the risk that saving cannot solve, because the loss has no ceiling and does not correspond to any number of months you set aside."
+  },
+  "quiz": [
+    {
+      "question": "What is the rule for deciding which risks to insure?",
+      "options": [
+        "Insure every possible risk, for complete peace of mind",
+        "Transfer risks that are rare but large enough to destroy the plan",
+        "Only insure the risks that happen most frequently",
+        "Insure whenever the premium is below your monthly saving"
+      ],
+      "explanation": "Insuring small frequent risks means paying a high price for something you can handle yourself - because the premium has to cover the insurer's operating costs too. The real value sits in the tail: the rare event whose consequences have no ceiling."
+    },
+    {
+      "question": "Why does a single person with nobody depending on them usually not need life insurance?",
+      "options": [
+        "Because life premiums are far higher when young than when old",
+        "Because insurers will not sell policies to single people",
+        "Because nobody suffers financially if they die",
+        "Because health insurance already includes every life benefit"
+      ],
+      "explanation": "Life insurance replaces lost income for the people who depend on you. With no dependants there is no financial loss to replace - and the need appears when circumstances change, not at a particular age."
+    },
+    {
+      "question": "Which two kinds of loss do health and life insurance protect against?",
+      "options": [
+        "Daily living costs and outstanding bank borrowing",
+        "Damage to property and legal liability to third parties",
+        "Inflation eroding purchasing power and market swings",
+        "Treatment costs and dependants' lost income"
+      ],
+      "explanation": "The two products protect different sides of the same shock: money that has to go out for treatment, and money that should have come in and now will not. Having one does not substitute for the other."
+    },
+    {
+      "question": "Why read the exclusions in an insurance policy carefully?",
+      "options": [
+        "Because that is where the cases the insurer will not pay are listed",
+        "Because that section determines the annual premium on the policy",
+        "Because exclusions can be renegotiated after the policy is signed",
+        "Because it lists the hospitals with direct billing arrangements"
+      ],
+      "explanation": "Most insurance disputes are not about an insurer refusing without cause, but about a situation falling under an exclusion the buyer never read. Pre-existing conditions and waiting periods are the two that surprise people most often."
+    },
+    {
+      "question": "A family holds six months of spending as an emergency fund. Which risk is still unprotected?",
+      "options": [
+        "Repairing a vehicle or replacing an appliance that fails suddenly",
+        "An event that removes income for far longer than six months",
+        "A short spell of unemployment while moving between two jobs",
+        "The cost of routine annual medical check-ups for the family"
+      ],
+      "explanation": "The other three sit comfortably within a six-month fund. What lies beyond is the event that both cuts off income and lasts an indefinite time - exactly the gap insurance exists to fill."
+    }
+  ],
+  "keyTakeaways": [
+    "An emergency fund covers small frequent risks; insurance covers rare risks whose losses have no ceiling",
+    "Insuring small risks means paying a high price for something you could carry yourself",
+    "The need for life insurance appears when someone depends on you, not at a particular age",
+    "The exclusions decide whether a policy pays - read them before signing, not after"
+  ],
+  "practicePrompt": {
+    "question": "An adviser offers a product that both protects and invests. What is the first question to ask?",
+    "options": [
+      "Which part of the premium buys protection and which invests, and what each part costs",
+      "How many customers have bought this particular product over the past year",
+      "What the expected return on the investment portion is over the next ten years",
+      "Whether this insurance company is a foreign business or a domestic one"
+    ],
+    "explanation": "Combining two purposes in one product makes both halves hard to compare against alternatives. Only by separating them can you answer the real questions: is this protection cheaper than buying it alone, and is this investment better than investing yourself?"
+  },
+  "summary": {
+    "keyIdea": "Carry small risks yourself, and transfer the ones that can wipe everything out",
+    "commonMistake": "Treating insurance as an investment channel rather than a tool for transferring risk",
+    "action": "List the risks that could remove your income for more than six months and see how far you are currently protected."
+  },
+  "application": {
+    "title": "Three questions to ask yourself",
+    "message": "If I couldn't work for a year, where would the money come from? Is anyone depending on my income? And what does the policy I already hold exclude?",
+    "secondary": "Health insurance and compulsory social insurance already cover part of it - know how far that goes before buying more."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The previous lessons built a plan: knowing where you stand, allocating income, having a cushion for hard months, having a route out of debt. This lesson is about the one thing that can erase all of it at a stroke - and how to block it."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Risks you carry",
+        "text": "High probability, with a loss that has a ceiling and sits within your means. A broken vehicle, a dropped phone, a month out of work. Insuring this group means paying an administration fee for something you can do yourself."
+      },
+      "right": {
+        "label": "Risks you transfer",
+        "text": "Low probability, with no clear ceiling on the loss. Long-term treatment, losing the ability to work, the main earner dying. No level of saving is a reliable answer to this group."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Why combining protection with investing rarely helps",
+      "text": "A combined product makes both halves hard to compare: you cannot tell whether the protection costs more than buying it alone, nor whether the investment does better than investing yourself. Kept separate, each half can be measured against its alternatives - usually the better way to decide for a beginner."
+    },
+    {
+      "type": "heading",
+      "text": "How much is enough"
+    },
+    {
+      "type": "paragraph",
+      "text": "The sum insured should follow specific obligations rather than income: enough to clear the debt outstanding and support dependants until they can support themselves. That calculation produces a finite number rather than a vague sense that more is always better. One consequence often overlooked is that the need falls over time - debts shrink, children grow up - so a term policy matched to the period of large obligations is usually more sensible than a whole-of-life policy at the same premium."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Insurance does not create wealth; it stops one event erasing the wealth you have created.",
+        "That closes the track: you know where you stand, where you are going, and what could block the way - enough foundation to start learning to invest."
+      ]
+    }
+  ]
+}

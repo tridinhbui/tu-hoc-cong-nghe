@@ -5,10 +5,10 @@
   "duration": "6 min",
   "openingQuestion": "Why do many high-growth companies not pay dividends?",
   "openingOptions": [
-    "Because they have no profit",
-    "Because shareholders don't want it",
-    "Because reinvestment opportunities earn a higher return - keeping the cash grows the business better than returning it",
-    "Because the law forbids it"
+    "Because they have no accounting profit to distribute yet",
+    "Because their shareholders have explicitly said they do not want it",
+    "Because reinvesting earns a higher return than paying out",
+    "Because the law forbids growth companies from paying out"
   ],
   "explanation": "Dividend policy answers the question of whether the remaining profit should be kept or returned to shareholders, and the answer depends on a single comparison: does the business still have reinvestment opportunities earning more than the cost of capital? If so, retaining it creates more value; if not, retaining it only dilutes efficiency. One important practical point: the market reads a dividend as a promise, so cutting it is a very strong negative signal.",
   "diagram": [

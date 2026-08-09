@@ -6,9 +6,9 @@
   "openingQuestion": "Tuan, 35, is the sole breadwinner for a family with 2 young children. An insurance agent offers him an 'investment-linked insurance' package that both protects and grows his money, costing 40 million/year. He could also buy pure term life insurance with a premium of only about 5-8 million/year for the same coverage, then invest the difference himself. Which choice is usually the more financially sound recommendation?",
   "openingOptions": [
     "Buy pure term life insurance and invest the difference himself",
-    "Only buy the investment-linked insurance, since term insurance is seen as 'wasted money' if nothing happens during the contract term",
-    "He doesn't need any life insurance at all, if the family already has state-provided health insurance",
-    "The investment-linked package is always clearly better than term insurance, since it both protects and offers a chance to grow money"
+    "Only the investment-linked policy: term cover is 'wasted money' if nothing happens",
+    "No life insurance at all, since the family has state health insurance",
+    "The investment-linked package always wins: it protects and grows money"
   ],
   "explanation": "Investment-linked insurance (universal life, unit-linked) bundles the cost of protection with the cost of investment/management, usually carrying high hidden costs and a weaker investment return than investing directly on your own. Term life insurance focuses purely on protection - the premium is many times cheaper because there's no investment accumulation component. A strategy commonly recommended by financial experts is 'buy term, invest the difference' - buy cheap term insurance to cover death/disability risk, then invest the money you saved into a channel with more transparent costs.",
   "diagram": [

@@ -6,7 +6,7 @@
   "openingQuestion": "A company borrows 500 million to buy machinery. How does the balance sheet change?",
   "openingOptions": [
     "Assets increase 500m, liabilities increase 500m",
-    "Assets increase by 500 million dong, and equity also increases by exactly 500 million dong",
+    "Assets increase 500m, and equity increases 500m as well",
     "There is no change at all on the company's balance sheet",
     "Only the company's assets increase, with no other line item changing"
   ],

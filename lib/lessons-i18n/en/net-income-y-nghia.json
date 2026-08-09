@@ -5,10 +5,10 @@
   "duration": "6 min",
   "openingQuestion": "A company reports Net Income of 500 billion but FCF of -200 billion. What should worry you?",
   "openingOptions": [
-    "Nothing - positive profit is good",
-    "Real cash isn't coming in - AR may be growing fast, CapEx may be large, or working capital may be poorly managed",
-    "Revenue needs to increase",
-    "The company is paying too much tax"
+    "Nothing to worry about - a positive reported profit is what matters",
+    "Real cash isn't coming in - receivables, CapEx or working capital",
+    "Revenue needs to increase to close the gap to cash flow",
+    "The company is paying far too much tax on its reported profit"
   ],
   "explanation": "Net income is the final line and also the most-watched number, but it's the product of many accounting estimates: depreciation, provisions, revenue recognition. That's why the right way to use it is to always place it next to operating cash flow. The two numbers tracking each other across several years is a sign of good earnings quality; a widening, persistent gap means you have to go looking in receivables, inventory, or one-off items.",
   "diagram": [

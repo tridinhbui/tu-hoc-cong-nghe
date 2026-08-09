@@ -73,19 +73,25 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
   const [loadingReadings, setLoadingReadings] = useState(false);
   const [openReadings, setOpenReadings] = useState<Set<string>>(new Set());
 
+  /** Chỉ bài KẾ TIẾP của những môn đang mở, tối đa ba.
+   *
+   *  Bản trước nạp trước mọi bài của mọi môn đang mở, cộng bài kế tiếp của cả
+   *  mười môn - mở hai môn là vài chục đường dẫn. Mỗi `/bai-hoc/<slug>` là một
+   *  route động, nên mỗi lần nạp trước là một lần server dựng lại cả trang bài
+   *  học. Đó là tiền thật trên hoá đơn, đổi lấy việc tiết kiệm vài trăm mili
+   *  giây cho những bài mà người dùng gần như chắc chắn không bấm vào.
+   *
+   *  Ba đường dẫn là số giữ lại được phần có ích: hàng "học tiếp" của môn đang
+   *  mở là thứ được bấm nhiều nhất. Những bài còn lại vẫn là `<Link>`, và Next
+   *  đã tự nạp trước khi chúng lọt vào tầm nhìn. */
   const prefetchedLessonRoutes = useMemo(() => {
     if (viewMode !== "subjects") return [];
 
     const routes = new Set<string>();
-    for (const { subject, lessons, nextLessonSlug } of subjects) {
-      if (nextLessonSlug) {
-        routes.add(`/bai-hoc/${nextLessonSlug}`);
-      }
-
-      if (!openSubjects.has(subject.id)) continue;
-      for (const lesson of lessons) {
-        routes.add(`/bai-hoc/${lesson.slug}`);
-      }
+    for (const { subject, nextLessonSlug } of subjects) {
+      if (!nextLessonSlug || !openSubjects.has(subject.id)) continue;
+      routes.add(`/bai-hoc/${nextLessonSlug}`);
+      if (routes.size >= 3) break;
     }
 
     return [...routes];

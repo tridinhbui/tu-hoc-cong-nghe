@@ -4,10 +4,10 @@
   "subtitle": "Tax implications",
   "openingQuestion": "You buy 1,000 VNM shares at VND 60,000/share (VND 60 million total), then sell all of them at VND 75,000/share (VND 75 million total), a gain of VND 15 million. Under Vietnam's current personal income tax rules for listed securities, how must you pay tax?",
   "openingOptions": [
-    "You don't have to pay any tax at all since this is a transaction in an officially listed stock",
-    "Pay a 20% tax rate on the VND 15 million gain, applied the same way as US capital gains tax",
-    "Pay 0.1% on the sale value, about VND 75,000",
-    "Only pay a 0.1% rate calculated just on the VND 15 million gain from this transaction, not on the total sale value"
+    "No tax at all, since this is an officially listed stock",
+    "20% on the VND 15 million gain, as US capital gains tax works",
+    "Pay 0.1% of the sale value: 0.1% × 75 million = VND 75,000",
+    "0.1% but only on the VND 15 million gain, not the sale value"
   ],
   "explanation": "Under current Vietnamese personal income tax rules, an individual investor pays 0.1% tax on the TOTAL SALE VALUE of each securities transfer, regardless of gain or loss, and not calculated as a percentage of profit the way US-style capital gains tax works. This tax is usually automatically withheld by the securities company right when the sell order matches.",
   "diagram": [

@@ -41,7 +41,7 @@
         "Current Assets ÷ Liabilities",
         "Cash + Inventory"
       ],
-      "explanation": "WC = CA - CL. It measures the ability to pay off current liabilities."
+      "explanation": "Total assets minus total liabilities is equity, not working capital, and dividing rather than subtracting gives the Current Ratio. Cash plus inventory leaves out receivables and every current liability."
     },
     {
       "question": "WC = 500 million - is that good?",
@@ -61,7 +61,7 @@
         "Always good because the company is using supplier capital",
         "Bad, current liabilities exceed current assets"
       ],
-      "explanation": "A negative WC = a liquidity crisis. The company owes more than it has on hand."
+      "explanation": "It is not a loss for the period - working capital is a balance sheet position, not a profit measure - and it is far from irrelevant. Supplier-funded retail can run negative safely, but by default it signals obligations falling due before the cash arrives."
     },
     {
       "question": "To improve WC, a company should:",
@@ -71,7 +71,7 @@
         "Buy more fixed assets using cash",
         "Increase current assets or decrease current liabilities"
       ],
-      "explanation": "All three approaches would increase WC."
+      "explanation": "WC is current assets minus current liabilities, so only two moves raise it: lift the first term or lower the second. The other three touch those same two lines in the wrong direction, or swap a current asset (cash) for a long-term one."
     },
     {
       "question": "Retail often has negative WC because:",
@@ -91,7 +91,7 @@
         "Has no effect at all on working capital",
         "Good, it shows the company always has plenty of stock ready to sell"
       ],
-      "explanation": "High DIO = goods sit in the warehouse a long time = cash comes in slowly."
+      "explanation": "Slow-moving stock is not proof of demand - strong demand shows up as a low DIO, not a high one. Holding plenty of stock ties up cash and risks obsolescence, and inventory is a current asset, so DIO moves working capital directly."
     },
     {
       "question": "To optimise WC with a supplier:",
@@ -101,7 +101,7 @@
         "Negotiate a longer payment term (increasing AP)",
         "Switch to buying on immediate cash terms"
       ],
-      "explanation": "Increasing AP = holding onto cash. But balance the business relationship."
+      "explanation": "Paying early to capture a discount releases cash sooner than necessary, and ordering more converts cash into inventory. Immediate cash terms remove trade credit altogether - the opposite of what stretching payables achieves."
     }
   ],
   "keyTakeaways": [

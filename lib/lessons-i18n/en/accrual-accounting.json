@@ -61,7 +61,7 @@
         "It's simpler and costs less in accounting effort",
         "It tells you exactly how much cash is on hand"
       ],
-      "explanation": "Accrual gives investors and creditors an accurate view of operations."
+      "explanation": "Accrual is not simpler than cash basis, and it does not tell you the cash balance - that is the cash flow statement's job. Deferring tax is not its purpose either: matching revenue to the period that earned it is what gives investors and creditors a true picture."
     },
     {
       "question": "A drawback of Cash Accounting is:",
@@ -71,7 +71,7 @@
         "It's too complex for small-scale businesses",
         "It doesn't show the actual cash balance"
       ],
-      "explanation": "Example: delaying an invoice into next month → manipulating profit."
+      "explanation": "Cash basis is accepted by many tax authorities for small businesses, and it is simpler rather than more complex - it does show the cash balance accurately. What it hides is timing: delaying an invoice into next month shifts profit between periods."
     },
     {
       "question": "A startup shows 100 million profit (accrual) but -50 million (cash). Why?",
@@ -91,7 +91,7 @@
         "It's a longstanding convention that regulators could drop at any time without consequence",
         "It reflects true activity so investors can compare companies"
       ],
-      "explanation": "Governments and investors need accurate data → accrual is the global standard."
+      "explanation": "Accrual is harder to apply than cash basis, not simpler, and it is not a device for collecting more tax. Nor is it arbitrary convention regulators could drop: comparability across companies and periods is why GAAP and IFRS both mandate it."
     },
     {
       "question": "Should an investor read the income statement or the cash flow statement?",

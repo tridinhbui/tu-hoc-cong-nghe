@@ -5,10 +5,10 @@
   "duration": "7 min",
   "openingQuestion": "To assess a business's overall health, what minimum set of ratios do you need?",
   "openingOptions": [
-    "Profitability (margins, ROE), Liquidity (current ratio), Leverage (D/E), Valuation (P/E, EV/EBITDA)",
-    "Just EV/EBITDA",
-    "Just P/E",
-    "Just ROE"
+    "Profitability, Liquidity, Leverage and Valuation together",
+    "Just EV/EBITDA, since it is neutral to capital structure entirely",
+    "Just P/E, because the market already prices in the rest",
+    "Just ROE, since it captures how well equity is deployed"
   ],
   "explanation": "No single metric says anything on its own; the power lies in reading them as four groups and cross-checking them against each other. Profitability asks whether the business makes money, liquidity asks whether it will survive the next twelve months, leverage asks what shocks it can absorb, and valuation asks whether the current price already reflects all of that. And every comparison only means something within the same industry and stage of development.",
   "diagram": [

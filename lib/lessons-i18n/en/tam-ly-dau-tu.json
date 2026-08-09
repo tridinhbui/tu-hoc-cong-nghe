@@ -4,10 +4,10 @@
   "subtitle": "Behavioral finance basics",
   "openingQuestion": "The VN-Index falls 7% in a single trading session. You're up 20% on a stock you're holding. Which reaction below best shows the psychological trap of 'fear' in investing?",
   "openingOptions": [
-    "Carefully re-examine your original investment thesis to assess whether the company's business fundamentals have actually changed",
-    "Re-check your current asset-allocation weighting to see if it still fits the risk appetite you set for yourself",
+    "Re-examine the original thesis to see whether fundamentals changed",
+    "Re-check the allocation against the risk appetite you set",
     "Panic-sell even though the business fundamentals haven't changed",
-    "Continue with the periodic investment plan (DCA) you set from the start, unchanged regardless of short-term market swings"
+    "Keep to the DCA plan you set, whatever the market does short term"
   ],
   "explanation": "Two emotions drive most bad investment decisions: greed at the top and fear at the bottom, and both push people to act opposite to what they'd intend when calm. The key thing to recognize is you can't remove them just by knowing more - knowledge doesn't stop a racing heartbeat. What does help is process: writing down your thesis and sell criteria beforehand, then following that written plan instead of today's feeling.",
   "diagram": [

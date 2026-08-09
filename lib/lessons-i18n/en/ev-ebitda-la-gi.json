@@ -5,10 +5,10 @@
   "duration": "6 min",
   "openingQuestion": "Why is EV/EBITDA better than P/E when comparing businesses with different capital structures?",
   "openingOptions": [
-    "P/E can't be applied",
-    "EV/EBITDA is neutral to debt and depreciation - it compares at the enterprise level before debt and tax",
-    "EV is always lower than Market Cap",
-    "EV/EBITDA is easier to calculate"
+    "P/E cannot be applied to these companies at all",
+    "EV/EBITDA is neutral to debt and to depreciation",
+    "EV is always lower than Market Cap for any company",
+    "EV/EBITDA is simply easier to calculate by hand"
   ],
   "explanation": "EV/EBITDA compares total enterprise value - market cap plus debt minus cash - against profit before interest, tax, and depreciation. Because both the numerator and denominator sit above both creditors and shareholders, this metric isn't skewed by capital structure the way P/E is, which is why it's the default multiple in mergers and acquisitions. One limitation to remember: EBITDA ignores capital spending, so it inflates the apparent cash-generating power of capital-intensive industries.",
   "diagram": [

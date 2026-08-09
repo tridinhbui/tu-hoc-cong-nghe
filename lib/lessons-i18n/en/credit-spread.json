@@ -5,17 +5,28 @@
   "duration": "6 min",
   "openingQuestion": "A BB corporate bond yields 8%, a T-bond yields 4%. What is the credit spread?",
   "openingOptions": [
-    "2%",
-    "4%",
-    "8%",
-    "4% - the premium investors demand for taking on higher credit risk than a T-bond"
+    "2%, i.e. half the gap between the two yields",
+    "12% (= 8% + 4%, adding the two yields instead of subtracting)",
+    "8%, i.e. taking the corporate bond yield on its own",
+    "4% - the premium demanded for credit risk above a T-bond"
   ],
   "explanation": "Credit spread = Yield (corporate) - Yield (risk-free). A wide spread = the market is more worried about credit risk. When the economy sours, spreads widen (flight to quality). When the economy is doing well, spreads narrow. The OAS (option-adjusted) spread strips out the value of embedded options.",
   "diagram": [
-    { "label": "A corporate bond's yield", "arrow": true },
-    { "label": "Subtract the government bond yield of the same term", "arrow": true },
-    { "label": "The difference is the credit spread", "arrow": true },
-    { "label": "A rapid widening signals the market fears default" }
+    {
+      "label": "A corporate bond's yield",
+      "arrow": true
+    },
+    {
+      "label": "Subtract the government bond yield of the same term",
+      "arrow": true
+    },
+    {
+      "label": "The difference is the credit spread",
+      "arrow": true
+    },
+    {
+      "label": "A rapid widening signals the market fears default"
+    }
   ],
   "interactiveType": "bond",
   "realWorldExample": {
@@ -104,12 +115,18 @@
       "type": "lead",
       "text": "Credit spread is a direct measure of the market's credit-risk 'fear': the gap between a corporate bond's yield and the yield of a government (risk-free) bond of the same term. Tracking credit spreads daily is how professional investors gauge the entire economy's 'temperature'."
     },
-    { "type": "heading", "text": "The formula and what it means" },
+    {
+      "type": "heading",
+      "text": "The formula and what it means"
+    },
     {
       "type": "paragraph",
       "text": "Credit spread = Yield (corporate bond) - Yield (government bond of the same term). When the spread widens, the market is pricing credit risk higher - a phenomenon that usually happens during crises, when investors rush out of risky assets and into safe government bonds (flight to quality). When the spread tightens, that's a sign the economy is stabilising or optimistic, and investors are willing to accept corporate risk for a lower premium. A more refined variant called OAS (option-adjusted spread) strips out the value of options embedded in the bond (such as an early call option) to get a pure spread figure that reflects credit risk alone."
     },
-    { "type": "heading", "text": "A market-wide spread widening: a systemic signal" },
+    {
+      "type": "heading",
+      "text": "A market-wide spread widening: a systemic signal"
+    },
     {
       "type": "paragraph",
       "text": "When credit spreads widen not just for one specific company but across the entire corporate bond market, that's a sign of spreading fear about systemic risk - like an approaching recession or a liquidity crisis - rather than an isolated problem at one business. In March 2020, when COVID-19 broke out, US corporate bond credit spreads jumped to a peak within just a few weeks, reflecting fears that a wave of businesses could default due to a sudden economic lockdown - then narrowed rapidly once the Fed intervened aggressively by buying corporate bonds."

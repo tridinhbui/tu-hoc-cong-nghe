@@ -41,7 +41,7 @@
         "Salaries the company owes its employees",
         "Money customers still owe the company, unpaid"
       ],
-      "explanation": "Accounts Payable = a current liability, to be settled within 30-90 days."
+      "explanation": "A prepayment runs the other way: the company has already paid and the supplier owes goods. Money customers owe is a receivable, not a payable, and unpaid wages are recorded separately from supplier balances."
     },
     {
       "question": "A company buys 1 billion of goods from a supplier, unpaid. Effect:",
@@ -51,7 +51,7 @@
         "Liabilities rise 1 billion, equity rises 1 billion",
         "No effect on the balance sheet, since no cash has changed hands yet"
       ],
-      "explanation": "Assets (goods) rise = Liabilities (payable) rise."
+      "explanation": "No asset falls, because no cash left - that is what buying on credit means. Equity is untouched, since nothing was earned or contributed. The balance sheet grows on both sides at once, which is why it still balances."
     },
     {
       "question": "AP is classified under:",
@@ -61,7 +61,7 @@
         "Long-term liabilities",
         "Current liabilities"
       ],
-      "explanation": "AP = payment due <12 months = a current liability."
+      "explanation": "A payable is money owed, so it cannot be an asset or part of equity - those sit on opposite sides of the sheet. Supplier terms run 30-90 days rather than years, which rules out long-term liabilities."
     },
     {
       "question": "Why does a company want to stretch out AP?",
@@ -81,7 +81,7 @@
         "Raises the Current Ratio because AP is an asset",
         "Raises the Quick Ratio"
       ],
-      "explanation": "CR = CA/CL. Rising AP → rising CL → falling CR."
+      "explanation": "Accounts payable is a liability, not an asset, so it enlarges the denominator of CA/CL rather than the numerator. The Quick Ratio moves the same way for the same reason - it shares that denominator."
     },
     {
       "question": "Maximising AP to improve cash flow:",
@@ -91,7 +91,7 @@
         "Wrong, AP that's too high damages supplier relationships",
         "Correct, because AP incurs no interest cost"
       ],
-      "explanation": "A balance is needed: optimise cash but don't damage the supplier relationship."
+      "explanation": "Stretching payables does hold cash, so it is not simply wrong, and trade credit carries no bank interest. The cost appears elsewhere: suppliers tighten terms, raise prices, or deprioritise delivery once payment slips too far."
     },
     {
       "question": "Unpaid salaries are recorded as:",
@@ -101,7 +101,7 @@
         "Long-term liabilities",
         "Current liabilities"
       ],
-      "explanation": "Unpaid salaries = an obligation due soon = a current liability."
+      "explanation": "An unpaid salary is money owed, so it cannot be an asset or part of equity. It is settled within the next pay cycle rather than over years, which places it in current rather than long-term liabilities."
     }
   ],
   "keyTakeaways": [

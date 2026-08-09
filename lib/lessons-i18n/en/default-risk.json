@@ -5,10 +5,10 @@
   "duration": "6 min",
   "openingQuestion": "If a HY bond has a 5%/year default rate and a 40% recovery rate, what is the expected loss?",
   "openingOptions": [
-    "5%",
-    "3% = 5% × (1-40%) - the portion of capital actually lost if default happens",
-    "8%",
-    "40%"
+    "5% (= the default rate alone, ignoring any recovery)",
+    "3% = 5% × (1 − 40%), the share of capital actually lost",
+    "8% (= 5% + 3%, adding the loss on top of the default rate)",
+    "40% (= the recovery rate, read as the loss instead)"
   ],
   "explanation": "Default risk breaks down into two independent questions: how likely is the borrower to fail to repay, and if that happens, how much can be recovered? Multiplying the two gives the expected loss. The recovery rate depends heavily on payment priority and collateral, so two bonds from the same company can carry very different risk levels. The required yield must compensate for the expected loss plus a premium for the uncertainty of that estimate itself.",
   "diagram": [

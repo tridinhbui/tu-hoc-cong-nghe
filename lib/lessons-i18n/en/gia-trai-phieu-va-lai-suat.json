@@ -5,10 +5,10 @@
   "duration": "6 min",
   "openingQuestion": "Market interest rates rise from 5% to 7%. How does the price of outstanding bonds change?",
   "openingOptions": [
-    "Unchanged",
-    "Rises along with it",
-    "Falls - a fixed 5% coupon is less attractive when the market rate is 7%, so the price must fall to give an equivalent yield",
-    "Depends on the term"
+    "Unchanged, because the coupon is contractually fixed",
+    "Rises along with the market rate, since bonds pay interest",
+    "Falls - a fixed 5% coupon is worth less when the market pays 7%",
+    "Depends on the remaining term to maturity, not on the rate itself"
   ],
   "explanation": "Bond prices and market interest rates always move in opposite directions, and the reason lies in the coupon being fixed at issuance. When rates rise, new bonds pay more, so old bonds can only be sold if their price falls enough for the buyer to earn the same yield. How much the price moves depends on the remaining term: the further out the cash flows sit, the more sensitive they are - which is exactly what the concept of duration measures.",
   "diagram": [

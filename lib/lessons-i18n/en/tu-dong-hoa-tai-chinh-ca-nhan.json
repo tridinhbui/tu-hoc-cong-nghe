@@ -1,0 +1,151 @@
+{
+  "slug": "tu-dong-hoa-tai-chinh-ca-nhan",
+  "title": "Track 1, Lesson 8: Automation - so the plan doesn't depend on willpower",
+  "subtitle": "Why a correct budget still collapses, and how to fix it with mechanism rather than resolve",
+  "duration": "6 min",
+  "whyItMatters": "Financial plans fail not because the arithmetic was wrong but because they ask you to make the right decision thirty times a month, every month, for years. Moving the most important part onto automatic is the only way it survives the months when you are tired or busy.",
+  "openingQuestion": "Why do saving plans usually fail even when the numbers are reasonable?",
+  "openingOptions": [
+    "Because savings rates change and the original goal stops being right",
+    "Because they depend on money being left at month end",
+    "Because banks limit how often you can transfer into a savings account",
+    "Because the savings target is always set above what is realistically possible"
+  ],
+  "explanation": "Saving whatever is left after spending is the wrong order. Spending expands to fill whatever money is available, so the amount left at month end is nearly always smaller than planned - and in many months it is nothing. Reverse the order: move the savings out the moment the salary arrives, then live on the rest. Same figure, same income, but a completely different success rate, because it no longer depends on your restraint holding out for a whole month.",
+  "diagram": [
+    {
+      "label": "Salary lands in the account",
+      "arrow": true
+    },
+    {
+      "label": "The savings transfer runs automatically",
+      "arrow": true
+    },
+    {
+      "label": "The fixed obligations are paid",
+      "arrow": true
+    },
+    {
+      "label": "What remains is free to spend"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Two people, same income, different order",
+    "description": "Two people earn twenty million and both aim to save four million a month. The first spends and saves what is left; by year end they have about twenty million, because several months left nothing. The second sets a standing transfer of four million on payday and lives on sixteen; by year end they have forty-eight million. Neither is more disciplined - only the order of operations differs."
+  },
+  "quiz": [
+    {
+      "question": "What does 'pay yourself first' mean?",
+      "options": [
+        "Move savings out as soon as income arrives, before spending",
+        "Clear personal debts before repaying anything owed to a bank",
+        "Use any increase in income to treat yourself before anything else",
+        "Pay your own salary before you pay your employees their wages"
+      ],
+      "explanation": "The phrase is often read as treating yourself, but the original sense is the opposite: you are your own first creditor. The savings amount is treated as a compulsory bill rather than a leftover."
+    },
+    {
+      "question": "Why does spending tend to expand to fill income?",
+      "options": [
+        "Because prices rise at exactly the same pace as incomes do",
+        "Because money visible in the account is treated as money free to spend",
+        "Because banks encourage spending whenever a balance is high",
+        "Because higher income always brings higher work-related costs with it"
+      ],
+      "explanation": "The available balance is the reference point the brain uses when deciding to spend. Moving savings out of sight lowers that reference point, and spending adjusts to it without any effort."
+    },
+    {
+      "question": "Income of 20 million, a 20% savings target. Which approach lasts?",
+      "options": [
+        "Split the 4 million into 30 small daily transfers",
+        "Spend as normal and gather what's left at month end",
+        "Transfer 4 million on payday and live on the remaining 16",
+        "Wait for a month with a large surplus and move it all at once"
+      ],
+      "explanation": "The other three put savings at the back of the queue, behind every temptation and every unplanned cost. Moving it at the start of the period turns it into a constraint already met rather than a task still outstanding."
+    },
+    {
+      "question": "What should be automated first?",
+      "options": [
+        "Cash kept in your wallet for unexpected situations",
+        "The household's monthly food and entertainment spending",
+        "Large purchases already planned for the year ahead",
+        "Regular savings and the compulsory fixed payments"
+      ],
+      "explanation": "Automation works best on things that recur and need no thought each time. Flexible spending is the opposite - that is exactly the part where the decision should stay manual."
+    },
+    {
+      "question": "Why raise the automatic savings amount whenever you get a pay rise?",
+      "options": [
+        "Because you aren't used to the new standard of living yet",
+        "Because a higher salary raises income tax proportionately too",
+        "Because banks offer better rates on savings that keep growing",
+        "Because living costs always rise faster than salaries do"
+      ],
+      "explanation": "Lifestyle inflation happens quietly: a two million rise becomes two million of extra spending within a few months, and the feeling of having more never arrives. Moving part of a rise into savings the moment it appears stops that process at the easiest possible point."
+    }
+  ],
+  "keyTakeaways": [
+    "Saving the leftover is the wrong order; transfer first and live on the rest",
+    "Spending expands to fill the available balance, so lowering that balance beats trying to restrain yourself",
+    "Automation suits regular amounts; flexible spending should stay a manual decision",
+    "Every pay rise is a chance to save more without feeling short - because the new standard of living hasn't set in"
+  ],
+  "practicePrompt": {
+    "question": "You set a standing transfer of 4 million on the 5th of each month, but your salary arrives on the 10th, so it fails every month. How do you fix it?",
+    "options": [
+      "Cancel the standing order and go back to transferring by hand each month",
+      "Move the transfer to just after payday, so it runs before any spending",
+      "Reduce the amount to a level always available in the account at any time",
+      "Switch it to month end, once you know how much is actually left"
+    ],
+    "explanation": "The mechanism only works when it runs the moment the money arrives and before anything else can take it. This small detail decides whether automation works at all."
+  },
+  "summary": {
+    "keyIdea": "Trade willpower for mechanism: the order of operations matters more than resolve",
+    "commonMistake": "Putting savings at the back of the queue, behind every payment and every temptation",
+    "action": "Set one standing transfer for payday, even if the starting amount is small."
+  },
+  "application": {
+    "title": "One ten-minute task",
+    "message": "Open your banking app and set a recurring transfer into your savings account, dated just after payday. Start at a level you are certain you can sustain, then raise it gradually.",
+    "secondary": "A small amount running for twelve months always beats a large one that lasts three."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "You know what you spend and you have an allocation framework. What is left is not knowing but doing - steadily, over years, including the months when you are tired. That is where mechanism beats resolve."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Relying on willpower",
+        "text": "Every month the decision is remade: how much this month, should it be postponed. Thirty small decisions a month, and a few weak moments are enough to derail the plan."
+      },
+      "right": {
+        "label": "Relying on mechanism",
+        "text": "One decision when you set the transfer, and then it runs itself. Skipping a month means actively cancelling it - and that small barrier changes behaviour a great deal."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Why the order matters so much",
+      "text": "The balance visible in the account is the reference point the brain uses when deciding to spend, not the figure in the plan. Moving four million out of the main account at the start of the month lowers that reference point, and spending contracts to match. Same figure, same income, different outcome - purely because of where the money sits."
+    },
+    {
+      "type": "heading",
+      "text": "The order of the standing transfers decides the result"
+    },
+    {
+      "type": "paragraph",
+      "text": "Setting the savings transfer for payday, ahead of every other payment, gives a very different result from saving whatever is left at month end. The reason is not arithmetic but that the balance visible in the account is the reference point the brain uses when deciding to spend. Moving the money out first lowers that reference point, and spending adjusts without a single act of effort."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The best financial plan is the one you don't have to remember every day.",
+        "The last lesson of the track covers what protects this whole plan from a shock larger than an emergency fund can absorb."
+      ]
+    }
+  ]
+}

@@ -5,10 +5,10 @@
   "duration": "6 min",
   "openingQuestion": "An index fund claims to track the VN30, but its actual return regularly differs from the VN30 index by 2-3% each year. What metric does this reflect?",
   "openingOptions": [
-    "The fund's Beta",
-    "The fund's Alpha",
-    "Tracking Error - measuring the deviation between a fund's actual return and the benchmark it claims to track; the lower the tracking error, the more closely the fund follows the index",
-    "The fund's Sharpe Ratio"
+    "The fund's Beta, its sensitivity to the whole market",
+    "The fund's Alpha, the excess return it adds over the index",
+    "Tracking Error - how far the fund drifts from its benchmark",
+    "The fund's Sharpe Ratio, its return per unit of total risk"
   ],
   "explanation": "Tracking Error measures the standard deviation of the return gap between a portfolio/fund and the benchmark it tracks. For an active fund, a high tracking error can be acceptable (reflecting a distinct strategy). For a passive index fund, tracking error should be very low - since its main goal is to track the index as precisely as possible.",
   "diagram": [

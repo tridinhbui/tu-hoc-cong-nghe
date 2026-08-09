@@ -5,10 +5,10 @@
   "duration": "7 min",
   "openingQuestion": "If you only remember one principle from this track, what is it?",
   "openingOptions": [
-    "A dollar today is always worth more than a dollar in the future, because of opportunity cost and risk",
-    "NPV is always positive",
-    "Short-term investing is safer",
-    "A higher interest rate is good"
+    "A dollar today is worth more than a dollar in the future",
+    "NPV is always positive for a worthwhile project",
+    "Short-term investing is always safer than long-term",
+    "A higher interest rate is always good news for the investor"
   ],
   "explanation": "This whole track is built on a single idea: money has a price over time, so two amounts at two different points in time can't be compared directly. From that comes present value and future value; applied to a project's cash flow it becomes NPV and IRR; applied to a whole company's cash flow it becomes the discounted cash flow model, with the discount rate being exactly the weighted average cost of capital. Nothing above stands independently of that original idea.",
   "diagram": [

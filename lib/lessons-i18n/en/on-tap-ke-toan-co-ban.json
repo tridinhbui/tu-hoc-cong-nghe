@@ -41,7 +41,7 @@
         "The three statements are entirely independent of each other",
         "Balance sheet → Cash flow statement → Income statement (wrong order)"
       ],
-      "explanation": "The three statements are different facets of the same business."
+      "explanation": "Profit is earned first, lands in retained earnings on the balance sheet, and only then is reconciled back to cash - so both reversed orderings run against the flow. Nor are the three independent: each one feeds the next."
     },
     {
       "question": "Understanding accounting requires:",
@@ -51,7 +51,7 @@
         "Only memorising the chart of accounts",
         "Only accounting software and the raw data"
       ],
-      "explanation": "Start with the basic knowledge, not deep specialisation."
+      "explanation": "Net profit alone hides how it was earned, and the chart of accounts is a filing system rather than an explanation. Software processes the data but does not tell you what the numbers mean; the accounting equation does."
     },
     {
       "question": "When reading statements, the priority order is:",
@@ -61,7 +61,7 @@
         "Income statement → Balance sheet → Cash flow statement → Notes",
         "Reading only the income statement is enough to decide"
       ],
-      "explanation": "Top-down: the whole picture first, then the detail."
+      "explanation": "Order matters: starting with the notes gives detail before the shape it belongs to, and reading only the income statement misses the balance sheet and cash entirely. Take the whole picture first, then the detail behind it."
     },
     {
       "question": "Having found a problem, you should:",
@@ -71,7 +71,7 @@
         "Ignore it since the statements were already audited",
         "Read the notes to understand the cause"
       ],
-      "explanation": "Footnotes usually explain, not always something bad."
+      "explanation": "Selling on a single figure acts before the cause is known, and comparing with peers just repeats the unexplained number across companies. An audit confirms the statements follow the rules, not that nothing needs explaining."
     },
     {
       "question": "The income statement shows a profit, but cash flow is negative. The cause?",
@@ -81,7 +81,7 @@
         "Revenue fell compared to the prior period",
         "This period's depreciation expense was too large"
       ],
-      "explanation": "Normal for a startup or an expanding company. Needs detailed analysis."
+      "explanation": "Issuing shares raises cash rather than draining it, and falling revenue would show up as lower profit, not as the gap in question. Depreciation is a non-cash charge, so it pushes cash flow above profit, not below it."
     },
     {
       "question": "Investors care about:",
@@ -101,7 +101,7 @@
         "Hiding or falsifying figures",
         "Serving as a basis for calculating tax owed"
       ],
-      "explanation": "Accounting = a management and compliance tool. Abusing it is illegal."
+      "explanation": "Supplying data to investors, recording transactions honestly and computing tax owed are the three jobs accounting exists to do. Turning the same machinery to concealing figures is fraud, not an accounting purpose."
     }
   ],
   "keyTakeaways": [

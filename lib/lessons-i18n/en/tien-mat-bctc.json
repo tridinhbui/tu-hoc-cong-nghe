@@ -41,7 +41,7 @@
         "Cash + deposits + short-term certificates",
         "Cash on hand and inventory"
       ],
-      "explanation": "Cash = cash + cash equivalents (highly liquid, low risk)."
+      "explanation": "Receivables and inventory are current assets but not cash - each still has to be collected or sold, sometimes at a loss. Cash equivalents qualify only because they convert almost instantly with negligible price risk."
     },
     {
       "question": "Cash is listed first because:",
@@ -51,7 +51,7 @@
         "It has the lowest risk of losing value in the portfolio",
         "It's the most liquid, usable right away"
       ],
-      "explanation": "Liquidity = ability to convert to cash. Cash = the highest liquidity."
+      "explanation": "Balance sheet assets are ordered by liquidity, not by size, alphabet or safety. A large building sits below a small cash balance for exactly this reason: it cannot be spent tomorrow."
     },
     {
       "question": "Low cash affects the ability to:",
@@ -61,7 +61,7 @@
         "Recognise revenue for that period",
         "Compute depreciation on fixed assets"
       ],
-      "explanation": "Low cash = can't pay salaries or suppliers = a liquidity crisis."
+      "explanation": "Issuing shares, recognising revenue and computing depreciation all proceed regardless of the bank balance - the first two are financing and accrual events, the third a non-cash allocation. Only settling obligations needs actual cash."
     },
     {
       "question": "Cash equivalents must:",
@@ -71,7 +71,7 @@
         "Be guaranteed for payment by a bank",
         "Have a higher yield than deposit interest"
       ],
-      "explanation": "For example: 3-month treasury bills, short-term deposits."
+      "explanation": "Twelve months is the current-asset test, not the cash-equivalent one, which is far stricter. A bank guarantee does not shorten the maturity, and a yield above deposit rates signals exactly the price risk that disqualifies an instrument."
     },
     {
       "question": "Buying a 10-year bond is recorded as:",
@@ -81,7 +81,7 @@
         "A long-term investment",
         "A cash equivalent"
       ],
-      "explanation": "10 years = far too long = not a cash equivalent = a long-term investment."
+      "explanation": "A ten-year maturity fails both the three-month cash-equivalent test and the one-year current-asset test. Nor is it a cost: buying a bond exchanges one asset for another, leaving the income statement untouched."
     },
     {
       "question": "Is rising cash always good?",
@@ -91,7 +91,7 @@
         "Always good because cash is a safe asset",
         "Not certain - it depends on where the cash comes from"
       ],
-      "explanation": "Cash from operations ≠ cash from borrowing. You need to look at the source."
+      "explanation": "Cash from operations and cash from new borrowing look identical on the balance sheet but say opposite things about the business. Neither blanket answer holds: the source, not the level, is what the reader has to check."
     },
     {
       "question": "A company shouldn't hold too much cash because:",
@@ -101,7 +101,7 @@
         "Too much idle cash makes shareholders demand all of it be paid out as dividends",
         "Too much cash raises the income tax owed"
       ],
-      "explanation": "Cash = the lowest yield. Better used for investment or dividends."
+      "explanation": "Holding cash raises the Current Ratio rather than lowering it, and it creates no taxable event - tax follows profit, not balances. Shareholders may ask for a payout, but they cannot compel the whole balance to be distributed."
     }
   ],
   "keyTakeaways": [

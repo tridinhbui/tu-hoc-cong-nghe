@@ -13,10 +13,18 @@
   ],
   "explanation": "One asset rises and another asset falls - total assets are unchanged, and the company has merely changed the form of the same amount of wealth. This is where beginners go wrong: paying money out is not the same thing as incurring an expense. An expense is wealth genuinely consumed; buying a printer consumes nothing, the machine is still there, and it will be consumed gradually through depreciation over several years. Booking it straight to expenses would make this year's profit artificially low and make an asset vanish from the balance sheet. The words \"debit\" and \"credit\" carry no sense of borrowing or owning either - they are simply the names of the left and right columns, kept from the Latin across seven centuries.",
   "diagram": [
-    { "label": "A transaction occurs" },
-    { "label": "It is recorded in at least two accounts" },
-    { "label": "Total debits = total credits" },
-    { "label": "So the accounting equation balances after every entry" }
+    {
+      "label": "A transaction occurs"
+    },
+    {
+      "label": "It is recorded in at least two accounts"
+    },
+    {
+      "label": "Total debits = total credits"
+    },
+    {
+      "label": "So the accounting equation balances after every entry"
+    }
   ],
   "realWorldExample": {
     "company": "Luca Pacioli, Venice, 1494",
@@ -36,8 +44,8 @@
     {
       "question": "You borrow 500 million from a bank into the company account. What is the entry?",
       "options": [
-        "Debit deposits 500, credit finance income 500",
-        "Debit borrowings 500, credit deposits 500",
+        "Debit deposits 500, credit finance income 500, treating the loan as revenue",
+        "Debit borrowings 500, credit deposits 500, with the direction reversed",
         "Debit deposits 500, credit bank borrowings 500",
         "Debit deposits 500, credit equity 500, since the funding base has grown"
       ],
@@ -96,24 +104,48 @@
       "type": "lead",
       "text": "Accounting has exactly one root rule, and everything else follows from it: each transaction has two ends, so it has to be recorded twice."
     },
-    { "type": "heading", "text": "Debit and credit don't mean anything" },
+    {
+      "type": "heading",
+      "text": "Debit and credit don't mean anything"
+    },
     {
       "type": "paragraph",
       "text": "This is the first obstacle, and it is created entirely by language. \"Debit\" does not mean being in debt; \"credit\" does not mean owning something. They are the names of the left and right columns, translated from Latin and kept unchanged across seven centuries. Anyone who tries to find meaning in those two words gets stuck; anyone who treats them as left and right moves straight on."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Buying 50,000 of food with cash: cash (an asset) falls by 50,000, and in exchange a meal (an expense) rises by 50,000 - the money does not vanish, it turns into something else",
+        "Borrowing 20 million from a bank to buy a car: cash rises by 20 million, but liabilities rise by 20 million too - having more cash does not mean being richer",
+        "Receiving a 15 million salary: cash rises by 15 million and income rises to match, with no liability created - this money is genuinely yours"
+      ]
     },
     {
       "type": "conceptTable",
       "title": "The one table you have to learn",
       "subtitle": "The rest of accounting can be worked out from here",
       "concepts": [
-        { "def": "Increases are debited, decreases credited. Cash, inventory, machinery, receivables." },
-        { "def": "Increases are debited. The same direction as assets, because both are where wealth ends up." },
-        { "def": "Increases are credited. Bank borrowings, trade payables, taxes owed." },
-        { "def": "Increases are credited. Contributed capital and retained earnings." },
-        { "def": "Increases are credited. The same direction as equity, because revenue makes equity larger." }
+        {
+          "def": "Increases are debited, decreases credited. Cash, inventory, machinery, receivables."
+        },
+        {
+          "def": "Increases are debited. The same direction as assets, because both are where wealth ends up."
+        },
+        {
+          "def": "Increases are credited. Bank borrowings, trade payables, taxes owed."
+        },
+        {
+          "def": "Increases are credited. Contributed capital and retained earnings."
+        },
+        {
+          "def": "Increases are credited. The same direction as equity, because revenue makes equity larger."
+        }
       ]
     },
-    { "type": "heading", "text": "The four shapes of a transaction" },
+    {
+      "type": "heading",
+      "text": "The four shapes of a transaction"
+    },
     {
       "type": "list",
       "items": [

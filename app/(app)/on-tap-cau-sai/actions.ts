@@ -6,6 +6,7 @@ import { getLessonDisplayLabel, getLessonShortTitle } from "@/lib/lesson-labels"
 import { IB_QUESTION_BANK, formatCategoryLabel } from "@/lib/ib-question-bank";
 import { ALL_TECHNICAL_QUESTIONS } from "@/lib/ib-question-careers";
 import { CAREER_TECHNICAL_QUESTIONS } from "@/lib/career-question-bank";
+import { questionFingerprint } from "@/lib/stable-hash";
 
 export interface QuizMistakeReviewItem {
   lessonId: number;
@@ -36,7 +37,7 @@ export async function getQuizMistakesReviewAction(userId: string): Promise<QuizM
   const supabase = await createServerSupabaseClient();
   const { data, error } = await supabase
     .from("quiz_mistakes")
-    .select("lesson_id, question_index, wrong_count, last_attempt_at")
+    .select("lesson_id, question_index, wrong_count, last_attempt_at, question_hash")
     .eq("user_id", userId)
     .eq("resolved", false)
     .order("last_attempt_at", { ascending: false })
@@ -66,6 +67,15 @@ export async function getQuizMistakesReviewAction(userId: string): Promise<QuizM
     const lesson = lessonById.get(row.lesson_id);
     const question = lesson?.quiz?.[row.question_index];
     if (!lesson || !question) continue; // lesson/question removed or edited since - skip rather than show stale/broken data
+    // Chỉ số câu ổn định đúng chừng nào mảng quiz của bài không đổi. Chèn,
+    // xoá hay đảo một câu là hàng cũ trỏ sang câu khác, và người học được cho
+    // xem một câu họ chưa từng làm sai kèm dòng "bạn đã sai N lần" - im lặng
+    // hoàn toàn, vì hàng vẫn giải ra một câu hỏi hợp lệ.
+    //
+    // question_hash NULL nghĩa là hàng được ghi trước khi có cột này: không
+    // biết thì cứ hiển thị, đúng hành vi cũ. Có hash mà lệch thì bỏ qua, cùng
+    // cách một câu bị xoá hẳn đang được bỏ qua ngay ở dòng trên.
+    if (row.question_hash && row.question_hash !== questionFingerprint(question.question)) continue;
     items.push({
       lessonId: lesson.id,
       lessonSlug: lesson.slug,
@@ -100,6 +110,7 @@ export async function getQuizMistakesReviewAction(userId: string): Promise<QuizM
       // A question dropped from the bank falls out of review, same as an
       // edited lesson question.
       if (!question) continue;
+      if (row.question_hash && row.question_hash !== questionFingerprint(question.question)) continue;
       items.push({
         lessonId: row.lesson_id,
         lessonSlug: "ib-question-bank",

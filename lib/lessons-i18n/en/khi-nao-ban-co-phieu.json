@@ -4,10 +4,10 @@
   "subtitle": "Exit strategy",
   "openingQuestion": "A stock you're holding drops 20% over two weeks, but the company's revenue, profit, and sector outlook haven't changed at all since you bought. What should you do?",
   "openingOptions": [
-    "Buy double the amount right away without taking any time to review any of the company's fundamentals before deciding",
-    "Sell the entire position immediately to 'cut losses' just because you saw a 20% drop, regardless of whether the real reason behind that drop is even related to the business",
+    "Buy double immediately, without reviewing the fundamentals",
+    "Sell everything to 'cut losses', whatever caused the drop",
     "Review your original investment thesis: if it still holds, you can keep holding",
-    "Sell the entire position immediately and set a rigid rule to never buy that company's stock again in the future"
+    "Sell everything and never buy that company's stock again"
   ],
   "explanation": "A sell decision should be based on whether the original investment thesis (the business's fundamentals) still holds, not just on short-term price movement. If the business is still sound and it's just a broader market correction, panic-selling is usually a mistake.",
   "diagram": [

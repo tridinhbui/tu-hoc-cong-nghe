@@ -5,10 +5,10 @@
   "duration": "7 min",
   "openingQuestion": "Why do central banks use interest rates as their tool for steering the economy?",
   "openingOptions": [
-    "Interest rates affect the entire economy: borrowing costs, exchange rates, asset prices, consumption, investment - the strongest macro lever",
-    "Because there's no other tool available",
-    "By tradition",
-    "Because it's simple"
+    "Interest rates move borrowing costs, exchange rates and asset prices",
+    "Because central banks have no other policy tool available",
+    "By tradition, since the policy rate has always been the headline number",
+    "Because a single rate is simpler to communicate than quotas"
   ],
   "explanation": "Interest rates are the 'price of money' - affecting every economic decision. Raising rates: saving becomes more attractive, borrowing less attractive → consumption falls, investment falls, inflation cools. Lowering rates: stimulates borrowing, investment, growth. The effect passes through many channels: credit, exchange rates, assets, expectations.",
   "diagram": [

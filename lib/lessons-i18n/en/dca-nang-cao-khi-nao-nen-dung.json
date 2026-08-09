@@ -1,0 +1,158 @@
+{
+  "slug": "dca-nang-cao-khi-nao-nen-dung",
+  "title": "Track 7, Lesson 5: DCA in depth - when to invest in instalments and when not to",
+  "subtitle": "Dollar-cost averaging is not always the optimal strategy - knowing its limits helps you use it at the right time.",
+  "duration": "6 min",
+  "whyItMatters": "DCA gets promoted as the \"absolutely safe\" strategy, but understanding when it genuinely helps (and when investing in one go may be better) stops you applying one formula mechanically to every situation.",
+  "openingQuestion": "You have just received a bonus of 200 million. Should you invest it all at once, or spread it through DCA over 12 months?",
+  "openingOptions": [
+    "Always invest the whole sum at once, since markets always rise",
+    "Both are reasonable, depending on your risk tolerance",
+    "Never invest a large sum at once, whatever your situation",
+    "Always use DCA, the only way to keep the money completely safe"
+  ],
+  "explanation": "Statistically and over the long run, investing in one go (a lump sum) usually produces a higher expected outcome than DCA, because markets rise more often than they fall - the earlier the money is in, the longer it has to compound. But DCA has a real PSYCHOLOGICAL value: it reduces the regret of having bought at exactly the wrong moment, and that regret is what makes people abandon a plan.",
+  "diagram": [
+    {
+      "label": "Lump sum: all at once, higher long-run expectation",
+      "arrow": true
+    },
+    {
+      "label": "DCA: spread out, less timing risk",
+      "arrow": true
+    },
+    {
+      "label": "Choose by the sum you hold and the risk you can live with"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Historical market research",
+    "description": "Much research on the US market shows a lump sum beating DCA across most historical periods, because markets rise more than they fall - but the gap is not enormous, and DCA remains a reasonable choice for anyone who values peace of mind over optimising expected return."
+  },
+  "quiz": [
+    {
+      "question": "Why is DCA still recommended when a lump sum has a higher expected return statistically?",
+      "options": [
+        "Because trading fees on instalments are always cheaper than one purchase",
+        "Because DCA lowers psychological risk and fits a monthly salary",
+        "Because DCA avoids the risk of any long-term loss entirely",
+        "Because DCA always returns more than a lump sum does"
+      ],
+      "explanation": "DCA fits the cash flow most people actually have (a regular salary, with no large sum sitting ready), and it reduces the regret of investing everything just before a short-term peak - even though over the long run a lump sum usually edges ahead."
+    },
+    {
+      "question": "You have 500 million spare and no need for it over the next 10 years. You also know you would be very anxious if the market fell right after you invested it all. What is the most sensible strategy?",
+      "options": [
+        "Spread it evenly over 10 years to match the time horizon",
+        "Invest it all at once, since the statistical expectation is clearly higher",
+        "DCA over 6-12 months - neither all at once nor drawn out",
+        "Hold cash until the market falls noticeably"
+      ],
+      "explanation": "When statistical optimisation (invest now) conflicts with psychological comfort (DCA), a middle path - DCA over a moderate window of 6-12 months - is usually the practical choice, balancing the two without leaving money idle for too long."
+    },
+    {
+      "question": "Why does a lump sum usually have the higher statistical expectation?",
+      "options": [
+        "Because a lump sum receives more favourable tax treatment than regular investing",
+        "Because a lump sum attracts a lower trading fee than splitting the amount up",
+        "Because DCA forces you to buy at each month's highest price during the period",
+        "Because markets rise more than they fall, so early money has longer"
+      ],
+      "explanation": "Across most historical periods, markets go up. Money sitting outside the market waiting to be spread in is money earning nothing - which is why the lump sum wins on mathematical expectation."
+    },
+    {
+      "question": "So why is DCA still so widely recommended?",
+      "options": [
+        "Because it lowers regret risk and helps investors actually stay with the plan",
+        "Because it returns more than a lump sum under every market condition",
+        "Because the law encourages retail investors to invest in regular instalments",
+        "Because DCA removes the risk of loss entirely when the market falls"
+      ],
+      "explanation": "DCA is psychological insurance, not mathematical optimisation. A plan with a lower expectation that you actually keep still beats an optimal plan you abandon after the first fall."
+    },
+    {
+      "question": "For someone on a monthly salary, is DCA a choice?",
+      "options": [
+        "Yes, because every form of regular investing is classified as a DCA strategy whatever the reason",
+        "Not really - they invest regularly because the money arrives regularly, not by choosing DCA",
+        "No, because DCA only applies to people with a large sum already in hand",
+        "Yes, and they should save a year's salary first and then invest it in one go"
+      ],
+      "explanation": "The lump sum versus DCA argument only means anything when you are already holding a large sum. Someone investing from a monthly salary is simply putting money in as it arrives - which is the right thing to do."
+    },
+    {
+      "question": "When is DCA genuinely the better choice financially?",
+      "options": [
+        "When analysts judge the market to be at a historical peak",
+        "When the investor is certain the market will fall within six months",
+        "When the sum is large against total assets and an immediate fall would break the plan",
+        "When the investor wants to maximise the expected return on that money"
+      ],
+      "explanation": "If that sum is most of your wealth and a 30% fall next month would make you give up, then spreading it has real value - even though the mathematical expectation is lower."
+    }
+  ],
+  "keyTakeaways": [
+    "A lump sum usually has the higher long-run expected return, because markets rise more than they fall",
+    "DCA has real psychological value: it reduces the regret of buying at a peak, and it fits a monthly salary",
+    "With a large sum already in hand, DCA over a moderate window (6-12 months) is a reasonable balance"
+  ],
+  "practicePrompt": {
+    "question": "You have just sold a house for 800 million and will not need the money for at least 15 years. You are afraid that if you invest it all at once and the market falls straight afterwards, you will deeply regret it. Which strategy balances both concerns?",
+    "options": [
+      "DCA over about 6-12 months, rather than all at once or over many years, balancing psychological risk against idle money",
+      "Invest the whole 800 million immediately in a single order and ignore the anxiety entirely, because this is always the optimal choice",
+      "Split the money and invest it gradually over the whole of the next 10 years to guarantee absolute safety against market swings",
+      "Keep the entire 800 million in cash for the next 15 years so as to avoid completely every risk that could possibly arise"
+    ],
+    "explanation": "DCA over 6-12 months is the balanced option: short enough not to leave money idle outside the market too long, long enough to reduce the psychological risk of buying at a peak."
+  },
+  "summary": {
+    "keyIdea": "A lump sum usually has the higher long-run expected return, because markets rise more than they fall",
+    "commonMistake": "Reading the idea as a phrase to remember rather than a principle to apply to real decisions.",
+    "action": "DCA has real psychological value: it reduces the regret of buying at a peak, and it fits a monthly salary"
+  },
+  "application": {
+    "title": "Decide for yourself",
+    "message": "If you are holding a large idle sum, try planning to deploy it over 6-12 months rather than sitting in cash waiting for the 'perfect moment'.",
+    "secondary": "There is no absolutely right formula, only the one you are comfortable carrying out."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Dollar-cost averaging is often treated as the \"safe default\", but over the long run it is not always the optimal choice. Understanding when DCA is genuinely needed lets you use it at the right time, rather than applying it mechanically to every situation."
+    },
+    {
+      "type": "heading",
+      "text": "Why a lump sum usually wins statistically"
+    },
+    {
+      "type": "paragraph",
+      "text": "Markets tend to rise more than they fall over time - much research on the US market shows a lump sum beating DCA across most historical periods. The logic is simple: if the market is up most of the time, then getting money in earlier gives it longer to compound than spreading it across many months, during which the undeployed part sits doing nothing."
+    },
+    {
+      "type": "heading",
+      "text": "The real value of DCA is psychological, not mathematical"
+    },
+    {
+      "type": "paragraph",
+      "text": "DCA reduces regret risk: if you invest everything at once and the market falls the next day, the feeling of having 'bought the top' is deeply uncomfortable, even if the long run works out fine. DCA also fits the cash flow most people actually have - a monthly salary, with no large sum available to invest at the start. With a regular salary, DCA is not a choice at all: it is the only feasible approach."
+    },
+    {
+      "type": "heading",
+      "text": "What if you do hold a large sum?"
+    },
+    {
+      "type": "paragraph",
+      "text": "That situation is different: you have 500 million spare, no need for it over 10 years, but you know you would be very anxious if the market fell right after you invested it all. Investing everything immediately is statistically optimal but might make you panic-sell in a fall. Holding cash for the full 10 years costs an enormous amount in opportunity. The reasonable balance: DCA over 6-12 months - short enough not to lose much compounding time, long enough to soften the risk of buying at a peak."
+    },
+    {
+      "type": "list",
+      "items": [
+        "On a monthly salary, investing regularly: that already is DCA, and needs no further thought",
+        "Holding a large sum with a steady temperament: consider a lump sum or a very short DCA (1-3 months)",
+        "Holding a large sum but anxious about volatility: DCA over 6-12 months is the practical balance",
+        "Avoid stretching DCA over many years for a sum you already hold - most of that time the money sits outside the market, costing opportunity"
+      ]
+    }
+  ]
+}

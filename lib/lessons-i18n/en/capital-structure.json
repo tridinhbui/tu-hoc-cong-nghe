@@ -5,10 +5,10 @@
   "duration": "9 min",
   "openingQuestion": "Why don't businesses fund themselves with 100% debt?",
   "openingOptions": [
-    "Banks would refuse",
-    "The law doesn't allow it",
-    "Too much debt → higher bankruptcy risk → overall cost of capital rises, wiping out the tax shield benefit",
-    "Shareholders object"
+    "Banks would simply refuse to lend beyond a certain leverage level",
+    "The law does not allow debt above a fixed share of assets",
+    "Too much debt raises bankruptcy risk and the cost of capital",
+    "Shareholders object to any borrowing on principle grounds"
   ],
   "explanation": "Capital structure is the ratio of debt to equity, and the optimization problem is balancing two opposing forces. Debt is cheaper than equity and gets a tax shield, so adding debt initially lowers the weighted average cost of capital. But the more debt, the greater the risk of financial distress, and that cost shows up well before actual default - in the form of suppliers tightening terms, top talent leaving, and good investment opportunities being passed up because there's no room left to borrow.",
   "diagram": [
@@ -33,9 +33,9 @@
       "question": "What does a D/E ratio of 2 mean?",
       "options": [
         "Debt accounts for two-thirds of the company's total capital",
-        "Every unit of debt comes with two units of equity",
+        "Every unit of debt is matched by two separate units of equity",
         "Every unit of equity comes with two units of debt",
-        "Total assets are exactly twice total liabilities"
+        "Total assets are exactly twice total liabilities on the balance sheet"
       ],
       "explanation": "D/E = Total Debt / Total Equity = 2 means for every 1 unit of equity, the company borrows an additional 2 units of debt. Higher D/E: higher leverage, higher risk but higher potential ROE."
     },

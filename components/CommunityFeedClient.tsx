@@ -66,7 +66,7 @@ import { useI18n } from "@/lib/i18n/context";
 import { format, intlLocale, type Dictionary } from "@/lib/i18n";
 import {
   getPostCategory,
-  isPostVisibleInFeed,
+  visibleFeedPosts,
   type FeedTopicId,
 } from "@/lib/community-feed-visibility";
 
@@ -881,8 +881,14 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
   // nó mà không cần một phiên đăng nhập thật và vài chục bài dựng sẵn.
   const searchTerm = searchQuery.trim().toLowerCase();
   const achievementPosts = posts.filter((post) => getPostCategory(post) === "thanh-tuu");
-  const visiblePosts = posts.filter((post) => isPostVisibleInFeed(post, feedFilter, searchQuery));
-  const hiddenAchievements = feedFilter === "all" && !searchTerm ? achievementPosts.length : 0;
+  const visiblePosts = visibleFeedPosts(posts, feedFilter, searchQuery);
+  // Chỉ gọi là "đang bị ẩn" khi chúng THẬT SỰ đang bị ẩn. Lúc dòng chính rỗng
+  // và visibleFeedPosts trả lại chính nhóm thành tựu, con số này phải về 0 -
+  // nếu không màn hình vừa hiện chúng vừa mời bấm để xem chúng.
+  const hiddenAchievements =
+    feedFilter === "all" && !searchTerm && visiblePosts.length !== achievementPosts.length
+      ? achievementPosts.length
+      : 0;
   const totalReactions = posts.reduce((sum, post) => sum + post.reaction_count, 0);
   const totalComments = posts.reduce((sum, post) => sum + post.comment_count, 0);
   const activeTopics = TOPICS.filter((topic) => posts.some((post) => getPostCategory(post) === topic.id && topic.id !== "all")).length;

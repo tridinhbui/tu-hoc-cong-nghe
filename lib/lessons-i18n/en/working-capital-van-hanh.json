@@ -41,7 +41,7 @@
         "The average time for customers to pay",
         "The number of working-capital turns in a year"
       ],
-      "explanation": "A short CCC = the company doesn't have to wait long = good cash flow."
+      "explanation": "Inventory days alone is DIO and collection days alone is DSO - each is one term of the formula, not the whole of it. Nor is CCC a turnover count: it is measured in days, and subtracting DPO nets off the supplier's financing."
     },
     {
       "question": "CCC = 10 days:",
@@ -81,7 +81,7 @@
         "No effect, since CCC is just an indicator",
         "It saves 10 days' worth of working capital"
       ],
-      "explanation": "CCC rising = needing more cash = cash flow gets tighter."
+      "explanation": "CCC is measured in days and says nothing about gross margin, so it cannot move it by ten points. The direction is the opposite of saving: ten extra days between paying suppliers and collecting from customers have to be funded."
     },
     {
       "question": "JIT inventory helps shorten CCC by:",
@@ -91,7 +91,7 @@
         "Decreasing DIO because stock is only brought in when needed",
         "Decreasing both DIO and DSO at the same time"
       ],
-      "explanation": "JIT = DIO ~0 = cash is freed up fast = a short CCC."
+      "explanation": "JIT does not touch collection, so DSO is unchanged, and it tends to shorten payment terms rather than stretch them - suppliers delivering little and often want paying promptly. Its whole effect runs through inventory days."
     },
     {
       "question": "Should a startup prioritise optimising CCC or increasing profit?",
@@ -101,7 +101,7 @@
         "Both at once, without prioritising either",
         "Increase profit first to raise capital more easily"
       ],
-      "explanation": "Profitable but short of cash → bankruptcy. Survive first, profit later."
+      "explanation": "Revenue growth without collection makes the cycle worse, not better, and profit on paper does not pay wages. Doing both at once assumes a runway the company does not have: a profitable business still fails when the cash runs out."
     }
   ],
   "keyTakeaways": [

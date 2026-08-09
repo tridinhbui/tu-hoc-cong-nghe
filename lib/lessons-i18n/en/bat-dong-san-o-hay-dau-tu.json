@@ -1,0 +1,173 @@
+{
+  "slug": "bat-dong-san-o-hay-dau-tu",
+  "title": "Track 7, Lesson 8: Property - how buying to live differs from buying to invest",
+  "subtitle": "Many people confuse 'buying a home to live in' with 'investing in property' - two entirely different financial decisions.",
+  "duration": "7 min",
+  "whyItMatters": "Confusing the two leads to poor financial decisions - buying a house far larger than you actually need because you think of it as an \"investment\", when the home you live in generates no cash flow and carries plenty of hidden costs.",
+  "openingQuestion": "Is the home you live in an investment that generates cash flow?",
+  "openingOptions": [
+    "It has nothing whatsoever to do with your personal finances, since it is purely the family's long-term place to live",
+    "Yes, because house values tend to rise steadily over time in the Vietnamese property market as it stands today",
+    "No - a home you live in generates no cash flow and costs money to keep",
+    "Yes, because you can always mortgage that home at any bank to release a cash sum for immediate use"
+  ],
+  "explanation": "The home you live in is SPENDING on your need for shelter, even though its value may rise over time. It generates no cash flow (nobody pays you rent), and when you sell it you usually have to buy or rent somewhere else - quite unlike an investment property (bought to let, generating real cash flow).",
+  "diagram": [
+    {
+      "label": "The home you live in",
+      "arrow": true
+    },
+    {
+      "label": "= Spending on your need for shelter",
+      "arrow": true
+    },
+    {
+      "label": "An investment property",
+      "arrow": true
+    },
+    {
+      "label": "= An asset generating rental cash flow"
+    }
+  ],
+  "realWorldExample": {
+    "company": "A home compared with a let flat",
+    "description": "Someone buying a flat to live in pays interest, tax and maintenance with no income against it - a net cost. Someone buying another flat to let receives rent each month that offsets part or all of the borrowing cost - and that is a genuine cash-generating investment."
+  },
+  "quiz": [
+    {
+      "question": "Why shouldn't the home you live in count as part of your investment portfolio when working out asset allocation?",
+      "options": [
+        "Because selling it still leaves you needing somewhere to live",
+        "Because homes always lose value the longer they are lived in",
+        "Because house prices cannot be valued accurately",
+        "Because property does not count as an asset at all"
+      ],
+      "explanation": "A home is an asset 'locked' to an essential need - selling it means finding somewhere else, quite unlike shares or bonds you can sell and simply hold as cash. This is why many advisers suggest keeping the home out of the investment allocation calculation."
+    },
+    {
+      "question": "You have 2 billion and are weighing (A) buying a 2 billion flat to live in, or (B) continuing to rent at 8 million a month and investing the 2 billion in a diversified portfolio expected to return 10% a year. Which factor is NOT directly relevant to this financial decision?",
+      "options": [
+        "The annual cost of renting compared with the cost of owning (interest, tax, maintenance)",
+        "The colour of the paint on the flat's walls",
+        "The opportunity cost of the 2 billion if it is not invested",
+        "How stable your job is and whether you may need to move home in the near future"
+      ],
+      "explanation": "Paint colour is an aesthetic matter with no effect on the financial calculation. What genuinely matters is the opportunity cost of the capital, renting versus owning costs, and how settled your life is (job moves) - the factors actually worth weighing when buying a home."
+    },
+    {
+      "question": "Why is the home you live in treated as spending rather than investment?",
+      "options": [
+        "Because the law forbids selling the only home a family lives in",
+        "Because a lived-in home never rises in value as it is used",
+        "Because it generates no cash flow while costing money to keep each year",
+        "Because a lived-in home is excluded from assets on a financial declaration"
+      ],
+      "explanation": "A home you live in may well rise in value, but you cannot eat that gain without selling and moving out. Meanwhile it steadily consumes money: interest, repairs, tax, management charges."
+    },
+    {
+      "question": "What is the core difference between a let property and the home you live in?",
+      "options": [
+        "Banks lend against it at a lower rate than for a home to live in",
+        "It always rises in value faster, being in a better location",
+        "It carries no maintenance costs or annual tax of any kind",
+        "It produces regular cash flow and is judged on its rental yield"
+      ],
+      "explanation": "The question about an investment asset is always: what does it pay me each year on the money I put in? Plenty of people buy a second property yielding 2-3% while deposits pay more than that."
+    },
+    {
+      "question": "Which cost is most often left out when calculating rental yield?",
+      "options": [
+        "Void periods with no tenant, repairs, tax and agency fees",
+        "The monthly utility bills that the tenant has to pay themselves",
+        "The landlord's travel costs when visiting the let flat each month",
+        "The deposit the tenant pays before the property is handed over"
+      ],
+      "explanation": "The gross yield - rent divided by purchase price - looks very attractive. Subtract a few empty months each year, repairs, rental tax and agency fees, and the real yield can be half of it."
+    },
+    {
+      "question": "What is the biggest risk in putting most of your wealth into property?",
+      "options": [
+        "Property is the only asset class that can suddenly lose all its value",
+        "Poor liquidity - you cannot sell quickly for cash without dropping the price",
+        "Property owners are not permitted to mortgage the asset they own",
+        "Property prices are set by the state and so do not reflect supply and demand"
+      ],
+      "explanation": "Selling a house takes months and usually means cutting the price if you need money quickly. For someone with most of their wealth there, an event demanding cash can force a sale at exactly the worst point in the market."
+    }
+  ],
+  "keyTakeaways": [
+    "The home you live in is spending on shelter, not a cash-generating investment - even though its value may rise",
+    "Investment property (bought to let) is financially different in kind: it produces real cash flow from rent",
+    "Keep the decision to 'buy a home to live in' separate from your investment allocation calculation"
+  ],
+  "practicePrompt": {
+    "question": "You have 3 billion in cash and a 3 billion home you live in, so 6 billion in total. You want to allocate 70% to shares and 30% to bonds in your investment portfolio. Should the home count in the 6 billion when working out that 70/30?",
+    "options": [
+      "No - the home you live in is spending on shelter, not a cash-generating investment",
+      "Yes, count the home in, because property value is always regarded as a legitimate part of a personal investment portfolio",
+      "You should sell the home and move the whole 6 billion into shares and bonds at exactly the 70/30 split you decided on",
+      "It makes no difference how you count it, because asset allocation is only indicative and does not affect investment results"
+    ],
+    "explanation": "The home you live in is spending on shelter rather than a cash-generating investment - so keep it out of the calculation for the real investment portfolio."
+  },
+  "summary": {
+    "keyIdea": "The home you live in is spending on shelter, not a cash-generating investment - even though its value may rise",
+    "commonMistake": "Reading the idea as a phrase to remember rather than a principle to apply to real decisions.",
+    "action": "Investment property (bought to let) is financially different in kind: it produces real cash flow from rent"
+  },
+  "application": {
+    "title": "Work it through yourself",
+    "message": "If you are considering buying property, be clear which it is: a decision to LIVE somewhere, or to generate rental cash flow - the two answers lead to completely different calculations.",
+    "secondary": "Don't blend the two purposes when working out the finances of a property."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Many people fold 'buying a home to live in' and 'investing in property' into a single idea, but these are two financial decisions of quite different kinds - and confusing them leads easily to poor decisions."
+    },
+    {
+      "type": "heading",
+      "text": "A home you live in is spending, not investing"
+    },
+    {
+      "type": "paragraph",
+      "text": "The home you live in is spending on your need for shelter, even though its value may rise over time. It generates no cash flow - nobody pays you rent - and when you sell it, you usually need to buy or rent somewhere else immediately. Someone buying a flat to live in pays interest, tax and maintenance with nothing coming in against it - a net cost, not a return-generating investment in any real sense."
+    },
+    {
+      "type": "heading",
+      "text": "Investment property produces real cash flow"
+    },
+    {
+      "type": "paragraph",
+      "text": "By contrast, someone buying another flat to let receives rent each month, offsetting part or all of the borrowing cost - and that is a genuine cash-generating investment, whose return can be calculated like any other asset (net rent / capital invested)."
+    },
+    {
+      "type": "heading",
+      "text": "Why the home stays out of asset allocation"
+    },
+    {
+      "type": "paragraph",
+      "text": "You cannot sell the home you live in without finding somewhere else - its value 'on paper' is not freely usable the way shares or bonds are, which can be sold and held as cash without touching an essential need. This is why many advisers suggest keeping the home out of the investment allocation calculation."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Buying a home to live in",
+        "text": "Spending on an essential need. No cash flow. The value is 'locked' to your need for shelter and hard to turn into free cash without affecting where you live."
+      },
+      "right": {
+        "label": "Buying property to invest",
+        "text": "An investment producing cash flow from rent. The return can be calculated clearly. It can be sold, let or held flexibly as the strategy requires."
+      }
+    },
+    {
+      "type": "list",
+      "items": [
+        "Compare the annual cost of renting with the cost of owning (interest, tax, maintenance) before deciding to buy",
+        "Weigh the opportunity cost of the capital going into the house - what a diversified portfolio might return instead",
+        "Consider how stable your job is and whether you may need to move in the near future before buying",
+        "For investment property, calculate the real net rental yield rather than relying on hoped-for price rises"
+      ]
+    }
+  ]
+}

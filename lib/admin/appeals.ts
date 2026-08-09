@@ -74,6 +74,19 @@ export async function approveAppeal(appealId: number, adminId: string): Promise<
   if (!appeal) throw new Error("Không tìm thấy khiếu nại.");
   if (appeal.status !== "pending") throw new Error("Khiếu nại này đã được xử lý rồi.");
 
+  // Cố ý KHÔNG ghi `quiz_score`. Trước đây chỗ này ghi 100, một điểm chưa ai
+  // từng đạt: khiếu nại được duyệt vì hệ thống *quên ghi nhận* bài đã học,
+  // không phải vì học viên làm đúng hết. Con số đó chảy thẳng vào
+  // `avg_quiz_score` bên dưới, rồi sang phần trăm năng lực ở /su-nghiep -
+  // cộng thêm nút "Duyệt tất cả", một cú click bơm được hàng chục điểm tuyệt
+  // đối giả vào chỉ số đó.
+  //
+  // Bỏ hẳn khoá này khỏi payload chứ không đặt `quiz_score: null`: upsert của
+  // PostgREST chỉ UPDATE đúng những cột có trong payload, nên bỏ đi sẽ giữ
+  // nguyên điểm thật nếu học viên đã từng làm quiz bài này, và để NULL khi
+  // đây là hàng mới. Phép tính trung bình bên dưới đã lọc `quiz_score !== null`
+  // sẵn, nên một lần hoàn thành không điểm không kéo trung bình xuống - nó
+  // đơn giản là không được tính.
   const { error: progressError } = await supabase.from("user_progress").upsert(
     [
       {
@@ -81,7 +94,6 @@ export async function approveAppeal(appealId: number, adminId: string): Promise<
         lesson_id: appeal.lesson_id,
         completed: true,
         completed_at: new Date().toISOString(),
-        quiz_score: 100,
       },
     ],
     { onConflict: "user_id,lesson_id" }

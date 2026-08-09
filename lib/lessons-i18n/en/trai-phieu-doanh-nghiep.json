@@ -5,10 +5,10 @@
   "duration": "6 min",
   "openingQuestion": "Why are Vietnamese corporate bonds much riskier than government bonds?",
   "openingOptions": [
-    "Because of the fixed interest rate",
-    "Because the interest is higher",
-    "Because of the lack of an independent credit rating, poor transparency, low liquidity, and unclear guarantees",
-    "Because the term is shorter"
+    "Because the interest rate is fixed for the whole term",
+    "Because the coupon offered is higher than a government bond",
+    "No independent credit rating, poor transparency, low liquidity",
+    "Because the term to maturity is shorter than on a government bond"
   ],
   "explanation": "Vietnamese corporate bonds (VCB): the market grew rapidly from 2018-2021, then ran into major problems in 2022: Tan Hoang Minh, Van Thinh Phat - thousands of billions became unable to be repaid. The causes: uncontrolled private placements, no credit rating, sold through banks as if they were deposits.",
   "diagram": [

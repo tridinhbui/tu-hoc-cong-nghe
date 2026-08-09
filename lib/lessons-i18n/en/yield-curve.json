@@ -5,10 +5,10 @@
   "duration": "7 min",
   "openingQuestion": "What does an inverted yield curve signal?",
   "openingOptions": [
-    "A strong economy",
-    "High inflation",
-    "Nothing meaningful",
-    "A high likelihood of an upcoming recession - the market expects the Fed to cut interest rates in the future"
+    "A strong economy with rising short-term growth",
+    "High inflation expectations over the coming year",
+    "Nothing meaningful, just short-term market noise",
+    "A high likelihood of an upcoming recession"
   ],
   "explanation": "The yield curve connects government bond yields across different maturities, and its shape summarises the market's expectations of future interest rates. Sloping upward is the normal state. Inverted - short-term rates higher than long-term - means the market is betting that rates will have to fall, implying the economy will weaken. This is one of the few indicators with a long enough recession-forecasting track record to be worth watching, even though the lag varies a lot between episodes.",
   "diagram": [

@@ -5,10 +5,10 @@
   "duration": "5 min",
   "openingQuestion": "How does buying a bond differ from buying a stock?",
   "openingOptions": [
-    "Stocks are safer",
-    "No difference",
-    "Bonds are more expensive",
-    "Buying a bond = lending money, receiving fixed interest; Buying a stock = ownership, no fixed interest"
+    "Stocks are safer because they can be sold at any time",
+    "No difference - both are just securities on the exchange",
+    "Bonds simply cost more to buy than shares in the very same company",
+    "A bond lends money for fixed interest; a stock buys ownership"
   ],
   "explanation": "A bond is a loan that has been divided into tradable units: the issuer receives the money and commits to paying periodic interest and returning the face value at maturity. The buyer is a creditor, not an owner, so they get paid before shareholders if the business goes bankrupt, but they don't share in any growth upside. Three elements shape every bond - face value, coupon rate, and maturity - and every concept that follows revolves around these three.",
   "diagram": [

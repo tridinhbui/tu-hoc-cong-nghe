@@ -5,10 +5,10 @@
   "duration": "5 min",
   "openingQuestion": "DSO (Days Sales Outstanding) = 120 days. What does this mean for a B2B business?",
   "openingOptions": [
-    "High profit margin",
-    "Good, customers trust the company",
-    "Customers pay slowly, capital is tied up for 120 days - needs comparing against industry and contract terms",
-    "It doesn't matter"
+    "High profit margins, since customers keep buying",
+    "Good - it shows customers trust the company enough",
+    "Customers pay slowly, tying up capital for 120 days",
+    "It does not matter, since the revenue is booked anyway"
   ],
   "explanation": "Receivables turnover, usually converted into an average days-to-collect figure, shows how long it typically takes for sales revenue to actually land in the bank. What's reasonable depends entirely on the industry: retail collects immediately so it's a matter of days, while selling to large corporations or the government can normally take months. What's worth watching is the direction of change, because the number stretching out always means cash is arriving slower than revenue is being recorded.",
   "diagram": [

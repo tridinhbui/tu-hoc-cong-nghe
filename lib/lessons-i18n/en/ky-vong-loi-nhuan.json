@@ -4,8 +4,8 @@
   "subtitle": "Realistic return expectations",
   "openingQuestion": "An acquaintance says: 'If you invest in stocks and earn less than 50%/year, it's not worth doing.' Is this claim reasonable?",
   "openingOptions": [
-    "Completely reasonable, since anyone who decides to invest in the stock market should expect to achieve this level of return",
-    "Reasonable if that capital is invested specifically in a group of bank stocks, which always guarantee a very high return every year",
+    "Completely reasonable - anyone investing in stocks should expect that",
+    "Reasonable for bank stocks, which always guarantee a very high return",
     "Not reasonable - long-term returns are usually around 8-12%/year",
     "Reasonable since the common bank savings interest rate currently is also around 50%/year"
   ],

@@ -6,7 +6,6 @@ import { createClient } from "@/lib/supabase";
 import { useI18n } from "@/lib/i18n/context";
 
 // Reads Supabase env vars at render time - never prerender statically.
-export const dynamic = "force-dynamic";
 
 export default function ResetPasswordPage() {
   const { t } = useI18n();

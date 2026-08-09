@@ -314,39 +314,77 @@ export function subscribeToCommunityFeed(onChange: () => void) {
 // only ever created by a database trigger (on comment/reaction insert), not
 // by the client - so there is no createNotification() here on purpose.
 
+/** Hai loại đầu đến từ FinSocial và luôn có `actor_id` + `post_id`. Ba loại
+ *  sau đến từ thao tác của admin (duyệt/từ chối khiếu nại, đóng báo lỗi AI)
+ *  và luôn có `lesson_slug` thay vào đó - xem ràng buộc `_shape_check` trong
+ *  migration 20260901_learner_feedback_notifications.sql, nơi hình dạng này
+ *  được ép ở tầng cơ sở dữ liệu chứ không chỉ ở kiểu TypeScript. */
+export type CommunityNotificationType =
+  | "comment"
+  | "reaction"
+  | "appeal_approved"
+  | "appeal_rejected"
+  | "ai_report_resolved";
+
 export interface CommunityNotification {
   id: number;
-  actor_id: string;
+  actor_id: string | null;
   actor_name: string;
   actor_avatar: string | null;
-  type: "comment" | "reaction";
-  post_id: number;
+  type: CommunityNotificationType;
+  post_id: number | null;
   comment_id: number | null;
   emoji: string | null;
+  lesson_slug: string | null;
+  /** Ghi chú admin, chỉ có ở `appeal_rejected`. */
+  detail: string | null;
   created_at: string;
   read_at: string | null;
 }
 
 interface CommunityNotificationRow {
   id: number;
-  actor_id: string;
-  type: "comment" | "reaction";
-  post_id: number;
+  actor_id: string | null;
+  type: CommunityNotificationType;
+  post_id: number | null;
   comment_id: number | null;
   emoji: string | null;
+  lesson_slug: string | null;
+  detail: string | null;
   created_at: string;
   read_at: string | null;
   actor: { full_name: string | null; avatar_url: string | null } | null;
 }
 
+const NOTIFICATION_SELECT_BASE =
+  "id, actor_id, type, post_id, comment_id, emoji, created_at, read_at, actor:actor_id(full_name, avatar_url)";
+const NOTIFICATION_SELECT = `${NOTIFICATION_SELECT_BASE}, lesson_slug, detail`;
+
+/** `lesson_slug`/`detail` đến từ migration 20260901. Môi trường chưa chạy nó
+ *  sẽ trả 42703 (undefined_column), và PostgREST đổi thành PGRST204 - cùng
+ *  cách phân biệt mà lib/admin/ai-reports.ts đã dùng cho `report_status`. */
+function isMissingNotificationColumn(error: { code?: string } | null): boolean {
+  return error?.code === "42703" || error?.code === "PGRST204";
+}
+
 export async function getNotifications(userId: string, limit = 20): Promise<CommunityNotification[]> {
   const supabase = createClient();
-  const { data, error } = await supabase
-    .from("community_notifications")
-    .select("id, actor_id, type, post_id, comment_id, emoji, created_at, read_at, actor:actor_id(full_name, avatar_url)")
-    .eq("recipient_id", userId)
-    .order("created_at", { ascending: false })
-    .limit(limit);
+  const query = (select: string) =>
+    supabase
+      .from("community_notifications")
+      .select(select)
+      .eq("recipient_id", userId)
+      .order("created_at", { ascending: false })
+      .limit(limit);
+
+  let { data, error } = await query(NOTIFICATION_SELECT);
+
+  // Rơi về tập cột cũ thay vì làm rỗng cả chuông: trước khi migration được
+  // chạy, thông báo comment/reaction vẫn phải hiện bình thường. Chúng không
+  // dùng hai cột mới, nên mất cột không đồng nghĩa mất dữ liệu.
+  if (error && isMissingNotificationColumn(error)) {
+    ({ data, error } = await query(NOTIFICATION_SELECT_BASE));
+  }
 
   if (error) {
     if (isMissingTableError(error)) return [];
@@ -362,6 +400,8 @@ export async function getNotifications(userId: string, limit = 20): Promise<Comm
     post_id: row.post_id,
     comment_id: row.comment_id,
     emoji: row.emoji,
+    lesson_slug: row.lesson_slug ?? null,
+    detail: row.detail ?? null,
     created_at: row.created_at,
     read_at: row.read_at,
   }));

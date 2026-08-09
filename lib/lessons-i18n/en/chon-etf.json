@@ -4,10 +4,10 @@
   "subtitle": "Building a stock portfolio",
   "openingQuestion": "Two ETFs both track VN30, but ETF X has average daily trading volume of 2 million fund certificates, while ETF Y only has 20,000. What factor should make you think twice about ETF Y?",
   "openingOptions": [
-    "ETF Y must definitely be charging a much higher management fee than ETF X even though they track the same index",
-    "There's nothing to worry about, since both funds track the same index so investment performance will be exactly the same",
+    "ETF Y must be charging a much higher management fee than ETF X",
+    "Nothing to worry about - same index means identical performance",
     "Low liquidity makes it hard to buy/sell at a reasonable price",
-    "ETF Y will definitely always deliver a lower return than ETF X even though both track the same benchmark index"
+    "ETF Y will always return less than ETF X, on the same benchmark"
   ],
   "explanation": "Liquidity (trading volume) is one of the important criteria when choosing an ETF, even though it doesn't affect index-tracking performance. A low-liquidity ETF can have a wider bid-ask spread and be harder to match at a desired price, which is especially unfavorable when you need to sell urgently.",
   "diagram": [

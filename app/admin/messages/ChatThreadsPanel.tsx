@@ -12,7 +12,10 @@ import EmojiPicker from "@/components/EmojiPicker";
 import { useI18n } from "@/lib/i18n/context";
 import { intlLocale } from "@/lib/i18n";
 
-const POLL_INTERVAL_MS = 4000;
+// 15 giây, không phải 4. Mỗi nhịp là hai Server Action đọc Supabase, chạy
+// suốt thời gian trang quản trị mở - 900 lần mỗi giờ ở mức 4 giây. Hộp thư
+// quản trị không phải phòng chat thời gian thực.
+const POLL_INTERVAL_MS = 15000;
 
 export default function ChatThreadsPanel({ threads: initialThreads }: { threads: ChatThread[] }) {
   const { t, locale } = useI18n();

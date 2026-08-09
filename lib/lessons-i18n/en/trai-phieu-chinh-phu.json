@@ -5,10 +5,10 @@
  "duration": "6 min",
  "openingQuestion": "Why do Vietnamese government bonds usually carry a lower interest rate than corporate bonds of the same term?",
  "openingOptions": [
-  "Because government bonds are required by regulation to always have a much shorter term than any comparable corporate bond currently outstanding",
+  "Because government bonds must always carry a shorter term",
   "Because the Government has lower default risk than a business",
-  "Because current regulation exempts government bonds entirely from any income tax on the interest received",
-  "Because under current regulation, foreign investors are entirely barred from buying Vietnamese government bonds"
+  "Because interest on government bonds is exempt from tax",
+  "Because foreign investors are barred from buying them"
  ],
  "explanation": "The lower the default risk, the lower a rate investors will accept - that's the risk/return trade-off. A government can tax and print money to repay debt, so it is almost never unable to pay bonds denominated in its own currency, which is why government bond yields become the 'risk-free' benchmark every other bond is measured against.",
  "diagram": [

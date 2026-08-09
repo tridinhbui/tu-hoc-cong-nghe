@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { toast } from "sonner";
 import { Search, Play, ExternalLink, Trash2, Save } from "lucide-react";
 import type { LessonMeta } from "@/lib/lesson-types";
@@ -34,18 +34,23 @@ export default function VideosAdminClient({ lessonsMeta }: VideosAdminClientProp
   const { t } = useI18n();
   const tv = t.adminThree.videosAdminClient;
   const [lessons, setLessons] = useState<LessonWithVideo[]>(lessonsMeta);
-  const [filteredLessons, setFilteredLessons] = useState<LessonWithVideo[]>(lessonsMeta);
+  // Suy ra trong lúc render, không phải state + effect.
+  //
+  // Bản cũ giữ danh sách đã lọc trong state rồi đồng bộ lại bằng useEffect, nên
+  // mỗi lần gõ vào ô tìm kiếm là hai lượt render: một lượt vẽ danh sách CŨ với
+  // từ khoá MỚI, rồi effect chạy, setState, vẽ lại. Ở giữa hai lượt đó bảng
+  // hiển thị một trạng thái không đúng với ô nhập - thấy rõ nhất khi danh sách
+  // dài. Đây là thứ `react-hooks/set-state-in-effect` cảnh báo.
   const [searchQuery, setSearchQuery] = useState("");
   const [editingId, setEditingId] = useState<number | null>(null);
   const [editingUrl, setEditingUrl] = useState("");
   const [saving, setSaving] = useState(false);
 
-  useEffect(() => {
-    const filtered = lessons.filter((l) =>
-      l.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      l.slug.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredLessons = useMemo(() => {
+    const q = searchQuery.toLowerCase();
+    return lessons.filter(
+      (l) => l.title.toLowerCase().includes(q) || l.slug.toLowerCase().includes(q)
     );
-    setFilteredLessons(filtered);
   }, [searchQuery, lessons]);
 
   const handleStartEdit = (lesson: LessonWithVideo) => {

@@ -5,9 +5,9 @@
  "duration": "6 min",
  "openingQuestion": "Instead of putting all 500 million dong into a single 5-year bond, an investor splits it into 5 portions of 100 million each, buying bonds with 1, 2, 3, 4, and 5-year terms. What is this strategy called, and what is its main benefit?",
  "openingOptions": [
-  "It's called 'sector diversification', a concept that reduces credit risk by investing across different business sectors",
-  "This is just randomly buying several different terms with no official strategy name at all",
-  "It's called 'dollar-cost averaging', applied the same way as buying stocks on a monthly schedule",
+  "'Sector diversification' - cutting credit risk across industries",
+  "Just buying assorted terms at random, with no strategy name",
+  "'Dollar-cost averaging', as with buying stocks each month",
   "The ladder strategy - a portion of capital matures every year"
  ],
  "explanation": "The ladder strategy means splitting invested capital into several portions and buying bonds with maturities spread evenly over time (for example 1, 2, 3, 4, 5 years). This way, a portion of capital always matures every year, which can be reinvested at the current rate, reducing the risk of reinvesting all the capital at once right when rates happen to be low, while still maintaining steady liquidity.",

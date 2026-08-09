@@ -12,10 +12,21 @@
   ],
   "explanation": "The balance sheet must ALWAYS balance because every transaction is recorded twice (debit and credit) under the double-entry principle - a system dating back to 15th-century bookkeeping. If it doesn't balance, there is certainly a recording error or deliberate fraud - there is no other possibility.",
   "diagram": [
-    { "label": "A transaction occurs", "arrow": true },
-    { "label": "Debit one side", "arrow": true },
-    { "label": "Credit the other side", "arrow": true },
-    { "label": "Assets = Liabilities + Equity always balances" }
+    {
+      "label": "A transaction occurs",
+      "arrow": true
+    },
+    {
+      "label": "Debit one side",
+      "arrow": true
+    },
+    {
+      "label": "Credit the other side",
+      "arrow": true
+    },
+    {
+      "label": "Assets = Liabilities + Equity always balances"
+    }
   ],
   "realWorldExample": {
     "company": "Enron (2001)",
@@ -35,8 +46,8 @@
     {
       "question": "What does the double-entry principle mean?",
       "options": [
-        "Every transaction must match the bank statement",
-        "Every transaction must be signed off by two accountants",
+        "Every transaction must be matched against the bank statement",
+        "Every transaction must be signed off by two separate accountants",
         "Every transaction is recorded into at least two accounts",
         "Every transaction is recorded in the journal, then recorded again in the report"
       ],
@@ -70,7 +81,7 @@
         "Position: current on the asset side, non-current on the financing side",
         "Value: non-current assets are always bigger than current ones"
       ],
-      "explanation": "The classification is based on the operating cycle or a one-year horizon."
+      "explanation": "Depreciation follows from an asset being non-current, it does not define it, and both classes sit on the same asset side of the sheet. Size is irrelevant - a bank holds far more current than non-current assets. The line is the operating cycle, or one year."
     },
     {
       "question": "At what point in time is a balance sheet prepared?",
@@ -143,12 +154,18 @@
       "type": "lead",
       "text": "Enron was once one of the largest energy conglomerates in the United States, until people discovered the company had used off-balance-sheet entities to hide billions of dollars of debt. Its 2001 collapse is a reminder that a balance sheet has to reflect true substance, not just 'balance' numerically."
     },
-    { "type": "heading", "text": "Double-entry bookkeeping: the double-recording principle" },
+    {
+      "type": "heading",
+      "text": "Double-entry bookkeeping: the double-recording principle"
+    },
     {
       "type": "paragraph",
       "text": "Double-entry bookkeeping is a recording system in which every economic transaction is recorded into at least two different accounts, with total Debit value always equal to total Credit value. This principle, developed in 15th-century Italy, is exactly why the balance sheet always has to 'balance' - just as its name implies."
     },
-    { "type": "heading", "text": "Why an imbalance is a serious warning sign" },
+    {
+      "type": "heading",
+      "text": "Why an imbalance is a serious warning sign"
+    },
     {
       "type": "paragraph",
       "text": "Because every valid transaction automatically keeps the equation Assets = Liabilities + Equity in balance, if an accountant finds the two sides don't match, it can only be due to one of two causes: a recording error (missing one leg of an entry, entering the wrong amount) or deliberate fraud (intentionally failing to recognise obligations in full, as in Enron's use of satellite companies to hide debt from the consolidated balance sheet)."
@@ -170,10 +187,26 @@
       "type": "conceptTable",
       "title": "Bookkeeping and audit terminology",
       "concepts": [
-        { "vi": "Ghi sổ kép", "en": "Double-entry Bookkeeping", "def": "Every transaction is recorded into at least two accounts, with total Debits always equal to total Credits." },
-        { "vi": "Ghi Nợ / Ghi Có", "en": "Debit / Credit", "def": "The two opposing recording sides in every accounting entry." },
-        { "vi": "Ngoài bảng cân đối", "en": "Off-balance-sheet", "def": "Financial obligations structured so they don't appear directly on the consolidated balance sheet." },
-        { "vi": "Kiểm toán độc lập", "en": "External Audit", "def": "A third party verifying that financial statements truthfully reflect a business's situation." }
+        {
+          "vi": "Ghi sổ kép",
+          "en": "Double-entry Bookkeeping",
+          "def": "Every transaction is recorded into at least two accounts, with total Debits always equal to total Credits."
+        },
+        {
+          "vi": "Ghi Nợ / Ghi Có",
+          "en": "Debit / Credit",
+          "def": "The two opposing recording sides in every accounting entry."
+        },
+        {
+          "vi": "Ngoài bảng cân đối",
+          "en": "Off-balance-sheet",
+          "def": "Financial obligations structured so they don't appear directly on the consolidated balance sheet."
+        },
+        {
+          "vi": "Kiểm toán độc lập",
+          "en": "External Audit",
+          "def": "A third party verifying that financial statements truthfully reflect a business's situation."
+        }
       ]
     },
     {

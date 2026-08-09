@@ -555,7 +555,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
     setSubmitted(newSubmitted);
     setFirstResults(newFirst);
 
-    void recordQuizMistake(persistedLessonId, qi, ok);
+    void recordQuizMistake(persistedLessonId, qi, ok, quiz[qi].question);
     saveQuizAnswers(persistedLessonId, {
       selected,
       submitted: newSubmitted,

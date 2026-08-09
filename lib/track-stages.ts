@@ -185,7 +185,10 @@ export const TRACK_PROFESSIONAL = {
       label: "Chặng 1",
       name: "Kế toán nền tảng",
       days: [21, 40] as [number, number],
-      extraLessonIds: [1244],
+      // 1051 (khau-hao) là bài bổ trợ của 30 (khau-hao-co-ban), vốn nằm trong
+      // dải 21-40 này. Không có dòng này thì bài chỉ vào được từ trang CFA và
+      // không hiện trong giáo trình chuyên ngành.
+      extraLessonIds: [1051, 1244],
       available: true,
       parts: [
         { name: "Ngôn ngữ kế toán và bảng cân đối", days: [21, 30] as [number, number] },
@@ -203,7 +206,9 @@ export const TRACK_PROFESSIONAL = {
       // Ba bài đọc-sâu nằm ngoài dải ngày vì chúng được viết sau, khi đo ra
       // rằng chặng này dạy đọc ba bảng số mà không dạy đọc thuyết minh, không
       // dạy chuẩn hoá theo tỷ trọng, và không nhắc tới ý kiến kiểm toán ở đâu.
-      extraLessonIds: [1690, 1691, 1692],
+      // 1053 (bao-cao-luu-chuyen-tien-te) là bài bổ trợ của 52
+      // (cash-flow-statement-la-gi), vốn nằm trong dải 41-60 này.
+      extraLessonIds: [1053, 1690, 1691, 1692],
       available: true,
       parts: [
         { name: "Income Statement và Balance Sheet", days: [41, 50] as [number, number] },
@@ -229,6 +234,9 @@ export const TRACK_PROFESSIONAL = {
       label: "Chặng 4",
       name: "Giá trị thời gian của tiền",
       days: [81, 100] as [number, number],
+      // 1047 (on-tap-npv) đúng chủ đề chặng này - bài mở màn của nó là 81
+      // present-value. Không có dòng này thì bài chỉ vào được từ trang CFA.
+      extraLessonIds: [1047],
       available: true,
       parts: [
         { name: "PV, FV và các công cụ chiết khấu", days: [81, 90] as [number, number] },

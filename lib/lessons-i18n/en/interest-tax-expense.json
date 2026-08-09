@@ -12,10 +12,21 @@
   ],
   "explanation": "The last two lines before net profit reflect two things that don't belong to the business itself: interest comes from a decision about how much to borrow, and tax comes from where the company is registered and what incentives apply. The key point is that interest is subtracted before tax is calculated, so every dong of interest paid also lowers the tax bill - that's the tax shield, and it means the real cost of debt is lower than the rate written on the loan.",
   "diagram": [
-    { "label": "EBIT", "arrow": true },
-    { "label": "Subtract interest expense: gives pre-tax profit", "arrow": true },
-    { "label": "Pay tax on that amount", "arrow": true },
-    { "label": "What's left is net income - interest is deductible, so it creates a tax shield" }
+    {
+      "label": "EBIT",
+      "arrow": true
+    },
+    {
+      "label": "Subtract interest expense: gives pre-tax profit",
+      "arrow": true
+    },
+    {
+      "label": "Pay tax on that amount",
+      "arrow": true
+    },
+    {
+      "label": "What's left is net income - interest is deductible, so it creates a tax shield"
+    }
   ],
   "realWorldExample": {
     "company": "Novaland (NVL)",
@@ -50,7 +61,7 @@
         "Earnings Business Total, the sum of profit across every business segment",
         "After-tax profit, but before any dividend is paid to shareholders"
       ],
-      "explanation": "EBT = EBIT - Interest = profit after interest but before tax."
+      "explanation": "The B in EBT is 'before', not 'business' or 'total' - it marks a point in the income statement, not a sum across segments. And it sits before tax, not after: subtracting tax from EBT is the step that produces Net Income."
     },
     {
       "question": "Net Income = ?",
@@ -60,7 +71,7 @@
         "EBIT, since interest and tax have already been subtracted above",
         "EBT − Interest, since interest is always subtracted after tax is calculated"
       ],
-      "explanation": "Net Income = EBT - Tax = (Revenue - COGS - OpEx - Interest) - Tax."
+      "explanation": "Revenue minus COGS stops at gross profit, well above the bottom line, and EBIT is measured before interest and tax rather than after. Interest is subtracted before tax is computed, not after - tax is charged on the post-interest figure."
     },
     {
       "question": "Company A: EBIT 200, Interest 50, Tax Rate 20%. Net Income = ?",
@@ -110,7 +121,7 @@
         "Net Income falls, because a higher tax bill must be paid",
         "It's good, since a higher tax bill shows the company is earning more"
       ],
-      "explanation": "If EBT stays steady, a rising Tax Rate raises Tax Expense, which lowers NI."
+      "explanation": "Tax expense is a line on the income statement, so it cannot sit outside it. A higher rate does make each unit of interest shield slightly more tax, but the larger effect is a bigger tax bill on the same EBT, leaving shareholders less."
     },
     {
       "question": "A company has positive Net Income, but what hidden danger might it reveal?",
@@ -163,17 +174,26 @@
       "type": "lead",
       "text": "After EBIT, there are only two more steps to Net Income: subtract interest, then subtract tax. These two steps look simple but reflect two different strategic decisions - capital structure and tax-management efficiency."
     },
-    { "type": "heading", "text": "Interest Expense: the price of using debt" },
+    {
+      "type": "heading",
+      "text": "Interest Expense: the price of using debt"
+    },
     {
       "type": "paragraph",
       "text": "Interest Expense is the amount a business must pay on its outstanding loans and bonds. EBIT − Interest Expense = EBT (Earnings Before Tax). A highly leveraged business (heavy borrowing) will have large Interest Expense, pulling EBT down much further than a similar business that borrows little, even though both have the same EBIT."
     },
-    { "type": "heading", "text": "Tax Expense: an obligation to the state" },
+    {
+      "type": "heading",
+      "text": "Tax Expense: an obligation to the state"
+    },
     {
       "type": "paragraph",
       "text": "Tax Expense (corporate income tax expense) = EBT × the effective tax rate. In Vietnam the standard rate is 20%, but each company's actual effective rate can differ due to tax incentives, loss carryforwards, or operating across multiple jurisdictions. Net Income = EBT − Tax Expense = EBT × (1 − Tax Rate)."
     },
-    { "type": "heading", "text": "The tax shield: why debt is 'cheaper' than equity after tax" },
+    {
+      "type": "heading",
+      "text": "The tax shield: why debt is 'cheaper' than equity after tax"
+    },
     {
       "type": "paragraph",
       "text": "Because interest is deducted before tax is calculated, every dong of interest paid saves the business a portion of the tax it owes - called the tax shield. **Example:** 100 billion of interest at a 20% tax rate saves 20 billion in tax, so the 'real' after-tax interest cost is only 80 billion. This is why, in corporate finance theory, the cost of debt is always calculated on an after-tax basis."
@@ -196,10 +216,26 @@
       "type": "conceptTable",
       "title": "Interest & Tax terminology",
       "concepts": [
-        { "vi": "Chi phí lãi vay", "en": "Interest Expense", "def": "The cost owed on loans and bonds outstanding during the period" },
-        { "vi": "Lợi nhuận trước thuế", "en": "Earnings Before Tax (EBT)", "def": "EBIT minus Interest Expense" },
-        { "vi": "Chi phí thuế thu nhập doanh nghiệp", "en": "Tax Expense", "def": "EBT multiplied by the effective tax rate" },
-        { "vi": "Lá chắn thuế", "en": "Tax Shield", "def": "The tax saved because interest is deductible before tax" }
+        {
+          "vi": "Chi phí lãi vay",
+          "en": "Interest Expense",
+          "def": "The cost owed on loans and bonds outstanding during the period"
+        },
+        {
+          "vi": "Lợi nhuận trước thuế",
+          "en": "Earnings Before Tax (EBT)",
+          "def": "EBIT minus Interest Expense"
+        },
+        {
+          "vi": "Chi phí thuế thu nhập doanh nghiệp",
+          "en": "Tax Expense",
+          "def": "EBT multiplied by the effective tax rate"
+        },
+        {
+          "vi": "Lá chắn thuế",
+          "en": "Tax Shield",
+          "def": "The tax saved because interest is deductible before tax"
+        }
       ]
     },
     {

@@ -222,7 +222,7 @@ export default function TechnicalInterviewPage() {
     // questionIndex is 0 because each bank question stands alone rather than
     // being the nth question of a lesson - the review action understands that
     // convention. Fire-and-forget, same as the lesson quiz caller.
-    void recordQuizMistake(q.lessonId, 0, ok);
+    void recordQuizMistake(q.lessonId, 0, ok, q.question);
   }
 
   function next() {

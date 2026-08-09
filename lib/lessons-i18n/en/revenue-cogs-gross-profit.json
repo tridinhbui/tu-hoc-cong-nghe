@@ -111,7 +111,7 @@
         "Production wages, raw materials, and factory energy costs",
         "Interest expense and corporate income tax owed"
       ],
-      "explanation": "COGS = direct costs. Marketing, admin, and R&D are Operating Expense, not COGS."
+      "explanation": "COGS covers only what varies with producing the goods sold. Office salaries, marketing and administration are operating expenses below the gross profit line, and interest and tax are further down still - none belong in COGS."
     },
     {
       "question": "If a company wants to improve Gross Profit, what should it do?",
@@ -121,7 +121,7 @@
         "Borrow more capital to expand production capacity faster",
         "Raise prices, cut COGS, or shift the product mix"
       ],
-      "explanation": "GP = Revenue - COGS. Raising Revenue or cutting COGS both improve GP."
+      "explanation": "Gross profit is revenue minus COGS, so only those two lines move it. Cutting marketing and administration lowers operating expense further down, and borrowing changes interest expense; cutting the price lowers gross profit outright."
     },
     {
       "question": "A company sells two products: A (GP 30%) and B (GP 50%). To optimise profit, what should it do?",

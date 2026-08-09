@@ -5,10 +5,10 @@
   "duration": "6 min",
   "openingQuestion": "An investment fund returns 15%/year while its matching benchmark index only rises 10%/year at the same level of risk. What is this 5% gap called?",
   "openingOptions": [
-    "Alpha - the excess return over the benchmark after adjusting for risk, reflecting the fund manager's genuine 'skill'",
-    "Beta",
-    "Sharpe Ratio",
-    "Risk premium"
+    "Alpha - the risk-adjusted excess return over the benchmark",
+    "Beta - the fund's sensitivity to broad market movements",
+    "Sharpe Ratio - the return earned per unit of total risk taken",
+    "Risk premium - the compensation demanded for bearing risk"
   ],
   "explanation": "Alpha measures the return a portfolio/fund generates ABOVE what the market (a benchmark carrying the same risk level) delivers. Positive alpha means the manager is creating real value through asset selection or timing skill; negative alpha means the fund underperforms its benchmark even after accounting for risk.",
   "diagram": [

@@ -150,6 +150,19 @@
       "lines": [
         "When Interest Coverage falls rapidly and continuously, that's a signal to act before the bond market panics, not after."
       ]
+    },
+    {
+      "type": "list",
+      "items": [
+        "Utilities: cash flow is regulated and highly stable, so the market accepts higher leverage and a lower ICR than in other sectors",
+        "Fast-moving consumer goods: stable too, but it needs a thicker buffer, because input prices and competition move faster",
+        "Technology and software: usually carry very little debt, so the ICR runs so high that the number loses comparative meaning"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Four limits of this ratio",
+      "text": "Operating profit is not cash: a business can post good profit while working capital locks all the money up. The ratio also excludes principal repayment - to cover both principal and interest, use the debt service coverage ratio instead. It is a snapshot of one period, so the three-to-five-year trend matters more than any single reading. And because the numerator is an accounting figure, accounting choices can flatter it."
     }
   ]
 }

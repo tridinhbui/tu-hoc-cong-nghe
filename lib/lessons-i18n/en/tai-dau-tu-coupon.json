@@ -5,10 +5,10 @@
  "duration": "6 min",
  "openingQuestion": "You buy a 5-year bond, 8%/year coupon, receiving cash interest every year. If you don't reinvest that interest (just leave it in a non-yielding account) and spend it right away, what happens to the actual return you end up receiving compared to the advertised 8% figure?",
  "openingOptions": [
-  "It will always be higher than the originally announced 8%, since the longer the holding period, the more the actual return tends to rise",
+  "Always higher than 8%, since a longer holding period lifts the return",
   "The whole-period return can end up below 8% due to reinvestment risk",
-  "It has nothing at all to do with whether you decide to reinvest the coupon interest you've received",
-  "It stays exactly 8%/year as originally advertised, since that's the coupon fixed at issuance"
+  "Nothing to do with whether the coupon is reinvested or spent",
+  "Exactly 8%/year, since the coupon was fixed at issuance"
  ],
  "explanation": "The 'yield to maturity' figure issuers usually announce assumes you reinvest every coupon you receive at exactly that same yield. If in reality you don't reinvest (or reinvest at a lower rate), the total actual return you receive over the whole term will be lower than the originally advertised figure. This is called reinvestment risk.",
  "diagram": [
