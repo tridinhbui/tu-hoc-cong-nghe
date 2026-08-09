@@ -548,8 +548,17 @@ export function getPairConfig(gameType: GameType, difficulty: GameDifficulty = "
   return { ...base, roundSize: scaleRoundSize(base.roundSize, base.pool.length, difficulty) };
 }
 
-export function pickPairRound(gameType: GameType, difficulty: GameDifficulty = "trung-binh"): { left: string; right: string }[] {
-  const cfg = getPairConfig(gameType, difficulty);
+/**
+ * Rút một ván từ MỘT cấu hình đã có sẵn.
+ *
+ * Nhận `cfg` thay vì `gameType` là điều kiện để dịch được, không phải sở
+ * thích về kiểu dáng. Bản trước nhận `gameType` rồi tự gọi `getPairConfig`,
+ * nên nó luôn rút từ pool TIẾNG VIỆT kể cả khi component vừa dịch pool đó
+ * xong: bản dịch nằm trong biến `config` còn ván chơi đến từ một nguồn khác.
+ * Kết quả là nhãn cột tiếng Anh đứng trên thẻ bài tiếng Việt - không lỗi,
+ * không cảnh báo, chỉ là một màn hình nửa nọ nửa kia.
+ */
+export function pickPairRoundFrom(cfg: PairConfig): { left: string; right: string }[] {
   const shuffled = [...cfg.pool].sort(() => Math.random() - 0.5);
 
   const result: { left: string; right: string }[] = [];

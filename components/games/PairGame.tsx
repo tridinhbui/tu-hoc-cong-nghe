@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState, useRef } from "react";
 import { RefreshCw, Timer } from "lucide-react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
-import { getPairConfig, pickPairRound, getDifficultyTimeLimitSeconds, recordGameSession, type GameType, type GameDifficulty } from "@/lib/games";
+import { getPairConfig, pickPairRoundFrom, getDifficultyTimeLimitSeconds, recordGameSession, type GameType, type GameDifficulty } from "@/lib/games";
 import { soundManager } from "@/lib/sounds";
 import { useI18n } from "@/lib/i18n/context";
 import { localizePairConfig } from "@/lib/games-i18n";
@@ -32,14 +32,18 @@ function shuffle<T>(arr: T[]): T[] {
 export default function PairGame({ userId, gameType, difficulty = "trung-binh", onFinished }: Props) {
   const { t, locale } = useI18n();
   const pg = t.games.pairGame;
-  // Chỉ NHÃN CỘT và câu hướng dẫn được dịch. `config.pool` giữ nguyên tiếng
-  // Việt: với `en-vi-terms` thì chính vế tiếng Việt là đề bài.
+  // Ván chơi phải rút TỪ `config`, không phải từ pickPairRound(gameType):
+  // hàm đó tự gọi lại getPairConfig nên luôn trả về pool tiếng Việt, và nhãn
+  // cột đã dịch sẽ đứng trên những thẻ bài chưa dịch.
+  //
+  // `config.pool` của `en-vi-terms` và `ticker-match` vẫn nguyên tiếng Việt -
+  // đó là ràng buộc của lớp phủ, không phải việc của file này.
   const config = useMemo(
     () => localizePairConfig(getPairConfig(gameType, difficulty), gameType, locale),
     [gameType, difficulty, locale]
   );
   const timeLimit = getDifficultyTimeLimitSeconds(difficulty);
-  const [round, setRound] = useState<{ left: string; right: string }[]>(() => pickPairRound(gameType, difficulty));
+  const [round, setRound] = useState<{ left: string; right: string }[]>(() => pickPairRoundFrom(config));
   const [leftOrder, setLeftOrder] = useState<number[]>([]);
   const [rightOrder, setRightOrder] = useState<number[]>([]);
   const [leftCards, setLeftCards] = useState<Record<number, CardState>>({});
@@ -63,7 +67,7 @@ export default function PairGame({ userId, gameType, difficulty = "trung-binh", 
   const roundLenRef = useRef(0);
 
   function startNewRound() {
-    const newRound = pickPairRound(gameType, difficulty);
+    const newRound = pickPairRoundFrom(config);
     const indices = newRound.map((_, i) => i);
     setRound(newRound);
     setLeftOrder(shuffle(indices));
