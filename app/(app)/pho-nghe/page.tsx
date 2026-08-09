@@ -100,7 +100,8 @@ export default async function PhoNghePage({
     .filter((r) => new Date(r.next_recall_at).getTime() <= now)
     .map((r) => r.lesson_id);
 
-  let name = user.user_metadata?.full_name || user.email?.split("@")[0] || "Người học";
+  const t = getDictionary(await getServerLocale());
+  let name = user.user_metadata?.full_name || user.email?.split("@")[0] || t.miscUi.defaultLearner;
   let avatarUrl: string | null = user.user_metadata?.avatar_url || null;
   let level = 1;
   const { data: profile } = await supabase

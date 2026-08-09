@@ -1,5 +1,6 @@
 export const miscUiVi = {
   miscUi: {
+    careerQuestionLabel: "Câu hỏi theo nghề",
     defaultLearner: "Người học",
     announcementBanner: {
       closeLabel: "Đóng thông báo",
@@ -162,6 +163,7 @@ export const miscUiVi = {
 
 export const miscUiEn: typeof miscUiVi = {
   miscUi: {
+    careerQuestionLabel: "Career question",
     defaultLearner: "Learner",
     announcementBanner: {
       closeLabel: "Close notification",
