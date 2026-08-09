@@ -29,3 +29,13 @@ jobs:
       # here rather than in prebuild keeps local dev loops unblocked while
       # still catching new lessons that skip a diagram.
       - run: npm run audit:lessons
+
+      # Kho tiếng Anh có ĐƯỜNG CƠ SỞ RIÊNG và nó phải chạy riêng: mọi cổng độ
+      # dài đều đo số ký tự, mà dịch một câu là đổi cả bốn độ dài phương án.
+      # AGENTS.md nói "Run both", nhưng suốt đời tệp này chỉ có bản tiếng Việt
+      # ở đây - nên "cổng" tiếng Anh chỉ tồn tại lúc có người nhớ gõ tay.
+      #
+      # Nó vừa chứng minh điều đó: bản dịch mới nhất làm audit tiếng Anh đỏ vì
+      # một phần giải thích 75 ký tự, và không có gì chặn được lần đẩy đó.
+      # 1,2 giây, đúng bằng bản tiếng Việt ngay trên.
+      - run: npm run audit:lessons:en

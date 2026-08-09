@@ -12,20 +12,27 @@
 # (API trả 403 "Upgrade to GitHub Pro"). Không chặn được ở phía máy chủ thì chỗ
 # chặn được duy nhất là ở đây, trước khi commit rời khỏi máy.
 #
-# Khoảng 25 giây: typecheck ~13s, test ~10s (đã gồm 2s sinh dữ liệu bài học),
-# audit:lessons ~2s.
+# Khoảng 26 giây: typecheck ~13s, test ~10s (đã gồm 2s sinh dữ liệu bài học),
+# audit:lessons ~1,2s, audit:lessons:en ~1,2s.
+#
+# Bốn bước chứ không ba: kho tiếng Anh có đường cơ sở riêng vì mọi cổng độ dài
+# đo số ký tự, và dịch một câu là đổi cả bốn độ dài phương án. Trước đây nó
+# đứng ngoài cả CI lẫn hook, nên nó chỉ là cổng lúc có người nhớ gõ tay.
 #
 # Cần đẩy gấp và biết mình đang làm gì: `git push --no-verify`.
 
 set -e
 
-printf '\n[pre-push] 1/3 typecheck\n'
+printf '\n[pre-push] 1/4 typecheck\n'
 npm run typecheck
 
-printf '\n[pre-push] 2/3 test\n'
+printf '\n[pre-push] 2/4 test\n'
 npm test
 
-printf '\n[pre-push] 3/3 audit:lessons\n'
+printf '\n[pre-push] 3/4 audit:lessons\n'
 npm run audit:lessons
 
-printf '\n[pre-push] xanh cả ba, đẩy tiếp.\n'
+printf '\n[pre-push] 4/4 audit:lessons:en\n'
+npm run audit:lessons:en
+
+printf '\n[pre-push] xanh cả bốn, đẩy tiếp.\n'
