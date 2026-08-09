@@ -88,36 +88,46 @@ const IS_LESSON_CONTENT = (rel) =>
     rel
   );
 
-/** Tệp dữ liệu đã có lớp phủ dịch riêng, phát hiện bằng cách nhìn xem có thư
- *  mục `<tên>-i18n/` nằm cạnh nó không - không phải bằng một danh sách viết tay.
+/** Tệp dữ liệu đã dịch XONG, kèm tên cổng chịu trách nhiệm cho lời khẳng định đó.
  *
- *  VÌ SAO CẦN. `lib/finance-careers.ts` là 1.239 chuỗi tiếng Việt, và sau khi
- *  dịch xong đủ 44/44 nghề sang `lib/finance-careers-i18n/` thì nó VẪN bị đếm
- *  đủ 1.239 - đứng đầu bảng "nặng nhất". Con số ấy nói rằng chưa ai động vào,
- *  trong khi việc đã xong và có cổng giữ.
+ *  Tách một tệp ra khỏi tổng là nói "việc này xong rồi", nên đây cố ý là một
+ *  BẢNG KHAI BÁO chứ không phải suy ra từ tên thư mục. Bản đầu của chỗ này dùng
+ *  heuristic "có thư mục lib/<tên>-i18n/ nằm cạnh không", và nó sai hai chiều
+ *  cùng lúc:
  *
- *  Đây cùng một lỗi phân loại với việc đếm `vi.ts` là chuỗi chưa dịch: những
- *  literal đó là NGUỒN của một quy trình dịch, không phải chỗ hỏng. Nên chúng
- *  được tách ra và in riêng kèm tên quy trình sở hữu, đúng cách nội dung bài
- *  học đang được xử lý - báo cáo, chứ không giấu đi.
+ *    - `lib/cfa-glossary-terms.ts` KHÔNG được tách dù đã xong, vì thư mục của
+ *      nó tên `cfa-glossary-i18n` - một thư mục phục vụ HAI tệp nguồn, và quy
+ *      ước một-đổi-một không diễn đạt được điều đó.
+ *    - Chiều ngược lại nguy hiểm hơn: chỉ cần tạo thư mục là tệp biến khỏi
+ *      tổng, kể cả khi bên trong mới dịch một mục. Nghĩa là con số tụt xuống
+ *      vì có người BẮT ĐẦU làm, không phải vì làm xong.
  *
- *  Cặp tệp/thư mục nhận ra nhau qua tên: `lib/x.ts` với `lib/x-i18n/`. Quy ước
- *  ấy giờ là hợp đồng, và IS_TRANSLATION_DIR ở trên dựa vào đúng nó.
+ *  Điều kiện để thêm một dòng vào đây: bộ kiểm được nêu tên phải có phép kiểm
+ *  bắt buộc đủ 100%, và phép kiểm ấy phải đỏ khi thêm bản ghi mới mà quên dịch.
+ *  Đường dẫn bộ kiểm được xác minh là có thật ngay bên dưới, nên một dòng chết
+ *  ở đây sẽ báo lỗi chứ không âm thầm giấu việc.
  *
- *  TÁCH RA LÀ MỘT LỜI KHẲNG ĐỊNH ĐÃ XONG, nên chỉ đặt tên thư mục theo tệp
- *  SAU KHI cổng đi kèm bắt buộc đủ 100%. `lib/finance-careers.ts` đủ điều kiện:
- *  44/44 nghề, và career-translations.test.ts đỏ nếu thêm nghề mà quên dịch.
- *
- *  `lib/cfa-glossary-terms.ts` thì KHÔNG, và nó vẫn nằm trong tổng - đúng, vì
- *  mới dịch 10/118. Nhưng hôm nay nó thoát khỏi luật này vì lý do sai: thư mục
- *  của nó tên `cfa-glossary-i18n` chứ không phải `cfa-glossary-terms-i18n`, do
- *  nó phục vụ CẢ `frm-glossary-terms.ts`. Đừng đổi tên thư mục cho "khớp quy
- *  ước" trước khi cổng đủ-100% có mặt: làm thế là giấu 108 thuật ngữ chưa dịch
- *  sau một dòng chữ nói rằng chúng đã xong. */
-const HAS_OVERLAY = (rel) => {
-  const m = /^lib\/([^/]+)\.ts$/.exec(rel);
-  return m ? existsSync(path.join(root, "lib", `${m[1]}-i18n`)) : false;
-};
+ *  Khác với IS_TRANSLATION_DIR ở trên - cái đó khớp mẫu vì nó lặp lại một cách
+ *  máy móc ở mọi bộ. Cái này thì không: mỗi dòng là một lời khẳng định riêng. */
+const OVERLAY_COMPLETE = new Map([
+  ["lib/finance-careers.ts", "lib/__tests__/career-translations.test.ts"],
+  ["lib/cfa-glossary-terms.ts", "lib/__tests__/glossary-translations.test.ts"],
+  ["lib/frm-glossary-terms.ts", "lib/__tests__/frm-glossary-translations.test.ts"],
+  ["lib/cfa-formulas-data.ts", "lib/__tests__/cfa-formulas-translations.test.ts"],
+  ["lib/frm-formulas-data.ts", "lib/__tests__/frm-formulas-translations.test.ts"],
+]);
+
+for (const [source, gate] of OVERLAY_COMPLETE) {
+  if (!existsSync(path.join(root, gate))) {
+    console.error(
+      `OVERLAY_COMPLETE trỏ tới một bộ kiểm không tồn tại: ${gate} (cho ${source}).\n` +
+        `Không có cổng thì không có cơ sở để tách ${source} ra khỏi tổng.`
+    );
+    process.exit(1);
+  }
+}
+
+const HAS_OVERLAY = (rel) => OVERLAY_COMPLETE.has(rel);
 
 /** JSX attributes whose string value is rendered or read out to the user. */
 const DISPLAY_ATTRS = new Set([

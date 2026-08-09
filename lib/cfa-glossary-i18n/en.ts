@@ -511,4 +511,251 @@ export const glossaryEn: Record<string, GlossaryTranslation> = {
       "p is NOT the probability that H₀ is true - that is the most common misreading. It is the probability of seeing data like this IF H₀ were true.",
     example: "p = 0.03 rejects H₀ at the 5% level but not at the 1% level.",
   },
+
+  "quant-011": {
+    definition:
+      "The distribution of the sample mean tends to normal as the sample grows, whatever shape the underlying distribution has.",
+    cfaTip:
+      "n ≥ 30 is the conventional threshold. This is why a normal distribution works for mean returns while daily returns are skewed with fat tails.",
+  },
+
+  "quant-012": {
+    definition:
+      "Bias from data containing only what survived to the end of the period - funds and companies that closed are missing from the sample.",
+    cfaTip:
+      "It always makes an industry's average performance look BETTER than it was. Same family as look-ahead bias and time-period bias - the three sampling errors the exam asks about together.",
+  },
+
+  "quant-013": {
+    definition:
+      "The distribution of a variable whose logarithm is normally distributed; always positive and right-skewed.",
+    cfaTip:
+      "Use it for asset PRICES, and the normal distribution for continuous RETURNS. Prices cannot go negative, so modelling them as normal is wrong from the start.",
+  },
+
+  "econ-009": {
+    definition:
+      "Producing a good at a lower opportunity cost than your partner, even while being less efficient at everything.",
+    cfaTip:
+      "Different from ABSOLUTE advantage. Trade still benefits both sides where comparative advantage exists, even if one side is better at everything - that is where the exam sets the trap.",
+  },
+
+  "econ-010": {
+    definition: "Heavy government borrowing pushes rates up and reduces private sector investment.",
+    cfaTip:
+      "The main argument against fiscal stimulus. How much crowding out happens depends on where the economy sits relative to potential output - it is strongest near full employment.",
+  },
+
+  "econ-011": {
+    definition:
+      "Prices and wages do not adjust immediately to supply and demand, so a demand shock hits output before it hits prices.",
+    cfaTip:
+      "The foundation of Keynesian economics, and the reason monetary policy works in the short run. In the long run prices become flexible again and only inflation moves.",
+  },
+
+  "econ-012": {
+    definition:
+      "In the pair A/B, B is the base currency and A is the price currency: the rate says how much A buys one B.",
+    cfaTip:
+      "Reading the pair backwards loses more marks than anything else in Economics. Write down which one is the base before doing any calculation.",
+    example: "USD/VND = 25,400 means 1 USD buys 25,400 VND; USD is the base, VND the price currency.",
+  },
+
+  "econ-013": {
+    definition:
+      "The gap between the forward rate and the spot rate; positive when the base currency is more expensive forward.",
+    cfaTip:
+      "The HIGHER interest rate currency always trades at a forward discount - otherwise a riskless arbitrage would exist.",
+  },
+
+  "fsa-009": {
+    definition:
+      "A tax obligation arising when accounting profit exceeds taxable profit through a temporary difference, typically accelerated depreciation in the tax books.",
+    cfaTip:
+      "Only TEMPORARY differences create deferred tax; permanent ones (a non-deductible fine, say) do not - they only change the effective tax rate.",
+  },
+
+  "fsa-010": {
+    definition:
+      "How a lease is classified, which decides where the cost lands on the income statement and the cash flow statement.",
+    cfaTip:
+      "Under IFRS 16 the lessee treats every lease as a finance lease; US GAAP still keeps both types. So comparing an IFRS company's EBITDA with a US GAAP company's is not comparing the same measure.",
+  },
+
+  "fsa-011": {
+    definition:
+      "Capitalising puts the spend on the balance sheet and depreciates it; expensing takes it through profit in full this period.",
+    cfaTip:
+      "Capitalising makes first-year profit and assets HIGHER, and operating cash flow higher too (the outflow moves to investing). Total cash flow is unchanged - only where it sits.",
+  },
+
+  "fsa-012": {
+    definition:
+      "Presenting every line as a percentage of one common base - revenue for the income statement, total assets for the balance sheet.",
+    cfaTip:
+      "The only way to compare a trillion-dong company directly with a hundred-billion one. Also the fastest way to spot a cost structure drifting across years.",
+  },
+
+  "fsa-013": {
+    definition:
+      "The part of profit not backed by cash. The larger the accruals, the more the profit rests on accounting estimates.",
+    cfaTip:
+      "High and persistent accruals are the strongest early warning in financial statement analysis - stronger than any single ratio.",
+  },
+
+  "corp-008": {
+    definition:
+      "The conflict of interest between management and shareholders, or between shareholders and creditors.",
+    cfaTip:
+      "The root of almost every corporate governance question at Level I. Paying management in shares reduces the conflict with shareholders but INCREASES the one with creditors.",
+  },
+
+  "corp-009": {
+    definition:
+      "The cost of the next unit of capital raised, which rises as the business exhausts its cheaper sources.",
+    cfaTip:
+      "Project appraisal must use the MARGINAL cost of capital, not the historical WACC - capital already raised is sunk and says nothing about a new project.",
+  },
+
+  "corp-010": {
+    definition: "Money already spent and unrecoverable, independent of the decision ahead.",
+    cfaTip:
+      "Do NOT put it in the project cash flows. Opportunity cost and knock-on effects on other products, by contrast, MUST go in - the exam asks about the pair together.",
+  },
+
+  "corp-011": {
+    definition:
+      "Businesses prefer retained earnings first, then debt, and issue equity only as a last resort.",
+    cfaTip:
+      "It comes from information asymmetry: the market reads an equity issue as management signalling that the shares look expensive.",
+  },
+
+  "eq-007": {
+    definition:
+      "The share of stock actually tradable, after removing restricted holdings and strategic stakes.",
+    cfaTip:
+      "Most modern indices weight by FREE-FLOAT ADJUSTED market cap, not full market cap - which is why a large state-owned company can carry a small index weight.",
+  },
+
+  "eq-008": {
+    definition:
+      "An index that averages the prices of its constituents and divides by an adjusting divisor.",
+    cfaTip:
+      "High-priced shares dominate the index regardless of company size. A stock split changes the weighting while the business is unchanged - the core flaw of this index type.",
+  },
+
+  "eq-009": {
+    definition:
+      "A cyclical's earnings are sensitive to the economic cycle; a defensive's are much less so.",
+    cfaTip:
+      "Cyclicals usually show their HIGHEST P/E at the bottom of the cycle - earnings collapse faster than the price. Reading their P/E without the cycle is reading it backwards.",
+  },
+
+  "eq-010": {
+    definition:
+      "Weak form reflects past price data; semi-strong adds all public information; strong form includes inside information as well.",
+    cfaTip:
+      "If weak form holds, technical analysis is useless; if semi-strong holds, fundamental analysis is too. The empirical evidence leans toward semi-strong.",
+  },
+
+  "fi-007": {
+    definition: "A plot of yield against maturity for bonds of the same credit quality.",
+    cfaTip:
+      "An inverted curve - short rates above long - is the most historically accurate recession signal among financial market indicators.",
+  },
+
+  "fi-008": {
+    definition:
+      "A bond with an embedded option: the issuer can redeem early (callable), or the investor can sell back early (putable).",
+    cfaTip:
+      "Callable price = straight bond price − option value (the option belongs to the issuer). For a putable it is ADDED. A callable shows NEGATIVE convexity at low yields.",
+  },
+
+  "fi-009": {
+    definition:
+      "The Z-spread is the constant amount added across the whole spot curve to match the price; the OAS is the Z-spread with the embedded option value stripped out.",
+    cfaTip:
+      "For an option-free bond, Z-spread equals OAS. Comparing a callable bond with a straight bond requires the OAS, not the Z-spread.",
+  },
+
+  "fi-010": {
+    definition:
+      "Pooling a set of loans into a separate legal entity and issuing securities backed by the pool's cash flows.",
+    cfaTip:
+      "The separate entity (SPE) is the whole point: it isolates the pool's risk from the originator's bankruptcy risk, which is how the issued securities can be rated above the originator itself.",
+  },
+
+  "der-009": {
+    definition:
+      "The relationship between the underlying price and the strike: in-the-money, at-the-money or out-of-the-money.",
+    cfaTip:
+      "For a call, ITM means S > X; for a put it is the reverse, ITM means S < X. Flipping these two is the most common mark-loser in derivatives.",
+  },
+
+  "der-010": {
+    definition: "Contango is futures above spot; backwardation is the reverse.",
+    cfaTip:
+      "A long-only investor LOSES on the roll in contango and GAINS in backwardation. This is why commodity funds so often trail the rise in the spot price.",
+  },
+
+  "der-011": {
+    definition:
+      "The institution that stands between the two sides of a derivatives trade, becoming buyer to every seller and seller to every buyer.",
+    cfaTip:
+      "The biggest difference between a future and a forward: futures clear through a CCP so counterparty risk is close to nil, forwards do not.",
+  },
+
+  "alt-010": {
+    definition:
+      "The typical private equity return shape: negative in the early years from fees and investment, positive later as exits come through.",
+    cfaTip:
+      "Judging a PE fund after three years almost always looks bad, and it means nothing. The full cycle takes 8-12 years.",
+  },
+
+  "alt-011": {
+    definition:
+      "The period during which an investor cannot withdraw from the fund, and the notice required to withdraw afterwards.",
+    cfaTip:
+      "This is LIQUIDITY risk, not market risk, and it bites at the worst possible moment: when everyone wants out at once, the fund is entitled to block them.",
+  },
+
+  "alt-012": {
+    definition:
+      "Reported returns on appraisal-valued assets (real estate, PE) show artificially low volatility because the valuations do not update continuously with the market.",
+    cfaTip:
+      "It makes reported standard deviation LOWER and the Sharpe ratio HIGHER than reality, and it also understates correlation with equities - so it overstates the diversification benefit twice over.",
+  },
+
+  "port-009": {
+    definition:
+      "The document recording the investor's objectives, risk appetite and constraints, which every allocation decision is judged against.",
+    cfaTip:
+      "Remember the constraints as TTLLU: Time horizon, Taxes, Liquidity, Legal, Unique circumstances. The exam gives a scenario and asks which constraint was breached.",
+  },
+
+  "port-010": {
+    definition:
+      "Strategic is the long-run weighting set by the IPS; tactical is a temporary deviation from it to exploit short-term valuation.",
+    cfaTip:
+      "Research shows the strategic allocation explains most of the variation in a portfolio's returns - far more than stock selection does.",
+  },
+
+  "port-011": {
+    definition: "The set of portfolios offering the highest expected return at each level of risk.",
+    cfaTip:
+      "Only the UPPER part of the minimum-variance frontier is efficient; the lower part is entirely dominated. Add a risk-free asset and the frontier becomes a straight line - the CML.",
+  },
+
+  "port-012": {
+    definition: "Returning portfolio weights to target after price moves have let them drift.",
+    cfaTip:
+      "In substance it means selling what just rose to buy what just fell - the opposite of instinct, which is why most individual investors never do it.",
+  },
+
+  "port-013": {
+    definition:
+      "Systematic risk affects the whole market and cannot be diversified away; unsystematic risk is company-specific and diversification cancels it.",
+    cfaTip:
+      "The market pays only for SYSTEMATIC risk. Carrying one company's specific risk earns no higher expected return - that is the entire argument of CAPM.",
+  },
 };

@@ -54,6 +54,20 @@ describe("bản dịch thuật ngữ CFA (en)", () => {
     expect(glossaryPatch(id, "en")).not.toBeNull();
   });
 
+  /** Thêm SAU KHI đủ 118/118, đúng thứ tự đã ghi trong chú thích của
+   *  scripts/i18n-coverage.mjs: tách một tệp ra khỏi tổng là lời khẳng định đã
+   *  hoàn thành, nên cổng bắt buộc đủ phải có TRƯỚC. Đặt cổng này lúc mới dịch
+   *  10 mục thì nó đỏ suốt mười lô, và cổng đỏ thường trực là cổng bị phớt lờ. */
+  it("mọi thuật ngữ đều có bản dịch - thêm thẻ mới thì phải dịch kèm", () => {
+    const missing = CFA_GLOSSARY_TERMS.filter((t) => !glossaryEn[t.id]).map((t) => t.id);
+    expect(
+      missing,
+      `chưa dịch: ${missing.join(", ")}\n` +
+        `Thêm vào lib/cfa-glossary-i18n/en.ts. Thiếu thì thẻ này hiện tiếng Việt ` +
+        `giữa giao diện tiếng Anh mà không có gì báo.`
+    ).toEqual([]);
+  });
+
   it("definitionEn đã bị gỡ khỏi tệp dữ liệu gốc", () => {
     // Trường chết: khai báo trong kiểu, điền cho đúng 1/118 mục, component
     // không đọc lần nào. Để lại thì lần sau có người điền tiếp vào nó và tưởng
