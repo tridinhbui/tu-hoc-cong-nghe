@@ -689,7 +689,7 @@ export const TRACK_PROFESSIONAL = {
       days: [1521, 1526] as [number, number],
       // 1049 (danh-gia-deal-dau-tu) là trang viết tay được kéo về corpus:
       // khung đọc một thương vụ mua lại, đúng chủ đề chặng này.
-      extraLessonIds: [1049],
+      extraLessonIds: [1049, 1052],
       available: true,
       isNew: true,
       parts: [
