@@ -1,0 +1,164 @@
+{
+  "slug": "cfa-ethics-standard-6b-thu-tu-uu-tien-giao-dich",
+  "title": "CFA Ethics 39: Standard VI(B) - clients come first, and whose account is a relative's",
+  "subtitle": "Front-running client orders, allocating short supply, and where a family account sits",
+  "duration": "10 min",
+  "whyItMatters": "This is the standard whose violations leave the clearest trace in trading data, so it is also the one most often caught - and the hardest question is not about you but about your relatives' accounts.",
+  "openingQuestion": "You manage portfolios and also manage your spouse's investment account. Which group does that account fall into?",
+  "openingOptions": [
+    "An ordinary client account, treated like every other client",
+    "Your own personal account, ranking behind clients",
+    "A separate account, outside Standard VI(B) entirely",
+    "It depends on whether that account pays a management fee"
+  ],
+  "correctOption": 1,
+  "explanation": "The principle is to look at the benefit rather than the name on the account. A relative's account in the same household from which you benefit counts as your own personal account and ranks behind clients. There is one notable exception: if that relative is a genuine client paying fees like anyone else, they are treated as a client - and Standard III(B) on fair dealing then requires that they not be disadvantaged. Putting them at the back of the queue for fear of how it looks is itself a form of unfair treatment.",
+  "summary": {
+    "keyIdea": "Look at the BENEFIT rather than the name on the account - an account in a relative's name from which you benefit is still your account under this standard.",
+    "commonMistake": "Assuming a family member's account is a third party. If you have an economic interest in it, it ranks behind clients."
+  },
+  "application": {
+    "title": "The notable exception",
+    "message": "A relative's account you manage as a genuine client is treated as a client - not pushed to the back of the queue."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Standard VI(B) sets a very tidy order: clients first, the employer second, personal accounts last. The hard part is the question of which accounts count as personal."
+    },
+    {
+      "type": "heading",
+      "text": "Look at the benefit, not the name"
+    },
+    {
+      "type": "paragraph",
+      "text": "An account in the name of a relative in the same household from which you benefit counts as your own personal account and ranks behind clients. Changing the name on the account does not change the substance, because the standard cares about who benefits rather than who signs."
+    },
+    {
+      "type": "callout",
+      "label": "The notable exception",
+      "text": "If that relative is a genuine client paying fees like everyone else, they are treated as a client. And at that point Standard III(B) requires that they not be disadvantaged - pushing them to the back of the queue for fear of how it looks is unfair treatment too."
+    },
+    {
+      "type": "heading",
+      "text": "Two mechanisms that make the principle verifiable"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Order timestamps: when every order carries a time, violations surface automatically without anyone reporting them.",
+        "Blackout periods: staff may not trade the same security within a window before and after a client order."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The value of these two is that they turn a general principle into a rule checkable against data. This is the pattern across the whole of Standard VI: conflicts of interest are not handled with promises but with mechanisms."
+    },
+    {
+      "type": "heading",
+      "text": "Two mechanisms that turn a principle into something data can check"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Order timestamps",
+        "text": "When every order - client, firm and staff - carries an automatic timestamp, a personal order sitting ahead of a client order in the same security surfaces in the periodic review, with nobody having to report it. This is why compliance cares more about the order-capture system than about undertakings."
+      },
+      "right": {
+        "label": "Blackout periods",
+        "text": "Prohibiting personal dealing in a window before and after a client order in the same security, and requiring pre-clearance for sensitive trades. This mechanism needs no proof of intent - it needs only a date, so it applies consistently to everyone."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Relatives' accounts: look at the benefit, not the name",
+      "text": "An account in the name of a spouse, child or parent in the same household from which you benefit counts as your own personal account and joins you at the back of the queue. The notable exception runs the other way: if that relative is a genuine client paying fees like everyone else, they must be treated as a client - and at that point putting them last because they are family is itself a breach of Standard III(B) on fair dealing. The same family relationship, two opposite conclusions, and what decides it is the flow of fees rather than the bloodline."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Nobody forbids you investing for yourself.",
+        "You simply stand at the back of the queue - and that queue must be timestamped."
+      ]
+    }
+  ],
+  "diagram": [
+    { "label": "Look at the benefit, not the name on the account", "arrow": true },
+    { "label": "A relative in the household you benefit from: counts as personal", "arrow": true },
+    { "label": "A relative who is a genuine fee-paying client: treated as a client", "arrow": true },
+    { "label": "Pushing them to the back is unfair treatment too" }
+  ],
+  "realWorldExample": {
+    "company": "Why this is the most easily detected standard",
+    "description": "Every order carries a timestamp, and reconciling personal orders against client orders is an automated operation. A personal order placed ahead of a client order in the same security on the same day shows up immediately in the monitoring report, with nobody having to report it. This is why firms impose blackout periods - usually a few days after a recommendation is published - before staff may trade that security: a hard rule is easier to comply with and easier to verify than a general principle."
+  },
+  "quiz": [
+    {
+      "question": "Which group does a household relative's account fall into?",
+      "options": [
+        "It depends on the size of the assets in that account",
+        "A client account, in every case",
+        "A separate group outside Standard VI(B) entirely",
+        "A personal account, if you benefit from it"
+      ],
+      "explanation": "The principle looks at the benefit rather than the name on the account - this is where Standard VI(B) is hardest to apply in practice."
+    },
+    {
+      "question": "What if the relative is a genuine client, paying fees like everyone else?",
+      "options": [
+        "Treat them as a client, with no disadvantage against anyone",
+        "Still rank them behind every other client, to avoid appearances",
+        "End the relationship to remove the conflict of interest",
+        "Transfer that account to a colleague to manage"
+      ],
+      "explanation": "Pushing them to the back of the queue for fear of appearances breaches Standard III(B) - the two standards bind each other at exactly that point."
+    },
+    {
+      "question": "Why are Standard VI(B) violations easily detected?",
+      "options": [
+        "Because staff usually self-report when they have traded ahead",
+        "Because every order carries a timestamp for automatic reconciliation",
+        "Because clients always notice immediately when they are front-run",
+        "Because regulators monitor every personal account directly"
+      ],
+      "explanation": "Nobody has to report it - the monitoring report generates the evidence itself when a personal order precedes a client order in the same security."
+    },
+    {
+      "question": "What does a blackout period after publishing a recommendation achieve?",
+      "options": [
+        "Lower transaction costs by avoiding the most volatile stretch",
+        "Giving staff more time to analyse before buying",
+        "Turning a general principle into a hard, verifiable rule",
+        "Meeting a mandatory requirement of the market regulator"
+      ],
+      "explanation": "A hard rule is both easier to comply with and easier to prove compliance with - two things a general principle does not give."
+    },
+    {
+      "question": "Does Standard VI(B) prohibit staff from investing personally?",
+      "options": [
+        "No, and it imposes no constraint on ordering either",
+        "Yes, entirely, for every security the firm covers",
+        "Yes, unless compliance pre-approves each individual order",
+        "No, it only requires that clients come first"
+      ],
+      "explanation": "A total prohibition would push staff out of the very market they work in; what the standard demands is an order, not a ban."
+    }
+  ],
+  "keyTakeaways": [
+    "Look at the benefit, not the name on the account",
+    "A household relative you benefit from: counts as a personal account",
+    "A relative who is a genuine fee-paying client: treated as a client, not pushed last",
+    "Order timestamps make violations surface automatically, with nobody reporting them",
+    "Blackout periods turn a general principle into a verifiable rule"
+  ],
+  "practicePrompt": {
+    "question": "You are about to publish a Buy recommendation on a stock and want to buy it for your personal account. What is the right order?",
+    "options": [
+      "Buy first and publish afterwards, since you did the analysis already",
+      "Publish the recommendation, wait out the firm's blackout period, and only then place the personal order",
+      "Buy at the same moment as publishing, so nobody goes ahead of anyone",
+      "Buy once the first client's order has been filled"
+    ],
+    "explanation": "Buying simultaneously sounds fair and is still wrong: clients need time to receive and act on the recommendation, so placing an order at the same moment still exploits knowing in advance. Waiting for the first client to fill is also insufficient, because most clients will not yet have reacted. The blackout period exists precisely to remove these fiddly judgment calls."
+  }
+}
