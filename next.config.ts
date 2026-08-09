@@ -10,6 +10,23 @@ const nextConfig: NextConfig = {
   // instead, same as the "canvas" package Next already externalizes by
   // default. Used by lib/excel-preview.ts to render .xlsx cover previews.
   serverExternalPackages: ["@napi-rs/canvas"],
+  // Năm slug bài học từng có trang viết tay riêng. Nội dung của chúng đã được
+  // gộp vào bài trong corpus vốn dạy cùng chủ đề nhưng sâu hơn, và trang bị
+  // xoá - nên URL cũ trả 404.
+  //
+  // Lúc quyết định xoá, căn cứ là "không file nào trong app trỏ tới chúng", và
+  // điều đó đúng. Nhưng grep không thấy được bookmark, link đã chia sẻ, hay kết
+  // quả tìm kiếm - nên năm URL này vẫn có thể có người gõ vào. Redirect vĩnh
+  // viễn đưa họ tới bài đã hấp thu nội dung, thay vì một trang trống.
+  async redirects() {
+    return [
+      { source: "/bai-hoc/credit-debit-phan-1", destination: "/bai-hoc/but-toan-ghi-so-kep-hai-ve", permanent: true },
+      { source: "/bai-hoc/time-value-of-money", destination: "/bai-hoc/gia-tri-thoi-gian-cua-tien", permanent: true },
+      { source: "/bai-hoc/interest-coverage", destination: "/bai-hoc/interest-coverage-chi-so", permanent: true },
+      { source: "/bai-hoc/fair-value", destination: "/bai-hoc/market-fair-value", permanent: true },
+      { source: "/bai-hoc/free-cash-flow", destination: "/bai-hoc/fcff-la-gi", permanent: true },
+    ];
+  },
   images: {
     remotePatterns: [
       {
