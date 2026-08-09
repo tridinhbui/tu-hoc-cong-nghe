@@ -272,6 +272,21 @@
     "subtitle": "Not because it is exotic, but because four characteristics appear together: illiquidity, sparse valuation, leverage, and two tiers of fees",
     "duration": "10 min"
   },
+  "cfa-alt-do-hieu-suat-tai-san-thay-the": {
+    "title": "CFA Alternatives 2: Why ordinary performance measures give the wrong answer for this group",
+    "subtitle": "Return smoothing, stale prices, and three biases that make hedge fund indices look better than reality",
+    "duration": "11 min"
+  },
+  "cfa-alt-ha-tang-infrastructure": {
+    "title": "CFA Alternatives 4: Infrastructure - the longest-dated asset in the portfolio",
+    "subtitle": "Brownfield and greenfield, inflation-linked cash flow, and political risk as a real risk",
+    "duration": "10 min"
+  },
+  "cfa-alt-no-tu-nhan-private-debt": {
+    "title": "CFA Alternatives 3: Private debt - direct lending, mezzanine and distressed",
+    "subtitle": "The fastest-growing asset group after the crisis, and why the banks gave up the field",
+    "duration": "11 min"
+  },
   "chi-phi-vs-dong-tien-ra": {
     "title": "How does an expense differ from cash going out?",
     "subtitle": "Why buying a 1-billion machine doesn't cut profit by 1 billion right away",
@@ -591,6 +606,11 @@
     "subtitle": "The value of the whole business - including debt, minus cash",
     "duration": "7 min"
   },
+  "enterprise-value": {
+    "title": "Enterprise value",
+    "subtitle": "EV = market cap + debt − cash",
+    "duration": "6 min"
+  },
   "eps-chi-so": {
     "title": "EPS: Earnings Per Share",
     "subtitle": "How much profit does each share held earn a shareholder?",
@@ -729,6 +749,11 @@
     "title": "Early retirement: how much money you need",
     "subtitle": "Early retirement planning",
     "duration": "7 min"
+  },
+  "income-affiliates-jv": {
+    "title": "Income from affiliates and joint ventures",
+    "subtitle": "Equity method (20-50%) versus consolidation (>50%)",
+    "duration": "6 min"
   },
   "income-statement-la-gi": {
     "title": "Income Statement: the profit-and-loss report",
@@ -1073,6 +1098,11 @@
     "subtitle": "Operating costs - sitting between Gross Profit and Operating Income",
     "duration": "6 min"
   },
+  "operating-leverage": {
+    "title": "Operating leverage",
+    "subtitle": "SaaS versus airlines - fixed costs and margin expansion",
+    "duration": "6 min"
+  },
   "operating-margin": {
     "title": "Operating Margin",
     "subtitle": "Measuring operating efficiency after indirect costs too",
@@ -1377,6 +1407,11 @@
     "subtitle": "Finance is the science of allocating scarce resources across time under uncertainty.",
     "duration": "6 min"
   },
+  "tai-chinh-xanh-tieu-chuan-esg-tin-chi-carbon": {
+    "title": "Masterclass 5: Green finance and sustainable investing - ESG standards and the carbon credit market",
+    "subtitle": "ESG, materiality, greenwashing, green bonds and how carbon credits are priced.",
+    "duration": "13 min"
+  },
   "tai-dau-tu-coupon": {
     "title": "Reinvesting coupons: the actual return",
     "subtitle": "Reinvestment considerations",
@@ -1644,6 +1679,11 @@
   "vi-sao-phai-sinh-nguy-hiem": {
     "title": "Why Can Derivatives Be So Dangerous?",
     "subtitle": "High leverage, complexity, and systemic risk"
+  },
+  "vingroup-cash-flow": {
+    "title": "Deep-dive case: reading Vingroup's cash flow",
+    "subtitle": "The Q4/2024 cash flow statement - 160 trillion cycling through",
+    "duration": "6 min"
   },
   "volatility-bien-dong": {
     "title": "Volatility",

@@ -1,0 +1,165 @@
+{
+  "slug": "cfa-alt-no-tu-nhan-private-debt",
+  "title": "CFA Alternatives 3: Private debt - direct lending, mezzanine and distressed",
+  "subtitle": "The fastest-growing asset group after the crisis, and why the banks gave up the field",
+  "duration": "11 min",
+  "openingQuestion": "Why did private debt funds expand so strongly after the 2008 financial crisis?",
+  "openingOptions": [
+    "Because falling interest rates made lending cheaper to do",
+    "Because tighter capital rules pushed banks out of this segment",
+    "Because businesses no longer want to borrow from banks at all",
+    "Because the regulators encouraged funds to replace the banks"
+  ],
+  "explanation": "This is a story about regulation, not about interest rates. The capital standards brought in after 2008 made lending to mid-sized companies expensive for a bank in terms of the capital it had to hold, so many banks shrank the business. The demand to borrow did not disappear, and private debt funds - which are not subject to bank capital standards - stepped in to fill the gap. That also explains why the risk did not disappear but only moved: it left the bank balance sheet, where there is deposit insurance and close supervision, for the balance sheet of funds, where the investors carry it themselves.",
+  "diagram": [
+    { "label": "Capital rules tighten → banks shrink mid-market lending", "arrow": true },
+    { "label": "The demand to borrow does not disappear", "arrow": true },
+    { "label": "Private debt funds fill the gap, free of bank capital standards", "arrow": true },
+    { "label": "The risk moves rather than disappears" }
+  ],
+  "realWorldExample": {
+    "company": "The three tiers of private debt",
+    "description": "Direct lending sits in the most senior tier, usually with collateral and a floating rate - the profile closest to a corporate bond. Mezzanine sits below senior debt and above equity, usually carrying a conversion right or warrants, so part of the return comes from the equity side. Distressed is buying the debt of a struggling business at a deep discount, and there the return comes from the restructuring process rather than from coupon interest. These three tiers differ in risk more than they resemble each other in name."
+  },
+  "quiz": [
+    {
+      "question": "What was the main cause of private debt expanding after 2008?",
+      "options": [
+        "A deep fall in policy rates made funds' cost of capital cheaper",
+        "Tighter capital rules made banks shrink the mid-market segment",
+        "Businesses switched to preferring funds over banks for borrowing",
+        "Regulators issued policy actively encouraging funds to lend"
+      ],
+      "explanation": "This was a shift created by regulation, and it explains both the pace of growth and where the risk has moved to. Borrowers did not develop a preference for funds - fund lending is generally more expensive than a bank loan - and no regulator set out to encourage it; it was a side effect of making bank lending costlier."
+    },
+    {
+      "question": "How does direct lending differ from mezzanine?",
+      "options": [
+        "Mezzanine only applies to companies listed on an exchange",
+        "Direct lending always has a longer maturity than mezzanine does",
+        "Direct lending ranks higher and usually has collateral",
+        "Direct lending charges no interest, only a share of end profits"
+      ],
+      "explanation": "The order of priority when the business gets into trouble is what separates these two tiers, and it determines the whole risk profile. Mezzanine is used mostly by unlisted companies, and it typically runs longer than senior debt rather than shorter, precisely because it is repaid after the senior lenders."
+    },
+    {
+      "question": "Where does the return on a distressed strategy mainly come from?",
+      "options": [
+        "From credit insurance that the seller of the debt has to pay",
+        "From the very high penalty rate applied to overdue debt",
+        "From reselling the debt back to a bank at a higher price",
+        "From the restructuring process, not from coupon interest"
+      ],
+      "explanation": "Buying at a deep discount and then taking part in the restructuring is the profit model - so this is a strategy that demands operational capability, not just credit analysis. A distressed borrower is by definition not paying its coupon, penalty rate or otherwise, and there is no bank waiting to buy the debt back at a higher price."
+    },
+    {
+      "question": "Why does mezzanine usually come with warrants or a conversion right?",
+      "options": [
+        "To offset the lower priority with a slice of the equity upside",
+        "To give the investor a vote on the board of directors",
+        "Because the rules require all subordinated debt to be convertible",
+        "So the business can repay in shares instead of in cash"
+      ],
+      "explanation": "Lower priority means a higher risk of losing the capital, so the compensation has to come from somewhere - and the equity side is where there is room to take it. No rule requires convertibility, and the warrant is a right the investor holds, not a way for the borrower to choose to pay in shares."
+    },
+    {
+      "question": "What does it mean to say the risk 'moved' after 2008?",
+      "options": [
+        "It shifted from credit risk across to market interest rate risk",
+        "It leaves the bank balance sheet for a fund, where investors bear it",
+        "It shifted from mid-sized businesses across to larger ones",
+        "It was transferred entirely across to the credit insurance companies"
+      ],
+      "explanation": "A bank has deposit insurance and close supervision; a fund does not. The same loan, but who bears the consequence of a default has changed. The nature of the risk did not change at all - it is still credit risk on the same kind of borrower - and no insurer absorbed it."
+    }
+  ],
+  "keyTakeaways": [
+    "Private debt grew because capital standards pushed banks out of the mid-market",
+    "Three tiers: direct lending, mezzanine, distressed - more different than alike",
+    "Mezzanine offsets its lower priority with warrants or a conversion right",
+    "Distressed earns from restructuring, not from the coupon",
+    "The risk moved from a place with deposit insurance to a place where investors bear it"
+  ],
+  "practicePrompt": {
+    "question": "A direct lending fund advertises an 11% annual yield with a floating rate. What is the main risk to ask about?",
+    "options": [
+      "Interest rate risk, because a floating rate moves with the market",
+      "The borrower's credit quality and recovery in a default",
+      "Currency risk if the loan is in a foreign currency",
+      "Liquidity risk of the fund units themselves on the secondary market"
+    ],
+    "explanation": "A floating rate is precisely the mechanism that passes interest rate risk to the borrower, so the first option is looking in the wrong place. What remains, and it is the largest, is credit risk: these are businesses a bank chose not to lend to, and the 11% is the price of that fact. The right question is the expected default rate and the recovery rate on default."
+  },
+  "summary": {
+    "keyIdea": "The high yield here is payment for bearing illiquidity and for bearing a borrower who cannot reach the public market - not a reward for skill in picking loans.",
+    "commonMistake": "Reading private debt's high yield as a reward for skill. Most of it is the liquidity premium and the credit premium of a borrower who cannot reach the public market."
+  },
+  "application": {
+    "title": "The due diligence question",
+    "message": "If this borrower could raise a bank loan or issue a public bond, why have they not done so."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Private debt is investment funds lending directly to businesses, in the place of banks. Its boom is not a story about interest rates but a story about regulation."
+    },
+    { "type": "heading", "text": "Why the business grew" },
+    {
+      "type": "paragraph",
+      "text": "The capital standards brought in after 2008 made lending to mid-sized companies expensive for a bank in terms of the capital it had to hold, so many banks shrank the business. The demand to borrow did not disappear, and private debt funds - which are not subject to bank capital standards - stepped into the gap."
+    },
+    {
+      "type": "callout",
+      "label": "The thing worth noticing",
+      "text": "The risk did not disappear, it only moved: away from the bank balance sheet - where there is deposit insurance and close supervision - onto the balance sheet of funds, where the investors carry it themselves."
+    },
+    { "type": "heading", "text": "Three very different tiers" },
+    {
+      "type": "list",
+      "items": [
+        "Direct lending: a secured loan, senior priority, the return coming from coupon and fees.",
+        "Mezzanine: standing behind secured debt, compensated with warrants or a right to convert into equity.",
+        "Distressed: buying the debt of a struggling business, the return coming from restructuring rather than the coupon."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Collapsing these three tiers into a single allocation line ignores the most important difference: they are not the same kind of risk. Direct lending is close to a corporate bond; distressed is close to equity, because the return depends on whether the restructuring succeeds."
+    },
+    { "type": "heading", "text": "Three tiers, in the order they get paid" },
+    {
+      "type": "conceptTable",
+      "title": "Collapsing these three tiers into one allocation line ignores the biggest difference",
+      "subtitle": "The order of priority when the business defaults determines almost the entire risk profile",
+      "concepts": [
+        {
+          "vi": "Cho vay trực tiếp",
+          "en": "Direct lending",
+          "def": "A secured loan, the most senior position in the capital structure, usually at a floating rate so it is little exposed to interest rates. The return comes from the coupon and arrangement fees, with almost no capital appreciation. This is the tier closest to traditional bank lending."
+        },
+        {
+          "vi": "Mezzanine",
+          "en": "Mezzanine",
+          "def": "Standing behind secured debt and ahead of equity. A higher yield, usually with a conversion right or warrants to share in the upside. When the business runs into trouble, this tier loses money while the tier above is still paid in full."
+        },
+        {
+          "vi": "Nợ xấu",
+          "en": "Distressed debt",
+          "def": "Buying the debt of a struggling business at a deep discount. The return comes from restructuring or liquidation, so it is closer to a legal transaction than to a loan - and it needs a capability entirely different from the two tiers above."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Two things that make the risk different from a listed bond",
+      "text": "First, there is no real secondary market - the decision to lend is essentially irreversible until the loan matures, so the liquidity premium is a large part of the yield rather than a reward for skill in picking credit. Second, the value of the loan is periodically remarked by a model rather than by a transaction, so the recorded volatility is lower than the real volatility. The portfolio looks steadier than it is, and that makes volatility-based risk measures systematically understate this asset group."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Private debt is banking without a banking licence.",
+        "Same work, same risk, different safety net."
+      ]
+    }
+  ]
+}
