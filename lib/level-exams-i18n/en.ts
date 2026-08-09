@@ -904,4 +904,454 @@ export const LEVEL_EXAMS_EN: LevelExamTranslations = {
       },
     },
   },
+  6: {
+    title: "Peak Exam - Level 6: Finance Adept",
+    questions: {
+      l6_q1: {
+        question: "What does holding a call option give you?",
+        options: [
+          "The right to buy the underlying at a strike price fixed in advance",
+          "The obligation to sell the underlying when the buyer exercises",
+          "The right to sell the underlying at the market price on expiry",
+          "The right to a fixed dividend from the issuing company",
+        ],
+        explanation:
+          "The key word is right, not obligation: if the market price sits below the strike, the holder simply does not exercise.",
+      },
+      l6_q2: {
+        question: "What does the CAPM model compute?",
+        options: [
+          "The required rate of return on equity",
+          "The company's cost of goods sold for the period",
+          "The effective tax rate the company actually pays",
+          "Forecast net profit for the next financial year",
+        ],
+        explanation:
+          "CAPM produces the cost of equity: the risk-free rate plus the market risk premium multiplied by the stock's beta.",
+      },
+      l6_q3: {
+        question: "When does a bond trade above par?",
+        options: [
+          "When its coupon rate is above the market's yield to maturity",
+          "When its coupon rate is below the market's yield to maturity",
+          "When the issuer is about to default on the principal",
+          "When the issuing company reported a loss in the latest period",
+        ],
+        explanation:
+          "A coupon above the market level means the interest stream beats a newly issued bond, so investors will pay more than par for it.",
+      },
+      l6_q4: {
+        question: "How does a sharply stronger local currency affect an exporter?",
+        options: [
+          "Its goods become more expensive to foreign buyers",
+          "Revenue converted into local currency rises considerably",
+          "No effect, since contracts are already priced in foreign currency",
+          "Margins improve, because imported input costs fall",
+        ],
+        explanation:
+          "A strong local currency makes exports dearer in the eyes of foreign buyers, and each unit of foreign currency earned converts into less local currency.",
+      },
+      l6_q5: {
+        question: "What advantage does EV/EBITDA have over P/E when comparing companies?",
+        options: [
+          "It is neutral to different capital structures and depreciation policies",
+          "It always gives a lower valuation, so it is safer for investors",
+          "It only works for technology companies making accounting losses",
+          "It is unaffected by the size of the company's revenue",
+        ],
+        explanation:
+          "EBITDA sits above interest and depreciation, and EV includes debt, so a heavily borrowed company and a lightly borrowed one can still be compared.",
+      },
+      l6_q6: {
+        question: "Where do retained earnings sit on the balance sheet?",
+        options: [
+          "Current liabilities, due within the next twelve months",
+          "Shareholders' equity, alongside the capital shareholders paid in",
+          "Tangible fixed assets, net of accumulated depreciation",
+          "Operating cash flow for the reporting period",
+        ],
+        explanation:
+          "These are accumulated profits not yet distributed to shareholders, so they belong to the owners rather than being an obligation to anyone outside.",
+      },
+      l6_q7: {
+        question: "In what situation does the buyer of a put option profit?",
+        options: [
+          "When the underlying price falls below the strike price",
+          "When the underlying price rises above the strike price",
+          "When the underlying's volatility collapses before expiry",
+          "When the issuer raises the dividend paid to shareholders",
+        ],
+        explanation:
+          "The right to sell above the market price is what has value, so a put pays off as the underlying falls - it works like an insurance contract.",
+      },
+      l6_q8: {
+        question: "What is WACC made up of?",
+        options: [
+          "The cost of equity and the after-tax cost of debt, weighted at market values",
+          "The average bank rate plus expected inflation for the period",
+          "The industry's average return over the last five years",
+          "The cost of equity minus the tax shield on interest",
+        ],
+        explanation:
+          "Interest is deductible for tax, so the cost of debt has to be taken after tax. The weights use market values, not book values.",
+      },
+      l6_q9: {
+        question: "How does a sharp rise in net working capital affect operating cash flow?",
+        options: [
+          "It lowers cash flow, because capital is trapped in receivables and inventory",
+          "It raises cash flow, because the company holds more current assets",
+          "No effect, because working capital is a balance sheet item",
+          "It only affects investing cash flow, not operating cash flow",
+        ],
+        explanation:
+          "Selling without collecting, or holding more stock, is money already spent that has not come back yet - profit rises while cash flow does not.",
+      },
+      l6_q10: {
+        question: "What characterises a company with high operating leverage?",
+        options: [
+          "Large fixed costs, so profit swings hard with revenue",
+          "A debt-to-equity ratio above the industry average",
+          "Variable costs making up most of the product's cost structure",
+          "Faster inventory turnover than its industry rivals",
+        ],
+        explanation:
+          "Operating leverage is about the mix of fixed and variable costs. The second option describes financial leverage, a different concept.",
+      },
+      l6_q11: {
+        question: "How does a share buyback affect EPS, if profit is unchanged?",
+        options: [
+          "EPS rises, because the share count falls",
+          "EPS falls, because the company spends cash on the buyback",
+          "EPS is unchanged, because a buyback does not affect profit",
+          "EPS only changes once the treasury shares are cancelled",
+        ],
+        explanation:
+          "The denominator shrinks so EPS rises, even though the company earned not one dong more. This is why rising EPS does not automatically mean the business improved.",
+      },
+      l6_q12: {
+        question: "What does the semi-strong form of the efficient market hypothesis state?",
+        options: [
+          "Prices already reflect all public information, financial statements included",
+          "Prices reflect only past price and volume data",
+          "Prices reflect inside information that has not been disclosed",
+          "Prices always equal intrinsic value, under any market conditions",
+        ],
+        explanation:
+          "The weak form covers only past price data, the strong form covers inside information too. Semi-strong sits between them, and implies public fundamental analysis rarely produces a durable edge.",
+      },
+      l6_q13: {
+        question: "What is a call option's intrinsic value at expiry?",
+        options: [
+          "The gap between the underlying price and the strike, floored at 0",
+          "The whole premium paid to the seller when the contract was signed",
+          "The underlying price multiplied by the market's implied volatility",
+          "The strike price minus the underlying price on the expiry date",
+        ],
+        explanation:
+          "A call is only exercised when it pays to, so its value at expiry is max(S - K, 0). The last option is the put formula - a very common mix-up.",
+      },
+      l6_q14: {
+        question: "Why is the after-tax cost of debt below the loan's headline rate?",
+        options: [
+          "Because interest is deductible against corporate income tax",
+          "Because banks usually refund part of the interest to borrowers who pay on time",
+          "Because interest is spread over several years, so its present value falls",
+          "Because companies may pay interest in shares instead of cash",
+        ],
+        explanation:
+          "The after-tax cost of debt is the rate times (1 - tax rate). Because interest is deductible, every dong of interest paid really costs (1 - t) dong - this is the root of the tax shield.",
+      },
+      l6_q15: {
+        question: "What kind of business typically runs persistently negative working capital?",
+        options: [
+          "One that collects from customers immediately but pays suppliers later",
+          "One losing solvency, at risk of bankruptcy in the short term",
+          "One whose fixed assets are a very small share of total assets",
+          "One that is barred from listing its shares on the exchange",
+        ],
+        explanation:
+          "Supermarkets and subscription models collect first and pay suppliers later, so negative working capital signals bargaining power rather than trouble - the suppliers are funding them.",
+      },
+      l6_q16: {
+        question: "What risk position does the seller of an option hold?",
+        options: [
+          "Maximum profit is the premium collected, while the loss can be very large",
+          "Both profit and loss are capped at the value of the premium",
+          "Profit is unlimited while loss is capped at the premium received",
+          "No risk at all, since the premium was collected up front",
+        ],
+        explanation:
+          "The seller's payoff is the mirror image of the buyer's: a fixed premium collected, the tail risk carried. Selling a call without owning the underlying is a theoretically unlimited loss.",
+      },
+      l6_q17: {
+        question: "How is the interest coverage ratio calculated?",
+        options: [
+          "EBIT divided by interest expense for the period",
+          "After-tax profit divided by total outstanding debt",
+          "Operating cash flow divided by average total assets",
+          "Total liabilities divided by shareholders' equity",
+        ],
+        explanation:
+          "The ratio says how many times profit before interest and tax covers the interest bill. Below about 1.5x is usually a worry: one small dip in profit and the interest cannot be paid.",
+      },
+      l6_q18: {
+        question: "Why is free cash flow to the firm discounted at WACC rather than the cost of equity?",
+        options: [
+          "Because FCFF is the cash flow belonging to lenders and shareholders both",
+          "Because WACC is always lower than the cost of equity, giving a higher valuation",
+          "Because international valuation standards mandate WACC for every kind of cash flow",
+          "Because the cost of equity only works for companies carrying no debt",
+        ],
+        explanation:
+          "The rule is that the discount rate must match whoever receives the cash flow. FCFF feeds both groups, so WACC; FCFE is what is left for shareholders, so the cost of equity.",
+      },
+      l6_q19: {
+        question: "What is a company's economic exchange-rate exposure?",
+        options: [
+          "The long-run effect of exchange rates on its competitiveness",
+          "The FX loss arising when foreign-currency balances are revalued at period end",
+          "The spread between a commercial bank's quoted buy and sell rates",
+          "The risk of not being able to buy foreign currency to settle an import contract",
+        ],
+        explanation:
+          "Economic exposure lives outside the books: a stronger local currency makes exports relatively dearer than a foreign rival's and erodes market share over years. The second option is accounting translation exposure.",
+      },
+      l6_q20: {
+        question: "Why can a company with stable cash flow carry a higher debt ratio?",
+        options: [
+          "Because meeting interest and principal on time depends little on the business cycle",
+          "Because banks are required to lend more to stable companies",
+          "Because stable companies get statutory interest-rate reductions",
+          "Because stable cash flow means no audited financial statements are needed",
+        ],
+        explanation:
+          "Debt imposes fixed obligations, so what decides capacity is the reliability of the cash flow, not its size. Utilities and infrastructure borrow heavily because revenue barely moves; cyclical tech companies are the opposite.",
+      },
+    },
+  },
+  7: {
+    title: "Expert Exam - Level 7: Finance Specialist",
+    questions: {
+      l7_q1: {
+        question: "What does an inverted yield curve usually forecast?",
+        options: [
+          "The economy is about to enter a period of booming growth",
+          "Recession risk within roughly twelve to eighteen months",
+          "Inflation will reach zero within the next year",
+          "The stock market will keep setting new highs in the short term",
+        ],
+        explanation:
+          "Short rates above long rates reflect an expectation that the central bank will have to cut - which is to say the economy is expected to weaken.",
+      },
+      l7_q2: {
+        question: "What does the Sharpe ratio measure in portfolio management?",
+        options: [
+          "Excess return per unit of the portfolio's standard deviation",
+          "Return earned on each dong of margin borrowing used",
+          "Total debt against the total assets the portfolio holds",
+          "Average slippage when large buy orders are filled",
+        ],
+        explanation:
+          "Sharpe = (portfolio return - risk-free return) divided by standard deviation: return measured against the total risk carried.",
+      },
+      l7_q3: {
+        question: "What is the core improvement the Sortino ratio makes on Sharpe?",
+        options: [
+          "It counts only downside volatility in the denominator",
+          "It removes the risk-free rate from the numerator entirely",
+          "It applies only to bond and credit portfolios",
+          "It adds the volatility of gold into the formula",
+        ],
+        explanation:
+          "Sharpe punishes upside and downside volatility alike. Sortino punishes only the downside, which is more sensible: nobody fears their portfolio rising sharply.",
+      },
+      l7_q4: {
+        question: "What is a value trap in equity investing?",
+        options: [
+          "Valuation that looks cheap while the business itself keeps deteriorating",
+          "A stock that multiplies several times over within a single trading year",
+          "A company delisted for paying an excessively high dividend",
+          "An investor buying into an IPO at far too high a price",
+        ],
+        explanation:
+          "A low P/E can mean the market has correctly priced a business that is getting worse, rather than an opportunity everyone else missed.",
+      },
+      l7_q5: {
+        question: "How is FCFE derived from FCFF?",
+        options: [
+          "Subtract after-tax interest, then add net borrowing for the period",
+          "Add back all capital expenditure incurred in the period",
+          "Subtract net revenue, then divide by the shares outstanding",
+          "Divide FCFF by the average shares outstanding in the period",
+        ],
+        explanation:
+          "FCFE is what remains for shareholders after the lenders have been served, so after-tax interest comes out and newly raised net borrowing goes back in.",
+      },
+      l7_q6: {
+        question: "What is central bank quantitative tightening, in substance?",
+        options: [
+          "Shrinking the balance sheet by letting bonds mature or selling them",
+          "Printing money to buy shares on the secondary market",
+          "Cutting corporate income tax to stimulate private investment",
+          "Raising credit limits for the commercial banks in the system",
+        ],
+        explanation:
+          "Quantitative tightening drains liquidity from the system - the reverse of quantitative easing, which injects money by buying assets.",
+      },
+      l7_q7: {
+        question: "What does a sudden widening of credit spreads usually signal?",
+        options: [
+          "The market is demanding a higher premium for default risk",
+          "The central bank has just cut its policy rate",
+          "The issuing company has just been upgraded",
+          "Liquidity in the bond market is improving markedly",
+        ],
+        explanation:
+          "The credit spread is the price of default risk. It widens when investors turn anxious, and it usually widens ahead of economic downturns.",
+      },
+      l7_q8: {
+        question: "What does a portfolio's alpha measure?",
+        options: [
+          "The return beyond what systematic risk can explain",
+          "The total absolute return the portfolio achieved in the period",
+          "How volatile the portfolio is against its benchmark index",
+          "The weight of large-cap stocks held in the portfolio",
+        ],
+        explanation:
+          "Beta explains the return that comes from accepting market risk. Alpha is what is left - the manager's actual contribution.",
+      },
+      l7_q9: {
+        question: "Which assumption is the Gordon growth model most sensitive to?",
+        options: [
+          "The gap between the discount rate and the long-term growth rate",
+          "The dividend the company paid in the most recent period",
+          "The number of shares outstanding at the valuation date",
+          "The company's retention ratio for the current year",
+        ],
+        explanation:
+          "The denominator is the difference between two numbers that sit close together, so as growth approaches the discount rate the valuation explodes to nonsense.",
+      },
+      l7_q10: {
+        question: "What is delta hedging an option position meant to achieve?",
+        options: [
+          "Neutralising the effect of small moves in the underlying price",
+          "Removing every risk from the position until expiry",
+          "Maximising profit when the underlying moves violently",
+          "Fixing the option premium payable at the moment of signing",
+        ],
+        explanation:
+          "Delta only holds for small moves. When the price shifts hard, gamma changes the delta and the position has to be rebalanced continuously.",
+      },
+      l7_q11: {
+        question: "What does it mean when a company's ROIC exceeds its WACC over the long run?",
+        options: [
+          "Every additional dong invested creates value for the owners",
+          "The company is borrowing below the prevailing market rate",
+          "The company needs no new capital to keep expanding",
+          "The company's gross margin is above the industry average",
+        ],
+        explanation:
+          "That is the definition of value creation. A company whose ROIC sits below its WACC destroys shareholder value the faster it grows.",
+      },
+      l7_q12: {
+        question: "Why is operating cash flow harder to manipulate than profit?",
+        options: [
+          "Because it reflects money actually received and paid, with little room for estimates",
+          "Because it is audited more thoroughly than the other measures",
+          "Because accounting standards forbid adjusting this line",
+          "Because it is always published before profit in the financial statements",
+        ],
+        explanation:
+          "Profit carries estimates: provisions, depreciation, the timing of revenue recognition. Money landing in the bank account is far harder to invent.",
+      },
+      l7_q13: {
+        question: "What does the term premium on a yield curve reflect?",
+        options: [
+          "The compensation investors demand for holding long bonds instead of short ones",
+          "The yield gap between government and corporate bonds of the same maturity",
+          "The rate the central bank commits to holding through the financial year",
+          "The extra yield from buying bonds in the primary market",
+        ],
+        explanation:
+          "Holding a long bond means carrying interest-rate and inflation risk for longer, so investors demand extra yield. The second option describes the credit spread, a different component.",
+      },
+      l7_q14: {
+        question: "What characterises a barbell strategy in bond portfolio management?",
+        options: [
+          "Concentrating on very short and very long maturities, leaving the middle empty",
+          "Spreading weight evenly across every maturity on the curve",
+          "Holding bonds of a single maturity to match a repayment obligation",
+          "Combining government bonds with equities in a fixed fifty-fifty split",
+        ],
+        explanation:
+          "A barbell puts the weight at both ends of the curve. It gives the same duration as a concentrated middle but higher convexity, so it gains when rates move sharply either way.",
+      },
+      l7_q15: {
+        question: "Why is the dividend discount model hard to apply to high-growth technology companies?",
+        options: [
+          "Because many pay no dividend, retaining all profit to reinvest",
+          "Because technology dividends are taxed at a higher rate than usual",
+          "Because accounting standards bar the technology sector from announcing dividend plans",
+          "Because dividend growth in the sector always exceeds the discount rate",
+        ],
+        explanation:
+          "The model needs a dividend stream to discount. A company retaining all its profit makes the numerator zero, forcing a switch to free-cash-flow or multiple-based models.",
+      },
+      l7_q16: {
+        question: "What does the PEG ratio add to the P/E ratio?",
+        options: [
+          "It puts the earnings growth rate into the denominator of the multiple",
+          "It removes the effect of capital structure from the valuation multiple",
+          "It swaps accounting profit for free cash flow to equity",
+          "It adjusts the share price for the last year's inflation rate",
+        ],
+        explanation:
+          "PEG divides P/E by the growth rate, so a stock on 30x growing at 30% is viewed alongside one on 10x growing at 10%. Its weakness is extreme sensitivity to whichever growth forecast you choose.",
+      },
+      l7_q17: {
+        question: "Why can accounting profit be flattered through the timing of revenue recognition?",
+        options: [
+          "Because revenue is booked when control transfers, not when the cash arrives",
+          "Because accounting standards let a company pick any financial year it likes",
+          "Because the tax authority only inspects revenue once every five years",
+          "Because external auditors have no right of access to sales contracts",
+        ],
+        explanation:
+          "Accrual accounting separates when revenue is booked from when the cash lands, which leaves room for judgement. This is why receivables growing faster than revenue is a signal worth examining closely.",
+      },
+      l7_q18: {
+        question: "What is duration matching used for in asset-liability management?",
+        options: [
+          "Balancing the duration of assets against liabilities to cut interest-rate risk",
+          "Ensuring every investment matures on the same date each year",
+          "Holding equal weights of stocks and bonds throughout the fund's life",
+          "Investing only in bonds rated the same as the issuing institution",
+        ],
+        explanation:
+          "When both durations match, a shift in rates moves the value of assets and liabilities by almost the same amount, so the funding gap is protected. This underpins pension and insurance fund management.",
+      },
+      l7_q19: {
+        question: "Why do agency costs arise between shareholders and management?",
+        options: [
+          "Because managers do not own the whole business, so incentives diverge",
+          "Because company law bars managers from holding shares in their own firm",
+          "Because shareholders have no right of access to audited financial statements",
+          "Because management is always paid above the market rate",
+        ],
+        explanation:
+          "The decision-maker does not bear the full financial consequence, so size, personal safety or short-term gain can win out. Pay design and corporate governance exist to narrow that gap.",
+      },
+      l7_q20: {
+        question: "What does the yield gap between a corporate bond and a government bond of the same maturity mainly reflect?",
+        options: [
+          "The issuer's credit risk and liquidity risk",
+          "The difference in tax rates applied to the two kinds of bond",
+          "The difference in how often each pays its coupon",
+          "The brokerage cost incurred when trading corporate bonds",
+        ],
+        explanation:
+          "The credit spread compensates for the chance of default plus the fact that a corporate bond is harder to sell quickly. It widens when the market takes fright and narrows as risk appetite returns.",
+      },
+    },
+  },
 };
