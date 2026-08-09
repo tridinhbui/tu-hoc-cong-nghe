@@ -119,6 +119,9 @@ export const cosmeticsDuelVi = {
     soloBossBadge: "Solo Knowledge Boss",
     arenaEyebrow: "⚔️ ARENA OF KNOWLEDGE",
     vs: "VS",
+    // Tên thay thế cho một đối thủ chưa đặt tên hiển thị, dựng ở
+    // app/api/pvp/route.ts. Route đọc cookie ngôn ngữ từ chính request.
+    defaultOpponentName: "Trader CFO",
     closeAriaLabel: "Đóng đấu trường",
     learnedTone10: "Trận solo chỉ dùng ngân hàng câu hỏi từ các bài bạn đã học xong.",
     learnedTone3: "Boss sẽ hỏi lại đúng vùng kiến thức bạn đã đi qua.",
@@ -302,6 +305,7 @@ export const cosmeticsDuelEn: typeof cosmeticsDuelVi = {
     soloBossBadge: "Solo Knowledge Boss",
     arenaEyebrow: "⚔️ ARENA OF KNOWLEDGE",
     vs: "VS",
+    defaultOpponentName: "CFO Trader",
     closeAriaLabel: "Close arena",
     learnedTone10: "This solo match only draws from the question bank of lessons you've already finished.",
     learnedTone3: "The boss will quiz you on exactly the material you've already covered.",

@@ -20,5 +20,9 @@ export function sanitizeSearchTerm(term: string): string {
 export function buildOrIlikeFilter(fields: string[], term: string): string | null {
   const sanitized = sanitizeSearchTerm(term);
   if (!sanitized) return null;
+/* i18n-ignore-start: `.ilike.%…%` là cú pháp bộ lọc PostgREST gửi lên Supabase, không phải chữ. */
+/* i18n-ignore-start: cú pháp bộ lọc PostgREST, không phải chữ hiện ra */
   return fields.map((field) => `${field}.ilike.%${sanitized}%`).join(",");
+/* i18n-ignore-end */
+/* i18n-ignore-end */
 }

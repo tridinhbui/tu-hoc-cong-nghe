@@ -118,7 +118,9 @@ export default async function WorldPreviewPage({
     return (
       <div className="min-h-screen bg-stone-50 p-6 dark:bg-stone-950">
         <div className="mx-auto max-w-4xl rounded-[24px] border border-stone-200/90 bg-white/95 p-3.5 shadow-sm dark:border-stone-800 dark:bg-stone-900">
+          {/* i18n-ignore-start: route chỉ chạy khi dev, chặn cứng bằng notFound() trên production - nhãn cho người đang sửa cảnh, không phải chữ người học đọc. */}
           <p className="mb-3 text-[15px] font-bold text-stone-900 dark:text-stone-100">Bản đồ Cấp độ Học viên</p>
+          {/* i18n-ignore-end */}
           <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
             {/* UUID hợp lệ nhưng không tồn tại: cả hai widget đều truy vấn
                 Supabase theo user_id, và một chuỗi không phải UUID làm
@@ -138,7 +140,9 @@ export default async function WorldPreviewPage({
     // cục menu và thao tác mở/đóng, KHÔNG soát được huy hiệu.
     return (
       <div className="min-h-screen bg-stone-100 p-6 dark:bg-stone-950">
+        {/* i18n-ignore-start: route chỉ chạy khi dev, chặn cứng bằng notFound() trên production - nhãn cho người đang sửa cảnh, không phải chữ người học đọc. */}
         <p className="text-sm font-bold text-stone-500">Menu Kết nối ở góc phải dưới →</p>
+        {/* i18n-ignore-end */}
         <ConnectMenuPreview />
       </div>
     );

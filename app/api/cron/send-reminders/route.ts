@@ -25,7 +25,11 @@ async function sendReminderEmail(
   subject: string,
   paragraphs: string[]
 ): Promise<{ sent: boolean; reason?: string }> {
+/* i18n-ignore-start: `<p>` là thẻ HTML bọc quanh đoạn văn, không phải chữ - nội dung đoạn đến từ tham số. */
+/* i18n-ignore-start: thẻ HTML bọc quanh đoạn văn, không phải chữ. Nội dung nằm trong `paragraphs` */
   return sendEmail(to, subject, paragraphs.map((p) => `<p>${p}</p>`).join(""));
+/* i18n-ignore-end */
+/* i18n-ignore-end */
 }
 
 interface ReminderCandidate {

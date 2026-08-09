@@ -80,8 +80,23 @@ export function minVarianceWeight(a: Asset, b: Asset, rho: number): number {
 
 /** Số thuần, không nhãn - nhãn hiển thị đến từ `assetsOf(t)`. Test và các nơi
  *  chỉ cần ret/vol dùng thẳng hằng số này. */
+/* i18n-ignore-start: `label` ở đây KHÔNG hiện ra. PortfolioRiskPanel che hai hằng số này bằng
+   `assetsOf(t)` ngay dòng đầu, nên chỗ dựng màn hình đọc nhãn từ
+   t.districtContent.portfolioRisk; CivicScenes chỉ dùng `.vol`. Giữ nhãn ở
+   đây để test và những nơi chỉ cần ret/vol đọc thẳng hằng số */
+/* i18n-ignore-start: `label` ở đây là giá trị mặc định KHÔNG BAO GIỜ hiển thị.
+   PortfolioRiskPanel đổ bóng hai hằng số này bằng assetsOf(t) ngay khi vào
+   component, nên chữ người dùng thấy luôn đến từ t.districtContent.portfolioRisk.
+   Giữ nhãn ở đây để test và các nơi chỉ cần ret/vol dùng thẳng được hằng số mà
+   không phải dựng từ điển. */
+/* i18n-ignore-start: `label` chỉ là bản dự phòng - nhãn hiển thị đến từ
+   `assetsOf(t)` ngay dưới, đọc `t.districtContent.portfolioRisk`. Chú thích
+   ngay trên hai hằng số này đã nói vậy từ trước. */
 export const STOCKS: Asset = { label: "Cổ phiếu", ret: 0.12, vol: 0.2 };
 export const BONDS: Asset = { label: "Trái phiếu", ret: 0.05, vol: 0.07 };
+/* i18n-ignore-end */
+/* i18n-ignore-end */
+/* i18n-ignore-end */
 
 /** STOCKS/BONDS kèm nhãn theo ngôn ngữ hiện tại của
  *  `t.districtContent.portfolioRisk`. */

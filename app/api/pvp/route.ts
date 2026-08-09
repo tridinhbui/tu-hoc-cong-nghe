@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
+import { LOCALE_COOKIE, getDictionary, resolveLocale } from "@/lib/i18n";
 
 // `MOCK_OPPONENTS`, an unused block of Vietnamese display names, used to sit
 // here. It was never referenced anywhere else in the codebase (confirmed by
@@ -8,6 +9,9 @@ import { createServerSupabaseClient } from "@/lib/supabase-server";
 
 export async function GET(request: NextRequest) {
   const supabase = await createServerSupabaseClient();
+  // Đọc cookie thẳng từ request thay vì gọi `cookies()`: route handler vốn đã
+  // động, và tên thay thế bên dưới đi thẳng vào danh sách người dùng nhìn thấy.
+  const t = getDictionary(resolveLocale(request.cookies.get(LOCALE_COOKIE)?.value));
 
   const { data: topUsers } = await supabase
     .from("user_profiles")
@@ -24,7 +28,7 @@ export async function GET(request: NextRequest) {
 
   const leaderboard = (topUsers as ProfileRow[] | null)?.map((u, idx) => ({
     rank: idx + 1,
-    name: u.full_name || u.email?.split("@")[0] || "Trader CFO",
+    name: u.full_name || u.email?.split("@")[0] || t.pvpDuel.defaultOpponentName,
     avatarUrl: u.avatar_url,
     level: u.current_level || 1,
     pvpScore: (u.current_level || 1) * 120 + 50,

@@ -35,10 +35,19 @@ export const LOCALE_COOKIE = "thtcdn_locale";
 // session; there's nothing sensitive in it.
 export const LOCALE_COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
 
+/* i18n-ignore-start: tên mỗi ngôn ngữ viết bằng CHÍNH ngôn ngữ đó - đó là cả điểm của một hộp
+   đổi ngôn ngữ. Người đang đọc giao diện tiếng Việt mà muốn chuyển sang tiếng
+   Anh cần thấy chữ "English", không phải "Tiếng Anh" */
+/* i18n-ignore-start: tên mỗi ngôn ngữ viết BẰNG CHÍNH ngôn ngữ đó - "Tiếng
+   Việt" và "English". Đó là quy ước của mọi bộ chuyển ngôn ngữ: người đang đọc
+   tiếng Anh phải nhận ra dòng tiếng Việt để bấm vào. Dịch nó là làm hỏng đúng
+   chức năng của nó. */
 export const LOCALE_LABELS: Record<Locale, string> = {
   vi: "Tiếng Việt",
   en: "English",
 };
+/* i18n-ignore-end */
+/* i18n-ignore-end */
 
 /** Short label for the switcher button, where space is tight. */
 export const LOCALE_SHORT_LABELS: Record<Locale, string> = {
