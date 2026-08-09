@@ -100,7 +100,7 @@ export default function InteractiveEcosystemShowcase() {
     if (!cheerInput.trim()) return;
     setCheerLog((prev) => [
       ...prev,
-      { id: String(Date.now()), user: "Bạn", text: cheerInput.trim() },
+      { id: String(Date.now()), user: t.ecosystem.cheerYou, text: cheerInput.trim() },
     ]);
     setCheerInput("");
   }
@@ -108,7 +108,7 @@ export default function InteractiveEcosystemShowcase() {
   function handleQuickCheer(emojiText: string) {
     setCheerLog((prev) => [
       ...prev,
-      { id: String(Date.now()), user: "Bạn", text: emojiText },
+      { id: String(Date.now()), user: t.ecosystem.cheerYou, text: emojiText },
     ]);
   }
 
@@ -459,12 +459,12 @@ export default function InteractiveEcosystemShowcase() {
                     <div
                       key={log.id}
                       className={`p-2.5 rounded-2xl text-xs shadow-xs border ${
-                        log.user === "Bạn"
+                        log.user === t.ecosystem.cheerYou
                           ? "bg-emerald-500 text-stone-950 font-bold border-emerald-400 ml-4"
                           : "bg-white border-stone-200 text-stone-800 mr-4"
                       }`}
                     >
-                      <p className={`text-[9px] font-black ${log.user === "Bạn" ? "text-stone-950" : "text-emerald-700"}`}>
+                      <p className={`text-[9px] font-black ${log.user === t.ecosystem.cheerYou ? "text-stone-950" : "text-emerald-700"}`}>
                         {log.user}
                       </p>
                       <p className="mt-0.5 leading-relaxed">{log.text}</p>

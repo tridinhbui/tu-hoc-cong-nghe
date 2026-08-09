@@ -42,6 +42,7 @@ export const cosmeticsDuelVi = {
     toastSaveError: "Lỗi khi lưu avatar: {error}",
   },
   cosmeticStore: {
+    vipDiamond: "💎 VIP Kim Cương",
     storeAlt: "The Wolf of Wall Street Executive Store",
     arsenalEyebrow: "🐺 WOLF OF WALL STREET ARSENAL",
     arsenalTitle: "Financial RPG Arsenal",
@@ -224,6 +225,7 @@ export const cosmeticsDuelEn: typeof cosmeticsDuelVi = {
     toastSaveError: "Error saving avatar: {error}",
   },
   cosmeticStore: {
+    vipDiamond: "💎 Diamond VIP",
     storeAlt: "The Wolf of Wall Street Executive Store",
     arsenalEyebrow: "🐺 WOLF OF WALL STREET ARSENAL",
     arsenalTitle: "Financial RPG Arsenal",

@@ -6,6 +6,14 @@ import { ArrowRight, CalendarDays, CheckCircle2, Compass, Flame, HelpCircle, Lis
 import { getDashboardGreetingAction } from "@/app/(app)/dashboard/actions";
 import { getLessonShortTitle } from "@/lib/lesson-labels";
 import { useI18n } from "@/lib/i18n/context";
+import {
+  DEFAULT_PACE,
+  MEDIAN_LESSON_MINUTES,
+  readPace,
+  weeksFor,
+  writePace,
+  type Pace,
+} from "@/lib/learning-pace";
 import { format } from "@/lib/i18n";
 import type { StageTopicId } from "@/lib/stage-topics";
 
@@ -14,14 +22,9 @@ type Track = "personal" | "professional";
 /** Trung vị `totalMinutes` của cả kho, đo lúc viết trang này (n=722, khoảng
  *  4-11). Một con số đo được giữ được lòng tin; "nhẹ nhàng thôi" thì không.
  *  lib/__tests__/learning-path-claims.test.ts neo nó lại. */
-const MEDIAN_LESSON_MINUTES = 6;
-
-const PACE_KEY = "thtcdn_path_pace";
-
-interface Pace {
-  perDay: 1 | 2;
-  daysPerWeek: number;
-}
+// Nhịp và phép tính đi kèm nằm ở lib/learning-pace.ts: khối tóm tắt trên
+// /hoc-bai đọc cùng khoá và in cùng câu "còn N bài, khoảng M tuần", nên hai
+// bản sao của công thức sẽ lệch nhau mà không có gì báo.
 
 /**
  * Thứ tự các phần là thứ tự câu hỏi trong đầu người mới, không phải thứ tự
@@ -45,22 +48,14 @@ export default function LearningPathClient({
   const p = t.learningPath;
 
   const [track, setTrack] = useState<Track>("personal");
-  const [pace, setPace] = useState<Pace>({ perDay: 1, daysPerWeek: 5 });
+  const [pace, setPace] = useState<Pace>(DEFAULT_PACE);
   const [greeting, setGreeting] = useState<Awaited<ReturnType<typeof getDashboardGreetingAction>> | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
     setTrack(window.localStorage.getItem("activeTrack") === "professional" ? "professional" : "personal");
-    const saved = window.localStorage.getItem(PACE_KEY);
-    if (saved) {
-      try {
-        const parsed = JSON.parse(saved) as Pace;
-        if (parsed.perDay === 1 || parsed.perDay === 2) setPace(parsed);
-      } catch {
-        // Nhịp là tiện nghi, không phải dữ liệu - JSON hỏng thì về mặc định.
-      }
-    }
+    setPace(readPace());
   }, []);
 
   useEffect(() => {
@@ -92,12 +87,7 @@ export default function LearningPathClient({
 
   const savePace = (next: Pace) => {
     setPace(next);
-    if (typeof window !== "undefined") window.localStorage.setItem(PACE_KEY, JSON.stringify(next));
-  };
-
-  const weeksFor = (count: number, perDay: number, days: number) => {
-    const perWeek = perDay * days;
-    return perWeek > 0 ? Math.ceil(count / perWeek) : 0;
+    writePace(next);
   };
 
   const total = counts[track];

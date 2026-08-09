@@ -99,23 +99,23 @@ const IGNORE_BLOCK = /\/\*\s*i18n-ignore-start:[\s\S]*?i18n-ignore-end\s*\*\//g;
 const BLOCK_COMMENT = /\/\*[\s\S]*?\*\//g;
 const LINE_COMMENT = /(^|\s)\/\/[^\n]*/g;
 
-// `throw new Error("...")` is not copy. It reaches a developer through a stack
-// trace, never a learner through a screen, and i18n-coverage already excludes
-// it - so leaving it in here made the two scripts disagree on files that were
-// in fact finished. components/lobby/room-textures.ts read 5 strings while
-// every one of them was a canvas-context guard.
+// `throw new Error("...")` is NOT excluded, and the attempt to exclude it is
+// worth recording so nobody repeats it. The reasoning looked sound - a throw
+// reaches a developer through a stack trace - and it is true for an invariant
+// guard like room-textures' canvas-context checks. It is false for a server
+// action: app/(app)/tai-lieu/actions.ts throws "Vui lòng nhập tiêu đề tài
+// liệu", and CommunityUploadModal renders `err.message` straight into
+// `toast.error`. That string is the copy the user reads.
 //
-// Excluded in the RULE rather than by wrapping the throws in i18n-ignore: an
-// ignore block is an unreviewed claim that a string is not copy, and this is a
-// shape the scanner can recognise on its own.
-const THROW_ERROR = /throw new [A-Z]\w*Error\((["'`])(?:\\.|(?!\1)[^\\])*\1\)/g;
+// So the shape does not decide it; where the throw sits does. An invariant
+// guard belongs in an i18n-ignore block with its reason, which is a reviewed
+// claim rather than a blanket rule.
 
 function stringsIn(src) {
   const scannable = src
     .replace(IGNORE_BLOCK, "")
     .replace(BLOCK_COMMENT, "")
-    .replace(LINE_COMMENT, "$1")
-    .replace(THROW_ERROR, "throw new Error()");
+    .replace(LINE_COMMENT, "$1");
   const found = [];
   for (const re of PATTERNS) {
     for (const m of scannable.matchAll(re)) {

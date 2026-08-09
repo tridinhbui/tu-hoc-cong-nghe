@@ -130,13 +130,13 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
   const totalCount = activeCase.questions.length;
   const correctRatio = totalCount > 0 ? correctCount / totalCount : 0;
 
-  let rankGrade = { label: "Hạng C - Cần Ôn Tập", color: "text-stone-500 border-stone-300", badgeBg: "bg-stone-100" };
+  let rankGrade = { label: t.caseArena.rankC, color: "text-stone-500 border-stone-300", badgeBg: "bg-stone-100" };
   if (correctRatio >= 0.9) {
-    rankGrade = { label: "Hạng S - Huyền Thoại Phân Tích Wall Street 🏆", color: "text-amber-700 border-amber-300", badgeBg: "bg-amber-50" };
+    rankGrade = { label: t.caseArena.rankS, color: "text-amber-700 border-amber-300", badgeBg: "bg-amber-50" };
   } else if (correctRatio >= 0.75) {
-    rankGrade = { label: "Hạng A - Chuyên Gia Phân Tích Doanh Nghiệp 🥇", color: "text-emerald-600 border-emerald-300", badgeBg: "bg-emerald-50" };
+    rankGrade = { label: t.caseArena.rankA, color: "text-emerald-600 border-emerald-300", badgeBg: "bg-emerald-50" };
   } else if (correctRatio >= 0.6) {
-    rankGrade = { label: "Hạng B - Học Viên Phố Wall 🥈", color: "text-sky-600 border-sky-300", badgeBg: "bg-sky-50" };
+    rankGrade = { label: t.caseArena.rankB, color: "text-sky-600 border-sky-300", badgeBg: "bg-sky-50" };
   }
 
   return (

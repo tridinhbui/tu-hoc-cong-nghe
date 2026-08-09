@@ -87,6 +87,13 @@ export const learningPathVi = {
     adjustWeakestHint: "Nếu muốn quay lại ôn, đây là chỗ đáng ôn nhất - không phải bài mới nhất.",
     adjustNoData: "Học vài bài rồi quay lại - chỗ này sẽ cho bạn biết mình mạnh yếu ở đâu.",
     adjustEmptyGaps: "Chưa có chủ đề nào bạn sai nhiều. Cứ đi tiếp.",
+
+    // Khối tóm tắt trên /hoc-bai - bản rút gọn của trang này, đặt đúng chỗ thẻ
+    // "Chào mừng quay lại" trước đây đứng.
+    summaryEyebrow: "LỘ TRÌNH CỦA BẠN",
+    summaryFull: "Xem lộ trình đầy đủ ›",
+    summaryPace: "{perDay} bài/ngày · {days} ngày/tuần",
+    summaryDone: "Đã học {done}/{total} bài",
   },
 };
 
@@ -163,5 +170,10 @@ export const learningPathEn: typeof learningPathVi = {
     adjustWeakestHint: "If you want to go back and review, this is the spot worth reviewing - not the newest lesson.",
     adjustNoData: "Take a few lessons and come back - this will tell you where you're strong and weak.",
     adjustEmptyGaps: "No topic is tripping you up yet. Keep going.",
+
+    summaryEyebrow: "YOUR PATH",
+    summaryFull: "See the full path ›",
+    summaryPace: "{perDay} lessons/day · {days} days/week",
+    summaryDone: "{done} of {total} lessons done",
   },
 };

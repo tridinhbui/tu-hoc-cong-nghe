@@ -582,7 +582,14 @@ function ComparisonModal({
  *  vì liệt kê tay ở ba chỗ, để thêm một tab không lặng lẽ trượt qua. */
 type JobTab = "daily" | "insights" | "path" | "skills" | "profile" | "search";
 
-export default function JobSearchClient() {
+/** `embedded` để trang này nằm bên trong một trang khác.
+ *
+ *  Nó được nhúng xuống dưới các ô chọn nghề ở /nghe-nghiep-hoc, và khi đó cái
+ *  vỏ trang riêng của nó là thứ phải bỏ đi: `min-h-screen` đẩy nội dung bên
+ *  trên ra khỏi màn hình, thanh tiêu đề dính (sticky) chồng lên thanh của
+ *  trang chủ, và "Quay lại dashboard" nằm giữa trang thì trỏ sai chỗ - người
+ *  đọc đang ở giữa trang Học theo nghề chứ không phải ở đầu một trang riêng. */
+export default function JobSearchClient({ embedded = false }: { embedded?: boolean } = {}) {
   const { t } = useI18n();
   const quizQuestions = useMemo(() => quizQuestionsOf(t), [t]);
   const categories = useMemo(() => categoriesOf(t), [t]);
@@ -853,16 +860,18 @@ export default function JobSearchClient() {
   }
 
   return (
-    <div className="min-h-screen bg-stone-50 dark:bg-stone-950 text-stone-900 dark:text-stone-100 font-sans transition-colors duration-300">
+    <div className={`bg-stone-50 dark:bg-stone-950 text-stone-900 dark:text-stone-100 font-sans transition-colors duration-300 ${embedded ? "" : "min-h-screen"}`}>
       
       {/* Top Header Bar */}
-      <div className="sticky top-0 z-30 border-b border-stone-200 dark:border-stone-800 bg-white/80 dark:bg-stone-950/80 backdrop-blur-md">
+      <div className={`z-30 border-b border-stone-200 dark:border-stone-800 bg-white/80 dark:bg-stone-950/80 backdrop-blur-md ${embedded ? "" : "sticky top-0"}`}>
         <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <Link href="/dashboard" className="inline-flex items-center gap-1.5 text-xs font-extrabold uppercase tracking-wider text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors">
-              <ArrowLeft className="w-3.5 h-3.5" />
-              {t.jobs.backToDashboard}
-            </Link>
+            {!embedded && (
+              <Link href="/dashboard" className="inline-flex items-center gap-1.5 text-xs font-extrabold uppercase tracking-wider text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors">
+                <ArrowLeft className="w-3.5 h-3.5" />
+                {t.jobs.backToDashboard}
+              </Link>
+            )}
             <h1 className="text-2xl font-black text-stone-900 dark:text-stone-100 mt-1.5 flex items-center gap-2.5">
               <Briefcase className="w-6 h-6 text-emerald-500 dark:text-emerald-400" />
               {t.jobs.pageTitle}

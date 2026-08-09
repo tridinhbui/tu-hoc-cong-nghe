@@ -404,7 +404,7 @@ export default function ProfilePage() {
         );
       } catch (error) {
         console.error("Error loading profile page:", error);
-        setErrorMessage("Không tải được đầy đủ hồ sơ. Vui lòng thử lại.");
+        setErrorMessage(t.profile.loadPartialError);
       } finally {
         setLoading(false);
       }
@@ -421,7 +421,7 @@ export default function ProfilePage() {
     );
   }
 
-  const displayName = profile?.full_name || user?.user_metadata?.full_name || "Người dùng";
+  const displayName = profile?.full_name || user?.user_metadata?.full_name || t.profile.defaultName;
   const avatarUrl = profile?.avatar_url || user?.user_metadata?.avatar_url || null;
   const joinedAt = profile?.created_at || user?.created_at || null;
   const currentLevel = getLevelByXp(profile?.total_xp || 0);

@@ -60,9 +60,9 @@ export default function FloatingContact() {
 
     const { error } = await supabase.from("contact_messages").insert({
       user_id: user?.id ?? null,
-      name: name.trim() || user?.user_metadata?.full_name || "Ẩn danh",
+      name: name.trim() || user?.user_metadata?.full_name || t.chatbot.anonName,
       email: email.trim() || user?.email || null,
-      subject: "Góp ý từ ứng dụng",
+      subject: t.chatbot.feedbackSubject,
       message: message.trim(),
     });
 

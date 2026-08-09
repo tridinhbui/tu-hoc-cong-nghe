@@ -188,7 +188,7 @@ export default function CosmeticStore({ userId, onBack }: { userId: string; onBa
     }
     if (item.asset_type === "title") {
       try {
-        localStorage.setItem(`thtcdn_vip_badge_${userId}`, "💎 VIP Kim Cương");
+        localStorage.setItem(`thtcdn_vip_badge_${userId}`, t.cosmeticStore.vipDiamond);
       } catch (e) {}
       toast.success(t.cosmeticStore.toastVipEquipped);
       return;

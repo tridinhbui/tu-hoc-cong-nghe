@@ -813,6 +813,8 @@ export const vi = {
 
   // app/(app)/profile/page.tsx
   profile: {
+    loadPartialError: "Không tải được đầy đủ hồ sơ. Vui lòng thử lại.",
+    defaultName: "Người dùng",
     titleUpdated: "Đã cập nhật danh hiệu hiển thị!",
     themeUpdated: "Đã cập nhật giao diện hiển thị!",
     loading: "Đang tải...",
@@ -962,6 +964,7 @@ export const vi = {
   // preview of the three ecosystem surfaces. All of its content is illustrative:
   // the learners, the posts and the quiz are a demo, not live data.
   ecosystem: {
+    cheerYou: "Bạn",
     livePreview: "● Đang xem Live Preview",
     tapToTry: "Bấm để xem thử",
 
@@ -1243,6 +1246,9 @@ export const vi = {
 
   // components/FinancialGuildWidget.tsx - the VN30 fund simulator.
   guild: {
+    concentrationTitle: "⚠️ Cảnh Báo Tập Trung Vốn (Concentration Risk)",
+    concentrationDesc:
+      "Bạn đang dồn hơn 80% giá trị danh mục vào duy nhất 1 mã cổ phiếu. Bài học: Đa dạng hóa danh mục (Diversification) giúp giảm thiểu rủi ro phi hệ thống khi doanh nghiệp gặp tin xấu!",
     insufficientCash: "Không đủ sức mua tiền mặt khả dụng!",
     insufficientShares: "Số lượng cổ phiếu trong danh mục không đủ để BÁN!",
     rebalanced: "Đã tái cơ cấu đưa Quỹ về trạng thái vốn ban đầu 1 Tỷ VNĐ.",
@@ -1464,6 +1470,8 @@ export const vi = {
 
   // components/ResumeLearningButton.tsx - the "continue learning" hero card.
   resume: {
+    criteriaQuizLeft: "{count} câu Kiểm tra nhanh",
+    criteriaReadAll: "đọc hết bài",
     congrats: "Chúc mừng{name}!",
     allDone: "Bạn đã hoàn thành tất cả bài học",
     study: "▶ Học",
@@ -1586,6 +1594,7 @@ export const vi = {
 
   // components/RigorousLevelExamModal.tsx - the level-up exam.
   levelExam: {
+    loadFailed: "Không tải được đề thi.",
     passedToast: "Chúc mừng! Bạn đã thi đỗ xuất sắc Cấp độ {level} ({percent}%)!",
     timedOutToast: "Đã quá thời gian làm bài nên kết quả không được tính. Bạn có thể thi lại.",
     failedToast: "Rất tiếc! Bạn đạt {percent}% (Yêu cầu thi đỗ: ≥ {required}%). Vui lòng ôn lại và thử lại!",
@@ -1718,6 +1727,10 @@ export const vi = {
 
   // components/WeeklyChallengeWidget.tsx - the Times Square case-study arena.
   caseArena: {
+    rankS: "Hạng S - Huyền Thoại Phân Tích Wall Street 🏆",
+    rankA: "Hạng A - Chuyên Gia Phân Tích Doanh Nghiệp 🥇",
+    rankB: "Hạng B - Học Viên Phố Wall 🥈",
+    rankC: "Hạng C - Cần Ôn Tập",
     correctToast: "Chính xác! +{score} điểm (Combo x{multiplier}) 🔥",
     wrongToast: "Chưa chính xác! Thất thoát Combo.",
 
@@ -1895,6 +1908,7 @@ export const vi = {
 
   // components/FloatingStudyGroupChat.tsx
   groupChat: {
+    you: "bạn",
     openAria: "Chat nhóm học",
     inputPlaceholder: "Nhắn gì đó cho nhóm... hoặc /taitai",
     roomTitle: "Nhóm {topic}",
@@ -2384,6 +2398,10 @@ export const vi = {
     libraryPresence: "Thư viện là nơi duy nhất trong app có người khác đang hiện diện",
     libraryEnterCta: "Vào",
 
+    levelMapTab: "Bản đồ cấp độ",
+    learningPathTab: "Lộ trình học",
+    learningPathTitle: "Lộ trình học của bạn",
+    learningPathNote: "Bốn lộ trình, từ tài chính cá nhân tới CFA và FRM - vào học tiếp từ đúng chỗ đang dở",
     levelMapTitle: "Bản đồ Cấp độ Học viên",
     levelMapNote:
       "XP là tiến độ học; sát hạch và điểm kiểm tra mới xác nhận năng lực thật",
@@ -2895,6 +2913,8 @@ export const vi = {
 
   // components/ManualLessonFlagButton.tsx - tự đánh dấu đã học.
   manualLessonFlag: {
+    confirmNoXp:
+      "Bạn xác nhận đã học bài này nhé, nhưng sẽ không được nhận kinh nghiệm trừ khi bạn đọc hết và làm hết.",
     alreadyCountedTitle: "Bài này đã được hệ thống tính tiến độ",
     unflagTitle: "Bỏ đánh dấu tự xác nhận",
     flagTitle: "Tự đánh dấu đã học",
@@ -2967,6 +2987,9 @@ export const vi = {
   // Bốn trang chứng chỉ: CFA thẻ thuật ngữ, CFA sổ tay công thức, FRM, và
   // khối "chặng sau" dưới lộ trình CFA.
   certPages: {
+    frmTipLabel: "Bẫy hay gặp",
+    frmAllLabel: "Tất cả (10 Môn FRM)",
+    frmLearnedToast: "✓ Đã đánh dấu thuộc thuật ngữ FRM!",
     // metadata của trang. Dịch được vì các trang này vốn đã dựng động (layout
     // gốc đọc cookie ngôn ngữ), và bọ tìm kiếm không mang cookie nên vẫn nhận
     // bản tiếng Việt mặc định - đúng thứ mình muốn cho một site tiếng Việt.

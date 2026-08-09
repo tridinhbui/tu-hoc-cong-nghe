@@ -60,6 +60,8 @@ export const legalChatVi = {
     section7Part2: ".",
   },
   chatbot: {
+    feedbackSubject: "Góp ý từ ứng dụng",
+    anonName: "Ẩn danh",
     fabAriaLabel: "Liên hệ admin",
     fabTitle: "Góp ý & đóng góp",
     headerTitle: "Góp ý & Đóng góp",
@@ -162,6 +164,8 @@ export const legalChatEn: typeof legalChatVi = {
     section7Part2: ".",
   },
   chatbot: {
+    feedbackSubject: "Feedback from the app",
+    anonName: "Anonymous",
     fabAriaLabel: "Contact admin",
     fabTitle: "Feedback & contributions",
     headerTitle: "Feedback & Contributions",

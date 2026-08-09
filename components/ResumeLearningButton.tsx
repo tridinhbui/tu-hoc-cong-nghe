@@ -134,12 +134,12 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
   const criteria = greeting?.nextLessonCriteria;
   const missingCriteria: string[] = [];
   if (nextLesson && criteria) {
-    if (criteria.readPercent < 95) missingCriteria.push("đọc hết bài");
+    if (criteria.readPercent < 95) missingCriteria.push(t.resume.criteriaReadAll);
     if (criteria.quizTotal > 0) {
       const answers = getQuizAnswers(nextLesson.id);
       const submittedCount = answers?.submitted.filter(Boolean).length ?? 0;
       if (submittedCount < criteria.quizTotal) {
-        missingCriteria.push(`${criteria.quizTotal - submittedCount} câu Kiểm tra nhanh`);
+        missingCriteria.push(format(t.resume.criteriaQuizLeft, { count: criteria.quizTotal - submittedCount }));
       }
     }
   }

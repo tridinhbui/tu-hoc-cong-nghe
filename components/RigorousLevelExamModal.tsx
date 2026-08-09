@@ -67,7 +67,7 @@ export default function RigorousLevelExamModal({
       })
       .catch((error: unknown) => {
         if (cancelled) return;
-        setLoadError(error instanceof Error ? error.message : "Không tải được đề thi.");
+        setLoadError(error instanceof Error ? error.message : t.levelExam.loadFailed);
       });
     return () => {
       cancelled = true;

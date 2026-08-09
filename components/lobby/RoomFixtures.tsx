@@ -88,7 +88,7 @@ function useBoardData(t: Dictionary) {
       );
       setPosts(
         feed.map((p) => {
-          const who = p.user_name || "Người học";
+          const who = p.user_name || t.miscUi.defaultLearner;
           const what = (p.content || "").replace(/\s+/g, " ").trim();
           return `${who}: ${what}`;
         })

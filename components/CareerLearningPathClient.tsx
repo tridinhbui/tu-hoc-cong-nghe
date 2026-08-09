@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft, Circle, CheckCircle2 } from "lucide-react";
 import { FINANCE_CAREERS, type FinanceCareer } from "@/lib/finance-careers";
+import JobSearchClient from "@/components/JobSearchClient";
 import { buildCareerRoadmap, categoryProgress, type LessonIndex } from "@/lib/career-roadmap";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
@@ -184,20 +185,16 @@ export default function CareerLearningPathClient({
             );
           })}
 
-          {/* Ô thứ sáu của lưới. Chú thích đầu file nói "/su-nghiep stays
-              linked from here", nhưng đường link đó chỉ tồn tại ở bước 3 - sau
-              khi đã chọn xong một nghề. Trên chính màn hình mà câu đó mô tả,
-              lối ra duy nhất là nút Quay lại.
-              Nét đứt và nền chìm để nó không cạnh tranh với năm lựa chọn thật:
-              đây là lối đi khác, không phải nhóm nghề thứ sáu. */}
-          <Link
-            href="/su-nghiep"
-            className="group flex flex-col justify-center rounded-2xl border-2 border-dashed border-stone-200 dark:border-stone-800 bg-stone-50/60 dark:bg-stone-900/40 p-4 hover:border-stone-400 dark:hover:border-stone-600 hover:bg-stone-100/60 dark:hover:bg-stone-900/70 transition-all"
-          >
-            <p className="text-sm font-bold text-stone-600 dark:text-stone-300 group-hover:text-stone-900 dark:group-hover:text-stone-100 leading-snug">
-              {t.careerPath.fullProfileCta}
-            </p>
-          </Link>
+        </div>
+
+        {/* Toàn bộ trang Sự nghiệp, nhúng ngay dưới các ô chọn nghề.
+            Trước đây nó là một ô nét đứt thứ sáu trong lưới trỏ sang
+            /su-nghiep - hai trang trả lời hai nửa của cùng một câu hỏi ("nghề
+            này học gì" và "nghề này là gì"), và người dùng phải biết cả hai
+            tồn tại thì mới ghép được. Giờ chọn nghề ở trên, đọc về nghề ở
+            dưới, cùng một trang. */}
+        <div className="-mx-6 mt-8 border-t border-stone-200 dark:border-stone-800">
+          <JobSearchClient embedded />
         </div>
       </div>
     );

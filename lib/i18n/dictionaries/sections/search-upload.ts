@@ -9,6 +9,7 @@ export const searchUploadVi = {
     categoryGlossary: "Thuật ngữ",
   },
   cfaModule: {
+    noDetailedContent: "Bài học này chưa có nội dung chi tiết.",
     backAriaLabel: "Về CFA",
     backLabel: "Quay lại",
     notFoundMessage: "Không tìm thấy bài học CFA này.",
@@ -33,6 +34,10 @@ export const searchUploadVi = {
     reviewLoopCta: "Ôn lại trong 1 phút trước khi chuyển bài",
   },
   communityUpload: {
+    errNotSignedIn: "Vui lòng đăng nhập để chia sẻ tài liệu.",
+    errNoTitle: "Vui lòng nhập tiêu đề tài liệu",
+    errNoFile: "Vui lòng chọn một tệp để tải lên",
+    errTooLarge: "Tệp vượt quá giới hạn 10MB",
     modalTitle: "Chia sẻ tài liệu của bạn",
     loginRequiredMessage: "Bạn cần đăng nhập để chia sẻ tài liệu cho cộng đồng.",
     loginButton: "Đăng nhập",
@@ -62,6 +67,7 @@ export const searchUploadEn: typeof searchUploadVi = {
     categoryGlossary: "Term",
   },
   cfaModule: {
+    noDetailedContent: "This lesson has no detailed content yet.",
     backAriaLabel: "Back to CFA",
     backLabel: "Back",
     notFoundMessage: "This CFA module could not be found.",
@@ -86,6 +92,10 @@ export const searchUploadEn: typeof searchUploadVi = {
     reviewLoopCta: "Review for 1 minute before moving on",
   },
   communityUpload: {
+    errNotSignedIn: "Please sign in to share a document.",
+    errNoTitle: "Please enter a document title",
+    errNoFile: "Please choose a file to upload",
+    errTooLarge: "The file is over the 10MB limit",
     modalTitle: "Share your document",
     loginRequiredMessage: "You need to sign in to share documents with the community.",
     loginButton: "Sign in",

@@ -146,11 +146,9 @@ const NAV_SECTIONS: NavSection[] = [
       // phải một trò để luyện tay như Game hay Phỏng vấn.
       { href: "/kiem-tra", labelKey: "quiz", icon: GraduationCap },
       { href: "/ghi-chu", labelKey: "notes", icon: StickyNote },
-      // Sự nghiệp sits with the learning entries rather than with the progress
-      // charts. "Nghề nào hợp với tôi" is a question you answer on the way in,
-      // next to the tracks you would then pick - not a statistic you check
-      // afterwards, which is what the Tiến độ group holds.
-      { href: "/su-nghiep", labelKey: "career", icon: Briefcase },
+      // Mục "Sự nghiệp" (/su-nghiep) từng đứng ở đây. Nội dung của nó giờ
+      // nằm ngay dưới các ô chọn nghề trong /nghe-nghiep-hoc ở nhóm trên, nên
+      // hai dòng menu cho hai nửa của cùng một câu hỏi rút còn một.
     ],
   },
   // Không còn nhóm Cộng đồng. Ba lối vào đó lên thẳng TOP_LEVEL_LINKS: một
@@ -548,7 +546,7 @@ export default function AppNavbar() {
     const navLabel = labelKey ? t.nav[labelKey] : dataLabelKey ? t.dataRest.appNavbar[dataLabelKey] : label;
     const active = pathname === href;
     const isGame = href === "/game";
-    const isCareer = href === "/su-nghiep";
+    const isCareer = href === "/nghe-nghiep-hoc";
     const isKiemTra = href === "/kiem-tra";
     const isNhomHoc = href === "/nhom-hoc";
     // Thư viện is the only entry that opens a 3D space rather than a page, so

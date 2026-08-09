@@ -60,6 +60,7 @@ import BossBattleModal from "@/components/BossBattleModal";
 import PvpDuelModal from "@/components/PvpDuelModal";
 import DashboardStreakWidget from "@/components/DashboardStreakWidget";
 import DailyMotivationWidget from "@/components/DailyMotivationWidget";
+import LearningPathSummary from "@/components/LearningPathSummary";
 import { useI18n } from "@/lib/i18n/context";
 import { format, intlLocale } from "@/lib/i18n";
 
@@ -302,6 +303,10 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
   const [selectedCertStage, setSelectedCertStage] = useState<{ label: string; name: string } | null>(null);
   const [communityUsersByLevel, setCommunityUsersByLevel] = useState<Map<number, { name: string; xp: number; avatarUrl: string | null; userId: string }[]>>(new Map());
   const [activeTooltipLevel, setActiveTooltipLevel] = useState<number | null>(null);
+  // Thẻ Bản đồ Cấp độ có hai mặt: bản đồ cấp độ, và lối vào lộ trình học.
+  // Mặc định là "map" - lộ trình đã có lối vào riêng ở cột trái, còn tấm bản
+  // đồ là thứ người học mở dashboard để nhìn.
+  const [levelCardTab, setLevelCardTab] = useState<"map" | "path">("map");
   const levelStripRef = useRef<HTMLDivElement>(null);
   const [cfaCompletedForLevel, setCfaCompletedForLevel] = useState(0);
   const [dbAvatarUrl, setDbAvatarUrl] = useState<string | null>(null);
@@ -1010,11 +1015,27 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                   <div className="min-w-0 xl:self-stretch xl:flex xl:flex-col">
                     <div className="relative z-10 mb-2.5 flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
                       <div>
+                        <div className="flex items-center gap-1 rounded-xl bg-stone-100 dark:bg-stone-800/70 p-0.5 w-fit mb-1.5">
+                          {(["map", "path"] as const).map((tab) => (
+                            <button
+                              key={tab}
+                              type="button"
+                              onClick={() => setLevelCardTab(tab)}
+                              className={`rounded-[10px] px-2.5 py-1 text-[11px] font-black transition-colors cursor-pointer ${
+                                levelCardTab === tab
+                                  ? "bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 shadow-2xs"
+                                  : "text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200"
+                              }`}
+                            >
+                              {tab === "map" ? t.dashboard.levelMapTab : t.dashboard.learningPathTab}
+                            </button>
+                          ))}
+                        </div>
                         <h3 className="text-[15px] font-bold text-stone-900 dark:text-stone-100">
-                          {t.dashboard.levelMapTitle}
+                          {levelCardTab === "map" ? t.dashboard.levelMapTitle : t.dashboard.learningPathTitle}
                         </h3>
                         <p className="text-[10px] text-stone-500 dark:text-stone-400 mt-0.5">
-                          {t.dashboard.levelMapNote}
+                          {levelCardTab === "map" ? t.dashboard.levelMapNote : t.dashboard.learningPathNote}
                         </p>
                       </div>
                       <div className="flex flex-wrap items-center gap-2.5 text-left sm:text-right self-start sm:self-auto">
@@ -1043,7 +1064,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                         level strip below it centers in the leftover space, so the
                         slack reads as padding around the avatars rather than a
                         void at the bottom of the card. */}
-                    <div className="relative z-10 xl:flex-1 xl:flex xl:flex-col">
+                    <div className={`relative z-10 xl:flex-1 xl:flex xl:flex-col ${levelCardTab === "map" ? "" : "hidden"}`}>
                         <div className="w-full h-1 bg-stone-100 dark:bg-stone-800 rounded-full overflow-hidden mb-2.5">
                           <div
                             className="h-full bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full transition-all duration-500"
@@ -1192,6 +1213,54 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                           })()}
                         </AnimatePresence>
                     </div>
+
+                    {/* Tab thứ hai: lối vào lộ trình học.
+                        Dùng `hidden` chứ không tháo khỏi cây: dải cấp độ bên
+                        trên là một vùng cuộn ngang có vị trí cuộn riêng, tháo
+                        ra rồi gắn lại là mỗi lần đổi tab nó nhảy về đầu. */}
+                    <div className={`relative z-10 xl:flex-1 xl:flex xl:flex-col ${levelCardTab === "path" ? "" : "hidden"}`}>
+                      <Link
+                        href="/hoc-bai"
+                        data-tour="hoc-bai-cta"
+                        className="group flex flex-col justify-center rounded-[20px] border-2 border-emerald-500/70 bg-gradient-to-br from-emerald-50 to-teal-50/60 dark:from-emerald-950/40 dark:to-stone-900 p-4 sm:p-5 transition-all hover:border-emerald-500 hover:shadow-md xl:flex-1"
+                      >
+                        <div className="flex items-center gap-3.5">
+                          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-emerald-500 text-white shadow-md transition-transform group-hover:scale-105">
+                            <BookOpen className="h-5.5 w-5.5" />
+                          </div>
+                          <div className="min-w-0 flex-1">
+                            <p className="text-base font-extrabold text-stone-900 dark:text-stone-100 sm:text-lg">
+                              {t.dashboard.enterLessons}
+                            </p>
+                            <p className="mt-0.5 text-xs text-stone-600 dark:text-stone-400 sm:text-sm">
+                              {t.dashboard.enterLessonsSubtitle}
+                            </p>
+                          </div>
+                          <span className="shrink-0 text-2xl font-bold text-emerald-600 transition-transform group-hover:translate-x-1 dark:text-emerald-400">
+                            ›
+                          </span>
+                        </div>
+
+                        {/* Thanh tiến độ toàn lộ trình - lý do để bấm vào nằm ở
+                            con số còn thiếu, không ở dòng chữ mời gọi. */}
+                        <div className="mt-4">
+                          <div className="h-1.5 w-full overflow-hidden rounded-full bg-white/70 dark:bg-stone-800">
+                            <div
+                              className="h-full rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-500"
+                              style={{ width: `${sorted.length ? Math.round((completed.length / sorted.length) * 100) : 0}%` }}
+                            />
+                          </div>
+                          <div className="mt-2.5 flex flex-wrap items-center gap-2">
+                            <span className="rounded-full border border-stone-200 bg-white/80 px-2.5 py-1 text-[11px] font-bold text-stone-700 dark:border-stone-800 dark:bg-stone-900/80 dark:text-stone-300">
+                              {format(t.dashboard.lessonsCompletedOf, { done: completed.length, total: sorted.length })}
+                            </span>
+                            <span className="rounded-full border border-stone-200 bg-white/80 px-2.5 py-1 text-[11px] font-bold text-stone-700 dark:border-stone-800 dark:bg-stone-900/80 dark:text-stone-300">
+                              {t.dashboard.trackCount}
+                            </span>
+                          </div>
+                        </div>
+                      </Link>
+                    </div>
                   </div>
 
                   <div className="min-w-0 rounded-[24px] border border-stone-200/90 dark:border-stone-800 bg-stone-50/85 dark:bg-stone-900/80 p-3 xl:p-3.5">
@@ -1220,44 +1289,17 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
               scrollable range every time this column's height changes. */}
           <div className={`space-y-5 min-w-0 ${isLessonsView ? "xl:col-span-8 xl:min-h-0 xl:overflow-y-auto xl:pr-1.5" : "xl:col-span-4 xl:min-h-0 xl:overflow-y-auto xl:pr-0.5"}`}>
 
-            {user?.id && <DailyMotivationWidget userId={user.id} />}
+            {/* Thẻ "Vào Học bài" từng đứng ở đây. Nó chuyển thành tab thứ
+                hai của thẻ Bản đồ Cấp độ phía trên, nên cột này giờ bắt đầu
+                bằng góc yên tĩnh. */}
 
-            {/* On the overview route the learning path is replaced by a single
-                signpost to it - the whole point of the split is that there is
-                exactly one obvious place to go and study. */}
-            {!isLessonsView && (
-              <Link
-                href="/hoc-bai"
-                data-tour="hoc-bai-cta"
-                className="group block rounded-[24px] border-2 border-emerald-500/70 bg-gradient-to-br from-emerald-50 to-teal-50/60 dark:from-emerald-950/40 dark:to-stone-900 p-5 sm:p-6 shadow-sm hover:shadow-md hover:border-emerald-500 transition-all xl:h-full xl:flex xl:flex-col xl:justify-center"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 shrink-0 rounded-2xl bg-emerald-500 text-white flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                    <BookOpen className="w-6 h-6" />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <p className="text-base sm:text-lg font-extrabold text-stone-900 dark:text-stone-100">
-                      {t.dashboard.enterLessons}
-                    </p>
-                    <p className="text-xs sm:text-sm text-stone-600 dark:text-stone-400 mt-0.5">
-                      {t.dashboard.enterLessonsSubtitle}
-                    </p>
-                  </div>
-                  <span className="shrink-0 text-2xl font-bold text-emerald-600 dark:text-emerald-400 group-hover:translate-x-1 transition-transform">
-                    ›
-                  </span>
-                </div>
-
-                <div className="mt-4 flex flex-wrap items-center gap-2">
-                  <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-white/80 dark:bg-stone-900/80 text-stone-700 dark:text-stone-300 border border-stone-200 dark:border-stone-800">
-                    {format(t.dashboard.lessonsCompletedOf, { done: completed.length, total: sorted.length })}
-                  </span>
-                  <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-white/80 dark:bg-stone-900/80 text-stone-700 dark:text-stone-300 border border-stone-200 dark:border-stone-800">
-                    {t.dashboard.trackCount}
-                  </span>
-                </div>
-              </Link>
-            )}
+            {/* Góc yên tĩnh nằm DƯỚI lối vào học bài, ở cả hai chế độ.
+                Nó là chỗ để đặt xuống, không phải chỗ để bắt đầu - đứng trên
+                thì thứ đầu tiên người học thấy khi mở dashboard là một lời mời
+                nghỉ ngơi, còn việc họ vào đây để làm thì nằm bên dưới nó.
+                Hai nhánh chỉ có một nhánh chạy tại một thời điểm, nên đây là
+                một instance chứ không phải hai. */}
+            {!isLessonsView && user?.id && <DailyMotivationWidget userId={user.id} />}
 
             {isLessonsView && (
             <>
@@ -1265,6 +1307,26 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             <div data-tour="resume-learning">
               <ResumeLearningButton activeTrack={activeTrack} />
             </div>
+
+            {/* Trên /hoc-bai chỗ này là lộ trình, không phải lời chúc.
+                Người đang ở trang học bài đã quyết định học rồi; câu họ còn
+                cần là "còn bao nhiêu, bao lâu nữa xong", không phải một câu
+                động viên. Thẻ chào mừng ở lại trang tổng quan, nơi nó vẫn là
+                thứ đầu tiên người vừa mở app nhìn thấy.
+
+                `done` đếm theo TRACK ĐANG HỌC chứ không phải totalDone ngay
+                dưới đây - totalDone là mọi bài đã học ở cả hai track, đặt cạnh
+                totalLessons (chỉ track hiện tại) sẽ ra tỷ lệ vượt 100% cho ai
+                đã học cả hai. */}
+            {isLessonsView ? (
+              <LearningPathSummary
+                track={activeTrack}
+                done={sorted.filter((l) => completed.includes(l.id)).length}
+                total={sorted.length}
+              />
+            ) : (
+              user?.id && <DailyMotivationWidget userId={user.id} />
+            )}
 
             {/* The recall / mistake / remediation widgets used to sit here, at
                 the top of this column. Now that the column is a fixed-height

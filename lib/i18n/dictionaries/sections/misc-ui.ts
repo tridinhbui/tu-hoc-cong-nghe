@@ -1,5 +1,6 @@
 export const miscUiVi = {
   miscUi: {
+    defaultLearner: "Người học",
     announcementBanner: {
       closeLabel: "Đóng thông báo",
     },
@@ -161,6 +162,7 @@ export const miscUiVi = {
 
 export const miscUiEn: typeof miscUiVi = {
   miscUi: {
+    defaultLearner: "Learner",
     announcementBanner: {
       closeLabel: "Close notification",
     },

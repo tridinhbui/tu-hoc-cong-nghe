@@ -685,7 +685,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
 
                               <button
                                 onClick={() => {
-                                  setReplyingTo({ id: msg.id, senderName: isMine ? "bạn" : senderName, content: msg.content });
+                                  setReplyingTo({ id: msg.id, senderName: isMine ? t.groupChat.you : senderName, content: msg.content });
                                   setActiveMenuMsgId(null);
                                 }}
                                 className="w-full flex items-center gap-2 px-2 py-1.5 rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-950/40 text-stone-800 dark:text-stone-200 font-bold transition-colors text-left text-[11px]"

@@ -111,8 +111,8 @@ export default function FinancialGuildWidget({ userId }: { userId: string }) {
     const posList = Object.values(positions).filter((p) => p.shares > 0);
     if (posList.length === 1 && stockValue > 200000000) {
       newLessons.push({
-        title: "⚠️ Cảnh Báo Tập Trung Vốn (Concentration Risk)",
-        desc: "Bạn đang dồn hơn 80% giá trị danh mục vào duy nhất 1 mã cổ phiếu. Bài học: Đa dạng hóa danh mục (Diversification) giúp giảm thiểu rủi ro phi hệ thống khi doanh nghiệp gặp tin xấu!",
+        title: t.guild.concentrationTitle,
+        desc: t.guild.concentrationDesc,
         type: "diversify",
       });
     }

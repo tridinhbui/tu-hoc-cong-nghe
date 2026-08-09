@@ -758,6 +758,8 @@ export const en: Dictionary = {
   },
 
   profile: {
+    loadPartialError: "We could not load your full profile. Please try again.",
+    defaultName: "User",
     titleUpdated: "Your displayed title has been updated.",
     themeUpdated: "Your displayed theme has been updated.",
     loading: "Loading...",
@@ -900,6 +902,7 @@ export const en: Dictionary = {
   },
 
   ecosystem: {
+    cheerYou: "You",
     livePreview: "● Viewing the live preview",
     tapToTry: "Tap to try it",
 
@@ -1175,6 +1178,9 @@ export const en: Dictionary = {
   },
 
   guild: {
+    concentrationTitle: "⚠️ Concentration Risk warning",
+    concentrationDesc:
+      "You have more than 80% of your portfolio value in a single stock. The lesson: diversification cuts the unsystematic risk you carry when one company hits bad news.",
     insufficientCash: "Not enough available cash for that.",
     insufficientShares: "You don't hold enough shares to SELL.",
     rebalanced: "The fund has been rebalanced back to its starting capital of 1 billion VND.",
@@ -1379,6 +1385,8 @@ export const en: Dictionary = {
   },
 
   resume: {
+    criteriaQuizLeft: "{count} quick-check questions",
+    criteriaReadAll: "read the whole lesson",
     congrats: "Congratulations{name}!",
     allDone: "You've completed every lesson",
     study: "▶ Learn",
@@ -1490,6 +1498,7 @@ export const en: Dictionary = {
   },
 
   levelExam: {
+    loadFailed: "We could not load the exam.",
     passedToast: "Congratulations - you passed level {level} with {percent}%.",
     timedOutToast: "The time ran out, so this attempt doesn't count. You can retake it.",
     failedToast: "So close! You scored {percent}% (pass mark: ≥ {required}%). Review and try again!",
@@ -1616,6 +1625,10 @@ export const en: Dictionary = {
   },
 
   caseArena: {
+    rankS: "Rank S - Wall Street Analysis Legend 🏆",
+    rankA: "Rank A - Corporate Analysis Expert 🥇",
+    rankB: "Rank B - Wall Street Trainee 🥈",
+    rankC: "Rank C - Needs Review",
     correctToast: "Correct! +{score} points (combo x{multiplier}) 🔥",
     wrongToast: "Not quite - you lost your combo.",
 
@@ -1779,6 +1792,7 @@ export const en: Dictionary = {
   },
 
   groupChat: {
+    you: "you",
     openAria: "Study group chat",
     inputPlaceholder: "Say something to the group... or /taitai",
     roomTitle: "{topic} group",
@@ -2230,6 +2244,10 @@ export const en: Dictionary = {
     libraryPresence: "The Library is the only place in the app where other people are actually present",
     libraryEnterCta: "Enter",
 
+    levelMapTab: "Level map",
+    learningPathTab: "Learning path",
+    learningPathTitle: "Your learning path",
+    learningPathNote: "Four tracks, from personal finance to CFA and FRM - pick up where you left off",
     levelMapTitle: "Learner level map",
     levelMapNote:
       "XP measures progress; only the exams and quiz scores confirm real competence",
@@ -2722,6 +2740,8 @@ export const en: Dictionary = {
 
   // components/ManualLessonFlagButton.tsx - marking a lesson done yourself.
   manualLessonFlag: {
+    confirmNoXp:
+      "We will mark this lesson as studied, but you will not earn XP unless you read the whole lesson and finish the quiz.",
     alreadyCountedTitle: "The system already counts this lesson towards your progress",
     unflagTitle: "Remove your self-confirmation",
     flagTitle: "Mark as done yourself",
@@ -2794,6 +2814,9 @@ export const en: Dictionary = {
   // Four certification screens: CFA glossary cards, CFA formula book, FRM, and
   // the "what comes next" block under the CFA track.
   certPages: {
+    frmTipLabel: "Common trap",
+    frmAllLabel: "All (10 FRM subjects)",
+    frmLearnedToast: "✓ Marked this FRM term as learned!",
     // Page metadata. Safe to translate: these pages already render
     // dynamically (the root layout reads the locale cookie), and crawlers
     // carry no cookie so they still get the Vietnamese default - which is what

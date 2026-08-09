@@ -59,7 +59,7 @@ export default function ManualLessonFlagButton({
 
     if (!flagged) {
       const confirmed = window.confirm(
-        "Bạn xác nhận đã học bài này nhé, nhưng sẽ không được nhận kinh nghiệm trừ khi bạn đọc hết và làm hết."
+        t.manualLessonFlag.confirmNoXp
       );
       if (!confirmed) return;
     }

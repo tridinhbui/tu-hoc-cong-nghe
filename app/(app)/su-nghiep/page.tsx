@@ -1,15 +1,12 @@
-import JobSearchClient from "@/components/JobSearchClient";
+import { redirect } from "next/navigation";
 
-// Vỏ tĩnh: trang này không đọc gì ở phía server - mọi dữ liệu do client
-// component bên trong tự lấy từ Supabase sau khi tải. Không có `force-static`
-// thì nó bị dựng lại ở server cho MỖI lượt xem, để trả về đúng một khung HTML
-// không đổi.
+// Trang này đã được gộp vào /nghe-nghiep-hoc ("Học theo nghề"): chọn nghề ở
+// trên, toàn bộ nội dung sự nghiệp nằm ngay bên dưới, cùng một trang.
 //
-// Vẫn được proxy chặn trước khi tới đây, nên tĩnh không có nghĩa là công khai.
-export const dynamic = "force-static";
-
-
-
-export default function JobSearchPage() {
-  return <JobSearchClient />;
+// Giữ lại đúng cú chuyển hướng chứ không xoá route: đường dẫn này nằm trong
+// menu cũ, trong lịch sử trình duyệt của người học, và trong các liên kết rải
+// khắp app (thẻ nghề nghiệp ở dashboard, chân trang, thông báo). Xoá hẳn là
+// biến tất cả những chỗ đó thành 404.
+export default function SuNghiepPage() {
+  redirect("/nghe-nghiep-hoc");
 }

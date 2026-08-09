@@ -162,7 +162,7 @@ export default function CfaModulePageClient({ moduleId }: { moduleId: string }) 
       ]);
       if (cancelled) return;
       if (readingData) setReading(readingData);
-      setContent(contentData ? contentData.content : "Bài học này chưa có nội dung chi tiết.");
+      setContent(contentData ? contentData.content : t.cfaModule.noDetailedContent);
 
       const followUps: PromiseLike<void>[] = [];
 

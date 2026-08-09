@@ -45,9 +45,9 @@ export default async function FrmFlashcardsPage() {
           subjects={FRM_SUBJECTS}
           storageKey="frm_glossary_learned"
           badgeLabel="FRM TERM"
-          tipLabel="Bẫy hay gặp"
-          allLabel="Tất cả (10 Môn FRM)"
-          learnedToastText="✓ Đã đánh dấu thuộc thuật ngữ FRM!"
+          tipLabel={t.certPages.frmTipLabel}
+          allLabel={t.certPages.frmAllLabel}
+          learnedToastText={t.certPages.frmLearnedToast}
         />
       </div>
     </div>
