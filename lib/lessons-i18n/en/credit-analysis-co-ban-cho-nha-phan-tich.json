@@ -1,0 +1,163 @@
+{
+  "slug": "credit-analysis-co-ban-cho-nha-phan-tich",
+  "title": "IB & Analysis, Lesson 4: Credit analysis basics for the credit analyst",
+  "subtitle": "Assessing the ability to repay is an entirely different job from assessing a share's growth potential",
+  "duration": "8 min",
+  "openingQuestion": "An equity analyst and a credit analyst look at the same company. Why might they reach opposite conclusions about how attractive it is?",
+  "openingOptions": [
+    "Because one of the two has certainly analysed it wrongly, and this is generally regarded as the standard view applied widely across the industry",
+    "The equity analyst looks at growth potential (upside), the credit analyst only at repaying on time (downside protection)",
+    "Because the two use different financial data, regardless of the size or the specific sector each individual business operates in",
+    "The credit analyst only cares about the share price and not the accounts, a view that many finance professionals broadly agree with today"
+  ],
+  "explanation": "This is the core difference in perspective: an equity holder captures ALL of the outperformance (unlimited upside) but also risks losing everything if the company fails; a bondholder or lender gets back exactly the principal plus fixed interest (capped upside), so their first concern is the PROBABILITY OF NOT LOSING CAPITAL, not the rate of growth.",
+  "diagram": [
+    { "label": "Equity analyst: focused on upside, accepting high risk", "arrow": false },
+    { "label": "Credit analyst: focused on downside protection, safety first", "arrow": false }
+  ],
+  "realWorldExample": {
+    "company": "Corporate credit ratings (S&P, Moody's, Fitch)",
+    "description": "The rating agencies assess businesses on measures such as debt/EBITDA, interest coverage and the stability of free cash flow - a company can have an impressive growth stock and still be rated poorly on credit if its leverage is too high against the cash flow it generates."
+  },
+  "quiz": [
+    {
+      "question": "What does a low interest coverage ratio (EBIT ÷ interest expense) signal to a credit analyst?",
+      "options": [
+        "A warning - the safety margin on interest is very thin",
+        "A good sign, since the business is using leverage efficiently",
+        "Nothing relevant to the ability to repay",
+        "It matters only for a business with no borrowings at all"
+      ],
+      "explanation": "A low interest coverage ratio means operating profit only just covers (or nearly fails to cover) the interest bill - a thin margin that lets a small shock to profit tip the company into trouble servicing its debt, which is the single most important warning sign for a credit analyst."
+    },
+    {
+      "question": "Why does a credit analyst care more about the STABILITY of cash flow than its GROWTH RATE?",
+      "options": [
+        "Because the growth rate never matters in any analysis",
+        "Because a bondholder needs enough to pay principal and interest on time",
+        "Because fast growth always comes with stable cash flow",
+        "Because stability and growth always move together anyway"
+      ],
+      "explanation": "The ability to repay is tested at EACH SPECIFIC PAYMENT DATE, not on a long-run average - a company with good average cash flow growth but wide swings between periods can still default in its worst period, however positive the long-run outlook. That is why stability matters more than the growth rate in credit analysis."
+    },
+    {
+      "question": "Why do lenders dislike strategies that increase a business's volatility, even where they raise expected value?",
+      "options": [
+        "Because higher volatility increases the business's tax obligations",
+        "Because lenders are not permitted to hold shares in the business",
+        "Because their upside is capped while their downside is not",
+        "Because lenders want to be repaid ahead of schedule"
+      ],
+      "explanation": "This is the basic asymmetry between the two kinds of investor, and it is the source of almost every covenant in a loan agreement."
+    },
+    {
+      "question": "How should an interest coverage ratio of 3.0 be read?",
+      "options": [
+        "Always a safe level for every type of business",
+        "Meaningless, since this measure went out of date long ago",
+        "Always a dangerous level requiring a warning",
+        "It depends on how stable the business's cash flow is"
+      ],
+      "explanation": "The measure tells you how far operating profit can fall before it no longer covers the interest. How far that fall could plausibly go differs completely between a stable industry and a cyclical one."
+    },
+    {
+      "question": "What purpose do covenants in a loan agreement serve for the lender?",
+      "options": [
+        "Allowing early intervention as the finances deteriorate, before repayment fails",
+        "Guaranteeing the lender is paid ahead of shareholders in a bankruptcy",
+        "Allowing the lender to raise the interest rate as the market moves",
+        "Forcing early repayment once profit exceeds the committed level"
+      ],
+      "explanation": "A lender captures none of the growth, so what they are buying is certainty. Covenants - a ceiling on debt to EBITDA, a floor under interest coverage - turn deterioration into an actionable event, rather than waiting until the business genuinely cannot pay."
+    }
+  ],
+  "keyTakeaways": [
+    "The equity analyst cares about growth upside; the credit analyst cares about downside protection - repaying on time",
+    "A low interest coverage ratio is an important warning about the safety margin on interest payments",
+    "Cash flow stability matters more than the growth rate in credit analysis, because default happens in one specific period"
+  ],
+  "practicePrompt": {
+    "question": "A technology startup is growing revenue 150% a year but has negative cash flow and high debt. Equity investors are excited by the growth potential, while the bank's credit analyst refuses to lend any more. Why the opposite views?",
+    "options": [
+      "The credit analyst assesses the ability to repay on time, not the growth potential",
+      "The credit analyst is getting it wrong, because they cannot see the company's outstanding growth potential",
+      "The two sides actually hold the same view, and differ only in how they phrase their conclusion",
+      "Banks always refuse to lend to technology companies whatever their specific financial position may be"
+    ],
+    "explanation": "The credit analyst is assessing the ability to repay on time (downside protection), not growth potential (upside). This is the basic difference between the lender's mindset (preserve capital, avoid default) and the shareholder's (maximise potential return)."
+  },
+  "application": {
+    "title": "Lay the repayment schedule out year by year",
+    "message": "Draw a table: for each coming year, how much principal and interest falls due, and what operating cash flow is expected. Default happens in one specific year rather than on an average, so a year with a large principal maturity matters more than growth across the whole period.",
+    "secondary": "Check the covenants in the loan agreement too: breaching one triggers early repayment, and that usually arrives before actually running out of cash."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "An equity analyst and a credit analyst can look at the same company and reach opposite conclusions - because they are answering two entirely different questions."
+    },
+    {
+      "type": "heading",
+      "text": "Unlimited upside versus downside protection"
+    },
+    {
+      "type": "paragraph",
+      "text": "A shareholder captures all of the outperformance but risks losing everything; a bondholder receives only the principal plus fixed interest, so their first concern is the probability of NOT losing capital. A low interest coverage ratio is an important warning sign - a thin margin of safety on the interest bill. Cash flow stability matters more than the growth rate in credit analysis, because default happens at a specific payment date, not on a long-run average."
+    },
+    {
+      "type": "list",
+      "items": [
+        "The equity analyst cares about growth upside; the credit analyst cares about downside protection",
+        "A low interest coverage ratio is an important warning about the safety margin on interest payments",
+        "Cash flow stability matters more than the growth rate in credit analysis"
+      ]
+    },
+    {
+      "type": "formula",
+      "title": "The two core measures of credit analysis",
+      "equation": "Interest coverage = EBIT ÷ interest expense · Leverage = net debt ÷ EBITDA",
+      "example": {
+        "title": "A worked example",
+        "calculation": "EBIT of 300 billion, interest expense of 100 billion → coverage of 3.0",
+        "result": "Operating profit could fall by around two thirds before it fails to cover the interest",
+        "explanation": "Coverage of 3.0 sounds safe for a business with stable revenue, but for a cyclical business where operating profit can fall 70% in the down phase it is very thin indeed. The same number, two different conclusions, depending on the nature of the cash flow."
+      }
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "The shareholder's view",
+        "text": "The gain is unlimited, the loss is capped at the capital invested. So a high-risk strategy with a chance of a large win can be attractive - the option value leans their way."
+      },
+      "right": {
+        "label": "The lender's view",
+        "text": "The gain is fixed at principal and interest, the loss can be the entire loan. So any strategy that raises volatility works against them, even where it raises the expected value of the business."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "Why the two sides can end up in conflict"
+    },
+    {
+      "type": "paragraph",
+      "text": "This asymmetry explains many of the clauses in a loan agreement. Shareholders have an incentive to borrow more to expand or to pay a large dividend, because the gain accrues to them while the risk is shared with the lender. So lenders write constraints into the contract: a ceiling on leverage, a floor under interest coverage, limits on dividends, restrictions on selling secured assets. Reading the covenants in the debt note usually tells you more about how risky a business is than the debt figure itself."
+    },
+    {
+      "type": "callout",
+      "label": "Four things to read together",
+      "text": "Interest coverage, leverage, the maturity profile of the debt (how much falls due in the next 12 months), and the stability of cash flow through the cycle. The first three are a snapshot at one moment; the fourth tells you whether that snapshot will hold."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A company that looks attractive to an equity investor can look risky to a bondholder - and the reverse.",
+        "Always be explicit: which perspective are you analysing from?"
+      ]
+    }
+  ],
+  "summary": {
+    "keyIdea": "The equity analyst cares about growth upside; the credit analyst cares about downside protection - repaying on time",
+    "commonMistake": "Easy to miss: a low interest coverage ratio is an important warning about the safety margin on interest payments",
+    "action": "Cash flow stability matters more than the growth rate in credit analysis, because default happens in one specific period"
+  }
+}

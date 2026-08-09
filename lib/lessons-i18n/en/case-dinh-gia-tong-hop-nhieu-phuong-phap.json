@@ -1,0 +1,180 @@
+{
+  "slug": "case-dinh-gia-tong-hop-nhieu-phuong-phap",
+  "title": "IB & Analysis, Lesson 5: A combined case - valuing one company by several methods",
+  "subtitle": "DCF, comps and precedent transactions give three different numbers - so which do you believe?",
+  "duration": "8 min",
+  "openingQuestion": "Valuing the same company gives 100,000d per share by DCF, 85,000d by comps and 110,000d by precedent transactions. What is the right way to present the conclusion?",
+  "openingOptions": [
+    "Take only the highest figure, to persuade the client",
+    "Present a valuation range built from all three methods",
+    "Use only the DCF because it is the most scientific method, and set the other two aside entirely",
+    "Take a simple average of the three figures without offering any further explanation at all"
+  ],
+  "explanation": "Standard industry practice is to present a valuation RANGE combining several methods, usually illustrated with a football field chart - each method produces a range on its own assumptions, and the overlap between them is generally treated as the most reliable zone. No method is absolutely right; each has its own strengths and limits.",
+  "diagram": [
+    { "label": "DCF - built on assumptions about future cash flow", "arrow": false },
+    { "label": "Comps - built on how the market prices peers today", "arrow": false },
+    { "label": "Precedent transactions - built on M&A prices actually paid", "arrow": false },
+    { "label": "Combined into a valuation range (the football field)" }
+  ],
+  "realWorldExample": {
+    "company": "An investment bank's valuation report",
+    "description": "In real IPO and M&A processes, investment banks always present a football field chart - a set of horizontal bars showing the range each method produces (DCF, comps, precedent transactions, the 52-week trading range and so on) so that the board and investors see the whole picture, rather than placing absolute trust in a single number."
+  },
+  "quiz": [
+    {
+      "question": "Why is a DCF result far more sensitive than comps to a small change in one assumption (say long-run growth rising by 0.5%)?",
+      "options": [
+        "Because DCF uses more input variables than the comps method",
+        "Because terminal value is 60-80% of the model's total value",
+        "Because DCF requires forecasting the full five years of statements",
+        "Because comps are always based on audited historical figures"
+      ],
+      "explanation": "Terminal value (representing the cash flows beyond the detailed forecast period) is usually most of a DCF's value - a small change in the long-run growth assumption or in WACC is multiplied through the Gordon growth formula (dividing by WACC minus g), which makes the final answer very sensitive to them. This is why a DCF always needs a sensitivity analysis alongside it."
+    },
+    {
+      "question": "When the three methods produce results very far apart (say 50,000d versus 150,000d), what does that usually say about the company being valued?",
+      "options": [
+        "Pick the middle result immediately, to be on the safe side",
+        "There is certainly a calculation error in at least one of the three",
+        "The company is changing model, so the readings diverge",
+        "Take the simple average of the three as the final conclusion"
+      ],
+      "explanation": "A wide spread between valuation methods is usually not a calculation error but a genuine signal - it shows a high level of uncertainty (the market disagrees about prospects, good comparable data is missing, or the business is mid-transition). The width of the range is itself useful information, not just its midpoint."
+    },
+    {
+      "question": "Three valuation methods produce three very different numbers. What is the right way to read that?",
+      "options": [
+        "The further apart the results, the more reliable the model is",
+        "The two furthest results must be removed from the table",
+        "Trust only the method landing nearest the market price",
+        "They answer three different questions, so divergence is normal"
+      ],
+      "explanation": "Each method measures something different: intrinsic value on your assumptions, what the market is paying, and what a strategic buyer once paid. The difference between them is itself the information."
+    },
+    {
+      "question": "Why is terminal value in a discounted cash flow model so sensitive?",
+      "options": [
+        "Because the denominator is the gap between two close numbers",
+        "Because it sits at the end of the model and accumulates every error",
+        "Because it is computed as a multiple of the final forecast year",
+        "Because it is not discounted back to today like the other years"
+      ],
+      "explanation": "When the denominator is only about 7-9%, moving it by 2 percentage points changes the answer by tens of percent. That is why the sensitivity table is a required part of the work rather than an optional extra."
+    },
+    {
+      "question": "Why is a valuation range chart more useful than a single target number when presenting to management?",
+      "options": [
+        "Because it always gives a wide range and is therefore hard to prove wrong",
+        "Because it shows how the conclusion depends on method and assumptions",
+        "Because industry standards require every valuation report to be presented as a range",
+        "Because a range removes the error inherent in each individual method"
+      ],
+      "explanation": "A single number hides all of the uncertainty behind it. A range forces the discussion to where it belongs: which assumption is pulling the result, and how far you believe that assumption."
+    }
+  ],
+  "keyTakeaways": [
+    "Present a valuation range combining several methods (a football field chart) rather than committing to one absolute figure",
+    "DCF is highly sensitive to long-run assumptions (growth, WACC) because terminal value is most of the value",
+    "A wide spread between methods signals high uncertainty; it is not merely a calculation error"
+  ],
+  "practicePrompt": {
+    "question": "DCF values the company at 8,000 billion, comps at 9,500 billion and precedent transactions at 10,500 billion. How should the analyst present the final result to management?",
+    "options": [
+      "Present a combined valuation range rather than committing to one absolute figure",
+      "Take only the highest figure (10,500 billion), for the advantage it gives in a sale negotiation",
+      "Take only the DCF figure, since that is always the most accurate method in every situation",
+      "Take a simple average of the three figures without explaining the divergence between them"
+    ],
+    "explanation": "Present a valuation range combining several methods rather than committing to one absolute figure. Each method has its own strengths and weaknesses, and presenting a range (the football field) is standard practice in professional valuation."
+  },
+  "application": {
+    "title": "Build a football field for a stock you follow",
+    "message": "Value the same business by DCF, comps and precedents, then plot the three ranges on one axis. Where the three overlap is the reliable zone; where they come apart is what you need to be able to explain before drawing any conclusion.",
+    "secondary": "Run a two-way DCF sensitivity on WACC and long-run growth. If the resulting range is twice the market price wide, what you have learned is that the model has not decided anything yet."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "DCF, comps and precedent transactions give three different numbers for the same company - so which do you believe?"
+    },
+    {
+      "type": "heading",
+      "text": "The football field: present a range, not a point"
+    },
+    {
+      "type": "paragraph",
+      "text": "Standard industry practice is to present a valuation RANGE combining several methods rather than committing to a single number. DCF is highly sensitive to long-run assumptions, because terminal value is usually 60-80% of a DCF's value - a small change in long-run growth or WACC is multiplied through the Gordon growth formula. A wide spread between methods is usually not a calculation error but a signal of how genuinely uncertain the company is."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Present a valuation range combining several methods rather than committing to one absolute figure",
+        "DCF is highly sensitive to long-run assumptions because terminal value is most of the value",
+        "A wide spread between methods signals high uncertainty; it is not merely a calculation error"
+      ]
+    },
+    {
+      "type": "conceptTable",
+      "title": "The three methods answer three different questions",
+      "subtitle": "Their divergence is normal, because they are not asking the same thing",
+      "concepts": [
+        {
+          "vi": "Chiết khấu dòng tiền",
+          "en": "DCF",
+          "def": "What is the business worth on your own assumptions about the future? Independent of market sentiment, but very sensitive to the long-run assumptions."
+        },
+        {
+          "vi": "So sánh công ty tương đương",
+          "en": "Comps",
+          "def": "What is the market paying for similar businesses right now? It reflects real transactions, but reproduces the market's mispricing as well."
+        },
+        {
+          "vi": "Thương vụ tiền lệ",
+          "en": "Precedent transactions",
+          "def": "What has a buyer of a whole business actually paid? Usually sets the upper bound of the range, because it includes control and synergies."
+        }
+      ]
+    },
+    {
+      "type": "formula",
+      "title": "Why terminal value dominates a discounted cash flow result",
+      "equation": "Terminal value = final-year FCF × (1 + g) ÷ (r − g)",
+      "example": {
+        "title": "How sensitive the denominator is",
+        "calculation": "r = 12%, g = 3% → denominator 9% · r = 11%, g = 4% → denominator 7%",
+        "result": "Terminal value rises about 29% from a 1 percentage point change in each variable",
+        "explanation": "Because the denominator is the difference between two close numbers, every small change is amplified sharply. This is why a DCF result must always come with a sensitivity table and should never be presented as a single figure."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "Reading a valuation range properly"
+    },
+    {
+      "type": "list",
+      "items": [
+        "A narrow range: the methods agree, so confidence is higher. Still check whether that is because they share one optimistic set of assumptions.",
+        "A wide range: the business is hard to value - uncertain growth, a business model in transition, or dependence on a few things nobody can forecast. A wide range is an honest answer, not a sign of sloppy work.",
+        "One method far from the other two: a signal to investigate, not to discard. It usually points to an assumption differing markedly from what the market believes."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "The most important thing to present",
+      "text": "Not the final number, but the list of assumptions producing it and how the result moves as each one shifts. A valuation that lets the reader substitute their own assumptions and recompute is far more useful than a figure precise to the last dong that nobody can check."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A wide valuation range is not a sign of poor analysis.",
+        "Sometimes it is the most honest answer available about a company that is hard to value."
+      ]
+    }
+  ],
+  "summary": {
+    "keyIdea": "Present a valuation range combining several methods (a football field chart) rather than committing to one absolute figure",
+    "commonMistake": "Easy to miss: DCF is highly sensitive to long-run assumptions (growth, WACC) because terminal value is most of the value",
+    "action": "A wide spread between valuation methods signals high uncertainty; it is not merely a calculation error"
+  }
+}
