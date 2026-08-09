@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
-import { Flame, BookOpen, Target, TrendingUp, Sparkles } from "lucide-react";
+import { Flame, BookOpen, Target, Sparkles } from "lucide-react";
 import { getLevelByXp, getNextLevel, getXpToNextLevel, getLevelProgress, getCfaGateRemaining, LEVELS } from "@/lib/levels";
 import { createClient } from "@/lib/supabase";
 import FinanceCharacterAvatar, { CharacterEquipments } from "@/components/FinanceCharacterAvatar";
@@ -314,7 +314,7 @@ export default function UserStats({
             </div>
           </div>
         </div>
-        <div className={`grid grid-cols-2 gap-2 rounded-2xl border border-stone-200/80 dark:border-stone-800/80 bg-white/90 dark:bg-stone-900/85 ${
+        <div className={`grid grid-cols-1 gap-2 rounded-2xl border border-stone-200/80 dark:border-stone-800/80 bg-white/90 dark:bg-stone-900/85 ${
           sidebar ? "p-1.5" : "p-3"
         }`}>
           <div className="min-w-0 rounded-xl bg-emerald-50/50 dark:bg-emerald-950/15 border border-emerald-100/70 dark:border-emerald-900/30 px-2.5 py-1.5">
@@ -322,13 +322,6 @@ export default function UserStats({
             <div className="flex items-center gap-1 mt-1">
               <Target className="w-3.5 h-3.5 text-emerald-500 dark:text-emerald-400 shrink-0" />
               <span className={`font-black text-emerald-600 dark:text-emerald-400 ${sidebar ? "text-xs" : "text-sm sm:text-base"}`}>{Math.round(avgQuizScore)}%</span>
-            </div>
-          </div>
-          <div className="min-w-0 rounded-xl bg-indigo-50/50 dark:bg-indigo-950/15 border border-indigo-100/70 dark:border-indigo-900/30 px-2.5 py-1.5">
-            <span className="text-[8px] sm:text-[9px] font-black text-stone-500 dark:text-stone-400 uppercase tracking-wider block">{t.userStats.levelUp}</span>
-            <div className="flex items-center gap-1 mt-1 truncate">
-              <TrendingUp className="w-3.5 h-3.5 text-indigo-500 dark:text-indigo-400 shrink-0" />
-              <span className={`font-black text-indigo-600 dark:text-indigo-400 ${sidebar ? "text-xs" : "text-sm sm:text-base"}`}>{xpToNext > 0 ? format(t.userStats.xpToNext, { count: xpToNext }) : t.userStats.maxLevel}</span>
             </div>
           </div>
         </div>
@@ -386,6 +379,15 @@ export default function UserStats({
             <span>{format(t.userStats.progressLabel, { level: currentLevel.level })} <span className="text-emerald-600 dark:text-emerald-400">({Math.round(progress)}%)</span></span>
             <span className="inline-flex items-center gap-1 text-stone-600 dark:text-stone-300">
               {format(t.userStats.nextLevelLabel, { level: nextLevel.level, name: t.levelTitles[nextLevel.level] ?? nextLevel.name })} <span>{LEVEL_EMOJIS[nextLevel.level] || "🌱"}</span>
+              {/* Số XP còn thiếu đứng CẠNH tên cấp sắp tới, không còn là một ô
+                  riêng ghi "+54 XP" không nói đi đâu. Ô đó, dòng "Tiến độ cấp
+                  2 (23%)" và tên cấp kế tiếp là ba cách nói cùng một câu, xếp
+                  cách nhau chưa tới một phân. */}
+              {xpToNext > 0 && (
+                <span className="font-black text-indigo-600 dark:text-indigo-400">
+                  · {format(t.userStats.xpToNext, { count: xpToNext })}
+                </span>
+              )}
             </span>
           </div>
           <div className="w-full h-2 bg-stone-100 dark:bg-stone-800/70 rounded-full overflow-hidden relative shadow-inner">

@@ -61,7 +61,6 @@ import BossBattleModal from "@/components/BossBattleModal";
 import PvpDuelModal from "@/components/PvpDuelModal";
 import DashboardStreakWidget from "@/components/DashboardStreakWidget";
 import DailyMotivationWidget from "@/components/DailyMotivationWidget";
-import CommunityStreakWidget from "@/components/CommunityStreakWidget";
 import LearningPathSummary from "@/components/LearningPathSummary";
 import { useI18n } from "@/lib/i18n/context";
 import { format, intlLocale } from "@/lib/i18n";
@@ -1277,11 +1276,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
               </Link>
             )}
 
-            {/* Chuỗi ngày học của người khác. Một góc nhỏ, chỉ đọc: mọi hành
-                động vẫn ở /finsocial, và bài chuỗi ngày là loại bài đông nhất
-                trong feed nhưng ít ai mở feed ra để đọc - nên nó tới chỗ có
-                người qua lại thay vì chờ được tìm. */}
-            {!isLessonsView && <CommunityStreakWidget />}
+
 
             {/* Góc yên tĩnh chuyển vào TRONG thẻ Bản đồ Cấp độ, bản nhỏ. */}
 
@@ -2213,8 +2208,14 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
 
             {/* Rewards and the career goal picker are overview concerns; the
                 lessons route keeps only the "what to study next" widget. */}
+            {/* `lg:aspect-square` và `min-h-[320px]` đã bỏ khỏi lớp bọc dưới
+                đây: cả hai ép thẻ cao hơn nội dung của nó, và phần chênh hiện
+                ra thành đúng khoảng trắng dưới danh sách nhiệm vụ. Một tấm thẻ
+                hình vuông chỉ đúng khi nội dung tình cờ vuông.
+                `xl:row-span-2` giữ lại: nó cho thẻ CHỖ để cao bằng cột bên,
+                chứ không bắt nó phải cao thế. */}
             {!isLessonsView && user?.id && (
-              <div className="lg:aspect-square min-h-[320px] xl:aspect-auto xl:min-h-0 xl:row-span-2 xl:overflow-y-auto">
+              <div className="xl:row-span-2 xl:min-h-0 xl:overflow-y-auto">
                 <CombinedRewardsWidget userId={user.id} defaultExpanded={true} compact />
               </div>
             )}
