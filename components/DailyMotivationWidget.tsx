@@ -86,7 +86,7 @@ export default function DailyMotivationWidget({ userId, compact = false }: { use
 
   return (
     <div
-      className={`relative overflow-hidden bg-white shadow-sm dark:bg-stone-900 ${compact ? "rounded-2xl border p-3" : "rounded-[24px] border-2 p-5"}`}
+      className={`relative overflow-hidden bg-white shadow-sm dark:bg-stone-900 ${compact ? "rounded-2xl border p-2.5" : "rounded-[24px] border-2 p-5"}`}
       style={{ borderColor: `rgba(249, 115, 22, ${0.2 + warmth * 0.5})` }}
     >
       {/* Lớp ấm phủ trên nền theo warmth - để riêng thay vì đặt thẳng vào
@@ -103,7 +103,7 @@ export default function DailyMotivationWidget({ userId, compact = false }: { use
       {/* Quầng sáng của ngọn lửa - chỉ đủ thấy, không cản chữ */}
       <motion.div
         aria-hidden
-        className="pointer-events-none absolute -left-10 -top-12 h-40 w-40 rounded-full blur-3xl"
+        className={`pointer-events-none absolute -left-10 -top-12 rounded-full blur-3xl ${compact ? "h-24 w-24" : "h-40 w-40"}`}
         style={{ background: `rgba(251, 146, 60, ${0.25 + warmth * 0.45})` }}
         animate={{ opacity: [0.65, 1, 0.65], scale: [1, 1.08, 1] }}
         transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
@@ -113,11 +113,11 @@ export default function DailyMotivationWidget({ userId, compact = false }: { use
           <button> lồng trong <a> là HTML không hợp lệ và bàn phím sẽ lạc. */}
       <Link href="/loi-nhan" className={`relative flex items-start group ${compact ? "gap-3" : "gap-3.5"}`}>
         <motion.div
-          className={`mt-0.5 flex shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-400 to-orange-600 shadow-md ${compact ? "h-8 w-8" : "h-10 w-10"}`}
+          className={`mt-0.5 flex shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-400 to-orange-600 shadow-md ${compact ? "h-7 w-7" : "h-10 w-10"}`}
           animate={{ scale: [1, 1.06, 1] }}
           transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}
         >
-          <Flame className="h-5 w-5 text-white" />
+          <Flame className={compact ? "h-4 w-4 text-white" : "h-5 w-5 text-white"} />
         </motion.div>
 
         <div className="min-w-0">
@@ -126,19 +126,19 @@ export default function DailyMotivationWidget({ userId, compact = false }: { use
               {lateNight}
             </p>
           )}
-          <p className="text-[10px] font-bold uppercase tracking-wide text-orange-700 dark:text-orange-300">
+          <p className={`font-bold uppercase tracking-wide text-orange-700 dark:text-orange-300 ${compact ? "text-[9px]" : "text-[10px]"}`}>
             {t.motivationToneLabel[tone] ?? MOTIVATION_TONE_LABEL[tone]}
           </p>
-          <p className={`mt-1.5 font-semibold leading-relaxed text-stone-800 dark:text-stone-100 ${compact ? "text-xs" : "text-sm"}`}>
+          <p className={`font-semibold leading-relaxed text-stone-800 dark:text-stone-100 ${compact ? "mt-1 text-[11px]" : "mt-1.5 text-sm"}`}>
             {line}
           </p>
-          <p className="mt-2 text-[11px] font-bold text-orange-600 dark:text-orange-400 group-hover:underline">
+          <p className={`font-bold text-orange-600 dark:text-orange-400 group-hover:underline ${compact ? "mt-1 text-[10px]" : "mt-2 text-[11px]"}`}>
             {t.miscUi.dailyMotivationWidget.openQuietCorner}
           </p>
         </div>
       </Link>
 
-      <div className={`relative mt-3 ${compact ? "pl-11" : "pl-[54px]"}`}>
+      <div className={`relative ${compact ? "mt-2 pl-10" : "mt-3 pl-[54px]"}`}>
         <MotivationShareCard text={line} />
       </div>
     </div>

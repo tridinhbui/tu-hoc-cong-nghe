@@ -17,7 +17,11 @@ import { format } from "@/lib/i18n";
 // lesson completion via /api/career-lesson-progress, not a self-reported
 // checklist. Renders nothing if no goal is set, so it doesn't take up
 // sidebar space for users who haven't used this feature.
-export default function CareerGoalWidget({ userId }: { userId?: string }) {
+/** `compact` để widget nằm BÊN TRONG thẻ Bản đồ Cấp độ, cạnh góc yên tĩnh.
+ *  Cùng lý do như DailyMotivationWidget: viền dày và padding rộng là ngôn ngữ
+ *  của một thẻ đứng riêng, và một thẻ lồng trong thẻ khác mà to giọng hơn cái
+ *  bọc nó thì đọc ra là hai thẻ chồng lên nhau. */
+export default function CareerGoalWidget({ userId, compact = false }: { userId?: string; compact?: boolean }) {
   const { t } = useI18n();
   // Đọc thẳng localStorage thay vì chép vào state lúc mount. Widget này nằm
   // ở dashboard trong khi mục tiêu được đặt ở trang Sự nghiệp; trước đây nó
@@ -70,7 +74,7 @@ export default function CareerGoalWidget({ userId }: { userId?: string }) {
   const nextLesson = progress?.lessons.find((l) => !l.completed);
 
   return (
-    <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl p-4">
+    <div className={`bg-white dark:bg-stone-900 border-stone-200 dark:border-stone-800 ${compact ? "rounded-2xl border p-3" : "rounded-xl border-2 p-4"}`}>
       <div className="flex items-center gap-2 mb-2">
         <Briefcase className="w-4 h-4 text-indigo-500" />
         <p className="text-[11px] font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-widest">

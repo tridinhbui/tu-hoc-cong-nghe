@@ -9,6 +9,8 @@ import { computeDomainCoverage } from "@/lib/career-competency";
 import { getLessonsMeta } from "@/lib/lessons-loader";
 import CareerLearningPathClient from "@/components/CareerLearningPathClient";
 import TechnicalInterviewPage from "@/app/(app)/phong-van-ky-thuat/page";
+import DailyMotivationWidget from "@/components/DailyMotivationWidget";
+import CareerGoalWidget from "@/components/CareerGoalWidget";
 
 /* i18n-ignore-start: dev-only preview route, hard-blocked in production
    below via notFound() when NODE_ENV === "production" - never reachable by
@@ -106,6 +108,27 @@ export default async function WorldPreviewPage({
     // Bộ chọn vị trí ở /phong-van-ky-thuat. Trang thật nằm sau tường đăng
     // nhập; phần này dựng từ dữ liệu tĩnh nên vẫn nhìn được không cần phiên.
     return <TechnicalInterviewPage />;
+  }
+  if (scene === "dashboard-strip") {
+    // Hai widget nhỏ nằm cạnh nhau trong thẻ Bản đồ Cấp độ. Dashboard thật
+    // nằm sau tường đăng nhập và cả hai widget đều tự lấy dữ liệu từ Supabase,
+    // nên ở đây chúng dựng ra trạng thái rỗng - đủ để soát TỈ LỆ và bề rộng,
+    // là đúng thứ vừa được đổi.
+    return (
+      <div className="min-h-screen bg-stone-50 p-6 dark:bg-stone-950">
+        <div className="mx-auto max-w-4xl rounded-[24px] border border-stone-200/90 bg-white/95 p-3.5 shadow-sm dark:border-stone-800 dark:bg-stone-900">
+          <p className="mb-3 text-[15px] font-bold text-stone-900 dark:text-stone-100">Bản đồ Cấp độ Học viên</p>
+          <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+            {/* UUID hợp lệ nhưng không tồn tại: cả hai widget đều truy vấn
+                Supabase theo user_id, và một chuỗi không phải UUID làm
+                PostgREST trả 400 nên cảnh này ném lỗi mỗi lần mở. Không có
+                hàng nào khớp thì chúng dựng trạng thái rỗng, đúng thứ cần soát. */}
+            <DailyMotivationWidget userId="00000000-0000-4000-8000-000000000000" compact />
+            <CareerGoalWidget userId="00000000-0000-4000-8000-000000000000" compact />
+          </div>
+        </div>
+      </div>
+    );
   }
   if (scene === "lobby-directory") {
     // Bảng chỉ đường của sảnh thư viện. Bản thân nó không cần đăng nhập, nhưng

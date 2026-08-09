@@ -1192,11 +1192,17 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                             riêng thì nó đòi được đọc ngang hàng với tiến độ
                             học. Ở đây nó vẫn ở màn hình đầu, chỉ là ở đúng
                             trọng lượng của nó. */}
-                        {user?.id && (
-                          <div className="mt-3">
-                            <DailyMotivationWidget userId={user.id} compact />
-                          </div>
-                        )}
+                        {/* Mục tiêu nghề đứng CẠNH góc yên tĩnh, không dưới
+                            nó. Trước đây nó nằm tận lưới dưới, cách bản đồ cấp
+                            độ một màn hình - trong khi cả hai trả lời cùng một
+                            câu "tôi đang đi tới đâu", chỉ khác thước đo: một
+                            cái đo cấp, cái kia đo nghề nhắm tới.
+                            Hai cột trên màn rộng, vì xếp dọc là cộng thêm
+                            chiều cao vào đúng thẻ vừa được thu gọn. */}
+                        <div className="mt-3 grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+                          {user?.id && <DailyMotivationWidget userId={user.id} compact />}
+                          {!isLessonsView && <CareerGoalWidget userId={user?.id} compact />}
+                        </div>
                     </div>
 
                   </div>
@@ -1242,24 +1248,30 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                 Góc yên tĩnh nằm ngay dưới thẻ này.
                 Đây là một thẻ liên kết, KHÔNG phải một tab dashboard: chú
                 thích đầu app/(app)/lo-trinh/page.tsx nói rõ vì sao không thêm
-                giá trị nào vào DASHBOARD_TABS nữa. */}
+                giá trị nào vào DASHBOARD_TABS nữa.
+
+                Hạ độ nổi: nó từng là viền đôi xanh, nền chuyển sắc, khối biểu
+                tượng 64px và chữ font-black cỡ xl - tức thẻ nổi nhất cột, cho
+                một đường dẫn sang trang khác. Thứ nổi nhất trên dashboard nên
+                là việc học, không phải cửa ra. Giờ nó là một hàng liên kết
+                bình thường, màu xanh chỉ còn xuất hiện lúc trỏ chuột vào. */}
             {!isLessonsView && (
               <Link
                 href="/lo-trinh"
-                className="group flex items-center gap-4 rounded-[28px] border-2 border-emerald-200 bg-gradient-to-br from-emerald-50 via-white to-white p-5 shadow-sm transition-all hover:border-emerald-400 hover:shadow-lg sm:gap-5 sm:p-6 dark:border-emerald-900/60 dark:from-emerald-950/30 dark:via-stone-900 dark:to-stone-900 dark:hover:border-emerald-700"
+                className="group flex items-center gap-3.5 rounded-2xl border border-stone-200 bg-white p-4 shadow-xs transition-all hover:border-emerald-300 hover:shadow-sm dark:border-stone-800 dark:bg-stone-900 dark:hover:border-emerald-800"
               >
-                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-emerald-500 text-white shadow-sm transition-transform group-hover:scale-105 sm:h-16 sm:w-16">
-                  <Route className="h-7 w-7 sm:h-8 sm:w-8" />
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 transition-colors group-hover:bg-emerald-100 dark:bg-emerald-950/40 dark:text-emerald-400">
+                  <Route className="h-5 w-5" />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <p className="text-lg font-black leading-tight tracking-tight text-stone-900 sm:text-xl dark:text-stone-50">
+                  <p className="text-sm font-bold leading-tight text-stone-900 dark:text-stone-50">
                     {t.nav.learningPath}
                   </p>
-                  <p className="mt-1 text-sm leading-snug text-stone-600 dark:text-stone-300">
+                  <p className="mt-0.5 text-xs leading-snug text-stone-500 dark:text-stone-400">
                     {t.dashboard.learningPathCardSub}
                   </p>
                 </div>
-                <span className="shrink-0 text-2xl font-bold text-emerald-500 transition-transform group-hover:translate-x-1 sm:text-3xl">
+                <span className="shrink-0 text-lg font-bold text-stone-300 transition-all group-hover:translate-x-0.5 group-hover:text-emerald-500 dark:text-stone-600">
                   ›
                 </span>
               </Link>
@@ -2215,7 +2227,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                 <CommunityLearningNow lessonsMeta={lessonsMeta} />
               </div>
             )}
-            {!isLessonsView && <CareerGoalWidget userId={user?.id} />}
+            {/* CareerGoalWidget chuyển vào TRONG thẻ Bản đồ Cấp độ, cạnh góc yên tĩnh. */}
 
           </div>
         </div>
