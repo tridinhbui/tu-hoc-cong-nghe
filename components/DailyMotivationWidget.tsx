@@ -27,7 +27,13 @@ import { useI18n } from "@/lib/i18n/context";
  * chủ ý, không phải lỗi tương phản - lúc dễ bỏ cuộc nhất là lúc cần thấy lửa.
  */
 
-export default function DailyMotivationWidget({ userId }: { userId: string }) {
+/** `compact` để thẻ này nằm BÊN TRONG một thẻ khác (bản đồ cấp độ).
+ *
+ *  Bản thường là một tấm thẻ đứng riêng: viền dày, padding 20px, chữ cỡ bài
+ *  đọc. Nhét nguyên nó vào trong một thẻ khác thì thành thẻ-trong-thẻ, và cái
+ *  bên trong lại to giọng hơn cái bên ngoài. Bản compact bỏ viền dày, rút
+ *  padding và cỡ chữ, giữ nguyên nội dung và cả hai lối ra. */
+export default function DailyMotivationWidget({ userId, compact = false }: { userId: string; compact?: boolean }) {
   const { t } = useI18n();
   const [motivation, setMotivation] = useState<DailyMotivation | null>(null);
 
@@ -80,7 +86,7 @@ export default function DailyMotivationWidget({ userId }: { userId: string }) {
 
   return (
     <div
-      className="relative overflow-hidden rounded-[24px] border-2 bg-white p-5 shadow-sm dark:bg-stone-900"
+      className={`relative overflow-hidden bg-white shadow-sm dark:bg-stone-900 ${compact ? "rounded-2xl border p-3" : "rounded-[24px] border-2 p-5"}`}
       style={{ borderColor: `rgba(249, 115, 22, ${0.2 + warmth * 0.5})` }}
     >
       {/* Lớp ấm phủ trên nền theo warmth - để riêng thay vì đặt thẳng vào
@@ -105,9 +111,9 @@ export default function DailyMotivationWidget({ userId }: { userId: string }) {
 
       {/* Phần chữ là link sang trang riêng; nút chia sẻ nằm ngoài link, vì một
           <button> lồng trong <a> là HTML không hợp lệ và bàn phím sẽ lạc. */}
-      <Link href="/loi-nhan" className="relative flex items-start gap-3.5 group">
+      <Link href="/loi-nhan" className={`relative flex items-start group ${compact ? "gap-3" : "gap-3.5"}`}>
         <motion.div
-          className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-400 to-orange-600 shadow-md"
+          className={`mt-0.5 flex shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-400 to-orange-600 shadow-md ${compact ? "h-8 w-8" : "h-10 w-10"}`}
           animate={{ scale: [1, 1.06, 1] }}
           transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}
         >
@@ -123,7 +129,7 @@ export default function DailyMotivationWidget({ userId }: { userId: string }) {
           <p className="text-[10px] font-bold uppercase tracking-wide text-orange-700 dark:text-orange-300">
             {t.motivationToneLabel[tone] ?? MOTIVATION_TONE_LABEL[tone]}
           </p>
-          <p className="mt-1.5 text-sm font-semibold leading-relaxed text-stone-800 dark:text-stone-100">
+          <p className={`mt-1.5 font-semibold leading-relaxed text-stone-800 dark:text-stone-100 ${compact ? "text-xs" : "text-sm"}`}>
             {line}
           </p>
           <p className="mt-2 text-[11px] font-bold text-orange-600 dark:text-orange-400 group-hover:underline">
@@ -132,7 +138,7 @@ export default function DailyMotivationWidget({ userId }: { userId: string }) {
         </div>
       </Link>
 
-      <div className="relative mt-3 pl-[54px]">
+      <div className={`relative mt-3 ${compact ? "pl-11" : "pl-[54px]"}`}>
         <MotivationShareCard text={line} />
       </div>
     </div>

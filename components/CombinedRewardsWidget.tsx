@@ -259,7 +259,7 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
   };
 
   return (
-    <div className={`bg-white dark:bg-stone-900 rounded-2xl shadow-sm overflow-hidden ${compact ? "border border-stone-200 min-h-[320px] flex flex-col" : ""}`}>
+    <div className={`bg-white dark:bg-stone-900 rounded-2xl shadow-sm overflow-hidden ${compact ? "border border-stone-200 min-h-[320px] h-full flex flex-col" : ""}`}>
       {/* Header - Always visible, permanently expanded */}
       <div className={`w-full flex items-center ${compact ? "px-4 py-3" : "px-3.5 py-2"}`}>
         <div className="flex items-center gap-2 min-w-0">
@@ -319,7 +319,11 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
             </button>
           </div>
 
-          <div className={`${compact ? "p-2.5 flex-1 overflow-y-auto" : "p-2.5"}`}>
+          {/* Không `overflow-y-auto` ở đây nữa: cột chứa thẻ này đã là một vùng
+          cuộn rồi, nên thanh cuộn thứ hai bên trong thẻ tạo hai vùng cuộn lồng
+          nhau trên cùng một chỗ con trỏ đang đứng - lăn chuột một cái thì
+          không đoán được cái nào sẽ chạy. */}
+      <div className={`${compact ? "p-2.5 flex-1" : "p-2.5"}`}>
             {activeTab === "daily" && (
               <DailyQuestsWidget 
                 userId={userId} 

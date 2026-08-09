@@ -2457,6 +2457,10 @@ export const vi = {
     libraryEnterCta: "Vào",
 
     learningPathCardSub: "Bắt đầu từ đâu, mỗi ngày bao nhiêu bài, bao giờ thì xong",
+    streakFeedTitle: "Chuỗi ngày học hôm nay",
+    streakFeedSub: "Người khác cũng đang giữ nhịp",
+    streakFeedDays: "{days} ngày",
+    lessonProgressLabel: "Bài học · {done}/{total}",
     levelMapTab: "Bản đồ cấp độ",
     learningPathTab: "Lộ trình học",
     learningPathTitle: "Lộ trình học của bạn",

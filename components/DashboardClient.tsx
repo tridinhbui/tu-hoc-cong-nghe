@@ -7,7 +7,7 @@ import TaiTaiAvatar from "@/components/TaiTaiAvatar";
 import { useRouter, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
-import { CheckCircle2, Lock, CheckCheck, Bookmark, BookOpen, ChevronLeft, ChevronRight, Search, X, Landmark, ArrowRight, Route } from "lucide-react";
+import { CheckCircle2, Lock, CheckCheck, Bookmark, ChevronLeft, ChevronRight, Search, X, Route } from "lucide-react";
 import { useProgress } from "@/lib/client-hooks";
 import { mergeCompletedLessons } from "@/lib/progress";
 import { getIllustrativeCount } from "@/lib/illustrative-stats";
@@ -25,6 +25,7 @@ import StreakReminderManager from "@/components/StreakReminderManager";
 import AnnouncementBanner from "@/components/AnnouncementBanner";
 import DashboardTour from "@/components/DashboardTour";
 import DashboardRecommendations from "@/components/DashboardRecommendations";
+import CommunityLearningNow from "@/components/CommunityLearningNow";
 import MistakeReviewWidget from "@/components/MistakeReviewWidget";
 import LessonRecallWidget from "@/components/LessonRecallWidget";
 import SmartRemediationWidget from "@/components/SmartRemediationWidget";
@@ -60,6 +61,7 @@ import BossBattleModal from "@/components/BossBattleModal";
 import PvpDuelModal from "@/components/PvpDuelModal";
 import DashboardStreakWidget from "@/components/DashboardStreakWidget";
 import DailyMotivationWidget from "@/components/DailyMotivationWidget";
+import CommunityStreakWidget from "@/components/CommunityStreakWidget";
 import LearningPathSummary from "@/components/LearningPathSummary";
 import { useI18n } from "@/lib/i18n/context";
 import { format, intlLocale } from "@/lib/i18n";
@@ -303,10 +305,6 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
   const [selectedCertStage, setSelectedCertStage] = useState<{ label: string; name: string } | null>(null);
   const [communityUsersByLevel, setCommunityUsersByLevel] = useState<Map<number, { name: string; xp: number; avatarUrl: string | null; userId: string }[]>>(new Map());
   const [activeTooltipLevel, setActiveTooltipLevel] = useState<number | null>(null);
-  // Thẻ Bản đồ Cấp độ có hai mặt: bản đồ cấp độ, và lối vào lộ trình học.
-  // Mặc định là "map" - lộ trình đã có lối vào riêng ở cột trái, còn tấm bản
-  // đồ là thứ người học mở dashboard để nhìn.
-  const [levelCardTab, setLevelCardTab] = useState<"map" | "path">("map");
   const levelStripRef = useRef<HTMLDivElement>(null);
   const [cfaCompletedForLevel, setCfaCompletedForLevel] = useState(0);
   const [dbAvatarUrl, setDbAvatarUrl] = useState<string | null>(null);
@@ -962,26 +960,12 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             không lấn phần lưới bên dưới, và một nút đóng sẽ biến lối vào duy
             nhất của một không gian thành thứ người dùng gạt đi trong ba giây
             đầu rồi không tìm lại được. */}
-        <Link
-          href="/cong-dong"
-          className="group mx-auto mb-4 flex w-full max-w-[1500px] items-center gap-3 rounded-[20px] border border-violet-200 bg-gradient-to-r from-violet-50 via-white to-white px-4 py-3 shadow-2xs transition-colors hover:border-violet-300 hover:from-violet-100 dark:border-violet-900/70 dark:from-violet-950/40 dark:via-stone-900 dark:to-stone-900 dark:hover:border-violet-800"
-        >
-          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-violet-100 text-violet-600 dark:bg-violet-950/60 dark:text-violet-300">
-            <Landmark className="h-4.5 w-4.5" />
-          </span>
-          <span className="min-w-0 flex-1">
-            <span className="block text-[13px] font-extrabold text-stone-900 dark:text-stone-100">
-              {t.dashboard.libraryEnter}
-            </span>
-            <span className="block truncate text-[11px] text-stone-500 dark:text-stone-400">
-              {t.dashboard.librarySubtitle}
-            </span>
-          </span>
-          <span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-violet-600 px-3 py-1.5 text-[11px] font-extrabold text-white transition-transform group-hover:translate-x-0.5">
-            {t.dashboard.libraryEnterCta}
-            <ArrowRight className="h-3 w-3" />
-          </span>
-        </Link>
+        {/* Thẻ Thư viện từng trải nguyên một dải ngang ở đây, TRÊN cả bản
+            đồ cấp độ - tức vị trí đắt nhất trang dành cho một tính năng phụ.
+            Nó xuống cột phải, cạnh các thẻ cộng đồng khác, giữ nguyên nội
+            dung. Lý do đặt nó ngoài navbar vẫn đúng và vẫn được tôn trọng:
+            nó vẫn ở trên màn hình đầu tiên, chỉ là không còn đứng trước thứ
+            người ta mở dashboard để xem. */}
 
         {/* ── Unified Dashboard Grid ──
             The overview is laid out as one viewport-height card ("1 hình chữ
@@ -1017,73 +1001,39 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             ];
 
             return (
-              <div className="rounded-[24px] border border-stone-200/90 dark:border-stone-800 bg-white/95 dark:bg-stone-900 p-4 sm:p-5 shadow-sm xl:col-span-12 xl:min-h-0 xl:overflow-hidden">
-                <div className="grid grid-cols-1 gap-3 xl:grid-cols-[minmax(0,1fr)_288px] xl:items-start">
+              <div className="rounded-[24px] border border-stone-200/90 dark:border-stone-800 bg-white/95 dark:bg-stone-900 p-3 sm:p-3.5 shadow-sm xl:col-span-12 xl:min-h-0 xl:overflow-hidden">
+                <div className="grid grid-cols-1 gap-2.5 xl:grid-cols-[minmax(0,1fr)_288px] xl:items-start">
                   {/* self-stretch (not the grid's items-start) so this column
                       fills the row height set by the taller UserStats sidebar -
                       otherwise the level strip sits at the top and dumps all the
                       leftover height as dead space under the avatars. */}
-                  <div className="min-w-0 xl:self-stretch xl:flex xl:flex-col">
-                    <div className="relative z-10 mb-2.5 flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
+                  <div className="min-w-0 xl:flex xl:flex-col">
+                    <div className="relative z-10 mb-2 flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
                       <div>
-                        <div className="flex items-center gap-1 rounded-xl bg-stone-100 dark:bg-stone-800/70 p-0.5 w-fit mb-1.5">
-                          {(["map", "path"] as const).map((tab) => (
-                            <button
-                              key={tab}
-                              type="button"
-                              onClick={() => setLevelCardTab(tab)}
-                              className={`rounded-[10px] px-2.5 py-1 text-[11px] font-black transition-colors cursor-pointer ${
-                                levelCardTab === tab
-                                  ? "bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 shadow-2xs"
-                                  : "text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200"
-                              }`}
-                            >
-                              {tab === "map" ? t.dashboard.levelMapTab : t.dashboard.learningPathTab}
-                            </button>
-                          ))}
-                        </div>
                         <h3 className="text-[15px] font-bold text-stone-900 dark:text-stone-100">
-                          {levelCardTab === "map" ? t.dashboard.levelMapTitle : t.dashboard.learningPathTitle}
+                          {t.dashboard.levelMapTitle}
                         </h3>
                         <p className="text-[10px] text-stone-500 dark:text-stone-400 mt-0.5">
-                          {levelCardTab === "map" ? t.dashboard.levelMapNote : t.dashboard.learningPathNote}
+                          {t.dashboard.levelMapNote}
                         </p>
                       </div>
                       <div className="flex flex-wrap items-center gap-2.5 text-left sm:text-right self-start sm:self-auto">
                         {user?.id && <DashboardStreakWidget userId={user.id} />}
-                        <div className="flex items-center gap-1.5">
-                          <Link
-                            href="/game?building=world-boss"
-                            className="inline-flex items-center gap-1 text-[11px] font-extrabold text-amber-700 bg-white border border-amber-200 px-2.5 py-1.5 rounded-xl hover:bg-amber-50 transition-colors cursor-pointer shadow-2xs"
-                            title={t.dashboard.gameBoss}
-                          >
-                            {t.dashboard.fightBoss}
-                          </Link>
-                          <Link
-                            href="/game?building=pvp"
-                            className="inline-flex items-center gap-1 text-[11px] font-extrabold text-stone-600 bg-stone-50 border border-stone-200 px-2.5 py-1.5 rounded-xl hover:bg-stone-100 transition-colors cursor-pointer shadow-2xs"
-                            title={t.dashboard.gameSolo}
-                          >
-                            {t.finalOne.dashboardClient.soloLabel}
-                          </Link>
-                        </div>
                       </div>
                     </div>
 
-                    {/* Fills the row height the taller UserStats sidebar sets.
-                        The progress bar stays pinned under the heading; only the
-                        level strip below it centers in the leftover space, so the
-                        slack reads as padding around the avatars rather than a
-                        void at the bottom of the card. */}
-                    <div className={`relative z-10 ${levelCardTab === "map" ? "xl:flex-1 xl:flex xl:flex-col" : "hidden"}`}>
-                        <div className="w-full h-1 bg-stone-100 dark:bg-stone-800 rounded-full overflow-hidden mb-2.5">
-                          <div
-                            className="h-full bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full transition-all duration-500"
-                            style={{ width: `${levelProgress}%` }}
-                          />
-                        </div>
+                    {/* Không còn `xl:flex-1` kéo giãn theo chiều cao cột bên.
+                        Nó sinh ra để lấp khoảng trống dưới dải avatar, nhưng
+                        cách lấp là kéo cả thẻ cao lên bằng cột UserStats -
+                        tức đổi một khoảng trống lấy một khoảng trống to hơn. */}
+                    <div className="relative z-10">
+                        {/* Thanh tiến độ cấp từng nằm ở đây, không nhãn.
+                            Cột phải đã có đúng con số đó kèm chữ ("Tiến độ cấp
+                            2 (23%)"), nên hai thanh cạnh nhau chỉ làm người đọc
+                            phải đoán cái nào đo cái gì - và cái không nhãn luôn
+                            là cái bị đoán sai. */}
 
-                        <div className="relative group/level-strip xl:flex-1 xl:flex xl:items-center">
+                        <div className="relative group/level-strip">
                           <button
                             onClick={() => levelStripRef.current?.scrollBy({ left: -220, behavior: "smooth" })}
                             className="hidden sm:flex absolute -left-3 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-700 shadow-md items-center justify-center text-stone-600 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-800 transition-all opacity-0 group-hover/level-strip:opacity-100"
@@ -1109,6 +1059,11 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                 const isUserCurrent = currentUserLevel === lvl.level;
                                 const isPassed = currentUserLevel > lvl.level;
                                 const isReached = isPassed || isUserCurrent;
+                                // Cấp kế tiếp được giữ nguyên cỡ cùng các cấp đã đạt: nó là đích
+                                // gần nhất, và một cái đích bị thu bằng cái đích xa mười cấp thì
+                                // không còn là đích.
+                                const isNext = lvl.level === currentUserLevel + 1;
+                                const isNear = isReached || isNext;
                                 const members = communityUsersByLevel.get(lvl.level) || [];
                                 const accent = ACCENTS[idx % ACCENTS.length];
                                 const isOpen = openLevel === lvl.level;
@@ -1119,7 +1074,12 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                       <div className={`w-7 sm:w-9 h-0.5 self-end mb-[42px] shrink-0 ${isReached ? "bg-emerald-400 dark:bg-emerald-600" : "bg-stone-200 dark:bg-stone-800"}`} />
                                     )}
                                     <div className="flex flex-col items-center gap-2 shrink-0">
-                                      <div className="w-12 h-12 sm:w-[64px] sm:h-[64px] relative flex items-center justify-center select-none pointer-events-none overflow-hidden rounded-full border border-stone-200/50 dark:border-stone-800/50 bg-stone-50 dark:bg-stone-800 shadow-inner [backface-visibility:hidden] [transform:translateZ(0)]">
+                                      {/* Cấp chưa tới và không phải cấp kế tiếp thì thu còn một
+                                          chấm. Bảy khung ảnh xám giống hệt nhau từng chiếm phần
+                                          rộng nhất của dải mà chỉ nói đúng một điều - "chưa tới" -
+                                          và chúng đẩy cấp KẾ TIẾP, thứ duy nhất người học cần
+                                          nhìn, ra khỏi khung. */}
+                                      <div className={`${isNear ? "w-12 h-12 sm:w-[64px] sm:h-[64px]" : "w-7 h-7"} relative flex items-center justify-center select-none pointer-events-none overflow-hidden rounded-full border border-stone-200/50 dark:border-stone-800/50 bg-stone-50 dark:bg-stone-800 shadow-inner [backface-visibility:hidden] [transform:translateZ(0)]`}>
                                         <img
                                           src={`/levels/level${lvl.level}.jpg`}
                                           alt={t.levelTitles[lvl.level] ?? lvl.name}
@@ -1136,7 +1096,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                         // dài hơn, nên dòng XP và huy hiệu số người bị đẩy ra ngoài khung.
                                         // Hàng cha là `items-stretch`, nên thẻ cao nhất kéo cả hàng theo -
                                         // chúng vẫn bằng nhau, chỉ là bằng nhau ở chiều cao đủ chứa chữ.
-                                        className={`relative text-left rounded-xl border p-1.5 w-[92px] min-h-[88px] shrink-0 bg-white dark:bg-stone-900 transition-all cursor-pointer flex flex-col [backface-visibility:hidden] ${
+                                        className={`relative text-left rounded-xl border p-1.5 shrink-0 bg-white dark:bg-stone-900 transition-all cursor-pointer flex flex-col [backface-visibility:hidden] ${isNear ? "w-[92px] min-h-[88px]" : "w-[58px] min-h-[52px]"} ${
                                           isReached
                                             ? `${accent.border} ${isOpen ? `shadow-md scale-[1.02] ${accent.glow}` : isUserCurrent ? `shadow-sm ${accent.glow}` : ""}`
                                             : "border-stone-100 dark:border-stone-800 opacity-60 grayscale hover:opacity-90 hover:grayscale-0"
@@ -1156,13 +1116,25 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                             <span className={`text-[7px] font-black uppercase text-white px-1 py-0.5 rounded-full ${accent.solid}`}>{t.dashboard.youBadge}</span>
                                           )}
                                         </div>
-                                        <p className={`text-[10px] font-extrabold mt-0.5 leading-snug line-clamp-2 flex-1 ${isReached ? "text-stone-900 dark:text-stone-100" : "text-stone-500 dark:text-stone-500"}`}>
-                                          {t.levelTitles[lvl.level] ?? lvl.name}
-                                        </p>
-                                        <p className="text-[9px] text-stone-400 dark:text-stone-500 mt-0.5">{format(t.finalOne.dashboardClient.xpValue, { xp: lvl.minXp })}</p>
-                                        <div className={`inline-flex items-center gap-1 text-[8px] font-bold mt-1 px-1.5 py-0.5 rounded-full w-fit ${isReached ? `${accent.bg} ${accent.text}` : "bg-stone-100 dark:bg-stone-800 text-stone-400 dark:text-stone-500"}`}>
-                                          👥 {members.length}
-                                        </div>
+                                        {isNear && (
+                                          <>
+                                            <p className={`text-[10px] font-extrabold mt-0.5 leading-snug line-clamp-2 flex-1 ${isReached ? "text-stone-900 dark:text-stone-100" : "text-stone-500 dark:text-stone-500"}`}>
+                                              {t.levelTitles[lvl.level] ?? lvl.name}
+                                            </p>
+                                            <p className="text-[9px] text-stone-400 dark:text-stone-500 mt-0.5">{format(t.finalOne.dashboardClient.xpValue, { xp: lvl.minXp })}</p>
+                                          </>
+                                        )}
+                                        {/* Cấp không có ai thì KHÔNG nói gì.
+                                            "👥 0" ở L1-L2 đứng cạnh "👥 19" ở L7 đọc ra một câu
+                                            không ai định viết: cấp của bạn trống, còn cấp cao thì
+                                            đông - tức ai cũng đã đi xa hơn bạn. Đó là câu tệ nhất
+                                            có thể nói với người vừa bắt đầu, và nó chỉ là hệ quả
+                                            của việc in một con số 0. */}
+                                        {members.length > 0 && (
+                                          <div className={`inline-flex items-center gap-1 text-[8px] font-bold mt-1 px-1.5 py-0.5 rounded-full w-fit ${isReached ? `${accent.bg} ${accent.text}` : "bg-stone-100 dark:bg-stone-800 text-stone-400 dark:text-stone-500"}`}>
+                                            👥 {members.length}
+                                          </div>
+                                        )}
                                       </button>
                                     </div>
                                   </div>
@@ -1228,55 +1200,20 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                             );
                           })()}
                         </AnimatePresence>
+
+                        {/* Góc yên tĩnh, bản nhỏ, nằm trong chính thẻ này.
+                            Nó từng là một tấm thẻ riêng cao gần bằng thẻ bản
+                            đồ, cho một dòng chữ và hai liên kết - và đứng
+                            riêng thì nó đòi được đọc ngang hàng với tiến độ
+                            học. Ở đây nó vẫn ở màn hình đầu, chỉ là ở đúng
+                            trọng lượng của nó. */}
+                        {user?.id && (
+                          <div className="mt-3">
+                            <DailyMotivationWidget userId={user.id} compact />
+                          </div>
+                        )}
                     </div>
 
-                    {/* Tab thứ hai: lối vào lộ trình học.
-                        Dùng `hidden` chứ không tháo khỏi cây: dải cấp độ bên
-                        trên là một vùng cuộn ngang có vị trí cuộn riêng, tháo
-                        ra rồi gắn lại là mỗi lần đổi tab nó nhảy về đầu. */}
-                    <div className={`relative z-10 ${levelCardTab === "path" ? "xl:flex-1 xl:flex xl:flex-col" : "hidden"}`}>
-                      <Link
-                        href="/hoc-bai"
-                        data-tour="hoc-bai-cta"
-                        className="group flex flex-col justify-center rounded-[20px] border-2 border-emerald-500/70 bg-gradient-to-br from-emerald-50 to-teal-50/60 dark:from-emerald-950/40 dark:to-stone-900 p-4 sm:p-5 transition-all hover:border-emerald-500 hover:shadow-md xl:flex-1"
-                      >
-                        <div className="flex items-center gap-3.5">
-                          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-emerald-500 text-white shadow-md transition-transform group-hover:scale-105">
-                            <BookOpen className="h-5.5 w-5.5" />
-                          </div>
-                          <div className="min-w-0 flex-1">
-                            <p className="text-base font-extrabold text-stone-900 dark:text-stone-100 sm:text-lg">
-                              {t.dashboard.enterLessons}
-                            </p>
-                            <p className="mt-0.5 text-xs text-stone-600 dark:text-stone-400 sm:text-sm">
-                              {t.dashboard.enterLessonsSubtitle}
-                            </p>
-                          </div>
-                          <span className="shrink-0 text-2xl font-bold text-emerald-600 transition-transform group-hover:translate-x-1 dark:text-emerald-400">
-                            ›
-                          </span>
-                        </div>
-
-                        {/* Thanh tiến độ toàn lộ trình - lý do để bấm vào nằm ở
-                            con số còn thiếu, không ở dòng chữ mời gọi. */}
-                        <div className="mt-4">
-                          <div className="h-1.5 w-full overflow-hidden rounded-full bg-white/70 dark:bg-stone-800">
-                            <div
-                              className="h-full rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-500"
-                              style={{ width: `${sorted.length ? Math.round((completed.length / sorted.length) * 100) : 0}%` }}
-                            />
-                          </div>
-                          <div className="mt-2.5 flex flex-wrap items-center gap-2">
-                            <span className="rounded-full border border-stone-200 bg-white/80 px-2.5 py-1 text-[11px] font-bold text-stone-700 dark:border-stone-800 dark:bg-stone-900/80 dark:text-stone-300">
-                              {format(t.dashboard.lessonsCompletedOf, { done: completed.length, total: sorted.length })}
-                            </span>
-                            <span className="rounded-full border border-stone-200 bg-white/80 px-2.5 py-1 text-[11px] font-bold text-stone-700 dark:border-stone-800 dark:bg-stone-900/80 dark:text-stone-300">
-                              {t.dashboard.trackCount}
-                            </span>
-                          </div>
-                        </div>
-                      </Link>
-                    </div>
                   </div>
 
                   <div className="min-w-0 rounded-[24px] border border-stone-200/90 dark:border-stone-800 bg-stone-50/85 dark:bg-stone-900/80 p-3 xl:p-3.5">
@@ -1343,16 +1280,13 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
               </Link>
             )}
 
-            {/* Góc yên tĩnh, ngay DƯỚI thẻ Lộ trình học.
-                Nó từng nằm cuối cột phải và trải ngang cả hai cột, tức là một
-                hàng `auto` không co được trong một lưới có chiều cao cố định:
-                bản đồ cấp độ ở trên cao thêm bao nhiêu thì thẻ này bị đẩy ra
-                khỏi khung bấy nhiêu.
-                Ở đây nó nằm trong một cột CUỘN ĐƯỢC, nên chiều cao của nó
-                không còn phải tranh chỗ với ai. Thứ tự vẫn đúng lập luận cũ
-                của chính nó - chỗ để đặt xuống đứng SAU việc người ta vào đây
-                để làm, và việc đó là thẻ Lộ trình học ngay trên. */}
-            {!isLessonsView && user?.id && <DailyMotivationWidget userId={user.id} />}
+            {/* Chuỗi ngày học của người khác. Một góc nhỏ, chỉ đọc: mọi hành
+                động vẫn ở /finsocial, và bài chuỗi ngày là loại bài đông nhất
+                trong feed nhưng ít ai mở feed ra để đọc - nên nó tới chỗ có
+                người qua lại thay vì chờ được tìm. */}
+            {!isLessonsView && <CommunityStreakWidget />}
+
+            {/* Góc yên tĩnh chuyển vào TRONG thẻ Bản đồ Cấp độ, bản nhỏ. */}
 
             {isLessonsView && (
             <>
@@ -1566,13 +1500,14 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                       }`}
                     >
                       <span>{branch.emoji}</span>
-                      {branch.label}
+                      {t.professionalBranches[branch.id]?.label ?? branch.label}
                     </button>
                   );
                 })}
               </div>
               <p className="mt-2 text-[11px] leading-relaxed text-stone-500 dark:text-stone-400">
-                {PROFESSIONAL_BRANCHES.find((b) => b.id === professionalBranch)?.subtitle}
+                {t.professionalBranches[professionalBranch]?.subtitle ??
+                  PROFESSIONAL_BRANCHES.find((b) => b.id === professionalBranch)?.subtitle}
               </p>
             </div>
           )}
@@ -2289,6 +2224,10 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             {user?.id && (
               <div className={isLessonsView ? undefined : "xl:min-h-0 xl:overflow-y-auto"}>
                 <DashboardRecommendations lessonsMeta={lessonsMeta} completed={completed} userId={user.id} />
+                {/* Người thật, dưới phần gợi ý. Cố ý đặt SAU băng chuyền bài
+                    học: thứ tự đó nói rằng đây là bằng chứng cho những gợi ý
+                    trên, không phải một mục để lướt qua trước khi học. */}
+                <CommunityLearningNow lessonsMeta={lessonsMeta} />
               </div>
             )}
             {!isLessonsView && <CareerGoalWidget userId={user?.id} />}

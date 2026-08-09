@@ -5,7 +5,6 @@ import Link from "next/link";
 import { Sparkles, Flame, TrendingUp, Target, BookOpen, Gamepad2, ChevronDown, ChevronUp, ChevronLeft, ChevronRight, Radio } from "lucide-react";
 import type { LessonMeta } from "./DashboardClient";
 import { GAMES } from "@/lib/games";
-import { getIllustrativeCount } from "@/lib/illustrative-stats";
 import { getWeekSeed, pickRotatingWindow } from "@/lib/content-rotation";
 import { getTotalCompletedLessonsCount } from "@/lib/supabase-user";
 import { useLocalStorageValue } from "@/lib/use-local-storage-value";
@@ -71,7 +70,6 @@ const DEFAULT_TRENDING_POOL = [
   "gia-tri-thoi-gian-cua-tien",
 ];
 
-const getIllustrativeStudyingCount = getIllustrativeCount;
 
 export default function DashboardRecommendations({ lessonsMeta, completed, userId }: DashboardRecommendationsProps) {
   const { t, locale } = useI18n();
@@ -369,9 +367,6 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
                           <p className="text-[10px] text-stone-400 dark:text-stone-500 mt-2.5 line-clamp-1">
                             {lesson.subtitle}
                           </p>
-                          <p className="text-[9px] text-emerald-600 dark:text-emerald-400 mt-1.5 font-bold">
-                            {format(t.recommendations.studyingCount, { count: getIllustrativeStudyingCount(lesson.slug, 20, 120) })}
-                          </p>
                         </Link>
                       );
                     }
@@ -431,107 +426,10 @@ export default function DashboardRecommendations({ lessonsMeta, completed, userI
         </section>
       )}
 
-      {/* 🔥 Bài học Đang hot */}
-      {hotItems.length > 0 && (
-        <section className={`flex flex-col overflow-hidden w-full relative ${primaryItems.length > 0 ? "border-t border-stone-100 pt-4" : ""}`}>
-          <div className="w-full flex items-center justify-between flex-shrink-0 mb-3">
-            <div className="flex items-center gap-2">
-              <Flame className="w-4 h-4 text-stone-400" />
-              <h2 className="text-sm font-bold text-stone-900 dark:text-stone-100">{t.recommendations.hotTitle}</h2>
-            </div>
-          </div>
-          
-          <div>
-            <>
-              <div className="relative group/rec-slider w-full">
-                {/* Left Arrow Button */}
-                {hotScrollProgress > 1 && (
-                  <button
-                    onClick={() => {
-                      if (hotScrollContainerRef.current) {
-                        hotScrollContainerRef.current.scrollBy({ left: -217, behavior: "smooth" });
-                      }
-                    }}
-                    className="absolute -left-2.5 top-1/2 -translate-y-1/2 z-10 w-7.5 h-7.5 rounded-full bg-white/95 dark:bg-stone-900/95 border border-stone-200 dark:border-stone-800 shadow-md flex items-center justify-center text-stone-600 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-800 hover:text-stone-900 dark:hover:text-white transition-all cursor-pointer opacity-0 group-hover/rec-slider:opacity-100 hidden sm:flex"
-                  >
-                    <ChevronLeft className="w-4 h-4" />
-                  </button>
-                )}
-
-                {/* Right Arrow Button */}
-                {hotScrollProgress < 99 && (
-                  <button
-                    onClick={() => {
-                      if (hotScrollContainerRef.current) {
-                        hotScrollContainerRef.current.scrollBy({ left: 217, behavior: "smooth" });
-                      }
-                    }}
-                    className="absolute -right-2.5 top-1/2 -translate-y-1/2 z-10 w-7.5 h-7.5 rounded-full bg-white/95 dark:bg-stone-900/95 border border-stone-200 dark:border-stone-800 shadow-md flex items-center justify-center text-stone-600 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-800 hover:text-stone-900 dark:hover:text-white transition-all cursor-pointer opacity-0 group-hover/rec-slider:opacity-100 hidden sm:flex"
-                  >
-                    <ChevronRight className="w-4 h-4" />
-                  </button>
-                )}
-
-                <div 
-                  ref={hotScrollContainerRef}
-                  onScroll={handleHotScroll}
-                  className="flex gap-3 overflow-x-auto pb-2 snap-x scrollbar-none"
-                >
-                  {hotItems.map((item, idx) => {
-                    const { lesson } = item;
-                    const isDone = completed.includes(lesson.id);
-                    return (
-                      <Link
-                        key={`hot-${lesson.id}`}
-                        href={`/bai-hoc/${lesson.slug}`}
-                        style={{ animationDelay: `${idx * 60}ms` }}
-                        className="rec-card group flex flex-col justify-between rounded-xl border border-rose-100 dark:border-rose-950/30 bg-gradient-to-b from-rose-50/20 to-rose-100/5 dark:from-rose-950/20 dark:to-rose-950/5 px-3.5 py-3 hover:border-rose-300 dark:hover:border-rose-800 hover:shadow-md hover:shadow-rose-500/5 hover:-translate-y-0.5 active:scale-[0.98] transition-all duration-300 min-w-[205px] w-[205px] shrink-0 snap-start"
-                      >
-                        <div>
-                          <div className="flex items-center gap-1.5 mb-2">
-                            <div className="w-5.5 h-5.5 rounded-lg flex items-center justify-center bg-rose-100 dark:bg-rose-900/50 text-rose-500 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
-                              <Flame className="w-3 h-3 animate-pulse" />
-                            </div>
-                            <span className="text-[10px] font-extrabold text-rose-600 dark:text-rose-400 uppercase tracking-wider">
-                              {t.recommendations.hotBadge}
-                            </span>
-                            {isDone && (
-                              <span className="ml-auto text-[9px] font-extrabold text-emerald-600 bg-emerald-50 dark:bg-emerald-950/40 px-1 py-0.5 rounded-sm">
-                                {t.recommendations.done}
-                                </span>
-                            )}
-                          </div>
-                          <h3 className="text-xs font-bold text-stone-900 dark:text-stone-100 group-hover:text-rose-600 dark:group-hover:text-rose-400 transition-colors line-clamp-2 leading-tight">
-                            {lesson.title}
-                          </h3>
-                        </div>
-                        <p className="text-[10px] text-stone-400 dark:text-stone-500 mt-2.5 line-clamp-1">
-                          {lesson.subtitle}
-                        </p>
-                        <p className="text-[9px] text-rose-500 dark:text-rose-400 mt-1.5 font-bold">
-                          {format(t.recommendations.studyingCount, { count: getIllustrativeStudyingCount(lesson.slug, 80, 340) })}
-                        </p>
-                      </Link>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* Custom Scroll Indicator */}
-              {hotItems.length > 1 && (
-                <div className="mt-2.5 flex justify-center">
-                  <div className="w-16 h-1 bg-stone-100 dark:bg-stone-800 rounded-full relative">
-                    <div 
-                      className="absolute top-0 bottom-0 left-0 w-6 bg-rose-500 dark:bg-rose-400 rounded-full transition-transform duration-100 ease-out"
-                      style={{ transform: `translateX(${(hotScrollProgress / 100) * (64 - 24)}px)` }}
-                    />
-                  </div>
-                </div>
-              )}
-            </>
-          </div>
-        </section>
-      )}
+      {/* Khối "Đang hot tuần này" đã bỏ. Nó xếp hạng bài theo một con số
+          người học được SINH RA tại chỗ (getIllustrativeStudyingCount), nên
+          "đang hot" không đo hoạt động nào có thật - và nó nhân đôi đúng dạng
+          băng chuyền bài học ngay phía trên. */}
     </div>
   );
 }
