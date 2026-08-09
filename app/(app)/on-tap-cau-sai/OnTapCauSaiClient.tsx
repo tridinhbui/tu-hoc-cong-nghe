@@ -50,6 +50,19 @@ export default function OnTapCauSaiClient() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
   const [sessionCompleted, setSessionCompleted] = useState(false);
+  // Bộ thẻ của PHIÊN NÀY: các thẻ tới hạn tại lúc mở trang.
+  //
+  // Trước đây trang tính `dueItems` rồi chỉ dùng nó làm một con số trong dòng
+  // đếm, còn bộ thẻ vẫn duyệt toàn bộ `items`. Nghĩa là bốn nút đánh giá và
+  // các thông báo "+7 ngày", "+30 ngày" không xếp lịch cho bất cứ thứ gì:
+  // chấm một thẻ "Thành thục" xong tải lại trang thì nó vẫn nằm nguyên trong
+  // bộ. Cả phần Spaced Repetition - thứ được in ngay trên trang chủ như một
+  // lời hứa - chỉ là trang trí.
+  //
+  // Chốt bộ thẻ MỘT LẦN chứ không lọc lại theo mỗi lần render: `srsMap` đổi
+  // ngay khi người học chấm một thẻ, nên một danh sách lọc trực tiếp sẽ co lại
+  // dưới chân con trỏ và thẻ kế tiếp bị nhảy cóc.
+  const [deck, setDeck] = useState<QuizMistakeReviewItem[] | null>(null);
 
   const storageKey = userId ? `thtcdn_srs_states_${userId}` : null;
 
@@ -82,6 +95,13 @@ export default function OnTapCauSaiClient() {
         // showing everything.
         const sessionItems = isMorningSession ? selectMorningReview(data, loadedSrs) : data;
         setItems(sessionItems);
+        // Phiên sáng đã được selectMorningReview xếp theo lịch rồi, nên nó đi
+        // thẳng vào bộ thẻ; trang thường thì lọc lấy phần tới hạn hôm nay.
+        setDeck(
+          isMorningSession
+            ? sessionItems
+            : sessionItems.filter((it) => isDueForReview(loadedSrs[itemKey(it)]?.nextReviewAt))
+        );
         setCardAnswers(
           Object.fromEntries(sessionItems.map((it) => [itemKey(it), { picked: null, resolved: false }]))
         );
@@ -130,7 +150,7 @@ export default function OnTapCauSaiClient() {
 
     // Advance to next flashcard
     setIsFlipped(false);
-    if (currentIndex + 1 < items.length) {
+    if (currentIndex + 1 < (deck?.length ?? items.length)) {
       setCurrentIndex((prev) => prev + 1);
     } else {
       setSessionCompleted(true);
@@ -145,8 +165,8 @@ export default function OnTapCauSaiClient() {
     );
   }
 
-  const dueItems = items.filter((it) => isDueForReview(srsMap[itemKey(it)]?.nextReviewAt));
-  const currentCardItem = items[currentIndex];
+  const sessionDeck = deck ?? items;
+  const currentCardItem = sessionDeck[currentIndex];
 
   return (
     <div className="min-h-screen bg-stone-50 dark:bg-stone-950 font-sans text-stone-900 dark:text-stone-100 pb-12">
@@ -229,13 +249,51 @@ export default function OnTapCauSaiClient() {
               {t.mistakeReview.backToDashboard} <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
+        ) : viewMode === "flashcard" && sessionDeck.length === 0 ? (
+          /* Còn câu sai đang theo dõi, nhưng lịch xếp chúng vào ngày khác.
+             Trạng thái này trước đây không tồn tại được: bộ thẻ luôn là toàn
+             bộ danh sách nên nó không bao giờ rỗng. Vẫn để một lối đi vòng -
+             lịch là gợi ý cho việc học, không phải cái khoá. */
+          <div className="text-center py-16 px-4 bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-3xl shadow-sm space-y-3">
+            <Calendar className="w-12 h-12 text-emerald-500 mx-auto" />
+            <h3 className="font-black text-lg text-stone-900 dark:text-stone-100">
+              {t.mistakeReview.noneDueTitle}
+            </h3>
+            <p className="text-xs sm:text-sm text-stone-500 dark:text-stone-400 max-w-md mx-auto">
+              {format(t.mistakeReview.noneDueBody, { count: items.length })}
+            </p>
+            <div className="pt-2 flex flex-wrap justify-center gap-3">
+              <button
+                type="button"
+                onClick={() => {
+                  setDeck(items);
+                  setCurrentIndex(0);
+                  setIsFlipped(false);
+                  setSessionCompleted(false);
+                }}
+                className="px-4 py-2.5 rounded-xl bg-stone-100 dark:bg-stone-800 text-stone-900 dark:text-stone-100 font-black text-xs hover:bg-stone-200 dark:hover:bg-stone-700 cursor-pointer"
+              >
+                {t.mistakeReview.reviewAllAnyway}
+              </button>
+              <Link
+                href="/dashboard"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-black text-xs transition-all shadow-sm cursor-pointer"
+              >
+                {t.mistakeReview.backToDashboard} <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </div>
         ) : viewMode === "flashcard" ? (
           /* ── 3D FLASHCARD INTERACTION MODE ── */
           <div className="space-y-4">
             {/* Progress Counter & SRS Stats Bar */}
             <div className="flex items-center justify-between text-xs font-black text-stone-500 dark:text-stone-400 px-1">
               <span>
-                {format(t.mistakeReview.cardCounter, { current: currentIndex + 1, total: items.length, due: dueItems.length })}
+                {format(t.mistakeReview.cardCounter, {
+                  current: currentIndex + 1,
+                  total: items.length,
+                  due: sessionDeck.length,
+                })}
               </span>
               <span className="text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
                 <Zap className="w-3.5 h-3.5" /> {t.mistakeReview.algorithmActive}
@@ -457,7 +515,7 @@ export default function OnTapCauSaiClient() {
                         type="button"
                         onClick={() => {
                           setIsFlipped(false);
-                          if (currentIndex + 1 < items.length) {
+                          if (currentIndex + 1 < sessionDeck.length) {
                             setCurrentIndex((prev) => prev + 1);
                           } else {
                             setSessionCompleted(true);
