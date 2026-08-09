@@ -1,0 +1,225 @@
+{
+  "slug": "tai-chinh-xanh-tieu-chuan-esg-tin-chi-carbon",
+  "title": "Masterclass 5: Green finance and sustainable investing - ESG standards and the carbon credit market",
+  "subtitle": "ESG, materiality, greenwashing, green bonds and how carbon credits are priced.",
+  "whyItMatters": "Vietnamese businesses exporting to Europe will gradually have to declare the emissions embedded in their goods, and international banks increasingly tie lending rates to ESG scores. This is no longer a communications matter - it has become a cost line and a condition of access to capital.",
+  "duration": "13 min",
+  "openingQuestion": "What does the G in the ESG investing standard stand for?",
+  "openingOptions": [
+    "Green (green energy)",
+    "Governance (corporate governance)",
+    "Growth (the company's revenue growth)",
+    "Global (global scale)"
+  ],
+  "explanation": "G is governance: board structure, the independence of its members, transparency of disclosure, control of conflicts of interest, anti-corruption policy. The irony is that this is usually the least discussed letter and the one correlating most clearly with long-run financial performance.",
+  "diagram": [
+    { "label": "Identify the material issues", "arrow": true },
+    { "label": "Measure and disclose", "arrow": true },
+    { "label": "ESG rating", "arrow": true },
+    { "label": "Cost of capital and market access" }
+  ],
+  "realWorldExample": {
+    "company": "Vietnamese exporters and CBAM",
+    "description": "The EU's carbon border adjustment mechanism (CBAM) requires declaration of the emissions embedded in imports in categories such as steel, cement, aluminium and fertiliser. For Vietnamese businesses in those supply chains, emissions shift from a reporting metric into a direct cost. In parallel, Vietnam committed at COP26 to net zero emissions by 2050 and is building the legal framework for a domestic carbon market."
+  },
+  "application": {
+    "title": "Check three things in every commitment",
+    "message": "Open a listed company's sustainability report and look for exactly three things: the baseline year to measure against, an interim milestone before 2030, and the name of the independent verifier. A 2050 neutrality pledge with no interim milestone is a promise made by a management team that will have retired before the deadline.",
+    "secondary": "Check the scope too: cutting Scope 1 and 2 emissions while staying silent on Scope 3 usually means ignoring the largest part of that very value chain."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Two companies in the same industry publish sustainability reports of equal thickness and equally handsome photography. One of them borrows from an international bank 0.8 percentage points cheaper. The difference is not the thickness of the report but this: one side measures and is verified, the other only tells stories."
+    },
+    {
+      "type": "heading",
+      "text": "1. The three pillars, and the thing that matters more than all three"
+    },
+    {
+      "type": "list",
+      "items": [
+        "E - environmental: greenhouse gas emissions, energy and water use, waste, impact on biodiversity.",
+        "S - social: workplace safety, labour relations, customer data privacy, responsibility across the supply chain.",
+        "G - governance: board structure and independence, transparency of disclosure, control of conflicts of interest, anti-corruption."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Materiality matters more than the checklist",
+      "text": "Not every ESG metric matters to every industry. For a cement plant, emissions are existential; for a software company, emissions are close to negligible while data privacy and staff retention are the material issues. A good ESG report starts by choosing the few issues that are material to its own industry, not by listing everything."
+    },
+    {
+      "type": "heading",
+      "text": "2. Why ESG ratings contradict each other"
+    },
+    {
+      "type": "paragraph",
+      "text": "One thing that confuses many investors: the same business can be rated highly by one agency and poorly by another. The cause is not that somebody miscalculated, but that the agencies pick different metrics, weight them differently, and handle missing data differently. The practical consequence: an ESG score is not an objective fact the way audited profit is - it is an opinion, and it has to be read alongside the methodology behind it."
+    },
+    {
+      "type": "heading",
+      "text": "3. Greenwashing - spotting it with three questions"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "A verifiable commitment",
+        "text": "A specific baseline figure and baseline year, an interim milestone, a clearly stated scope (Scope 1, 2, 3), and independent third-party review. For example: \"cut Scope 1 and 2 emissions 30% against the 2020 level, by 2030\"."
+      },
+      "right": {
+        "label": "Signs of greenwashing",
+        "text": "Slogans with no numbers, targets all pushed out to a distant date such as 2050, showcasing one small project while the core operations still do great damage, or buying carbon credits to offset without cutting actual emissions at all."
+      }
+    },
+    {
+      "type": "paragraph",
+      "text": "Three quick filtering questions: (1) Are the figures measured against a stated baseline year? (2) How far does the scope reach - only your own plants, or purchased electricity and the supply chain too? (3) Who verifies it? A commitment that cannot answer all three should be read as marketing material."
+    },
+    {
+      "type": "heading",
+      "text": "4. Green bonds and sustainability-linked loans"
+    },
+    {
+      "type": "conceptTable",
+      "title": "Two structures easily confused",
+      "concepts": [
+        {
+          "vi": "Trái phiếu xanh",
+          "en": "Green bond",
+          "def": "Bound by USE OF PROCEEDS: the money raised must go to identified green projects, with periodic allocation reporting. The interest rate does not change with environmental results."
+        },
+        {
+          "vi": "Khoản vay gắn bền vững",
+          "en": "Sustainability-linked loan",
+          "def": "Bound by OUTCOME: the money is for general purposes, but the interest rate rises or falls depending on whether the business hits the ESG targets it committed to."
+        },
+        {
+          "vi": "Phần bù xanh",
+          "en": "Greenium",
+          "def": "The lower yield a green issuer sometimes enjoys against a conventional bond of the same risk - usually thin, a few basis points, and not always present at all."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "5. How carbon credits work"
+    },
+    {
+      "type": "formula",
+      "title": "The unit of the carbon market",
+      "equation": "1 carbon credit = 1 tonne of CO₂ equivalent (tCO₂e)",
+      "variables": [
+        {
+          "symbol": "CO₂e",
+          "name": "CO₂ equivalent",
+          "description": "Converts other greenhouse gases into CO₂ by their warming effect"
+        }
+      ],
+      "example": {
+        "title": "Why the conversion is needed",
+        "calculation": "1 tonne of methane ≈ 28 tonnes of CO₂e",
+        "result": "One measuring unit for every gas",
+        "explanation": "Each greenhouse gas traps heat to a different degree, so without a common unit you cannot add them, trade them or set quotas in them. CO₂ equivalent is the common currency of the carbon market."
+      }
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "The compliance market",
+        "text": "The state sets an emissions quota per facility (cap and trade). Anyone emitting below their quota sells the surplus; anyone exceeding it must buy to cover. Supply and demand set the price, and how tight the cap is sets the level."
+      },
+      "right": {
+        "label": "The voluntary market",
+        "text": "Businesses buy credits from reforestation, renewable energy or methane capture projects to offset. Quality varies enormously - the core issue is additionality: would that project genuinely not have happened without the credit revenue?"
+      }
+    },
+    {
+      "type": "callout",
+      "label": "The right order for cutting emissions",
+      "text": "Measure - reduce - and only then offset. Buying carbon credits to offset while doing nothing to cut actual emissions is the definition of greenwashing, and it is increasingly challenged by both regulators and institutional investors."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "ESG only carries weight when it comes with figures, a scope and an independent verifier.",
+        "For Vietnamese businesses, emissions are gradually shifting from a metric in a report to a cost line in the income statement - and that is when it becomes a genuinely financial matter."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "What does greenwashing in corporate reporting mean?",
+      "options": [
+        "Switching all the plants to renewable energy bought externally",
+        "Polishing a green image through communications while nothing changes",
+        "Setting a carbon neutrality target later than the industry pledged",
+        "Publishing an annual sustainability report for shareholders"
+      ],
+      "explanation": "Three quick filtering questions expose it: are the figures measured against a stated baseline year, how far does the scope reach (own plants only, or purchased electricity and the supply chain too), and who is the independent verifier. A commitment that cannot answer all three should be read as marketing material. Another classic sign is pushing every target out to a distant date such as 2050 with no interim milestone."
+    },
+    {
+      "question": "How much greenhouse gas does one carbon credit represent the right to emit?",
+      "options": [
+        "1 kg of CO₂ equivalent, converted in standard metric units",
+        "100 tonnes of CO₂ equivalent, the minimum trading lot",
+        "There is no fixed unit; it depends on each project's methodology",
+        "1 tonne of CO₂ equivalent, written tCO₂e"
+      ],
+      "explanation": "One credit corresponds to one tonne of CO₂ equivalent. The word \"equivalent\" is the important part: each greenhouse gas traps heat differently - a tonne of methane has roughly the effect of 28 tonnes of CO₂ - so everything has to be converted to a common unit before it can be added, traded or capped. This is the common currency of the carbon market."
+    },
+    {
+      "question": "Why does the same business receive very different ESG scores from different rating agencies?",
+      "options": [
+        "Because the business sends different figures to each agency",
+        "Because ESG scores are updated daily with the share price",
+        "Because one of the rating agencies has certainly miscalculated",
+        "Because each agency picks different metrics and weights"
+      ],
+      "explanation": "This is the fundamental difference between ESG and financial data. Audited profit is a figure prepared to a common standard; an ESG score is an OPINION built on each agency's own methodological choices. So when using ESG scores in an investment decision, read the methodology alongside them, and never compare scores from two different rating systems directly."
+    },
+    {
+      "question": "What is the core difference between a green bond and a sustainability-linked loan?",
+      "options": [
+        "A green bond binds use of proceeds; an SLL binds outcomes",
+        "A sustainability-linked loan is always cheaper than a green bond",
+        "Green bonds are only for state enterprises, SLLs for private ones",
+        "Green bonds must be independently audited, SLLs need not be"
+      ],
+      "explanation": "The two structures bind the business at different points. A green bond asks \"where does this money go\" - the proceeds must fund identified green projects with periodic allocation reporting, but the interest rate does not move whatever the environmental outcome. A sustainability-linked loan asks \"what did you achieve\" - the money is for general purposes, but the rate rises or falls depending on whether the committed ESG targets are met."
+    },
+    {
+      "question": "A business buys carbon credits to offset all of its emissions but does not reduce actual emissions. How should that be judged?",
+      "options": [
+        "It cannot be judged without knowing which industry the business is in",
+        "Greenwashing - the right order is measure, reduce, then offset",
+        "Better than reducing emissions, since the cost per tonne is far lower",
+        "Legitimate, because offsetting and reducing are worth the same"
+      ],
+      "explanation": "Offsetting should only apply to the emissions remaining after every feasible reduction has been made. The voluntary market's biggest problem is additionality: if that forest was going to be protected whether or not the credits sold, the credit created no additional tonne of CO₂ actually avoided. Regulators and institutional investors alike are increasingly challenging carbon neutrality claims resting entirely on offsets."
+    }
+  ],
+  "practicePrompt": {
+    "question": "A business commits to \"carbon neutrality by 2050\" with no baseline year, no interim milestone and no verifier. How should that be judged?",
+    "options": [
+      "A strong commitment, since 2050 matches the national target",
+      "A weak commitment, showing signs of greenwashing",
+      "It cannot be judged without seeing the financial statements",
+      "A good commitment, because it has been made publicly"
+    ],
+    "explanation": "The 2050 date falls outside the tenure of virtually the whole current management team, so without an interim milestone nobody is actually accountable. With no baseline year, progress cannot be measured against anything; with no verifier, the figures are self-declared. A credible commitment looks far more specific: \"cut Scope 1 and 2 emissions 30% against the 2020 level by 2030, independently verified each year\"."
+  },
+  "keyTakeaways": [
+    "G - governance is usually the least discussed and correlates most clearly with long-run financial performance.",
+    "Materiality decides everything: each industry has only a few ESG metrics that genuinely matter, and the rest is noise.",
+    "An ESG score is an opinion, not an objective fact - contradictory ratings are entirely normal.",
+    "A green bond binds use of proceeds; a sustainability-linked loan binds outcomes and ties them to the interest rate.",
+    "1 carbon credit = 1 tonne of CO₂ equivalent, and the right order is always measure - reduce - then offset."
+  ],
+  "summary": {
+    "keyIdea": "ESG only carries financial weight when it comes with figures, a scope and an independent verifier - the rest is communications.",
+    "formula": "1 carbon credit = 1 tCO₂e · Order of action: measure → reduce → offset the remainder",
+    "commonMistake": "Reading an ESG score as an objective fact, and treating carbon offsetting as equivalent to genuine emissions reduction.",
+    "action": "For every sustainability commitment, check three things: the baseline year, the interim milestone, and the name of the independent verifier."
+  }
+}

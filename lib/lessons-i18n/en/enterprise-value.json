@@ -1,0 +1,181 @@
+{
+  "slug": "enterprise-value",
+  "title": "Enterprise value",
+  "subtitle": "EV = market cap + debt − cash",
+  "duration": "6 min",
+  "openingQuestion": "Why does a buyer acquiring a whole company pay more than the market cap?",
+  "openingOptions": [
+    "Because they take on the debt and receive the cash",
+    "Because the law always adds a fee on top",
+    "Because market cap is only the price of the fixed assets",
+    "Because EV is therefore always smaller than market cap"
+  ],
+  "explanation": "Enterprise value = market cap + debt − cash, and it reflects the real cost of buying the whole operating business. The buyer has to carry the existing debt but also receives the cash sitting in the company, which is why EV rather than market cap is the more accurate measure of what an outright purchase costs.",
+  "diagram": [
+    { "label": "Market cap", "arrow": true },
+    { "label": "+ Debt", "arrow": true },
+    { "label": "− Cash", "arrow": true },
+    { "label": "Enterprise value", "arrow": false }
+  ],
+  "realWorldExample": {
+    "company": "Two businesses with the same market cap and different purchase prices",
+    "description": "Suppose two businesses both have a market cap of 5,000 billion. Business A has 2,000 billion of debt and 200 billion of cash; business B has no debt and 1,500 billion of cash. A's enterprise value is 6,800 billion and B's is 3,500 billion - nearly double, on identical market caps. Compare the two on P/E and that difference vanishes entirely; compare them on EV/EBITDA and it appears immediately. This is why EV is almost always preferred to market cap in M&A and relative valuation."
+  },
+  "quiz": [
+    {
+      "question": "Company A has a market cap of 100, debt of 30 and cash of 10. What is EV?",
+      "options": [
+        "120 (= 100 + 30 − 10 of cash)",
+        "130 (= 100 + 30, forgetting to subtract the cash)",
+        "90 (= 100 − 10, forgetting to add the debt)",
+        "100 (taking the market cap alone)"
+      ],
+      "explanation": "EV = 100 + 30 − 10 = 120."
+    },
+    {
+      "question": "Why is EV/EBITDA usually preferred to P/E when comparing businesses whose capital structures (debt to equity) differ widely?",
+      "options": [
+        "Because EBITDA can be computed without full financial statements",
+        "Because EV/EBITDA is neutral to capital structure and P/E is not",
+        "Because EBITDA is always more accurate than audited net profit",
+        "Because P/E can only be used for banks and insurance companies"
+      ],
+      "explanation": "The numerator, EV, already includes the debt, while the denominator, EBITDA, is struck before interest and tax - so EV/EBITDA removes the effect of capital structure and compares differently borrowed businesses more fairly than P/E does."
+    },
+    {
+      "question": "Why is cash SUBTRACTED when computing enterprise value?",
+      "options": [
+        "Because the cash is already inside the market cap, so it double-counts",
+        "Because cash is not regarded as an operating asset of the business",
+        "Because the buyer receives that cash, lowering the real cost",
+        "Because accounting standards state that cash is outside EV"
+      ],
+      "explanation": "EV measures the real cost of owning the operating business. Cash already inside the company can immediately repay part of the purchase price, so it reduces the real cost."
+    },
+    {
+      "question": "Two businesses have the same market cap, but one is heavily borrowed and the other holds a lot of cash. Which measure reflects that difference?",
+      "options": [
+        "ROE, because it measures the return generated on shareholders' equity",
+        "Gross margin, because it measures efficiency before any financing cost",
+        "P/E, because it is based on profit after tax and after interest",
+        "EV/EBITDA, because both numerator and denominator are capital-structure neutral"
+      ],
+      "explanation": "P/E ignores debt and cash entirely. EV/EBITDA brings both in, so it reflects the difference in capital structure between the two businesses."
+    },
+    {
+      "question": "Why does a buyer acquiring a whole business care about enterprise value rather than market capitalisation?",
+      "options": [
+        "Because on completion they carry the debt and receive the cash",
+        "Because market capitalisation moves every session, so it cannot be negotiated on",
+        "Because enterprise value is always below market cap, which favours the buyer",
+        "Because regulators require this figure to be disclosed"
+      ],
+      "explanation": "Paying the shareholders is only half the job: the debt is still there and has to be serviced, while the cash in the company belongs to you the moment you take over. The real price of owning the operating business is therefore market cap plus debt less cash."
+    }
+  ],
+  "keyTakeaways": [
+    "EV is the price of buying the whole business outright",
+    "Debt raises EV, cash lowers it",
+    "EV is usually the basis for several valuation multiples"
+  ],
+  "summary": {
+    "keyIdea": "EV is the price of buying the whole business outright",
+    "commonMistake": "Easy to miss: debt raises EV and cash lowers it",
+    "action": "EV is usually the basis for several valuation multiples"
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "When one company wants to buy another outright, it does not pay simply the market capitalisation - because market cap does not tell the whole story."
+    },
+    {
+      "type": "heading",
+      "text": "EV = market cap + debt − cash"
+    },
+    {
+      "type": "paragraph",
+      "text": "Enterprise value reflects the real cost of owning the whole operating business: the buyer has to carry the target's existing debt (added to the price paid), but also receives all the cash sitting in the company (subtracted from the price paid). This is why EV, rather than market cap, is the basis for most valuation multiples used in M&A."
+    },
+    {
+      "type": "list",
+      "items": [
+        "EV is the price of buying the whole operating business, not just the equity",
+        "Debt raises EV, cash lowers it",
+        "EV/EBITDA is neutral to capital structure, so it compares differently borrowed companies more fairly than P/E"
+      ]
+    },
+    {
+      "type": "formula",
+      "title": "The enterprise value formula",
+      "equation": "EV = market capitalisation + debt − cash and equivalents",
+      "variables": [
+        {
+          "symbol": "Market cap",
+          "name": "Market capitalisation",
+          "description": "Share price × shares outstanding - the value belonging to shareholders."
+        },
+        {
+          "symbol": "Debt",
+          "name": "Borrowings",
+          "description": "The buyer carries it, so it is added to the real price paid."
+        },
+        {
+          "symbol": "Cash",
+          "name": "Cash",
+          "description": "The buyer receives it, so it is deducted from the real price paid."
+        }
+      ],
+      "example": {
+        "title": "A worked example",
+        "calculation": "5,000 + 2,000 − 200",
+        "result": "= 6,800 billion",
+        "explanation": "Buying this business outright actually costs 6,800 billion rather than 5,000 billion, because the buyer inherits the 2,000 billion of debt and receives back only 200 billion of cash."
+      }
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "P/E",
+        "text": "Looks only at the equity, with a denominator struck after interest. Two businesses identical in operations but different in capital structure produce two different P/Es."
+      },
+      "right": {
+        "label": "EV/EBITDA",
+        "text": "The numerator includes the debt and the denominator is profit before interest. Because both sides are neutral to how the business is financed, this multiple compares businesses with different debt levels."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "Three points to watch when computing EV"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Deduct only surplus cash, not all of it - a business always needs some cash to operate day to day.",
+        "Remember to add minority interests and preference shares where they exist, since the buyer has to deal with those too.",
+        "Use the market value of debt where you can; for ordinary bank borrowings, book value is an acceptable approximation."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Market cap is only the value of the equity shareholders currently hold.",
+        "Enterprise value is the real price of owning the whole business."
+      ]
+    }
+  ],
+  "practicePrompt": {
+    "question": "Which of the following is the most accurate formula for enterprise value (EV)?",
+    "options": [
+      "EV = market cap + total borrowings − cash",
+      "EV = market capitalisation − total borrowings + cash",
+      "EV = total assets − total liabilities",
+      "EV = gross profit × the P/E multiple"
+    ],
+    "explanation": "Enterprise value measures the total value of the whole business (to shareholders and lenders alike). When an investor buys a company outright, they pay the market capitalisation, carry the borrowings and receive the existing cash."
+  },
+  "application": {
+    "title": "In practice: enterprise value",
+    "message": "Which of the following is the most accurate formula for enterprise value (EV)?",
+    "secondary": "Having this principle firmly in hand strengthens your professional financial analysis."
+  }
+}
