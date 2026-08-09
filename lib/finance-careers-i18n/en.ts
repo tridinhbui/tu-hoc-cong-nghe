@@ -850,4 +850,364 @@ export const careersEn: Record<string, CareerTranslation> = {
     applicationTips:
       "Know the current corporate income tax and VAT law well, go deep on transfer pricing (the live topic for foreign-invested firms), and start the CPA or ACCA route early.",
   },
+
+  "esg-analyst": {
+    title: "ESG / Sustainable Finance Analyst",
+    summary:
+      "Assesses the environmental, social and governance profile of companies, and folds it into investment decisions and sustainable portfolios.",
+    responsibilities: [
+      "Build the ESG scoring framework for companies in the portfolio",
+      "Analyse non-financial risk (environmental, labour, corporate governance)",
+      "Write ESG and sustainability reports to international standards (GRI, SASB)",
+      "Advise funds and companies on green finance strategy and sustainable bonds",
+    ],
+    skills: [
+      "ESG frameworks (GRI, SASB, TCFD)",
+      "Reading sustainability reports",
+      "Non-financial risk management",
+      "Technical English",
+      "Cross-disciplinary thinking",
+    ],
+    entryLevel:
+      "Junior/Senior - an emerging field in Vietnam, hiring from either finance or environment/sustainability backgrounds",
+    salaryHint: "VND 15-28M (Junior) • VND 35-65M+ (Senior)",
+    searchKeyword: "ESG Analyst",
+    dayInLife:
+      "Score 15 portfolio companies on ESG from their sustainability reports, check them against the GRI standard, and tell the investment team why one stock should be dropped on governance risk.",
+    careerPath: [
+      "ESG Analyst",
+      "Senior ESG Analyst",
+      "Head of Sustainable Investing",
+      "Chief Sustainability Officer (CSO)",
+    ],
+    requiredTools: ["MSCI ESG Ratings", "Bloomberg ESG Data", "Excel", "Sustainability Reporting Frameworks"],
+    certifications: ["CFA ESG Investing Certificate", "SASB FSA Credential", "CFA (Level I-II)"],
+    pros:
+      "A field growing fast globally and starting to matter in Vietnam, with genuine social impact and the chance to build a specialism while it is still new.",
+    cons:
+      "Vietnam has no fully standardised ESG data or regulatory framework yet, and traditional boards can be hard to convince that ESG ranks alongside returns.",
+    applicationTips:
+      "Teach yourself the international frameworks (GRI, SASB) from the free material, and follow the Vietnamese listed companies already publishing sustainability reports so you have real examples in the interview.",
+  },
+
+  "retail-banking-rm": {
+    title: "Retail Banking Relationship Manager",
+    summary:
+      "Advises on and sells retail banking products (savings, consumer loans, credit cards, insurance) to individual customers at a branch.",
+    responsibilities: [
+      "Advise on savings, consumer loans and credit cards that fit the customer",
+      "Look after and keep the existing individual customer book",
+      "Do the initial screening on consumer and mortgage applications before credit takes them",
+      "Hit the deposit targets and cross-sell",
+    ],
+    skills: [
+      "Selling and advising",
+      "Knowing the retail banking products",
+      "Holding up under KPIs",
+      "Building customer relationships",
+      "Handling complaints",
+    ],
+    entryLevel: "Fresh/Junior - the most common way into banking, hiring in volume every year",
+    salaryHint: "VND 8-14M + KPI commission (Fresher) • VND 18-30M+ (Senior RM)",
+    searchKeyword: "Retail relationship manager",
+    dayInLife:
+      "Walk a young customer through their first mortgage, call ten savings customers whose deposits are maturing, and finish the credit card application for a new one.",
+    careerPath: ["Relationship Manager", "Senior RM", "Branch Deputy Director", "Branch Director"],
+    requiredTools: ["Core Banking Systems", "Internal CRM", "Basic Excel"],
+    certifications: ["In-house banking certificates", "CFA (Level I is a long-term advantage)"],
+    pros:
+      "The widest opening in banking for graduates, a fast way to build communication and sales skills, and a fairly clear path to running a branch.",
+    cons:
+      "Monthly targets never stop, income swings with commission when you miss KPIs, and you handle the difficult customers and the complaints.",
+    applicationTips:
+      "Show confident communication and that you can work under pressure, and read up on the bank's flagship products so you can handle the advisory case study.",
+  },
+
+  "real-estate-finance": {
+    title: "Real Estate Finance / REIT Analyst",
+    summary:
+      "Analyses and values property projects and assets, arranges project funding, and assesses REIT investment performance.",
+    responsibilities: [
+      "Value property projects on cap rate, DCF and comparable transactions",
+      "Build the project development model from construction through to operation",
+      "Structure the funding (bank debt, project bonds, equity) for the developer",
+      "Track leasing performance, occupancy and cash flow on operating assets",
+    ],
+    skills: [
+      "Property valuation (cap rate, DCF)",
+      "Project financial modelling",
+      "Land and property law",
+      "Project capital structure",
+      "Deep Excel",
+    ],
+    entryLevel:
+      "Junior/Senior - hired by large developers, property funds and Big4 real estate transaction advisory",
+    salaryHint: "VND 15-28M (Junior) • VND 35-70M+ (Senior/Manager)",
+    searchKeyword: "Real estate finance",
+    dayInLife:
+      "Update an apartment project's model against actual construction progress, work out the cap rate on an office building for sale, and sit with the bank on the new project loan.",
+    careerPath: [
+      "Real Estate Analyst",
+      "Senior Analyst",
+      "Investment Manager",
+      "Head of Real Estate Investment",
+    ],
+    requiredTools: ["Excel (Development/DCF Models)", "ARGUS Enterprise", "AutoCAD (basic)", "Capital IQ"],
+    certifications: ["CFA", "Property Valuation Certificate (Ministry of Construction)", "MBA"],
+    pros:
+      "Property is still the largest asset class in Vietnam so the expertise is in demand, you work on large tangible projects you can go and look at, and senior pay is strong.",
+    cons:
+      "The market is strongly cyclical, land and legal policy changes hit the work directly, and large projects run for years, which takes patience.",
+    applicationTips:
+      "Build a DCF and cap rate model for one specific project to put on your CV, keep up with land law and zoning, and understand the Vietnamese property cycle.",
+  },
+
+  "insurance-actuarial": {
+    title: "Insurance & Actuarial Analyst",
+    summary:
+      "Uses statistics and probability to price insurance, assess risk, and keep the insurer solvent over the long run.",
+    responsibilities: [
+      "Build the pricing model for new life and non-life products",
+      "Calculate technical reserves and assess the insurer's solvency",
+      "Analyse historical loss data to forecast risk and adjust premiums",
+      "Report the company's financial position to the insurance regulator on schedule",
+    ],
+    skills: [
+      "Advanced probability and statistics",
+      "Insurance pricing models",
+      "Excel/SQL/R",
+      "Knowing the insurance regulations",
+      "Working with large datasets",
+    ],
+    entryLevel:
+      "Junior/Senior - needs strong maths and statistics, and the actuarial exam route runs for years",
+    salaryHint: "VND 15-28M (Junior Actuarial Analyst) • VND 45-90M+ (Fellow Actuary/Senior)",
+    searchKeyword: "Actuarial Analyst",
+    dayInLife:
+      "Run the mortality model for a new life product, reconcile last quarter's motor loss data, and write part of the solvency report for the Ministry of Finance.",
+    careerPath: ["Actuarial Analyst", "Associate Actuary", "Fellow Actuary", "Chief Actuary"],
+    requiredTools: ["Excel (Advanced)", "R / Python", "SQL", "Actuarial Software (Prophet, AXIS)"],
+    certifications: ["Actuarial qualification (SOA/IFoA - a long multi-exam route)", "FRM is an advantage"],
+    pros:
+      "One of the best-paid senior roles in finance, with a high technical barrier that keeps competition low (few people finish the exam route), and stable, respected work.",
+    cons:
+      "The professional exam route (SOA/IFoA) takes years and is genuinely hard, it needs strong maths from the start, and the number of Vietnamese roles is still limited.",
+    applicationTips:
+      "A maths, statistics or actuarial science degree is a real advantage, start the exams as early as you can, and get comfortable in R or Python for the data work.",
+  },
+
+  "family-office-advisor": {
+    title: "Family Office / Private Banking Advisor",
+    summary:
+      "Manages the whole financial picture for high-net-worth families and individuals, from investments through to succession planning.",
+    responsibilities: [
+      "Build a diversified allocation strategy (equities, property, private equity, alternatives)",
+      "Plan inheritance and the transfer of wealth between generations",
+      "Coordinate the specialist services around the client (tax, legal, insurance)",
+      "Hold a long-term relationship of trust and report on the whole portfolio regularly",
+    ],
+    skills: [
+      "Whole-of-wealth planning",
+      "Succession and generational transfer",
+      "Advising with strict confidentiality",
+      "Knowing many asset classes",
+      "Building trust over years",
+    ],
+    entryLevel:
+      "Senior - usually experienced wealth managers or private bankers who already have the network",
+    salaryHint: "VND 30-55M (Junior Advisor) • VND 80-200M+ (Senior/Partner + AUM fees)",
+    searchKeyword: "Family Office Advisor",
+    dayInLife:
+      "Meet the second generation of a business family about transferring company shares, review the family's multi-asset portfolio, and work with the lawyers on the trust structure.",
+    careerPath: ["Private Banking Associate", "Private Banker", "Family Office Advisor", "Managing Partner"],
+    requiredTools: ["Financial Planning Software", "Portfolio Management Systems", "Premium CRM", "Excel"],
+    certifications: ["CFP (Certified Financial Planner)", "CFA", "STEP (Trust and Estate Practitioner)"],
+    pros:
+      "Very high senior earnings from large AUM fees, deep trusted relationships with the most powerful families in the market, and work that goes well beyond investing (legal, tax, estate).",
+    cons:
+      "It takes years of experience and a network before you can start, absolute discretion is required because the information is highly sensitive, and the pressure to retain large clients is real.",
+    applicationTips:
+      "Build the personal financial planning foundation first (CFP), spend time as a wealth manager to learn what wealthy clients actually need, and invest seriously in long-term relationship skills.",
+  },
+
+  "fintech-product-finance": {
+    title: "FinTech Product Finance Specialist",
+    summary:
+      "Combines finance and technology to build and run digital financial products (e-wallets, P2P lending, payments, blockchain).",
+    responsibilities: [
+      "Analyse the business model and unit economics of the fintech product",
+      "Assess credit and fraud risk from large datasets for digital lending",
+      "Work with product and engineering to design new financial features (BNPL, e-wallets)",
+      "Track product financial performance and propose revenue or cost improvements",
+    ],
+    skills: [
+      "Unit economics for digital products",
+      "Fintech domain knowledge (payments, lending)",
+      "SQL / data analysis",
+      "Product thinking",
+      "Digital credit risk management",
+    ],
+    entryLevel: "Junior/Senior - a fast-growing field, hiring from finance, data or consulting backgrounds",
+    salaryHint: "VND 18-30M (Junior) • VND 40-80M+ (Senior/Product Finance Lead)",
+    searchKeyword: "FinTech Finance",
+    dayInLife:
+      "Break down the digital consumer loan book's bad-debt rate by customer segment, meet product about a new instalment feature, and update next quarter's e-wallet revenue forecast.",
+    careerPath: [
+      "Financial Analyst (FinTech)",
+      "Product Finance Manager",
+      "Head of Risk & Finance",
+      "VP of Finance",
+    ],
+    requiredTools: ["SQL", "Python/R (data analysis)", "Excel", "BI Tools (Looker, Tableau)"],
+    certifications: ["CFA", "FRM (for digital credit risk)", "Data Analytics certificates"],
+    pros:
+      "A fast-growing sector with new roles opening, a startup and technology culture unlike traditional finance, and a scarce skill set that spans both.",
+    cons:
+      "The sector is young so the regulation is incomplete, volatility is higher than in traditional finance (some fintechs fail or shrink), and the technology keeps moving.",
+    applicationTips:
+      "Pair the finance story with real product and technology understanding on your CV, learn SQL and basic data analysis, and follow the fintech successes and failures in Vietnam and Southeast Asia.",
+  },
+
+  "macro-research-analyst": {
+    title: "Macro / Economic Research Analyst",
+    summary:
+      "Analyses the macro picture - rates, inflation, FX, monetary policy - to produce forecasts and strategy calls for a bank or fund.",
+    responsibilities: [
+      "Track and analyse the macro indicators (GDP, CPI, FX, policy rates)",
+      "Write the periodic economic outlook (monthly and quarterly)",
+      "Forecast what monetary and fiscal policy will do to financial markets",
+      "Advise the investment team on macro asset allocation under each scenario",
+    ],
+    skills: [
+      "Macroeconomic analysis",
+      "Econometric forecasting models",
+      "Writing research",
+      "Following monetary and fiscal policy",
+      "Research-level English",
+    ],
+    entryLevel: "Junior/Senior - usually economics graduates with strong macro reasoning",
+    salaryHint: "VND 15-25M (Junior) • VND 35-70M+ (Senior Economist)",
+    searchKeyword: "Macro Research Analyst",
+    dayInLife:
+      "Work through the CPI print and what it means for the central bank's next rate decision, update the USD/VND forecast model, and write the quarterly macro outlook for the investment team.",
+    careerPath: ["Economic Research Analyst", "Senior Economist", "Head of Macro Research", "Chief Economist"],
+    requiredTools: [
+      "Bloomberg Terminal",
+      "Excel/Eviews (Econometrics)",
+      "Python/R",
+      "Macro databases (IMF, World Bank)",
+    ],
+    certifications: ["CFA", "A master's in economics is a major advantage"],
+    pros:
+      "You build a view of the whole economy rather than one company or sector, your forecasts feed large investment decisions, and there are chances to appear publicly as an expert.",
+    cons:
+      "Macro forecasts are not very accurate because too many variables move at once, the news and data need watching outside office hours, and a badly wrong call costs you credibility.",
+    applicationTips:
+      "Have solid economics (macro, econometrics), write a sample macro note on a live topic (inflation, FX), and follow the central bank, IMF and World Bank reporting closely.",
+  },
+
+  "personal-financial-advisor": {
+    title: "Personal Financial Advisor",
+    summary:
+      "Advises individuals on managing income, saving, basic investing (stocks, ETFs) and building a plan that fits their life goals.",
+    responsibilities: [
+      "Assess the client's current finances and goals (a home, retirement, children's education)",
+      "Build a saving and investing plan that fits their risk appetite",
+      "Explain the basic products (stocks, ETFs, open-ended funds) in plain language",
+      "Review regularly and adjust the plan as their circumstances change",
+    ],
+    skills: [
+      "Personal financial planning",
+      "Communication and advising",
+      "Basic investment knowledge",
+      "Listening to what the client actually needs",
+      "Excel for financial planning",
+    ],
+    entryLevel: "Fresh/Junior - suits people who like advising, and needs solid personal finance grounding",
+    salaryHint: "VND 12-20M (Junior) • VND 25-45M+ (Senior/Partner)",
+    searchKeyword: "Personal financial advice",
+    dayInLife:
+      "Meet a new client who wants to start investing, build a savings and investment plan around buying a home in five years, and update an existing client on their ETF progress.",
+    careerPath: ["Advisor", "Senior Advisor", "Advisory Team Lead", "Branch Advisory Director"],
+    requiredTools: ["Excel / financial planning tools", "Client CRM", "ETF and brokerage platforms"],
+    certifications: ["CFP (Certified Financial Planner)", "Basic securities practice licence"],
+    pros:
+      "Meaningful work that directly improves someone's financial life, no advanced maths required, and room to build a personal brand and your own client base.",
+    cons:
+      "Early income depends heavily on how many clients you have, credibility and trust take time to build, and you explain the same basics repeatedly.",
+    applicationTips:
+      "Build a financial plan for yourself or a family member as a case study for your CV, and practise explaining investment concepts simply.",
+  },
+
+  "financial-coach": {
+    title: "Personal Finance Coach",
+    summary:
+      "Coaches clients through changing spending habits, building saving discipline and healthier money thinking - behaviour rather than investment products.",
+    responsibilities: [
+      "Coach one-to-one or in groups on budgeting and spending habits",
+      "Help clients spot and change their money psychology mistakes (FOMO, emotional spending)",
+      "Build personal finance content and courses (articles, video, workshops)",
+      "Track progress toward the client's goals (clearing debt, an emergency fund)",
+    ],
+    skills: [
+      "Behavioural coaching",
+      "Personal finance fundamentals",
+      "Building educational content",
+      "Empathy and listening",
+      "Presenting",
+    ],
+    entryLevel: "Fresh/Junior - suits people who like teaching and helping others",
+    salaryHint: "VND 10-18M (Junior/Freelance) • VND 20-40M+ (an established coach with a brand)",
+    searchKeyword: "Personal finance coach",
+    dayInLife:
+      "Run a one-to-one session with a client trying to get out of consumer debt, write a piece on FOMO in investing, and prepare the weekend savings workshop.",
+    careerPath: [
+      "Financial Coach",
+      "Senior coach with an established brand",
+      "Founder of a financial education programme",
+      "Speaker / author",
+    ],
+    requiredTools: ["Content platforms (video, blog)", "Budgeting tools", "Zoom / online coaching platforms"],
+    certifications: ["Coaching certification (ICF is an advantage)", "CFP as a further advantage"],
+    pros:
+      "Direct and visible impact on how people handle money, flexible work (freelance or remote), and a strong personal brand is genuinely achievable through content.",
+    cons:
+      "Income is unstable early on, credibility and an audience take time, and the role is easily confused with investment advice, so the boundary has to be clear.",
+    applicationTips:
+      "Build a small content channel (blog, Instagram, TikTok) to prove you can explain things, and coach friends or family for free first.",
+  },
+
+  "insurance-financial-advisor": {
+    title: "Insurance & Financial Protection Advisor",
+    summary:
+      "Advises on financial protection (life, health and property insurance) so clients are covered against sudden financial risk - distinct from the actuary's pricing role.",
+    responsibilities: [
+      "Analyse the client's protection needs (income, family, assets)",
+      "Advise on and design the right cover (life, health, property)",
+      "Explain the terms, benefits and exclusions clearly",
+      "Support the client through a claim when one is needed",
+    ],
+    skills: [
+      "Insurance product knowledge",
+      "Advising and communication",
+      "Assessing individual risk",
+      "Building long-term relationships",
+      "Professional ethics",
+    ],
+    entryLevel:
+      "Fresh/Junior - needs the agent licence, and suits people who like advising and sales",
+    salaryHint: "VND 8-15M + commission (Junior) • VND 25-60M+ (Senior with a large book)",
+    searchKeyword: "Insurance advisor",
+    dayInLife:
+      "Meet a newly married couple about life cover to protect their income, process a claim for an existing client, and sit the training session on a new product.",
+    careerPath: ["Agent / Advisor", "Senior Advisor", "Sales Team Lead", "Regional Sales Director"],
+    requiredTools: ["Policy illustration software", "Client CRM", "Excel"],
+    certifications: ["Insurance agent licence (required by regulation)", "CFP is an advantage"],
+    pros:
+      "Uncapped income through commission once the book is large, clear social value in protecting families financially, and flexible hours.",
+    cons:
+      "Heavy sales pressure, unstable income early on, and an industry reputation for opaque selling that you have to work against.",
+    applicationTips:
+      "Be able to explain the differences between policy types transparently, practise listening for the need rather than closing, and build credibility on honesty.",
+  },
 };
