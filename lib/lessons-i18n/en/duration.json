@@ -1,184 +1,184 @@
 {
- "slug": "duration",
- "title": "Duration: a bond's sensitivity to interest rates",
- "subtitle": "Bond duration concept",
- "duration": "6 min",
- "openingQuestion": "Between a 2-year bond and a 15-year bond (same credit quality), when market rates rise by 1 percentage point, which one falls in price more sharply?",
- "openingOptions": [
-  "This can't be determined without knowing the exact coupon rate of each bond",
-  "Both bonds will fall in price by exactly the same amount, since they face the same market rate rise",
-  "The 15-year bond, because the longer the term, the more sensitive a bond's price is to rate swings",
-  "The 2-year bond, because a shorter term is intuitively more sensitive to rate swings"
- ],
- "explanation": "Duration measures how sensitive a bond's price is to rate changes, and at its core it's the value-weighted average timing of its cash flows. The more value that sits further in the future, the larger the duration and the more the price swings when rates move. A practical use: multiply duration by the rate change to get an estimated percentage price move - the simplest tool for gauging how exposed a bond portfolio is.",
- "diagram": [
-  {
-   "label": "Each of a bond's cash flows sits at a point in time",
-   "arrow": true
-  },
-  {
-   "label": "Calculate the value-weighted average of those points",
-   "arrow": true
-  },
-  {
-   "label": "That is duration",
-   "arrow": true
-  },
-  {
-   "label": "Multiply by the rate change to estimate the price swing"
-  }
- ],
- "interactiveType": "interest-rate",
- "realWorldExample": {
-  "company": "Short-term and long-term bond funds in Vietnam",
-  "description": "Bond funds in Vietnam usually publish their portfolio's average term (an approximation of duration). A short-term bond fund (average term under 2 years) usually has a far more stable NAV when rates swing, suited to an investor who wants to preserve capital. Conversely, a long-term bond fund, or one holding many 10-15 year government bonds, will see its NAV swing noticeably more during periods when the State Bank changes its policy rate - which is why these funds usually recommend holding for the long term to avoid selling right when the price has fallen."
- },
- "quiz": [
-  {
-   "question": "What does a bond's duration measure?",
-   "options": [
-    "The probability the issuer fails to repay on time",
-    "How sensitive a bond's price is to interest-rate swings",
-    "The number of years remaining until the bond matures",
-    "The coupon interest received each year"
-   ],
-   "correct": 1,
-   "explanation": "Duration measures how sensitive a bond's price is to interest-rate swings. A bond with a large duration (usually long-term, low coupon) will swing in price more sharply when market rates change than a bond with a small duration."
-  },
-  {
-   "question": "If you're worried rates will rise sharply soon, which type of bond should you prioritize holding to minimize the risk of a price fall?",
-   "options": [
-    "No difference, any term is just as good",
-    "A 20-year fixed-rate bond because of its high coupon",
-    "A short-term bond (low duration)",
-    "The longer the term, the lower the risk"
-   ],
-   "correct": 2,
-   "explanation": "When expecting rates to rise, you should prioritize a short-term bond (low duration), since its price is less affected by rate swings, better preserving your capital's value if you need to sell before maturity."
-  },
-  {
-   "question": "A bond has a duration of 8. Market rates rise by 0.5%. By about how much does the price change?",
-   "options": [
-    "Rises about 4%, because a higher rate makes the bond more attractive",
-    "Falls about 0.5%, exactly matching the market rate's change",
-    "Falls about 8%, exactly matching that bond's duration figure",
-    "Falls about 4%, taking duration multiplied by the rate change"
-   ],
-   "correct": 3,
-   "explanation": "The rule of thumb: the price change is approximately duration multiplied by the rate change, with the opposite sign. 8 x 0.5% = 4%. This is why duration is used as a practical risk gauge, not just a theoretical concept."
-  },
-  {
-   "question": "Why is a bond's duration always less than or equal to its term?",
-   "options": [
-    "Because coupons paid before maturity pull the average time of receiving money closer",
-    "Because duration is required by accounting standards not to exceed the term",
-    "Because duration only counts the time remaining after subtracting the last interest period",
-    "Because the term is measured in calendar years while duration is measured in fiscal years"
-   ],
-   "correct": 0,
-   "explanation": "Duration is the value-weighted average timing of receiving cash. A coupon puts part of the money in your hands early, pulling that average down below the maturity date. Only a zero-coupon bond has a duration exactly equal to its term, because all its money arrives at once on the final day."
-  },
-  {
-   "question": "A pension fund must pay out to a retiree exactly 12 years from now. Why do they care about duration?",
-   "options": [
-    "To pick the bond with the highest coupon among those with a 12-year term",
-    "To match the portfolio's duration to 12 years, so rate swings no longer matter",
-    "To ensure every bond in the portfolio matures on exactly the same date, and this ordering only holds once both bonds are trading exactly at their original issue price",
-    "To calculate exactly the income tax owed on interest over those 12 years"
-   ],
-   "correct": 1,
-   "explanation": "This is called immunization: when the portfolio's duration exactly matches the time the money is needed, a loss from a price fall is offset by gains from reinvesting at a higher rate, and vice versa. Duration doesn't just measure risk - it's a tool for cancelling that risk out."
-  },
-  {
-   "question": "What does convexity add that duration alone can't say?",
-   "options": [
-    "That a bond's coupon can be re-set partway through the holding period",
-    "That the issuer can default before the bond's contractual maturity date",
-    "That the price-rate relationship is a curve, so duration is off for large rate moves, an effect that becomes visible only once the rate move itself exceeds two full percentage points",
-    "That a bond can be called back early if market rates fall too far"
-   ],
-   "correct": 2,
-   "explanation": "Duration is a linear estimate - accurate for small changes. When rates swing sharply, the real relationship curves: the price rises more than predicted when rates fall, and falls less than predicted when rates rise. Convexity measures exactly that curvature, and it favors the holder."
-  }
- ],
- "keyTakeaways": [
-  "Duration is a concept measuring how sensitive a bond's price is to market interest-rate swings",
-  "The intuitive rule: the longer the term, the larger the duration, and the more sharply the bond's price swings when rates change",
-  "A lower-coupon bond also has a higher duration (since most of its value is concentrated at the distant maturity date), while a higher-coupon bond has cash flow arriving sooner, giving it a relatively lower duration",
-  "To reduce the risk of price swings when worried about rising rates, prioritize shorter-term bonds"
- ],
- "practicePrompt": {
-  "question": "You're comparing two bonds, both with a 10-year term: bond A has a 3%/year coupon, bond B has a 9%/year coupon. Which one has a higher duration and will swing more in price when market rates change?",
-  "options": [
-   "Bond A (lower coupon), because most of its value is concentrated at the distant maturity date, giving it a higher duration than bond B, whose cash flow arrives sooner",
-   "Bond B (higher coupon), because a higher coupon always means a bond is more sensitive to market rate swings, an outcome that would also hold if bond B instead paid its coupon only once a year",
-   "Both have exactly the same duration since they share the same 10-year term, and the coupon level has no effect on duration",
-   "It's impossible to determine which bond has the higher duration without knowing the exact face value of each"
+  "slug": "duration",
+  "title": "Duration: a bond's sensitivity to interest rates",
+  "subtitle": "Bond duration concept",
+  "duration": "6 min",
+  "openingQuestion": "Between a 2-year bond and a 15-year bond (same credit quality), when market rates rise by 1 percentage point, which one falls in price more sharply?",
+  "openingOptions": [
+    "This can't be determined without knowing the exact coupon rate of each bond",
+    "Both bonds will fall in price by exactly the same amount, since they face the same market rate rise",
+    "The 15-year bond, because the longer the term, the more sensitive a bond's price is to rate swings",
+    "The 2-year bond, because a shorter term is intuitively more sensitive to rate swings"
   ],
-  "correct": 0,
-  "explanation": "A lower-coupon bond has a higher duration because most of its value is concentrated at the distant maturity date, while a higher-coupon bond has cash flow arriving sooner, giving it a relatively lower duration."
- },
- "summary": {
-  "keyIdea": "Duration is a concept measuring how sensitive a bond's price is to market interest-rate swings",
-  "commonMistake": "Reading the concept as a line to recite rather than a principle to apply to a real decision.",
-  "action": "The intuitive rule: the longer the term, the larger the duration, and the more sharply the bond's price swings when rates change"
- },
- "application": {
-  "title": "Compare two durations",
-  "message": "Compare two hypothetical bonds - one low-coupon with a long term, one high-coupon with a short term - and reason through which has the higher duration, meaning it's more sensitive to rates.",
-  "secondary": "Duration sounds complex, but at its core it's just 'how long it takes to get your money back'."
- },
- "sections": [
-  {
-   "type": "lead",
-   "text": "You already know that when rates rise, bond prices fall. But not every bond falls by the same amount - some fall very little, some fall very deep. That difference is called Duration."
+  "explanation": "Duration measures how sensitive a bond's price is to rate changes, and at its core it's the value-weighted average timing of its cash flows. The more value that sits further in the future, the larger the duration and the more the price swings when rates move. A practical use: multiply duration by the rate change to get an estimated percentage price move - the simplest tool for gauging how exposed a bond portfolio is.",
+  "diagram": [
+    {
+      "label": "Each of a bond's cash flows sits at a point in time",
+      "arrow": true
+    },
+    {
+      "label": "Calculate the value-weighted average of those points",
+      "arrow": true
+    },
+    {
+      "label": "That is duration",
+      "arrow": true
+    },
+    {
+      "label": "Multiply by the rate change to estimate the price swing"
+    }
+  ],
+  "interactiveType": "interest-rate",
+  "realWorldExample": {
+    "company": "Short-term and long-term bond funds in Vietnam",
+    "description": "Bond funds in Vietnam usually publish their portfolio's average term (an approximation of duration). A short-term bond fund (average term under 2 years) usually has a far more stable NAV when rates swing, suited to an investor who wants to preserve capital. Conversely, a long-term bond fund, or one holding many 10-15 year government bonds, will see its NAV swing noticeably more during periods when the State Bank changes its policy rate - which is why these funds usually recommend holding for the long term to avoid selling right when the price has fallen."
   },
-  {
-   "type": "heading",
-   "text": "What duration is, at the simplest level"
+  "quiz": [
+    {
+      "question": "What does a bond's duration measure?",
+      "options": [
+        "The probability the issuer fails to repay on time",
+        "How sensitive a bond's price is to interest-rate swings",
+        "The number of years remaining until the bond matures",
+        "The coupon interest received each year"
+      ],
+      "correct": 1,
+      "explanation": "Duration measures how sensitive a bond's price is to interest-rate swings. A bond with a large duration (usually long-term, low coupon) will swing in price more sharply when market rates change than a bond with a small duration."
+    },
+    {
+      "question": "If you're worried rates will rise sharply soon, which type of bond should you prioritize holding to minimize the risk of a price fall?",
+      "options": [
+        "No difference, any term is just as good",
+        "A 20-year fixed-rate bond because of its high coupon",
+        "A short-term bond (low duration)",
+        "The longer the term, the lower the risk"
+      ],
+      "correct": 2,
+      "explanation": "When expecting rates to rise, you should prioritize a short-term bond (low duration), since its price is less affected by rate swings, better preserving your capital's value if you need to sell before maturity."
+    },
+    {
+      "question": "A bond has a duration of 8. Market rates rise by 0.5%. By about how much does the price change?",
+      "options": [
+        "Rises about 4%, because a higher rate makes the bond more attractive",
+        "Falls about 0.5%, exactly matching the market rate's change",
+        "Falls about 8%, exactly matching that bond's duration figure",
+        "Falls about 4%, taking duration multiplied by the rate change"
+      ],
+      "correct": 3,
+      "explanation": "The rule of thumb: the price change is approximately duration multiplied by the rate change, with the opposite sign. 8 x 0.5% = 4%. This is why duration is used as a practical risk gauge, not just a theoretical concept."
+    },
+    {
+      "question": "Why is a bond's duration always less than or equal to its term?",
+      "options": [
+        "Because coupons paid before maturity pull the average time of receiving money closer",
+        "Because duration is required by accounting standards not to exceed the term",
+        "Because duration only counts the time remaining after subtracting the last interest period",
+        "Because the term is measured in calendar years while duration is measured in fiscal years"
+      ],
+      "correct": 0,
+      "explanation": "Duration is the value-weighted average timing of receiving cash. A coupon puts part of the money in your hands early, pulling that average down below the maturity date. Only a zero-coupon bond has a duration exactly equal to its term, because all its money arrives at once on the final day."
+    },
+    {
+      "question": "A pension fund must pay out to a retiree exactly 12 years from now. Why do they care about duration?",
+      "options": [
+        "To pick the bond with the highest coupon among those with a 12-year term",
+        "To match the portfolio's duration to 12 years, so rate swings no longer matter",
+        "To ensure every bond in the portfolio matures on exactly the same date",
+        "To calculate exactly the income tax owed on interest over those 12 years"
+      ],
+      "correct": 1,
+      "explanation": "This is called immunization: when the portfolio's duration exactly matches the time the money is needed, a loss from a price fall is offset by gains from reinvesting at a higher rate, and vice versa. Duration doesn't just measure risk - it's a tool for cancelling that risk out."
+    },
+    {
+      "question": "What does convexity add that duration alone can't say?",
+      "options": [
+        "That a bond's coupon can be re-set partway through the holding period",
+        "That the issuer can default before the bond's contractual maturity date",
+        "That the price-rate relationship is a curve, so duration is off for large rate moves, an effect that becomes visible only once the rate move itself exceeds two full percentage points",
+        "That a bond can be called back early if market rates fall too far"
+      ],
+      "correct": 2,
+      "explanation": "Duration is a linear estimate - accurate for small changes. When rates swing sharply, the real relationship curves: the price rises more than predicted when rates fall, and falls less than predicted when rates rise. Convexity measures exactly that curvature, and it favors the holder."
+    }
+  ],
+  "keyTakeaways": [
+    "Duration is a concept measuring how sensitive a bond's price is to market interest-rate swings",
+    "The intuitive rule: the longer the term, the larger the duration, and the more sharply the bond's price swings when rates change",
+    "A lower-coupon bond also has a higher duration (since most of its value is concentrated at the distant maturity date), while a higher-coupon bond has cash flow arriving sooner, giving it a relatively lower duration",
+    "To reduce the risk of price swings when worried about rising rates, prioritize shorter-term bonds"
+  ],
+  "practicePrompt": {
+    "question": "You're comparing two bonds, both with a 10-year term: bond A has a 3%/year coupon, bond B has a 9%/year coupon. Which one has a higher duration and will swing more in price when market rates change?",
+    "options": [
+      "Bond A (lower coupon), because most of its value is concentrated at the distant maturity date, giving it a higher duration than bond B, whose cash flow arrives sooner",
+      "Bond B (higher coupon), because a higher coupon always means a bond is more sensitive to market rate swings, an outcome that would also hold if bond B instead paid its coupon only once a year",
+      "Both have exactly the same duration since they share the same 10-year term, and the coupon level has no effect on duration",
+      "It's impossible to determine which bond has the higher duration without knowing the exact face value of each"
+    ],
+    "correct": 0,
+    "explanation": "A lower-coupon bond has a higher duration because most of its value is concentrated at the distant maturity date, while a higher-coupon bond has cash flow arriving sooner, giving it a relatively lower duration."
   },
-  {
-   "type": "paragraph",
-   "text": "Duration, understood intuitively (without needing to dig into the complex Macaulay Duration formula), is a number telling you roughly what percentage a bond's price will move when market rates change by 1 percentage point. You don't need to calculate this figure precisely - what matters is remembering the principle: the longer a bond's term, the larger the duration, and the more sensitive its price is to interest rates."
+  "summary": {
+    "keyIdea": "Duration is a concept measuring how sensitive a bond's price is to market interest-rate swings",
+    "commonMistake": "Reading the concept as a line to recite rather than a principle to apply to a real decision.",
+    "action": "The intuitive rule: the longer the term, the larger the duration, and the more sharply the bond's price swings when rates change"
   },
-  {
-   "type": "callout",
-   "label": "A simple intuition",
-   "text": "Picture it: a 1-year bond has only one final cash flow that needs discounting through 1 period. A 15-year bond has a final cash flow (the face value) that must be discounted through as many as 15 periods. A rate change gets 'amplified' many times more across 15 discounting periods than across just 1 - which is why long-term bonds are far more sensitive."
+  "application": {
+    "title": "Compare two durations",
+    "message": "Compare two hypothetical bonds - one low-coupon with a long term, one high-coupon with a short term - and reason through which has the higher duration, meaning it's more sensitive to rates.",
+    "secondary": "Duration sounds complex, but at its core it's just 'how long it takes to get your money back'."
   },
-  {
-   "type": "heading",
-   "text": "Why this matters to a bond buyer"
-  },
-  {
-   "type": "list",
-   "items": [
-    "If you plan to withdraw money at a near point in time (the next 2-3 years), prioritize short-term bonds to avoid the risk of having to sell right when the price has fallen sharply because rates rose",
-    "If you can hold the bond to maturity and don't need to sell in between, duration doesn't matter to you - you still receive the full principal and interest originally promised",
-    "For a high-coupon bond, a large share of its value is 'returned' earlier (through coupon periods), giving it a lower duration than a low-coupon or zero-coupon bond of the same term, since almost all of a zero-coupon bond's value is concentrated at maturity"
-   ]
-  },
-  {
-   "type": "comparison",
-   "left": {
-    "label": "Low duration (short-term, high-coupon bond)",
-    "text": "Price moves little when rates change. Suited to someone who needs stability, or who might need to sell before maturity."
-   },
-   "right": {
-    "label": "High duration (long-term, low-coupon bond)",
-    "text": "Price swings sharply when rates change - rising strongly if rates fall, but dropping deeply if rates rise. Suited to someone willing to accept volatility for a price-gain opportunity, or holding to maturity."
-   }
-  },
-  {
-   "type": "paragraph",
-   "text": "In practice, bond funds and securities firms often publish the 'average term' or 'average duration' of their portfolio so investors can gauge the level of interest-rate risk. When reading a bond fund's prospectus, a duration around 1-2 years marks a fund fairly safe from rate swings; a duration of 7-8 years or more means that fund's NAV will move noticeably more with rate movements."
-  },
-  {
-   "type": "closing",
-   "lines": [
-    "Duration is an intuitive gauge: the longer the term, the more sensitive a bond is to rate swings.",
-    "No need to memorize a complex formula - just remember this principle to pick a bond term that fits your risk tolerance and when you'll need the money."
-   ]
-  }
- ]
+  "sections": [
+    {
+      "type": "lead",
+      "text": "You already know that when rates rise, bond prices fall. But not every bond falls by the same amount - some fall very little, some fall very deep. That difference is called Duration."
+    },
+    {
+      "type": "heading",
+      "text": "What duration is, at the simplest level"
+    },
+    {
+      "type": "paragraph",
+      "text": "Duration, understood intuitively (without needing to dig into the complex Macaulay Duration formula), is a number telling you roughly what percentage a bond's price will move when market rates change by 1 percentage point. You don't need to calculate this figure precisely - what matters is remembering the principle: the longer a bond's term, the larger the duration, and the more sensitive its price is to interest rates."
+    },
+    {
+      "type": "callout",
+      "label": "A simple intuition",
+      "text": "Picture it: a 1-year bond has only one final cash flow that needs discounting through 1 period. A 15-year bond has a final cash flow (the face value) that must be discounted through as many as 15 periods. A rate change gets 'amplified' many times more across 15 discounting periods than across just 1 - which is why long-term bonds are far more sensitive."
+    },
+    {
+      "type": "heading",
+      "text": "Why this matters to a bond buyer"
+    },
+    {
+      "type": "list",
+      "items": [
+        "If you plan to withdraw money at a near point in time (the next 2-3 years), prioritize short-term bonds to avoid the risk of having to sell right when the price has fallen sharply because rates rose",
+        "If you can hold the bond to maturity and don't need to sell in between, duration doesn't matter to you - you still receive the full principal and interest originally promised",
+        "For a high-coupon bond, a large share of its value is 'returned' earlier (through coupon periods), giving it a lower duration than a low-coupon or zero-coupon bond of the same term, since almost all of a zero-coupon bond's value is concentrated at maturity"
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Low duration (short-term, high-coupon bond)",
+        "text": "Price moves little when rates change. Suited to someone who needs stability, or who might need to sell before maturity."
+      },
+      "right": {
+        "label": "High duration (long-term, low-coupon bond)",
+        "text": "Price swings sharply when rates change - rising strongly if rates fall, but dropping deeply if rates rise. Suited to someone willing to accept volatility for a price-gain opportunity, or holding to maturity."
+      }
+    },
+    {
+      "type": "paragraph",
+      "text": "In practice, bond funds and securities firms often publish the 'average term' or 'average duration' of their portfolio so investors can gauge the level of interest-rate risk. When reading a bond fund's prospectus, a duration around 1-2 years marks a fund fairly safe from rate swings; a duration of 7-8 years or more means that fund's NAV will move noticeably more with rate movements."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Duration is an intuitive gauge: the longer the term, the more sensitive a bond is to rate swings.",
+        "No need to memorize a complex formula - just remember this principle to pick a bond term that fits your risk tolerance and when you'll need the money."
+      ]
+    }
+  ]
 }

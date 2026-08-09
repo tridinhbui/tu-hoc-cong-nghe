@@ -1661,17 +1661,31 @@ if (hollowCorrect.length > 0 && !process.argv.includes("--warn-only")) {
 
 if (biasFailures.length > 0 && !process.argv.includes("--warn-only")) {
   console.error(
-    `\n${biasFailures.length} track/tổng vượt ngưỡng lệch độ dài |z| > ${MAX_LENGTH_BIAS_Z}:\n` +
+    // In CẢ BA chỉ số và đánh dấu cái vượt. Bản trước lọc theo ba (dài, ngắn,
+    // giữa) nhưng chỉ in hai và chỉ trích MAX_LENGTH_BIAS_Z, nên một lần đỏ vì
+    // `giữa` hiện ra thành "vượt ngưỡng |z| > 3.2" bên cạnh hai con số đều
+    // DƯỚI 3.2 - đọc như bộ kiểm tự mâu thuẫn, và phải mở mã ra mới biết cổng
+    // nào thật sự hỏng.
+    `\n${biasFailures.length} track/tổng vượt ngưỡng lệch độ dài ` +
+      `(|z| dài/ngắn > ${MAX_LENGTH_BIAS_Z}, |z| giữa > ${MAX_MIDDLE_BIAS_Z}):\n` +
       biasFailures
-        .map(
-          (r) =>
-            `  ${r.name}: z(dài) = ${r.zLong.toFixed(2)}, z(ngắn) = ${r.zShort.toFixed(2)}`
-        )
+        .map((r) => {
+          const mark = (z, ceiling) => (Math.abs(z) > ceiling ? " <<<" : "");
+          return (
+            `  ${r.name}: ` +
+            `z(dài) = ${r.zLong.toFixed(2)}${mark(r.zLong, MAX_LENGTH_BIAS_Z)}, ` +
+            `z(ngắn) = ${r.zShort.toFixed(2)}${mark(r.zShort, MAX_LENGTH_BIAS_Z)}, ` +
+            `z(giữa) = ${r.zMid.toFixed(2)}${mark(r.zMid, MAX_MIDDLE_BIAS_Z)}`
+          );
+        })
         .join("\n") +
-      `\n\n  Dấu DƯƠNG: đáp án đúng quá hay là phương án dài nhất (hoặc ngắn nhất) -\n` +
-      `  đoán theo độ dài là ăn. Dấu ÂM cũng khai thác được, chỉ ngược chiều:\n` +
-      `  loại đúng phương án đó ra rồi đoán trong ba cái còn lại.\n` +
-      `  Sửa bằng cách viết lại phương án, không bằng cách nâng ngưỡng.`
+      `\n\n  Dấu DƯƠNG ở dài/ngắn: đáp án đúng quá hay là phương án dài nhất (hoặc\n` +
+      `  ngắn nhất) - đoán theo độ dài là ăn. Dấu ÂM cũng khai thác được, chỉ\n` +
+      `  ngược chiều: loại đúng phương án đó ra rồi đoán trong ba cái còn lại.\n` +
+      `  z(giữa) dương: đáp án đúng không dài nhất cũng không ngắn nhất - loại\n` +
+      `  cả hai đầu rồi đoán giữa hai cái còn lại vẫn hơn xác suất.\n` +
+      `  Sửa bằng cách viết lại NHIỄU, không bằng cách cắt đáp án đúng (cắt nó\n` +
+      `  là đẩy nó vào giữa) và không bằng cách nâng ngưỡng.`
   );
   process.exit(1);
 }

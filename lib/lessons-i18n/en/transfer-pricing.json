@@ -5,9 +5,9 @@
   "duration": "6 min",
   "openingQuestion": "What is transfer pricing inside a multinational group?",
   "openingOptions": [
-    "A way of computing VAT across borders",
+    "A way of computing VAT",
     "The internal price between related companies",
-    "An internal share price set by the parent company",
+    "An internal share price",
     "A kind of short-term intra-group debt"
   ],
   "explanation": "Transfer pricing is the price affiliated companies use to sell goods, services or IP to one another. Because related parties have no incentive to bargain independently the way two strangers would, that price directly affects which country the profit - and the tax on it - is recognised in.",
@@ -115,9 +115,9 @@
     {
       "question": "Why is internal IP harder to police for transfer pricing than physical goods?",
       "options": [
-        "Because tax authorities take no interest in internal intangibles",
-        "Because intangible assets may not be transferred within a group",
-        "Because intangible assets carry no value in the accounting records",
+        "Because tax authorities take no interest at all in internal intangibles",
+        "Because intangible assets may not be transferred within a group at all",
+        "Because intangible assets carry no value at all in the accounting records",
         "Because there is no comparable market transaction to price against"
       ],
       "explanation": "The arm's length principle depends on finding a comparable transaction. For a brand or a proprietary technology no reference market exists, so the range of a 'reasonable' price is very wide."

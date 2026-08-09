@@ -1,204 +1,204 @@
 {
- "slug": "trai-phieu-chinh-phu",
- "title": "Government bonds vs. corporate bonds",
- "subtitle": "Government vs corporate bonds",
- "duration": "6 min",
- "openingQuestion": "Why do Vietnamese government bonds usually carry a lower interest rate than corporate bonds of the same term?",
- "openingOptions": [
-  "Because government bonds must always carry a shorter term",
-  "Because the Government has lower default risk than a business",
-  "Because interest on government bonds is exempt from tax",
-  "Because foreign investors are barred from buying them"
- ],
- "explanation": "The lower the default risk, the lower a rate investors will accept - that's the risk/return trade-off. A government can tax and print money to repay debt, so it is almost never unable to pay bonds denominated in its own currency, which is why government bond yields become the 'risk-free' benchmark every other bond is measured against.",
- "diagram": [
-  {
-   "label": "Same term, two different issuers",
-   "arrow": true
-  },
-  {
-   "label": "The Government can tax and issue its own currency",
-   "arrow": true
-  },
-  {
-   "label": "So default risk is much lower and so is the rate",
-   "arrow": true
-  },
-  {
-   "label": "A business must pay an extra premium to offset that risk"
-  }
- ],
- "interactiveType": "bond",
- "realWorldExample": {
-  "company": "Government bonds (HNX) and the Tan Hoang Minh / Van Thinh Phat cases",
-  "description": "Vietnamese government bonds are issued and auctioned by the State Treasury through the Hanoi Stock Exchange (HNX), typically at 2.5-4%/year depending on term. By contrast, the corporate bond market was rocked in 2022 when Tan Hoang Minh had 9 bond lots worth nearly VND 10,000 billion cancelled for false information disclosure, and Van Thinh Phat's bond-issuance violations left tens of thousands of individual investors unable to recover their capital. Both cases make it clear: corporate bonds paying higher interest (some lots once offered 12-13%/year) do so precisely because they carry far more risk than government bonds."
- },
- "quiz": [
-  {
-   "question": "Vietnamese government bonds are mainly issued and traded through which channel?",
-   "options": [
-    "Listed and traded on the HOSE exchange, like stocks",
-    "Sold directly to the public by the State Bank through a mobile app",
-    "Issued by the State Treasury, with secondary trading on HNX",
-    "They cannot be traded again once issued"
-   ],
-   "correct": 2,
-   "explanation": "The State Treasury is the issuer, and both primary auctions and secondary trading of government bonds take place at the Hanoi Stock Exchange (HNX) - the main channel, distinct from the HOSE exchange used for stocks."
-  },
-  {
-   "question": "What is the biggest lesson for individual investors from the 2022 Tan Hoang Minh and Van Thinh Phat cases?",
-   "options": [
-    "Corporate bonds are always dangerous and should be avoided entirely, where cổ phiếu-style trading hours and matching rules apply exactly as they do for stocks",
-    "Only bonds issued by commercial banks should be bought",
-    "Corporate bonds are not protected by the law at all",
-    "An unusually high interest rate usually comes with a matching level of risk"
-   ],
-   "correct": 3,
-   "explanation": "Many individual investors bought these companies' bonds purely for the attractive rate (10-13%/year) without checking the real repayment capacity, and some were even wrongly told the bonds were 'as safe as a savings deposit'. The lesson is that a high rate always reflects high risk - read the prospectus carefully and examine cash flow and collateral before buying."
-  },
-  {
-   "question": "Why is the government bond rate called the 'risk-free' rate?",
-   "options": [
-    "Because the Government can tax and issue money to repay debt in its own currency",
-    "Because the Government buys insurance covering every bond it has issued to the public",
-    "Because that rate is fixed by law and therefore never moves with the market",
-    "Because buyers of government bonds are refunded if the market goes down, which is not always as straightforward as it seems"
-   ],
-   "correct": 0,
-   "explanation": "With bonds denominated in its own currency, a government can virtually never become unable to pay in nominal terms. That's why its yield becomes the benchmark: every riskier investment must pay above it, and the gap is the risk premium."
-  },
-  {
-   "question": "Corporate bond A pays 12%/year while a government bond of the same term pays 4%. What does that 8% gap tell you?",
-   "options": [
-    "Company A is doing better business than the Government, so it can afford much higher interest",
-    "It's the risk premium the market demands to accept the possibility of default",
-    "It's extra interest the State subsidizes for private corporate bonds",
-    "The gap only reflects a difference in term, not risk at all"
-   ],
-   "correct": 1,
-   "explanation": "No one pays more interest than they have to. When a company must pay three times what the Government pays, that's the level the market demands to compensate for the chance of losing money - a high rate isn't a gift, it's the price of the risk you're carrying."
-  },
-  {
-   "question": "What should be checked first before buying a single corporate bond?",
-   "options": [
-    "The coupon rate - pick whichever bond pays the highest rate on the market",
-    "The name recognition and media prominence of the issuing company",
-    "The issuer's financial health, its collateral, and the intended use of the funds",
-    "How many other investors bought that bond lot before you"
-   ],
-   "correct": 2,
-   "explanation": "A corporate bond is a loan, so the right questions are a bank's questions: does the borrower have cash flow to repay, what is the money for, and what collateral exists if they fail to pay. Both 2022 cases collapsed on exactly these questions, not on the interest rate itself."
-  },
-  {
-   "question": "Is a 10-year government bond completely safe for the buyer?",
-   "options": [
-    "Yes, because default risk is close to zero, so this investment carries no risk at all",
-    "No, because the Government can declare bonds cancelled when the budget is tight, a detail that shapes the outcome more than expected",
-    "Yes, because the State commits to buy it back at face value whenever you want to sell",
-    "No - if market rates rise and you have to sell early, the price has already fallen"
-   ],
-   "correct": 3,
-   "explanation": "Safety in repayment doesn't mean safety in price. A 10-year bond is highly sensitive to interest rates: a 2% rate rise can push the price down more than 15%. Held to maturity, you still get all your principal and interest - the problem only arises if you're forced to sell partway through."
-  }
- ],
- "keyTakeaways": [
-  "Government bonds are seen as the safest (default risk near zero), with the lowest rate, used as the benchmark for every other type of bond",
-  "Corporate bonds carry higher risk (dependent on the company's financial health), so the rate must be higher to compensate for that risk",
-  "The 2022 Tan Hoang Minh and Van Thinh Phat cases are a costly lesson: an unusually attractive rate always comes with matching risk, and bonds shouldn't be bought purely on an advisor's word without due diligence"
- ],
- "practicePrompt": {
-  "question": "A real-estate company offers bonds at 13%/year, well above the common 9-10%/year market level, advertised as 'absolutely safe'. Based on the lesson from Tan Hoang Minh and Van Thinh Phat, how should you react?",
-  "options": [
-   "Be cautious and carefully research the company's financial position and reason for issuing before buying, since an unusually high rate usually comes with matching risk",
-   "Buy immediately with as much money as possible, since a 13%/year return is too attractive to pass up, even though shareholders technically hold no formal claim on the company at all",
-   "Trust the 'absolutely safe' advertising completely, since issuers are always obligated to tell the truth",
-   "Avoid every corporate bond from now on entirely and only ever invest in government bonds"
+  "slug": "trai-phieu-chinh-phu",
+  "title": "Government bonds vs. corporate bonds",
+  "subtitle": "Government vs corporate bonds",
+  "duration": "6 min",
+  "openingQuestion": "Why do Vietnamese government bonds usually carry a lower interest rate than corporate bonds of the same term?",
+  "openingOptions": [
+    "Because government bonds must always carry a shorter term",
+    "Because the Government has lower default risk than a business",
+    "Because interest on government bonds is exempt from tax",
+    "Because foreign investors are barred from buying them"
   ],
-  "correct": 0,
-  "explanation": "An unusually high rate always comes with matching risk - the lesson from Tan Hoang Minh and Van Thinh Phat is to carefully verify before buying, not to trust advertising or an attractive rate alone."
- },
- "summary": {
-  "keyIdea": "Government bonds are seen as the safest (default risk near zero), with the lowest rate, used as the benchmark for every other type of bond",
-  "commonMistake": "Reading the concept as a line to recite rather than a principle to apply to a real decision.",
-  "action": "Corporate bonds carry higher risk (dependent on the company's financial health), so the rate must be higher to compensate for that risk"
- },
- "application": {
-  "title": "Compare the two kinds of bonds",
-  "message": "This lesson already gave a real example with the 10-year government bond yield (4.11%/year) and the share of rated corporate bonds (just 1.6%) - see the 'Real example' section above. Now find a pair of bonds yourself to compare.",
-  "secondary": "The interest-rate gap is exactly how the market prices risk - go feel it for yourself."
- },
- "sections": [
-  {
-   "type": "lead",
-   "text": "Not every bond is equally safe. Government bonds and corporate bonds are both 'debt paper', but the risk they carry and the rate that comes with it are worlds apart."
+  "explanation": "The lower the default risk, the lower a rate investors will accept - that's the risk/return trade-off. A government can tax and print money to repay debt, so it is almost never unable to pay bonds denominated in its own currency, which is why government bond yields become the 'risk-free' benchmark every other bond is measured against.",
+  "diagram": [
+    {
+      "label": "Same term, two different issuers",
+      "arrow": true
+    },
+    {
+      "label": "The Government can tax and issue its own currency",
+      "arrow": true
+    },
+    {
+      "label": "So default risk is much lower and so is the rate",
+      "arrow": true
+    },
+    {
+      "label": "A business must pay an extra premium to offset that risk"
+    }
+  ],
+  "interactiveType": "bond",
+  "realWorldExample": {
+    "company": "Government bonds (HNX) and the Tan Hoang Minh / Van Thinh Phat cases",
+    "description": "Vietnamese government bonds are issued and auctioned by the State Treasury through the Hanoi Stock Exchange (HNX), typically at 2.5-4%/year depending on term. By contrast, the corporate bond market was rocked in 2022 when Tan Hoang Minh had 9 bond lots worth nearly VND 10,000 billion cancelled for false information disclosure, and Van Thinh Phat's bond-issuance violations left tens of thousands of individual investors unable to recover their capital. Both cases make it clear: corporate bonds paying higher interest (some lots once offered 12-13%/year) do so precisely because they carry far more risk than government bonds."
   },
-  {
-   "type": "heading",
-   "text": "Government bonds: the borrower least likely to default"
+  "quiz": [
+    {
+      "question": "Vietnamese government bonds are mainly issued and traded through which channel?",
+      "options": [
+        "Listed and traded on the HOSE exchange, like stocks",
+        "Sold directly to the public by the State Bank through a mobile app",
+        "Issued by the State Treasury, with secondary trading on HNX",
+        "They cannot be traded again once issued"
+      ],
+      "correct": 2,
+      "explanation": "The State Treasury is the issuer, and both primary auctions and secondary trading of government bonds take place at the Hanoi Stock Exchange (HNX) - the main channel, distinct from the HOSE exchange used for stocks."
+    },
+    {
+      "question": "What is the biggest lesson for individual investors from the 2022 Tan Hoang Minh and Van Thinh Phat cases?",
+      "options": [
+        "Corporate bonds are dangerous by nature and should be avoided entirely",
+        "Only bonds issued by commercial banks should be bought",
+        "Corporate bonds are not protected by the law at all",
+        "An unusually high interest rate usually comes with a matching level of risk"
+      ],
+      "correct": 3,
+      "explanation": "Many individual investors bought these companies' bonds purely for the attractive rate (10-13%/year) without checking the real repayment capacity, and some were even wrongly told the bonds were 'as safe as a savings deposit'. The lesson is that a high rate always reflects high risk - read the prospectus carefully and examine cash flow and collateral before buying."
+    },
+    {
+      "question": "Why is the government bond rate called the 'risk-free' rate?",
+      "options": [
+        "Because the Government can tax and issue money to repay debt in its own currency",
+        "Because the Government buys insurance covering every bond it has issued to the public",
+        "Because that rate is fixed by law and therefore never moves with the market",
+        "Because buyers of government bonds are refunded if the market goes down, which is not always as straightforward as it seems"
+      ],
+      "correct": 0,
+      "explanation": "With bonds denominated in its own currency, a government can virtually never become unable to pay in nominal terms. That's why its yield becomes the benchmark: every riskier investment must pay above it, and the gap is the risk premium."
+    },
+    {
+      "question": "Corporate bond A pays 12%/year while a government bond of the same term pays 4%. What does that 8% gap tell you?",
+      "options": [
+        "Company A is doing better business than the Government, so it can afford much higher interest",
+        "It's the risk premium the market demands to accept the possibility of default",
+        "It's extra interest the State subsidizes for private corporate bonds",
+        "The gap only reflects a difference in term, not risk at all"
+      ],
+      "correct": 1,
+      "explanation": "No one pays more interest than they have to. When a company must pay three times what the Government pays, that's the level the market demands to compensate for the chance of losing money - a high rate isn't a gift, it's the price of the risk you're carrying."
+    },
+    {
+      "question": "What should be checked first before buying a single corporate bond?",
+      "options": [
+        "The coupon rate - pick whichever bond pays the highest rate on the market",
+        "The name recognition and media prominence of the issuing company",
+        "The issuer's financial health, its collateral, and the intended use of the funds",
+        "How many other investors bought that bond lot before you"
+      ],
+      "correct": 2,
+      "explanation": "A corporate bond is a loan, so the right questions are a bank's questions: does the borrower have cash flow to repay, what is the money for, and what collateral exists if they fail to pay. Both 2022 cases collapsed on exactly these questions, not on the interest rate itself."
+    },
+    {
+      "question": "Is a 10-year government bond completely safe for the buyer?",
+      "options": [
+        "Yes, because default risk is close to zero, so this investment carries no risk at all",
+        "No, because the Government can declare bonds cancelled when the budget is tight, a detail that shapes the outcome more than expected",
+        "Yes, because the State commits to buy it back at face value whenever you want to sell",
+        "No - if market rates rise and you have to sell early, the price has already fallen"
+      ],
+      "correct": 3,
+      "explanation": "Safety in repayment doesn't mean safety in price. A 10-year bond is highly sensitive to interest rates: a 2% rate rise can push the price down more than 15%. Held to maturity, you still get all your principal and interest - the problem only arises if you're forced to sell partway through."
+    }
+  ],
+  "keyTakeaways": [
+    "Government bonds are seen as the safest (default risk near zero), with the lowest rate, used as the benchmark for every other type of bond",
+    "Corporate bonds carry higher risk (dependent on the company's financial health), so the rate must be higher to compensate for that risk",
+    "The 2022 Tan Hoang Minh and Van Thinh Phat cases are a costly lesson: an unusually attractive rate always comes with matching risk, and bonds shouldn't be bought purely on an advisor's word without due diligence"
+  ],
+  "practicePrompt": {
+    "question": "A real-estate company offers bonds at 13%/year, well above the common 9-10%/year market level, advertised as 'absolutely safe'. Based on the lesson from Tan Hoang Minh and Van Thinh Phat, how should you react?",
+    "options": [
+      "Be cautious and carefully research the company's financial position and reason for issuing before buying, since an unusually high rate usually comes with matching risk",
+      "Buy immediately with as much money as possible, since a 13%/year return is too attractive to pass up, even though shareholders technically hold no formal claim on the company at all",
+      "Trust the 'absolutely safe' advertising completely, since issuers are always obligated to tell the truth",
+      "Avoid every corporate bond from now on entirely and only ever invest in government bonds"
+    ],
+    "correct": 0,
+    "explanation": "An unusually high rate always comes with matching risk - the lesson from Tan Hoang Minh and Van Thinh Phat is to carefully verify before buying, not to trust advertising or an attractive rate alone."
   },
-  {
-   "type": "paragraph",
-   "text": "In Vietnam, the State Treasury issues bonds on the Government's behalf to cover the budget deficit and fund public investment, through auctions at the Hanoi Stock Exchange (HNX). Buyers are mainly banks, insurance companies, and investment funds - given the large trade sizes and expertise required, individual retail investors usually gain access indirectly through bond funds. Because the Government can tax and steer monetary policy, the chance of failing to repay debt in its own currency is close to nonexistent, which is why Vietnam's 10-year government bond rate usually sits around just 2.5-4%/year."
+  "summary": {
+    "keyIdea": "Government bonds are seen as the safest (default risk near zero), with the lowest rate, used as the benchmark for every other type of bond",
+    "commonMistake": "Reading the concept as a line to recite rather than a principle to apply to a real decision.",
+    "action": "Corporate bonds carry higher risk (dependent on the company's financial health), so the rate must be higher to compensate for that risk"
   },
-  {
-   "type": "heading",
-   "text": "Corporate bonds: higher interest, but with real risk attached"
+  "application": {
+    "title": "Compare the two kinds of bonds",
+    "message": "This lesson already gave a real example with the 10-year government bond yield (4.11%/year) and the share of rated corporate bonds (just 1.6%) - see the 'Real example' section above. Now find a pair of bonds yourself to compare.",
+    "secondary": "The interest-rate gap is exactly how the market prices risk - go feel it for yourself."
   },
-  {
-   "type": "paragraph",
-   "text": "Businesses issue bonds to raise capital for operations, real-estate projects, expanding factories, and so on. Their ability to repay depends entirely on whether the business itself performs well. If the company runs into cash-flow trouble, paying interest and principal on time can be delayed or even default completely. Because of this risk, corporate bonds must pay a higher rate than government bonds to attract buyers - that interest-rate gap is called the 'credit spread'."
-  },
-  {
-   "type": "callout",
-   "label": "A lesson from 2022",
-   "text": "Tan Hoang Minh had 9 bond lots worth nearly VND 10,000 billion cancelled by the State Securities Commission for false disclosure and concealing information during issuance. That same year, violations tied to bond issuance at Van Thinh Phat and SCB left tens of thousands of individual investors - many of whom were used to nothing riskier than a savings deposit - unable to recover their invested capital. Many of them had been advised by bank staff to buy corporate bonds as a product 'paying more than a savings deposit but just as safe' - which was not true."
-  },
-  {
-   "type": "list",
-   "items": [
-    "Government bonds: low interest, near-zero default risk, suited to capital preservation",
-    "Reputable corporate bonds (large, transparent companies with healthy finances): a few percentage points above government bonds, moderate risk",
-    "High-risk corporate bonds (small, less transparent companies, highly leveraged real-estate issuers): very high interest, but principal and interest can both be lost if the company defaults"
-   ]
-  },
-  {
-   "type": "comparison",
-   "left": {
-    "label": "Government bonds",
-    "text": "Issued by the State Treasury, traded on HNX. Default risk extremely low. Low rate (usually 2.5-4%/year for long terms). Suited to investors who prioritize capital safety."
-   },
-   "right": {
-    "label": "Corporate bonds",
-    "text": "Issued by a private or listed company. Risk depends on the issuer's financial health. Higher rate, possibly 8-13%/year or more depending on the risk level. Needs careful due diligence before buying."
-   }
-  },
-  {
-   "type": "paragraph",
-   "text": "Since the 2022 cases, regulators have tightened rules on privately-placed corporate bond issuance, requiring more transparency about the intended use of funds and credit ratings. Even so, the basic principle hasn't changed: before buying any corporate bond, a buyer needs to ask whether the company genuinely has the capacity to repay, not just look at the attractive interest number."
-  },
-  {
-   "type": "heading",
-   "text": "A real example: the rate gap between government and corporate bonds"
-  },
-  {
-   "type": "list",
-   "items": [
-    "10-year Vietnamese government bond: auction-winning yield around 4.11%/year (2026)",
-    "Corporate bonds of the same term: usually 3-7 percentage points higher depending on the issuer's credit standing - that gap has to be enough to offset a default risk far higher than the government's",
-    "Only 1.6% of Vietnamese corporate bonds carry an independent credit rating (2025) - meaning most investors must judge for themselves whether that gap is 'enough to cover the risk', without an objective tool to help"
-   ]
-  },
-  {
-   "type": "callout",
-   "label": "How to compare for yourself",
-   "text": "Look up the auction-winning yield of a government bond of the matching term on VBMA, place it next to the issuance yield of a corporate bond of the same term, work out the gap yourself, and ask whether it's enough to cover the risk."
-  },
-  {
-   "type": "closing",
-   "lines": [
-    "Government bonds and corporate bonds differ mainly in the borrower's default risk.",
-    "The lesson from Tan Hoang Minh and Van Thinh Phat: a high interest rate is never free - it always comes with a price, and that price is risk."
-   ]
-  }
- ]
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Not every bond is equally safe. Government bonds and corporate bonds are both 'debt paper', but the risk they carry and the rate that comes with it are worlds apart."
+    },
+    {
+      "type": "heading",
+      "text": "Government bonds: the borrower least likely to default"
+    },
+    {
+      "type": "paragraph",
+      "text": "In Vietnam, the State Treasury issues bonds on the Government's behalf to cover the budget deficit and fund public investment, through auctions at the Hanoi Stock Exchange (HNX). Buyers are mainly banks, insurance companies, and investment funds - given the large trade sizes and expertise required, individual retail investors usually gain access indirectly through bond funds. Because the Government can tax and steer monetary policy, the chance of failing to repay debt in its own currency is close to nonexistent, which is why Vietnam's 10-year government bond rate usually sits around just 2.5-4%/year."
+    },
+    {
+      "type": "heading",
+      "text": "Corporate bonds: higher interest, but with real risk attached"
+    },
+    {
+      "type": "paragraph",
+      "text": "Businesses issue bonds to raise capital for operations, real-estate projects, expanding factories, and so on. Their ability to repay depends entirely on whether the business itself performs well. If the company runs into cash-flow trouble, paying interest and principal on time can be delayed or even default completely. Because of this risk, corporate bonds must pay a higher rate than government bonds to attract buyers - that interest-rate gap is called the 'credit spread'."
+    },
+    {
+      "type": "callout",
+      "label": "A lesson from 2022",
+      "text": "Tan Hoang Minh had 9 bond lots worth nearly VND 10,000 billion cancelled by the State Securities Commission for false disclosure and concealing information during issuance. That same year, violations tied to bond issuance at Van Thinh Phat and SCB left tens of thousands of individual investors - many of whom were used to nothing riskier than a savings deposit - unable to recover their invested capital. Many of them had been advised by bank staff to buy corporate bonds as a product 'paying more than a savings deposit but just as safe' - which was not true."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Government bonds: low interest, near-zero default risk, suited to capital preservation",
+        "Reputable corporate bonds (large, transparent companies with healthy finances): a few percentage points above government bonds, moderate risk",
+        "High-risk corporate bonds (small, less transparent companies, highly leveraged real-estate issuers): very high interest, but principal and interest can both be lost if the company defaults"
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Government bonds",
+        "text": "Issued by the State Treasury, traded on HNX. Default risk extremely low. Low rate (usually 2.5-4%/year for long terms). Suited to investors who prioritize capital safety."
+      },
+      "right": {
+        "label": "Corporate bonds",
+        "text": "Issued by a private or listed company. Risk depends on the issuer's financial health. Higher rate, possibly 8-13%/year or more depending on the risk level. Needs careful due diligence before buying."
+      }
+    },
+    {
+      "type": "paragraph",
+      "text": "Since the 2022 cases, regulators have tightened rules on privately-placed corporate bond issuance, requiring more transparency about the intended use of funds and credit ratings. Even so, the basic principle hasn't changed: before buying any corporate bond, a buyer needs to ask whether the company genuinely has the capacity to repay, not just look at the attractive interest number."
+    },
+    {
+      "type": "heading",
+      "text": "A real example: the rate gap between government and corporate bonds"
+    },
+    {
+      "type": "list",
+      "items": [
+        "10-year Vietnamese government bond: auction-winning yield around 4.11%/year (2026)",
+        "Corporate bonds of the same term: usually 3-7 percentage points higher depending on the issuer's credit standing - that gap has to be enough to offset a default risk far higher than the government's",
+        "Only 1.6% of Vietnamese corporate bonds carry an independent credit rating (2025) - meaning most investors must judge for themselves whether that gap is 'enough to cover the risk', without an objective tool to help"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "How to compare for yourself",
+      "text": "Look up the auction-winning yield of a government bond of the matching term on VBMA, place it next to the issuance yield of a corporate bond of the same term, work out the gap yourself, and ask whether it's enough to cover the risk."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Government bonds and corporate bonds differ mainly in the borrower's default risk.",
+        "The lesson from Tan Hoang Minh and Van Thinh Phat: a high interest rate is never free - it always comes with a price, and that price is risk."
+      ]
+    }
+  ]
 }

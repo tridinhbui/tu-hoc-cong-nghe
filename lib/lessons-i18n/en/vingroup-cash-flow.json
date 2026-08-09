@@ -138,7 +138,7 @@
       "options": [
         "Because accounting standards require adding it back when preparing the statement",
         "Because the tax authority refunds depreciation at the financial year end",
-        "Because it is a charge already deducted that cost no money in the period",
+        "Because it is a charge already deducted that cost no money",
         "Because depreciation is another form of income for the company"
       ],
       "explanation": "The cash left when the asset was bought. Depreciation only spreads that cost across periods in the books, so converting back to cash flow means adding it back."
@@ -149,7 +149,7 @@
         "Deferring revenue recognition into the following period",
         "The company cutting its fixed-asset investment during the reporting period",
         "A one-off gain from selling an asset or disposing of a business line",
-        "Heavy depreciation, or a model that collects cash before delivering"
+        "Heavy depreciation, or collecting cash before delivering"
       ],
       "explanation": "Both of these repeat: depreciation is a charge that costs no money, and collecting in advance is a feature of the business model. Selling assets or cutting investment also flatters one period's cash flow but does not repeat - separating those two groups is the main work of reading earnings quality."
     }

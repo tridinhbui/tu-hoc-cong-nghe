@@ -5,7 +5,7 @@
   "duration": "6 min",
   "openingQuestion": "Is the home you live in an asset or a liability?",
   "openingOptions": [
-    "An asset, because property in general tends to appreciate over the long run",
+    "An asset, because property tends to appreciate",
     "It depends on the cash flow: a home you live in takes money out every month",
     "A liability, because every loan is a liability",
     "An asset, because it sits on your personal balance sheet"
@@ -114,7 +114,7 @@
       "options": [
         "The rich buy assets, the poor buy liabilities",
         "The rich work harder, so they earn more",
-        "The rich manage to save more because they spend less",
+        "The rich save more because they spend less",
         "The rich have more education"
       ],
       "explanation": "Kiyosaki: an asset is something that puts money in your pocket (shares, rental property, a business). A liability is something that takes money out (a consumer car, a home you live in). The rich accumulate assets."
@@ -123,7 +123,7 @@
       "question": "When does compound interest work best?",
       "options": [
         "The higher the rate the better; time matters less",
-        "Over the longest possible investment horizon",
+        "Over the longest horizon possible",
         "With the largest possible principal",
         "With interest credited as often as possible"
       ],
@@ -143,9 +143,9 @@
       "question": "What is lifestyle inflation and why is it dangerous?",
       "options": [
         "Inflation making an individual's cost of living more expensive",
-        "Living costs rising with age",
-        "A pay rise arriving alongside rising prices",
-        "Spending rising by exactly as much as income rises"
+        "Living costs rising steadily with a person's age",
+        "A pay rise arriving alongside generally rising prices",
+        "Spending rising by as much as income"
       ],
       "explanation": "Lifestyle inflation: pay rises 20% and spending rises 20% too, so the savings rate does not move. Wealthy people hold their lifestyle steady as income rises and invest the difference."
     },

@@ -132,7 +132,7 @@
       "options": [
         "When a client actually moves across to follow you",
         "When you first use the list to make contact with a client on it",
-        "At the moment of copying, not when the list is used",
+        "At the moment of copying, not on use",
         "When the old firm discovers the copying"
       ],
       "explanation": "If it only counted at the point of use, taking someone else's property would only become a problem once it worked - which cannot be right."
@@ -150,9 +150,9 @@
     {
       "question": "After leaving, what about contacting former clients using publicly available information?",
       "options": [
-        "Legitimate, unless a separate agreement binds you",
-        "A violation, because clients belong to the old firm permanently",
-        "Only legitimate once six months have passed since leaving",
+        "Legitimate, unless a separate agreement binds you further still",
+        "A violation: clients belong to the old firm",
+        "Only legitimate six months after leaving",
         "Only legitimate if the old firm agrees in writing"
       ],
       "explanation": "The duty under IV(A) ends with the employment relationship; what remains is any separate contractual undertaking."
@@ -189,9 +189,9 @@
     "question": "A former client rings you two weeks after you left, asking to move their assets to your new firm. May you accept?",
     "options": [
       "No, because two weeks is too soon after leaving",
-      "Yes, provided you were not the one who made contact first",
+      "Yes, provided you were not the one who made first contact at all",
       "Yes, but you must notify the old firm beforehand",
-      "No, because that client still belongs to the old firm for a period"
+      "No, that client still belongs to the old firm"
     ],
     "explanation": "Two conditions must both hold, and the first is the one people miss: if you approached them before you left, this call is not genuinely the client's initiative. There is no waiting period in Standard IV(A) - it ends with the employment relationship, so two weeks and two months are no different."
   }
