@@ -1,0 +1,145 @@
+{
+  "slug": "cfa-ethics-case-suc-ep-tu-bo-phan-ban-hang",
+  "title": "CFA Ethics 44: Case - an analyst under pressure from the underwriting desk",
+  "subtitle": "One situation, four standards, and the order of the steps",
+  "duration": "11 min",
+  "whyItMatters": "The ethics exam is written around situations rather than around standard names, and the skill being marked is recognising which standards a sequence of conduct touches. This is the form of case that appears most often.",
+  "openingQuestion": "You write a Neutral recommendation on a company your firm is about to underwrite. The head of underwriting asks you to raise it to Buy and says the mandate could be lost. What violation has occurred at this point?",
+  "openingOptions": [
+    "None yet, until you actually change the recommendation",
+    "One already: applying pressure to independence breaches I(B)",
+    "Only if the company itself learns of this conversation",
+    "Only Standard IV(A), on the duty to the employer"
+  ],
+  "correctOption": 1,
+  "explanation": "This is the point most often missed in cases of this form. The Standard I(B) violation sits on the side of the person applying the pressure and is complete the moment the pressure is transmitted - if it only counted once the analyst had changed the recommendation, every unsuccessful attempt would be blameless, and the standard would lose all preventive effect. For you, receiving the pressure, no duty has been breached yet but one has arisen: hold to a well-founded conclusion, record what happened, and take the matter to compliance. Complying in silence adds a V(A) violation, because the new recommendation has no reasonable basis, and a V(B) violation, because you are presenting someone else's opinion as though it were your analysis.",
+  "summary": {
+    "keyIdea": "I(B) is breached the moment the pressure reaches the analyst, not when the conclusion is actually changed.",
+    "commonMistake": "Waiting to see whether you give in before treating it as a problem. The existence of the channel through which pressure travels is itself a structural fault."
+  },
+  "application": {
+    "title": "What to do immediately",
+    "message": "Record it and report it to compliance. Not to denounce anyone, but so that the channel cannot be used again."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "You write a sell recommendation. The underwriting desk is pitching a deal to that very company, and they come to talk to you. This is a conflict of interest written into the business structure, not something anyone did deliberately."
+    },
+    {
+      "type": "heading",
+      "text": "When the violation completes"
+    },
+    {
+      "type": "paragraph",
+      "text": "Standard I(B) is breached on the side of the person applying the pressure, and it completes the moment the pressure is transmitted - it does not wait for you to change the recommendation. If it only counted once the analyst had given in, every unsuccessful attempt would be blameless, and the standard would lose all preventive effect."
+    },
+    {
+      "type": "callout",
+      "label": "If you comply in silence",
+      "text": "You add two further violations: V(A), because the new recommendation has no reasonable basis, and V(B), because you are presenting someone else's opinion as though it were your own analysis. Three violations stacked on top of each other."
+    },
+    {
+      "type": "heading",
+      "text": "The right response"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Hold to the conclusion if it is well founded - pressure is not new evidence.",
+        "Record what happened: who said what, when, through which channel.",
+        "Take the matter to compliance, because this is a systemic fault rather than a personal disagreement."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The last point is the most important: this conversation should have been blocked by the information barrier in the first place. When the conflict sits in the business structure, the solution has to be structural - separate departments, separate reporting lines, separate compensation - rather than relying on the firmness of individuals."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Reminding each other to be objective does not fix a structural conflict.",
+        "Only a mechanism can."
+      ]
+    }
+  ],
+  "diagram": [
+    { "label": "I(B): the violation completes when the pressure is transmitted", "arrow": true },
+    { "label": "If the recommendation changes: add V(A) - no reasonable basis", "arrow": true },
+    { "label": "And V(B) - presenting another's opinion as your own", "arrow": true },
+    { "label": "The information barrier should have blocked this conversation" }
+  ],
+  "realWorldExample": {
+    "company": "Why this is the classic case of a structural conflict",
+    "description": "Underwriting revenue comes from the very companies the research department covers, so the conflict lies not in one bad individual but in the business structure. This is why the answer is not to rely on individual willpower but on mechanisms: information barriers, analyst compensation not tied to underwriting revenue, and a report approval process that does not pass through the underwriting desk. A firm lacking those three puts its analysts in conditions where compliance is close to impossible."
+  },
+  "quiz": [
+    {
+      "question": "At what moment is a Standard I(B) violation complete?",
+      "options": [
+        "When the pressure is created and transmitted",
+        "When the analyst actually changes the recommendation",
+        "When the report has been published to clients",
+        "When the company under coverage learns of it"
+      ],
+      "explanation": "If it only counted once the recommendation had changed, every unsuccessful attempt would be blameless - and the standard would lose all preventive effect."
+    },
+    {
+      "question": "If the analyst gives in and changes the recommendation, which further violations arise?",
+      "options": [
+        "Only V(A), because the recommendation has no analytical basis",
+        "V(A) for the lost reasonable basis, and V(B) for misrepresentation",
+        "Only IV(A), for damaging the employer's interests",
+        "None, because I(B) already covers the whole thing"
+      ],
+      "explanation": "The new recommendation rests on no analysis at all, and it is presented as though it were the analyst's conclusion - two separate violations."
+    },
+    {
+      "question": "What is the duty of the person receiving the pressure?",
+      "options": [
+        "Change the recommendation but note the reason at the end of the report",
+        "Resign immediately so as not to be associated with the report",
+        "Hold the well-founded conclusion, record it, take it to compliance",
+        "Wait and see whether the underwriting mandate is actually lost"
+      ],
+      "explanation": "These three steps are the proportionate response - resigning is the last resort once every internal channel has closed."
+    },
+    {
+      "question": "Which mechanism should have blocked this conversation from the outset?",
+      "options": [
+        "The rule on retaining research records for seven years",
+        "The pre-clearance process for staff personal dealing",
+        "The restricted list of securities staff may not trade",
+        "The information barrier between underwriting and research"
+      ],
+      "explanation": "This is precisely the function an information barrier is built to perform - and the conversation happening shows it was not working."
+    },
+    {
+      "question": "Why is this described as a structural conflict?",
+      "options": [
+        "Because underwriting revenue comes from the companies covered",
+        "Because the two departments always have personal disputes",
+        "Because current rules do not clearly divide the two sides' responsibilities",
+        "Because analysts usually hold less power within the organisation"
+      ],
+      "explanation": "The conflict is in the business model rather than in an individual, so the solution has to be a mechanism rather than individual willpower."
+    }
+  ],
+  "keyTakeaways": [
+    "I(B) is breached the moment pressure is transmitted, not when someone gives in",
+    "Changing the recommendation adds V(A) and V(B) - three violations stacked",
+    "The right response: hold the conclusion, record it, take it to compliance",
+    "The information barrier should have blocked the conversation from the outset",
+    "The conflict lies in the business structure, so the solution must be a mechanism"
+  ],
+  "practicePrompt": {
+    "question": "You raised the matter with compliance but they have done nothing for two weeks, and the report's publication deadline has arrived. What next?",
+    "options": [
+      "Publish the Buy recommendation as asked, since you already reported it",
+      "Publish your own conclusion, and continue escalating",
+      "Publish nothing at all and let the deadline pass",
+      "Publish the Neutral version but without your name on it"
+    ],
+    "explanation": "Having reported to compliance protects you from any charge of complicit silence, but it does not transfer responsibility for the content of a report carrying your name. Publishing nothing abandons the duty to clients who are waiting; removing your name evades responsibility rather than resolving the conflict."
+  }
+}
