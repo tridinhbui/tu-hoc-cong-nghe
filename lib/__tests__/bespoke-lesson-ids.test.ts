@@ -51,7 +51,12 @@ describe("id của trang bài học viết tay", () => {
   const pages = bespokePages();
 
   it("có trang để kiểm - nếu không, test này vô nghĩa", () => {
-    expect(pages.length).toBeGreaterThan(10);
+    // Ngưỡng là 0, không phải một con số cố định. Số trang viết tay đang GIẢM
+    // dần khi từng trang được kéo về lib/lessons.ts, nên mọi ngưỡng cứng sẽ tự
+    // đỏ khi migration tiến lên - bản đầu đòi > 10 và đỏ đúng lúc trang thứ
+    // bảy được migrate. Khi trang cuối cùng đi, cả file test này nên đi theo:
+    // không còn trang nào thì không còn id nào để đụng.
+    expect(pages.length).toBeGreaterThan(0);
   });
 
   it("không id nào trùng một bài có thật trong corpus", async () => {

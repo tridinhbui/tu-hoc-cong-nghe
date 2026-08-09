@@ -83,6 +83,8 @@ export const SKILL_DOMAINS: SkillDomain[] = [
       ...range(1690, 1692),
       // 1050 (credit-debit-phan-2): bút toán thực chiến, đi sau bài Ghi sổ kép.
       1050,
+      // 1051 (khau-hao): ba phương pháp và đường đi qua ba báo cáo.
+      1051,
     ],
   },
   {
