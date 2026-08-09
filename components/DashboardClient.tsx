@@ -61,7 +61,6 @@ import BossBattleModal from "@/components/BossBattleModal";
 import PvpDuelModal from "@/components/PvpDuelModal";
 import DashboardStreakWidget from "@/components/DashboardStreakWidget";
 import DailyMotivationWidget from "@/components/DailyMotivationWidget";
-import CommunityStreakWidget from "@/components/CommunityStreakWidget";
 import LearningPathSummary from "@/components/LearningPathSummary";
 import { useI18n } from "@/lib/i18n/context";
 import { format, intlLocale } from "@/lib/i18n";
@@ -1247,7 +1246,6 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                 trong cột trái, cái kia là băng chuyền ngang kèm bài vừa học.
                 Giữ cả hai là một quyết định có người nhìn thấy, không phải
                 một lần sót. */}
-            {!isLessonsView && <CommunityStreakWidget />}
 
             {/* Lối vào Lộ trình học, đứng ĐẦU cột trái.
                 Trang đó trả lời câu mà dashboard không trả lời: bắt đầu từ
