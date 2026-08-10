@@ -460,8 +460,8 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
 
       {/* Reward Reveal Overlay */}
       {opening && rewardReveal && mounted && createPortal(
-        <div className="fixed inset-0 bg-stone-950/80 backdrop-blur-md flex items-center justify-center z-[9999] p-4 animate-[fadeIn_0.2s_ease-out]">
-          <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-3xl w-full max-w-sm p-6 text-center shadow-2xl relative space-y-5 animate-[scaleIn_0.3s_ease-out]">
+        <div className="fixed inset-0 bg-stone-950/80 backdrop-blur-md flex items-center justify-center z-[9999] overflow-y-auto p-4 animate-[fadeIn_0.2s_ease-out]">
+          <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-3xl w-full max-w-sm my-auto p-6 text-center shadow-2xl relative space-y-5 animate-[scaleIn_0.3s_ease-out]">
             <div className="w-16 h-16 mx-auto bg-amber-500 rounded-full flex items-center justify-center text-white shadow-lg animate-bounce">
               {rewardReveal.type === "xp" ? <Zap className="w-8 h-8 text-white" /> : <Sparkles className="w-8 h-8 text-white" />}
             </div>
@@ -469,10 +469,10 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
               <span className="text-[9px] font-extrabold uppercase tracking-widest text-amber-600 dark:text-amber-400">{t.rewards.youReceived}</span>
               <h3 className="text-lg font-black text-stone-900 dark:text-stone-100 flex items-center justify-center gap-1.5">
                 {rewardReveal.type === "title" && <Trophy className="w-5 h-5 text-amber-500" />}
-                {rewardReveal.value}
+                {t.chestTitles[rewardReveal.value] ?? rewardReveal.value}
                 {rewardReveal.type === "xp" && ` ${t.miscUi.combinedRewardsWidget.xpUnit}`}
               </h3>
-              <p className="text-xs text-stone-500 dark:text-stone-400">{rewardReveal.desc}</p>
+              <p className="text-xs text-stone-500 dark:text-stone-400">{t.chestDescriptions[rewardReveal.desc] ?? rewardReveal.desc}</p>
             </div>
             <button
               onClick={handleClaimReward}

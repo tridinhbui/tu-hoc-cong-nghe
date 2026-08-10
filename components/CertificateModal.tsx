@@ -116,8 +116,8 @@ export default function CertificateModal({ stageLabel, stageName, userName, user
   };
 
   return (
-    <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-[fadeIn_0.2s_ease-out]">
-      <div className="bg-stone-900 border border-stone-800 rounded-3xl w-full max-w-4xl p-6 md:p-8 flex flex-col items-center shadow-2xl relative animate-[scaleIn_0.3s_ease-out] text-white">
+    <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 overflow-y-auto p-4 animate-[fadeIn_0.2s_ease-out]">
+      <div className="bg-stone-900 border border-stone-800 rounded-3xl w-full max-w-4xl my-auto p-6 md:p-8 flex flex-col items-center shadow-2xl relative animate-[scaleIn_0.3s_ease-out] text-white">
         
         {/* Close Button */}
         <button

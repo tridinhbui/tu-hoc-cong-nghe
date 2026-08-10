@@ -346,7 +346,14 @@ export default function HomePage() {
             <span className="hidden sm:inline text-lg leading-none text-[#FFCD00]" aria-hidden="true">
               ★
             </span>
-            <p className="min-w-0 flex-1 truncate text-xs font-semibold text-white/95 sm:flex-none sm:overflow-visible sm:whitespace-normal sm:text-sm sm:leading-relaxed">
+            {/* `flex-1` ở mọi cỡ, không `sm:flex-none`. `flex: none` cho chiều
+                ngang bằng max-content, nên `sm:whitespace-normal` không bao giờ
+                có gì để xuống dòng: câu dài ra 1255px trong khung 753px, khung
+                cha `overflow-hidden` cắt cụt cả hai đầu vì `sm:justify-center`,
+                và thứ nằm giữa - chữ "miễn phí mãi mãi" - là thứ bị mất. Đúng
+                cái lỗi mà chú thích của nút Facebook bên dưới nói là đã tránh
+                được ở màn hình hẹp. */}
+            <p className="min-w-0 flex-1 truncate text-xs font-semibold text-white/95 sm:overflow-visible sm:whitespace-normal sm:text-sm sm:leading-relaxed">
               <span className="sm:hidden">
                 {t.home.banner.shortPrefix}
                 <strong className="text-[#FFCD00]">{t.home.banner.freeForever}</strong>

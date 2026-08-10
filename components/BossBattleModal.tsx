@@ -137,13 +137,19 @@ export default function BossBattleModal({
 
   if (!mounted) return null;
 
+  // `overflow-y-auto` trên lớp phủ, `my-auto` trên tấm. Một tấm cao hơn màn
+  // hình mà lớp phủ không cuộn được thì bị cắt cụt cả trên lẫn dưới, và chính
+  // hai đầu ấy chứa nút đóng và nút hành động. Điện thoại xoay ngang chỉ còn
+  // 375px chiều cao, thấp hơn gần hết các tấm ở đây. `my-auto` là phần bắt
+  // buộc đi kèm: `items-center` trong một khung cuộn được sẽ cắt mất đầu trên
+  // khi nội dung tràn.
   return createPortal(
-    <div className="fixed inset-0 bg-stone-950/85 backdrop-blur-md z-[9999] flex items-center justify-center p-4">
+    <div className="fixed inset-0 bg-stone-950/85 backdrop-blur-md z-[9999] flex items-center justify-center overflow-y-auto p-4">
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.9 }}
-        className="bg-stone-900 border-2 border-amber-500/50 rounded-3xl p-6 max-w-xl w-full text-white shadow-2xl relative overflow-hidden"
+        className="bg-stone-900 border-2 border-amber-500/50 rounded-3xl p-6 max-w-xl w-full my-auto text-white shadow-2xl relative overflow-hidden"
       >
         {/* Header Close */}
         <button

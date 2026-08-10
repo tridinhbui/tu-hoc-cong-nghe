@@ -119,14 +119,17 @@ export default function LevelUpModal({ level, userName, onClose }: LevelUpModalP
 
   return (
     <div
-      className={`fixed inset-0 z-[100] flex items-center justify-center px-4 transition-opacity duration-300 ${visible ? "opacity-100" : "opacity-0"}`}
+      className={`fixed inset-0 z-[100] flex items-center justify-center overflow-y-auto px-4 py-4 transition-opacity duration-300 ${visible ? "opacity-100" : "opacity-0"}`}
       role="dialog"
       aria-modal="true"
       aria-label={t.levelUp.dialogAriaLabel}
     >
-      <div className="absolute inset-0 bg-stone-950/70 backdrop-blur-sm" onClick={onClose} />
+      {/* `fixed` chứ không `absolute`: lớp phủ ngoài giờ cuộn được, mà
+          `absolute inset-0` bám vào khung cuộn nên nền mờ và mưa giấy sẽ trôi
+          đi cùng nội dung, để lộ trang bên dưới ở phần vừa cuộn tới. */}
+      <div className="fixed inset-0 bg-stone-950/70 backdrop-blur-sm" onClick={onClose} />
 
-      <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+      <div className="fixed inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
         {confetti.map((p) => (
           <span
             key={p.id}
@@ -148,7 +151,7 @@ export default function LevelUpModal({ level, userName, onClose }: LevelUpModalP
       </div>
 
       <div
-        className={`relative w-full max-w-sm bg-white dark:bg-stone-900 rounded-3xl p-8 text-center shadow-2xl transition-all duration-300 ${
+        className={`relative w-full max-w-sm my-auto bg-white dark:bg-stone-900 rounded-3xl p-8 text-center shadow-2xl transition-all duration-300 ${
           visible ? "scale-100 translate-y-0" : "scale-90 translate-y-4"
         }`}
       >

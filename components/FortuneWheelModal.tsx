@@ -78,12 +78,12 @@ export default function FortuneWheelModal({ userId, onClose, onRewardClaimed }: 
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-stone-950/80 backdrop-blur-md flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-50 bg-stone-950/80 backdrop-blur-md flex items-center justify-center overflow-y-auto p-4">
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.9 }}
-        className="bg-white dark:bg-stone-900 border-2 border-amber-400/80 rounded-3xl p-6 max-w-md w-full shadow-2xl relative text-center overflow-hidden"
+        className="bg-white dark:bg-stone-900 border-2 border-amber-400/80 rounded-3xl p-6 max-w-md w-full my-auto shadow-2xl relative text-center overflow-hidden"
       >
         <button
           onClick={onClose}

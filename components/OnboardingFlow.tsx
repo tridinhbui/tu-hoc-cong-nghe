@@ -165,11 +165,11 @@ export default function OnboardingFlow({ onComplete, onSkip }: OnboardingFlowPro
   const progress = ((currentStep + 1) / ONBOARDING_STEPS.length) * 100;
 
   return (
-    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center overflow-y-auto p-4">
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="bg-white dark:bg-stone-900 rounded-2xl max-w-lg w-full shadow-2xl overflow-hidden"
+        className="bg-white dark:bg-stone-900 rounded-2xl max-w-lg w-full my-auto shadow-2xl overflow-hidden"
       >
         {/* Header */}
         <div className="p-6 border-b border-stone-200 dark:border-stone-800">
