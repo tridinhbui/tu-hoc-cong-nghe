@@ -42,6 +42,7 @@ with expected_functions(name) as (values
     ('get_my_study_room'),
     ('get_my_track_leaderboard_rank'),
     ('get_my_xp_rank_since'),
+    ('get_nav_state'),
     ('get_net_worth_percentile'),
     ('get_online_count'),
     ('get_online_users'),
