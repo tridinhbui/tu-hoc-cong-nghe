@@ -1242,17 +1242,6 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                 hai của thẻ Bản đồ Cấp độ phía trên, nên cột này giờ bắt đầu
                 bằng góc yên tĩnh. */}
 
-            {/* Chuỗi ngày học của người khác, đưa lại theo yêu cầu sau khi
-                bị gỡ ở 30bca5b. Nó CHỒNG với CommunityLearningNow ở cột phải -
-                cả hai đều liệt kê người kèm số ngày - và đó là lý do nó từng
-                bị gỡ. Khác nhau ở hình dạng: cái này là danh sách dọc gọn
-                trong cột trái, cái kia là băng chuyền ngang kèm bài vừa học.
-                Giữ cả hai là một quyết định có người nhìn thấy, không phải
-                một lần sót - và nó đã được nói lại lần thứ ba, sau khi widget
-                bị gỡ ở 85b0f34 với lý do trùng lặp. Đừng gỡ lần nữa nếu không
-                có yêu cầu mới. */}
-            {!isLessonsView && <CommunityStreakWidget />}
-
             {/* Lối vào Lộ trình học, đứng ĐẦU cột trái.
                 Trang đó trả lời câu mà dashboard không trả lời: bắt đầu từ
                 đâu, mỗi ngày bao nhiêu, bao giờ thì xong - và trước thẻ này
@@ -1270,7 +1259,12 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                 tượng 64px và chữ font-black cỡ xl - tức thẻ nổi nhất cột, cho
                 một đường dẫn sang trang khác. Thứ nổi nhất trên dashboard nên
                 là việc học, không phải cửa ra. Giờ nó là một hàng liên kết
-                bình thường, màu xanh chỉ còn xuất hiện lúc trỏ chuột vào. */}
+                bình thường, màu xanh chỉ còn xuất hiện lúc trỏ chuột vào.
+
+                "Đứng ĐẦU cột trái" là chữ của chú thích này từ đầu, và có một
+                giai đoạn nó không còn đúng: widget chuỗi ngày được chèn lên
+                trên mà chú thích vẫn nói vậy. Giờ khớp lại - thẻ này trước,
+                chuỗi ngày ngay sau. */}
             {!isLessonsView && (
               <Link
                 href="/lo-trinh"
@@ -1293,7 +1287,16 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
               </Link>
             )}
 
-
+            {/* Chuỗi ngày học của người khác, đưa lại theo yêu cầu sau khi
+                bị gỡ ở 30bca5b. Nó CHỒNG với CommunityLearningNow ở cột phải -
+                cả hai đều liệt kê người kèm số ngày - và đó là lý do nó từng
+                bị gỡ. Khác nhau ở hình dạng: cái này là danh sách dọc gọn
+                trong cột trái, cái kia là băng chuyền ngang kèm bài vừa học.
+                Giữ cả hai là một quyết định có người nhìn thấy, không phải
+                một lần sót - và nó đã được nói lại lần thứ ba, sau khi widget
+                bị gỡ ở 85b0f34 với lý do trùng lặp. Đừng gỡ lần nữa nếu không
+                có yêu cầu mới. */}
+            {!isLessonsView && <CommunityStreakWidget />}
 
             {/* Góc yên tĩnh chuyển vào TRONG thẻ Bản đồ Cấp độ, bản nhỏ. */}
 
