@@ -139,6 +139,29 @@ export default function QuietForestScene({
     };
   }, []);
 
+  // Toàn màn hình: khoá cuộn nền và cho Escape thoát ra.
+  //
+  // Dùng một lớp phủ `fixed inset-0` chứ KHÔNG dùng Fullscreen API. Safari
+  // trên iOS không cho requestFullscreen() trên phần tử thường - chỉ <video> -
+  // nên ở đó nút sẽ không làm gì cả, im lặng. Lớp phủ chạy ở mọi trình duyệt
+  // và vẫn là toàn màn hình theo đúng nghĩa người dùng thấy.
+  //
+  // Khoá cuộn vì nếu không, cuộn trong cảnh sẽ trôi trang phía dưới, và lúc
+  // thoát ra người đọc đứng ở một chỗ khác hẳn chỗ họ đã bấm vào.
+  useEffect(() => {
+    if (!expanded) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setExpanded(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = previous;
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [expanded]);
+
   const toggleRain = () => {
     if (rainOn) {
       rain.current?.stop();
@@ -180,9 +203,17 @@ export default function QuietForestScene({
             // Nền tối đặt ở đây chứ không để trong suốt: Canvas trong suốt thì
             // ở chế độ sáng, khoảng trời giữa các tán cây là màu trắng của thẻ
             // - trời trắng lúc nửa đêm.
-            `relative overflow-hidden rounded-[22px] bg-[#080d0f] ${
-              expanded ? "h-[88svh]" : "h-[58svh] min-h-[380px] sm:h-[64svh]"
-            }`
+            // Mở rộng = lớp phủ TOÀN MÀN HÌNH, không phải một khung cao hơn
+            // trong thẻ. Bản trước để `h-[88svh]` tại chỗ, nên cảnh vẫn nằm
+            // trong thẻ trắng bo tròn có lề trang hai bên - gần trọn màn nhưng
+            // không phải toàn màn hình, và bo góc lúc đó chỉ còn là viền thừa.
+            //
+            // `fixed` an toàn ở đây: nó bị cắt nếu một tổ tiên có transform,
+            // và chuỗi tổ tiên trong QuietCornerClient chỉ có `relative` -
+            // hai lớp motion.div nền là ANH EM, không phải cha.
+            (expanded
+              ? "fixed inset-0 z-[70] overflow-hidden bg-[#080d0f]"
+              : "relative overflow-hidden rounded-[22px] bg-[#080d0f] h-[58svh] min-h-[380px] sm:h-[64svh]")
       }
     >
       {/* Giảm chuyển động: ngọn lửa tĩnh giữ nguyên chiều cao cũ. Kéo nó lên
